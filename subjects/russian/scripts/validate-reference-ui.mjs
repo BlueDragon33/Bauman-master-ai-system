@@ -83,13 +83,19 @@ for(const token of ['HỌC TIẾP','Kế hoạch hôm nay','5 kỹ năng chính'
 must(js.includes('navigator.platform'),'Shortcut hint must adapt to the user platform');
 must(!js.includes('base+Math.round'),'Skill cards must not synthesize fake per-skill progress');
 must(!js.includes('mini-progress'),'Skill cards must not display invented per-skill progress bars');
-for(const token of ['ru-future-ui','rf-progress-strip','rf-module-grid','rf-dashboard-lower','rf-tab-intro','--rf-sidebar:220px','--rf-sidebar-compact:190px','--rf-content-max:1500px','--rf-section-gap:12px','--rf-motion-fast:180ms','grid-template-columns:var(--rf-sidebar) minmax(0,1fr)','display:none!important']) must(futureCss.includes(token),`Future UI CSS missing ${token}`);
+for(const token of ['ru-future-ui','rf-progress-strip','rf-module-grid','rf-dashboard-lower','rf-tab-intro','--rf-sidebar:220px','--rf-sidebar-compact:220px','--rf-content-max:1120px','--rf-reading-max:820px','--rf-card-padding:22px','--rf-section-gap:28px','--rf-font-md:15px','--rf-font-hero:32px','--rf-motion-fast:180ms','grid-template-columns:var(--rf-sidebar) minmax(0,1fr)','display:none!important']) must(futureCss.includes(token),`Future UI CSS missing ${token}`);
 must(futureCss.includes('@media(max-width:1320px){\n .ru-future-ui .ru-app-shell{grid-template-columns:var(--rf-sidebar-compact)'), 'Laptop breakpoint must activate the compact sidebar token at <=1320px');
+for(const token of ['@media(max-width:767px)','rf-sidebar-toggle','rf-sidebar-scrim','rf-sidebar-open','width:min(86vw,320px)','height:100dvh']){
+  must(futureCss.includes(token),`PASS 2 mobile drawer contract missing: ${token}`);
+}
+must(futureJs.includes('function upgradeMobileShell'),'PASS 2 mobile shell runtime missing');
+must(futureJs.includes("aria-controls',sidebar.id")&&futureJs.includes("aria-expanded','false'"),'Mobile drawer toggle must expose ARIA state');
+must(futureJs.includes("e.key==='Escape'&&document.body.classList.contains('rf-sidebar-open')"),'Mobile drawer must close with Escape');
 must(!futureCss.includes('Russian Reference UI · premium Bauman/Russia dashboard layer'),'PASS 2 must not restore the obsolete dark shell presentation layer');
 for(const token of ['--ru-bg:#040d1b','grid-template-columns:228px minmax(0,1fr) 328px','background:rgba(4,15,29,.88)']){
   must(!futureCss.includes(token),`Obsolete shell token returned: ${token}`);
 }
-for(const token of ['position:relative;height:42px;display:flex','position:absolute;left:0;right:0;top:45px','margin:0;padding:0 1px']){
+for(const token of ['position:relative;height:44px;display:flex','position:absolute;left:0;right:0;top:45px','margin:0;padding:0 1px']){
   must(futureCss.includes(token),`Canonical shell/search structure missing after PASS 2 migration: ${token}`);
 }
 const shellStart=futureCss.indexOf('body.ru-reference-ui.ru-future-ui{');
