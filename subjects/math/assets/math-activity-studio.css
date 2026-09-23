@@ -27,3 +27,13 @@
 .math-exercise-manual{padding:9px 10px;border:1px dashed rgba(94,156,203,.17);border-radius:9px;color:#708da3;font-size:8px;line-height:1.55}
 .math-exercise-card details{margin-top:2px}
 .math-exercise-card details summary{color:#6fcfff;font-size:8px;cursor:pointer}
+
+
+/* L15 · evidence-backed Review Pack */
+.math-review-evidence-card{display:grid;gap:9px}
+.math-review-evidence-meta{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.math-review-evidence-meta span{display:grid;gap:3px;padding:8px;border:1px solid rgba(82,151,204,.12);border-radius:9px;background:rgba(5,22,40,.5);color:#748fa5;font-size:7.5px;line-height:1.45}
+.math-review-evidence-meta b{color:#b9cfdd;font-size:7.5px}
+.math-review-evidence-refs{display:flex;gap:5px;flex-wrap:wrap}
+.math-review-evidence-refs i{font-style:normal;padding:4px 6px;border:1px solid rgba(77,166,220,.15);border-radius:999px;background:rgba(28,109,160,.09);color:#72c9ee;font-size:7px}
+@media(max-width:620px){.math-review-evidence-meta{grid-template-columns:1fr}}
