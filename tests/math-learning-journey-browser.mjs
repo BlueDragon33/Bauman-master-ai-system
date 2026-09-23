@@ -77,7 +77,7 @@ try{
   report.checks.lessonCompletion=true;
 
   // Journey 5: weak evidence produces a real review queue and Review route.
-  const review=await page.evaluate(()=>window.BAUMAN_MATH_LEARNING_FLOW.reviewQueue(LESSON));
+  const review=await page.evaluate(id=>window.BAUMAN_MATH_LEARNING_FLOW.reviewQueue(id),LESSON);
   assert.equal(review.length,1,'Review queue does not reflect Lesson Check evidence');
   assert.ok(review[0].reviewStepId,'Review item lacks a recovery step');
   await page.evaluate(()=>window.BAUMAN_MATH_NAVIGATION.route('review'));
