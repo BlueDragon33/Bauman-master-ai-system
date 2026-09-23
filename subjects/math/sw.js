@@ -44,7 +44,11 @@ async function networkFirst(request){
   const cache=await caches.open(CACHE);
   try{
     const response=await fetch(request);
-    if(response&&response.ok&&!HEAVY_DATA.test(request.url))cache.put(request,response.clone());
+    if(response&&response.ok){
+      const length=Number(response.headers.get('content-length')||0);
+      const withinBudget=!length||length<=12*1024*1024;
+      if(withinBudget)cache.put(request,response.clone());
+    }
     return response;
   }catch(error){
     const cached=await cache.match(request,{ignoreSearch:true});
@@ -72,7 +76,6 @@ self.addEventListener('fetch',event=>{
     return;
   }
   if(/\/data\/.*\.json(?:\?|$)/i.test(url.pathname)){
-    if(HEAVY_DATA.test(url.pathname)){event.respondWith(fetch(request));return;}
     event.respondWith(networkFirst(request));
     return;
   }
