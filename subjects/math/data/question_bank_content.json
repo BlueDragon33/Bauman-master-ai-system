@@ -10,7 +10,1022 @@
   "frameSource": "question_bank_frame.json",
   "legacyExportTarget": "question_bank.json",
   "recordKey": "questionId",
-  "records": [],
+  "records": [
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t01",
+      "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+      "chapterId": "MATH-VN-C01-vector_trong_khong_gian_",
+      "tags": [
+        "data matrix",
+        "multivariate data",
+        "orientation",
+        "feature schema"
+      ],
+      "sourceAnchors": [
+        "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+        "MATH-PREP-LA2-C10-L07"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T01-Q001",
+      "level": "easy",
+      "question": "Nếu X có n hàng quan sát và p cột đặc trưng, shape của X là gì?",
+      "answer": "n×p",
+      "reviewPackId": "E16R-M_P07_T01-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t01",
+      "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+      "chapterId": "MATH-VN-C01-vector_trong_khong_gian_",
+      "tags": [
+        "data matrix",
+        "multivariate data",
+        "orientation",
+        "feature schema"
+      ],
+      "sourceAnchors": [
+        "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+        "MATH-PREP-LA2-C10-L07"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T01-Q002",
+      "level": "easy",
+      "question": "X^T X có kích thước gì?",
+      "answer": "p×p",
+      "reviewPackId": "E16R-M_P07_T01-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t01",
+      "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+      "chapterId": "MATH-VN-C01-vector_trong_khong_gian_",
+      "tags": [
+        "data matrix",
+        "multivariate data",
+        "orientation",
+        "feature schema"
+      ],
+      "sourceAnchors": [
+        "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+        "MATH-PREP-LA2-C10-L07"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T01-Q003",
+      "level": "medium",
+      "question": "X^T X luôn là covariance matrix đúng hay sai?",
+      "answer": "Sai",
+      "reviewPackId": "E16R-M_P07_T01-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t01",
+      "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+      "chapterId": "MATH-VN-C01-vector_trong_khong_gian_",
+      "tags": [
+        "data matrix",
+        "multivariate data",
+        "orientation",
+        "feature schema"
+      ],
+      "sourceAnchors": [
+        "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+        "MATH-PREP-LA2-C10-L07"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T01-Q004",
+      "level": "medium",
+      "question": "Transpose X có tự động giữ nguyên ý nghĩa hàng/cột không?",
+      "answer": "Không; convention phải được dịch lại.",
+      "reviewPackId": "E16R-M_P07_T01-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t01",
+      "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+      "chapterId": "MATH-VN-C01-vector_trong_khong_gian_",
+      "tags": [
+        "data matrix",
+        "multivariate data",
+        "orientation",
+        "feature schema"
+      ],
+      "sourceAnchors": [
+        "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+        "MATH-PREP-LA2-C10-L07"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T01-Q005",
+      "level": "hard",
+      "question": "Điều gì có thể sai dù phép nhân Xw vẫn chạy?",
+      "answer": "Thứ tự feature của X không khớp thứ tự trọng số w.",
+      "reviewPackId": "E16R-M_P07_T01-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t01",
+      "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+      "chapterId": "MATH-VN-C01-vector_trong_khong_gian_",
+      "tags": [
+        "data matrix",
+        "multivariate data",
+        "orientation",
+        "feature schema"
+      ],
+      "sourceAnchors": [
+        "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+        "MATH-PREP-LA2-C10-L07"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T01-Q006",
+      "level": "hard",
+      "question": "Rank tối đa của X∈R^(n×p) là bao nhiêu?",
+      "answer": "min(n,p)",
+      "reviewPackId": "E16R-M_P07_T01-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t02",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T02-centering-scaling",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "centering",
+        "standardization",
+        "z-score",
+        "leakage"
+      ],
+      "sourceAnchors": [
+        "MATH-HK2-MLB-C25-L07"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T02-Q001",
+      "level": "easy",
+      "question": "Centering làm mean mỗi feature về giá trị nào?",
+      "answer": "0 (xấp xỉ sai số số học)",
+      "reviewPackId": "E16R-M_P07_T02-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t02",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T02-centering-scaling",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "centering",
+        "standardization",
+        "z-score",
+        "leakage"
+      ],
+      "sourceAnchors": [
+        "MATH-HK2-MLB-C25-L07"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T02-Q002",
+      "level": "easy",
+      "question": "Z-score chia cho đại lượng nào?",
+      "answer": "Standard deviation của feature.",
+      "reviewPackId": "E16R-M_P07_T02-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t02",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T02-centering-scaling",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "centering",
+        "standardization",
+        "z-score",
+        "leakage"
+      ],
+      "sourceAnchors": [
+        "MATH-HK2-MLB-C25-L07"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T02-Q003",
+      "level": "medium",
+      "question": "Centering có thay đổi covariance không?",
+      "answer": "Không.",
+      "reviewPackId": "E16R-M_P07_T02-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t02",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T02-centering-scaling",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "centering",
+        "standardization",
+        "z-score",
+        "leakage"
+      ],
+      "sourceAnchors": [
+        "MATH-HK2-MLB-C25-L07"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T02-Q004",
+      "level": "medium",
+      "question": "Standardization có thay đổi covariance không?",
+      "answer": "Có.",
+      "reviewPackId": "E16R-M_P07_T02-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t02",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T02-centering-scaling",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "centering",
+        "standardization",
+        "z-score",
+        "leakage"
+      ],
+      "sourceAnchors": [
+        "MATH-HK2-MLB-C25-L07"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T02-Q005",
+      "level": "hard",
+      "question": "Fit scaler trên test set có hợp lệ không?",
+      "answer": "Không, gây leakage.",
+      "reviewPackId": "E16R-M_P07_T02-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t02",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T02-centering-scaling",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "centering",
+        "standardization",
+        "z-score",
+        "leakage"
+      ],
+      "sourceAnchors": [
+        "MATH-HK2-MLB-C25-L07"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T02-Q006",
+      "level": "hard",
+      "question": "Feature s=0 cần xử lý thế nào?",
+      "answer": "Không chia cho 0; loại, giữ nguyên có đánh dấu, hoặc dùng policy rõ ràng.",
+      "reviewPackId": "E16R-M_P07_T02-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t03",
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E16R-MP07-T03-covariance",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "tags": [
+        "covariance",
+        "variance",
+        "random variables"
+      ],
+      "sourceAnchors": [
+        "MATH-VN-PS-C05-L05"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T03-Q001",
+      "level": "easy",
+      "question": "Cov(X,X) bằng gì?",
+      "answer": "Var(X)",
+      "reviewPackId": "E16R-M_P07_T03-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t03",
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E16R-MP07-T03-covariance",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "tags": [
+        "covariance",
+        "variance",
+        "random variables"
+      ],
+      "sourceAnchors": [
+        "MATH-VN-PS-C05-L05"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T03-Q002",
+      "level": "easy",
+      "question": "Sample covariance thường chia cho n hay n−1?",
+      "answer": "n−1 trong estimator mẫu thông dụng.",
+      "reviewPackId": "E16R-M_P07_T03-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t03",
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E16R-MP07-T03-covariance",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "tags": [
+        "covariance",
+        "variance",
+        "random variables"
+      ],
+      "sourceAnchors": [
+        "MATH-VN-PS-C05-L05"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T03-Q003",
+      "level": "medium",
+      "question": "Covariance âm nói gì?",
+      "answer": "Hai biến có xu hướng lệch trái dấu quanh mean.",
+      "reviewPackId": "E16R-M_P07_T03-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t03",
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E16R-MP07-T03-covariance",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "tags": [
+        "covariance",
+        "variance",
+        "random variables"
+      ],
+      "sourceAnchors": [
+        "MATH-VN-PS-C05-L05"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T03-Q004",
+      "level": "medium",
+      "question": "Covariance có đơn vị không?",
+      "answer": "Có.",
+      "reviewPackId": "E16R-M_P07_T03-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t03",
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E16R-MP07-T03-covariance",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "tags": [
+        "covariance",
+        "variance",
+        "random variables"
+      ],
+      "sourceAnchors": [
+        "MATH-VN-PS-C05-L05"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T03-Q005",
+      "level": "hard",
+      "question": "Zero covariance suy ra independence đúng hay sai?",
+      "answer": "Sai trong tổng quát.",
+      "reviewPackId": "E16R-M_P07_T03-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t03",
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E16R-MP07-T03-covariance",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "tags": [
+        "covariance",
+        "variance",
+        "random variables"
+      ],
+      "sourceAnchors": [
+        "MATH-VN-PS-C05-L05"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T03-Q006",
+      "level": "hard",
+      "question": "Cov(aX+b,cY+d) bằng gì?",
+      "answer": "ac·Cov(X,Y)",
+      "reviewPackId": "E16R-M_P07_T03-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t04",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T04-pearson",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "pearson",
+        "correlation",
+        "causality",
+        "outlier"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-PS2-C15-L06"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T04-Q001",
+      "level": "easy",
+      "question": "Khoảng giá trị Pearson r là gì?",
+      "answer": "[-1,1]",
+      "reviewPackId": "E16R-M_P07_T04-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t04",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T04-pearson",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "pearson",
+        "correlation",
+        "causality",
+        "outlier"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-PS2-C15-L06"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T04-Q002",
+      "level": "easy",
+      "question": "Pearson có đơn vị không?",
+      "answer": "Không.",
+      "reviewPackId": "E16R-M_P07_T04-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t04",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T04-pearson",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "pearson",
+        "correlation",
+        "causality",
+        "outlier"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-PS2-C15-L06"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T04-Q003",
+      "level": "medium",
+      "question": "r gần 0 loại trừ quan hệ phi tuyến không?",
+      "answer": "Không.",
+      "reviewPackId": "E16R-M_P07_T04-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t04",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T04-pearson",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "pearson",
+        "correlation",
+        "causality",
+        "outlier"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-PS2-C15-L06"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T04-Q004",
+      "level": "medium",
+      "question": "Một biến hằng có Pearson với biến khác không?",
+      "answer": "Không xác định.",
+      "reviewPackId": "E16R-M_P07_T04-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t04",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T04-pearson",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "pearson",
+        "correlation",
+        "causality",
+        "outlier"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-PS2-C15-L06"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T04-Q005",
+      "level": "hard",
+      "question": "Đổi đơn vị tuyến tính dương có đổi r không?",
+      "answer": "Không.",
+      "reviewPackId": "E16R-M_P07_T04-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t04",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T04-pearson",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "pearson",
+        "correlation",
+        "causality",
+        "outlier"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-PS2-C15-L06"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T04-Q006",
+      "level": "hard",
+      "question": "Correlation có tự động là causation không?",
+      "answer": "Không.",
+      "reviewPackId": "E16R-M_P07_T04-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t05",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T05-covariance-matrix",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "covariance matrix",
+        "PSD",
+        "multivariate"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L05",
+        "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L01-matrix-as-data-and-transform-e142"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T05-Q001",
+      "level": "easy",
+      "question": "C có đối xứng không?",
+      "answer": "Có.",
+      "reviewPackId": "E16R-M_P07_T05-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t05",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T05-covariance-matrix",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "covariance matrix",
+        "PSD",
+        "multivariate"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L05",
+        "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L01-matrix-as-data-and-transform-e142"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T05-Q002",
+      "level": "easy",
+      "question": "C_jj là gì?",
+      "answer": "Variance feature j.",
+      "reviewPackId": "E16R-M_P07_T05-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t05",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T05-covariance-matrix",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "covariance matrix",
+        "PSD",
+        "multivariate"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L05",
+        "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L01-matrix-as-data-and-transform-e142"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T05-Q003",
+      "level": "medium",
+      "question": "C có kích thước n×n hay p×p khi X là n×p hàng quan sát?",
+      "answer": "p×p.",
+      "reviewPackId": "E16R-M_P07_T05-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t05",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T05-covariance-matrix",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "covariance matrix",
+        "PSD",
+        "multivariate"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L05",
+        "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L01-matrix-as-data-and-transform-e142"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T05-Q004",
+      "level": "medium",
+      "question": "Covariance matrix lý tưởng có eigenvalue âm không?",
+      "answer": "Không; nó PSD.",
+      "reviewPackId": "E16R-M_P07_T05-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t05",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T05-covariance-matrix",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "covariance matrix",
+        "PSD",
+        "multivariate"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L05",
+        "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L01-matrix-as-data-and-transform-e142"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T05-Q005",
+      "level": "hard",
+      "question": "Trace(C) bằng gì?",
+      "answer": "Tổng eigenvalue và cũng bằng tổng variance diagonal.",
+      "reviewPackId": "E16R-M_P07_T05-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t05",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T05-covariance-matrix",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "covariance matrix",
+        "PSD",
+        "multivariate"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L05",
+        "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L01-matrix-as-data-and-transform-e142"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T05-Q006",
+      "level": "hard",
+      "question": "v^T C v có ý nghĩa gì?",
+      "answer": "Variance của dữ liệu theo hướng v (với convention phù hợp).",
+      "reviewPackId": "E16R-M_P07_T05-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t06",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "eigenvalue",
+        "eigenvector",
+        "covariance"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L01",
+        "MATH-PREP-LA2-C10-L05",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T06-Q001",
+      "level": "easy",
+      "question": "Cv=λv định nghĩa gì?",
+      "answer": "Eigenpair.",
+      "reviewPackId": "E16R-M_P07_T06-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t06",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "eigenvalue",
+        "eigenvector",
+        "covariance"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L01",
+        "MATH-PREP-LA2-C10-L05",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T06-Q002",
+      "level": "easy",
+      "question": "Covariance symmetric cho phép chọn eigenvectors thế nào?",
+      "answer": "Trực chuẩn.",
+      "reviewPackId": "E16R-M_P07_T06-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t06",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "eigenvalue",
+        "eigenvector",
+        "covariance"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L01",
+        "MATH-PREP-LA2-C10-L05",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T06-Q003",
+      "level": "medium",
+      "question": "Eigenvalue covariance có ý nghĩa gì?",
+      "answer": "Variance theo principal direction tương ứng.",
+      "reviewPackId": "E16R-M_P07_T06-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t06",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "eigenvalue",
+        "eigenvector",
+        "covariance"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L01",
+        "MATH-PREP-LA2-C10-L05",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T06-Q004",
+      "level": "medium",
+      "question": "Eigenvalues covariance lý tưởng có âm không?",
+      "answer": "Không.",
+      "reviewPackId": "E16R-M_P07_T06-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t06",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "eigenvalue",
+        "eigenvector",
+        "covariance"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L01",
+        "MATH-PREP-LA2-C10-L05",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T06-Q005",
+      "level": "hard",
+      "question": "Repeated eigenvalue có làm eigenspace mất tồn tại không?",
+      "answer": "Không; chỉ làm basis trong eigenspace không duy nhất.",
+      "reviewPackId": "E16R-M_P07_T06-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t06",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "eigenvalue",
+        "eigenvector",
+        "covariance"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L01",
+        "MATH-PREP-LA2-C10-L05",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T06-Q006",
+      "level": "hard",
+      "question": "PC1 liên hệ eigenvalue nào?",
+      "answer": "Eigenvalue lớn nhất.",
+      "reviewPackId": "E16R-M_P07_T06-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t07",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "PCA",
+        "explained variance",
+        "projection"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L06",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T07-Q001",
+      "level": "easy",
+      "question": "PCA có dùng target y không?",
+      "answer": "Không.",
+      "reviewPackId": "E16R-M_P07_T07-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t07",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "PCA",
+        "explained variance",
+        "projection"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L06",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T07-Q002",
+      "level": "easy",
+      "question": "EVR_i được tính từ gì?",
+      "answer": "Eigenvalue λ_i chia tổng eigenvalues.",
+      "reviewPackId": "E16R-M_P07_T07-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t07",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "PCA",
+        "explained variance",
+        "projection"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L06",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T07-Q003",
+      "level": "medium",
+      "question": "CEVR_k tăng hay giảm theo k?",
+      "answer": "Không giảm.",
+      "reviewPackId": "E16R-M_P07_T07-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t07",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "PCA",
+        "explained variance",
+        "projection"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L06",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T07-Q004",
+      "level": "medium",
+      "question": "W_k có các cột là gì?",
+      "answer": "k principal directions.",
+      "reviewPackId": "E16R-M_P07_T07-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t07",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "PCA",
+        "explained variance",
+        "projection"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L06",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T07-Q005",
+      "level": "hard",
+      "question": "SVD và covariance PCA liên hệ thế nào?",
+      "answer": "V của SVD Xc cho eigenvectors covariance; σ_i²/(n−1)=λ_i.",
+      "reviewPackId": "E16R-M_P07_T07-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t07",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "PCA",
+        "explained variance",
+        "projection"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L06",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T07-Q006",
+      "level": "hard",
+      "question": "95% variance có luôn bảo đảm 95% thông tin nhiệm vụ không?",
+      "answer": "Không.",
+      "reviewPackId": "E16R-M_P07_T07-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t08",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "reconstruction",
+        "low rank",
+        "PCA error"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L08",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T08-Q001",
+      "level": "easy",
+      "question": "Công thức projection PCA là gì?",
+      "answer": "Z=X_c W_k",
+      "reviewPackId": "E16R-M_P07_T08-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t08",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "reconstruction",
+        "low rank",
+        "PCA error"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L08",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T08-Q002",
+      "level": "easy",
+      "question": "Sau reconstruction centered cần cộng lại gì?",
+      "answer": "Mean vector μ.",
+      "reviewPackId": "E16R-M_P07_T08-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t08",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "reconstruction",
+        "low rank",
+        "PCA error"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L08",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T08-Q003",
+      "level": "medium",
+      "question": "E_k dùng norm nào trong công thức chuẩn ở đây?",
+      "answer": "Frobenius norm squared.",
+      "reviewPackId": "E16R-M_P07_T08-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t08",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "reconstruction",
+        "low rank",
+        "PCA error"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L08",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T08-Q004",
+      "level": "medium",
+      "question": "K tăng thì discarded eigenvalue sum thế nào?",
+      "answer": "Không tăng.",
+      "reviewPackId": "E16R-M_P07_T08-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t08",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "reconstruction",
+        "low rank",
+        "PCA error"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L08",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T08-Q005",
+      "level": "hard",
+      "question": "Best rank-k approximation liên hệ định lý nào?",
+      "answer": "Eckart–Young (truncated SVD).",
+      "reviewPackId": "E16R-M_P07_T08-RP01"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t08",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "reconstruction",
+        "low rank",
+        "PCA error"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L08",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "questionId": "E16R-M_P07_T08-Q006",
+      "level": "hard",
+      "question": "Error trong standardized space có đơn vị gốc không?",
+      "answer": "Không.",
+      "reviewPackId": "E16R-M_P07_T08-RP01"
+    }
+  ],
   "importPolicy": {
     "key": "questionId",
     "requires": [
@@ -62,12 +1077,21 @@
     "answer": "Độ dài vector",
     "auditStatus": "DRAFT"
   },
-  "updatedAt": "2026-06-22",
+  "updatedAt": "2026-09-23",
   "emoji": "❓",
   "cleanArchitecturePolicy": {
     "contentMustNotStoreStageTree": true,
     "recordsMustUseStableIds": true,
     "defaultImportMode": "replace_by_key_then_append",
     "auditBeforeImport": true
+  },
+  "recoveryMeta": {
+    "E16R": {
+      "moduleId": "m_p07",
+      "imported": 48,
+      "key": "questionId",
+      "branchOnly": true,
+      "status": "CONTENT_IMPORTED_PENDING_RUNTIME_GATE"
+    }
   }
 }
