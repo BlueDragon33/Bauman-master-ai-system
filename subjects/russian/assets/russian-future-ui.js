@@ -4,14 +4,29 @@
   const NAV_META={
     overview:['⌂','Tổng quan'],
     learning:['▤','Bài học'],
-    media:['◉','Nghe & Nói'],
+    media:['◉','Video'],
     writing:['✎','Luyện chữ'],
     vocab:['▣','Từ vựng'],
     grammar:['▥','Ngữ pháp'],
-    dialogue:['◌','Hội thoại'],
+    dialogue:['◌','Nghe & Nói'],
     mindmap:['◇','Sơ đồ nhớ'],
     storage:['⚙','Dữ liệu']
   };
+  const ROUTES=[
+    {keys:['bảng chữ','bang chu','cyrillic','chữ cái','chu cai','viết','viet'],label:'Luyện chữ',route:{view:'writing',mode:'handwriting'}},
+    {keys:['phát âm','phat am','pronunciation','shadow','nói','noi','hội thoại','hoi thoai'],label:'Nghe & Nói',route:{view:'dialogue'}},
+    {keys:['video','audio','nghe hiểu','nghe hieu'],label:'Video',route:{view:'media'}},
+    {keys:['từ vựng','tu vung','vocab','слово','привет'],label:'Từ vựng',route:{view:'vocab'}},
+    {keys:['ngữ pháp','ngu phap','grammar','падеж','падежи','cách'],label:'Ngữ pháp',route:{view:'grammar'}},
+    {keys:['đọc','doc','lý thuyết','ly thuyet','bài học','bai hoc'],label:'Bài học',route:{view:'learning',learnTab:'theory'}},
+    {keys:['bài tập','bai tap','exercise'],label:'Bài tập',route:{view:'learning',learnTab:'exercises'}},
+    {keys:['ôn','on tap','review'],label:'Ôn tập',route:{view:'learning',learnTab:'review'}},
+    {keys:['kiểm tra','kiem tra','test','exam'],label:'Kiểm tra',route:{view:'learning',learnTab:'exam'}},
+    {keys:['mind','sơ đồ','so do'],label:'Sơ đồ nhớ',route:{view:'mindmap'}},
+    {keys:['dữ liệu','du lieu','json','lưu trữ','luu tru','backup'],label:'Dữ liệu học',route:{view:'storage'}},
+    {keys:['ai','mentor','trợ lý','tro ly','giải thích','giai thich'],label:'AI Mentor',aiQuick:'intro'},
+    {keys:['lịch','lich','hôm nay','hom nay','kế hoạch','ke hoach'],label:'Kế hoạch hôm nay',act:'route-modal'}
+  ];
   const TAB_INTRO={
     learning:['BÀI HỌC','Học theo từng bài, hiểu gọn và luyện ngay','Lý thuyết · Bài tập · Nghe/Nói · Ôn tập · Kiểm tra',['Theo bài','Có kiểm tra','Giữ tiến độ']],
     media:['NGHE & NÓI','Mở tai trước, nhại đúng nhịp, nói lại ngay','Video/Audio làm đầu vào; hội thoại và shadowing là đầu ra.',['Nghe thật','Nhại câu','Phản xạ']],
@@ -35,6 +50,46 @@
     const recent=Array.isArray(st.recentAccess)?st.recentAccess.length:0;
     const percent=Math.round(Math.min(1,(answered/target)*.55+Math.min(reviewDone,20)/20*.25+Math.min(recent,6)/6*.10+Math.min(passed,4)/4*.10)*100);
     return {st,answered,target,correct,reviewDone,reviewWrong,passed,recent,percent};
+  }
+  function triggerCore(dataset){
+    const btn=document.createElement('button');
+    btn.type='button';
+    Object.entries(dataset||{}).forEach(([k,v])=>{if(v!=null)btn.dataset[k]=String(v)});
+    btn.hidden=true;
+    document.body.appendChild(btn);
+    btn.click();
+    queueMicrotask(()=>btn.remove());
+  }
+  function runSearchResult(item){
+    if(!item)return;
+    if(item.route)return triggerCore({route:JSON.stringify(item.route)});
+    if(item.aiQuick)return triggerCore({aiQuick:item.aiQuick});
+    if(item.act)return triggerCore({act:item.act});
+  }
+  function routeMatches(q){
+    q=String(q||'').trim().toLowerCase();
+    if(!q)return ROUTES.slice(0,6);
+    return ROUTES.filter(x=>x.keys.some(k=>k.includes(q)||q.includes(k))).slice(0,8);
+  }
+  function bindSearch(){
+    const input=document.getElementById('russianGlobalSearch');
+    const hints=document.getElementById('russianSearchHints');
+    if(!input||!hints||input.dataset.rfSearchBound==='1')return;
+    input.dataset.rfSearchBound='1';
+    const keyHint=input.closest('.ru-global-search-wrap')?.querySelector('kbd');
+    if(keyHint)keyHint.textContent=/Mac|iPhone|iPad/i.test(navigator.platform||navigator.userAgent||'')?'⌘ K':'Ctrl K';
+    const close=()=>hints.classList.add('hidden');
+    const choose=item=>{runSearchResult(item);input.value='';close()};
+    const paint=()=>{
+      const matches=routeMatches(input.value);
+      hints.innerHTML=matches.map((m,i)=>'<button type="button" data-rf-search-index="'+i+'">'+esc(m.label)+'</button>').join('');
+      hints.classList.toggle('hidden',!input.value.trim()||!matches.length);
+      Array.from(hints.querySelectorAll('button')).forEach((b,i)=>b.addEventListener('click',()=>choose(matches[i]),{once:true}));
+    };
+    input.addEventListener('input',paint);
+    input.addEventListener('keydown',e=>{if(e.key==='Enter'){const m=routeMatches(input.value)[0];if(m){e.preventDefault();choose(m)}}if(e.key==='Escape')close()});
+    document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();input.focus();input.select()}});
+    document.addEventListener('click',e=>{if(!e.target.closest('.ru-global-search-wrap'))close()});
   }
   function stageLabel(st){
     const map={vn:['A1','Khởi động'],prep:['A2','Dự bị'],hk1:['B1','Học thuật'],hk2:['B2','Học thuật'],hk3:['C1','Nghiên cứu'],hk4:['C1+','Bảo vệ'],all:['A1→C1','Tổng hợp']};
@@ -104,12 +159,32 @@
       '</div>'+
     '</section>';
   }
+  function collapseLegacyOverview(host,hero,dashboard){
+    if(!host||!hero||!dashboard)return;
+    const existing=Array.from(host.children).find(x=>x.classList?.contains('ru-legacy-overview-details'));
+    if(existing)return;
+    const legacy=Array.from(host.children).filter(x=>x!==hero&&x!==dashboard);
+    if(!legacy.length)return;
+    const details=document.createElement('details');
+    details.className='ru-legacy-overview-details';
+    const summary=document.createElement('summary');
+    summary.innerHTML='<span>Công cụ & nội dung nâng cao</span><small>Mở khi cần</small>';
+    const body=document.createElement('div');
+    body.className='ru-legacy-overview-body';
+    legacy.forEach(node=>body.appendChild(node));
+    details.append(summary,body);
+    host.appendChild(details);
+  }
   function upgradeOverview(){
-    const host=document.querySelector('.overview-v128');if(!host)return;
-    const hero=host.querySelector('.overview-top-only-hero');
-    if(hero&&!hero.querySelector('.rf-hero'))hero.innerHTML=heroHtml();
-    const dash=host.querySelector('[data-ru-dashboard="1"]');
-    if(dash&&!dash.classList.contains('rf-dashboard'))dash.outerHTML=dashboardHtml();
+    const host=document.querySelector('.overview-v128');
+    document.body.classList.toggle('ru-is-overview',!!host);
+    if(!host)return;
+    const hero=host.querySelector('.overview-top-only-hero');if(!hero)return;
+    if(!hero.querySelector('.rf-hero'))hero.innerHTML=heroHtml();
+    let dash=host.querySelector('[data-ru-dashboard="1"]');
+    if(!dash){hero.insertAdjacentHTML('afterend',dashboardHtml());dash=host.querySelector('[data-ru-dashboard="1"]');}
+    else if(!dash.classList.contains('rf-dashboard')){dash.outerHTML=dashboardHtml();dash=host.querySelector('[data-ru-dashboard="1"]');}
+    collapseLegacyOverview(host,hero,dash);
   }
   function currentView(){
     const active=document.querySelector('#nav button.active[data-view]');return active?.dataset.view||'overview';
@@ -133,11 +208,13 @@
     }catch(_){}
   }
   function bind(){
+    bindSearch();
     if(document.documentElement.dataset.rfBound==='1')return;
     document.documentElement.dataset.rfBound='1';
     document.addEventListener('click',e=>{
       const b=e.target.closest('[data-rf-speak]');if(b){e.preventDefault();speak(b.dataset.rfSpeak||'')}
     });
+    window.addEventListener('storage',e=>{if(e.key===STORAGE_KEY)schedule()});
   }
   let scheduled=false;
   function upgrade(){
