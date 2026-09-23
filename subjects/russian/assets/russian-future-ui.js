@@ -147,40 +147,79 @@
   function heroHtml(){
     return '<div class="rf-hero"><span class="rf-hero-eyebrow">KHÁM PHÁ TIẾNG NGA TỪ ÂM THANH ĐẾN GIAO TIẾP</span><h2>Học tiếng Nga <em>dễ hiểu</em> và cuốn hút</h2><p>Bắt đầu từ phát âm chuẩn, nhận diện chữ cái, mở rộng từ vựng qua ngữ cảnh, nắm ngữ pháp cốt lõi và luyện viết từng bước.</p><div class="rf-hero-pills"><span>🎙 Phát âm chuẩn</span><span>▧ Học trực quan</span><span>◉ Thực hành hằng ngày</span><span>✓ Tiến bộ rõ ràng</span></div></div><div class="rf-skyline" aria-hidden="true"><i class="rf-tower t1"></i><i class="rf-tower t2"></i><i class="rf-tower t3"></i><i class="rf-tower t4"></i><i class="rf-tower t5"></i></div><button class="rf-hero-cta" data-act="route-modal">Mở lịch học hôm nay →</button>';
   }
-  function module(route,cls,ico,title,sub,items){
-    return '<button class="rf-module-card '+cls+'" data-route=\''+esc(JSON.stringify(route))+'\'><div class="rf-module-head"><span class="rf-module-icon">'+ico+'</span><div><h4>'+esc(title)+'</h4><p>'+esc(sub)+'</p></div></div><ul>'+items.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></button>';
+  function learningFlowEvidence(){
+    const lessons=window.RussianLearningFlow?.get?.()?.lessons||{};
+    const steps=Object.values(lessons).map(x=>x?.steps||{});
+    const sum=(step,key)=>steps.reduce((n,row)=>n+Math.max(0,Number(row?.[step]?.[key]||0)),0);
+    return {speaking:sum('speaking','ok'),alphabet:sum('alphabet','strokeActions'),grammar:sum('grammar','supportActions')};
+  }
+  function skillEvidence(st){
+    const flow=learningFlowEvidence();
+    const speechRows=[...Object.values(st.practiceSpeechResults||{}),...Object.values(st.dialogueSpeechResults||{})];
+    const speaking=speechRows.filter(x=>Number(x?.score||0)>0||x?.ok===true).length||flow.speaking;
+    const handwriting=Object.values(st.handwritingListenWriteProgress?.byLetter||{}).filter(x=>x&&typeof x==='object'&&Object.keys(x).length).length;
+    const vocabState=window.RussianVocabSrs?.get?.()||{cards:{}};
+    const vocabCards=Object.values(vocabState.cards||{}).filter(x=>x&&!x.migratedTo&&Number(x.reviewCount||0)>0).length;
+    const vocabDue=window.RussianVocabSrs?.dueCards?.().length||0;
+    const recentMedia=Array.isArray(st.recentAccess)&&st.recentAccess.some(x=>x?.view==='media');
+    return {
+      media:{progress:recentMedia?'Đã mở gần đây':'Chưa có bằng chứng',info:'Nghe trước, hiểu tình huống'},
+      speaking:{progress:speaking?speaking+' lượt có phản hồi':'Chưa có bằng chứng',info:'Nhại, shadowing, đổi vai'},
+      writing:{progress:(handwriting||flow.alphabet)?(handwriting||flow.alphabet)+' lượt luyện':'Chưa có bằng chứng',info:'Nhìn, nghe và viết Cyrillic'},
+      vocab:{progress:vocabCards?vocabCards+' thẻ đã tự đánh giá':'Chưa có bằng chứng',info:vocabDue?vocabDue+' thẻ đến hạn':'Hình và ngữ cảnh Nga'},
+      grammar:{progress:flow.grammar?flow.grammar+' lượt thực hành':'Chưa có bằng chứng',info:'Ví dụ → pattern → luyện ngay'}
+    };
+  }
+  function module(route,cls,ico,title,meta){
+    return '<button class="rf-module-card '+cls+'" data-route=\''+esc(JSON.stringify(route))+'\'><div class="rf-module-head"><span class="rf-module-icon">'+ico+'</span><div><h4>'+esc(title)+'</h4><p>'+esc(meta.info)+'</p></div></div><div class="rf-module-progress"><span>Tiến độ</span><b>'+esc(meta.progress)+'</b></div></button>';
+  }
+  function learningPathHtml(st){
+    const flow=learningFlowEvidence();
+    const speechRows=[...Object.values(st.practiceSpeechResults||{}),...Object.values(st.dialogueSpeechResults||{})];
+    const speaking=speechRows.some(x=>Number(x?.score||0)>0||x?.ok===true)||flow.speaking>0;
+    let active=0;
+    if(flow.alphabet>0)active=Math.max(active,1);
+    if(speaking)active=Math.max(active,2);
+    if((st.stage||'vn')==='vn'&&(flow.alphabet>0||speaking||flow.grammar>0))active=Math.max(active,3);
+    if((st.stage||'vn')==='prep')active=4;
+    if(['hk1','hk2','hk3','hk4','all'].includes(st.stage))active=5;
+    const labels=['Khởi động','Âm & chữ','Nghe nói cơ bản','A1','A2 / Dự bị','Tiếng Nga học thuật'];
+    return '<article class="rf-learning-path"><div class="rf-card-head"><div><h4>Learning Path</h4><span>Lộ trình tổng quát, đánh dấu theo evidence và giai đoạn thật</span></div></div><div class="rf-roadmap-track">'+labels.map((label,i)=>'<div class="rf-road-step '+(i<active?'done':i===active?'current':'future')+'" '+(i===active?'aria-current="step"':'')+'><i>'+(i<active?'✓':i+1)+'</i><b>'+esc(label)+'</b></div>').join('')+'</div></article>';
   }
   function dashboardHtml(){
-    const m=metrics(),sl=stageLabel(m.st);
+    const m=metrics(),sl=stageLabel(m.st),skills=skillEvidence(m.st);
     const pct=Math.max(0,Math.min(100,m.percent));
     const recent=Array.isArray(m.st.recentAccess)?m.st.recentAccess[0]:null;
     const continueRoute=recent?.view?{view:recent.view,...(recent.view==='learning'?{learnTab:m.st.learnTab||'theory'}:{})}:{view:'media'};
     const continueLabel=recent?.label||'Video mở tai · bắt đầu từ âm thanh';
-    const reviewCount=m.reviewWrong||Math.max(0,m.reviewDone?0:1);
+    const dueReviews=window.RussianLearningState?.dueReviews?.()||[];
+    const dueCount=dueReviews.length;
+    const reviewCard=dueCount
+      ?'<article class="rf-review-now"><span>CẦN ÔN</span><b>'+dueCount+' mục đến hạn</b><p>'+esc(dueReviews[0]?.label||'Ưu tiên xử lý nội dung đến hạn trước khi học mới.')+'</p><button data-route=\'{"view":"learning","learnTab":"review"}\'>Mở ôn tập →</button></article>'
+      :'<article class="rf-review-now is-empty"><span>CẦN ÔN</span><b>Chưa có nội dung đến hạn.</b><p>Khu vực này chỉ hiện số liệu khi Review Queue có evidence thật.</p></article>';
     return '<section class="ru-dashboard-enhancer rf-dashboard" data-ru-dashboard="1">'+
-      '<div class="rf-continue-band">'+
-        '<article class="rf-continue-card"><div><span>HỌC TIẾP</span><h3>'+esc(continueLabel)+'</h3><p>'+(recent?'Quay lại đúng nơi bạn vừa học. Trạng thái và tiến độ hiện tại được giữ nguyên.':'Bắt đầu bằng nghe để làm quen nhịp tiếng Nga trước khi mở rộng sang chữ, từ và ngữ pháp.')+'</p></div><div class="rf-continue-actions"><b>'+pct+'%</b><button data-route=\''+esc(JSON.stringify(continueRoute))+'\'>Tiếp tục học →</button></div></article>'+
-        '<article class="rf-review-now"><span>CẦN ÔN</span><b>'+(m.reviewWrong?m.reviewWrong+' mục cần sửa':(m.reviewDone?'Không có lỗi tồn đọng':'Chưa có dữ liệu ôn'))+'</b><p>'+(m.reviewWrong?'Xử lý lỗi cũ trước khi nạp thêm nội dung mới.':'Hệ thống chỉ đưa ôn tập lên khi đã có dữ liệu học thật.')+'</p><button data-route=\'{"view":"learning","learnTab":"review"}\'>Mở ôn tập →</button></article>'+
+      '<article class="rf-continue-card"><div><span>HỌC TIẾP</span><h3>'+esc(continueLabel)+'</h3><p>'+(recent?'Quay lại đúng nơi bạn vừa học. Trạng thái và tiến độ hiện tại được giữ nguyên.':'Bắt đầu bằng nghe để làm quen nhịp tiếng Nga trước khi mở rộng sang chữ, từ và ngữ pháp.')+'</p></div><div class="rf-continue-actions"><b>'+pct+'%</b><button data-route=\''+esc(JSON.stringify(continueRoute))+'\'>Tiếp tục học →</button></div></article>'+
+      '<div class="rf-today-review-grid">'+
+        '<article class="rf-today-plan"><div class="rf-card-head"><div><h4>Hôm nay</h4><span>Tối đa 3 nhiệm vụ, làm được ngay</span></div><button class="rf-link" data-act="route-modal">Xem lịch →</button></div><div class="rf-today-list">'+
+          '<div class="rf-today-task"><span>1</span><div><b>Nghe 5 phút</b><small>Nghe trước, chưa mở transcript.</small></div><button data-route=\'{"view":"media"}\'>Nghe</button></div>'+
+          '<div class="rf-today-task"><span>2</span><div><b>Luyện chữ Cyrillic</b><small>Nhìn, nghe tên chữ rồi viết.</small></div><button data-route=\'{"view":"writing","mode":"handwriting"}\'>Viết</button></div>'+
+          '<div class="rf-today-task"><span>3</span><div><b>Ôn nội dung đến hạn</b><small>'+(dueCount?dueCount+' mục đang chờ ôn.':'Hiện chưa có mục đến hạn.')+'</small></div>'+(dueCount?'<button data-route=\'{"view":"learning","learnTab":"review"}\'>Ôn</button>':'')+'</div>'+
+        '</div></article>'+reviewCard+
       '</div>'+
-      '<article class="rf-today-plan"><div class="rf-card-head"><div><h4>Kế hoạch hôm nay</h4><span>Ba bước ngắn, ưu tiên nghe → nói → viết</span></div><button class="rf-link" data-act="route-modal">Xem lịch →</button></div><div class="rf-today-list">'+
-        '<div class="rf-today-task"><span>1</span><div><b>Nghe một đoạn ngắn</b><small>Chỉ nghe trước, chưa vội đọc transcript.</small></div><button data-route=\'{"view":"media"}\'>Nghe</button></div>'+
-        '<div class="rf-today-task"><span>2</span><div><b>Nhại và đổi vai</b><small>Lặp lại âm, nhịp rồi phản xạ trong hội thoại.</small></div><button data-route=\'{"view":"learning","learnTab":"practice"}\'>Nói</button></div>'+
-        '<div class="rf-today-task"><span>3</span><div><b>Nghe và viết</b><small>Nhận diện chữ, nghe âm rồi viết lại.</small></div><button data-route=\'{"view":"writing","mode":"handwriting"}\'>Viết</button></div>'+
-      '</div></article>'+
-      '<div class="rf-module-section"><div class="rf-card-head"><div><h4>5 kỹ năng chính</h4><span>Chọn đúng việc cần luyện, không phải đi tìm tính năng</span></div></div><div class="rf-module-grid">'+
-        module({view:'media'},'rf-module-listen','◉','Video','Nghe trước, hiểu tình huống',['Chỉ nghe','Xem theo mục tiêu','Nối sang nói'])+
-        module({view:'learning',learnTab:'practice'},'rf-module-speak','◌','Nghe & Nói','Nhại, shadowing, đổi vai',['Nghe mẫu','Nhại câu','Phản xạ'])+
-        module({view:'writing',mode:'handwriting'},'rf-module-alpha','Ая','Luyện chữ','Nhìn, nghe và viết Cyrillic',['Chữ in & chữ tay','Nghe tên chữ','Viết đúng nét'])+
-        module({view:'vocab'},'rf-module-vocab','▣','Từ vựng','Hiểu bằng hình và ngữ cảnh Nga',['Hình → từ','Nghe → nhắc lại','Recall & ôn'])+
-        module({view:'grammar'},'rf-module-grammar','▥','Ngữ pháp','Nhìn mẫu, dùng ngay trong câu',['Ví dụ trước','Pattern ngắn','Luyện ngay'])+
+      '<div class="rf-module-section"><div class="rf-card-head"><div><h4>5 kỹ năng chính</h4><span>Evidence thật, không dựng phần trăm theo kỹ năng</span></div></div><div class="rf-module-grid">'+
+        module({view:'media'},'rf-module-listen','◉','Video',skills.media)+
+        module({view:'learning',learnTab:'practice'},'rf-module-speak','◌','Nghe & Nói',skills.speaking)+
+        module({view:'vocab'},'rf-module-vocab','▣','Từ vựng',skills.vocab)+
+        module({view:'grammar'},'rf-module-grammar','▥','Ngữ pháp',skills.grammar)+
+        module({view:'writing',mode:'handwriting'},'rf-module-alpha','Ая','Luyện chữ',skills.writing)+
       '</div></div>'+
+      learningPathHtml(m.st)+
       '<div class="rf-progress-strip">'+
         '<article class="rf-progress-item"><span class="rf-progress-icon">'+esc(sl[0])+'</span><div class="rf-progress-copy"><span>Giai đoạn</span><b>'+esc(sl[1])+' ('+esc(sl[0])+')</b><i style="--rf-p:'+pct+'%"></i></div></article>'+
         '<article class="rf-progress-item"><span class="rf-progress-icon">✓</span><div class="rf-progress-copy"><span>Đã ôn</span><b>'+m.reviewDone+' câu</b></div></article>'+
         '<article class="rf-progress-item"><span class="rf-progress-icon">◉</span><div class="rf-progress-copy"><span>Đã kiểm tra</span><b>'+m.answered+' / '+m.target+'</b></div></article>'+
         '<article class="rf-progress-item"><span class="rf-progress-icon">★</span><div class="rf-progress-copy"><span>Đề đạt</span><b>'+m.passed+' đề</b></div></article>'+
       '</div>'+
-      '<div class="rf-dashboard-lower"><article class="rf-dashboard-card rf-home-review"><div class="rf-card-head"><div><h4>Ôn tập trọng điểm</h4><span>'+(reviewCount?'Ưu tiên phần cần củng cố':'Chưa có nội dung đến hạn')+'</span></div><button class="rf-link" data-route=\'{"view":"learning","learnTab":"review"}\'>Ôn ngay →</button></div><p>'+(m.reviewWrong?'Có '+m.reviewWrong+' mục sai đang chờ sửa. Hoàn thành chúng trước khi mở thêm nhiều từ mới.':'Khi có dữ liệu học, khu vực này sẽ chỉ đưa lên những mục quan trọng nhất.')+'</p></article></div>'+
     '</section>';
   }
   function collapseLegacyOverview(host,hero,dashboard){
