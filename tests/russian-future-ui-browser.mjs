@@ -112,6 +112,8 @@ try{
   assert.equal(await search.getAttribute('aria-expanded'),'false','Escaping search results must collapse the combobox');
   await search.fill('');
 
+  assert.equal(await page.evaluate(()=>window.RussianLearningSearch?.isVocabularyLoaded?.()),false,'Large vocabulary dataset must remain unloaded before the learner opens Vocabulary');
+
   const tabs=['media','dialogue','vocab','grammar','writing'];
   for(const view of tabs){
     await page.click('#nav [data-view="'+view+'"]');
@@ -164,6 +166,7 @@ try{
       assert.equal(await page.locator('.grammar-concept-details .grammar-core-grid').isVisible(),true,'Deeper grammar explanation must reveal on demand');
     }
     if(view==='vocab'){
+      assert.equal(await page.evaluate(()=>window.RussianLearningSearch?.isVocabularyLoaded?.()),true,'Vocabulary dataset must load on demand when Vocabulary opens');
       const details=page.locator('.vocab-studio details.vocab-progressive-details');
       await details.waitFor({state:'attached',timeout:10000});
       assert.equal(await details.evaluate(el=>el.open),false,'Vocabulary advanced details must start collapsed');
@@ -244,6 +247,26 @@ try{
   await page.waitForSelector('.rf-dashboard');
   await page.screenshot({path:path.join(OUT,'russian-future-overview-1672x941.png'),fullPage:true});
 
+  await page.setViewportSize({width:1280,height:800});
+  await page.waitForTimeout(120);
+  const laptop=await page.evaluate(()=>{
+    const sidebar=document.querySelector('.ru-sidebar')?.getBoundingClientRect();
+    return {vw:innerWidth,scroll:document.documentElement.scrollWidth,sidebarW:sidebar?.width||0};
+  });
+  assert.ok(laptop.sidebarW>=180&&laptop.sidebarW<=200,'Laptop sidebar must use the compact ~190px token');
+  assert.ok(laptop.scroll<=laptop.vw+2,'Laptop layout must not horizontally overflow');
+
+  await page.setViewportSize({width:820,height:1000});
+  await page.waitForTimeout(120);
+  const tablet=await page.evaluate(()=>{
+    const sidebar=document.querySelector('.ru-sidebar')?.getBoundingClientRect();
+    const nav=getComputedStyle(document.querySelector('.ru-nav'));
+    return {vw:innerWidth,scroll:document.documentElement.scrollWidth,sidebarW:sidebar?.width||0,navColumns:nav.gridTemplateColumns,sidebarPosition:getComputedStyle(document.querySelector('.ru-sidebar')).position};
+  });
+  assert.ok(tablet.sidebarW>=tablet.vw-4,'Tablet must promote navigation to a full-width top learning header');
+  assert.equal(tablet.sidebarPosition,'relative','Tablet sidebar must stop behaving like a fixed desktop rail');
+  assert.ok(tablet.scroll<=tablet.vw+2,'Tablet layout must not horizontally overflow');
+
   await page.setViewportSize({width:390,height:844});
   await page.waitForTimeout(120);
   const mobile=await page.evaluate(()=>({
@@ -258,6 +281,6 @@ try{
   await page.screenshot({path:path.join(OUT,'russian-future-overview-mobile.png'),fullPage:true});
 
   assert.deepEqual(errors,[],'Future Russian UI emitted browser errors');
-  fs.writeFileSync(path.join(OUT,'result.json'),JSON.stringify({status:'PASS',dims,mobile},null,2));
+  fs.writeFileSync(path.join(OUT,'result.json'),JSON.stringify({status:'PASS',dims,laptop,tablet,mobile},null,2));
   console.log('RUSSIAN_FUTURE_UI_BROWSER_PASS');
 }finally{await browser?.close()}
