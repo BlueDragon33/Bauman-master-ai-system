@@ -12,8 +12,8 @@ const required = [
   'assets/js/platform/runtime-config.js',
   'assets/js/platform/device-access-gate.js',
   'subjects/russian/index.html',
-  'subjects/russian/assets/russian-reference-ui.js',
-  'subjects/russian/assets/russian-reference-ui-polish.css',
+  'subjects/russian/assets/russian-future-ui.js',
+  'subjects/russian/assets/russian-future-ui.css',
   'subjects/russian/assets/russian-optional-data-loader.js',
 ];
 for (const file of required) {
@@ -44,7 +44,7 @@ for (const token of [
   'bauman-control-preview',
   'bauman-master-ai-preview',
   '/subjects/russian/',
-  'russian-reference-ui-polish.css',
+  'russian-future-ui.css',
   'russian-optional-data-loader.js',
   'for dataset in dialogue-bauman-az deep-speaking-bauman',
   'data/chunks/$dataset/manifest.json',
@@ -56,8 +56,8 @@ if (workflow.includes('bauman-control-local --remote')) throw new Error('Bauman 
 if (!ciWorkflow.includes('"subjects/**"')) throw new Error('Cloudflare preview CI phải chạy khi Subject Web Apps thay đổi.');
 for (const token of [
   'runtime-dist/subjects/russian/index.html',
-  'runtime-dist/subjects/russian/assets/russian-reference-ui.js',
-  'runtime-dist/subjects/russian/assets/russian-reference-ui-polish.css',
+  'runtime-dist/subjects/russian/assets/russian-future-ui.js',
+  'runtime-dist/subjects/russian/assets/russian-future-ui.css',
   'runtime-dist/subjects/russian/assets/russian-optional-data-loader.js',
   'runtime-dist/subjects/russian/data/chunks/dialogue-bauman-az/manifest.json',
   'runtime-dist/subjects/russian/data/chunks/deep-speaking-bauman/manifest.json',
