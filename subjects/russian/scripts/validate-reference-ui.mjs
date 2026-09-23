@@ -95,6 +95,7 @@ must(futureJs.includes("e.key==='Escape'&&document.body.classList.contains('rf-s
 for(const token of ['.density-compact .view{max-width:1420px}','.density-wide .view{max-width:1740px}','body.density-wide .view{max-width:1680px!important}','body.main-balanced .view{max-width:1500px','body.main-focus .view{max-width:1420px','.view{max-width:1720px!important','.app{grid-template-columns:340px minmax(0,1fr)!important']){
   must(!coreCss.includes(token),`Legacy interface width override must stay removed: ${token}`);
 }
+must(!coreCss.includes('max-width:1680px!important'),'Legacy core 1680px learner-view override must not defeat the canonical 1120px container');
 must(!futureCss.includes('Russian Reference UI · premium Bauman/Russia dashboard layer'),'PASS 2 must not restore the obsolete dark shell presentation layer');
 for(const token of ['--ru-bg:#040d1b','grid-template-columns:228px minmax(0,1fr) 328px','background:rgba(4,15,29,.88)']){
   must(!futureCss.includes(token),`Obsolete shell token returned: ${token}`);
