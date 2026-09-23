@@ -67,19 +67,31 @@ try{
     const modules=[...document.querySelectorAll('.rf-module-card')].map(el=>{const r=el.getBoundingClientRect();return{x:r.x,y:r.y,w:r.width,h:r.height}});
     return {
       vw:innerWidth,scroll:document.documentElement.scrollWidth,
-      sidebar:box('.ru-sidebar'),main:box('.ru-main'),hero:box('.overview-top-only-hero'),
+      sidebar:box('.ru-sidebar'),main:box('.ru-main'),view:box('.ru-view'),hero:box('.overview-top-only-hero'),
       progress:box('.rf-progress-strip'),modules,
-      lower:box('.rf-dashboard-lower')
+      lower:box('.rf-dashboard-lower'),
+      typography:{
+        body:parseFloat(getComputedStyle(document.body).fontSize),
+        pageTitle:parseFloat(getComputedStyle(document.getElementById('pageTitle')).fontSize),
+        cardTitle:parseFloat(getComputedStyle(document.querySelector('.rf-module-card h4')).fontSize),
+        caption:parseFloat(getComputedStyle(document.querySelector('.rf-module-card p')).fontSize)
+      }
     };
   });
-  assert.ok(dims.sidebar&&dims.sidebar.w>=205&&dims.sidebar.w<=235,'Sidebar width must stay close to 220px reference');
+  assert.ok(dims.sidebar&&dims.sidebar.w>=216&&dims.sidebar.w<=224,'Desktop sidebar must stay within the 216–224px learning-shell contract');
   assert.ok(dims.main&&dims.main.w>1300,'Main learning canvas must use space released by old right rail');
+  assert.ok(dims.view&&dims.view.w>=1080&&dims.view.w<=1122,'Desktop content container must stay near the 1120px maximum');
   assert.ok(dims.hero&&dims.hero.h>=275&&dims.hero.h<=315,'Hero height drifted from reference rhythm');
-  assert.ok(dims.progress&&dims.progress.h>=70&&dims.progress.h<=100,'Progress strip height drifted');
+  assert.ok(dims.progress&&dims.progress.h>=70,'Progress strip must remain readable after typography normalization');
   assert.equal(dims.modules.length,5,'Overview must contain exactly five core module cards');
-  assert.ok(Math.max(...dims.modules.map(x=>x.y))-Math.min(...dims.modules.map(x=>x.y))<3,'Five module cards must share one row at 16:9 desktop');
-  assert.ok(Math.max(...dims.modules.map(x=>x.w))-Math.min(...dims.modules.map(x=>x.w))<4,'Five module cards must have balanced widths');
-  assert.ok(dims.lower&&dims.lower.w>1200,'Lower dashboard grid must remain wide and balanced');
+  const moduleRows=[...new Set(dims.modules.map(x=>Math.round(x.y)))];
+  assert.ok(moduleRows.length>=3,'Five learning cards must wrap into no more than two columns');
+  assert.ok(Math.max(...dims.modules.map(x=>x.w))-Math.min(...dims.modules.map(x=>x.w))<4,'Learning cards must keep balanced widths');
+  assert.ok(dims.lower&&dims.lower.w<=1122,'Lower learning content must respect the global content maximum');
+  assert.ok(dims.typography.body>=15&&dims.typography.body<=16,'Body typography must remain 15–16px');
+  assert.ok(dims.typography.pageTitle>=28&&dims.typography.pageTitle<=32,'Page title typography must remain 28–32px');
+  assert.ok(dims.typography.cardTitle>=16&&dims.typography.cardTitle<=18,'Card title typography must remain 16–18px');
+  assert.ok(dims.typography.caption>=12&&dims.typography.caption<=13,'Card supporting text must remain 12–13px');
   assert.ok(dims.scroll<=dims.vw+2,'Future Russian UI must not horizontally overflow at reference viewport');
 
   const dashboardText=await page.locator('.rf-dashboard').innerText();
@@ -276,39 +288,90 @@ try{
   await page.screenshot({path:path.join(OUT,'russian-future-overview-1672x941.png'),fullPage:true});
 
   await page.setViewportSize({width:1280,height:800});
-  await page.waitForTimeout(120);
+  await page.waitForTimeout(220);
   const laptop=await page.evaluate(()=>{
     const sidebar=document.querySelector('.ru-sidebar')?.getBoundingClientRect();
-    return {vw:innerWidth,scroll:document.documentElement.scrollWidth,sidebarW:sidebar?.width||0};
+    const view=document.querySelector('.ru-view')?.getBoundingClientRect();
+    return {vw:innerWidth,scroll:document.documentElement.scrollWidth,sidebarW:sidebar?.width||0,viewW:view?.width||0,menuDisplay:getComputedStyle(document.getElementById('russianMenuBtn')).display};
   });
-  assert.ok(laptop.sidebarW>=180&&laptop.sidebarW<=200,'Laptop sidebar must use the compact ~190px token');
-  assert.ok(laptop.scroll<=laptop.vw+2,'Laptop layout must not horizontally overflow');
+  assert.ok(laptop.sidebarW>=216&&laptop.sidebarW<=224,'1280px shell must keep the canonical 220px sidebar');
+  assert.ok(laptop.viewW<=1062,'1280px content must fit the available canvas without a 1400–1500px stretch');
+  assert.equal(laptop.menuDisplay,'none','Desktop shell must not expose the drawer opener');
+  assert.ok(laptop.scroll<=laptop.vw+2,'1280px layout must not horizontally overflow');
 
-  await page.setViewportSize({width:820,height:1000});
-  await page.waitForTimeout(120);
-  const tablet=await page.evaluate(()=>{
+  await page.setViewportSize({width:1024,height:900});
+  await page.waitForTimeout(220);
+  const tabletDesktop=await page.evaluate(()=>{
     const sidebar=document.querySelector('.ru-sidebar')?.getBoundingClientRect();
-    const nav=getComputedStyle(document.querySelector('.ru-nav'));
-    return {vw:innerWidth,scroll:document.documentElement.scrollWidth,sidebarW:sidebar?.width||0,navColumns:nav.gridTemplateColumns,sidebarPosition:getComputedStyle(document.querySelector('.ru-sidebar')).position};
+    const view=document.querySelector('.ru-view')?.getBoundingClientRect();
+    return {vw:innerWidth,scroll:document.documentElement.scrollWidth,sidebarW:sidebar?.width||0,viewW:view?.width||0,sidebarPosition:getComputedStyle(document.querySelector('.ru-sidebar')).position};
   });
-  assert.ok(tablet.sidebarW>=tablet.vw-4,'Tablet must promote navigation to a full-width top learning header');
-  assert.equal(tablet.sidebarPosition,'relative','Tablet sidebar must stop behaving like a fixed desktop rail');
-  assert.ok(tablet.scroll<=tablet.vw+2,'Tablet layout must not horizontally overflow');
+  assert.ok(tabletDesktop.sidebarW>=216&&tabletDesktop.sidebarW<=224,'1024px shell must preserve the canonical desktop learning rail');
+  assert.equal(tabletDesktop.sidebarPosition,'sticky','1024px sidebar must remain the desktop learning rail');
+  assert.ok(tabletDesktop.viewW<=804,'1024px content must fit beside the 220px rail');
+  assert.ok(tabletDesktop.scroll<=tabletDesktop.vw+2,'1024px layout must not horizontally overflow');
+
+  await page.setViewportSize({width:768,height:960});
+  await page.waitForTimeout(240);
+  const drawerClosed=await page.evaluate(()=>{
+    const sidebar=document.querySelector('.ru-sidebar')?.getBoundingClientRect();
+    const menu=document.getElementById('russianMenuBtn');
+    return {
+      vw:innerWidth,scroll:document.documentElement.scrollWidth,
+      sidebarX:sidebar?.x||0,sidebarW:sidebar?.width||0,
+      sidebarPosition:getComputedStyle(document.querySelector('.ru-sidebar')).position,
+      menuDisplay:getComputedStyle(menu).display,
+      expanded:menu.getAttribute('aria-expanded'),
+      hidden:document.getElementById('russianSidebar').getAttribute('aria-hidden')
+    };
+  });
+  assert.equal(drawerClosed.sidebarPosition,'fixed','768px navigation must become an off-canvas drawer');
+  assert.ok(drawerClosed.sidebarX<0,'Closed 768px drawer must sit outside the viewport');
+  assert.notEqual(drawerClosed.menuDisplay,'none','768px shell must expose the drawer opener');
+  assert.equal(drawerClosed.expanded,'false','Closed drawer must report aria-expanded=false');
+  assert.equal(drawerClosed.hidden,'true','Closed mobile drawer must be hidden from assistive technology');
+  assert.ok(drawerClosed.scroll<=drawerClosed.vw+2,'768px layout must not horizontally overflow');
+
+  await page.locator('#russianMenuBtn').click();
+  await page.waitForTimeout(240);
+  const drawerOpen=await page.evaluate(()=>{
+    const sidebar=document.querySelector('.ru-sidebar')?.getBoundingClientRect();
+    return {
+      x:sidebar?.x||0,
+      expanded:document.getElementById('russianMenuBtn').getAttribute('aria-expanded'),
+      hidden:document.getElementById('russianSidebar').getAttribute('aria-hidden'),
+      bodyOpen:document.body.classList.contains('ru-nav-open'),
+      focusId:document.activeElement?.id||''
+    };
+  });
+  assert.ok(Math.abs(drawerOpen.x)<=2,'Open drawer must align with the viewport edge');
+  assert.equal(drawerOpen.expanded,'true','Open drawer must report aria-expanded=true');
+  assert.equal(drawerOpen.hidden,'false','Open drawer must be exposed to assistive technology');
+  assert.equal(drawerOpen.bodyOpen,true,'Open drawer must lock the mobile shell');
+  assert.equal(drawerOpen.focusId,'russianSidebarClose','Opening the drawer must move focus to its close control');
+  await page.keyboard.press('Escape');
+  await page.waitForTimeout(240);
+  assert.equal(await page.locator('#russianMenuBtn').getAttribute('aria-expanded'),'false','Escape must close the drawer');
+  assert.equal(await page.evaluate(()=>document.activeElement?.id),'russianMenuBtn','Escape must restore focus to the drawer opener');
 
   await page.setViewportSize({width:390,height:844});
-  await page.waitForTimeout(120);
+  await page.waitForTimeout(240);
   const mobile=await page.evaluate(()=>({
     scroll:document.documentElement.scrollWidth,
     vw:innerWidth,
     modules:document.querySelectorAll('.rf-module-card').length,
-    searchVisible:getComputedStyle(document.querySelector('.ru-global-search-wrap')).display!=='none'
+    searchVisible:getComputedStyle(document.querySelector('.ru-global-search-wrap')).display!=='none',
+    moduleColumns:getComputedStyle(document.querySelector('.rf-module-grid')).gridTemplateColumns,
+    menuVisible:getComputedStyle(document.getElementById('russianMenuBtn')).display!=='none'
   }));
-  assert.ok(mobile.scroll<=mobile.vw+2,'Future UI mobile horizontal overflow');
+  assert.ok(mobile.scroll<=mobile.vw+2,'390px mobile layout must not horizontally overflow');
   assert.equal(mobile.modules,5);
   assert.equal(mobile.searchVisible,true);
+  assert.equal(mobile.menuVisible,true);
+  assert.ok(!mobile.moduleColumns.includes(' '),'390px learning cards must collapse to one column');
   await page.screenshot({path:path.join(OUT,'russian-future-overview-mobile.png'),fullPage:true});
 
   assert.deepEqual(errors,[],'Future Russian UI emitted browser errors');
-  fs.writeFileSync(path.join(OUT,'result.json'),JSON.stringify({status:'PASS',dims,laptop,tablet,mobile},null,2));
+  fs.writeFileSync(path.join(OUT,'result.json'),JSON.stringify({status:'PASS',dims,laptop,tabletDesktop,drawerClosed,drawerOpen,mobile},null,2));
   console.log('RUSSIAN_FUTURE_UI_BROWSER_PASS');
 }finally{await browser?.close()}
