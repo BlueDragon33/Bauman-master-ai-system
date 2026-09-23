@@ -5,13 +5,17 @@ const VERSION='Russian Survival Master V13.33 · Route Grammar Mind Check';
 const DATA_FILES=A.dataFiles||['curriculum','lessons','grammar','grammar-path','vocab','mindmap','exercises','tests','simulations','speaking','handwriting','writing','videos','knowledge-index'];
 const OPTIONAL_DATA_FILES=A.optionalDataFiles||['dialogue-bauman-az','deep-speaking-bauman','speaking-link-index'];
 const ALL_STORAGE_FILES=Array.from(new Set([...DATA_FILES,...OPTIONAL_DATA_FILES]));
+const DEFERRED_CORE_DATA=new Set(['vocab','tests']);
+const deferredCoreLoads={};
 const DATA_ROOT=A.dataRoot||'data/';
 const EXTERNAL_DATA_ROOT=A.externalDataRoot||'external-data/';
 const PACKAGE_ROOT=A.packageRoot||'subjects/russian/';
 const NAV=A.nav||[['overview','🧭','Tổng quan'],['learning','🎓','Học tập'],['dialogue','💬','Đối thoại'],['writing','✍️','Viết'],['media','🎬','Video/Audio'],['vocab','🗂️','Từ vựng'],['grammar','🧩','Ngữ pháp'],['mindmap','🧠','Mind map'],['storage','🗄️','Lưu trữ']];
+const PRIMARY_NAV=A.primaryNav||NAV;
 const LEARN_TABS=A.learningTabs||[['theory','📘','Lý thuyết'],['exercises','📝','Bài tập'],['practice','🎙️','Nghe/Nói'],['review','🔁','Ôn tập'],['exam','🧪','Kiểm tra']];
-const DEFAULT={stage:'vn',view:'overview',learnTab:'theory',lessonId:'',slide:0,lessonQuery:'',conceptQuery:'',exerciseLevel:'all',exerciseIndex:0,testLevel:'easy',testIndex:0,testAnswer:null,reviewLevel:'easy',reviewFilter:'all',reviewLesson:'all',reviewIndex:0,reviewPage:0,reviewAnswer:null,reviewProgress:{done:{},flagged:{},wrong:{}},examLevel:'easy',examCycle:'auto',examPaperLevel:'easy',examPaperType:'standard',examIndex:0,examPage:0,examAnswer:null,examProgress:{answers:{},marked:{},submitted:false,submittedAt:null,result:null,wrong:{},paperResults:{}},examHistory:[],remedialPlan:{active:false,cards:[],completed:{},createdAt:null,lastExamAt:null,lastScore:null},dialogueId:'',dialogueGroup:'all',dialogueDifficulty:'all',dialogueQuery:'',dialogueLineIndex:0,dialogueRole:'all',dialogueHideVi:false,dialoguePeople:'2',dialogueMinutes:'10',dialogueMode:'shadow_roleplay',dialogueScenario:'classroom',practiceDialogueId:'',practiceGroup:'all',practiceDifficulty:'all',practiceQuery:'',practiceLineIndex:0,practiceRole:'all',practiceHideVi:false,practiceSpeechResults:{},dialogueSpeechResults:{},deepSpeakingId:'',deepSpeakingMode:'overview',deepSpeakingStep:0,deepSpeakingProgress:{done:{},weak:{},attempts:{},lastMode:{}},optionalDataLoading:{},optionalDataError:{},speechResults:{},speechRecording:false,speechAutoNext:false,mediaCat:'all',mediaQuery:'',mediaView:'list',mediaId:'',vocabQuery:'',vocabIndex:0,vocabPage:0,vocabFlipped:false,grammarLevel:'all',grammarTrack:'all',grammarQuery:'',grammarIndex:0,mindmapId:'roadmap-map',mindmapNode:'',mindmapFontScale:14,mindmapDrag:{},mindmapLayoutVersion:'v13_32_clean',writingMode:'handwriting',handwritingIndex:0,handwritingQuery:'',handwritingStep:0,handwritingPractice:'trace',handwritingShowGuide:true,handwritingShowLines:true,handwritingExerciseIndex:0,handwritingExerciseInput:'',handwritingExerciseChoice:'',handwritingExerciseAttempted:false,handwritingExerciseReveal:false,handwritingExerciseResult:null,handwritingSessionMode:'learn',handwritingListenWriteProgress:{byLetter:{}},lessonListenWrite:{lessonId:'',itemIndex:0,drillIndex:0,mode:'',input:'',choice:'',attempted:false,result:null},writingIndex:0,writingQuery:'',writingDraft:'',storageFile:'curriculum',storageGroup:'all',storageText:'',storagePreviewLimit:0,storagePreviewAutoCollapsedV1322:false,storageQuery:'',storageTreeOpen:{},aiDraft:'',aiOutput:'',interfaceTheme:'clean',interfaceDensity:'normal',hostTask:null,planningBundle:null,routeEdit:false,routeManual:null,routeFocus:'today',testSession:{answered:0,correct:0,targetQuestions:100,targetScore:80,seen:{}},recentAccess:[],stageGate:null,examGateSource:null,stageTransitions:[],lastStageTransition:null};
+const DEFAULT={stage:'vn',view:'overview',learnTab:'theory',lessonId:'',slide:0,lessonQuery:'',conceptQuery:'',exerciseLevel:'all',exerciseIndex:0,testLevel:'easy',testIndex:0,testAnswer:null,reviewLevel:'easy',reviewFilter:'all',reviewLesson:'all',reviewIndex:0,reviewPage:0,reviewAnswer:null,reviewProgress:{done:{},flagged:{},wrong:{}},examLevel:'easy',examCycle:'auto',examPaperLevel:'easy',examPaperType:'standard',examIndex:0,examPage:0,examAnswer:null,examProgress:{answers:{},marked:{},submitted:false,submittedAt:null,result:null,wrong:{},paperResults:{}},examHistory:[],remedialPlan:{active:false,cards:[],completed:{},createdAt:null,lastExamAt:null,lastScore:null},dialogueId:'',dialogueGroup:'all',dialogueDifficulty:'all',dialogueQuery:'',dialogueLineIndex:0,dialogueRole:'all',dialogueHideVi:false,dialogueShowTranscript:false,dialoguePeople:'2',dialogueMinutes:'10',dialogueMode:'shadow_roleplay',dialogueScenario:'classroom',practiceDialogueId:'',practiceGroup:'all',practiceDifficulty:'all',practiceQuery:'',practiceLineIndex:0,practiceRole:'all',practiceHideVi:false,practiceShowTranscript:false,practiceSpeechResults:{},dialogueSpeechResults:{},deepSpeakingId:'',deepSpeakingMode:'overview',deepSpeakingStep:0,deepSpeakingProgress:{done:{},weak:{},attempts:{},lastMode:{}},optionalDataLoading:{},optionalDataError:{},speechResults:{},speechRecording:false,speechAutoNext:false,mediaCat:'all',mediaQuery:'',mediaView:'list',mediaId:'',vocabQuery:'',vocabTopic:'all',vocabStatus:'all',vocabFocusKey:'',vocabIndex:0,vocabPage:0,vocabFlipped:false,grammarLevel:'all',grammarTrack:'all',grammarQuery:'',grammarIndex:0,mindmapId:'roadmap-map',mindmapNode:'',mindmapFontScale:14,mindmapDrag:{},mindmapLayoutVersion:'v13_32_clean',writingMode:'handwriting',handwritingIndex:0,handwritingQuery:'',handwritingStep:0,handwritingPractice:'trace',handwritingShowGuide:true,handwritingShowLines:true,handwritingExerciseIndex:0,handwritingExerciseInput:'',handwritingExerciseChoice:'',handwritingExerciseAttempted:false,handwritingExerciseReveal:false,handwritingExerciseResult:null,handwritingSessionMode:'learn',handwritingListenWriteProgress:{byLetter:{}},lessonListenWrite:{lessonId:'',itemIndex:0,drillIndex:0,mode:'',input:'',choice:'',attempted:false,result:null},writingIndex:0,writingQuery:'',writingDraft:'',storageFile:'curriculum',storageGroup:'all',storageText:'',storagePreviewLimit:0,storagePreviewAutoCollapsedV1322:false,storageQuery:'',storageTreeOpen:{},aiDraft:'',aiOutput:'',interfaceTheme:'clean',interfaceDensity:'normal',hostTask:null,planningBundle:null,routeEdit:false,routeManual:null,routeFocus:'today',testSession:{answered:0,correct:0,targetQuestions:100,targetScore:80,seen:{}},recentAccess:[],stageGate:null,examGateSource:null,stageTransitions:[],lastStageTransition:null};
 let DB={},state={...DEFAULT},canvas=null,ctx=null,drawing=false,strokes=[],currentStroke=null,penColor='#111827',penSize=6,speechRecognizer=null;
+let modalReturnFocus=null;
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
 const arr=v=>Array.isArray(v)?v:[], str=v=>String(v??''), esc=v=>str(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])), lower=v=>str(v).toLowerCase();
 const uniq=a=>Array.from(new Set(arr(a).filter(Boolean))); const key=A.storageKey||'bauman_russian_v11_clean_skeleton';
@@ -38,7 +42,24 @@ function call(name,fallback,...args){return typeof A[name]==='function'?A[name](
 function save(){try{localStorage.setItem(key,JSON.stringify(state)); const s=$('#saveState'); if(s)s.textContent='Đã đồng bộ'}catch(e){}}
 function loadState(){const stored=safeLocalJson(key,{},1600000); state={...DEFAULT,...stored,testSession:{...DEFAULT.testSession,...(stored.testSession||{})},speechResults:{...(stored.speechResults||{})},practiceSpeechResults:{...(stored.practiceSpeechResults||{})},dialogueSpeechResults:{...(stored.dialogueSpeechResults||{})},deepSpeakingProgress:{done:{},weak:{},attempts:{},lastMode:{},...(stored.deepSpeakingProgress||{})},optionalDataLoading:{},optionalDataError:{...(stored.optionalDataError||{})},reviewProgress:{done:{},flagged:{},wrong:{},...(stored.reviewProgress||{})},examProgress:{answers:{},marked:{},submitted:false,submittedAt:null,result:null,wrong:{},paperResults:{},...(stored.examProgress||{})},examHistory:arr(stored.examHistory).slice(0,20),remedialPlan:{active:false,cards:[],completed:{},createdAt:null,lastExamAt:null,lastScore:null,...(stored.remedialPlan||{})},recentAccess:arr(stored.recentAccess)}; sanitize()}
 function sanitize(){const views=NAV.map(x=>x[0]); const tabs=LEARN_TABS.map(x=>x[0]); if(!views.includes(state.view))state.view='overview'; if(!tabs.includes(state.learnTab))state.learnTab='theory'; ['vocabIndex','vocabPage','grammarIndex','slide','exerciseIndex','testIndex','reviewIndex','reviewPage','examIndex','examPage','dialogueLineIndex','practiceLineIndex','deepSpeakingStep','handwritingIndex','handwritingStep','writingIndex'].forEach(k=>state[k]=Math.max(0,Number(state[k])||0)); if(state.learnTab==='tests')state.learnTab='review'; state.reviewProgress={done:{},flagged:{},wrong:{},...(state.reviewProgress||{})}; state.examProgress={answers:{},marked:{},submitted:false,submittedAt:null,result:null,wrong:{},paperResults:{},...(state.examProgress||{})}; if(!EXAM_PAPER_ORDER.includes(state.examPaperType))state.examPaperType=EXAM_PAPER_ORDER.includes(state.examPaperLevel)?state.examPaperLevel:'standard'; state.examPaperLevel=state.examPaperType; state.examCycle='auto'; state.examHistory=arr(state.examHistory).slice(0,20); state.remedialPlan={active:false,cards:[],completed:{},createdAt:null,lastExamAt:null,lastScore:null,...(state.remedialPlan||{})}; normalizeRemedialPlan(); state.testSession={...DEFAULT.testSession,...(state.testSession||{})}; state.speechResults={...(state.speechResults||{})}; state.practiceSpeechResults={...(state.practiceSpeechResults||{}),...(state.speechResults||{})}; state.dialogueSpeechResults={...(state.dialogueSpeechResults||{})}; state.deepSpeakingProgress={done:{},weak:{},attempts:{},lastMode:{},...(state.deepSpeakingProgress||{})}; state.optionalDataLoading={}; state.optionalDataError={...(state.optionalDataError||{})}; state.speechRecording=false; state.recentAccess=arr(state.recentAccess).slice(0,6); if(!state.storagePreviewAutoCollapsedV1322){state.storagePreviewLimit=0;state.storagePreviewAutoCollapsedV1322=true;} state.mindmapFontScale=normalizeMindFontSize(state.mindmapFontScale); state.mindmapDrag=state.mindmapDrag&&typeof state.mindmapDrag==='object'?state.mindmapDrag:{}; if(state.mindmapLayoutVersion!=='v13_32_clean'){state.mindmapDrag={};state.mindmapLayoutVersion='v13_32_clean';} state.stageGate=state.stageGate&&typeof state.stageGate==='object'?state.stageGate:null; state.examGateSource=state.examGateSource&&typeof state.examGateSource==='object'?state.examGateSource:null; state.stageTransitions=arr(state.stageTransitions).filter(x=>x&&x.schema==='RUSSIAN_STAGE_TRANSITION_V1').slice(-30); state.lastStageTransition=state.stageTransitions[state.stageTransitions.length-1]||null;}
-async function loadData(){const overlay=cleanDbOverlay(safeLocalJson(key+'_db',{},3500000)); for(const f of DATA_FILES){try{DB[f]=await fetch(`${DATA_ROOT}${f}.json`).then(r=>r.ok?r.json():null)}catch(e){DB[f]=null}} DB={...DB,...overlay};}
+async function loadData(){
+ const overlay=cleanDbOverlay(safeLocalJson(key+'_db',{},3500000));
+ for(const f of DATA_FILES){
+  if(DEFERRED_CORE_DATA.has(f)&&!(f in overlay)){DB[f]=null;continue;}
+  try{DB[f]=await fetch(`${DATA_ROOT}${f}.json`).then(r=>r.ok?r.json():null)}catch(e){DB[f]=null}
+ }
+ DB={...DB,...overlay};
+}
+function ensureDeferredCoreData(name){
+ if(!DEFERRED_CORE_DATA.has(name)||DB[name])return true;
+ if(deferredCoreLoads[name])return false;
+ deferredCoreLoads[name]=fetch(`${DATA_ROOT}${name}.json`)
+  .then(r=>r.ok?r.json():Promise.reject(new Error('HTTP '+r.status)))
+  .then(data=>{DB[name]=data;return data})
+  .catch(e=>{console.warn('Không tải được dữ liệu theo nhu cầu',name,e);return null})
+  .finally(()=>{delete deferredCoreLoads[name];render()});
+ return false;
+}
 function dbForLocalStorage(){const out={}; Object.keys(DB||{}).forEach(k=>{if(!OPTIONAL_DATA_FILES.includes(k))out[k]=DB[k]}); return out;}
 function saveDB(){try{localStorage.setItem(key+'_db',JSON.stringify(dbForLocalStorage()));}catch(e){toast('Trình duyệt không cho lưu DB lớn')}}
 function isOptionalFile(name){return OPTIONAL_DATA_FILES.includes(name)}
@@ -576,7 +597,51 @@ function finalQaSnapshot(){
 
 function getDialogues(){let xs=byStage(getBaumanDialogueAZ()); if(state.dialogueGroup!=='all')xs=xs.filter(x=>(A.dialogueGroup?.(x)||x.group||'general')===state.dialogueGroup); if(state.dialogueDifficulty!=='all')xs=xs.filter(x=>(A.dialogueDifficulty?.(x)||x.difficulty||x.level||'all')===state.dialogueDifficulty); if(state.dialogueQuery)xs=xs.filter(x=>lower(textOf(x)).includes(lower(state.dialogueQuery))); return xs}
 function getMedia(){let xs=byStage(call('getMedia',[],DB)); if(state.mediaCat!=='all')xs=xs.filter(x=>mediaCategoryLabel(x)===state.mediaCat); if(state.mediaQuery)xs=xs.filter(x=>lower(JSON.stringify(x)).includes(lower(state.mediaQuery))); return xs}
-function getVocab(){let xs=byStage(call('getVocabulary',[],DB)); if(state.vocabQuery)xs=xs.filter(x=>lower(A.vocabSearchText?.(x)||JSON.stringify(x)).includes(lower(state.vocabQuery))); return xs}
+const VOCAB_TOPICS=[
+ {id:'time',label:'Thời gian',tags:['time']},{id:'place',label:'Địa điểm',tags:['place']},{id:'daily',label:'Hằng ngày',tags:['daily']},
+ {id:'transport',label:'Đi lại',tags:['transport']},{id:'home',label:'Nhà & KTX',tags:['home','dorm']},{id:'shopping',label:'Mua sắm',tags:['shopping']},
+ {id:'phone',label:'Điện thoại',tags:['phone']},{id:'money',label:'Tiền bạc',tags:['money']},{id:'health',label:'Sức khỏe',tags:['health']},
+ {id:'food',label:'Ăn uống',tags:['food','canteen']},{id:'academic',label:'Học tập',tags:['academic','graduate_path']},{id:'office',label:'Giấy tờ',tags:['office']},
+ {id:'technology',label:'Công nghệ',tags:['technology']},{id:'research',label:'Nghiên cứu',tags:['research']},{id:'greeting',label:'Chào hỏi',tags:['greeting']},
+ {id:'permission',label:'Xin phép',tags:['permission']},{id:'need',label:'Nhu cầu',tags:['need']},{id:'want',label:'Mong muốn',tags:['want']}
+];
+function vocabSourceKey(item,index=0){return str(item?.id||item?.source_id||`source_${index}`).trim()}
+function vocabTopicDef(id){return VOCAB_TOPICS.find(x=>x.id===id)||null}
+function vocabTopicOptions(items){
+ const counts=new Map();
+ for(const item of arr(items)){const tags=new Set(arr(item?.tags).map(lower));for(const topic of VOCAB_TOPICS){if(topic.tags.some(t=>tags.has(t)))counts.set(topic.id,(counts.get(topic.id)||0)+1);}}
+ return VOCAB_TOPICS.filter(x=>counts.get(x.id)>0).map(x=>({...x,count:counts.get(x.id)}));
+}
+function getVocab(){
+ let xs=byStage(call('getVocabulary',[],DB));
+ if(state.vocabFocusKey)xs=xs.filter((x,i)=>vocabSourceKey(x,i)===state.vocabFocusKey);
+ const topic=vocabTopicDef(state.vocabTopic);
+ if(topic)xs=xs.filter(x=>{const tags=new Set(arr(x?.tags).map(lower));return topic.tags.some(t=>tags.has(t));});
+ if(state.vocabStatus&&state.vocabStatus!=='all'&&window.RussianVocabSrs?.filterItems)xs=window.RussianVocabSrs.filterItems(xs,state.vocabStatus);
+ if(state.vocabQuery)xs=xs.filter(x=>lower(A.vocabSearchText?.(x)||JSON.stringify(x)).includes(lower(state.vocabQuery)));
+ return xs
+}
+function globalSearchResults(query,limit=4){
+ const q=lower(query).trim();
+ if(!q)return [];
+ const out=[];
+ const push=(group,label,route,meta='')=>out.push({group,label,route,meta});
+ const lessons=byStage(call('getLessons',[],DB)).filter(x=>lower(textOf(x)).includes(q)).slice(0,limit);
+ lessons.forEach(x=>push('BÀI HỌC',A.lessonTitle?.(x)||x.title||x.id||'Bài học',{view:'learning',learnTab:'theory',lessonId:lessonKey(x)},stageTitle(stageOf(x)||state.stage)));
+ const grammar=grammarAllModules().filter(x=>lower([x.title,x.why,x.core,x.pattern,x.level,x.track,JSON.stringify(x.examples||[])].join(' ')).includes(q)).slice(0,limit);
+ grammar.forEach(x=>push('NGỮ PHÁP',x.title||'Mục ngữ pháp',{view:'grammar',grammarLevel:x.level||'all',grammarTrack:x.track||'all',grammarQuery:x.title||''},[x.level,x.track].filter(Boolean).join(' · ')));
+ const media=byStage(call('getMedia',[],DB)).filter(x=>lower(JSON.stringify(x)).includes(q)).slice(0,limit);
+ media.forEach(x=>push('VIDEO',mediaTitle(x)||x.title||'Video/Audio',{view:'media',mediaId:x.id||x.title||''},mediaCategoryLabel(x)));
+ if(DB.vocab){
+  const vocab=byStage(call('getVocabulary',[],DB)).filter(x=>lower(A.vocabSearchText?.(x)||JSON.stringify(x)).includes(q)).slice(0,limit);
+  vocab.forEach(x=>{const info=vocabInfo(x);push('TỪ VỰNG',info.term||'Từ vựng',{view:'vocab',vocabQuery:info.term||q},info.displayVisualLabel||info.meaningRu||'')});
+ }else if(q.length>=2){
+  push('TỪ VỰNG',`Tìm “${query}” trong Từ vựng`,{view:'vocab',vocabQuery:String(query||'')},'Bộ từ vựng sẽ tải khi mở');
+ }
+ return out;
+}
+window.RussianLearningSearch={query:globalSearchResults,isVocabularyLoaded:()=>!!DB.vocab};
+
 function getHandwriting(){return byStage(call('getHandwriting',[],DB))}
 function getHandwritingListenWrite(){return call('getHandwritingListenWrite',[],DB)}
 function getListenWriteLessons(){return call('getListenWriteLessons',[],DB)}
@@ -661,10 +726,10 @@ function handwritingListenWriteFor(item){
  return getHandwritingListenWrite().find(x=>str(x?.handwritingId)===id)||null;
 }
 function getWriting(){return byStage(call('getWriting',[],DB))}
-function title(){const route=NAV.find(n=>n[0]===state.view); $('#pageTitle').textContent=route?route[2]:'Tổng quan'; const ui=A.ui||{}; const subs={overview:ui.overviewSubtitle,learning:ui.learningSubtitle,dialogue:ui.dialogueSubtitle,writing:ui.writingSubtitle,media:ui.mediaSubtitle,vocab:ui.vocabSubtitle,grammar:ui.grammarSubtitle,mindmap:ui.mindmapSubtitle,storage:ui.storageSubtitle}; $('#pageSub').textContent=subs[state.view]||ui.subtitle||''}
-function buildShell(){ applyInterface(); $('#subjectLogo').textContent=A.ui?.logo||'Я'; $('#subjectTitle').textContent=A.ui?.title||'Tiếng Nga Bauman'; $('#subjectSubtitle').textContent=A.ui?.subtitle||''; $('#coreLabel').textContent=A.ui?.coreLabel||'V12.82 LEARNING INTEGRITY FINAL'; $('#stageLabel').textContent=A.ui?.stageLabel||'Giai đoạn'; $('#stageSelect').innerHTML=stages().map(s=>`<option value="${esc(s.id)}">${esc(s.title)}</option>`).join(''); $('#stageSelect').value=state.stage; $('#nav').innerHTML=NAV.map(n=>`<button data-view="${esc(n[0])}" class="${state.view===n[0]?'active':''}"><b>${n[1]}</b><span>${esc(n[2])}</span></button>`).join(''); const tb=$('#themeBtn'); if(tb){tb.textContent='☀️ Giao diện';tb.classList.add('theme-light-button');} }
+function title(){const primary=PRIMARY_NAV.find(n=>n[0]===state.view&&(!n[3]||n[3]===state.learnTab)); const route=primary||NAV.find(n=>n[0]===state.view); $('#pageTitle').textContent=route?route[2]:'Tổng quan'; const ui=A.ui||{}; const subs={overview:ui.overviewSubtitle,learning:(state.learnTab==='practice'?ui.dialogueSubtitle:ui.learningSubtitle),dialogue:ui.dialogueSubtitle,writing:ui.writingSubtitle,media:ui.mediaSubtitle,vocab:ui.vocabSubtitle,grammar:ui.grammarSubtitle,mindmap:ui.mindmapSubtitle,storage:ui.storageSubtitle}; $('#pageSub').textContent=subs[state.view]||ui.subtitle||''}
+function buildShell(){ applyInterface(); $('#subjectLogo').textContent=A.ui?.logo||'Я'; $('#subjectTitle').textContent=A.ui?.title||'Tiếng Nga Bauman'; $('#subjectSubtitle').textContent=A.ui?.subtitle||''; $('#coreLabel').textContent=A.ui?.coreLabel||'V12.82 LEARNING INTEGRITY FINAL'; $('#stageLabel').textContent=A.ui?.stageLabel||'Giai đoạn'; $('#stageSelect').innerHTML=stages().map(s=>`<option value="${esc(s.id)}">${esc(s.title)}</option>`).join(''); $('#stageSelect').value=state.stage; $('#nav').innerHTML=PRIMARY_NAV.map(n=>`<button data-view="${esc(n[0])}"${n[3]?` data-learn="${esc(n[3])}"`:''} class="${state.view===n[0]&&(!n[3]||state.learnTab===n[3])?'active':''}"><b>${n[1]}</b><span>${esc(n[2])}</span></button>`).join(''); const tb=$('#themeBtn'); if(tb){tb.textContent='☀️ Giao diện';tb.classList.add('theme-light-button');} }
 function trackAccess(view,label){state.recentAccess=arr(state.recentAccess); const item={view:view||state.view,label:label||NAV.find(n=>n[0]===view)?.[2]||view||'Mục học',stage:state.stage,at:new Date().toLocaleString('vi-VN')}; state.recentAccess=[item,...state.recentAccess.filter(x=>x.view!==item.view||x.stage!==item.stage)].slice(0,6)}
-function setView(v){trackAccess(v);state.view=v; if(v==='learning'&&!LEARN_TABS.map(x=>x[0]).includes(state.learnTab))state.learnTab='theory'; save(); render()}
+function setView(v,learnTab=''){trackAccess(v);state.view=v; if(v==='learning'){if(learnTab&&LEARN_TABS.map(x=>x[0]).includes(learnTab))state.learnTab=learnTab; else if(!LEARN_TABS.map(x=>x[0]).includes(state.learnTab))state.learnTab='theory';} save(); render()}
 function render(){
  try{
   sanitize(); buildShell(); title();
@@ -695,23 +760,48 @@ function setPresentationOverlayLock(on=false){
  body.classList.toggle('presentation-active',!!on);
  try{document.documentElement.classList.toggle('presentation-overlay-lock',!!on)}catch(_){}
 }
+function modalFocusable(){
+ const modal=$('#modal');if(!modal||modal.classList.contains('hidden'))return [];
+ return $$('button:not([disabled]),a[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])',modal).filter(el=>el.getClientRects().length>0);
+}
+function focusModalStart(){
+ const modal=$('#modal'),card=$('#modal .modal-card');if(!modal||modal.classList.contains('hidden'))return;
+ const first=modalFocusable()[0]||card;if(first?.focus)first.focus({preventScroll:true});
+}
+function trapModalFocus(e){
+ const modal=$('#modal');if(!modal||modal.classList.contains('hidden'))return false;
+ if(e.key==='Escape'){e.preventDefault();closeModal();return true;}
+ if(e.key!=='Tab')return false;
+ const xs=modalFocusable();if(!xs.length){e.preventDefault();$('#modal .modal-card')?.focus({preventScroll:true});return true;}
+ const first=xs[0],last=xs[xs.length-1],active=document.activeElement;
+ if(e.shiftKey&&(active===first||!modal.contains(active))){e.preventDefault();last.focus();return true;}
+ if(!e.shiftKey&&(active===last||!modal.contains(active))){e.preventDefault();first.focus();return true;}
+ return false;
+}
 function openModal(html,type='generic'){
  const isPresentation=type==='presentation';
  if(isPresentation)closeFloatingLearningMenus();
+ const modal=$('#modal');
+ if(modal?.classList.contains('hidden'))modalReturnFocus=document.activeElement instanceof HTMLElement?document.activeElement:null;
  state.modalType=type;
  const body=$('#modalBody');
  body.innerHTML=html;
  body.classList.toggle('presentation-body',isPresentation);
- const modal=$('#modal');
- if(modal)modal.classList.toggle('presentation-modal-root',isPresentation);
+ if(modal){modal.classList.toggle('presentation-modal-root',isPresentation);modal.classList.remove('hidden');modal.setAttribute('aria-hidden','false');}
  const card=$('#modal .modal-card');
  if(card){card.classList.toggle('presentation-card',isPresentation);card.classList.toggle('route-card-modal',type==='route');card.classList.toggle('exam-result-card-modal',type==='exam-result');card.classList.toggle('confirm-card-modal',type==='confirm');card.scrollTop=0;}
  setPresentationOverlayLock(isPresentation);
- $('#modal').classList.remove('hidden');
- if(type==='route')setTimeout(()=>{const card=$('#modal .modal-card'); const body=$('#modalBody'); if(card)card.scrollTop=0; if(body)body.scrollTop=0;},30);
- if(isPresentation)setTimeout(()=>{closeFloatingLearningMenus(); const ps=presentationScroller(); if(ps){ps.scrollTop=0; ps.focus({preventScroll:true});}},40);
+ if(type==='route')setTimeout(()=>{const card=$('#modal .modal-card'); const body=$('#modalBody'); if(card)card.scrollTop=0; if(body)body.scrollTop=0; focusModalStart();},30);
+ else if(isPresentation)setTimeout(()=>{closeFloatingLearningMenus(); const ps=presentationScroller(); if(ps){ps.scrollTop=0; ps.focus({preventScroll:true});}else focusModalStart();},40);
+ else requestAnimationFrame(focusModalStart);
 }
-function closeModal(){ state.modalType=''; setPresentationOverlayLock(false); const modal=$('#modal'); if(modal){modal.classList.add('hidden'); modal.classList.remove('presentation-modal-root');} const body=$('#modalBody'); body.innerHTML=''; body.classList.remove('presentation-body'); const card=$('#modal .modal-card'); if(card){card.classList.remove('presentation-card','route-card-modal','exam-result-card-modal','confirm-card-modal');} }
+function closeModal(){
+ state.modalType='';setPresentationOverlayLock(false);
+ const modal=$('#modal');if(modal){modal.classList.add('hidden');modal.classList.remove('presentation-modal-root');modal.setAttribute('aria-hidden','true');}
+ const body=$('#modalBody');body.innerHTML='';body.classList.remove('presentation-body');
+ const card=$('#modal .modal-card');if(card){card.classList.remove('presentation-card','route-card-modal','exam-result-card-modal','confirm-card-modal');}
+ const restore=modalReturnFocus;modalReturnFocus=null;if(restore?.isConnected&&restore.focus)requestAnimationFrame(()=>restore.focus({preventScroll:true}));
+}
 
 function confirmAction(action,label='hành động này',detail=''){
  const meta={action,label,detail};
@@ -745,19 +835,20 @@ function runConfirmedAction(action){
  toast('Không nhận diện được hành động xác nhận');
 }
 
-function overviewStats(){return [['Bài học',call('getLessons',[],DB).length],['Từ vựng',call('getVocabulary',[],DB).length],['Hội thoại',call('getDialogues',[],DB).length],['Câu test',call('getTests',[],DB).length]]}
+function sourceDisplayCount(name,getter){if(DB[name])return getter();const planned=Number(A.dataSourceMeta?.[name]?.plannedCount||0);return DEFERRED_CORE_DATA.has(name)&&planned?planned:0}
+function overviewStats(){return [['Bài học',call('getLessons',[],DB).length],['Từ vựng',sourceDisplayCount('vocab',()=>call('getVocabulary',[],DB).length)],['Hội thoại',call('getDialogues',[],DB).length],['Câu test',sourceDisplayCount('tests',()=>call('getTests',[],DB).length)]]}
 function todayMissionText(){const mission=state.hostTask||{}; const fromBundle=state.planningBundle?.today?.goal||state.planningBundle?.mission?.target||state.planningBundle?.mission?.title||''; return mission.target||mission.title||mission.goal||mission.output||fromBundle||'Chưa đồng bộ được'}
 function syncStateLabel(){return (state.hostTask||state.planningBundle)?'Đã nhận từ Main':'Chờ Main'}
 function learningProgress(){const answered=Number(state.testSession?.answered||0); const correct=Number(state.testSession?.correct||0); const accuracy=answered?Math.round(correct*100/answered):0; return {answered,accuracy,lesson:state.lessonId||'Chưa chọn',stage:stageTitle()}}
 function dataCount(name){const d=DB[name]; return Array.isArray(d)?d.length:(Array.isArray(d?.questions)?d.questions.length:(d&&typeof d==='object'?Object.keys(d).length:0))}
-function healthSummary(){const required=['curriculum','lessons','vocab','speaking','tests','videos','handwriting','writing']; const missing=required.filter(f=>!DB[f]||dataCount(f)===0); const warnings=[]; if(!call('getLessons',[],DB).length)warnings.push('chưa có bài học'); if(!call('getVocabulary',[],DB).length)warnings.push('chưa có từ vựng'); if(!call('getDialogues',[],DB).length)warnings.push('chưa có hội thoại'); return {ok:!missing.length&&!warnings.length,missing,warnings};}
+function healthSummary(){const required=['curriculum','lessons','vocab','speaking','tests','videos','handwriting','writing']; const missing=required.filter(f=>!DEFERRED_CORE_DATA.has(f)&&(!DB[f]||dataCount(f)===0)); const warnings=[]; if(!call('getLessons',[],DB).length)warnings.push('chưa có bài học'); if(DB.vocab&&!call('getVocabulary',[],DB).length)warnings.push('chưa có từ vựng'); if(!call('getDialogues',[],DB).length)warnings.push('chưa có hội thoại'); return {ok:!missing.length&&!warnings.length,missing,warnings};}
 function renderHealthStrip(){return ''}
 function clampVisibleState(){
  const lessons=getLessons(); if(state.lessonId&&!byId(lessons,state.lessonId))state.lessonId=''; const lesson=currentLesson(); clampSlideIndex(lesson);
  const ex=getExercises(); if(state.exerciseIndex>=ex.length)state.exerciseIndex=Math.max(0,ex.length-1);
- const tests=getTests(); if(state.testIndex>=tests.length){state.testIndex=Math.max(0,tests.length-1); state.testAnswer=null;}
+ const tests=getTests(); if(DB.tests&&state.testIndex>=tests.length){state.testIndex=Math.max(0,tests.length-1); state.testAnswer=null;}
  if(inPracticeMode()){const dg=getPracticeDialogues(); if(state.practiceDialogueId&&!byId(dg,state.practiceDialogueId))state.practiceDialogueId=''; const turns=dialogueTurns(currentDialogue()); if(state.practiceLineIndex>=turns.length)state.practiceLineIndex=Math.max(0,turns.length-1);} else {const dg=getDialogues(); if(state.dialogueId&&!byId(dg,state.dialogueId))state.dialogueId=''; const turns=dialogueTurns(currentDialogue()); if(state.dialogueLineIndex>=turns.length)state.dialogueLineIndex=Math.max(0,turns.length-1);}
- const voc=getVocab(); if(state.vocabIndex>=voc.length)state.vocabIndex=Math.max(0,voc.length-1);
+ const voc=getVocab(); if(DB.vocab&&state.vocabIndex>=voc.length)state.vocabIndex=Math.max(0,voc.length-1);
  const hand=getHandwriting(); if(state.handwritingIndex>=hand.length)state.handwritingIndex=Math.max(0,hand.length-1);
  const wr=getWriting(); if(state.writingIndex>=wr.length)state.writingIndex=Math.max(0,wr.length-1);
 }
@@ -1340,6 +1431,10 @@ function learningListForMode(){
  return {title:'Học tập', hint:'', items:''};
 }
 function renderLearning(){
+ if(['review','exam'].includes(state.learnTab)&&!DB.tests){
+  ensureDeferredCoreData('tests');
+  return `<section class="panel learning-recovery-card" aria-live="polite"><span class="chip">🧪 Ôn tập & kiểm tra</span><h3>Đang mở ngân hàng câu hỏi…</h3><p>Ngân hàng kiểm tra chỉ được tải khi bạn thực sự vào Ôn tập hoặc Kiểm tra, để việc mở Site không phải kéo theo gần 8 MB dữ liệu không dùng.</p></section>`;
+ }
  const lessons=getLessons(), concepts=getConcepts();
  const ctx=activeLessonContext();
  const current=ctx.lesson;
@@ -1449,6 +1544,7 @@ function renderPractice(){
  const line=turns[idx]||turns[0]||{};
  const role=state.practiceRole||'all';
  const hideVi=!!state.practiceHideVi;
+ const showTranscript=!!state.practiceShowTranscript;
  const result=speakingResultFor(active,idx);
  const prog=dialogueProgress(active);
  const roleStats=dialogueRoleStats(active,role);
@@ -1458,8 +1554,8 @@ function renderPractice(){
  const difficulty=A.dialogueDifficulty?.(active)||active?.difficulty||active?.level||'Dễ';
  const title=A.dialogueTitle?.(active)||active?.title||'Chọn bài nghe-nhại';
  const purpose=A.dialogueSubtitle?.(active)||active?.purpose||active?.context_title_vi||'Nghe mẫu, nhìn câu, hiểu nghĩa và nhại lại theo nội dung cho trước.';
- const currentRu=esc(targetText||'Chọn một tình huống ở cột trái để bắt đầu luyện nghe-nhại.');
- const currentVi=hideVi?'':dialogueVi(line);
+ const currentRu=showTranscript?esc(targetText||'Chọn một tình huống ở cột trái để bắt đầu luyện nghe-nhại.'):'<span class="transcript-listen-first">Nghe câu mẫu trước · mở transcript khi thật sự cần</span>';
+ const currentVi=showTranscript&&!hideVi?dialogueVi(line):'';
  const cueText=role==='all'?'Nghe mẫu rồi nhại câu hiện tại':(isMine?'Đến lượt bạn nhại câu này':'Nghe vai còn lại để giữ mạch');
  const roleName=role==='all'?'Nghe + nhại toàn đoạn':`Nhại vai ${role}`;
  const hints=lineTokenHints(targetText);
@@ -1467,12 +1563,12 @@ function renderPractice(){
  return `<section class="panel v1294-speech-room v1295-speech-room">
    <header class="v1294-speech-head v1295-speech-head">
      <div class="v1294-speech-title v1295-speech-title"><span class="chip">🎙️ NGHE/NHẠI · ${esc(ctx.id)} · ${esc(difficulty)}</span><small>${esc(title)}</small></div>
-     <div class="v1294-speech-toolbar v1295-speech-toolbar"><button class="btn ${role==='all'?'active':''}" data-act="role-all">Nghe + nhại</button><button class="btn ${role==='A'?'active':''}" data-act="role-a">Vai A</button><button class="btn ${role==='B'?'active':''}" data-act="role-b">Vai B</button><button class="btn" data-act="toggle-vi">${hideVi?'Hiện nghĩa':'Ẩn nghĩa'}</button></div>
+     <div class="v1294-speech-toolbar v1295-speech-toolbar"><button class="btn ${role==='all'?'active':''}" data-act="role-all">Nghe + nhại</button><button class="btn ${role==='A'?'active':''}" data-act="role-a">Vai A</button><button class="btn ${role==='B'?'active':''}" data-act="role-b">Vai B</button><button class="btn ${showTranscript?'active':''}" data-act="toggle-transcript">${showTranscript?'Ẩn transcript':'Hiện transcript'}</button><button class="btn" data-act="toggle-vi" ${showTranscript?'':'disabled'}>${hideVi?'Hiện nghĩa':'Ẩn nghĩa'}</button></div>
    </header>
    <div class="v1294-speech-progress"><article><b>Chế độ</b><span>${esc(roleName)}</span></article><article><b>Tiến độ chung</b><span>${prog.ok}/${prog.total} câu đạt · ${prog.percent}%</span></article><article><b>Tiến độ vai</b><span>${roleStats.ok}/${roleStats.total} câu · ${roleStats.percent}%</span></article></div>
    <article class="v1294-current-line ${isMine?'student-turn':'listener-turn'} speech-content-board">
      <div class="speaker">${esc(lineRole)}</div>
-     <div class="v1294-current-body"><label>Câu ${turns.length?idx+1:0}/${turns.length||0} · ${esc(cueText)}</label><div class="russian-line">${currentRu}</div>${currentVi?`<p>${esc(currentVi)}</p>`:''}${hints.length?`<div class="speech-hints">${hints.map(x=>`<span>${esc(x)}</span>`).join('')}</div>`:''}</div>
+     <div class="v1294-current-body"><label>Câu ${turns.length?idx+1:0}/${turns.length||0} · ${esc(cueText)}</label><div class="russian-line">${currentRu}</div>${currentVi?`<p>${esc(currentVi)}</p>`:''}${showTranscript&&hints.length?`<div class="speech-hints">${hints.map(x=>`<span>${esc(x)}</span>`).join('')}</div>`:''}</div>
      <button class="btn green speech-ok-corner" data-act="mark-line-ok">✓ Đã nói ổn</button>
    </article>
    <div class="v1294-speech-actions"><button class="btn" data-act="prev-line">← Câu trước</button><button class="btn green" data-act="speak-line">🔊 Nghe mẫu</button><button class="btn" data-act="speak-line-slow">🐢 Nghe chậm</button><button class="btn" data-act="record-line">🎙️ Nhại lại</button><button class="btn primary" data-act="next-line">Câu tiếp →</button></div>
@@ -1542,6 +1638,8 @@ function activeRole(){return inPracticeMode()?(state.practiceRole||'all'):(state
 function setActiveRole(role){if(inPracticeMode())state.practiceRole=role; else state.dialogueRole=role}
 function activeHideVi(){return inPracticeMode()?!!state.practiceHideVi:!!state.dialogueHideVi}
 function toggleActiveHideVi(){if(inPracticeMode())state.practiceHideVi=!state.practiceHideVi; else state.dialogueHideVi=!state.dialogueHideVi}
+function activeShowTranscript(){return inPracticeMode()?!!state.practiceShowTranscript:!!state.dialogueShowTranscript}
+function toggleActiveTranscript(){if(inPracticeMode())state.practiceShowTranscript=!state.practiceShowTranscript; else state.dialogueShowTranscript=!state.dialogueShowTranscript}
 function activeSpeechResults(){const k=inPracticeMode()?'practiceSpeechResults':'dialogueSpeechResults'; state[k]=state[k]||{}; return state[k]}
 function currentDialogue(){const list=currentDialogueList(); return list.find(x=>(x.id||x.title)===currentDialogueId())||list[0]||{};}
 function dialogueTurns(d){return arr(A.dialogueTurns?.(d)||d?.utterances||d?.turns)}
@@ -1674,7 +1772,7 @@ function vocabInfo(v){
  return {...base,...display,...inferVocabVisual({...base,...display,visualLabel:display.displayVisualLabel||base.visualLabel})};
 }
 function inferVocabVisual(info){
- const hay=lower([info.term,info.meaningRu,info.meaningVi,info.english,info.application,arr(info.tags).join(' ')].join(' '));
+ const hay=lower([info.term,info.meaningRu,info.displayMeaning,info.displayVisualLabel,info.application,arr(info.tags).join(' ')].join(' '));
  const rules=[
   [/привет|здрав|доброе|hello|greeting|поздор/i,['👋','🙂'],'приветствие'],[/утро|вечер|день|ноч|time|время/i,['🌅','⏰'],'время'],[/спасибо|благодар|thank/i,['🙏','✨'],'благодарность'],[/извин|простите|sorry/i,['🙇','💬'],'извинение'],[/да|нет|можно|нельзя|confirm|agree/i,['✅','🚫'],'подтверждение'],[/вопрос|спрос|как|что|где|когда|почему|question/i,['❓','💬'],'вопрос'],
   [/университет|бауман|студент|преподав|лекц|семинар|academic|study|class/i,['🎓','🏛️'],'учёба'],[/книга|тетрад|ручка|доска|писать|читать|урок/i,['📚','✍️'],'учебные вещи'],[/общежит|комнат|ключ|этаж|кровать|душ|кухн|dorm/i,['🏢','🛏️'],'общежитие'],[/паспорт|виза|документ|анкета|регистрац|office/i,['📄','🛂'],'документы'],[/метро|автобус|такси|дорог|улиц|останов|transport|route/i,['🚇','🗺️'],'транспорт'],[/магазин|купить|стоить|цена|деньги|рубл|shop|price/i,['🛒','₽'],'покупки'],[/еда|чай|кофе|хлеб|суп|столов|кафе|food|canteen/i,['🍽️','☕'],'еда'],[/врач|аптек|болит|температур|здоров|doctor|health/i,['🏥','💊'],'здоровье'],[/телефон|интернет|почта|сообщ|звон|email|call/i,['📱','✉️'],'связь'],[/компьютер|данн|код|программ|алгоритм|ai|machine|data/i,['💻','🤖'],'технологии'],[/работ|лаборатор|нир|вкр|отчет|проект|research/i,['🔬','📊'],'исследование'],[/число|один|два|три|сколько|номер|math/i,['🔢','➗'],'числа']
@@ -1705,7 +1803,7 @@ function vocabApplicationText(info){
 }
 function vocabDialogueExampleLines(info){
  const term=str(info.term||'').trim()||'это слово';
- const hay=lower([info.term,info.meaningRu,info.meaningVi,info.english,info.visualLabel,arr(info.tags).join(' ')].join(' '));
+ const hay=lower([info.term,info.meaningRu,info.displayMeaning,info.visualLabel,arr(info.tags).join(' ')].join(' '));
  if(/привет|здрав|доброе|hello|greeting|chào/.test(hay))return [`A: ${term}!`,`B: Здравствуйте. Как дела?`,`A: Хорошо, спасибо. А у вас?`];
  if(/спасибо|thank|cảm ơn|благодар/.test(hay))return [`A: ${term}!`,`B: Пожалуйста. Рад помочь.`,`A: До свидания, спасибо ещё раз.`];
  if(/извин|простите|sorry|xin lỗi/.test(hay))return [`A: ${term}, пожалуйста.`,`B: Ничего страшного.`,`A: Спасибо, я повторю правильно.`];
@@ -2057,6 +2155,7 @@ function renderDialogue(){
  const line=turns[idx]||turns[0]||{};
  const role=state.dialogueRole||'all';
  const hideVi=!!state.dialogueHideVi;
+ const showTranscript=!!state.dialogueShowTranscript;
  const result=speakingResultFor(active,idx);
  const prog=dialogueProgress(active);
  const roleStats=dialogueRoleStats(active,role);
@@ -2067,7 +2166,7 @@ function renderDialogue(){
  const title=A.dialogueTitle?.(active)||active?.title||'Chọn hội thoại';
  const purpose=A.dialogueSubtitle?.(active)||active?.purpose||arr(active?.communicative_functions_vi).join(', ')||'Nghe mẫu, chọn vai và đối đáp trong tình huống thật.';
  const group=A.dialogueGroup?.(active)||active?.group||'Đối thoại';
- const currentVi=hideVi?'':dialogueVi(line);
+ const currentVi=showTranscript&&!hideVi?dialogueVi(line):'';
  const cueText=role==='all'?'Nghe mẫu rồi nhại câu hiện tại':(isMine?'Đến lượt bạn đối đáp':'Nghe vai còn lại, chuẩn bị trả lời');
  const roleName=role==='all'?'Nghe + đối đáp toàn đoạn':`Đối đáp vai ${role}`;
  const hints=arr(active?.vocabulary_seed_ru).slice(0,5).length?arr(active?.vocabulary_seed_ru).slice(0,5):lineTokenHints(targetText);
@@ -2076,12 +2175,12 @@ function renderDialogue(){
    <section class="panel v1294-speech-room v1295-speech-room dialogue-nine-room">
      <header class="v1294-speech-head v1295-speech-head dialogue-nine-head">
        <div class="v1294-speech-title v1295-speech-title"><span class="chip">💬 ĐỐI THOẠI · ${esc(difficulty)}</span><small>${esc(title)}</small><p>${esc(purpose)}</p></div>
-       <div class="v1294-speech-toolbar v1295-speech-toolbar dialogue-nine-toolbar"><button class="btn soft dialogue-setup-btn" data-act="dialogue-setup">⚙️ Thiết lập</button><button class="btn ${role==='all'?'active':''}" data-act="role-all">Nghe + đối đáp</button><button class="btn ${role==='A'?'active':''}" data-act="role-a">Vai A</button><button class="btn ${role==='B'?'active':''}" data-act="role-b">Vai B</button><button class="btn" data-act="toggle-vi">${hideVi?'Hiện nghĩa':'Ẩn nghĩa'}</button></div>
+       <div class="v1294-speech-toolbar v1295-speech-toolbar dialogue-nine-toolbar"><button class="btn soft dialogue-setup-btn" data-act="dialogue-setup">⚙️ Thiết lập</button><button class="btn ${role==='all'?'active':''}" data-act="role-all">Nghe + đối đáp</button><button class="btn ${role==='A'?'active':''}" data-act="role-a">Vai A</button><button class="btn ${role==='B'?'active':''}" data-act="role-b">Vai B</button><button class="btn ${showTranscript?'active':''}" data-act="toggle-transcript">${showTranscript?'Ẩn transcript':'Hiện transcript'}</button><button class="btn" data-act="toggle-vi" ${showTranscript?'':'disabled'}>${hideVi?'Hiện nghĩa':'Ẩn nghĩa'}</button></div>
      </header>
      <div class="v1294-speech-progress dialogue-nine-progress"><article><b>Chế độ</b><span>${esc(roleName)}</span></article><article><b>Tiến độ chung</b><span>${prog.ok}/${prog.total} câu đạt · ${prog.percent}%</span></article><article><b>Tiến độ vai</b><span>${roleStats.ok}/${roleStats.total} câu · ${roleStats.percent}%</span></article><article><b>Chủ điểm</b><span>${esc(group)}</span></article></div>
      <article class="v1294-current-line dialogue-nine-current ${isMine?'student-turn':'listener-turn'} speech-content-board">
        <div class="speaker">${esc(lineRole)}</div>
-       <div class="v1294-current-body"><label>Câu ${turns.length?idx+1:0}/${turns.length||0} · ${esc(cueText)}</label><div class="russian-line">${esc(targetText||'Chọn một tình huống ở danh sách bên dưới để bắt đầu đối thoại.')}</div>${currentVi?`<p>${esc(currentVi)}</p>`:''}${hints.length?`<div class="speech-hints">${hints.map(x=>`<span>${esc(x)}</span>`).join('')}</div>`:''}</div>
+       <div class="v1294-current-body"><label>Câu ${turns.length?idx+1:0}/${turns.length||0} · ${esc(cueText)}</label><div class="russian-line">${showTranscript?esc(targetText||'Chọn một tình huống ở danh sách bên dưới để bắt đầu đối thoại.'):'<span class="transcript-listen-first">Nghe câu mẫu trước · mở transcript khi thật sự cần</span>'}</div>${currentVi?`<p>${esc(currentVi)}</p>`:''}${showTranscript&&hints.length?`<div class="speech-hints">${hints.map(x=>`<span>${esc(x)}</span>`).join('')}</div>`:''}</div>
        <button class="btn green speech-ok-corner" data-act="mark-line-ok">✓ Tôi nói ổn</button>
      </article>
      <div class="v1294-speech-actions dialogue-nine-actions"><button class="btn" data-act="prev-line">← Câu trước</button><button class="btn green" data-act="speak-line">🔊 Câu mẫu</button><button class="btn" data-act="speak-line-slow">🐢 Chậm</button><button class="btn blue" data-act="speak-dialogue">Nghe cả đoạn</button><button class="btn" data-act="record-line">🎙️ Đối đáp</button><button class="btn" data-act="next-role-line">Câu của tôi →</button><button class="btn primary" data-act="next-line">Câu tiếp →</button></div>
@@ -2378,14 +2477,25 @@ function renderWriting(){
 
 function renderVocab(){
  try{
+  if(!DB.vocab){
+   ensureDeferredCoreData('vocab');
+   return `<section class="panel vocab-empty learning-recovery-card" aria-live="polite"><span class="chip">🗂️ Từ vựng</span><h3>Đang mở bộ từ vựng…</h3><p>Bộ 8.000 từ chỉ được tải khi bạn thực sự vào Từ vựng để trang chủ nhẹ hơn.</p></section>`;
+  }
+  const allVocab=call('getVocabulary',[],DB);
+  const stageVocab=byStage(allVocab);
   const list=getVocab();
   if(!list.length){
-   return `<section class="panel vocab-empty learning-recovery-card"><span class="chip">🗂️ Từ vựng</span><h3>Chưa có thẻ từ vựng phù hợp</h3><p>Đổi giai đoạn hoặc xóa từ khóa tìm kiếm để xem lại dữ liệu.</p></section>`;
+   return `<section class="panel vocab-empty learning-recovery-card"><span class="chip">🗂️ Từ vựng</span><h3>Chưa có thẻ từ vựng phù hợp</h3><p>Không có kết quả trong bộ lọc hiện tại.</p><div class="recovery-actions"><button class="btn primary" data-act="vocab-clear-filter">Xóa tìm kiếm</button><button class="btn" data-view="overview">Về Tổng quan</button></div></section>`;
   }
   state.vocabIndex=Math.min(Math.max(0,Number(state.vocabIndex)||0),Math.max(0,list.length-1));
   const pageSize=VOCAB_PAGE_SIZE||20;
   state.vocabPage=Math.floor(state.vocabIndex/pageSize);
+  const topicOptions=vocabTopicOptions(stageVocab);
+  const statusOptions=[['all','Tất cả trạng thái'],['new','Mới'],['learned','Đã học'],['due','Cần ôn'],['difficult','Khó']];
   const v=list[state.vocabIndex]||{};
+  const sourceIndex=Math.max(0,allVocab.indexOf(v));
+  const stageIndex=Math.max(0,stageVocab.indexOf(v));
+  const sourceKey=vocabSourceKey(v,sourceIndex);
   const info=vocabInfo(v);
   const flipped=!!state.vocabFlipped;
   const pageStart=state.vocabPage*pageSize;
@@ -2397,24 +2507,38 @@ function renderVocab(){
   const example=info.example||'';
   const meaningNote=vocabMeaningNoteText(info);
   const application=vocabApplicationText(info);
-  const sideRows=rows.map((item,i)=>{const idx=pageStart+i; const vi=vocabInfo(item); const rowMeaning=vi.displayVisualLabel||vi.meaningRu||''; const rowEmoji=vi.emoji||'•'; return `<button class="vocab-mini-row v1310-vocab-row ${idx===state.vocabIndex?'active':''}" data-vocab="${idx}"><span>${String(idx+1).padStart(2,'0')}</span><div><b><i class="v1312-row-emoji">${esc(rowEmoji)}</i>${esc(clip(vi.term||'—',34))}</b><small>${esc(clip(rowMeaning,42))}</small></div></button>`}).join('');
+  const sideRows=rows.map((item,i)=>{const idx=pageStart+i; const vi=vocabInfo(item); const rowMeaning=vi.displayVisualLabel||vi.meaningRu||''; const rowEmoji=vi.emoji||'•'; const rowSourceIndex=Math.max(0,allVocab.indexOf(item)); const rowStageIndex=Math.max(0,stageVocab.indexOf(item)); const rowKey=vocabSourceKey(item,rowSourceIndex); return `<button class="vocab-mini-row v1310-vocab-row ${idx===state.vocabIndex?'active':''}" data-vocab="${idx}" data-vocab-source-index="${rowSourceIndex}" data-vocab-stage-index="${rowStageIndex}" data-vocab-key="${esc(rowKey)}" data-vocab-term="${esc(vi.term||'')}"><span>${String(idx+1).padStart(2,'0')}</span><div><b><i class="v1312-row-emoji">${esc(rowEmoji)}</i>${esc(clip(vi.term||'—',34))}</b><small>${esc(clip(rowMeaning,42))}</small></div></button>`}).join('');
   const visual=vocabVisualHtml(info,false);
   const visualBack=vocabVisualHtml(info,true);
   const dialogueExample=vocabDialogueExampleHtml(info);
-  const front=`<div class="v1310-flash-face v1312-flash-face"><div class="v1312-flash-visual">${visual}</div><div class="term ${termSizeClass}">${esc(term)}</div><div class="v1310-pron">${esc(info.pron||'Bấm để xem gợi ý')}</div></div>`;
+  const front=`<div class="v1310-flash-face v1312-flash-face"><div class="v1312-flash-visual">${visual}</div><div class="term ${termSizeClass}">${esc(term)}</div><div class="v1310-pron">${esc(info.pron||'Nghe để xác nhận phát âm')}</div>${example?`<p class="vocab-micro-context" lang="ru">${esc(clip(example,72))}</p>`:''}</div>`;
   const back=`<div class="v1310-flash-face v1312-flash-face flipped"><div class="v1312-flash-visual back">${visualBack}</div><span>Hiểu qua hình và ngữ cảnh Nga</span><div class="meaning" lang="ru">${esc(meaning)}</div>${example?`<small>${esc(example)}</small>`:''}</div>`;
   return `<div class="vocab-studio step37-vocab-safe canva3-vocab canva3-vocab-no-hero v1303-vocab-safe v1310-vocab-polish v1311-vocab-luxe v1312-vocab-chibi">
+   <section class="vocab-library-toolbar" aria-label="Bộ lọc kho từ vựng">
+     <div class="vocab-library-summary"><span>KHO TỪ VỰNG · ${esc(stageTitle(state.stage))}</span><b>${list.length} / ${stageVocab.length}</b><small>20 thẻ/lượt · chỉ tải kho lớn khi mở Từ vựng</small></div>
+     <div class="vocab-library-controls">
+       <input class="input" data-input="vocabQuery" value="${esc(state.vocabQuery||'')}" placeholder="Tìm từ, ví dụ hoặc phát âm…" aria-label="Tìm trong kho từ vựng">
+       <select class="input" data-input="vocabTopic" aria-label="Lọc theo chủ đề"><option value="all">Tất cả chủ đề</option>${topicOptions.map(x=>`<option value="${esc(x.id)}" ${state.vocabTopic===x.id?'selected':''}>${esc(x.label)} · ${x.count}</option>`).join('')}</select>
+       <select class="input" data-input="vocabStatus" aria-label="Lọc theo trạng thái học">${statusOptions.map(([id,label])=>`<option value="${id}" ${state.vocabStatus===id?'selected':''}>${label}</option>`).join('')}</select>
+       <button class="btn soft" data-act="vocab-clear-filter">Xóa lọc</button>
+     </div>
+   </section>
    <div class="vocab-desk step37-vocab-desk canva3-vocab-desk v1303-vocab-desk v1310-vocab-desk">
      <aside class="panel vocab-page-list v1303-vocab-list v1310-vocab-list" aria-label="Danh sách 20 thẻ từ hiện tại">
        <div class="vocab-list-head v1310-vocab-list-head"><span class="chip">20 thẻ/lượt</span><b>${pageStart+1}-${Math.min(list.length,pageStart+rows.length)}/${list.length}</b></div>
        <div class="vocab-list-scroll clean-scroll v1310-vocab-scroll">${sideRows}</div>
      </aside>
-     <main class="panel vocab-card-panel canva3-card-panel canva3-card-panel-actions v1303-vocab-card-panel v1310-vocab-main">
+     <main class="panel vocab-card-panel canva3-card-panel canva3-card-panel-actions v1303-vocab-card-panel v1310-vocab-main" data-vocab-term="${esc(term)}" data-vocab-index="${state.vocabIndex}" data-vocab-key="${esc(sourceKey)}" data-vocab-source-index="${sourceIndex}" data-vocab-stage-index="${stageIndex}">
        <header class="v1310-vocab-top v1311-vocab-top"><div><span class="chip">Thẻ ${state.vocabIndex+1}/${list.length}</span><h3>${esc(term)}</h3></div><small>${esc(info.pron||'Bấm thẻ để xem ngữ cảnh')}</small></header>
        <button class="flash visual-flash canva3-flash v1303-flash v1310-flash ${flipped?'flipped':''}" data-act="toggle-vocab-flip"><div class="flash-inner v1303-flash-inner v1310-flash-inner">${flipped?back:front}</div></button>
-       <div class="vocab-actions canva3-card-actions v1310-vocab-actions" aria-label="Điều khiển flashcard"><button class="btn" data-act="prev-vocab">← Trước</button><button class="btn green" data-act="speak-vocab">🔊 Nghe</button><button class="btn primary" data-act="toggle-vocab-flip">${flipped?'Mặt từ':'Lật gợi ý'}</button><button class="btn" data-act="next-vocab">Sau →</button></div>
-       <section class="v1310-vocab-detail v1313-vocab-detail v1314-vocab-detail" aria-label="Chi tiết thẻ từ"><article><b>Giải thích bằng tiếng Nga</b><p lang="ru">${esc(meaning)}</p></article><article><b>Ngữ cảnh Nga</b><p lang="ru">${esc(meaningNote)}</p></article><article><b>Thực hành</b><p lang="ru">${esc(application)}</p></article></section>
-       ${dialogueExample}
+       <div class="vocab-actions canva3-card-actions v1310-vocab-actions" aria-label="Điều khiển flashcard"><button class="btn" data-act="prev-vocab">← Trước</button><button class="btn green" data-act="speak-vocab">🔊 Nghe</button><button class="btn" data-act="speak-vocab-slow">🐢 Chậm</button><button class="btn primary" data-act="toggle-vocab-flip">${flipped?'Mặt từ':'Lật gợi ý'}</button><button class="btn" data-act="next-vocab">Sau →</button></div>
+       <details class="vocab-progressive-details">
+         <summary>Chi tiết <span>Ví dụ · ngữ cảnh · thực hành</span></summary>
+         <div class="vocab-progressive-body">
+           <section class="v1310-vocab-detail v1313-vocab-detail v1314-vocab-detail" aria-label="Chi tiết thẻ từ"><article><b>Giải thích bằng tiếng Nga</b><p lang="ru">${esc(meaning)}</p></article><article><b>Ngữ cảnh Nga</b><p lang="ru">${esc(meaningNote)}</p></article><article><b>Thực hành</b><p lang="ru">${esc(application)}</p></article></section>
+           ${dialogueExample}
+         </div>
+       </details>
      </main>
    </div>
  </div>`;
@@ -2464,11 +2588,12 @@ function renderGrammar(){
    <section class="panel grammar-hero"><div><span class="chip">NGỮ PHÁP RIÊNG · A0 → C1</span><h3>Ngữ pháp học để nói, viết và đọc tài liệu Bauman</h3><p>Tab này tách ngữ pháp thành lộ trình riêng: chọn cấp nào thì chỉ hiện mạch của cấp đó, tránh lẫn tầng kiến thức và tìm nhanh hơn.</p></div><div class="grammar-hero-stat"><b>${all.length}</b><span>mục ngữ pháp</span></div></section>
    <section class="panel grammar-filterbar grammar-filterbar-v1325"><select class="input" data-input="grammarLevel">${levels.map(l=>`<option value="${esc(l)}" ${state.grammarLevel===l?'selected':''}>${l==='all'?'Tất cả cấp độ':esc(l)}</option>`).join('')}</select><select class="input" data-input="grammarTrack">${tracks.map(t=>`<option value="${esc(t)}" ${state.grammarTrack===t?'selected':''}>${t==='all'?'Mạch của cấp đang chọn':esc(t)}</option>`).join('')}</select><input class="input" data-input="grammarQuery" value="${esc(state.grammarQuery||'')}" placeholder="Tìm trong cấp/mạch hiện tại: cách 2, НСВ, Bauman..."/><span class="grammar-scope-hint">${scopedHint}</span></section>
    <div class="grammar-workbench"><aside class="panel grammar-sidebar"><div class="grammar-side-head"><b>Lộ trình</b><span>${xs.length}/${all.length} mục</span></div><div class="grammar-nav-scroll">${grammarListHtml(xs)||'<article class="storage-empty"><b>Không có mục phù hợp</b><span>Đổi bộ lọc hoặc xóa từ khóa.</span></article>'}</div></aside>
-   <main class="panel grammar-main-card"><header class="grammar-main-head"><div><span class="chip">${esc(g.level||'A1')} · ${esc(g.track||'Ngữ pháp')}</span><h3>${esc(g.title||'Mục ngữ pháp')}</h3><p>${esc(g.why||'Học mục này để nối quy tắc với câu nói, bài viết và tình huống thật.')}</p></div><b class="grammar-index-pill">${xs.length?state.grammarIndex+1:0}/${xs.length}</b></header>
-     <section class="grammar-core-grid"><article><b>Quy tắc lõi</b><p>${esc(g.core||g.rule||'Chưa có quy tắc lõi.')}</p></article><article><b>Mẫu nhớ nhanh</b><p>${esc(g.pattern||'Hãy học qua câu mẫu thay vì bảng rời.')}</p></article><article><b>Ứng dụng Bauman</b><p>${esc(g.bauman||'Dùng trong lớp dự bị, ký túc xá, email, báo cáo lab và bảo vệ đề tài.')}</p></article></section>
-     <section class="grammar-examples"><h4>Ví dụ sống</h4><div>${examples}</div></section>
-     <section class="grammar-drill-grid"><article><h4>Luyện 5-10 phút</h4><ul>${practice}</ul></article><article><h4>Lỗi hay gặp</h4><ul>${mistakes}</ul></article></section>
-     <footer class="grammar-footer"><div><b>Chuẩn qua bài</b><span>${esc(g.mastery||'Tự tạo câu mới và dùng được trong hội thoại thật.')}</span></div>${mapLinks?`<div class="grammar-map-links"><b>Mind map liên quan</b>${mapLinks}</div>`:''}</footer>
+   <main class="panel grammar-main-card"><header class="grammar-main-head"><div><span class="chip">${esc(g.level||'A1')} · ${esc(g.track||'Ngữ pháp')}</span><h3>${esc(g.title||'Mục ngữ pháp')}</h3><p>${esc(g.why||'Nhìn ví dụ trước, nhận ra mẫu rồi mới mở phần giải thích khi cần.')}</p></div><b class="grammar-index-pill">${xs.length?state.grammarIndex+1:0}/${xs.length}</b></header>
+     <section class="grammar-examples grammar-examples-first"><div class="grammar-section-head"><span>01</span><div><h4>Nhìn ví dụ trước</h4><p>Đọc các câu Nga, tìm phần giống nhau trước khi xem quy tắc.</p></div></div><div>${examples}</div></section>
+     <section class="grammar-pattern-strip"><span>02 · MẪU NHỚ NHANH</span><b>${esc(g.pattern||'Nhìn cấu trúc lặp lại trong ví dụ và thử thay một thành phần.')}</b></section>
+     <section class="grammar-practice-now"><div class="grammar-section-head"><span>03</span><div><h4>Dùng ngay</h4><p>Làm một nhiệm vụ ngắn sau khi đã nhận ra pattern.</p></div></div><ul>${practice}</ul></section>
+     <details class="grammar-concept-details"><summary><span>04 · Quy tắc & giải thích sâu</span><small>Mở khi cần</small></summary><div class="grammar-core-grid"><article><b>Quy tắc lõi</b><p>${esc(g.core||g.rule||'Chưa có quy tắc lõi.')}</p></article><article><b>Ứng dụng Bauman</b><p>${esc(g.bauman||'Dùng trong lớp dự bị, ký túc xá, email, báo cáo lab và bảo vệ đề tài.')}</p></article><article><b>Lỗi hay gặp</b><ul>${mistakes}</ul></article></div></details>
+     <footer class="grammar-footer"><div><b>Tự kiểm tra</b><span>${esc(g.mastery||'Tự tạo một câu mới và thử dùng trong hội thoại thật.')}</span></div>${mapLinks?`<div class="grammar-map-links"><b>Mind map liên quan</b>${mapLinks}</div>`:''}</footer>
    </main></div>
  </div>`;
 }
@@ -2811,9 +2936,10 @@ function renderMedia(){
  const activePurpose=mediaPurpose(active)||'Nghe ngắn, nhại ngay, rồi chuyển sang đối thoại.';
  const cat=mediaCategoryLabel(active);
  const tasks=[
-  ['01','Nghe','Bắt nhịp và âm chính.'],
-  ['02','Nhại','Lặp 3-5 câu ngắn.'],
-  ['03','Nói lại','Chuyển sang đối thoại.']
+  ['01','Trước khi xem','Biết mục tiêu: nghe âm, nhịp và tình huống; chưa cần hiểu từng từ.'],
+  ['02','Lượt nghe đầu','Xem/nghe liền mạch, không dừng để tra.'],
+  ['03','Lượt nghe lại','Bắt 3-5 cụm ngắn và nhại theo tốc độ thật.'],
+  ['04','Sau khi xem','Chuyển sang Nghe & Nói để dùng lại câu vừa nghe.']
  ];
  const openButton=url?`<a class="btn" href="${esc(url)}" target="_blank" rel="noopener">Mở ngoài</a>`:`<button class="btn disabled" disabled>Mở ngoài</button>`;
  const player=embed?`<iframe src="${esc(embed)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`:`<div class="media-empty-player v1256-empty-player"><b>${mediaIcon(active)}</b><h3>${esc(activeTitle)}</h3><p>${esc(url?'Nguồn này nên mở ngoài, sau đó quay lại nói lại.':'Chưa có iframe. Bấm “Sửa nguồn” để thêm link nhúng.')}</p></div>`;
@@ -2827,7 +2953,7 @@ function renderMedia(){
      <main class="panel media-main step54-media-main v1256-media-main">
        <header class="v1256-media-topbar">
          <div><span class="chip">${esc(cat)}</span><h3>${esc(activeTitle)}</h3><p>${esc(activePurpose)}</p></div>
-         <div class="step54-media-actions v1256-media-actions">${openButton}<button class="btn" data-act="media-edit" data-media-edit="${esc(active.id||active.title||'')}">Sửa nguồn</button><button class="btn primary" data-route='${esc(JSON.stringify({view:'dialogue'}))}'>Nghe xong nói lại</button></div>
+         <div class="step54-media-actions v1256-media-actions">${openButton}<button class="btn" data-act="media-edit" data-media-edit="${esc(active.id||active.title||'')}">Sửa nguồn</button><button class="btn primary" data-route='${esc(JSON.stringify({view:'learning',learnTab:'practice'}))}'>Nghe xong nói lại</button></div>
        </header>
        <section class="step54-player-card v1256-player-card"><div class="step54-player v1256-player">${player}</div></section>
        <section class="step54-listening-plan v1256-listening-plan">${tasks.map(t=>`<article><i>${t[0]}</i><b>${esc(t[1])}</b><span>${esc(t[2])}</span></article>`).join('')}</section>
@@ -2886,6 +3012,7 @@ function sourceStatus(name,data){
  if(isOptionalFile(name)&&state.optionalDataLoading?.[name])return ['Đang tải · lazy','warn'];
  if(isOptionalFile(name)&&state.optionalDataError?.[name])return ['Lỗi tải nguồn','danger'];
  if(!data&&isOptionalFile(name))return ['Chưa tải · tùy chọn','warn'];
+ if(!data&&DEFERRED_CORE_DATA.has(name))return ['Chưa tải · theo nhu cầu','warn'];
  if(!data)return ['Thiếu nguồn','danger'];
  if(!c)return ['Rỗng','warn'];
  if(name==='tests'&&(!data.questions||!Array.isArray(data.questions)))return ['Cần kiểm tra','warn'];
@@ -3194,7 +3321,7 @@ function mediaForm(item={}){
  const cat=A.mediaCategory?.(item)||item.category||item.genre||'';
  return `<div class="modal-body media-form"><h3>${item.id||item.title?'Sửa nguồn Video/Audio':'Thêm Video/Audio'}</h3><datalist id="mediaGroupOptions">${groups.map(g=>`<option value="${esc(g)}"></option>`).join('')}</datalist><div class="form-row"><input class="input" id="mfTitle" placeholder="Tên nội dung" value="${esc(item.title||'')}"><input class="input" id="mfCat" list="mediaGroupOptions" placeholder="Chọn hoặc nhập nhóm học" value="${esc(cat)}"></div><textarea class="textarea" id="mfUrl" placeholder="URL gốc / link mở trực tiếp">${esc(item.url||'')}</textarea><textarea class="textarea" id="mfIframe" placeholder="Iframe embed hoặc URL embed">${esc(item.iframe||'')}</textarea><textarea class="textarea" id="mfPurpose" placeholder="Mục đích/mô tả">${esc(item.purpose||item.summary||'')}</textarea><div class="modal-actions"><button class="btn" data-act="modal-close">Hủy</button><button class="btn primary" data-act="media-save" data-id="${esc(item.id||item.title||'')}">Lưu media</button></div></div>`
 }
-function applyInput(el){const k=el.dataset.input; if(!k)return; let v=el.value; if(k==='interfaceTheme'||k==='interfaceDensity'||k==='interfaceMain'){state[k]=v; applyInterface(); save(); if(state.modalType==='interface')openModal(renderInterfaceModal(),'interface'); else render(); return;} if(['dialogueGroup','dialogueDifficulty','practiceGroup','practiceDifficulty','deepSpeakingId','mediaCat','grammarLevel','grammarTrack','mindmapId','testLevel','reviewLevel','reviewFilter','reviewLesson','examLevel','examCycle','examPaperLevel','examPaperType','exerciseLevel','storageGroup'].includes(k)){
+function applyInput(el){const k=el.dataset.input; if(!k)return; let v=el.value; if(k==='interfaceTheme'||k==='interfaceDensity'||k==='interfaceMain'){state[k]=v; applyInterface(); save(); if(state.modalType==='interface')openModal(renderInterfaceModal(),'interface'); else render(); return;} if(['dialogueGroup','dialogueDifficulty','practiceGroup','practiceDifficulty','deepSpeakingId','mediaCat','grammarLevel','grammarTrack','mindmapId','vocabTopic','vocabStatus','testLevel','reviewLevel','reviewFilter','reviewLesson','examLevel','examCycle','examPaperLevel','examPaperType','exerciseLevel','storageGroup'].includes(k)){
   if(k==='examCycle'){
    if(v!=='auto'&&!isExamCycleUnlocked(Number(v))){toast('Lượt kiểm tra này chưa mở khóa. Hãy học đủ lịch trình trước.'); v='auto';}
    state.examCycle=v; state.examPaperLevel=activeExamLevel(); state.examIndex=0; state.examPage=0;
@@ -3212,11 +3339,26 @@ function applyInput(el){const k=el.dataset.input; if(!k)return; let v=el.value; 
    state[k]=v;
   }
   if(k==='testLevel'){state.testIndex=0;state.testAnswer=null;} if(k==='reviewLevel'){state.reviewIndex=0;state.reviewPage=0;state.reviewAnswer=null;state.reviewLesson='all';} if(k==='reviewFilter'||k==='reviewLesson'){state.reviewIndex=0;state.reviewPage=0;state.reviewAnswer=null;} if(k==='exerciseLevel')state.exerciseIndex=0; if(k==='practiceGroup'||k==='practiceDifficulty'){state.practiceDialogueId='';state.practiceLineIndex=0;} if(k==='dialogueGroup'||k==='dialogueDifficulty'){state.dialogueId='';state.dialogueLineIndex=0;} if(k==='deepSpeakingId'){state.deepSpeakingStep=0;} if(k==='grammarLevel'){state.grammarTrack='all';state.grammarIndex=0;} if(k==='grammarTrack'){state.grammarIndex=0;} if(k==='mindmapId'){state.mindmapNode='';}
- } else state[k]=v; save(); render();}
+ } else {state[k]=v;if(k==='vocabQuery'){state.vocabFocusKey='';state.vocabIndex=0;state.vocabPage=0;}} if(k==='vocabTopic'||k==='vocabStatus'){state.vocabFocusKey='';state.vocabIndex=0;state.vocabPage=0;} save(); render();}
 let activeHandwritingAudioKey='';
 function markHandwritingAudioPlaying(key,on){
  activeHandwritingAudioKey=on?key:'';
  document.querySelectorAll('[data-hand-audio]').forEach(el=>el.classList.toggle('is-playing',on&&el.dataset.handAudio===key));
+}
+function speakVocabItem(v,slow=false){
+ const normalized=A.normalizeVocab?.(v)||{};
+ const term=A.vocabTerm?.(v)||normalized.term||v?.ru||v?.phrase_ru||'';
+ const sourceAudio=str(normalized.audio||v?.audio||v?.audio_url||v?.audioUrl||'').trim();
+ const fallback=()=>speak(term,slow?.62:.85);
+ if(!sourceAudio)return fallback();
+ try{
+  const player=new Audio(sourceAudio);
+  player.playbackRate=slow?.75:1;
+  player.addEventListener('error',fallback,{once:true});
+  const play=player.play();
+  if(play?.catch)play.catch(fallback);
+  return true;
+ }catch(_){return fallback()}
 }
 function speak(text,rate=.85,callbacks={}){ if(!text||!('speechSynthesis' in window))return false; const u=new SpeechSynthesisUtterance(text); u.lang=A.speech?.lang||'ru-RU'; u.rate=rate; if(callbacks.onstart)u.onstart=callbacks.onstart; if(callbacks.onend)u.onend=callbacks.onend; if(callbacks.onerror)u.onerror=callbacks.onerror; speechSynthesis.cancel(); speechSynthesis.speak(u); return true; }
 function handwritingSpeechAvailable(){return typeof window!=='undefined'&&'speechSynthesis' in window&&typeof SpeechSynthesisUtterance!=='undefined'}
@@ -3609,7 +3751,7 @@ function handleClick(e){
  const b=e.target.closest('button,a,[data-view],[data-route],tr[data-vocab],[data-exercise-focus]'); if(!b)return;
  const dragged=b.closest('[data-mindmap-drag="1"]'); if(dragged?.dataset.dragged==='1')return;
  if(b.dataset.confirmAct){const action=b.dataset.confirmAct; closeModal(); runConfirmedAction(action); return}
- if(b.dataset.view){setView(b.dataset.view);return}
+ if(b.dataset.view){setView(b.dataset.view,b.dataset.learn||'');return}
  if(b.dataset.learn){setLearnTab(b.dataset.learn);return}
  if(b.dataset.lesson){state.lessonId=b.dataset.lesson;state.slide=0;state.exerciseIndex=0;state.practiceDialogueId='';state.practiceLineIndex=0;state.practiceGroup='all';state.practiceDifficulty='all';save();render();return}
  if('slide' in b.dataset){state.slide=Number(b.dataset.slide)||0; if(state.modalType==='presentation')rerenderPresentation(); else {save();render();} return}
@@ -3619,7 +3761,7 @@ function handleClick(e){
  if('line' in b.dataset){setActiveLineIndex(Number(b.dataset.line)||0);save(); if(state.modalType==='speech-map')closeModal(); render();return}
  if(b.dataset.media){state.mediaId=b.dataset.media;save();render();return}
  if(b.dataset.mediaView){state.mediaView=b.dataset.mediaView;save();render();return}
- if(b.dataset.storage){state.storageFile=b.dataset.storage;state.storageText='';state.storagePreviewLimit=0;save();render();return}
+ if(b.dataset.storage){state.storageFile=b.dataset.storage;state.storageText='';state.storagePreviewLimit=0;if(DEFERRED_CORE_DATA.has(state.storageFile))ensureDeferredCoreData(state.storageFile);save();render();return}
  if(b.dataset.storageGroup){state.storageGroup=b.dataset.storageGroup;state.storagePreviewLimit=0;save();render();return}
  if('storageEdit' in b.dataset){openModal(storageItemForm(state.storageFile,b.dataset.storageEdit,b.dataset.storagePath||''),'storage-item');return}
  if('vocab' in b.dataset){state.vocabIndex=Number(b.dataset.vocab)||0;state.vocabFlipped=false;save();render();return}
@@ -3644,7 +3786,9 @@ function handleClick(e){
  if('examPage' in b.dataset){state.examPage=Number(b.dataset.examPage)||0;state.examIndex=state.examPage*examPageSize(activeExamLevel());save();render();return}
  if('examAnswer' in b.dataset){const level=activeExamLevel(); if(examPaperResult(level))return; const qs=getExamQuestions(level); const q=qs[state.examIndex]||{}; const id=examQuestionId(q,state.examIndex,level); state.examProgress.answers[id]=Number(b.dataset.examAnswer);save();render();return}
  if(b.dataset.examPaper){state.examPaperType=b.dataset.examPaper;state.examPaperLevel=b.dataset.examPaper;state.examIndex=0;state.examPage=0;save();render();return}
- if(b.dataset.route){const r=JSON.parse(b.dataset.route||'{}'); closeModal(); if(r.routeSource==='today_schedule'&&r.scheduleStep)markScheduleTaskOpened(Number(r.scheduleStep),planSession(),r); trackAccess(r.view||'overview'); state.view=r.view||'overview'; if(r.lessonId)state.lessonId=r.lessonId; if(r.learnTab)state.learnTab=r.learnTab; if(r.reviewLesson)state.reviewLesson=r.reviewLesson; if(r.view==='grammar'){if(r.grammarLevel)state.grammarLevel=r.grammarLevel; if(r.grammarTrack)state.grammarTrack=r.grammarTrack; state.grammarIndex=0;} if(r.view==='mindmap'){if(r.mindmapId)state.mindmapId=r.mindmapId; if(r.mindmapNode)state.mindmapNode=r.mindmapNode; else state.mindmapNode='';} if(r.view==='learning'&&r.learnTab==='exam'){const paper=scheduleExamPaperType(r); state.examPaperType=paper; state.examPaperLevel=paper; state.examIndex=0; state.examPage=0; state.examGateSource={routeSource:r.routeSource||'',stage:r.stage||currentStageId(),part:Number(r.part||gatePart()),sessionKey:r.sessionKey||sessionKey(),scheduleStep:Number(r.scheduleStep||0),paperType:paper,at:Date.now()};} if(r.view==='learning'&&r.learnTab==='review'&&r.reviewFilter){state.reviewFilter=r.reviewFilter; state.reviewIndex=0; state.reviewPage=0; state.reviewAnswer=null;} if(r.mode==='handwriting')state.writingMode='handwriting'; save();render();return}
+ if(b.dataset.route){const r=JSON.parse(b.dataset.route||'{}'); closeModal(); if(r.routeSource==='today_schedule'&&r.scheduleStep)markScheduleTaskOpened(Number(r.scheduleStep),planSession(),r); trackAccess(r.view||'overview'); state.view=r.view||'overview'; if(r.lessonId)state.lessonId=r.lessonId; if(r.learnTab)state.learnTab=r.learnTab; if(r.reviewLesson)state.reviewLesson=r.reviewLesson; if(r.view==='grammar'){if(r.grammarLevel)state.grammarLevel=r.grammarLevel; if(r.grammarTrack)state.grammarTrack=r.grammarTrack; if(r.grammarQuery!=null)state.grammarQuery=str(r.grammarQuery).slice(0,120); state.grammarIndex=Number.isFinite(Number(r.grammarIndex))?Math.max(0,Number(r.grammarIndex)):0;} if(r.view==='media'&&r.mediaId)state.mediaId=str(r.mediaId).slice(0,160);
+ if(r.view==='vocab'){if(r.vocabStage)state.stage=str(r.vocabStage).slice(0,32); if(r.vocabKey!=null)state.vocabFocusKey=str(r.vocabKey).slice(0,180); if(r.vocabQuery!=null)state.vocabQuery=str(r.vocabQuery).slice(0,160); if(Number.isFinite(Number(r.vocabIndex)))state.vocabIndex=Math.max(0,Number(r.vocabIndex)); state.vocabFlipped=false;}
+ if(r.view==='mindmap'){if(r.mindmapId)state.mindmapId=r.mindmapId; if(r.mindmapNode)state.mindmapNode=r.mindmapNode; else state.mindmapNode='';} if(r.view==='learning'&&r.learnTab==='exam'){const paper=scheduleExamPaperType(r); state.examPaperType=paper; state.examPaperLevel=paper; state.examIndex=0; state.examPage=0; state.examGateSource={routeSource:r.routeSource||'',stage:r.stage||currentStageId(),part:Number(r.part||gatePart()),sessionKey:r.sessionKey||sessionKey(),scheduleStep:Number(r.scheduleStep||0),paperType:paper,at:Date.now()};} if(r.view==='learning'&&r.learnTab==='review'&&r.reviewFilter){state.reviewFilter=r.reviewFilter; state.reviewIndex=0; state.reviewPage=0; state.reviewAnswer=null;} if(r.mode==='handwriting')state.writingMode='handwriting'; save();render();return}
  if(b.dataset.remedialCard){const id=b.dataset.remedialCard; const plan=normalizeRemedialPlan(); const card=plan.cards.find(x=>x.id===id); if(card){state.remedialPlan.completed[id]=Date.now(); state.view='learning'; state.learnTab='review'; state.reviewFilter='wrong'; state.reviewLesson='all'; const remaining=remedialCounts().remaining; if(remaining<=0)state.remedialPlan.active=false; save(); render(); toast(remaining<=0?'Đã hoàn thành toàn bộ lịch phụ đạo':'Đã hoàn thành 1 thẻ phụ đạo'); return}}
  if(b.dataset.uiTheme){state.interfaceTheme=b.dataset.uiTheme; applyInterface(); save(); openModal(renderInterfaceModal(),'interface'); return}
  if(b.dataset.uiDensity){state.interfaceDensity=b.dataset.uiDensity; applyInterface(); save(); openModal(renderInterfaceModal(),'interface'); return}
@@ -3742,6 +3886,7 @@ function handleClick(e){
  if(act==='role-all'){setActiveRole('all');save();render()}
  if(act==='role-a'){setActiveRole('A');save();render()}
  if(act==='role-b'){setActiveRole('B');save();render()}
+ if(act==='toggle-transcript'){toggleActiveTranscript();save();render()}
  if(act==='toggle-vi'){toggleActiveHideVi();save();render()}
  if(act==='prev-line')moveDialogueLine(-1);
  if(act==='next-line')moveDialogueLine(1);
@@ -3777,9 +3922,11 @@ function handleClick(e){
  if(act==='toggle-guide'){state.handwritingShowGuide=state.handwritingShowGuide===false;save();drawCanvas();render()}
  if(act==='toggle-lines'){state.handwritingShowLines=state.handwritingShowLines===false;save();drawCanvas();render()}
  if(act==='download-canvas')downloadCanvas();
+ if(act==='vocab-clear-filter'){state.vocabQuery='';state.vocabTopic='all';state.vocabStatus='all';state.vocabFocusKey='';state.vocabIndex=0;state.vocabPage=0;state.vocabFlipped=false;save();render();return}
  if(act==='prev-vocab'){state.vocabIndex=Math.max(0,state.vocabIndex-1);state.vocabPage=Math.floor(state.vocabIndex/(VOCAB_PAGE_SIZE||20));state.vocabFlipped=false;save();render()}
  if(act==='next-vocab'){const voc=getVocab();state.vocabIndex=voc.length?Math.min(voc.length-1,state.vocabIndex+1):0;state.vocabPage=Math.floor(state.vocabIndex/(VOCAB_PAGE_SIZE||20));state.vocabFlipped=false;save();render()}
- if(act==='speak-vocab'){const v=getVocab()[state.vocabIndex]||{}; speak(A.vocabTerm?.(v)||v.ru||v.phrase_ru)}
+ if(act==='speak-vocab'){const v=getVocab()[state.vocabIndex]||{}; speakVocabItem(v,false)}
+ if(act==='speak-vocab-slow'){const v=getVocab()[state.vocabIndex]||{}; speakVocabItem(v,true)}
  if(act==='toggle-vocab-flip'){state.vocabFlipped=!state.vocabFlipped;save();render()}
  if(act==='open-hand-grid')openModal(renderHandGridModal(),'hand-grid');
  if(act==='media-groups')openModal(renderMediaGroupManager(),'media-groups');
@@ -3819,6 +3966,7 @@ function handleInput(e){
  clearTimeout(handleInput.t); handleInput.t=setTimeout(()=>applyInput(e.target),180)
 }
 function handleKeys(e){
+ if(trapModalFocus(e))return;
  const tag=(e.target?.tagName||'').toLowerCase(); const typing=['input','textarea','select'].includes(tag);
  if(state.modalType==='presentation'){
    if(e.key==='Escape'){closeModal();e.preventDefault();return}

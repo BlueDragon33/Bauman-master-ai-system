@@ -158,11 +158,11 @@ jobs:
           grep -Fq 'assets/js/platform/device-access-gate.js' /tmp/bauman-home.html
 
           curl --fail --silent --show-error --max-time 20 "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/subjects/russian/" > /tmp/bauman-russian.html
-          grep -Fq 'assets/russian-reference-ui.js' /tmp/bauman-russian.html
-          grep -Fq 'assets/russian-reference-ui-polish.css' /tmp/bauman-russian.html
+          grep -Fq 'assets/russian-future-ui.js' /tmp/bauman-russian.html
+          grep -Fq 'assets/russian-future-ui.css' /tmp/bauman-russian.html
           grep -Fq 'assets/russian-optional-data-loader.js' /tmp/bauman-russian.html
-          curl --fail --silent --show-error --max-time 20 --output /dev/null "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/subjects/russian/assets/russian-reference-ui.js"
-          curl --fail --silent --show-error --max-time 20 --output /dev/null "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/subjects/russian/assets/russian-reference-ui-polish.css"
+          curl --fail --silent --show-error --max-time 20 --output /dev/null "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/subjects/russian/assets/russian-future-ui.js"
+          curl --fail --silent --show-error --max-time 20 --output /dev/null "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/subjects/russian/assets/russian-future-ui.css"
           curl --fail --silent --show-error --max-time 20 --output /dev/null "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/subjects/russian/assets/russian-optional-data-loader.js"
 
           for dataset in dialogue-bauman-az deep-speaking-bauman; do

@@ -199,6 +199,14 @@ window.SUBJECT_ADAPTER = {
     hk3: 'Bauman · HK3',
     hk4: 'Bauman · HK4'
   },
+  primaryNav: [
+    ['overview','⌂','Tổng quan'],
+    ['media','◉','Video'],
+    ['learning','◌','Nghe & Nói','practice'],
+    ['vocab','▣','Từ vựng'],
+    ['grammar','▥','Ngữ pháp'],
+    ['writing','✎','Luyện chữ']
+  ],
   nav: [
     ['overview','🧭','Tổng quan'],
     ['learning','🎓','Học tập'],

@@ -16,7 +16,7 @@ const dup=xs=>[...new Set(xs.filter((x,i)=>xs.indexOf(x)!==i))];
 const userSurfaces=[
   'index.html',
   'assets/ui-cleanup-contract.js',
-  'assets/russian-reference-ui.js',
+  'assets/russian-future-ui.js',
   'assets/learning-state.js',
   'assets/learning-flow.js',
   'assets/vocab-srs.js',
