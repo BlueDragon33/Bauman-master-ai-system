@@ -147,7 +147,7 @@
     const match=text.match(/^([\s\S]*?)(?:\s+(?:Trả lời|Đáp án)\s*:\s*)([\s\S]+)$/i);
     return match?{prompt:match[1].trim(),reference:match[2].trim()}:{prompt:text,reference:''};
   }
-  function checkItemsForRecord(rec){
+  function checkItemsForRecord(rec,lessonIdOverride=''){
     const preferred=['professor_qa','practice','takeaway','mastery_close'];
     const slides=Array.isArray(rec?.slides)?rec.slides:[];
     const items=[];
@@ -170,7 +170,7 @@
         });
       });
     });
-    const lessonId=String(rec?.lessonId||rec?.id||'');
+    const lessonId=String(lessonIdOverride||rec?.lessonId||rec?.id||'');
     const assessment=assessmentFor(lessonId);
     if(assessment&&items.length<6){
       const pool=[
@@ -199,7 +199,7 @@
   }
   function checkSummary(id,rec=recordById(id)){
     ensureAssessment(id);
-    const items=checkItemsForRecord(rec),st=lessonState(id,rec),answers=st.check||{};
+    const items=checkItemsForRecord(rec,id),st=lessonState(id,rec),answers=st.check||{};
     let answered=0,review=0,understood=0;
     items.forEach(item=>{
       const value=answers[item.id];
@@ -504,7 +504,7 @@
   }
   function markCheck(itemId,value){
     const cur=currentLesson(),rec=currentRecord();
-    if(!cur.id||!checkItemsForRecord(rec).some(x=>x.id===itemId))return false;
+    if(!cur.id||!checkItemsForRecord(rec,cur.id).some(x=>x.id===itemId))return false;
     const ok=writeLessonState(cur.id,{check:{[itemId]:value}});
     if(!ok){toast('Không lưu được Lesson Check. Trạng thái này sẽ không được giả lập.');return false;}
     render();return true;
