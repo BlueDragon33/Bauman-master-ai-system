@@ -16,10 +16,18 @@ try{
   page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
   await page.addInitScript(()=>{
     const speech={count:0,last:null};
+    const audio={count:0,last:null};
     class MockUtterance{constructor(text){this.text=String(text);this.lang='';this.rate=1;}}
+    class MockAudio{
+      constructor(src){this.src=String(src||'');this.playbackRate=1;this.listeners={};}
+      addEventListener(name,fn){this.listeners[name]=fn;}
+      play(){audio.count++;audio.last={src:this.src,rate:this.playbackRate};return Promise.resolve();}
+    }
     Object.defineProperty(window,'SpeechSynthesisUtterance',{configurable:true,value:MockUtterance});
     Object.defineProperty(window,'speechSynthesis',{configurable:true,value:{cancel(){},speak(u){speech.count++;speech.last={text:u.text,lang:u.lang,rate:u.rate}}}});
+    Object.defineProperty(window,'Audio',{configurable:true,value:MockAudio});
     window.__RF_SPEECH=speech;
+    window.__RF_AUDIO=audio;
   });
 
   await page.goto(new URL('subjects/russian/index.html',BASE).href,{waitUntil:'domcontentloaded',timeout:30000});
@@ -101,12 +109,25 @@ try{
       assert.equal(immersion.hasVietnamese,false,'Vocab learning content must not display Vietnamese translation/explanation');
       assert.equal(immersion.allRussianContext,true,'Vocab contextual learning blocks must stay in Russian');
       assert.ok(immersion.visualChildren>=1,'Vocab card must keep an image or visual-symbol cue');
-      const beforeSpeech=await page.evaluate(()=>window.__RF_SPEECH.count);
+      const beforeAudio=await page.evaluate(()=>({speech:window.__RF_SPEECH.count,audio:window.__RF_AUDIO.count}));
       await page.locator('[data-act="speak-vocab"]').click();
-      const vocabSpeech=await page.evaluate(()=>window.__RF_SPEECH);
-      assert.ok(vocabSpeech.count>beforeSpeech,'Vocabulary audio action must invoke Russian speech');
-      assert.equal(vocabSpeech.last?.lang,'ru-RU','Vocabulary audio must use Russian locale');
-      assert.match(vocabSpeech.last?.text||'',/[А-Яа-яЁё]/,'Vocabulary audio must speak Russian text');
+      const normalAudio=await page.evaluate(()=>({speech:window.__RF_SPEECH,audio:window.__RF_AUDIO}));
+      const normalUsesTts=normalAudio.speech.count>beforeAudio.speech;
+      const normalUsesSource=normalAudio.audio.count>beforeAudio.audio;
+      assert.ok(normalUsesTts||normalUsesSource,'Vocabulary audio must use source audio or Russian TTS fallback');
+      const normalRate=normalUsesSource?normalAudio.audio.last?.rate:normalAudio.speech.last?.rate;
+      if(normalUsesTts){
+        assert.equal(normalAudio.speech.last?.lang,'ru-RU','Vocabulary TTS must use Russian locale');
+        assert.match(normalAudio.speech.last?.text||'',/[А-Яа-яЁё]/,'Vocabulary TTS must speak Russian text');
+      }
+      const beforeSlow=await page.evaluate(()=>({speech:window.__RF_SPEECH.count,audio:window.__RF_AUDIO.count}));
+      await page.locator('[data-act="speak-vocab-slow"]').click();
+      const slowAudio=await page.evaluate(()=>({speech:window.__RF_SPEECH,audio:window.__RF_AUDIO}));
+      const slowUsesTts=slowAudio.speech.count>beforeSlow.speech;
+      const slowUsesSource=slowAudio.audio.count>beforeSlow.audio;
+      assert.ok(slowUsesTts||slowUsesSource,'Slow vocabulary audio must use the same source/TTS audio path');
+      const slowRate=slowUsesSource?slowAudio.audio.last?.rate:slowAudio.speech.last?.rate;
+      assert.ok(Number(slowRate)<Number(normalRate),'Slow vocabulary audio must actually reduce playback rate');
     }
   }
 
