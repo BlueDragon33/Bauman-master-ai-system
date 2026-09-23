@@ -15,17 +15,13 @@
     const wrap=document.createElement('div');
     wrap.id='mathPremiumSearchWrap';
     wrap.className='math-premium-search-wrap';
-    wrap.innerHTML='<input id="mathPremiumSearch" class="math-premium-search" type="search" autocomplete="off" placeholder="Tìm trong bài đang mở: ma trận, vector, covariance…"><span class="math-premium-search-hint">Enter</span>';
+    wrap.innerHTML='<input id="mathPremiumSearch" class="math-premium-search" type="search" autocomplete="off" placeholder="Tìm toàn môn: PCA, ma trận, covariance, bài tập…"><span class="math-premium-search-hint">Enter</span>';
     const actions=$('.top-actions',top);
     if(actions) top.insertBefore(wrap,actions); else top.appendChild(wrap);
     $('#mathPremiumSearch')?.addEventListener('keydown',event=>{
       if(event.key!=='Enter') return;
       const value=event.target.value.trim();
-      global.BAUMAN_MATH_WORKSPACE?.openControl?.();
-      global.setTimeout(()=>{
-        const target=$('#mathWsSearch');
-        if(target){ target.value=value; target.dispatchEvent(new Event('input',{bubbles:true})); target.focus(); }
-      },80);
+      global.BAUMAN_MATH_STUDY_LIBRARY?.openSearch?.(value);
     });
   }
 
