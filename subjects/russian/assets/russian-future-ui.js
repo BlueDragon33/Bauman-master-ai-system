@@ -117,6 +117,32 @@
     document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();input.focus();input.select()}});
     document.addEventListener('click',e=>{if(!e.target.closest('.ru-global-search-wrap'))close()});
   }
+  function bindMobileDrawer(){
+    const menu=document.getElementById('russianMenuBtn');
+    const sidebar=document.getElementById('russianSidebar');
+    const closeBtn=document.getElementById('russianSidebarClose');
+    const backdrop=document.getElementById('russianSidebarBackdrop');
+    const nav=document.getElementById('nav');
+    if(!menu||!sidebar||!closeBtn||!backdrop||menu.dataset.rfDrawerBound==='1')return;
+    menu.dataset.rfDrawerBound='1';
+    const mq=window.matchMedia('(max-width:768px)');
+    const setOpen=(open,restoreFocus=false)=>{
+      const mobile=mq.matches;
+      const next=Boolean(open&&mobile);
+      document.body.classList.toggle('ru-nav-open',next);
+      setAttr(menu,'aria-expanded',next?'true':'false');
+      if(mobile)setAttr(sidebar,'aria-hidden',next?'false':'true');else sidebar.removeAttribute('aria-hidden');
+      if(next)closeBtn.focus();else if(restoreFocus)menu.focus();
+    };
+    const sync=()=>{if(!mq.matches){setOpen(false);sidebar.removeAttribute('aria-hidden')}else if(!document.body.classList.contains('ru-nav-open'))setAttr(sidebar,'aria-hidden','true')};
+    menu.addEventListener('click',()=>setOpen(true));
+    closeBtn.addEventListener('click',()=>setOpen(false,true));
+    backdrop.addEventListener('click',()=>setOpen(false,true));
+    nav?.addEventListener('click',()=>{if(mq.matches)setOpen(false)});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.body.classList.contains('ru-nav-open')){e.preventDefault();setOpen(false,true)}});
+    if(typeof mq.addEventListener==='function')mq.addEventListener('change',sync);else mq.addListener?.(sync);
+    sync();
+  }
   function stageLabel(st){
     const map={vn:['A1','Khởi động'],prep:['A2','Dự bị'],hk1:['B1','Học thuật'],hk2:['B2','Học thuật'],hk3:['C1','Nghiên cứu'],hk4:['C1+','Bảo vệ'],all:['A1→C1','Tổng hợp']};
     return map[st.stage||'vn']||map.vn;
@@ -233,6 +259,7 @@
   }
   function bind(){
     bindSearch();
+    bindMobileDrawer();
     if(document.documentElement.dataset.rfBound==='1')return;
     document.documentElement.dataset.rfBound='1';
     document.addEventListener('click',e=>{
