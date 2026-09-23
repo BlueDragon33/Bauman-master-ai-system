@@ -8,6 +8,11 @@
   const STATE_KEY='bauman_math_learning_flow_v1';
   const NOTES_KEY='bauman_math_learning_notes_v1';
   const BOOKMARK_KEY='bauman_math_learning_bookmarks_v1';
+  const ASSESSMENT_SOURCES={
+    'MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140':'data/theory_assessment/theory_assessment_c01_l05.json',
+    'MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140':'data/theory_assessment/theory_assessment_c01_l06.json'
+  };
+  const assessmentCache={};
   let timer=0,lastLesson='';
   const $=(s,r=document)=>r.querySelector(s);
   const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
@@ -50,6 +55,19 @@
   }
   function recordById(id){return records().find(r=>(r.lessonId||r.id)===id)||null}
   function currentRecord(){return recordById(currentLesson().id)}
+  function assessmentFor(id){return assessmentCache[id]?.data||null}
+  function loadAssessment(id){
+    const path=ASSESSMENT_SOURCES[id];
+    if(!path||assessmentCache[id]?.loading||assessmentCache[id]?.loaded)return;
+    assessmentCache[id]={loading:true,loaded:false,data:null,error:null};
+    fetch(path,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error(`${path} HTTP ${r.status}`);return r.json()}).then(data=>{
+      assessmentCache[id]={loading:false,loaded:true,data,error:null};
+      schedule(0);
+    }).catch(error=>{
+      assessmentCache[id]={loading:false,loaded:true,data:null,error:String(error?.message||error)};
+      schedule(0);
+    });
+  }
   function slides(){return $$('.e129-slide').filter(x=>x.offsetParent!==null)}
   function rolesForRecord(rec){return new Set((rec?.slides||[]).map(s=>String(s?.role||'').toLowerCase()).filter(Boolean))}
   function stepsForRecord(rec){
@@ -120,6 +138,29 @@
         });
       });
     });
+    const lessonId=String(rec?.lessonId||rec?.id||'');
+    const assessment=assessmentFor(lessonId);
+    if(assessment&&items.length<6){
+      const pool=[
+        ...(Array.isArray(assessment.retrievalChecks)?assessment.retrievalChecks:[]),
+        ...(Array.isArray(assessment.professorQuestions)?assessment.professorQuestions:[]),
+        ...(Array.isArray(assessment.professorQA)?assessment.professorQA:[])
+      ];
+      pool.forEach((item,index)=>{
+        if(items.length>=6)return;
+        const prompt=String(item?.prompt||item?.question||'').trim();
+        if(!prompt)return;
+        const id=`assessment::${item?.id||index}`;
+        if(items.some(x=>x.id===id))return;
+        items.push({
+          id,
+          role:'assessment',
+          title:String(item?.cluster||item?.level||'Assessment'),
+          prompt,
+          reference:String(item?.answer||item?.expectedAnswer||'').trim()
+        });
+      });
+    }
     return items.slice(0,6);
   }
   function checkSummary(id,rec=recordById(id)){
@@ -435,6 +476,7 @@
   function refresh(){
     ensure();
     const cur=currentLesson(),rec=currentRecord(),steps=stepsForRecord(rec);
+    if(cur.id&&ASSESSMENT_SOURCES[cur.id])loadAssessment(cur.id);
     if(cur.id!==lastLesson){
       lastLesson=cur.id;
       if(cur.id){
@@ -454,6 +496,8 @@
       sourceDrivenSteps:steps.map(x=>x.id),
       stepCount:steps.length,
       duplicateProgressEngine:false,
+      assessmentSource:cur.id&&ASSESSMENT_SOURCES[cur.id]?ASSESSMENT_SOURCES[cur.id]:null,
+      assessmentLoaded:!!assessmentCache[cur.id]?.loaded,
       notesLocalOnly:true,
       academicWrites:false,
       mutationObserver:false
