@@ -70,12 +70,14 @@ try{
       sidebar:box('.ru-sidebar'),main:box('.ru-main'),view:box('.ru-view'),hero:box('.overview-top-only-hero'),
       progress:box('.rf-progress-strip'),modules,
       bodyFont:parseFloat(getComputedStyle(document.querySelector('.ru-view')).fontSize),
+      viewComputed:{maxWidth:getComputedStyle(document.querySelector('.ru-view')).maxWidth,width:getComputedStyle(document.querySelector('.ru-view')).width,boxSizing:getComputedStyle(document.querySelector('.ru-view')).boxSizing},
+      shellComputed:{columns:getComputedStyle(document.querySelector('.ru-app-shell')).gridTemplateColumns,mainWidth:getComputedStyle(document.querySelector('.ru-main')).width},
       lower:box('.rf-dashboard-lower')
     };
   });
   assert.ok(dims.sidebar&&dims.sidebar.w>=205&&dims.sidebar.w<=235,'Sidebar width must stay close to 220px reference');
   assert.ok(dims.main&&dims.main.w>1300,'Main shell must still use space released by the old right rail');
-  assert.ok(dims.view&&dims.view.w<=1122&&dims.view.w>=1080,'Learning content container must stay near the 1120px canonical max-width');
+  assert.ok(dims.view&&dims.view.w<=1122&&dims.view.w>=1080,'Learning content container must stay near the 1120px canonical max-width: '+JSON.stringify({view:dims.view,viewComputed:dims.viewComputed,shell:dims.shellComputed}));
   assert.ok(dims.bodyFont>=15,'Primary learning content must not fall below 15px body text');
   assert.ok(dims.hero&&dims.hero.h>=275&&dims.hero.h<=315,'Hero height drifted from reference rhythm');
   assert.ok(dims.progress&&dims.progress.h>=70&&dims.progress.h<=100,'Progress strip height drifted');
