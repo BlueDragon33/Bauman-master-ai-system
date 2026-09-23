@@ -16,6 +16,7 @@ const optionalLoader=read('assets/russian-optional-data-loader.js');
 const contentContract=read('assets/content-contract.js');
 const contentContractCss=read('assets/content-contract.css');
 const core=read('assets/core.js');
+const coreCss=read('assets/core.css');
 const adapter=read('assets/subject-adapter.js');
 const chatgptPackage=fs.readFileSync(path.resolve('scripts/prepare-chatgpt-site.mjs'),'utf8');
 const previewPackage=fs.readFileSync(path.resolve('scripts/prepare-cloudflare-preview.mjs'),'utf8');
@@ -91,8 +92,8 @@ for(const token of ['@media(max-width:767px)','rf-sidebar-toggle','rf-sidebar-sc
 must(futureJs.includes('function upgradeMobileShell'),'PASS 2 mobile shell runtime missing');
 must(futureJs.includes("aria-controls',sidebar.id")&&futureJs.includes("aria-expanded','false'"),'Mobile drawer toggle must expose ARIA state');
 must(futureJs.includes("e.key==='Escape'&&document.body.classList.contains('rf-sidebar-open')"),'Mobile drawer must close with Escape');
-for(const token of ['body.ru-reference-ui.ru-future-ui.main-balanced .ru-view','body.ru-reference-ui.ru-future-ui.main-focus .ru-view','body.ru-reference-ui.ru-future-ui.main-compact .ru-view','body.ru-reference-ui.ru-future-ui.density-wide .ru-view']){
-  must(futureCss.includes(token),`Canonical content width must survive legacy interface mode: ${token}`);
+for(const token of ['.density-compact .view{max-width:1420px}','.density-wide .view{max-width:1740px}','body.density-wide .view{max-width:1680px!important}','body.main-balanced .view{max-width:1500px','body.main-focus .view{max-width:1420px']){
+  must(!coreCss.includes(token),`Legacy interface width override must stay removed: ${token}`);
 }
 must(!futureCss.includes('Russian Reference UI · premium Bauman/Russia dashboard layer'),'PASS 2 must not restore the obsolete dark shell presentation layer');
 for(const token of ['--ru-bg:#040d1b','grid-template-columns:228px minmax(0,1fr) 328px','background:rgba(4,15,29,.88)']){
