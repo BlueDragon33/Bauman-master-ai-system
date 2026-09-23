@@ -81,7 +81,11 @@ try{
     const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
     assert.ok(overflow<=2,'Horizontal overflow in '+view+': '+overflow);
     if(view==='vocab'){
-      await page.waitForSelector('.vocab-studio .v1310-vocab-detail',{timeout:10000});
+      const details=page.locator('.vocab-studio details.vocab-progressive-details');
+      await details.waitFor({state:'attached',timeout:10000});
+      assert.equal(await details.evaluate(el=>el.open),false,'Vocabulary advanced details must start collapsed');
+      await details.locator('summary').click();
+      await page.waitForSelector('.vocab-studio .v1310-vocab-detail',{state:'visible',timeout:10000});
       const immersion=await page.evaluate(()=>{
         const paragraphs=[...document.querySelectorAll('.v1310-vocab-detail article p')].map(el=>el.textContent.trim());
         const vietnamese=/[ăâđêôơưáàảãạắằẳẵặấầẩẫậéèẻẽẹếềểễệíìỉĩịóòỏõọốồổỗộớờởỡợúùủũụứừửữựýỳỷỹỵ]/i;
