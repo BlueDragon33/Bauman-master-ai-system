@@ -92,7 +92,7 @@ for(const token of ['@media(max-width:767px)','rf-sidebar-toggle','rf-sidebar-sc
 must(futureJs.includes('function upgradeMobileShell'),'PASS 2 mobile shell runtime missing');
 must(futureJs.includes("aria-controls',sidebar.id")&&futureJs.includes("aria-expanded','false'"),'Mobile drawer toggle must expose ARIA state');
 must(futureJs.includes("e.key==='Escape'&&document.body.classList.contains('rf-sidebar-open')"),'Mobile drawer must close with Escape');
-for(const token of ['.density-compact .view{max-width:1420px}','.density-wide .view{max-width:1740px}','body.density-wide .view{max-width:1680px!important}','body.main-balanced .view{max-width:1500px','body.main-focus .view{max-width:1420px','.view{max-width:1720px!important','grid-template-columns:340px minmax(0,1fr)!important']){
+for(const token of ['.density-compact .view{max-width:1420px}','.density-wide .view{max-width:1740px}','body.density-wide .view{max-width:1680px!important}','body.main-balanced .view{max-width:1500px','body.main-focus .view{max-width:1420px','.view{max-width:1720px!important','.app{grid-template-columns:340px minmax(0,1fr)!important']){
   must(!coreCss.includes(token),`Legacy interface width override must stay removed: ${token}`);
 }
 must(!futureCss.includes('Russian Reference UI · premium Bauman/Russia dashboard layer'),'PASS 2 must not restore the obsolete dark shell presentation layer');
