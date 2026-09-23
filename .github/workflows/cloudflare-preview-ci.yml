@@ -107,16 +107,16 @@ jobs:
           set -euo pipefail
           test -f runtime-dist/subjects/russian/index.html
           test -f runtime-dist/subjects/russian/assets/core.js
-          test -f runtime-dist/subjects/russian/assets/russian-reference-ui.js
-          test -f runtime-dist/subjects/russian/assets/russian-reference-ui-polish.css
+          test -f runtime-dist/subjects/russian/assets/russian-future-ui.js
+          test -f runtime-dist/subjects/russian/assets/russian-future-ui.css
           test -f runtime-dist/subjects/russian/assets/russian-optional-data-loader.js
           test -f runtime-dist/subjects/russian/data/chunks/dialogue-bauman-az/manifest.json
           test -f runtime-dist/subjects/russian/data/chunks/deep-speaking-bauman/manifest.json
           test ! -f runtime-dist/subjects/russian/data/dialogue-bauman-az.json
           test ! -f runtime-dist/subjects/russian/data/deep-speaking-bauman.json
-          grep -q 'assets/russian-reference-ui-polish.css' runtime-dist/subjects/russian/index.html
+          grep -q 'assets/russian-future-ui.css' runtime-dist/subjects/russian/index.html
           grep -q 'assets/russian-optional-data-loader.js' runtime-dist/subjects/russian/index.html
-          grep -q 'assets/russian-reference-ui.js' runtime-dist/subjects/russian/index.html
+          grep -q 'assets/russian-future-ui.js' runtime-dist/subjects/russian/index.html
           node --input-type=module - <<'NODE'
           import fs from 'node:fs';
           import path from 'node:path';
