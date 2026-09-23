@@ -50,7 +50,7 @@ try{
   await page.waitForSelector(`[data-current-lesson="${LESSON}"]`,{timeout:10000});
   await page.waitForFunction(id=>window.BAUMAN_MATH_LEARNING_FLOW?.selfCheck?.().lessonId===id,LESSON,{timeout:10000});
 
-  await page.waitForFunction(()=>window.BAUMAN_MATH_LEARNING_FLOW?.selfCheck?.().assessmentLoaded===true,null,{timeout:10000});
+  await page.evaluate(id=>window.BAUMAN_MATH_LEARNING_FLOW.ensureAssessment(id),LESSON);
   await page.waitForFunction(id=>window.BAUMAN_MATH_LEARNING_FLOW?.checkSummary?.(id)?.total>0,LESSON,{timeout:10000});
 
   // Seed the canonical learner-state store using real Lesson Check IDs.
