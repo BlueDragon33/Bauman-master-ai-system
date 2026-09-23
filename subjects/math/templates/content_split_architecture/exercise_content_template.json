@@ -14,6 +14,37 @@
     "level": "easy",
     "prompt": "Tính tích vô hướng của hai vector đã cho.",
     "solution": "Nhân từng thành phần rồi cộng lại.",
-    "auditStatus": "DRAFT"
+    "auditStatus": "DRAFT",
+    "answerType": "multiple_choice",
+    "options": [
+      "12",
+      "14",
+      "16",
+      "18"
+    ],
+    "correctAnswer": "14",
+    "conceptIds": [
+      "EXAMPLE-CONCEPT-ID"
+    ],
+    "formulaIds": [
+      "EXAMPLE-FORMULA-ID"
+    ],
+    "reviewStepId": "formula",
+    "feedback": {
+      "correct": "Đúng. Bạn đã áp dụng đúng phép tính theo dữ liệu nguồn.",
+      "incorrect": "Chưa đúng. Hãy quay lại bước Công thức và kiểm tra điều kiện áp dụng trước khi thử lại.",
+      "commonMistakes": [
+        {
+          "answer": "12",
+          "message": "Ví dụ lỗi thường gặp. Nội dung thật phải được tác giả học thuật xác nhận trước khi import.",
+          "reviewStepId": "formula"
+        }
+      ]
+    },
+    "retryPolicy": {
+      "allowRetry": true,
+      "maxAttempts": 3,
+      "showSolutionAfterAttempts": 3
+    }
   }
 }
