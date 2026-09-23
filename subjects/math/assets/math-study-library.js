@@ -15,8 +15,30 @@
   function get(key,fallback){try{return JSON.parse(localStorage.getItem(key)||'')||fallback}catch(_){return fallback}}
   function set(key,value){try{localStorage.setItem(key,JSON.stringify(value))}catch(_){}}
   function bookmarks(){return get(BOOKMARK_KEY,[])} function notes(){return get(NOTES_KEY,{})} function visits(){return get(VISIT_KEY,[])}
-  function records(){const x=global.DB?.theory_lecture_content;if(Array.isArray(x))return x;if(Array.isArray(x?.records))return x.records;if(Array.isArray(x?.lessons))return x.lessons;if(Array.isArray(x?.items))return x.items;return[]}
+  function recordsOf(raw){if(Array.isArray(raw))return raw;if(Array.isArray(raw?.records))return raw.records;if(Array.isArray(raw?.items))return raw.items;if(Array.isArray(raw?.lessons))return raw.lessons;return[]}
+  function records(){return recordsOf(global.DB?.theory_lecture_content)}
   function findRecord(id){return records().find(r=>(r.lessonId||r.id)===id)||null}
+  function contextForRecord(rec){
+    const anchor=rec?.sourceAnchors||{};
+    const chapterId=String(rec?.chapterId||anchor.chapterId||'');
+    const stageId=String(anchor.stageId||'');
+    const disciplineId=String(anchor.disciplineId||'');
+    const chapters=recordsOf(global.DB?.chapter_spine);
+    const disciplines=recordsOf(global.DB?.discipline_spine?.disciplines||global.DB?.discipline_spine);
+    const curriculum=global.DB?.curriculum;
+    const stages=Array.isArray(curriculum?.stages)?curriculum.stages:[];
+    const chapter=chapters.find(x=>String(x.chapterId||x.id||'')===chapterId);
+    const discipline=disciplines.find(x=>String(x.id||x.disciplineId||'')===(disciplineId||String(chapter?.disciplineId||'')));
+    const stage=stages.find(x=>String(x.id||'')===(stageId||String(chapter?.stageId||'')));
+    return{
+      stageId:stageId||String(chapter?.stageId||''),
+      stageTitle:String(stage?.title||chapter?.stageTitle||stageId||'Giai đoạn'),
+      disciplineId:disciplineId||String(chapter?.disciplineId||''),
+      disciplineTitle:String(discipline?.title||chapter?.disciplineTitle||disciplineId||'Phân môn'),
+      chapterId,
+      chapterTitle:String(chapter?.chapterTitle||chapter?.chapterName||chapterId||'Chương')
+    };
+  }
   function state(){return global.__BAUMAN_CORE_API?.state||global.__MATH_STATE||null}
   function saveState(){try{global.__BAUMAN_CORE_API?.save?.()}catch(_){}}
 
@@ -52,14 +74,15 @@
     const groups={lesson:[],concept:[],formula:[],exercise:[],simulation:[]};
     if(!q)return groups;
     records().forEach(rec=>{
-      const lessonId=String(rec.lessonId||rec.id||''),lessonTitle=String(rec.title||rec.lessonTitle||lessonId),chapterId=String(rec.chapterId||'');
-      const lessonText=[lessonId,lessonTitle,chapterId,(rec.tags||[]).join(' ')].join(' ').toLocaleLowerCase('vi');
-      if(lessonText.includes(q))groups.lesson.push({lessonId,title:lessonTitle,chapterId,snippet:'Bài học'});
+      const lessonId=String(rec.lessonId||rec.id||''),lessonTitle=String(rec.title||rec.lessonTitle||lessonId),ctx=contextForRecord(rec),chapterId=ctx.chapterId;
+      const lessonText=[lessonId,lessonTitle,ctx.stageTitle,ctx.disciplineTitle,ctx.chapterTitle,chapterId,(rec.tags||[]).join(' ')].join(' ').toLocaleLowerCase('vi');
+      const context={...ctx,lessonId,lessonTitle};
+      if(lessonText.includes(q))groups.lesson.push({...context,title:lessonTitle,snippet:'Bài học'});
       (rec.slides||[]).forEach((slide,si)=>{
         const role=String(slide?.role||'').toLowerCase();
         const slideText=[slide?.title,(slide?.blocks||[]).map(textFromBlock).join(' ')].filter(Boolean).join(' ');
         if(!slideText.toLocaleLowerCase('vi').includes(q))return;
-        const base={lessonId,title:String(slide?.title||lessonTitle),chapterId,lessonTitle,snippet:clip(slideText,150),slideIndex:si};
+        const base={...context,title:String(slide?.title||lessonTitle),snippet:clip(slideText,150),slideIndex:si};
         if(role==='simulation')groups.simulation.push(base);
         else if(role==='practice')groups.exercise.push(base);
         else groups.concept.push(base);
@@ -77,7 +100,7 @@
   }
   function searchGroupHtml(title,items,kind){
     if(!items.length)return'';
-    return `<section class="math-study-section wide"><div class="math-study-section-head"><h3>${esc(title)}</h3><span>${items.length}</span></div><div class="math-study-list">${items.map(item=>`<div class="math-study-item"><div class="math-study-item-copy"><b>${esc(item.title)}</b><span>${esc(item.chapterId)} → ${esc(item.lessonTitle||item.title)}</span><span class="math-study-note-preview">${esc(item.snippet||kind)}</span></div><div class="math-study-item-actions"><button type="button" class="primary" data-study-open="${esc(item.lessonId)}">Mở bài</button></div></div>`).join('')}</div></section>`;
+    return `<section class="math-study-section wide"><div class="math-study-section-head"><h3>${esc(title)}</h3><span>${items.length}</span></div><div class="math-study-list">${items.map(item=>`<div class="math-study-item"><div class="math-study-item-copy"><b>${esc(item.title)}</b><span>${esc(item.stageTitle||item.stageId||'Giai đoạn')} → ${esc(item.disciplineTitle||item.disciplineId||'Phân môn')} → ${esc(item.chapterTitle||item.chapterId||'Chương')} → ${esc(item.lessonTitle||item.title)}</span><span class="math-study-note-preview">${esc(item.snippet||kind)}</span></div><div class="math-study-item-actions"><button type="button" class="primary" data-study-open="${esc(item.lessonId)}">Mở bài</button></div></div>`).join('')}</div></section>`;
   }
   function searchResultsHtml(query){
     const groups=searchIndex(query);
