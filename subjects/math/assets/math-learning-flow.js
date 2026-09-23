@@ -142,7 +142,24 @@
   }
   function schedule(ms=140){clearTimeout(timer);timer=setTimeout(refresh,ms)}
   function refresh(){ensure();const cur=currentLesson();if(cur.id!==lastLesson){lastLesson=cur.id;if(cur.id)writeLessonState(cur.id,{visited:{theory:true}})}render()}
+  function snapshot(){
+    const cur=currentLesson(),rec=currentRecord(),st=cur.id?lessonState(cur.id):{active:'theory',visited:{}};
+    const visited=st.visited||{},visitedCount=STEPS.filter(x=>visited[x.id]).length;
+    const activeIndex=Math.max(0,STEPS.findIndex(x=>x.id===st.active));
+    return {
+      lessonId:cur.id||null,
+      lessonTitle:cur.title,
+      chapterId:rec?.chapterId||null,
+      activeStep:STEPS[activeIndex]?.id||'theory',
+      activeStepLabel:STEPS[activeIndex]?.label||'Lý thuyết',
+      activeStepIndex:activeIndex+1,
+      visitedCount,
+      totalSteps:STEPS.length,
+      percent:Math.round(visitedCount/STEPS.length*100),
+      lastAt:Number(st.lastAt||0)
+    };
+  }
   function selfCheck(){const cur=currentLesson();return{release:RELEASE,ready:!!$('#mathLearningFlow'),active:document.body.classList.contains('math-learning-flow-active'),lessonId:cur.id||null,steps:STEPS.length,recommendedLabMode:suggestLabMode(),notesLocalOnly:true,bookmarksLocalOnly:true,academicWrites:false,mutationObserver:false,routeEngineReplacement:false}}
-  function init(){if(!document.body||document.body.dataset.mathLearningFlow==='1')return;document.body.dataset.mathLearningFlow='1';bind();refresh();[350,850,1600,2800].forEach(ms=>setTimeout(refresh,ms));global.BAUMAN_MATH_LEARNING_FLOW={release:RELEASE,refresh,activate,toggleBookmark,toggleNotes,openContextLab,selfCheck};}
+  function init(){if(!document.body||document.body.dataset.mathLearningFlow==='1')return;document.body.dataset.mathLearningFlow='1';bind();refresh();[350,850,1600,2800].forEach(ms=>setTimeout(refresh,ms));global.BAUMAN_MATH_LEARNING_FLOW={release:RELEASE,refresh,activate,toggleBookmark,toggleNotes,openContextLab,snapshot,selfCheck};}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })(window);
