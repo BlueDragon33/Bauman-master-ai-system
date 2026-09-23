@@ -31,7 +31,12 @@ else {
   const base=(store.records||[]).find(x=>x.lessonId===r.lessonId);
   if(!base) fail("PCA replacement target not found in modern store");
   else {
-    if((r.slides||[]).length!==(base.slides||[]).length+6) fail("PCA upgrade must preserve base and append exactly 6 depth slides");
+    const preserved=Number(pca.replacementPolicy?.preserveExistingSlides||0);
+    const appended=Number(pca.replacementPolicy?.appendAcademicSlides||0);
+    const expected=Number(pca.replacementPolicy?.expectedFinalSlides||0);
+    if(preserved!==16||appended!==6||expected!==22) fail("PCA bundle replacement policy must lock 16 + 6 = 22");
+    if((r.slides||[]).length!==expected) fail("PCA bundle record must contain expectedFinalSlides");
+    if((base.slides||[]).length!==expected) fail("post-import theory store must contain the same 22-slide upgraded record");
     const roles=new Set((r.slides||[]).map(s=>s.role));
     for(const role of ["covariance_eigen_structure","principal_axis_ordering","explained_variance","projection_reconstruction","reconstruction_error","pca_decision_gate"]){
       if(!roles.has(role)) fail("PCA upgrade missing "+role);
