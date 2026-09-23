@@ -1,6 +1,6 @@
 /* Bauman Math Simulation Source V1
  * Read-only bridge for canonical simulation_content.json and legacy status.
- * Built-in Math Lab remains fallback when canonical records are absent.
+ * Lesson simulations stay inside the lesson flow. Built-in Math Lab is an advanced generic tool, never a lesson fallback.
  */
 (function mathSimulationSource(global){
   'use strict';
@@ -29,11 +29,16 @@
     const side=$('#mathWorkspaceLab .math-ws-lab-side');if(!side)return false;
     let host=$('#mathSimulationSource',side);if(!host){host=document.createElement('section');host.id='mathSimulationSource';host.className='math-sim-source';side.appendChild(host)}
     const matches=currentMatches(),embedded=embeddedCount(),mode=recommendedMode();
-    host.innerHTML=`<div class="math-sim-source-head"><b>Nguồn mô phỏng của bài</b><span class="${matches.length?'live':''}"><i></i>${matches.length?'CANONICAL':'FALLBACK'}</span></div><p>${matches.length?'Đã tìm thấy simulation_content record khớp lesson/chapter.':'Canonical source hiện chưa có record khớp; Math Lab dùng engine tích hợp + semantic slide nếu bài có, không dùng sampleRecord DRAFT.'}</p><div class="math-sim-source-grid"><div><b>${canonical.records.length}</b><span>simulation_content records</span></div><div><b>${embedded}</b><span>embedded simulation slide</span></div><div><b>${legacy.records.length}</b><span>legacy simulations.json</span></div><div><b>${esc(mode)}</b><span>mode gợi ý</span></div></div>${matches.length?`<div class="math-sim-source-records">${matches.slice(0,3).map(x=>`<div class="math-sim-source-record"><b>${esc(x.title||x.simulationId||'Simulation')}</b><span>${esc(clip(x.purpose||'',210))}</span></div>`).join('')}</div>`:''}`;
+    host.innerHTML=`<div class="math-sim-source-head"><b>Nguồn mô phỏng</b><span class="${matches.length?'live':''}"><i></i>${matches.length?'CANONICAL':'ADVANCED TOOL'}</span></div><p>${matches.length?'Đã tìm thấy simulation_content record khớp lesson/chapter.':'Chưa có canonical record cho bài. Mô phỏng học tập dùng semantic slide ngay trong Lesson Player; Math Lab ở đây chỉ là công cụ tổng quát nâng cao.'}</p><div class="math-sim-source-grid"><div><b>${canonical.records.length}</b><span>simulation_content records</span></div><div><b>${embedded}</b><span>embedded simulation slide</span></div><div><b>${legacy.records.length}</b><span>legacy simulations.json</span></div><div><b>${esc(mode)}</b><span>mode gợi ý</span></div></div>${matches.length?`<div class="math-sim-source-records">${matches.slice(0,3).map(x=>`<div class="math-sim-source-record"><b>${esc(x.title||x.simulationId||'Simulation')}</b><span>${esc(clip(x.purpose||'',210))}</span></div>`).join('')}</div>`:''}`;
     return true;
   }
   function openForCurrent(){
-    global.BAUMAN_MATH_WORKSPACE?.openLab?.();const mode=recommendedMode();setTimeout(()=>{document.querySelector(`[data-lab-mode="${mode}"]`)?.click();decorate()},70);return true;
+    const embedded=embeddedCount();
+    if(embedded&&global.BAUMAN_MATH_LEARNING_FLOW?.activate){
+      global.BAUMAN_MATH_LEARNING_FLOW.activate('visualize');
+      return true;
+    }
+    return false;
   }
   function bind(){document.addEventListener('click',e=>{if(e.target.closest('[data-math-ws="lab"],[data-math-v2-lab],[data-lf="lab"],[data-lf-step="lab"],[data-math-nav="lab"]'))setTimeout(decorate,90);if(e.target.closest('[data-e129-lesson],[data-e169-pick-activity],[data-math-nav]'))setTimeout(decorate,220)},true)}
   function selfCheck(){return{release:RELEASE,loaded,canonicalPath:CANONICAL,canonicalOk:canonical.ok,canonicalRecords:canonical.records.length,legacyPath:LEGACY,legacyRecords:legacy.records.length,currentMatches:currentMatches().length,embeddedSimulationSlides:embeddedCount(),sampleRecordUsed:false,recommendedMode:recommendedMode(),academicWrites:false,mutationObserver:false}}
