@@ -49,6 +49,11 @@ body.math-learning-flow-active:not(.e129-theory-storage):not(.e129-presenting) #
 body.math-learning-flow-active:not(.e129-presenting) [data-current-lesson]{scroll-margin-top:112px;}
 body.math-learning-flow-active:not(.e129-presenting) .e129-slide{scroll-margin-top:116px;transition:border-color .18s ease,background .18s ease,transform .18s ease;}
 body.math-learning-flow-active:not(.e129-presenting) .e129-slide.math-lf-highlight{border-color:rgba(66,194,255,.42);background:linear-gradient(145deg,rgba(10,45,75,.54),rgba(3,20,37,.7));box-shadow:0 0 0 1px rgba(70,192,255,.08),0 15px 44px rgba(0,0,0,.16);transform:translateY(-1px)}
+.math-lf-reveal{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:8px 0 12px;padding:8px 9px;border:1px solid rgba(83,174,228,.15);border-radius:10px;background:rgba(7,32,54,.58);}
+.math-lf-reveal>span{color:#7f9bb0;font-size:8px;font-weight:800;}
+.math-lf-reveal>div{display:flex;gap:5px;flex-wrap:wrap;}
+.math-lf-reveal button{border:1px solid rgba(87,158,214,.15);border-radius:8px;background:rgba(255,255,255,.025);color:#91adbf;padding:6px 8px;font-size:8px;font-weight:850;cursor:pointer;}
+.math-lf-reveal button:hover,.math-lf-reveal button.active{border-color:rgba(70,190,255,.30);background:rgba(30,126,190,.12);color:#e5f7ff;}
 
 /* Sticky study controller */
 .math-lf-studybar{position:fixed;z-index:64;left:50%;bottom:11px;transform:translateX(-50%);display:none;grid-template-columns:auto minmax(180px,360px) auto;gap:6px;align-items:center;width:min(760px,calc(100vw - 28px));padding:6px;border:1px solid rgba(91,167,225,.19);border-radius:14px;background:rgba(4,18,34,.91);backdrop-filter:blur(16px) saturate(130%);box-shadow:0 18px 55px rgba(0,0,0,.34);}
