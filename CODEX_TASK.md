@@ -1,13 +1,13 @@
 # CODEX_TASK
 
-Task: `BAUMAN_PROJECT_STATE_POST_RUSSIAN_VOCAB_VISUAL_IMMERSION_RECONCILIATION`
+Task: `BAUMAN_PROJECT_STATE_POST_PRODUCTION_PUBLISH_GATE_V1_RECONCILIATION`
 Mode: `CHAT_FIRST / CURRENT_MAIN / FAIL_CLOSED`
 
 ## Current objective
 
-Keep future work aligned with the true current-main baseline after Deep Study Journal v1, packaged-readiness Fx #88, Current-Main Control-State Gate v1.1, the promoted Russian Future Reference UI, Russian Future UI idempotence Fx #95, Russian Future UI package-readiness Fx #97, and Russian Vocabulary Visual Immersion v1 #99.
+Keep future work aligned with the true current-main baseline after Deep Study Journal v1, packaged-readiness Fx #88, Current-Main Control-State Gate v1.1, the promoted Russian Future Reference UI, Russian Future UI idempotence Fx #95, Russian Future UI package-readiness Fx #97, Russian Vocabulary Visual Immersion v1 #99, and Production Publish Gate v1 #102.
 
-Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A6, Device Contract v6, Content Review API v1, Deep Study Journal v1, its packaged-readiness Fx #88, Current-Main Control-State Gate v1.1, Russian Future Reference UI, Russian Future UI idempotence Fx #95, Russian Future UI package-readiness Fx #97 and Russian Vocabulary Visual Immersion v1 #99 are promoted.
+Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A6, Device Contract v6, Content Review API v1, Deep Study Journal v1, its packaged-readiness Fx #88, Current-Main Control-State Gate v1.1, Russian Future Reference UI, Russian Future UI idempotence Fx #95, Russian Future UI package-readiness Fx #97, Russian Vocabulary Visual Immersion v1 #99 and Production Publish Gate v1 #102 are promoted.
 
 ## Mandatory sequence
 
@@ -32,6 +32,7 @@ Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A
 14. Preserve Russian Future UI idempotence: a settled repeated `RUSSIAN_FUTURE_UI.upgrade()` must not create child/class mutations or self-trigger MutationObserver churn.
 15. Preserve Russian Future UI package readiness: ChatGPT Site and Cloudflare preview materializers must require the Future UI CSS/JS and verify packaged Russian HTML references them.
 16. Preserve Russian vocabulary visual immersion: visible vocabulary learning must use visual cues plus Russian contextual explanation/practice, must not prefer Vietnamese/English translation fields, and must keep the direct + packaged browser regression.
+17. Preserve Production Publish Gate v1: production must remain manual-only, exact-preview-revision-first, isolated from preview/local D1, protected by the `bauman-production` environment, and fully dry-run before any remote production mutation.
 
 ## Protected contracts
 
@@ -50,6 +51,7 @@ Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A
 - Russian Future UI presentation upgrades must remain DOM-idempotent and observer-safe.
 - Russian Future UI CSS/JS package assets and HTML references must fail closed during materialization.
 - Russian vocabulary source data remains preserved while the visible learning projection stays visual-first and Russian-context only; no Vietnamese/English translation fallback or raw metadata translation clue may re-enter the card surface.
+- Production Publish Gate v1 remains outside Roadmap V2, manual-only and fail-closed: no push-triggered production deploy, no preview/production D1 reuse, no promotion from a different revision, and no bypass of production environment confirmation.
 
 ## Completion condition
 
@@ -62,4 +64,5 @@ Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A
 - Russian Future UI idempotence Fx (PR #95) is promoted as `06e3c56308d71ff3ce8f8b3cedf12242c2b0c1f9`, with Russian Reference UI, Cloudflare Preview, Windows checkout and Whole System direct + packaged Future UI gates recorded as SUCCESS;
 - Russian Future UI package-readiness Fx (PR #97) is promoted as `00605feb7dbdfbb9c6f1e5399d75c1af96211af4`, with fail-fast ChatGPT Site/Cloudflare package checks and Whole System packaged Future UI acceptance recorded as SUCCESS;
 - Russian Vocabulary Visual Immersion v1 (PR #99) is promoted as `e8108f25d6e3dd686116c6f13589ddc913c95e68`, with Russian Reference UI, Cloudflare Preview, Windows checkout and Whole System direct + packaged Russian Future UI gates recorded as SUCCESS;
+- Production Publish Gate v1 (PR #102) is promoted as `51138b9e9f9a60c47d91a354446532e8064a545f`, with Production Publish Gate CI, Cloudflare Preview, Control Service, Runtime Device Gate and Windows checkout recorded as SUCCESS on the tested PR head;
 - future work resumes from current `main` only when a concrete defect, missing capability or explicit feature request exists.
