@@ -51,6 +51,12 @@ must(!js.includes('new MutationObserver'),'Vocab learning flow must use the cano
 must(js.includes('refresh:scheduleRender'),'Vocab learning flow must expose an idempotent refresh hook');
 must(js.includes('if(panel.innerHTML!==html)panel.innerHTML=html'),'Vocab refresh must not rewrite an already-stable panel');
 must(js.includes("speak-vocab-slow"),'Vocabulary flow must reuse the canonical slow-audio action');
+must(js.includes("vocab-id:"),'Vocab SRS must use a stable source-id identity');
+must(js.includes('legacyKeyFor'),'Vocab SRS must preserve a non-destructive legacy-key migration path');
+must(js.includes('migratedTo'),'Legacy SRS cards must be retained and marked when safely migrated');
+must(js.includes('sourceIndexNow'),'Sentence Mining must resolve the canonical source index independently of filtered position');
+must(js.includes('stageIndexNow'),'Review routing must retain a stage-relative position independently of filtered position');
+must(js.includes('loadVocabItem(meta.sourceIndex)'),'Sentence Mining must read the exact canonical source item');
 must(js.includes('aria-current="${mode===x?\'step\':\'false\'}"'),'Vocabulary learning steps must expose aria-current');
 must(!js.includes('meaning:clean(n.meaningVi||n.english||n.meaningRu)'),'Sentence Mining must not restore Vietnamese/English glosses into the learning surface');
 must(js.includes("meaning:clean(n.meaningRu||'')"),'Source sentence mining may retain Russian-only context');
