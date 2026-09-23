@@ -344,6 +344,17 @@
     saveBookmarks(list);refresh();global.BAUMAN_MATH_STUDY_LIBRARY?.refresh?.();
     toast(existed?'Đã bỏ đánh dấu bài học':'Đã đánh dấu bài học');
   }
+  function removeBookmarkById(id){
+    id=String(id||'');if(!id)return false;
+    const list=bookmarks(),next=list.filter(x=>x.id!==id);
+    if(next.length===list.length)return false;
+    saveBookmarks(next);refresh();global.BAUMAN_MATH_STUDY_LIBRARY?.refresh?.();return true;
+  }
+  function clearNoteById(id){
+    id=String(id||'');if(!id)return false;
+    const all=notes();if(!Object.prototype.hasOwnProperty.call(all,id))return false;
+    delete all[id];saveNotes(all);refresh();global.BAUMAN_MATH_STUDY_LIBRARY?.refresh?.();return true;
+  }
   function toast(message){
     const el=$('#mathWsToast');
     if(el){el.textContent=message;el.style.opacity='1';clearTimeout(el._timer);el._timer=setTimeout(()=>el.style.opacity='0',1600)}
@@ -629,7 +640,7 @@
     if(!document.body||document.body.dataset.mathLearningFlow==='1')return;
     document.body.dataset.mathLearningFlow='1';bind();refresh();
     [350,850,1600,2800].forEach(ms=>setTimeout(refresh,ms));
-    global.BAUMAN_MATH_LEARNING_FLOW={release:RELEASE,refresh,activate,toggleBookmark,toggleNotes,openContextLab,openLessonCheck,completeLesson,resume,resumePointer,resumeSnapshot,reviewQueue,snapshot,lessonSnapshot,chapterSnapshot,completionState,checkSummary,ensureAssessment,selfCheck};
+    global.BAUMAN_MATH_LEARNING_FLOW={release:RELEASE,refresh,activate,toggleBookmark,removeBookmarkById,clearNoteById,toggleNotes,openContextLab,openLessonCheck,completeLesson,resume,resumePointer,resumeSnapshot,reviewQueue,snapshot,lessonSnapshot,chapterSnapshot,completionState,checkSummary,ensureAssessment,selfCheck};
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })(window);
