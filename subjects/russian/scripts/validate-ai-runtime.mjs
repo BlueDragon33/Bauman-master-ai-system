@@ -18,7 +18,7 @@ need(sw,'isOptionalLarge');need(sw,'Optional source unavailable offline');need(s
 need(css,'@media(max-width:1080px)');need(css,'@media(max-width:760px)');
 need(html,'manifest.webmanifest');need(html,'assets/runtime-optimizer.css');need(html,'assets/ai-mentor-guard.js');need(html,'assets/runtime-optimizer.js');
 if(manifest.display!=='standalone'||manifest.scope!=='./')throw new Error('Web manifest must stay standalone and Russian-scoped');
-const academic=html.indexOf('assets/academic-language.js'), guard=html.indexOf('assets/ai-mentor-guard.js'), optimizer=html.indexOf('assets/runtime-optimizer.js'), ui=html.indexOf('assets/russian-reference-ui.js');
-if(!(academic>=0&&guard>academic&&optimizer>guard&&ui>optimizer))throw new Error('L7 runtime load order invalid');
+const academic=html.indexOf('assets/academic-language.js'), guard=html.indexOf('assets/ai-mentor-guard.js'), optimizer=html.indexOf('assets/runtime-optimizer.js'), ui=html.indexOf('assets/russian-future-ui.js');
+if(!(academic>=0&&guard>academic&&optimizer>guard&&ui>optimizer))throw new Error('L7 runtime load order invalid: canonical Future UI must load after runtime optimizer');
 console.log('RUSSIAN_AI_RUNTIME_GATE=PASS');
 console.log('Checks: read-only AI context, canonical object-shaped Review Queue, no AI mastery mutation, scoped service worker, verified Cache Storage readiness, user-initiated full offline refresh, Save-Data guard, JSON-safe offline failures and navigation-only HTML fallback.');
