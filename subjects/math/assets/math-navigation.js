@@ -48,42 +48,87 @@
   let roadmapCache=null;
   async function loadRoadmap(){
     if(roadmapCache) return roadmapCache;
-    const [curriculumRes,frameworkRes]=await Promise.all([fetch('data/curriculum.json'),fetch('data/theory-framework.json')]);
-    if(!curriculumRes.ok||!frameworkRes.ok) throw new Error('Không tải được dữ liệu lộ trình.');
-    roadmapCache={curriculum:await curriculumRes.json(),framework:await frameworkRes.json()};
+    const [curriculumRes,frameRes,contentRes]=await Promise.all([
+      fetch('data/curriculum.json'),
+      fetch('data/theory_lecture_frame.json'),
+      fetch('data/theory_lecture_content.json')
+    ]);
+    if(!curriculumRes.ok||!frameRes.ok||!contentRes.ok) throw new Error('Không tải được dữ liệu lộ trình.');
+    const curriculum=await curriculumRes.json();
+    const frame=await frameRes.json();
+    const content=await contentRes.json();
+    const records=Array.isArray(content)?content:(content?.records||content?.lessons||content?.items||[]);
+    roadmapCache={curriculum,frame,records};
     return roadmapCache;
   }
   function setPageHeader(title,sub){
     const h=$('#pageTitle'); if(h) h.textContent=title;
     const p=$('#pageSub'); if(p) p.textContent=sub||'';
   }
-  function roadmapChapters(framework,stageId){
-    const out=[];
-    (framework?.faculties||[]).forEach(faculty=>(faculty.departments||[]).forEach(dept=>(dept.chapters||[]).forEach(ch=>{
-      if((ch.stageAppId||'')===stageId) out.push({...ch,facultyTitle:faculty.title||'',departmentTitle:dept.title||''});
-    })));
-    return out.sort((a,b)=>(Number(a.order)||0)-(Number(b.order)||0));
+  function roadmapChapters(data,stageId){
+    const allowed=new Set((data.curriculum?.stages||[]).find(x=>x.id===stageId)?.chapterIds||[]);
+    return (data.frame?.chapters||[])
+      .filter(ch=>ch.stageId===stageId && (!allowed.size||allowed.has(ch.chapterId)))
+      .sort((a,b)=>(Number(a.localChapterNo||a.chapterNo)||0)-(Number(b.localChapterNo||b.chapterNo)||0));
+  }
+  function recordsForChapter(data,chapterId){
+    return (data.records||[]).filter(x=>(x.chapterId||'')===chapterId);
+  }
+  function chapterProgress(records){
+    const ids=records.map(x=>x.lessonId||x.id).filter(Boolean);
+    try{return global.BAUMAN_MATH_LEARNING_FLOW?.chapterSnapshot?.(ids)||{lessonCount:ids.length,startedLessons:0,visitedSteps:0,totalSteps:ids.length*9,percent:0,status:'not_started'}}catch(_){
+      return {lessonCount:ids.length,startedLessons:0,visitedSteps:0,totalSteps:ids.length*9,percent:0,status:'not_started'};
+    }
+  }
+  function roadmapStatus(ch,records,progress){
+    if(ch.locked) return {key:'locked',label:'Đang khóa'};
+    if(!records.length) return {key:'empty',label:'Chưa có học liệu'};
+    if(progress.startedLessons>0) return {key:'learning',label:'Đang học'};
+    return {key:'not-started',label:'Chưa học'};
   }
   function roadmapHtml(data,stageId){
     const stages=data.curriculum?.stages||[];
     const stage=stages.find(x=>x.id===stageId)||stages[0]||{};
-    const chapters=roadmapChapters(data.framework,stage.id);
+    const chapters=roadmapChapters(data,stage.id);
     const stageTabs=stages.map(x=>`<button type="button" class="math-roadmap-stage ${x.id===stage.id?'active':''}" data-math-roadmap-stage="${esc(x.id)}">${esc(x.title||x.id)}</button>`).join('');
     const groups=[];
     chapters.forEach(ch=>{
-      const key=ch.departmentTitle||'Chương';
+      const key=ch.disciplineId||'other';
       let g=groups.find(x=>x.key===key);
-      if(!g){g={key,faculty:ch.facultyTitle,items:[]};groups.push(g);}
+      if(!g){g={key,title:ch.disciplineTitle||'Cụm kiến thức',items:[]};groups.push(g);}
       g.items.push(ch);
     });
-    const body=groups.length?groups.map(g=>`<section class="math-roadmap-department"><header><span>${esc(g.faculty)}</span><h3>${esc(g.key)}</h3></header><div class="math-roadmap-chapters">${g.items.map(ch=>`<article class="math-roadmap-chapter"><div><span>Chương ${esc(ch.chapterNumber||ch.order||'')}</span><h4>${esc(ch.chapterTitle||ch.title||ch.id)}</h4><p>${esc(ch.chapterGoal||'Mục tiêu chương đang được chuẩn hóa.')}</p></div><div class="math-roadmap-meta"><span>${Number(ch.smallLessonCount)||0} bài</span><span>${esc(ch.week||'')}</span><button type="button" data-math-roadmap-chapter="${esc(ch.id)}" data-math-roadmap-stage-id="${esc(ch.stageAppId||stage.id)}">Học chương này →</button></div></article>`).join('')}</div></section>`).join(''):`<div class="math-roadmap-empty"><b>Chưa có chương được ánh xạ cho giai đoạn này.</b><span>Dữ liệu khung vẫn được giữ nguyên; hệ thống không tự bịa nội dung thay thế.</span></div>`;
-    return `<section class="math-roadmap-shell"><header class="math-roadmap-head"><div><span>LỘ TRÌNH HỌC TẬP</span><h2>${esc(stage.title||stage.id||'Lộ trình Toán')}</h2><p>${esc(stage.goal||'Theo dõi vị trí học và mở đúng chương cần học tiếp.')}</p></div><aside><b>${chapters.length}</b><span>chương trong giai đoạn</span></aside></header><nav class="math-roadmap-stages" aria-label="Giai đoạn">${stageTabs}</nav>${body}</section>`;
+    const body=groups.length?groups.map(g=>`<section class="math-roadmap-department"><header><span>CỤM KIẾN THỨC</span><h3>${esc(g.title)}</h3></header><div class="math-roadmap-chapters">${g.items.map(ch=>{
+      const records=recordsForChapter(data,ch.chapterId);
+      const progress=chapterProgress(records);
+      const status=roadmapStatus(ch,records,progress);
+      const actual=records.length;
+      const planned=Number(ch.suggestedLessonCount)||actual;
+      const canOpen=actual>0&&!ch.locked;
+      const progressText=progress.startedLessons>0?`${progress.percent}% đã học qua`:'Chưa có tiến độ';
+      return `<article class="math-roadmap-chapter" data-roadmap-status="${status.key}">
+        <div class="math-roadmap-chapter-main">
+          <div class="math-roadmap-chapter-kicker"><span>Chương ${esc(ch.localChapterNo||ch.chapterNo||'')}</span><span class="math-roadmap-status">${esc(status.label)}</span></div>
+          <h4>${esc(ch.chapterTitle||ch.chapterId)}</h4>
+          <p>${esc(ch.targetOutcome||ch.bridgeQuestion||'Mục tiêu chương chưa có trong khung hiện tại.')}</p>
+          <div class="math-roadmap-progress" aria-label="Tiến độ học đã ghi nhận"><i style="width:${Math.max(0,Math.min(100,progress.percent))}%"></i></div>
+          <small>${esc(progressText)}</small>
+        </div>
+        <div class="math-roadmap-meta">
+          <span>${actual}/${planned} bài có học liệu</span>
+          <span>${esc(ch.contentStatus||'')}</span>
+          ${canOpen?`<button type="button" data-math-roadmap-chapter="${esc(ch.chapterId)}" data-math-roadmap-stage-id="${esc(ch.stageId||stage.id)}">Học chương này →</button>`:'<button type="button" disabled>Chưa thể mở</button>'}
+        </div>
+      </article>`;
+    }).join('')}</div></section>`).join(''):`<div class="math-roadmap-empty"><b>Chưa có chương được ánh xạ cho giai đoạn này.</b><span>Dữ liệu khung vẫn được giữ nguyên; hệ thống không tự bịa nội dung thay thế.</span></div>`;
+    const readyCount=chapters.filter(ch=>recordsForChapter(data,ch.chapterId).length>0).length;
+    return `<section class="math-roadmap-shell"><header class="math-roadmap-head"><div><span>LỘ TRÌNH HỌC TẬP</span><h2>${esc(stage.title||stage.id||'Lộ trình Toán')}</h2><p>${esc(stage.goal||'Theo dõi vị trí học và mở đúng chương cần học tiếp.')}</p></div><aside><b>${readyCount}/${chapters.length}</b><span>chương đã có học liệu</span></aside></header><nav class="math-roadmap-stages" aria-label="Giai đoạn">${stageTabs}</nav>${body}</section>`;
   }
   async function renderRoadmap(stageId){
     setActive('roadmap');
     document.body.classList.add('math-roadmap-active');
     const view=$('#view'); if(!view) return;
-    setPageHeader('Lộ trình','Giai đoạn → Bộ môn → Chương. Chỉ mở tài nguyên khi bạn thực sự cần học.');
+    setPageHeader('Lộ trình','Giai đoạn → Cụm kiến thức → Chương. Tiến độ chỉ dùng dữ liệu học đã ghi nhận.');
     view.innerHTML='<section class="math-roadmap-loading">Đang đọc lộ trình Toán…</section>';
     try{
       const data=await loadRoadmap();
@@ -103,7 +148,7 @@
       setTimeout(()=>{
         const chapterButton=$$('[data-e129-chapter]').find(x=>x.getAttribute('data-e129-chapter')===chapterId);
         if(chapterButton){chapterButton.click();setActive('learn');scheduleSync(180);}
-        else toast('Chương này chưa có route Reader tương ứng trong dữ liệu hiện tại.');
+        else toast('Reader chưa dựng route cho chương này. Không thay đổi tiến độ hiện tại.');
       },140);
     });
   }
