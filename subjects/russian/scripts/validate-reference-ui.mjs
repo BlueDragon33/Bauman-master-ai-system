@@ -40,7 +40,7 @@ must(index.includes('id="russianGlobalSearch"'),'Missing global search');
 must(index.includes('data-ai-quick='),'AI rail must expose core AI Mentor quick-action contract');
 must(!index.includes('/priˈvʲet/'),'Right rail must not expose a hard-coded pronunciation sample as canonical data');
 
-for(const token of ['.ru-app-shell','.ru-right-rail','.ru-skill-grid','.ru-dashboard-middle','.ru-dashboard-bottom','@media (max-width:1080px)','@media (max-width:760px)','@media (max-width:480px)']){
+for(const token of ['.ru-app-shell','.rf-continue-band','.rf-today-plan','.rf-module-grid','.rf-dashboard-lower','.vocab-progressive-details','@media (max-width:1080px)','@media (max-width:760px)','@media (max-width:480px)']){
   must(css.includes(token),`Missing CSS contract: ${token}`);
 }
 for(const token of ['.ru-legacy-overview-details','.ru-empty-activity',':focus-visible','prefers-reduced-motion']){
@@ -118,6 +118,9 @@ must(adapter.includes('primaryNav: ['),'Primary learner navigation contract miss
 for(const route of ["['overview','⌂','Tổng quan']","['media','◉','Video']","['dialogue','◌','Nghe & Nói']","['vocab','▣','Từ vựng']","['grammar','▥','Ngữ pháp']","['writing','✎','Luyện chữ']"]){
   must(adapter.includes(route),`Primary learner navigation missing: ${route}`);
 }
+must(core.includes("const DEFERRED_CORE_DATA=new Set(['vocab']);"),'The 8k vocabulary dataset must remain deferred from startup');
+must(core.includes("ensureDeferredCoreData('vocab')"),'Vocabulary view must load the deferred dataset on demand');
+must(core.includes('Đang mở bộ từ vựng…'),'Vocabulary lazy-load state must remain learner-readable');
 must(core.includes('const PRIMARY_NAV=A.primaryNav||NAV;'),'Core must separate visible primary navigation from full route registry');
 must(core.includes("$('#nav').innerHTML=PRIMARY_NAV.map"),'Sidebar must render the compact primary navigation');
 must(core.includes('const views=NAV.map'),'Full route registry must remain authoritative for deep-link/state compatibility');
