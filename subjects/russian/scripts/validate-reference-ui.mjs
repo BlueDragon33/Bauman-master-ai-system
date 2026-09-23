@@ -120,6 +120,7 @@ for(const route of ["['overview','⌂','Tổng quan']","['media','◉','Video']"
 }
 must(core.includes("const DEFERRED_CORE_DATA=new Set(['vocab']);"),'The 8k vocabulary dataset must remain deferred from startup');
 must(core.includes("ensureDeferredCoreData('vocab')"),'Vocabulary view must load the deferred dataset on demand');
+must(core.includes('if(DB.vocab&&state.vocabIndex>=voc.length)'),'Deferred vocabulary must not clamp saved learner progress before data loads');
 must(core.includes('Đang mở bộ từ vựng…'),'Vocabulary lazy-load state must remain learner-readable');
 must(core.includes('const PRIMARY_NAV=A.primaryNav||NAV;'),'Core must separate visible primary navigation from full route registry');
 must(core.includes("$('#nav').innerHTML=PRIMARY_NAV.map"),'Sidebar must render the compact primary navigation');
