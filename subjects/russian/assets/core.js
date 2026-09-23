@@ -2865,9 +2865,10 @@ function renderMedia(){
  const activePurpose=mediaPurpose(active)||'Nghe ngắn, nhại ngay, rồi chuyển sang đối thoại.';
  const cat=mediaCategoryLabel(active);
  const tasks=[
-  ['01','Nghe','Bắt nhịp và âm chính.'],
-  ['02','Nhại','Lặp 3-5 câu ngắn.'],
-  ['03','Nói lại','Chuyển sang đối thoại.']
+  ['01','Trước khi xem','Biết mục tiêu: nghe âm, nhịp và tình huống; chưa cần hiểu từng từ.'],
+  ['02','Lượt nghe đầu','Xem/nghe liền mạch, không dừng để tra.'],
+  ['03','Lượt nghe lại','Bắt 3-5 cụm ngắn và nhại theo tốc độ thật.'],
+  ['04','Sau khi xem','Chuyển sang Nghe & Nói để dùng lại câu vừa nghe.']
  ];
  const openButton=url?`<a class="btn" href="${esc(url)}" target="_blank" rel="noopener">Mở ngoài</a>`:`<button class="btn disabled" disabled>Mở ngoài</button>`;
  const player=embed?`<iframe src="${esc(embed)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`:`<div class="media-empty-player v1256-empty-player"><b>${mediaIcon(active)}</b><h3>${esc(activeTitle)}</h3><p>${esc(url?'Nguồn này nên mở ngoài, sau đó quay lại nói lại.':'Chưa có iframe. Bấm “Sửa nguồn” để thêm link nhúng.')}</p></div>`;
