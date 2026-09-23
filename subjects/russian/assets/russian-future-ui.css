@@ -228,3 +228,20 @@ body.ru-reference-ui.ru-future-ui .modal-close{background:#edf3fb!important;colo
 .vocab-progressive-body{padding:0 12px 12px}
 .vocab-micro-context{max-width:38ch;margin:9px auto 0!important;text-align:center;color:#526b84!important;font-size:12px!important;line-height:1.45!important}
 @media(max-width:760px){.vocab-progressive-details>summary{align-items:flex-start}.vocab-progressive-details>summary span{max-width:55%;text-align:right}}
+
+
+/* Home information hierarchy: continue -> today -> five skills -> compact progress/review */
+.ru-future-ui .rf-continue-band{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(240px,.8fr);gap:12px;margin:0 0 12px}
+.ru-future-ui .rf-continue-card,.ru-future-ui .rf-review-now,.ru-future-ui .rf-today-plan{border:1px solid #dce7f3;border-radius:18px;background:#fff;box-shadow:0 10px 28px rgba(43,72,106,.07)}
+.ru-future-ui .rf-continue-card{min-height:138px;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.ru-future-ui .rf-continue-card>div:first-child{min-width:0}.ru-future-ui .rf-continue-card span,.ru-future-ui .rf-review-now>span{display:block;color:#6f87a1;font-size:9px;font-weight:800;letter-spacing:.13em}
+.ru-future-ui .rf-continue-card h3{margin:5px 0 6px;color:#15324e;font-size:21px;line-height:1.2}.ru-future-ui .rf-continue-card p,.ru-future-ui .rf-review-now p,.ru-future-ui .rf-home-review p{margin:0;color:#708397;font-size:11px;line-height:1.55}
+.ru-future-ui .rf-continue-actions{flex:0 0 auto;display:grid;justify-items:end;gap:10px}.ru-future-ui .rf-continue-actions>b{font-size:24px;color:#236dd6}.ru-future-ui .rf-continue-actions button,.ru-future-ui .rf-review-now button{min-height:36px;padding:0 14px;border:0;border-radius:11px;background:#246fd5;color:#fff;font-weight:750;cursor:pointer}
+.ru-future-ui .rf-review-now{padding:17px 18px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start}.ru-future-ui .rf-review-now>b{margin:5px 0 6px;color:#183450;font-size:15px}.ru-future-ui .rf-review-now button{margin-top:12px;background:#edf5ff;color:#245d9c}
+.ru-future-ui .rf-today-plan{padding:16px 18px;margin:0 0 12px}.ru-future-ui .rf-today-plan .rf-today-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.ru-future-ui .rf-today-plan .rf-today-task{margin:0;min-width:0}
+.ru-future-ui .rf-module-section{margin:0 0 12px}.ru-future-ui .rf-module-section>.rf-card-head{padding:0 2px 8px}.ru-future-ui .rf-module-section>.rf-card-head h4{color:#173552}
+.ru-future-ui .rf-dashboard>.rf-progress-strip{margin:0 0 12px}
+.ru-future-ui .rf-dashboard-lower{grid-template-columns:1fr!important}.ru-future-ui .rf-home-review{min-height:auto!important;padding:15px 17px!important}
+@media(max-width:980px){.ru-future-ui .rf-continue-band{grid-template-columns:1fr}.ru-future-ui .rf-today-plan .rf-today-list{grid-template-columns:1fr}}
+@media(max-width:640px){.ru-future-ui .rf-continue-card{align-items:flex-start;flex-direction:column}.ru-future-ui .rf-continue-actions{width:100%;grid-template-columns:auto 1fr;align-items:center;justify-items:start}.ru-future-ui .rf-continue-actions button{justify-self:end}}
