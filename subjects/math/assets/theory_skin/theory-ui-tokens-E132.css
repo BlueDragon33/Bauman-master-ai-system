@@ -1,45 +1,70 @@
-/* E132 · Theory UI Design Tokens
- * Canva-inspired academic-tech palette for the Math Theory tab and slideshow.
- * Scope: tokens only. Not loaded until a later round patches index.html.
+/* Math Design Tokens · E132 compatibility owner
+ * Shared visual tokens for the Math application. Existing E132 names remain aliases
+ * so theory/slideshow components can migrate without a second competing token system.
  */
 :root{
-  --e132-bg-deep:#050914;
-  --e132-bg-ink:#08111f;
-  --e132-bg-panel:rgba(9,18,34,.86);
-  --e132-bg-panel-strong:rgba(12,24,46,.94);
+  --math-bg-canvas:#020914;
+  --math-bg-ink:#061426;
+  --math-surface:rgba(7,20,38,.88);
+  --math-surface-strong:#07162a;
+  --math-surface-soft:rgba(11,29,51,.72);
+  --math-line:rgba(107,172,230,.17);
+  --math-line-strong:rgba(92,190,255,.32);
+  --math-text:#edf7ff;
+  --math-text-soft:#d8e6f8;
+  --math-muted:#8da7c0;
+  --math-primary:#26a8ff;
+  --math-cyan:#44d8ff;
+  --math-success:#32d296;
+  --math-warm:#f2bd52;
+  --math-warm-strong:#ffd77b;
+  --math-danger:#fb7185;
+  --math-radius-sm:12px;
+  --math-radius-md:18px;
+  --math-radius-lg:24px;
+  --math-radius-xl:32px;
+  --math-shadow-card:0 24px 80px rgba(0,0,0,.36);
+  --math-font-ui:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --math-font-mono:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+  --math-motion-fast:160ms ease;
+  --math-motion-med:260ms ease;
+  --e132-bg-deep:var(--math-bg-canvas);
+  --e132-bg-ink:var(--math-bg-ink);
+  --e132-bg-panel:var(--math-surface);
+  --e132-bg-panel-strong:var(--math-surface-strong);
   --e132-bg-glass:rgba(15,29,52,.72);
-  --e132-line-soft:rgba(148,196,255,.18);
-  --e132-line-bright:rgba(125,211,252,.42);
-  --e132-text-main:#f4f8ff;
-  --e132-text-soft:#d8e6f8;
-  --e132-text-muted:#9fb4cf;
-  --e132-accent-cyan:#38d7ff;
+  --e132-line-soft:var(--math-line);
+  --e132-line-bright:var(--math-line-strong);
+  --e132-text-main:var(--math-text);
+  --e132-text-soft:var(--math-text-soft);
+  --e132-text-muted:var(--math-muted);
+  --e132-accent-cyan:var(--math-cyan);
   --e132-accent-cyan-soft:rgba(56,215,255,.16);
   --e132-accent-violet:#8b7cff;
   --e132-accent-violet-soft:rgba(139,124,255,.17);
-  --e132-accent-emerald:#34d399;
+  --e132-accent-emerald:var(--math-success);
   --e132-accent-emerald-soft:rgba(52,211,153,.14);
-  --e132-accent-amber:#fbbf24;
+  --e132-accent-amber:var(--math-warm);
   --e132-accent-amber-soft:rgba(251,191,36,.14);
-  --e132-accent-red:#fb7185;
+  --e132-accent-red:var(--math-danger);
   --e132-accent-red-soft:rgba(251,113,133,.13);
   --e132-formula-bg:rgba(2,8,20,.62);
   --e132-code-bg:rgba(1,7,15,.72);
-  --e132-radius-sm:12px;
-  --e132-radius-md:18px;
-  --e132-radius-lg:24px;
-  --e132-radius-xl:32px;
+  --e132-radius-sm:var(--math-radius-sm);
+  --e132-radius-md:var(--math-radius-md);
+  --e132-radius-lg:var(--math-radius-lg);
+  --e132-radius-xl:var(--math-radius-xl);
   --e132-radius-deck:36px;
   --e132-shadow-card:0 18px 45px rgba(0,0,0,.22);
   --e132-shadow-deck:0 34px 110px rgba(0,0,0,.46);
-  --e132-font-display:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  --e132-font-body:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  --e132-font-mono:"SFMono-Regular",Consolas,"Liberation Mono",Menlo,monospace;
+  --e132-font-display:var(--math-font-ui);
+  --e132-font-body:var(--math-font-ui);
+  --e132-font-mono:var(--math-font-mono);
   --e132-slide-max:1180px;
   --e132-readable:74ch;
   --e132-topbar-h:72px;
-  --e132-motion-fast:160ms ease;
-  --e132-motion-med:260ms ease;
+  --e132-motion-fast:var(--math-motion-fast);
+  --e132-motion-med:var(--math-motion-med);
 }
 
 [data-e132-theme="theory"]{
