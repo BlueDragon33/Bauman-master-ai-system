@@ -36,6 +36,7 @@ must(!index.includes('assets/russian-reference-ui.css'),'Legacy reference presen
 must(!index.includes('assets/russian-reference-ui-polish.css'),'Legacy polish presentation CSS must not be loaded');
 must(!index.includes('assets/russian-reference-ui.js'),'Legacy reference UI runtime must not be loaded');
 must(!index.includes('id="russianRightRail"'),'Fixed right rail must not return to the learning shell');
+must(index.includes('<body class="ru-reference-ui ru-future-ui">'),'Canonical Future UI must be active at first paint');
 must(index.includes('id="russianGlobalSearch"'),'Missing global search');
 must(index.includes('id="aiBtn"'),'Topbar must retain the core AI Mentor entry point');
 must(!index.includes('/priˈvʲet/'),'Learning shell must not expose a hard-coded pronunciation sample as canonical data');
@@ -69,6 +70,7 @@ must(js.includes('data-route'),'Canonical shortcuts must use core routing contra
 must(js.includes("aiQuick:'intro'"),'Global search must be able to open AI Mentor');
 must(js.includes("act:'route-modal'"),'Global search must be able to open today schedule');
 must(js.includes('collapseLegacyOverview'),'Overview must preserve legacy tools in a compact disclosure');
+for(const token of ['HỌC TIẾP','Kế hoạch hôm nay','5 kỹ năng chính','Ôn tập trọng điểm']) must(js.includes(token),`Canonical Home hierarchy missing: ${token}`);
 must(js.includes('navigator.platform'),'Shortcut hint must adapt to the user platform');
 must(!js.includes('base+Math.round'),'Skill cards must not synthesize fake per-skill progress');
 must(!js.includes('mini-progress'),'Skill cards must not display invented per-skill progress bars');
