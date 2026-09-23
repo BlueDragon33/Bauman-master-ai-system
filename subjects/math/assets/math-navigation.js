@@ -276,7 +276,10 @@
     }
     if(canonical==='roadmap'){renderRoadmap();return;}
     if(canonical==='learn'){
-      leaveRoadmap(); setActive('learn'); routeTheory(()=>{$('#view')?.scrollIntoView({behavior:'smooth',block:'start'});scheduleSync(120);});return;
+      leaveRoadmap();setActive('learn');
+      if(global.BAUMAN_MATH_LEARNING_FLOW?.resume?.()){scheduleSync(260);return;}
+      routeTheory(()=>{$('#view')?.scrollIntoView({behavior:'smooth',block:'start'});scheduleSync(120);});
+      return;
     }
     if(canonical==='practice'){routeActivity(id==='practice'?'exercises':id,'practice');return;}
     if(canonical==='review'){routeActivity('review','review');return;}
