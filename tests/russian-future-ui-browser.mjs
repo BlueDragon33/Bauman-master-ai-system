@@ -165,12 +165,18 @@ try{
       await page.waitForSelector('.step54-listening-plan',{state:'visible',timeout:10000});
       const mediaFlow=await page.evaluate(()=>({
         tasks:[...document.querySelectorAll('.step54-listening-plan article')].map(x=>x.textContent||''),
-        speakRoute:document.querySelector('.v1256-media-actions [data-route]')?.dataset.route||''
+        speakRoute:document.querySelector('.v1256-media-actions [data-route]')?.dataset.route||'',
+        startLabel:document.querySelector('[data-act="media-start-listening"]')?.textContent?.trim()||'',
+        planHeight:document.querySelector('.step54-listening-plan')?.getBoundingClientRect().height||0
       }));
       assert.equal(mediaFlow.tasks.length,4,'Video learning flow must keep four bounded steps');
       for(const label of ['Trước khi xem','Lượt nghe đầu','Lượt nghe lại','Sau khi xem'])assert.equal(mediaFlow.tasks.some(x=>x.includes(label)),true,'Video flow missing '+label);
       assert.match(mediaFlow.speakRoute,/"view":"learning"/,'Video must link into the core Nghe & Nói learning route');
       assert.match(mediaFlow.speakRoute,/"learnTab":"practice"/,'Video must enter the speaking practice tab directly');
+      assert.match(mediaFlow.startLabel,/Bắt đầu nghe/,'Video above-the-fold must expose a clear start-listening CTA');
+      assert.ok(mediaFlow.planHeight<120,'Four-step Video flow must remain a compact guide instead of four dashboard cards');
+      await page.locator('[data-act="media-start-listening"]').click();
+      assert.equal(await page.evaluate(()=>Boolean(document.activeElement?.closest?.('[data-media-listen-target="1"]')||document.activeElement?.matches?.('[data-media-listen-target="1"]'))),true,'Start-listening CTA must move focus into the player in one action');
     }
     if(view==='learning'){
       await page.waitForSelector('.transcript-listen-first',{state:'visible',timeout:10000});
@@ -182,6 +188,9 @@ try{
       await page.waitForFunction(()=>/[А-Яа-яЁё]/.test(document.querySelector('.speech-content-board .russian-line')?.textContent||''),null,{timeout:10000});
       assert.equal(await page.locator('.transcript-listen-first').count(),0,'Listening activity must reveal transcript only after learner action');
       assert.equal(await page.locator('[data-act="toggle-vi"]').isDisabled(),false,'Translation control may unlock only after transcript reveal');
+      assert.equal(await page.locator('.speech-content-board p').count(),0,'Vietnamese meaning must remain hidden when transcript is first revealed');
+      for(const action of ['speak-line','speak-line-slow','record-line'])assert.equal(await page.locator('[data-act="'+action+'"]').count()>0,true,'Speaking primary action missing: '+action);
+      assert.match(await page.locator('[data-act="record-line"]').first().innerText(),/Bắt đầu nói|Ghi âm/,'Speaking must expose recording as an explicit primary action');
       await page.locator('[data-act="toggle-transcript"]').click();
       await page.waitForSelector('.transcript-listen-first',{state:'visible',timeout:10000});
     }
