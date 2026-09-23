@@ -12,7 +12,7 @@
   const lower=v=>clean(v).toLocaleLowerCase('ru-RU');
   const now=()=>new Date().toISOString();
   const readCore=()=>parse(localStorage.getItem(CORE_KEY),{});
-  const empty=()=>({schema:SCHEMA,cards:{},sentences:{},updatedAt:null});
+  const empty=()=>({schema:SCHEMA,cards:{},sentences:{},flowMode:'discover',drill:{},updatedAt:null});
   function read(){const x=parse(localStorage.getItem(STORAGE_KEY),empty());return {...empty(),...x,cards:x&&typeof x.cards==='object'?x.cards:{},sentences:x&&typeof x.sentences==='object'?x.sentences:{}};}
   let state=read();
   let renderQueued=false;
@@ -23,7 +23,7 @@
   function scheduleRender(){if(renderQueued)return;renderQueued=true;requestAnimationFrame(()=>{renderQueued=false;render();});}
   const indexNow=()=>Math.max(0,Number(readCore().vocabIndex)||0);
   const keyFor=index=>`vocab:${Math.max(0,Number(index)||0)}`;
-  function termNow(){return clean(document.querySelector('.v1310-vocab-top h3,.vocab-card-panel .term')?.textContent)||`Thẻ ${indexNow()+1}`;}
+  function termNow(){const host=document.querySelector('.vocab-card-panel,.v1310-vocab-main');return clean(host?.dataset.vocabTerm)||clean(document.querySelector('.v1310-vocab-top h3,.vocab-card-panel .term')?.textContent)||`Thẻ ${indexNow()+1}`;}
   const routeFor=index=>({view:'vocab',vocabIndex:Number(index)||0,vocabPage:Math.floor((Number(index)||0)/20)});
   function plusDays(days){const d=new Date();d.setDate(d.getDate()+Number(days||0));return d.toISOString();}
   function dueCards(){const t=Date.now();return Object.values(state.cards).filter(x=>x?.dueAt&&Date.parse(x.dueAt)<=t).sort((a,b)=>Date.parse(a.dueAt)-Date.parse(b.dueAt));}
@@ -39,6 +39,75 @@
     return new Intl.DateTimeFormat('vi-VN',{day:'2-digit',month:'2-digit',year:'numeric'}).format(new Date(t));
   }
   function setNotice(text){notice=clean(text);scheduleRender();}
+  const FLOW=['discover','recognize','listen','speak','recall','write','review'];
+  const FLOW_LABELS={discover:'Khám phá',recognize:'Nhận diện',listen:'Nghe',speak:'Nhắc lại',recall:'Nhớ lại',write:'Viết',review:'Ôn SRS'};
+  const normalizeAnswer=v=>lower(v).normalize('NFD').replace(/\u0301/g,'').replace(/[.,!?;:«»"'()]/g,'').replace(/\s+/g,' ').trim();
+  function flowMode(){return FLOW.includes(state.flowMode)?state.flowMode:'discover';}
+  function setFlowMode(mode){
+    if(!FLOW.includes(mode))return;
+    state.flowMode=mode;state.drill={key:keyFor(indexNow()),mode,answer:'',result:null};
+    notice='';write();
+  }
+  function visibleCandidateTerms(){
+    const current=termNow();
+    const terms=Array.from(document.querySelectorAll('[data-vocab-term]')).map(x=>clean(x.dataset.vocabTerm)).filter(Boolean);
+    const unique=Array.from(new Set([current,...terms])).filter(Boolean);
+    if(unique.length<=1)return unique;
+    const seed=indexNow()+1;
+    const hash=v=>{let h=seed*131;for(const ch of v)h=(h*33+ch.codePointAt(0))>>>0;return h};
+    const others=unique.filter(x=>normalizeAnswer(x)!==normalizeAnswer(current)).sort((a,b)=>hash(a)-hash(b)).slice(0,3);
+    return [current,...others].sort((a,b)=>hash(a+'x')-hash(b+'x'));
+  }
+  function ensureExposure(key,index,term){
+    const prev=state.cards[key]||{};
+    if(prev.exposedAt)return prev;
+    const next={...prev,key,index,term,exposedAt:now(),exposure:'visual_audio_context'};
+    state.cards[key]=next;
+    try{localStorage.setItem(STORAGE_KEY,JSON.stringify({...state,updatedAt:now()}))}catch(_){}
+    return next;
+  }
+  function drillResult(){
+    const d=state.drill||{};
+    if(d.key!==keyFor(indexNow())||d.mode!==flowMode())return null;
+    return d.result||null;
+  }
+  function setDrillResult(answer,ok){
+    state.drill={key:keyFor(indexNow()),mode:flowMode(),answer:clean(answer),result:ok?'correct':'wrong'};
+    notice=ok?'Đúng. Chuyển sang bước kế tiếp khi bạn sẵn sàng.':'Chưa đúng. Nghe/nhìn lại rồi thử thêm một lượt.';
+    write();
+  }
+  function checkChoice(answer){setDrillResult(answer,normalizeAnswer(answer)===normalizeAnswer(termNow()));}
+  function checkTyped(){
+    const input=document.getElementById('ruVocabFlowInput'),answer=clean(input?.value);
+    if(!answer){setNotice('Hãy gõ câu trả lời bằng Cyrillic trước khi kiểm tra.');return;}
+    if(!/[А-Яа-яЁё]/.test(answer)){setNotice('Hãy dùng chữ Cyrillic cho bước nhớ lại/viết.');return;}
+    setDrillResult(answer,normalizeAnswer(answer)===normalizeAnswer(termNow()));
+  }
+  function nextFlow(){
+    const i=FLOW.indexOf(flowMode());
+    if(i>=0&&i<FLOW.length-1)setFlowMode(FLOW[i+1]);
+  }
+  function playCoreVocab(){document.querySelector('[data-act="speak-vocab"]')?.click();}
+  function flipCoreVocab(){document.querySelector('[data-act="toggle-vocab-flip"]')?.click();}
+  function resultHtml(){
+    const result=drillResult();
+    if(!result)return '';
+    return `<div class="ru-vocab-flow-result ${result}">${result==='correct'?'✓ Đúng':'↻ Chưa đúng'} · ${esc(notice)}</div>`;
+  }
+  function flowTaskHtml(mode){
+    const choices=visibleCandidateTerms();
+    const choiceButtons=choices.map(x=>`<button type="button" data-ru-vocab-choice="${esc(x)}">${esc(x)}</button>`).join('');
+    const next=`<button type="button" class="btn primary" data-ru-vocab-next>Bước tiếp →</button>`;
+    if(mode==='discover')return `<div class="ru-vocab-flow-task"><div><b>Nhìn → nghe → hiểu bằng ngữ cảnh Nga</b><p>Quan sát hình trước. Nghe phát âm, rồi chỉ mở gợi ý khi hình và âm chưa đủ.</p></div><div class="ru-vocab-flow-actions"><button type="button" class="btn green" data-ru-vocab-play>🔊 Nghe</button><button type="button" class="btn" data-ru-vocab-flip>Mở gợi ý</button>${next}</div></div>`;
+    if(mode==='recognize')return `<div class="ru-vocab-flow-task"><div><b>Nhìn hình → chọn từ</b><p>Từ trên thẻ và danh sách đang được che để bạn nhận diện thật, không liếc đáp án.</p></div><div class="ru-vocab-choice-grid">${choiceButtons||'<span>Hãy xóa bộ lọc để có thêm phương án nhận diện.</span>'}</div>${resultHtml()}<div class="ru-vocab-flow-actions">${drillResult()==='correct'?next:''}</div></div>`;
+    if(mode==='listen')return `<div class="ru-vocab-flow-task"><div><b>Nghe → chọn từ</b><p>Không nhìn chữ trước. Nghe một hoặc hai lượt rồi chọn từ bạn vừa nghe.</p></div><div class="ru-vocab-flow-actions"><button type="button" class="btn green" data-ru-vocab-play>🔊 Nghe từ</button></div><div class="ru-vocab-choice-grid">${choiceButtons||'<span>Hãy xóa bộ lọc để có thêm phương án.</span>'}</div>${resultHtml()}<div class="ru-vocab-flow-actions">${drillResult()==='correct'?next:''}</div></div>`;
+    if(mode==='speak')return `<div class="ru-vocab-flow-task"><div><b>Nghe → nhắc lại</b><p>Nghe tốc độ thường, nhắc lại thành tiếng rồi tự xác nhận đã thực hiện. Đây không phải điểm phát âm tự động.</p></div><div class="ru-vocab-flow-actions"><button type="button" class="btn green" data-ru-vocab-play>🔊 Nghe mẫu</button><button type="button" class="btn" data-ru-vocab-spoken>🎙️ Tôi đã nhắc lại</button>${drillResult()==='correct'?next:''}</div>${resultHtml()}</div>`;
+    if(mode==='recall')return `<div class="ru-vocab-flow-task"><div><b>Hình → nhớ lại từ</b><p>Không mở gợi ý. Gõ từ tiếng Nga bạn nhớ được từ hình/ngữ cảnh.</p></div><div class="ru-vocab-flow-input"><input id="ruVocabFlowInput" class="input" lang="ru" autocomplete="off" placeholder="Введите слово…"><button type="button" class="btn primary" data-ru-vocab-check>Kiểm tra</button></div>${resultHtml()}<div class="ru-vocab-flow-actions">${drillResult()==='correct'?next:''}</div></div>`;
+    if(mode==='write')return `<div class="ru-vocab-flow-task"><div><b>Nghe → viết</b><p>Nghe lại, sau đó viết/gõ chính xác bằng Cyrillic. Trọng âm hiển thị để học phát âm, không bắt buộc nhập dấu trọng âm.</p></div><div class="ru-vocab-flow-actions"><button type="button" class="btn green" data-ru-vocab-play>🔊 Nghe</button></div><div class="ru-vocab-flow-input"><input id="ruVocabFlowInput" class="input" lang="ru" autocomplete="off" placeholder="Напишите слово…"><button type="button" class="btn primary" data-ru-vocab-check>Kiểm tra</button></div>${resultHtml()}<div class="ru-vocab-flow-actions">${drillResult()==='correct'?next:''}</div></div>`;
+    return '';
+  }
+  function flowNavHtml(mode){return `<nav class="ru-vocab-flow-nav" aria-label="Quy trình học từ vựng">${FLOW.map((x,i)=>`<button type="button" data-ru-vocab-mode="${x}" class="${mode===x?'active':''}"><span>${i+1}</span><b>${FLOW_LABELS[x]}</b></button>`).join('')}</nav>`;}
+
   function markLearningEvidence(kind){
     const old=window.RussianLearningFlow?.get?.();
     const lessonId=window.RussianLearningFlow?.activeLessonId?.();
@@ -50,6 +119,7 @@
   function rate(kind){
     if(!['forgot','unsure','recalled'].includes(kind))return;
     const index=indexNow(), key=keyFor(index), prev=state.cards[key]||{}, at=now(), term=termNow();
+    if(!prev.exposedAt){setNotice('Thẻ này chưa được học. Hãy bắt đầu từ Khám phá trước khi đưa vào SRS.');return;}
     let successStreak=Number(prev.successStreak||0), lapses=Number(prev.lapses||0), dueAt=at, reason='srs_forgot', gapDays=0;
     if(kind==='forgot'){
       successStreak=0;lapses+=1;dueAt=at;reason='srs_forgot';
@@ -96,7 +166,7 @@
       const item=await loadVocabItem(index);if(!item){setNotice('Không tìm thấy dữ liệu nguồn của thẻ này.');return;}
       const n=normalized(item), sentence=clean(item.example||item.example_ru||''), term=clean(n.term||termNow());
       if(!sentence||lower(sentence)===lower(term)){setNotice('Nguồn của thẻ này chỉ lặp lại chính từ/cụm, nên không lưu như một câu ngữ cảnh.');return;}
-      const id=`source:${key}`;saveSentence({id,vocabKey:key,index,term,sentence,meaning:clean(n.meaningVi||n.english||n.meaningRu),source:'vocab.example',stage:clean(n.stage),tags:Array.isArray(n.tags)?n.tags:[],savedAt:state.sentences[id]?.savedAt||now()});
+      const id=`source:${key}`;saveSentence({id,vocabKey:key,index,term,sentence,meaning:clean(n.meaningRu||''),source:'vocab.example',stage:clean(n.stage),tags:Array.isArray(n.tags)?n.tags:[],savedAt:state.sentences[id]?.savedAt||now()});
       setNotice('Đã lưu câu ví dụ thật từ dữ liệu nguồn vào Sentence Mining.');
     }catch(e){setNotice('Không thể đọc câu nguồn: '+clean(e?.message||e));}
   }
@@ -137,9 +207,19 @@
   function render(){
     const core=readCore(), host=document.querySelector('.vocab-card-panel,.v1310-vocab-main');
     if((core.view||'')!=='vocab'||!host){document.getElementById('ruVocabSrs')?.remove();return;}
-    const index=indexNow(), key=keyFor(index), card=state.cards[key]||{}, due=dueCards(), scheduled=scheduledCards(), mined=sentencesFor(key), activeDue=sessionStorage.getItem(ACTIVE_DUE_KEY)===key;
-    let panel=document.getElementById('ruVocabSrs');if(!panel){panel=document.createElement('section');panel.id='ruVocabSrs';panel.className='ru-vocab-srs';const anchor=host.querySelector('.ru-language-contract')||host.querySelector('.flash,.v1310-flash');if(anchor?.parentNode)anchor.parentNode.insertBefore(panel,anchor.nextSibling);else host.appendChild(panel);}
-    panel.innerHTML=`<header><div><span>ÔN THEO LỊCH · THẺ ${index+1}</span><h4>${esc(termNow())}</h4><p>${esc(cardStatus(card))}${activeDue?' · đang ôn thẻ đến hạn':''}</p></div><div class="ru-vocab-srs-summary"><button type="button" data-ru-srs-open-due><b>${due.length}</b><small>đến hạn</small></button><span><b>${scheduled.length}</b><small>đã hẹn</small></span><span><b>${Object.keys(state.sentences).length}</b><small>câu đã lưu</small></span></div></header><div class="ru-vocab-rating"><div><b>Tự nhớ lại trước khi lật nghĩa</b><small>Chọn theo kết quả thật của lần này. “Nhớ được” chỉ lên lịch ôn tiếp, không đánh dấu đã thuộc.</small></div><div><button type="button" class="forgot" data-ru-srs-rate="forgot">Quên</button><button type="button" class="unsure" data-ru-srs-rate="unsure">Chưa chắc</button><button type="button" class="recalled" data-ru-srs-rate="recalled">Nhớ được</button></div></div>${notice?`<div class="ru-vocab-srs-notice">${esc(notice)}</div>`:''}<details class="ru-vocab-mining"><summary><b>Sentence Mining</b><span>${mined.length} câu của thẻ này</span></summary><div class="ru-vocab-mining-body"><div class="ru-vocab-mining-actions"><button type="button" class="btn soft" data-ru-srs-mine-source>Lưu câu nguồn nếu có</button><div><input id="ruVocabMineInput" class="input" placeholder="Tự viết một câu tiếng Nga dùng từ này…"><button type="button" class="btn" data-ru-srs-mine-user>Lưu câu của tôi</button></div></div><div class="ru-vocab-sentence-list">${sentenceList(key)}</div></div></details><details class="ru-vocab-speaking-bridge"><summary><b>Cầu nối Nghe/Nói</b><span>chỉ exact vocabulary seed</span></summary><div class="ru-vocab-speaking-body"><button type="button" class="btn soft" data-ru-srs-find-speaking>Kiểm tra liên kết thật</button><div class="ru-vocab-speaking-list">${speakingList(card)}</div></div></details>`;
+    const index=indexNow(), key=keyFor(index), mode=flowMode(), term=termNow();
+    let card=state.cards[key]||{};
+    if(mode==='discover')card=ensureExposure(key,index,term);
+    const due=dueCards(), scheduled=scheduledCards(), mined=sentencesFor(key), activeDue=sessionStorage.getItem(ACTIVE_DUE_KEY)===key;
+    const shell=host.closest('.vocab-studio');host.dataset.vocabFlow=mode;if(shell)shell.dataset.vocabFlow=mode;
+    let panel=document.getElementById('ruVocabSrs');
+    if(!panel){panel=document.createElement('section');panel.id='ruVocabSrs';panel.className='ru-vocab-srs';const anchor=host.querySelector('.ru-language-contract')||host.querySelector('.flash,.v1310-flash');if(anchor?.parentNode)anchor.parentNode.insertBefore(panel,anchor.nextSibling);else host.appendChild(panel);}
+    const reviewPanel=mode==='review'?`<div class="ru-vocab-rating"><div><b>Tự đánh giá lần ôn này</b><small>Chọn theo kết quả nhớ lại/viết vừa thực hiện. “Nhớ được” chỉ lên lịch ôn tiếp, không đánh dấu đã thuộc.</small></div><div><button type="button" class="forgot" data-ru-srs-rate="forgot">Quên</button><button type="button" class="unsure" data-ru-srs-rate="unsure">Chưa chắc</button><button type="button" class="recalled" data-ru-srs-rate="recalled">Nhớ được</button></div></div>
+      ${notice?`<div class="ru-vocab-srs-notice">${esc(notice)}</div>`:''}
+      <details class="ru-vocab-mining"><summary><b>Sentence Mining</b><span>${mined.length} câu của thẻ này</span></summary><div class="ru-vocab-mining-body"><div class="ru-vocab-mining-actions"><button type="button" class="btn soft" data-ru-srs-mine-source>Lưu câu nguồn nếu có</button><div><input id="ruVocabMineInput" class="input" placeholder="Tự viết một câu tiếng Nga dùng từ này…"><button type="button" class="btn" data-ru-srs-mine-user>Lưu câu của tôi</button></div></div><div class="ru-vocab-sentence-list">${sentenceList(key)}</div></div></details>
+      <details class="ru-vocab-speaking-bridge"><summary><b>Cầu nối Nghe/Nói</b><span>chỉ exact vocabulary seed</span></summary><div class="ru-vocab-speaking-body"><button type="button" class="btn soft" data-ru-srs-find-speaking>Kiểm tra liên kết thật</button><div class="ru-vocab-speaking-list">${speakingList(card)}</div></div></details>`:
+      `${flowTaskHtml(mode)}${notice&&!drillResult()?`<div class="ru-vocab-srs-notice">${esc(notice)}</div>`:''}`;
+    panel.innerHTML=`<header><div><span>LEARNING FLOW · THẺ ${index+1}</span><h4>${mode==='review'?esc(term):esc(FLOW_LABELS[mode])}</h4><p>${mode==='review'?esc(cardStatus(card)):'Khám phá → nhận diện → nghe → nói → nhớ lại → viết → ôn.'}${activeDue?' · đang ôn thẻ đến hạn':''}</p></div><div class="ru-vocab-srs-summary"><button type="button" data-ru-srs-open-due><b>${due.length}</b><small>đến hạn</small></button><span><b>${scheduled.length}</b><small>đã hẹn</small></span><span><b>${Object.keys(state.sentences).length}</b><small>câu đã lưu</small></span></div></header>${flowNavHtml(mode)}${reviewPanel}`;
   }
   function routeWithVocabIndex(target){const node=target.closest?.('[data-route]');if(!node)return null;try{const r=JSON.parse(node.dataset.route||'{}');return r?.view==='vocab'&&r.vocabIndex!==undefined?r:null}catch(_){return null}}
   function shouldAbandon(target){
@@ -153,8 +233,17 @@
   }
   document.addEventListener('click',event=>{
     const target=event.target;
-    const indexed=routeWithVocabIndex(target);if(indexed){event.preventDefault();event.stopImmediatePropagation();openIndex(Number(indexed.vocabIndex)||0,false);return;}
-    const rateBtn=target.closest?.('[data-ru-srs-rate]');if(rateBtn){event.preventDefault();rate(rateBtn.dataset.ruSrsRate);return;}
+    const cardMove=target.closest?.('[data-vocab],[data-act="next-vocab"],[data-act="prev-vocab"]');
+    if(cardMove){state.flowMode='discover';state.drill={};try{localStorage.setItem(STORAGE_KEY,JSON.stringify({...state,updatedAt:now()}))}catch(_){}}
+        const indexed=routeWithVocabIndex(target);if(indexed){event.preventDefault();event.stopImmediatePropagation();openIndex(Number(indexed.vocabIndex)||0,false);return;}
+    const modeBtn=target.closest?.('[data-ru-vocab-mode]');if(modeBtn){event.preventDefault();setFlowMode(modeBtn.dataset.ruVocabMode);return;}
+    const choice=target.closest?.('[data-ru-vocab-choice]');if(choice){event.preventDefault();checkChoice(choice.dataset.ruVocabChoice);return;}
+    if(target.closest?.('[data-ru-vocab-play]')){event.preventDefault();playCoreVocab();return;}
+    if(target.closest?.('[data-ru-vocab-flip]')){event.preventDefault();flipCoreVocab();return;}
+    if(target.closest?.('[data-ru-vocab-spoken]')){event.preventDefault();setDrillResult(termNow(),true);return;}
+    if(target.closest?.('[data-ru-vocab-check]')){event.preventDefault();checkTyped();return;}
+    if(target.closest?.('[data-ru-vocab-next]')){event.preventDefault();nextFlow();return;}
+        const rateBtn=target.closest?.('[data-ru-srs-rate]');if(rateBtn){event.preventDefault();rate(rateBtn.dataset.ruSrsRate);return;}
     if(target.closest?.('[data-ru-srs-open-due]')){event.preventDefault();openNextDue();return;}
     if(target.closest?.('[data-ru-srs-mine-source]')){event.preventDefault();mineSource();return;}
     if(target.closest?.('[data-ru-srs-mine-user]')){event.preventDefault();mineUser();return;}
@@ -163,9 +252,9 @@
     const sp=target.closest?.('[data-ru-srs-speaking]');if(sp){event.preventDefault();openSpeaking(sp.dataset.ruSrsSpeaking);return;}
     if(shouldAbandon(target))abandonActiveDue();
   },true);
-  document.addEventListener('keydown',event=>{if(event.key==='Enter'&&event.target?.id==='ruVocabMineInput'){event.preventDefault();mineUser();}},true);
+  document.addEventListener('keydown',event=>{if(event.key!=='Enter')return;if(event.target?.id==='ruVocabMineInput'){event.preventDefault();mineUser();return;}if(event.target?.id==='ruVocabFlowInput'){event.preventDefault();checkTyped();}},true);
   document.addEventListener('DOMContentLoaded',()=>{
     const view=document.getElementById('view');if(view)new MutationObserver(scheduleRender).observe(view,{childList:true,subtree:true});scheduleRender();
   });
-  window.RussianVocabSrs={schema:SCHEMA,get:()=>JSON.parse(JSON.stringify(state)),dueCards,scheduledCards,rate,openIndex,mineSource,findSpeakingLinks,gaps:[...GAPS]};
+  window.RussianVocabSrs={schema:SCHEMA,get:()=>JSON.parse(JSON.stringify(state)),dueCards,scheduledCards,rate,openIndex,mineSource,findSpeakingLinks,setFlowMode,flow:[...FLOW],gaps:[...GAPS]};
 })();
