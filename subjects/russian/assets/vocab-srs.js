@@ -106,7 +106,7 @@
     if(mode==='write')return `<div class="ru-vocab-flow-task"><div><b>Nghe → viết</b><p>Nghe lại, sau đó viết/gõ chính xác bằng Cyrillic. Trọng âm hiển thị để học phát âm, không bắt buộc nhập dấu trọng âm.</p></div><div class="ru-vocab-flow-actions"><button type="button" class="btn green" data-ru-vocab-play>🔊 Nghe</button></div><div class="ru-vocab-flow-input"><input id="ruVocabFlowInput" class="input" lang="ru" autocomplete="off" placeholder="Напишите слово…"><button type="button" class="btn primary" data-ru-vocab-check>Kiểm tra</button></div>${resultHtml()}<div class="ru-vocab-flow-actions">${drillResult()==='correct'?next:''}</div></div>`;
     return '';
   }
-  function flowNavHtml(mode){return `<nav class="ru-vocab-flow-nav" aria-label="Quy trình học từ vựng">${FLOW.map((x,i)=>`<button type="button" data-ru-vocab-mode="${x}" class="${mode===x?'active':''}"><span>${i+1}</span><b>${FLOW_LABELS[x]}</b></button>`).join('')}</nav>`;}
+  function flowNavHtml(mode){return `<nav class="ru-vocab-flow-nav" aria-label="Quy trình học từ vựng">${FLOW.map((x,i)=>`<button type="button" data-ru-vocab-mode="${x}" aria-current="${mode===x?'step':'false'}" class="${mode===x?'active':''}"><span>${i+1}</span><b>${FLOW_LABELS[x]}</b></button>`).join('')}</nav>`;}
 
   function markLearningEvidence(kind){
     const old=window.RussianLearningFlow?.get?.();
