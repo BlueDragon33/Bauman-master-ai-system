@@ -176,8 +176,6 @@ for (const resource of [
   'subjects/russian/assets/core.js',
   'subjects/russian/assets/handwriting-glyph-authority.js',
   'subjects/russian/assets/handwriting-recognition.js',
-  'subjects/russian/assets/russian-reference-ui.js',
-  'subjects/russian/assets/russian-reference-ui-polish.css',
   'subjects/russian/assets/russian-future-ui.css',
   'subjects/russian/assets/russian-future-ui.js',
   'subjects/russian/assets/russian-optional-data-loader.js',

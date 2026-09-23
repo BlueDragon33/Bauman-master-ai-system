@@ -12,7 +12,7 @@ const stateCss=read('assets/learning-state.css');
 
 for(const ref of ['assets/learning-state.css','assets/learning-flow.css','assets/learning-state.js','assets/learning-flow.js'])must(index.includes(ref),`Missing learning runtime asset: ${ref}`);
 must(index.indexOf('assets/learning-state.js')<index.indexOf('assets/learning-flow.js'),'Learning flow must load after canonical learning state');
-must(index.indexOf('assets/learning-flow.js')<index.indexOf('assets/russian-reference-ui.js'),'Learning flow must load before reference UI enhancer');
+must(index.indexOf('assets/learning-flow.js')<index.indexOf('assets/russian-future-ui.js'),'Learning flow must load before canonical Future UI enhancer');
 new Function(js);
 new Function(state);
 

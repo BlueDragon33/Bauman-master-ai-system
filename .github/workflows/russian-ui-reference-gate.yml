@@ -93,7 +93,7 @@ jobs:
           node --check subjects/russian/assets/subject-adapter.js
           node --check subjects/russian/assets/ui-cleanup-contract.js
           node --check subjects/russian/assets/content-contract.js
-          node --check subjects/russian/assets/russian-reference-ui.js
+          node --check subjects/russian/assets/russian-future-ui.js
           node --check subjects/russian/assets/learning-state.js
           node --check subjects/russian/assets/learning-flow.js
           node --check subjects/russian/assets/handwriting-glyph-authority.js
@@ -161,4 +161,7 @@ jobs:
           test -f subjects/russian/sw.js
           test ! -e subjects/russian/assets/core.css.bak
           test ! -e subjects/russian/assets/core.js.bak
+          test ! -e subjects/russian/assets/russian-reference-ui.css
+          test ! -e subjects/russian/assets/russian-reference-ui-polish.css
+          test ! -e subjects/russian/assets/russian-reference-ui.js
           echo "Russian learning datasets and additive learning runtimes remain present; legacy runtime backups are absent."

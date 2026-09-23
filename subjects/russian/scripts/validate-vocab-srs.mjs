@@ -31,12 +31,38 @@ for(const token of [
   "abandoned",
   "RussianLearningState?.addReview",
   "RussianLearningFlow?.touch",
-  "window.RussianVocabSrs"
+  "window.RussianVocabSrs",
+  "const FLOW=['discover','recognize','listen','speak','recall','write','review']",
+  "Nhìn hình → chọn từ",
+  "Nghe → chọn từ",
+  "Hình → nhớ lại từ",
+  "Nghe → viết",
+  "exposedAt",
+  "Thẻ này chưa được học",
+  "data-ru-vocab-mode",
+  "data-ru-vocab-check",
+  "data-ru-vocab-play-slow"
 ]) must(js.includes(token),`Missing vocab SRS contract token: ${token}`);
 
 must(!/status\s*:\s*['\"]mastered['\"]/.test(js),'Vocab SRS must never synthesize mastered state');
 must(!/status\s*:\s*['\"]completed['\"]/.test(js),'Vocab SRS must never synthesize completed state');
 must(!js.includes('Math.random'),'Vocab SRS must not generate random mastery/review evidence');
+must(!js.includes('new MutationObserver'),'Vocab learning flow must use the canonical UI observer, not create another observer');
+must(js.includes('refresh:scheduleRender'),'Vocab learning flow must expose an idempotent refresh hook');
+must(js.includes('if(panel.innerHTML!==html)panel.innerHTML=html'),'Vocab refresh must not rewrite an already-stable panel');
+must(js.includes("speak-vocab-slow"),'Vocabulary flow must reuse the canonical slow-audio action');
+must(js.includes("vocab-id:"),'Vocab SRS must use a stable source-id identity');
+must(js.includes('legacyKeyFor'),'Vocab SRS must preserve a non-destructive legacy-key migration path');
+must(js.includes('migratedTo'),'Legacy SRS cards must be retained and marked when safely migrated');
+must(js.includes('sourceIndexNow'),'Sentence Mining must resolve the canonical source index independently of filtered position');
+must(js.includes('stageIndexNow'),'Review routing must retain a stage-relative position independently of filtered position');
+must(js.includes('loadVocabItem(meta.sourceIndex)'),'Sentence Mining must read the exact canonical source item');
+must(js.includes('function statusForItem'),'Vocabulary status must derive from real SRS card state');
+must(js.includes('function filterItems'),'Vocabulary library status filtering must reuse SRS state');
+must(js.includes("status==='learned'"),'Vocabulary library must expose the learned status without a second state store');
+must(js.includes('aria-current="${mode===x?\'step\':\'false\'}"'),'Vocabulary learning steps must expose aria-current');
+must(!js.includes('meaning:clean(n.meaningVi||n.english||n.meaningRu)'),'Sentence Mining must not restore Vietnamese/English glosses into the learning surface');
+must(js.includes("meaning:clean(n.meaningRu||'')"),'Source sentence mining may retain Russian-only context');
 must(!js.includes('includes(tag)'),'Vocab speaking bridge must not infer links by tag matching');
 must(js.includes("lower(x)===term"),'Speaking bridge must use exact vocabulary seed matching');
 must(js.includes("lower(sentence)===lower(term)"),'Sentence mining must reject source examples that only repeat the term');
@@ -48,7 +74,7 @@ must(learningState.includes('function addReview(id,reason,route,label,dueAt)'),'
 must(learningState.includes('scheduledAt:now()'),'Canonical review queue must retain scheduling evidence');
 must(learningState.includes('Date.parse(dueAt)'),'Canonical review queue must validate scheduled due dates');
 
-for(const token of ['.ru-vocab-srs','.ru-vocab-rating','.ru-vocab-mining','.ru-vocab-speaking-bridge','@media (max-width:1080px)','@media (max-width:760px)','@media (max-width:480px)'])must(css.includes(token),`Missing vocab SRS CSS contract: ${token}`);
+for(const token of ['.vocab-library-toolbar','.vocab-library-controls','.ru-vocab-srs','.ru-vocab-rating','.ru-vocab-mining','.ru-vocab-speaking-bridge','.ru-vocab-flow-nav','.ru-vocab-choice-grid','data-vocab-flow="recognize"','data-vocab-flow="listen"','data-vocab-flow="recall"','data-vocab-flow="write"','@media (max-width:1080px)','@media (max-width:760px)','@media (max-width:480px)'])must(css.includes(token),`Missing vocab SRS CSS contract: ${token}`);
 must((css.match(/{/g)||[]).length===(css.match(/}/g)||[]).length,'Vocab SRS CSS brace imbalance');
 
 for(const token of ['exampleDistinct','vocabSeedExact','configuredReviewGaps','duplicateIds'])must(audit.includes(token),`Vocab SRS audit missing evidence: ${token}`);

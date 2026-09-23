@@ -9,8 +9,6 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="stylesheet" href="assets/core.css">
 <link rel="stylesheet" href="assets/russian.css">
-<link rel="stylesheet" href="assets/russian-reference-ui.css">
-<link rel="stylesheet" href="assets/russian-reference-ui-polish.css">
 <link rel="stylesheet" href="assets/russian-future-ui.css">
 <link rel="stylesheet" href="assets/learning-state.css">
 <link rel="stylesheet" href="assets/content-contract.css">
@@ -21,7 +19,7 @@
 <link rel="stylesheet" href="assets/capability-progression.css">
 <link rel="stylesheet" href="assets/runtime-optimizer.css">
 </head>
-<body class="ru-reference-ui">
+<body class="ru-reference-ui ru-future-ui">
 <div id="app" class="app ru-app-shell">
   <aside class="sidebar ru-sidebar">
     <div class="brand ru-brand"><div id="subjectLogo" class="logo">Я</div><div><h1 id="subjectTitle">Tiếng Nga</h1><p id="subjectSubtitle">Nghe • Nói • Đọc • Viết</p></div></div>
@@ -32,19 +30,14 @@
   </aside>
   <main class="main ru-main">
     <header class="topbar ru-topbar">
-      <div class="ru-global-search-wrap"><span class="ru-search-icon">⌕</span><input id="russianGlobalSearch" class="ru-global-search" type="search" autocomplete="off" placeholder="Tìm bài học, từ vựng, chủ đề..." aria-label="Tìm trong site Tiếng Nga"><kbd>⌘ K</kbd><div id="russianSearchHints" class="ru-search-hints hidden" role="listbox"></div></div>
+      <div class="ru-global-search-wrap"><span class="ru-search-icon">⌕</span><input id="russianGlobalSearch" class="ru-global-search" type="search" autocomplete="off" placeholder="Tìm bài học, từ vựng, chủ đề..." aria-label="Tìm trong site Tiếng Nga" role="combobox" aria-autocomplete="list" aria-controls="russianSearchHints" aria-expanded="false"><kbd>⌘ K</kbd><div id="russianSearchHints" class="ru-search-hints hidden" role="listbox"></div></div>
       <div class="ru-page-context"><span id="coreLabel" class="kicker">TIẾNG NGA · HỌC MỖI NGÀY</span><h2 id="pageTitle">Tổng quan</h2><p id="pageSub">Học tiếng Nga theo nhịp nghe • nói • đọc • viết.</p></div>
       <div class="top-actions ru-top-actions"><button id="themeBtn" class="btn soft" title="Đổi giao diện">☀</button><button id="aiBtn" class="btn primary" title="Mở AI Mentor">AI</button><span id="saveState" class="status">Đã đồng bộ</span></div>
     </header>
     <section id="view" class="view ru-view"></section>
   </main>
-  <aside id="russianRightRail" class="ru-right-rail" aria-label="Trợ lý và công cụ nhanh">
-    <section class="ru-rail-card ru-ai-rail-card"><header><div class="ru-rail-icon">♙</div><div><b>AI Trợ lý Tiếng Nga</b><small>Giải thích, hội thoại và luyện phản xạ.</small></div></header><div class="ru-ai-bubble"><span class="ru-ai-orb">AI</span><p><b>Привет!</b><br>Tôi có thể giúp giải thích hoặc luyện nội dung bạn đang học.</p></div><div class="ru-ai-quick"><button data-ai-quick="vocab">Giải thích từ/cụm đang học</button><button data-ai-quick="lesson">Giải thích ngữ pháp/bài hiện tại</button><button data-ai-quick="dialogue">Thực hành hội thoại với AI</button><button data-ai-quick="review">Gợi ý bài học phù hợp hôm nay</button></div><div class="ru-ai-input-row"><input id="ruRailAiPrompt" type="text" placeholder="Nhập câu hỏi của bạn..."><button id="ruRailAiSend" type="button" aria-label="Gửi câu hỏi">➤</button></div></section>
-    <section class="ru-rail-card ru-pronunciation-card"><header><div><b>🎙 Trọng âm & phát âm</b><small>Chữ viết · nghe · nhại · tự sửa</small></div></header><div class="ru-pronunciation-main"><span class="ru-mic-ring">◉</span><div><strong>Không đoán trọng âm</strong><small>Thẻ từ sẽ chỉ rõ dữ liệu nào là chữ Nga, phiên tự Latin và dữ liệu trọng âm thật.</small><i></i></div></div><button class="ru-rail-primary" data-route='{"view":"vocab"}'>Mở thẻ từ →</button><button class="ru-rail-primary" data-route='{"view":"dialogue"}'>Mở phòng luyện nói →</button></section>
-    <section class="ru-rail-card ru-rail-focus-card"><span>KỶ LUẬT HÔM NAY</span><b>Mỗi ngày nghe một ít, nói một ít, tiến gần hơn tới nước Nga.</b><button data-act="route-modal">Mở lịch trình hôm nay</button></section>
-  </aside>
 </div>
-<div id="modal" class="modal hidden"><div class="modal-card"><button class="modal-close" id="modalClose">×</button><div id="modalBody"></div></div></div>
+<div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Hộp thoại Tiếng Nga"><div class="modal-card" tabindex="-1"><button class="modal-close" id="modalClose" aria-label="Đóng hộp thoại">×</button><div id="modalBody"></div></div></div>
 <div id="toast" class="toast"></div>
 <script src="assets/subject-adapter.js"></script>
 <script src="assets/ui-cleanup-contract.js"></script>
@@ -72,7 +65,6 @@
 <script src="assets/capability-progression.js"></script>
 <script src="assets/ai-mentor-guard.js"></script>
 <script src="assets/runtime-optimizer.js"></script>
-<script src="assets/russian-reference-ui.js"></script>
 <script src="assets/russian-future-ui.js"></script>
 </body>
 </html>
