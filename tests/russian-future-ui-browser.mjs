@@ -280,14 +280,31 @@ try{
       await page.waitForFunction(key=>document.querySelector('.vocab-card-panel,.v1310-vocab-main')?.dataset.vocabKey===key,identity.key,{timeout:10000});
       const library=page.locator('.vocab-library-toolbar');
       await library.waitFor({state:'visible',timeout:10000});
+      const libraryLayout=await page.evaluate(()=>{
+        const desk=document.querySelector('.vocab-desk')?.getBoundingClientRect();
+        const toolbar=document.querySelector('.vocab-library-toolbar')?.getBoundingClientRect();
+        return {deskBottom:desk?.bottom||0,toolbarTop:toolbar?.top||0,flowSteps:document.querySelectorAll('.ru-vocab-flow-nav [data-ru-vocab-mode]').length};
+      });
+      assert.ok(libraryLayout.toolbarTop>=libraryLayout.deskBottom-2,'Vocabulary library/filter controls must sit below the main learning surface');
+      assert.equal(libraryLayout.flowSteps,7,'Vocabulary learning flow must expose exactly seven canonical evidence steps');
       const topicLabels=await library.locator('[data-input="vocabTopic"] option').allTextContents();
       assert.ok(topicLabels.length>1,'Vocabulary library must expose curated topic choices for the current stage');
       assert.equal(topicLabels.some(x=>/graduate_path|microtask|category_/i.test(x)),false,'Vocabulary library must not expose raw metadata tags');
+      const statusLabels=await library.locator('[data-input="vocabStatus"] option').allTextContents();
+      for(const label of ['Đang học','Cần ôn','Đã học'])assert.ok(statusLabels.includes(label),'Vocabulary library missing learner-facing filter: '+label);
+      const beforeRating=await page.evaluate(key=>window.RussianVocabSrs?.get?.().cards?.['vocab-id:'+key]||null,identity.key);
+      assert.ok(beforeRating?.exposedAt,'Opening the vocabulary card must record exposure evidence');
+      assert.equal(Number(beforeRating?.reviewCount||0),0,'Opening the vocabulary card must not create learned/review evidence');
+      await library.locator('[data-input="vocabStatus"]').selectOption('learning');
+      await page.waitForFunction(()=>document.querySelector('[data-input="vocabStatus"]')?.value==='learning'&&Boolean(document.querySelector('.vocab-card-panel,.v1310-vocab-main')),null,{timeout:10000});
+      assert.equal(await page.evaluate(()=>document.querySelector('.vocab-card-panel,.v1310-vocab-main')?.dataset.vocabKey||''),identity.key,'In-progress filter must retain an exposed but unreviewed card');
+      await page.evaluate(()=>window.RussianVocabSrs?.rate?.('recalled'));
+      await page.waitForFunction(key=>Number(window.RussianVocabSrs?.get?.().cards?.['vocab-id:'+key]?.reviewCount||0)>0,identity.key,{timeout:10000});
       await library.locator('[data-input="vocabStatus"]').selectOption('learned');
       await page.waitForFunction(()=>document.querySelector('[data-input="vocabStatus"]')?.value==='learned'&&Boolean(document.querySelector('.vocab-card-panel,.v1310-vocab-main')),null,{timeout:10000});
       const learnedState=await page.evaluate(()=>({rows:document.querySelectorAll('.vocab-mini-row').length,key:document.querySelector('.vocab-card-panel,.v1310-vocab-main')?.dataset.vocabKey||''}));
-      assert.ok(learnedState.rows>=1,'SRS learned filter must keep exposed vocabulary visible');
-      assert.equal(learnedState.key,identity.key,'SRS learned filter must preserve the exposed card identity');
+      assert.ok(learnedState.rows>=1,'SRS learned filter must retain vocabulary only after real recalled-review evidence');
+      assert.equal(learnedState.key,identity.key,'SRS learned filter must preserve the reviewed card identity');
       await page.locator('[data-input="vocabStatus"]').selectOption('all');
       await page.waitForFunction(()=>document.querySelector('[data-input="vocabStatus"]')?.value==='all',null,{timeout:10000});
     }
