@@ -100,10 +100,6 @@
     if((document.body?.dataset?.ruContentContract||'')!=='v1')document.body.dataset.ruContentContract='v1';
     enhanceVocabCard();
   }
-  document.addEventListener('DOMContentLoaded',()=>{
-    enhance();
-    const view=document.getElementById('view');
-    if(view)new MutationObserver(()=>enhance()).observe(view,{childList:true,subtree:true});
-  });
-  window.RussianContentContract={normalizeVocab,stressMessage,schema:'RUSSIAN_CONTENT_CONTRACT_V1'};
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',enhance,{once:true});else enhance();
+  window.RussianContentContract={normalizeVocab,stressMessage,enhance,schema:'RUSSIAN_CONTENT_CONTRACT_V1'};
 })();
