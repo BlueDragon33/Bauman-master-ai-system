@@ -86,6 +86,7 @@ try{
   for(const label of ['HỌC TIẾP','CẦN ÔN','Kế hoạch hôm nay','5 kỹ năng chính','Video','Nghe & Nói','Luyện chữ','Từ vựng','Ngữ pháp','Ôn tập trọng điểm']){
     assert.ok(dashboardText.includes(label),'Overview summary missing '+label);
   }
+  assert.equal(await page.locator('#ruLessonFlow').count(),0,'Overview must not duplicate the lesson-detail stepper');
 
   await page.locator('#aiBtn').focus();
   await page.locator('#aiBtn').click();
@@ -129,6 +130,24 @@ try{
     assert.equal(visible,true,'Future intro missing for '+view);
     const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
     assert.ok(overflow<=2,'Horizontal overflow in '+view+': '+overflow);
+    if(view==='learning'){
+      await page.waitForSelector('#ruLessonFlow',{state:'visible',timeout:10000});
+    }else{
+      await page.waitForFunction(()=>!document.getElementById('ruLessonFlow'),null,{timeout:10000});
+    }
+    const lessonFlow=await page.evaluate(()=>{
+      const el=document.getElementById('ruLessonFlow');
+      if(!el)return null;
+      const rect=el.getBoundingClientRect();
+      return {height:rect.height,steps:el.querySelectorAll('[data-ru-flow-step]').length,hasFooter:Boolean(el.querySelector('.ru-flow-foot'))};
+    });
+    if(view==='learning'){
+      assert.ok(lessonFlow&&lessonFlow.height>=56&&lessonFlow.height<=80,'Lesson-detail stepper must stay within the 56–80px compact target');
+      assert.equal(lessonFlow.steps,7,'Compact lesson stepper must preserve all existing evidence/navigation steps');
+      assert.equal(lessonFlow.hasFooter,false,'Lesson-detail stepper must not become a dashboard-like footer flow');
+    }else{
+      assert.equal(lessonFlow,null,'Specialized tab '+view+' must put its own learning content first instead of prepending Learning Flow');
+    }
     if(view==='media'){
       await page.waitForSelector('.step54-listening-plan',{state:'visible',timeout:10000});
       const mediaFlow=await page.evaluate(()=>({

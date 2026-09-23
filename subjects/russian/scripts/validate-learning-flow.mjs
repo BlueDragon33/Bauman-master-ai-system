@@ -32,10 +32,18 @@ must(state.includes("resolveReview(key,'corrected'"),'Correct review result must
 must(state.includes('const resumePosition=isResume?state.resume?.position:null'),'Resume navigation must snapshot saved position before route state changes');
 must(state.includes('restoreResumePosition(resumePosition)'),'Resume navigation must restore the saved position snapshot');
 
+must(js.includes("if((core.view||'overview')!=='learning')"),'Large lesson flow must be scoped to the canonical lesson view only');
+must(!js.includes("['overview','storage','mindmap'].includes(core.view||'overview')"),'Broad cross-tab learning-flow renderer must not return');
+must(!js.includes('ru-flow-foot'),'Lesson flow must not restore the legacy dashboard-like footer CTA');
+must(js.includes('aria-current=')&&js.includes('aria-label="Tiến trình bài'),'Compact lesson stepper must expose accessible current-step/navigation semantics');
+const compactHeight=css.match(/--ru-flow-compact-height:(\d+)px/);
+must(compactHeight&&Number(compactHeight[1])>=56&&Number(compactHeight[1])<=80,'Lesson stepper target height must remain within 56–80px');
+must(css.includes('max-height:80px')&&css.includes('box-sizing:border-box'),'Compact lesson stepper must remain physically bounded to 80px');
+
 for(const token of ['.ru-lesson-flow','.ru-flow-steps','.ru-flow-step.review','@media (max-width:760px)','@media (max-width:430px)','prefers-reduced-motion'])must(css.includes(token),`Learning flow CSS missing: ${token}`);
 for(const token of ['.ru-review-queue-preview','.ru-review-row','.ru-review-row-actions','.ru-review-empty'])must(stateCss.includes(token),`Learning state CSS missing: ${token}`);
 must((css.match(/{/g)||[]).length===(css.match(/}/g)||[]).length,'Learning flow CSS brace imbalance');
 must((stateCss.match(/{/g)||[]).length===(stateCss.match(/}/g)||[]).length,'Learning state CSS brace imbalance');
 
 console.log('RUSSIAN_LEARNING_FLOW_RUNTIME_GATE=PASS');
-console.log('Checks: V2 resume position, review lifecycle, evidence-only progress, stage-support provenance, lesson-filtered review, responsive layout, no synthetic mastery.');
+console.log('Checks: V2 resume position, review lifecycle, evidence-only progress, lesson-only compact stepper (56–80px), responsive layout, no cross-tab flow duplication, no synthetic mastery.');
