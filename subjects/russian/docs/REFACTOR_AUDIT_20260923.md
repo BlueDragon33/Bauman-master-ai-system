@@ -6,8 +6,8 @@ Scope: `subjects/russian/`
 
 ## Status
 
-- PASS 1 — Source + UX audit: completed for the current Russian presentation/runtime surface; final browser/package regression remains required after each subsequent refactor commit.
-- PASS 2 — Design system consolidation: in progress.
+- PASS 1 — Source + UX audit: completed and browser/package-green at checkpoint `2abb7983aea58f8fda0353b347355ddf2fc681e6`.
+- PASS 2 — Design system consolidation: in progress; begin from the green checkpoint and remove redundant presentation inheritance in bounded slices.
 - Production publish: not authorized by this branch.
 
 ## PASS 1 findings
@@ -58,6 +58,28 @@ The browser acceptance contract was also corrected so it now:
 - exercises the real vocabulary audio control.
 
 No deleted legacy presentation asset was restored to make CI pass.
+
+## Green checkpoint before PASS 2
+
+Checkpoint: `2abb7983aea58f8fda0353b347355ddf2fc681e6`.
+
+All relevant gates passed together:
+
+- Foundation Domain Model Gate;
+- Windows checkout safety;
+- Russian Reference UI Gate;
+- Whole System Integration Gate, including direct and packaged Russian Future UI browser acceptance;
+- Bauman Cloudflare Preview CI;
+- Bauman Cloudflare Production Publish Gate CI.
+
+The browser sequence also established these architectural corrections:
+
+- primary **Nghe & Nói** uses the required/core `speaking.json` path via `learning/practice`;
+- advanced `dialogue` remains a preserved deep-link route and keeps its optional/lazy A-Z dataset boundary;
+- the 8,000-word vocabulary dataset stays deferred until Vocabulary is opened;
+- Future UI repeated upgrade remains DOM-idempotent after queued render work settles;
+- desktop uses the 220 px sidebar token, laptop widths through 1320 px use the 190 px compact token, and tablet/mobile keep the full-width navigation transition.
+
 
 ## Technical debt inventory
 
