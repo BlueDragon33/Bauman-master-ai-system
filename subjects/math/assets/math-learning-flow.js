@@ -6,6 +6,7 @@
   'use strict';
   const RELEASE='MATH_LESSON_PLAYER_V1';
   const STATE_KEY='bauman_math_learning_flow_v1';
+  const STATE_SCHEMA_VERSION=2;
   const NOTES_KEY='bauman_math_learning_notes_v1';
   const BOOKMARK_KEY='bauman_math_learning_bookmarks_v1';
   const ASSESSMENT_SOURCES={
@@ -32,8 +33,18 @@
 
   function jsonGet(key,fallback){try{return JSON.parse(localStorage.getItem(key)||'')||fallback}catch(_){return fallback}}
   function jsonSet(key,value){try{localStorage.setItem(key,JSON.stringify(value));return true}catch(_){return false}}
-  function allState(){return jsonGet(STATE_KEY,{})}
-  function saveState(value){return jsonSet(STATE_KEY,value)}
+  function normalizeStore(raw){
+    const out=raw&&typeof raw==='object'&&!Array.isArray(raw)?raw:{};
+    const meta=out._meta&&typeof out._meta==='object'&&!Array.isArray(out._meta)?out._meta:{};
+    return {...out,_meta:{
+      schemaVersion:STATE_SCHEMA_VERSION,
+      currentLessonId:String(meta.currentLessonId||''),
+      currentStepId:String(meta.currentStepId||''),
+      lastActivityAt:Number(meta.lastActivityAt||0)
+    }};
+  }
+  function allState(){return normalizeStore(jsonGet(STATE_KEY,{}))}
+  function saveState(value){return jsonSet(STATE_KEY,normalizeStore(value))}
   function notes(){return jsonGet(NOTES_KEY,{})}
   function saveNotes(value){jsonSet(NOTES_KEY,value)}
   function bookmarks(){return jsonGet(BOOKMARK_KEY,[])}
@@ -109,7 +120,8 @@
     const steps=stepsForRecord(rec);
     const visited=normalizeVisited(raw.visited,steps);
     const check=raw.check&&typeof raw.check==='object'?raw.check:{};
-    return {...raw,active:normalizeActive(raw.active,steps),visited,check,completedAt:Number(raw.completedAt||0),lastAt:Number(raw.lastAt||0)};
+    const questionResults=raw.questionResults&&typeof raw.questionResults==='object'?raw.questionResults:{};
+    return {...raw,active:normalizeActive(raw.active,steps),visited,check,questionResults,completedAt:Number(raw.completedAt||0),lastAt:Number(raw.lastAt||0)};
   }
   function splitCheckBody(body){
     const text=String(body||'').trim();
@@ -195,8 +207,11 @@
     const rec=recordById(id),steps=stepsForRecord(rec),all=allState(),current=lessonState(id,rec);
     const patchVisited=normalizeVisited(patch.visited||{},steps);
     const patchCheck=patch.check&&typeof patch.check==='object'?patch.check:{};
-    const next={...current,...patch,active:normalizeActive(patch.active||current.active,steps),visited:{...(current.visited||{}),...patchVisited},check:{...(current.check||{}),...patchCheck},lastAt:Date.now()};
+    const patchQuestions=patch.questionResults&&typeof patch.questionResults==='object'?patch.questionResults:{};
+    const now=Date.now();
+    const next={...current,...patch,active:normalizeActive(patch.active||current.active,steps),visited:{...(current.visited||{}),...patchVisited},check:{...(current.check||{}),...patchCheck},questionResults:{...(current.questionResults||{}),...patchQuestions},lastAt:now};
     all[id]=next;
+    all._meta={...(all._meta||{}),schemaVersion:STATE_SCHEMA_VERSION,currentLessonId:id,currentStepId:next.active,lastActivityAt:now};
     return saveState(all);
   }
 
@@ -223,9 +238,52 @@
       lastAt:Number(st.lastAt||0)
     };
   }
+  function resumePointer(){
+    const all=allState(),meta=all._meta||{};
+    let id=String(meta.currentLessonId||'');
+    if(!id||!recordById(id)){
+      const candidates=Object.entries(all)
+        .filter(([key,value])=>key!=='_meta'&&recordById(key)&&value&&typeof value==='object')
+        .sort((a,b)=>Number(b[1]?.lastAt||0)-Number(a[1]?.lastAt||0));
+      id=candidates[0]?.[0]||'';
+    }
+    if(!id)return null;
+    const rec=recordById(id),st=lessonState(id,rec);
+    return{lessonId:id,stepId:st.active||String(meta.currentStepId||''),chapterId:rec?.chapterId||null,stageId:rec?.sourceAnchors?.stageId||null,lastActivityAt:Number(st.lastAt||meta.lastActivityAt||0)};
+  }
+  function reviewQueue(id){
+    const rec=recordById(id),summary=checkSummary(id,rec);
+    return summary.items.filter(x=>x.state==='review').map(x=>({id:x.id,title:x.title,prompt:x.prompt,reviewStepId:x.reviewStepId||'selfcheck',learningOutcomeRefs:x.learningOutcomeRefs||[]}));
+  }
+  function resumeSnapshot(){
+    const ptr=resumePointer();
+    if(!ptr)return null;
+    const rec=recordById(ptr.lessonId),base=lessonSnapshot(ptr.lessonId);
+    return{...base,...ptr,lessonTitle:rec?.title||rec?.lessonTitle||ptr.lessonId,reviewQueue:reviewQueue(ptr.lessonId)};
+  }
   function snapshot(){
-    const cur=currentLesson(),base=lessonSnapshot(cur.id),rec=currentRecord();
-    return {...base,lessonTitle:cur.title,chapterId:rec?.chapterId||null};
+    const cur=currentLesson(),id=cur.id||resumePointer()?.lessonId||'',rec=recordById(id),base=lessonSnapshot(id);
+    const st=lessonState(id,rec);
+    return {...base,lessonTitle:cur.id?cur.title:(rec?.title||rec?.lessonTitle||'Chưa chọn bài học'),chapterId:rec?.chapterId||null,questionResults:st.questionResults||{},reviewQueue:reviewQueue(id)};
+  }
+  function resume(){
+    const ptr=resumePointer();if(!ptr)return false;
+    const rec=recordById(ptr.lessonId),st=global.__BAUMAN_CORE_API?.state||global.__MATH_STATE;
+    if(!rec||!st)return false;
+    st.view='learning';st.learnTab='theory';st.e129LessonId=ptr.lessonId;
+    if(ptr.chapterId)st.e129ChapterId=ptr.chapterId;
+    if(ptr.stageId){st.stage=ptr.stageId;st.e129StageId=ptr.stageId;}
+    if(st.e169Path&&typeof st.e169Path==='object'){st.e169Path.activityId='theory';st.e169Path.lessonId=ptr.lessonId;}
+    if(st.e186Path&&typeof st.e186Path==='object'){st.e186Path.activityId='theory';st.e186Path.lessonId=ptr.lessonId;}
+    try{global.__BAUMAN_CORE_API?.save?.()}catch(_){}
+    try{global.BAUMAN_MATH_THEORY_E129?.render?.()}catch(_){}
+    setTimeout(()=>{
+      global.BAUMAN_MATH_READER_ROLE_MAP?.map?.();
+      refresh();
+      if(ptr.stepId)activate(ptr.stepId);
+      $('[data-current-lesson]')?.scrollIntoView({behavior:'smooth',block:'start'});
+    },220);
+    return true;
   }
   function chapterSnapshot(lessonIds){
     const ids=Array.isArray(lessonIds)?lessonIds.filter(Boolean):[];
@@ -477,6 +535,14 @@
       }
       if(e.target.closest('[data-e129-chapter],[data-e129-lesson],[data-e129-stage],[data-e169-pick-activity],[data-e129-back-theory],[data-e129-refresh]'))schedule(220);
     },true);
+    document.addEventListener('bauman:math:exercise-result',e=>{
+      const d=e.detail||{},id=String(d.lessonId||'');
+      if(!id||!recordById(id)||!d.exerciseId)return;
+      const saved=writeLessonState(id,{questionResults:{[String(d.exerciseId)]:{
+        exerciseId:String(d.exerciseId),chapterId:d.chapterId||null,correct:!!d.correct,answer:String(d.answer??''),reviewStepId:String(d.reviewStepId||''),at:Number(d.at||Date.now())
+      }}});
+      if(!saved)toast('Không lưu được kết quả bài tập. Hệ thống sẽ không giả lập tiến độ câu hỏi.');
+    });
     document.addEventListener('keydown',e=>{
       if(e.target&&/input|textarea|select/i.test(e.target.tagName))return;
       const cur=currentLesson(),steps=stepsForRecord(currentRecord()),st=lessonState(cur.id),idx=Math.max(0,steps.findIndex(x=>x.id===normalizeActive(st.active,steps)));
@@ -510,6 +576,9 @@
       sourceDrivenSteps:steps.map(x=>x.id),
       stepCount:steps.length,
       duplicateProgressEngine:false,
+      stateSchemaVersion:STATE_SCHEMA_VERSION,
+      resumePointer:resumePointer(),
+      questionResults:Object.keys(lessonState(cur.id,rec).questionResults||{}).length,
       assessmentSource:cur.id&&ASSESSMENT_SOURCES[cur.id]?ASSESSMENT_SOURCES[cur.id]:null,
       assessmentLoaded:!!assessmentCache[cur.id]?.loaded,
       notesLocalOnly:true,
@@ -521,7 +590,7 @@
     if(!document.body||document.body.dataset.mathLearningFlow==='1')return;
     document.body.dataset.mathLearningFlow='1';bind();refresh();
     [350,850,1600,2800].forEach(ms=>setTimeout(refresh,ms));
-    global.BAUMAN_MATH_LEARNING_FLOW={release:RELEASE,refresh,activate,toggleBookmark,toggleNotes,openContextLab,openLessonCheck,completeLesson,snapshot,lessonSnapshot,chapterSnapshot,completionState,checkSummary,selfCheck};
+    global.BAUMAN_MATH_LEARNING_FLOW={release:RELEASE,refresh,activate,toggleBookmark,toggleNotes,openContextLab,openLessonCheck,completeLesson,resume,resumePointer,resumeSnapshot,reviewQueue,snapshot,lessonSnapshot,chapterSnapshot,completionState,checkSummary,selfCheck};
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })(window);
