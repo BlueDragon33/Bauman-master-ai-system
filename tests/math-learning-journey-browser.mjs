@@ -27,7 +27,13 @@ try{
   page.on('requestfailed',r=>report.failedRequests.push(`${r.method()} ${r.url()} ${r.failure()?.errorText||''}`));
   page.on('response',r=>{if(r.status()>=400)report.httpErrors.push(`${r.status()} ${r.url()}`)});
 
-  await page.addInitScript(key=>localStorage.removeItem(key),STATE_KEY);
+  await page.addInitScript(key=>{
+    const once='__bauman_math_e2e_state_cleared__';
+    if(!sessionStorage.getItem(once)){
+      localStorage.removeItem(key);
+      sessionStorage.setItem(once,'1');
+    }
+  },STATE_KEY);
   const url=`${BASE}subjects/math/index.html?host=main&hostOrigin=${encodeURIComponent(new URL(BASE).origin)}&subjectId=math&taskId=learner-journey-e2e&stage=prepare`;
   await page.goto(url,{waitUntil:'load',timeout:30000});
   await page.waitForFunction(()=>window.BAUMAN_MATH_NAVIGATION&&window.BAUMAN_MATH_LEARNING_FLOW&&window.BAUMAN_MATH_DASHBOARD_V2&&window.BAUMAN_MATH_E186_LESSON_FIRST,null,{timeout:30000});
