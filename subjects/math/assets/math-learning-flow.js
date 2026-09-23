@@ -159,7 +159,29 @@
       lastAt:Number(st.lastAt||0)
     };
   }
+  function chapterSnapshot(lessonIds){
+    const ids=Array.isArray(lessonIds)?lessonIds.filter(Boolean):[];
+    if(!ids.length) return {lessonCount:0,startedLessons:0,visitedSteps:0,totalSteps:0,percent:0,status:'empty'};
+    const all=allState();
+    let startedLessons=0,visitedSteps=0;
+    ids.forEach(id=>{
+      const st=all[id];
+      if(!st) return;
+      const count=STEPS.filter(x=>st.visited?.[x.id]).length;
+      if(count>0) startedLessons++;
+      visitedSteps+=count;
+    });
+    const totalSteps=ids.length*STEPS.length;
+    return {
+      lessonCount:ids.length,
+      startedLessons,
+      visitedSteps,
+      totalSteps,
+      percent:totalSteps?Math.round(visitedSteps/totalSteps*100):0,
+      status:startedLessons>0?'started':'not_started'
+    };
+  }
   function selfCheck(){const cur=currentLesson();return{release:RELEASE,ready:!!$('#mathLearningFlow'),active:document.body.classList.contains('math-learning-flow-active'),lessonId:cur.id||null,steps:STEPS.length,recommendedLabMode:suggestLabMode(),notesLocalOnly:true,bookmarksLocalOnly:true,academicWrites:false,mutationObserver:false,routeEngineReplacement:false}}
-  function init(){if(!document.body||document.body.dataset.mathLearningFlow==='1')return;document.body.dataset.mathLearningFlow='1';bind();refresh();[350,850,1600,2800].forEach(ms=>setTimeout(refresh,ms));global.BAUMAN_MATH_LEARNING_FLOW={release:RELEASE,refresh,activate,toggleBookmark,toggleNotes,openContextLab,snapshot,selfCheck};}
+  function init(){if(!document.body||document.body.dataset.mathLearningFlow==='1')return;document.body.dataset.mathLearningFlow='1';bind();refresh();[350,850,1600,2800].forEach(ms=>setTimeout(refresh,ms));global.BAUMAN_MATH_LEARNING_FLOW={release:RELEASE,refresh,activate,toggleBookmark,toggleNotes,openContextLab,snapshot,chapterSnapshot,selfCheck};}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })(window);
