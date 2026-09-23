@@ -14,14 +14,14 @@
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
   const STEPS=[
-    {id:'understand',label:'Hiểu',sub:'Bản chất',roles:['problem_framing','deep_essence','notation','interpretation']},
-    {id:'visualize',label:'Trực quan',sub:'Quan sát',roles:['simulation','counter_intuition']},
-    {id:'example',label:'Ví dụ',sub:'Từng bước',roles:['mini_case','worked_example','example','derivation']},
+    {id:'understand',label:'Hiểu',sub:'Bản chất',roles:['problem_framing','deep_essence','notation','interpretation','compatibility_gate','matrix_semantics','convention_translation']},
+    {id:'visualize',label:'Trực quan',sub:'Quan sát',roles:['simulation','counter_intuition','canonical_assembly','slicing_metadata','centering']},
+    {id:'example',label:'Ví dụ',sub:'Từng bước',roles:['mini_case','worked_example','example','derivation','locked_case','api_trap','api_assembly']},
     {id:'formula',label:'Công thức',sub:'Điều kiện dùng',roles:['core_formula','assumption_gate','notation'],kind:'formula'},
-    {id:'application',label:'Ứng dụng',sub:'Kỹ thuật',roles:['application','real_bridge']},
-    {id:'practice',label:'Luyện tập',sub:'Tự giải',roles:['practice']},
-    {id:'selfcheck',label:'Tự kiểm',sub:'Vấn đáp',roles:['professor_qa','retrieval']},
-    {id:'summary',label:'Tóm tắt',sub:'Chốt bài',roles:['takeaway','summary','bridge']}
+    {id:'application',label:'Ứng dụng',sub:'Kỹ thuật',roles:['application','real_bridge','linear_interface','deployment_preprocessing','feature_gram','observation_gram']},
+    {id:'practice',label:'Luyện tập',sub:'Tự giải',roles:['practice','troubleshooting','code_contract_audit']},
+    {id:'selfcheck',label:'Tự kiểm',sub:'Vấn đáp',roles:['professor_qa','retrieval','covariance_gate','rank_boundary','svd_pca_boundary']},
+    {id:'summary',label:'Tóm tắt',sub:'Chốt bài',roles:['takeaway','summary','bridge','mastery_close']}
   ];
   const LEGACY_STEP_MAP={theory:'understand',lab:'visualize',professor:'selfcheck',review:'summary',exam:'selfcheck'};
 
@@ -182,6 +182,7 @@
     const steps=stepsForRecord(rec),st=lessonState(cur.id,rec),active=normalizeActive(st.active,steps),visited=st.visited||{};
     const visitedCount=steps.filter(x=>visited[x.id]).length,pct=steps.length?Math.round(visitedCount/steps.length*100):0;
     const note=notes()[cur.id]||'',labMode=suggestLabMode(rec),objective=rec?.baumanFocus||rec?.programAnchorTitle||'Hiểu bài và kết nối với mục tiêu kỹ thuật.';
+    const sourceRoles=rolesForRecord(rec),hasFormula=steps.some(x=>x.id==='formula'),hasSimulation=sourceRoles.has('simulation');
     const activeIndex=Math.max(0,steps.findIndex(x=>x.id===active));
     host.innerHTML=`<section class="math-lf-shell">
       <header class="math-lf-head">
@@ -205,8 +206,8 @@
       <div class="math-lf-context">
         <div class="math-lf-context-left"><b>Bước ${activeIndex+1}/${steps.length}</b><span>${esc(steps[activeIndex]?.label||'Học')} · ${pct}% bước đã mở</span></div>
         <div class="math-lf-context-right">
-          <button class="math-lf-mini-btn" data-lf="formula">∑ Công thức</button>
-          <button class="math-lf-mini-btn" data-lf="lab">∿ Mô phỏng · ${esc(labMode)}</button>
+          ${hasFormula?'<button class="math-lf-mini-btn" data-lf="formula">∑ Công thức</button>':''}
+          ${hasSimulation?`<button class="math-lf-mini-btn" data-lf="lab">∿ Mô phỏng · ${esc(labMode)}</button>`:''}
           <button class="math-lf-mini-btn" data-lf="focus">⛶ Tập trung</button>
           <button class="math-lf-mini-btn" data-lf="command">⌘K Tài nguyên</button>
         </div>
@@ -233,7 +234,6 @@
     const persisted=writeLessonState(cur.id,{active:stepId,visited:{[stepId]:true}});
     if(!persisted){toast('Không lưu được tiến độ trên thiết bị. Trạng thái hoàn thành sẽ không được giả lập.');return;}
     render();
-    if(step.kind==='formula'){global.BAUMAN_MATH_NAVIGATION?.openFormulaFocus?.();return;}
     const hit=findSlideByRoles(step.roles||[],rec);
     if(!highlight(hit))toast(`Bước ${step.label} chưa có nội dung riêng trong bài này.`);
   }
