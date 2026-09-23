@@ -2009,52 +2009,52 @@ body:not(.ru-future-ui) .view{max-width:1720px!important;width:100%!important;ma
 
 /* ===== V12.85 R2 · compact sidebar + balanced workspace, no data touch ===== */
 html,body{overflow-x:hidden!important;}
-.app{
+body:not(.ru-future-ui) .app{
   grid-template-columns:286px minmax(0,1fr)!important;
   column-gap:0!important;
   width:100%!important;
   max-width:100vw!important;
 }
-.sidebar{
+body:not(.ru-future-ui) .sidebar{
   width:286px!important;
   padding:14px 12px!important;
   border-radius:0 20px 20px 0!important;
   box-shadow:10px 0 30px rgba(15,23,42,.12)!important;
 }
-.brand{
+body:not(.ru-future-ui) .brand{
   padding:11px 10px!important;
   gap:9px!important;
   border-radius:16px!important;
 }
-.brand h1{font-size:18px!important;line-height:1.05!important;letter-spacing:-.035em!important;}
-.brand p{font-size:10.5px!important;line-height:1.25!important;}
-.sidebar .nav{
+body:not(.ru-future-ui) .brand h1{font-size:18px!important;line-height:1.05!important;letter-spacing:-.035em!important;}
+body:not(.ru-future-ui) .brand p{font-size:10.5px!important;line-height:1.25!important;}
+body:not(.ru-future-ui) .sidebar .nav{
   gap:8px!important;
   margin-top:12px!important;
   padding-bottom:12px!important;
 }
-.sidebar .nav button{
+body:not(.ru-future-ui) .sidebar .nav button{
   min-height:46px!important;
   padding:10px 11px!important;
   border-radius:14px!important;
   font-size:15px!important;
   line-height:1.12!important;
 }
-.sidebar .nav button span{min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;}
-.sidebar .input{min-height:40px!important;border-radius:13px!important;font-size:12px!important;}
-.main{
+body:not(.ru-future-ui) .sidebar .nav button span{min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;}
+body:not(.ru-future-ui) .sidebar .input{min-height:40px!important;border-radius:13px!important;font-size:12px!important;}
+body:not(.ru-future-ui) .main{
   padding:14px 16px 24px!important;
   min-width:0!important;
   width:100%!important;
   overflow-x:hidden!important;
 }
-.view{
+body:not(.ru-future-ui) .view{
   width:100%!important;
   max-width:1680px!important;
   margin-inline:auto!important;
 }
-.topbar{margin-bottom:14px!important;border-radius:18px!important;padding:12px 14px!important;}
-.topbar h2{font-size:23px!important;}
+body:not(.ru-future-ui) .topbar{margin-bottom:14px!important;border-radius:18px!important;padding:12px 14px!important;}
+body:not(.ru-future-ui) .topbar h2{font-size:23px!important;}
 .grid.side{grid-template-columns:minmax(320px,360px) minmax(0,1fr)!important;}
 .split-page{grid-template-columns:360px minmax(0,1fr)!important;gap:14px!important;}
 .academic-layout{grid-template-columns:320px minmax(0,1fr)!important;gap:14px!important;}
@@ -6949,28 +6949,28 @@ body.theme-clean{
   --primary:#1d4ed8;--primary2:#0f766e;--activeLine:#2563eb;--themeGlow:rgba(37,99,235,.18);
   background:radial-gradient(circle at 14% -4%,rgba(147,197,253,.34),transparent 34%),radial-gradient(circle at 94% 0%,rgba(153,246,228,.26),transparent 28%),linear-gradient(135deg,#f8fbff 0%,#eef6ff 52%,#fbfdff 100%)!important;
 }
-body.theme-clean .sidebar,
-body.theme-warm .sidebar,
-body.theme-focus .sidebar{
+body.theme-clean:not(.ru-future-ui) .sidebar,
+body.theme-warm:not(.ru-future-ui) .sidebar,
+body.theme-focus:not(.ru-future-ui) .sidebar{
   background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(248,250,252,.92))!important;
   border-right:1px solid color-mix(in srgb,var(--line,#d9e4f2) 90%,transparent)!important;
   color:#0f172a!important;
   box-shadow:18px 0 50px rgba(15,23,42,.055)!important;
 }
-body.theme-clean .brand h1,body.theme-warm .brand h1,body.theme-focus .brand h1,
-body.theme-clean .nav button b,body.theme-warm .nav button b,body.theme-focus .nav button b{color:#0f172a!important;}
-body.theme-clean .brand p,body.theme-warm .brand p,body.theme-focus .brand p,
-body.theme-clean .select-label,body.theme-warm .select-label,body.theme-focus .select-label,
-body.theme-clean .nav button span,body.theme-warm .nav button span,body.theme-focus .nav button span{color:#64748b!important;}
-body.theme-clean .nav button,body.theme-warm .nav button,body.theme-focus .nav button{
+body.theme-clean:not(.ru-future-ui) .brand h1,body.theme-warm:not(.ru-future-ui) .brand h1,body.theme-focus:not(.ru-future-ui) .brand h1,
+body.theme-clean:not(.ru-future-ui) .nav button b,body.theme-warm:not(.ru-future-ui) .nav button b,body.theme-focus:not(.ru-future-ui) .nav button b{color:#0f172a!important;}
+body.theme-clean:not(.ru-future-ui) .brand p,body.theme-warm:not(.ru-future-ui) .brand p,body.theme-focus:not(.ru-future-ui) .brand p,
+body.theme-clean:not(.ru-future-ui) .select-label,body.theme-warm:not(.ru-future-ui) .select-label,body.theme-focus:not(.ru-future-ui) .select-label,
+body.theme-clean:not(.ru-future-ui) .nav button span,body.theme-warm:not(.ru-future-ui) .nav button span,body.theme-focus:not(.ru-future-ui) .nav button span{color:#64748b!important;}
+body.theme-clean:not(.ru-future-ui) .nav button,body.theme-warm:not(.ru-future-ui) .nav button,body.theme-focus:not(.ru-future-ui) .nav button{
   color:#0f172a!important;background:rgba(255,255,255,.70)!important;border:1px solid color-mix(in srgb,var(--line,#d9e4f2) 76%,transparent)!important;
 }
-body.theme-clean .nav button.active,body.theme-warm .nav button.active,body.theme-focus .nav button.active{
+body.theme-clean:not(.ru-future-ui) .nav button.active,body.theme-warm:not(.ru-future-ui) .nav button.active,body.theme-focus:not(.ru-future-ui) .nav button.active{
   background:linear-gradient(95deg,#2563eb,#0f766e)!important;color:#fff!important;border-color:transparent!important;box-shadow:0 12px 24px rgba(37,99,235,.18)!important;
 }
-body.theme-clean .nav button.active b,body.theme-clean .nav button.active span,
-body.theme-warm .nav button.active b,body.theme-warm .nav button.active span,
-body.theme-focus .nav button.active b,body.theme-focus .nav button.active span{color:#fff!important;}
+body.theme-clean:not(.ru-future-ui) .nav button.active b,body.theme-clean:not(.ru-future-ui) .nav button.active span,
+body.theme-warm:not(.ru-future-ui) .nav button.active b,body.theme-warm:not(.ru-future-ui) .nav button.active span,
+body.theme-focus:not(.ru-future-ui) .nav button.active b,body.theme-focus:not(.ru-future-ui) .nav button.active span{color:#fff!important;}
 #themeBtn.theme-light-button,#themeBtn{
   background:linear-gradient(135deg,#ffffff,#eef6ff)!important;
   color:#0f172a!important;
