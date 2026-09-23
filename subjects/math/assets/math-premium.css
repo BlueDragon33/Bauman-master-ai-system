@@ -2,22 +2,22 @@
  * Presentation-only layer. Loaded last so the accepted E129/Reader runtime remains authoritative.
  */
 :root{
-  --mp-bg:#020914;
-  --mp-bg2:#061426;
-  --mp-panel:rgba(7,20,38,.88);
-  --mp-panel-strong:#07162a;
-  --mp-panel-soft:rgba(11,29,51,.72);
-  --mp-line:rgba(107,172,230,.17);
-  --mp-line-strong:rgba(92,190,255,.32);
-  --mp-text:#edf7ff;
-  --mp-muted:#8da7c0;
-  --mp-blue:#26a8ff;
-  --mp-cyan:#44d8ff;
-  --mp-gold:#f2bd52;
-  --mp-gold2:#ffd77b;
-  --mp-green:#32d296;
-  --mp-shadow:0 24px 80px rgba(0,0,0,.36);
-  --mp-radius:18px;
+  --mp-bg:var(--math-bg-canvas);
+  --mp-bg2:var(--math-bg-ink);
+  --mp-panel:var(--math-surface);
+  --mp-panel-strong:var(--math-surface-strong);
+  --mp-panel-soft:var(--math-surface-soft);
+  --mp-line:var(--math-line);
+  --mp-line-strong:var(--math-line-strong);
+  --mp-text:var(--math-text);
+  --mp-muted:var(--math-muted);
+  --mp-blue:var(--math-primary);
+  --mp-cyan:var(--math-cyan);
+  --mp-gold:var(--math-warm);
+  --mp-gold2:var(--math-warm-strong);
+  --mp-green:var(--math-success);
+  --mp-shadow:var(--math-shadow-card);
+  --mp-radius:var(--math-radius-md);
 }
 
 html{background:var(--mp-bg);}
