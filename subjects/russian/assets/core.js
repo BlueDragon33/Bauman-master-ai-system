@@ -2429,7 +2429,7 @@ function renderVocab(){
   }
   const list=getVocab();
   if(!list.length){
-   return `<section class="panel vocab-empty learning-recovery-card"><span class="chip">🗂️ Từ vựng</span><h3>Chưa có thẻ từ vựng phù hợp</h3><p>Đổi giai đoạn hoặc xóa từ khóa tìm kiếm để xem lại dữ liệu.</p></section>`;
+   return `<section class="panel vocab-empty learning-recovery-card"><span class="chip">🗂️ Từ vựng</span><h3>Chưa có thẻ từ vựng phù hợp</h3><p>Không có kết quả trong bộ lọc hiện tại.</p><div class="recovery-actions"><button class="btn primary" data-act="vocab-clear-filter">Xóa tìm kiếm</button><button class="btn" data-view="overview">Về Tổng quan</button></div></section>`;
   }
   state.vocabIndex=Math.min(Math.max(0,Number(state.vocabIndex)||0),Math.max(0,list.length-1));
   const pageSize=VOCAB_PAGE_SIZE||20;
@@ -2446,7 +2446,7 @@ function renderVocab(){
   const example=info.example||'';
   const meaningNote=vocabMeaningNoteText(info);
   const application=vocabApplicationText(info);
-  const sideRows=rows.map((item,i)=>{const idx=pageStart+i; const vi=vocabInfo(item); const rowMeaning=vi.displayVisualLabel||vi.meaningRu||''; const rowEmoji=vi.emoji||'•'; return `<button class="vocab-mini-row v1310-vocab-row ${idx===state.vocabIndex?'active':''}" data-vocab="${idx}"><span>${String(idx+1).padStart(2,'0')}</span><div><b><i class="v1312-row-emoji">${esc(rowEmoji)}</i>${esc(clip(vi.term||'—',34))}</b><small>${esc(clip(rowMeaning,42))}</small></div></button>`}).join('');
+  const sideRows=rows.map((item,i)=>{const idx=pageStart+i; const vi=vocabInfo(item); const rowMeaning=vi.displayVisualLabel||vi.meaningRu||''; const rowEmoji=vi.emoji||'•'; return `<button class="vocab-mini-row v1310-vocab-row ${idx===state.vocabIndex?'active':''}" data-vocab="${idx}" data-vocab-term="${esc(vi.term||'')}"><span>${String(idx+1).padStart(2,'0')}</span><div><b><i class="v1312-row-emoji">${esc(rowEmoji)}</i>${esc(clip(vi.term||'—',34))}</b><small>${esc(clip(rowMeaning,42))}</small></div></button>`}).join('');
   const visual=vocabVisualHtml(info,false);
   const visualBack=vocabVisualHtml(info,true);
   const dialogueExample=vocabDialogueExampleHtml(info);
@@ -2458,7 +2458,7 @@ function renderVocab(){
        <div class="vocab-list-head v1310-vocab-list-head"><span class="chip">20 thẻ/lượt</span><b>${pageStart+1}-${Math.min(list.length,pageStart+rows.length)}/${list.length}</b></div>
        <div class="vocab-list-scroll clean-scroll v1310-vocab-scroll">${sideRows}</div>
      </aside>
-     <main class="panel vocab-card-panel canva3-card-panel canva3-card-panel-actions v1303-vocab-card-panel v1310-vocab-main">
+     <main class="panel vocab-card-panel canva3-card-panel canva3-card-panel-actions v1303-vocab-card-panel v1310-vocab-main" data-vocab-term="${esc(term)}" data-vocab-index="${state.vocabIndex}">
        <header class="v1310-vocab-top v1311-vocab-top"><div><span class="chip">Thẻ ${state.vocabIndex+1}/${list.length}</span><h3>${esc(term)}</h3></div><small>${esc(info.pron||'Bấm thẻ để xem ngữ cảnh')}</small></header>
        <button class="flash visual-flash canva3-flash v1303-flash v1310-flash ${flipped?'flipped':''}" data-act="toggle-vocab-flip"><div class="flash-inner v1303-flash-inner v1310-flash-inner">${flipped?back:front}</div></button>
        <div class="vocab-actions canva3-card-actions v1310-vocab-actions" aria-label="Điều khiển flashcard"><button class="btn" data-act="prev-vocab">← Trước</button><button class="btn green" data-act="speak-vocab">🔊 Nghe</button><button class="btn primary" data-act="toggle-vocab-flip">${flipped?'Mặt từ':'Lật gợi ý'}</button><button class="btn" data-act="next-vocab">Sau →</button></div>
@@ -3836,6 +3836,7 @@ function handleClick(e){
  if(act==='toggle-guide'){state.handwritingShowGuide=state.handwritingShowGuide===false;save();drawCanvas();render()}
  if(act==='toggle-lines'){state.handwritingShowLines=state.handwritingShowLines===false;save();drawCanvas();render()}
  if(act==='download-canvas')downloadCanvas();
+ if(act==='vocab-clear-filter'){state.vocabQuery='';state.vocabIndex=0;state.vocabPage=0;state.vocabFlipped=false;save();render();return}
  if(act==='prev-vocab'){state.vocabIndex=Math.max(0,state.vocabIndex-1);state.vocabPage=Math.floor(state.vocabIndex/(VOCAB_PAGE_SIZE||20));state.vocabFlipped=false;save();render()}
  if(act==='next-vocab'){const voc=getVocab();state.vocabIndex=voc.length?Math.min(voc.length-1,state.vocabIndex+1):0;state.vocabPage=Math.floor(state.vocabIndex/(VOCAB_PAGE_SIZE||20));state.vocabFlipped=false;save();render()}
  if(act==='speak-vocab'){const v=getVocab()[state.vocabIndex]||{}; speak(A.vocabTerm?.(v)||v.ru||v.phrase_ru)}
