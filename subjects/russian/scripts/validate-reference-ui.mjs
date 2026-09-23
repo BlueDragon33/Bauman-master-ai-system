@@ -132,6 +132,10 @@ must(core.includes('const PRIMARY_NAV=A.primaryNav||NAV;'),'Core must separate v
 must(core.includes("$('#nav').innerHTML=PRIMARY_NAV.map"),'Sidebar must render the compact primary navigation');
 must(core.includes('const views=NAV.map'),'Full route registry must remain authoritative for deep-link/state compatibility');
 must(core.includes('class="vocab-progressive-details"'),'Vocabulary advanced content must use progressive disclosure');
+must(core.includes('data-vocab-key='),'Vocabulary card/list must expose a stable source key');
+must(core.includes('data-vocab-source-index='),'Vocabulary card/list must expose canonical source index');
+must(core.includes('data-vocab-stage-index='),'Vocabulary card/list must expose stage-relative index');
+must(core.includes("vocabFocusKey:''"),'Vocabulary routing must preserve a dedicated stable focus key');
 must(core.includes('<summary>Chi tiết'),'Vocabulary details disclosure label missing');
 must(core.includes('class="vocab-micro-context"'),'Vocabulary card must expose a short Russian micro-context');
 must(core.includes('data-act="speak-vocab-slow"'),'Vocabulary card must expose optional slow audio');
