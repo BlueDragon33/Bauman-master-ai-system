@@ -230,6 +230,8 @@
   let scheduled=false;
   function upgrade(){
     scheduled=false;upgradeBrand();upgradeOverview();upgradeTabIntro();bind();
+    window.RussianContentContract?.enhance?.();
+    window.RussianVocabSrs?.refresh?.();
   }
   function schedule(){
     if(scheduled)return;scheduled=true;requestAnimationFrame(upgrade);
