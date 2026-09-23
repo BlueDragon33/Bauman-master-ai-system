@@ -202,7 +202,7 @@ window.SUBJECT_ADAPTER = {
   primaryNav: [
     ['overview','⌂','Tổng quan'],
     ['media','◉','Video'],
-    ['dialogue','◌','Nghe & Nói'],
+    ['learning','◌','Nghe & Nói','practice'],
     ['vocab','▣','Từ vựng'],
     ['grammar','▥','Ngữ pháp'],
     ['writing','✎','Luyện chữ']
