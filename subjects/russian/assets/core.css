@@ -1931,16 +1931,8 @@ html,body{min-height:100%!important;}
 .v1284-route-polish .route-modal-foot{position:relative!important;bottom:auto!important;background:transparent!important;border:0!important;padding:0!important;margin:0!important;}
 .v1284-route-polish .route-tabs-clean{margin-top:4px!important;}
 
-/* 2) Sidebar/tab đỏ: khớp chiều cao với workspace, bớt khoảng trắng chết, không cắt bảng bên phải */
-.app{grid-template-columns:340px minmax(0,1fr)!important;align-items:stretch!important;background:var(--bg)!important;}
-.sidebar{height:100dvh!important;min-height:100dvh!important;max-height:100dvh!important;background:linear-gradient(180deg,#111827 0%,#2c1420 45%,#7c2d12 100%)!important;border-radius:0 26px 26px 0!important;padding:16px 14px!important;box-shadow:18px 0 46px rgba(15,23,42,.16)!important;}
-.sidebar .nav{display:flex!important;flex-direction:column!important;gap:10px!important;margin-top:14px!important;padding-bottom:18px!important;}
-.sidebar .nav button{min-height:54px!important;border-radius:16px!important;background:rgba(255,255,255,.045)!important;border-color:rgba(255,255,255,.18)!important;}
-.sidebar .nav button.active{background:linear-gradient(95deg,#a11d34,#6b1526)!important;}
-.main{width:100%!important;max-width:none!important;padding:16px 20px 28px!important;}
-.view{max-width:1720px!important;width:100%!important;margin:0 auto!important;}
-@media(max-width:1250px){.app{grid-template-columns:92px minmax(0,1fr)!important}.sidebar{border-radius:0 22px 22px 0!important}.main{padding:14px!important}}
-@media(max-width:760px){.app{display:block!important}.sidebar{height:auto!important;min-height:0!important;max-height:none!important;border-radius:0 0 22px 22px!important}.main{padding:12px!important}}
+/* 2) Legacy shell override retired by canonical Russian Future UI.
+   Shell width, sidebar geometry and responsive behavior now live in russian-future-ui.css. */
 
 /* 3) Bài tập: bỏ dòng nhiễu, hiển thị đủ nội dung trong danh sách và khung làm bài */
 .v1283-learn-compact .learn-canva-side-head{gap:7px!important;padding-bottom:8px!important;}
