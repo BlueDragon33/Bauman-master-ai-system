@@ -109,11 +109,6 @@ body.ru-future-ui #subjectTitle{text-transform:none}
 .ru-future-ui .ru-top-actions #aiBtn{background:linear-gradient(135deg,#6450ed,#7a5cf4);border-color:#7259ef;color:#fff}
 .ru-future-ui .ru-top-actions .status{max-width:110px;padding:8px 10px;border-radius:10px;background:#e9fbf5;color:#148365;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ru-future-ui .ru-view{width:100%;box-sizing:border-box;padding:24px 24px 44px;max-width:var(--rf-content-max);margin:0 auto;font-size:var(--rf-font-md);line-height:1.55}
-body.ru-reference-ui.ru-future-ui.main-balanced .ru-view,
-body.ru-reference-ui.ru-future-ui.main-focus .ru-view,
-body.ru-reference-ui.ru-future-ui.main-compact .ru-view{max-width:var(--rf-content-max)}
-body.ru-reference-ui.ru-future-ui.density-wide .ru-view{max-width:var(--rf-content-max)!important}
-
 /* Shared light-surface system for all existing tabs */
 body.ru-reference-ui.ru-future-ui .panel,body.ru-reference-ui.ru-future-ui .optional-data-gate,body.ru-reference-ui.ru-future-ui .deep-dialogue-panel,body.ru-reference-ui.ru-future-ui .deep-review-panel{
   background:rgba(255,255,255,.96);border:1px solid var(--rf-line);color:var(--rf-text);
