@@ -89,9 +89,14 @@ must(!futureCss.includes('Russian Reference UI · premium Bauman/Russia dashboar
 for(const token of ['--ru-bg:#040d1b','grid-template-columns:228px minmax(0,1fr) 328px','background:rgba(4,15,29,.88)']){
   must(!futureCss.includes(token),`Obsolete shell token returned: ${token}`);
 }
-for(const token of ['position:relative!important;height:42px!important;display:flex!important','position:absolute!important;left:0!important;right:0!important;top:45px!important','margin:0!important;padding:0 1px!important']){
+for(const token of ['position:relative;height:42px;display:flex','position:absolute;left:0;right:0;top:45px','margin:0;padding:0 1px']){
   must(futureCss.includes(token),`Canonical shell/search structure missing after PASS 2 migration: ${token}`);
 }
+const shellStart=futureCss.indexOf('body.ru-reference-ui.ru-future-ui{');
+const shellEnd=futureCss.indexOf('/* Shared light-surface system');
+must(shellStart>=0&&shellEnd>shellStart,'Canonical PASS 2 shell slice markers missing');
+const canonicalShell=futureCss.slice(shellStart,shellEnd);
+must(!canonicalShell.includes('!important'),'Canonical base shell/topbar/search must not rely on !important cascade overrides');
 for(const token of ['RUSSIAN_FUTURE_REFERENCE_UI_V1','upgradeOverview','upgradeTabIntro','data-rf-speak','Nghe & Nói','Luyện chữ','Kế hoạch hôm nay']) must(futureJs.includes(token),`Future UI runtime missing ${token}`);
 must(futureJs.includes("setText(title,'Tiếng Nga')"),'Future UI must expose Russian-only visible brand');
 must(futureJs.includes("function setText(el,value){if(el&&el.textContent!==value)el.textContent=value}"),'Future UI text writes must remain idempotent');
