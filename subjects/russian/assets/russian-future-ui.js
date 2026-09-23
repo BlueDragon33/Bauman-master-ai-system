@@ -68,8 +68,18 @@
   }
   function routeMatches(q){
     q=String(q||'').trim().toLowerCase();
-    if(!q)return ROUTES.slice(0,6);
-    return ROUTES.filter(x=>x.keys.some(k=>k.includes(q)||q.includes(k))).slice(0,8);
+    if(!q)return ROUTES.slice(0,6).map(x=>({...x,group:'KHU HỌC'}));
+    return ROUTES.filter(x=>x.keys.some(k=>k.includes(q)||q.includes(k))).slice(0,6).map(x=>({...x,group:'HOẠT ĐỘNG'}));
+  }
+  function searchMatches(q){
+    const text=String(q||'').trim();
+    const content=text&&window.RussianLearningSearch?.query?window.RussianLearningSearch.query(text,4):[];
+    const routes=routeMatches(text);
+    const seen=new Set();
+    return [...content,...routes].filter(item=>{
+      const key=(item.group||'')+'|'+(item.label||'')+'|'+JSON.stringify(item.route||item.aiQuick||item.act||'');
+      if(seen.has(key))return false;seen.add(key);return true;
+    }).slice(0,24);
   }
   function bindSearch(){
     const input=document.getElementById('russianGlobalSearch');
@@ -81,13 +91,16 @@
     const close=()=>hints.classList.add('hidden');
     const choose=item=>{runSearchResult(item);input.value='';close()};
     const paint=()=>{
-      const matches=routeMatches(input.value);
-      hints.innerHTML=matches.map((m,i)=>'<button type="button" data-rf-search-index="'+i+'">'+esc(m.label)+'</button>').join('');
-      hints.classList.toggle('hidden',!input.value.trim()||!matches.length);
-      Array.from(hints.querySelectorAll('button')).forEach((b,i)=>b.addEventListener('click',()=>choose(matches[i]),{once:true}));
+      const matches=searchMatches(input.value);
+      const grouped=new Map();
+      matches.forEach((m,i)=>{const g=m.group||'KẾT QUẢ';if(!grouped.has(g))grouped.set(g,[]);grouped.get(g).push({m,i})});
+      hints.innerHTML=Array.from(grouped.entries()).map(([group,items])=>'<section class="rf-search-group"><b>'+esc(group)+'</b>'+items.map(({m,i})=>'<button type="button" data-rf-search-index="'+i+'"><span>'+esc(m.label)+'</span>'+(m.meta?'<small>'+esc(m.meta)+'</small>':'')+'</button>').join('')+'</section>').join('');
+      hints.classList.toggle('hidden',!matches.length);
+      Array.from(hints.querySelectorAll('button')).forEach(b=>{const i=Number(b.dataset.rfSearchIndex);b.addEventListener('click',()=>choose(matches[i]),{once:true})});
     };
     input.addEventListener('input',paint);
-    input.addEventListener('keydown',e=>{if(e.key==='Enter'){const m=routeMatches(input.value)[0];if(m){e.preventDefault();choose(m)}}if(e.key==='Escape')close()});
+    input.addEventListener('focus',paint);
+    input.addEventListener('keydown',e=>{if(e.key==='Enter'){const m=searchMatches(input.value)[0];if(m){e.preventDefault();choose(m)}}if(e.key==='Escape')close()});
     document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();input.focus();input.select()}});
     document.addEventListener('click',e=>{if(!e.target.closest('.ru-global-search-wrap'))close()});
   }
