@@ -4,3 +4,55 @@ body.theme-dark .ru-vocab-srs{background:linear-gradient(180deg,rgba(15,23,42,.9
 @media (max-width:1080px){.ru-vocab-srs>header{align-items:stretch}.ru-vocab-srs-summary{flex-wrap:wrap}.ru-vocab-rating{align-items:flex-start;flex-direction:column}.ru-vocab-rating>div:last-child{width:100%}.ru-vocab-rating button{flex:1}}
 @media (max-width:760px){.ru-vocab-srs{margin:10px 0;padding:11px;border-radius:14px}.ru-vocab-srs>header{flex-direction:column}.ru-vocab-srs-summary{width:100%;display:grid;grid-template-columns:repeat(3,1fr)}.ru-vocab-srs-summary>span,.ru-vocab-srs-summary>button{min-width:0}.ru-vocab-rating>div:last-child{display:grid;grid-template-columns:repeat(3,1fr)}.ru-vocab-mining-actions>div{flex-direction:column}}
 @media (max-width:480px){.ru-vocab-srs-summary{grid-template-columns:1fr 1fr}.ru-vocab-srs-summary>span:last-child{grid-column:1/-1}.ru-vocab-rating>div:last-child{grid-template-columns:1fr}.ru-vocab-rating button{width:100%}}
+
+
+/* Guided vocabulary learning flow: discover -> recognize -> listen -> speak -> recall -> write -> SRS */
+.ru-vocab-flow-nav{margin:12px 0 0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.ru-vocab-flow-nav button{min-width:0;min-height:48px;padding:6px;border:1px solid #e0e8f1;border-radius:11px;background:#fff;color:#667b90;display:grid;place-items:center;gap:2px;cursor:pointer}
+.ru-vocab-flow-nav button span{width:20px;height:20px;display:grid;place-items:center;border-radius:50%;background:#eef4fb;font-size:9px;font-weight:800;letter-spacing:0}
+.ru-vocab-flow-nav button b{font-size:9px;white-space:nowrap}
+.ru-vocab-flow-nav button.active{border-color:#9fc4ed;background:#edf6ff;color:#185b9f;box-shadow:0 6px 16px rgba(36,111,213,.08)}
+.ru-vocab-flow-nav button.active span{background:#246fd5;color:#fff}
+.ru-vocab-flow-task{margin-top:10px;padding:13px;border:1px solid #e2eaf3;border-radius:14px;background:#fbfdff}
+.ru-vocab-flow-task>div:first-child b{color:#173552;font-size:13px}.ru-vocab-flow-task>div:first-child p{margin:4px 0 0;color:#6f8296;font-size:11px;line-height:1.5}
+.ru-vocab-flow-actions{margin-top:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ru-vocab-choice-grid{margin-top:11px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.ru-vocab-choice-grid button{min-height:42px;padding:8px 10px;border:1px solid #dce6f1;border-radius:11px;background:#fff;color:#183b5c;font-weight:730;cursor:pointer}
+.ru-vocab-choice-grid button:hover,.ru-vocab-choice-grid button:focus-visible{border-color:#8dbbe9;background:#f1f7ff;outline:3px solid rgba(36,111,213,.12)}
+.ru-vocab-flow-input{margin-top:11px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px}
+.ru-vocab-flow-input input{font-size:16px}
+.ru-vocab-flow-result{margin-top:9px;padding:8px 10px;border-radius:10px;font-size:11px;font-weight:700}
+.ru-vocab-flow-result.correct{background:#ecfdf3;color:#157347}.ru-vocab-flow-result.wrong{background:#fff4e8;color:#a55308}
+
+/* Prevent answer leakage during active recall drills. */
+.vocab-studio[data-vocab-flow="recognize"] .v1310-vocab-top h3,
+.vocab-studio[data-vocab-flow="recognize"] .visual-flash .term,
+.vocab-studio[data-vocab-flow="recognize"] .vocab-micro-context,
+.vocab-studio[data-vocab-flow="recognize"] .vocab-page-list .vocab-mini-row div,
+.vocab-studio[data-vocab-flow="listen"] .v1310-vocab-top h3,
+.vocab-studio[data-vocab-flow="listen"] .visual-flash .term,
+.vocab-studio[data-vocab-flow="listen"] .vocab-micro-context,
+.vocab-studio[data-vocab-flow="listen"] .vocab-page-list .vocab-mini-row div,
+.vocab-studio[data-vocab-flow="recall"] .v1310-vocab-top h3,
+.vocab-studio[data-vocab-flow="recall"] .visual-flash .term,
+.vocab-studio[data-vocab-flow="recall"] .vocab-micro-context,
+.vocab-studio[data-vocab-flow="recall"] .vocab-page-list .vocab-mini-row div,
+.vocab-studio[data-vocab-flow="write"] .v1310-vocab-top h3,
+.vocab-studio[data-vocab-flow="write"] .visual-flash .term,
+.vocab-studio[data-vocab-flow="write"] .vocab-micro-context,
+.vocab-studio[data-vocab-flow="write"] .vocab-page-list .vocab-mini-row div{visibility:hidden}
+.vocab-studio[data-vocab-flow="listen"] .visual-flash .v1312-flash-visual{visibility:hidden}
+.vocab-studio[data-vocab-flow="recognize"] .visual-flash,
+.vocab-studio[data-vocab-flow="listen"] .visual-flash,
+.vocab-studio[data-vocab-flow="recall"] .visual-flash,
+.vocab-studio[data-vocab-flow="write"] .visual-flash{pointer-events:none}
+.vocab-studio[data-vocab-flow="recognize"] .vocab-actions [data-act="toggle-vocab-flip"],
+.vocab-studio[data-vocab-flow="listen"] .vocab-actions [data-act="toggle-vocab-flip"],
+.vocab-studio[data-vocab-flow="recall"] .vocab-actions [data-act="toggle-vocab-flip"],
+.vocab-studio[data-vocab-flow="write"] .vocab-actions [data-act="toggle-vocab-flip"]{display:none}
+
+body.theme-dark .ru-vocab-flow-nav button,body.theme-dark .ru-vocab-flow-task,body.theme-dark .ru-vocab-choice-grid button{background:#111827;border-color:#334155;color:#e5edf7}
+body.theme-dark .ru-vocab-flow-task>div:first-child b{color:#f3f7fb}body.theme-dark .ru-vocab-flow-task>div:first-child p{color:#9eafc1}
+@media (max-width:1080px){.ru-vocab-flow-nav{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:760px){.ru-vocab-flow-nav{grid-template-columns:repeat(3,minmax(0,1fr))}.ru-vocab-choice-grid{grid-template-columns:1fr}.ru-vocab-flow-input{grid-template-columns:1fr}.ru-vocab-flow-input button{width:100%}}
+@media (max-width:480px){.ru-vocab-flow-nav{grid-template-columns:repeat(2,minmax(0,1fr))}.ru-vocab-flow-actions>.btn{flex:1 1 auto}}
