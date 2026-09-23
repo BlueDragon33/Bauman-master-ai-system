@@ -54,7 +54,12 @@ try{
       const s=window.BAUMAN_MATH_ACTIVITY_STUDIO?.selfCheck?.();
       return s?.lessonId===lessonId&&s?.activity===activityId&&s?.companionMatches>=minMatches;
     },{lessonId,activityId,minMatches},{timeout:10000});
-    return page.evaluate(()=>window.BAUMAN_MATH_ACTIVITY_STUDIO.selfCheck());
+    await page.waitForTimeout(250);
+    const stable=await page.evaluate(()=>window.BAUMAN_MATH_ACTIVITY_STUDIO.selfCheck());
+    assert.equal(stable.lessonId,lessonId,`Activity route drifted after settle: ${activityId}`);
+    assert.equal(stable.activity,activityId,`Activity id drifted after settle: ${activityId}`);
+    assert.ok(stable.companionMatches>=minMatches,`Canonical matches dropped after settle: ${activityId}`);
+    return stable;
   }
 
   report.checks.exercises=await activity(T02,'exercises',14);
