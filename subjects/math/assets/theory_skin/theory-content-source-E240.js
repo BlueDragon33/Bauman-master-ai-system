@@ -25,6 +25,21 @@
     }catch(_){return null;}
   }
 
+  function interceptPayload(){
+    var dbPayload=window.DB&&window.DB.theory_lecture_content;
+    if(validPayload(dbPayload)){
+      servedFrom='window.DB.theory_lecture_content';
+      return dbPayload;
+    }
+    var saved=overlayPayload();
+    if(saved){
+      servedFrom='localStorage E129 overlay';
+      if(window.DB)window.DB.theory_lecture_content=saved;
+      return saved;
+    }
+    return null;
+  }
+
   function sharedPayload(){
     var dbPayload=window.DB&&window.DB.theory_lecture_content;
     if(validPayload(dbPayload)){
@@ -71,7 +86,7 @@
 
   window.fetch=function(input,init){
     if(isTheoryContentRequest(input)){
-      var payload=sharedPayload();
+      var payload=interceptPayload();
       if(payload)return Promise.resolve(responseFor(payload));
       return nativeFetch(input,init).then(function(response){
         try{
