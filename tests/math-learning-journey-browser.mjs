@@ -55,8 +55,9 @@ try{
 
   // Journey 3 + 4: visit all source-backed steps, complete Lesson Check with one review item,
   // persist completion only after the gate becomes eligible.
+  await page.waitForFunction(()=>window.BAUMAN_MATH_LEARNING_FLOW?.selfCheck?.().sourceDrivenSteps?.length>=5,null,{timeout:10000});
   const steps=await page.evaluate(()=>window.BAUMAN_MATH_LEARNING_FLOW.selfCheck().sourceDrivenSteps);
-  assert.ok(steps.length>=5,'Lesson Player exposed too few source-backed steps');
+  assert.ok(steps.length>=5,'Lesson Player exposed too few source-backed steps after semantic source settled');
   for(const step of steps)await page.evaluate(id=>window.BAUMAN_MATH_LEARNING_FLOW.activate(id),step);
   await page.evaluate(()=>window.BAUMAN_MATH_LEARNING_FLOW.openLessonCheck());
   await page.waitForSelector('.math-lf-check-item',{timeout:10000});
