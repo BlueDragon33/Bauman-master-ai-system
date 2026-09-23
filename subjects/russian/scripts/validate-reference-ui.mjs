@@ -132,9 +132,10 @@ for(const token of ['Trước khi xem','Lượt nghe đầu','Lượt nghe lại
 must(adapter.includes("storageKey: 'bauman_russian_survival_master_v11_clean_skeleton'"),'Unexpected Russian storage key');
 must(adapter.includes("optionalDataFiles: ['dialogue-bauman-az','deep-speaking-bauman','speaking-link-index']"),'Unexpected optional Russian dataset contract');
 must(adapter.includes('primaryNav: ['),'Primary learner navigation contract missing');
-for(const route of ["['overview','⌂','Tổng quan']","['media','◉','Video']","['dialogue','◌','Nghe & Nói']","['vocab','▣','Từ vựng']","['grammar','▥','Ngữ pháp']","['writing','✎','Luyện chữ']"]){
+for(const route of ["['overview','⌂','Tổng quan']","['media','◉','Video']","['learning','◌','Nghe & Nói','practice']","['vocab','▣','Từ vựng']","['grammar','▥','Ngữ pháp']","['writing','✎','Luyện chữ']"]){
   must(adapter.includes(route),`Primary learner navigation missing: ${route}`);
 }
+must(adapter.includes("['dialogue','💬','Đối thoại']"),'Full route registry must preserve advanced Dialogue deep links');
 must(core.includes("const DEFERRED_CORE_DATA=new Set(['vocab','tests']);"),'Large vocabulary and test datasets must remain deferred from startup');
 must(core.includes("ensureDeferredCoreData('vocab')"),'Vocabulary view must load the deferred dataset on demand');
 must(core.includes("ensureDeferredCoreData('tests')"),'Review/exam must load the deferred test bank on demand');
