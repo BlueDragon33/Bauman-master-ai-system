@@ -5,7 +5,7 @@
  */
 (function(){
   'use strict';
-  var RELEASE='E197_FAIL_SAFE_CANONICAL_LESSON_IDENTITY';
+  var RELEASE='E198_CANONICAL_FRAME_ROUTE_BRIDGE';
   var C01_CHAPTER_ID='MATH-VN-C01-vector_trong_khong_gian_';
   var HIERARCHY=[
     {id:'pure',code:'I',title:'Toán học Thuần túy',en:'Pure Mathematics Module',courses:[
@@ -129,31 +129,74 @@
     if(kind==='lesson'){p.lessonId=id;p.activityId='theory';}
     if(kind==='activity'){p.activityId=id;}
     ensureLesson();syncLegacy();save();return p;}
+  function learningModel(){return window.BAUMAN_MATH_LEARNING_MODEL||null;}
+  function canonicalReady(){var lm=learningModel();return !!(lm&&lm.ready&&lm.ready());}
+  function canonicalRoute(){var lm=learningModel();return lm&&lm.getRoute?lm.getRoute():null;}
+  function canonicalCrumbs(){var lm=learningModel(), r=canonicalRoute();if(!lm||!r||!lm.getCrumbs)return crumbs();var base=lm.getCrumbs(r).slice(0,4);base.push({level:'activity',label:activityLabel()});return base;}
+  function canonicalSummary(){return canonicalCrumbs().map(function(x){return x.label;}).filter(Boolean).join(' → ');}
+  function firstRouteForStage(stageId){var lm=learningModel(), ds=lm&&lm.getDisciplines?lm.getDisciplines(stageId):[], d=ds[0]||null, cs=d&&lm.getChapters?lm.getChapters(stageId,d.id):[], ch=cs[0]||null, ls=ch&&lm.getLessons?lm.getLessons(ch.id):[];return {stageId:stageId,disciplineId:d&&d.id||'',chapterId:ch&&ch.id||'',lessonId:ls[0]&&ls[0].id||'',activityId:'theory',stepId:'understand'};}
+  function firstRouteForDiscipline(stageId,disciplineId){var lm=learningModel(), cs=lm&&lm.getChapters?lm.getChapters(stageId,disciplineId):[], ch=cs[0]||null, ls=ch&&lm.getLessons?lm.getLessons(ch.id):[];return {stageId:stageId,disciplineId:disciplineId,chapterId:ch&&ch.id||'',lessonId:ls[0]&&ls[0].id||'',activityId:'theory',stepId:'understand'};}
+  function firstRouteForChapter(stageId,disciplineId,chapterId){var lm=learningModel(), ls=lm&&lm.getLessons?lm.getLessons(chapterId):[];return {stageId:stageId,disciplineId:disciplineId,chapterId:chapterId,lessonId:ls[0]&&ls[0].id||'',activityId:'theory',stepId:'understand'};}
   function close(){var old=document.querySelector('.e129-modal-backdrop');if(old)old.remove();}
   function modal(html){close();var n=document.createElement('div');n.className='e129-modal-backdrop e186-modal-backdrop';n.innerHTML='<div class="e129-modal e186-modal">'+html+'</div>';document.body.appendChild(n);}
   function option(label,sub,attrs,active){var at=Object.keys(attrs||{}).map(function(k){return ' '+k+'="'+H(attrs[k])+'"';}).join('');return '<button class="e169-choice e186-choice '+(active?'active':'')+'"'+at+'><b>'+H(label)+'</b>'+(sub?'<span>'+H(sub)+'</span>':'')+'</button>';}
-  function open(level){var p=path(), html='', m=mod(p.moduleId), c=course(p.moduleId,p.courseId), title='';
-    if(level==='module'){title='Chọn Khối kiến thức';html=HIERARCHY.map(function(x){return option('Khối kiến thức '+x.code+' · '+x.title,x.en,{'data-e186-pick':'module','data-e186-id':x.id},x.id===p.moduleId);}).join('');}
-    else if(level==='course'){title='Chọn Học phần';html=(m.courses||[]).map(function(x){return option('Học phần '+x.no+' · '+x.title,x.en,{'data-e186-pick':'course','data-e186-id':x.id},x.id===p.courseId);}).join('');}
-    else if(level==='chapter'){title='Chọn Chương';html=((c&&c.chapters)||[]).map(function(x){return option('Chương '+x.no,x.title,{'data-e186-pick':'chapter','data-e186-id':x.id},x.id===p.chapterId);}).join('');}
-    else if(level==='lesson'){ensureLesson();title='Chọn Bài';html=lessonOptions().map(function(x){return option(x.label,x.sub,{'data-e186-pick':'lesson','data-e186-id':x.id},x.id===path().lessonId);}).join('');}
-    else {title='Chọn phân mục';html=ACTIVITIES.map(function(x){return option(x.label,x.summary,{'data-e186-pick':'activity','data-e186-id':x.id},x.id===p.activityId);}).join('');}
-    modal('<header><div><span class="e129-badge">E186 · Lesson First</span><h3>'+H(title)+'</h3><p>Thứ tự: Khối → Học phần → Chương → Bài → Phân mục.</p></div><button class="e129-close" data-e186-close>×</button></header><div class="e169-choice-grid e186-choice-grid">'+html+'</div>');
+  function open(level){
+    if(canonicalReady()){
+      var lm=learningModel(), r=canonicalRoute(), html='', title='', normalized=level;
+      if(level==='module')normalized='stage';
+      if(level==='course')normalized='discipline';
+      if(normalized==='stage'){
+        title='Chọn giai đoạn';html=lm.stages().map(function(x){return option(x.title,'Giai đoạn học',{'data-e186-canonical-pick':'stage','data-e186-id':x.id},x.id===r.stageId);}).join('');
+      }else if(normalized==='discipline'){
+        title='Chọn phân môn';html=lm.getDisciplines(r.stageId).map(function(x){return option(x.title,'Cụm kiến thức trong giai đoạn',{'data-e186-canonical-pick':'discipline','data-e186-id':x.id},x.id===r.disciplineId);}).join('');
+      }else if(normalized==='chapter'){
+        title='Chọn chương';html=lm.getChapters(r.stageId,r.disciplineId).map(function(x){return option(x.title,x.targetOutcome||x.contentStatus,{'data-e186-canonical-pick':'chapter','data-e186-id':x.id},x.id===r.chapterId);}).join('');
+      }else if(normalized==='lesson'){
+        title='Chọn bài';html=lm.getLessons(r.chapterId).map(function(x){return option(cleanLessonTitle(x.title),'Học theo một flow thống nhất',{'data-e186-canonical-pick':'lesson','data-e186-id':x.id},x.id===r.lessonId);}).join('');
+        if(!html)html=option('Chưa có bài học khả dụng','Khung chương đã có nhưng nội dung lesson chưa sẵn sàng.',{},false);
+      }else{
+        title='Chọn bước học';html=ACTIVITIES.map(function(x){return option(x.label,x.summary,{'data-e186-canonical-pick':'activity','data-e186-id':x.id},x.id===r.activityId);}).join('');
+      }
+      modal('<header><div><span class="e129-badge">Lesson First</span><h3>'+H(title)+'</h3><p>Giai đoạn → Phân môn → Chương → Bài → Bước học.</p></div><button class="e129-close" data-e186-close>×</button></header><div class="e169-choice-grid e186-choice-grid">'+html+'</div>');
+      return;
+    }
+    var p=path(), legacyHtml='', m=mod(p.moduleId), legacyCourse=course(p.moduleId,p.courseId), legacyTitle='';
+    if(level==='module'){legacyTitle='Chọn Khối kiến thức';legacyHtml=HIERARCHY.map(function(x){return option('Khối kiến thức '+x.code+' · '+x.title,x.en,{'data-e186-pick':'module','data-e186-id':x.id},x.id===p.moduleId);}).join('');}
+    else if(level==='course'){legacyTitle='Chọn Học phần';legacyHtml=(m.courses||[]).map(function(x){return option('Học phần '+x.no+' · '+x.title,x.en,{'data-e186-pick':'course','data-e186-id':x.id},x.id===p.courseId);}).join('');}
+    else if(level==='chapter'){legacyTitle='Chọn Chương';legacyHtml=((legacyCourse&&legacyCourse.chapters)||[]).map(function(x){return option('Chương '+x.no,x.title,{'data-e186-pick':'chapter','data-e186-id':x.id},x.id===p.chapterId);}).join('');}
+    else if(level==='lesson'){ensureLesson();legacyTitle='Chọn Bài';legacyHtml=lessonOptions().map(function(x){return option(x.label,x.sub,{'data-e186-pick':'lesson','data-e186-id':x.id},x.id===path().lessonId);}).join('');}
+    else {legacyTitle='Chọn phân mục';legacyHtml=ACTIVITIES.map(function(x){return option(x.label,x.summary,{'data-e186-pick':'activity','data-e186-id':x.id},x.id===p.activityId);}).join('');}
+    modal('<header><div><span class="e129-badge">Compatibility route</span><h3>'+H(legacyTitle)+'</h3><p>Dữ liệu frame chưa hydrate; route cũ chỉ là fallback tạm thời.</p></div><button class="e129-close" data-e186-close>×</button></header><div class="e169-choice-grid e186-choice-grid">'+legacyHtml+'</div>');
   }
   function renderRoute(){var p=ensureLesson(), st=state(), fr=currentFrame();syncLegacy();st.view='learning';st.learnTab=ROUTES[p.activityId]||p.activityId;if(fr)st.e129ChapterId=fr.chapterId||fr.id||'';if(p.chapterId==='c01')st.e129ChapterId=C01_CHAPTER_ID;st.e129LessonId=p.lessonId;save();close();try{window.BAUMAN_MATH_THEORY_E129&&window.BAUMAN_MATH_THEORY_E129.render&&window.BAUMAN_MATH_THEORY_E129.render();}catch(_){location.reload();}}
   function patchSurface(){
+    if(canonicalReady()){try{learningModel().setRoute({activityId:path().activityId,lessonId:path().lessonId},{save:false});}catch(_){}}
     syncLegacy();
-    var summary=pathSummary();
+    var useCanonical=canonicalReady(), routeCrumbs=useCanonical?canonicalCrumbs():crumbs(), summary=useCanonical?canonicalSummary():pathSummary();
     var mb=document.querySelector('.e169-module-button');
-    if(mb){['data-e169-open','data-e178-open'].forEach(function(a){mb.removeAttribute(a);});mb.setAttribute('data-e186-open','module');mb.setAttribute('title',summary);var small=mb.querySelector('small');if(small&&small.textContent!==moduleSubtitle())small.textContent=moduleSubtitle();}
+    if(mb){
+      ['data-e169-open','data-e178-open'].forEach(function(a){mb.removeAttribute(a);});
+      mb.setAttribute('data-e186-open',useCanonical?'stage':'module');mb.setAttribute('title',summary);
+      var titleNode=mb.querySelector('b');if(titleNode&&useCanonical)titleNode.textContent='Lộ trình học';
+      var small=mb.querySelector('small');if(small&&small.textContent!==summary)small.textContent=summary;
+    }
     var bc=document.querySelector('.e169-breadcrumb');
-    if(bc){var html=crumbs().map(function(x){return '<button type="button" data-e186-open="'+H(x.level)+'" title="'+H(summary)+'">'+H(x.label)+'</button>';}).join('');if(bc.getAttribute('data-e186-html')!==html){bc.innerHTML=html;bc.setAttribute('data-e186-html',html);}bc.setAttribute('data-e186-ready','1');}
+    if(bc){var html=routeCrumbs.map(function(x){return '<button type="button" data-e186-open="'+H(x.level)+'" title="'+H(summary)+'">'+H(x.label)+'</button>';}).join('<span aria-hidden="true">→</span>');if(bc.getAttribute('data-e186-html')!==html){bc.innerHTML=html;bc.setAttribute('data-e186-html',html);}bc.setAttribute('data-e186-ready','1');}
     var title=document.getElementById('pageTitle');if(title&&document.querySelector('.e169-learning-router,.e169-breadcrumb,.e129-theory-shell')){var a=activityLabel();if(title.textContent!==a&&/Học tập|Lý thuyết|Bài tập|Thực hành|Ứng dụng thực tế|Ôn tập|Kiểm tra/.test(title.textContent||''))title.textContent=a;}
   }
-  function handle(e){var t=e.target.closest&&e.target.closest('[data-e186-open],[data-e186-pick],[data-e186-close]');if(!t)return;e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();
+  function handle(e){var t=e.target.closest&&e.target.closest('[data-e186-open],[data-e186-pick],[data-e186-canonical-pick],[data-e186-close]');if(!t)return;e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();
     if(t.hasAttribute('data-e186-close')){close();return;}
-    if(t.hasAttribute('data-e186-open')){open(t.getAttribute('data-e186-open')||'module');return;}
-    var kind=t.getAttribute('data-e186-pick'), id=t.getAttribute('data-e186-id');
+    if(t.hasAttribute('data-e186-open')){open(t.getAttribute('data-e186-open')||'stage');return;}
+    var canonicalKind=t.getAttribute('data-e186-canonical-pick'), id=t.getAttribute('data-e186-id');
+    if(canonicalKind&&canonicalReady()){
+      var lm=learningModel(), r=canonicalRoute();
+      if(canonicalKind==='stage'){lm.setRoute(firstRouteForStage(id));open('discipline');return;}
+      if(canonicalKind==='discipline'){lm.setRoute(firstRouteForDiscipline(r.stageId,id));open('chapter');return;}
+      if(canonicalKind==='chapter'){lm.setRoute(firstRouteForChapter(r.stageId,r.disciplineId,id));open('lesson');return;}
+      if(canonicalKind==='lesson'){lm.setRoute({lessonId:id,activityId:'theory',stepId:'understand'});renderRoute();open('activity');return;}
+      if(canonicalKind==='activity'){lm.setRoute({activityId:id,stepId:lm.activityToStep?lm.activityToStep(id):'understand'});renderRoute();return;}
+    }
+    var kind=t.getAttribute('data-e186-pick');
     if(kind==='module'){setPath('module',id);open('course');return;}
     if(kind==='course'){setPath('course',id);open('chapter');return;}
     if(kind==='chapter'){setPath('chapter',id);open('lesson');return;}
@@ -168,5 +211,5 @@
   var mo=new MutationObserver(schedulePatch);
   function boot(){try{mo.observe(document.body,{childList:true,subtree:true});}catch(_){}patchLabels();}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
-  window.BAUMAN_MATH_E186_LESSON_FIRST={release:RELEASE,open:open,path:path,lessonOptions:lessonOptions,crumbs:crumbs,moduleSubtitle:moduleSubtitle,displayChapterTitle:displayChapterTitle,selfCheck:function(){return{release:RELEASE,flow:'module-course-chapter-lesson-activity',crumbs:crumbs().map(function(x){return x.label;}),lessons:lessonOptions().length,activity:activityLabel(),moduleSubtitle:moduleSubtitle()};}};
+  window.BAUMAN_MATH_E186_LESSON_FIRST={release:RELEASE,open:open,path:path,lessonOptions:lessonOptions,crumbs:function(){return canonicalReady()?canonicalCrumbs():crumbs();},moduleSubtitle:function(){return canonicalReady()?canonicalSummary():moduleSubtitle();},displayChapterTitle:displayChapterTitle,selfCheck:function(){var lm=learningModel();return{release:RELEASE,flow:canonicalReady()?'stage-discipline-chapter-lesson-step':'legacy-compatibility-fallback',canonicalReady:canonicalReady(),crumbs:(canonicalReady()?canonicalCrumbs():crumbs()).map(function(x){return x.label;}),lessons:canonicalReady()&&lm?lm.getLessons(canonicalRoute().chapterId).length:lessonOptions().length,activity:activityLabel(),legacyHierarchyVisible:!canonicalReady()};}};
 })();
