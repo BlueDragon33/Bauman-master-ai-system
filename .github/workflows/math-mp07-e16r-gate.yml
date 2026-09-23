@@ -27,3 +27,39 @@ jobs:
         run: node scripts/validate-math-mp07-post-import-e16r.mjs
       - name: Validate runtime routing and active stores
         run: node scripts/validate-math-mp07-runtime-routing-e16r.mjs
+
+  mp07-browser:
+    needs: mp07-recovery
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.13.0'
+      - name: Install Playwright Chromium
+        run: |
+          printf '{"private":true,"type":"module"}\n' > package.json
+          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Start local runtime
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/bauman-mp07-http.log 2>&1 &
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/bauman-mp07-http.log
+          exit 1
+      - name: Run m_p07 canonical browser acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/math-mp07-e16r
+        run: node tests/math-mp07-e16r-browser.mjs
+      - name: Upload m_p07 browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: math-mp07-e16r-${{ github.run_id }}
+          path: artifacts/math-mp07-e16r
+          if-no-files-found: ignore
