@@ -78,12 +78,6 @@ try{
       }
     };
   });
-  const cascade=await page.evaluate(()=>{
-    const take=s=>{const el=document.querySelector(s);if(!el)return null;const c=getComputedStyle(el);return {className:el.className,display:c.display,width:c.width,maxWidth:c.maxWidth,minWidth:c.minWidth,padding:c.padding,margin:c.margin,justifySelf:c.justifySelf,gridTemplateColumns:c.gridTemplateColumns,columnGap:c.columnGap,rowGap:c.rowGap,boxSizing:c.boxSizing,fontSize:c.fontSize,zoom:c.zoom,transform:c.transform};};
-    return {bodyClass:document.body.className,rootContentMax:getComputedStyle(document.body).getPropertyValue('--rf-content-max').trim(),app:take('.ru-app-shell'),sidebar:take('.ru-sidebar'),main:take('.ru-main'),view:take('.ru-view'),pageTitle:take('#pageTitle'),styles:[...document.styleSheets].map(x=>x.href?.split('/').pop()||'inline')};
-  });
-  console.log('RUSSIAN_FUTURE_UI_DIMS',JSON.stringify(dims));
-  console.log('RUSSIAN_FUTURE_UI_CASCADE',JSON.stringify(cascade));
   assert.ok(dims.sidebar&&dims.sidebar.w>=216&&dims.sidebar.w<=224,'Desktop sidebar must stay within the 216–224px learning-shell contract');
   assert.ok(dims.main&&dims.main.w>1300,'Main learning canvas must use space released by old right rail');
   assert.ok(dims.view&&dims.view.w>=1080&&dims.view.w<=1122,'Desktop content container must stay near the 1120px maximum');
