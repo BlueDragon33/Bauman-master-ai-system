@@ -103,7 +103,14 @@
   }
   function openProfessor(){global.BAUMAN_MATH_PROFESSOR_DRILL?.open?.()}
   function openFormula(){global.BAUMAN_MATH_FORMULA_LIBRARY?.open?.()||global.BAUMAN_MATH_NAVIGATION?.route?.('formula')}
-  function openSimulation(){global.BAUMAN_MATH_SIMULATION_SOURCE?.openForCurrent?.()||global.BAUMAN_MATH_NAVIGATION?.route?.('lab')}
+  function openSimulation(){
+    const opened=global.BAUMAN_MATH_SIMULATION_SOURCE?.openForCurrent?.();
+    if(!opened){
+      const toast=document.querySelector('#mathWsToast');
+      if(toast){toast.textContent='Bài hiện tại chưa có mô phỏng được ánh xạ.';toast.style.opacity='1';clearTimeout(toast._timer);toast._timer=setTimeout(()=>toast.style.opacity='0',1600);}
+    }
+    return !!opened;
+  }
 
   function schedule(ms=120){clearTimeout(timer);timer=setTimeout(refresh,ms)}
   function refresh(){decorateWorkbench();renderDashboard()}
