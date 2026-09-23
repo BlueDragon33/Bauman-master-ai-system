@@ -8,7 +8,9 @@ body.math-premium-ready .e129-slide{
   border:1px solid rgba(83,157,214,.16);
   background:linear-gradient(145deg,rgba(5,18,34,.78),rgba(7,29,50,.62));
   box-shadow:0 12px 35px rgba(0,0,0,.10);
+  transition:.16s ease;
 }
+body.math-premium-ready .e129-slide:hover{border-color:rgba(57,174,245,.30);box-shadow:0 12px 32px rgba(0,0,0,.16);transform:translateY(-1px);}
 body.math-premium-ready .e129-slide::before{
   content:attr(data-role-label);position:absolute;right:12px;top:10px;max-width:46%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
   color:#567a96;font-size:7px;font-weight:900;letter-spacing:.09em;text-transform:uppercase;
