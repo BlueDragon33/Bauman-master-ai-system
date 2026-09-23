@@ -40,6 +40,8 @@
       schemaVersion:STATE_SCHEMA_VERSION,
       currentLessonId:String(meta.currentLessonId||''),
       currentStepId:String(meta.currentStepId||''),
+      currentChapterId:String(meta.currentChapterId||''),
+      currentStageId:String(meta.currentStageId||''),
       lastActivityAt:Number(meta.lastActivityAt||0)
     }};
   }
@@ -231,7 +233,7 @@
     const now=Date.now();
     const next={...current,...patch,active:normalizeActive(patch.active||current.active,steps),visited:{...(current.visited||{}),...patchVisited},check:{...(current.check||{}),...patchCheck},questionResults:{...(current.questionResults||{}),...patchQuestions},lastAt:now};
     all[id]=next;
-    all._meta={...(all._meta||{}),schemaVersion:STATE_SCHEMA_VERSION,currentLessonId:id,currentStepId:next.active,lastActivityAt:now};
+    all._meta={...(all._meta||{}),schemaVersion:STATE_SCHEMA_VERSION,currentLessonId:id,currentStepId:next.active,currentChapterId:String(rec?.chapterId||all._meta?.currentChapterId||''),currentStageId:String(rec?.sourceAnchors?.stageId||all._meta?.currentStageId||''),lastActivityAt:now};
     return saveState(all);
   }
 
@@ -261,15 +263,22 @@
   function resumePointer(){
     const all=allState(),meta=all._meta||{};
     let id=String(meta.currentLessonId||'');
-    if(!id||!recordById(id)){
+    if(!id){
       const candidates=Object.entries(all)
-        .filter(([key,value])=>key!=='_meta'&&recordById(key)&&value&&typeof value==='object')
+        .filter(([key,value])=>key!=='_meta'&&value&&typeof value==='object')
         .sort((a,b)=>Number(b[1]?.lastAt||0)-Number(a[1]?.lastAt||0));
       id=candidates[0]?.[0]||'';
     }
     if(!id)return null;
-    const rec=recordById(id),st=lessonState(id,rec);
-    return{lessonId:id,stepId:st.active||String(meta.currentStepId||''),chapterId:rec?.chapterId||null,stageId:rec?.sourceAnchors?.stageId||null,lastActivityAt:Number(st.lastAt||meta.lastActivityAt||0)};
+    const raw=all[id]&&typeof all[id]==='object'?all[id]:{};
+    const rec=recordById(id);
+    return{
+      lessonId:id,
+      stepId:String(raw.active||meta.currentStepId||''),
+      chapterId:String(meta.currentChapterId||rec?.chapterId||'')||null,
+      stageId:String(meta.currentStageId||rec?.sourceAnchors?.stageId||'')||null,
+      lastActivityAt:Number(raw.lastAt||meta.lastActivityAt||0)
+    };
   }
   function reviewQueue(id){
     const rec=recordById(id),summary=checkSummary(id,rec);
@@ -288,8 +297,8 @@
   }
   function resume(){
     const ptr=resumePointer();if(!ptr)return false;
-    const rec=recordById(ptr.lessonId),st=global.__BAUMAN_CORE_API?.state||global.__MATH_STATE;
-    if(!rec||!st)return false;
+    const st=global.__BAUMAN_CORE_API?.state||global.__MATH_STATE;
+    if(!st)return false;
     st.view='learning';st.learnTab='theory';st.e129LessonId=ptr.lessonId;
     if(ptr.chapterId)st.e129ChapterId=ptr.chapterId;
     if(ptr.stageId){st.stage=ptr.stageId;st.e129StageId=ptr.stageId;}
