@@ -157,7 +157,7 @@
     if(kind==='module'){setPath('module',id);open('course');return;}
     if(kind==='course'){setPath('course',id);open('chapter');return;}
     if(kind==='chapter'){setPath('chapter',id);open('lesson');return;}
-    if(kind==='lesson'){setPath('lesson',id);renderRoute();open('activity');return;}
+    if(kind==='lesson'){setPath('lesson',id);renderRoute();return;}
     if(kind==='activity'){setPath('activity',id);renderRoute();return;}
   }
   function patchLabels(){document.querySelectorAll('.e169-reader-title h2,.e169-choice b,.e129-slide h3').forEach(function(n){var c=cleanLessonTitle(n.textContent||'');if(c&&c!==n.textContent)n.textContent=c;});patchSurface();}
@@ -168,5 +168,5 @@
   var mo=new MutationObserver(schedulePatch);
   function boot(){try{mo.observe(document.body,{childList:true,subtree:true});}catch(_){}patchLabels();}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
-  window.BAUMAN_MATH_E186_LESSON_FIRST={release:RELEASE,open:open,path:path,lessonOptions:lessonOptions,crumbs:crumbs,moduleSubtitle:moduleSubtitle,displayChapterTitle:displayChapterTitle,selfCheck:function(){return{release:RELEASE,flow:'module-course-chapter-lesson-activity',crumbs:crumbs().map(function(x){return x.label;}),lessons:lessonOptions().length,activity:activityLabel(),moduleSubtitle:moduleSubtitle()};}};
+  window.BAUMAN_MATH_E186_LESSON_FIRST={release:RELEASE,open:open,close:close,path:path,lessonOptions:lessonOptions,crumbs:crumbs,moduleSubtitle:moduleSubtitle,displayChapterTitle:displayChapterTitle,selfCheck:function(){return{release:RELEASE,flow:'module-course-chapter-lesson-activity',crumbs:crumbs().map(function(x){return x.label;}),lessons:lessonOptions().length,activity:activityLabel(),moduleSubtitle:moduleSubtitle()};}};
 })();
