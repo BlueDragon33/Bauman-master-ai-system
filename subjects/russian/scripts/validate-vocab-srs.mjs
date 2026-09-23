@@ -46,6 +46,10 @@ for(const token of [
 must(!/status\s*:\s*['\"]mastered['\"]/.test(js),'Vocab SRS must never synthesize mastered state');
 must(!/status\s*:\s*['\"]completed['\"]/.test(js),'Vocab SRS must never synthesize completed state');
 must(!js.includes('Math.random'),'Vocab SRS must not generate random mastery/review evidence');
+must(!js.includes('new MutationObserver'),'Vocab learning flow must use the canonical UI observer, not create another observer');
+must(js.includes('refresh:scheduleRender'),'Vocab learning flow must expose an idempotent refresh hook');
+must(js.includes('if(panel.innerHTML!==html)panel.innerHTML=html'),'Vocab refresh must not rewrite an already-stable panel');
+must(js.includes('aria-current="${mode===x?\'step\':\'false\'}"'),'Vocabulary learning steps must expose aria-current');
 must(!js.includes('meaning:clean(n.meaningVi||n.english||n.meaningRu)'),'Sentence Mining must not restore Vietnamese/English glosses into the learning surface');
 must(js.includes("meaning:clean(n.meaningRu||'')"),'Source sentence mining may retain Russian-only context');
 must(!js.includes('includes(tag)'),'Vocab speaking bridge must not infer links by tag matching');
