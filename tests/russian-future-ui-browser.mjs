@@ -41,6 +41,13 @@ try{
   assert.match(await page.locator('#subjectSubtitle').innerText(),/Nghe.*Nói.*Đọc.*Viết/);
   assert.equal(await page.locator('.ru-right-rail').count(),0,'Fixed right rail must be absent from the canonical learning shell');
 
+  // Prime one explicit presentation pass and let any already-queued RAF work settle.
+  // The measured pass below must still produce zero DOM/class mutations.
+  await page.evaluate(async()=>{
+    window.RUSSIAN_FUTURE_UI.upgrade();
+    await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+  });
+
   const idleMutationCount=await page.evaluate(async()=>{
     const root=document.querySelector('.ru-app-shell');
     let count=0;
