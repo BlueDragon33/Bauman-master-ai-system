@@ -2491,7 +2491,7 @@ function renderVocab(){
   const pageSize=VOCAB_PAGE_SIZE||20;
   state.vocabPage=Math.floor(state.vocabIndex/pageSize);
   const topicOptions=vocabTopicOptions(stageVocab);
-  const statusOptions=[['all','Tất cả trạng thái'],['new','Mới'],['learned','Đã học'],['due','Cần ôn'],['difficult','Khó']];
+  const statusOptions=[['all','Tất cả trạng thái'],['learning','Đang học'],['due','Cần ôn'],['learned','Đã học'],['difficult','Khó'],['new','Mới']];
   const v=list[state.vocabIndex]||{};
   const sourceIndex=Math.max(0,allVocab.indexOf(v));
   const stageIndex=Math.max(0,stageVocab.indexOf(v));
@@ -2514,15 +2514,6 @@ function renderVocab(){
   const front=`<div class="v1310-flash-face v1312-flash-face"><div class="v1312-flash-visual">${visual}</div><div class="term ${termSizeClass}">${esc(term)}</div><div class="v1310-pron">${esc(info.pron||'Nghe để xác nhận phát âm')}</div>${example?`<p class="vocab-micro-context" lang="ru">${esc(clip(example,72))}</p>`:''}</div>`;
   const back=`<div class="v1310-flash-face v1312-flash-face flipped"><div class="v1312-flash-visual back">${visualBack}</div><span>Hiểu qua hình và ngữ cảnh Nga</span><div class="meaning" lang="ru">${esc(meaning)}</div>${example?`<small>${esc(example)}</small>`:''}</div>`;
   return `<div class="vocab-studio step37-vocab-safe canva3-vocab canva3-vocab-no-hero v1303-vocab-safe v1310-vocab-polish v1311-vocab-luxe v1312-vocab-chibi">
-   <section class="vocab-library-toolbar" aria-label="Bộ lọc kho từ vựng">
-     <div class="vocab-library-summary"><span>KHO TỪ VỰNG · ${esc(stageTitle(state.stage))}</span><b>${list.length} / ${stageVocab.length}</b><small>20 thẻ/lượt · chỉ tải kho lớn khi mở Từ vựng</small></div>
-     <div class="vocab-library-controls">
-       <input class="input" data-input="vocabQuery" value="${esc(state.vocabQuery||'')}" placeholder="Tìm từ, ví dụ hoặc phát âm…" aria-label="Tìm trong kho từ vựng">
-       <select class="input" data-input="vocabTopic" aria-label="Lọc theo chủ đề"><option value="all">Tất cả chủ đề</option>${topicOptions.map(x=>`<option value="${esc(x.id)}" ${state.vocabTopic===x.id?'selected':''}>${esc(x.label)} · ${x.count}</option>`).join('')}</select>
-       <select class="input" data-input="vocabStatus" aria-label="Lọc theo trạng thái học">${statusOptions.map(([id,label])=>`<option value="${id}" ${state.vocabStatus===id?'selected':''}>${label}</option>`).join('')}</select>
-       <button class="btn soft" data-act="vocab-clear-filter">Xóa lọc</button>
-     </div>
-   </section>
    <div class="vocab-desk step37-vocab-desk canva3-vocab-desk v1303-vocab-desk v1310-vocab-desk">
      <aside class="panel vocab-page-list v1303-vocab-list v1310-vocab-list" aria-label="Danh sách 20 thẻ từ hiện tại">
        <div class="vocab-list-head v1310-vocab-list-head"><span class="chip">20 thẻ/lượt</span><b>${pageStart+1}-${Math.min(list.length,pageStart+rows.length)}/${list.length}</b></div>
@@ -2541,6 +2532,15 @@ function renderVocab(){
        </details>
      </main>
    </div>
+   <section class="vocab-library-toolbar" aria-label="Bộ lọc kho từ vựng">
+     <div class="vocab-library-summary"><span>KHO TỪ VỰNG · ${esc(stageTitle(state.stage))}</span><b>${list.length} / ${stageVocab.length}</b><small>20 thẻ/lượt · chỉ tải kho lớn khi mở Từ vựng</small></div>
+     <div class="vocab-library-controls">
+       <input class="input" data-input="vocabQuery" value="${esc(state.vocabQuery||'')}" placeholder="Tìm từ, ví dụ hoặc phát âm…" aria-label="Tìm trong kho từ vựng">
+       <select class="input" data-input="vocabTopic" aria-label="Lọc theo chủ đề"><option value="all">Tất cả chủ đề</option>${topicOptions.map(x=>`<option value="${esc(x.id)}" ${state.vocabTopic===x.id?'selected':''}>${esc(x.label)} · ${x.count}</option>`).join('')}</select>
+       <select class="input" data-input="vocabStatus" aria-label="Lọc theo trạng thái học">${statusOptions.map(([id,label])=>`<option value="${id}" ${state.vocabStatus===id?'selected':''}>${label}</option>`).join('')}</select>
+       <button class="btn soft" data-act="vocab-clear-filter">Xóa lọc</button>
+     </div>
+   </section>
  </div>`;
  }catch(e){
   console.error('VOCAB_RENDER_GUARD',e);
