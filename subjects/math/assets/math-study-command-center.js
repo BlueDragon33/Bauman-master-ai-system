@@ -71,7 +71,7 @@
   }
   function reviewHtml(items){
     if(!items.length)return'<div class="math-scc-empty">Chưa có mục nào được bạn đánh dấu “Cần ôn”.</div>';
-    return items.slice(0,10).map(x=>`<article class="math-scc-review"><div><b>${esc(clip(x.title,70))}</b><span>${esc(x.activity||'activity')} · ${esc(x.chapterTitle||x.chapterId)} · ${x.updatedAt?timeAgo(x.updatedAt):'chưa có thời gian'}</span></div><button type="button" data-scc="open-review" data-scc-key="${esc(x.key)}">Mở mục</button></article>`).join('')
+    return items.slice(0,10).map(x=>`<article class="math-scc-review"><div><b>${esc(clip(x.title,70))}</b><span>${esc(x.activity||'activity')} · ${esc(x.chapterTitle||x.chapterId)} · ${x.updatedAt?timeAgo(x.updatedAt):'chưa có thời gian'}</span></div><button type="button" data-scc="open-review" data-scc-key="${esc(x.key)}" data-scc-step="${esc(x.reviewStepId||'selfcheck')}">Ôn →</button></article>`).join('')
   }
   function historyHtml(list){
     if(!list.length)return'<div class="math-scc-empty">Trạng thái sẽ xuất hiện khi Lesson Check có dữ liệu nguồn.</div>';
@@ -99,7 +99,7 @@
     const p=parseKey(key);if(!p.lessonId||!selectCanonicalLesson(p.lessonId))return;
     const activity=['exercises','practice','application','review','exam'].includes(p.activity)?p.activity:'theory';
     setTimeout(()=>global.BAUMAN_MATH_NAVIGATION?.route?.(activity),160);
-    setTimeout(()=>{const card=$$('.math-activity-card').find(x=>x.dataset.mathMasteryKey===key);if(card){card.classList.add('math-scc-focus');card.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>card.classList.remove('math-scc-focus'),2600)}},620);
+    setTimeout(()=>{const card=$('.math-activity-card').find(x=>x.dataset.sccKey===key);if(card){card.classList.add('math-scc-focus');card.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>card.classList.remove('math-scc-focus'),2600)}},620);
   }
   function openProfessor(){global.BAUMAN_MATH_PROFESSOR_DRILL?.open?.()}
   function openFormula(){global.BAUMAN_MATH_FORMULA_LIBRARY?.open?.()||global.BAUMAN_MATH_NAVIGATION?.route?.('formula')}
@@ -111,7 +111,7 @@
     document.addEventListener('click',e=>{
       const action=e.target.closest('[data-scc]')?.dataset.scc;if(!action)return;
       e.preventDefault();const box=e.target.closest('.math-workbench'),key=e.target.closest('[data-scc-key]')?.dataset.sccKey||box?.dataset.sccKey||'';
-      if(action==='session-start'){startSession(key);return}if(action==='session-resume'||action==='open-review'){startSession(key);openItem(key);return}if(action==='session-clear'){clearSession();return}
+      if(action==='session-start'){startSession(key);return}if(action==='session-resume'){startSession(key);openItem(key);return}if(action==='open-review'){global.BAUMAN_MATH_NAVIGATION?.route?.('learn');const step=e.target.closest('[data-scc-step]')?.dataset.sccStep||'selfcheck';setTimeout(()=>global.BAUMAN_MATH_LEARNING_FLOW?.activate?.(step),260);return}if(action==='session-clear'){clearSession();return}
       if(action==='note-clear'&&box){const area=$('[data-scc-note]',box);if(area){area.value='';saveNote(key,'')}return}
       if(action==='formula'){openFormula();return}if(action==='simulation'){openSimulation();return}if(action==='professor'){openProfessor();return}
     },true);
