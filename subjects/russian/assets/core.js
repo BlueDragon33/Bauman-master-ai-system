@@ -726,10 +726,10 @@ function handwritingListenWriteFor(item){
  return getHandwritingListenWrite().find(x=>str(x?.handwritingId)===id)||null;
 }
 function getWriting(){return byStage(call('getWriting',[],DB))}
-function title(){const route=NAV.find(n=>n[0]===state.view); $('#pageTitle').textContent=route?route[2]:'Tổng quan'; const ui=A.ui||{}; const subs={overview:ui.overviewSubtitle,learning:ui.learningSubtitle,dialogue:ui.dialogueSubtitle,writing:ui.writingSubtitle,media:ui.mediaSubtitle,vocab:ui.vocabSubtitle,grammar:ui.grammarSubtitle,mindmap:ui.mindmapSubtitle,storage:ui.storageSubtitle}; $('#pageSub').textContent=subs[state.view]||ui.subtitle||''}
-function buildShell(){ applyInterface(); $('#subjectLogo').textContent=A.ui?.logo||'Я'; $('#subjectTitle').textContent=A.ui?.title||'Tiếng Nga Bauman'; $('#subjectSubtitle').textContent=A.ui?.subtitle||''; $('#coreLabel').textContent=A.ui?.coreLabel||'V12.82 LEARNING INTEGRITY FINAL'; $('#stageLabel').textContent=A.ui?.stageLabel||'Giai đoạn'; $('#stageSelect').innerHTML=stages().map(s=>`<option value="${esc(s.id)}">${esc(s.title)}</option>`).join(''); $('#stageSelect').value=state.stage; $('#nav').innerHTML=PRIMARY_NAV.map(n=>`<button data-view="${esc(n[0])}" class="${state.view===n[0]?'active':''}"><b>${n[1]}</b><span>${esc(n[2])}</span></button>`).join(''); const tb=$('#themeBtn'); if(tb){tb.textContent='☀️ Giao diện';tb.classList.add('theme-light-button');} }
+function title(){const primary=PRIMARY_NAV.find(n=>n[0]===state.view&&(!n[3]||n[3]===state.learnTab)); const route=primary||NAV.find(n=>n[0]===state.view); $('#pageTitle').textContent=route?route[2]:'Tổng quan'; const ui=A.ui||{}; const subs={overview:ui.overviewSubtitle,learning:(state.learnTab==='practice'?ui.dialogueSubtitle:ui.learningSubtitle),dialogue:ui.dialogueSubtitle,writing:ui.writingSubtitle,media:ui.mediaSubtitle,vocab:ui.vocabSubtitle,grammar:ui.grammarSubtitle,mindmap:ui.mindmapSubtitle,storage:ui.storageSubtitle}; $('#pageSub').textContent=subs[state.view]||ui.subtitle||''}
+function buildShell(){ applyInterface(); $('#subjectLogo').textContent=A.ui?.logo||'Я'; $('#subjectTitle').textContent=A.ui?.title||'Tiếng Nga Bauman'; $('#subjectSubtitle').textContent=A.ui?.subtitle||''; $('#coreLabel').textContent=A.ui?.coreLabel||'V12.82 LEARNING INTEGRITY FINAL'; $('#stageLabel').textContent=A.ui?.stageLabel||'Giai đoạn'; $('#stageSelect').innerHTML=stages().map(s=>`<option value="${esc(s.id)}">${esc(s.title)}</option>`).join(''); $('#stageSelect').value=state.stage; $('#nav').innerHTML=PRIMARY_NAV.map(n=>`<button data-view="${esc(n[0])}"${n[3]?` data-learn="${esc(n[3])}"`:''} class="${state.view===n[0]&&(!n[3]||state.learnTab===n[3])?'active':''}"><b>${n[1]}</b><span>${esc(n[2])}</span></button>`).join(''); const tb=$('#themeBtn'); if(tb){tb.textContent='☀️ Giao diện';tb.classList.add('theme-light-button');} }
 function trackAccess(view,label){state.recentAccess=arr(state.recentAccess); const item={view:view||state.view,label:label||NAV.find(n=>n[0]===view)?.[2]||view||'Mục học',stage:state.stage,at:new Date().toLocaleString('vi-VN')}; state.recentAccess=[item,...state.recentAccess.filter(x=>x.view!==item.view||x.stage!==item.stage)].slice(0,6)}
-function setView(v){trackAccess(v);state.view=v; if(v==='learning'&&!LEARN_TABS.map(x=>x[0]).includes(state.learnTab))state.learnTab='theory'; save(); render()}
+function setView(v,learnTab=''){trackAccess(v);state.view=v; if(v==='learning'){if(learnTab&&LEARN_TABS.map(x=>x[0]).includes(learnTab))state.learnTab=learnTab; else if(!LEARN_TABS.map(x=>x[0]).includes(state.learnTab))state.learnTab='theory';} save(); render()}
 function render(){
  try{
   sanitize(); buildShell(); title();
@@ -2953,7 +2953,7 @@ function renderMedia(){
      <main class="panel media-main step54-media-main v1256-media-main">
        <header class="v1256-media-topbar">
          <div><span class="chip">${esc(cat)}</span><h3>${esc(activeTitle)}</h3><p>${esc(activePurpose)}</p></div>
-         <div class="step54-media-actions v1256-media-actions">${openButton}<button class="btn" data-act="media-edit" data-media-edit="${esc(active.id||active.title||'')}">Sửa nguồn</button><button class="btn primary" data-route='${esc(JSON.stringify({view:'dialogue'}))}'>Nghe xong nói lại</button></div>
+         <div class="step54-media-actions v1256-media-actions">${openButton}<button class="btn" data-act="media-edit" data-media-edit="${esc(active.id||active.title||'')}">Sửa nguồn</button><button class="btn primary" data-route='${esc(JSON.stringify({view:'learning',learnTab:'practice'}))}'>Nghe xong nói lại</button></div>
        </header>
        <section class="step54-player-card v1256-player-card"><div class="step54-player v1256-player">${player}</div></section>
        <section class="step54-listening-plan v1256-listening-plan">${tasks.map(t=>`<article><i>${t[0]}</i><b>${esc(t[1])}</b><span>${esc(t[2])}</span></article>`).join('')}</section>
@@ -3751,7 +3751,7 @@ function handleClick(e){
  const b=e.target.closest('button,a,[data-view],[data-route],tr[data-vocab],[data-exercise-focus]'); if(!b)return;
  const dragged=b.closest('[data-mindmap-drag="1"]'); if(dragged?.dataset.dragged==='1')return;
  if(b.dataset.confirmAct){const action=b.dataset.confirmAct; closeModal(); runConfirmedAction(action); return}
- if(b.dataset.view){setView(b.dataset.view);return}
+ if(b.dataset.view){setView(b.dataset.view,b.dataset.learn||'');return}
  if(b.dataset.learn){setLearnTab(b.dataset.learn);return}
  if(b.dataset.lesson){state.lessonId=b.dataset.lesson;state.slide=0;state.exerciseIndex=0;state.practiceDialogueId='';state.practiceLineIndex=0;state.practiceGroup='all';state.practiceDifficulty='all';save();render();return}
  if('slide' in b.dataset){state.slide=Number(b.dataset.slide)||0; if(state.modalType==='presentation')rerenderPresentation(); else {save();render();} return}
