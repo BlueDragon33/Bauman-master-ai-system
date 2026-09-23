@@ -118,8 +118,10 @@ must(adapter.includes('primaryNav: ['),'Primary learner navigation contract miss
 for(const route of ["['overview','⌂','Tổng quan']","['media','◉','Video']","['dialogue','◌','Nghe & Nói']","['vocab','▣','Từ vựng']","['grammar','▥','Ngữ pháp']","['writing','✎','Luyện chữ']"]){
   must(adapter.includes(route),`Primary learner navigation missing: ${route}`);
 }
-must(core.includes("const DEFERRED_CORE_DATA=new Set(['vocab']);"),'The 8k vocabulary dataset must remain deferred from startup');
+must(core.includes("const DEFERRED_CORE_DATA=new Set(['vocab','tests']);"),'Large vocabulary and test datasets must remain deferred from startup');
 must(core.includes("ensureDeferredCoreData('vocab')"),'Vocabulary view must load the deferred dataset on demand');
+must(core.includes("ensureDeferredCoreData('tests')"),'Review/exam must load the deferred test bank on demand');
+must(core.includes("['review','exam'].includes(state.learnTab)&&!DB.tests"),'Test bank must remain absent until review/exam is opened');
 must(core.includes('if(DB.vocab&&state.vocabIndex>=voc.length)'),'Deferred vocabulary must not clamp saved learner progress before data loads');
 must(core.includes('Đang mở bộ từ vựng…'),'Vocabulary lazy-load state must remain learner-readable');
 must(core.includes('const PRIMARY_NAV=A.primaryNav||NAV;'),'Core must separate visible primary navigation from full route registry');
