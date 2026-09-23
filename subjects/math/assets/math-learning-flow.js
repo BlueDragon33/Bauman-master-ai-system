@@ -150,7 +150,8 @@
     if(!id)return false;
     const rec=recordById(id),steps=stepsForRecord(rec),all=allState(),current=lessonState(id,rec);
     const patchVisited=normalizeVisited(patch.visited||{},steps);
-    const next={...current,...patch,active:normalizeActive(patch.active||current.active,steps),visited:{...(current.visited||{}),...patchVisited},lastAt:Date.now()};
+    const patchCheck=patch.check&&typeof patch.check==='object'?patch.check:{};
+    const next={...current,...patch,active:normalizeActive(patch.active||current.active,steps),visited:{...(current.visited||{}),...patchVisited},check:{...(current.check||{}),...patchCheck},lastAt:Date.now()};
     all[id]=next;
     return saveState(all);
   }
@@ -240,6 +241,29 @@
     let bar=$('#mathLearningStudybar');
     if(!bar){bar=document.createElement('section');bar.id='mathLearningStudybar';bar.className='math-lf-studybar';document.body.appendChild(bar);}
   }
+  function checkPanelHtml(cur,rec,st){
+    const summary=checkSummary(cur.id,rec);
+    if(!summary.total){
+      return '<section class="math-lf-check math-lf-check-empty"><div><span>LESSON CHECK</span><b>Chưa có câu kiểm tra nguồn đủ chuẩn</b><p>Bài này chưa thể hoàn thành chính thức cho đến khi có ít nhất một check item hợp lệ. Hệ thống không tự bịa câu hỏi để lấp chỗ trống.</p></div></section>';
+    }
+    const cards=summary.items.map((item,index)=>{
+      const status=st.check?.[item.id]||'';
+      return `<article class="math-lf-check-item ${status?'assessed':''}" data-check-status="${esc(status)}">
+        <header><span>Câu ${index+1}/${summary.total}</span><b>${esc(item.title)}</b></header>
+        <p>${esc(item.prompt)}</p>
+        ${item.reference?`<details><summary>Xem đáp án/giải thích nguồn</summary><p>${esc(item.reference)}</p></details>`:'<div class="math-lf-check-source-note">Nguồn chưa tách đáp án riêng. Hãy tự đánh giá sau khi đối chiếu nội dung bài.</div>'}
+        <div class="math-lf-check-actions">
+          <button type="button" class="${status==='understood'?'active':''}" data-lf-check-id="${esc(item.id)}" data-lf-check-state="understood">Đã hiểu</button>
+          <button type="button" class="${status==='review'?'active review':''}" data-lf-check-id="${esc(item.id)}" data-lf-check-state="review">Cần ôn</button>
+        </div>
+      </article>`;
+    }).join('');
+    const label=summary.review===0&&summary.complete?'Đã đạt':summary.review===1&&summary.complete?'Cần ôn nhẹ':summary.review>1&&summary.complete?`Cần học lại ${summary.review} mục`:'Chưa hoàn tất';
+    return `<section class="math-lf-check">
+      <header class="math-lf-check-head"><div><span>LESSON CHECK</span><h4>Kiểm tra nhanh trước khi hoàn thành bài</h4><p>Không chấm điểm giả. Trả lời trước, đối chiếu nguồn rồi tự đánh dấu mức hiểu.</p></div><aside><b>${summary.answered}/${summary.total}</b><span>${esc(label)}</span></aside></header>
+      <div class="math-lf-check-grid">${cards}</div>
+    </section>`;
+  }
   function render(){
     ensure();
     const host=$('#mathLearningFlow'),bar=$('#mathLearningStudybar'),cur=currentLesson(),rec=currentRecord();
@@ -251,6 +275,8 @@
     const note=notes()[cur.id]||'',objective=rec?.baumanFocus||rec?.programAnchorTitle||'Hiểu bài và kết nối với mục tiêu kỹ thuật.';
     const sourceRoles=rolesForRecord(rec),hasFormula=steps.some(x=>x.id==='formula'),hasSimulation=sourceRoles.has('simulation');
     const activeIndex=Math.max(0,steps.findIndex(x=>x.id===active));
+    const completion=completionState(cur.id,rec);
+    const completionLabel=completion.completedAt?(completion.check.review===0?'Đã đạt':completion.check.review===1?'Cần ôn nhẹ':`Cần học lại ${completion.check.review} mục`):'';
     host.innerHTML=`<section class="math-lf-shell">
       <header class="math-lf-head">
         <div class="math-lf-title">
@@ -260,6 +286,7 @@
             <h3>${esc(cur.title)}</h3>
             <p class="math-lf-objective">${esc(objective)}</p>
             <small>${steps.length} bước có nội dung · thời lượng chưa được khai báo trong nguồn</small>
+            ${completion.completedAt?`<span class="math-lf-complete-badge">✓ Hoàn thành · ${esc(completionLabel)}</span>`:''}
           </div>
         </div>
         <div class="math-lf-head-actions">
@@ -279,13 +306,21 @@
           <button class="math-lf-mini-btn" data-lf="command">⌘K Tài nguyên</button>
         </div>
       </div>
+      ${(active==='selfcheck'||active==='summary'||completion.check.answered>0)?checkPanelHtml(cur,rec,st):''}
       <div class="math-lf-notes ${st.notesOpen?'open':''}">
         <div class="math-lf-note-box"><label>Ghi chú cá nhân của bài này</label><textarea id="mathLfNote" placeholder="Ghi lại câu hỏi, cách hiểu, công thức cần nhớ…">${esc(note)}</textarea></div>
         <aside class="math-lf-note-side"><b>Ghi chú chỉ lưu trên thiết bị</b><p>Không chèn vào dữ liệu học thuật và không thay đổi nội dung bài.</p><p class="math-lf-note-status">Tự lưu khi nhập.</p></aside>
       </div>
     </section>`;
     const prev=steps[Math.max(0,activeIndex-1)],next=steps[Math.min(steps.length-1,activeIndex+1)];
-    bar.innerHTML=`<div class="math-lf-study-buttons"><button type="button" data-lf-step="${prev.id}" ${activeIndex===0?'disabled':''}>← <span>${esc(prev.label)}</span></button></div><div class="math-lf-study-current"><small>Bước ${activeIndex+1}/${steps.length} · ${pct}% đã mở</small><b>${esc(steps[activeIndex].label)} · ${esc(cur.title)}</b></div><div class="math-lf-study-buttons"><button type="button" class="primary" data-lf-step="${next.id}" ${activeIndex===steps.length-1?'disabled':''}><span>${esc(next.label)}</span> →</button></div>`;
+    const finalAction=completion.completedAt
+      ?'<button type="button" disabled>✓ <span>Đã hoàn thành</span></button>'
+      :completion.eligible
+        ?'<button type="button" class="primary" data-lf="complete"><span>Hoàn thành bài</span> ✓</button>'
+        :completion.check.total&&!completion.check.complete
+          ?'<button type="button" class="primary" data-lf="check"><span>Lesson Check</span> →</button>'
+          :'<button type="button" disabled><span>Chưa đủ điều kiện</span></button>';
+    bar.innerHTML=`<div class="math-lf-study-buttons"><button type="button" data-lf-step="${prev.id}" ${activeIndex===0?'disabled':''}>← <span>${esc(prev.label)}</span></button></div><div class="math-lf-study-current"><small>Bước ${activeIndex+1}/${steps.length} · ${pct}% đã mở</small><b>${esc(steps[activeIndex].label)} · ${esc(cur.title)}</b></div><div class="math-lf-study-buttons">${activeIndex===steps.length-1?finalAction:`<button type="button" class="primary" data-lf-step="${next.id}"><span>${esc(next.label)}</span> →</button>`}</div>`;
     $('#mathLfNote')?.addEventListener('input',e=>{const map=notes();map[cur.id]=e.target.value;saveNotes(map);global.BAUMAN_MATH_STUDY_LIBRARY?.refresh?.()});
   }
 
@@ -334,11 +369,41 @@
     if(!highlight(hit)){toast(`Bước ${step.label} chưa có nội dung riêng trong bài này.`);return;}
     if(step.id==='example')prepareExampleReveal(hit);
   }
+  function markCheck(itemId,value){
+    const cur=currentLesson(),rec=currentRecord();
+    if(!cur.id||!checkItemsForRecord(rec).some(x=>x.id===itemId))return false;
+    const ok=writeLessonState(cur.id,{check:{[itemId]:value}});
+    if(!ok){toast('Không lưu được Lesson Check. Trạng thái này sẽ không được giả lập.');return false;}
+    render();return true;
+  }
+  function openLessonCheck(){
+    const rec=currentRecord(),steps=stepsForRecord(rec);
+    const self=steps.find(x=>x.id==='selfcheck');
+    if(self)activate(self.id);
+    else render();
+    setTimeout(()=>$('.math-lf-check')?.scrollIntoView({behavior:'smooth',block:'center'}),80);
+  }
+  function completeLesson(){
+    const cur=currentLesson(),rec=currentRecord(),gate=completionState(cur.id,rec);
+    if(!gate.check.total){toast('Bài này chưa có Lesson Check nguồn đủ chuẩn nên chưa thể đánh dấu hoàn thành.');return false;}
+    if(!gate.allStepsVisited){toast('Hãy đi qua các bước có nội dung trước khi hoàn thành bài.');return false;}
+    if(!gate.check.complete){toast('Hãy hoàn tất Lesson Check trước khi kết thúc bài.');openLessonCheck();return false;}
+    const completedAt=Date.now();
+    const ok=writeLessonState(cur.id,{completedAt});
+    if(!ok){toast('Không lưu được trạng thái hoàn thành. Bài sẽ không bị đánh dấu hoàn thành giả.');return false;}
+    render();
+    global.BAUMAN_MATH_DASHBOARD_V2?.refresh?.();
+    toast(gate.check.review?'Đã hoàn thành. Các mục cần ôn đã được giữ lại.':'Đã hoàn thành bài.');
+    document.dispatchEvent(new CustomEvent('bauman:math:lesson-completed',{detail:{lessonId:cur.id,chapterId:rec?.chapterId||null,completedAt,reviewNeeded:gate.check.review}}));
+    return true;
+  }
   function toggleNotes(){const cur=currentLesson();if(!cur.id)return;const st=lessonState(cur.id);writeLessonState(cur.id,{notesOpen:!st.notesOpen});render();setTimeout(()=>$('#mathLfNote')?.focus(),30)}
   function toggleFocus(){document.body.classList.toggle('math-ws-focus');toast(document.body.classList.contains('math-ws-focus')?'Đã bật chế độ tập trung':'Đã tắt chế độ tập trung')}
 
   function bind(){
     document.addEventListener('click',e=>{
+      const checkState=e.target.closest('[data-lf-check-state]');
+      if(checkState){e.preventDefault();markCheck(checkState.dataset.lfCheckId,checkState.dataset.lfCheckState);return;}
       const reveal=e.target.closest('[data-lf-reveal]');
       if(reveal){e.preventDefault();applyReveal(reveal.closest('.e129-slide'),reveal.dataset.lfReveal);return;}
       const step=e.target.closest('[data-lf-step]');if(step){e.preventDefault();activate(step.dataset.lfStep);return;}
@@ -351,6 +416,8 @@
         if(action==='formula')global.BAUMAN_MATH_NAVIGATION?.openFormulaFocus?.();
         if(action==='lab')openContextLab();
         if(action==='command')global.BAUMAN_MATH_NAVIGATION?.openCommand?.();
+        if(action==='check')openLessonCheck();
+        if(action==='complete')completeLesson();
         return;
       }
       if(e.target.closest('[data-e129-chapter],[data-e129-lesson],[data-e129-stage],[data-e169-pick-activity],[data-e129-back-theory],[data-e129-refresh]'))schedule(220);
@@ -396,7 +463,7 @@
     if(!document.body||document.body.dataset.mathLearningFlow==='1')return;
     document.body.dataset.mathLearningFlow='1';bind();refresh();
     [350,850,1600,2800].forEach(ms=>setTimeout(refresh,ms));
-    global.BAUMAN_MATH_LEARNING_FLOW={release:RELEASE,refresh,activate,toggleBookmark,toggleNotes,openContextLab,snapshot,lessonSnapshot,chapterSnapshot,selfCheck};
+    global.BAUMAN_MATH_LEARNING_FLOW={release:RELEASE,refresh,activate,toggleBookmark,toggleNotes,openContextLab,openLessonCheck,completeLesson,snapshot,lessonSnapshot,chapterSnapshot,completionState,checkSummary,selfCheck};
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })(window);
