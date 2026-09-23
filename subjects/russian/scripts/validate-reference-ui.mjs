@@ -101,6 +101,18 @@ for(const token of ['position:relative;height:42px;display:flex','position:absol
 }
 must(!futureCss.includes('@media (min-width:1500px){.ru-app-shell'),'Unscoped legacy three-column shell breakpoint must not return');
 must(!futureCss.includes('@media (max-width:1320px){.ru-app-shell'),'Unscoped legacy responsive shell breakpoint must not return');
+for(const token of [
+  'body:not(.ru-future-ui) .view{max-width:1720px!important',
+  'body:not(.ru-future-ui) .app{grid-template-columns:340px minmax(0,1fr)!important',
+  'body:not(.ru-future-ui) .panel{border-radius:22px!important',
+  'body.main-balanced:not(.ru-future-ui) .view{max-width:1500px'
+]) must(core.includes(token),`Legacy shell quarantine missing: ${token}`);
+for(const token of [
+  '\n.view{max-width:1720px!important',
+  '\n.app{grid-template-columns:340px minmax(0,1fr)!important',
+  '\n.panel{border-radius:22px!important',
+  'body.main-balanced .view{max-width:1500px'
+]) must(!core.includes(token),`Legacy core shell still overrides Future UI: ${token}`);
 const shellStart=futureCss.indexOf('body.ru-reference-ui.ru-future-ui{');
 const shellEnd=futureCss.indexOf('/* Shared light-surface system');
 must(shellStart>=0&&shellEnd>shellStart,'Canonical PASS 2 shell slice markers missing');
