@@ -793,7 +793,7 @@ function openModal(html,type='generic'){
  setPresentationOverlayLock(isPresentation);
  if(type==='route')setTimeout(()=>{const card=$('#modal .modal-card'); const body=$('#modalBody'); if(card)card.scrollTop=0; if(body)body.scrollTop=0; focusModalStart();},30);
  else if(isPresentation)setTimeout(()=>{closeFloatingLearningMenus(); const ps=presentationScroller(); if(ps){ps.scrollTop=0; ps.focus({preventScroll:true});}else focusModalStart();},40);
- else requestAnimationFrame(focusModalStart);
+ else{focusModalStart();requestAnimationFrame(()=>{if(!modal?.contains(document.activeElement))focusModalStart();});}
 }
 function closeModal(){
  state.modalType='';setPresentationOverlayLock(false);
