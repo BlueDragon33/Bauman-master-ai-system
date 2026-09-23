@@ -213,7 +213,7 @@
     st.mathRoute=Object.assign({},st.mathRoute||{},route);
     syncCompatibility(st.mathRoute);
     if(opts?.save!==false)save();
-    try{global.dispatchEvent(new CustomEvent('bauman-math-route-change',{detail:Object.assign({},st.mathRoute)}));}catch(_){}
+    if(opts?.emit!==false){try{global.dispatchEvent(new CustomEvent('bauman-math-route-change',{detail:Object.assign({},st.mathRoute)}));}catch(_){}}
     return Object.assign({},st.mathRoute);
   }
 
