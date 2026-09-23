@@ -205,14 +205,14 @@
   function openChapterLesson(lessonId,chapterId,stageId){
     leaveRoadmap(); setActive('learn');
     routeTheory(()=>{
-      const stageButton=$('[data-e129-stage]').find(x=>x.getAttribute('data-e129-stage')===stageId);
+      const stageButton=$$('[data-e129-stage]').find(x=>x.getAttribute('data-e129-stage')===stageId);
       if(stageButton)stageButton.click();
       setTimeout(()=>{
-        const chapterButton=$('[data-e129-chapter]').find(x=>x.getAttribute('data-e129-chapter')===chapterId);
+        const chapterButton=$$('[data-e129-chapter]').find(x=>x.getAttribute('data-e129-chapter')===chapterId);
         if(!chapterButton){toast('Reader chưa dựng route cho chương này.');return;}
         chapterButton.click();
         setTimeout(()=>{
-          const lessonButton=$('[data-e129-lesson]').find(x=>x.getAttribute('data-e129-lesson')===lessonId);
+          const lessonButton=$$('[data-e129-lesson]').find(x=>x.getAttribute('data-e129-lesson')===lessonId);
           if(lessonButton){lessonButton.click();setActive('learn');scheduleSync(180);}
           else toast('Bài học chưa có route Reader tương ứng.');
         },140);
