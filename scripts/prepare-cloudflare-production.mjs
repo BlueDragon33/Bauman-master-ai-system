@@ -169,8 +169,6 @@ const requiredRuntimeAssets = [
   'subjects/russian/assets/handwriting-recognition.js',
   'subjects/russian/assets/russian-future-ui.js',
   'subjects/russian/assets/russian-future-ui.css',
-  'subjects/russian/assets/russian-future-ui.css',
-  'subjects/russian/assets/russian-future-ui.js',
   'subjects/russian/assets/russian-optional-data-loader.js',
   'subjects/shared/foundation-identity-bootstrap.js',
   'subjects/shared/foundation-identity-persistence.js',
@@ -194,8 +192,6 @@ const russianHtml = fs.readFileSync(path.join(runtimeDist, 'subjects/russian/ind
 for (const resource of [
   'assets/russian-future-ui.js',
   'assets/russian-future-ui.css',
-  'assets/russian-future-ui.css',
-  'assets/russian-future-ui.js',
   'assets/russian-optional-data-loader.js',
 ]) {
   if (!russianHtml.includes(resource)) throw new Error(`Production Russian HTML reference missing: ${resource}`);
