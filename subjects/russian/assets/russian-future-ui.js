@@ -14,7 +14,8 @@
   };
   const ROUTES=[
     {keys:['bảng chữ','bang chu','cyrillic','chữ cái','chu cai','viết','viet'],label:'Luyện chữ',route:{view:'writing',mode:'handwriting'}},
-    {keys:['phát âm','phat am','pronunciation','shadow','nói','noi','hội thoại','hoi thoai'],label:'Nghe & Nói',route:{view:'dialogue'}},
+    {keys:['phát âm','phat am','pronunciation','shadow','nói','noi'],label:'Nghe & Nói',route:{view:'learning',learnTab:'practice'}},
+    {keys:['đối thoại nâng cao','doi thoai nang cao','bauman a-z','roleplay nâng cao'],label:'Đối thoại nâng cao',route:{view:'dialogue'}},
     {keys:['video','audio','nghe hiểu','nghe hieu'],label:'Video',route:{view:'media'}},
     {keys:['từ vựng','tu vung','vocab','слово','привет'],label:'Từ vựng',route:{view:'vocab'}},
     {keys:['ngữ pháp','ngu phap','grammar','падеж','падежи','cách'],label:'Ngữ pháp',route:{view:'grammar'}},
@@ -138,7 +139,7 @@
     setAttr(search,'placeholder','Tìm bài học, từ vựng, ngữ pháp...');
     setAttr(search,'aria-label','Tìm trong site Tiếng Nga');
     document.querySelectorAll('#nav button[data-view]').forEach(btn=>{
-      const meta=NAV_META[btn.dataset.view];if(!meta)return;
+      const meta=btn.dataset.learn==='practice'?NAV_META.dialogue:NAV_META[btn.dataset.view];if(!meta)return;
       setText(btn.querySelector('b'),meta[0]);
       setText(btn.querySelector('span'),meta[1]);
     });
@@ -163,12 +164,12 @@
       '</div>'+
       '<article class="rf-today-plan"><div class="rf-card-head"><div><h4>Kế hoạch hôm nay</h4><span>Ba bước ngắn, ưu tiên nghe → nói → viết</span></div><button class="rf-link" data-act="route-modal">Xem lịch →</button></div><div class="rf-today-list">'+
         '<div class="rf-today-task"><span>1</span><div><b>Nghe một đoạn ngắn</b><small>Chỉ nghe trước, chưa vội đọc transcript.</small></div><button data-route=\'{"view":"media"}\'>Nghe</button></div>'+
-        '<div class="rf-today-task"><span>2</span><div><b>Nhại và đổi vai</b><small>Lặp lại âm, nhịp rồi phản xạ trong hội thoại.</small></div><button data-route=\'{"view":"dialogue"}\'>Nói</button></div>'+
+        '<div class="rf-today-task"><span>2</span><div><b>Nhại và đổi vai</b><small>Lặp lại âm, nhịp rồi phản xạ trong hội thoại.</small></div><button data-route=\'{"view":"learning","learnTab":"practice"}\'>Nói</button></div>'+
         '<div class="rf-today-task"><span>3</span><div><b>Nghe và viết</b><small>Nhận diện chữ, nghe âm rồi viết lại.</small></div><button data-route=\'{"view":"writing","mode":"handwriting"}\'>Viết</button></div>'+
       '</div></article>'+
       '<div class="rf-module-section"><div class="rf-card-head"><div><h4>5 kỹ năng chính</h4><span>Chọn đúng việc cần luyện, không phải đi tìm tính năng</span></div></div><div class="rf-module-grid">'+
         module({view:'media'},'rf-module-listen','◉','Video','Nghe trước, hiểu tình huống',['Chỉ nghe','Xem theo mục tiêu','Nối sang nói'])+
-        module({view:'dialogue'},'rf-module-speak','◌','Nghe & Nói','Nhại, shadowing, đổi vai',['Nghe mẫu','Nhại câu','Phản xạ'])+
+        module({view:'learning',learnTab:'practice'},'rf-module-speak','◌','Nghe & Nói','Nhại, shadowing, đổi vai',['Nghe mẫu','Nhại câu','Phản xạ'])+
         module({view:'writing',mode:'handwriting'},'rf-module-alpha','Ая','Luyện chữ','Nhìn, nghe và viết Cyrillic',['Chữ in & chữ tay','Nghe tên chữ','Viết đúng nét'])+
         module({view:'vocab'},'rf-module-vocab','▣','Từ vựng','Hiểu bằng hình và ngữ cảnh Nga',['Hình → từ','Nghe → nhắc lại','Recall & ôn'])+
         module({view:'grammar'},'rf-module-grammar','▥','Ngữ pháp','Nhìn mẫu, dùng ngay trong câu',['Ví dụ trước','Pattern ngắn','Luyện ngay'])+
@@ -215,7 +216,7 @@
   function upgradeTabIntro(){
     const view=currentView(),root=document.getElementById('view');if(!root||view==='overview')return;
     let intro=root.querySelector(':scope > .rf-tab-intro');
-    const meta=TAB_INTRO[view]||['TIẾNG NGA','Học tập tập trung','Mọi công cụ nằm đúng nơi, không làm rối luồng học.',['Tập trung','Rõ ràng','Thực hành']];
+    const practice=view==='learning'&&Boolean(document.querySelector('#nav button.active[data-learn="practice"]')); const meta=practice?TAB_INTRO.dialogue:(TAB_INTRO[view]||['TIẾNG NGA','Học tập tập trung','Mọi công cụ nằm đúng nơi, không làm rối luồng học.',['Tập trung','Rõ ràng','Thực hành']]);
     if(!intro){
       intro=document.createElement('section');intro.className='rf-tab-intro';
       root.prepend(intro);
