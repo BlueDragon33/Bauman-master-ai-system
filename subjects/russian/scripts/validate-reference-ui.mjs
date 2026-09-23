@@ -97,6 +97,14 @@ const shellEnd=futureCss.indexOf('/* Shared light-surface system');
 must(shellStart>=0&&shellEnd>shellStart,'Canonical PASS 2 shell slice markers missing');
 const canonicalShell=futureCss.slice(shellStart,shellEnd);
 must(!canonicalShell.includes('!important'),'Canonical base shell/topbar/search must not rely on !important cascade overrides');
+for(const token of ['/* core component theme */','var(--ru-text)','#071a30']){
+  must(!futureCss.includes(token),`Obsolete dark component theme token returned: ${token}`);
+}
+const sharedSurfaceStart=futureCss.indexOf('/* Shared light-surface system');
+const sharedSurfaceEnd=futureCss.indexOf('/* Future overview */');
+must(sharedSurfaceStart>=0&&sharedSurfaceEnd>sharedSurfaceStart,'Canonical shared surface slice markers missing');
+const sharedSurface=futureCss.slice(sharedSurfaceStart,sharedSurfaceEnd);
+must(!sharedSurface.includes('!important'),'Canonical shared panel/button/input/modal theme must not rely on !important overrides');
 for(const token of ['RUSSIAN_FUTURE_REFERENCE_UI_V1','upgradeOverview','upgradeTabIntro','data-rf-speak','Nghe & Nói','Luyện chữ','Kế hoạch hôm nay']) must(futureJs.includes(token),`Future UI runtime missing ${token}`);
 must(futureJs.includes("setText(title,'Tiếng Nga')"),'Future UI must expose Russian-only visible brand');
 must(futureJs.includes("function setText(el,value){if(el&&el.textContent!==value)el.textContent=value}"),'Future UI text writes must remain idempotent');
