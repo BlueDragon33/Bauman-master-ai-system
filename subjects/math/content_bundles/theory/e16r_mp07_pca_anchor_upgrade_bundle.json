@@ -1,0 +1,382 @@
+{
+  "packageType": "bauman.math.theory_lecture_content.e16r_mp07_anchor_upgrade_bundle",
+  "target": "theory_lecture_content",
+  "mode": "replace_by_lessonId",
+  "bundleId": "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE",
+  "bundleStatus": "staged_replacement_candidate_for_academic_audit",
+  "logicalModuleId": "m_p07",
+  "logicalCoverage": [
+    "m_p07_t06",
+    "m_p07_t07",
+    "m_p07_t08"
+  ],
+  "runtimeTarget": "subjects/math/data/theory_lecture_content.json",
+  "replacementPolicy": {
+    "targetLessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+    "preserveExistingSlides": 16,
+    "appendAcademicSlides": 6,
+    "expectedFinalSlides": 22,
+    "doNotAutoImport": true
+  },
+  "records": [
+    {
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "lessonTitle": "§2.6 · Từ ma trận sang PCA và mô hình tuyến tính",
+      "title": "§2.6 · Từ ma trận sang PCA và mô hình tuyến tính",
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "programLectureIds": [
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L09-topology-metric-spaces"
+      ],
+      "programAnchorTitle": "Không gian vectơ và ánh xạ tuyến tính",
+      "roadmapRole": "foundation_before_prep",
+      "baumanFocus": "Kết nối ma trận dữ liệu với PCA, covariance, projection và mô hình tuyến tính như nền để học machine learning và xử lý tín hiệu.",
+      "sourceAnchors": {
+        "stageId": "vn",
+        "disciplineId": "linear_algebra_data_space",
+        "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+        "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+        "logicalModuleId": "m_p07",
+        "logicalCoverage": [
+          "m_p07_t06",
+          "m_p07_t07",
+          "m_p07_t08"
+        ],
+        "e16rUpgrade": "eigen_explained_variance_reconstruction",
+        "provenancePolicy": "preserve_e143_plus_e16r_academic_addendum"
+      },
+      "tags": [
+        "PCA",
+        "covariance",
+        "linear model",
+        "projection",
+        "data matrix",
+        "covariance eigen",
+        "explained variance",
+        "reconstruction error",
+        "m_p07"
+      ],
+      "slides": [
+        {
+          "role": "problem_framing",
+          "title": "Ma trận là ngôn ngữ nền của PCA và mô hình tuyến tính",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ý chính",
+              "body": "Khi dữ liệu được xếp thành ma trận, ta có thể tìm hướng thông tin chính, giảm chiều, lọc nhiễu và xây mô hình dự đoán tuyến tính."
+            }
+          ]
+        },
+        {
+          "role": "deep_essence",
+          "title": "PCA tìm cơ sở mới cho dữ liệu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bản chất",
+              "body": "PCA không tạo phép màu; nó đổi cơ sở để trục đầu tiên giữ nhiều phương sai nhất, trục sau giữ phần độc lập còn lại theo thứ tự giảm dần."
+            }
+          ]
+        },
+        {
+          "role": "counter_intuition",
+          "title": "Giảm chiều không luôn làm mất phần quan trọng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Điểm dễ nhầm",
+              "body": "Nếu dữ liệu có cấu trúc chiều thấp, bỏ các hướng phương sai nhỏ có thể giảm nhiễu mà vẫn giữ phần chính. Nhưng nếu hướng nhỏ chứa tín hiệu hiếm, giảm chiều có thể nguy hiểm."
+            }
+          ]
+        },
+        {
+          "role": "real_bridge",
+          "title": "Ứng dụng trong dữ liệu kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "Trong dữ liệu cảm biến, PCA giúp phát hiện mode vận hành chính. Trong ảnh và tín hiệu, nó giúp nén dữ liệu hoặc tách hướng biến thiên quan trọng."
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Ma trận dữ liệu đã center",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Center",
+              "body": "X_c = X - 1 mu^T"
+            },
+            {
+              "type": "formula",
+              "title": "Covariance",
+              "body": "C = (1/(m-1)) X_c^T X_c"
+            }
+          ]
+        },
+        {
+          "role": "core_formula",
+          "title": "Projection PCA và mô hình tuyến tính",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "PCA projection",
+              "body": "Z = X_c W_k"
+            },
+            {
+              "type": "formula",
+              "title": "Linear model",
+              "body": "y = X w + b"
+            },
+            {
+              "type": "text",
+              "title": "Liên hệ",
+              "body": "Cả PCA và mô hình tuyến tính đều phụ thuộc vào cách ma trận biến đổi vector đặc trưng."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Điều kiện trước PCA và mô hình tuyến tính",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Điều kiện",
+              "body": "Dữ liệu cần được center, scale khi cần, kiểm missing/outlier, và hiểu rõ đặc trưng nào có đơn vị đo áp đảo. Nếu không, hướng PCA hoặc trọng số mô hình có thể sai nghĩa."
+            }
+          ]
+        },
+        {
+          "role": "mini_case",
+          "title": "Mini case: giảm chiều dữ liệu cảm biến",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Case",
+              "body": "Một hệ có 12 cảm biến nhưng chỉ 3 mode vận hành chính. PCA có thể chiếu dữ liệu về 3 chiều để quan sát trạng thái, phát hiện điểm lạc và giảm nhiễu."
+            }
+          ]
+        },
+        {
+          "role": "interpretation",
+          "title": "Đọc PCA bằng ngôn ngữ ma trận",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Diễn giải",
+              "body": "W_k chứa các hướng cơ sở mới. Z là tọa độ dữ liệu sau khi chiếu. Phương sai giải thích cho biết mỗi hướng giữ bao nhiêu thông tin biến thiên."
+            }
+          ]
+        },
+        {
+          "role": "simulation",
+          "title": "Thí nghiệm PCA tối giản bằng Python",
+          "blocks": [
+            {
+              "type": "code",
+              "title": "Công cụ",
+              "body": "Xc = X - X.mean(axis=0)\nU,S,Vt = np.linalg.svd(Xc, full_matrices=False)\nZ = Xc @ Vt[:k].T"
+            }
+          ]
+        },
+        {
+          "role": "common_mistakes",
+          "title": "Lỗi thường gặp",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Lỗi",
+              "body": "Quên center; không scale dữ liệu khác đơn vị; nghĩ PCA là supervised; chọn số chiều chỉ theo tỷ lệ phương sai mà không xét nhiệm vụ kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "application",
+          "title": "Ứng dụng lập trình",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Nhiệm vụ",
+              "body": "Viết pipeline: clean dữ liệu, center/scale, SVD, chọn k, chiếu Z, rồi kiểm reconstruction error và giải thích các thành phần chính."
+            }
+          ]
+        },
+        {
+          "role": "practice",
+          "title": "Bài luyện tập",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài tập",
+              "body": "Tạo ma trận dữ liệu có 5 đặc trưng, trong đó 2 đặc trưng phụ thuộc gần tuyến tính vào các đặc trưng còn lại. Dùng SVD để quan sát singular values và chọn số chiều hợp lý."
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Vấn đáp kiểm tra hiểu sâu",
+          "blocks": [
+            {
+              "type": "qa",
+              "title": "Câu hỏi",
+              "body": "Vì sao PCA cần center dữ liệu? Khi nào hướng phương sai lớn không phải hướng hữu ích nhất cho nhiệm vụ dự đoán?"
+            }
+          ]
+        },
+        {
+          "role": "bridge",
+          "title": "Cầu sang Giải tích và gradient",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Liên kết",
+              "body": "Sau vector và ma trận, bước tiếp theo là hiểu hàm mất mát thay đổi theo tham số thế nào. Đó là vai trò của đạo hàm và gradient trong tối ưu."
+            }
+          ]
+        },
+        {
+          "role": "takeaway",
+          "title": "Kết luận cần nhớ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cốt lõi",
+              "body": "PCA và mô hình tuyến tính đều là câu chuyện ma trận biến đổi dữ liệu; khác nhau ở mục tiêu: PCA tìm cấu trúc không giám sát, mô hình tuyến tính tìm quan hệ dự đoán."
+            }
+          ]
+        },
+        {
+          "role": "covariance_eigen_structure",
+          "title": "Eigen của covariance matrix: các trục chính xuất hiện từ đâu?",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Bài toán trị riêng",
+              "body": "C v_i = λ_i v_i"
+            },
+            {
+              "type": "text",
+              "title": "Ý nghĩa",
+              "body": "Với covariance matrix đối xứng, các eigenvector có thể chọn trực chuẩn. Mỗi v_i là một hướng trong không gian đặc trưng; λ_i là phương sai của dữ liệu theo hướng đó."
+            },
+            {
+              "type": "text",
+              "title": "Cổng kiểm tra",
+              "body": "Covariance matrix lý tưởng là positive semidefinite nên λ_i ≥ 0. Eigenvalue âm đáng kể cần được xem như dấu hiệu sai công thức, sai dữ liệu hoặc vấn đề số."
+            }
+          ]
+        },
+        {
+          "role": "principal_axis_ordering",
+          "title": "Sắp thứ tự trục chính theo eigenvalue",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Thứ tự",
+              "body": "λ_1 ≥ λ_2 ≥ ... ≥ λ_p ≥ 0"
+            },
+            {
+              "type": "text",
+              "title": "Cơ sở PCA",
+              "body": "W = [v_1, v_2, ..., v_p]. Chọn W_k = [v_1,...,v_k] để giữ k hướng có phương sai lớn nhất."
+            },
+            {
+              "type": "text",
+              "title": "Không được suy diễn quá mức",
+              "body": "Phương sai lớn nhất không tự động đồng nghĩa với tín hiệu hữu ích nhất cho mọi nhiệm vụ dự đoán hay phát hiện sự kiện hiếm."
+            }
+          ]
+        },
+        {
+          "role": "explained_variance",
+          "title": "Explained variance ratio và cumulative variance",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Tỷ lệ phương sai giải thích",
+              "body": "EVR_i = λ_i / Σ_j λ_j"
+            },
+            {
+              "type": "formula",
+              "title": "Tích lũy đến k chiều",
+              "body": "CEVR_k = Σ_{i=1}^k λ_i / Σ_j λ_j"
+            },
+            {
+              "type": "text",
+              "title": "Cách chọn k",
+              "body": "Có thể dùng ngưỡng CEVR như một bằng chứng, nhưng phải kiểm thêm reconstruction error và hiệu năng nhiệm vụ kỹ thuật. Không chọn k chỉ vì 'nhìn có vẻ hợp lý'."
+            }
+          ]
+        },
+        {
+          "role": "projection_reconstruction",
+          "title": "Chiếu xuống k chiều và tái tạo về không gian gốc",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Projection",
+              "body": "Z = X_c W_k"
+            },
+            {
+              "type": "formula",
+              "title": "Reconstruction",
+              "body": "X_hat = Z W_k^T + 1 μ^T"
+            },
+            {
+              "type": "text",
+              "title": "Ý nghĩa",
+              "body": "Z là tọa độ n×k trong không gian PCA. X_hat đưa dữ liệu trở về p đặc trưng để đo phần thông tin bị mất khi giảm chiều."
+            }
+          ]
+        },
+        {
+          "role": "reconstruction_error",
+          "title": "Reconstruction error: lượng hóa cái giá của giảm chiều",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Sai số Frobenius",
+              "body": "E_k = ||X - X_hat||_F^2"
+            },
+            {
+              "type": "formula",
+              "title": "Liên hệ eigenvalue khi C dùng mẫu n−1",
+              "body": "E_k = (n − 1) Σ_{i=k+1}^p λ_i"
+            },
+            {
+              "type": "text",
+              "title": "Điều kiện đọc",
+              "body": "Đẳng thức trên dùng cùng convention: hàng là quan sát, X đã center và λ_i là eigenvalue của sample covariance C = X_c^T X_c/(n−1). Nếu đổi normalization, hệ số phải đổi theo."
+            }
+          ]
+        },
+        {
+          "role": "pca_decision_gate",
+          "title": "Gate chọn k: không dùng một metric duy nhất",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Bằng chứng cần xem cùng nhau",
+              "items": [
+                "Cumulative explained variance.",
+                "Reconstruction error trên dữ liệu chưa thấy nếu phù hợp.",
+                "Độ ổn định của component khi đổi mẫu hoặc có nhiễu.",
+                "Hiệu năng nhiệm vụ downstream và ý nghĩa kỹ thuật của component."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Quy tắc",
+              "body": "PCA là công cụ nén/biểu diễn không giám sát. Nếu mục tiêu là dự đoán hoặc phát hiện bất thường, k phải được kiểm chứng theo nhiệm vụ chứ không chỉ theo variance."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
