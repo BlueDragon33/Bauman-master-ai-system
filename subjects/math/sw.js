@@ -1,10 +1,12 @@
-/* Bauman Math Offline Shell V1 */
-const CACHE='bauman-math-shell-v1';
+/* Bauman Math Offline Shell V2 */
+const CACHE='bauman-math-shell-v2';
 const CORE=[
   './',
   './index.html',
   './assets/core-subject.css',
   './assets/math.css',
+  './assets/math-premium.css?v=2',
+  './assets/math-reader-pro.css?v=2',
   './assets/math-dashboard.css',
   './assets/math-navigation.css',
   './assets/math-learning-flow.css',
@@ -13,10 +15,12 @@ const CORE=[
   './assets/subject-adapter.js',
   './assets/theory_skin/theory-tab-E129.js',
   './assets/theory_skin/theory-content-source-E240.js',
+  './assets/math-premium.js',
+  './assets/math-reader-role-map.js',
   './assets/math-dashboard.js',
   './assets/math-navigation.js',
-  './assets/math-learning-flow.js',
-  './assets/math-study-library.js',
+  './assets/math-learning-flow.js?v=3',
+  './assets/math-study-library.js?v=2',
   './data/curriculum.json',
   './data/chapter_spine.json',
   './data/discipline_spine.json',
