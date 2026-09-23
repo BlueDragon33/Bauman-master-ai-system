@@ -85,6 +85,10 @@
       schedule(0);
     });
   }
+  function ensureAssessment(id){
+    if(id&&ASSESSMENT_SOURCES[id])loadAssessment(id);
+    return id?assessmentCache[id]||null:null;
+  }
   function slides(){return $$('.e129-slide').filter(x=>x.offsetParent!==null)}
   function rolesForRecord(rec){return new Set((rec?.slides||[]).map(s=>String(s?.role||'').toLowerCase()).filter(Boolean))}
   function stepsForRecord(rec){
@@ -185,6 +189,7 @@
     return items.slice(0,6);
   }
   function checkSummary(id,rec=recordById(id)){
+    ensureAssessment(id);
     const items=checkItemsForRecord(rec),st=lessonState(id,rec),answers=st.check||{};
     let answered=0,review=0,understood=0;
     items.forEach(item=>{
@@ -496,6 +501,7 @@
     render();return true;
   }
   function openLessonCheck(){
+    const cur=currentLesson();ensureAssessment(cur.id);
     const rec=currentRecord(),steps=stepsForRecord(rec);
     const self=steps.find(x=>x.id==='selfcheck');
     if(self)activate(self.id);
@@ -573,7 +579,8 @@
     render();
   }
   function selfCheck(){
-    const cur=currentLesson(),rec=currentRecord(),steps=stepsForRecord(rec);
+    const cur=currentLesson();ensureAssessment(cur.id);
+    const rec=currentRecord(),steps=stepsForRecord(rec);
     return {
       release:RELEASE,
       ready:!!$('#mathLearningFlow'),
