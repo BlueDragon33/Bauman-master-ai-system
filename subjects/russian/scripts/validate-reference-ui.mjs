@@ -47,7 +47,7 @@ must(index.includes('aria-modal="true"'),'Modal must declare aria-modal');
 must(index.includes('aria-label="Đóng hộp thoại"'),'Modal close button must have an accessible name');
 must(!index.includes('/priˈvʲet/'),'Learning shell must not expose a hard-coded pronunciation sample as canonical data');
 
-for(const token of ['.grammar-examples-first','.grammar-pattern-strip','.grammar-concept-details','.ru-app-shell','.rf-continue-band','.rf-today-plan','.rf-module-grid','.rf-dashboard-lower','.vocab-progressive-details','@media (max-width:1080px)','@media (max-width:760px)','@media (max-width:480px)']){
+for(const token of ['.grammar-examples-first','.grammar-pattern-strip','.grammar-concept-details','.ru-app-shell','.rf-continue-card','.rf-today-review-grid','.rf-today-plan','.rf-review-now','.rf-module-grid','.rf-module-progress','.rf-learning-path','.vocab-progressive-details','@media (max-width:1080px)','@media (max-width:760px)','@media (max-width:480px)']){
   must(css.includes(token),`Missing CSS contract: ${token}`);
 }
 for(const token of ['.ru-legacy-overview-details','.ru-empty-activity',':focus-visible','prefers-reduced-motion']){
@@ -80,11 +80,17 @@ must(js.includes('data-route'),'Canonical shortcuts must use core routing contra
 must(js.includes("aiQuick:'intro'"),'Global search must be able to open AI Mentor');
 must(js.includes("act:'route-modal'"),'Global search must be able to open today schedule');
 must(js.includes('collapseLegacyOverview'),'Overview must preserve legacy tools in a compact disclosure');
-for(const token of ['HỌC TIẾP','Kế hoạch hôm nay','5 kỹ năng chính','Ôn tập trọng điểm']) must(js.includes(token),`Canonical Home hierarchy missing: ${token}`);
+for(const token of ['HỌC TIẾP','Hôm nay','CẦN ÔN','5 kỹ năng chính','Learning Path']) must(js.includes(token),`Canonical Home hierarchy missing: ${token}`);
+must(js.includes('RussianLearningState?.dueReviews?.()'),'Overview review summary must read the real due Review Queue');
+must(!js.includes('Math.max(0,m.reviewDone?0:1)'),'Overview must not synthesize a fake review count when no evidence exists');
+must(js.includes('function skillEvidence'),'Overview skill cards must derive learner status from real state/evidence');
+must(js.includes('function learningPathHtml'),'Overview must expose the compact six-stage Learning Path');
 must(js.includes('navigator.platform'),'Shortcut hint must adapt to the user platform');
 must(!js.includes('base+Math.round'),'Skill cards must not synthesize fake per-skill progress');
 must(!js.includes('mini-progress'),'Skill cards must not display invented per-skill progress bars');
-for(const token of ['ru-future-ui','rf-progress-strip','rf-module-grid','rf-dashboard-lower','rf-tab-intro','--rf-sidebar:220px','--rf-sidebar-compact:220px','--rf-content-max:1120px','--rf-reading-max:820px','--rf-card-padding:22px','--rf-section-gap:28px','--rf-font-md:15px','--rf-font-hero:32px','--rf-motion-fast:180ms','grid-template-columns:var(--rf-sidebar) minmax(0,1fr)','display:none!important']) must(futureCss.includes(token),`Future UI CSS missing ${token}`);
+for(const token of ['ru-future-ui','rf-progress-strip','rf-module-grid','rf-learning-path','rf-tab-intro','--rf-sidebar:220px','--rf-sidebar-compact:220px','--rf-content-max:1120px','--rf-reading-max:820px','--rf-card-padding:22px','--rf-section-gap:28px','--rf-font-md:15px','--rf-font-hero:32px','--rf-motion-fast:180ms','grid-template-columns:var(--rf-sidebar) minmax(0,1fr)','display:none!important']) must(futureCss.includes(token),`Future UI CSS missing ${token}`);
+must(futureCss.includes('.rf-module-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))'),'Overview skill cards must use at most two columns on desktop');
+must(!futureCss.includes('.rf-module-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))'),'Five learning cards must not return to one desktop row');
 must(futureCss.includes('@media(max-width:1320px){\n .ru-future-ui .ru-app-shell{grid-template-columns:var(--rf-sidebar-compact)'), 'Laptop breakpoint must activate the compact sidebar token at <=1320px');
 for(const token of ['@media(max-width:767px)','rf-sidebar-toggle','rf-sidebar-scrim','rf-sidebar-open','width:min(86vw,320px)','height:100dvh']){
   must(futureCss.includes(token),`PASS 2 mobile drawer contract missing: ${token}`);
