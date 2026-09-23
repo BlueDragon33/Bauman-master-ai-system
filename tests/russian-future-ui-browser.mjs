@@ -78,6 +78,7 @@ try{
       }
     };
   });
+  console.log('RUSSIAN_FUTURE_UI_DIMS',JSON.stringify(dims));
   assert.ok(dims.sidebar&&dims.sidebar.w>=216&&dims.sidebar.w<=224,'Desktop sidebar must stay within the 216–224px learning-shell contract');
   assert.ok(dims.main&&dims.main.w>1300,'Main learning canvas must use space released by old right rail');
   assert.ok(dims.view&&dims.view.w>=1080&&dims.view.w<=1122,'Desktop content container must stay near the 1120px maximum');
