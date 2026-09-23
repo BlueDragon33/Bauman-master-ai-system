@@ -7,7 +7,7 @@
   const BOOKMARK_KEY='bauman_math_learning_bookmarks_v1';
   const NOTES_KEY='bauman_math_learning_notes_v1';
   const VISIT_KEY='bauman_math_dashboard_visits_v1';
-  let timer=0;
+  let timer=0,lastFocus=null;
   const $=(s,r=document)=>r.querySelector(s);
   const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -44,8 +44,8 @@
 
   function ensure(){
     if(!$('#mathStudyLibrary')){
-      const layer=document.createElement('section');layer.id='mathStudyLibrary';layer.className='math-study-library';
-      layer.innerHTML='<div class="math-study-shell"><header class="math-study-head"><div><small>Resource Drawer</small><h2>Tài nguyên học tập</h2><p>Tìm toàn môn, mở tài nguyên theo bài, bookmark, ghi chú và lịch sử học.</p></div><div class="math-study-head-actions"><button type="button" data-study-action="export">Export JSON</button><button type="button" data-study-action="close">Đóng ×</button></div></header><div class="math-study-toolbar"><input id="mathStudySearch" class="math-study-search" type="search" placeholder="Tìm PCA, ma trận nghịch đảo, công thức covariance, bài tập…"><div class="math-study-stats"><div class="math-study-stat"><b id="mathStudyBookmarkCount">0</b><span>Đã lưu</span></div><div class="math-study-stat"><b id="mathStudyNoteCount">0</b><span>Ghi chú</span></div><div class="math-study-stat"><b id="mathStudyRecentCount">0</b><span>Gần đây</span></div></div></div><div id="mathStudyBody" class="math-study-body"></div></div>';
+      const layer=document.createElement('section');layer.id='mathStudyLibrary';layer.className='math-study-library';layer.setAttribute('role','dialog');layer.setAttribute('aria-modal','true');layer.setAttribute('aria-labelledby','mathStudyTitle');layer.setAttribute('aria-hidden','true');
+      layer.innerHTML='<div class="math-study-shell"><header class="math-study-head"><div><small>Resource Drawer</small><h2 id="mathStudyTitle">Tài nguyên học tập</h2><p>Tìm toàn môn, mở tài nguyên theo bài, bookmark, ghi chú và lịch sử học.</p></div><div class="math-study-head-actions"><button type="button" data-study-action="export">Export JSON</button><button type="button" data-study-action="close">Đóng ×</button></div></header><div class="math-study-toolbar"><input id="mathStudySearch" class="math-study-search" type="search" aria-label="Tìm kiếm tài nguyên toàn môn" placeholder="Tìm PCA, ma trận nghịch đảo, công thức covariance, bài tập…"><div class="math-study-stats"><div class="math-study-stat"><b id="mathStudyBookmarkCount">0</b><span>Đã lưu</span></div><div class="math-study-stat"><b id="mathStudyNoteCount">0</b><span>Ghi chú</span></div><div class="math-study-stat"><b id="mathStudyRecentCount">0</b><span>Gần đây</span></div></div></div><div id="mathStudyBody" class="math-study-body"></div></div>';
       document.body.appendChild(layer);
       layer.addEventListener('click',e=>{if(e.target===layer)close()});
       $('#mathStudySearch')?.addEventListener('input',render);
@@ -142,16 +142,34 @@
       <section class="math-study-section wide"><div class="math-study-section-head"><h3>↺ Học gần đây</h3><span>${rc.length}</span></div><div class="math-study-list">${rc.length?rc.map(x=>itemHtml(x,'recent','')).join(''):'<div class="math-study-empty">Lịch sử sẽ xuất hiện khi bạn mở bài học.</div>'}</div></section>`;
   }
   function timeAgo(at){const d=Math.max(0,Date.now()-Number(at||0)),m=Math.floor(d/60000);if(m<1)return'vừa xong';if(m<60)return`${m} phút trước`;const h=Math.floor(m/60);if(h<24)return`${h} giờ trước`;return`${Math.floor(h/24)} ngày trước`;}
-  function open(){ensure();render();$('#mathStudyLibrary')?.classList.add('open');setTimeout(()=>$('#mathStudySearch')?.focus(),30)}
+  function open(){
+    ensure();render();lastFocus=document.activeElement;
+    const layer=$('#mathStudyLibrary');layer?.classList.add('open');layer?.setAttribute('aria-hidden','false');
+    setTimeout(()=>$('#mathStudySearch')?.focus(),30);
+  }
   function openSearch(query=''){
-    ensure();
+    ensure();lastFocus=document.activeElement;
     const input=$('#mathStudySearch');
     if(input)input.value=String(query||'');
     render();
-    $('#mathStudyLibrary')?.classList.add('open');
+    const layer=$('#mathStudyLibrary');layer?.classList.add('open');layer?.setAttribute('aria-hidden','false');
     setTimeout(()=>$('#mathStudySearch')?.focus(),30);
   }
-  function close(){$('#mathStudyLibrary')?.classList.remove('open')}
+  function close(){
+    const layer=$('#mathStudyLibrary');layer?.classList.remove('open');layer?.setAttribute('aria-hidden','true');
+    if(lastFocus&&typeof lastFocus.focus==='function')setTimeout(()=>lastFocus.focus(),0);
+    lastFocus=null;
+  }
+  function trapFocus(e){
+    const layer=$('#mathStudyLibrary');
+    if(e.key!=='Tab'||!layer?.classList.contains('open'))return false;
+    const focusable=$('button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),a[href],[tabindex]:not([tabindex="-1"])',layer).filter(x=>x.offsetParent!==null);
+    if(!focusable.length)return false;
+    const first=focusable[0],last=focusable[focusable.length-1];
+    if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();return true}
+    if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();return true}
+    return false;
+  }
   function openLesson(id){
     const rec=findRecord(id),st=state();if(!rec||!st){toast('Không tìm thấy lesson trong runtime hiện tại');return false;}
     st.view='learning';st.learnTab='theory';st.e129LessonId=id;if(rec.chapterId)st.e129ChapterId=rec.chapterId;
@@ -185,7 +203,7 @@
       const note=e.target.closest('[data-study-clear-note]')?.dataset.studyClearNote;if(note){e.preventDefault();clearNote(note);return;}
       if(e.target.closest('[data-e129-chapter],[data-e129-lesson],[data-e129-stage],[data-math-nav]'))schedule(200);
     },true);
-    document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.shiftKey&&e.key.toLowerCase()==='s'){e.preventDefault();open()}if(e.key==='Escape')close()});
+    document.addEventListener('keydown',e=>{if(trapFocus(e))return;if((e.ctrlKey||e.metaKey)&&e.shiftKey&&e.key.toLowerCase()==='s'){e.preventDefault();open()}if(e.key==='Escape')close()});
   }
   function schedule(ms=150){clearTimeout(timer);timer=setTimeout(()=>{ensure();render()},ms)}
   function selfCheck(){return{release:RELEASE,ready:!!$('#mathStudyLibrary'),primaryNavInjection:!!$('#mathStudyNav'),globalSearch:true,resourceDrawer:true,searchableLessons:records().length,bookmarks:bookmarks().length,notes:Object.values(notes()).filter(x=>String(x||'').trim()).length,localOnly:true,academicWrites:false,routeEngineReplacement:false}}
