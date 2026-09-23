@@ -85,6 +85,13 @@ must(!js.includes('base+Math.round'),'Skill cards must not synthesize fake per-s
 must(!js.includes('mini-progress'),'Skill cards must not display invented per-skill progress bars');
 for(const token of ['ru-future-ui','rf-progress-strip','rf-module-grid','rf-dashboard-lower','rf-tab-intro','--rf-sidebar:220px','--rf-sidebar-compact:190px','--rf-content-max:1500px','--rf-section-gap:12px','--rf-motion-fast:180ms','grid-template-columns:var(--rf-sidebar) minmax(0,1fr)','display:none!important']) must(futureCss.includes(token),`Future UI CSS missing ${token}`);
 must(futureCss.includes('@media(max-width:1320px){\n .ru-future-ui .ru-app-shell{grid-template-columns:var(--rf-sidebar-compact)'), 'Laptop breakpoint must activate the compact sidebar token at <=1320px');
+must(!futureCss.includes('Russian Reference UI · premium Bauman/Russia dashboard layer'),'PASS 2 must not restore the obsolete dark shell presentation layer');
+for(const token of ['--ru-bg:#040d1b','grid-template-columns:228px minmax(0,1fr) 328px','background:rgba(4,15,29,.88)']){
+  must(!futureCss.includes(token),`Obsolete shell token returned: ${token}`);
+}
+for(const token of ['position:relative!important;height:42px!important;display:flex!important','position:absolute!important;left:0!important;right:0!important;top:45px!important','margin:0!important;padding:0 1px!important']){
+  must(futureCss.includes(token),`Canonical shell/search structure missing after PASS 2 migration: ${token}`);
+}
 for(const token of ['RUSSIAN_FUTURE_REFERENCE_UI_V1','upgradeOverview','upgradeTabIntro','data-rf-speak','Nghe & Nói','Luyện chữ','Kế hoạch hôm nay']) must(futureJs.includes(token),`Future UI runtime missing ${token}`);
 must(futureJs.includes("setText(title,'Tiếng Nga')"),'Future UI must expose Russian-only visible brand');
 must(futureJs.includes("function setText(el,value){if(el&&el.textContent!==value)el.textContent=value}"),'Future UI text writes must remain idempotent');
