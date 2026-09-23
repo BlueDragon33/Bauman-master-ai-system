@@ -5,7 +5,7 @@
   "moduleTitle": "Hiệp phương sai, tương quan và PCA nhập môn",
   "stageId": "prepare",
   "architecture": "logical_module_over_physical_content",
-  "status": "RECOVERY_READY_NOT_CONTENT_COMPLETE",
+  "status": "B2_B3_STAGED_FOR_AUDIT",
   "correction": {
     "invalidClaim": "E15 treated MATH-VN-LA-C07 as a completed physical chapter with populated sidecars.",
     "repositoryTruth": [
@@ -43,7 +43,14 @@
       "legacyAnchors": [
         "MATH-PREP-LA2-C10-L07"
       ],
-      "coverage": "PARTIAL_REUSABLE"
+      "coverage": "COVERED_BY_MODERN_ANCHOR",
+      "resolution": {
+        "mode": "reuse_existing_modern_theory",
+        "lessonIds": [
+          "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+          "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L01-matrix-as-data-and-transform-e142"
+        ]
+      }
     },
     {
       "logicalId": "m_p07_t02",
@@ -55,7 +62,11 @@
       "legacyAnchors": [
         "MATH-HK2-MLB-C25-L07"
       ],
-      "coverage": "AUTHORING_REQUIRED"
+      "coverage": "STAGED_FOR_ACADEMIC_AUDIT",
+      "resolution": {
+        "mode": "staged_new_theory",
+        "bundle": "subjects/math/content_bundles/theory/e16r_mp07_missing_cores_bundle.json"
+      }
     },
     {
       "logicalId": "m_p07_t03",
@@ -67,7 +78,11 @@
       "legacyAnchors": [
         "MATH-VN-PS-C05-L05"
       ],
-      "coverage": "AUTHORING_REQUIRED"
+      "coverage": "STAGED_FOR_ACADEMIC_AUDIT",
+      "resolution": {
+        "mode": "staged_new_theory",
+        "bundle": "subjects/math/content_bundles/theory/e16r_mp07_missing_cores_bundle.json"
+      }
     },
     {
       "logicalId": "m_p07_t04",
@@ -79,7 +94,11 @@
       "legacyAnchors": [
         "MATH-PREP-PS2-C15-L06"
       ],
-      "coverage": "AUTHORING_REQUIRED"
+      "coverage": "STAGED_FOR_ACADEMIC_AUDIT",
+      "resolution": {
+        "mode": "staged_new_theory",
+        "bundle": "subjects/math/content_bundles/theory/e16r_mp07_missing_cores_bundle.json"
+      }
     },
     {
       "logicalId": "m_p07_t05",
@@ -92,7 +111,11 @@
       "legacyAnchors": [
         "MATH-PREP-LA2-C10-L05"
       ],
-      "coverage": "AUTHORING_REQUIRED"
+      "coverage": "STAGED_FOR_ACADEMIC_AUDIT",
+      "resolution": {
+        "mode": "staged_new_theory",
+        "bundle": "subjects/math/content_bundles/theory/e16r_mp07_missing_cores_bundle.json"
+      }
     },
     {
       "logicalId": "m_p07_t06",
@@ -107,7 +130,12 @@
         "MATH-PREP-LA2-C10-L01",
         "MATH-PREP-LA2-C10-L05"
       ],
-      "coverage": "PARTIAL_REUSABLE"
+      "coverage": "STAGED_UPGRADE_CANDIDATE",
+      "resolution": {
+        "mode": "staged_replacement_upgrade",
+        "bundle": "subjects/math/content_bundles/theory/e16r_mp07_pca_anchor_upgrade_bundle.json",
+        "targetLessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143"
+      }
     },
     {
       "logicalId": "m_p07_t07",
@@ -121,7 +149,12 @@
       "legacyAnchors": [
         "MATH-PREP-LA2-C10-L06"
       ],
-      "coverage": "PARTIAL_REUSABLE"
+      "coverage": "STAGED_UPGRADE_CANDIDATE",
+      "resolution": {
+        "mode": "staged_replacement_upgrade",
+        "bundle": "subjects/math/content_bundles/theory/e16r_mp07_pca_anchor_upgrade_bundle.json",
+        "targetLessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143"
+      }
     },
     {
       "logicalId": "m_p07_t08",
@@ -135,7 +168,12 @@
       "legacyAnchors": [
         "MATH-PREP-LA2-C10-L08"
       ],
-      "coverage": "PARTIAL_REUSABLE"
+      "coverage": "STAGED_UPGRADE_CANDIDATE",
+      "resolution": {
+        "mode": "staged_replacement_upgrade",
+        "bundle": "subjects/math/content_bundles/theory/e16r_mp07_pca_anchor_upgrade_bundle.json",
+        "targetLessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143"
+      }
     }
   ],
   "contentGate": {
@@ -152,5 +190,11 @@
       "review_pack_content.json"
     ],
     "completionRule": "PASS only after all 8 logical lessons resolve to audited modern content and sidecar link integrity passes. Counts alone never produce PASS."
+  },
+  "recoveryProgress": {
+    "B1": "PASS_SOURCE_MAP_ARCHITECTURE_RECOVERY",
+    "B2": "STAGED_4_MISSING_CORES_40_SLIDES",
+    "B3": "STAGED_PCA_ANCHOR_UPGRADE_16_TO_22_SLIDES",
+    "next": "ACADEMIC_AND_SCHEMA_GATE"
   }
 }
