@@ -9,7 +9,6 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="stylesheet" href="assets/core.css">
 <link rel="stylesheet" href="assets/russian.css">
-<link rel="stylesheet" href="assets/russian-future-ui.css">
 <link rel="stylesheet" href="assets/learning-state.css">
 <link rel="stylesheet" href="assets/content-contract.css">
 <link rel="stylesheet" href="assets/learning-flow.css">
@@ -18,18 +17,22 @@
 <link rel="stylesheet" href="assets/academic-language.css">
 <link rel="stylesheet" href="assets/capability-progression.css">
 <link rel="stylesheet" href="assets/runtime-optimizer.css">
+<link rel="stylesheet" href="assets/russian-future-ui.css">
 </head>
 <body class="ru-reference-ui ru-future-ui">
 <div id="app" class="app ru-app-shell">
-  <aside class="sidebar ru-sidebar">
+  <aside id="russianSidebar" class="sidebar ru-sidebar" aria-label="Điều hướng học Tiếng Nga">
+    <button id="russianSidebarClose" class="ru-sidebar-close" type="button" aria-label="Đóng điều hướng">×</button>
     <div class="brand ru-brand"><div id="subjectLogo" class="logo">Я</div><div><h1 id="subjectTitle">Tiếng Nga</h1><p id="subjectSubtitle">Nghe • Nói • Đọc • Viết</p></div></div>
     <div class="ru-brand-caption">MỞ MỘT NGÔN NGỮ · MỞ RỘNG THẾ GIỚI</div>
     <div class="ru-stage-box"><label id="stageLabel" class="select-label">Giai đoạn</label><select id="stageSelect" class="input"></select></div>
     <nav id="nav" class="nav ru-nav"></nav>
     <div class="ru-sidebar-quote"><span>“Язык открывает новый мир”</span><small>Một ngôn ngữ mới mở ra một thế giới mới.</small></div>
   </aside>
+  <button id="russianSidebarBackdrop" class="ru-sidebar-backdrop" type="button" aria-label="Đóng điều hướng" tabindex="-1"></button>
   <main class="main ru-main">
     <header class="topbar ru-topbar">
+      <button id="russianMenuBtn" class="btn soft ru-menu-btn" type="button" aria-label="Mở điều hướng" aria-controls="russianSidebar" aria-expanded="false">☰</button>
       <div class="ru-global-search-wrap"><span class="ru-search-icon">⌕</span><input id="russianGlobalSearch" class="ru-global-search" type="search" autocomplete="off" placeholder="Tìm bài học, từ vựng, chủ đề..." aria-label="Tìm trong site Tiếng Nga" role="combobox" aria-autocomplete="list" aria-controls="russianSearchHints" aria-expanded="false"><kbd>⌘ K</kbd><div id="russianSearchHints" class="ru-search-hints hidden" role="listbox"></div></div>
       <div class="ru-page-context"><span id="coreLabel" class="kicker">TIẾNG NGA · HỌC MỖI NGÀY</span><h2 id="pageTitle">Tổng quan</h2><p id="pageSub">Học tiếng Nga theo nhịp nghe • nói • đọc • viết.</p></div>
       <div class="top-actions ru-top-actions"><button id="themeBtn" class="btn soft" title="Đổi giao diện">☀</button><button id="aiBtn" class="btn primary" title="Mở AI Mentor">AI</button><span id="saveState" class="status">Đã đồng bộ</span></div>
