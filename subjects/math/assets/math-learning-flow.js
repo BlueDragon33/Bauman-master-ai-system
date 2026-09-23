@@ -90,7 +90,6 @@
     const all=allState(),raw=all[id]||{};
     const steps=stepsForRecord(rec);
     const visited=normalizeVisited(raw.visited,steps);
-    if(!Object.keys(visited).length&&id===currentLesson().id)visited[steps[0].id]=true;
     return {...raw,active:normalizeActive(raw.active,steps),visited,lastAt:Number(raw.lastAt||0)};
   }
   function writeLessonState(id,patch){
