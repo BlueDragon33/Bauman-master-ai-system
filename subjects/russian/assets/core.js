@@ -13,7 +13,7 @@ const PACKAGE_ROOT=A.packageRoot||'subjects/russian/';
 const NAV=A.nav||[['overview','🧭','Tổng quan'],['learning','🎓','Học tập'],['dialogue','💬','Đối thoại'],['writing','✍️','Viết'],['media','🎬','Video/Audio'],['vocab','🗂️','Từ vựng'],['grammar','🧩','Ngữ pháp'],['mindmap','🧠','Mind map'],['storage','🗄️','Lưu trữ']];
 const PRIMARY_NAV=A.primaryNav||NAV;
 const LEARN_TABS=A.learningTabs||[['theory','📘','Lý thuyết'],['exercises','📝','Bài tập'],['practice','🎙️','Nghe/Nói'],['review','🔁','Ôn tập'],['exam','🧪','Kiểm tra']];
-const DEFAULT={stage:'vn',view:'overview',learnTab:'theory',lessonId:'',slide:0,lessonQuery:'',conceptQuery:'',exerciseLevel:'all',exerciseIndex:0,testLevel:'easy',testIndex:0,testAnswer:null,reviewLevel:'easy',reviewFilter:'all',reviewLesson:'all',reviewIndex:0,reviewPage:0,reviewAnswer:null,reviewProgress:{done:{},flagged:{},wrong:{}},examLevel:'easy',examCycle:'auto',examPaperLevel:'easy',examPaperType:'standard',examIndex:0,examPage:0,examAnswer:null,examProgress:{answers:{},marked:{},submitted:false,submittedAt:null,result:null,wrong:{},paperResults:{}},examHistory:[],remedialPlan:{active:false,cards:[],completed:{},createdAt:null,lastExamAt:null,lastScore:null},dialogueId:'',dialogueGroup:'all',dialogueDifficulty:'all',dialogueQuery:'',dialogueLineIndex:0,dialogueRole:'all',dialogueHideVi:false,dialogueShowTranscript:false,dialoguePeople:'2',dialogueMinutes:'10',dialogueMode:'shadow_roleplay',dialogueScenario:'classroom',practiceDialogueId:'',practiceGroup:'all',practiceDifficulty:'all',practiceQuery:'',practiceLineIndex:0,practiceRole:'all',practiceHideVi:false,practiceShowTranscript:false,practiceSpeechResults:{},dialogueSpeechResults:{},deepSpeakingId:'',deepSpeakingMode:'overview',deepSpeakingStep:0,deepSpeakingProgress:{done:{},weak:{},attempts:{},lastMode:{}},optionalDataLoading:{},optionalDataError:{},speechResults:{},speechRecording:false,speechAutoNext:false,mediaCat:'all',mediaQuery:'',mediaView:'list',mediaId:'',vocabQuery:'',vocabFocusKey:'',vocabIndex:0,vocabPage:0,vocabFlipped:false,grammarLevel:'all',grammarTrack:'all',grammarQuery:'',grammarIndex:0,mindmapId:'roadmap-map',mindmapNode:'',mindmapFontScale:14,mindmapDrag:{},mindmapLayoutVersion:'v13_32_clean',writingMode:'handwriting',handwritingIndex:0,handwritingQuery:'',handwritingStep:0,handwritingPractice:'trace',handwritingShowGuide:true,handwritingShowLines:true,handwritingExerciseIndex:0,handwritingExerciseInput:'',handwritingExerciseChoice:'',handwritingExerciseAttempted:false,handwritingExerciseReveal:false,handwritingExerciseResult:null,handwritingSessionMode:'learn',handwritingListenWriteProgress:{byLetter:{}},lessonListenWrite:{lessonId:'',itemIndex:0,drillIndex:0,mode:'',input:'',choice:'',attempted:false,result:null},writingIndex:0,writingQuery:'',writingDraft:'',storageFile:'curriculum',storageGroup:'all',storageText:'',storagePreviewLimit:0,storagePreviewAutoCollapsedV1322:false,storageQuery:'',storageTreeOpen:{},aiDraft:'',aiOutput:'',interfaceTheme:'clean',interfaceDensity:'normal',hostTask:null,planningBundle:null,routeEdit:false,routeManual:null,routeFocus:'today',testSession:{answered:0,correct:0,targetQuestions:100,targetScore:80,seen:{}},recentAccess:[],stageGate:null,examGateSource:null,stageTransitions:[],lastStageTransition:null};
+const DEFAULT={stage:'vn',view:'overview',learnTab:'theory',lessonId:'',slide:0,lessonQuery:'',conceptQuery:'',exerciseLevel:'all',exerciseIndex:0,testLevel:'easy',testIndex:0,testAnswer:null,reviewLevel:'easy',reviewFilter:'all',reviewLesson:'all',reviewIndex:0,reviewPage:0,reviewAnswer:null,reviewProgress:{done:{},flagged:{},wrong:{}},examLevel:'easy',examCycle:'auto',examPaperLevel:'easy',examPaperType:'standard',examIndex:0,examPage:0,examAnswer:null,examProgress:{answers:{},marked:{},submitted:false,submittedAt:null,result:null,wrong:{},paperResults:{}},examHistory:[],remedialPlan:{active:false,cards:[],completed:{},createdAt:null,lastExamAt:null,lastScore:null},dialogueId:'',dialogueGroup:'all',dialogueDifficulty:'all',dialogueQuery:'',dialogueLineIndex:0,dialogueRole:'all',dialogueHideVi:false,dialogueShowTranscript:false,dialoguePeople:'2',dialogueMinutes:'10',dialogueMode:'shadow_roleplay',dialogueScenario:'classroom',practiceDialogueId:'',practiceGroup:'all',practiceDifficulty:'all',practiceQuery:'',practiceLineIndex:0,practiceRole:'all',practiceHideVi:false,practiceShowTranscript:false,practiceSpeechResults:{},dialogueSpeechResults:{},deepSpeakingId:'',deepSpeakingMode:'overview',deepSpeakingStep:0,deepSpeakingProgress:{done:{},weak:{},attempts:{},lastMode:{}},optionalDataLoading:{},optionalDataError:{},speechResults:{},speechRecording:false,speechAutoNext:false,mediaCat:'all',mediaQuery:'',mediaView:'list',mediaId:'',vocabQuery:'',vocabTopic:'all',vocabStatus:'all',vocabFocusKey:'',vocabIndex:0,vocabPage:0,vocabFlipped:false,grammarLevel:'all',grammarTrack:'all',grammarQuery:'',grammarIndex:0,mindmapId:'roadmap-map',mindmapNode:'',mindmapFontScale:14,mindmapDrag:{},mindmapLayoutVersion:'v13_32_clean',writingMode:'handwriting',handwritingIndex:0,handwritingQuery:'',handwritingStep:0,handwritingPractice:'trace',handwritingShowGuide:true,handwritingShowLines:true,handwritingExerciseIndex:0,handwritingExerciseInput:'',handwritingExerciseChoice:'',handwritingExerciseAttempted:false,handwritingExerciseReveal:false,handwritingExerciseResult:null,handwritingSessionMode:'learn',handwritingListenWriteProgress:{byLetter:{}},lessonListenWrite:{lessonId:'',itemIndex:0,drillIndex:0,mode:'',input:'',choice:'',attempted:false,result:null},writingIndex:0,writingQuery:'',writingDraft:'',storageFile:'curriculum',storageGroup:'all',storageText:'',storagePreviewLimit:0,storagePreviewAutoCollapsedV1322:false,storageQuery:'',storageTreeOpen:{},aiDraft:'',aiOutput:'',interfaceTheme:'clean',interfaceDensity:'normal',hostTask:null,planningBundle:null,routeEdit:false,routeManual:null,routeFocus:'today',testSession:{answered:0,correct:0,targetQuestions:100,targetScore:80,seen:{}},recentAccess:[],stageGate:null,examGateSource:null,stageTransitions:[],lastStageTransition:null};
 let DB={},state={...DEFAULT},canvas=null,ctx=null,drawing=false,strokes=[],currentStroke=null,penColor='#111827',penSize=6,speechRecognizer=null;
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
 const arr=v=>Array.isArray(v)?v:[], str=v=>String(v??''), esc=v=>str(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])), lower=v=>str(v).toLowerCase();
@@ -596,10 +596,27 @@ function finalQaSnapshot(){
 
 function getDialogues(){let xs=byStage(getBaumanDialogueAZ()); if(state.dialogueGroup!=='all')xs=xs.filter(x=>(A.dialogueGroup?.(x)||x.group||'general')===state.dialogueGroup); if(state.dialogueDifficulty!=='all')xs=xs.filter(x=>(A.dialogueDifficulty?.(x)||x.difficulty||x.level||'all')===state.dialogueDifficulty); if(state.dialogueQuery)xs=xs.filter(x=>lower(textOf(x)).includes(lower(state.dialogueQuery))); return xs}
 function getMedia(){let xs=byStage(call('getMedia',[],DB)); if(state.mediaCat!=='all')xs=xs.filter(x=>mediaCategoryLabel(x)===state.mediaCat); if(state.mediaQuery)xs=xs.filter(x=>lower(JSON.stringify(x)).includes(lower(state.mediaQuery))); return xs}
+const VOCAB_TOPICS=[
+ {id:'time',label:'Thời gian',tags:['time']},{id:'place',label:'Địa điểm',tags:['place']},{id:'daily',label:'Hằng ngày',tags:['daily']},
+ {id:'transport',label:'Đi lại',tags:['transport']},{id:'home',label:'Nhà & KTX',tags:['home','dorm']},{id:'shopping',label:'Mua sắm',tags:['shopping']},
+ {id:'phone',label:'Điện thoại',tags:['phone']},{id:'money',label:'Tiền bạc',tags:['money']},{id:'health',label:'Sức khỏe',tags:['health']},
+ {id:'food',label:'Ăn uống',tags:['food','canteen']},{id:'academic',label:'Học tập',tags:['academic','graduate_path']},{id:'office',label:'Giấy tờ',tags:['office']},
+ {id:'technology',label:'Công nghệ',tags:['technology']},{id:'research',label:'Nghiên cứu',tags:['research']},{id:'greeting',label:'Chào hỏi',tags:['greeting']},
+ {id:'permission',label:'Xin phép',tags:['permission']},{id:'need',label:'Nhu cầu',tags:['need']},{id:'want',label:'Mong muốn',tags:['want']}
+];
 function vocabSourceKey(item,index=0){return str(item?.id||item?.source_id||`source_${index}`).trim()}
+function vocabTopicDef(id){return VOCAB_TOPICS.find(x=>x.id===id)||null}
+function vocabTopicOptions(items){
+ const counts=new Map();
+ for(const item of arr(items)){const tags=new Set(arr(item?.tags).map(lower));for(const topic of VOCAB_TOPICS){if(topic.tags.some(t=>tags.has(t)))counts.set(topic.id,(counts.get(topic.id)||0)+1);}}
+ return VOCAB_TOPICS.filter(x=>counts.get(x.id)>0).map(x=>({...x,count:counts.get(x.id)}));
+}
 function getVocab(){
  let xs=byStage(call('getVocabulary',[],DB));
  if(state.vocabFocusKey)xs=xs.filter((x,i)=>vocabSourceKey(x,i)===state.vocabFocusKey);
+ const topic=vocabTopicDef(state.vocabTopic);
+ if(topic)xs=xs.filter(x=>{const tags=new Set(arr(x?.tags).map(lower));return topic.tags.some(t=>tags.has(t));});
+ if(state.vocabStatus&&state.vocabStatus!=='all'&&window.RussianVocabSrs?.filterItems)xs=window.RussianVocabSrs.filterItems(xs,state.vocabStatus);
  if(state.vocabQuery)xs=xs.filter(x=>lower(A.vocabSearchText?.(x)||JSON.stringify(x)).includes(lower(state.vocabQuery)));
  return xs
 }
@@ -2447,6 +2464,8 @@ function renderVocab(){
   state.vocabIndex=Math.min(Math.max(0,Number(state.vocabIndex)||0),Math.max(0,list.length-1));
   const pageSize=VOCAB_PAGE_SIZE||20;
   state.vocabPage=Math.floor(state.vocabIndex/pageSize);
+  const topicOptions=vocabTopicOptions(stageVocab);
+  const statusOptions=[['all','Tất cả trạng thái'],['new','Mới'],['learned','Đã học'],['due','Cần ôn'],['difficult','Khó']];
   const v=list[state.vocabIndex]||{};
   const sourceIndex=Math.max(0,allVocab.indexOf(v));
   const stageIndex=Math.max(0,stageVocab.indexOf(v));
@@ -2469,6 +2488,15 @@ function renderVocab(){
   const front=`<div class="v1310-flash-face v1312-flash-face"><div class="v1312-flash-visual">${visual}</div><div class="term ${termSizeClass}">${esc(term)}</div><div class="v1310-pron">${esc(info.pron||'Nghe để xác nhận phát âm')}</div>${example?`<p class="vocab-micro-context" lang="ru">${esc(clip(example,72))}</p>`:''}</div>`;
   const back=`<div class="v1310-flash-face v1312-flash-face flipped"><div class="v1312-flash-visual back">${visualBack}</div><span>Hiểu qua hình và ngữ cảnh Nga</span><div class="meaning" lang="ru">${esc(meaning)}</div>${example?`<small>${esc(example)}</small>`:''}</div>`;
   return `<div class="vocab-studio step37-vocab-safe canva3-vocab canva3-vocab-no-hero v1303-vocab-safe v1310-vocab-polish v1311-vocab-luxe v1312-vocab-chibi">
+   <section class="vocab-library-toolbar" aria-label="Bộ lọc kho từ vựng">
+     <div class="vocab-library-summary"><span>KHO TỪ VỰNG · ${esc(stageTitle(state.stage))}</span><b>${list.length} / ${stageVocab.length}</b><small>20 thẻ/lượt · chỉ tải kho lớn khi mở Từ vựng</small></div>
+     <div class="vocab-library-controls">
+       <input class="input" data-input="vocabQuery" value="${esc(state.vocabQuery||'')}" placeholder="Tìm từ, ví dụ hoặc phát âm…" aria-label="Tìm trong kho từ vựng">
+       <select class="input" data-input="vocabTopic" aria-label="Lọc theo chủ đề"><option value="all">Tất cả chủ đề</option>${topicOptions.map(x=>`<option value="${esc(x.id)}" ${state.vocabTopic===x.id?'selected':''}>${esc(x.label)} · ${x.count}</option>`).join('')}</select>
+       <select class="input" data-input="vocabStatus" aria-label="Lọc theo trạng thái học">${statusOptions.map(([id,label])=>`<option value="${id}" ${state.vocabStatus===id?'selected':''}>${label}</option>`).join('')}</select>
+       <button class="btn soft" data-act="vocab-clear-filter">Xóa lọc</button>
+     </div>
+   </section>
    <div class="vocab-desk step37-vocab-desk canva3-vocab-desk v1303-vocab-desk v1310-vocab-desk">
      <aside class="panel vocab-page-list v1303-vocab-list v1310-vocab-list" aria-label="Danh sách 20 thẻ từ hiện tại">
        <div class="vocab-list-head v1310-vocab-list-head"><span class="chip">20 thẻ/lượt</span><b>${pageStart+1}-${Math.min(list.length,pageStart+rows.length)}/${list.length}</b></div>
@@ -3266,7 +3294,7 @@ function mediaForm(item={}){
  const cat=A.mediaCategory?.(item)||item.category||item.genre||'';
  return `<div class="modal-body media-form"><h3>${item.id||item.title?'Sửa nguồn Video/Audio':'Thêm Video/Audio'}</h3><datalist id="mediaGroupOptions">${groups.map(g=>`<option value="${esc(g)}"></option>`).join('')}</datalist><div class="form-row"><input class="input" id="mfTitle" placeholder="Tên nội dung" value="${esc(item.title||'')}"><input class="input" id="mfCat" list="mediaGroupOptions" placeholder="Chọn hoặc nhập nhóm học" value="${esc(cat)}"></div><textarea class="textarea" id="mfUrl" placeholder="URL gốc / link mở trực tiếp">${esc(item.url||'')}</textarea><textarea class="textarea" id="mfIframe" placeholder="Iframe embed hoặc URL embed">${esc(item.iframe||'')}</textarea><textarea class="textarea" id="mfPurpose" placeholder="Mục đích/mô tả">${esc(item.purpose||item.summary||'')}</textarea><div class="modal-actions"><button class="btn" data-act="modal-close">Hủy</button><button class="btn primary" data-act="media-save" data-id="${esc(item.id||item.title||'')}">Lưu media</button></div></div>`
 }
-function applyInput(el){const k=el.dataset.input; if(!k)return; let v=el.value; if(k==='interfaceTheme'||k==='interfaceDensity'||k==='interfaceMain'){state[k]=v; applyInterface(); save(); if(state.modalType==='interface')openModal(renderInterfaceModal(),'interface'); else render(); return;} if(['dialogueGroup','dialogueDifficulty','practiceGroup','practiceDifficulty','deepSpeakingId','mediaCat','grammarLevel','grammarTrack','mindmapId','testLevel','reviewLevel','reviewFilter','reviewLesson','examLevel','examCycle','examPaperLevel','examPaperType','exerciseLevel','storageGroup'].includes(k)){
+function applyInput(el){const k=el.dataset.input; if(!k)return; let v=el.value; if(k==='interfaceTheme'||k==='interfaceDensity'||k==='interfaceMain'){state[k]=v; applyInterface(); save(); if(state.modalType==='interface')openModal(renderInterfaceModal(),'interface'); else render(); return;} if(['dialogueGroup','dialogueDifficulty','practiceGroup','practiceDifficulty','deepSpeakingId','mediaCat','grammarLevel','grammarTrack','mindmapId','vocabTopic','vocabStatus','testLevel','reviewLevel','reviewFilter','reviewLesson','examLevel','examCycle','examPaperLevel','examPaperType','exerciseLevel','storageGroup'].includes(k)){
   if(k==='examCycle'){
    if(v!=='auto'&&!isExamCycleUnlocked(Number(v))){toast('Lượt kiểm tra này chưa mở khóa. Hãy học đủ lịch trình trước.'); v='auto';}
    state.examCycle=v; state.examPaperLevel=activeExamLevel(); state.examIndex=0; state.examPage=0;
@@ -3284,7 +3312,7 @@ function applyInput(el){const k=el.dataset.input; if(!k)return; let v=el.value; 
    state[k]=v;
   }
   if(k==='testLevel'){state.testIndex=0;state.testAnswer=null;} if(k==='reviewLevel'){state.reviewIndex=0;state.reviewPage=0;state.reviewAnswer=null;state.reviewLesson='all';} if(k==='reviewFilter'||k==='reviewLesson'){state.reviewIndex=0;state.reviewPage=0;state.reviewAnswer=null;} if(k==='exerciseLevel')state.exerciseIndex=0; if(k==='practiceGroup'||k==='practiceDifficulty'){state.practiceDialogueId='';state.practiceLineIndex=0;} if(k==='dialogueGroup'||k==='dialogueDifficulty'){state.dialogueId='';state.dialogueLineIndex=0;} if(k==='deepSpeakingId'){state.deepSpeakingStep=0;} if(k==='grammarLevel'){state.grammarTrack='all';state.grammarIndex=0;} if(k==='grammarTrack'){state.grammarIndex=0;} if(k==='mindmapId'){state.mindmapNode='';}
- } else state[k]=v; save(); render();}
+ } else {state[k]=v;if(k==='vocabQuery'){state.vocabFocusKey='';state.vocabIndex=0;state.vocabPage=0;}} if(k==='vocabTopic'||k==='vocabStatus'){state.vocabFocusKey='';state.vocabIndex=0;state.vocabPage=0;} save(); render();}
 let activeHandwritingAudioKey='';
 function markHandwritingAudioPlaying(key,on){
  activeHandwritingAudioKey=on?key:'';
@@ -3867,7 +3895,7 @@ function handleClick(e){
  if(act==='toggle-guide'){state.handwritingShowGuide=state.handwritingShowGuide===false;save();drawCanvas();render()}
  if(act==='toggle-lines'){state.handwritingShowLines=state.handwritingShowLines===false;save();drawCanvas();render()}
  if(act==='download-canvas')downloadCanvas();
- if(act==='vocab-clear-filter'){state.vocabQuery='';state.vocabFocusKey='';state.vocabIndex=0;state.vocabPage=0;state.vocabFlipped=false;save();render();return}
+ if(act==='vocab-clear-filter'){state.vocabQuery='';state.vocabTopic='all';state.vocabStatus='all';state.vocabFocusKey='';state.vocabIndex=0;state.vocabPage=0;state.vocabFlipped=false;save();render();return}
  if(act==='prev-vocab'){state.vocabIndex=Math.max(0,state.vocabIndex-1);state.vocabPage=Math.floor(state.vocabIndex/(VOCAB_PAGE_SIZE||20));state.vocabFlipped=false;save();render()}
  if(act==='next-vocab'){const voc=getVocab();state.vocabIndex=voc.length?Math.min(voc.length-1,state.vocabIndex+1):0;state.vocabPage=Math.floor(state.vocabIndex/(VOCAB_PAGE_SIZE||20));state.vocabFlipped=false;save();render()}
  if(act==='speak-vocab'){const v=getVocab()[state.vocabIndex]||{}; speakVocabItem(v,false)}
