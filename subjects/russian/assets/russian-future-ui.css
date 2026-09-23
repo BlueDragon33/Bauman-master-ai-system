@@ -260,3 +260,24 @@ body.ru-reference-ui.ru-future-ui .modal-close{background:#edf3fb!important;colo
 .ru-future-ui .rf-search-group>button{width:100%;min-height:38px;padding:7px 9px;display:flex;align-items:center;justify-content:space-between;gap:12px;border:0;border-radius:10px;background:transparent;color:#1e3c59;text-align:left;cursor:pointer}
 .ru-future-ui .rf-search-group>button:hover,.ru-future-ui .rf-search-group>button:focus-visible{background:#edf5ff;outline:0}
 .ru-future-ui .rf-search-group>button span{font-size:11px;font-weight:720}.ru-future-ui .rf-search-group>button small{max-width:48%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#8295a9;font-size:9px}
+
+
+/* PASS 12 · Grammar stays example-first; deeper explanation is progressive disclosure. */
+.ru-future-ui .grammar-main-card{display:grid;gap:var(--rf-section-gap)}
+.ru-future-ui .grammar-section-head{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px}
+.ru-future-ui .grammar-section-head>span{width:30px;height:30px;display:grid;place-items:center;border-radius:10px;background:#eaf3ff;color:#246fd5;font-size:10px;font-weight:900;flex:0 0 auto}
+.ru-future-ui .grammar-section-head h4{margin:0 0 3px;font-size:15px}.ru-future-ui .grammar-section-head p{margin:0;color:#708398;font-size:11px;line-height:1.45}
+.ru-future-ui .grammar-examples-first{order:1}.ru-future-ui .grammar-examples-first>div:last-child{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.ru-future-ui .grammar-examples-first article{border:1px solid #dfe8f2;border-radius:12px;padding:11px 12px;background:#fff;display:grid;gap:3px}
+.ru-future-ui .grammar-examples-first article b{font-size:15px;color:#173552}.ru-future-ui .grammar-examples-first article span,.ru-future-ui .grammar-examples-first article small{font-size:10px;color:#7a8da1}
+.ru-future-ui .grammar-pattern-strip{order:2;border:1px solid #bed8f4;border-radius:14px;background:#f3f8ff;padding:12px 14px;display:grid;gap:4px}
+.ru-future-ui .grammar-pattern-strip>span{font-size:9px;font-weight:900;letter-spacing:.08em;color:#4a79a8}.ru-future-ui .grammar-pattern-strip>b{font-size:15px;line-height:1.45;color:#173552}
+.ru-future-ui .grammar-practice-now{order:3;border:1px solid #dfe8f2;border-radius:14px;padding:13px;background:#fbfdff}.ru-future-ui .grammar-practice-now ul{margin:8px 0 0;padding-left:20px;display:grid;gap:5px}
+.ru-future-ui .grammar-concept-details{order:4;border:1px solid #e1e8f0;border-radius:14px;background:#fff;overflow:hidden}
+.ru-future-ui .grammar-concept-details>summary{cursor:pointer;list-style:none;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;font-weight:850;color:#31516f}
+.ru-future-ui .grammar-concept-details>summary::-webkit-details-marker{display:none}.ru-future-ui .grammar-concept-details>summary small{font-size:10px;color:#8192a5;font-weight:700}
+.ru-future-ui .grammar-concept-details[open]>summary{border-bottom:1px solid #e8eef5;background:#f9fbfd}.ru-future-ui .grammar-concept-details .grammar-core-grid{padding:12px}
+.ru-future-ui .grammar-footer{order:5}
+body.theme-dark .ru-future-ui .grammar-examples-first article,body.theme-dark .ru-future-ui .grammar-concept-details{background:#111827;border-color:#334155}
+body.theme-dark .ru-future-ui .grammar-pattern-strip{background:#0f2441;border-color:#315479}body.theme-dark .ru-future-ui .grammar-pattern-strip>b,body.theme-dark .ru-future-ui .grammar-examples-first article b{color:#f4f8fc}
+@media(max-width:760px){.ru-future-ui .grammar-examples-first>div:last-child{grid-template-columns:1fr}.ru-future-ui .grammar-concept-details .grammar-core-grid{grid-template-columns:1fr}}
