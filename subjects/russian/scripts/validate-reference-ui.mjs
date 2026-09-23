@@ -38,6 +38,8 @@ must(!index.includes('assets/russian-reference-ui.js'),'Legacy reference UI runt
 must(!index.includes('id="russianRightRail"'),'Fixed right rail must not return to the learning shell');
 must(index.includes('<body class="ru-reference-ui ru-future-ui">'),'Canonical Future UI must be active at first paint');
 must(index.includes('id="russianGlobalSearch"'),'Missing global search');
+must(index.includes('role="combobox"'),'Global search must expose combobox semantics');
+must(index.includes('aria-controls="russianSearchHints"'),'Global search must identify its result list');
 must(index.includes('id="aiBtn"'),'Topbar must retain the core AI Mentor entry point');
 must(index.includes('role="dialog"'),'Modal must expose dialog semantics');
 must(index.includes('aria-modal="true"'),'Modal must declare aria-modal');
@@ -68,6 +70,10 @@ must(js.includes("window.SUBJECT_ADAPTER?.storageKey"),'Canonical UI must use ad
 must(js.includes('MutationObserver'),'Canonical UI enhancer must follow core renders');
 must(js.includes("aiQuick:'intro'"),'Command search must expose the existing AI Mentor');
 must(js.includes('function bindSearch()'),'Canonical UI runtime must own command search binding');
+must(js.includes('role="group"'),'Search results must expose grouped result semantics');
+must(js.includes('role="option"'),'Search result actions must expose listbox option semantics');
+must(js.includes("e.key==='ArrowDown'"),'Search must support keyboard result navigation');
+for(const token of ['BÀI HỌC','NGỮ PHÁP','VIDEO','TỪ VỰNG']) must(core.includes(token),`Unified search group missing: ${token}`);
 must(js.includes("data-act=\"route-modal\""),'Canonical overview must reuse route modal contract');
 must(js.includes('data-route'),'Canonical shortcuts must use core routing contract');
 must(js.includes("aiQuick:'intro'"),'Global search must be able to open AI Mentor');
