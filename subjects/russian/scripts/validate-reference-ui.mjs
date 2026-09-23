@@ -16,6 +16,7 @@ const optionalLoader=read('assets/russian-optional-data-loader.js');
 const contentContract=read('assets/content-contract.js');
 const contentContractCss=read('assets/content-contract.css');
 const core=read('assets/core.js');
+const coreCss=read('assets/core.css');
 const adapter=read('assets/subject-adapter.js');
 const chatgptPackage=fs.readFileSync(path.resolve('scripts/prepare-chatgpt-site.mjs'),'utf8');
 const previewPackage=fs.readFileSync(path.resolve('scripts/prepare-cloudflare-preview.mjs'),'utf8');
@@ -106,13 +107,13 @@ for(const token of [
   'body:not(.ru-future-ui) .app{grid-template-columns:340px minmax(0,1fr)!important',
   'body:not(.ru-future-ui) .panel{border-radius:22px!important',
   'body.main-balanced:not(.ru-future-ui) .view{max-width:1500px'
-]) must(core.includes(token),`Legacy shell quarantine missing: ${token}`);
+]) must(coreCss.includes(token),`Legacy shell quarantine missing: ${token}`);
 for(const token of [
   '\n.view{max-width:1720px!important',
   '\n.app{grid-template-columns:340px minmax(0,1fr)!important',
   '\n.panel{border-radius:22px!important',
   'body.main-balanced .view{max-width:1500px'
-]) must(!core.includes(token),`Legacy core shell still overrides Future UI: ${token}`);
+]) must(!coreCss.includes(token),`Legacy core shell still overrides Future UI: ${token}`);
 const shellStart=futureCss.indexOf('body.ru-reference-ui.ru-future-ui{');
 const shellEnd=futureCss.indexOf('/* Shared light-surface system');
 must(shellStart>=0&&shellEnd>shellStart,'Canonical PASS 2 shell slice markers missing');
