@@ -92,6 +92,8 @@ for(const token of ['RUSSIAN_CONTENT_CONTRACT_V1','normalizeVocab','latin_transl
 }
 must(!contentContract.includes('stressIndex-1'),'Content contract must not infer Russian stress from unknown numeric fields');
 must(!contentContract.includes('Math.random'),'Content contract must not synthesize language metadata');
+must(!contentContract.includes('new MutationObserver'),'Content contract must refresh through the canonical Future UI observer');
+must(contentContract.includes('enhance,schema'),'Content contract must expose its idempotent enhance hook');
 
 for(const token of ['dialogue-bauman-az.json','deep-speaking-bauman.json','json-array-chunks-v1','chunks/${dataset}/manifest.json','RUSSIAN_OPTIONAL_CHUNKS_V1']){
   must(optionalLoader.includes(token),`Optional chunk loader missing contract: ${token}`);
