@@ -796,9 +796,9 @@ function renderHealthStrip(){return ''}
 function clampVisibleState(){
  const lessons=getLessons(); if(state.lessonId&&!byId(lessons,state.lessonId))state.lessonId=''; const lesson=currentLesson(); clampSlideIndex(lesson);
  const ex=getExercises(); if(state.exerciseIndex>=ex.length)state.exerciseIndex=Math.max(0,ex.length-1);
- const tests=getTests(); if(state.testIndex>=tests.length){state.testIndex=Math.max(0,tests.length-1); state.testAnswer=null;}
+ const tests=getTests(); if(DB.tests&&state.testIndex>=tests.length){state.testIndex=Math.max(0,tests.length-1); state.testAnswer=null;}
  if(inPracticeMode()){const dg=getPracticeDialogues(); if(state.practiceDialogueId&&!byId(dg,state.practiceDialogueId))state.practiceDialogueId=''; const turns=dialogueTurns(currentDialogue()); if(state.practiceLineIndex>=turns.length)state.practiceLineIndex=Math.max(0,turns.length-1);} else {const dg=getDialogues(); if(state.dialogueId&&!byId(dg,state.dialogueId))state.dialogueId=''; const turns=dialogueTurns(currentDialogue()); if(state.dialogueLineIndex>=turns.length)state.dialogueLineIndex=Math.max(0,turns.length-1);}
- const voc=getVocab(); if(state.vocabIndex>=voc.length)state.vocabIndex=Math.max(0,voc.length-1);
+ const voc=getVocab(); if(DB.vocab&&state.vocabIndex>=voc.length)state.vocabIndex=Math.max(0,voc.length-1);
  const hand=getHandwriting(); if(state.handwritingIndex>=hand.length)state.handwritingIndex=Math.max(0,hand.length-1);
  const wr=getWriting(); if(state.writingIndex>=wr.length)state.writingIndex=Math.max(0,wr.length-1);
 }
