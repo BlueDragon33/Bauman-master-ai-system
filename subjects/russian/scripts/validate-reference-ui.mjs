@@ -37,8 +37,8 @@ must(!index.includes('assets/russian-reference-ui-polish.css'),'Legacy polish pr
 must(!index.includes('assets/russian-reference-ui.js'),'Legacy reference UI runtime must not be loaded');
 must(!index.includes('id="russianRightRail"'),'Fixed right rail must not return to the learning shell');
 must(index.includes('id="russianGlobalSearch"'),'Missing global search');
-must(index.includes('data-ai-quick='),'AI rail must expose core AI Mentor quick-action contract');
-must(!index.includes('/priˈvʲet/'),'Right rail must not expose a hard-coded pronunciation sample as canonical data');
+must(index.includes('id="aiBtn"'),'Topbar must retain the core AI Mentor entry point');
+must(!index.includes('/priˈvʲet/'),'Learning shell must not expose a hard-coded pronunciation sample as canonical data');
 
 for(const token of ['.ru-app-shell','.rf-continue-band','.rf-today-plan','.rf-module-grid','.rf-dashboard-lower','.vocab-progressive-details','@media (max-width:1080px)','@media (max-width:760px)','@media (max-width:480px)']){
   must(css.includes(token),`Missing CSS contract: ${token}`);
@@ -60,12 +60,12 @@ new Function(js);
 new Function(optionalLoader);
 new Function(contentContract);
 new Function(futureJs);
-must(js.includes("window.SUBJECT_ADAPTER?.storageKey"),'Dashboard must use adapter storage key');
-must(js.includes('MutationObserver'),'Dashboard enhancer must follow core renders');
+must(js.includes("window.SUBJECT_ADAPTER?.storageKey"),'Canonical UI must use adapter storage key');
+must(js.includes('MutationObserver'),'Canonical UI enhancer must follow core renders');
 must(js.includes("aiQuick:'intro'"),'Command search must expose the existing AI Mentor');
 must(js.includes('function bindSearch()'),'Canonical UI runtime must own command search binding');
-must(js.includes("data-act=\"route-modal\""),'Dashboard must reuse route modal contract');
-must(js.includes('data-route'),'Dashboard shortcuts must use core routing contract');
+must(js.includes("data-act=\"route-modal\""),'Canonical overview must reuse route modal contract');
+must(js.includes('data-route'),'Canonical shortcuts must use core routing contract');
 must(js.includes("aiQuick:'intro'"),'Global search must be able to open AI Mentor');
 must(js.includes("act:'route-modal'"),'Global search must be able to open today schedule');
 must(js.includes('collapseLegacyOverview'),'Overview must preserve legacy tools in a compact disclosure');
