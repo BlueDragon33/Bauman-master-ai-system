@@ -139,15 +139,16 @@
   }
 
   function routeCandidate(patch){
-    const st=state(), current=st.mathRoute||{}, e186=st.e186Path||{};
-    const lessonId=str(patch?.lessonId||current.lessonId||st.e129LessonId||e186.lessonId||'');
+    const st=state(), current=st.mathRoute||{}, e186=st.e186Path||{}, next=patch||{};
+    const has=key=>Object.prototype.hasOwnProperty.call(next,key);
+    const lessonId=str(has('lessonId')?next.lessonId:(st.e129LessonId||e186.lessonId||current.lessonId||''));
     const byLesson=chapterFromLessonId(lessonId);
-    let chapterId=str(patch?.chapterId||current.chapterId||st.e129ChapterId||byLesson?.id||'');
+    let chapterId=str(has('chapterId')?next.chapterId:(byLesson?.id||st.e129ChapterId||current.chapterId||''));
     let chapter=findChapter(chapterId)||byLesson;
     if(chapter)chapterId=chapter.id;
 
-    let stageId=str(patch?.stageId||current.stageId||chapter?.stageId||st.stage||'');
-    let disciplineId=str(patch?.disciplineId||current.disciplineId||chapter?.disciplineId||'');
+    let stageId=str(has('stageId')?next.stageId:(chapter?.stageId||current.stageId||st.stage||''));
+    let disciplineId=str(has('disciplineId')?next.disciplineId:(chapter?.disciplineId||current.disciplineId||''));
 
     const allStages=stages();
     if(allStages.length){
@@ -170,8 +171,8 @@
     let resolvedLesson=lessonId;
     if(available.length&&!available.some(x=>x.id===resolvedLesson))resolvedLesson=available[0].id;
 
-    const activityId=str(patch?.activityId||current.activityId||e186.activityId||st.learnTab||'theory')||'theory';
-    const stepId=str(patch?.stepId||current.stepId||ACTIVITY_TO_STEP[activityId]||'understand');
+    const activityId=str(has('activityId')?next.activityId:(st.learnTab||e186.activityId||current.activityId||'theory'))||'theory';
+    const stepId=str(has('stepId')?next.stepId:(current.stepId||ACTIVITY_TO_STEP[activityId]||'understand'));
 
     return {stageId,disciplineId,chapterId,lessonId:resolvedLesson,stepId,activityId};
   }
