@@ -181,7 +181,24 @@
       status:startedLessons>0?'started':'not_started'
     };
   }
+  function lessonSnapshot(id){
+    if(!id) return {lessonId:null,visitedCount:0,totalSteps:STEPS.length,percent:0,activeStep:'theory',activeStepLabel:'Lý thuyết',status:'not_started'};
+    const st=allState()[id];
+    if(!st) return {lessonId:id,visitedCount:0,totalSteps:STEPS.length,percent:0,activeStep:'theory',activeStepLabel:'Lý thuyết',status:'not_started'};
+    const visitedCount=STEPS.filter(x=>st.visited?.[x.id]).length;
+    const activeIndex=Math.max(0,STEPS.findIndex(x=>x.id===st.active));
+    return {
+      lessonId:id,
+      visitedCount,
+      totalSteps:STEPS.length,
+      percent:Math.round(visitedCount/STEPS.length*100),
+      activeStep:STEPS[activeIndex]?.id||'theory',
+      activeStepLabel:STEPS[activeIndex]?.label||'Lý thuyết',
+      status:visitedCount>0?'started':'not_started',
+      lastAt:Number(st.lastAt||0)
+    };
+  }
   function selfCheck(){const cur=currentLesson();return{release:RELEASE,ready:!!$('#mathLearningFlow'),active:document.body.classList.contains('math-learning-flow-active'),lessonId:cur.id||null,steps:STEPS.length,recommendedLabMode:suggestLabMode(),notesLocalOnly:true,bookmarksLocalOnly:true,academicWrites:false,mutationObserver:false,routeEngineReplacement:false}}
-  function init(){if(!document.body||document.body.dataset.mathLearningFlow==='1')return;document.body.dataset.mathLearningFlow='1';bind();refresh();[350,850,1600,2800].forEach(ms=>setTimeout(refresh,ms));global.BAUMAN_MATH_LEARNING_FLOW={release:RELEASE,refresh,activate,toggleBookmark,toggleNotes,openContextLab,snapshot,chapterSnapshot,selfCheck};}
+  function init(){if(!document.body||document.body.dataset.mathLearningFlow==='1')return;document.body.dataset.mathLearningFlow='1';bind();refresh();[350,850,1600,2800].forEach(ms=>setTimeout(refresh,ms));global.BAUMAN_MATH_LEARNING_FLOW={release:RELEASE,refresh,activate,toggleBookmark,toggleNotes,openContextLab,snapshot,lessonSnapshot,chapterSnapshot,selfCheck};}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })(window);
