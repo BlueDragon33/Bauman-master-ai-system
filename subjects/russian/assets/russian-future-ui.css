@@ -3,8 +3,7 @@
    Keep component runtimes separate; do not add another global presentation stylesheet. */
 
 /* PASS 2: canonical shell/search structure is owned by the Future UI selectors below. */
-/* core component theme */
-body.ru-reference-ui .panel,body.ru-reference-ui .optional-data-gate,body.ru-reference-ui .deep-dialogue-panel,body.ru-reference-ui .deep-review-panel{background:linear-gradient(145deg,rgba(10,30,54,.95),rgba(7,24,44,.96));border-color:rgba(90,156,222,.22);color:var(--ru-text);box-shadow:0 12px 30px rgba(0,0,0,.18)}body.ru-reference-ui h1,body.ru-reference-ui h2,body.ru-reference-ui h3,body.ru-reference-ui h4,body.ru-reference-ui strong{color:#f5f9ff}body.ru-reference-ui p,body.ru-reference-ui small,body.ru-reference-ui .note{color:#9fb1c7}body.ru-reference-ui .chip{border-color:rgba(78,159,242,.24);background:rgba(24,83,139,.30);color:#bde0ff}body.ru-reference-ui .btn{border-color:rgba(84,150,216,.22);background:#0d2a49;color:#dcecff}body.ru-reference-ui .btn:hover{border-color:rgba(60,164,255,.56);background:#123861}body.ru-reference-ui .btn.primary{background:linear-gradient(135deg,#1259d8,#2196ff);color:#fff;border-color:#3da9ff}body.ru-reference-ui .btn.green{background:linear-gradient(135deg,#087b69,#18b995);color:#effffb}body.ru-reference-ui .btn.warn{background:#5a4219;color:#ffe0a1}body.ru-reference-ui .input,body.ru-reference-ui .textarea,body.ru-reference-ui select,body.ru-reference-ui input:not(.ru-global-search):not(#ruRailAiPrompt),body.ru-reference-ui textarea{background:#071a30;border-color:rgba(87,153,219,.24);color:#e4f1ff}body.ru-reference-ui input::placeholder,body.ru-reference-ui textarea::placeholder{color:#6f88a5}body.ru-reference-ui .modal{background:rgba(0,5,12,.76);backdrop-filter:blur(10px)}body.ru-reference-ui .modal-card{background:#07192e;border-color:rgba(84,156,228,.28);color:#eaf5ff;box-shadow:0 30px 90px rgba(0,0,0,.56)}body.ru-reference-ui .modal-close{background:#102944;color:#d9e8f8}
+/* PASS 2: shared controls and surfaces are owned by the canonical light system below. */
 /* dashboard hero */
 .overview-v128{display:grid;gap:11px}.overview-top-only-hero{position:relative;min-height:218px;padding:28px 30px;overflow:hidden;border-radius:16px;background:radial-gradient(ellipse at 76% 22%,rgba(62,178,255,.35),transparent 28%),radial-gradient(ellipse at 63% 0%,rgba(86,102,255,.28),transparent 38%),linear-gradient(100deg,#06152a 0%,#0a2d55 46%,#0b2140 72%,#061326 100%);border:1px solid rgba(72,154,235,.30);box-shadow:0 18px 48px rgba(0,0,0,.32)}.overview-top-only-hero:before{content:'ДОБРО ПОЖАЛОВАТЬ';position:absolute;left:30px;top:25px;color:#e5be69;font-size:8px;letter-spacing:.36em;font-weight:800}.overview-top-only-hero:after{content:'Hôm nay bạn học một ít, ngày mai bạn đến gần hơn với nước Nga';position:absolute;right:26px;top:27px;width:190px;color:#e5d4aa;font:italic 13px/1.45 Georgia,serif;text-align:right}.overview-top-only-hero .mission-copy-clean{position:relative;z-index:2;max-width:560px;padding-top:25px}.overview-top-only-hero .sync-state{display:none}.overview-top-only-hero h3{margin:0 0 10px;max-width:560px;color:#fff;font-size:0}.overview-top-only-hero h3:before{content:'Chinh phục tiếng Nga từng bước, tự tin học tại Bauman.';font:700 30px/1.12 Georgia,serif;color:#fff}.overview-top-only-hero p{max-width:560px;color:#dfbd72;font-size:12px}.overview-top-only-hero .schedule-cta{position:absolute;left:30px;bottom:24px;min-width:170px;height:42px;padding:0 18px;display:flex;align-items:center;gap:9px;border:1px solid #ffd57d;border-radius:10px;background:linear-gradient(180deg,#ffd66f,#e7a936);color:#241707;box-shadow:0 7px 26px rgba(229,169,54,.28)}.overview-top-only-hero .schedule-cta b{color:#241707;font-size:11px}.overview-top-only-hero .schedule-cta small{display:none}
 /* compact original overview below new dashboard */
@@ -113,22 +112,22 @@ body.ru-future-ui #subjectTitle{text-transform:none}
 
 /* Shared light-surface system for all existing tabs */
 body.ru-reference-ui.ru-future-ui .panel,body.ru-reference-ui.ru-future-ui .optional-data-gate,body.ru-reference-ui.ru-future-ui .deep-dialogue-panel,body.ru-reference-ui.ru-future-ui .deep-review-panel{
-  background:rgba(255,255,255,.96)!important;border:1px solid var(--rf-line)!important;color:var(--rf-text)!important;
-  box-shadow:var(--rf-shadow-sm)!important;border-radius:16px!important
+  background:rgba(255,255,255,.96);border:1px solid var(--rf-line);color:var(--rf-text);
+  box-shadow:var(--rf-shadow-sm);border-radius:16px
 }
-body.ru-reference-ui.ru-future-ui h1,body.ru-reference-ui.ru-future-ui h2,body.ru-reference-ui.ru-future-ui h3,body.ru-reference-ui.ru-future-ui h4,body.ru-reference-ui.ru-future-ui strong{color:#142f5a!important}
-body.ru-reference-ui.ru-future-ui p,body.ru-reference-ui.ru-future-ui small,body.ru-reference-ui.ru-future-ui .note{color:var(--rf-muted)!important}
-body.ru-reference-ui.ru-future-ui .chip{border:1px solid #d9e5f4!important;background:#eef4ff!important;color:#48658e!important}
-body.ru-reference-ui.ru-future-ui .btn{border:1px solid #d7e3f2!important;background:#fff!important;color:#2a486f!important;box-shadow:none!important}
-body.ru-reference-ui.ru-future-ui .btn:hover{border-color:#aac8f5!important;background:#f4f8ff!important;color:#1d55cb!important}
-body.ru-reference-ui.ru-future-ui .btn.primary{background:linear-gradient(135deg,#326df1,#6355ee)!important;border-color:#5064ee!important;color:#fff!important}
-body.ru-reference-ui.ru-future-ui .btn.green{background:linear-gradient(135deg,#12a67e,#22c69b)!important;border-color:#1eb28e!important;color:#fff!important}
-body.ru-reference-ui.ru-future-ui .btn.warn{background:#fff4df!important;border-color:#f1d59a!important;color:#9a641d!important}
-body.ru-reference-ui.ru-future-ui .input,body.ru-reference-ui.ru-future-ui .textarea,body.ru-reference-ui.ru-future-ui select,body.ru-reference-ui.ru-future-ui input:not(.ru-global-search):not(#ruRailAiPrompt),body.ru-reference-ui.ru-future-ui textarea{background:#fff!important;border-color:#d7e3f2!important;color:#234264!important}
-body.ru-reference-ui.ru-future-ui input::placeholder,body.ru-reference-ui.ru-future-ui textarea::placeholder{color:#9aabc0!important}
-body.ru-reference-ui.ru-future-ui .modal{background:rgba(21,42,75,.38)!important;backdrop-filter:blur(12px)!important}
-body.ru-reference-ui.ru-future-ui .modal-card{background:#f8fbff!important;border-color:#d6e2f2!important;color:#18375f!important;box-shadow:0 28px 80px rgba(28,50,88,.22)!important}
-body.ru-reference-ui.ru-future-ui .modal-close{background:#edf3fb!important;color:#526984!important}
+body.ru-reference-ui.ru-future-ui h1,body.ru-reference-ui.ru-future-ui h2,body.ru-reference-ui.ru-future-ui h3,body.ru-reference-ui.ru-future-ui h4,body.ru-reference-ui.ru-future-ui strong{color:#142f5a}
+body.ru-reference-ui.ru-future-ui p,body.ru-reference-ui.ru-future-ui small,body.ru-reference-ui.ru-future-ui .note{color:var(--rf-muted)}
+body.ru-reference-ui.ru-future-ui .chip{border:1px solid #d9e5f4;background:#eef4ff;color:#48658e}
+body.ru-reference-ui.ru-future-ui .btn{border:1px solid #d7e3f2;background:#fff;color:#2a486f;box-shadow:none}
+body.ru-reference-ui.ru-future-ui .btn:hover{border-color:#aac8f5;background:#f4f8ff;color:#1d55cb}
+body.ru-reference-ui.ru-future-ui .btn.primary{background:linear-gradient(135deg,#326df1,#6355ee);border-color:#5064ee;color:#fff}
+body.ru-reference-ui.ru-future-ui .btn.green{background:linear-gradient(135deg,#12a67e,#22c69b);border-color:#1eb28e;color:#fff}
+body.ru-reference-ui.ru-future-ui .btn.warn{background:#fff4df;border-color:#f1d59a;color:#9a641d}
+body.ru-reference-ui.ru-future-ui .input,body.ru-reference-ui.ru-future-ui .textarea,body.ru-reference-ui.ru-future-ui select,body.ru-reference-ui.ru-future-ui input:not(.ru-global-search):not(#ruRailAiPrompt),body.ru-reference-ui.ru-future-ui textarea{background:#fff;border-color:#d7e3f2;color:#234264}
+body.ru-reference-ui.ru-future-ui input::placeholder,body.ru-reference-ui.ru-future-ui textarea::placeholder{color:#9aabc0}
+body.ru-reference-ui.ru-future-ui .modal{background:rgba(21,42,75,.38);backdrop-filter:blur(12px)}
+body.ru-reference-ui.ru-future-ui .modal-card{background:#f8fbff;border-color:#d6e2f2;color:#18375f;box-shadow:0 28px 80px rgba(28,50,88,.22)}
+body.ru-reference-ui.ru-future-ui .modal-close{background:#edf3fb;color:#526984}
 
 /* Future overview */
 .ru-future-ui .overview-v128{gap:11px!important}
