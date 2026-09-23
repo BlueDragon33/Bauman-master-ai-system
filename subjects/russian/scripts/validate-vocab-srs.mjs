@@ -40,7 +40,8 @@ for(const token of [
   "exposedAt",
   "Thẻ này chưa được học",
   "data-ru-vocab-mode",
-  "data-ru-vocab-check"
+  "data-ru-vocab-check",
+  "data-ru-vocab-play-slow"
 ]) must(js.includes(token),`Missing vocab SRS contract token: ${token}`);
 
 must(!/status\s*:\s*['\"]mastered['\"]/.test(js),'Vocab SRS must never synthesize mastered state');
@@ -49,6 +50,7 @@ must(!js.includes('Math.random'),'Vocab SRS must not generate random mastery/rev
 must(!js.includes('new MutationObserver'),'Vocab learning flow must use the canonical UI observer, not create another observer');
 must(js.includes('refresh:scheduleRender'),'Vocab learning flow must expose an idempotent refresh hook');
 must(js.includes('if(panel.innerHTML!==html)panel.innerHTML=html'),'Vocab refresh must not rewrite an already-stable panel');
+must(js.includes("speak-vocab-slow"),'Vocabulary flow must reuse the canonical slow-audio action');
 must(js.includes('aria-current="${mode===x?\'step\':\'false\'}"'),'Vocabulary learning steps must expose aria-current');
 must(!js.includes('meaning:clean(n.meaningVi||n.english||n.meaningRu)'),'Sentence Mining must not restore Vietnamese/English glosses into the learning surface');
 must(js.includes("meaning:clean(n.meaningRu||'')"),'Source sentence mining may retain Russian-only context');
