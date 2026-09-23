@@ -139,16 +139,83 @@
       console.error('[Math Roadmap]',error);
     }
   }
-  function leaveRoadmap(){document.body.classList.remove('math-roadmap-active');}
-  function openRoadmapChapter(chapterId,stageId){
-    leaveRoadmap();
+  function leaveRoadmap(){document.body.classList.remove('math-roadmap-active','math-chapter-overview-active');}
+  function lessonProgress(lessonId){
+    try{return global.BAUMAN_MATH_LEARNING_FLOW?.lessonSnapshot?.(lessonId)||{visitedCount:0,totalSteps:9,percent:0,status:'not_started',activeStepLabel:'Lý thuyết'}}catch(_){
+      return {visitedCount:0,totalSteps:9,percent:0,status:'not_started',activeStepLabel:'Lý thuyết'};
+    }
+  }
+  async function renderChapterOverview(chapterId,stageId){
+    const view=$('#view'); if(!view)return;
+    leaveRoadmap(); document.body.classList.add('math-chapter-overview-active'); setActive('learn');
+    setPageHeader('Chương','Mục tiêu chương, tiến độ đã ghi nhận và các bài học theo thứ tự.');
+    view.innerHTML='<section class="math-roadmap-loading">Đang mở chương…</section>';
+    try{
+      const data=await loadRoadmap();
+      const ch=(data.frame?.chapters||[]).find(x=>x.chapterId===chapterId);
+      if(!ch) throw new Error('Chapter not found: '+chapterId);
+      const records=recordsForChapter(data,chapterId);
+      const progress=chapterProgress(records);
+      const pure=(ch.pureLayer||[]).slice(0,6);
+      const applied=(ch.appliedLayer||[]).slice(0,6);
+      const lessons=records.map((rec,index)=>{
+        const id=rec.lessonId||rec.id||'';
+        const lp=lessonProgress(id);
+        const started=lp.visitedCount>0;
+        const status=started?'Đang học':'Chưa học';
+        const cta=started?'Tiếp tục':'Bắt đầu';
+        const slideCount=Array.isArray(rec.slides)?rec.slides.length:0;
+        return `<article class="math-chapter-lesson" data-lesson-status="${started?'learning':'not-started'}">
+          <div class="math-chapter-lesson-no">${String(index+1).padStart(2,'0')}</div>
+          <div class="math-chapter-lesson-copy">
+            <div class="math-chapter-lesson-title"><span>${esc(status)}</span><h3>${esc(rec.title||rec.lessonTitle||id)}</h3></div>
+            <p>${slideCount?slideCount+' phần nội dung trong bài':'Nội dung bài đã được ánh xạ vào Reader'} · ${started?esc(lp.activeStepLabel)+' · '+lp.percent+'% bước đã mở':'Chưa có tiến độ học'}</p>
+            <div class="math-chapter-lesson-progress"><i style="width:${Math.max(0,Math.min(100,lp.percent))}%"></i></div>
+          </div>
+          <button type="button" data-math-chapter-lesson="${esc(id)}" data-math-chapter-id="${esc(chapterId)}" data-math-chapter-stage="${esc(stageId||ch.stageId||'')}">${cta} →</button>
+        </article>`;
+      }).join('');
+      view.innerHTML=`<section class="math-chapter-shell">
+        <button type="button" class="math-chapter-back" data-math-chapter-back="${esc(stageId||ch.stageId||'')}">← Quay lại lộ trình</button>
+        <header class="math-chapter-head">
+          <div>
+            <span>${esc(ch.stageTitle||stageId||'Giai đoạn')} · ${esc(ch.disciplineTitle||'Cụm kiến thức')}</span>
+            <h2>${esc(ch.chapterTitle||chapterId)}</h2>
+            <p>${esc(ch.targetOutcome||'Mục tiêu chương chưa được khai báo trong nguồn.')}</p>
+          </div>
+          <aside><b>${progress.startedLessons}/${records.length}</b><span>bài đã bắt đầu</span><strong>${progress.percent}% bước đã mở</strong></aside>
+        </header>
+        <section class="math-chapter-context">
+          <article><span>TẠI SAO CẦN HỌC</span><p>${esc(ch.bridgeQuestion||'Khung hiện tại chưa khai báo cầu nối ứng dụng riêng cho chương này.')}</p></article>
+          <article><span>KIẾN THỨC CỐT LÕI</span><div>${pure.length?pure.map(x=>`<i>${esc(x)}</i>`).join(''):'<em>Chưa có metadata.</em>'}</div></article>
+          <article><span>LIÊN HỆ KỸ THUẬT</span><div>${applied.length?applied.map(x=>`<i>${esc(x)}</i>`).join(''):'<em>Chưa có metadata.</em>'}</div></article>
+        </section>
+        <div class="math-chapter-source-note">Điều kiện vào và thời lượng chỉ hiển thị khi nguồn học thuật khai báo. Hệ thống không tự ước lượng để lấp chỗ trống.</div>
+        <section class="math-chapter-lessons">
+          <header><div><span>DANH SÁCH BÀI</span><h3>Học theo thứ tự trong chương</h3></div><b>${records.length} bài có học liệu</b></header>
+          ${lessons||'<div class="math-roadmap-empty"><b>Chương chưa có bài học khả dụng.</b><span>Không có nội dung giả được tạo để lấp chỗ trống.</span></div>'}
+        </section>
+      </section>`;
+    }catch(error){
+      view.innerHTML='<section class="math-roadmap-empty"><b>Không mở được chương.</b><span>Dữ liệu học hiện tại không bị thay đổi. Hãy quay lại Lộ trình và thử lại.</span></section>';
+      console.error('[Math Chapter]',error);
+    }
+  }
+  function openRoadmapChapter(chapterId,stageId){renderChapterOverview(chapterId,stageId);}
+  function openChapterLesson(lessonId,chapterId,stageId){
+    leaveRoadmap(); setActive('learn');
     routeTheory(()=>{
-      const stageButton=$$('[data-e129-stage]').find(x=>x.getAttribute('data-e129-stage')===stageId);
-      if(stageButton) stageButton.click();
+      const stageButton=$('[data-e129-stage]').find(x=>x.getAttribute('data-e129-stage')===stageId);
+      if(stageButton)stageButton.click();
       setTimeout(()=>{
-        const chapterButton=$$('[data-e129-chapter]').find(x=>x.getAttribute('data-e129-chapter')===chapterId);
-        if(chapterButton){chapterButton.click();setActive('learn');scheduleSync(180);}
-        else toast('Reader chưa dựng route cho chương này. Không thay đổi tiến độ hiện tại.');
+        const chapterButton=$('[data-e129-chapter]').find(x=>x.getAttribute('data-e129-chapter')===chapterId);
+        if(!chapterButton){toast('Reader chưa dựng route cho chương này.');return;}
+        chapterButton.click();
+        setTimeout(()=>{
+          const lessonButton=$('[data-e129-lesson]').find(x=>x.getAttribute('data-e129-lesson')===lessonId);
+          if(lessonButton){lessonButton.click();setActive('learn');scheduleSync(180);}
+          else toast('Bài học chưa có route Reader tương ứng.');
+        },140);
       },140);
     });
   }
@@ -294,6 +361,8 @@
       const nav=e.target.closest('[data-math-nav]'); if(nav){e.preventDefault();route(nav.dataset.mathNav);return;}
       const stage=e.target.closest('[data-math-roadmap-stage]'); if(stage){e.preventDefault();renderRoadmap(stage.dataset.mathRoadmapStage);return;}
       const chapter=e.target.closest('[data-math-roadmap-chapter]'); if(chapter){e.preventDefault();openRoadmapChapter(chapter.dataset.mathRoadmapChapter,chapter.dataset.mathRoadmapStageId);return;}
+      const lesson=e.target.closest('[data-math-chapter-lesson]'); if(lesson){e.preventDefault();openChapterLesson(lesson.dataset.mathChapterLesson,lesson.dataset.mathChapterId,lesson.dataset.mathChapterStage);return;}
+      const back=e.target.closest('[data-math-chapter-back]'); if(back){e.preventDefault();renderRoadmap(back.dataset.mathChapterBack);return;}
       const sys=e.target.closest('[data-math-system]'); if(sys){e.preventDefault();const a=sys.dataset.mathSystem;if(a==='command')openCommand();if(a==='focus')global.BAUMAN_MATH_WORKSPACE?.openControl?.();if(a==='theme')$('#themeBtn')?.click();return;}
       if(e.target.closest('[data-e129-nav],[data-e186-pick],[data-e169-pick-activity],[data-e129-back-theory],[data-e129-open-vault],[data-e129-refresh]')) scheduleSync(160);
     },true);
