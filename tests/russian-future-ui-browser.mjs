@@ -150,6 +150,18 @@ try{
         const b=document.createElement('button');b.hidden=true;b.dataset.route=JSON.stringify({view:'vocab',vocabQuery:'',vocabKey:'',vocabIndex:stageIndex});document.body.appendChild(b);b.click();b.remove();
       },identity);
       await page.waitForFunction(key=>document.querySelector('.vocab-card-panel,.v1310-vocab-main')?.dataset.vocabKey===key,identity.key,{timeout:10000});
+      const library=page.locator('.vocab-library-toolbar');
+      await library.waitFor({state:'visible',timeout:10000});
+      const topicLabels=await library.locator('[data-input="vocabTopic"] option').allTextContents();
+      assert.ok(topicLabels.length>1,'Vocabulary library must expose curated topic choices for the current stage');
+      assert.equal(topicLabels.some(x=>/graduate_path|microtask|category_/i.test(x)),false,'Vocabulary library must not expose raw metadata tags');
+      await library.locator('[data-input="vocabStatus"]').selectOption('learned');
+      await page.waitForFunction(()=>document.querySelector('[data-input="vocabStatus"]')?.value==='learned'&&Boolean(document.querySelector('.vocab-card-panel,.v1310-vocab-main')),null,{timeout:10000});
+      const learnedState=await page.evaluate(()=>({rows:document.querySelectorAll('.vocab-mini-row').length,key:document.querySelector('.vocab-card-panel,.v1310-vocab-main')?.dataset.vocabKey||''}));
+      assert.ok(learnedState.rows>=1,'SRS learned filter must keep exposed vocabulary visible');
+      assert.equal(learnedState.key,identity.key,'SRS learned filter must preserve the exposed card identity');
+      await page.locator('[data-input="vocabStatus"]').selectOption('all');
+      await page.waitForFunction(()=>document.querySelector('[data-input="vocabStatus"]')?.value==='all',null,{timeout:10000});
     }
   }
 
