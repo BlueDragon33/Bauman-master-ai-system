@@ -135,6 +135,12 @@ must(core.includes('class="vocab-progressive-details"'),'Vocabulary advanced con
 must(core.includes('data-vocab-key='),'Vocabulary card/list must expose a stable source key');
 must(core.includes('data-vocab-source-index='),'Vocabulary card/list must expose canonical source index');
 must(core.includes('data-vocab-stage-index='),'Vocabulary card/list must expose stage-relative index');
+must(core.includes('class="vocab-library-toolbar"'),'Vocabulary library must expose a compact filter toolbar');
+must(core.includes('data-input="vocabQuery"'),'Vocabulary library search input missing');
+must(core.includes('data-input="vocabTopic"'),'Vocabulary library curated topic filter missing');
+must(core.includes('data-input="vocabStatus"'),'Vocabulary library SRS status filter missing');
+must(core.includes("label:'Học tập',tags:['academic','graduate_path']"),'Raw vocabulary metadata must be mapped to learner-facing topic labels');
+must(!core.includes('<option value="graduate_path"'),'Raw metadata tags must not be exposed as learner-facing options');
 must(core.includes("vocabFocusKey:''"),'Vocabulary routing must preserve a dedicated stable focus key');
 must(core.includes('<summary>Chi tiết'),'Vocabulary details disclosure label missing');
 must(core.includes('class="vocab-micro-context"'),'Vocabulary card must expose a short Russian micro-context');
