@@ -16,7 +16,16 @@
   async function load(){if(loaded)return;[canonical,legacy]=await Promise.all([one(CANONICAL),one(LEGACY)]);loaded=true;decorate()}
   function state(){return global.__BAUMAN_CORE_API?.state||global.__MATH_STATE||{}}
   function lessonId(){return String(state().e169Path?.lessonId||state().e129LessonId||$('[data-current-lesson]')?.getAttribute('data-current-lesson')||'')}
-  function theoryRecord(){const raw=global.DB?.theory_lecture_content,arr=Array.isArray(raw)?raw:Array.isArray(raw?.records)?raw.records:[];const id=lessonId();return arr.find(r=>(r.lessonId||r.id)===id)||null}
+  function theoryRecords(){
+    const durable=global.BAUMAN_MATH_E240_THEORY_CONTENT_SOURCE?.getPayload?.();
+    const sources=[durable,global.DB?.theory_lecture_content];
+    for(const raw of sources){
+      const arr=Array.isArray(raw)?raw:Array.isArray(raw?.records)?raw.records:Array.isArray(raw?.lessons)?raw.lessons:Array.isArray(raw?.items)?raw.items:[];
+      if(arr.length)return arr;
+    }
+    return [];
+  }
+  function theoryRecord(){const id=lessonId();return theoryRecords().find(r=>(r.lessonId||r.id)===id)||null}
   function currentMatches(){const id=lessonId(),rec=theoryRecord(),ch=String(rec?.chapterId||state().e129ChapterId||'');return canonical.records.filter(x=>(id&&String(x.lessonId||'')===id)||(!id&&ch&&String(x.chapterId||'')===ch))}
   function embeddedCount(){const rec=theoryRecord();return (rec?.slides||[]).filter(x=>String(x?.role||'').toLowerCase()==='simulation').length}
   function recommendedMode(){
@@ -41,7 +50,7 @@
     return false;
   }
   function bind(){document.addEventListener('click',e=>{if(e.target.closest('[data-math-ws="lab"],[data-math-v2-lab],[data-lf="lab"],[data-lf-step="lab"],[data-math-nav="lab"]'))setTimeout(decorate,90);if(e.target.closest('[data-e129-lesson],[data-e169-pick-activity],[data-math-nav]'))setTimeout(decorate,220)},true)}
-  function selfCheck(){return{release:RELEASE,loaded,canonicalPath:CANONICAL,canonicalOk:canonical.ok,canonicalRecords:canonical.records.length,legacyPath:LEGACY,legacyRecords:legacy.records.length,currentMatches:currentMatches().length,embeddedSimulationSlides:embeddedCount(),sampleRecordUsed:false,recommendedMode:recommendedMode(),academicWrites:false,mutationObserver:false}}
+  function selfCheck(){return{release:RELEASE,loaded,canonicalPath:CANONICAL,canonicalOk:canonical.ok,canonicalRecords:canonical.records.length,legacyPath:LEGACY,legacyRecords:legacy.records.length,currentMatches:currentMatches().length,embeddedSimulationSlides:embeddedCount(),theorySource:global.BAUMAN_MATH_E240_THEORY_CONTENT_SOURCE?.getPayload?.()?'E240':'DB',sampleRecordUsed:false,recommendedMode:recommendedMode(),academicWrites:false,mutationObserver:false}}
   function init(){if(!document.body||document.body.dataset.mathSimulationSource==='1')return;document.body.dataset.mathSimulationSource='1';bind();load();[600,1400,2800].forEach(ms=>setTimeout(decorate,ms));global.BAUMAN_MATH_SIMULATION_SOURCE={release:RELEASE,load,decorate,openForCurrent,recommendedMode,selfCheck}}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })(window);
