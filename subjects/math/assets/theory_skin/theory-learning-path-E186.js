@@ -170,7 +170,7 @@
   }
   function renderRoute(){var p=ensureLesson(), st=state(), fr=currentFrame();syncLegacy();st.view='learning';st.learnTab=ROUTES[p.activityId]||p.activityId;if(fr)st.e129ChapterId=fr.chapterId||fr.id||'';if(p.chapterId==='c01')st.e129ChapterId=C01_CHAPTER_ID;st.e129LessonId=p.lessonId;save();close();try{window.BAUMAN_MATH_THEORY_E129&&window.BAUMAN_MATH_THEORY_E129.render&&window.BAUMAN_MATH_THEORY_E129.render();}catch(_){location.reload();}}
   function patchSurface(){
-    if(canonicalReady()){try{learningModel().setRoute({},{save:false});}catch(_){}}
+    if(canonicalReady()){try{learningModel().setRoute({},{save:false,emit:false});}catch(_){}}
     syncLegacy();
     var useCanonical=canonicalReady(), routeCrumbs=useCanonical?canonicalCrumbs():crumbs(), summary=useCanonical?canonicalSummary():pathSummary();
     var mb=document.querySelector('.e169-module-button');
