@@ -155,3 +155,8 @@ body.math-nav-ready .math-unified-nav-button.active{background:var(--mn-nav-acti
   .math-roadmap-head aside{min-width:0;text-align:left;}
   .math-roadmap-meta{min-width:0;}
 }
+
+.math-roadmap-chapter[data-roadmap-status="completed"] .math-roadmap-status{border-color:rgba(66,214,158,.30);background:rgba(25,112,82,.14);color:#7be0b9;}
+.math-roadmap-chapter[data-roadmap-status="completed"]{border-color:rgba(66,214,158,.20);}
+.math-chapter-lesson[data-lesson-status="completed"]{border-color:rgba(66,214,158,.22);background:linear-gradient(135deg,rgba(13,72,58,.24),rgba(5,20,37,.64));}
+.math-chapter-lesson[data-lesson-status="completed"] .math-chapter-lesson-title span{border-color:rgba(66,214,158,.25);color:#7bdcb8;}
