@@ -98,6 +98,20 @@ try{
   assert.equal(await page.locator('#modal').getAttribute('aria-hidden'),'true','Closed modal must be hidden from assistive technology');
   await page.waitForFunction(()=>document.activeElement?.id==='aiBtn',null,{timeout:5000});
 
+  const search=page.locator('#russianGlobalSearch');
+  await search.fill('ngữ pháp');
+  await page.waitForFunction(()=>document.querySelectorAll('#russianSearchHints .rf-search-group').length>=2,null,{timeout:10000});
+  const searchGroups=await page.locator('#russianSearchHints .rf-search-group > b').allTextContents();
+  assert.ok(searchGroups.includes('NGỮ PHÁP'),'Grouped search must expose grammar content results');
+  assert.ok(searchGroups.includes('HOẠT ĐỘNG'),'Grouped search must keep navigation/activity results separate');
+  assert.equal(await search.getAttribute('aria-expanded'),'true','Search combobox must expose expanded results');
+  await search.press('ArrowDown');
+  assert.equal(await page.evaluate(()=>document.activeElement?.getAttribute('role')),'option','ArrowDown from search must focus the first result');
+  await page.keyboard.press('Escape');
+  assert.equal(await page.evaluate(()=>document.activeElement?.id),'russianGlobalSearch','Escape from search results must return focus to the search input');
+  assert.equal(await search.getAttribute('aria-expanded'),'false','Escaping search results must collapse the combobox');
+  await search.fill('');
+
   const tabs=['media','dialogue','vocab','grammar','writing'];
   for(const view of tabs){
     await page.click('#nav [data-view="'+view+'"]');
