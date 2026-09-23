@@ -226,12 +226,23 @@
   }
   function chapterSnapshot(lessonIds){
     const ids=Array.isArray(lessonIds)?lessonIds.filter(Boolean):[];
-    if(!ids.length)return{lessonCount:0,startedLessons:0,visitedSteps:0,totalSteps:0,percent:0,status:'empty'};
+    if(!ids.length)return{lessonCount:0,startedLessons:0,completedLessons:0,visitedSteps:0,totalSteps:0,percent:0,completionPercent:0,status:'empty'};
     const snaps=ids.map(lessonSnapshot);
     const startedLessons=snaps.filter(x=>x.visitedCount>0).length;
+    const completedLessons=snaps.filter(x=>x.completedAt>0).length;
     const visitedSteps=snaps.reduce((n,x)=>n+x.visitedCount,0);
     const totalSteps=snaps.reduce((n,x)=>n+x.totalSteps,0);
-    return {lessonCount:ids.length,startedLessons,visitedSteps,totalSteps,percent:totalSteps?Math.round(visitedSteps/totalSteps*100):0,status:startedLessons?'started':'not_started'};
+    const complete=completedLessons===ids.length;
+    return {
+      lessonCount:ids.length,
+      startedLessons,
+      completedLessons,
+      visitedSteps,
+      totalSteps,
+      percent:totalSteps?Math.round(visitedSteps/totalSteps*100):0,
+      completionPercent:ids.length?Math.round(completedLessons/ids.length*100):0,
+      status:complete?'completed':startedLessons?'started':'not_started'
+    };
   }
 
   function isBookmarked(id){return bookmarks().some(x=>x.id===id)}
