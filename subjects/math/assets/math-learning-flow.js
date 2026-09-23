@@ -231,23 +231,23 @@
 
   function clearHighlights(){slides().forEach(x=>x.classList.remove('math-lf-highlight'))}
   function clearReveals(){
-    $('.math-lf-reveal').forEach(x=>x.remove());
-    $('[data-e129-block-index][hidden]').forEach(x=>x.hidden=false);
-    $('.e129-slide[data-lf-reveal-level]').forEach(x=>x.removeAttribute('data-lf-reveal-level'));
+    $$('.math-lf-reveal').forEach(x=>x.remove());
+    $$('[data-e129-block-index][hidden]').forEach(x=>x.hidden=false);
+    $$('.e129-slide[data-lf-reveal-level]').forEach(x=>x.removeAttribute('data-lf-reveal-level'));
   }
   function applyReveal(slide,level){
     if(!slide)return;
-    const nodes=$('[data-e129-block-index]',slide);
+    const nodes=$$('[data-e129-block-index]',slide);
     nodes.forEach(node=>{
       const index=Number(node.dataset.e129BlockIndex||0);
       node.hidden=level==='all'?false:index>=Number(level);
     });
     slide.dataset.lfRevealLevel=String(level);
-    $('.math-lf-reveal button',slide).forEach(btn=>btn.classList.toggle('active',btn.dataset.lfReveal===String(level)));
+    $$('.math-lf-reveal button',slide).forEach(btn=>btn.classList.toggle('active',btn.dataset.lfReveal===String(level)));
   }
   function prepareExampleReveal(slide){
     if(!slide)return false;
-    const indices=[...new Set($('[data-e129-block-index]',slide).map(x=>Number(x.dataset.e129BlockIndex||0)))].sort((a,b)=>a-b);
+    const indices=[...new Set($$('[data-e129-block-index]',slide).map(x=>Number(x.dataset.e129BlockIndex||0)))].sort((a,b)=>a-b);
     if(indices.length<=1)return false;
     $('.math-lf-reveal',slide)?.remove();
     const bar=document.createElement('div');
