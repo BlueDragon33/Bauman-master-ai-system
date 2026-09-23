@@ -111,7 +111,7 @@
   function setActive(id){
     active=id||'overview';
     if(PRIMARY_ITEMS.some(x=>x.id===active)) document.body.dataset.mathPrimaryRoute=active;
-    $('.math-unified-nav-button').forEach(b=>{
+    $$('.math-unified-nav-button').forEach(b=>{
       const on=b.dataset.mathNav===active;
       b.classList.toggle('active',on);
       b.setAttribute('aria-current',on?'page':'false');
