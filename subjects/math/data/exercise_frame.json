@@ -1565,5 +1565,22 @@
     "importDefaultTarget": "exercise_content",
     "legacyFilesAreCompatibilityOnly": true
   },
-  "phdContentPolicy": "framework_only_locked_no_content_generation"
+  "phdContentPolicy": "framework_only_locked_no_content_generation",
+  "feedbackContract": {
+    "schema": "schemas/exercise-feedback.schema.json",
+    "policy": "auto-grade only when deterministic feedback contract is complete",
+    "fallback": "self-check/manual; never infer correctness from solution prose",
+    "requiredForAutoGrade": [
+      "answerType",
+      "correctAnswer",
+      "feedback.correct",
+      "feedback.incorrect",
+      "reviewStepId"
+    ],
+    "supportedAnswerTypes": [
+      "multiple_choice",
+      "numeric",
+      "exact_text"
+    ]
+  }
 }

@@ -140,7 +140,7 @@
     else {title='Chọn phân mục';html=ACTIVITIES.map(function(x){return option(x.label,x.summary,{'data-e186-pick':'activity','data-e186-id':x.id},x.id===p.activityId);}).join('');}
     modal('<header><div><span class="e129-badge">E186 · Lesson First</span><h3>'+H(title)+'</h3><p>Thứ tự: Khối → Học phần → Chương → Bài → Phân mục.</p></div><button class="e129-close" data-e186-close>×</button></header><div class="e169-choice-grid e186-choice-grid">'+html+'</div>');
   }
-  function renderRoute(){var p=ensureLesson(), st=state(), fr=currentFrame();syncLegacy();st.view='learning';st.learnTab=ROUTES[p.activityId]||p.activityId;if(fr)st.e129ChapterId=fr.chapterId||fr.id||'';if(p.chapterId==='c01')st.e129ChapterId=C01_CHAPTER_ID;st.e129LessonId=p.lessonId;save();close();try{window.BAUMAN_MATH_THEORY_E129&&window.BAUMAN_MATH_THEORY_E129.render&&window.BAUMAN_MATH_THEORY_E129.render();}catch(_){location.reload();}}
+  function renderRoute(){var p=ensureLesson(), st=state(), fr=currentFrame();syncLegacy();st.view='learning';st.learnTab=ROUTES[p.activityId]||p.activityId;if(fr)st.e129ChapterId=fr.chapterId||fr.id||'';if(p.chapterId==='c01')st.e129ChapterId=C01_CHAPTER_ID;st.e129LessonId=p.lessonId;save();close();try{window.BAUMAN_MATH_THEORY_E129&&window.BAUMAN_MATH_THEORY_E129.render&&window.BAUMAN_MATH_THEORY_E129.render();}catch(_){location.reload();return;}try{window.dispatchEvent(new CustomEvent('bauman:math:route-changed',{detail:{lessonId:p.lessonId,activityId:p.activityId,source:RELEASE}}));}catch(_){}}
   function patchSurface(){
     syncLegacy();
     var summary=pathSummary();
@@ -157,7 +157,7 @@
     if(kind==='module'){setPath('module',id);open('course');return;}
     if(kind==='course'){setPath('course',id);open('chapter');return;}
     if(kind==='chapter'){setPath('chapter',id);open('lesson');return;}
-    if(kind==='lesson'){setPath('lesson',id);renderRoute();open('activity');return;}
+    if(kind==='lesson'){setPath('lesson',id);renderRoute();return;}
     if(kind==='activity'){setPath('activity',id);renderRoute();return;}
   }
   function patchLabels(){document.querySelectorAll('.e169-reader-title h2,.e169-choice b,.e129-slide h3').forEach(function(n){var c=cleanLessonTitle(n.textContent||'');if(c&&c!==n.textContent)n.textContent=c;});patchSurface();}
@@ -168,5 +168,5 @@
   var mo=new MutationObserver(schedulePatch);
   function boot(){try{mo.observe(document.body,{childList:true,subtree:true});}catch(_){}patchLabels();}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
-  window.BAUMAN_MATH_E186_LESSON_FIRST={release:RELEASE,open:open,path:path,lessonOptions:lessonOptions,crumbs:crumbs,moduleSubtitle:moduleSubtitle,displayChapterTitle:displayChapterTitle,selfCheck:function(){return{release:RELEASE,flow:'module-course-chapter-lesson-activity',crumbs:crumbs().map(function(x){return x.label;}),lessons:lessonOptions().length,activity:activityLabel(),moduleSubtitle:moduleSubtitle()};}};
+  window.BAUMAN_MATH_E186_LESSON_FIRST={release:RELEASE,open:open,close:close,path:path,lessonOptions:lessonOptions,crumbs:crumbs,moduleSubtitle:moduleSubtitle,displayChapterTitle:displayChapterTitle,selfCheck:function(){return{release:RELEASE,flow:'module-course-chapter-lesson-activity',crumbs:crumbs().map(function(x){return x.label;}),lessons:lessonOptions().length,activity:activityLabel(),moduleSubtitle:moduleSubtitle()};}};
 })();

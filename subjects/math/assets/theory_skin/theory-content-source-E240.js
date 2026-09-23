@@ -10,6 +10,7 @@
   var nativeFetch=window.fetch.bind(window);
   var wrappedE129=false;
   var servedFrom='durable_json_fallback';
+  var durablePayload=null;
 
   function validPayload(value){
     return !!(value&&typeof value==='object'&&Array.isArray(value.records));
@@ -24,6 +25,21 @@
     }catch(_){return null;}
   }
 
+  function interceptPayload(){
+    var dbPayload=window.DB&&window.DB.theory_lecture_content;
+    if(validPayload(dbPayload)){
+      servedFrom='window.DB.theory_lecture_content';
+      return dbPayload;
+    }
+    var saved=overlayPayload();
+    if(saved){
+      servedFrom='localStorage E129 overlay';
+      if(window.DB)window.DB.theory_lecture_content=saved;
+      return saved;
+    }
+    return null;
+  }
+
   function sharedPayload(){
     var dbPayload=window.DB&&window.DB.theory_lecture_content;
     if(validPayload(dbPayload)){
@@ -35,6 +51,10 @@
       servedFrom='localStorage E129 overlay';
       if(window.DB)window.DB.theory_lecture_content=saved;
       return saved;
+    }
+    if(validPayload(durablePayload)){
+      servedFrom='durable_json_fallback';
+      return durablePayload;
     }
     servedFrom='durable_json_fallback';
     return null;
@@ -66,8 +86,20 @@
 
   window.fetch=function(input,init){
     if(isTheoryContentRequest(input)){
-      var payload=sharedPayload();
+      var payload=interceptPayload();
       if(payload)return Promise.resolve(responseFor(payload));
+      return nativeFetch(input,init).then(function(response){
+        try{
+          response.clone().json().then(function(data){
+            if(validPayload(data)){
+              durablePayload=data;
+              servedFrom='durable_json_fallback';
+              try{window.dispatchEvent(new CustomEvent('bauman:theory-content-ready',{detail:{source:RELEASE,records:data.records.length}}));}catch(_){ }
+            }
+          }).catch(function(){});
+        }catch(_){ }
+        return response;
+      });
     }
     return nativeFetch(input,init);
   };
@@ -135,6 +167,8 @@
         dbAvailable:validPayload(window.DB&&window.DB.theory_lecture_content),
         overlayAvailable:validPayload(overlayPayload()),
         durableFallback:true,
+        durablePayloadAvailable:validPayload(durablePayload),
+        durableRecordCount:validPayload(durablePayload)?durablePayload.records.length:0,
         sameTabImportSync:'reload',
         e129Wrapped:wrappedE129
       };

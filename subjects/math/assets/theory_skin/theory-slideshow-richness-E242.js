@@ -8,7 +8,7 @@
   var RELEASE='E242_MULTI_LESSON_SLIDESHOW_RICHNESS';
   var L06='MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140';
   var L06_DIAGRAM_ROLES={canonical_assembly:true,matrix_semantics:true,convention_translation:true,api_assembly:true,linear_interface:true,feature_gram:true,observation_gram:true,centering:true,covariance_gate:true,rank_boundary:true,locked_case:true};
-  var cacheByLesson={},scheduled=false,lastKey='';
+  var cacheByLesson={},scheduled=false,lastKey='',retryTimer=0,retryKey='',retryCount=0;
 
   function arr(v){return Array.isArray(v)?v:[];}
   function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
@@ -207,6 +207,14 @@
     try{window.BAUMAN_MATH_E211_READER_CONTENT&&window.BAUMAN_MATH_E211_READER_CONTENT.apply&&window.BAUMAN_MATH_E211_READER_CONTENT.apply();}catch(_){}
   }
 
+  function scheduleRetry(key){
+    if(retryKey!==key){retryKey=key;retryCount=0;}
+    if(retryCount>=24)return;
+    retryCount+=1;
+    clearTimeout(retryTimer);
+    retryTimer=setTimeout(schedule,60);
+  }
+
   function apply(){
     var d=deck();if(!d||!d.classList.contains('open'))return false;
     var entry=activeEntry();if(!entry||!entry.slideshow){clearOutsideTarget(d);return false;}
@@ -219,7 +227,10 @@
     var main=d.querySelector('.e132-clean-main');if(main)main.setAttribute('data-e242-slide',slide.id);
     applyDiagram(d,slide);applyMisconception(d,slide);applyRetrieval(d,slide);
     d.setAttribute('data-e242-richness',RELEASE);d.setAttribute('data-e242-lesson-id',entry.lessonId);
-    return true;
+    var ready=richnessPresent(d,slide);
+    if(!ready)scheduleRetry(key);
+    else{clearTimeout(retryTimer);retryKey='';retryCount=0;}
+    return ready;
   }
 
   function schedule(){if(scheduled)return;scheduled=true;requestAnimationFrame(function(){scheduled=false;apply();});}
@@ -234,7 +245,7 @@
     selfCheck:function(){
       var entry=activeEntry(),cache=entry&&cacheFor(entry),counts=cache&&cache.artifact?countFeatures(arr(cache.artifact.slides)):null,slide=null,d=deck();
       if(entry&&cache&&cache.artifact&&d)slide=arr(cache.artifact.slides)[currentIndex(d)]||null;
-      return {ok:!!registry()&&!(cache&&cache.error),release:RELEASE,multiLesson:true,activeLessonId:entry&&entry.lessonId||'',loaded:!!(cache&&cache.artifact),counts:counts,expected:entry&&entry.slideshow&&entry.slideshow.expected||null,projection:cache&&cache.projection||null,currentSlide:d&&d.querySelector('.e132-clean-main')&&d.querySelector('.e132-clean-main').getAttribute('data-e242-slide'),richnessPresent:slide?richnessPresent(d,slide):null,newSlideshowEngineCreated:false,e235Modified:false,error:cache&&cache.error||null};
+      return {ok:!!registry()&&!(cache&&cache.error),release:RELEASE,multiLesson:true,activeLessonId:entry&&entry.lessonId||'',loaded:!!(cache&&cache.artifact),counts:counts,expected:entry&&entry.slideshow&&entry.slideshow.expected||null,projection:cache&&cache.projection||null,currentSlide:d&&d.querySelector('.e132-clean-main')&&d.querySelector('.e132-clean-main').getAttribute('data-e242-slide'),richnessPresent:slide?richnessPresent(d,slide):null,newSlideshowEngineCreated:false,e235Modified:false,retryKey:retryKey,retryCount:retryCount,error:cache&&cache.error||null};
     }
   };
 

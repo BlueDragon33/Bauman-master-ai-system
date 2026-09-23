@@ -30,7 +30,7 @@
     exercises:{title:'Bài tập · Củng cố tư duy',kicker:'Exercise Studio',desc:'Ưu tiên bài tập/câu hỏi canonical theo lessonId; nếu nguồn companion chưa có record, dùng đúng slide practice/vấn đáp đã có trong bài lý thuyết.'},
     practice:{title:'Thực hành · Hiện thực hóa',kicker:'Practice Studio',desc:'Kết nối bài đang học với mô phỏng và phần thực hành đã có. Không tự sinh code hay test case khi nguồn chưa cung cấp.'},
     application:{title:'Ứng dụng · Kỹ thuật',kicker:'Application Studio',desc:'Đọc tình huống ứng dụng canonical hoặc các slide application/real bridge của chính bài đang học.'},
-    review:{title:'Ôn tập · Hệ thống hóa',kicker:'Review Studio',desc:'Gom takeaway, bridge và công thức của bài hiện tại; ưu tiên review pack canonical khi có dữ liệu.'},
+    review:{title:'Ôn tập · Đúng điểm yếu',kicker:'Review Studio',desc:'Ưu tiên các mục bạn đã đánh dấu Cần ôn trong Lesson Check; chỉ dùng review pack canonical khi có dữ liệu thật phù hợp.'},
     exam:{title:'Kiểm tra · Đánh giá',kicker:'Assessment Studio',desc:'Chỉ hiển thị câu hỏi/blueprint/vấn đáp đã tồn tại trong nguồn. Không tự gọi đây là đề thi đầy đủ khi companion source chưa có record.'}
   };
 
@@ -77,6 +77,59 @@
     if(!b||typeof b!=='object')return String(b||'');
     return [b.body,b.content,b.text,b.formula,b.meaning,b.description].filter(Boolean).join(' · ');
   }
+  function toast(message){
+    const el=$('#mathWsToast');
+    if(el){
+      el.textContent=message;
+      el.style.opacity='1';
+      clearTimeout(el._timer);
+      el._timer=setTimeout(()=>{el.style.opacity='0'},1800);
+    }else console.info('[Math Activity Studio]',message);
+  }
+  function feedbackReady(r){
+    if(!r||typeof r!=='object')return false;
+    const type=String(r.answerType||'');
+    const supported=['multiple_choice','numeric','exact_text'].includes(type);
+    const hasAnswer=r.correctAnswer!==undefined&&r.correctAnswer!==null;
+    const hasFeedback=!!String(r.feedback?.correct||'').trim()&&!!String(r.feedback?.incorrect||'').trim();
+    const hasReview=!!String(r.reviewStepId||'').trim();
+    const optionsOk=type!=='multiple_choice'||(Array.isArray(r.options)&&r.options.length>=2);
+    return supported&&hasAnswer&&hasFeedback&&hasReview&&optionsOk;
+  }
+  function normalizeAnswer(value){return String(value??'').trim().replace(/\s+/g,' ').toLocaleLowerCase('vi')}
+  function gradeExercise(r,value){
+    if(!feedbackReady(r))return{gradable:false,correct:null};
+    let correct=false;
+    if(r.answerType==='numeric'){
+      const actual=Number(value),expected=Number(r.correctAnswer),tol=Math.max(0,Number(r.numericTolerance||0));
+      correct=Number.isFinite(actual)&&Number.isFinite(expected)&&Math.abs(actual-expected)<=tol;
+    }else correct=normalizeAnswer(value)===normalizeAnswer(r.correctAnswer);
+    let message=correct?String(r.feedback.correct):String(r.feedback.incorrect);
+    let reviewStep=String(r.reviewStepId||'understand');
+    if(!correct&&Array.isArray(r.feedback?.commonMistakes)){
+      const hit=r.feedback.commonMistakes.find(x=>x&&x.answer!==undefined&&normalizeAnswer(x.answer)===normalizeAnswer(value));
+      if(hit?.message)message=String(hit.message);
+      if(hit?.reviewStepId)reviewStep=String(hit.reviewStepId);
+    }
+    return{gradable:true,correct,message,reviewStep};
+  }
+  function answerControl(r){
+    if(!feedbackReady(r))return'';
+    const id=esc(r.exerciseId||'exercise');
+    if(r.answerType==='multiple_choice'){
+      return `<fieldset class="math-exercise-answer" data-exercise-answer-group><legend>Chọn đáp án</legend>${r.options.map((opt,i)=>`<label><input type="radio" name="exercise-${id}" value="${esc(opt)}"><span><b>${String.fromCharCode(65+i)}</b>${esc(opt)}</span></label>`).join('')}</fieldset>`;
+    }
+    const type=r.answerType==='numeric'?'number':'text';
+    const step=r.answerType==='numeric'?'any':undefined;
+    return `<label class="math-exercise-input"><span>Nhập câu trả lời</span><input type="${type}" ${step?`step="${step}"`:''} data-exercise-answer-input autocomplete="off"></label>`;
+  }
+  function exerciseRecordById(id){
+    return (cache['data/exercise_content.json']?.records||[]).find(x=>String(x.exerciseId||'')===String(id||''))||null;
+  }
+  function exerciseCard(r){
+    const gradable=feedbackReady(r);
+    return `<article class="math-activity-card math-exercise-card" data-exercise-id="${esc(r.exerciseId||'')}"><span class="role">exercise_content · ${gradable?'AUTO FEEDBACK':'SELF CHECK'}</span><h4>${esc(r.title||r.exerciseId||'Bài tập')}</h4><p>${esc(clip(r.prompt||'',500))}</p>${gradable?`${answerControl(r)}<div class="math-exercise-actions"><button type="button" data-exercise-check>Kiểm tra</button></div><div class="math-exercise-feedback" data-exercise-feedback aria-live="polite"></div>`:(r.solution?`<details><summary>Xem lời giải canonical</summary><p>${esc(clip(r.solution,700))}</p></details>`:'<div class="math-exercise-manual">Bài này chưa có contract chấm tự động. Hãy tự giải và đối chiếu theo nguồn khi có lời giải.</div>')}</article>`;
+  }
   function slideCard(sl){
     const role=String(sl?.role||'embedded').replace(/_/g,' '),title=sl?.title||role;
     const blocks=Array.isArray(sl?.blocks)?sl.blocks:[];
@@ -85,7 +138,7 @@
     return `<article class="math-activity-card"><span class="role">Embedded · ${esc(role)}</span><h4>${esc(title)}</h4><p>${esc(clip(body||'Nội dung semantic đã có trong theory_lecture_content.',520))}</p>${formula?`<pre>${esc(clip(formula,260))}</pre>`:''}</article>`;
   }
   function companionCard(kind,r){
-    if(kind==='exercise')return `<article class="math-activity-card"><span class="role">exercise_content</span><h4>${esc(r.title||r.exerciseId||'Bài tập')}</h4><p>${esc(clip(r.prompt||'',500))}</p>${r.solution?`<details><summary style="margin-top:8px;color:#6fcfff;font-size:8px;cursor:pointer">Xem lời giải canonical</summary><p style="margin-top:7px">${esc(clip(r.solution,700))}</p></details>`:''}</article>`;
+    if(kind==='exercise')return exerciseCard(r);
     if(kind==='question')return `<article class="math-activity-card"><span class="role">question_bank</span><h4>${esc(r.title||r.questionId||'Câu hỏi')}</h4><p>${esc(clip(r.question||'',500))}</p>${Array.isArray(r.options)?`<p>${r.options.map((x,i)=>`${String.fromCharCode(65+i)}. ${esc(x)}`).join(' · ')}</p>`:''}${r.answer?`<details><summary style="margin-top:8px;color:#6fcfff;font-size:8px;cursor:pointer">Đáp án canonical</summary><p style="margin-top:7px">${esc(clip(r.answer,500))}</p></details>`:''}</article>`;
     if(kind==='application')return `<article class="math-activity-card"><span class="role">application_content</span><h4>${esc(r.title||r.applicationId||'Ứng dụng')}</h4><p>${esc(clip(r.scenario||'',430))}</p>${r.method?`<pre>${esc(clip(r.method,420))}</pre>`:''}</article>`;
     if(kind==='simulation')return `<article class="math-activity-card"><span class="role">simulation_content</span><h4>${esc(r.title||r.simulationId||'Mô phỏng')}</h4><p>${esc(clip(r.purpose||'',500))}</p></article>`;
@@ -93,6 +146,27 @@
     if(kind==='blueprint')return `<article class="math-activity-card"><span class="role">test_blueprint</span><h4>${esc(r.title||r.blueprintId||'Blueprint kiểm tra')}</h4><p>${esc(r.distribution?Object.entries(r.distribution).map(([k,v])=>`${k}: ${v}`).join(' · '):'Blueprint canonical')}</p></article>`;
     if(kind==='professor')return `<article class="math-activity-card"><span class="role">professor_qa</span><h4>${esc(r.title||r.qaId||'Vấn đáp')}</h4><p>${esc(clip(r.question||'',500))}</p>${r.answer?`<details><summary style="margin-top:8px;color:#6fcfff;font-size:8px;cursor:pointer">Gợi ý trả lời</summary><p style="margin-top:7px">${esc(clip(r.answer,600))}</p></details>`:''}</article>`;
     return '';
+  }
+
+  function reviewEvidenceCards(){
+    const id=lessonId();
+    const summary=global.BAUMAN_MATH_LEARNING_FLOW?.checkSummary?.(id);
+    const weak=Array.isArray(summary?.items)?summary.items.filter(x=>x.state==='review'):[];
+    return weak.map((item,index)=>`<article class="math-activity-card math-review-evidence-card">
+      <span class="role">LESSON CHECK · CẦN ÔN</span>
+      <h4>${esc(item.title||`Mục ôn ${index+1}`)}</h4>
+      <p>${esc(clip(item.prompt||'',520))}</p>
+      <div class="math-review-evidence-meta"><span><b>Vì sao chọn</b>Bạn đã đánh dấu Cần ôn trong Lesson Check.</span><span><b>Thời lượng</b>Chưa được khai báo trong nguồn.</span></div>
+      ${Array.isArray(item.learningOutcomeRefs)&&item.learningOutcomeRefs.length?`<div class="math-review-evidence-refs">${item.learningOutcomeRefs.map(x=>`<i>${esc(x)}</i>`).join('')}</div>`:''}
+      <button type="button" class="math-activity-btn" data-review-step="${esc(item.reviewStepId||'selfcheck')}">Ôn lại phần liên quan →</button>
+    </article>`);
+  }
+  function openReviewStep(stepId){
+    backTheory();
+    setTimeout(()=>{
+      if(global.BAUMAN_MATH_LEARNING_FLOW?.activate)global.BAUMAN_MATH_LEARNING_FLOW.activate(stepId||'selfcheck');
+      else toast('Lesson Player chưa sẵn sàng để mở phần ôn.');
+    },220);
   }
 
   function sourceStatuses(){
@@ -110,11 +184,12 @@
     const companion=[];
     (SOURCES[act]||[]).forEach(([kind,path])=>{const c=cache[path];if(c?.data)matched(kind,c.data).slice(0,6).forEach(r=>companion.push(companionCard(kind,r)))});
     const fallback=roleSlides().map(slideCard);
-    const cards=companion.length?companion:fallback;
+    const reviewEvidence=act==='review'?reviewEvidenceCards():[];
+    const cards=act==='review'?reviewEvidence:(companion.length?companion:fallback);
     const id=lessonId(),ch=chapterId();
     const sourceHtml=statuses.map(x=>`<span class="math-activity-source ${x.match?'live':'fallback'}"><i></i>${esc(x.path.replace('data/',''))}: ${x.count} records · ${x.match} match</span>`).join('')+`<span class="math-activity-source ${fallback.length?'live':'fallback'}"><i></i>theory embedded: ${fallback.length} semantic slide</span>`;
-    const sourceMode=companion.length?'COMPANION_CANONICAL':'EMBEDDED_THEORY_FALLBACK';
-    host.innerHTML=`<header class="math-activity-hero"><div><span class="math-activity-kicker">${esc(meta.kicker)}</span><h2>${esc(meta.title)}</h2><p>${esc(meta.desc)}</p></div><div class="math-activity-hero-actions"><button class="math-activity-btn primary" data-activity-action="theory">← Bài lý thuyết</button><button class="math-activity-btn" data-activity-action="lab">∿ Math Lab</button><button class="math-activity-btn" data-activity-action="control">☷ Nội dung</button></div></header><div class="math-activity-source-strip">${sourceHtml}</div><div class="math-activity-grid"><section class="math-activity-panel"><div class="math-activity-panel-head"><h3>Nội dung khả dụng</h3><span>${cards.length} mục · ${sourceMode}</span></div><div class="math-activity-cards">${cards.length?cards.join(''):`<div class="math-activity-empty">Chưa có companion record và bài hiện tại cũng chưa có slide semantic phù hợp. Studio không tự sinh nội dung thay thế.</div>`}</div></section><aside class="math-activity-panel"><div class="math-activity-panel-head"><h3>Ngữ cảnh</h3><span>read-only</span></div><div class="math-activity-side"><div class="math-activity-status"><b>${esc(id||'Chưa gắn lessonId')}</b><span>${esc(ch||'Chưa xác định chapterId')}</span><strong>${sourceMode}</strong></div><div class="math-activity-status"><b>Chính sách nguồn</b><span>sampleRecord trong các *_content.json chỉ là schema example/DRAFT và không được render như dữ liệu học thật.</span></div><div class="math-activity-next"><button data-activity-action="formula"><span>∑ Công thức bài hiện tại</span><b>→</b></button><button data-activity-action="library"><span>★ Study Library</span><b>→</b></button><button data-activity-action="vault"><span>▣ DataVault E129</span><b>→</b></button></div></div></aside></div>`;
+    const sourceMode=act==='review'?'LESSON_CHECK_EVIDENCE':companion.length?'COMPANION_CANONICAL':'EMBEDDED_THEORY_FALLBACK';
+    host.innerHTML=`<header class="math-activity-hero"><div><span class="math-activity-kicker">${esc(meta.kicker)}</span><h2>${esc(meta.title)}</h2><p>${esc(meta.desc)}</p></div><div class="math-activity-hero-actions"><button class="math-activity-btn primary" data-activity-action="theory">← Bài lý thuyết</button><button class="math-activity-btn" data-activity-action="lab">∿ Math Lab</button><button class="math-activity-btn" data-activity-action="control">☷ Nội dung</button></div></header><div class="math-activity-source-strip">${sourceHtml}</div><div class="math-activity-grid"><section class="math-activity-panel"><div class="math-activity-panel-head"><h3>Nội dung khả dụng</h3><span>${cards.length} mục · ${sourceMode}</span></div><div class="math-activity-cards">${cards.length?cards.join(''):`<div class="math-activity-empty">${act==='review'?'Hiện chưa có nội dung cần ôn. Lesson Check chưa ghi nhận điểm yếu nào cho bài hiện tại.':'Chưa có companion record và bài hiện tại cũng chưa có slide semantic phù hợp. Studio không tự sinh nội dung thay thế.'}</div>`}</div></section><aside class="math-activity-panel"><div class="math-activity-panel-head"><h3>Ngữ cảnh</h3><span>read-only</span></div><div class="math-activity-side"><div class="math-activity-status"><b>${esc(id||'Chưa gắn lessonId')}</b><span>${esc(ch||'Chưa xác định chapterId')}</span><strong>${sourceMode}</strong></div><div class="math-activity-status"><b>Chính sách nguồn</b><span>sampleRecord trong các *_content.json chỉ là schema example/DRAFT và không được render như dữ liệu học thật.</span></div><div class="math-activity-next"><button data-activity-action="formula"><span>∑ Công thức bài hiện tại</span><b>→</b></button><button data-activity-action="library"><span>★ Study Library</span><b>→</b></button><button data-activity-action="vault"><span>▣ DataVault E129</span><b>→</b></button></div></div></aside></div>`;
     try{global.BAUMAN_MATH_ACTIVITY_MASTERY?.refresh?.()}catch(_){ }
     try{global.BAUMAN_MATH_STUDY_COMMAND_CENTER?.refresh?.()}catch(_){ }
     return true;
@@ -125,10 +200,46 @@
     if(st.e169Path){st.e169Path.activityId='theory';st.e169Path.lessonId=id}
     try{global.__BAUMAN_CORE_API?.save?.()}catch(_){ }try{global.BAUMAN_MATH_THEORY_E129?.render?.()}catch(_){ }setTimeout(()=>{global.BAUMAN_MATH_READER_ROLE_MAP?.map?.();global.BAUMAN_MATH_LEARNING_FLOW?.refresh?.();$('#view')?.scrollIntoView({behavior:'smooth',block:'start'})},180);
   }
-  function action(a){if(a==='theory')backTheory();if(a==='lab')global.BAUMAN_MATH_SIMULATION_SOURCE?.openForCurrent?.()||global.BAUMAN_MATH_WORKSPACE?.openLab?.();if(a==='control')global.BAUMAN_MATH_WORKSPACE?.openControl?.();if(a==='formula')global.BAUMAN_MATH_NAVIGATION?.openFormulaFocus?.();if(a==='library')global.BAUMAN_MATH_STUDY_LIBRARY?.open?.();if(a==='vault')global.BAUMAN_MATH_THEORY_E129?.openTheoryVault?.()}
+  function reviewStep(stepId){
+    backTheory();
+    setTimeout(()=>{
+      if(global.BAUMAN_MATH_LEARNING_FLOW?.activate)global.BAUMAN_MATH_LEARNING_FLOW.activate(stepId||'understand');
+      else toast('Lesson Player chưa sẵn sàng để mở bước ôn.');
+    },220);
+  }
+  function checkExercise(button){
+    const card=button.closest('[data-exercise-id]');if(!card)return;
+    const record=exerciseRecordById(card.dataset.exerciseId),feedback=$('[data-exercise-feedback]',card);
+    if(!record||!feedbackReady(record)){toast('Bài này chưa có contract chấm tự động hợp lệ.');return;}
+    const chosen=$('input[type="radio"]:checked',card);
+    const input=$('[data-exercise-answer-input]',card);
+    const value=chosen?chosen.value:input?.value;
+    if(value===undefined||value===null||String(value).trim()===''){toast('Hãy nhập hoặc chọn câu trả lời trước.');return;}
+    const result=gradeExercise(record,value);
+    feedback.className=`math-exercise-feedback ${result.correct?'correct':'incorrect'}`;
+    feedback.innerHTML=`<b>${result.correct?'Đúng':'Chưa đúng'}</b><p>${esc(result.message)}</p>${result.correct?'':`<button type="button" data-exercise-review-step="${esc(result.reviewStep)}">Ôn lại phần liên quan →</button>`}`;
+    document.dispatchEvent(new CustomEvent('bauman:math:exercise-result',{detail:{exerciseId:record.exerciseId,lessonId:record.lessonId,chapterId:record.chapterId,correct:result.correct,answer:String(value),reviewStepId:result.reviewStep,at:Date.now()}}));
+  }
+  function action(a){
+    if(a==='theory')backTheory();
+    if(a==='lab'){
+      const opened=global.BAUMAN_MATH_SIMULATION_SOURCE?.openForCurrent?.();
+      if(!opened)toast('Bài hiện tại chưa có mô phỏng được ánh xạ. Math Lab tổng quát nằm trong Tài nguyên nâng cao.');
+    }
+    if(a==='control')global.BAUMAN_MATH_WORKSPACE?.openControl?.();
+    if(a==='formula')global.BAUMAN_MATH_NAVIGATION?.openFormulaFocus?.();
+    if(a==='library')global.BAUMAN_MATH_STUDY_LIBRARY?.open?.();
+    if(a==='vault')global.BAUMAN_MATH_THEORY_E129?.openTheoryVault?.();
+  }
   function schedule(ms=150){clearTimeout(timer);timer=setTimeout(()=>load().then(render),ms)}
-  function bind(){document.addEventListener('click',e=>{const a=e.target.closest('[data-activity-action]')?.dataset.activityAction;if(a){e.preventDefault();action(a);return}if(e.target.closest('[data-e186-pick="activity"],[data-e169-pick-activity],[data-math-nav],[data-e129-back-theory],[data-e129-nav]'))schedule(180)},true)}
-  function selfCheck(){const act=activity();return{release:RELEASE,ready:!!$('#mathActivityStudio'),activity:act,lessonId:lessonId()||null,canonicalSources:(SOURCES[act]||[]).length,companionMatches:sourceStatuses().reduce((s,x)=>s+x.match,0),embeddedFallbackSlides:roleSlides().length,theorySource:global.DB?.theory_lecture_content?'runtime-db':(cache[THEORY_SOURCE]?.ok?'e240-durable-fallback':'unavailable'),sampleRecordsRendered:false,academicWrites:false,mutationObserver:false,newRouteEngine:false}}
+  function bind(){global.addEventListener('bauman:math:route-changed',()=>schedule(40));document.addEventListener('click',e=>{
+    const reviewStep=e.target.closest('[data-review-step]');if(reviewStep){e.preventDefault();openReviewStep(reviewStep.dataset.reviewStep);return}
+    const check=e.target.closest('[data-exercise-check]');if(check){e.preventDefault();checkExercise(check);return}
+    const review=e.target.closest('[data-exercise-review-step]');if(review){e.preventDefault();reviewStep(review.dataset.exerciseReviewStep);return}
+    const a=e.target.closest('[data-activity-action]')?.dataset.activityAction;if(a){e.preventDefault();action(a);return}
+    if(e.target.closest('[data-e186-pick="activity"],[data-e169-pick-activity],[data-math-nav],[data-e129-back-theory],[data-e129-nav]'))schedule(180)
+  },true)}
+  function selfCheck(){const act=activity();return{release:RELEASE,ready:!!$('#mathActivityStudio'),activity:act,lessonId:lessonId()||null,canonicalSources:(SOURCES[act]||[]).length,companionMatches:sourceStatuses().reduce((s,x)=>s+x.match,0),embeddedFallbackSlides:roleSlides().length,theorySource:global.DB?.theory_lecture_content?'runtime-db':(cache[THEORY_SOURCE]?.ok?'e240-durable-fallback':'unavailable'),sampleRecordsRendered:false,deterministicFeedbackContract:true,autoGradeOnlyWhenContractReady:true,academicWrites:false,mutationObserver:false,newRouteEngine:false}}
   function init(){if(!document.body||document.body.dataset.mathActivityStudio==='1')return;document.body.dataset.mathActivityStudio='1';bind();load().then(()=>{render();[500,1200,2400].forEach(ms=>setTimeout(render,ms))});global.BAUMAN_MATH_ACTIVITY_STUDIO={release:RELEASE,refresh:()=>schedule(0),render,selfCheck}}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })(window);

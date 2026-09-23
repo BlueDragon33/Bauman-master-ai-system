@@ -232,11 +232,27 @@ try{
       window.BAUMAN_MATH_E210_LESSON_IDENTITY?.apply?.();
       window.BAUMAN_MATH_E242_SLIDESHOW_RICHNESS?.apply?.();
     },lesson.id);
-    await queryPage.waitForFunction(lessonId=>{
-      const deck=document.querySelector('.e132-overlay-deck.open');
-      const richness=window.BAUMAN_MATH_E242_SLIDESHOW_RICHNESS?.selfCheck?.();
-      return deck?.getAttribute('data-e243-lesson-id')===lessonId&&deck?.getAttribute('data-e210-active-lesson-id')===lessonId&&richness?.activeLessonId===lessonId&&richness?.loaded===true&&richness?.richnessPresent===true;
-    },lesson.id,{timeout:30000});
+    try{
+      await queryPage.waitForFunction(lessonId=>{
+        const deck=document.querySelector('.e132-overlay-deck.open');
+        const richness=window.BAUMAN_MATH_E242_SLIDESHOW_RICHNESS?.selfCheck?.();
+        return deck?.getAttribute('data-e243-lesson-id')===lessonId&&deck?.getAttribute('data-e210-active-lesson-id')===lessonId&&richness?.activeLessonId===lessonId&&richness?.loaded===true&&richness?.richnessPresent===true;
+      },lesson.id,{timeout:30000});
+    }catch(error){
+      const diag=await queryPage.evaluate(()=>{const deck=document.querySelector('.e132-overlay-deck.open');return{
+        deckE243:deck?.getAttribute('data-e243-lesson-id')||null,
+        deckE210:deck?.getAttribute('data-e210-active-lesson-id')||null,
+        deckLesson:deck?.getAttribute('data-lesson-id')||null,
+        e210:window.BAUMAN_MATH_E210_LESSON_IDENTITY?.selfCheck?.()||null,
+        e242:window.BAUMAN_MATH_E242_SLIDESHOW_RICHNESS?.selfCheck?.()||null,
+        e243:window.BAUMAN_MATH_E243_PRESENTER_ROUTE_LOCK?.selfCheck?.()||null,
+        presenter:window.BAUMAN_MATH_THEORY_E132?.selfCheck?.()||null,
+        title:deck?.querySelector('.e132-clean-main h1')?.textContent?.trim()||null,
+        visual:!!deck?.querySelector('.e202-visual'),
+        applicationCard:!!deck?.querySelector('.e132-clean-card.application'),
+        checkCard:!!deck?.querySelector('.e132-clean-card.check')
+      }});throw new Error(`${lesson.key}: presenter richness did not settle: ${JSON.stringify(diag)}; original=${error.message}`);
+    }
     const opened=await queryPage.evaluate(()=>{
       const richness=window.BAUMAN_MATH_E242_SLIDESHOW_RICHNESS.selfCheck(),route=window.BAUMAN_MATH_E243_PRESENTER_ROUTE_LOCK.selfCheck(),presenter=window.BAUMAN_MATH_THEORY_E132.selfCheck();
       return{presenter,routeId:route.deckLessonId,routeTitle:route.deckLessonTitle,routingGhost:route.routingGhostPresent,routeGuardInstalled:route.publicOpenGuardInstalled,richness};

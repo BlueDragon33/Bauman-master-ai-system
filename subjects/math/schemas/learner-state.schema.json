@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bauman.local/schemas/learner-state.schema.json",
+  "title": "Bauman Math Canonical Learner State",
+  "description": "Single local learner-state contract owned by math-learning-flow.js. Mastery and review queue are derived from persisted check evidence rather than stored by a second engine.",
+  "type": "object",
+  "required": [
+    "_meta"
+  ],
+  "properties": {
+    "_meta": {
+      "type": "object",
+      "required": [
+        "schemaVersion",
+        "currentLessonId",
+        "currentStepId",
+        "lastActivityAt"
+      ],
+      "properties": {
+        "schemaVersion": {
+          "const": 2
+        },
+        "currentLessonId": {
+          "type": "string"
+        },
+        "currentStepId": {
+          "type": "string"
+        },
+        "lastActivityAt": {
+          "type": "number",
+          "minimum": 0
+        },
+        "currentChapterId": {
+          "type": "string"
+        },
+        "currentStageId": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "patternProperties": {
+    "^(?!_meta$).+": {
+      "type": "object",
+      "properties": {
+        "active": {
+          "type": "string"
+        },
+        "visited": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "boolean"
+          }
+        },
+        "check": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "enum": [
+              "understood",
+              "review"
+            ]
+          }
+        },
+        "questionResults": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": [
+              "exerciseId",
+              "correct",
+              "answer",
+              "at"
+            ],
+            "properties": {
+              "exerciseId": {
+                "type": "string"
+              },
+              "chapterId": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "correct": {
+                "type": "boolean"
+              },
+              "answer": {
+                "type": "string"
+              },
+              "reviewStepId": {
+                "type": "string"
+              },
+              "at": {
+                "type": "number",
+                "minimum": 0
+              }
+            },
+            "additionalProperties": true
+          }
+        },
+        "completedAt": {
+          "type": "number",
+          "minimum": 0
+        },
+        "lastAt": {
+          "type": "number",
+          "minimum": 0
+        },
+        "notesOpen": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

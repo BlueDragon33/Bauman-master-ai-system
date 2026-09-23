@@ -5,9 +5,8 @@ import path from 'node:path';
 const {chromium}=await import(process.env.BAUMAN_PLAYWRIGHT_MODULE||'playwright');
 const BASE=process.env.BAUMAN_E2E_BASE_URL||'http://127.0.0.1:4173/';
 const OUT=process.env.BAUMAN_E2E_ARTIFACT_DIR||'artifacts/math-study-command-center';
-const LESSON='MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140';
-const MASTERY_KEY='bauman_math_activity_mastery_v1';
-const HISTORY_KEY='bauman_math_mastery_history_v1';
+const LESSON='MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140';
+const STATE_KEY='bauman_math_learning_flow_v1';
 const NOTES_KEY='bauman_math_activity_notes_v1';
 const SESSION_KEY='bauman_math_activity_session_v1';
 const report={status:'RUNNING',lessonId:LESSON,consoleErrors:[],pageErrors:[],failedRequests:[],httpErrors:[],checks:{}};
@@ -40,61 +39,71 @@ try{
     const record=payload?.records?.find(row=>row?.lessonId===lessonId);
     return record?{lessonId:record.lessonId,chapterId:record.chapterId,slides:record.slides?.length||0}:null;
   },LESSON);
-  assert.ok(canonical&&canonical.lessonId===LESSON,'L06 canonical lesson could not be found');
-  assert.equal(canonical.slides,22,'L06 durable slide count drift');
+  assert.ok(canonical&&canonical.lessonId===LESSON,'L05 canonical lesson could not be found');
+  assert.equal(canonical.slides,22,'L05 durable slide count drift');
 
-  // Drive the same E186 Lesson First route a real user uses instead of mutating legacy E169 selectors.
+  // Drive the same E186 Lesson First route a real user uses.
   await page.evaluate(()=>window.BAUMAN_MATH_E186_LESSON_FIRST.open('lesson'));
   const lessonChoice=page.locator(`[data-e186-pick="lesson"][data-e186-id="${LESSON}"]`);
   await lessonChoice.waitFor({state:'visible',timeout:10000});
   await lessonChoice.click();
-  const reviewChoice=page.locator('[data-e186-pick="activity"][data-e186-id="review"]');
-  await reviewChoice.waitFor({state:'visible',timeout:10000});
-  await reviewChoice.click();
-  await page.waitForFunction(lessonId=>{
-    const st=window.__BAUMAN_CORE_API?.state||window.__MATH_STATE||{};
-    return st.e169Path?.lessonId===lessonId&&st.e169Path?.activityId==='review'&&st.learnTab==='review';
-  },LESSON,{timeout:10000});
+  await page.waitForSelector(`[data-current-lesson="${LESSON}"]`,{timeout:10000});
+  await page.waitForFunction(id=>window.BAUMAN_MATH_LEARNING_FLOW?.selfCheck?.().lessonId===id,LESSON,{timeout:10000});
+
+  await page.evaluate(id=>window.BAUMAN_MATH_LEARNING_FLOW.ensureAssessment(id),LESSON);
+  await page.waitForFunction(id=>window.BAUMAN_MATH_LEARNING_FLOW?.checkSummary?.(id)?.total>0,LESSON,{timeout:10000});
+
+  // Seed the canonical learner-state store using real Lesson Check IDs.
+  // This test validates Command Center projection; UI interaction is covered by math-learning-journey-browser.mjs.
+  const sourceCheck=await page.evaluate(id=>window.BAUMAN_MATH_LEARNING_FLOW.checkSummary(id),LESSON);
+  assert.ok(sourceCheck.total>=1,'L05 has no source-backed Lesson Check items');
+  const checkCount=sourceCheck.total;
+  await page.evaluate(({lessonId,stateKey,items})=>{
+    const all=JSON.parse(localStorage.getItem(stateKey)||'{}');
+    const now=Date.now();
+    const check={};items.forEach((item,index)=>{check[item.id]=index===0?'review':'understood'});
+    all[lessonId]={...(all[lessonId]||{}),active:'selfcheck',visited:{...((all[lessonId]||{}).visited||{}),selfcheck:true},check,lastAt:now};
+    all._meta={...(all._meta||{}),schemaVersion:2,currentLessonId:lessonId,currentStepId:'selfcheck',lastActivityAt:now};
+    localStorage.setItem(stateKey,JSON.stringify(all));
+    window.BAUMAN_MATH_LEARNING_FLOW.refresh();
+  },{lessonId:LESSON,stateKey:STATE_KEY,items:sourceCheck.items});
+  const checkState=await page.evaluate(id=>window.BAUMAN_MATH_LEARNING_FLOW.checkSummary(id),LESSON);
+  assert.equal(checkState.review,1,'Canonical fixture did not create exactly one review item');
+
+  await page.evaluate(()=>window.BAUMAN_MATH_NAVIGATION.route('review'));
+  await page.waitForFunction(()=>document.body.dataset.mathPrimaryRoute==='review',null,{timeout:10000});
   await page.waitForSelector('#mathActivityStudio .math-activity-card',{timeout:10000});
   report.checks.e186LessonFirstRoute=true;
 
-  await page.evaluate(({lessonId,masteryKey,historyKey,notesKey,sessionKey})=>{
-    localStorage.removeItem(historyKey);localStorage.removeItem(notesKey);localStorage.removeItem(sessionKey);
-    const now=Date.now();
-    localStorage.setItem(masteryKey,JSON.stringify({
-      [`${lessonId}::exercises::e2e-review`]:{state:'review',updatedAt:now-3000},
-      [`${lessonId}::practice::e2e-mastered`]:{state:'mastered',updatedAt:now-2000},
-      [`${lessonId}::application::e2e-learning`]:{state:'learning',updatedAt:now-1000}
-    }));
+  await page.evaluate(({notesKey,sessionKey})=>{
+    localStorage.removeItem(notesKey);localStorage.removeItem(sessionKey);
     window.BAUMAN_MATH_ACTIVITY_MASTERY.refresh();
     window.BAUMAN_MATH_STUDY_COMMAND_CENTER.refresh();
-  },{lessonId:LESSON,masteryKey:MASTERY_KEY,historyKey:HISTORY_KEY,notesKey:NOTES_KEY,sessionKey:SESSION_KEY});
+  },{notesKey:NOTES_KEY,sessionKey:SESSION_KEY});
 
   await page.waitForSelector('#mathStudyCommandCenter',{timeout:10000});
-  await page.waitForFunction(()=>window.BAUMAN_MATH_STUDY_COMMAND_CENTER.selfCheck().masteryItems===3&&window.BAUMAN_MATH_STUDY_COMMAND_CENTER.selfCheck().reviewQueue===1);
+  await page.waitForFunction(()=>window.BAUMAN_MATH_STUDY_COMMAND_CENTER.selfCheck().reviewQueue===1);
   const initial=await page.evaluate(()=>({summary:window.BAUMAN_MATH_STUDY_COMMAND_CENTER.summarize(),review:window.BAUMAN_MATH_STUDY_COMMAND_CENTER.reviewItems(),self:window.BAUMAN_MATH_STUDY_COMMAND_CENTER.selfCheck()}));
-  assert.equal(initial.summary.total,3);
+  assert.equal(initial.summary.total,checkCount);
   assert.equal(initial.summary.review,1);
-  assert.equal(initial.summary.learning,1);
-  assert.equal(initial.summary.mastered,1);
-  assert.equal(initial.summary.pct,33);
+  assert.equal(initial.summary.learning,checkCount-1);
+  assert.equal(initial.summary.mastered,0);
+  assert.equal(initial.summary.pct,0);
   assert.equal(initial.review.length,1);
   assert.equal(initial.review[0].lessonId,LESSON);
+  assert.equal(initial.self.canonicalSource,'BAUMAN_MATH_LEARNING_FLOW.checkSummary');
+  assert.equal(initial.self.legacyMasteryStore,false);
   assert.equal(initial.self.localOnly,true);
   assert.equal(initial.self.academicWrites,false);
   assert.equal(initial.self.gradingAuthority,false);
   assert.equal(initial.self.generatedQuestions,false);
   assert.equal(initial.self.correctnessInference,false);
-  report.checks.dashboardLocalState=true;
+  report.checks.dashboardCanonicalState=true;
 
   await page.waitForSelector('#mathActivityStudio .math-activity-card .math-workbench',{timeout:10000});
   const card=page.locator('#mathActivityStudio .math-activity-card').first();
-  const realKey=await card.getAttribute('data-math-mastery-key');
-  assert.ok(realKey,'Activity Studio card lacks mastery identity');
-  const reviewButton=card.locator('[data-am-state="review"]');
-  await reviewButton.click();
-  await page.waitForFunction(({key,store})=>JSON.parse(localStorage.getItem(store)||'{}')?.[key]?.state==='review',{key:realKey,store:MASTERY_KEY});
-  await page.waitForFunction(()=>window.BAUMAN_MATH_STUDY_COMMAND_CENTER.selfCheck().historyEvents>=1);
+  const realKey=await card.getAttribute('data-scc-key');
+  assert.ok(realKey,'Activity Studio card lacks local workbench identity');
 
   const note='E2E local note · không phải nội dung học thuật';
   const noteArea=card.locator('[data-scc-note]');
@@ -109,7 +118,8 @@ try{
   await liveSessionButton.click();
   await page.waitForFunction(({key,store})=>JSON.parse(localStorage.getItem(store)||'null')?.key===key,{key:realKey,store:SESSION_KEY});
   const afterActivity=await page.evaluate(()=>window.BAUMAN_MATH_STUDY_COMMAND_CENTER.selfCheck());
-  assert.ok(afterActivity.historyEvents>=1&&afterActivity.notes>=1,'Activity history/note state did not persist locally');
+  assert.ok(afterActivity.notes>=1,'Activity note state did not persist locally');
+  assert.equal(afterActivity.historyEvents,0,'Retired mastery history must not be recreated');
   report.checks.activityWorkbench=true;
 
   await page.locator('#mathStudyCommandCenter [data-scc="formula"]').click();
@@ -120,16 +130,16 @@ try{
   report.checks.formulaDeepLink=true;
 
   await page.locator('#mathStudyCommandCenter [data-scc="simulation"]').click();
-  await page.waitForFunction(()=>document.getElementById('mathWorkspaceLab')?.classList.contains('open'));
-  assert.ok(await page.locator('#mathSimulationSource').count(),'Simulation deep link did not decorate canonical-source panel');
-  await page.locator('#mathWorkspaceLab [data-math-ws="close-lab"]').click();
-  await page.waitForFunction(()=>!document.getElementById('mathWorkspaceLab')?.classList.contains('open'));
-  report.checks.simulationDeepLink=true;
+  await page.waitForFunction(()=>window.BAUMAN_MATH_LEARNING_FLOW?.snapshot?.().activeStep==='visualize',null,{timeout:10000});
+  assert.ok(!await page.evaluate(()=>document.getElementById('mathWorkspaceLab')?.classList.contains('open')),'Context simulation incorrectly opened generic Math Lab');
+  report.checks.simulationDeepLink='lesson-context';
+  await page.evaluate(()=>window.BAUMAN_MATH_NAVIGATION.route('review'));
+  await page.waitForSelector('#mathActivityStudio .math-activity-card',{timeout:10000});
 
   await page.locator('#mathStudyCommandCenter [data-scc="professor"]').click();
   await page.waitForFunction(()=>document.getElementById('mathProfessorDrill')?.classList.contains('open'));
   const professor=await page.evaluate(()=>window.BAUMAN_MATH_PROFESSOR_DRILL.selfCheck());
-  assert.ok(professor.items>0,'L06 Professor Drill opened without source-backed questions');
+  assert.ok(professor.items>0,'L05 Professor Drill opened without source-backed questions');
   assert.equal(professor.generatedQuestions,false);
   assert.equal(professor.gradingAuthority,false);
   await page.evaluate(()=>window.BAUMAN_MATH_PROFESSOR_DRILL.close());
