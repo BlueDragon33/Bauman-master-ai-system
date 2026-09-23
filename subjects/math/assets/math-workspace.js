@@ -152,16 +152,10 @@
   }
 
   function ensureTopButtons(){
-    const actions=q('.topbar .top-actions');
-    if(actions && !q('#mathWsTopLab',actions)){
-      const lab=document.createElement('button'); lab.id='mathWsTopLab'; lab.type='button'; lab.className='btn soft math-ws-top-btn'; lab.dataset.mathWs='lab'; lab.innerHTML='∿ <strong>Mô phỏng</strong>';
-      const ctrl=document.createElement('button'); ctrl.id='mathWsTopControl'; ctrl.type='button'; ctrl.className='btn soft math-ws-top-btn'; ctrl.dataset.mathWs='control'; ctrl.innerHTML='☷ <strong>Nội dung</strong>';
-      actions.insertBefore(ctrl,actions.firstChild); actions.insertBefore(lab,actions.firstChild);
-    }
-    const nav=q('#nav');
-    if(nav && !q('#mathWsNavLab',nav)){
-      const btn=document.createElement('button'); btn.id='mathWsNavLab'; btn.type='button'; btn.className='math-ws-nav-btn'; btn.dataset.mathWs='lab'; btn.innerHTML='<i>∿</i><span>Mô phỏng Lab</span>'; nav.appendChild(btn);
-    }
+    // Learner-first IA (L03): workspace tools must not append persistent
+    // peer navigation or topbar actions. They remain available through the
+    // advanced workspace launcher/contextual entry points only.
+    qa('#mathWsTopLab,#mathWsTopControl,#mathWsNavLab').forEach(el=>el.remove());
   }
 
   function openPanel(tab='content'){ state.panelTab=tab; save(); q('#mathWorkspacePanel')?.classList.add('open'); syncControls(); refresh(false); }
