@@ -15,7 +15,7 @@
     const wrap=document.createElement('div');
     wrap.id='mathPremiumSearchWrap';
     wrap.className='math-premium-search-wrap';
-    wrap.innerHTML='<input id="mathPremiumSearch" class="math-premium-search" type="search" autocomplete="off" placeholder="Tìm toàn môn: PCA, ma trận, covariance, bài tập…"><span class="math-premium-search-hint">Enter</span>';
+    wrap.innerHTML='<input id="mathPremiumSearch" class="math-premium-search" type="search" autocomplete="off" aria-label="Tìm kiếm toàn môn Toán" placeholder="Tìm toàn môn: PCA, ma trận, covariance, bài tập…"><span class="math-premium-search-hint">Enter</span>';
     const actions=$('.top-actions',top);
     if(actions) top.insertBefore(wrap,actions); else top.appendChild(wrap);
     $('#mathPremiumSearch')?.addEventListener('keydown',event=>{
