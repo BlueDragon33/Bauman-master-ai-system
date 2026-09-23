@@ -5,6 +5,8 @@ const VERSION='Russian Survival Master V13.33 · Route Grammar Mind Check';
 const DATA_FILES=A.dataFiles||['curriculum','lessons','grammar','grammar-path','vocab','mindmap','exercises','tests','simulations','speaking','handwriting','writing','videos','knowledge-index'];
 const OPTIONAL_DATA_FILES=A.optionalDataFiles||['dialogue-bauman-az','deep-speaking-bauman','speaking-link-index'];
 const ALL_STORAGE_FILES=Array.from(new Set([...DATA_FILES,...OPTIONAL_DATA_FILES]));
+const DEFERRED_CORE_DATA=new Set(['vocab']);
+const deferredCoreLoads={};
 const DATA_ROOT=A.dataRoot||'data/';
 const EXTERNAL_DATA_ROOT=A.externalDataRoot||'external-data/';
 const PACKAGE_ROOT=A.packageRoot||'subjects/russian/';
@@ -39,7 +41,24 @@ function call(name,fallback,...args){return typeof A[name]==='function'?A[name](
 function save(){try{localStorage.setItem(key,JSON.stringify(state)); const s=$('#saveState'); if(s)s.textContent='Đã đồng bộ'}catch(e){}}
 function loadState(){const stored=safeLocalJson(key,{},1600000); state={...DEFAULT,...stored,testSession:{...DEFAULT.testSession,...(stored.testSession||{})},speechResults:{...(stored.speechResults||{})},practiceSpeechResults:{...(stored.practiceSpeechResults||{})},dialogueSpeechResults:{...(stored.dialogueSpeechResults||{})},deepSpeakingProgress:{done:{},weak:{},attempts:{},lastMode:{},...(stored.deepSpeakingProgress||{})},optionalDataLoading:{},optionalDataError:{...(stored.optionalDataError||{})},reviewProgress:{done:{},flagged:{},wrong:{},...(stored.reviewProgress||{})},examProgress:{answers:{},marked:{},submitted:false,submittedAt:null,result:null,wrong:{},paperResults:{},...(stored.examProgress||{})},examHistory:arr(stored.examHistory).slice(0,20),remedialPlan:{active:false,cards:[],completed:{},createdAt:null,lastExamAt:null,lastScore:null,...(stored.remedialPlan||{})},recentAccess:arr(stored.recentAccess)}; sanitize()}
 function sanitize(){const views=NAV.map(x=>x[0]); const tabs=LEARN_TABS.map(x=>x[0]); if(!views.includes(state.view))state.view='overview'; if(!tabs.includes(state.learnTab))state.learnTab='theory'; ['vocabIndex','vocabPage','grammarIndex','slide','exerciseIndex','testIndex','reviewIndex','reviewPage','examIndex','examPage','dialogueLineIndex','practiceLineIndex','deepSpeakingStep','handwritingIndex','handwritingStep','writingIndex'].forEach(k=>state[k]=Math.max(0,Number(state[k])||0)); if(state.learnTab==='tests')state.learnTab='review'; state.reviewProgress={done:{},flagged:{},wrong:{},...(state.reviewProgress||{})}; state.examProgress={answers:{},marked:{},submitted:false,submittedAt:null,result:null,wrong:{},paperResults:{},...(state.examProgress||{})}; if(!EXAM_PAPER_ORDER.includes(state.examPaperType))state.examPaperType=EXAM_PAPER_ORDER.includes(state.examPaperLevel)?state.examPaperLevel:'standard'; state.examPaperLevel=state.examPaperType; state.examCycle='auto'; state.examHistory=arr(state.examHistory).slice(0,20); state.remedialPlan={active:false,cards:[],completed:{},createdAt:null,lastExamAt:null,lastScore:null,...(state.remedialPlan||{})}; normalizeRemedialPlan(); state.testSession={...DEFAULT.testSession,...(state.testSession||{})}; state.speechResults={...(state.speechResults||{})}; state.practiceSpeechResults={...(state.practiceSpeechResults||{}),...(state.speechResults||{})}; state.dialogueSpeechResults={...(state.dialogueSpeechResults||{})}; state.deepSpeakingProgress={done:{},weak:{},attempts:{},lastMode:{},...(state.deepSpeakingProgress||{})}; state.optionalDataLoading={}; state.optionalDataError={...(state.optionalDataError||{})}; state.speechRecording=false; state.recentAccess=arr(state.recentAccess).slice(0,6); if(!state.storagePreviewAutoCollapsedV1322){state.storagePreviewLimit=0;state.storagePreviewAutoCollapsedV1322=true;} state.mindmapFontScale=normalizeMindFontSize(state.mindmapFontScale); state.mindmapDrag=state.mindmapDrag&&typeof state.mindmapDrag==='object'?state.mindmapDrag:{}; if(state.mindmapLayoutVersion!=='v13_32_clean'){state.mindmapDrag={};state.mindmapLayoutVersion='v13_32_clean';} state.stageGate=state.stageGate&&typeof state.stageGate==='object'?state.stageGate:null; state.examGateSource=state.examGateSource&&typeof state.examGateSource==='object'?state.examGateSource:null; state.stageTransitions=arr(state.stageTransitions).filter(x=>x&&x.schema==='RUSSIAN_STAGE_TRANSITION_V1').slice(-30); state.lastStageTransition=state.stageTransitions[state.stageTransitions.length-1]||null;}
-async function loadData(){const overlay=cleanDbOverlay(safeLocalJson(key+'_db',{},3500000)); for(const f of DATA_FILES){try{DB[f]=await fetch(`${DATA_ROOT}${f}.json`).then(r=>r.ok?r.json():null)}catch(e){DB[f]=null}} DB={...DB,...overlay};}
+async function loadData(){
+ const overlay=cleanDbOverlay(safeLocalJson(key+'_db',{},3500000));
+ for(const f of DATA_FILES){
+  if(DEFERRED_CORE_DATA.has(f)&&!(f in overlay)){DB[f]=null;continue;}
+  try{DB[f]=await fetch(`${DATA_ROOT}${f}.json`).then(r=>r.ok?r.json():null)}catch(e){DB[f]=null}
+ }
+ DB={...DB,...overlay};
+}
+function ensureDeferredCoreData(name){
+ if(!DEFERRED_CORE_DATA.has(name)||DB[name])return true;
+ if(deferredCoreLoads[name])return false;
+ deferredCoreLoads[name]=fetch(`${DATA_ROOT}${name}.json`)
+  .then(r=>r.ok?r.json():Promise.reject(new Error('HTTP '+r.status)))
+  .then(data=>{DB[name]=data;return data})
+  .catch(e=>{console.warn('Không tải được dữ liệu theo nhu cầu',name,e);return null})
+  .finally(()=>{delete deferredCoreLoads[name];render()});
+ return false;
+}
 function dbForLocalStorage(){const out={}; Object.keys(DB||{}).forEach(k=>{if(!OPTIONAL_DATA_FILES.includes(k))out[k]=DB[k]}); return out;}
 function saveDB(){try{localStorage.setItem(key+'_db',JSON.stringify(dbForLocalStorage()));}catch(e){toast('Trình duyệt không cho lưu DB lớn')}}
 function isOptionalFile(name){return OPTIONAL_DATA_FILES.includes(name)}
@@ -2379,6 +2398,10 @@ function renderWriting(){
 
 function renderVocab(){
  try{
+  if(!DB.vocab){
+   ensureDeferredCoreData('vocab');
+   return `<section class="panel vocab-empty learning-recovery-card" aria-live="polite"><span class="chip">🗂️ Từ vựng</span><h3>Đang mở bộ từ vựng…</h3><p>Bộ 8.000 từ chỉ được tải khi bạn thực sự vào Từ vựng để trang chủ nhẹ hơn.</p></section>`;
+  }
   const list=getVocab();
   if(!list.length){
    return `<section class="panel vocab-empty learning-recovery-card"><span class="chip">🗂️ Từ vựng</span><h3>Chưa có thẻ từ vựng phù hợp</h3><p>Đổi giai đoạn hoặc xóa từ khóa tìm kiếm để xem lại dữ liệu.</p></section>`;
@@ -2892,6 +2915,7 @@ function sourceStatus(name,data){
  if(isOptionalFile(name)&&state.optionalDataLoading?.[name])return ['Đang tải · lazy','warn'];
  if(isOptionalFile(name)&&state.optionalDataError?.[name])return ['Lỗi tải nguồn','danger'];
  if(!data&&isOptionalFile(name))return ['Chưa tải · tùy chọn','warn'];
+ if(!data&&DEFERRED_CORE_DATA.has(name))return ['Chưa tải · theo nhu cầu','warn'];
  if(!data)return ['Thiếu nguồn','danger'];
  if(!c)return ['Rỗng','warn'];
  if(name==='tests'&&(!data.questions||!Array.isArray(data.questions)))return ['Cần kiểm tra','warn'];
@@ -3625,7 +3649,7 @@ function handleClick(e){
  if('line' in b.dataset){setActiveLineIndex(Number(b.dataset.line)||0);save(); if(state.modalType==='speech-map')closeModal(); render();return}
  if(b.dataset.media){state.mediaId=b.dataset.media;save();render();return}
  if(b.dataset.mediaView){state.mediaView=b.dataset.mediaView;save();render();return}
- if(b.dataset.storage){state.storageFile=b.dataset.storage;state.storageText='';state.storagePreviewLimit=0;save();render();return}
+ if(b.dataset.storage){state.storageFile=b.dataset.storage;state.storageText='';state.storagePreviewLimit=0;if(DEFERRED_CORE_DATA.has(state.storageFile))ensureDeferredCoreData(state.storageFile);save();render();return}
  if(b.dataset.storageGroup){state.storageGroup=b.dataset.storageGroup;state.storagePreviewLimit=0;save();render();return}
  if('storageEdit' in b.dataset){openModal(storageItemForm(state.storageFile,b.dataset.storageEdit,b.dataset.storagePath||''),'storage-item');return}
  if('vocab' in b.dataset){state.vocabIndex=Number(b.dataset.vocab)||0;state.vocabFlipped=false;save();render();return}
