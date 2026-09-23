@@ -111,9 +111,16 @@ const mathIndex=read('subjects/math/index.html');
 check(!/theory-formula-mini-lesson-E236|theory-formula-academic-E237|theory-formula-coverage-audit-E238/.test(mathIndex),'E236/E237/E238 remain disabled');
 check(!mathIndex.includes('assets/core-subject.js')&&!mathIndex.includes('assets/planning-bridge.js'),'Legacy Math core and planning bridge remain outside the active Reader runtime');
 check(exists('subjects/math/LEGACY_QUARANTINE.md'),'Inactive Math compatibility runtime is explicitly quarantined');
-for(const candidate of ['math-activity-studio','math-formula-library','math-regression-gate','math-simulation-source']){
+for(const candidate of ['math-activity-studio','math-formula-library','math-simulation-source']){
   check(mathIndex.includes(`assets/${candidate}.js`)&&mathIndex.includes(`assets/${candidate}.css`),`Verified Math enhancement ${candidate} loads its paired runtime assets`);
 }
+const mathBootstrap=read('subjects/math/assets/math-bootstrap.js');
+check(
+  mathIndex.includes('assets/math-bootstrap.js')&&
+  mathBootstrap.includes("['css','assets/math-regression-gate.css?v=1']")&&
+  mathBootstrap.includes("['js','assets/math-regression-gate.js?v=3']"),
+  'Verified Math regression gate is deferred through bootstrap with paired runtime assets'
+);
 check(mathIndex.includes('assets/math-integration-sync.js'),'Verified Math integration synchronizer is loaded');
 for(const candidate of ['math-activity-studio','math-formula-library','math-integration-sync','math-regression-gate','math-simulation-source']){
   const source=read(`subjects/math/assets/${candidate}.js`);
