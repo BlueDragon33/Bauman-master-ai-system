@@ -27,6 +27,7 @@ if(!bad)ok("8-node prerequisite graph is acyclic and resolved");
 const theoryIds=new Set((theory.records||[]).map(x=>x.lessonId));
 for(const n of nodes.values()){
  const ids=n.resolution?.lessonIds||[n.resolution?.targetLessonId].filter(Boolean);
+ if(!ids.length)fail(n.logicalId+" has no resolved theory target");
  for(const id of ids)if(!theoryIds.has(id))fail(n.logicalId+" theory target missing "+id);
 }
 if(!bad)ok("logical lesson theory targets resolve after import");
