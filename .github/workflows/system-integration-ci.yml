@@ -14,6 +14,7 @@ on:
       - "tests/foundation-identity-projection-browser.mjs"
       - "tests/foundation-canonical-context-browser.mjs"
       - "tests/math-study-command-center-browser.mjs"
+      - "tests/math-learning-journey-browser.mjs"
       - "tests/hub-premium-responsive-browser.mjs"
       - "tests/russian-handwriting-recognition-browser.mjs"
       - "tests/russian-handwriting-offline-authority-browser.mjs"
@@ -47,6 +48,7 @@ on:
       - "tests/foundation-identity-projection-browser.mjs"
       - "tests/foundation-canonical-context-browser.mjs"
       - "tests/math-study-command-center-browser.mjs"
+      - "tests/math-learning-journey-browser.mjs"
       - "tests/hub-premium-responsive-browser.mjs"
       - "tests/russian-handwriting-recognition-browser.mjs"
       - "tests/russian-handwriting-offline-authority-browser.mjs"
@@ -128,6 +130,7 @@ jobs:
           node --check tests/foundation-identity-projection-browser.mjs
           node --check tests/foundation-canonical-context-browser.mjs
           node --check tests/math-study-command-center-browser.mjs
+          node --check tests/math-learning-journey-browser.mjs
           node --check tests/hub-premium-responsive-browser.mjs
           node --check tests/russian-handwriting-recognition-browser.mjs
           node --check tests/russian-handwriting-offline-authority-browser.mjs
@@ -191,6 +194,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/math-study-command-center
         run: node tests/math-study-command-center-browser.mjs
+      - name: Run Math learner journey browser acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/math-learning-journey
+        run: node tests/math-learning-journey-browser.mjs
       - name: Run Hub V2 responsive acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
@@ -366,6 +374,7 @@ jobs:
             artifacts/foundation-identity-projection
             artifacts/foundation-canonical-context
             artifacts/math-study-command-center
+            artifacts/math-learning-journey
             artifacts/hub-premium-responsive
             artifacts/russian-handwriting-recognition
             artifacts/russian-handwriting-offline-authority
