@@ -57,6 +57,9 @@ must(js.includes('migratedTo'),'Legacy SRS cards must be retained and marked whe
 must(js.includes('sourceIndexNow'),'Sentence Mining must resolve the canonical source index independently of filtered position');
 must(js.includes('stageIndexNow'),'Review routing must retain a stage-relative position independently of filtered position');
 must(js.includes('loadVocabItem(meta.sourceIndex)'),'Sentence Mining must read the exact canonical source item');
+must(js.includes('function statusForItem'),'Vocabulary status must derive from real SRS card state');
+must(js.includes('function filterItems'),'Vocabulary library status filtering must reuse SRS state');
+must(js.includes("status==='learned'"),'Vocabulary library must expose the learned status without a second state store');
 must(js.includes('aria-current="${mode===x?\'step\':\'false\'}"'),'Vocabulary learning steps must expose aria-current');
 must(!js.includes('meaning:clean(n.meaningVi||n.english||n.meaningRu)'),'Sentence Mining must not restore Vietnamese/English glosses into the learning surface');
 must(js.includes("meaning:clean(n.meaningRu||'')"),'Source sentence mining may retain Russian-only context');
@@ -71,7 +74,7 @@ must(learningState.includes('function addReview(id,reason,route,label,dueAt)'),'
 must(learningState.includes('scheduledAt:now()'),'Canonical review queue must retain scheduling evidence');
 must(learningState.includes('Date.parse(dueAt)'),'Canonical review queue must validate scheduled due dates');
 
-for(const token of ['.ru-vocab-srs','.ru-vocab-rating','.ru-vocab-mining','.ru-vocab-speaking-bridge','.ru-vocab-flow-nav','.ru-vocab-choice-grid','data-vocab-flow="recognize"','data-vocab-flow="listen"','data-vocab-flow="recall"','data-vocab-flow="write"','@media (max-width:1080px)','@media (max-width:760px)','@media (max-width:480px)'])must(css.includes(token),`Missing vocab SRS CSS contract: ${token}`);
+for(const token of ['.vocab-library-toolbar','.vocab-library-controls','.ru-vocab-srs','.ru-vocab-rating','.ru-vocab-mining','.ru-vocab-speaking-bridge','.ru-vocab-flow-nav','.ru-vocab-choice-grid','data-vocab-flow="recognize"','data-vocab-flow="listen"','data-vocab-flow="recall"','data-vocab-flow="write"','@media (max-width:1080px)','@media (max-width:760px)','@media (max-width:480px)'])must(css.includes(token),`Missing vocab SRS CSS contract: ${token}`);
 must((css.match(/{/g)||[]).length===(css.match(/}/g)||[]).length,'Vocab SRS CSS brace imbalance');
 
 for(const token of ['exampleDistinct','vocabSeedExact','configuredReviewGaps','duplicateIds'])must(audit.includes(token),`Vocab SRS audit missing evidence: ${token}`);
