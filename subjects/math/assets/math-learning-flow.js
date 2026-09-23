@@ -511,6 +511,9 @@
   }
   function openLessonCheck(){
     const cur=currentLesson();
+    try{global.BAUMAN_MATH_E186_LESSON_FIRST?.close?.();}catch(_){}
+    const staleModal=document.querySelector('.e186-modal-backdrop');
+    if(staleModal)staleModal.remove();
     const show=()=>{
       const rec=currentRecord(),steps=stepsForRecord(rec);
       const self=steps.find(x=>x.id==='selfcheck');
