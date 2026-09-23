@@ -1,27 +1,29 @@
-/* Bauman Math Unified Navigation V2
- * Reuses accepted E129/E186/Workspace routes. No route engine replacement, no academic writes.
+/* Bauman Math Learner Navigation
+ * Canonical learner-first shell: Tổng quan · Lộ trình · Học · Luyện tập · Ôn tập.
+ * Advanced resources remain contextual/command-palette tools.
  */
 (function mathNavigation(global){
   'use strict';
-  const RELEASE='MATH_UNIFIED_NAV_V2';
+  const RELEASE='MATH_LEARNER_NAV_IA_V1';
   let active='overview', timer=0;
   const $=(s,r=document)=>r.querySelector(s);
   const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
-  const ITEMS=[
-    {id:'overview',group:'Học tập',icon:'⌂',label:'Tổng quan',sub:'Dashboard & tiến độ',key:'1'},
-    {id:'theory',group:'Học tập',icon:'▤',label:'Lý thuyết',sub:'E129 Reader',key:'2'},
-    {id:'exercises',group:'Học tập',icon:'✎',label:'Bài tập',sub:'Củng cố tư duy',key:'3'},
-    {id:'practice',group:'Học tập',icon:'⌘',label:'Thực hành',sub:'Code & hiện thực hóa',key:'4'},
-    {id:'application',group:'Học tập',icon:'◇',label:'Ứng dụng',sub:'AI · Signal · Systems',key:'5'},
-    {id:'review',group:'Học tập',icon:'↺',label:'Ôn tập',sub:'Hệ thống hóa',key:'6'},
-    {id:'exam',group:'Học tập',icon:'✓',label:'Kiểm tra',sub:'Đánh giá năng lực',key:'7'},
-    {id:'lab',group:'Công cụ',icon:'∿',label:'Mô phỏng Lab',sub:'Đồ thị · Vector · Ma trận',key:'L'},
-    {id:'formula',group:'Công cụ',icon:'∑',label:'Công thức',sub:'Formula Focus',key:'F'},
-    {id:'control',group:'Công cụ',icon:'☷',label:'Điều khiển',sub:'Lọc & kiểm duyệt nội dung',key:'C'},
-    {id:'vault',group:'Hệ thống',icon:'▣',label:'Kho dữ liệu',sub:'E129 DataVault',key:'D'}
+  const PRIMARY_ITEMS=[
+    {id:'overview',group:'Học tập',icon:'⌂',label:'Tổng quan',sub:'Hôm nay học gì?',key:'1'},
+    {id:'roadmap',group:'Học tập',icon:'⌁',label:'Lộ trình',sub:'Giai đoạn → Chương',key:'2'},
+    {id:'learn',group:'Học tập',icon:'▤',label:'Học',sub:'Bài học hiện tại',key:'3'},
+    {id:'practice',group:'Học tập',icon:'✎',label:'Luyện tập',sub:'Bài tập theo nhu cầu',key:'4'},
+    {id:'review',group:'Học tập',icon:'↺',label:'Ôn tập',sub:'Ôn đúng điểm yếu',key:'5'}
   ];
+  const ADVANCED_ITEMS=[
+    {id:'lab',group:'Công cụ',icon:'∿',label:'Mô phỏng',sub:'Công cụ theo ngữ cảnh',key:'L'},
+    {id:'formula',group:'Công cụ',icon:'∑',label:'Công thức',sub:'Công thức bài đang học',key:'F'},
+    {id:'control',group:'Công cụ',icon:'☷',label:'Công cụ học',sub:'Hiển thị & kiểm soát',key:'C'},
+    {id:'vault',group:'Hệ thống',icon:'▣',label:'Kho dữ liệu',sub:'Quản trị nội dung nâng cao',key:'D'}
+  ];
+  const ITEMS=[...PRIMARY_ITEMS,...ADVANCED_ITEMS];
 
   function toast(message){
     const existing=$('#mathWsToast');
@@ -30,26 +32,90 @@
   }
 
   function navHtml(){
-    const groups=['Học tập','Công cụ','Hệ thống'];
-    return groups.map(group=>{
-      const items=ITEMS.filter(x=>x.group===group);
-      return `<section class="math-unified-group"><div class="math-unified-label"><span>${esc(group)}</span><span>${items.length}</span></div>${items.map(x=>`<button type="button" class="math-unified-nav-button ${x.id===active?'active':''}" data-math-unified="1" data-math-nav="${x.id}" title="${esc(x.label)} · ${esc(x.sub)}"><i class="math-unified-icon">${x.icon}</i><span class="math-unified-copy"><b>${esc(x.label)}</b><small>${esc(x.sub)}</small></span><span class="math-unified-tail">${esc(x.key)}</span></button>`).join('')}</section>`;
-    }).join('');
+    return '<section class="math-unified-group" aria-label="Điều hướng học tập">'+
+      PRIMARY_ITEMS.map(x=>`<button type="button" class="math-unified-nav-button ${x.id===active?'active':''}" data-math-unified="1" data-math-nav="${x.id}" aria-current="${x.id===active?'page':'false'}" title="${esc(x.label)} · ${esc(x.sub)}"><i class="math-unified-icon">${x.icon}</i><span class="math-unified-copy"><b>${esc(x.label)}</b><small>${esc(x.sub)}</small></span><span class="math-unified-tail">${esc(x.key)}</span></button>`).join('')+
+    '</section>';
   }
 
   function ensureNav(){
     const nav=$('#nav'); if(!nav) return;
     let root=$('#mathUnifiedNav',nav);
-    if(!root){
-      root=document.createElement('div'); root.id='mathUnifiedNav'; root.className='math-unified-nav'; nav.appendChild(root);
-      const sys=document.createElement('div'); sys.id='mathUnifiedSystem'; sys.className='math-unified-system';
-      sys.innerHTML='<div class="math-unified-system-head"><span>Math runtime</span><i title="Runtime active"></i></div><div class="math-unified-system-grid"><button type="button" data-math-system="command">⌘K</button><button type="button" data-math-system="focus">Focus</button><button type="button" data-math-system="theme">Theme</button></div>';
-      nav.parentElement?.appendChild(sys);
-    }
+    if(!root){ root=document.createElement('div'); root.id='mathUnifiedNav'; root.className='math-unified-nav'; nav.appendChild(root); }
+    $('#mathUnifiedSystem')?.remove();
     root.innerHTML=navHtml();
   }
 
-  function setActive(id){ active=id||'overview'; $$('.math-unified-nav-button').forEach(b=>b.classList.toggle('active',b.dataset.mathNav===active)); }
+  let roadmapCache=null;
+  async function loadRoadmap(){
+    if(roadmapCache) return roadmapCache;
+    const [curriculumRes,frameworkRes]=await Promise.all([fetch('data/curriculum.json'),fetch('data/theory-framework.json')]);
+    if(!curriculumRes.ok||!frameworkRes.ok) throw new Error('Không tải được dữ liệu lộ trình.');
+    roadmapCache={curriculum:await curriculumRes.json(),framework:await frameworkRes.json()};
+    return roadmapCache;
+  }
+  function setPageHeader(title,sub){
+    const h=$('#pageTitle'); if(h) h.textContent=title;
+    const p=$('#pageSub'); if(p) p.textContent=sub||'';
+  }
+  function roadmapChapters(framework,stageId){
+    const out=[];
+    (framework?.faculties||[]).forEach(faculty=>(faculty.departments||[]).forEach(dept=>(dept.chapters||[]).forEach(ch=>{
+      if((ch.stageAppId||'')===stageId) out.push({...ch,facultyTitle:faculty.title||'',departmentTitle:dept.title||''});
+    })));
+    return out.sort((a,b)=>(Number(a.order)||0)-(Number(b.order)||0));
+  }
+  function roadmapHtml(data,stageId){
+    const stages=data.curriculum?.stages||[];
+    const stage=stages.find(x=>x.id===stageId)||stages[0]||{};
+    const chapters=roadmapChapters(data.framework,stage.id);
+    const stageTabs=stages.map(x=>`<button type="button" class="math-roadmap-stage ${x.id===stage.id?'active':''}" data-math-roadmap-stage="${esc(x.id)}">${esc(x.title||x.id)}</button>`).join('');
+    const groups=[];
+    chapters.forEach(ch=>{
+      const key=ch.departmentTitle||'Chương';
+      let g=groups.find(x=>x.key===key);
+      if(!g){g={key,faculty:ch.facultyTitle,items:[]};groups.push(g);}
+      g.items.push(ch);
+    });
+    const body=groups.length?groups.map(g=>`<section class="math-roadmap-department"><header><span>${esc(g.faculty)}</span><h3>${esc(g.key)}</h3></header><div class="math-roadmap-chapters">${g.items.map(ch=>`<article class="math-roadmap-chapter"><div><span>Chương ${esc(ch.chapterNumber||ch.order||'')}</span><h4>${esc(ch.chapterTitle||ch.title||ch.id)}</h4><p>${esc(ch.chapterGoal||'Mục tiêu chương đang được chuẩn hóa.')}</p></div><div class="math-roadmap-meta"><span>${Number(ch.smallLessonCount)||0} bài</span><span>${esc(ch.week||'')}</span><button type="button" data-math-roadmap-chapter="${esc(ch.id)}" data-math-roadmap-stage-id="${esc(ch.stageAppId||stage.id)}">Học chương này →</button></div></article>`).join('')}</div></section>`).join(''):`<div class="math-roadmap-empty"><b>Chưa có chương được ánh xạ cho giai đoạn này.</b><span>Dữ liệu khung vẫn được giữ nguyên; hệ thống không tự bịa nội dung thay thế.</span></div>`;
+    return `<section class="math-roadmap-shell"><header class="math-roadmap-head"><div><span>LỘ TRÌNH HỌC TẬP</span><h2>${esc(stage.title||stage.id||'Lộ trình Toán')}</h2><p>${esc(stage.goal||'Theo dõi vị trí học và mở đúng chương cần học tiếp.')}</p></div><aside><b>${chapters.length}</b><span>chương trong giai đoạn</span></aside></header><nav class="math-roadmap-stages" aria-label="Giai đoạn">${stageTabs}</nav>${body}</section>`;
+  }
+  async function renderRoadmap(stageId){
+    setActive('roadmap');
+    document.body.classList.add('math-roadmap-active');
+    const view=$('#view'); if(!view) return;
+    setPageHeader('Lộ trình','Giai đoạn → Bộ môn → Chương. Chỉ mở tài nguyên khi bạn thực sự cần học.');
+    view.innerHTML='<section class="math-roadmap-loading">Đang đọc lộ trình Toán…</section>';
+    try{
+      const data=await loadRoadmap();
+      const fallback=$('#stageSelect')?.value||data.curriculum?.stages?.[0]?.id||'vn';
+      view.innerHTML=roadmapHtml(data,stageId||fallback);
+    }catch(error){
+      view.innerHTML='<section class="math-roadmap-empty"><b>Không tải được lộ trình.</b><span>Hãy thử lại từ mục Lộ trình. Bài học hiện tại không bị thay đổi.</span></section>';
+      console.error('[Math Roadmap]',error);
+    }
+  }
+  function leaveRoadmap(){document.body.classList.remove('math-roadmap-active');}
+  function openRoadmapChapter(chapterId,stageId){
+    leaveRoadmap();
+    routeTheory(()=>{
+      const stageButton=$('[data-e129-stage]').find(x=>x.getAttribute('data-e129-stage')===stageId);
+      if(stageButton) stageButton.click();
+      setTimeout(()=>{
+        const chapterButton=$('[data-e129-chapter]').find(x=>x.getAttribute('data-e129-chapter')===chapterId);
+        if(chapterButton){chapterButton.click();setActive('learn');scheduleSync(180);}
+        else toast('Chương này chưa có route Reader tương ứng trong dữ liệu hiện tại.');
+      },140);
+    });
+  }
+
+  function setActive(id){
+    active=id||'overview';
+    $('.math-unified-nav-button').forEach(b=>{
+      const on=b.dataset.mathNav===active;
+      b.classList.toggle('active',on);
+      b.setAttribute('aria-current',on?'page':'false');
+    });
+  }
 
   function hiddenTheoryButton(){ return $('[data-e129-nav="theory"]'); }
   function routeTheory(done){
@@ -58,19 +124,18 @@
     try{ global.BAUMAN_MATH_THEORY_E129?.render?.(); setTimeout(()=>done&&done(),120); return true; }catch(_){ return false; }
   }
 
-  function routeActivity(activity){
-    setActive(activity);
+  function routeActivity(activity,primaryId){
+    leaveRoadmap(); setActive(primaryId||activity);
     const e186=global.BAUMAN_MATH_E186_LESSON_FIRST;
     if(e186?.open){
       e186.open('activity');
       setTimeout(()=>{
         const pick=$(`[data-e186-pick="activity"][data-e186-id="${activity}"]`);
         if(pick){pick.click();scheduleSync(180);}
-        else toast('Phân mục này chưa có trong route E186 hiện tại.');
+        else toast('Phân mục này chưa có trong route bài học hiện tại.');
       },50);
       return;
     }
-    // Compatibility fallback for older snapshots that still expose E169 pickers.
     routeTheory(()=>{
       const opener=$('[data-e169-open="activity"]');
       if(!opener){ toast('Chưa tìm thấy Learning Path của bài hiện tại.'); return; }
@@ -78,29 +143,34 @@
       setTimeout(()=>{
         const pick=$(`[data-e169-pick-activity="${activity}"]`);
         if(pick){ pick.click(); scheduleSync(180); }
-        else toast('Hoạt động này chưa có route E169 trong chương hiện tại.');
+        else toast('Hoạt động này chưa có route trong chương hiện tại.');
       },70);
     });
   }
 
   function route(id){
     if(!id) return;
-    if(id==='overview'){
-      setActive(id);
+    const alias={theory:'learn',exercises:'practice',application:'practice',exam:'practice'};
+    const canonical=alias[id]||id;
+    if(canonical==='overview'){
+      leaveRoadmap(); setActive('overview'); setPageHeader('Tổng quan','Tiếp tục học, mục tiêu hiện tại và các điểm cần ôn.');
+      const view=$('#view'); if(view) view.innerHTML='';
       ($('#mathPremiumDashboard')||$('#mathV2Dashboard')||$('.main'))?.scrollIntoView({behavior:'smooth',block:'start'});
       return;
     }
-    if(id==='theory'){
-      setActive(id); routeTheory(()=>{$('#view')?.scrollIntoView({behavior:'smooth',block:'start'}); scheduleSync(120);}); return;
+    if(canonical==='roadmap'){renderRoadmap();return;}
+    if(canonical==='learn'){
+      leaveRoadmap(); setActive('learn'); routeTheory(()=>{$('#view')?.scrollIntoView({behavior:'smooth',block:'start'});scheduleSync(120);});return;
     }
-    if(['exercises','practice','application','review','exam'].includes(id)){ routeActivity(id); return; }
-    if(id==='lab'){ setActive(id); global.BAUMAN_MATH_WORKSPACE?.openLab?.(); return; }
-    if(id==='control'){ setActive(id); global.BAUMAN_MATH_WORKSPACE?.openControl?.(); return; }
-    if(id==='formula'){ setActive(id); openFormulaFocus(); return; }
+    if(canonical==='practice'){routeActivity(id==='practice'?'exercises':id,'practice');return;}
+    if(canonical==='review'){routeActivity('review','review');return;}
+    if(id==='lab'){leaveRoadmap();global.BAUMAN_MATH_WORKSPACE?.openLab?.();return;}
+    if(id==='control'){leaveRoadmap();global.BAUMAN_MATH_WORKSPACE?.openControl?.();return;}
+    if(id==='formula'){leaveRoadmap();openFormulaFocus();return;}
     if(id==='vault'){
-      setActive(id);
-      if(global.BAUMAN_MATH_THEORY_E129?.openTheoryVault){ global.BAUMAN_MATH_THEORY_E129.openTheoryVault(); scheduleSync(150); }
-      else toast('DataVault E129 chưa sẵn sàng ở màn hiện tại.');
+      leaveRoadmap();
+      if(global.BAUMAN_MATH_THEORY_E129?.openTheoryVault){global.BAUMAN_MATH_THEORY_E129.openTheoryVault();scheduleSync(150);}
+      else toast('Kho dữ liệu chưa sẵn sàng ở màn hiện tại.');
     }
   }
 
@@ -164,20 +234,20 @@
   function closeCommand(){ $('#mathCommandPalette')?.classList.remove('open'); }
 
   function syncFromRuntime(){
-    if(document.body.classList.contains('e129-theory-storage')){ setActive('vault'); return; }
+    if(document.body.classList.contains('math-roadmap-active')){setActive('roadmap');return;}
+    if(document.body.classList.contains('e129-theory-storage')) return;
     const title=($('#pageTitle')?.textContent||'').toLocaleLowerCase('vi');
-    if(title.includes('bài tập')) setActive('exercises');
-    else if(title.includes('thực hành')) setActive('practice');
-    else if(title.includes('ứng dụng')) setActive('application');
-    else if(title.includes('ôn tập')) setActive('review');
-    else if(title.includes('kiểm tra')) setActive('exam');
-    else if(title.includes('lý thuyết')) setActive('theory');
+    if(title.includes('ôn tập')) setActive('review');
+    else if(title.includes('bài tập')||title.includes('thực hành')||title.includes('ứng dụng')||title.includes('kiểm tra')) setActive('practice');
+    else if(title.includes('lý thuyết')||document.querySelector('[data-current-lesson]')) setActive('learn');
   }
   function scheduleSync(ms=100){clearTimeout(timer);timer=setTimeout(()=>{ensureNav();syncFromRuntime();global.BAUMAN_MATH_PREMIUM?.refresh?.();global.BAUMAN_MATH_DASHBOARD_V2?.refresh?.();},ms);}
 
   function bind(){
     document.addEventListener('click',e=>{
       const nav=e.target.closest('[data-math-nav]'); if(nav){e.preventDefault();route(nav.dataset.mathNav);return;}
+      const stage=e.target.closest('[data-math-roadmap-stage]'); if(stage){e.preventDefault();renderRoadmap(stage.dataset.mathRoadmapStage);return;}
+      const chapter=e.target.closest('[data-math-roadmap-chapter]'); if(chapter){e.preventDefault();openRoadmapChapter(chapter.dataset.mathRoadmapChapter,chapter.dataset.mathRoadmapStageId);return;}
       const sys=e.target.closest('[data-math-system]'); if(sys){e.preventDefault();const a=sys.dataset.mathSystem;if(a==='command')openCommand();if(a==='focus')global.BAUMAN_MATH_WORKSPACE?.openControl?.();if(a==='theme')$('#themeBtn')?.click();return;}
       if(e.target.closest('[data-e129-nav],[data-e186-pick],[data-e169-pick-activity],[data-e129-back-theory],[data-e129-open-vault],[data-e129-refresh]')) scheduleSync(160);
     },true);
@@ -190,7 +260,7 @@
     });
   }
 
-  function selfCheck(){return{release:RELEASE,ready:document.body.classList.contains('math-nav-ready'),items:ITEMS.length,e129:!!global.BAUMAN_MATH_THEORY_E129,e186:!!global.BAUMAN_MATH_E186_LESSON_FIRST,workspace:!!global.BAUMAN_MATH_WORKSPACE,mutationObserver:false,academicWrites:false,newRouteEngine:false};}
+  function selfCheck(){return{release:RELEASE,ready:document.body.classList.contains('math-nav-ready'),primaryItems:PRIMARY_ITEMS.length,advancedItems:ADVANCED_ITEMS.length,roadmap:!!roadmapCache,e129:!!global.BAUMAN_MATH_THEORY_E129,e186:!!global.BAUMAN_MATH_E186_LESSON_FIRST,workspace:!!global.BAUMAN_MATH_WORKSPACE,mutationObserver:false,academicWrites:false,learnerFirstIA:true};}
   function init(){
     if(!document.body||document.body.dataset.mathUnifiedNav==='1')return;
     document.body.dataset.mathUnifiedNav='1';document.body.classList.add('math-nav-ready');ensureFormulaFocus();ensureCommand();bind();ensureNav();
