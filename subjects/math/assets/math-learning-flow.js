@@ -160,10 +160,17 @@
     return'function';
   }
   function openContextLab(){
-    const mode=suggestLabMode();
-    global.BAUMAN_MATH_WORKSPACE?.openLab?.();
-    setTimeout(()=>document.querySelector(`[data-lab-mode="${mode}"]`)?.click(),55);
-    return mode;
+    const rec=currentRecord();
+    const steps=stepsForRecord(rec);
+    const visual=steps.find(x=>x.id==='visualize');
+    const hasSimulation=rolesForRecord(rec).has('simulation');
+    if(hasSimulation&&visual){
+      activate('visualize');
+      toast('Đã mở mô phỏng/trực quan gắn với bài hiện tại.');
+      return 'lesson';
+    }
+    toast('Bài hiện tại chưa có mô phỏng được ánh xạ. Math Lab tổng quát chỉ nằm trong Tài nguyên nâng cao.');
+    return null;
   }
 
   function ensure(){
@@ -181,7 +188,7 @@
     if(!activeLesson){if(host)host.innerHTML='';if(bar)bar.innerHTML='';return;}
     const steps=stepsForRecord(rec),st=lessonState(cur.id,rec),active=normalizeActive(st.active,steps),visited=st.visited||{};
     const visitedCount=steps.filter(x=>visited[x.id]).length,pct=steps.length?Math.round(visitedCount/steps.length*100):0;
-    const note=notes()[cur.id]||'',labMode=suggestLabMode(rec),objective=rec?.baumanFocus||rec?.programAnchorTitle||'Hiểu bài và kết nối với mục tiêu kỹ thuật.';
+    const note=notes()[cur.id]||'',objective=rec?.baumanFocus||rec?.programAnchorTitle||'Hiểu bài và kết nối với mục tiêu kỹ thuật.';
     const sourceRoles=rolesForRecord(rec),hasFormula=steps.some(x=>x.id==='formula'),hasSimulation=sourceRoles.has('simulation');
     const activeIndex=Math.max(0,steps.findIndex(x=>x.id===active));
     host.innerHTML=`<section class="math-lf-shell">
@@ -207,7 +214,7 @@
         <div class="math-lf-context-left"><b>Bước ${activeIndex+1}/${steps.length}</b><span>${esc(steps[activeIndex]?.label||'Học')} · ${pct}% bước đã mở</span></div>
         <div class="math-lf-context-right">
           ${hasFormula?'<button class="math-lf-mini-btn" data-lf="formula">∑ Công thức</button>':''}
-          ${hasSimulation?`<button class="math-lf-mini-btn" data-lf="lab">∿ Mô phỏng · ${esc(labMode)}</button>`:''}
+          ${hasSimulation?'<button class="math-lf-mini-btn" data-lf="lab">∿ Mô phỏng trong bài</button>':''}
           <button class="math-lf-mini-btn" data-lf="focus">⛶ Tập trung</button>
           <button class="math-lf-mini-btn" data-lf="command">⌘K Tài nguyên</button>
         </div>
