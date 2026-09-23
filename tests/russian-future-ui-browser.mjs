@@ -174,6 +174,7 @@ try{
       assert.equal(await page.locator('.grammar-concept-details .grammar-core-grid').isVisible(),true,'Deeper grammar explanation must reveal on demand');
     }
     if(view==='vocab'){
+      await page.waitForFunction(()=>window.RussianLearningSearch?.isVocabularyLoaded?.()===true,null,{timeout:30000});
       assert.equal(await page.evaluate(()=>window.RussianLearningSearch?.isVocabularyLoaded?.()),true,'Vocabulary dataset must load on demand when Vocabulary opens');
       const details=page.locator('.vocab-studio details.vocab-progressive-details');
       await details.waitFor({state:'attached',timeout:10000});
