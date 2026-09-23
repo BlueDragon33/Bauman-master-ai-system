@@ -622,6 +622,6 @@
   window.BAUMAN_MATH_E129_OWNS_THEORY = true;
 
   applyAdapterMetadata();
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){ startSuppressor(); scheduleRender(0); scheduleRender(650); });
-  else { startSuppressor(); scheduleRender(0); scheduleRender(650); }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',function(){ startSuppressor(); scheduleRender(0); });
+  else { startSuppressor(); scheduleRender(0); }
 })();
