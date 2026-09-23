@@ -48,9 +48,19 @@ body.math-nav-ready .math-unified-nav-button.active{background:var(--mn-nav-acti
 .math-roadmap-chapter>div:first-child>span{color:#67cdfb;font-size:8px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;}
 .math-roadmap-chapter h4{margin:4px 0 5px;color:#eff8ff;font-size:13px;}
 .math-roadmap-chapter p{margin:0;color:#7891a7;font-size:10px;line-height:1.55;}
+.math-roadmap-chapter-main{min-width:0;}
+.math-roadmap-chapter-kicker{display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
+.math-roadmap-status{padding:3px 7px;border:1px solid rgba(98,162,212,.16);border-radius:999px;background:rgba(255,255,255,.025);color:#8da8bd;font-size:7px;font-weight:850;letter-spacing:.04em;}
+.math-roadmap-chapter[data-roadmap-status="learning"] .math-roadmap-status{border-color:rgba(67,190,255,.28);background:rgba(31,137,211,.12);color:#9ce4ff;}
+.math-roadmap-chapter[data-roadmap-status="empty"] .math-roadmap-status{color:#8c9aaa;}
+.math-roadmap-chapter[data-roadmap-status="locked"] .math-roadmap-status{color:#e0b36a;}
+.math-roadmap-progress{height:5px;margin-top:10px;overflow:hidden;border-radius:999px;background:rgba(255,255,255,.06);}
+.math-roadmap-progress i{display:block;height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,#2db9ff,#4bdcb8);}
+.math-roadmap-chapter-main>small{display:block;margin-top:5px;color:#64839a;font-size:8px;}
 .math-roadmap-meta{display:grid;grid-template-columns:auto auto;gap:6px 10px;align-items:center;min-width:190px;color:#66849a;font-size:8px;}
 .math-roadmap-meta button{grid-column:1/-1;border:1px solid rgba(67,183,255,.25);border-radius:10px;background:rgba(17,116,185,.16);color:#dff6ff;padding:8px 10px;font-size:9px;font-weight:850;cursor:pointer;}
 .math-roadmap-meta button:hover{background:rgba(17,116,185,.27);}
+.math-roadmap-meta button:disabled{cursor:not-allowed;opacity:.45;background:rgba(255,255,255,.025);border-color:rgba(100,140,170,.12);}
 .math-roadmap-loading,.math-roadmap-empty{min-height:220px;display:grid;place-items:center;align-content:center;gap:8px;padding:30px;border:1px dashed rgba(86,158,216,.18);border-radius:16px;color:#7895aa;text-align:center;}
 .math-roadmap-empty b{color:#dceefa;}
 
