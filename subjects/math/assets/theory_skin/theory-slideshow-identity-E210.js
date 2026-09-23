@@ -43,7 +43,10 @@
   function identity(){
     var s=state(), deck=document.querySelector('.e132-overlay-deck.open'), shell=activeShell(), ids=[], titles=[];
     if(deck){
-      ['data-e243-lesson-id','data-e210-active-lesson-id','data-lesson-id'].forEach(function(k){var v=deck.getAttribute(k);if(v)ids.push(v);});
+      var lockedId=deck.getAttribute('data-e243-lesson-id');
+      var locked=canonicalById(lockedId);
+      if(locked)return {lessonId:locked.lessonId,lessonTitle:locked.lessonTitle,source:'E243-lock'};
+      ['data-e210-active-lesson-id','data-lesson-id'].forEach(function(k){var v=deck.getAttribute(k);if(v)ids.push(v);});
       var chip=deck.querySelector('[data-e210-lesson-id]');if(chip){var chipId=chip.getAttribute('data-e210-lesson-id');if(chipId&&chipId!=='1')ids.push(chipId);}
     }
     ['e129LessonId','theoryLessonId','currentLessonId','selectedLessonId','activeLessonId','lessonId'].forEach(function(k){if(s&&s[k])ids.push(s[k]);});
