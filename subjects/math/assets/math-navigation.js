@@ -98,10 +98,10 @@
   function openRoadmapChapter(chapterId,stageId){
     leaveRoadmap();
     routeTheory(()=>{
-      const stageButton=$('[data-e129-stage]').find(x=>x.getAttribute('data-e129-stage')===stageId);
+      const stageButton=$$('[data-e129-stage]').find(x=>x.getAttribute('data-e129-stage')===stageId);
       if(stageButton) stageButton.click();
       setTimeout(()=>{
-        const chapterButton=$('[data-e129-chapter]').find(x=>x.getAttribute('data-e129-chapter')===chapterId);
+        const chapterButton=$$('[data-e129-chapter]').find(x=>x.getAttribute('data-e129-chapter')===chapterId);
         if(chapterButton){chapterButton.click();setActive('learn');scheduleSync(180);}
         else toast('Chương này chưa có route Reader tương ứng trong dữ liệu hiện tại.');
       },140);
@@ -110,6 +110,7 @@
 
   function setActive(id){
     active=id||'overview';
+    if(PRIMARY_ITEMS.some(x=>x.id===active)) document.body.dataset.mathPrimaryRoute=active;
     $('.math-unified-nav-button').forEach(b=>{
       const on=b.dataset.mathNav===active;
       b.classList.toggle('active',on);
@@ -263,7 +264,7 @@
   function selfCheck(){return{release:RELEASE,ready:document.body.classList.contains('math-nav-ready'),primaryItems:PRIMARY_ITEMS.length,advancedItems:ADVANCED_ITEMS.length,roadmap:!!roadmapCache,e129:!!global.BAUMAN_MATH_THEORY_E129,e186:!!global.BAUMAN_MATH_E186_LESSON_FIRST,workspace:!!global.BAUMAN_MATH_WORKSPACE,mutationObserver:false,academicWrites:false,learnerFirstIA:true};}
   function init(){
     if(!document.body||document.body.dataset.mathUnifiedNav==='1')return;
-    document.body.dataset.mathUnifiedNav='1';document.body.classList.add('math-nav-ready');ensureFormulaFocus();ensureCommand();bind();ensureNav();
+    document.body.dataset.mathUnifiedNav='1';document.body.classList.add('math-nav-ready');ensureFormulaFocus();ensureCommand();bind();ensureNav();setActive(active);
     [250,700,1400,2400].forEach(ms=>setTimeout(()=>{ensureNav();syncFromRuntime();},ms));
     global.BAUMAN_MATH_NAVIGATION={release:RELEASE,route,openCommand,openFormulaFocus,refresh:()=>{ensureNav();syncFromRuntime();},selfCheck};
   }
