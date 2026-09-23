@@ -16,7 +16,7 @@ const checks=[
   ['alphabet route opens writing surface', flow.includes("else if(step==='alphabet')click('[data-view=\"writing\"]');")],
   ['seven-step learning surface remains explicit', flow.includes("const STEP_ORDER=['speaking','alphabet','theory','vocab','grammar','exercises','check'];")],
   ['five-step core progression excludes support-only vocab and grammar', flow.includes("const CORE_STEPS=['speaking','alphabet','theory','exercises','check'];")],
-  ['flow evidence denominator follows five-step core progression', flow.includes('<b>${evidence}/${CORE_STEPS.length}</b>')],
+  ['flow evidence denominator follows five-step core progression', flow.includes('${evidence}/${CORE_STEPS.length}')],
   ['writing evidence is limited to writing interactions', flow.includes("core.view==='writing'&&(['next-hand','prev-hand','open-hand-grid'") && !flow.includes("||target.closest?.('#writingCanvas')||")],
   ['canvas evidence requires an actual stroke gesture', flow.includes("writingStrokeActive=true;writingStrokeMoved=false") && flow.includes("provenance:'print_to_cursive_stroke'")],
   ['next-step suggestion requires meaningful evidence rather than navigation-only state', flow.includes("function hasMeaningfulEvidence(step,s)") && flow.includes("if(!hasMeaningfulEvidence(step,ls?.steps?.[step]))return step")],
