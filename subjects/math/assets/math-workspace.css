@@ -19,13 +19,13 @@ body.math-ws-density-comfort #view .card,
 body.math-ws-density-comfort #view .panel{padding-top:22px;padding-bottom:22px;}
 
 /* Focus mode keeps the accepted reader/runtime intact and only changes shell geometry. */
-body.math-ws-focus .app{grid-template-columns:0 minmax(0,1fr)!important;}
-body.math-ws-focus .sidebar{display:none!important;}
+body.math-ws-focus .app{grid-template-columns:0 minmax(0,1fr);}
+body.math-ws-focus .sidebar{display:none;}
 body.math-ws-focus .main{padding-left:clamp(14px,3vw,44px);padding-right:clamp(14px,3vw,44px);}
 body.math-ws-focus .topbar .kicker,
 body.math-ws-focus .topbar p,
-body.math-ws-focus .topbar .status{display:none!important;}
-body.math-ws-focus #view{max-width:1180px!important;margin-inline:auto!important;}
+body.math-ws-focus .topbar .status{display:none;}
+body.math-ws-focus #view{max-width:1180px;margin-inline:auto;}
 
 /* Content-control tagging. JS tags only known semantic blocks. */
 .math-ws-hide-formula [data-math-ws-type~="formula"],
@@ -33,8 +33,8 @@ body.math-ws-focus #view{max-width:1180px!important;margin-inline:auto!important
 .math-ws-hide-warning [data-math-ws-type~="warning"],
 .math-ws-hide-application [data-math-ws-type~="application"],
 .math-ws-hide-assessment [data-math-ws-type~="assessment"],
-.math-ws-hide-simulation [data-math-ws-type~="simulation"]{display:none!important;}
-[data-math-ws-search-hidden="true"]{display:none!important;}
+.math-ws-hide-simulation [data-math-ws-type~="simulation"]{display:none;}
+[data-math-ws-search-hidden="true"]{display:none;}
 body.math-ws-review [data-math-ws-type]{position:relative;outline:1px dashed rgba(56,189,248,.48);outline-offset:3px;}
 body.math-ws-review [data-math-ws-type]::before{
   content:attr(data-math-ws-label);
