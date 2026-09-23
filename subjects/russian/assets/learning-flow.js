@@ -134,6 +134,7 @@
     return {kind:'reinforce',step:'check',label:'Ôn củng cố / kiểm tra lại'};
   }
   function esc(v){return clean(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+  function routeAttr(route){return JSON.stringify(route||{}).replace(/&/g,'&amp;').replace(/'/g,'&#39;').replace(/</g,'&lt;');}
   function panelHtml(ls){
     const adaptive=adaptiveNext(ls),next=adaptive?.kind==='step'?adaptive.step:null;
     const rows=STEP_ORDER.map(step=>{
@@ -144,7 +145,10 @@
       </button>`;
     }).join('');
     const evidence=CORE_STEPS.filter(x=>hasMeaningfulEvidence(x,ls.steps[x])).length;
-    return `<header class="ru-flow-head"><span>LESSON · ${esc(ls.id)}</span><b title="${esc(ls.title)}">${esc(ls.title)}</b><small>${evidence}/${CORE_STEPS.length} bằng chứng</small></header><nav class="ru-flow-steps" aria-label="Tiến trình bài ${esc(ls.id)}">${rows}</nav>`;
+    const reviewAction=adaptive?.kind==='review'
+      ?`<button type="button" data-route='${routeAttr(adaptive.route)}' data-ru-adaptive-review="${esc(adaptive.item?.id)}" class="ru-flow-review" title="Ôn mục đến hạn: ${esc(adaptive.label)}">↺ Ôn</button>`
+      :'';
+    return `<header class="ru-flow-head"><span>LESSON · ${esc(ls.id)}</span><b title="${esc(ls.title)}">${esc(ls.title)}</b><div class="ru-flow-meta"><small>${evidence}/${CORE_STEPS.length} bằng chứng</small>${reviewAction}</div></header><nav class="ru-flow-steps" aria-label="Tiến trình bài ${esc(ls.id)}">${rows}</nav>`;
   }
   let renderQueued=false,lastSig='',writingStrokeActive=false,writingStrokeMoved=false;
   function scheduleRender(){
