@@ -132,6 +132,7 @@ try{
   });
   await noSpeechPage.goto(url,{waitUntil:'domcontentloaded',timeout:30000});
   await noSpeechPage.waitForSelector('#nav [data-view="writing"]',{timeout:30000});
+  if(await noSpeechPage.locator('#russianMenuBtn').isVisible())await noSpeechPage.click('#russianMenuBtn');
   await noSpeechPage.click('#nav [data-view="writing"]');
   await noSpeechPage.waitForSelector('.hand-listen-write-card',{timeout:15000});
   assert.equal(await noSpeechPage.locator('[data-act="hand-speak-name"]').isDisabled(),true,'Speech-unavailable name control must be disabled');
