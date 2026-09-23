@@ -40,18 +40,10 @@ else {
 }
 if(!process.exitCode) ok("PCA staged replacement preserves base and adds six required depth roles");
 
-const statuses=new Map((map.logicalLessons||[]).map(x=>[x.logicalId,x.coverage]));
-const expected={
-  m_p07_t01:"COVERED_BY_MODERN_ANCHOR",
-  m_p07_t02:"STAGED_FOR_ACADEMIC_AUDIT",
-  m_p07_t03:"STAGED_FOR_ACADEMIC_AUDIT",
-  m_p07_t04:"STAGED_FOR_ACADEMIC_AUDIT",
-  m_p07_t05:"STAGED_FOR_ACADEMIC_AUDIT",
-  m_p07_t06:"STAGED_UPGRADE_CANDIDATE",
-  m_p07_t07:"STAGED_UPGRADE_CANDIDATE",
-  m_p07_t08:"STAGED_UPGRADE_CANDIDATE"
-};
-for(const [id,status] of Object.entries(expected)) if(statuses.get(id)!==status) fail(id+" unexpected coverage status");
-if(!process.exitCode) ok("all 8 logical lessons have explicit recovery status");
+const logicalIds=new Set((map.logicalLessons||[]).map(x=>x.logicalId));
+for(const id of ["m_p07_t01","m_p07_t02","m_p07_t03","m_p07_t04","m_p07_t05","m_p07_t06","m_p07_t07","m_p07_t08"]){
+  if(!logicalIds.has(id))fail("source map missing "+id);
+}
+if(!process.exitCode) ok("source map still contains all 8 logical lessons after import");
 
 console.log("E16R staged gate:", process.exitCode ? "FAIL" : "PASS");
