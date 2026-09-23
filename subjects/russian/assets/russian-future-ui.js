@@ -108,7 +108,7 @@
     });
     hints.addEventListener('keydown',e=>{
       const buttons=Array.from(hints.querySelectorAll('button'));const current=e.target.closest?.('button');const i=buttons.indexOf(current);
-      if(e.key==='Escape'){e.preventDefault();close();input.focus();return}
+      if(e.key==='Escape'){e.preventDefault();input.focus();close();return}
       if(e.key==='ArrowDown'&&i>=0){e.preventDefault();buttons[(i+1)%buttons.length]?.focus();return}
       if(e.key==='ArrowUp'&&i>=0){e.preventDefault();(i===0?input:buttons[i-1])?.focus();return}
       if(e.key==='Enter'&&i>=0){e.preventDefault();current.click()}
