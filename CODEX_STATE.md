@@ -1,10 +1,10 @@
 # CODEX_STATE
 
-Current task: `BAUMAN_PROJECT_STATE_POST_RUSSIAN_VOCAB_VISUAL_IMMERSION_RECONCILIATION`
+Current task: `BAUMAN_PROJECT_STATE_POST_PRODUCTION_PUBLISH_GATE_V1_RECONCILIATION`
 
-Status: `ROADMAP_V2_COMPLETE · RUSSIAN_LISTEN_WRITE_PROMOTED · ACADEMIC_PHASE2_A1_A6_PROMOTED · DEVICE_CONTRACT_V6_PROMOTED · CONTENT_REVIEW_V1_PROMOTED · DEEP_STUDY_JOURNAL_V1_PROMOTED · DSJ_PACKAGED_READINESS_FX_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_1_PROMOTED · RUSSIAN_FUTURE_REFERENCE_UI_PROMOTED · RUSSIAN_FUTURE_UI_IDEMPOTENCE_FX_PROMOTED · RUSSIAN_FUTURE_UI_PACKAGE_READINESS_FX_PROMOTED · RUSSIAN_VOCAB_VISUAL_IMMERSION_V1_PROMOTED · CURRENT_MAIN_CLEAN`
+Status: `ROADMAP_V2_COMPLETE · RUSSIAN_LISTEN_WRITE_PROMOTED · ACADEMIC_PHASE2_A1_A6_PROMOTED · DEVICE_CONTRACT_V6_PROMOTED · CONTENT_REVIEW_V1_PROMOTED · DEEP_STUDY_JOURNAL_V1_PROMOTED · DSJ_PACKAGED_READINESS_FX_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_1_PROMOTED · RUSSIAN_FUTURE_REFERENCE_UI_PROMOTED · RUSSIAN_FUTURE_UI_IDEMPOTENCE_FX_PROMOTED · RUSSIAN_FUTURE_UI_PACKAGE_READINESS_FX_PROMOTED · RUSSIAN_VOCAB_VISUAL_IMMERSION_V1_PROMOTED · PRODUCTION_PUBLISH_GATE_V1_PROMOTED · CURRENT_MAIN_CLEAN`
 
-Date: 2026-09-22
+Date: 2026-09-23
 Branch: `main`
 Base: `main`
 
@@ -30,6 +30,7 @@ Promoted current-main capabilities:
 - Russian Future UI idempotence Fx — PR #95 merged as `06e3c56308d71ff3ce8f8b3cedf12242c2b0c1f9`.
 - Russian Future UI package-readiness Fx — PR #97 merged as `00605feb7dbdfbb9c6f1e5399d75c1af96211af4`.
 - Russian Vocabulary Visual Immersion v1 — PR #99 merged as `e8108f25d6e3dd686116c6f13589ddc913c95e68`.
+- Production Publish Gate v1 — PR #102 merged as `51138b9e9f9a60c47d91a354446532e8064a545f`.
 
 ## Device Contract v6
 
@@ -243,6 +244,33 @@ Promoted as current-main commit `e8108f25d6e3dd686116c6f13589ddc913c95e68`.
 
 This is a separate current-main learning-surface capability track. It does not create L36, change learning/mastery authority, or authorize production deployment.
 
+## Production Publish Gate v1
+
+PR #102 adds the first explicit Cloudflare production execution path as a separate current-main capability track outside Roadmap V2.
+
+Fail-closed promotion boundary:
+
+- production deployment is manual-only through `.github/workflows/deploy-bauman-production.yml`;
+- the operator must enter the exact confirmation token `DEPLOY_PRODUCTION`;
+- the job runs in GitHub environment `bauman-production`;
+- before any production mutation, both Bauman Control preview and Bauman Learning Runtime preview must report `channel=cloudflare-preview` and the exact same full `GITHUB_SHA` being promoted;
+- production Control D1 must be a real UUID distinct from preview and local D1;
+- Application Management production, Bauman production Control, Bauman production Runtime, preview Control and preview Runtime origins must all be distinct exact HTTPS origins and may not fall back to `*.chatgpt.site`;
+- Control and Learning Runtime production artifacts are fully materialized and dry-run before remote D1 migration or Worker deployment;
+- post-deploy smoke tests require production channel/revision read-back, production D1 readiness, live learning-access capability and promoted Russian runtime assets.
+
+PR #102 pre-merge verification on head `dfa2f5075d2b348186cb4d23e997ca03887f4b07`:
+
+- Bauman Cloudflare Production Publish Gate CI — SUCCESS;
+- Bauman Cloudflare Preview CI — SUCCESS;
+- Bauman Control Service CI — SUCCESS;
+- Bauman Runtime Device Gate CI — SUCCESS;
+- Windows checkout safety — SUCCESS.
+
+Promoted on current `main` as merge commit `51138b9e9f9a60c47d91a354446532e8064a545f`.
+
+This track does not create L36 and does not turn production into an automatic action. Roadmap V2 remains production-disconnected; live deployment is a separately authorized execution path and remains blocked until exact-revision preview verification plus environment configuration and explicit manual confirmation pass.
+
 ## Intentional capability layering
 
 The base control worker intentionally keeps `learningAccessGate: false` until the deployment/preview wrapper verifies D1 + app-origin readiness. Do not flatten this fail-closed layering.
@@ -251,7 +279,7 @@ The base control worker intentionally keeps `learningAccessGate: false` until th
 
 The machine-readable application-management contract is now version **7** and no readiness capability is explicitly marked `missing`.
 
-This does **not** authorize production deployment. Runtime capabilities that require D1/app-origin remain configuration-dependent until the relevant environment is explicitly promoted.
+Roadmap V2 itself does **not** authorize production deployment. Production Publish Gate v1 is a separate current-main execution track and remains fail-closed until the exact revision is live in preview, required production bindings exist, and the manual production confirmation is supplied.
 
 ## Safety boundary
 
@@ -266,7 +294,7 @@ This does **not** authorize production deployment. Runtime capabilities that req
 
 1. Start all new work from current `main`.
 2. Treat `docs/roadmap_v2/CURRENT_EXECUTION_STATE.md` as authoritative for Roadmap history.
-3. Treat PRs #72, #76, #79, #82, #88, #90, #92, #93, #95, #97, #99 and Deep Study Journal v1 commit `a2e642867ba99ea34c1b49eb378f78f927e563bb` as promoted current-main behavior.
+3. Treat PRs #72, #76, #79, #82, #88, #90, #92, #93, #95, #97, #99, #102 and Deep Study Journal v1 commit `a2e642867ba99ea34c1b49eb378f78f927e563bb` as promoted current-main behavior.
 4. Do not reconstruct completed Issues #28 or #81 from stale branches.
 5. Preserve Content Review metadata-only ownership and role boundaries.
 6. Preserve Deep Study Journal as non-authoritative learner reflection; it must not become mastery/diagnostic/scheduler/progress evidence implicitly.
