@@ -50,6 +50,9 @@ try{
   await page.waitForFunction(id=>window.BAUMAN_MATH_LEARNING_FLOW.selfCheck().lessonId===id,LESSON,{timeout:10000});
   report.checks.lessonOpen=true;
 
+  await page.waitForFunction(()=>window.BAUMAN_MATH_LEARNING_FLOW?.selfCheck?.().assessmentLoaded===true,null,{timeout:10000});
+  await page.waitForFunction(id=>window.BAUMAN_MATH_LEARNING_FLOW?.checkSummary?.(id)?.total>0,LESSON,{timeout:10000});
+
   // Journey 3 + 4: visit all source-backed steps, complete Lesson Check with one review item,
   // persist completion only after the gate becomes eligible.
   const steps=await page.evaluate(()=>window.BAUMAN_MATH_LEARNING_FLOW.selfCheck().sourceDrivenSteps);
