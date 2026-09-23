@@ -15,6 +15,7 @@ const PRIMARY_NAV=A.primaryNav||NAV;
 const LEARN_TABS=A.learningTabs||[['theory','📘','Lý thuyết'],['exercises','📝','Bài tập'],['practice','🎙️','Nghe/Nói'],['review','🔁','Ôn tập'],['exam','🧪','Kiểm tra']];
 const DEFAULT={stage:'vn',view:'overview',learnTab:'theory',lessonId:'',slide:0,lessonQuery:'',conceptQuery:'',exerciseLevel:'all',exerciseIndex:0,testLevel:'easy',testIndex:0,testAnswer:null,reviewLevel:'easy',reviewFilter:'all',reviewLesson:'all',reviewIndex:0,reviewPage:0,reviewAnswer:null,reviewProgress:{done:{},flagged:{},wrong:{}},examLevel:'easy',examCycle:'auto',examPaperLevel:'easy',examPaperType:'standard',examIndex:0,examPage:0,examAnswer:null,examProgress:{answers:{},marked:{},submitted:false,submittedAt:null,result:null,wrong:{},paperResults:{}},examHistory:[],remedialPlan:{active:false,cards:[],completed:{},createdAt:null,lastExamAt:null,lastScore:null},dialogueId:'',dialogueGroup:'all',dialogueDifficulty:'all',dialogueQuery:'',dialogueLineIndex:0,dialogueRole:'all',dialogueHideVi:false,dialogueShowTranscript:false,dialoguePeople:'2',dialogueMinutes:'10',dialogueMode:'shadow_roleplay',dialogueScenario:'classroom',practiceDialogueId:'',practiceGroup:'all',practiceDifficulty:'all',practiceQuery:'',practiceLineIndex:0,practiceRole:'all',practiceHideVi:false,practiceShowTranscript:false,practiceSpeechResults:{},dialogueSpeechResults:{},deepSpeakingId:'',deepSpeakingMode:'overview',deepSpeakingStep:0,deepSpeakingProgress:{done:{},weak:{},attempts:{},lastMode:{}},optionalDataLoading:{},optionalDataError:{},speechResults:{},speechRecording:false,speechAutoNext:false,mediaCat:'all',mediaQuery:'',mediaView:'list',mediaId:'',vocabQuery:'',vocabTopic:'all',vocabStatus:'all',vocabFocusKey:'',vocabIndex:0,vocabPage:0,vocabFlipped:false,grammarLevel:'all',grammarTrack:'all',grammarQuery:'',grammarIndex:0,mindmapId:'roadmap-map',mindmapNode:'',mindmapFontScale:14,mindmapDrag:{},mindmapLayoutVersion:'v13_32_clean',writingMode:'handwriting',handwritingIndex:0,handwritingQuery:'',handwritingStep:0,handwritingPractice:'trace',handwritingShowGuide:true,handwritingShowLines:true,handwritingExerciseIndex:0,handwritingExerciseInput:'',handwritingExerciseChoice:'',handwritingExerciseAttempted:false,handwritingExerciseReveal:false,handwritingExerciseResult:null,handwritingSessionMode:'learn',handwritingListenWriteProgress:{byLetter:{}},lessonListenWrite:{lessonId:'',itemIndex:0,drillIndex:0,mode:'',input:'',choice:'',attempted:false,result:null},writingIndex:0,writingQuery:'',writingDraft:'',storageFile:'curriculum',storageGroup:'all',storageText:'',storagePreviewLimit:0,storagePreviewAutoCollapsedV1322:false,storageQuery:'',storageTreeOpen:{},aiDraft:'',aiOutput:'',interfaceTheme:'clean',interfaceDensity:'normal',hostTask:null,planningBundle:null,routeEdit:false,routeManual:null,routeFocus:'today',testSession:{answered:0,correct:0,targetQuestions:100,targetScore:80,seen:{}},recentAccess:[],stageGate:null,examGateSource:null,stageTransitions:[],lastStageTransition:null};
 let DB={},state={...DEFAULT},canvas=null,ctx=null,drawing=false,strokes=[],currentStroke=null,penColor='#111827',penSize=6,speechRecognizer=null;
+let modalReturnFocus=null;
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
 const arr=v=>Array.isArray(v)?v:[], str=v=>String(v??''), esc=v=>str(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])), lower=v=>str(v).toLowerCase();
 const uniq=a=>Array.from(new Set(arr(a).filter(Boolean))); const key=A.storageKey||'bauman_russian_v11_clean_skeleton';
@@ -759,23 +760,48 @@ function setPresentationOverlayLock(on=false){
  body.classList.toggle('presentation-active',!!on);
  try{document.documentElement.classList.toggle('presentation-overlay-lock',!!on)}catch(_){}
 }
+function modalFocusable(){
+ const modal=$('#modal');if(!modal||modal.classList.contains('hidden'))return [];
+ return $$('button:not([disabled]),a[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])',modal).filter(el=>el.getClientRects().length>0);
+}
+function focusModalStart(){
+ const modal=$('#modal'),card=$('#modal .modal-card');if(!modal||modal.classList.contains('hidden'))return;
+ const first=modalFocusable()[0]||card;if(first?.focus)first.focus({preventScroll:true});
+}
+function trapModalFocus(e){
+ const modal=$('#modal');if(!modal||modal.classList.contains('hidden'))return false;
+ if(e.key==='Escape'){e.preventDefault();closeModal();return true;}
+ if(e.key!=='Tab')return false;
+ const xs=modalFocusable();if(!xs.length){e.preventDefault();$('#modal .modal-card')?.focus({preventScroll:true});return true;}
+ const first=xs[0],last=xs[xs.length-1],active=document.activeElement;
+ if(e.shiftKey&&(active===first||!modal.contains(active))){e.preventDefault();last.focus();return true;}
+ if(!e.shiftKey&&(active===last||!modal.contains(active))){e.preventDefault();first.focus();return true;}
+ return false;
+}
 function openModal(html,type='generic'){
  const isPresentation=type==='presentation';
  if(isPresentation)closeFloatingLearningMenus();
+ const modal=$('#modal');
+ if(modal?.classList.contains('hidden'))modalReturnFocus=document.activeElement instanceof HTMLElement?document.activeElement:null;
  state.modalType=type;
  const body=$('#modalBody');
  body.innerHTML=html;
  body.classList.toggle('presentation-body',isPresentation);
- const modal=$('#modal');
- if(modal)modal.classList.toggle('presentation-modal-root',isPresentation);
+ if(modal){modal.classList.toggle('presentation-modal-root',isPresentation);modal.classList.remove('hidden');modal.setAttribute('aria-hidden','false');}
  const card=$('#modal .modal-card');
  if(card){card.classList.toggle('presentation-card',isPresentation);card.classList.toggle('route-card-modal',type==='route');card.classList.toggle('exam-result-card-modal',type==='exam-result');card.classList.toggle('confirm-card-modal',type==='confirm');card.scrollTop=0;}
  setPresentationOverlayLock(isPresentation);
- $('#modal').classList.remove('hidden');
- if(type==='route')setTimeout(()=>{const card=$('#modal .modal-card'); const body=$('#modalBody'); if(card)card.scrollTop=0; if(body)body.scrollTop=0;},30);
- if(isPresentation)setTimeout(()=>{closeFloatingLearningMenus(); const ps=presentationScroller(); if(ps){ps.scrollTop=0; ps.focus({preventScroll:true});}},40);
+ if(type==='route')setTimeout(()=>{const card=$('#modal .modal-card'); const body=$('#modalBody'); if(card)card.scrollTop=0; if(body)body.scrollTop=0; focusModalStart();},30);
+ else if(isPresentation)setTimeout(()=>{closeFloatingLearningMenus(); const ps=presentationScroller(); if(ps){ps.scrollTop=0; ps.focus({preventScroll:true});}else focusModalStart();},40);
+ else requestAnimationFrame(focusModalStart);
 }
-function closeModal(){ state.modalType=''; setPresentationOverlayLock(false); const modal=$('#modal'); if(modal){modal.classList.add('hidden'); modal.classList.remove('presentation-modal-root');} const body=$('#modalBody'); body.innerHTML=''; body.classList.remove('presentation-body'); const card=$('#modal .modal-card'); if(card){card.classList.remove('presentation-card','route-card-modal','exam-result-card-modal','confirm-card-modal');} }
+function closeModal(){
+ state.modalType='';setPresentationOverlayLock(false);
+ const modal=$('#modal');if(modal){modal.classList.add('hidden');modal.classList.remove('presentation-modal-root');modal.setAttribute('aria-hidden','true');}
+ const body=$('#modalBody');body.innerHTML='';body.classList.remove('presentation-body');
+ const card=$('#modal .modal-card');if(card){card.classList.remove('presentation-card','route-card-modal','exam-result-card-modal','confirm-card-modal');}
+ const restore=modalReturnFocus;modalReturnFocus=null;if(restore?.isConnected&&restore.focus)requestAnimationFrame(()=>restore.focus({preventScroll:true}));
+}
 
 function confirmAction(action,label='hành động này',detail=''){
  const meta={action,label,detail};
@@ -3940,6 +3966,7 @@ function handleInput(e){
  clearTimeout(handleInput.t); handleInput.t=setTimeout(()=>applyInput(e.target),180)
 }
 function handleKeys(e){
+ if(trapModalFocus(e))return;
  const tag=(e.target?.tagName||'').toLowerCase(); const typing=['input','textarea','select'].includes(tag);
  if(state.modalType==='presentation'){
    if(e.key==='Escape'){closeModal();e.preventDefault();return}
