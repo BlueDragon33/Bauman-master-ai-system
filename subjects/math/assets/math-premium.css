@@ -176,14 +176,7 @@ body.math-premium-ready .e129-placeholder{
 }
 body.math-premium-ready .e129-badge{background:rgba(24,112,172,.12);border-color:rgba(71,180,245,.18);color:#8fd9ff;font-size:9px;padding:5px 8px;}
 body.math-premium-ready .e169-reader-title h2{font-family:Georgia,"Times New Roman",serif;font-size:22px;color:#f5f9ff;letter-spacing:-.02em;}
-body.math-premium-ready .e129-slide-list{gap:9px;}
-body.math-premium-ready .e129-slide{
-  position:relative;border-radius:14px;border-color:rgba(93,156,208,.14);background:linear-gradient(145deg,rgba(6,21,38,.82),rgba(8,30,52,.66));padding:14px 15px;transition:.16s ease;
-}
-body.math-premium-ready .e129-slide:hover{border-color:rgba(57,174,245,.30);box-shadow:0 12px 32px rgba(0,0,0,.16);transform:translateY(-1px);}
-body.math-premium-ready .e129-slide h3{font-size:14px;color:#eaf5ff;}
-body.math-premium-ready .e129-slide p{font-size:12px;color:#9fb3c7;line-height:1.7;}
-body.math-premium-ready .e129-slide pre{font-size:12px;border:1px solid rgba(242,189,82,.17);background:rgba(3,10,19,.72);color:#f4e6bc;}
+/* Reader body styling is owned by math-reader-pro.css. */
 body.math-premium-ready .e129-grid{gap:8px;}
 body.math-premium-ready .e129-card{border-radius:13px;background:rgba(8,28,48,.62);border-color:rgba(90,157,211,.15);}
 body.math-premium-ready .e129-importer{border-top:2px solid rgba(242,189,82,.34);}
