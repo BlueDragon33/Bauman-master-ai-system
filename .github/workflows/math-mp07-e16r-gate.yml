@@ -1,0 +1,29 @@
+name: Math m_p07 E16R recovery gate
+
+on:
+  pull_request:
+    paths:
+      - 'subjects/math/**'
+      - 'scripts/validate-math-mp07-*.mjs'
+      - '.github/workflows/math-mp07-e16r-gate.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  mp07-recovery:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate architecture and provenance
+        run: node scripts/validate-math-mp07-recovery-e16r.mjs
+      - name: Validate staged academic bundles
+        run: node scripts/validate-math-mp07-staged-content-e16r.mjs
+      - name: Validate post-import DAG and links
+        run: node scripts/validate-math-mp07-post-import-e16r.mjs
+      - name: Validate runtime routing and active stores
+        run: node scripts/validate-math-mp07-runtime-routing-e16r.mjs
