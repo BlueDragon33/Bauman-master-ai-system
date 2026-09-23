@@ -20,6 +20,7 @@
   const ADVANCED_ITEMS=[
     {id:'lab',group:'Công cụ',icon:'∿',label:'Mô phỏng',sub:'Công cụ theo ngữ cảnh',key:'L'},
     {id:'formula',group:'Công cụ',icon:'∑',label:'Công thức',sub:'Công thức bài đang học',key:'F'},
+    {id:'resources',group:'Công cụ',icon:'⌕',label:'Tài nguyên',sub:'Tìm kiếm & tài nguyên theo bài',key:'R'},
     {id:'control',group:'Công cụ',icon:'☷',label:'Công cụ học',sub:'Hiển thị & kiểm soát',key:'C'},
     {id:'vault',group:'Hệ thống',icon:'▣',label:'Kho dữ liệu',sub:'Quản trị nội dung nâng cao',key:'D'}
   ];
@@ -282,6 +283,7 @@
     if(id==='lab'){leaveRoadmap();global.BAUMAN_MATH_WORKSPACE?.openLab?.();return;}
     if(id==='control'){leaveRoadmap();global.BAUMAN_MATH_WORKSPACE?.openControl?.();return;}
     if(id==='formula'){leaveRoadmap();openFormulaFocus();return;}
+    if(id==='resources'){leaveRoadmap();global.BAUMAN_MATH_STUDY_LIBRARY?.open?.();return;}
     if(id==='vault'){
       leaveRoadmap();
       if(global.BAUMAN_MATH_THEORY_E129?.openTheoryVault){global.BAUMAN_MATH_THEORY_E129.openTheoryVault();scheduleSync(150);}
@@ -327,7 +329,7 @@
   function ensureCommand(){
     if($('#mathCommandPalette')) return;
     const layer=document.createElement('section'); layer.id='mathCommandPalette'; layer.className='math-command-palette';
-    layer.innerHTML='<div class="math-command-shell"><input id="mathCommandSearch" class="math-command-search" type="search" autocomplete="off" placeholder="Đi tới: Lý thuyết, Mô phỏng, Công thức, DataVault…"><div id="mathCommandList" class="math-command-list"></div></div>';
+    layer.innerHTML='<div class="math-command-shell"><input id="mathCommandSearch" class="math-command-search" type="search" autocomplete="off" placeholder="Đi tới: Học, Tài nguyên, Mô phỏng, Công thức…"><div id="mathCommandList" class="math-command-list"></div></div>';
     document.body.appendChild(layer);
     layer.addEventListener('click',e=>{ if(e.target===layer) closeCommand(); });
     $('#mathCommandSearch')?.addEventListener('input',renderCommandList);
