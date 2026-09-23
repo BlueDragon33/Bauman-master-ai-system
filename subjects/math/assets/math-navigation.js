@@ -167,7 +167,7 @@
         const status=completed?'Đã hoàn thành':started?'Đang học':'Chưa học';
         const cta=completed?'Xem lại':started?'Tiếp tục':'Bắt đầu';
         const slideCount=Array.isArray(rec.slides)?rec.slides.length:0;
-        return `<article class="math-chapter-lesson" data-lesson-status="${completed?'completed':started?'learning':'not-started'}">`
+        return `<article class="math-chapter-lesson" data-lesson-status="${completed?'completed':started?'learning':'not-started'}">
           <div class="math-chapter-lesson-no">${String(index+1).padStart(2,'0')}</div>
           <div class="math-chapter-lesson-copy">
             <div class="math-chapter-lesson-title"><span>${esc(status)}</span><h3>${esc(rec.title||rec.lessonTitle||id)}</h3></div>
