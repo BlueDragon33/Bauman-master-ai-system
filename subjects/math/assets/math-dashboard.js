@@ -101,8 +101,8 @@
     const stepIndex=Number(snap?.activeStepIndex||1),stepLabel=snap?.activeStepLabel||'Lý thuyết';
     const pct=Math.max(0,Math.min(100,Number(snap?.percent||0)));
 
-    if($('#mathV2LessonTitle')) $('#mathV2LessonTitle').textContent=cur.id?cur.title:'Chưa có bài học đang mở';
-    if($('#mathV2LessonMeta')) $('#mathV2LessonMeta').textContent=cur.id?`${cur.id} · Bước ${stepIndex}/${total||'—'} · ${stepLabel}`:'Bắt đầu từ Lộ trình để hệ thống dẫn tới bài phù hợp.';
+    if($('#mathV2LessonTitle')) $('#mathV2LessonTitle').textContent=cur.id?cur.title:'Bắt đầu từ lộ trình học';
+    if($('#mathV2LessonMeta')) $('#mathV2LessonMeta').textContent=cur.id?`${cur.id} · Bước ${stepIndex}/${total||'—'} · ${stepLabel}`:'Chưa có tiến độ thật. Chọn lộ trình để bắt đầu đúng chương và bài.';
     if($('#mathHomeProgressBar')) $('#mathHomeProgressBar').style.width=`${pct}%`;
     if($('#mathHomePct')) $('#mathHomePct').textContent=`${pct}%`;
     if($('#mathHomeStep')) $('#mathHomeStep').textContent=`Bước ${stepIndex}/${total||'—'} · ${stepLabel}`;
@@ -112,10 +112,19 @@
     if($('#mathHomeChapter')) $('#mathHomeChapter').textContent=snap?.chapterId||'Chương theo Reader hiện tại';
     if($('#mathHomeGoal')) $('#mathHomeGoal').textContent=cur.id?`Hoàn thành ${cur.title}`:'Chọn bài đầu tiên trong lộ trình';
     if($('#mathHomeGoalNote')) $('#mathHomeGoalNote').textContent=cur.id?`Tiếp theo: ${stepLabel}. Công cụ nâng cao chỉ mở khi bước học cần đến.`:'Lộ trình sẽ dẫn tới bài phù hợp, không yêu cầu tự ghép tài nguyên.';
+    const cta=$('[data-math-v2-action="continue"]');
+    if(cta){
+      cta.textContent=cur.id?'Tiếp tục học →':'Bắt đầu học →';
+      cta.setAttribute('aria-label',cur.id?'Tiếp tục bài học hiện tại':'Mở lộ trình để bắt đầu học');
+    }
   }
 
   function action(name){
-    if(name==='continue'){global.BAUMAN_MATH_NAVIGATION?.route?.('learn');return;}
+    if(name==='continue'){
+      const cur=currentLesson();
+      global.BAUMAN_MATH_NAVIGATION?.route?.(cur.id?'learn':'roadmap');
+      return;
+    }
     if(name==='roadmap'){global.BAUMAN_MATH_NAVIGATION?.route?.('roadmap');return;}
     if(name==='review'){global.BAUMAN_MATH_NAVIGATION?.route?.('review');return;}
   }
