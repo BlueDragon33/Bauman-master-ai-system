@@ -597,6 +597,27 @@ function finalQaSnapshot(){
 function getDialogues(){let xs=byStage(getBaumanDialogueAZ()); if(state.dialogueGroup!=='all')xs=xs.filter(x=>(A.dialogueGroup?.(x)||x.group||'general')===state.dialogueGroup); if(state.dialogueDifficulty!=='all')xs=xs.filter(x=>(A.dialogueDifficulty?.(x)||x.difficulty||x.level||'all')===state.dialogueDifficulty); if(state.dialogueQuery)xs=xs.filter(x=>lower(textOf(x)).includes(lower(state.dialogueQuery))); return xs}
 function getMedia(){let xs=byStage(call('getMedia',[],DB)); if(state.mediaCat!=='all')xs=xs.filter(x=>mediaCategoryLabel(x)===state.mediaCat); if(state.mediaQuery)xs=xs.filter(x=>lower(JSON.stringify(x)).includes(lower(state.mediaQuery))); return xs}
 function getVocab(){let xs=byStage(call('getVocabulary',[],DB)); if(state.vocabQuery)xs=xs.filter(x=>lower(A.vocabSearchText?.(x)||JSON.stringify(x)).includes(lower(state.vocabQuery))); return xs}
+function globalSearchResults(query,limit=4){
+ const q=lower(query).trim();
+ if(!q)return [];
+ const out=[];
+ const push=(group,label,route,meta='')=>out.push({group,label,route,meta});
+ const lessons=byStage(call('getLessons',[],DB)).filter(x=>lower(textOf(x)).includes(q)).slice(0,limit);
+ lessons.forEach(x=>push('BÀI HỌC',A.lessonTitle?.(x)||x.title||x.id||'Bài học',{view:'learning',learnTab:'theory',lessonId:lessonKey(x)},stageTitle(stageOf(x)||state.stage)));
+ const grammar=grammarAllModules().filter(x=>lower([x.title,x.why,x.core,x.pattern,x.level,x.track,JSON.stringify(x.examples||[])].join(' ')).includes(q)).slice(0,limit);
+ grammar.forEach(x=>push('NGỮ PHÁP',x.title||'Mục ngữ pháp',{view:'grammar',grammarLevel:x.level||'all',grammarTrack:x.track||'all',grammarQuery:x.title||''},[x.level,x.track].filter(Boolean).join(' · ')));
+ const media=byStage(call('getMedia',[],DB)).filter(x=>lower(JSON.stringify(x)).includes(q)).slice(0,limit);
+ media.forEach(x=>push('VIDEO',mediaTitle(x)||x.title||'Video/Audio',{view:'media',mediaId:x.id||x.title||''},mediaCategoryLabel(x)));
+ if(DB.vocab){
+  const vocab=byStage(call('getVocabulary',[],DB)).filter(x=>lower(A.vocabSearchText?.(x)||JSON.stringify(x)).includes(q)).slice(0,limit);
+  vocab.forEach(x=>{const info=vocabInfo(x);push('TỪ VỰNG',info.term||'Từ vựng',{view:'vocab',vocabQuery:info.term||q},info.displayVisualLabel||info.meaningRu||'')});
+ }else if(q.length>=2){
+  push('TỪ VỰNG',`Tìm “${query}” trong Từ vựng`,{view:'vocab',vocabQuery:String(query||'')},'Bộ từ vựng sẽ tải khi mở');
+ }
+ return out;
+}
+window.RussianLearningSearch={query:globalSearchResults,isVocabularyLoaded:()=>!!DB.vocab};
+
 function getHandwriting(){return byStage(call('getHandwriting',[],DB))}
 function getHandwritingListenWrite(){return call('getHandwritingListenWrite',[],DB)}
 function getListenWriteLessons(){return call('getListenWriteLessons',[],DB)}
@@ -3678,7 +3699,9 @@ function handleClick(e){
  if('examPage' in b.dataset){state.examPage=Number(b.dataset.examPage)||0;state.examIndex=state.examPage*examPageSize(activeExamLevel());save();render();return}
  if('examAnswer' in b.dataset){const level=activeExamLevel(); if(examPaperResult(level))return; const qs=getExamQuestions(level); const q=qs[state.examIndex]||{}; const id=examQuestionId(q,state.examIndex,level); state.examProgress.answers[id]=Number(b.dataset.examAnswer);save();render();return}
  if(b.dataset.examPaper){state.examPaperType=b.dataset.examPaper;state.examPaperLevel=b.dataset.examPaper;state.examIndex=0;state.examPage=0;save();render();return}
- if(b.dataset.route){const r=JSON.parse(b.dataset.route||'{}'); closeModal(); if(r.routeSource==='today_schedule'&&r.scheduleStep)markScheduleTaskOpened(Number(r.scheduleStep),planSession(),r); trackAccess(r.view||'overview'); state.view=r.view||'overview'; if(r.lessonId)state.lessonId=r.lessonId; if(r.learnTab)state.learnTab=r.learnTab; if(r.reviewLesson)state.reviewLesson=r.reviewLesson; if(r.view==='grammar'){if(r.grammarLevel)state.grammarLevel=r.grammarLevel; if(r.grammarTrack)state.grammarTrack=r.grammarTrack; state.grammarIndex=0;} if(r.view==='mindmap'){if(r.mindmapId)state.mindmapId=r.mindmapId; if(r.mindmapNode)state.mindmapNode=r.mindmapNode; else state.mindmapNode='';} if(r.view==='learning'&&r.learnTab==='exam'){const paper=scheduleExamPaperType(r); state.examPaperType=paper; state.examPaperLevel=paper; state.examIndex=0; state.examPage=0; state.examGateSource={routeSource:r.routeSource||'',stage:r.stage||currentStageId(),part:Number(r.part||gatePart()),sessionKey:r.sessionKey||sessionKey(),scheduleStep:Number(r.scheduleStep||0),paperType:paper,at:Date.now()};} if(r.view==='learning'&&r.learnTab==='review'&&r.reviewFilter){state.reviewFilter=r.reviewFilter; state.reviewIndex=0; state.reviewPage=0; state.reviewAnswer=null;} if(r.mode==='handwriting')state.writingMode='handwriting'; save();render();return}
+ if(b.dataset.route){const r=JSON.parse(b.dataset.route||'{}'); closeModal(); if(r.routeSource==='today_schedule'&&r.scheduleStep)markScheduleTaskOpened(Number(r.scheduleStep),planSession(),r); trackAccess(r.view||'overview'); state.view=r.view||'overview'; if(r.lessonId)state.lessonId=r.lessonId; if(r.learnTab)state.learnTab=r.learnTab; if(r.reviewLesson)state.reviewLesson=r.reviewLesson; if(r.view==='grammar'){if(r.grammarLevel)state.grammarLevel=r.grammarLevel; if(r.grammarTrack)state.grammarTrack=r.grammarTrack; if(r.grammarQuery!=null)state.grammarQuery=str(r.grammarQuery).slice(0,120); state.grammarIndex=Number.isFinite(Number(r.grammarIndex))?Math.max(0,Number(r.grammarIndex)):0;} if(r.view==='media'&&r.mediaId)state.mediaId=str(r.mediaId).slice(0,160);
+ if(r.view==='vocab'){if(r.vocabQuery!=null)state.vocabQuery=str(r.vocabQuery).slice(0,160); if(Number.isFinite(Number(r.vocabIndex)))state.vocabIndex=Math.max(0,Number(r.vocabIndex)); state.vocabFlipped=false;}
+ if(r.view==='mindmap'){if(r.mindmapId)state.mindmapId=r.mindmapId; if(r.mindmapNode)state.mindmapNode=r.mindmapNode; else state.mindmapNode='';} if(r.view==='learning'&&r.learnTab==='exam'){const paper=scheduleExamPaperType(r); state.examPaperType=paper; state.examPaperLevel=paper; state.examIndex=0; state.examPage=0; state.examGateSource={routeSource:r.routeSource||'',stage:r.stage||currentStageId(),part:Number(r.part||gatePart()),sessionKey:r.sessionKey||sessionKey(),scheduleStep:Number(r.scheduleStep||0),paperType:paper,at:Date.now()};} if(r.view==='learning'&&r.learnTab==='review'&&r.reviewFilter){state.reviewFilter=r.reviewFilter; state.reviewIndex=0; state.reviewPage=0; state.reviewAnswer=null;} if(r.mode==='handwriting')state.writingMode='handwriting'; save();render();return}
  if(b.dataset.remedialCard){const id=b.dataset.remedialCard; const plan=normalizeRemedialPlan(); const card=plan.cards.find(x=>x.id===id); if(card){state.remedialPlan.completed[id]=Date.now(); state.view='learning'; state.learnTab='review'; state.reviewFilter='wrong'; state.reviewLesson='all'; const remaining=remedialCounts().remaining; if(remaining<=0)state.remedialPlan.active=false; save(); render(); toast(remaining<=0?'Đã hoàn thành toàn bộ lịch phụ đạo':'Đã hoàn thành 1 thẻ phụ đạo'); return}}
  if(b.dataset.uiTheme){state.interfaceTheme=b.dataset.uiTheme; applyInterface(); save(); openModal(renderInterfaceModal(),'interface'); return}
  if(b.dataset.uiDensity){state.interfaceDensity=b.dataset.uiDensity; applyInterface(); save(); openModal(renderInterfaceModal(),'interface'); return}
