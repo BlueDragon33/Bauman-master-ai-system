@@ -13,6 +13,10 @@ need(ai,'RUSSIAN_AI_MENTOR_CONTEXT_V1');need(ai,'canonicalStateReadOnly:true');n
 need(ai,'Object.values(learning.reviewQueue||{})','AI context must read canonical object-shaped Review Queue');forbid(ai,'Array.isArray(learning.reviewQueue)','AI context must not treat canonical Review Queue as an array');
 forbid(ai,'RussianLearningState?.set','AI guard must not write canonical learning state');forbid(ai,'.addReview','AI guard must not enqueue review by itself');forbid(ai,"status:'mastered'",'AI guard must not write mastery');
 need(runtime,'RUSSIAN_RUNTIME_OPTIMIZER_V1');need(runtime,'prepareOfflineCore');need(runtime,'reconcileOfflineCore');need(runtime,'countCached');need(runtime,'{refresh:true}');need(runtime,"navigator.connection?.saveData");need(runtime,"serviceWorker.register('./sw.js'");
+need(runtime,"const LIGHT_DATA=['curriculum','grammar','grammar-path','handwriting','handwriting-listen-write','writing','videos','knowledge-index'];",'Idle warm must remain bounded to light datasets');
+forbid(runtime,'setInterval(','Runtime optimizer must not add a polling timer');
+forbid(runtime,'new MutationObserver','Runtime optimizer must not create a DOM observer');
+need(runtime,"if('requestIdleCallback'in window)requestIdleCallback(run,{timeout:5000});else setTimeout(run,1800);",'Idle cache warming must yield to interactive work');
 need(sw,'OPTIONAL_LARGE');need(sw,'dialogue-bauman-az.json');need(sw,'deep-speaking-bauman.json');need(sw,'speaking-link-index.json');if(!/const CACHE='russian-app-shell-v\d+[a-z0-9-]*'/i.test(sw))throw new Error('Russian service worker must keep a versioned russian-app-shell cache namespace');need(sw,"const DATA_CACHE='russian-learning-data-v1'");need(sw,'isFoundationIdentity');need(sw,'isSharedRuntime');
 need(sw,'isOptionalLarge');need(sw,'Optional source unavailable offline');need(sw,"req.mode==='navigate'");forbid(sw,"catch(()=>caches.match('./index.html'))",'HTML fallback must not be returned for arbitrary failed asset/data requests');
 need(css,'@media(max-width:1080px)');need(css,'@media(max-width:760px)');
