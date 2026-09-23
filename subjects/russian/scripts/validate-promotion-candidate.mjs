@@ -21,7 +21,7 @@ for(const p of ['assets/core.css.bak','assets/core.js.bak']){
   if(fs.existsSync(path.join(root,p)))throw new Error(`Legacy backup still present: ${p}`);
   forbid(html,p,'Index must not reference backup assets');
 }
-const cssOrder=['assets/core.css','assets/russian.css','assets/russian-future-ui.css','assets/learning-state.css','assets/content-contract.css','assets/learning-flow.css','assets/vocab-srs.css','assets/speaking-coach.css','assets/academic-language.css','assets/runtime-optimizer.css'];
+const cssOrder=['assets/core.css','assets/russian.css','assets/learning-state.css','assets/content-contract.css','assets/learning-flow.css','assets/vocab-srs.css','assets/speaking-coach.css','assets/academic-language.css','assets/capability-progression.css','assets/runtime-optimizer.css','assets/russian-future-ui.css'];
 const jsOrder=['assets/subject-adapter.js','assets/ui-cleanup-contract.js','assets/content-contract.js','../shared/host-bridge.js','assets/planning-bridge.js','assets/russian-optional-data-loader.js','assets/core.js','assets/learning-state.js','assets/learning-flow.js','assets/vocab-srs.js','assets/speaking-coach.js','assets/academic-language.js','assets/ai-mentor-guard.js','assets/runtime-optimizer.js','assets/russian-future-ui.js'];
 function assertOrder(list,label){let prev=-1;for(const item of list){const pos=html.indexOf(item);if(pos<0)throw new Error(`${label} missing ${item}`);if(pos<=prev)throw new Error(`${label} order invalid at ${item}`);prev=pos;}}
 assertOrder(cssOrder,'CSS');assertOrder(jsOrder,'JS');
