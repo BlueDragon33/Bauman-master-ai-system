@@ -13,7 +13,6 @@
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const clip=(s,n=120)=>{s=String(s||'').replace(/\s+/g,' ').trim();return s.length>n?s.slice(0,n-1)+'…':s;};
   function get(key,fallback){try{return JSON.parse(localStorage.getItem(key)||'')||fallback}catch(_){return fallback}}
-  function set(key,value){try{localStorage.setItem(key,JSON.stringify(value))}catch(_){}}
   function bookmarks(){return get(BOOKMARK_KEY,[])} function notes(){return get(NOTES_KEY,{})} function visits(){return get(VISIT_KEY,[])}
   function recordsOf(raw){if(Array.isArray(raw))return raw;if(Array.isArray(raw?.records))return raw.records;if(Array.isArray(raw?.items))return raw.items;if(Array.isArray(raw?.lessons))return raw.lessons;return[]}
   function records(){return recordsOf(global.DB?.theory_lecture_content)}
@@ -179,8 +178,14 @@
     setTimeout(()=>{global.BAUMAN_MATH_READER_ROLE_MAP?.map?.();global.BAUMAN_MATH_LEARNING_FLOW?.refresh?.();global.BAUMAN_MATH_PREMIUM?.refresh?.();$('[data-current-lesson]')?.scrollIntoView({behavior:'smooth',block:'start'});},220);
     return true;
   }
-  function removeBookmark(id){set(BOOKMARK_KEY,bookmarks().filter(x=>x.id!==id));render();global.BAUMAN_MATH_LEARNING_FLOW?.refresh?.()}
-  function clearNote(id){const all=notes();delete all[id];set(NOTES_KEY,all);render();global.BAUMAN_MATH_LEARNING_FLOW?.refresh?.()}
+  function removeBookmark(id){
+    const ok=global.BAUMAN_MATH_LEARNING_FLOW?.removeBookmarkById?.(id);
+    if(ok===false)render();
+  }
+  function clearNote(id){
+    const ok=global.BAUMAN_MATH_LEARNING_FLOW?.clearNoteById?.(id);
+    if(ok===false)render();
+  }
   function exportJson(){
     const payload={schema:'bauman_math_local_study_library_v1',exportedAt:new Date().toISOString(),bookmarks:bookmarks(),notes:notes(),recent:visits()};
     const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`bauman_math_study_library_${Date.now()}.json`;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},300);
