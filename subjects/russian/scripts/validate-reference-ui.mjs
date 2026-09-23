@@ -20,7 +20,7 @@ const adapter=read('assets/subject-adapter.js');
 const chatgptPackage=fs.readFileSync(path.resolve('scripts/prepare-chatgpt-site.mjs'),'utf8');
 const previewPackage=fs.readFileSync(path.resolve('scripts/prepare-cloudflare-preview.mjs'),'utf8');
 
-for(const id of ['app','nav','stageSelect','view','modal','modalBody','toast','themeBtn','aiBtn','pageTitle','pageSub','coreLabel','saveState']){
+for(const id of ['app','nav','stageSelect','view','modal','modalBody','toast','themeBtn','aiBtn','pageTitle','pageSub','coreLabel','saveState','russianSidebar','russianMenuBtn','russianSidebarClose','russianSidebarBackdrop']){
   must(index.includes(`id="${id}"`),`Missing required runtime id: ${id}`);
 }
 for(const ref of ['assets/core.css','assets/russian.css','assets/russian-future-ui.css','assets/learning-state.css','assets/content-contract.css','assets/subject-adapter.js','assets/content-contract.js','assets/planning-bridge.js','assets/russian-optional-data-loader.js','assets/core.js','assets/russian-future-ui.js']){
@@ -28,6 +28,9 @@ for(const ref of ['assets/core.css','assets/russian.css','assets/russian-future-
 }
 must(index.indexOf('assets/core.css')<index.indexOf('assets/russian.css'),'Russian theme must load after core CSS');
 must(index.indexOf('assets/russian.css')<index.indexOf('assets/russian-future-ui.css'),'Canonical Russian presentation CSS must load after subject theme');
+for(const ref of ['assets/learning-state.css','assets/content-contract.css','assets/learning-flow.css','assets/vocab-srs.css','assets/speaking-coach.css','assets/academic-language.css','assets/capability-progression.css','assets/runtime-optimizer.css']){
+  must(index.indexOf(ref)<index.indexOf('assets/russian-future-ui.css'),`Canonical Russian presentation CSS must load after component stylesheet: ${ref}`);
+}
 must(index.indexOf('assets/subject-adapter.js')<index.indexOf('assets/content-contract.js'),'Content contract must load after subject adapter');
 must(index.indexOf('assets/content-contract.js')<index.indexOf('assets/core.js'),'Content contract must normalize adapter before core.js');
 must(index.indexOf('assets/russian-optional-data-loader.js')<index.indexOf('assets/core.js'),'Optional chunk loader must bootstrap before core.js');
@@ -46,7 +49,7 @@ must(index.includes('aria-modal="true"'),'Modal must declare aria-modal');
 must(index.includes('aria-label="Đóng hộp thoại"'),'Modal close button must have an accessible name');
 must(!index.includes('/priˈvʲet/'),'Learning shell must not expose a hard-coded pronunciation sample as canonical data');
 
-for(const token of ['.grammar-examples-first','.grammar-pattern-strip','.grammar-concept-details','.ru-app-shell','.rf-continue-band','.rf-today-plan','.rf-module-grid','.rf-dashboard-lower','.vocab-progressive-details','@media (max-width:1080px)','@media (max-width:760px)','@media (max-width:480px)']){
+for(const token of ['.grammar-examples-first','.grammar-pattern-strip','.grammar-concept-details','.ru-app-shell','.rf-continue-band','.rf-today-plan','.rf-module-grid','.rf-dashboard-lower','.vocab-progressive-details','@media(max-width:1024px)','@media(max-width:768px)','@media(max-width:480px)']){
   must(css.includes(token),`Missing CSS contract: ${token}`);
 }
 for(const token of ['.ru-legacy-overview-details','.ru-empty-activity',':focus-visible','prefers-reduced-motion']){
@@ -83,8 +86,12 @@ for(const token of ['HỌC TIẾP','Kế hoạch hôm nay','5 kỹ năng chính'
 must(js.includes('navigator.platform'),'Shortcut hint must adapt to the user platform');
 must(!js.includes('base+Math.round'),'Skill cards must not synthesize fake per-skill progress');
 must(!js.includes('mini-progress'),'Skill cards must not display invented per-skill progress bars');
-for(const token of ['ru-future-ui','rf-progress-strip','rf-module-grid','rf-dashboard-lower','rf-tab-intro','--rf-sidebar:220px','--rf-sidebar-compact:190px','--rf-content-max:1500px','--rf-section-gap:12px','--rf-motion-fast:180ms','grid-template-columns:var(--rf-sidebar) minmax(0,1fr)','display:none!important']) must(futureCss.includes(token),`Future UI CSS missing ${token}`);
-must(futureCss.includes('@media(max-width:1320px){\n .ru-future-ui .ru-app-shell{grid-template-columns:var(--rf-sidebar-compact)'), 'Laptop breakpoint must activate the compact sidebar token at <=1320px');
+for(const token of ['ru-future-ui','rf-progress-strip','rf-module-grid','rf-dashboard-lower','rf-tab-intro','--rf-sidebar:220px','--rf-content-max:1120px','--rf-reading-max:820px','--rf-card-padding:22px','--rf-section-gap:28px','--rf-font-page:30px','--rf-font-section:21px','--rf-font-card:17px','--rf-font-body:15px','--rf-font-caption:12px','--rf-motion-fast:180ms','grid-template-columns:var(--rf-sidebar) minmax(0,1fr)','display:none!important']) must(futureCss.includes(token),`Future UI CSS missing ${token}`);
+must(!futureCss.includes('--rf-sidebar-compact:190px'),'PASS 2 must not keep the obsolete compact desktop sidebar token');
+must(!futureCss.includes('grid-template-columns:repeat(5,minmax(0,1fr))'),'PASS 2 must not restore five learning cards in one desktop row');
+for(const token of ['body.ru-reference-ui.ru-future-ui.ru-nav-open{overflow:hidden}','transform:translateX(-105%)','body.ru-future-ui.ru-nav-open .ru-sidebar{transform:translateX(0)}','.ru-future-ui .ru-menu-btn{display:grid']){
+  must(futureCss.includes(token),`Responsive drawer contract missing: ${token}`);
+}
 must(!futureCss.includes('Russian Reference UI · premium Bauman/Russia dashboard layer'),'PASS 2 must not restore the obsolete dark shell presentation layer');
 for(const token of ['--ru-bg:#040d1b','grid-template-columns:228px minmax(0,1fr) 328px','background:rgba(4,15,29,.88)']){
   must(!futureCss.includes(token),`Obsolete shell token returned: ${token}`);
@@ -92,6 +99,8 @@ for(const token of ['--ru-bg:#040d1b','grid-template-columns:228px minmax(0,1fr)
 for(const token of ['position:relative;height:42px;display:flex','position:absolute;left:0;right:0;top:45px','margin:0;padding:0 1px']){
   must(futureCss.includes(token),`Canonical shell/search structure missing after PASS 2 migration: ${token}`);
 }
+must(!futureCss.includes('@media (min-width:1500px){.ru-app-shell'),'Unscoped legacy three-column shell breakpoint must not return');
+must(!futureCss.includes('@media (max-width:1320px){.ru-app-shell'),'Unscoped legacy responsive shell breakpoint must not return');
 const shellStart=futureCss.indexOf('body.ru-reference-ui.ru-future-ui{');
 const shellEnd=futureCss.indexOf('/* Shared light-surface system');
 must(shellStart>=0&&shellEnd>shellStart,'Canonical PASS 2 shell slice markers missing');
@@ -105,7 +114,9 @@ const sharedSurfaceEnd=futureCss.indexOf('/* Future overview */');
 must(sharedSurfaceStart>=0&&sharedSurfaceEnd>sharedSurfaceStart,'Canonical shared surface slice markers missing');
 const sharedSurface=futureCss.slice(sharedSurfaceStart,sharedSurfaceEnd);
 must(!sharedSurface.includes('!important'),'Canonical shared panel/button/input/modal theme must not rely on !important overrides');
-for(const token of ['RUSSIAN_FUTURE_REFERENCE_UI_V1','upgradeOverview','upgradeTabIntro','data-rf-speak','Nghe & Nói','Luyện chữ','Kế hoạch hôm nay']) must(futureJs.includes(token),`Future UI runtime missing ${token}`);
+for(const token of ['RUSSIAN_FUTURE_REFERENCE_UI_V1','upgradeOverview','upgradeTabIntro','bindMobileDrawer','russianMenuBtn','russianSidebarBackdrop','ru-nav-open','aria-expanded','data-rf-speak','Nghe & Nói','Luyện chữ','Kế hoạch hôm nay']) must(futureJs.includes(token),`Future UI runtime missing ${token}`);
+must(futureJs.includes("window.matchMedia('(max-width:768px)')"),'Responsive drawer must share the canonical <=768px breakpoint');
+must(futureJs.includes("e.key==='Escape'&&document.body.classList.contains('ru-nav-open')"),'Escape must close the mobile navigation drawer');
 must(futureJs.includes("setText(title,'Tiếng Nga')"),'Future UI must expose Russian-only visible brand');
 must(futureJs.includes("function setText(el,value){if(el&&el.textContent!==value)el.textContent=value}"),'Future UI text writes must remain idempotent');
 must(futureJs.includes("quote&&quote.dataset.rfFutureQuote!=='1'"),'Future UI quote render must remain one-shot and observer-safe');
