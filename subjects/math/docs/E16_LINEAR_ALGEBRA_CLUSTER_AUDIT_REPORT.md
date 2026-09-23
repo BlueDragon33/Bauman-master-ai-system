@@ -2,65 +2,36 @@
 
 ## Status
 
-**BLOCKED by a real repository-state defect; false PASS is now prevented.**
+**BLOCKED by a verified repository-state defect; false PASS is prevented.**
 
-This iteration follows the internal E15 handoff that declared Chapter 7 (covariance, correlation, PCA introduction) complete and synchronized across the Math content stores.
+E15 declared Chapter 7 complete and synchronized, but current `main` does not match that handoff.
 
-## Repository findings on current main
+## Verified repository findings
 
-The following E15-declared output stores are present on `main`, but several are still serialized as empty JSON arrays (`[]`, 2 bytes):
+The following E15-declared stores are empty arrays on `main`: `formulas.json`, `exercises.json`, `applications.json`, `simulations.json`, `professor_qa.json`, `question_bank.json`, `review_packs.json`, `mastery-map.json`, `content-index.json`, `concept-map.json`, and `mindmap.json`.
 
-- `applications.json`
-- `simulations.json`
-- `professor_qa.json`
-- `question_bank.json`
-- `review_packs.json`
-- `mastery-map.json`
-- `content-index.json`
-- `concept-map.json`
-- `mindmap.json`
+`subject-manifest.js` also advertises zero counts for the same sidecar families.
 
-This contradicts the E15 handoff counts and means an E16 cluster audit cannot legitimately PASS from repository evidence yet.
+## E16-A · Hardened recovery gate
 
-## E16-A · Automatically generated recovery step
+The validator now checks both data stores and manifest counters. Minimum evidence required from the E15 handoff is: lessons 8, formulas 24, exercises 64, applications 16, simulations 16, professor Q&A 8, question bank 48, review packs 8, mastery map 8, content index 8, concept map 1, mind map 1.
 
-Added `scripts/validate-math-content-sync-e16.mjs`.
+It fails closed on missing files, malformed JSON, underfilled stores, missing manifest counters, or stale manifest counters.
 
-The gate is fail-closed and requires at least:
+## Recovery investigation
 
-| Store | Minimum |
-|---|---:|
-| applications | 16 |
-| simulations | 16 |
-| professor Q&A | 8 |
-| question bank | 48 |
-| review packs | 8 |
-| mastery map | 8 |
-| content index | 8 |
-| concept map | 1 |
-| mind map | 1 |
+The canonical E15 report/payload is not present on current `main`. Code search did not locate it. Branch `codex/e150-c01-l01-clean-replacement` also has empty sidecar arrays and no E15 report. The separate `BlueDragon33/Math_Bauman` repository did not yield the canonical payload in code search. The Project file `UI môn Toán.txt` preserves counts and topic coverage but not the full structured records.
 
-The validator also fails on missing files or malformed JSON.
+Therefore the project must not fabricate records merely to satisfy counts.
 
-## Why the data itself was not auto-filled
+## Automatically generated recovery sequence
 
-The canonical `lessons.json` on `main` is roughly 7.8 MB and could not be read through the current connector as line-scoped content. The internal E15 handoff provides counts and topic coverage but not the complete structured records needed to reconstruct all synchronized stores without inventing content.
+- **E16-B1** Locate/recover the canonical E15 generated payload or generation source.
+- **E16-B2** Restore formulas/exercises/applications/simulations/Q&A/questions/review/mastery/index/maps.
+- **E16-B3** Recompute and update `subject-manifest.js` counts from restored stores.
+- **E16-C** Validate identity/link integrity across lessons → formulas/exercises/applications/simulations/questions/review/mastery/index.
+- **E16-D** Audit prerequisite continuity across Chapters 1, 2 and 7.
+- **E16-E** Regression-test Math runtime selectors and simulation routing.
+- **E17** Start Chapter 8 only after E16-B…E16-E PASS.
 
-Therefore this iteration deliberately does **not** fabricate placeholder application/question/simulation records merely to satisfy counts.
-
-## Gate policy
-
-1. E15 repository synchronization must be restored from the canonical generated payload/source.
-2. Run `node scripts/validate-math-content-sync-e16.mjs`.
-3. Only after the gate is PASS may E16 continue with the cross-chapter audit for Chapters 1, 2 and 7.
-4. Only after that audit is PASS may the project start Chapter 8 (introductory time series).
-
-## Next automatically generated sub-steps
-
-- **E16-B** Restore/materialize the E15 sidecar stores from canonical source.
-- **E16-C** Validate object identity/link integrity across lessons → formulas/exercises/applications/simulations/questions/review/mastery/index.
-- **E16-D** Cross-chapter prerequisite audit for Chapters 1, 2 and 7.
-- **E16-E** Regression check of Math runtime selectors and simulation routing.
-- **E17** Start Chapter 8 only when E16-B…E16-E are PASS.
-
-No production deploy/publish. No direct merge to `main`.
+No production deploy/publish. No merge to `main` while E16 is blocked.
