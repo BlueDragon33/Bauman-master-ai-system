@@ -38,6 +38,8 @@ try{
   report.checks.theory=theory;
 
   async function routeLessonThroughCurrentUi(lessonId,{moduleId='pure',courseId='pure-analysis',chapterId='c05'}={}){
+    await page.evaluate(()=>window.BAUMAN_MATH_NAVIGATION?.route?.('learn'));
+    await page.waitForFunction(()=>document.querySelector('[data-e169-open="module"]'),null,{timeout:10000});
     const open=page.locator('[data-e169-open="module"]').first();
     await open.waitFor({state:'visible',timeout:10000});
     await open.click();
