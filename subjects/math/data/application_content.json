@@ -10,7 +10,330 @@
   "frameSource": "application_frame.json",
   "legacyExportTarget": "applications.json",
   "recordKey": "applicationId",
-  "records": [],
+  "records": [
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t01",
+      "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+      "chapterId": "MATH-VN-C01-vector_trong_khong_gian_",
+      "tags": [
+        "data matrix",
+        "multivariate data",
+        "orientation",
+        "feature schema"
+      ],
+      "sourceAnchors": [
+        "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+        "MATH-PREP-LA2-C10-L07"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "applicationId": "E16R-M_P07_T01-A01",
+      "title": "Đóng gói telemetry robot thành ma trận dữ liệu",
+      "scenario": "Ghép IMU/GPS/network telemetry theo timestamp thành hàng quan sát.",
+      "method": "Khóa schema/units/version; kiểm alignment rồi assemble X theo row-observation convention."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t01",
+      "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+      "chapterId": "MATH-VN-C01-vector_trong_khong_gian_",
+      "tags": [
+        "data matrix",
+        "multivariate data",
+        "orientation",
+        "feature schema"
+      ],
+      "sourceAnchors": [
+        "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+        "MATH-PREP-LA2-C10-L07"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "applicationId": "E16R-M_P07_T01-A02",
+      "title": "Chuẩn bị feature matrix cho ML",
+      "scenario": "Biến bảng log hệ thống thành feature matrix có metadata ổn định.",
+      "method": "Tách identity khỏi feature, khóa thứ tự cột, ghi provenance preprocessing và version."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t02",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T02-centering-scaling",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "centering",
+        "standardization",
+        "z-score",
+        "leakage"
+      ],
+      "sourceAnchors": [
+        "MATH-HK2-MLB-C25-L07"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "applicationId": "E16R-M_P07_T02-A01",
+      "title": "Chuẩn hóa nhiều kênh cảm biến",
+      "scenario": "IMU, nhiệt độ và RSSI có đơn vị/dải khác nhau.",
+      "method": "Fit scaler trên train window/reference set rồi áp dụng cố định cho các tập còn lại."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t02",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T02-centering-scaling",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "centering",
+        "standardization",
+        "z-score",
+        "leakage"
+      ],
+      "sourceAnchors": [
+        "MATH-HK2-MLB-C25-L07"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "applicationId": "E16R-M_P07_T02-A02",
+      "title": "Preprocessing trước PCA",
+      "scenario": "Feature engineering tạo cột có scale chênh lệch lớn.",
+      "method": "So sánh PCA centered-only và standardized; ghi lý do chọn pipeline."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t03",
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E16R-MP07-T03-covariance",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "tags": [
+        "covariance",
+        "variance",
+        "random variables"
+      ],
+      "sourceAnchors": [
+        "MATH-VN-PS-C05-L05"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "applicationId": "E16R-M_P07_T03-A01",
+      "title": "Ước lượng tương quan nhiễu IMU",
+      "scenario": "Đánh giá nhiễu giữa các trục gyro/accelerometer.",
+      "method": "Center noise residuals rồi ước lượng pairwise covariance; kiểm stationarity/window."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t03",
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E16R-MP07-T03-covariance",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "tags": [
+        "covariance",
+        "variance",
+        "random variables"
+      ],
+      "sourceAnchors": [
+        "MATH-VN-PS-C05-L05"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "applicationId": "E16R-M_P07_T03-A02",
+      "title": "Phát hiện feature đồng biến trong telemetry",
+      "scenario": "Tải CPU và latency có thể đồng biến.",
+      "method": "Tính covariance theo cửa sổ, nhưng dùng correlation khi cần so sánh không đơn vị."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t04",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T04-pearson",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "pearson",
+        "correlation",
+        "causality",
+        "outlier"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-PS2-C15-L06"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "applicationId": "E16R-M_P07_T04-A01",
+      "title": "Correlation heatmap cho feature engineering",
+      "scenario": "Sàng các feature có quan hệ tuyến tính mạnh trước mô hình.",
+      "method": "Chuẩn hóa metadata, tính R, kiểm outlier và tránh loại feature chỉ dựa một ngưỡng máy móc."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t04",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T04-pearson",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "pearson",
+        "correlation",
+        "causality",
+        "outlier"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-PS2-C15-L06"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "applicationId": "E16R-M_P07_T04-A02",
+      "title": "Giám sát nhiều kênh cảm biến",
+      "scenario": "Xem cặp sensor nào đồng biến bất thường.",
+      "method": "Theo dõi rolling correlation cùng scatter/time plot để phân biệt drift, common cause và lỗi sensor."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t05",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T05-covariance-matrix",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "covariance matrix",
+        "PSD",
+        "multivariate"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L05",
+        "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L01-matrix-as-data-and-transform-e142"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "applicationId": "E16R-M_P07_T05-A01",
+      "title": "Noise covariance cho sensor fusion",
+      "scenario": "Mô tả bất định và tương quan chéo giữa kênh sensor.",
+      "method": "Ước lượng residual covariance theo cửa sổ phù hợp và kiểm PSD/symmetry."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t05",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T05-covariance-matrix",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "covariance matrix",
+        "PSD",
+        "multivariate"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L05",
+        "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L01-matrix-as-data-and-transform-e142"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "applicationId": "E16R-M_P07_T05-A02",
+      "title": "Covariance structure trước PCA",
+      "scenario": "Xem feature nào chia sẻ hướng biến thiên.",
+      "method": "Center, lập C, kiểm scale/outlier rồi mới eigen/SVD."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t06",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "eigenvalue",
+        "eigenvector",
+        "covariance"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L01",
+        "MATH-PREP-LA2-C10-L05",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "applicationId": "E16R-M_P07_T06-A01",
+      "title": "Mode chính của telemetry covariance",
+      "scenario": "Tìm hướng tổ hợp feature có variance lớn.",
+      "method": "Eigen-decompose C, sort λ giảm dần, diễn giải loading v_i có kiểm scale."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t06",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "eigenvalue",
+        "eigenvector",
+        "covariance"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L01",
+        "MATH-PREP-LA2-C10-L05",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "applicationId": "E16R-M_P07_T06-A02",
+      "title": "Kiểm tra covariance estimator",
+      "scenario": "Dùng eigenvalues để phát hiện PSD violation.",
+      "method": "Symmetrize only when justified; truy nguyên data/formula nếu có negative eigenvalue đáng kể."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t07",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "PCA",
+        "explained variance",
+        "projection"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L06",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "applicationId": "E16R-M_P07_T07-A01",
+      "title": "Giảm chiều sensor telemetry",
+      "scenario": "Nén nhiều kênh tương quan về vài component.",
+      "method": "Fit preprocessing/PCA trên train/reference; theo dõi EVR và reconstruction."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t07",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "PCA",
+        "explained variance",
+        "projection"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L06",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "applicationId": "E16R-M_P07_T07-A02",
+      "title": "Visualization dữ liệu nhiều chiều",
+      "scenario": "Chiếu về PC1-PC2 để xem cluster/outlier.",
+      "method": "Không dùng hình 2D như bằng chứng đầy đủ; báo variance retained."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t08",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "reconstruction",
+        "low rank",
+        "PCA error"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L08",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "applicationId": "E16R-M_P07_T08-A01",
+      "title": "Nén dữ liệu cảm biến",
+      "scenario": "Giảm storage/telemetry bandwidth bằng low-rank coordinates.",
+      "method": "Lưu PCA model/version, k, scaler và theo dõi reconstruction drift."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t08",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "reconstruction",
+        "low rank",
+        "PCA error"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L08",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "applicationId": "E16R-M_P07_T08-A02",
+      "title": "Anomaly score theo reconstruction",
+      "scenario": "Điểm có lỗi tái tạo cao có thể lệch subspace bình thường.",
+      "method": "Calibrate threshold trên validation; không suy anomaly chỉ từ một điểm cao đơn lẻ."
+    }
+  ],
   "importPolicy": {
     "key": "applicationId",
     "requires": [
@@ -56,12 +379,21 @@
     "method": "Chuẩn hóa rồi tính cosine similarity.",
     "auditStatus": "DRAFT"
   },
-  "updatedAt": "2026-06-22",
+  "updatedAt": "2026-09-23",
   "emoji": "🧩",
   "cleanArchitecturePolicy": {
     "contentMustNotStoreStageTree": true,
     "recordsMustUseStableIds": true,
     "defaultImportMode": "replace_by_key_then_append",
     "auditBeforeImport": true
+  },
+  "recoveryMeta": {
+    "E16R": {
+      "moduleId": "m_p07",
+      "imported": 16,
+      "key": "applicationId",
+      "branchOnly": true,
+      "status": "CONTENT_IMPORTED_PENDING_RUNTIME_GATE"
+    }
   }
 }
