@@ -813,7 +813,7 @@ function resetReviewProgress(){
  save(); render(); toast('Đã Reset toàn bộ tiến độ ôn tập');
 }
 function submitExamNow(){
- const level=activeExamLevel(); const qs=getExamQuestions(level); const sum=examProgressSummary(qs,level);
+ const level=activeExamLevel(); const qs=getExamQuestions(level); const sum={...examProgressSummary(qs,level),diagnosis:examLearningPriority(qs,level)};
  if(sum.answered<sum.total){toast(`Còn ${sum.total-sum.answered} câu chưa trả lời trong đề ${examLevelLabel(level)}`); return}
  state.examProgress.paperResults=state.examProgress.paperResults||{}; state.examProgress.paperResults[level]=sum; state.examProgress.submitted=true; state.examProgress.submittedAt=Date.now(); state.examProgress.result=sum; state.examProgress.wrong={};
  arr(sum.wrong).forEach(w=>{state.examProgress.wrong[w.id]={at:Date.now(),index:w.index,answer:w.answer,correct:w.correct,level:w.level,lessonId:w.lessonId,skill:w.skill,topic:w.topic};});
