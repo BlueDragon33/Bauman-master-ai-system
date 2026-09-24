@@ -6,6 +6,13 @@
   const LEGACY_SCHEMA='RUSSIAN_LEARNING_FLOW_V1';
   const STEP_ORDER=['speaking','alphabet','theory','vocab','grammar','exercises','check'];
   const CORE_STEPS=['speaking','alphabet','theory','exercises','check'];
+  const LESSON_STEPPER=[
+    {step:'speaking',icon:'🎧',label:'Nghe'},
+    {step:'theory',icon:'👁️',label:'Nhận diện'},
+    {step:'alphabet',icon:'✍️',label:'Viết'},
+    {step:'exercises',icon:'📝',label:'Thực hành'},
+    {step:'check',icon:'✅',label:'Kiểm tra'}
+  ];
   const META={
     speaking:{icon:'🎧',label:'Nghe & nói',scope:'lesson',detail:'Bước vào chính: nghe mẫu, nhại, shadowing và đóng vai trước khi phân tích.'},
     alphabet:{icon:'✍️',label:'Chữ cái & viết tay',scope:'stage',detail:'Nhận mặt chữ in → đối chiếu chữ viết tay → luyện nét và viết lại.'},
@@ -137,11 +144,11 @@
   function routeAttr(route){return JSON.stringify(route||{}).replace(/&/g,'&amp;').replace(/'/g,'&#39;').replace(/</g,'&lt;');}
   function panelHtml(ls){
     const adaptive=adaptiveNext(ls),next=adaptive?.kind==='step'?adaptive.step:null;
-    const rows=STEP_ORDER.map(step=>{
-      const m=META[step],s=ls.steps[step],st=statusFor(step,s);
+    const rows=LESSON_STEPPER.map(item=>{
+      const step=item.step,s=ls.steps[step],st=statusFor(step,s);
       const current=next===step;
-      return `<button type="button" class="ru-flow-step ${esc(st.key)} ${current?'recommended':''}" data-ru-flow-step="${step}" aria-current="${current?'step':'false'}" title="${esc(m.label)} · ${esc(st.label)}">
-        <i aria-hidden="true">${m.icon}</i><span><b>${esc(m.label)}</b><small>${esc(st.label)}</small></span>
+      return `<button type="button" class="ru-flow-step ${esc(st.key)} ${current?'recommended':''}" data-ru-flow-step="${step}" aria-current="${current?'step':'false'}" title="${esc(item.label)} · ${esc(st.label)}">
+        <i aria-hidden="true">${item.icon}</i><span><b>${esc(item.label)}</b><small>${esc(st.label)}</small></span>
       </button>`;
     }).join('');
     const evidence=CORE_STEPS.filter(x=>hasMeaningfulEvidence(x,ls.steps[x])).length;
