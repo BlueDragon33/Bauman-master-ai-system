@@ -198,6 +198,11 @@ must(core.includes("reviewMiniLesson:false"),'Review state must distinguish full
 must(core.includes("xs=xs.slice(0,5)"),'Lesson Mini Check must cap the real lesson question set at five questions');
 must(core.includes("window.addEventListener('russian:mini-check'"),'Core runtime must accept lesson Mini Check routing without replacing the test bank');
 must(core.includes('✅ MINI CHECK'),'Mini Check must be visibly distinguished from full Review');
+must(futureJs.includes('function learnerReport')&&futureJs.includes('function personalReportHtml'),'Overview must expose a learner-only personal learning report');
+must(futureJs.includes('data-report-scope="learner"'),'Personal report must declare learner scope');
+must(futureJs.includes('Kết luận ngắn')&&futureJs.includes('Kỹ năng tốt')&&futureJs.includes('Vấn đề cần xử lý')&&futureJs.includes('Kế hoạch tiếp theo'),'Personal report must answer conclusion, skills, issues, and next plan');
+must(!/rf-personal-report[^]*?(device|thiết bị|access log|technical log)/i.test(futureJs),'Learner report must not mix device/access technical logs');
+must(css.includes('.rf-personal-report-grid')&&css.includes('@media(max-width:767px)'),'Personal report responsive contract missing');
 must(core.includes('function examLearningPriority'),'Stage Check must derive strong/weak/priority feedback from real exam answers');
 must(core.includes('Kỹ năng tốt')&&core.includes('Kỹ năng yếu')&&core.includes('Ưu tiên tiếp theo'),'Stage Check feedback must expose strong skills, weak skills, and next learning priority');
 must(css.includes('.exam-learning-diagnosis')&&css.includes('.exam-priority-grid'),'Stage Check diagnosis presentation contract missing');
