@@ -48,6 +48,8 @@ for (const token of [
   'russian-optional-data-loader.js',
   'for dataset in dialogue-bauman-az deep-speaking-bauman',
   'data/chunks/$dataset/manifest.json',
+  'value.revision !== expected',
+  'process.env.GITHUB_SHA',
 ]) {
   if (!workflow.includes(token)) throw new Error(`Bauman preview workflow thiếu: ${token}`);
 }
