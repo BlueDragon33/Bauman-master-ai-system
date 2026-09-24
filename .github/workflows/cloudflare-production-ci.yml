@@ -42,7 +42,7 @@ jobs:
     env:
       BAUMAN_CONTROL_PREVIEW_D1_DATABASE_ID: 11111111-1111-4111-8111-111111111111
       BAUMAN_CONTROL_PRODUCTION_D1_DATABASE_ID: 22222222-2222-4222-8222-222222222222
-      APPLICATION_MANAGEMENT_PRODUCTION_ORIGIN: https://application-management.example.com
+      APPLICATION_MANAGEMENT_PRODUCTION_ORIGIN: https://control-plane.example.chatgpt.site
       BAUMAN_CONTROL_PREVIEW_ORIGIN: https://bauman-control-preview.example.com
       BAUMAN_RUNTIME_PREVIEW_ORIGIN: https://bauman-runtime-preview.example.com
       BAUMAN_CONTROL_PRODUCTION_ORIGIN: https://bauman-control.example.com
