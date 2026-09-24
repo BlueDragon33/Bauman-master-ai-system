@@ -254,6 +254,7 @@
   }
   function upgradeTabIntro(){
     const view=currentView(),root=document.getElementById('view');if(!root||view==='overview')return;
+    if(view==='writing'){root.querySelector(':scope > .rf-tab-intro')?.remove();return;}
     let intro=root.querySelector(':scope > .rf-tab-intro');
     const practice=view==='learning'&&Boolean(document.querySelector('#nav button.active[data-learn="practice"]')); const meta=practice?TAB_INTRO.dialogue:(TAB_INTRO[view]||['TIẾNG NGA','Học tập tập trung','Mọi công cụ nằm đúng nơi, không làm rối luồng học.',['Tập trung','Rõ ràng','Thực hành']]);
     if(!intro){
