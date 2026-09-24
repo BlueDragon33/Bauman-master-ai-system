@@ -203,6 +203,14 @@ must(futureJs.includes("const raw=localStorage.getItem(key);"),'Personal report 
 must(futureJs.includes('function learnerReport')&&futureJs.includes('function personalReportHtml'),'Overview must expose a learner-only personal learning report');
 must(futureJs.includes('data-report-scope="learner"'),'Personal report must declare learner scope');
 must(futureJs.includes('Kết luận ngắn')&&futureJs.includes('Kỹ năng tốt')&&futureJs.includes('Vấn đề cần xử lý')&&futureJs.includes('Kế hoạch tiếp theo'),'Personal report must answer conclusion, skills, issues, and next plan');
+for(const token of ['Mức dữ liệu','Stage Check gần nhất','Bằng chứng gần nhất','data-rf-report-print','rf-report-note','function printLearnerReport','function refreshOverviewDashboard']){
+  must(futureJs.includes(token),`Professional learner report contract missing: ${token}`);
+}
+must(futureJs.includes("window.addEventListener('russian:learning-state',refreshOverviewDashboard)"),'Learner report must refresh when learning-state evidence changes');
+must(futureJs.includes("window.addEventListener('russian:vocab-srs',refreshOverviewDashboard)"),'Learner report must refresh when vocabulary evidence changes');
+for(const token of ['.rf-report-meta','.rf-report-print-sheet','@media print','body.rf-report-printing']){
+  must(css.includes(token),`Professional report presentation contract missing: ${token}`);
+}
 must(!/rf-personal-report[^]*?(device|thiết bị|access log|technical log)/i.test(futureJs),'Learner report must not mix device/access technical logs');
 must(css.includes('.rf-personal-report-grid')&&css.includes('@media(max-width:767px)'),'Personal report responsive contract missing');
 must(core.includes('function examLearningPriority'),'Stage Check must derive strong/weak/priority feedback from real exam answers');
