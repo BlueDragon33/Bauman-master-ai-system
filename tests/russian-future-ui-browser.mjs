@@ -138,9 +138,14 @@ try{
   const tabs=['media','learning','vocab','grammar','writing'];
   for(const view of tabs){
     await page.click(view==='learning'?'#nav [data-view="learning"][data-learn="practice"]':'#nav [data-view="'+view+'"]');
-    await page.waitForSelector('#view > .rf-tab-intro[data-view="'+view+'"]',{timeout:10000});
-    const visible=await page.locator('#view > .rf-tab-intro').isVisible();
-    assert.equal(visible,true,'Future intro missing for '+view);
+    if(view==='writing'){
+      await page.waitForFunction(()=>!document.querySelector('#view > .rf-tab-intro'),null,{timeout:10000});
+      assert.equal(await page.locator('#view > .writing-studio .writing-hero').count(),1,'Writing must use its single canonical hero');
+    }else{
+      await page.waitForSelector('#view > .rf-tab-intro[data-view="'+view+'"]',{timeout:10000});
+      const visible=await page.locator('#view > .rf-tab-intro').isVisible();
+      assert.equal(visible,true,'Future intro missing for '+view);
+    }
     const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
     assert.ok(overflow<=2,'Horizontal overflow in '+view+': '+overflow);
     if(view==='learning'){
