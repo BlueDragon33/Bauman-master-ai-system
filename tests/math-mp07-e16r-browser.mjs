@@ -38,49 +38,46 @@ try{
   report.checks.theory=theory;
 
   async function routeLessonThroughCurrentUi(lessonId,{moduleId='pure',courseId='pure-analysis',chapterId='c05'}={}){
-    await page.evaluate(()=>{
-      const st=window.__BAUMAN_CORE_API?.state||window.__MATH_STATE;
-      if(!st)throw new Error('Math learner state is unavailable');
-      st.view='learning';
-      st.learnTab='theory';
-      if(st.e169Path&&typeof st.e169Path==='object')st.e169Path.activityId='theory';
-      window.BAUMAN_MATH_THEORY_E129?.render?.();
-    });
-    await page.waitForFunction(()=>document.querySelector('[data-e169-open="module"]'),null,{timeout:10000});
-    const open=page.locator('[data-e169-open="module"]').first();
-    await open.waitFor({state:'visible',timeout:10000});
-    await open.click();
-    await page.locator(`[data-e169-pick-module="${moduleId}"]`).click();
-    await page.locator(`[data-e169-pick-course="${courseId}"]`).click();
-    await page.locator(`[data-e169-pick-chapter="${chapterId}"]`).click();
-    const lesson=page.locator(`[data-e169-pick-activity="theory"][data-e169-pick-lesson="${lessonId}"]`);
+    await page.evaluate(()=>window.BAUMAN_MATH_E186_LESSON_FIRST.open('module'));
+    const module=page.locator(`[data-e186-pick="module"][data-e186-id="${moduleId}"]`);
+    await module.waitFor({state:'visible',timeout:10000});
+    await module.click();
+    const course=page.locator(`[data-e186-pick="course"][data-e186-id="${courseId}"]`);
+    await course.waitFor({state:'visible',timeout:10000});
+    await course.click();
+    const chapter=page.locator(`[data-e186-pick="chapter"][data-e186-id="${chapterId}"]`);
+    await chapter.waitFor({state:'visible',timeout:10000});
+    await chapter.click();
+    const lesson=page.locator(`[data-e186-pick="lesson"][data-e186-id="${lessonId}"]`);
     await lesson.waitFor({state:'visible',timeout:10000});
     await lesson.click();
-    await page.waitForFunction(id=>{
-      const current=document.querySelector('[data-current-lesson]')?.getAttribute('data-current-lesson')||'';
-      return current===id;
-    },lessonId,{timeout:10000});
+    await page.waitForSelector(`[data-current-lesson="${lessonId}"]`,{timeout:10000});
+    await page.waitForFunction(id=>window.BAUMAN_MATH_E186_LESSON_FIRST?.path?.().lessonId===id,lessonId,{timeout:10000});
   }
 
   await routeLessonThroughCurrentUi(T02);
 
   async function activity(lessonId,activityId,minMatches){
-    const open=page.locator('[data-e169-open="activity"]').first();
-    await open.waitFor({state:'visible',timeout:10000});
-    await open.click();
-    const choice=page.locator(`[data-e169-pick-activity="${activityId}"]`).last();
+    await page.evaluate(()=>window.BAUMAN_MATH_E186_LESSON_FIRST.open('activity'));
+    const choice=page.locator(`[data-e186-pick="activity"][data-e186-id="${activityId}"]`);
     await choice.waitFor({state:'visible',timeout:10000});
     await choice.click();
     await page.waitForFunction(({lessonId,activityId,minMatches})=>{
-      const s=window.BAUMAN_MATH_ACTIVITY_STUDIO?.selfCheck?.();
-      return s?.lessonId===lessonId&&s?.activity===activityId&&s?.companionMatches>=minMatches;
+      const route=window.BAUMAN_MATH_E186_LESSON_FIRST?.path?.();
+      const check=window.BAUMAN_MATH_ACTIVITY_STUDIO?.selfCheck?.();
+      return route?.lessonId===lessonId&&route?.activityId===activityId&&check?.lessonId===lessonId&&check?.activity===activityId&&check?.companionMatches>=minMatches;
     },{lessonId,activityId,minMatches},{timeout:10000});
     await page.waitForTimeout(250);
-    const stable=await page.evaluate(()=>window.BAUMAN_MATH_ACTIVITY_STUDIO.selfCheck());
-    assert.equal(stable.lessonId,lessonId,`Activity route drifted after settle: ${activityId}`);
-    assert.equal(stable.activity,activityId,`Activity id drifted after settle: ${activityId}`);
-    assert.ok(stable.companionMatches>=minMatches,`Canonical matches dropped after settle: ${activityId}`);
-    return stable;
+    const stable=await page.evaluate(()=>({
+      route:window.BAUMAN_MATH_E186_LESSON_FIRST.path(),
+      studio:window.BAUMAN_MATH_ACTIVITY_STUDIO.selfCheck()
+    }));
+    assert.equal(stable.route.lessonId,lessonId,`E186 lesson route drifted after settle: ${activityId}`);
+    assert.equal(stable.route.activityId,activityId,`E186 activity route drifted after settle: ${activityId}`);
+    assert.equal(stable.studio.lessonId,lessonId,`Activity Studio lesson drifted after settle: ${activityId}`);
+    assert.equal(stable.studio.activity,activityId,`Activity Studio activity drifted after settle: ${activityId}`);
+    assert.ok(stable.studio.companionMatches>=minMatches,`Canonical matches dropped after settle: ${activityId}`);
+    return stable.studio;
   }
 
   report.checks.exercises=await activity(T02,'exercises',14);
