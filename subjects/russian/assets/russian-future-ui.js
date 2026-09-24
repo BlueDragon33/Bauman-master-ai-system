@@ -1,6 +1,8 @@
 'use strict';
 (function(){
   const STORAGE_KEY=window.SUBJECT_ADAPTER?.storageKey||'bauman_russian_survival_master_v11_clean_skeleton';
+  const LEARNING_STATE_KEY='bauman_russian_learning_state_v1';
+  const VOCAB_SRS_KEY='bauman_russian_vocab_srs_v1';
   const NAV_META={
     overview:['⌂','Tổng quan'],
     learning:['▤','Bài học'],
@@ -39,7 +41,8 @@
     storage:['DỮ LIỆU','Kho nguồn học tập và công cụ quản lý','Khu kỹ thuật phục vụ dữ liệu; không chen vào luồng học hằng ngày.',['Nguồn học','Khôi phục','Xuất/Nhập']]
   };
   function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
-  function state(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}')||{}}catch(_){return {}}}
+  function state(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}')||{}}catch(_){return {}}
+  function stored(key,fallback={}){try{return JSON.parse(localStorage.getItem(key)||'')||fallback}catch(_){return fallback}}}
   function metrics(){
     const st=state(),test=st.testSession||{};
     const answered=Math.max(0,Number(test.answered||0)),target=Math.max(1,Number(test.targetQuestions||100));
@@ -170,6 +173,43 @@
       grammar:{progress:flow.grammar?flow.grammar+' lượt thực hành':'Chưa có bằng chứng',info:'Ví dụ → pattern → luyện ngay'}
     };
   }
+  function learnerReport(m){
+    const learning=stored(LEARNING_STATE_KEY,{reviewQueue:{}}),srs=stored(VOCAB_SRS_KEY,{cards:{}});
+    const exam=Array.isArray(m.st.examHistory)?m.st.examHistory[0]:null;
+    const diagnosis=exam?.diagnosis||null;
+    const now=Date.now(),queue=Object.values(learning.reviewQueue||{});
+    const dueReviews=queue.filter(x=>!x?.dueAt||Date.parse(x.dueAt)<=now);
+    const reasonCounts=new Map();
+    dueReviews.forEach(x=>{const label=String(x?.label||x?.reason||'Mục cần ôn');reasonCounts.set(label,(reasonCounts.get(label)||0)+1)});
+    const repeated=[...reasonCounts.entries()].sort((a,b)=>b[1]-a[1]).slice(0,3);
+    const dueVocab=Object.values(srs.cards||{}).filter(x=>x?.dueAt&&Date.parse(x.dueAt)<=now).length;
+    const stg=stageLabel(m.st);
+    const strong=diagnosis?.strong?.length?diagnosis.strong.map(x=>x.label+' '+x.score+'%').join(' · '):'Chưa đủ dữ liệu Stage Check';
+    const weak=diagnosis?.weak?.length?diagnosis.weak.map(x=>x.label+' '+x.score+'%').join(' · '):(exam?'Chưa có kỹ năng dưới 80%':'Chưa đủ dữ liệu Stage Check');
+    const issues=repeated.length?repeated.map(([x,n])=>n>1?x+' ×'+n:x).join(' · '):(m.reviewWrong?m.reviewWrong+' câu sai đang chờ sửa':'Chưa có lỗi lặp lại được ghi nhận');
+    const next=diagnosis?.priority&&diagnosis.priority.score<80
+      ?'Ôn '+diagnosis.priority.label+' trước khi tăng độ khó.'
+      :dueReviews.length
+        ?'Xử lý '+dueReviews.length+' mục Review Queue đến hạn.'
+        :dueVocab
+          ?'Ôn '+dueVocab+' thẻ từ đến hạn rồi tiếp tục kế hoạch hôm nay.'
+          :'Tiếp tục kế hoạch hôm nay và tạo thêm bằng chứng học thật.';
+    return {stage:stg,strong,weak,issues,dueReviews:dueReviews.length,dueVocab,next};
+  }
+  function personalReportHtml(m){
+    const r=learnerReport(m);
+    const conclusion=r.weak==='Chưa có kỹ năng dưới 80%'
+      ?'Stage Check hiện chưa chỉ ra kỹ năng dưới ngưỡng; tiếp tục củng cố và xử lý lỗi thật.'
+      :r.weak;
+    return '<article class="rf-personal-report" data-report-scope="learner">'+
+      '<div class="rf-card-head"><div><h4>Báo cáo học tập cá nhân</h4><span>'+esc(r.stage[1]||r.stage[0]||'Giai đoạn hiện tại')+' · chỉ dùng dữ liệu học của bạn</span></div></div>'+
+      '<div class="rf-personal-report-grid">'+
+        '<section><b>Kết luận ngắn</b><p>'+esc(conclusion)+'</p></section>'+
+        '<section><b>Kỹ năng tốt</b><p>'+esc(r.strong)+'</p></section>'+
+        '<section><b>Vấn đề cần xử lý</b><p>'+esc(r.issues)+'</p><small>'+r.dueReviews+' mục ôn · '+r.dueVocab+' thẻ từ đến hạn</small></section>'+
+        '<section><b>Kế hoạch tiếp theo</b><p>'+esc(r.next)+'</p></section>'+
+      '</div></article>';
+  }
   function module(route,cls,ico,title,meta){
     return '<button class="rf-module-card '+cls+'" data-route=\''+esc(JSON.stringify(route))+'\'><div class="rf-module-head"><span class="rf-module-icon">'+ico+'</span><div><h4>'+esc(title)+'</h4><p>'+esc(meta.info)+'</p></div></div><div class="rf-module-progress"><span>Tiến độ</span><b>'+esc(meta.progress)+'</b></div></button>';
   }
@@ -214,6 +254,7 @@
         module({view:'writing',mode:'handwriting'},'rf-module-alpha','Ая','Luyện chữ',skills.writing)+
       '</div></div>'+
       learningPathHtml(m.st)+
+      personalReportHtml(m)+
       '<div class="rf-progress-strip">'+
         '<article class="rf-progress-item"><span class="rf-progress-icon">'+esc(sl[0])+'</span><div class="rf-progress-copy"><span>Giai đoạn</span><b>'+esc(sl[1])+' ('+esc(sl[0])+')</b><i style="--rf-p:'+pct+'%"></i></div></article>'+
         '<article class="rf-progress-item"><span class="rf-progress-icon">✓</span><div class="rf-progress-copy"><span>Đã ôn</span><b>'+m.reviewDone+' câu</b></div></article>'+
