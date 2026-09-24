@@ -10,7 +10,710 @@
   "frameSource": "simulation_frame.json",
   "legacyExportTarget": "simulations.json",
   "recordKey": "simulationId",
-  "records": [],
+  "records": [
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t01",
+      "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+      "chapterId": "MATH-VN-C01-vector_trong_khong_gian_",
+      "tags": [
+        "data matrix",
+        "multivariate data",
+        "orientation",
+        "feature schema"
+      ],
+      "sourceAnchors": [
+        "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+        "MATH-PREP-LA2-C10-L07"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "simulationId": "E16R-M_P07_T01-SIM01",
+      "title": "Orientation explorer",
+      "purpose": "Quan sát cách transpose đổi ý nghĩa hàng/cột và kích thước Gram matrices.",
+      "controls": [
+        {
+          "key": "n",
+          "type": "number",
+          "default": 8
+        },
+        {
+          "key": "p",
+          "type": "number",
+          "default": 6
+        },
+        {
+          "key": "orientation",
+          "type": "select",
+          "default": "rows_observations"
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "shape",
+          "label": "shape(X)"
+        },
+        {
+          "key": "featureGramShape",
+          "label": "shape(X^T X)"
+        },
+        {
+          "key": "obsGramShape",
+          "label": "shape(X X^T)"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t01",
+      "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+      "chapterId": "MATH-VN-C01-vector_trong_khong_gian_",
+      "tags": [
+        "data matrix",
+        "multivariate data",
+        "orientation",
+        "feature schema"
+      ],
+      "sourceAnchors": [
+        "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+        "MATH-PREP-LA2-C10-L07"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "simulationId": "E16R-M_P07_T01-SIM02",
+      "title": "Schema-swap failure lab",
+      "purpose": "Cho thấy đổi thứ tự feature vẫn chạy số học nhưng làm sai semantic output.",
+      "controls": [
+        {
+          "key": "swapColumns",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "key": "schemaVersion",
+          "type": "select",
+          "default": "v1"
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "shapeValid",
+          "label": "Shape valid?"
+        },
+        {
+          "key": "semanticValid",
+          "label": "Semantic valid?"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t02",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T02-centering-scaling",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "centering",
+        "standardization",
+        "z-score",
+        "leakage"
+      ],
+      "sourceAnchors": [
+        "MATH-HK2-MLB-C25-L07"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "simulationId": "E16R-M_P07_T02-SIM01",
+      "title": "Centering visual lab",
+      "purpose": "Quan sát cloud dữ liệu dịch về gốc mà hình dạng tương đối không đổi.",
+      "controls": [
+        {
+          "key": "meanX",
+          "type": "number",
+          "default": 10
+        },
+        {
+          "key": "meanY",
+          "type": "number",
+          "default": -5
+        },
+        {
+          "key": "center",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "outputMeanX",
+          "label": "mean x"
+        },
+        {
+          "key": "outputMeanY",
+          "label": "mean y"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t02",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T02-centering-scaling",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "centering",
+        "standardization",
+        "z-score",
+        "leakage"
+      ],
+      "sourceAnchors": [
+        "MATH-HK2-MLB-C25-L07"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "simulationId": "E16R-M_P07_T02-SIM02",
+      "title": "Scaling and PCA direction lab",
+      "purpose": "Quan sát trục PCA đổi khi scale một feature.",
+      "controls": [
+        {
+          "key": "scaleRatio",
+          "type": "number",
+          "default": 10
+        },
+        {
+          "key": "standardize",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "pc1Angle",
+          "label": "PC1 angle"
+        },
+        {
+          "key": "evr1",
+          "label": "EVR PC1"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t03",
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E16R-MP07-T03-covariance",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "tags": [
+        "covariance",
+        "variance",
+        "random variables"
+      ],
+      "sourceAnchors": [
+        "MATH-VN-PS-C05-L05"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "simulationId": "E16R-M_P07_T03-SIM01",
+      "title": "Covariance sign lab",
+      "purpose": "Thay slope/noise để quan sát dấu và độ lớn covariance.",
+      "controls": [
+        {
+          "key": "slope",
+          "type": "number",
+          "default": 1
+        },
+        {
+          "key": "noise",
+          "type": "number",
+          "default": 0.2
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "covariance",
+          "label": "Sample covariance"
+        },
+        {
+          "key": "scatterSlope",
+          "label": "Observed slope"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t03",
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E16R-MP07-T03-covariance",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "tags": [
+        "covariance",
+        "variance",
+        "random variables"
+      ],
+      "sourceAnchors": [
+        "MATH-VN-PS-C05-L05"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "simulationId": "E16R-M_P07_T03-SIM02",
+      "title": "Nonlinear zero-covariance lab",
+      "purpose": "Mô phỏng Y=X² với X đối xứng để thấy phụ thuộc phi tuyến có covariance gần 0.",
+      "controls": [
+        {
+          "key": "samples",
+          "type": "number",
+          "default": 500
+        },
+        {
+          "key": "noise",
+          "type": "number",
+          "default": 0
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "covariance",
+          "label": "Cov(X,Y)"
+        },
+        {
+          "key": "dependencyVisible",
+          "label": "Nonlinear pattern"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t04",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T04-pearson",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "pearson",
+        "correlation",
+        "causality",
+        "outlier"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-PS2-C15-L06"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "simulationId": "E16R-M_P07_T04-SIM01",
+      "title": "Pearson vs nonlinear relation",
+      "purpose": "Chọn linear/quadratic để so r và hình scatter.",
+      "controls": [
+        {
+          "key": "relation",
+          "type": "select",
+          "default": "linear"
+        },
+        {
+          "key": "noise",
+          "type": "number",
+          "default": 0.2
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "pearsonR",
+          "label": "Pearson r"
+        },
+        {
+          "key": "pattern",
+          "label": "Visible pattern"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t04",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T04-pearson",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "pearson",
+        "correlation",
+        "causality",
+        "outlier"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-PS2-C15-L06"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "simulationId": "E16R-M_P07_T04-SIM02",
+      "title": "Outlier sensitivity",
+      "purpose": "Thêm một outlier và quan sát r thay đổi.",
+      "controls": [
+        {
+          "key": "outlierMagnitude",
+          "type": "number",
+          "default": 0
+        },
+        {
+          "key": "samples",
+          "type": "number",
+          "default": 50
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "rBefore",
+          "label": "r before"
+        },
+        {
+          "key": "rAfter",
+          "label": "r after"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t05",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T05-covariance-matrix",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "covariance matrix",
+        "PSD",
+        "multivariate"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L05",
+        "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L01-matrix-as-data-and-transform-e142"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "simulationId": "E16R-M_P07_T05-SIM01",
+      "title": "Covariance matrix heatmap",
+      "purpose": "Thay correlation giữa ba feature và quan sát C.",
+      "controls": [
+        {
+          "key": "rho12",
+          "type": "number",
+          "default": 0.7
+        },
+        {
+          "key": "rho13",
+          "type": "number",
+          "default": 0.1
+        },
+        {
+          "key": "rho23",
+          "type": "number",
+          "default": 0.2
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "matrix",
+          "label": "Covariance matrix"
+        },
+        {
+          "key": "minEigenvalue",
+          "label": "min eigenvalue"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t05",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T05-covariance-matrix",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "covariance matrix",
+        "PSD",
+        "multivariate"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L05",
+        "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L01-matrix-as-data-and-transform-e142"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "simulationId": "E16R-M_P07_T05-SIM02",
+      "title": "Rank-deficiency lab",
+      "purpose": "Làm feature 3 thành tổ hợp tuyến tính của feature 1,2.",
+      "controls": [
+        {
+          "key": "dependency",
+          "type": "number",
+          "default": 1
+        },
+        {
+          "key": "noise",
+          "type": "number",
+          "default": 0
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "rank",
+          "label": "rank(C)"
+        },
+        {
+          "key": "eigenvalues",
+          "label": "eigenvalues"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t06",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "eigenvalue",
+        "eigenvector",
+        "covariance"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L01",
+        "MATH-PREP-LA2-C10-L05",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "simulationId": "E16R-M_P07_T06-SIM01",
+      "title": "2D covariance eigen-ellipse",
+      "purpose": "Thay variance/covariance để xem ellipse và eigenvectors.",
+      "controls": [
+        {
+          "key": "varX",
+          "type": "number",
+          "default": 4
+        },
+        {
+          "key": "varY",
+          "type": "number",
+          "default": 1
+        },
+        {
+          "key": "covXY",
+          "type": "number",
+          "default": 0.5
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "lambda1",
+          "label": "λ1"
+        },
+        {
+          "key": "lambda2",
+          "label": "λ2"
+        },
+        {
+          "key": "angle",
+          "label": "principal angle"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t06",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "eigenvalue",
+        "eigenvector",
+        "covariance"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L01",
+        "MATH-PREP-LA2-C10-L05",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "simulationId": "E16R-M_P07_T06-SIM02",
+      "title": "Eigenvalue degeneracy lab",
+      "purpose": "Đưa λ1 gần λ2 và quan sát principal direction kém ổn định.",
+      "controls": [
+        {
+          "key": "anisotropy",
+          "type": "number",
+          "default": 1
+        },
+        {
+          "key": "noise",
+          "type": "number",
+          "default": 0.01
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "eigengap",
+          "label": "eigengap"
+        },
+        {
+          "key": "directionStability",
+          "label": "direction stability"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t07",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "PCA",
+        "explained variance",
+        "projection"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L06",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "simulationId": "E16R-M_P07_T07-SIM01",
+      "title": "Explained variance slider",
+      "purpose": "Thay spectrum eigenvalue và chọn k.",
+      "controls": [
+        {
+          "key": "k",
+          "type": "number",
+          "default": 2
+        },
+        {
+          "key": "spectrumDecay",
+          "type": "number",
+          "default": 0.7
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "cevr",
+          "label": "Cumulative EVR"
+        },
+        {
+          "key": "discardedVariance",
+          "label": "Discarded variance"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t07",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "PCA",
+        "explained variance",
+        "projection"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L06",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "simulationId": "E16R-M_P07_T07-SIM02",
+      "title": "PCA rotation lab",
+      "purpose": "Xoay cloud 2D và quan sát PC1/PC2.",
+      "controls": [
+        {
+          "key": "angle",
+          "type": "number",
+          "default": 30
+        },
+        {
+          "key": "anisotropy",
+          "type": "number",
+          "default": 3
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "pc1Angle",
+          "label": "PC1 angle"
+        },
+        {
+          "key": "evr1",
+          "label": "EVR1"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t08",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "reconstruction",
+        "low rank",
+        "PCA error"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L08",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "simulationId": "E16R-M_P07_T08-SIM01",
+      "title": "Reconstruction error vs k",
+      "purpose": "Điều chỉnh k và xem error giảm.",
+      "controls": [
+        {
+          "key": "k",
+          "type": "number",
+          "default": 2
+        },
+        {
+          "key": "noise",
+          "type": "number",
+          "default": 0.1
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "error",
+          "label": "||X-X_hat||_F²"
+        },
+        {
+          "key": "cevr",
+          "label": "CEVR"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t08",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "reconstruction",
+        "low rank",
+        "PCA error"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L08",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "simulationId": "E16R-M_P07_T08-SIM02",
+      "title": "Low-rank image/data demo",
+      "purpose": "Giữ số singular values khác nhau để xem quality/storage tradeoff.",
+      "controls": [
+        {
+          "key": "rank",
+          "type": "number",
+          "default": 5
+        },
+        {
+          "key": "normalize",
+          "type": "boolean",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "relativeError",
+          "label": "Relative reconstruction error"
+        },
+        {
+          "key": "compressionRatio",
+          "label": "Compression ratio"
+        }
+      ],
+      "simulationClass": "application"
+    }
+  ],
   "importPolicy": {
     "key": "simulationId",
     "requires": [
@@ -69,12 +772,21 @@
     ],
     "auditStatus": "DRAFT"
   },
-  "updatedAt": "2026-06-22",
+  "updatedAt": "2026-09-23",
   "emoji": "🔬",
   "cleanArchitecturePolicy": {
     "contentMustNotStoreStageTree": true,
     "recordsMustUseStableIds": true,
     "defaultImportMode": "replace_by_key_then_append",
     "auditBeforeImport": true
+  },
+  "recoveryMeta": {
+    "E16R": {
+      "moduleId": "m_p07",
+      "imported": 16,
+      "key": "simulationId",
+      "branchOnly": true,
+      "status": "CONTENT_IMPORTED_PENDING_RUNTIME_GATE"
+    }
   }
 }
