@@ -197,17 +197,19 @@ try{
     if(view==='grammar'){
       await page.waitForSelector('.grammar-main-card .grammar-examples-first',{state:'visible',timeout:10000});
       await page.waitForSelector('.grammar-main-card .grammar-pattern-strip',{state:'visible',timeout:10000});
+      await page.waitForSelector('.grammar-main-card .grammar-rule-short',{state:'visible',timeout:10000});
       await page.waitForSelector('.grammar-main-card .grammar-practice-now',{state:'visible',timeout:10000});
       const grammarOrder=await page.evaluate(()=>{
         const main=document.querySelector('.grammar-main-card');
         const examples=main?.querySelector('.grammar-examples-first');
         const pattern=main?.querySelector('.grammar-pattern-strip');
+        const rule=main?.querySelector('.grammar-rule-short');
         const practice=main?.querySelector('.grammar-practice-now');
         const details=main?.querySelector('.grammar-concept-details');
         const pos=el=>el?[...main.children].indexOf(el):-1;
-        return {examples:pos(examples),pattern:pos(pattern),practice:pos(practice),details:pos(details),detailsOpen:Boolean(details?.open),exampleRu:[...main.querySelectorAll('.grammar-examples-first article b')].some(el=>/[А-Яа-яЁё]/.test(el.textContent||''))};
+        return {examples:pos(examples),pattern:pos(pattern),rule:pos(rule),practice:pos(practice),details:pos(details),detailsOpen:Boolean(details?.open),exampleRu:[...main.querySelectorAll('.grammar-examples-first article b')].some(el=>/[А-Яа-яЁё]/.test(el.textContent||''))};
       });
-      assert.ok(grammarOrder.examples>=0&&grammarOrder.examples<grammarOrder.pattern&&grammarOrder.pattern<grammarOrder.practice&&grammarOrder.practice<grammarOrder.details,'Grammar hierarchy must be examples → pattern → practice → deeper explanation');
+      assert.ok(grammarOrder.examples>=0&&grammarOrder.examples<grammarOrder.pattern&&grammarOrder.pattern<grammarOrder.rule&&grammarOrder.rule<grammarOrder.practice&&grammarOrder.practice<grammarOrder.details,'Grammar hierarchy must be examples → pattern → short rule → practice → deeper explanation');
       assert.equal(grammarOrder.detailsOpen,false,'Deeper grammar explanation must start collapsed');
       assert.equal(grammarOrder.exampleRu,true,'Grammar example-first surface must contain Russian examples');
       await page.locator('.grammar-concept-details summary').click();
