@@ -194,6 +194,9 @@ must(core.includes('data-input="vocabStatus"'),'Vocabulary library SRS status fi
 must(core.includes('grammar-examples-first'),'Grammar must present Russian examples before heavy explanation');
 must(core.includes('grammar-pattern-strip'),'Grammar quick pattern strip missing');
 must(core.includes('grammar-rule-short'),'Grammar short-rule block missing');
+must(core.includes('function examLearningPriority'),'Stage Check must derive strong/weak/priority feedback from real exam answers');
+must(core.includes('Kỹ năng tốt')&&core.includes('Kỹ năng yếu')&&core.includes('Ưu tiên tiếp theo'),'Stage Check feedback must expose strong skills, weak skills, and next learning priority');
+must(css.includes('.exam-learning-diagnosis')&&css.includes('.exam-priority-grid'),'Stage Check diagnosis presentation contract missing');
 must(core.includes('grammar-practice-now'),'Grammar immediate practice block missing');
 must(core.includes('<details class="grammar-concept-details">'),'Grammar deeper explanation must use progressive disclosure');
 must(core.indexOf('grammar-examples-first')<core.indexOf('grammar-pattern-strip')&&core.indexOf('grammar-pattern-strip')<core.indexOf('grammar-rule-short')&&core.indexOf('grammar-rule-short')<core.indexOf('grammar-practice-now')&&core.indexOf('grammar-practice-now')<core.indexOf('grammar-concept-details'),'Grammar order must be examples → pattern → short rule → practice → deeper explanation');
