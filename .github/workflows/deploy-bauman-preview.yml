@@ -123,7 +123,9 @@ jobs:
           if (value.application !== 'bauman-master-ai' || value.runtime !== 'control-service') throw new Error('Bauman Control identity mismatch.');
           if (value.channel !== 'cloudflare-preview') throw new Error('Bauman Control deployment channel mismatch.');
           if (!value.databaseReady) throw new Error('Bauman preview D1 schema is not ready.');
+          const expected = process.env.GITHUB_SHA;
           if (!value.revision || value.revision === 'unknown') throw new Error('Bauman Control build revision missing.');
+          if (value.revision !== expected) throw new Error(`Bauman Control preview revision ${value.revision} !== expected ${expected}`);
           NODE
 
           curl --fail --silent --show-error --max-time 15 \
@@ -150,7 +152,9 @@ jobs:
           const value = JSON.parse(fs.readFileSync('/tmp/bauman-runtime-deploy.json', 'utf8'));
           if (value.application !== 'bauman-master-ai' || value.runtime !== 'learning-runtime') throw new Error('Bauman Learning Runtime identity mismatch.');
           if (value.channel !== 'cloudflare-preview' || !value.controlOriginConfigured) throw new Error('Bauman Learning Runtime preview configuration mismatch.');
+          const expected = process.env.GITHUB_SHA;
           if (!value.revision || value.revision === 'unknown') throw new Error('Bauman Learning Runtime build revision missing.');
+          if (value.revision !== expected) throw new Error(`Bauman Learning Runtime preview revision ${value.revision} !== expected ${expected}`);
           NODE
 
           curl --fail --silent --show-error --max-time 15 "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/" > /tmp/bauman-home.html
