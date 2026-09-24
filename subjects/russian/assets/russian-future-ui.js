@@ -41,8 +41,13 @@
     storage:['DỮ LIỆU','Kho nguồn học tập và công cụ quản lý','Khu kỹ thuật phục vụ dữ liệu; không chen vào luồng học hằng ngày.',['Nguồn học','Khôi phục','Xuất/Nhập']]
   };
   function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
-  function state(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}')||{}}catch(_){return {}}
-  function stored(key,fallback={}){try{return JSON.parse(localStorage.getItem(key)||'')||fallback}catch(_){return fallback}}}
+  function state(){try{return JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}')||{}}catch(_){return {}}}
+  function stored(key,fallback={}){
+    try{
+      const raw=localStorage.getItem(key);
+      return raw?(JSON.parse(raw)||fallback):fallback;
+    }catch(_){return fallback}
+  }
   function metrics(){
     const st=state(),test=st.testSession||{};
     const answered=Math.max(0,Number(test.answered||0)),target=Math.max(1,Number(test.targetQuestions||100));
