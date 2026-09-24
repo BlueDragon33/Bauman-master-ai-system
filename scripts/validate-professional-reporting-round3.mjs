@@ -2,6 +2,10 @@ import fs from 'node:fs';
 
 const read=p=>fs.readFileSync(p,'utf8');
 const main=read('assets/js/academic-main.js');
+const event=read('assets/js/academic-event-runtime.js');
+const grade=read('assets/js/academic-grade-runtime.js');
+const transcript=read('assets/js/academic-transcript-runtime.js');
+const command=read('assets/js/academic-command-center-runtime.js');
 const css=read('assets/css/academic-2026.css');
 
 function must(value,message){if(!value)throw new Error(message)}
@@ -10,6 +14,21 @@ must(
   main.includes("window.confirm('Xóa kết quả diagnostic của '+id+'? Thao tác này không thể hoàn tác.')"),
   'Diagnostic deletion must require explicit destructive-action confirmation.'
 );
+
+must(
+  event.includes("window.confirm('Xóa readiness evidence của '+courseId+' · '+code+'? Thao tác này không thể hoàn tác.')"),
+  'Assessment readiness evidence deletion must require explicit destructive-action confirmation.'
+);
+must(
+  main.includes('window.academicReportMeta2026=academicReportMeta') &&
+  main.includes("['Người học',email?learner+' · '+email:learner]") &&
+  main.includes("['Lập lúc',generated]"),
+  'Professional report metadata must include learner identity and generation time.'
+);
+for (const [name,source] of [['grade',grade],['transcript',transcript],['command',command]]) {
+  must(source.includes('window.academicReportMeta2026?.('), name+' report must use the shared professional metadata block.');
+}
+
 must(
   css.includes('[data-academic-report]{margin:0!important;break-inside:auto!important;page-break-inside:auto!important}'),
   'Whole academic report must be allowed to paginate.'
