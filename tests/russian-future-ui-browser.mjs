@@ -157,11 +157,12 @@ try{
       const el=document.getElementById('ruLessonFlow');
       if(!el)return null;
       const rect=el.getBoundingClientRect();
-      return {height:rect.height,steps:el.querySelectorAll('[data-ru-flow-step]').length,hasFooter:Boolean(el.querySelector('.ru-flow-foot'))};
+      return {height:rect.height,steps:el.querySelectorAll('[data-ru-flow-step]').length,labels:[...el.querySelectorAll('[data-ru-flow-step] b')].map(x=>x.textContent.trim()),hasFooter:Boolean(el.querySelector('.ru-flow-foot'))};
     });
     if(view==='learning'){
       assert.ok(lessonFlow&&lessonFlow.height>=56&&lessonFlow.height<=80,'Lesson-detail stepper must stay within the 56–80px compact target');
-      assert.equal(lessonFlow.steps,7,'Compact lesson stepper must preserve all existing evidence/navigation steps');
+      assert.equal(lessonFlow.steps,5,'Lesson detail must expose exactly five learner-facing macro steps');
+      assert.deepEqual(lessonFlow.labels,['Nghe','Nhận diện','Viết','Thực hành','Kiểm tra'],'Lesson-detail macro step order drifted');
       assert.equal(lessonFlow.hasFooter,false,'Lesson-detail stepper must not become a dashboard-like footer flow');
     }else{
       assert.equal(lessonFlow,null,'Specialized tab '+view+' must put its own learning content first instead of prepending Learning Flow');
