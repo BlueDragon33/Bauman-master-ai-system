@@ -39,6 +39,8 @@ must(
 );
 must(!css.includes('[data-academic-report]{margin:0!important;break-inside:avoid}'),'Whole-report break-inside:avoid must not return.');
 must(css.includes('.grade14d-row')&&css.includes('.transcript14e-row')&&css.includes('break-inside:avoid'),'Row-level print protection must remain.');
+must(css.includes('grid-template-columns:repeat(auto-fit,minmax(180px,1fr))'),'Professional report metadata must use a readable responsive grid.');
+must(css.includes('background:#fff!important;border-color:#cfd4dc!important'),'Printed report metadata must remain high-contrast and paper-safe.');
 must(css.includes('pointer-events:none!important'),'Printed interactive controls must be non-interactive.');
 
 console.log('PROFESSIONAL_REPORTING_ROUND3_STATIC_PASS');
