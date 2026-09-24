@@ -207,18 +207,20 @@
         :dueVocab
           ?'Ôn '+dueVocab+' thẻ từ đến hạn rồi tiếp tục kế hoạch hôm nay.'
           :'Tiếp tục kế hoạch hôm nay và tạo thêm bằng chứng học thật.';
+    const reviewedVocab=Object.values(srs.cards||{}).filter(x=>Number(x?.reviewCount||0)>0);
     const evidenceTimes=[
       evidenceStamp(exam?.at),
-      evidenceStamp(learning.updatedAt),
-      evidenceStamp(srs.updatedAt),
+      ...queue.map(x=>evidenceStamp(x?.lastAttemptAt||x?.addedAt||x?.scheduledAt)),
+      ...reviewedVocab.map(x=>evidenceStamp(x?.lastReviewedAt||x?.firstReviewedAt)),
       ...Object.values(m.st.reviewProgress?.done||{}).map(x=>evidenceStamp(x?.at)),
       ...Object.values(m.st.reviewProgress?.wrong||{}).map(x=>evidenceStamp(x?.at))
     ].filter(Boolean);
+    const hasLearningEvidence=Boolean(evidenceTimes.length||Number(m.answered||0)>0||Number(m.reviewDone||0)>0||Number(m.reviewWrong||0)>0||reviewedVocab.length);
     const lastEvidenceAt=evidenceTimes.length?Math.max(...evidenceTimes):0;
     const stageCheck=exam&&Number.isFinite(Number(exam.score10))
       ?{status:exam.passed?'Đạt':'Chưa đạt',score:Number(exam.score10).toFixed(1)+'/10',at:exam.at||null}
       :{status:'Chưa thực hiện',score:'—',at:null};
-    const evidenceStatus=diagnosis?'Có Stage Check':(lastEvidenceAt?'Đang tích lũy':'Chưa đủ dữ liệu');
+    const evidenceStatus=diagnosis?'Có Stage Check':(hasLearningEvidence?'Đang tích lũy':'Chưa đủ dữ liệu');
     const conclusion=!exam
       ?'Chưa đủ dữ liệu Stage Check để kết luận năng lực. Báo cáo hiện chỉ tổng hợp evidence học tập đã ghi nhận.'
       :diagnosis?.weak?.length
