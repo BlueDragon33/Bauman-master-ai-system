@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `BAUMAN_PROFESSIONAL_UX_REPORTING_QA_POST_MERGE_RECONCILIATION`
+Current task: `BAUMAN_PROFESSIONAL_REPORTING_UX_ROUND2_POST_MERGE_RECONCILIATION`
 
-Status: `ROADMAP_V2_COMPLETE · RUSSIAN_LISTEN_WRITE_PROMOTED · ACADEMIC_PHASE2_A1_A6_PROMOTED · DEVICE_CONTRACT_V6_PROMOTED · CONTENT_REVIEW_V1_PROMOTED · DEEP_STUDY_JOURNAL_V1_PROMOTED · DSJ_PACKAGED_READINESS_FX_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_1_PROMOTED · RUSSIAN_FUTURE_REFERENCE_UI_PROMOTED · RUSSIAN_FUTURE_UI_IDEMPOTENCE_FX_PROMOTED · RUSSIAN_FUTURE_UI_PACKAGE_READINESS_FX_PROMOTED · RUSSIAN_VOCAB_VISUAL_IMMERSION_V1_PROMOTED · PRODUCTION_PUBLISH_GATE_V1_PROMOTED · RUSSIAN_UX_REFACTOR_PASS_1_10_PROMOTED · PROFESSIONAL_UX_REPORTING_QA_PROMOTED · CURRENT_MAIN_CLEAN`
+Status: `ROADMAP_V2_COMPLETE · RUSSIAN_LISTEN_WRITE_PROMOTED · ACADEMIC_PHASE2_A1_A6_PROMOTED · DEVICE_CONTRACT_V6_PROMOTED · CONTENT_REVIEW_V1_PROMOTED · DEEP_STUDY_JOURNAL_V1_PROMOTED · DSJ_PACKAGED_READINESS_FX_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_1_PROMOTED · RUSSIAN_FUTURE_REFERENCE_UI_PROMOTED · RUSSIAN_FUTURE_UI_IDEMPOTENCE_FX_PROMOTED · RUSSIAN_FUTURE_UI_PACKAGE_READINESS_FX_PROMOTED · RUSSIAN_VOCAB_VISUAL_IMMERSION_V1_PROMOTED · PRODUCTION_PUBLISH_GATE_V1_PROMOTED · RUSSIAN_UX_REFACTOR_PASS_1_10_PROMOTED · PROFESSIONAL_UX_REPORTING_QA_PROMOTED · PROFESSIONAL_REPORTING_UX_ROUND2_PROMOTED · CURRENT_MAIN_CLEAN`
 
 Date: 2026-09-24
 Branch: `main`
@@ -33,6 +33,7 @@ Promoted current-main capabilities:
 - Production Publish Gate v1 — PR #102 merged as `51138b9e9f9a60c47d91a354446532e8064a545f`.
 - Russian UX/UI learner-first refactor PASS 2→10 — PR #108 merged as `59d4bc3bad24c20eac09376fe27f564d9dc9a87e`; PASS 1 was already promoted before this merge.
 - Professional UX and reporting QA hardening — PR #111 merged as `cbdba1a5cee8703f6ceed2c94e070909d7014a93`.
+- Professional academic reports UX round 2 — PR #113 merged as `2a72d7c8934e1023d24e6158baea9ca85e8a6e44`.
 
 ## Device Contract v6
 
@@ -339,6 +340,47 @@ Validated again after merge on current `main` commit `cbdba1a5cee8703f6ceed2c94e
 
 This is QA/UX/reporting hardening only. It does not create L36, mutate scheduler/mastery/course completion, promote assessment events into transcript rows, or authorize production deployment.
 
+## Professional academic reports UX round 2
+
+PR #113 completed the follow-up professional report and UX audit after PR #111.
+
+Promoted behavior:
+
+- A3 grade forms and validation messages use learner-facing Vietnamese instead of internal labels such as Numeric score, Official grade, Grade Control or derivedGrade;
+- A4 transcript/honors surfaces use learner-facing verified-data terminology instead of developer-facing evidence labels;
+- A5 academic summary actions use learner-facing names for course readiness, event readiness, results and transcript data;
+- A3, A4 and A5 report surfaces expose explicit scope, data provenance/limits and an `In / lưu PDF` action;
+- shared `printAcademicReport2026()` prints only the active academic report instead of the entire Hub chrome;
+- Academic Reporting UX QA now watches the shared academic JS/CSS presentation layer so report-shell regressions cannot bypass the dedicated gate;
+- destructive transcript deletion remains explicit-confirmation guarded and cancel-safe;
+- scheduler, mastery, course-completion, transcript auto-promotion and honors-authority boundaries remain unchanged.
+
+Concrete QA defects found and fixed during validation:
+
+- two remaining A3 validation messages still exposed the internal labels Numeric score and Official grade;
+- the A4 deletion confirmation text became duplicated during terminology cleanup and was normalized without weakening the confirmation guard;
+- the first A3 browser assertion assumed two dynamic grade fields must always coexist; it was corrected to validate learner-facing terminology according to the actual UI state rather than forcing an invalid form shape.
+
+Validated on PR #113 final head `f198d1f3629291a13b453e22e629b5d8a6ff30a5`:
+
+- Academic Reporting UX QA run `35950721602` — SUCCESS;
+- Academic 2026 Prerequisite Gate run `35950721605` — SUCCESS;
+- Bauman Cloudflare Preview CI run `35950721653` — SUCCESS;
+- Bauman Cloudflare Production Publish Gate CI run `35950721606` — SUCCESS;
+- Windows checkout safety run `35950721633` — SUCCESS;
+- Whole System Integration Gate run `35950721613` — SUCCESS, including direct and packaged browser acceptance.
+
+Validated again after merge on current `main` commit `2a72d7c8934e1023d24e6158baea9ca85e8a6e44`:
+
+- Academic Reporting UX QA run `35951004039` — SUCCESS;
+- Academic 2026 Prerequisite Gate run `35951004012` — SUCCESS;
+- Bauman Cloudflare Preview CI run `35951003960` — SUCCESS;
+- Bauman Cloudflare Production Publish Gate CI run `35951003997` — SUCCESS;
+- Windows checkout safety run `35951004046` — SUCCESS;
+- Whole System Integration Gate run `35951003978` — SUCCESS, including direct and packaged acceptance.
+
+This is UX/reporting hardening only. It does not create L36, authorize production deployment, change academic authority or mutate scheduler/mastery/course-completion semantics.
+
 ## Intentional capability layering
 
 The base control worker intentionally keeps `learningAccessGate: false` until the deployment/preview wrapper verifies D1 + app-origin readiness. Do not flatten this fail-closed layering.
@@ -369,4 +411,5 @@ Roadmap V2 itself does **not** authorize production deployment. Production Publi
 7. Audit open issues/PRs and current contracts before creating new work.
 8. Treat Russian UX/UI PASS 2→10 merge commit `59d4bc3bad24c20eac09376fe27f564d9dc9a87e` as promoted current-main behavior; do not reopen or promote stale PR #109.
 9. Preserve Professional UX and reporting QA hardening from PR #111, including meaningful-evidence reporting, destructive-data confirmation and the Academic Reporting UX QA gate.
-10. Create a new round only for a concrete defect, explicit missing capability or newly requested feature.
+10. Preserve Professional academic reports UX round 2 from PR #113, including learner-facing terminology, report scope/provenance metadata, scoped print/PDF presentation and shared-report QA path coverage.
+11. Create a new round only for a concrete defect, explicit missing capability or newly requested feature.
