@@ -122,7 +122,7 @@
     try{const v=id=>document.getElementById(id),state=recordEntry(rowId,{entryVerified:v('transcript14eVerified')?.checked===true,source:v('transcript14eSource')?.value||'',selectedOptionId:v('transcript14eOption')?.value||'',transcriptValue:v('transcript14eValue')?.value,notes:v('transcript14eNotes')?.value||''});openEntry(rowId);if(typeof window.toast==='function')window.toast(`${rowId}: ${state.label}`)}
     catch(err){alert(err.message||String(err))}
   }
-  function clearFromUi(rowId){if(!window.confirm('Xóa dữ liệu đã xác minh phụ lục đã xác minh cho '+rowId+'? Thao tác này không thể hoàn tác.'))return;clearEntry(rowId);openEntry(rowId)}
+  function clearFromUi(rowId){if(!window.confirm('Xóa dữ liệu phụ lục đã xác minh cho '+rowId+'? Thao tác này không thể hoàn tác.'))return;clearEntry(rowId);openEntry(rowId)}
   function refreshUi(){return true}
   function openOverview(){
     const body=renderPanel();
