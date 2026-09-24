@@ -8,6 +8,7 @@
   let policy=null,curriculum=null;
   const clone=x=>x==null?x:JSON.parse(JSON.stringify(x));
   const h=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  const dateLabel=v=>{if(!v)return '';const d=new Date(v);return Number.isFinite(d.getTime())?d.toLocaleDateString('vi-VN'):''};
   const gradeRuntime=()=>window.BAUMAN_GRADE_CONTROL_2026||null;
 
   function currentUserScope(){
@@ -95,8 +96,14 @@
   }
   function renderPanel(){
     const e=honorsEvaluation(),p=e.projection;
-    const rows=candidateRows().map(r=>{const s=entryState(r.rowId);return `<button class="transcript14e-row" onclick="openAcademicTranscriptEntry2026('${h(r.rowId)}')"><span><b>${h(r.rowId)} · ${h(r.nameRu)}</b><small>${h(r.kind)} · ${r.expectedNature==='graded'?'dòng có điểm':'Зчт / loại khỏi % nếu зачтено'}</small></span>${badge(s)}</button>`}).join('');
-    return `<section class="transcript14e-shell" data-transcript14e="ledger"><article class="academic2026-panel"><div class="academic2026-head"><div><span class="academic2026-badge">PHASE2 · A4 · EVIDENCE</span><h3>Diploma Supplement · Honors Evidence</h3><p>Tính bằng đỏ theo dòng phụ lục đã xác minh, không theo số assessment event. Mỗi môn/practice/GIA dùng cấu trúc dòng theo Order 670.</p></div><span class="academic2026-lock">No event auto-promotion</span></div><div class="transcript14e-kpis"><span><b>${e.verifiedRows}/${e.totalRows}</b><small>ROW VERIFIED</small></span><span><b>${p.projectedGradeBearingRows}</b><small>GRADED PROJECTION</small></span><span><b>${p.requiredFiveIfProjectionConfirmed}</b><small>5s NEEDED*</small></span><span><b>${e.fiveCount}</b><small>5s VERIFIED</small></span></div><div class="transcript14e-status"><b>${h(e.label)}</b><small>* ${p.projectedGradeBearingRows} dòng có điểm và ${p.requiredFiveIfProjectionConfirmed} điểm 5 chỉ là projection từ curriculum hiện tại; nếu có course work/project hoặc quy tắc cục bộ bổ sung thì mẫu số phải cập nhật. Hub không tuyên bố đủ điều kiện bằng đỏ cuối cùng cho tới khi mapping phụ lục IU5/mẫu số được xác minh.</small></div><div class="transcript14e-list">${rows}</div></article></section>`;
+    const rows=candidateRows().map(r=>{
+      const s=entryState(r.rowId),evidence=s.evidence;
+      const meta=evidence
+        ?[r.expectedNature==='graded'?'Dòng có điểm':'Зчт · không vào % nếu зачтено','Đã xác minh',dateLabel(evidence.verifiedAt),evidence.source].filter(Boolean).join(' · ')
+        :[r.kind,r.expectedNature==='graded'?'Dòng có điểm':'Зчт · không vào % nếu зачтено','Chưa xác minh'].join(' · ');
+      return `<button class="transcript14e-row" onclick="openAcademicTranscriptEntry2026('${h(r.rowId)}')"><span><b>${h(r.rowId)} · ${h(r.nameRu)}</b><small>${h(meta)}</small></span>${badge(s)}</button>`;
+    }).join('');
+    return `<section class="transcript14e-shell" data-transcript14e="ledger"><article class="academic2026-panel"><div class="academic2026-head"><div><span class="academic2026-badge">HỌC VỤ · PHỤ LỤC VĂN BẰNG</span><h3>Báo cáo phụ lục văn bằng & mục tiêu bằng đỏ</h3><p>Chỉ tính trên từng dòng phụ lục đã được xác minh, không suy diễn từ số assessment event. Mỗi môn, practice và GIA giữ nguyên cấu trúc theo nguồn học vụ hiện có.</p></div><span class="academic2026-lock">Không tự suy diễn từ assessment</span></div><div class="transcript14e-kpis"><span><b>${e.verifiedRows}/${e.totalRows}</b><small>DÒNG ĐÃ XÁC MINH</small></span><span><b>${p.projectedGradeBearingRows}</b><small>DÒNG CÓ ĐIỂM DỰ KIẾN</small></span><span><b>${p.requiredFiveIfProjectionConfirmed}</b><small>ĐIỂM 5 CẦN THIẾT*</small></span><span><b>${e.fiveCount}</b><small>ĐIỂM 5 ĐÃ XÁC MINH</small></span></div><div class="transcript14e-status"><b>${h(e.label)}</b><small>* ${p.projectedGradeBearingRows} dòng có điểm và ${p.requiredFiveIfProjectionConfirmed} điểm 5 vẫn là phép chiếu từ curriculum hiện tại. Nếu xuất hiện course work/project hoặc quy tắc cục bộ bổ sung, mẫu số phải được cập nhật. Hệ thống không tuyên bố đủ điều kiện bằng đỏ cuối cùng trước khi mapping phụ lục IU5 và mẫu số được xác minh.</small></div><div class="transcript14e-list">${rows}</div></article></section>`;
   }
   function form(rowId){
     const row=rowById(rowId);if(!row)return '<p>Không có dòng.</p>';const s=entryState(rowId),e=s.evidence||{};
@@ -115,11 +122,11 @@
     try{const v=id=>document.getElementById(id),state=recordEntry(rowId,{entryVerified:v('transcript14eVerified')?.checked===true,source:v('transcript14eSource')?.value||'',selectedOptionId:v('transcript14eOption')?.value||'',transcriptValue:v('transcript14eValue')?.value,notes:v('transcript14eNotes')?.value||''});openEntry(rowId);if(typeof window.toast==='function')window.toast(`${rowId}: ${state.label}`)}
     catch(err){alert(err.message||String(err))}
   }
-  function clearFromUi(rowId){clearEntry(rowId);openEntry(rowId)}
+  function clearFromUi(rowId){if(!window.confirm('Xóa evidence phụ lục đã xác minh cho '+rowId+'? Thao tác này không thể hoàn tác.'))return;clearEntry(rowId);openEntry(rowId)}
   function refreshUi(){return true}
   function openOverview(){
     const body=renderPanel();
-    if(typeof window.openModal==='function')return window.openModal('Diploma Supplement · Honors Evidence',body,true);
+    if(typeof window.openModal==='function')return window.openModal('Báo cáo phụ lục văn bằng & mục tiêu bằng đỏ',body,true);
     return null;
   }
   async function fetchJson(url){const r=await fetch(url,{cache:'no-cache'});if(!r.ok)throw new Error(`${url} HTTP ${r.status}`);return r.json()}
