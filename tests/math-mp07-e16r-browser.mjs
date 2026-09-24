@@ -37,19 +37,31 @@ try{
   assert.equal(theory[PCA]?.slides,22,'PCA anchor must remain 22 slides after E16R upgrade');
   report.checks.theory=theory;
 
+  async function routeLessonThroughCurrentUi(lessonId,{moduleId='pure',courseId='pure-analysis',chapterId='c05'}={}){
+    const open=page.locator('[data-e169-open="module"]').first();
+    await open.waitFor({state:'visible',timeout:10000});
+    await open.click();
+    await page.locator(`[data-e169-pick-module="${moduleId}"]`).click();
+    await page.locator(`[data-e169-pick-course="${courseId}"]`).click();
+    await page.locator(`[data-e169-pick-chapter="${chapterId}"]`).click();
+    const lesson=page.locator(`[data-e169-pick-activity="theory"][data-e169-pick-lesson="${lessonId}"]`);
+    await lesson.waitFor({state:'visible',timeout:10000});
+    await lesson.click();
+    await page.waitForFunction(id=>{
+      const current=document.querySelector('[data-current-lesson]')?.getAttribute('data-current-lesson')||'';
+      return current===id;
+    },lessonId,{timeout:10000});
+  }
+
+  await routeLessonThroughCurrentUi(T02);
+
   async function activity(lessonId,activityId,minMatches){
-    await page.evaluate(({lessonId,activityId})=>{
-      const st=window.__BAUMAN_CORE_API?.state||window.__MATH_STATE||{};
-      const physicalChapter=(lessonId.match(/^MATH-VN-C(\d{2})-/)||[])[1]||'';
-      const chapterId=physicalChapter?('c'+physicalChapter):'c01';
-      const courseId=Number(physicalChapter)>=4?'pure-analysis':'pure-algebra';
-      const route={moduleId:'pure',courseId,chapterId,lessonId,activityId};
-      st.view='learning';st.learnTab=activityId;st.e129LessonId=lessonId;
-      st.e186Path={...(st.e186Path||{}),...route};
-      st.e169Path={...(st.e169Path||{}),...route,contentId:lessonId};
-      st.e129ChapterId=lessonId.replace(/-E16R.*$/,'').replace(/-L\d+.*$/,'');
-      window.BAUMAN_MATH_ACTIVITY_STUDIO.render();
-    },{lessonId,activityId});
+    const open=page.locator('[data-e169-open="activity"]').first();
+    await open.waitFor({state:'visible',timeout:10000});
+    await open.click();
+    const choice=page.locator(`[data-e169-pick-activity="${activityId}"]`).last();
+    await choice.waitFor({state:'visible',timeout:10000});
+    await choice.click();
     await page.waitForFunction(({lessonId,activityId,minMatches})=>{
       const s=window.BAUMAN_MATH_ACTIVITY_STUDIO?.selfCheck?.();
       return s?.lessonId===lessonId&&s?.activity===activityId&&s?.companionMatches>=minMatches;
