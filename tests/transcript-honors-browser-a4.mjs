@@ -42,6 +42,11 @@ try{
   await page.locator('[data-a4-transcript-open]').click();
   await page.waitForFunction(()=>Boolean(window.BAUMAN_TRANSCRIPT_HONORS_2026&&window.BAUMAN_DIPLOMA_HONORS_POLICY_2026),null,{timeout:15000});
   await page.waitForSelector('#modalRoot [data-transcript14e="ledger"]');
+  const transcriptReportText=await page.locator('#modalRoot [data-transcript14e="ledger"]').innerText();
+  for(const label of ['Báo cáo phụ lục văn bằng & mục tiêu bằng đỏ','DÒNG ĐÃ XÁC MINH','DÒNG CÓ ĐIỂM DỰ KIẾN','ĐIỂM 5 CẦN THIẾT','ĐIỂM 5 ĐÃ XÁC MINH']){
+    must(transcriptReportText.includes(label),'Professional transcript report missing '+label);
+  }
+  must(/không tuyên bố đủ điều kiện bằng đỏ cuối cùng/i.test(transcriptReportText),'Transcript report must preserve the projection caveat');
 
   const result=await page.evaluate(()=>{
     const t=window.BAUMAN_TRANSCRIPT_HONORS_2026,key='bauman_current_user_fullcode_v1';
