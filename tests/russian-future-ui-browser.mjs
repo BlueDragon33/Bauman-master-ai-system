@@ -318,6 +318,22 @@ try{
     }
   }
 
+  // PASS 8: lesson Check is a bounded 3–5 question Mini Check, not the full Review bank.
+  await page.click('#nav [data-view="learning"][data-learn="practice"]');
+  await page.waitForSelector('#ruLessonFlow [data-ru-flow-step="check"]',{timeout:10000});
+  const miniLesson=await page.evaluate(()=>document.querySelector('#ruLessonFlow .ru-flow-head > span')?.textContent?.replace(/^LESSON\s*·\s*/,'').trim()||'');
+  await page.locator('#ruLessonFlow [data-ru-flow-step="check"]').click();
+  await page.waitForSelector('.review-studio',{state:'visible',timeout:30000});
+  await page.waitForFunction(()=>document.querySelector('.assessment-title-line .chip')?.textContent?.includes('MINI CHECK'),null,{timeout:10000});
+  const miniCheck=await page.evaluate(()=>({
+    chip:document.querySelector('.assessment-title-line .chip')?.textContent?.trim()||'',
+    lesson:document.querySelector('[data-input="reviewLesson"]')?.value||'',
+    count:Number((document.querySelector('.assessment-title-line > b')?.textContent||'').match(/\/(\d+)/)?.[1]||0)
+  }));
+  assert.ok(miniCheck.count>=3&&miniCheck.count<=5,'Lesson Mini Check must contain 3–5 real lesson questions');
+  assert.equal(miniCheck.lesson,miniLesson,'Lesson Mini Check must remain scoped to the lesson that launched it');
+  assert.match(miniCheck.chip,/MINI CHECK/,'Lesson Check must be visibly distinct from full Review');
+
   await page.click('#nav [data-view="overview"]');
   await page.waitForSelector('.rf-dashboard');
   await page.screenshot({path:path.join(OUT,'russian-future-overview-1672x941.png'),fullPage:true});
