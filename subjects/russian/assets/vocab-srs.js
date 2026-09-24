@@ -44,12 +44,12 @@
     const difficult=Number(card.lapses||0)>0||['forgot','unsure'].includes(card.lastRating);
     if(due)return 'due';
     if(difficult)return 'difficult';
-    return 'learned';
+    if(Number(card.reviewCount||0)>0&&card.lastRating==='recalled')return 'learned';
+    return 'learning';
   }
   function filterItems(items,status='all'){
     const list=Array.isArray(items)?items:[];
     if(status==='all')return list;
-    if(status==='learned')return list.filter((item,i)=>statusForItem(item,i)!=='new');
     return list.filter((item,i)=>statusForItem(item,i)===status);
   }
   function stableCard(meta=currentMeta()){

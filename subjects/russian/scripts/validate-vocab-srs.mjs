@@ -59,7 +59,9 @@ must(js.includes('stageIndexNow'),'Review routing must retain a stage-relative p
 must(js.includes('loadVocabItem(meta.sourceIndex)'),'Sentence Mining must read the exact canonical source item');
 must(js.includes('function statusForItem'),'Vocabulary status must derive from real SRS card state');
 must(js.includes('function filterItems'),'Vocabulary library status filtering must reuse SRS state');
-must(js.includes("status==='learned'"),'Vocabulary library must expose the learned status without a second state store');
+must(js.includes("return 'learning'"),'Vocabulary exposure must remain an in-progress state until real review evidence exists');
+must(js.includes("Number(card.reviewCount||0)>0&&card.lastRating==='recalled'"),'Vocabulary learned status must require a real recalled review');
+must(!js.includes("if(status==='learned')return list.filter((item,i)=>statusForItem(item,i)!=='new')"),'Opening/exposing a card must never count as learned');
 must(js.includes('aria-current="${mode===x?\'step\':\'false\'}"'),'Vocabulary learning steps must expose aria-current');
 must(!js.includes('meaning:clean(n.meaningVi||n.english||n.meaningRu)'),'Sentence Mining must not restore Vietnamese/English glosses into the learning surface');
 must(js.includes("meaning:clean(n.meaningRu||'')"),'Source sentence mining may retain Russian-only context');

@@ -39,8 +39,20 @@ try{
   await page.goto(url,{waitUntil:'domcontentloaded',timeout:30000});
   await page.waitForSelector('#nav [data-view="writing"]',{timeout:30000});
   await page.click('#nav [data-view="writing"]');
+  await page.waitForSelector('.handwriting-cycle',{timeout:15000});
   await page.waitForSelector('.hand-listen-write-card',{timeout:15000});
+  await page.waitForSelector('#writingCanvas',{timeout:15000});
   await page.waitForSelector('.hand-exercise-card',{timeout:15000});
+  const workbenchOrder=await page.evaluate(()=>{
+    const cycle=document.querySelector('.handwriting-cycle');
+    const canvas=document.querySelector('#writingCanvas');
+    const exercise=document.querySelector('.hand-exercise-card');
+    const labels=[...cycle.querySelectorAll('span')].map(x=>x.textContent.trim());
+    return {labels,canvasTop:canvas.getBoundingClientRect().top,exerciseTop:exercise.getBoundingClientRect().top,vh:innerHeight};
+  });
+  assert.deepEqual(workbenchOrder.labels,['01 · NHÌN','02 · NGHE','03 · TÔ NÉT','04 · TỰ VIẾT','05 · NGHE → VIẾT'],'Handwriting cycle order drifted');
+  assert.ok(workbenchOrder.canvasTop<workbenchOrder.exerciseTop,'Primary canvas must appear before secondary listen-write exercise');
+  assert.ok(workbenchOrder.canvasTop<workbenchOrder.vh,'Handwriting canvas must begin above the fold on the reference viewport');
 
   // S22: rapid playback must cancel the previous utterance and preserve Russian locale/rates.
   await page.click('[data-act="hand-speak-name"]');
@@ -132,6 +144,10 @@ try{
   });
   await noSpeechPage.goto(url,{waitUntil:'domcontentloaded',timeout:30000});
   await noSpeechPage.waitForSelector('#nav [data-view="writing"]',{timeout:30000});
+  const mobileNavToggle=noSpeechPage.locator('.rf-sidebar-toggle');
+  await mobileNavToggle.waitFor({state:'visible',timeout:10000});
+  await mobileNavToggle.click();
+  await noSpeechPage.waitForFunction(()=>document.body.classList.contains('rf-sidebar-open'),null,{timeout:5000});
   await noSpeechPage.click('#nav [data-view="writing"]');
   await noSpeechPage.waitForSelector('.hand-listen-write-card',{timeout:15000});
   assert.equal(await noSpeechPage.locator('[data-act="hand-speak-name"]').isDisabled(),true,'Speech-unavailable name control must be disabled');

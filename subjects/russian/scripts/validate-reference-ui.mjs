@@ -16,6 +16,7 @@ const optionalLoader=read('assets/russian-optional-data-loader.js');
 const contentContract=read('assets/content-contract.js');
 const contentContractCss=read('assets/content-contract.css');
 const core=read('assets/core.js');
+const coreCss=read('assets/core.css');
 const adapter=read('assets/subject-adapter.js');
 const chatgptPackage=fs.readFileSync(path.resolve('scripts/prepare-chatgpt-site.mjs'),'utf8');
 const previewPackage=fs.readFileSync(path.resolve('scripts/prepare-cloudflare-preview.mjs'),'utf8');
@@ -46,7 +47,7 @@ must(index.includes('aria-modal="true"'),'Modal must declare aria-modal');
 must(index.includes('aria-label="Đóng hộp thoại"'),'Modal close button must have an accessible name');
 must(!index.includes('/priˈvʲet/'),'Learning shell must not expose a hard-coded pronunciation sample as canonical data');
 
-for(const token of ['.grammar-examples-first','.grammar-pattern-strip','.grammar-concept-details','.ru-app-shell','.rf-continue-band','.rf-today-plan','.rf-module-grid','.rf-dashboard-lower','.vocab-progressive-details','@media (max-width:1080px)','@media (max-width:760px)','@media (max-width:480px)']){
+for(const token of ['.grammar-examples-first','.grammar-pattern-strip','.grammar-rule-short','.grammar-concept-details','.ru-app-shell','.rf-continue-card','.rf-today-review-grid','.rf-today-plan','.rf-review-now','.rf-module-grid','.rf-module-progress','.rf-learning-path','.vocab-progressive-details','@media (max-width:1080px)','@media (max-width:760px)','@media (max-width:480px)']){
   must(css.includes(token),`Missing CSS contract: ${token}`);
 }
 for(const token of ['.ru-legacy-overview-details','.ru-empty-activity',':focus-visible','prefers-reduced-motion']){
@@ -79,17 +80,33 @@ must(js.includes('data-route'),'Canonical shortcuts must use core routing contra
 must(js.includes("aiQuick:'intro'"),'Global search must be able to open AI Mentor');
 must(js.includes("act:'route-modal'"),'Global search must be able to open today schedule');
 must(js.includes('collapseLegacyOverview'),'Overview must preserve legacy tools in a compact disclosure');
-for(const token of ['HỌC TIẾP','Kế hoạch hôm nay','5 kỹ năng chính','Ôn tập trọng điểm']) must(js.includes(token),`Canonical Home hierarchy missing: ${token}`);
+for(const token of ['HỌC TIẾP','Hôm nay','CẦN ÔN','5 kỹ năng chính','Learning Path']) must(js.includes(token),`Canonical Home hierarchy missing: ${token}`);
+must(js.includes('RussianLearningState?.dueReviews?.()'),'Overview review summary must read the real due Review Queue');
+must(!js.includes('Math.max(0,m.reviewDone?0:1)'),'Overview must not synthesize a fake review count when no evidence exists');
+must(js.includes('function skillEvidence'),'Overview skill cards must derive learner status from real state/evidence');
+must(js.includes('function learningPathHtml'),'Overview must expose the compact six-stage Learning Path');
 must(js.includes('navigator.platform'),'Shortcut hint must adapt to the user platform');
 must(!js.includes('base+Math.round'),'Skill cards must not synthesize fake per-skill progress');
 must(!js.includes('mini-progress'),'Skill cards must not display invented per-skill progress bars');
-for(const token of ['ru-future-ui','rf-progress-strip','rf-module-grid','rf-dashboard-lower','rf-tab-intro','--rf-sidebar:220px','--rf-sidebar-compact:190px','--rf-content-max:1500px','--rf-section-gap:12px','--rf-motion-fast:180ms','grid-template-columns:var(--rf-sidebar) minmax(0,1fr)','display:none!important']) must(futureCss.includes(token),`Future UI CSS missing ${token}`);
+for(const token of ['ru-future-ui','rf-progress-strip','rf-module-grid','rf-learning-path','rf-tab-intro','--rf-sidebar:220px','--rf-sidebar-compact:220px','--rf-content-max:1120px','--rf-reading-max:820px','--rf-card-padding:22px','--rf-section-gap:28px','--rf-font-md:15px','--rf-font-hero:32px','--rf-motion-fast:180ms','grid-template-columns:var(--rf-sidebar) minmax(0,1fr)','display:none!important']) must(futureCss.includes(token),`Future UI CSS missing ${token}`);
+must(futureCss.includes('.rf-module-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))'),'Overview skill cards must use at most two columns on desktop');
+must(!futureCss.includes('.rf-module-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))'),'Five learning cards must not return to one desktop row');
 must(futureCss.includes('@media(max-width:1320px){\n .ru-future-ui .ru-app-shell{grid-template-columns:var(--rf-sidebar-compact)'), 'Laptop breakpoint must activate the compact sidebar token at <=1320px');
+for(const token of ['@media(max-width:767px)','rf-sidebar-toggle','rf-sidebar-scrim','rf-sidebar-open','width:min(86vw,320px)','height:100dvh']){
+  must(futureCss.includes(token),`PASS 2 mobile drawer contract missing: ${token}`);
+}
+must(futureJs.includes('function upgradeMobileShell'),'PASS 2 mobile shell runtime missing');
+must(futureJs.includes("aria-controls',sidebar.id")&&futureJs.includes("aria-expanded','false'"),'Mobile drawer toggle must expose ARIA state');
+must(futureJs.includes("e.key==='Escape'&&document.body.classList.contains('rf-sidebar-open')"),'Mobile drawer must close with Escape');
+for(const token of ['.density-compact .view{max-width:1420px}','.density-wide .view{max-width:1740px}','body.density-wide .view{max-width:1680px!important}','body.main-balanced .view{max-width:1500px','body.main-focus .view{max-width:1420px','.view{max-width:1720px!important','.app{grid-template-columns:340px minmax(0,1fr)!important']){
+  must(!coreCss.includes(token),`Legacy interface width override must stay removed: ${token}`);
+}
+must(!coreCss.includes('max-width:1680px!important'),'Legacy core 1680px learner-view override must not defeat the canonical 1120px container');
 must(!futureCss.includes('Russian Reference UI · premium Bauman/Russia dashboard layer'),'PASS 2 must not restore the obsolete dark shell presentation layer');
 for(const token of ['--ru-bg:#040d1b','grid-template-columns:228px minmax(0,1fr) 328px','background:rgba(4,15,29,.88)']){
   must(!futureCss.includes(token),`Obsolete shell token returned: ${token}`);
 }
-for(const token of ['position:relative;height:42px;display:flex','position:absolute;left:0;right:0;top:45px','margin:0;padding:0 1px']){
+for(const token of ['position:relative;height:44px;display:flex','position:absolute;left:0;right:0;top:45px','margin:0;padding:0 1px']){
   must(futureCss.includes(token),`Canonical shell/search structure missing after PASS 2 migration: ${token}`);
 }
 const shellStart=futureCss.indexOf('body.ru-reference-ui.ru-future-ui{');
@@ -176,15 +193,35 @@ must(core.includes('data-input="vocabTopic"'),'Vocabulary library curated topic 
 must(core.includes('data-input="vocabStatus"'),'Vocabulary library SRS status filter missing');
 must(core.includes('grammar-examples-first'),'Grammar must present Russian examples before heavy explanation');
 must(core.includes('grammar-pattern-strip'),'Grammar quick pattern strip missing');
+must(core.includes('grammar-rule-short'),'Grammar short-rule block missing');
+must(core.includes("reviewMiniLesson:false"),'Review state must distinguish full review from lesson Mini Check');
+must(core.includes("xs=xs.slice(0,5)"),'Lesson Mini Check must cap the real lesson question set at five questions');
+must(core.includes("window.addEventListener('russian:mini-check'"),'Core runtime must accept lesson Mini Check routing without replacing the test bank');
+must(core.includes('✅ MINI CHECK'),'Mini Check must be visibly distinguished from full Review');
+must(futureJs.includes('function stored(key,fallback={})'),'Personal report storage reader must exist at Future UI runtime scope');
+must(futureJs.includes("const raw=localStorage.getItem(key);"),'Personal report storage reader must handle missing keys without throwing');
+must(futureJs.includes('function learnerReport')&&futureJs.includes('function personalReportHtml'),'Overview must expose a learner-only personal learning report');
+must(futureJs.includes('data-report-scope="learner"'),'Personal report must declare learner scope');
+must(futureJs.includes('Kết luận ngắn')&&futureJs.includes('Kỹ năng tốt')&&futureJs.includes('Vấn đề cần xử lý')&&futureJs.includes('Kế hoạch tiếp theo'),'Personal report must answer conclusion, skills, issues, and next plan');
+must(!/rf-personal-report[^]*?(device|thiết bị|access log|technical log)/i.test(futureJs),'Learner report must not mix device/access technical logs');
+must(css.includes('.rf-personal-report-grid')&&css.includes('@media(max-width:767px)'),'Personal report responsive contract missing');
+must(core.includes('function examLearningPriority'),'Stage Check must derive strong/weak/priority feedback from real exam answers');
+must(core.includes('Kỹ năng tốt')&&core.includes('Kỹ năng yếu')&&core.includes('Ưu tiên tiếp theo'),'Stage Check feedback must expose strong skills, weak skills, and next learning priority');
+must(css.includes('.exam-learning-diagnosis')&&css.includes('.exam-priority-grid'),'Stage Check diagnosis presentation contract missing');
 must(core.includes('grammar-practice-now'),'Grammar immediate practice block missing');
 must(core.includes('<details class="grammar-concept-details">'),'Grammar deeper explanation must use progressive disclosure');
-must(core.indexOf('grammar-examples-first')<core.indexOf('grammar-concept-details'),'Grammar examples must precede deeper rule explanation');
+must(core.indexOf('grammar-examples-first')<core.indexOf('grammar-pattern-strip')&&core.indexOf('grammar-pattern-strip')<core.indexOf('grammar-rule-short')&&core.indexOf('grammar-rule-short')<core.indexOf('grammar-practice-now')&&core.indexOf('grammar-practice-now')<core.indexOf('grammar-concept-details'),'Grammar order must be examples → pattern → short rule → practice → deeper explanation');
 must(core.includes("label:'Học tập',tags:['academic','graduate_path']"),'Raw vocabulary metadata must be mapped to learner-facing topic labels');
 must(!core.includes('<option value="graduate_path"'),'Raw metadata tags must not be exposed as learner-facing options');
 must(core.includes("vocabFocusKey:''"),'Vocabulary routing must preserve a dedicated stable focus key');
 must(core.includes('<summary>Chi tiết'),'Vocabulary details disclosure label missing');
 must(core.includes('class="vocab-micro-context"'),'Vocabulary card must expose a short Russian micro-context');
 must(core.includes('data-act="speak-vocab-slow"'),'Vocabulary card must expose optional slow audio');
+must(futureJs.includes("if(view==='writing'){root.querySelector(':scope > .rf-tab-intro')?.remove();return;}"),'Writing must not receive a duplicate Future UI tab intro above its canonical workbench');
+must(core.includes('class="handwriting-cycle"'),'Handwriting must expose the five-step look/listen/trace/free/dictation learning cycle');
+must(core.includes('01 · NHÌN')&&core.includes('02 · NGHE')&&core.includes('03 · TÔ NÉT')&&core.includes('04 · TỰ VIẾT')&&core.includes('05 · NGHE → VIẾT'),'Handwriting learning-cycle order drifted');
+must(core.indexOf('handwriting-primary-canvas')<core.indexOf('renderHandwritingExercise(item)'),'Handwriting canvas must appear before secondary listen-write exercise UI');
+must(css.includes('.handwriting-cycle')&&css.includes('.handwriting-primary-canvas'),'Handwriting PASS 7 presentation contract missing');
 must(core.includes('function speakVocabItem(v,slow=false)'),'Vocabulary audio must stay in the canonical core audio path');
 must(core.includes("player.playbackRate=slow?.75:1"),'Source vocabulary audio must support slower playback');
 must(core.includes("speak(term,slow?.62:.85)"),'Vocabulary TTS fallback must support slower playback');

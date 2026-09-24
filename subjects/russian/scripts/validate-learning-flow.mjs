@@ -20,6 +20,9 @@ for(const token of ['RUSSIAN_LEARNING_FLOW_V2','CORE_STEPS','hasMeaningfulEviden
 for(const token of ['RUSSIAN_LEARNING_STATE_V2','reviewHistory','capturePosition','restoreResumePosition','recordReviewResult','resolveReview','snoozeReview','data-ru-review-snooze'])must(state.includes(token),`Learning state missing V2 contract: ${token}`);
 for(const step of ['theory','speaking','vocab','grammar','exercises','check'])must(js.includes(`${step}:`),`Learning flow missing step: ${step}`);
 for(const step of ['theory','speaking','exercises','check'])must(js.includes(`'${step}'`),`Learning flow missing core evidence step: ${step}`);
+for(const token of ["{step:'speaking',icon:'🎧',label:'Nghe'}","{step:'theory',icon:'👁️',label:'Nhận diện'}","{step:'alphabet',icon:'✍️',label:'Viết'}","{step:'exercises',icon:'📝',label:'Thực hành'}","{step:'check',icon:'✅',label:'Kiểm tra'}"])must(js.includes(token),`Lesson five-step presentation missing: ${token}`);
+must(js.includes('LESSON_STEPPER.map(item=>'),'Lesson detail must render the learner-facing five-step presentation, not the seven-step evidence registry');
+must(!js.includes('const rows=STEP_ORDER.map(step=>'),'Lesson detail must not expose support-only vocab/grammar as mandatory stepper gates');
 
 must(!/status\s*:\s*['"]mastered['"]/.test(js),'Learning flow must not synthesize mastered status');
 must(!/status\s*:\s*['"]completed['"]/.test(js),'Learning flow must not synthesize completed status');
@@ -28,6 +31,7 @@ must(js.includes("scope:'lesson'")&&js.includes("scope:'stage'"),'Learning flow 
 must(js.includes("if(step==='speaking')return Number(s.ok||0)>0"),'Speaking evidence must require an explicit OK signal, not an open/attempt alone');
 must(js.includes("if(step==='check')return Number(s.correct||0)>0&&!latestCheckNeedsReview(s)"),'Check evidence must reject unresolved later wrong answers');
 must(!js.includes('RussianLearningState?.addReview'),'V2 review lifecycle must go through recordReviewResult');
+must(js.includes("new CustomEvent('russian:mini-check',{detail:{lessonId}})"),'Lesson Check step must enter lesson-scoped Mini Check mode');
 must(state.includes("resolveReview(key,'corrected'"),'Correct review result must resolve the queued item');
 must(state.includes('const resumePosition=isResume?state.resume?.position:null'),'Resume navigation must snapshot saved position before route state changes');
 must(state.includes('restoreResumePosition(resumePosition)'),'Resume navigation must restore the saved position snapshot');

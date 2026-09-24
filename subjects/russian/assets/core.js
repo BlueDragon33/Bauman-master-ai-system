@@ -13,7 +13,7 @@ const PACKAGE_ROOT=A.packageRoot||'subjects/russian/';
 const NAV=A.nav||[['overview','🧭','Tổng quan'],['learning','🎓','Học tập'],['dialogue','💬','Đối thoại'],['writing','✍️','Viết'],['media','🎬','Video/Audio'],['vocab','🗂️','Từ vựng'],['grammar','🧩','Ngữ pháp'],['mindmap','🧠','Mind map'],['storage','🗄️','Lưu trữ']];
 const PRIMARY_NAV=A.primaryNav||NAV;
 const LEARN_TABS=A.learningTabs||[['theory','📘','Lý thuyết'],['exercises','📝','Bài tập'],['practice','🎙️','Nghe/Nói'],['review','🔁','Ôn tập'],['exam','🧪','Kiểm tra']];
-const DEFAULT={stage:'vn',view:'overview',learnTab:'theory',lessonId:'',slide:0,lessonQuery:'',conceptQuery:'',exerciseLevel:'all',exerciseIndex:0,testLevel:'easy',testIndex:0,testAnswer:null,reviewLevel:'easy',reviewFilter:'all',reviewLesson:'all',reviewIndex:0,reviewPage:0,reviewAnswer:null,reviewProgress:{done:{},flagged:{},wrong:{}},examLevel:'easy',examCycle:'auto',examPaperLevel:'easy',examPaperType:'standard',examIndex:0,examPage:0,examAnswer:null,examProgress:{answers:{},marked:{},submitted:false,submittedAt:null,result:null,wrong:{},paperResults:{}},examHistory:[],remedialPlan:{active:false,cards:[],completed:{},createdAt:null,lastExamAt:null,lastScore:null},dialogueId:'',dialogueGroup:'all',dialogueDifficulty:'all',dialogueQuery:'',dialogueLineIndex:0,dialogueRole:'all',dialogueHideVi:false,dialogueShowTranscript:false,dialoguePeople:'2',dialogueMinutes:'10',dialogueMode:'shadow_roleplay',dialogueScenario:'classroom',practiceDialogueId:'',practiceGroup:'all',practiceDifficulty:'all',practiceQuery:'',practiceLineIndex:0,practiceRole:'all',practiceHideVi:false,practiceShowTranscript:false,practiceSpeechResults:{},dialogueSpeechResults:{},deepSpeakingId:'',deepSpeakingMode:'overview',deepSpeakingStep:0,deepSpeakingProgress:{done:{},weak:{},attempts:{},lastMode:{}},optionalDataLoading:{},optionalDataError:{},speechResults:{},speechRecording:false,speechAutoNext:false,mediaCat:'all',mediaQuery:'',mediaView:'list',mediaId:'',vocabQuery:'',vocabTopic:'all',vocabStatus:'all',vocabFocusKey:'',vocabIndex:0,vocabPage:0,vocabFlipped:false,grammarLevel:'all',grammarTrack:'all',grammarQuery:'',grammarIndex:0,mindmapId:'roadmap-map',mindmapNode:'',mindmapFontScale:14,mindmapDrag:{},mindmapLayoutVersion:'v13_32_clean',writingMode:'handwriting',handwritingIndex:0,handwritingQuery:'',handwritingStep:0,handwritingPractice:'trace',handwritingShowGuide:true,handwritingShowLines:true,handwritingExerciseIndex:0,handwritingExerciseInput:'',handwritingExerciseChoice:'',handwritingExerciseAttempted:false,handwritingExerciseReveal:false,handwritingExerciseResult:null,handwritingSessionMode:'learn',handwritingListenWriteProgress:{byLetter:{}},lessonListenWrite:{lessonId:'',itemIndex:0,drillIndex:0,mode:'',input:'',choice:'',attempted:false,result:null},writingIndex:0,writingQuery:'',writingDraft:'',storageFile:'curriculum',storageGroup:'all',storageText:'',storagePreviewLimit:0,storagePreviewAutoCollapsedV1322:false,storageQuery:'',storageTreeOpen:{},aiDraft:'',aiOutput:'',interfaceTheme:'clean',interfaceDensity:'normal',hostTask:null,planningBundle:null,routeEdit:false,routeManual:null,routeFocus:'today',testSession:{answered:0,correct:0,targetQuestions:100,targetScore:80,seen:{}},recentAccess:[],stageGate:null,examGateSource:null,stageTransitions:[],lastStageTransition:null};
+const DEFAULT={stage:'vn',view:'overview',learnTab:'theory',lessonId:'',slide:0,lessonQuery:'',conceptQuery:'',exerciseLevel:'all',exerciseIndex:0,testLevel:'easy',testIndex:0,testAnswer:null,reviewLevel:'easy',reviewFilter:'all',reviewLesson:'all',reviewMiniLesson:false,reviewIndex:0,reviewPage:0,reviewAnswer:null,reviewProgress:{done:{},flagged:{},wrong:{}},examLevel:'easy',examCycle:'auto',examPaperLevel:'easy',examPaperType:'standard',examIndex:0,examPage:0,examAnswer:null,examProgress:{answers:{},marked:{},submitted:false,submittedAt:null,result:null,wrong:{},paperResults:{}},examHistory:[],remedialPlan:{active:false,cards:[],completed:{},createdAt:null,lastExamAt:null,lastScore:null},dialogueId:'',dialogueGroup:'all',dialogueDifficulty:'all',dialogueQuery:'',dialogueLineIndex:0,dialogueRole:'all',dialogueHideVi:true,dialogueShowTranscript:false,dialoguePeople:'2',dialogueMinutes:'10',dialogueMode:'shadow_roleplay',dialogueScenario:'classroom',practiceDialogueId:'',practiceGroup:'all',practiceDifficulty:'all',practiceQuery:'',practiceLineIndex:0,practiceRole:'all',practiceHideVi:true,practiceShowTranscript:false,practiceSpeechResults:{},dialogueSpeechResults:{},deepSpeakingId:'',deepSpeakingMode:'overview',deepSpeakingStep:0,deepSpeakingProgress:{done:{},weak:{},attempts:{},lastMode:{}},optionalDataLoading:{},optionalDataError:{},speechResults:{},speechRecording:false,speechAutoNext:false,mediaCat:'all',mediaQuery:'',mediaView:'list',mediaId:'',vocabQuery:'',vocabTopic:'all',vocabStatus:'all',vocabFocusKey:'',vocabIndex:0,vocabPage:0,vocabFlipped:false,grammarLevel:'all',grammarTrack:'all',grammarQuery:'',grammarIndex:0,mindmapId:'roadmap-map',mindmapNode:'',mindmapFontScale:14,mindmapDrag:{},mindmapLayoutVersion:'v13_32_clean',writingMode:'handwriting',handwritingIndex:0,handwritingQuery:'',handwritingStep:0,handwritingPractice:'trace',handwritingShowGuide:true,handwritingShowLines:true,handwritingExerciseIndex:0,handwritingExerciseInput:'',handwritingExerciseChoice:'',handwritingExerciseAttempted:false,handwritingExerciseReveal:false,handwritingExerciseResult:null,handwritingSessionMode:'learn',handwritingListenWriteProgress:{byLetter:{}},lessonListenWrite:{lessonId:'',itemIndex:0,drillIndex:0,mode:'',input:'',choice:'',attempted:false,result:null},writingIndex:0,writingQuery:'',writingDraft:'',storageFile:'curriculum',storageGroup:'all',storageText:'',storagePreviewLimit:0,storagePreviewAutoCollapsedV1322:false,storageQuery:'',storageTreeOpen:{},aiDraft:'',aiOutput:'',interfaceTheme:'clean',interfaceDensity:'normal',hostTask:null,planningBundle:null,routeEdit:false,routeManual:null,routeFocus:'today',testSession:{answered:0,correct:0,targetQuestions:100,targetScore:80,seen:{}},recentAccess:[],stageGate:null,examGateSource:null,stageTransitions:[],lastStageTransition:null};
 let DB={},state={...DEFAULT},canvas=null,ctx=null,drawing=false,strokes=[],currentStroke=null,penColor='#111827',penSize=6,speechRecognizer=null;
 let modalReturnFocus=null;
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
@@ -129,7 +129,7 @@ function reviewQuestionKey(q,i=0){return questionId(q,i,'review')}
 function reviewQuestionState(q,i=0){const id=reviewQuestionKey(q,i); const done=!!state.reviewProgress.done?.[id]; const flagged=!!state.reviewProgress.flagged?.[id]&&!done; const wrong=!!state.reviewProgress.wrong?.[id]; return {id,done,flagged,wrong,status:done?'done':flagged?'flagged':'new'};}
 function reviewLessonKey(q){return str(q?.lessonId||q?.chapterId||q?.lesson||q?.moduleId||'other')}
 function reviewLessonTitle(q){return q?.lessonTitle||q?.chapter||q?.moduleTitle||reviewLessonKey(q)}
-function getReviewQuestions(){let xs=getReviewBaseQuestions(); if(state.reviewLesson&&state.reviewLesson!=='all')xs=xs.filter(q=>reviewLessonKey(q)===state.reviewLesson); const f=state.reviewFilter||'all'; if(f!=='all')xs=xs.filter((q,i)=>{const s=reviewQuestionState(q,i); if(f==='new')return !s.done&&!s.flagged; if(f==='done')return s.done; if(f==='flagged')return s.flagged; if(f==='wrong')return s.wrong; return true}); return xs}
+function getReviewQuestions(){let xs=getReviewBaseQuestions(); if(state.reviewLesson&&state.reviewLesson!=='all')xs=xs.filter(q=>reviewLessonKey(q)===state.reviewLesson); const f=state.reviewFilter||'all'; if(f!=='all')xs=xs.filter((q,i)=>{const s=reviewQuestionState(q,i); if(f==='new')return !s.done&&!s.flagged; if(f==='done')return s.done; if(f==='flagged')return s.flagged; if(f==='wrong')return s.wrong; return true}); if(state.reviewMiniLesson&&state.reviewLesson&&state.reviewLesson!=='all'&&f==='all')xs=xs.slice(0,5); return xs}
 function reviewCounts(list=getReviewBaseQuestions()){const out={total:0,new:0,done:0,flagged:0,wrong:0,remaining:0}; arr(list).forEach((q,i)=>{const s=reviewQuestionState(q,i); out.total++; if(s.done)out.done++; else if(s.flagged)out.flagged++; else out.new++; if(s.wrong)out.wrong++;}); out.remaining=out.new+out.flagged+out.wrong; return out;}
 function reviewLessonOptions(){const base=getReviewBaseQuestions(); const map=new Map(); base.forEach(q=>{const k=reviewLessonKey(q); if(!map.has(k))map.set(k,reviewLessonTitle(q));}); return `<option value="all">Tất cả bài</option>${Array.from(map.entries()).map(([k,v])=>`<option value="${esc(k)}" ${state.reviewLesson===k?'selected':''}>${esc(k+' · '+clip(v,58))}</option>`).join('')}`}
 function reviewFilterOptions(){return [['all','Tất cả'],['new','Chưa làm'],['flagged','Cắm cờ'],['done','Đã làm'],['wrong','Câu sai']].map(([k,v])=>`<option value="${k}" ${state.reviewFilter===k?'selected':''}>${v}</option>`).join('')}
@@ -813,7 +813,7 @@ function resetReviewProgress(){
  save(); render(); toast('Đã Reset toàn bộ tiến độ ôn tập');
 }
 function submitExamNow(){
- const level=activeExamLevel(); const qs=getExamQuestions(level); const sum=examProgressSummary(qs,level);
+ const level=activeExamLevel(); const qs=getExamQuestions(level); const sum={...examProgressSummary(qs,level),diagnosis:examLearningPriority(qs,level)};
  if(sum.answered<sum.total){toast(`Còn ${sum.total-sum.answered} câu chưa trả lời trong đề ${examLevelLabel(level)}`); return}
  state.examProgress.paperResults=state.examProgress.paperResults||{}; state.examProgress.paperResults[level]=sum; state.examProgress.submitted=true; state.examProgress.submittedAt=Date.now(); state.examProgress.result=sum; state.examProgress.wrong={};
  arr(sum.wrong).forEach(w=>{state.examProgress.wrong[w.id]={at:Date.now(),index:w.index,answer:w.answer,correct:w.correct,level:w.level,lessonId:w.lessonId,skill:w.skill,topic:w.topic};});
@@ -1571,7 +1571,7 @@ function renderPractice(){
      <div class="v1294-current-body"><label>Câu ${turns.length?idx+1:0}/${turns.length||0} · ${esc(cueText)}</label><div class="russian-line">${currentRu}</div>${currentVi?`<p>${esc(currentVi)}</p>`:''}${showTranscript&&hints.length?`<div class="speech-hints">${hints.map(x=>`<span>${esc(x)}</span>`).join('')}</div>`:''}</div>
      <button class="btn green speech-ok-corner" data-act="mark-line-ok">✓ Đã nói ổn</button>
    </article>
-   <div class="v1294-speech-actions"><button class="btn" data-act="prev-line">← Câu trước</button><button class="btn green" data-act="speak-line">🔊 Nghe mẫu</button><button class="btn" data-act="speak-line-slow">🐢 Nghe chậm</button><button class="btn" data-act="record-line">🎙️ Nhại lại</button><button class="btn primary" data-act="next-line">Câu tiếp →</button></div>
+   <div class="v1294-speech-actions"><button class="btn" data-act="prev-line">← Câu trước</button><button class="btn green" data-act="speak-line">🔊 Nghe mẫu</button><button class="btn" data-act="speak-line-slow">🐢 Nghe chậm</button><button class="btn primary speech-record-primary" data-act="record-line">🎙️ Ghi âm / Bắt đầu nói</button><button class="btn primary" data-act="next-line">Câu tiếp →</button></div>
    <div class="v1294-feedback-line"><b>${result?`Điểm nhại: ${result.score}%`:'Gợi ý luyện'}</b><span>${result?esc(speechFeedback(result.score)):'Nghe mẫu 1 lượt, đọc câu thành tiếng, nhại chậm, sau đó tự nói không nhìn chữ.'}</span></div>
    <details class="v1294-speech-map"><summary>🧭 Bản đồ câu nói <span>${turns.length?idx+1:0}/${turns.length||0}</span></summary><div class="v1294-speech-map-grid">${turns.length?turns.map(roleLine).join(''):'<div class="note">Chưa có câu nói trong hội thoại đúng bài này.</div>'}</div></details>
  </section>`
@@ -1946,25 +1946,45 @@ function renderPaperStatusPanel(){
  const rows=EXAM_PAPER_ORDER.map(type=>{const r=examPaperResult(type); const cfg=examPaperConfig(type); const cls=r?(r.passed?'passed':'failed'):'pending'; const label=r?`${Number(r.score10||0).toFixed(1)}/10`:'Chưa nộp'; return `<article class="paper-status ${cls}"><b>${esc(cfg.label)}</b><span>${cfg.total} câu</span><i>${esc(label)}</i></article>`}).join('');
  return `<aside class="paper-status-panel v1308-paper-status"><div class="paper-status-list">${rows}</div></aside>`;
 }
+function examLearningPriority(qs=getExamQuestions(),level=activeExamLevel()){
+ const bd=examBreakdown(qs,level);
+ const ordered=[...bd.skills].sort((a,b)=>a.score-b.score||b.total-a.total);
+ const weak=ordered.filter(x=>x.score<80);
+ const strong=[...bd.skills].filter(x=>x.score>=80).sort((a,b)=>b.score-a.score||b.total-a.total);
+ const priority=weak[0]||ordered[0]||null;
+ return {
+   strong:strong.slice(0,3),
+   weak:weak.slice(0,3),
+   priority,
+   label:priority?priority.label:'Chưa đủ dữ liệu kỹ năng',
+   guidance:priority&&priority.score<80
+     ?`Ưu tiên ôn ${priority.label}: ${priority.correct}/${priority.total} câu đúng (${priority.score}%).`
+     :'Chưa có kỹ năng dưới ngưỡng 80%; tiếp tục củng cố bằng câu sai cụ thể.'
+ };
+}
 function renderExamResultPanel(sum){
  const level=activeExamLevel();
  const r=examPaperResult(level);
  const status=renderPaperStatusPanel();
  if(!r)return '';
  const bd=examBreakdown(getExamQuestions(level),level);
+ const priority=examLearningPriority(getExamQuestions(level),level);
  const cycle=examCycleSummary();
  const wrongPreview=arr(r.wrong).slice(0,6).map(w=>`<li><b>Câu ${w.index+1}</b><span>${esc(clip(questionTitle(w.question,w.index),90))}</span></li>`).join('')||'<li><span>Không có câu sai.</span></li>';
- return `${renderGateProgressPanel()}${status}<aside class="exam-result-inline ${r.passed?'passed':'failed'}"><div><span class="chip">KẾT QUẢ · ${esc(examLevelLabel(level))} · ${r.passed?'ĐẠT':'CHƯA ĐẠT'}</span><h3>${Number(r.score10||0).toFixed(1)}/10</h3><p>${r.correct}/${r.total} câu đúng · ${r.wrongCount} câu sai/chưa trả lời. Trạng thái phần: ${gatePartComplete()?'đủ điều kiện mở khóa':'còn đề bắt buộc'}.</p></div><div class="exam-score-meter"><b>${Math.round((Number(r.score10)||0)*10)}%</b><span>Điều kiện mỗi đề: 80%</span></div><div class="mini-score-bars">${bd.levels.slice(0,4).map(row=>`<span><b>${esc(row.label)}</b><i>${row.score10.toFixed(1)}/10</i></span>`).join('')}</div><ul class="wrong-preview">${wrongPreview}</ul><div class="lesson-tools"><button class="btn ${r.passed?'green':'primary'}" data-act="open-exam-result">Xem popup kết quả</button>${r.passed?`<button class="btn soft" data-act="next-gate-paper">Lượt kế tiếp</button>`:`<button class="btn warn" data-act="create-remedial-review">Ôn tập lại</button>`}<button class="btn soft" data-act="reset-exam-paper">${r.passed?'Làm lại đề này':'Làm lại đề rớt'}</button></div></aside>`;
+ const strongText=priority.strong.length?priority.strong.map(x=>`${x.label} ${x.score}%`).join(' · '):'Chưa có kỹ năng đạt từ 80%';
+ const weakText=priority.weak.length?priority.weak.map(x=>`${x.label} ${x.score}%`).join(' · '):'Chưa có kỹ năng dưới 80%';
+ return `${renderGateProgressPanel()}${status}<aside class="exam-result-inline ${r.passed?'passed':'failed'}"><div><span class="chip">KẾT QUẢ · ${esc(examLevelLabel(level))} · ${r.passed?'ĐẠT':'CHƯA ĐẠT'}</span><h3>${Number(r.score10||0).toFixed(1)}/10</h3><p>${r.correct}/${r.total} câu đúng · ${r.wrongCount} câu sai/chưa trả lời. Trạng thái phần: ${gatePartComplete()?'đủ điều kiện mở khóa':'còn đề bắt buộc'}.</p><div class="exam-learning-diagnosis"><span><b>Mạnh:</b> ${esc(strongText)}</span><span><b>Cần củng cố:</b> ${esc(weakText)}</span><span><b>Ưu tiên tiếp:</b> ${esc(priority.guidance)}</span></div></div><div class="exam-score-meter"><b>${Math.round((Number(r.score10)||0)*10)}%</b><span>Điều kiện mỗi đề: 80%</span></div><div class="mini-score-bars">${bd.levels.slice(0,4).map(row=>`<span><b>${esc(row.label)}</b><i>${row.score10.toFixed(1)}/10</i></span>`).join('')}</div><ul class="wrong-preview">${wrongPreview}</ul><div class="lesson-tools"><button class="btn ${r.passed?'green':'primary'}" data-act="open-exam-result">Xem popup kết quả</button>${r.passed?`<button class="btn soft" data-act="next-gate-paper">Lượt kế tiếp</button>`:`<button class="btn warn" data-act="create-remedial-review">Ôn tập lại</button>`}<button class="btn soft" data-act="reset-exam-paper">${r.passed?'Làm lại đề này':'Làm lại đề rớt'}</button></div></aside>`;
 }
 function renderExamResultModal(sum){
  const level=sum?.level||activeExamLevel();
  const result=sum||examPaperResult(level)||examProgressSummary(getExamQuestions(level),level);
  const cycle=examCycleSummary();
  const bd=examBreakdown(getExamQuestions(level),level);
+ const priority=examLearningPriority(getExamQuestions(level),level);
  const wrongs=arr(result.wrong);
  const wrongList=wrongs.length?wrongs.slice(0,120).map(w=>`<article class="wrong-card"><b>Câu ${w.index+1}</b><p>${esc(questionTitle(w.question,w.index))}</p><small>Đã chọn: ${esc(examAnswerText(w.question,w.answer))}</small><small>Đúng: ${esc(examAnswerText(w.question,w.correct))}</small>${w.question?.explanation?`<em>${esc(w.question.explanation)}</em>`:''}</article>`).join(''):'<div class="note">Không có câu sai trong đề này.</div>';
  const cycleRows=cycle.rows.map(row=>{const r=row.result; const cls=r?(r.passed?'passed':'failed'):'pending'; return `<article class="paper-status ${cls}"><b>${esc(row.label)}</b><i>${r?`${Number(r.score10||0).toFixed(1)}/10 · ${r.passed?'Đạt':'Chưa đạt'}`:'Chưa nộp'}</i></article>`}).join('');
- return `<div class="exam-result-modal v1220-result-modal"><div class="result-hero ${result.passed?'passed':'failed'}"><div><span class="chip">${esc(examLevelLabel(level))} · ${result.passed?'ĐẠT':'CHƯA ĐẠT'}</span><h2>${Number(result.score10||0).toFixed(1)}/10</h2><p>${result.correct}/${result.total} câu đúng · ${result.wrongCount} câu sai/chưa trả lời. Mỗi lượt kiểm tra cần đạt từ 8.0/10.</p></div><div class="result-ring"><b>${Math.round((Number(result.score10)||0)*10)}%</b><span>điểm đề</span></div></div><section class="result-section"><h3>Trạng thái các đề trong mốc</h3><div class="paper-status-list">${cycleRows}</div></section><section class="result-section"><h3>Phổ điểm theo mức/kỹ năng</h3><div class="score-grid">${bd.levels.map(scoreBar).join('')}${bd.skills.slice(0,8).map(scoreBar).join('')}</div></section><section class="result-section"><h3>Câu sai cần xử lý</h3><div class="wrong-list">${wrongList}</div></section>${renderGateProgressPanel()}<div class="modal-actions"><button class="btn" data-act="modal-close">Đóng</button>${result.passed?`<button class="btn soft" data-act="next-gate-paper">Lượt kế tiếp</button>`:`<button class="btn primary" data-act="create-remedial-review">Ôn tập lại và tạo phụ đạo</button>`}<button class="btn soft" data-act="reset-exam-paper">Làm lại đề hiện tại</button></div></div>`;
+ return `<div class="exam-result-modal v1220-result-modal"><div class="result-hero ${result.passed?'passed':'failed'}"><div><span class="chip">${esc(examLevelLabel(level))} · ${result.passed?'ĐẠT':'CHƯA ĐẠT'}</span><h2>${Number(result.score10||0).toFixed(1)}/10</h2><p>${result.correct}/${result.total} câu đúng · ${result.wrongCount} câu sai/chưa trả lời. Mỗi lượt kiểm tra cần đạt từ 8.0/10.</p></div><div class="result-ring"><b>${Math.round((Number(result.score10)||0)*10)}%</b><span>điểm đề</span></div></div><section class="result-section"><h3>Trạng thái các đề trong mốc</h3><div class="paper-status-list">${cycleRows}</div></section><section class="result-section"><h3>Phổ điểm theo mức/kỹ năng</h3><div class="score-grid">${bd.levels.map(scoreBar).join('')}${bd.skills.slice(0,8).map(scoreBar).join('')}</div></section><section class="result-section exam-learning-priority"><h3>Chẩn đoán & ưu tiên học tiếp</h3><div class="exam-priority-grid"><article><b>Kỹ năng tốt</b><p>${esc(priority.strong.length?priority.strong.map(x=>`${x.label} · ${x.score}%`).join(' · '):'Chưa có kỹ năng đạt từ 80%.')}</p></article><article><b>Kỹ năng yếu</b><p>${esc(priority.weak.length?priority.weak.map(x=>`${x.label} · ${x.score}%`).join(' · '):'Chưa có kỹ năng dưới 80%.')}</p></article><article><b>Ưu tiên tiếp theo</b><p>${esc(priority.guidance)}</p></article></div></section><section class="result-section"><h3>Câu sai cần xử lý</h3><div class="wrong-list">${wrongList}</div></section>${renderGateProgressPanel()}<div class="modal-actions"><button class="btn" data-act="modal-close">Đóng</button>${result.passed?`<button class="btn soft" data-act="next-gate-paper">Lượt kế tiếp</button>`:`<button class="btn primary" data-act="create-remedial-review">Ôn tập lại và tạo phụ đạo</button>`}<button class="btn soft" data-act="reset-exam-paper">Làm lại đề hiện tại</button></div></div>`;
 }
 
 function reviewMeta(q){return [['Bài', (q?.lessonId||'')+' · '+(q?.lessonTitle||q?.chapter||'')],['Kỹ năng', q?.skill||''],['Chủ điểm', q?.topic||''],['Mức', q?.levelTitle||q?.difficulty||state.reviewLevel]].filter(x=>str(x[1]).trim())}
@@ -2031,7 +2051,7 @@ function renderReview(){
  </article>`:'<div class="note compact-note">Không có câu phù hợp bộ lọc hiện tại.</div>';
  return `<section class="panel learn-work-card review-studio pass2-review-studio clean-review-layout v1219-assessment assessment-focus-card v1300-review-flag-left v1308-assessment-stable v1310-assessment-polish v1311-assessment-luxe v1312-assessment-atelier v1308-review">
    <div class="assessment-compact-head slim-assessment-head v1308-head">
-     <div class="assessment-title-line"><span class="chip">🔁 Ôn tập</span><b>${qs.length?`Câu ${state.reviewIndex+1}/${qs.length}`:'Không có câu'}</b><small>${counts.done} đã làm · ${counts.flagged} cắm cờ · ${counts.wrong} câu sai · ${qs.length?`${pageStart}-${pageEnd}/${qs.length}`:'0 câu'}</small></div>
+     <div class="assessment-title-line"><span class="chip">${state.reviewMiniLesson?`✅ MINI CHECK · ${esc(state.reviewLesson)}`:'🔁 Ôn tập'}</span><b>${qs.length?`Câu ${state.reviewIndex+1}/${qs.length}`:'Không có câu'}</b><small>${counts.done} đã làm · ${counts.flagged} cắm cờ · ${counts.wrong} câu sai · ${qs.length?`${pageStart}-${pageEnd}/${qs.length}`:'0 câu'}</small></div>
      <div class="assessment-filter-line compact-filter-strip">
        <select class="input compact-select" data-input="reviewLevel" aria-label="Mức câu hỏi">${levelOptions(state.reviewLevel,'reviewLevel')}</select>
        <select class="input compact-select lesson-select" data-input="reviewLesson" aria-label="Bài học">${reviewLessonOptions()}</select>
@@ -2418,7 +2438,7 @@ function renderWriting(){
      <div><span class="chip">HANDWRITING FIRST · SAFE ROUND 2</span><h3>Luyện chữ viết tay Nga thông dụng</h3><p>Chữ in chỉ để nhận mặt trong sách/bảng. Phần luyện chính là chữ viết tay: nhìn mẫu, xem hình nét, tô theo rồi chép xuống vở thật.</p></div>
      <div class="tabs compact-tabs"><button class="btn ${mode==='handwriting'?'active':''}" data-writing="handwriting">✍️ Chữ viết tay</button><button class="btn ${mode==='academic'?'active':''}" data-writing="academic">🧾 Câu, email, НИР/ВКР</button></div>
    </section>
-   ${mode==='handwriting'?`<div class="writing-workbench step4-writing-workbench step36-writing-workbench handwriting-mode v1285-writing-compact">
+   ${mode==='handwriting'?`<section class="handwriting-cycle" aria-label="Chu trình luyện một chữ"><span>01 · NHÌN</span><span>02 · NGHE</span><span>03 · TÔ NÉT</span><span>04 · TỰ VIẾT</span><span>05 · NGHE → VIẾT</span></section><div class="writing-workbench step4-writing-workbench step36-writing-workbench handwriting-mode v1285-writing-compact">
      <aside class="panel writing-control hand-left-board step4-left-board step36-left-board">
        <div class="toolbar compact-toolbar"><div><h3>Bảng trái · Mẫu viết tay</h3><p>Chọn chữ, nhìn mẫu rồi luyện ở bảng phải. Bỏ phần thứ tự nét để màn hình sạch hơn.</p></div><span class="chip">${state.handwritingIndex+1}/${hand.length||0}</span></div>
        <div class="step4-left-actions"><button class="btn primary" data-act="open-hand-grid">🔤 Mẫu chữ viết tay</button><input class="input compact-input" data-input="handwritingQuery" value="${esc(state.handwritingQuery||'')}" placeholder="Tìm chữ/từ/câu..."></div>
@@ -2453,11 +2473,11 @@ function renderWriting(){
        <div class="lesson-tools step4-nav-tools"><button class="btn" data-act="prev-hand">← Mẫu trước</button><button class="btn" data-act="next-hand">Mẫu sau →</button></div>
      </aside>
      <main class="panel handwriting-sheet hand-right-practice step4-right-board step36-right-board">
-       <div class="practice-head step4-practice-head step36-practice-head v1285-practice-head"><div><span class="chip">Bảng phải · Tập viết</span><h3>${esc(handSample)}</h3><p>Viết theo mẫu chữ tay đã chọn. Tập trung nét sạch, khoảng cách đều, không cần xem thẻ thứ tự nét.</p></div><div class="mini-copy-line"><b>Chép vở:</b><span>${esc(item.copy||handSample)}</span></div></div>
-       ${renderHandwritingExercise(item)}
+       <div class="practice-head step4-practice-head step36-practice-head v1285-practice-head"><div><span class="chip">Bảng phải · Tập viết</span><h3>${esc(handSample)}</h3><p>Nhìn mẫu, nghe âm rồi viết ngay. Bài nghe-viết và công cụ chi tiết nằm phía dưới để không chặn canvas.</p></div><div class="mini-copy-line"><b>Chép vở:</b><span>${esc(item.copy||handSample)}</span></div></div>
+       <div class="paper pro-paper step4-paper step36-paper handwriting-primary-canvas"><canvas id="writingCanvas" class="writingCanvas" width="2048" height="1180"></canvas></div>
        <div class="writing-tools compact-tools step4-writing-tools step36-writing-tools"><label>Nét <input id="penSize" type="range" min="2" max="18" value="${penSize}"></label><button class="dot active" data-pen-color="#111827" title="Đen"></button><button class="dot red" data-pen-color="#9f1239" title="Đỏ"></button><button class="dot blue-dot" data-pen-color="#1d4ed8" title="Xanh"></button><button class="btn" data-act="undo-canvas">↶ Hoàn tác</button><button class="btn" data-act="clear-line">Xóa dòng luyện</button><button class="btn" data-act="clear-canvas">Xóa bảng</button><button class="btn" data-act="toggle-guide">${showGuide?'Tắt mẫu mờ':'Bật mẫu mờ'}</button><button class="btn" data-act="toggle-lines">${showLines?'Tắt đường kẻ':'Bật đường kẻ'}</button><button class="btn blue" data-act="download-canvas">Tải ảnh</button></div>
-       <div class="paper pro-paper step4-paper step36-paper"><canvas id="writingCanvas" class="writingCanvas" width="2048" height="1180"></canvas></div>
-       <div class="step4-footnote step36-footnote v1285-writing-footnote"><span>Quy trình gọn: nhìn mẫu → viết trên bảng → chép lại vào vở thật.</span><span>Phím tắt: ←/→ đổi mẫu, Backspace hoàn tác.</span></div>
+       ${renderHandwritingExercise(item)}
+       <div class="step4-footnote step36-footnote v1285-writing-footnote"><span>Chu trình: nhìn → nghe → tô nét → tự viết → nghe rồi viết.</span><span>Phím tắt: ←/→ đổi mẫu, Backspace hoàn tác.</span></div>
      </main>
    </div>`:`<div class="writing-workbench compact-writing academic-mode final-academic-layout">
      <aside class="panel writing-control compact-panel slim-control">
@@ -2491,7 +2511,7 @@ function renderVocab(){
   const pageSize=VOCAB_PAGE_SIZE||20;
   state.vocabPage=Math.floor(state.vocabIndex/pageSize);
   const topicOptions=vocabTopicOptions(stageVocab);
-  const statusOptions=[['all','Tất cả trạng thái'],['new','Mới'],['learned','Đã học'],['due','Cần ôn'],['difficult','Khó']];
+  const statusOptions=[['all','Tất cả trạng thái'],['learning','Đang học'],['due','Cần ôn'],['learned','Đã học'],['difficult','Khó'],['new','Mới']];
   const v=list[state.vocabIndex]||{};
   const sourceIndex=Math.max(0,allVocab.indexOf(v));
   const stageIndex=Math.max(0,stageVocab.indexOf(v));
@@ -2514,15 +2534,6 @@ function renderVocab(){
   const front=`<div class="v1310-flash-face v1312-flash-face"><div class="v1312-flash-visual">${visual}</div><div class="term ${termSizeClass}">${esc(term)}</div><div class="v1310-pron">${esc(info.pron||'Nghe để xác nhận phát âm')}</div>${example?`<p class="vocab-micro-context" lang="ru">${esc(clip(example,72))}</p>`:''}</div>`;
   const back=`<div class="v1310-flash-face v1312-flash-face flipped"><div class="v1312-flash-visual back">${visualBack}</div><span>Hiểu qua hình và ngữ cảnh Nga</span><div class="meaning" lang="ru">${esc(meaning)}</div>${example?`<small>${esc(example)}</small>`:''}</div>`;
   return `<div class="vocab-studio step37-vocab-safe canva3-vocab canva3-vocab-no-hero v1303-vocab-safe v1310-vocab-polish v1311-vocab-luxe v1312-vocab-chibi">
-   <section class="vocab-library-toolbar" aria-label="Bộ lọc kho từ vựng">
-     <div class="vocab-library-summary"><span>KHO TỪ VỰNG · ${esc(stageTitle(state.stage))}</span><b>${list.length} / ${stageVocab.length}</b><small>20 thẻ/lượt · chỉ tải kho lớn khi mở Từ vựng</small></div>
-     <div class="vocab-library-controls">
-       <input class="input" data-input="vocabQuery" value="${esc(state.vocabQuery||'')}" placeholder="Tìm từ, ví dụ hoặc phát âm…" aria-label="Tìm trong kho từ vựng">
-       <select class="input" data-input="vocabTopic" aria-label="Lọc theo chủ đề"><option value="all">Tất cả chủ đề</option>${topicOptions.map(x=>`<option value="${esc(x.id)}" ${state.vocabTopic===x.id?'selected':''}>${esc(x.label)} · ${x.count}</option>`).join('')}</select>
-       <select class="input" data-input="vocabStatus" aria-label="Lọc theo trạng thái học">${statusOptions.map(([id,label])=>`<option value="${id}" ${state.vocabStatus===id?'selected':''}>${label}</option>`).join('')}</select>
-       <button class="btn soft" data-act="vocab-clear-filter">Xóa lọc</button>
-     </div>
-   </section>
    <div class="vocab-desk step37-vocab-desk canva3-vocab-desk v1303-vocab-desk v1310-vocab-desk">
      <aside class="panel vocab-page-list v1303-vocab-list v1310-vocab-list" aria-label="Danh sách 20 thẻ từ hiện tại">
        <div class="vocab-list-head v1310-vocab-list-head"><span class="chip">20 thẻ/lượt</span><b>${pageStart+1}-${Math.min(list.length,pageStart+rows.length)}/${list.length}</b></div>
@@ -2541,6 +2552,15 @@ function renderVocab(){
        </details>
      </main>
    </div>
+   <section class="vocab-library-toolbar" aria-label="Bộ lọc kho từ vựng">
+     <div class="vocab-library-summary"><span>KHO TỪ VỰNG · ${esc(stageTitle(state.stage))}</span><b>${list.length} / ${stageVocab.length}</b><small>20 thẻ/lượt · chỉ tải kho lớn khi mở Từ vựng</small></div>
+     <div class="vocab-library-controls">
+       <input class="input" data-input="vocabQuery" value="${esc(state.vocabQuery||'')}" placeholder="Tìm từ, ví dụ hoặc phát âm…" aria-label="Tìm trong kho từ vựng">
+       <select class="input" data-input="vocabTopic" aria-label="Lọc theo chủ đề"><option value="all">Tất cả chủ đề</option>${topicOptions.map(x=>`<option value="${esc(x.id)}" ${state.vocabTopic===x.id?'selected':''}>${esc(x.label)} · ${x.count}</option>`).join('')}</select>
+       <select class="input" data-input="vocabStatus" aria-label="Lọc theo trạng thái học">${statusOptions.map(([id,label])=>`<option value="${id}" ${state.vocabStatus===id?'selected':''}>${label}</option>`).join('')}</select>
+       <button class="btn soft" data-act="vocab-clear-filter">Xóa lọc</button>
+     </div>
+   </section>
  </div>`;
  }catch(e){
   console.error('VOCAB_RENDER_GUARD',e);
@@ -2591,8 +2611,9 @@ function renderGrammar(){
    <main class="panel grammar-main-card"><header class="grammar-main-head"><div><span class="chip">${esc(g.level||'A1')} · ${esc(g.track||'Ngữ pháp')}</span><h3>${esc(g.title||'Mục ngữ pháp')}</h3><p>${esc(g.why||'Nhìn ví dụ trước, nhận ra mẫu rồi mới mở phần giải thích khi cần.')}</p></div><b class="grammar-index-pill">${xs.length?state.grammarIndex+1:0}/${xs.length}</b></header>
      <section class="grammar-examples grammar-examples-first"><div class="grammar-section-head"><span>01</span><div><h4>Nhìn ví dụ trước</h4><p>Đọc các câu Nga, tìm phần giống nhau trước khi xem quy tắc.</p></div></div><div>${examples}</div></section>
      <section class="grammar-pattern-strip"><span>02 · MẪU NHỚ NHANH</span><b>${esc(g.pattern||'Nhìn cấu trúc lặp lại trong ví dụ và thử thay một thành phần.')}</b></section>
-     <section class="grammar-practice-now"><div class="grammar-section-head"><span>03</span><div><h4>Dùng ngay</h4><p>Làm một nhiệm vụ ngắn sau khi đã nhận ra pattern.</p></div></div><ul>${practice}</ul></section>
-     <details class="grammar-concept-details"><summary><span>04 · Quy tắc & giải thích sâu</span><small>Mở khi cần</small></summary><div class="grammar-core-grid"><article><b>Quy tắc lõi</b><p>${esc(g.core||g.rule||'Chưa có quy tắc lõi.')}</p></article><article><b>Ứng dụng Bauman</b><p>${esc(g.bauman||'Dùng trong lớp dự bị, ký túc xá, email, báo cáo lab và bảo vệ đề tài.')}</p></article><article><b>Lỗi hay gặp</b><ul>${mistakes}</ul></article></div></details>
+     <section class="grammar-rule-short"><span>03 · QUY TẮC NGẮN</span><p>${esc(clip(g.rule||g.core||'Giữ một quy tắc đủ ngắn để áp dụng ngay vào câu vừa thấy.',180))}</p></section>
+     <section class="grammar-practice-now"><div class="grammar-section-head"><span>04</span><div><h4>Dùng ngay</h4><p>Làm một nhiệm vụ ngắn sau khi đã nhận ra pattern và quy tắc ngắn.</p></div></div><ul>${practice}</ul></section>
+     <details class="grammar-concept-details"><summary><span>05 · Giải thích sâu hơn</span><small>Mở khi cần</small></summary><div class="grammar-core-grid"><article><b>Quy tắc lõi</b><p>${esc(g.core||g.rule||'Chưa có quy tắc lõi.')}</p></article><article><b>Ứng dụng Bauman</b><p>${esc(g.bauman||'Dùng trong lớp dự bị, ký túc xá, email, báo cáo lab và bảo vệ đề tài.')}</p></article><article><b>Lỗi hay gặp</b><ul>${mistakes}</ul></article></div></details>
      <footer class="grammar-footer"><div><b>Tự kiểm tra</b><span>${esc(g.mastery||'Tự tạo một câu mới và thử dùng trong hội thoại thật.')}</span></div>${mapLinks?`<div class="grammar-map-links"><b>Mind map liên quan</b>${mapLinks}</div>`:''}</footer>
    </main></div>
  </div>`;
@@ -2953,10 +2974,10 @@ function renderMedia(){
      <main class="panel media-main step54-media-main v1256-media-main">
        <header class="v1256-media-topbar">
          <div><span class="chip">${esc(cat)}</span><h3>${esc(activeTitle)}</h3><p>${esc(activePurpose)}</p></div>
-         <div class="step54-media-actions v1256-media-actions">${openButton}<button class="btn" data-act="media-edit" data-media-edit="${esc(active.id||active.title||'')}">Sửa nguồn</button><button class="btn primary" data-route='${esc(JSON.stringify({view:'learning',learnTab:'practice'}))}'>Nghe xong nói lại</button></div>
+         <div class="step54-media-actions v1256-media-actions"><button class="btn primary media-start-listening" data-act="media-start-listening">▶ Bắt đầu nghe</button>${openButton}<button class="btn" data-act="media-edit" data-media-edit="${esc(active.id||active.title||'')}">Sửa nguồn</button><button class="btn" data-route='${esc(JSON.stringify({view:'learning',learnTab:'practice'}))}'>Nghe xong nói lại →</button></div>
        </header>
-       <section class="step54-player-card v1256-player-card"><div class="step54-player v1256-player">${player}</div></section>
-       <section class="step54-listening-plan v1256-listening-plan">${tasks.map(t=>`<article><i>${t[0]}</i><b>${esc(t[1])}</b><span>${esc(t[2])}</span></article>`).join('')}</section>
+       <section class="step54-player-card v1256-player-card" data-media-listen-target="1" tabindex="-1" aria-label="Trình phát bài nghe"><div class="step54-player v1256-player">${player}</div></section>
+       <section class="step54-listening-plan v1256-listening-plan" aria-label="4 bước luyện nghe">${tasks.map(t=>`<article><i>${t[0]}</i><div><b>${esc(t[1])}</b><span>${esc(t[2])}</span></div></article>`).join('')}</section>
      </main>
    </div>
  </div>`
@@ -3338,7 +3359,7 @@ function applyInput(el){const k=el.dataset.input; if(!k)return; let v=el.value; 
   }else{
    state[k]=v;
   }
-  if(k==='testLevel'){state.testIndex=0;state.testAnswer=null;} if(k==='reviewLevel'){state.reviewIndex=0;state.reviewPage=0;state.reviewAnswer=null;state.reviewLesson='all';} if(k==='reviewFilter'||k==='reviewLesson'){state.reviewIndex=0;state.reviewPage=0;state.reviewAnswer=null;} if(k==='exerciseLevel')state.exerciseIndex=0; if(k==='practiceGroup'||k==='practiceDifficulty'){state.practiceDialogueId='';state.practiceLineIndex=0;} if(k==='dialogueGroup'||k==='dialogueDifficulty'){state.dialogueId='';state.dialogueLineIndex=0;} if(k==='deepSpeakingId'){state.deepSpeakingStep=0;} if(k==='grammarLevel'){state.grammarTrack='all';state.grammarIndex=0;} if(k==='grammarTrack'){state.grammarIndex=0;} if(k==='mindmapId'){state.mindmapNode='';}
+  if(k==='testLevel'){state.testIndex=0;state.testAnswer=null;} if(k==='reviewLevel'){state.reviewIndex=0;state.reviewPage=0;state.reviewAnswer=null;state.reviewLesson='all';state.reviewMiniLesson=false;} if(k==='reviewFilter'||k==='reviewLesson'){state.reviewIndex=0;state.reviewPage=0;state.reviewAnswer=null;state.reviewMiniLesson=false;} if(k==='exerciseLevel')state.exerciseIndex=0; if(k==='practiceGroup'||k==='practiceDifficulty'){state.practiceDialogueId='';state.practiceLineIndex=0;} if(k==='dialogueGroup'||k==='dialogueDifficulty'){state.dialogueId='';state.dialogueLineIndex=0;} if(k==='deepSpeakingId'){state.deepSpeakingStep=0;} if(k==='grammarLevel'){state.grammarTrack='all';state.grammarIndex=0;} if(k==='grammarTrack'){state.grammarIndex=0;} if(k==='mindmapId'){state.mindmapNode='';}
  } else {state[k]=v;if(k==='vocabQuery'){state.vocabFocusKey='';state.vocabIndex=0;state.vocabPage=0;}} if(k==='vocabTopic'||k==='vocabStatus'){state.vocabFocusKey='';state.vocabIndex=0;state.vocabPage=0;} save(); render();}
 let activeHandwritingAudioKey='';
 function markHandwritingAudioPlaying(key,on){
@@ -3887,6 +3908,14 @@ function handleClick(e){
  if(act==='role-a'){setActiveRole('A');save();render()}
  if(act==='role-b'){setActiveRole('B');save();render()}
  if(act==='toggle-transcript'){toggleActiveTranscript();save();render()}
+ if(act==='media-start-listening'){
+  const target=document.querySelector('[data-media-listen-target="1"]');
+  if(target){target.scrollIntoView({block:'nearest',behavior:'smooth'});target.focus({preventScroll:true});}
+  const media=target?.querySelector('audio,video');
+  if(media){try{const play=media.play();if(play?.catch)play.catch(()=>{});}catch(_){}}
+  else target?.querySelector('iframe')?.focus();
+  return;
+ }
  if(act==='toggle-vi'){toggleActiveHideVi();save();render()}
  if(act==='prev-line')moveDialogueLine(-1);
  if(act==='next-line')moveDialogueLine(1);
@@ -4081,6 +4110,12 @@ function bridge(){
  });
  ready();
 }
+function openMiniCheck(lessonId=''){
+ const id=str(lessonId||state.lessonId||activeLessonContext().id);
+ if(!id)return;
+ state.view='learning';state.learnTab='review';state.reviewLesson=id;state.reviewFilter='all';state.reviewMiniLesson=true;state.reviewIndex=0;state.reviewPage=0;state.reviewAnswer=null;save();render();
+}
+window.addEventListener('russian:mini-check',event=>openMiniCheck(event?.detail?.lessonId||''));
 async function init(){loadState(); await loadData(); buildShell(); document.addEventListener('pointerdown',handleMindMapDrag,{passive:true}); document.addEventListener('pointerover',handleMindMapHover,{passive:true}); document.addEventListener('pointerout',handleMindMapHoverOut,{passive:true}); document.addEventListener('dblclick',handleMindMapDoubleClick); document.addEventListener('click',handleClick); document.addEventListener('change',handleChange); document.addEventListener('input',handleInput); document.addEventListener('keydown',handleKeys); window.addEventListener('resize',()=>{if(state.view==='mindmap')requestAnimationFrame(()=>updateMindMapConnectors(document.querySelector('[data-mindmap-canvas=\"1\"]')));},{passive:true}); $('#modalClose').addEventListener('click',closeModal); $('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()}); $('#themeBtn').addEventListener('click',()=>openModal(renderInterfaceModal(),'interface')); $('#aiBtn').addEventListener('click',()=>openModal(renderAiMentor(),'ai')); bridge(); render(); }
 init();
 })();

@@ -2,6 +2,7 @@ import fs from 'node:fs';
 
 const flow=fs.readFileSync('subjects/russian/assets/learning-flow.js','utf8');
 const core=fs.readFileSync('subjects/russian/assets/core.js','utf8');
+const coreCss=fs.readFileSync('subjects/russian/assets/core.css','utf8');
 const handwriting=JSON.parse(fs.readFileSync('subjects/russian/data/handwriting.json','utf8'));
 const alphabet=handwriting.filter(x=>x?.mode==='alphabet');
 const glyphAuthority=fs.readFileSync('subjects/russian/assets/handwriting-glyph-authority.js','utf8');
@@ -29,6 +30,10 @@ const checks=[
   ['listening transcript is hidden by default in practice and dialogue', core.includes('practiceShowTranscript:false') && core.includes('dialogueShowTranscript:false')],
   ['learner explicitly reveals transcript after listening', core.includes('data-act="toggle-transcript"') && core.includes("act==='toggle-transcript'")],
   ['translation is gated behind transcript disclosure', core.includes("const currentVi=showTranscript&&!hideVi?dialogueVi(line):'';")],
+  ['Vietnamese help is hidden by default in speaking sessions', core.includes('practiceHideVi:true') && core.includes('dialogueHideVi:true')],
+  ['Video exposes a primary start-listening action', core.includes('data-act="media-start-listening"') && core.includes('▶ Bắt đầu nghe')],
+  ['Video listening plan stays a compact four-step guide', core.includes('aria-label="4 bước luyện nghe"') && coreCss.includes('grid-template-columns:repeat(4,minmax(0,1fr))')],
+  ['Speaking exposes one-click normal/slow listen plus recording', core.includes('data-act="speak-line"') && core.includes('data-act="speak-line-slow"') && core.includes('Ghi âm / Bắt đầu nói')],
   ['listening-first placeholder replaces eager transcript', core.includes('Nghe câu mẫu trước · mở transcript khi thật sự cần')],
   ['AI vocab helper does not expose English equivalent', !core.includes('English equivalent:')],
   ['legacy direct flip label removed', !core.includes('Lật nghĩa')],
