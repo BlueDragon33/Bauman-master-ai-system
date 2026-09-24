@@ -1946,25 +1946,45 @@ function renderPaperStatusPanel(){
  const rows=EXAM_PAPER_ORDER.map(type=>{const r=examPaperResult(type); const cfg=examPaperConfig(type); const cls=r?(r.passed?'passed':'failed'):'pending'; const label=r?`${Number(r.score10||0).toFixed(1)}/10`:'Chưa nộp'; return `<article class="paper-status ${cls}"><b>${esc(cfg.label)}</b><span>${cfg.total} câu</span><i>${esc(label)}</i></article>`}).join('');
  return `<aside class="paper-status-panel v1308-paper-status"><div class="paper-status-list">${rows}</div></aside>`;
 }
+function examLearningPriority(qs=getExamQuestions(),level=activeExamLevel()){
+ const bd=examBreakdown(qs,level);
+ const ordered=[...bd.skills].sort((a,b)=>a.score-b.score||b.total-a.total);
+ const weak=ordered.filter(x=>x.score<80);
+ const strong=[...bd.skills].filter(x=>x.score>=80).sort((a,b)=>b.score-a.score||b.total-a.total);
+ const priority=weak[0]||ordered[0]||null;
+ return {
+   strong:strong.slice(0,3),
+   weak:weak.slice(0,3),
+   priority,
+   label:priority?priority.label:'Chưa đủ dữ liệu kỹ năng',
+   guidance:priority&&priority.score<80
+     ?`Ưu tiên ôn ${priority.label}: ${priority.correct}/${priority.total} câu đúng (${priority.score}%).`
+     :'Chưa có kỹ năng dưới ngưỡng 80%; tiếp tục củng cố bằng câu sai cụ thể.'
+ };
+}
 function renderExamResultPanel(sum){
  const level=activeExamLevel();
  const r=examPaperResult(level);
  const status=renderPaperStatusPanel();
  if(!r)return '';
  const bd=examBreakdown(getExamQuestions(level),level);
+ const priority=examLearningPriority(getExamQuestions(level),level);
  const cycle=examCycleSummary();
  const wrongPreview=arr(r.wrong).slice(0,6).map(w=>`<li><b>Câu ${w.index+1}</b><span>${esc(clip(questionTitle(w.question,w.index),90))}</span></li>`).join('')||'<li><span>Không có câu sai.</span></li>';
- return `${renderGateProgressPanel()}${status}<aside class="exam-result-inline ${r.passed?'passed':'failed'}"><div><span class="chip">KẾT QUẢ · ${esc(examLevelLabel(level))} · ${r.passed?'ĐẠT':'CHƯA ĐẠT'}</span><h3>${Number(r.score10||0).toFixed(1)}/10</h3><p>${r.correct}/${r.total} câu đúng · ${r.wrongCount} câu sai/chưa trả lời. Trạng thái phần: ${gatePartComplete()?'đủ điều kiện mở khóa':'còn đề bắt buộc'}.</p></div><div class="exam-score-meter"><b>${Math.round((Number(r.score10)||0)*10)}%</b><span>Điều kiện mỗi đề: 80%</span></div><div class="mini-score-bars">${bd.levels.slice(0,4).map(row=>`<span><b>${esc(row.label)}</b><i>${row.score10.toFixed(1)}/10</i></span>`).join('')}</div><ul class="wrong-preview">${wrongPreview}</ul><div class="lesson-tools"><button class="btn ${r.passed?'green':'primary'}" data-act="open-exam-result">Xem popup kết quả</button>${r.passed?`<button class="btn soft" data-act="next-gate-paper">Lượt kế tiếp</button>`:`<button class="btn warn" data-act="create-remedial-review">Ôn tập lại</button>`}<button class="btn soft" data-act="reset-exam-paper">${r.passed?'Làm lại đề này':'Làm lại đề rớt'}</button></div></aside>`;
+ const strongText=priority.strong.length?priority.strong.map(x=>`${x.label} ${x.score}%`).join(' · '):'Chưa có kỹ năng đạt từ 80%';
+ const weakText=priority.weak.length?priority.weak.map(x=>`${x.label} ${x.score}%`).join(' · '):'Chưa có kỹ năng dưới 80%';
+ return `${renderGateProgressPanel()}${status}<aside class="exam-result-inline ${r.passed?'passed':'failed'}"><div><span class="chip">KẾT QUẢ · ${esc(examLevelLabel(level))} · ${r.passed?'ĐẠT':'CHƯA ĐẠT'}</span><h3>${Number(r.score10||0).toFixed(1)}/10</h3><p>${r.correct}/${r.total} câu đúng · ${r.wrongCount} câu sai/chưa trả lời. Trạng thái phần: ${gatePartComplete()?'đủ điều kiện mở khóa':'còn đề bắt buộc'}.</p><div class="exam-learning-diagnosis"><span><b>Mạnh:</b> ${esc(strongText)}</span><span><b>Cần củng cố:</b> ${esc(weakText)}</span><span><b>Ưu tiên tiếp:</b> ${esc(priority.guidance)}</span></div></div><div class="exam-score-meter"><b>${Math.round((Number(r.score10)||0)*10)}%</b><span>Điều kiện mỗi đề: 80%</span></div><div class="mini-score-bars">${bd.levels.slice(0,4).map(row=>`<span><b>${esc(row.label)}</b><i>${row.score10.toFixed(1)}/10</i></span>`).join('')}</div><ul class="wrong-preview">${wrongPreview}</ul><div class="lesson-tools"><button class="btn ${r.passed?'green':'primary'}" data-act="open-exam-result">Xem popup kết quả</button>${r.passed?`<button class="btn soft" data-act="next-gate-paper">Lượt kế tiếp</button>`:`<button class="btn warn" data-act="create-remedial-review">Ôn tập lại</button>`}<button class="btn soft" data-act="reset-exam-paper">${r.passed?'Làm lại đề này':'Làm lại đề rớt'}</button></div></aside>`;
 }
 function renderExamResultModal(sum){
  const level=sum?.level||activeExamLevel();
  const result=sum||examPaperResult(level)||examProgressSummary(getExamQuestions(level),level);
  const cycle=examCycleSummary();
  const bd=examBreakdown(getExamQuestions(level),level);
+ const priority=examLearningPriority(getExamQuestions(level),level);
  const wrongs=arr(result.wrong);
  const wrongList=wrongs.length?wrongs.slice(0,120).map(w=>`<article class="wrong-card"><b>Câu ${w.index+1}</b><p>${esc(questionTitle(w.question,w.index))}</p><small>Đã chọn: ${esc(examAnswerText(w.question,w.answer))}</small><small>Đúng: ${esc(examAnswerText(w.question,w.correct))}</small>${w.question?.explanation?`<em>${esc(w.question.explanation)}</em>`:''}</article>`).join(''):'<div class="note">Không có câu sai trong đề này.</div>';
  const cycleRows=cycle.rows.map(row=>{const r=row.result; const cls=r?(r.passed?'passed':'failed'):'pending'; return `<article class="paper-status ${cls}"><b>${esc(row.label)}</b><i>${r?`${Number(r.score10||0).toFixed(1)}/10 · ${r.passed?'Đạt':'Chưa đạt'}`:'Chưa nộp'}</i></article>`}).join('');
- return `<div class="exam-result-modal v1220-result-modal"><div class="result-hero ${result.passed?'passed':'failed'}"><div><span class="chip">${esc(examLevelLabel(level))} · ${result.passed?'ĐẠT':'CHƯA ĐẠT'}</span><h2>${Number(result.score10||0).toFixed(1)}/10</h2><p>${result.correct}/${result.total} câu đúng · ${result.wrongCount} câu sai/chưa trả lời. Mỗi lượt kiểm tra cần đạt từ 8.0/10.</p></div><div class="result-ring"><b>${Math.round((Number(result.score10)||0)*10)}%</b><span>điểm đề</span></div></div><section class="result-section"><h3>Trạng thái các đề trong mốc</h3><div class="paper-status-list">${cycleRows}</div></section><section class="result-section"><h3>Phổ điểm theo mức/kỹ năng</h3><div class="score-grid">${bd.levels.map(scoreBar).join('')}${bd.skills.slice(0,8).map(scoreBar).join('')}</div></section><section class="result-section"><h3>Câu sai cần xử lý</h3><div class="wrong-list">${wrongList}</div></section>${renderGateProgressPanel()}<div class="modal-actions"><button class="btn" data-act="modal-close">Đóng</button>${result.passed?`<button class="btn soft" data-act="next-gate-paper">Lượt kế tiếp</button>`:`<button class="btn primary" data-act="create-remedial-review">Ôn tập lại và tạo phụ đạo</button>`}<button class="btn soft" data-act="reset-exam-paper">Làm lại đề hiện tại</button></div></div>`;
+ return `<div class="exam-result-modal v1220-result-modal"><div class="result-hero ${result.passed?'passed':'failed'}"><div><span class="chip">${esc(examLevelLabel(level))} · ${result.passed?'ĐẠT':'CHƯA ĐẠT'}</span><h2>${Number(result.score10||0).toFixed(1)}/10</h2><p>${result.correct}/${result.total} câu đúng · ${result.wrongCount} câu sai/chưa trả lời. Mỗi lượt kiểm tra cần đạt từ 8.0/10.</p></div><div class="result-ring"><b>${Math.round((Number(result.score10)||0)*10)}%</b><span>điểm đề</span></div></div><section class="result-section"><h3>Trạng thái các đề trong mốc</h3><div class="paper-status-list">${cycleRows}</div></section><section class="result-section"><h3>Phổ điểm theo mức/kỹ năng</h3><div class="score-grid">${bd.levels.map(scoreBar).join('')}${bd.skills.slice(0,8).map(scoreBar).join('')}</div></section><section class="result-section exam-learning-priority"><h3>Chẩn đoán & ưu tiên học tiếp</h3><div class="exam-priority-grid"><article><b>Kỹ năng tốt</b><p>${esc(priority.strong.length?priority.strong.map(x=>`${x.label} · ${x.score}%`).join(' · '):'Chưa có kỹ năng đạt từ 80%.')}</p></article><article><b>Kỹ năng yếu</b><p>${esc(priority.weak.length?priority.weak.map(x=>`${x.label} · ${x.score}%`).join(' · '):'Chưa có kỹ năng dưới 80%.')}</p></article><article><b>Ưu tiên tiếp theo</b><p>${esc(priority.guidance)}</p></article></div></section><section class="result-section"><h3>Câu sai cần xử lý</h3><div class="wrong-list">${wrongList}</div></section>${renderGateProgressPanel()}<div class="modal-actions"><button class="btn" data-act="modal-close">Đóng</button>${result.passed?`<button class="btn soft" data-act="next-gate-paper">Lượt kế tiếp</button>`:`<button class="btn primary" data-act="create-remedial-review">Ôn tập lại và tạo phụ đạo</button>`}<button class="btn soft" data-act="reset-exam-paper">Làm lại đề hiện tại</button></div></div>`;
 }
 
 function reviewMeta(q){return [['Bài', (q?.lessonId||'')+' · '+(q?.lessonTitle||q?.chapter||'')],['Kỹ năng', q?.skill||''],['Chủ điểm', q?.topic||''],['Mức', q?.levelTitle||q?.difficulty||state.reviewLevel]].filter(x=>str(x[1]).trim())}
