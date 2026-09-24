@@ -48,12 +48,15 @@ for (const token of [
   'russian-optional-data-loader.js',
   'for dataset in dialogue-bauman-az deep-speaking-bauman',
   'data/chunks/$dataset/manifest.json',
+  "test \"$manifest_code\" = \"401\"",
+  "DEVICE_SESSION_REQUIRED",
   'value.revision !== expected',
   'process.env.GITHUB_SHA',
 ]) {
   if (!workflow.includes(token)) throw new Error(`Bauman preview workflow thiếu: ${token}`);
 }
 if (workflow.includes('bauman-control-local --remote')) throw new Error('Bauman preview tuyệt đối không migrate local D1 qua remote.');
+if (workflow.includes('first="$(node -e "const m=require(process.argv[1])')) throw new Error('Live preview smoke không được tải nội dung learning JSON ẩn danh; package CI chịu trách nhiệm kiểm tra manifest/chunk, runtime smoke phải xác nhận Device Gate fail-closed.');
 
 if (!ciWorkflow.includes('"subjects/**"')) throw new Error('Cloudflare preview CI phải chạy khi Subject Web Apps thay đổi.');
 for (const token of [
