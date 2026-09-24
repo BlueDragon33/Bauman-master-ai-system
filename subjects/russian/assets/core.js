@@ -2418,7 +2418,7 @@ function renderWriting(){
      <div><span class="chip">HANDWRITING FIRST · SAFE ROUND 2</span><h3>Luyện chữ viết tay Nga thông dụng</h3><p>Chữ in chỉ để nhận mặt trong sách/bảng. Phần luyện chính là chữ viết tay: nhìn mẫu, xem hình nét, tô theo rồi chép xuống vở thật.</p></div>
      <div class="tabs compact-tabs"><button class="btn ${mode==='handwriting'?'active':''}" data-writing="handwriting">✍️ Chữ viết tay</button><button class="btn ${mode==='academic'?'active':''}" data-writing="academic">🧾 Câu, email, НИР/ВКР</button></div>
    </section>
-   ${mode==='handwriting'?`<div class="writing-workbench step4-writing-workbench step36-writing-workbench handwriting-mode v1285-writing-compact">
+   ${mode==='handwriting'?`<section class="handwriting-cycle" aria-label="Chu trình luyện một chữ"><span>01 · NHÌN</span><span>02 · NGHE</span><span>03 · TÔ NÉT</span><span>04 · TỰ VIẾT</span><span>05 · NGHE → VIẾT</span></section><div class="writing-workbench step4-writing-workbench step36-writing-workbench handwriting-mode v1285-writing-compact">
      <aside class="panel writing-control hand-left-board step4-left-board step36-left-board">
        <div class="toolbar compact-toolbar"><div><h3>Bảng trái · Mẫu viết tay</h3><p>Chọn chữ, nhìn mẫu rồi luyện ở bảng phải. Bỏ phần thứ tự nét để màn hình sạch hơn.</p></div><span class="chip">${state.handwritingIndex+1}/${hand.length||0}</span></div>
        <div class="step4-left-actions"><button class="btn primary" data-act="open-hand-grid">🔤 Mẫu chữ viết tay</button><input class="input compact-input" data-input="handwritingQuery" value="${esc(state.handwritingQuery||'')}" placeholder="Tìm chữ/từ/câu..."></div>
@@ -2453,11 +2453,11 @@ function renderWriting(){
        <div class="lesson-tools step4-nav-tools"><button class="btn" data-act="prev-hand">← Mẫu trước</button><button class="btn" data-act="next-hand">Mẫu sau →</button></div>
      </aside>
      <main class="panel handwriting-sheet hand-right-practice step4-right-board step36-right-board">
-       <div class="practice-head step4-practice-head step36-practice-head v1285-practice-head"><div><span class="chip">Bảng phải · Tập viết</span><h3>${esc(handSample)}</h3><p>Viết theo mẫu chữ tay đã chọn. Tập trung nét sạch, khoảng cách đều, không cần xem thẻ thứ tự nét.</p></div><div class="mini-copy-line"><b>Chép vở:</b><span>${esc(item.copy||handSample)}</span></div></div>
-       ${renderHandwritingExercise(item)}
+       <div class="practice-head step4-practice-head step36-practice-head v1285-practice-head"><div><span class="chip">Bảng phải · Tập viết</span><h3>${esc(handSample)}</h3><p>Nhìn mẫu, nghe âm rồi viết ngay. Bài nghe-viết và công cụ chi tiết nằm phía dưới để không chặn canvas.</p></div><div class="mini-copy-line"><b>Chép vở:</b><span>${esc(item.copy||handSample)}</span></div></div>
+       <div class="paper pro-paper step4-paper step36-paper handwriting-primary-canvas"><canvas id="writingCanvas" class="writingCanvas" width="2048" height="1180"></canvas></div>
        <div class="writing-tools compact-tools step4-writing-tools step36-writing-tools"><label>Nét <input id="penSize" type="range" min="2" max="18" value="${penSize}"></label><button class="dot active" data-pen-color="#111827" title="Đen"></button><button class="dot red" data-pen-color="#9f1239" title="Đỏ"></button><button class="dot blue-dot" data-pen-color="#1d4ed8" title="Xanh"></button><button class="btn" data-act="undo-canvas">↶ Hoàn tác</button><button class="btn" data-act="clear-line">Xóa dòng luyện</button><button class="btn" data-act="clear-canvas">Xóa bảng</button><button class="btn" data-act="toggle-guide">${showGuide?'Tắt mẫu mờ':'Bật mẫu mờ'}</button><button class="btn" data-act="toggle-lines">${showLines?'Tắt đường kẻ':'Bật đường kẻ'}</button><button class="btn blue" data-act="download-canvas">Tải ảnh</button></div>
-       <div class="paper pro-paper step4-paper step36-paper"><canvas id="writingCanvas" class="writingCanvas" width="2048" height="1180"></canvas></div>
-       <div class="step4-footnote step36-footnote v1285-writing-footnote"><span>Quy trình gọn: nhìn mẫu → viết trên bảng → chép lại vào vở thật.</span><span>Phím tắt: ←/→ đổi mẫu, Backspace hoàn tác.</span></div>
+       ${renderHandwritingExercise(item)}
+       <div class="step4-footnote step36-footnote v1285-writing-footnote"><span>Chu trình: nhìn → nghe → tô nét → tự viết → nghe rồi viết.</span><span>Phím tắt: ←/→ đổi mẫu, Backspace hoàn tác.</span></div>
      </main>
    </div>`:`<div class="writing-workbench compact-writing academic-mode final-academic-layout">
      <aside class="panel writing-control compact-panel slim-control">
