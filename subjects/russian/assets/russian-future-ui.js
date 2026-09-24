@@ -178,6 +178,14 @@
       grammar:{progress:flow.grammar?flow.grammar+' lượt thực hành':'Chưa có bằng chứng',info:'Ví dụ → pattern → luyện ngay'}
     };
   }
+  function evidenceStamp(value){
+    const n=typeof value==='number'?value:Date.parse(value||'');
+    return Number.isFinite(n)?n:0;
+  }
+  function formatEvidenceTime(value){
+    const n=evidenceStamp(value);if(!n)return 'Chưa có mốc bằng chứng';
+    try{return new Intl.DateTimeFormat('vi-VN',{dateStyle:'short',timeStyle:'short'}).format(new Date(n))}catch(_){return new Date(n).toLocaleString('vi-VN')}
+  }
   function learnerReport(m){
     const learning=stored(LEARNING_STATE_KEY,{reviewQueue:{}}),srs=stored(VOCAB_SRS_KEY,{cards:{}});
     const exam=Array.isArray(m.st.examHistory)?m.st.examHistory[0]:null;
@@ -199,21 +207,58 @@
         :dueVocab
           ?'Ôn '+dueVocab+' thẻ từ đến hạn rồi tiếp tục kế hoạch hôm nay.'
           :'Tiếp tục kế hoạch hôm nay và tạo thêm bằng chứng học thật.';
-    return {stage:stg,strong,weak,issues,dueReviews:dueReviews.length,dueVocab,next};
+    const evidenceTimes=[
+      evidenceStamp(exam?.at),
+      evidenceStamp(learning.updatedAt),
+      evidenceStamp(srs.updatedAt),
+      ...Object.values(m.st.reviewProgress?.done||{}).map(x=>evidenceStamp(x?.at)),
+      ...Object.values(m.st.reviewProgress?.wrong||{}).map(x=>evidenceStamp(x?.at))
+    ].filter(Boolean);
+    const lastEvidenceAt=evidenceTimes.length?Math.max(...evidenceTimes):0;
+    const stageCheck=exam&&Number.isFinite(Number(exam.score10))
+      ?{status:exam.passed?'Đạt':'Chưa đạt',score:Number(exam.score10).toFixed(1)+'/10',at:exam.at||null}
+      :{status:'Chưa thực hiện',score:'—',at:null};
+    const evidenceStatus=diagnosis?'Có Stage Check':(lastEvidenceAt?'Đang tích lũy':'Chưa đủ dữ liệu');
+    const conclusion=!exam
+      ?'Chưa đủ dữ liệu Stage Check để kết luận năng lực. Báo cáo hiện chỉ tổng hợp evidence học tập đã ghi nhận.'
+      :diagnosis?.weak?.length
+        ?'Cần ưu tiên củng cố '+diagnosis.weak[0].label+' trước khi tăng độ khó.'
+        :'Stage Check gần nhất chưa chỉ ra kỹ năng dưới ngưỡng 80%; tiếp tục củng cố và xử lý lỗi thật.';
+    return {stage:stg,strong,weak,issues,dueReviews:dueReviews.length,dueVocab,next,conclusion,evidenceStatus,lastEvidenceAt,stageCheck};
   }
   function personalReportHtml(m){
     const r=learnerReport(m);
-    const conclusion=r.weak==='Chưa có kỹ năng dưới 80%'
-      ?'Stage Check hiện chưa chỉ ra kỹ năng dưới ngưỡng; tiếp tục củng cố và xử lý lỗi thật.'
-      :r.weak;
-    return '<article class="rf-personal-report" data-report-scope="learner">'+
-      '<div class="rf-card-head"><div><h4>Báo cáo học tập cá nhân</h4><span>'+esc(r.stage[1]||r.stage[0]||'Giai đoạn hiện tại')+' · chỉ dùng dữ liệu học của bạn</span></div></div>'+
+    return '<article class="rf-personal-report" data-report-scope="learner" data-report-evidence-status="'+esc(r.evidenceStatus)+'">'+
+      '<div class="rf-report-head"><div><span class="rf-report-kicker">BÁO CÁO HỌC TẬP</span><h4>Báo cáo học tập cá nhân</h4><p>Chỉ tổng hợp dữ liệu học của bạn, không sử dụng nhật ký kỹ thuật hoặc dữ liệu quản trị.</p></div><div class="rf-report-actions"><button type="button" data-rf-report-print aria-label="In báo cáo học tập cá nhân">In báo cáo</button></div></div>'+
+      '<div class="rf-report-meta">'+
+        '<span><small>Giai đoạn</small><b>'+esc(r.stage[1]||r.stage[0]||'Hiện tại')+' · '+esc(r.stage[0]||'')+'</b></span>'+
+        '<span><small>Stage Check gần nhất</small><b>'+esc(r.stageCheck.status)+' · '+esc(r.stageCheck.score)+'</b></span>'+
+        '<span><small>Mức dữ liệu</small><b>'+esc(r.evidenceStatus)+'</b></span>'+
+        '<span><small>Bằng chứng gần nhất</small><b>'+esc(formatEvidenceTime(r.lastEvidenceAt))+'</b></span>'+
+      '</div>'+
       '<div class="rf-personal-report-grid">'+
-        '<section><b>Kết luận ngắn</b><p>'+esc(conclusion)+'</p></section>'+
+        '<section><b>Kết luận ngắn</b><p>'+esc(r.conclusion)+'</p></section>'+
         '<section><b>Kỹ năng tốt</b><p>'+esc(r.strong)+'</p></section>'+
         '<section><b>Vấn đề cần xử lý</b><p>'+esc(r.issues)+'</p><small>'+r.dueReviews+' mục ôn · '+r.dueVocab+' thẻ từ đến hạn</small></section>'+
         '<section><b>Kế hoạch tiếp theo</b><p>'+esc(r.next)+'</p></section>'+
-      '</div></article>';
+      '</div>'+
+      '<p class="rf-report-note">Báo cáo này là công cụ tự học dựa trên evidence đã lưu, không phải bảng điểm, chứng chỉ hoặc kết luận học vụ chính thức.</p>'+
+      '</article>';
+  }
+  function printLearnerReport(){
+    const source=document.querySelector('.rf-personal-report[data-report-scope="learner"]');if(!source)return;
+    document.querySelector('.rf-report-print-sheet')?.remove();
+    const sheet=document.createElement('section');sheet.className='rf-report-print-sheet';sheet.setAttribute('aria-hidden','true');sheet.innerHTML=source.innerHTML;
+    sheet.querySelector('.rf-report-actions')?.remove();
+    document.body.appendChild(sheet);document.body.classList.add('rf-report-printing');
+    let cleaned=false;
+    const cleanup=()=>{if(cleaned)return;cleaned=true;document.body.classList.remove('rf-report-printing');sheet.remove()};
+    window.addEventListener('afterprint',cleanup,{once:true});
+    try{window.print()}finally{setTimeout(cleanup,1200)}
+  }
+  function refreshOverviewDashboard(){
+    const host=document.querySelector('.overview-v128'),dash=host?.querySelector('[data-ru-dashboard="1"]');if(!host||!dash)return;
+    dash.outerHTML=dashboardHtml();
   }
   function module(route,cls,ico,title,meta){
     return '<button class="rf-module-card '+cls+'" data-route=\''+esc(JSON.stringify(route))+'\'><div class="rf-module-head"><span class="rf-module-icon">'+ico+'</span><div><h4>'+esc(title)+'</h4><p>'+esc(meta.info)+'</p></div></div><div class="rf-module-progress"><span>Tiến độ</span><b>'+esc(meta.progress)+'</b></div></button>';
@@ -348,9 +393,13 @@
     if(document.documentElement.dataset.rfBound==='1')return;
     document.documentElement.dataset.rfBound='1';
     document.addEventListener('click',e=>{
+      const print=e.target.closest('[data-rf-report-print]');if(print){e.preventDefault();printLearnerReport();return}
       const b=e.target.closest('[data-rf-speak]');if(b){e.preventDefault();speak(b.dataset.rfSpeak||'')}
     });
-    window.addEventListener('storage',e=>{if(e.key===STORAGE_KEY)schedule()});
+    window.addEventListener('russian:learning-state',refreshOverviewDashboard);
+    window.addEventListener('russian:vocab-srs',refreshOverviewDashboard);
+    window.addEventListener('storage',e=>{if([STORAGE_KEY,LEARNING_STATE_KEY,VOCAB_SRS_KEY].includes(e.key)){if(e.key===STORAGE_KEY)schedule();refreshOverviewDashboard()}});
+
   }
   let scheduled=false;
   function upgrade(){
