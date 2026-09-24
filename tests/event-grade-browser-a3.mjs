@@ -43,7 +43,10 @@ try{
   assert.ok(await page.getByRole('button',{name:'Readiness'}).count()>0,'course modal missing A3 readiness action');
   assert.ok(await page.getByRole('button',{name:'Kết quả'}).count()>0,'course modal missing A3 grade action');
   await page.getByRole('button',{name:'Kết quả'}).first().click();
-  await page.waitForFunction(()=>Boolean(window.BAUMAN_GRADE_CONTROL_2026&&window.BAUMAN_GRADING_POLICY_2024),null,{timeout:15000});
+  await page.waitForFunction(()=>Boolean(window.BAUMAN_GRADE_CONTROL_2026&&window.BAUMAN_GRADING_POLICY_2024&&window.printAcademicReport2026),null,{timeout:15000});
+  const gradeModalText=await page.locator('#modalRoot').innerText();
+  assert.equal(/Numeric score|Official grade|Grade Control|derivedGrade/.test(gradeModalText),false,'A3 form must not expose developer-facing grade terminology');
+  must(gradeModalText.includes('Điểm số 0–100')&&gradeModalText.includes('Điểm chính thức 2–5'),'A3 learner-facing grade labels missing');
 
   const result=await page.evaluate(()=>{
     const e=window.BAUMAN_EVENT_READINESS_2026,g=window.BAUMAN_GRADE_CONTROL_2026,c=window.BAUMAN_COURSE_READINESS_2026,key='bauman_current_user_fullcode_v1';
