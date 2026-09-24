@@ -1,0 +1,110 @@
+name: Academic Reporting UX QA
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "assets/js/academic-grade-runtime.js"
+      - "assets/js/academic-transcript-runtime.js"
+      - "assets/js/academic-command-center-runtime.js"
+      - "assets/css/academic-grade-2026.css"
+      - "assets/css/academic-transcript-2026.css"
+      - "assets/css/academic-command-center-2026.css"
+      - "tests/event-grade-browser-a3.mjs"
+      - "tests/transcript-honors-browser-a4.mjs"
+      - "tests/academic-command-center-browser-a5.mjs"
+      - "scripts/validate-event-grade-runtime-a3.js"
+      - "scripts/validate-transcript-honors-runtime-a4.js"
+      - "scripts/validate-academic-command-center-a5.js"
+      - ".github/workflows/academic-reporting-qa.yml"
+  push:
+    branches: [main]
+    paths:
+      - "assets/js/academic-grade-runtime.js"
+      - "assets/js/academic-transcript-runtime.js"
+      - "assets/js/academic-command-center-runtime.js"
+      - "assets/css/academic-grade-2026.css"
+      - "assets/css/academic-transcript-2026.css"
+      - "assets/css/academic-command-center-2026.css"
+      - "tests/event-grade-browser-a3.mjs"
+      - "tests/transcript-honors-browser-a4.mjs"
+      - "tests/academic-command-center-browser-a5.mjs"
+      - "scripts/validate-event-grade-runtime-a3.js"
+      - "scripts/validate-transcript-honors-runtime-a4.js"
+      - "scripts/validate-academic-command-center-a5.js"
+      - ".github/workflows/academic-reporting-qa.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  academic-reporting-static:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - name: Validate academic evidence contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/validate-event-grade-runtime-a3.js
+          node scripts/validate-transcript-honors-runtime-a4.js
+          node scripts/validate-academic-command-center-a5.js
+      - name: Parse reporting runtimes and browser acceptance
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check assets/js/academic-grade-runtime.js
+          node --check assets/js/academic-transcript-runtime.js
+          node --check assets/js/academic-command-center-runtime.js
+          node --check tests/event-grade-browser-a3.mjs
+          node --check tests/transcript-honors-browser-a4.mjs
+          node --check tests/academic-command-center-browser-a5.mjs
+
+  academic-reporting-browser:
+    needs: academic-reporting-static
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - name: Install Playwright Chromium
+        run: |
+          printf '{"private":true,"type":"module"}\n' > package.json
+          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Start local Hub
+        shell: bash
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/bauman-reporting-http.log 2>&1 &
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/bauman-reporting-http.log
+          exit 1
+      - name: Run destructive-data and professional-report acceptance
+        shell: bash
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+        run: |
+          set -euo pipefail
+          BAUMAN_E2E_ARTIFACT_DIR=artifacts/academic-reporting/a3 node tests/event-grade-browser-a3.mjs
+          BAUMAN_E2E_ARTIFACT_DIR=artifacts/academic-reporting/a4 node tests/transcript-honors-browser-a4.mjs
+          BAUMAN_E2E_ARTIFACT_DIR=artifacts/academic-reporting/a5 node tests/academic-command-center-browser-a5.mjs
+      - name: Show local server log on failure
+        if: failure()
+        run: cat /tmp/bauman-reporting-http.log || true
+      - name: Upload reporting QA evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: academic-reporting-qa-${{ github.run_id }}
+          path: artifacts/academic-reporting
+          if-no-files-found: warn
+          retention-days: 14
