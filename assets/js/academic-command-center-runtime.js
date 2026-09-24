@@ -4,6 +4,7 @@
   const COURSE_ORDER=['d01','d02','d03','d04','d05','d06','d15','p02'];
   const SEVERITY_RANK={critical:4,high:3,medium:2,low:1};
   const SEVERITY_LABEL={critical:'Khẩn cấp',high:'Cao',medium:'Trung bình',low:'Theo dõi'};
+  const TYPE_LABEL={HONORS_BLOCKER:'Rủi ro mục tiêu bằng đỏ',ASSESSMENT_FAILED:'Đánh giá không đạt',GRADE_3_RISK:'Rủi ro điểm 3',HONORS_GRADE_4:'Điểm 4 trên phụ lục',GRADE_4_RISK:'Rủi ro điểm 4',EVENT_TIMING_LOCKED:'Chưa khóa thời điểm đánh giá',EVENT_PREPARING:'Chưa sẵn sàng đánh giá',PREREQ_REPAIR:'Cần củng cố điều kiện đầu vào',EVENT_EVIDENCE_REQUIRED:'Thiếu bằng chứng sẵn sàng',PREREQ_UNASSESSED:'Chưa đánh giá điều kiện đầu vào',EXCELLENT_BELOW_SAFETY_TARGET:'Điểm 5 dưới biên an toàn',READY_FOR_ASSESSMENT:'Sẵn sàng đánh giá',TRACK:'Theo dõi'};
   const h=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
   const courseRuntime=()=>window.BAUMAN_COURSE_READINESS_2026||null;
   const eventRuntime=()=>window.BAUMAN_EVENT_READINESS_2026||null;
@@ -77,7 +78,7 @@
     return `<button class="btn" onclick="openOfficialCoursePhase2('${h(t.courseId)}')">Mở Course Readiness</button>`;
   }
   function card(cmd){
-    return `<article class="commandA5-card ${h(cmd.severity)}"><div class="commandA5-card-head"><div><b>${h(cmd.courseId)} · ${h(cmd.course.nameRu)}</b><small>${h(cmd.type)}</small></div><span class="commandA5-severity ${h(cmd.severity)}">${h(SEVERITY_LABEL[cmd.severity]||cmd.severity)}</span></div><div class="commandA5-axes">${axis('Prereq',cmd.axes.prereq.label)}${axis('Lifecycle',cmd.axes.lifecycle.label)}${axis('Event',cmd.axes.event.label)}${axis('Transcript',cmd.axes.transcript.label)}</div><div class="commandA5-action"><strong>${h(cmd.title)}</strong><small>${h(cmd.detail)}</small><div class="commandA5-actions">${targetButton(cmd)}</div></div></article>`;
+    return `<article class="commandA5-card ${h(cmd.severity)}"><div class="commandA5-card-head"><div><b>${h(cmd.courseId)} · ${h(cmd.course.nameRu)}</b><small>${h(TYPE_LABEL[cmd.type]||cmd.type)}</small></div><span class="commandA5-severity ${h(cmd.severity)}">${h(SEVERITY_LABEL[cmd.severity]||cmd.severity)}</span></div><div class="commandA5-axes">${axis('Điều kiện',cmd.axes.prereq.label)}${axis('Trạng thái môn',cmd.axes.lifecycle.label)}${axis('Đánh giá',cmd.axes.event.label)}${axis('Phụ lục',cmd.axes.transcript.label)}</div><div class="commandA5-action"><strong>${h(cmd.title)}</strong><small>${h(cmd.detail)}</small><div class="commandA5-actions">${targetButton(cmd)}</div></div></article>`;
   }
   function renderPanel(){
     const s=summary(),hon=s.honors,p=hon.projection||{};
