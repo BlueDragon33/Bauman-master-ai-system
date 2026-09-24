@@ -69,7 +69,9 @@ for (const token of [
   "uuidValue('BAUMAN_CONTROL_PRODUCTION_D1_DATABASE_ID')",
   "uuidValue('BAUMAN_CONTROL_PREVIEW_D1_DATABASE_ID')",
   'productionD1 === previewD1',
-  '.chatgpt.site',
+  'allowChatgptSite',
+  "exactHttpsOrigin('APPLICATION_MANAGEMENT_PRODUCTION_ORIGIN', { allowChatgptSite: true })",
+  "url.hostname.endsWith('.chatgpt.site')",
   'origins.size !== 5',
   'runtime-dist',
   'chunkJsonArray',
@@ -81,6 +83,15 @@ for (const token of [
 }
 
 if (!ci.includes('wrangler deploy --dry-run')) throw new Error('Production CI must dry-run both Workers.');
+if (!ci.includes('APPLICATION_MANAGEMENT_PRODUCTION_ORIGIN: https://control-plane.example.chatgpt.site')) {
+  throw new Error('Production CI must prove that only the Application Management control-plane may retain a ChatGPT Sites origin.');
+}
+if (prepare.includes("exactHttpsOrigin('BAUMAN_CONTROL_PRODUCTION_ORIGIN', { allowChatgptSite: true })")
+  || prepare.includes("exactHttpsOrigin('BAUMAN_RUNTIME_PRODUCTION_ORIGIN', { allowChatgptSite: true })")
+  || prepare.includes("exactHttpsOrigin('BAUMAN_CONTROL_PREVIEW_ORIGIN', { allowChatgptSite: true })")
+  || prepare.includes("exactHttpsOrigin('BAUMAN_RUNTIME_PREVIEW_ORIGIN', { allowChatgptSite: true })")) {
+  throw new Error('Bauman preview/production origins must never opt into ChatGPT Sites.');
+}
 if (ci.includes('wrangler d1 migrations apply bauman-control-db --remote')) throw new Error('Production CI must never mutate remote production D1.');
 if (ci.includes('DEPLOY_PRODUCTION')) throw new Error('Production CI must not contain the live deployment confirmation token.');
 

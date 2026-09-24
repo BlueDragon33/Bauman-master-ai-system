@@ -12,14 +12,16 @@ function required(name) {
   return value;
 }
 
-function exactHttpsOrigin(name) {
+function exactHttpsOrigin(name, { allowChatgptSite = false } = {}) {
   const raw = required(name).replace(/\/$/, '');
   let url;
   try { url = new URL(raw); } catch { throw new Error(`${name} must be a valid URL.`); }
   if (url.protocol !== 'https:' || url.username || url.password || url.pathname !== '/' || url.search || url.hash) {
     throw new Error(`${name} must be an exact HTTPS origin without path, query, credentials or fragment.`);
   }
-  if (url.hostname.endsWith('.chatgpt.site')) throw new Error(`${name} must not point to ChatGPT Sites.`);
+  if (!allowChatgptSite && url.hostname.endsWith('.chatgpt.site')) {
+    throw new Error(`${name} must not point to ChatGPT Sites.`);
+  }
   return url.origin;
 }
 
@@ -117,7 +119,9 @@ const previewD1 = uuidValue('BAUMAN_CONTROL_PREVIEW_D1_DATABASE_ID');
 if (productionD1 === LOCAL_D1_ID) throw new Error('Production must never use the local D1 placeholder.');
 if (productionD1 === previewD1) throw new Error('Production must never reuse the Bauman preview D1 database.');
 
-const applicationManagementOrigin = exactHttpsOrigin('APPLICATION_MANAGEMENT_PRODUCTION_ORIGIN');
+// Application Management production currently keeps ChatGPT Sites authentication,
+ // while Bauman Control/Runtime themselves must remain on isolated Cloudflare origins.
+const applicationManagementOrigin = exactHttpsOrigin('APPLICATION_MANAGEMENT_PRODUCTION_ORIGIN', { allowChatgptSite: true });
 const controlOrigin = exactHttpsOrigin('BAUMAN_CONTROL_PRODUCTION_ORIGIN');
 const runtimeOrigin = exactHttpsOrigin('BAUMAN_RUNTIME_PRODUCTION_ORIGIN');
 const previewControlOrigin = exactHttpsOrigin('BAUMAN_CONTROL_PREVIEW_ORIGIN');
