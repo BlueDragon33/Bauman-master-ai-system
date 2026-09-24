@@ -47,7 +47,7 @@ must(index.includes('aria-modal="true"'),'Modal must declare aria-modal');
 must(index.includes('aria-label="Đóng hộp thoại"'),'Modal close button must have an accessible name');
 must(!index.includes('/priˈvʲet/'),'Learning shell must not expose a hard-coded pronunciation sample as canonical data');
 
-for(const token of ['.grammar-examples-first','.grammar-pattern-strip','.grammar-concept-details','.ru-app-shell','.rf-continue-card','.rf-today-review-grid','.rf-today-plan','.rf-review-now','.rf-module-grid','.rf-module-progress','.rf-learning-path','.vocab-progressive-details','@media (max-width:1080px)','@media (max-width:760px)','@media (max-width:480px)']){
+for(const token of ['.grammar-examples-first','.grammar-pattern-strip','.grammar-rule-short','.grammar-concept-details','.ru-app-shell','.rf-continue-card','.rf-today-review-grid','.rf-today-plan','.rf-review-now','.rf-module-grid','.rf-module-progress','.rf-learning-path','.vocab-progressive-details','@media (max-width:1080px)','@media (max-width:760px)','@media (max-width:480px)']){
   must(css.includes(token),`Missing CSS contract: ${token}`);
 }
 for(const token of ['.ru-legacy-overview-details','.ru-empty-activity',':focus-visible','prefers-reduced-motion']){
@@ -193,9 +193,10 @@ must(core.includes('data-input="vocabTopic"'),'Vocabulary library curated topic 
 must(core.includes('data-input="vocabStatus"'),'Vocabulary library SRS status filter missing');
 must(core.includes('grammar-examples-first'),'Grammar must present Russian examples before heavy explanation');
 must(core.includes('grammar-pattern-strip'),'Grammar quick pattern strip missing');
+must(core.includes('grammar-rule-short'),'Grammar short-rule block missing');
 must(core.includes('grammar-practice-now'),'Grammar immediate practice block missing');
 must(core.includes('<details class="grammar-concept-details">'),'Grammar deeper explanation must use progressive disclosure');
-must(core.indexOf('grammar-examples-first')<core.indexOf('grammar-concept-details'),'Grammar examples must precede deeper rule explanation');
+must(core.indexOf('grammar-examples-first')<core.indexOf('grammar-pattern-strip')&&core.indexOf('grammar-pattern-strip')<core.indexOf('grammar-rule-short')&&core.indexOf('grammar-rule-short')<core.indexOf('grammar-practice-now')&&core.indexOf('grammar-practice-now')<core.indexOf('grammar-concept-details'),'Grammar order must be examples → pattern → short rule → practice → deeper explanation');
 must(core.includes("label:'Học tập',tags:['academic','graduate_path']"),'Raw vocabulary metadata must be mapped to learner-facing topic labels');
 must(!core.includes('<option value="graduate_path"'),'Raw metadata tags must not be exposed as learner-facing options');
 must(core.includes("vocabFocusKey:''"),'Vocabulary routing must preserve a dedicated stable focus key');
