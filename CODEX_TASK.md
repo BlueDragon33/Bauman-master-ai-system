@@ -1,17 +1,17 @@
 # CODEX_TASK
 
-Task: `BAUMAN_PROJECT_STATE_POST_PRODUCTION_PUBLISH_GATE_V1_RECONCILIATION`
+Task: `BAUMAN_RUSSIAN_UX_REFACTOR_POST_MERGE_RECONCILIATION_FX`
 Mode: `CHAT_FIRST / CURRENT_MAIN / FAIL_CLOSED`
 
 ## Current objective
 
-Keep future work aligned with the true current-main baseline after Deep Study Journal v1, packaged-readiness Fx #88, Current-Main Control-State Gate v1.1, the promoted Russian Future Reference UI, Russian Future UI idempotence Fx #95, Russian Future UI package-readiness Fx #97, Russian Vocabulary Visual Immersion v1 #99, and Production Publish Gate v1 #102.
+Keep future work aligned with the true current-main baseline after the Russian UX/UI learner-first refactor PASS 2→10 was promoted by PR #108 as merge commit `59d4bc3bad24c20eac09376fe27f564d9dc9a87e`. Reconcile control-state records so no later work resumes from the obsolete pre-refactor baseline or stale duplicate PR #109.
 
-Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A6, Device Contract v6, Content Review API v1, Deep Study Journal v1, its packaged-readiness Fx #88, Current-Main Control-State Gate v1.1, Russian Future Reference UI, Russian Future UI idempotence Fx #95, Russian Future UI package-readiness Fx #97, Russian Vocabulary Visual Immersion v1 #99 and Production Publish Gate v1 #102 are promoted.
+Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A6, Device Contract v6, Content Review API v1, Deep Study Journal v1, its packaged-readiness Fx #88, Current-Main Control-State Gate v1.1, Russian Future Reference UI, Russian Future UI idempotence Fx #95, Russian Future UI package-readiness Fx #97, Russian Vocabulary Visual Immersion v1 #99, Production Publish Gate v1 #102, and the Russian UX/UI refactor PASS 1→10 are promoted.
 
 ## Mandatory sequence
 
-1. Use current `main` as the baseline.
+1. Use current `main` at or after `59d4bc3bad24c20eac09376fe27f564d9dc9a87e` as the baseline.
 2. Do not reopen historical Roadmap rounds or stale candidate branches as current work.
 3. Preserve Russian Listen+Write, Academic Phase2, Device Contract v6 and Content Review API v1.
 4. Preserve fail-closed learning-gate layering; the base worker must not advertise the learning gate as live before deployment/preview readiness.
@@ -33,6 +33,8 @@ Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A
 15. Preserve Russian Future UI package readiness: ChatGPT Site and Cloudflare preview materializers must require the Future UI CSS/JS and verify packaged Russian HTML references them.
 16. Preserve Russian vocabulary visual immersion: visible vocabulary learning must use visual cues plus Russian contextual explanation/practice, must not prefer Vietnamese/English translation fields, and must keep the direct + packaged browser regression.
 17. Preserve Production Publish Gate v1: production must remain manual-only, exact-preview-revision-first, isolated from preview/local D1, protected by the `bauman-production` environment, and fully dry-run before any remote production mutation.
+18. Preserve the promoted Russian UX/UI PASS 1→10 learner-first architecture and its direct + packaged regression matrix.
+19. Treat PR #109 as stale duplicate work from pre-#108 main; do not merge or reuse it.
 
 ## Protected contracts
 
@@ -52,6 +54,7 @@ Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A
 - Russian Future UI CSS/JS package assets and HTML references must fail closed during materialization.
 - Russian vocabulary source data remains preserved while the visible learning projection stays visual-first and Russian-context only; no Vietnamese/English translation fallback or raw metadata translation clue may re-enter the card surface.
 - Production Publish Gate v1 remains outside Roadmap V2, manual-only and fail-closed: no push-triggered production deploy, no preview/production D1 reuse, no promotion from a different revision, and no bypass of production environment confirmation.
+- Russian UX/UI PASS 1→10 learner-first behavior from PR #108 remains promoted; stale duplicate PR #109 must not be promoted.
 
 ## Completion condition
 
@@ -65,4 +68,5 @@ Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A
 - Russian Future UI package-readiness Fx (PR #97) is promoted as `00605feb7dbdfbb9c6f1e5399d75c1af96211af4`, with fail-fast ChatGPT Site/Cloudflare package checks and Whole System packaged Future UI acceptance recorded as SUCCESS;
 - Russian Vocabulary Visual Immersion v1 (PR #99) is promoted as `e8108f25d6e3dd686116c6f13589ddc913c95e68`, with Russian Reference UI, Cloudflare Preview, Windows checkout and Whole System direct + packaged Russian Future UI gates recorded as SUCCESS;
 - Production Publish Gate v1 (PR #102) is promoted as `51138b9e9f9a60c47d91a354446532e8064a545f`, with Production Publish Gate CI, Cloudflare Preview, Control Service, Runtime Device Gate and Windows checkout recorded as SUCCESS on the tested PR head;
+- Russian UX/UI refactor PASS 2→10 (PR #108) is promoted as `59d4bc3bad24c20eac09376fe27f564d9dc9a87e`; PR head `86887d287d8922b3d14c0bf636b11b628919972d` passed Russian Reference UI, Windows checkout, Production Publish Gate CI, Cloudflare Preview, Whole System Integration, and Foundation Domain Model gates;
 - future work resumes from current `main` only when a concrete defect, missing capability or explicit feature request exists.
