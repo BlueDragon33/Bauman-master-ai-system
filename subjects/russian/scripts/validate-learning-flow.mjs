@@ -31,6 +31,7 @@ must(js.includes("scope:'lesson'")&&js.includes("scope:'stage'"),'Learning flow 
 must(js.includes("if(step==='speaking')return Number(s.ok||0)>0"),'Speaking evidence must require an explicit OK signal, not an open/attempt alone');
 must(js.includes("if(step==='check')return Number(s.correct||0)>0&&!latestCheckNeedsReview(s)"),'Check evidence must reject unresolved later wrong answers');
 must(!js.includes('RussianLearningState?.addReview'),'V2 review lifecycle must go through recordReviewResult');
+must(js.includes("new CustomEvent('russian:mini-check',{detail:{lessonId}})"),'Lesson Check step must enter lesson-scoped Mini Check mode');
 must(state.includes("resolveReview(key,'corrected'"),'Correct review result must resolve the queued item');
 must(state.includes('const resumePosition=isResume?state.resume?.position:null'),'Resume navigation must snapshot saved position before route state changes');
 must(state.includes('restoreResumePosition(resumePosition)'),'Resume navigation must restore the saved position snapshot');
