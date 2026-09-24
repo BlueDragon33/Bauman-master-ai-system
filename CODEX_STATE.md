@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `BAUMAN_PROFESSIONAL_REPORTING_UX_ROUND2_POST_MERGE_RECONCILIATION`
+Current task: `BAUMAN_PROFESSIONAL_UX_REPORTING_QA_ROUND3_POST_MERGE_RECONCILIATION`
 
-Status: `ROADMAP_V2_COMPLETE · RUSSIAN_LISTEN_WRITE_PROMOTED · ACADEMIC_PHASE2_A1_A6_PROMOTED · DEVICE_CONTRACT_V6_PROMOTED · CONTENT_REVIEW_V1_PROMOTED · DEEP_STUDY_JOURNAL_V1_PROMOTED · DSJ_PACKAGED_READINESS_FX_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_1_PROMOTED · RUSSIAN_FUTURE_REFERENCE_UI_PROMOTED · RUSSIAN_FUTURE_UI_IDEMPOTENCE_FX_PROMOTED · RUSSIAN_FUTURE_UI_PACKAGE_READINESS_FX_PROMOTED · RUSSIAN_VOCAB_VISUAL_IMMERSION_V1_PROMOTED · PRODUCTION_PUBLISH_GATE_V1_PROMOTED · RUSSIAN_UX_REFACTOR_PASS_1_10_PROMOTED · PROFESSIONAL_UX_REPORTING_QA_PROMOTED · PROFESSIONAL_REPORTING_UX_ROUND2_PROMOTED · CURRENT_MAIN_CLEAN`
+Status: `ROADMAP_V2_COMPLETE · RUSSIAN_LISTEN_WRITE_PROMOTED · ACADEMIC_PHASE2_A1_A6_PROMOTED · DEVICE_CONTRACT_V6_PROMOTED · CONTENT_REVIEW_V1_PROMOTED · DEEP_STUDY_JOURNAL_V1_PROMOTED · DSJ_PACKAGED_READINESS_FX_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_1_PROMOTED · RUSSIAN_FUTURE_REFERENCE_UI_PROMOTED · RUSSIAN_FUTURE_UI_IDEMPOTENCE_FX_PROMOTED · RUSSIAN_FUTURE_UI_PACKAGE_READINESS_FX_PROMOTED · RUSSIAN_VOCAB_VISUAL_IMMERSION_V1_PROMOTED · PRODUCTION_PUBLISH_GATE_V1_PROMOTED · RUSSIAN_UX_REFACTOR_PASS_1_10_PROMOTED · PROFESSIONAL_UX_REPORTING_QA_PROMOTED · PROFESSIONAL_REPORTING_UX_ROUND2_PROMOTED · PROFESSIONAL_UX_REPORTING_QA_ROUND3_PROMOTED · CURRENT_MAIN_CLEAN`
 
 Date: 2026-09-24
 Branch: `main`
@@ -34,6 +34,7 @@ Promoted current-main capabilities:
 - Russian UX/UI learner-first refactor PASS 2→10 — PR #108 merged as `59d4bc3bad24c20eac09376fe27f564d9dc9a87e`; PASS 1 was already promoted before this merge.
 - Professional UX and reporting QA hardening — PR #111 merged as `cbdba1a5cee8703f6ceed2c94e070909d7014a93`.
 - Professional academic reports UX round 2 — PR #113 merged as `2a72d7c8934e1023d24e6158baea9ca85e8a6e44`.
+- Professional UX/reporting QA round 3 — PR #115 merged as `97946ad5a13b2f3c3abe2b6ec67bf51b085cbd2f`.
 
 ## Device Contract v6
 
@@ -381,6 +382,32 @@ Validated again after merge on current `main` commit `2a72d7c8934e1023d24e6158ba
 
 This is UX/reporting hardening only. It does not create L36, authorize production deployment, change academic authority or mutate scheduler/mastery/course-completion semantics.
 
+## Professional UX/reporting QA round 3
+
+PR #115 completed an independent software-tester, learner-UX and professional-reporting audit after rounds #111 and #113.
+
+Concrete defects found and fixed:
+
+- prerequisite diagnostic evidence deletion now requires explicit destructive-action confirmation; cancelling remains a no-op, matching grade/transcript deletion safety;
+- academic print/PDF CSS no longer applies `break-inside: avoid` to the entire report or report panel, so long reports can paginate correctly across A4/PDF pages while individual rows/cards remain protected from awkward splits;
+- printed controls are non-interactive;
+- Russian generic modals now move keyboard focus inside immediately on open and use a next-frame fallback only if focus escaped, closing a real accessibility race detected by Whole System;
+- Academic Reporting UX QA includes a dedicated round-3 static validator plus browser regression for diagnostic clear cancel/confirm/restore and print pagination.
+
+PR #115 final head `25d46df984f328f9ae964285ef17c43a0638fe41` passed:
+
+- Academic Reporting UX QA run `35956881943` — SUCCESS;
+- Academic 2026 Prerequisite Gate run `35956881952` — SUCCESS;
+- Russian Reference UI Gate run `35956881942` — SUCCESS;
+- Bauman Cloudflare Preview CI run `35956881915` — SUCCESS;
+- Bauman Cloudflare Production Publish Gate CI run `35956881995` — SUCCESS;
+- Windows checkout safety run `35956881909` — SUCCESS;
+- Whole System Integration Gate run `35956881955` — SUCCESS, including the previously failing direct Russian modal-focus acceptance and the full packaged ChatGPT Site regression chain.
+
+Promoted to current `main` as merge commit `97946ad5a13b2f3c3abe2b6ec67bf51b085cbd2f`.
+
+This remains QA/UX/reporting hardening only. It does not create L36, change scheduler/mastery/course-completion/academic authority, or authorize production deployment.
+
 ## Intentional capability layering
 
 The base control worker intentionally keeps `learningAccessGate: false` until the deployment/preview wrapper verifies D1 + app-origin readiness. Do not flatten this fail-closed layering.
@@ -412,4 +439,5 @@ Roadmap V2 itself does **not** authorize production deployment. Production Publi
 8. Treat Russian UX/UI PASS 2→10 merge commit `59d4bc3bad24c20eac09376fe27f564d9dc9a87e` as promoted current-main behavior; do not reopen or promote stale PR #109.
 9. Preserve Professional UX and reporting QA hardening from PR #111, including meaningful-evidence reporting, destructive-data confirmation and the Academic Reporting UX QA gate.
 10. Preserve Professional academic reports UX round 2 from PR #113, including learner-facing terminology, report scope/provenance metadata, scoped print/PDF presentation and shared-report QA path coverage.
-11. Create a new round only for a concrete defect, explicit missing capability or newly requested feature.
+11. Preserve Professional UX/reporting QA round 3 from PR #115: diagnostic deletion must remain confirmation-guarded/cancel-safe, long academic reports must remain multi-page printable, and Russian modal focus must enter the dialog synchronously with focus trapping/restoration intact.
+12. Create a new round only for a concrete defect, explicit missing capability or newly requested feature.
