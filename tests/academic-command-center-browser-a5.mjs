@@ -43,6 +43,11 @@ try{
   await page.waitForFunction(()=>Boolean(window.BAUMAN_ACADEMIC_COMMAND_CENTER_2026),null,{timeout:15000});
   await page.waitForSelector('#modalRoot [data-command-a5="center"]');
   assert.equal(await page.locator('#modalRoot .commandA5-card').count(),8,'A5 must render exact 8 S1 course cards');
+  const commandReportText=await page.locator('#modalRoot [data-command-a5="center"]').innerText();
+  for(const label of ['Báo cáo học vụ tổng hợp','Chỉ đọc · không sửa lịch','KHẨN CẤP','MỨC CAO','PHỤ LỤC ĐÃ XÁC MINH','ĐIỂM 5 / NHU CẦU DỰ KIẾN']){
+    must(commandReportText.includes(label),'Professional academic summary report missing '+label);
+  }
+  assert.equal(/DECISION SUPPORT|Read-only · no scheduler mutation|TRANSCRIPT VERIFIED/.test(commandReportText),false,'Developer-facing report labels must not leak into the learner UI');
 
   const result=await page.evaluate(()=>{
     const cmd=window.BAUMAN_ACADEMIC_COMMAND_CENTER_2026;

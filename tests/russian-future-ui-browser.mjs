@@ -28,6 +28,8 @@ try{
     Object.defineProperty(window,'Audio',{configurable:true,value:MockAudio});
     window.__RF_SPEECH=speech;
     window.__RF_AUDIO=audio;
+    window.__RF_PRINT_COUNT=0;
+    Object.defineProperty(window,'print',{configurable:true,value:()=>{window.__RF_PRINT_COUNT++}});
   });
 
   await page.goto(new URL('subjects/russian/index.html',BASE).href,{waitUntil:'domcontentloaded',timeout:30000});
@@ -93,8 +95,29 @@ try{
   const personalReport=page.locator('.rf-personal-report[data-report-scope="learner"]');
   await personalReport.waitFor({state:'visible',timeout:10000});
   const personalReportText=await personalReport.innerText();
-  for(const label of ['Báo cáo học tập cá nhân','Kết luận ngắn','Kỹ năng tốt','Vấn đề cần xử lý','Kế hoạch tiếp theo'])assert.ok(personalReportText.includes(label),'Personal learning report missing '+label);
+  for(const label of ['Báo cáo học tập cá nhân','Kết luận ngắn','Kỹ năng tốt','Vấn đề cần xử lý','Kế hoạch tiếp theo','Mức dữ liệu','Stage Check gần nhất','Bằng chứng gần nhất','In báo cáo'])assert.ok(personalReportText.includes(label),'Personal learning report missing '+label);
   assert.equal(/device log|access log|technical log|nhật ký thiết bị/i.test(personalReportText),false,'Learner report must not expose admin/device technical logs');
+  assert.equal(await personalReport.getAttribute('data-report-evidence-status'),'Chưa đủ dữ liệu','Fresh learner report must not overstate evidence completeness');
+  assert.match(personalReportText,/không phải bảng điểm, chứng chỉ hoặc kết luận học vụ chính thức/i,'Learner report must state its non-official evidence boundary');
+
+  await page.locator('[data-rf-report-print]').click();
+  assert.equal(await page.evaluate(()=>window.__RF_PRINT_COUNT),1,'Report print action must invoke the browser print flow exactly once');
+  assert.equal(await page.locator('.rf-report-print-sheet').count(),1,'Print action must materialize a report-only print sheet');
+  assert.equal(await page.locator('body.rf-report-printing').count(),1,'Print action must activate report-only print mode');
+  await page.waitForTimeout(1300);
+  assert.equal(await page.locator('.rf-report-print-sheet').count(),0,'Temporary print sheet must clean itself up');
+
+  await page.evaluate(()=>{
+    const at=new Date().toISOString();
+    localStorage.setItem('bauman_russian_learning_state_v1',JSON.stringify({
+      schema:'bauman_russian_learning_state_v1',
+      reviewQueue:{'qa-review-evidence':{id:'qa-review-evidence',label:'Mục QA có evidence',reason:'user_flagged',addedAt:at,scheduledAt:at,dueAt:at}},
+      updatedAt:at
+    }));
+    window.dispatchEvent(new CustomEvent('russian:learning-state'));
+  });
+  await page.waitForFunction(()=>document.querySelector('.rf-personal-report')?.dataset.reportEvidenceStatus==='Đang tích lũy',null,{timeout:5000});
+  assert.equal(await personalReport.getAttribute('data-report-evidence-status'),'Đang tích lũy','Learner report must refresh when evidence state changes');
 
   const dashboardText=await page.locator('.rf-dashboard').innerText();
   for(const label of ['HỌC TIẾP','CẦN ÔN','Hôm nay','5 kỹ năng chính','Video','Nghe & Nói','Luyện chữ','Từ vựng','Ngữ pháp','Learning Path','Khởi động','Âm & chữ','Nghe nói cơ bản','A1','A2 / Dự bị','Tiếng Nga học thuật']){

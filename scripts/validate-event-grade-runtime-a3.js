@@ -23,6 +23,8 @@ for(const src of [event,grade]){
   assert(!src.includes('function patchHome()'),'A3 must not patch Home');
 }
 assert(!grade.includes('bootstrapTranscriptRuntime'),'A3 must not bootstrap A4 transcript runtime');
+assert(grade.includes('Báo cáo kết quả đánh giá'),'A3 learner-facing grade report title missing');
+assert(grade.includes("window.confirm('Xóa kết quả đã xác nhận"),'A3 destructive grade clear must require explicit confirmation');
 assert(!event.includes('setTimeout(bootstrapGradeRuntime'),'A3 Grade runtime must not auto-load in Hub background');
 assert(course.includes('function bootstrapEventRuntime()'),'A2 runtime must bootstrap A3 event evidence');
 assert(course.includes('assets/js/academic-event-runtime.js')&&course.includes('assets/css/academic-event-2026.css'),'A3 event assets missing from current-main bridge');
