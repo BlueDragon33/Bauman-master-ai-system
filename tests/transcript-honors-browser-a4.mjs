@@ -86,6 +86,23 @@ try{
   assert.equal(result.isolated.verifiedRows,0);
   assert.equal(result.homeSurfaceAdded,false);assert.equal(result.eventAutoPromotion,false);assert.equal(result.schedulerMutation,false);assert.equal(result.courseCompletionMutation,false);
 
+  const clearGuard=await page.evaluate(()=>{
+    const t=window.BAUMAN_TRANSCRIPT_HONORS_2026;
+    const row=t.candidateRows().find(r=>t.rawEntry(r.rowId));
+    const saved=t.rawEntry(row.rowId);
+    window.confirm=()=>false;
+    window.clearAcademicTranscriptEntry2026(row.rowId);
+    const afterCancel=t.entryState(row.rowId).verified;
+    window.confirm=()=>true;
+    window.clearAcademicTranscriptEntry2026(row.rowId);
+    const afterConfirm=t.entryState(row.rowId).verified;
+    const restored=t.recordEntry(row.rowId,saved).verified;
+    return {rowId:row.rowId,afterCancel,afterConfirm,restored};
+  });
+  assert.equal(clearGuard.afterCancel,true,'Cancelling evidence deletion must preserve the verified transcript row');
+  assert.equal(clearGuard.afterConfirm,false,'Confirmed evidence deletion must clear the transcript row');
+  assert.equal(clearGuard.restored,true,'Transcript evidence must remain writable after a confirmed clear');
+
   await page.reload({waitUntil:'domcontentloaded',timeout:30000});
   await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='authorized',null,{timeout:15000});
   await page.waitForFunction(()=>Boolean(window.BAUMAN_EVENT_READINESS_2026),null,{timeout:15000});
