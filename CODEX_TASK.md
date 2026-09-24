@@ -1,17 +1,17 @@
 # CODEX_TASK
 
-Task: `BAUMAN_PROFESSIONAL_REPORTING_UX_ROUND2_POST_MERGE_RECONCILIATION`
+Task: `BAUMAN_PROFESSIONAL_UX_REPORTING_QA_ROUND3_POST_MERGE_RECONCILIATION`
 Mode: `CHAT_FIRST / CURRENT_MAIN / FAIL_CLOSED`
 
 ## Current objective
 
-Keep future work aligned with the true current-main baseline after PR #113 promoted Professional academic reports UX round 2 as merge commit `2a72d7c8934e1023d24e6158baea9ca85e8a6e44`. Preserve learner-facing report terminology, explicit report scope/data-limit metadata, scoped print/PDF presentation, destructive-data guards and the expanded Academic Reporting UX QA path coverage.
+Keep future work aligned with the true current-main baseline after PR #115 promoted Professional UX/reporting QA round 3 as merge commit `97946ad5a13b2f3c3abe2b6ec67bf51b085cbd2f`. Preserve destructive diagnostic-data safety, professional multi-page print/PDF pagination, Russian modal keyboard-focus accessibility, and all existing academic authority boundaries.
 
-Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A6, Device Contract v6, Content Review API v1, Deep Study Journal v1, its packaged-readiness Fx #88, Current-Main Control-State Gate v1.1, Russian Future Reference UI, Russian Future UI idempotence Fx #95, Russian Future UI package-readiness Fx #97, Russian Vocabulary Visual Immersion v1 #99, Production Publish Gate v1 #102, Russian UX/UI refactor PASS 1→10, Professional UX/reporting QA hardening #111, and Professional academic reports UX round 2 #113 are promoted.
+Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A6, Device Contract v6, Content Review API v1, Deep Study Journal v1, its packaged-readiness Fx #88, Current-Main Control-State Gate v1.1, Russian Future Reference UI, Russian Future UI idempotence Fx #95, Russian Future UI package-readiness Fx #97, Russian Vocabulary Visual Immersion v1 #99, Production Publish Gate v1 #102, Russian UX/UI refactor PASS 1→10, Professional UX/reporting QA hardening #111, Professional academic reports UX round 2 #113, and Professional UX/reporting QA round 3 #115 are promoted.
 
 ## Mandatory sequence
 
-1. Use current `main` at or after `2a72d7c8934e1023d24e6158baea9ca85e8a6e44` as the baseline.
+1. Use current `main` at or after `97946ad5a13b2f3c3abe2b6ec67bf51b085cbd2f` as the baseline.
 2. Do not reopen historical Roadmap rounds or stale candidate branches as current work.
 3. Preserve Russian Listen+Write, Academic Phase2, Device Contract v6 and Content Review API v1.
 4. Preserve fail-closed learning-gate layering; the base worker must not advertise the learning gate as live before deployment/preview readiness.
@@ -40,6 +40,9 @@ Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A
 22. Keep Academic Reporting UX QA active for A3/A4/A5 report and destructive-data regression.
 23. Preserve PR #113 learner-facing terminology, report scope/provenance metadata and `In / lưu PDF` report-only print presentation.
 24. Keep `assets/js/academic-main.js` and `assets/css/academic-2026.css` inside the Academic Reporting UX QA path filters so shared report-presentation regressions cannot bypass the gate.
+25. Preserve PR #115 diagnostic deletion confirmation and cancel-safe behavior.
+26. Preserve PR #115 print pagination: the whole academic report/panel must allow page breaks while individual report rows/cards retain anti-split protection.
+27. Preserve Russian modal accessibility from PR #115: opening a generic modal must immediately move focus inside; Tab/Shift+Tab remain trapped and close restores focus to the opener.
 
 ## Protected contracts
 
@@ -63,6 +66,9 @@ Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A
 - PR #111 professional reporting must remain evidence-truthful, learner-facing and non-authoritative; it must not silently alter mastery, scheduler, completion or honors eligibility.
 - Destructive grade/transcript evidence actions must remain confirmation-guarded and cancel-safe.
 - PR #113 professional report presentation must remain learner-facing and non-authoritative: print/PDF is a presentation/export affordance only and may not imply official transcript, honors eligibility, scheduler, mastery or completion authority.
+- PR #115 destructive diagnostic actions must remain confirmation-guarded and cancel-safe.
+- PR #115 academic print CSS must remain multi-page safe; never restore whole-report `break-inside: avoid`.
+- PR #115 Russian modal focus behavior must remain keyboard-accessible in both direct and packaged runtime.
 
 ## Completion condition
 
@@ -79,4 +85,5 @@ Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A
 - Russian UX/UI refactor PASS 2→10 (PR #108) is promoted as `59d4bc3bad24c20eac09376fe27f564d9dc9a87e`; PR head `86887d287d8922b3d14c0bf636b11b628919972d` passed Russian Reference UI, Windows checkout, Production Publish Gate CI, Cloudflare Preview, Whole System Integration, and Foundation Domain Model gates;
 - Professional UX and reporting QA hardening (PR #111) is promoted as `cbdba1a5cee8703f6ceed2c94e070909d7014a93`; its post-merge Academic Reporting UX QA, Academic prerequisite, Russian Reference UI, Cloudflare Preview, Production Publish Gate CI, Windows checkout and Whole System direct + packaged gates are SUCCESS;
 - Professional academic reports UX round 2 (PR #113) is promoted as `2a72d7c8934e1023d24e6158baea9ca85e8a6e44`; its pre-merge and post-merge Academic Reporting UX QA, Academic prerequisite, Cloudflare Preview, Production Publish Gate CI, Windows checkout and Whole System direct + packaged gates are SUCCESS;
+- Professional UX/reporting QA round 3 (PR #115) is promoted as `97946ad5a13b2f3c3abe2b6ec67bf51b085cbd2f`; final head `25d46df984f328f9ae964285ef17c43a0638fe41` passed Academic Reporting UX QA, Academic prerequisite, Russian Reference UI, Cloudflare Preview, Production Publish Gate CI, Windows checkout and Whole System direct + packaged acceptance;
 - future work resumes from current `main` only when a concrete defect, missing capability or explicit feature request exists.
