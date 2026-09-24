@@ -51,9 +51,9 @@
       const outcome=String(payload.outcome||'');if(!['pass','fail'].includes(outcome))throw new Error('Kết quả Зчт phải là pass hoặc fail.');row.outcome=outcome;row.numericScore=null;row.officialGrade=null;row.derivedGrade=null;
     }else{
       const hasScore=payload.numericScore!==''&&payload.numericScore!=null,hasGrade=payload.officialGrade!==''&&payload.officialGrade!=null;if(!hasScore&&!hasGrade)throw new Error('Event có điểm cần ít nhất numeric score hoặc official grade đã xác nhận.');
-      let score=null,band=null,grade=null;if(hasScore){score=Number(payload.numericScore);if(!Number.isFinite(score)||score<0||score>100)throw new Error('Numeric score phải nằm trong 0–100.');band=policyBand(score);if(!band)throw new Error('Không ánh xạ được score vào grading policy đã khóa.');}
-      if(hasGrade){grade=Number(payload.officialGrade);if(![2,3,4,5].includes(grade))throw new Error('Official grade phải là 2, 3, 4 hoặc 5.');}
-      if(band&&grade!=null&&Number(band.grade5Scale)!==grade)throw new Error('Numeric score và official grade không nhất quán với grading policy đã khóa.');
+      let score=null,band=null,grade=null;if(hasScore){score=Number(payload.numericScore);if(!Number.isFinite(score)||score<0||score>100)throw new Error('Điểm số phải nằm trong khoảng 0–100.');band=policyBand(score);if(!band)throw new Error('Không ánh xạ được score vào grading policy đã khóa.');}
+      if(hasGrade){grade=Number(payload.officialGrade);if(![2,3,4,5].includes(grade))throw new Error('Điểm chính thức phải là 2, 3, 4 hoặc 5.');}
+      if(band&&grade!=null&&Number(band.grade5Scale)!==grade)throw new Error('Điểm số và điểm chính thức không nhất quán với quy định chấm điểm đã khóa.');
       row.numericScore=score;row.officialGrade=grade;row.derivedGrade=band?.grade5Scale??null;
     }
     const {store,user}=userState();user.results[def.key]=row;persist(store);refreshUi();return resultState(courseId,code);
