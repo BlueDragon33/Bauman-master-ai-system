@@ -1,10 +1,10 @@
 # CODEX_STATE
 
-Current task: `BAUMAN_PROJECT_STATE_POST_PRODUCTION_PUBLISH_GATE_V1_RECONCILIATION`
+Current task: `BAUMAN_RUSSIAN_UX_REFACTOR_POST_MERGE_RECONCILIATION_FX`
 
-Status: `ROADMAP_V2_COMPLETE · RUSSIAN_LISTEN_WRITE_PROMOTED · ACADEMIC_PHASE2_A1_A6_PROMOTED · DEVICE_CONTRACT_V6_PROMOTED · CONTENT_REVIEW_V1_PROMOTED · DEEP_STUDY_JOURNAL_V1_PROMOTED · DSJ_PACKAGED_READINESS_FX_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_1_PROMOTED · RUSSIAN_FUTURE_REFERENCE_UI_PROMOTED · RUSSIAN_FUTURE_UI_IDEMPOTENCE_FX_PROMOTED · RUSSIAN_FUTURE_UI_PACKAGE_READINESS_FX_PROMOTED · RUSSIAN_VOCAB_VISUAL_IMMERSION_V1_PROMOTED · PRODUCTION_PUBLISH_GATE_V1_PROMOTED · CURRENT_MAIN_CLEAN`
+Status: `ROADMAP_V2_COMPLETE · RUSSIAN_LISTEN_WRITE_PROMOTED · ACADEMIC_PHASE2_A1_A6_PROMOTED · DEVICE_CONTRACT_V6_PROMOTED · CONTENT_REVIEW_V1_PROMOTED · DEEP_STUDY_JOURNAL_V1_PROMOTED · DSJ_PACKAGED_READINESS_FX_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_1_PROMOTED · RUSSIAN_FUTURE_REFERENCE_UI_PROMOTED · RUSSIAN_FUTURE_UI_IDEMPOTENCE_FX_PROMOTED · RUSSIAN_FUTURE_UI_PACKAGE_READINESS_FX_PROMOTED · RUSSIAN_VOCAB_VISUAL_IMMERSION_V1_PROMOTED · PRODUCTION_PUBLISH_GATE_V1_PROMOTED · RUSSIAN_UX_REFACTOR_PASS_1_10_PROMOTED · POST_MERGE_RECONCILIATION_FX_ACTIVE · CURRENT_MAIN_CLEAN`
 
-Date: 2026-09-23
+Date: 2026-09-24
 Branch: `main`
 Base: `main`
 
@@ -31,6 +31,7 @@ Promoted current-main capabilities:
 - Russian Future UI package-readiness Fx — PR #97 merged as `00605feb7dbdfbb9c6f1e5399d75c1af96211af4`.
 - Russian Vocabulary Visual Immersion v1 — PR #99 merged as `e8108f25d6e3dd686116c6f13589ddc913c95e68`.
 - Production Publish Gate v1 — PR #102 merged as `51138b9e9f9a60c47d91a354446532e8064a545f`.
+- Russian UX/UI learner-first refactor PASS 2→10 — PR #108 merged as `59d4bc3bad24c20eac09376fe27f564d9dc9a87e`; PASS 1 was already promoted before this merge.
 
 ## Device Contract v6
 
@@ -271,6 +272,34 @@ Promoted on current `main` as merge commit `51138b9e9f9a60c47d91a354446532e8064a
 
 This track does not create L36 and does not turn production into an automatic action. Roadmap V2 remains production-disconnected; live deployment is a separately authorized execution path and remains blocked until exact-revision preview verification plus environment configuration and explicit manual confirmation pass.
 
+## Russian UX/UI refactor PASS 2→10 promotion
+
+PR #108 completed the source-of-truth Russian UX/UI learner-first refactor after PASS 1 had already been promoted.
+
+Promoted behavior includes:
+
+- canonical ~220px desktop learning rail and ~1120px main learning canvas;
+- learner-first overview and tab hierarchy;
+- grammar information hierarchy hardening;
+- handwriting workbench improvements;
+- bounded Mini Check and Stage Check diagnosis surfaces;
+- personal learner reporting;
+- responsive/accessibility hardening across 1280 / 1024 / 768 / 390 widths;
+- direct + packaged Russian regression coverage.
+
+Validated on PR #108 final head `86887d287d8922b3d14c0bf636b11b628919972d`:
+
+- Russian Reference UI Gate run `35939339335` — SUCCESS;
+- Windows checkout safety run `35939339337` — SUCCESS;
+- Bauman Cloudflare Production Publish Gate CI run `35939339341` — SUCCESS;
+- Bauman Cloudflare Preview CI run `35939339350` — SUCCESS;
+- Whole System Integration Gate run `35939339338` — SUCCESS;
+- Foundation Domain Model Gate run `35939339391` — SUCCESS.
+
+Promoted to current `main` as merge commit `59d4bc3bad24c20eac09376fe27f564d9dc9a87e` on 2026-09-24. PR #109 was based on the same pre-refactor baseline and must not be promoted after #108; it is stale duplicate work.
+
+This reconciliation is a scoped control-state Fx only. It does not create L36, alter learning authority, or authorize production deployment.
+
 ## Intentional capability layering
 
 The base control worker intentionally keeps `learningAccessGate: false` until the deployment/preview wrapper verifies D1 + app-origin readiness. Do not flatten this fail-closed layering.
@@ -299,4 +328,5 @@ Roadmap V2 itself does **not** authorize production deployment. Production Publi
 5. Preserve Content Review metadata-only ownership and role boundaries.
 6. Preserve Deep Study Journal as non-authoritative learner reflection; it must not become mastery/diagnostic/scheduler/progress evidence implicitly.
 7. Audit open issues/PRs and current contracts before creating new work.
-8. Create a new round only for a concrete defect, explicit missing capability or newly requested feature.
+8. Treat Russian UX/UI PASS 2→10 merge commit `59d4bc3bad24c20eac09376fe27f564d9dc9a87e` as promoted current-main behavior; do not reopen or promote stale PR #109.
+9. Create a new round only for a concrete defect, explicit missing capability or newly requested feature.
