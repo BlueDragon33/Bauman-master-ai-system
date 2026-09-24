@@ -10,7 +10,491 @@
   "frameSource": "formula_frame.json",
   "legacyExportTarget": "formulas.json",
   "recordKey": "formulaId",
-  "records": [],
+  "records": [
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t01",
+      "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+      "chapterId": "MATH-VN-C01-vector_trong_khong_gian_",
+      "tags": [
+        "data matrix",
+        "multivariate data",
+        "orientation",
+        "feature schema"
+      ],
+      "sourceAnchors": [
+        "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+        "MATH-PREP-LA2-C10-L07"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "formulaId": "E16R-M_P07_T01-F01",
+      "title": "Ma trận dữ liệu theo convention hàng là quan sát",
+      "formula": "X = [x^(1)^T; ...; x^(n)^T] ∈ R^(n×p)",
+      "meaning": "n quan sát, p đặc trưng; phải khóa orientation trước khi tính toán."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t01",
+      "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+      "chapterId": "MATH-VN-C01-vector_trong_khong_gian_",
+      "tags": [
+        "data matrix",
+        "multivariate data",
+        "orientation",
+        "feature schema"
+      ],
+      "sourceAnchors": [
+        "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+        "MATH-PREP-LA2-C10-L07"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "formulaId": "E16R-M_P07_T01-F02",
+      "title": "Feature Gram matrix",
+      "formula": "G_f = X^T X ∈ R^(p×p)",
+      "meaning": "Đo inner product feature-feature; không tự động là covariance."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t01",
+      "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+      "chapterId": "MATH-VN-C01-vector_trong_khong_gian_",
+      "tags": [
+        "data matrix",
+        "multivariate data",
+        "orientation",
+        "feature schema"
+      ],
+      "sourceAnchors": [
+        "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+        "MATH-PREP-LA2-C10-L07"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "formulaId": "E16R-M_P07_T01-F03",
+      "title": "Observation Gram matrix",
+      "formula": "G_o = X X^T ∈ R^(n×n)",
+      "meaning": "Đo inner product observation-observation."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t02",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T02-centering-scaling",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "centering",
+        "standardization",
+        "z-score",
+        "leakage"
+      ],
+      "sourceAnchors": [
+        "MATH-HK2-MLB-C25-L07"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "formulaId": "E16R-M_P07_T02-F01",
+      "title": "Trung tâm hóa",
+      "formula": "x_c,ij = x_ij − x̄_j",
+      "meaning": "Trừ mean theo từng feature."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t02",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T02-centering-scaling",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "centering",
+        "standardization",
+        "z-score",
+        "leakage"
+      ],
+      "sourceAnchors": [
+        "MATH-HK2-MLB-C25-L07"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "formulaId": "E16R-M_P07_T02-F02",
+      "title": "Độ lệch chuẩn mẫu",
+      "formula": "s_j = sqrt(Σ_i (x_ij − x̄_j)^2/(n−1))",
+      "meaning": "Dùng nhất quán convention mẫu."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t02",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T02-centering-scaling",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "centering",
+        "standardization",
+        "z-score",
+        "leakage"
+      ],
+      "sourceAnchors": [
+        "MATH-HK2-MLB-C25-L07"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "formulaId": "E16R-M_P07_T02-F03",
+      "title": "Z-score",
+      "formula": "z_ij = (x_ij − x̄_j)/s_j",
+      "meaning": "Chỉ xác định khi s_j > 0."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t03",
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E16R-MP07-T03-covariance",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "tags": [
+        "covariance",
+        "variance",
+        "random variables"
+      ],
+      "sourceAnchors": [
+        "MATH-VN-PS-C05-L05"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "formulaId": "E16R-M_P07_T03-F01",
+      "title": "Population covariance",
+      "formula": "Cov(X,Y)=E[(X−μ_X)(Y−μ_Y)]",
+      "meaning": "Đo đồng biến tuyến tính quanh mean."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t03",
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E16R-MP07-T03-covariance",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "tags": [
+        "covariance",
+        "variance",
+        "random variables"
+      ],
+      "sourceAnchors": [
+        "MATH-VN-PS-C05-L05"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "formulaId": "E16R-M_P07_T03-F02",
+      "title": "Sample covariance",
+      "formula": "s_XY=Σ_i (x_i−x̄)(y_i−ȳ)/(n−1)",
+      "meaning": "Estimator mẫu theo convention n−1."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t03",
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E16R-MP07-T03-covariance",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "tags": [
+        "covariance",
+        "variance",
+        "random variables"
+      ],
+      "sourceAnchors": [
+        "MATH-VN-PS-C05-L05"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "formulaId": "E16R-M_P07_T03-F03",
+      "title": "Variance là tự covariance",
+      "formula": "Cov(X,X)=Var(X)",
+      "meaning": "Suy ra diagonal covariance matrix là variance."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t04",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T04-pearson",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "pearson",
+        "correlation",
+        "causality",
+        "outlier"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-PS2-C15-L06"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "formulaId": "E16R-M_P07_T04-F01",
+      "title": "Pearson correlation",
+      "formula": "r=s_XY/(s_X s_Y)",
+      "meaning": "Chuẩn hóa covariance bằng standard deviations."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t04",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T04-pearson",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "pearson",
+        "correlation",
+        "causality",
+        "outlier"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-PS2-C15-L06"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "formulaId": "E16R-M_P07_T04-F02",
+      "title": "Giới hạn",
+      "formula": "−1 ≤ r ≤ 1",
+      "meaning": "Chỉ xác định khi cả hai standard deviation >0."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t04",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T04-pearson",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "pearson",
+        "correlation",
+        "causality",
+        "outlier"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-PS2-C15-L06"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "formulaId": "E16R-M_P07_T04-F03",
+      "title": "Tương quan từ covariance matrix",
+      "formula": "R=D^(−1/2) C D^(−1/2)",
+      "meaning": "D là diagonal variance; tương đương chuẩn hóa từng feature."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t05",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T05-covariance-matrix",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "covariance matrix",
+        "PSD",
+        "multivariate"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L05",
+        "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L01-matrix-as-data-and-transform-e142"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "formulaId": "E16R-M_P07_T05-F01",
+      "title": "Sample covariance matrix",
+      "formula": "C=X_c^T X_c/(n−1)",
+      "meaning": "Khi hàng là quan sát và X_c đã center."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t05",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T05-covariance-matrix",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "covariance matrix",
+        "PSD",
+        "multivariate"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L05",
+        "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L01-matrix-as-data-and-transform-e142"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "formulaId": "E16R-M_P07_T05-F02",
+      "title": "Phần tử covariance",
+      "formula": "C_jk=Cov(X_j,X_k)",
+      "meaning": "Diagonal là variance; off-diagonal là covariance."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t05",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T05-covariance-matrix",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "covariance matrix",
+        "PSD",
+        "multivariate"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L05",
+        "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L01-matrix-as-data-and-transform-e142"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "formulaId": "E16R-M_P07_T05-F03",
+      "title": "Positive semidefinite",
+      "formula": "v^T C v ≥ 0",
+      "meaning": "Với mọi vector v; suy ra eigenvalue lý tưởng không âm."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t06",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "eigenvalue",
+        "eigenvector",
+        "covariance"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L01",
+        "MATH-PREP-LA2-C10-L05",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "formulaId": "E16R-M_P07_T06-F01",
+      "title": "Bài toán trị riêng",
+      "formula": "C v_i=λ_i v_i",
+      "meaning": "v_i khác 0; λ_i là variance theo hướng v_i khi ||v_i||=1."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t06",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "eigenvalue",
+        "eigenvector",
+        "covariance"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L01",
+        "MATH-PREP-LA2-C10-L05",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "formulaId": "E16R-M_P07_T06-F02",
+      "title": "Phương trình đặc trưng",
+      "formula": "det(C−λI)=0",
+      "meaning": "Nghiệm λ là eigenvalues."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t06",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "eigenvalue",
+        "eigenvector",
+        "covariance"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L01",
+        "MATH-PREP-LA2-C10-L05",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "formulaId": "E16R-M_P07_T06-F03",
+      "title": "Variance theo hướng",
+      "formula": "Var(X_c v)=v^T C v",
+      "meaning": "Nếu v là eigenvector chuẩn hóa thì bằng λ."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t07",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "PCA",
+        "explained variance",
+        "projection"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L06",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "formulaId": "E16R-M_P07_T07-F01",
+      "title": "PCA projection",
+      "formula": "Z=X_c W_k",
+      "meaning": "W_k gồm k principal eigenvectors hoặc right singular vectors tương đương."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t07",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "PCA",
+        "explained variance",
+        "projection"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L06",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "formulaId": "E16R-M_P07_T07-F02",
+      "title": "Explained variance ratio",
+      "formula": "EVR_i=λ_i/Σ_j λ_j",
+      "meaning": "Tỷ lệ variance giữ bởi component i."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t07",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "PCA",
+        "explained variance",
+        "projection"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L06",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "formulaId": "E16R-M_P07_T07-F03",
+      "title": "Cumulative explained variance",
+      "formula": "CEVR_k=Σ_{i=1}^k λ_i/Σ_j λ_j",
+      "meaning": "Một bằng chứng để chọn k, không phải tiêu chí duy nhất."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t08",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "reconstruction",
+        "low rank",
+        "PCA error"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L08",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "formulaId": "E16R-M_P07_T08-F01",
+      "title": "Tái tạo từ PCA",
+      "formula": "X_hat=Z W_k^T + 1 μ^T",
+      "meaning": "Khôi phục về không gian feature gốc sau projection."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t08",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "reconstruction",
+        "low rank",
+        "PCA error"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L08",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "formulaId": "E16R-M_P07_T08-F02",
+      "title": "Reconstruction error",
+      "formula": "E_k=||X−X_hat||_F²",
+      "meaning": "Tổng bình phương sai số trên mọi phần tử."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t08",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "reconstruction",
+        "low rank",
+        "PCA error"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L08",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "formulaId": "E16R-M_P07_T08-F03",
+      "title": "Sai số và eigenvalues bị bỏ",
+      "formula": "E_k=(n−1)Σ_{i=k+1}^p λ_i",
+      "meaning": "Khi λ từ sample covariance Xc^T Xc/(n−1)."
+    }
+  ],
   "importPolicy": {
     "key": "formulaId",
     "requires": [
@@ -58,12 +542,21 @@
     ],
     "auditStatus": "DRAFT"
   },
-  "updatedAt": "2026-06-22",
+  "updatedAt": "2026-09-23",
   "emoji": "∑",
   "cleanArchitecturePolicy": {
     "contentMustNotStoreStageTree": true,
     "recordsMustUseStableIds": true,
     "defaultImportMode": "replace_by_key_then_append",
     "auditBeforeImport": true
+  },
+  "recoveryMeta": {
+    "E16R": {
+      "moduleId": "m_p07",
+      "imported": 24,
+      "key": "formulaId",
+      "branchOnly": true,
+      "status": "CONTENT_IMPORTED_PENDING_RUNTIME_GATE"
+    }
   }
 }
