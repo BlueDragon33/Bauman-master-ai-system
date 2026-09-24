@@ -1,17 +1,17 @@
 # CODEX_TASK
 
-Task: `BAUMAN_CLOUDFLARE_PREVIEW_EXACT_REVISION_FX_POST_MERGE_RECONCILIATION`
+Task: `BAUMAN_CURRENT_MAIN_POST_PR121_RECONCILIATION`
 Mode: `CHAT_FIRST / CURRENT_MAIN / FAIL_CLOSED`
 
 ## Current objective
 
-Keep future work aligned with the true current-main baseline after PR #117 promoted the Cloudflare Preview exact-revision fail-closed Fx as merge commit `64405e2f14eb91716a71bc164364494b654e8a32`. Preserve exact-preview revision truthfulness together with destructive diagnostic-data safety, professional multi-page print/PDF pagination, Russian modal keyboard-focus accessibility, and all existing academic authority boundaries.
+Keep future work aligned with the true current-main baseline after PR #121 promoted QA/UX destructive-action safety and professional academic report metadata as merge commit `f76ce9c4235cc11a36ee3649c699553b2bf67022`. Preserve PR #119 protected-learning JSON smoke semantics, PR #120 Application Management ChatGPT Site control-plane origin exception, PR #121 readiness-evidence confirmation and shared report metadata, together with exact-preview revision truthfulness and all existing academic authority boundaries.
 
 Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A6, Device Contract v6, Content Review API v1, Deep Study Journal v1, its packaged-readiness Fx #88, Current-Main Control-State Gate v1.1, Russian Future Reference UI, Russian Future UI idempotence Fx #95, Russian Future UI package-readiness Fx #97, Russian Vocabulary Visual Immersion v1 #99, Production Publish Gate v1 #102, Russian UX/UI refactor PASS 1→10, Professional UX/reporting QA hardening #111, Professional academic reports UX round 2 #113, Professional UX/reporting QA round 3 #115, and Cloudflare Preview exact-revision Fx #117 are promoted.
 
 ## Mandatory sequence
 
-1. Use current `main` at or after `64405e2f14eb91716a71bc164364494b654e8a32` as the baseline.
+1. Use current `main` at or after `f76ce9c4235cc11a36ee3649c699553b2bf67022` as the baseline.
 2. Do not reopen historical Roadmap rounds or stale candidate branches as current work.
 3. Preserve Russian Listen+Write, Academic Phase2, Device Contract v6 and Content Review API v1.
 4. Preserve fail-closed learning-gate layering; the base worker must not advertise the learning gate as live before deployment/preview readiness.
@@ -71,6 +71,9 @@ Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A
 - PR #115 academic print CSS must remain multi-page safe; never restore whole-report `break-inside: avoid`.
 - PR #115 Russian modal focus behavior must remain keyboard-accessible in both direct and packaged runtime.
 - PR #117 Cloudflare preview smoke testing must fail closed on stale/mismatched deployment revisions for both Control and Learning Runtime.
+- PR #119 protected-learning JSON behavior must remain fail-closed for anonymous access; do not weaken Device Gate enforcement to satisfy deployment smoke tests.
+- PR #120 Application Management ChatGPT Site control-plane exception is origin-specific and must never spread to Bauman Control/Learning Runtime preview or production origins.
+- PR #121 readiness-evidence destructive deletion remains confirmation-guarded and shared academic report metadata remains learner-scoped, timestamped, responsive and paper-safe.
 
 ## Completion condition
 
@@ -89,4 +92,7 @@ Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A
 - Professional academic reports UX round 2 (PR #113) is promoted as `2a72d7c8934e1023d24e6158baea9ca85e8a6e44`; its pre-merge and post-merge Academic Reporting UX QA, Academic prerequisite, Cloudflare Preview, Production Publish Gate CI, Windows checkout and Whole System direct + packaged gates are SUCCESS;
 - Professional UX/reporting QA round 3 (PR #115) is promoted as `97946ad5a13b2f3c3abe2b6ec67bf51b085cbd2f`; final head `25d46df984f328f9ae964285ef17c43a0638fe41` passed Academic Reporting UX QA, Academic prerequisite, Russian Reference UI, Cloudflare Preview, Production Publish Gate CI, Windows checkout and Whole System direct + packaged acceptance;
 - Cloudflare Preview exact-revision fail-closed Fx (PR #117) is promoted as `64405e2f14eb91716a71bc164364494b654e8a32`; head `0089233b2fa783db77877568117705df2e0bafe5` passed Bauman Cloudflare Preview CI and Windows checkout safety;
+- Preview protected-dataset smoke alignment (PR #119) is promoted as `de61b57e5526626e36eb9d7f2f15548afe1da1cd`; head `89b22b0160be64f584714453b403b00c76c44e6e` passed Bauman Cloudflare Preview CI run `35963527802` and Windows checkout safety run `35963527960`.
+- Application Management ChatGPT Site production control-plane exception (PR #120) is promoted as `65158604c141cf94a1c213fcba15c127cb9f18eb`; head `9cc4a55c37257ef7bb2867eb8379f42e2a9ff782` passed Production Publish Gate CI run `35971286270` and Windows checkout safety run `35971286240`.
+- QA/UX destructive-action safety + professional academic reports (PR #121) is promoted as `f76ce9c4235cc11a36ee3649c699553b2bf67022`; head `a54a6f2742efff670debf60d50fcdb8aebbd88c8` passed Academic Reporting UX QA `35974609095`, Academic 2026 Prerequisite Gate `35974608750`, Whole System Integration `35974608628`, Windows checkout safety `35974608866`, Production Publish Gate CI `35974608889`, and Cloudflare Preview CI `35974608855`.
 - future work resumes from current `main` only when a concrete defect, missing capability or explicit feature request exists.
