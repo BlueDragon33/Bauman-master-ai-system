@@ -3,6 +3,7 @@
   const VERSION='Academic Phase2 Current-Main · A5 Academic Command Center';
   const COURSE_ORDER=['d01','d02','d03','d04','d05','d06','d15','p02'];
   const SEVERITY_RANK={critical:4,high:3,medium:2,low:1};
+  const SEVERITY_LABEL={critical:'Khẩn cấp',high:'Cao',medium:'Trung bình',low:'Theo dõi'};
   const h=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
   const courseRuntime=()=>window.BAUMAN_COURSE_READINESS_2026||null;
   const eventRuntime=()=>window.BAUMAN_EVENT_READINESS_2026||null;
@@ -76,15 +77,15 @@
     return `<button class="btn" onclick="openOfficialCoursePhase2('${h(t.courseId)}')">Mở Course Readiness</button>`;
   }
   function card(cmd){
-    return `<article class="commandA5-card ${h(cmd.severity)}"><div class="commandA5-card-head"><div><b>${h(cmd.courseId)} · ${h(cmd.course.nameRu)}</b><small>${h(cmd.type)}</small></div><span class="commandA5-severity ${h(cmd.severity)}">${h(cmd.severity.toUpperCase())}</span></div><div class="commandA5-axes">${axis('Prereq',cmd.axes.prereq.label)}${axis('Lifecycle',cmd.axes.lifecycle.label)}${axis('Event',cmd.axes.event.label)}${axis('Transcript',cmd.axes.transcript.label)}</div><div class="commandA5-action"><strong>${h(cmd.title)}</strong><small>${h(cmd.detail)}</small><div class="commandA5-actions">${targetButton(cmd)}</div></div></article>`;
+    return `<article class="commandA5-card ${h(cmd.severity)}"><div class="commandA5-card-head"><div><b>${h(cmd.courseId)} · ${h(cmd.course.nameRu)}</b><small>${h(cmd.type)}</small></div><span class="commandA5-severity ${h(cmd.severity)}">${h(SEVERITY_LABEL[cmd.severity]||cmd.severity)}</span></div><div class="commandA5-axes">${axis('Prereq',cmd.axes.prereq.label)}${axis('Lifecycle',cmd.axes.lifecycle.label)}${axis('Event',cmd.axes.event.label)}${axis('Transcript',cmd.axes.transcript.label)}</div><div class="commandA5-action"><strong>${h(cmd.title)}</strong><small>${h(cmd.detail)}</small><div class="commandA5-actions">${targetButton(cmd)}</div></div></article>`;
   }
   function renderPanel(){
     const s=summary(),hon=s.honors,p=hon.projection||{};
     const caveat=hon.projectionCaveatActive!==false||hon.finalEligibilityClaimed!==true;
-    return `<section class="commandA5-shell" data-command-a5="center"><article class="academic2026-panel"><div class="academic2026-head"><div><span class="academic2026-badge">PHASE2 · A5 · DECISION SUPPORT</span><h3>Academic Command Center</h3><p>Tổng hợp read-only prerequisite, assessment readiness, kết quả thực tế và transcript evidence để chỉ ra việc cần mở tiếp theo.</p></div><span class="academic2026-lock">Read-only · no scheduler mutation</span></div><div class="commandA5-summary"><span><b>${s.critical}</b><small>CRITICAL</small></span><span><b>${s.high}</b><small>HIGH</small></span><span><b>${hon.verifiedRows??0}/${hon.totalRows??0}</b><small>TRANSCRIPT VERIFIED</small></span><span><b>${hon.fiveCount??0}/${hon.requiredFive??p.requiredFiveIfProjectionConfirmed??'—'}</b><small>5s / PROJECTED NEED</small></span></div><div class="commandA5-honors"><b>${h(hon.label||'Chưa có honors evidence')}</b><small>${caveat?'Mẫu số honors vẫn là projection; Command Center không tuyên bố đủ điều kiện cuối cùng.':'Ledger đã được xác minh theo policy hiện có.'}</small></div><div class="commandA5-grid">${commandBoard().map(card).join('')}</div></article></section>`;
+    return `<section class="commandA5-shell" data-command-a5="center"><article class="academic2026-panel"><div class="academic2026-head"><div><span class="academic2026-badge">HỌC VỤ · TỔNG HỢP</span><h3>Báo cáo học vụ tổng hợp</h3><p>Tổng hợp prerequisite, assessment readiness, kết quả thực tế và evidence phụ lục để chỉ ra việc cần xử lý tiếp theo mà không tự thay đổi lịch học.</p></div><span class="academic2026-lock">Chỉ đọc · không sửa lịch</span></div><div class="commandA5-summary"><span><b>${s.critical}</b><small>KHẨN CẤP</small></span><span><b>${s.high}</b><small>MỨC CAO</small></span><span><b>${hon.verifiedRows??0}/${hon.totalRows??0}</b><small>PHỤ LỤC ĐÃ XÁC MINH</small></span><span><b>${hon.fiveCount??0}/${hon.requiredFive??p.requiredFiveIfProjectionConfirmed??'—'}</b><small>ĐIỂM 5 / NHU CẦU DỰ KIẾN</small></span></div><div class="commandA5-honors"><b>${h(hon.label||'Chưa có honors evidence')}</b><small>${caveat?'Mẫu số honors vẫn là projection; Command Center không tuyên bố đủ điều kiện cuối cùng.':'Ledger đã được xác minh theo policy hiện có.'}</small></div><div class="commandA5-grid">${commandBoard().map(card).join('')}</div></article></section>`;
   }
   function openOverview(){
-    if(typeof window.openModal==='function')return window.openModal('Academic Command Center · A5',renderPanel(),true);
+    if(typeof window.openModal==='function')return window.openModal('Báo cáo học vụ tổng hợp',renderPanel(),true);
     return null;
   }
   function refresh(){return summary()}
