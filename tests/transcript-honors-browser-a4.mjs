@@ -43,10 +43,12 @@ try{
   await page.waitForFunction(()=>Boolean(window.BAUMAN_TRANSCRIPT_HONORS_2026&&window.BAUMAN_DIPLOMA_HONORS_POLICY_2026),null,{timeout:15000});
   await page.waitForSelector('#modalRoot [data-transcript14e="ledger"]');
   const transcriptReportText=await page.locator('#modalRoot [data-transcript14e="ledger"]').innerText();
-  for(const label of ['Báo cáo phụ lục văn bằng & mục tiêu bằng đỏ','DÒNG ĐÃ XÁC MINH','DÒNG CÓ ĐIỂM DỰ KIẾN','ĐIỂM 5 CẦN THIẾT','ĐIỂM 5 ĐÃ XÁC MINH']){
+  for(const label of ['Báo cáo phụ lục văn bằng & mục tiêu bằng đỏ','DÒNG ĐÃ XÁC MINH','DÒNG CÓ ĐIỂM DỰ KIẾN','ĐIỂM 5 CẦN THIẾT','ĐIỂM 5 ĐÃ XÁC MINH','In / lưu PDF','Phạm vi:','Giới hạn:']){
     must(transcriptReportText.includes(label),'Professional transcript report missing '+label);
   }
   must(/không tuyên bố đủ điều kiện bằng đỏ cuối cùng/i.test(transcriptReportText),'Transcript report must preserve the projection caveat');
+  assert.equal(/Diploma supplement evidence|Lưu evidence|Xóa evidence|Evidence hiện tại/.test(transcriptReportText),false,'A4 report must not expose developer-facing evidence terminology');
+  assert.equal(await page.evaluate(()=>typeof window.printAcademicReport2026),'function','A4 report print helper missing');
 
   const result=await page.evaluate(()=>{
     const t=window.BAUMAN_TRANSCRIPT_HONORS_2026,key='bauman_current_user_fullcode_v1';
