@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `BAUMAN_PROFESSIONAL_UX_REPORTING_QA_ROUND3_POST_MERGE_RECONCILIATION`
+Current task: `BAUMAN_CLOUDFLARE_PREVIEW_EXACT_REVISION_FX_POST_MERGE_RECONCILIATION`
 
-Status: `ROADMAP_V2_COMPLETE · RUSSIAN_LISTEN_WRITE_PROMOTED · ACADEMIC_PHASE2_A1_A6_PROMOTED · DEVICE_CONTRACT_V6_PROMOTED · CONTENT_REVIEW_V1_PROMOTED · DEEP_STUDY_JOURNAL_V1_PROMOTED · DSJ_PACKAGED_READINESS_FX_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_1_PROMOTED · RUSSIAN_FUTURE_REFERENCE_UI_PROMOTED · RUSSIAN_FUTURE_UI_IDEMPOTENCE_FX_PROMOTED · RUSSIAN_FUTURE_UI_PACKAGE_READINESS_FX_PROMOTED · RUSSIAN_VOCAB_VISUAL_IMMERSION_V1_PROMOTED · PRODUCTION_PUBLISH_GATE_V1_PROMOTED · RUSSIAN_UX_REFACTOR_PASS_1_10_PROMOTED · PROFESSIONAL_UX_REPORTING_QA_PROMOTED · PROFESSIONAL_REPORTING_UX_ROUND2_PROMOTED · PROFESSIONAL_UX_REPORTING_QA_ROUND3_PROMOTED · CURRENT_MAIN_CLEAN`
+Status: `ROADMAP_V2_COMPLETE · RUSSIAN_LISTEN_WRITE_PROMOTED · ACADEMIC_PHASE2_A1_A6_PROMOTED · DEVICE_CONTRACT_V6_PROMOTED · CONTENT_REVIEW_V1_PROMOTED · DEEP_STUDY_JOURNAL_V1_PROMOTED · DSJ_PACKAGED_READINESS_FX_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_1_PROMOTED · RUSSIAN_FUTURE_REFERENCE_UI_PROMOTED · RUSSIAN_FUTURE_UI_IDEMPOTENCE_FX_PROMOTED · RUSSIAN_FUTURE_UI_PACKAGE_READINESS_FX_PROMOTED · RUSSIAN_VOCAB_VISUAL_IMMERSION_V1_PROMOTED · PRODUCTION_PUBLISH_GATE_V1_PROMOTED · RUSSIAN_UX_REFACTOR_PASS_1_10_PROMOTED · PROFESSIONAL_UX_REPORTING_QA_PROMOTED · PROFESSIONAL_REPORTING_UX_ROUND2_PROMOTED · PROFESSIONAL_UX_REPORTING_QA_ROUND3_PROMOTED · CLOUDFLARE_PREVIEW_EXACT_REVISION_FX_PROMOTED · CURRENT_MAIN_CLEAN`
 
 Date: 2026-09-24
 Branch: `main`
@@ -35,6 +35,7 @@ Promoted current-main capabilities:
 - Professional UX and reporting QA hardening — PR #111 merged as `cbdba1a5cee8703f6ceed2c94e070909d7014a93`.
 - Professional academic reports UX round 2 — PR #113 merged as `2a72d7c8934e1023d24e6158baea9ca85e8a6e44`.
 - Professional UX/reporting QA round 3 — PR #115 merged as `97946ad5a13b2f3c3abe2b6ec67bf51b085cbd2f`.
+- Cloudflare Preview exact-revision fail-closed Fx — PR #117 merged as `64405e2f14eb91716a71bc164364494b654e8a32`.
 
 ## Device Contract v6
 
@@ -408,6 +409,26 @@ Promoted to current `main` as merge commit `97946ad5a13b2f3c3abe2b6ec67bf51b085c
 
 This remains QA/UX/reporting hardening only. It does not create L36, change scheduler/mastery/course-completion/academic authority, or authorize production deployment.
 
+## Cloudflare Preview exact-revision fail-closed Fx
+
+PR #117 closed a release-verification gap in the manual Cloudflare preview deploy workflow.
+
+Defect and fix:
+
+- preview smoke tests previously required a non-empty deployment revision but did not require it to equal the revision being deployed;
+- both Bauman Control preview and Learning Runtime preview now fail closed unless `/__deployment.revision === GITHUB_SHA`;
+- `scripts/validate-cloudflare-preview.mjs` locks the exact-revision guard so it cannot silently regress;
+- no learner state, Russian learning flow, academic authority, D1 ownership or production deployment semantics changed.
+
+Validated on PR #117 head `0089233b2fa783db77877568117705df2e0bafe5`:
+
+- Bauman Cloudflare Preview CI run `35957745039` — SUCCESS;
+- Windows checkout safety run `35957745015` — SUCCESS.
+
+Promoted to current `main` as merge commit `64405e2f14eb91716a71bc164364494b654e8a32`.
+
+This Fx strengthens preview truthfulness only. A production publish still requires a real manual preview deployment of the exact final main revision, followed by the manual production workflow and production smoke tests.
+
 ## Intentional capability layering
 
 The base control worker intentionally keeps `learningAccessGate: false` until the deployment/preview wrapper verifies D1 + app-origin readiness. Do not flatten this fail-closed layering.
@@ -440,4 +461,5 @@ Roadmap V2 itself does **not** authorize production deployment. Production Publi
 9. Preserve Professional UX and reporting QA hardening from PR #111, including meaningful-evidence reporting, destructive-data confirmation and the Academic Reporting UX QA gate.
 10. Preserve Professional academic reports UX round 2 from PR #113, including learner-facing terminology, report scope/provenance metadata, scoped print/PDF presentation and shared-report QA path coverage.
 11. Preserve Professional UX/reporting QA round 3 from PR #115: diagnostic deletion must remain confirmation-guarded/cancel-safe, long academic reports must remain multi-page printable, and Russian modal focus must enter the dialog synchronously with focus trapping/restoration intact.
-12. Create a new round only for a concrete defect, explicit missing capability or newly requested feature.
+12. Preserve PR #117 exact-preview revision verification: both preview deployment endpoints must report `revision === GITHUB_SHA` before the preview workflow may pass.
+13. Create a new round only for a concrete defect, explicit missing capability or newly requested feature.
