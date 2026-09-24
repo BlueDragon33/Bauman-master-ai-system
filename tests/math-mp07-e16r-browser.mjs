@@ -38,7 +38,14 @@ try{
   report.checks.theory=theory;
 
   async function routeLessonThroughCurrentUi(lessonId,{moduleId='pure',courseId='pure-analysis',chapterId='c05'}={}){
-    await page.evaluate(()=>window.BAUMAN_MATH_NAVIGATION?.route?.('learn'));
+    await page.evaluate(()=>{
+      const st=window.__BAUMAN_CORE_API?.state||window.__MATH_STATE;
+      if(!st)throw new Error('Math learner state is unavailable');
+      st.view='learning';
+      st.learnTab='theory';
+      if(st.e169Path&&typeof st.e169Path==='object')st.e169Path.activityId='theory';
+      window.BAUMAN_MATH_THEORY_E129?.render?.();
+    });
     await page.waitForFunction(()=>document.querySelector('[data-e169-open="module"]'),null,{timeout:10000});
     const open=page.locator('[data-e169-open="module"]').first();
     await open.waitFor({state:'visible',timeout:10000});
