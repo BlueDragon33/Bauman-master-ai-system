@@ -73,6 +73,21 @@ try{
   assert.equal(result.stored.supplementEntryVerified,false);assert.equal(result.stored.supplementEntryCounted,null);
   assert.equal(result.isolated.id,'RESULT_UNRECORDED');assert.equal(result.scheduleUnchanged,true);assert.equal(result.lifeBefore.id,result.lifeAfter.id);
 
+  const clearGuard=await page.evaluate(()=>{
+    const g=window.BAUMAN_GRADE_CONTROL_2026;
+    window.confirm=()=>false;
+    window.clearAcademicGradeResult2026('d04','Экз');
+    const afterCancel=g.resultState('d04','Экз').id;
+    window.confirm=()=>true;
+    window.clearAcademicGradeResult2026('d04','Экз');
+    const afterConfirm=g.resultState('d04','Экз').id;
+    const restored=g.recordResult('d04','Экз',{resultConfirmed:true,resultSource:'Confirmed LMS result',numericScore:92}).id;
+    return {afterCancel,afterConfirm,restored};
+  });
+  assert.equal(clearGuard.afterCancel,'RESULT_TARGET_MET','Cancelling destructive clear must preserve the confirmed grade');
+  assert.equal(clearGuard.afterConfirm,'RESULT_UNRECORDED','Confirmed destructive clear must remove the grade');
+  assert.equal(clearGuard.restored,'RESULT_TARGET_MET','Grade must remain writable after a confirmed clear');
+
   await page.reload({waitUntil:'domcontentloaded',timeout:30000});
   await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='authorized',null,{timeout:15000});
   await page.waitForFunction(()=>Boolean(window.BAUMAN_EVENT_READINESS_2026),null,{timeout:15000});
