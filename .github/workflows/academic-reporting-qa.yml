@@ -18,6 +18,7 @@ on:
       - "scripts/validate-event-grade-runtime-a3.js"
       - "scripts/validate-transcript-honors-runtime-a4.js"
       - "scripts/validate-academic-command-center-a5.js"
+      - "scripts/validate-professional-reporting-round3.mjs"
       - ".github/workflows/academic-reporting-qa.yml"
   push:
     branches: [main]
@@ -36,6 +37,7 @@ on:
       - "scripts/validate-event-grade-runtime-a3.js"
       - "scripts/validate-transcript-honors-runtime-a4.js"
       - "scripts/validate-academic-command-center-a5.js"
+      - "scripts/validate-professional-reporting-round3.mjs"
       - ".github/workflows/academic-reporting-qa.yml"
 
 permissions:
@@ -57,6 +59,7 @@ jobs:
           node scripts/validate-event-grade-runtime-a3.js
           node scripts/validate-transcript-honors-runtime-a4.js
           node scripts/validate-academic-command-center-a5.js
+          node scripts/validate-professional-reporting-round3.mjs
       - name: Parse reporting runtimes and browser acceptance
         shell: bash
         run: |
@@ -68,6 +71,7 @@ jobs:
           node --check tests/event-grade-browser-a3.mjs
           node --check tests/transcript-honors-browser-a4.mjs
           node --check tests/academic-command-center-browser-a5.mjs
+          node --check scripts/validate-professional-reporting-round3.mjs
 
   academic-reporting-browser:
     needs: academic-reporting-static
