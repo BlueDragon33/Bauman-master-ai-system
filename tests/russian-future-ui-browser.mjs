@@ -90,6 +90,12 @@ try{
   assert.ok(Math.min(...dims.modules.map(x=>x.w))>450,'Desktop skill cards must remain readable at the canonical two-column width');
   assert.ok(dims.scroll<=dims.vw+2,'Future Russian UI must not horizontally overflow at reference viewport');
 
+  const personalReport=page.locator('.rf-personal-report[data-report-scope="learner"]');
+  await personalReport.waitFor({state:'visible',timeout:10000});
+  const personalReportText=await personalReport.innerText();
+  for(const label of ['Báo cáo học tập cá nhân','Kết luận ngắn','Kỹ năng tốt','Vấn đề cần xử lý','Kế hoạch tiếp theo'])assert.ok(personalReportText.includes(label),'Personal learning report missing '+label);
+  assert.equal(/device log|access log|technical log|nhật ký thiết bị/i.test(personalReportText),false,'Learner report must not expose admin/device technical logs');
+
   const dashboardText=await page.locator('.rf-dashboard').innerText();
   for(const label of ['HỌC TIẾP','CẦN ÔN','Hôm nay','5 kỹ năng chính','Video','Nghe & Nói','Luyện chữ','Từ vựng','Ngữ pháp','Learning Path','Khởi động','Âm & chữ','Nghe nói cơ bản','A1','A2 / Dự bị','Tiếng Nga học thuật']){
     assert.ok(dashboardText.includes(label),'Overview summary missing '+label);
@@ -345,9 +351,11 @@ try{
     responsive[width]=await page.evaluate(()=>{
       const sidebar=document.querySelector('.ru-sidebar')?.getBoundingClientRect();
       const view=document.querySelector('.ru-view')?.getBoundingClientRect();
+      const report=document.querySelector('.rf-personal-report-grid');
       return {
         vw:innerWidth,
         scroll:document.documentElement.scrollWidth,
+        reportColumns:report?getComputedStyle(report).gridTemplateColumns:'',
         sidebarW:sidebar?.width||0,
         sidebarPosition:getComputedStyle(document.querySelector('.ru-sidebar')).position,
         viewW:view?.width||0,
@@ -355,6 +363,7 @@ try{
       };
     });
     assert.ok(responsive[width].scroll<=width+2,'Responsive horizontal overflow at '+width+'px');
+    assert.ok(responsive[width].reportColumns.split(' ').filter(Boolean).length>=2,'Personal report must remain at least two columns at '+width+'px');
     assert.ok(responsive[width].sidebarW>=216&&responsive[width].sidebarW<=224,'Desktop/tablet sidebar must remain within 216–224px at '+width+'px');
     assert.equal(responsive[width].drawerToggleVisible,false,'Drawer toggle must stay hidden at '+width+'px');
   }
@@ -368,12 +377,14 @@ try{
     vw:innerWidth,
     open:document.body.classList.contains('rf-sidebar-open'),
     expanded:document.querySelector('.rf-sidebar-toggle')?.getAttribute('aria-expanded'),
-    sidebarPosition:getComputedStyle(document.querySelector('.ru-sidebar')).position
+    sidebarPosition:getComputedStyle(document.querySelector('.ru-sidebar')).position,
+    reportColumns:getComputedStyle(document.querySelector('.rf-personal-report-grid')).gridTemplateColumns
   }));
   assert.ok(mobileBefore.scroll<=mobileBefore.vw+2,'Future UI mobile horizontal overflow');
   assert.equal(mobileBefore.open,false,'Mobile learning drawer must start closed');
   assert.equal(mobileBefore.expanded,'false','Mobile drawer ARIA state must start collapsed');
   assert.equal(mobileBefore.sidebarPosition,'fixed','Mobile navigation must use an off-canvas drawer');
+  assert.equal(mobileBefore.reportColumns.split(' ').filter(Boolean).length,1,'Personal report must collapse to one column on 390px mobile');
   await toggle.click();
   await page.waitForFunction(()=>document.body.classList.contains('rf-sidebar-open'));
   assert.equal(await toggle.getAttribute('aria-expanded'),'true','Opening drawer must update aria-expanded');
