@@ -194,6 +194,10 @@ must(core.includes('data-input="vocabStatus"'),'Vocabulary library SRS status fi
 must(core.includes('grammar-examples-first'),'Grammar must present Russian examples before heavy explanation');
 must(core.includes('grammar-pattern-strip'),'Grammar quick pattern strip missing');
 must(core.includes('grammar-rule-short'),'Grammar short-rule block missing');
+must(core.includes("reviewMiniLesson:false"),'Review state must distinguish full review from lesson Mini Check');
+must(core.includes("xs=xs.slice(0,5)"),'Lesson Mini Check must cap the real lesson question set at five questions');
+must(core.includes("window.addEventListener('russian:mini-check'"),'Core runtime must accept lesson Mini Check routing without replacing the test bank');
+must(core.includes('✅ MINI CHECK'),'Mini Check must be visibly distinguished from full Review');
 must(core.includes('function examLearningPriority'),'Stage Check must derive strong/weak/priority feedback from real exam answers');
 must(core.includes('Kỹ năng tốt')&&core.includes('Kỹ năng yếu')&&core.includes('Ưu tiên tiếp theo'),'Stage Check feedback must expose strong skills, weak skills, and next learning priority');
 must(css.includes('.exam-learning-diagnosis')&&css.includes('.exam-priority-grid'),'Stage Check diagnosis presentation contract missing');
