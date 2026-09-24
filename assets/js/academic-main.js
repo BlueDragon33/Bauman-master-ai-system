@@ -28,6 +28,14 @@
   function currentUserScope(){
     try{const u=JSON.parse(localStorage.getItem(CURRENT_USER_KEY)||'null');return String(u?.email||'anonymous').toLowerCase()}catch{return 'anonymous'}
   }
+  function academicReportMeta(items=[]){
+    let user=null;try{user=JSON.parse(localStorage.getItem(CURRENT_USER_KEY)||'null')}catch{/* anonymous */}
+    const learner=String(user?.name||user?.email||'Người học').trim()||'Người học';
+    const email=String(user?.email||'').trim();
+    const generated=new Date().toLocaleString('vi-VN',{hour12:false});
+    const base=[['Người học',email?learner+' · '+email:learner],['Lập lúc',generated],...items];
+    return '<div class="academic2026-report-meta">'+base.map(([label,value])=>'<span><b>'+h(label)+':</b> '+h(value||'—')+'</span>').join('')+'</div>';
+  }
   function blankStore(){return {schema:'bauman_academic_diagnostic_store_v1',version:'PASS13C',users:{}}}
   function persistStore(){try{localStorage.setItem(DIAGNOSTIC_STORAGE_KEY,JSON.stringify(academicStore||blankStore()));return true}catch(err){console.warn('Academic diagnostic storage failed:',err);return false}}
   function migrateLegacyDiagnostics(){
@@ -220,6 +228,7 @@
   }
 
   window.printAcademicReport2026=printAcademicReport;
+  window.academicReportMeta2026=academicReportMeta;
   window.openAcademicGate=openGate;window.openPrerequisiteOverview2026=openPrereqOverview;window.openOfficialCourse2026=openCourse;window.saveAcademicDiagnostic2026=saveDiagnosticFromModal;window.clearAcademicDiagnostic2026=clearDiagnosticFromModal;
   window.BAUMAN_ACADEMIC_2026_RUNTIME=Object.freeze({version:VERSION,load,scoreForGate,gateState,courseReadiness,currentStageId,currentCourseHorizon,gateActivation,courseRisk,courseRiskBoard,gateIntervention,activeRepairPlan,schedulerCompatibility,recordDiagnostic,clearDiagnostic,repairRoutesForGate,shouldStopGate,stopDecision,schedulerMutationEnabled:SCHEDULER_MUTATION_ENABLED,storageKey:DIAGNOSTIC_STORAGE_KEY});
   document.addEventListener('DOMContentLoaded',()=>setTimeout(load,0));
