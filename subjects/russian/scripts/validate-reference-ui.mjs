@@ -198,6 +198,8 @@ must(core.includes("reviewMiniLesson:false"),'Review state must distinguish full
 must(core.includes("xs=xs.slice(0,5)"),'Lesson Mini Check must cap the real lesson question set at five questions');
 must(core.includes("window.addEventListener('russian:mini-check'"),'Core runtime must accept lesson Mini Check routing without replacing the test bank');
 must(core.includes('✅ MINI CHECK'),'Mini Check must be visibly distinguished from full Review');
+must(futureJs.includes('function stored(key,fallback={})'),'Personal report storage reader must exist at Future UI runtime scope');
+must(futureJs.includes("const raw=localStorage.getItem(key);"),'Personal report storage reader must handle missing keys without throwing');
 must(futureJs.includes('function learnerReport')&&futureJs.includes('function personalReportHtml'),'Overview must expose a learner-only personal learning report');
 must(futureJs.includes('data-report-scope="learner"'),'Personal report must declare learner scope');
 must(futureJs.includes('Kết luận ngắn')&&futureJs.includes('Kỹ năng tốt')&&futureJs.includes('Vấn đề cần xử lý')&&futureJs.includes('Kế hoạch tiếp theo'),'Personal report must answer conclusion, skills, issues, and next plan');
