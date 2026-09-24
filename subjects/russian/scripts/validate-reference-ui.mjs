@@ -203,6 +203,10 @@ must(core.includes("vocabFocusKey:''"),'Vocabulary routing must preserve a dedic
 must(core.includes('<summary>Chi tiết'),'Vocabulary details disclosure label missing');
 must(core.includes('class="vocab-micro-context"'),'Vocabulary card must expose a short Russian micro-context');
 must(core.includes('data-act="speak-vocab-slow"'),'Vocabulary card must expose optional slow audio');
+must(core.includes('class="handwriting-cycle"'),'Handwriting must expose the five-step look/listen/trace/free/dictation learning cycle');
+must(core.includes('01 · NHÌN')&&core.includes('02 · NGHE')&&core.includes('03 · TÔ NÉT')&&core.includes('04 · TỰ VIẾT')&&core.includes('05 · NGHE → VIẾT'),'Handwriting learning-cycle order drifted');
+must(core.indexOf('handwriting-primary-canvas')<core.indexOf('renderHandwritingExercise(item)'),'Handwriting canvas must appear before secondary listen-write exercise UI');
+must(css.includes('.handwriting-cycle')&&css.includes('.handwriting-primary-canvas'),'Handwriting PASS 7 presentation contract missing');
 must(core.includes('function speakVocabItem(v,slow=false)'),'Vocabulary audio must stay in the canonical core audio path');
 must(core.includes("player.playbackRate=slow?.75:1"),'Source vocabulary audio must support slower playback');
 must(core.includes("speak(term,slow?.62:.85)"),'Vocabulary TTS fallback must support slower playback');
