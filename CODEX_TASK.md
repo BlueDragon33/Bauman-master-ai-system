@@ -1,17 +1,17 @@
 # CODEX_TASK
 
-Task: `BAUMAN_PROFESSIONAL_UX_REPORTING_QA_ROUND3_POST_MERGE_RECONCILIATION`
+Task: `BAUMAN_CLOUDFLARE_PREVIEW_EXACT_REVISION_FX_POST_MERGE_RECONCILIATION`
 Mode: `CHAT_FIRST / CURRENT_MAIN / FAIL_CLOSED`
 
 ## Current objective
 
-Keep future work aligned with the true current-main baseline after PR #115 promoted Professional UX/reporting QA round 3 as merge commit `97946ad5a13b2f3c3abe2b6ec67bf51b085cbd2f`. Preserve destructive diagnostic-data safety, professional multi-page print/PDF pagination, Russian modal keyboard-focus accessibility, and all existing academic authority boundaries.
+Keep future work aligned with the true current-main baseline after PR #117 promoted the Cloudflare Preview exact-revision fail-closed Fx as merge commit `64405e2f14eb91716a71bc164364494b654e8a32`. Preserve exact-preview revision truthfulness together with destructive diagnostic-data safety, professional multi-page print/PDF pagination, Russian modal keyboard-focus accessibility, and all existing academic authority boundaries.
 
-Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A6, Device Contract v6, Content Review API v1, Deep Study Journal v1, its packaged-readiness Fx #88, Current-Main Control-State Gate v1.1, Russian Future Reference UI, Russian Future UI idempotence Fx #95, Russian Future UI package-readiness Fx #97, Russian Vocabulary Visual Immersion v1 #99, Production Publish Gate v1 #102, Russian UX/UI refactor PASS 1→10, Professional UX/reporting QA hardening #111, Professional academic reports UX round 2 #113, and Professional UX/reporting QA round 3 #115 are promoted.
+Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A6, Device Contract v6, Content Review API v1, Deep Study Journal v1, its packaged-readiness Fx #88, Current-Main Control-State Gate v1.1, Russian Future Reference UI, Russian Future UI idempotence Fx #95, Russian Future UI package-readiness Fx #97, Russian Vocabulary Visual Immersion v1 #99, Production Publish Gate v1 #102, Russian UX/UI refactor PASS 1→10, Professional UX/reporting QA hardening #111, Professional academic reports UX round 2 #113, Professional UX/reporting QA round 3 #115, and Cloudflare Preview exact-revision Fx #117 are promoted.
 
 ## Mandatory sequence
 
-1. Use current `main` at or after `97946ad5a13b2f3c3abe2b6ec67bf51b085cbd2f` as the baseline.
+1. Use current `main` at or after `64405e2f14eb91716a71bc164364494b654e8a32` as the baseline.
 2. Do not reopen historical Roadmap rounds or stale candidate branches as current work.
 3. Preserve Russian Listen+Write, Academic Phase2, Device Contract v6 and Content Review API v1.
 4. Preserve fail-closed learning-gate layering; the base worker must not advertise the learning gate as live before deployment/preview readiness.
@@ -43,6 +43,7 @@ Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A
 25. Preserve PR #115 diagnostic deletion confirmation and cancel-safe behavior.
 26. Preserve PR #115 print pagination: the whole academic report/panel must allow page breaks while individual report rows/cards retain anti-split protection.
 27. Preserve Russian modal accessibility from PR #115: opening a generic modal must immediately move focus inside; Tab/Shift+Tab remain trapped and close restores focus to the opener.
+28. Preserve PR #117 preview release truthfulness: both Bauman Control preview and Learning Runtime preview `/__deployment` revisions must equal `GITHUB_SHA`; a merely non-empty revision is insufficient.
 
 ## Protected contracts
 
@@ -69,6 +70,7 @@ Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A
 - PR #115 destructive diagnostic actions must remain confirmation-guarded and cancel-safe.
 - PR #115 academic print CSS must remain multi-page safe; never restore whole-report `break-inside: avoid`.
 - PR #115 Russian modal focus behavior must remain keyboard-accessible in both direct and packaged runtime.
+- PR #117 Cloudflare preview smoke testing must fail closed on stale/mismatched deployment revisions for both Control and Learning Runtime.
 
 ## Completion condition
 
@@ -86,4 +88,5 @@ Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A
 - Professional UX and reporting QA hardening (PR #111) is promoted as `cbdba1a5cee8703f6ceed2c94e070909d7014a93`; its post-merge Academic Reporting UX QA, Academic prerequisite, Russian Reference UI, Cloudflare Preview, Production Publish Gate CI, Windows checkout and Whole System direct + packaged gates are SUCCESS;
 - Professional academic reports UX round 2 (PR #113) is promoted as `2a72d7c8934e1023d24e6158baea9ca85e8a6e44`; its pre-merge and post-merge Academic Reporting UX QA, Academic prerequisite, Cloudflare Preview, Production Publish Gate CI, Windows checkout and Whole System direct + packaged gates are SUCCESS;
 - Professional UX/reporting QA round 3 (PR #115) is promoted as `97946ad5a13b2f3c3abe2b6ec67bf51b085cbd2f`; final head `25d46df984f328f9ae964285ef17c43a0638fe41` passed Academic Reporting UX QA, Academic prerequisite, Russian Reference UI, Cloudflare Preview, Production Publish Gate CI, Windows checkout and Whole System direct + packaged acceptance;
+- Cloudflare Preview exact-revision fail-closed Fx (PR #117) is promoted as `64405e2f14eb91716a71bc164364494b654e8a32`; head `0089233b2fa783db77877568117705df2e0bafe5` passed Bauman Cloudflare Preview CI and Windows checkout safety;
 - future work resumes from current `main` only when a concrete defect, missing capability or explicit feature request exists.
