@@ -91,6 +91,36 @@ try{
   assert.equal(clearGuard.afterConfirm,'RESULT_UNRECORDED','Confirmed destructive clear must remove the grade');
   assert.equal(clearGuard.restored,'RESULT_TARGET_MET','Grade must remain writable after a confirmed clear');
 
+  const diagnosticClearGuard=await page.evaluate(()=>{
+    const a=window.BAUMAN_ACADEMIC_2026_RUNTIME;
+    a.recordDiagnostic('P0',{D0:92,D1:94,D2:90,criticalMisconceptions:0,failedNodeIds:[]});
+    const before=a.gateState(window.BAUMAN_PREREQ_2026.coreGates.find(x=>x.id==='P0')).id;
+    window.confirm=()=>false;
+    window.clearAcademicDiagnostic2026('P0');
+    const afterCancel=a.gateState(window.BAUMAN_PREREQ_2026.coreGates.find(x=>x.id==='P0')).id;
+    window.confirm=()=>true;
+    window.clearAcademicDiagnostic2026('P0');
+    const afterConfirm=a.gateState(window.BAUMAN_PREREQ_2026.coreGates.find(x=>x.id==='P0')).id;
+    const restored=a.recordDiagnostic('P0',{D0:92,D1:94,D2:90,criticalMisconceptions:0,failedNodeIds:[]}).id;
+    return {before,afterCancel,afterConfirm,restored};
+  });
+  assert.equal(diagnosticClearGuard.before,'ready','Diagnostic setup must create a real assessed state');
+  assert.equal(diagnosticClearGuard.afterCancel,'ready','Cancelling destructive diagnostic clear must preserve prerequisite evidence');
+  assert.equal(diagnosticClearGuard.afterConfirm,'unassessed','Confirmed diagnostic clear must remove prerequisite evidence');
+  assert.equal(diagnosticClearGuard.restored,'ready','Diagnostic evidence must remain writable after a confirmed clear');
+
+  const printPagination=await page.evaluate(()=>{
+    const css=[...document.styleSheets].flatMap(sheet=>{try{return [...sheet.cssRules].map(r=>r.cssText)}catch{return []}}).join('\n');
+    return {
+      reportAllowsPages:/\[data-academic-report\][^{]*\{[^}]*break-inside:\s*auto/i.test(css),
+      panelAllowsPages:/\.academic2026-panel[^{]*\{[^}]*break-inside:\s*auto/i.test(css),
+      rowsProtected:/\.grade14d-row[^}]*break-inside:\s*avoid/i.test(css)&&/\.transcript14e-row[^}]*break-inside:\s*avoid/i.test(css)
+    };
+  });
+  assert.equal(printPagination.reportAllowsPages,true,'Whole academic report must be allowed to paginate across A4 pages');
+  assert.equal(printPagination.panelAllowsPages,true,'Academic report panel must not force the entire report onto one page');
+  assert.equal(printPagination.rowsProtected,true,'Individual grade/transcript rows should still avoid splitting across pages');
+
   await page.reload({waitUntil:'domcontentloaded',timeout:30000});
   await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='authorized',null,{timeout:15000});
   await page.waitForFunction(()=>Boolean(window.BAUMAN_EVENT_READINESS_2026),null,{timeout:15000});
