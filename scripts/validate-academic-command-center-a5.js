@@ -26,6 +26,8 @@ assert(JSON.stringify(arch.courses.map(x=>x.courseId))===JSON.stringify(order),'
 assert(runtime.includes("transcriptRuntime()?.entryState?.(courseId)")&&runtime.includes("gradeRuntime()?.resolvedEvents?.()")&&runtime.includes("eventRuntime()?.courseEventAxis?.(courseId)")&&runtime.includes("cr?.prereqAxis?.(courseId)"),'A5 must integrate all four evidence layers');
 assert(runtime.includes('projectionCaveatActive')&&runtime.includes('finalEligibilityClaimed'),'A5 must preserve A4 honors projection caveat');
 assert(runtime.includes('Báo cáo học vụ tổng hợp'),'A5 professional academic summary title missing');
+assert(runtime.includes('data-academic-report')&&runtime.includes('In / lưu PDF'),'A5 professional report print affordance missing');
+for(const leak of ['Mở Transcript evidence','Mở Grade Control','Mở Event Readiness','Mở Course Readiness'])assert(!runtime.includes(leak),`A5 developer-facing action leaked: ${leak}`);
 assert(runtime.includes('SEVERITY_LABEL')&&runtime.includes('TYPE_LABEL'),'A5 must translate internal severity/type codes into learner-facing labels');
 assert(runtime.includes("axis('Điều kiện'")&&runtime.includes("axis('Trạng thái môn'")&&runtime.includes("axis('Đánh giá'")&&runtime.includes("axis('Phụ lục'"),'A5 report axes must use learner-facing labels');
 
