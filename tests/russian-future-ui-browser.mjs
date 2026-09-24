@@ -108,7 +108,12 @@ try{
   assert.equal(await page.locator('.rf-report-print-sheet').count(),0,'Temporary print sheet must clean itself up');
 
   await page.evaluate(()=>{
-    localStorage.setItem('bauman_russian_learning_state_v1',JSON.stringify({schema:'bauman_russian_learning_state_v1',reviewQueue:{},updatedAt:new Date().toISOString()}));
+    const at=new Date().toISOString();
+    localStorage.setItem('bauman_russian_learning_state_v1',JSON.stringify({
+      schema:'bauman_russian_learning_state_v1',
+      reviewQueue:{'qa-review-evidence':{id:'qa-review-evidence',label:'Mục QA có evidence',reason:'user_flagged',addedAt:at,scheduledAt:at,dueAt:at}},
+      updatedAt:at
+    }));
     window.dispatchEvent(new CustomEvent('russian:learning-state'));
   });
   await page.waitForFunction(()=>document.querySelector('.rf-personal-report')?.dataset.reportEvidenceStatus==='Đang tích lũy',null,{timeout:5000});
