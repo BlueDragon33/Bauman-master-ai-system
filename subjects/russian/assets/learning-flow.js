@@ -192,6 +192,7 @@
       }
       const filter=document.querySelector('[data-input="reviewFilter"]');
       if(filter){filter.value='all';filter.dispatchEvent(new Event('change',{bubbles:true}));}
+      window.dispatchEvent(new CustomEvent('russian:mini-check',{detail:{lessonId}}));
     });
   }
   function navigate(step){
