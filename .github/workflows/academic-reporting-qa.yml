@@ -4,6 +4,8 @@ on:
   pull_request:
     branches: [main]
     paths:
+      - "assets/js/academic-main.js"
+      - "assets/css/academic-2026.css"
       - "assets/js/academic-grade-runtime.js"
       - "assets/js/academic-transcript-runtime.js"
       - "assets/js/academic-command-center-runtime.js"
@@ -20,6 +22,8 @@ on:
   push:
     branches: [main]
     paths:
+      - "assets/js/academic-main.js"
+      - "assets/css/academic-2026.css"
       - "assets/js/academic-grade-runtime.js"
       - "assets/js/academic-transcript-runtime.js"
       - "assets/js/academic-command-center-runtime.js"
@@ -57,6 +61,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          node --check assets/js/academic-main.js
           node --check assets/js/academic-grade-runtime.js
           node --check assets/js/academic-transcript-runtime.js
           node --check assets/js/academic-command-center-runtime.js

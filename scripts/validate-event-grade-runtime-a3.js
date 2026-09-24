@@ -24,6 +24,8 @@ for(const src of [event,grade]){
 }
 assert(!grade.includes('bootstrapTranscriptRuntime'),'A3 must not bootstrap A4 transcript runtime');
 assert(grade.includes('Báo cáo kết quả đánh giá'),'A3 learner-facing grade report title missing');
+assert(grade.includes('data-academic-report')&&grade.includes('In / lưu PDF'),'A3 professional report print affordance missing');
+for(const leak of ['Numeric score','Official grade','Grade Control','<code>derivedGrade</code>'])assert(!grade.includes(leak),`A3 developer-facing label leaked: ${leak}`);
 assert(grade.includes("window.confirm('Xóa kết quả đã xác nhận"),'A3 destructive grade clear must require explicit confirmation');
 assert(!event.includes('setTimeout(bootstrapGradeRuntime'),'A3 Grade runtime must not auto-load in Hub background');
 assert(course.includes('function bootstrapEventRuntime()'),'A2 runtime must bootstrap A3 event evidence');

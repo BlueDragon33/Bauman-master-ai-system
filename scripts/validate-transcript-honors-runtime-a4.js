@@ -46,7 +46,9 @@ assert(!/recordResult\s*\(/.test(runtime),'A4 must not auto-promote A3 grade res
 assert(!runtime.includes('function appendPanel()')&&!runtime.includes('function patchHome('),'A4 must not add Home surface');
 assert(!runtime.includes('bootstrapCommandCenter'),'A4 must not bootstrap A5');
 assert(runtime.includes('Báo cáo phụ lục văn bằng & mục tiêu bằng đỏ'),'A4 professional transcript report title missing');
-assert(runtime.includes("window.confirm('Xóa evidence phụ lục đã xác minh"),'A4 destructive transcript clear must require explicit confirmation');
+assert(runtime.includes('data-academic-report')&&runtime.includes('In / lưu PDF'),'A4 professional report print affordance missing');
+for(const leak of ['Diploma supplement evidence','Lưu evidence','Xóa evidence','Evidence hiện tại'])assert(!runtime.includes(leak),`A4 developer-facing label leaked: ${leak}`);
+assert(runtime.includes("window.confirm('Xóa dữ liệu phụ lục đã xác minh"),'A4 destructive transcript clear must require explicit confirmation');
 assert(runtime.includes('projectionCaveatActive')&&runtime.includes("finalEligibilityClaimed:complete&&id==='HONORS_RULES_MET_ON_VERIFIED_LEDGER'&&!projectionCaveatActive"),'A4 must never claim final honors eligibility while the supplement denominator/mapping is still projected');
 
 assert(grade.includes('function ensureTranscriptRuntime()')&&grade.includes('lazyTranscriptLoad:true'),'A3 grade layer must expose lazy A4 loader');

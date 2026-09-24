@@ -33,7 +33,7 @@
     const lifecycle=cr?.lifecycleAxis?.(courseId)||{id:null,label:'Chưa ghi'};
     const eventAxis=eventRuntime()?.courseEventAxis?.(courseId)||{id:'EVENT_UNASSESSED',label:'Chưa đánh giá event',events:[]};
     const transcript=transcriptState(courseId),grade=firstGradeRisk(courseId),eventNeed=firstEventNeed(courseId);
-    let severity='low',type='TRACK',title='Theo dõi học phần',detail='Chưa có blocker mức cao trong evidence hiện tại.',target={kind:'course',courseId};
+    let severity='low',type='TRACK',title='Theo dõi học phần',detail='Chưa có blocker mức cao trong dữ liệu đã xác minh hiện tại.',target={kind:'course',courseId};
 
     if(['ENTRY_GRADE_2','ENTRY_GRADE_3','ENTRY_CREDIT_FAIL'].includes(transcript.id)){
       severity='critical';type='HONORS_BLOCKER';title='Evidence phụ lục đang chặn mục tiêu honors';detail=`${courseId}: ${transcript.label}. Hub chỉ chỉ ra blocker; không tự quyết định retake hay sửa lịch.`;target={kind:'transcript',rowId:courseId};
@@ -72,10 +72,10 @@
   function axis(label,value){return `<span class="commandA5-axis"><b>${h(label)}</b><span>${h(value||'—')}</span></span>`}
   function targetButton(cmd){
     const t=cmd.target;
-    if(t.kind==='transcript')return `<button class="btn" onclick="openAcademicTranscriptEntry2026('${h(t.rowId)}')">Mở Transcript evidence</button>`;
-    if(t.kind==='grade')return `<button class="btn" onclick="openAcademicGradeResult2026('${h(t.courseId)}','${h(t.code)}')">Mở Grade Control</button>`;
-    if(t.kind==='event')return `<button class="btn" onclick="openAcademicEventReadiness2026('${h(t.courseId)}','${h(t.code)}')">Mở Event Readiness</button>`;
-    return `<button class="btn" onclick="openOfficialCoursePhase2('${h(t.courseId)}')">Mở Course Readiness</button>`;
+    if(t.kind==='transcript')return `<button class="btn" onclick="openAcademicTranscriptEntry2026('${h(t.rowId)}')">Mở dữ liệu phụ lục</button>`;
+    if(t.kind==='grade')return `<button class="btn" onclick="openAcademicGradeResult2026('${h(t.courseId)}','${h(t.code)}')">Mở kết quả đánh giá</button>`;
+    if(t.kind==='event')return `<button class="btn" onclick="openAcademicEventReadiness2026('${h(t.courseId)}','${h(t.code)}')">Mở mức sẵn sàng đánh giá</button>`;
+    return `<button class="btn" onclick="openOfficialCoursePhase2('${h(t.courseId)}')">Mở mức sẵn sàng học phần</button>`;
   }
   function card(cmd){
     return `<article class="commandA5-card ${h(cmd.severity)}"><div class="commandA5-card-head"><div><b>${h(cmd.courseId)} · ${h(cmd.course.nameRu)}</b><small>${h(TYPE_LABEL[cmd.type]||cmd.type)}</small></div><span class="commandA5-severity ${h(cmd.severity)}">${h(SEVERITY_LABEL[cmd.severity]||cmd.severity)}</span></div><div class="commandA5-axes">${axis('Điều kiện',cmd.axes.prereq.label)}${axis('Trạng thái môn',cmd.axes.lifecycle.label)}${axis('Đánh giá',cmd.axes.event.label)}${axis('Phụ lục',cmd.axes.transcript.label)}</div><div class="commandA5-action"><strong>${h(cmd.title)}</strong><small>${h(cmd.detail)}</small><div class="commandA5-actions">${targetButton(cmd)}</div></div></article>`;
@@ -83,7 +83,7 @@
   function renderPanel(){
     const s=summary(),hon=s.honors,p=hon.projection||{};
     const caveat=hon.projectionCaveatActive!==false||hon.finalEligibilityClaimed!==true;
-    return `<section class="commandA5-shell" data-command-a5="center"><article class="academic2026-panel"><div class="academic2026-head"><div><span class="academic2026-badge">HỌC VỤ · TỔNG HỢP</span><h3>Báo cáo học vụ tổng hợp</h3><p>Tổng hợp prerequisite, assessment readiness, kết quả thực tế và evidence phụ lục để chỉ ra việc cần xử lý tiếp theo mà không tự thay đổi lịch học.</p></div><span class="academic2026-lock">Chỉ đọc · không sửa lịch</span></div><div class="commandA5-summary"><span><b>${s.critical}</b><small>KHẨN CẤP</small></span><span><b>${s.high}</b><small>MỨC CAO</small></span><span><b>${hon.verifiedRows??0}/${hon.totalRows??0}</b><small>PHỤ LỤC ĐÃ XÁC MINH</small></span><span><b>${hon.fiveCount??0}/${hon.requiredFive??p.requiredFiveIfProjectionConfirmed??'—'}</b><small>ĐIỂM 5 / NHU CẦU DỰ KIẾN</small></span></div><div class="commandA5-honors"><b>${h(hon.label||'Chưa có honors evidence')}</b><small>${caveat?'Mẫu số honors vẫn là projection; Command Center không tuyên bố đủ điều kiện cuối cùng.':'Ledger đã được xác minh theo policy hiện có.'}</small></div><div class="commandA5-grid">${commandBoard().map(card).join('')}</div></article></section>`;
+    return `<section class="commandA5-shell" data-command-a5="center" data-academic-report data-academic-report-title="Báo cáo học vụ tổng hợp"><article class="academic2026-panel"><div class="academic2026-report-tools"><button class="btn" onclick="printAcademicReport2026('Báo cáo học vụ tổng hợp')">In / lưu PDF</button></div><div class="academic2026-report-meta"><span><b>Phạm vi:</b> 8 học phần trọng tâm HK1</span><span><b>Dữ liệu:</b> điều kiện, đánh giá, kết quả và phụ lục</span><span><b>Chế độ:</b> chỉ đọc, không tự sửa lịch</span></div><div class="academic2026-head"><div><span class="academic2026-badge">HỌC VỤ · TỔNG HỢP</span><h3>Báo cáo học vụ tổng hợp</h3><p>Tổng hợp prerequisite, assessment readiness, kết quả thực tế và evidence phụ lục để chỉ ra việc cần xử lý tiếp theo mà không tự thay đổi lịch học.</p></div><span class="academic2026-lock">Chỉ đọc · không sửa lịch</span></div><div class="commandA5-summary"><span><b>${s.critical}</b><small>KHẨN CẤP</small></span><span><b>${s.high}</b><small>MỨC CAO</small></span><span><b>${hon.verifiedRows??0}/${hon.totalRows??0}</b><small>PHỤ LỤC ĐÃ XÁC MINH</small></span><span><b>${hon.fiveCount??0}/${hon.requiredFive??p.requiredFiveIfProjectionConfirmed??'—'}</b><small>ĐIỂM 5 / NHU CẦU DỰ KIẾN</small></span></div><div class="commandA5-honors"><b>${h(hon.label||'Chưa có honors evidence')}</b><small>${caveat?'Mẫu số honors vẫn là projection; Command Center không tuyên bố đủ điều kiện cuối cùng.':'Ledger đã được xác minh theo policy hiện có.'}</small></div><div class="commandA5-grid">${commandBoard().map(card).join('')}</div></article></section>`;
   }
   function openOverview(){
     if(typeof window.openModal==='function')return window.openModal('Báo cáo học vụ tổng hợp',renderPanel(),true);

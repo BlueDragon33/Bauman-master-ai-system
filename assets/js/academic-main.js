@@ -205,6 +205,21 @@
     try{const [curriculum,prereq,manifest]=await Promise.all([fetchJson(CURRICULUM_URL),fetchJson(PREREQ_URL),fetchJson(PACK_MANIFEST_URL)]);window.BAUMAN_CURRICULUM_2026=curriculum;window.BAUMAN_PREREQ_2026=prereq;const results=await Promise.allSettled((manifest.packs||[]).map(async row=>[row.gateId,await fetchJson(row.path)])),packs={};for(const result of results)if(result.status==='fulfilled'){const [gateId,pack]=result.value;if(pack?.gateId===gateId)packs[gateId]=pack}window.BAUMAN_PREREQ_PACKS_2026=Object.freeze(packs);readStore();patchApp();console.info(VERSION,{curriculum:curriculum.version,prereq:prereq.version,packs:Object.keys(packs).length,storage:DIAGNOSTIC_STORAGE_KEY,schedulerMutation:SCHEDULER_MUTATION_ENABLED})}catch(err){console.warn('Academic 2026 runtime disabled safely:',err)}
   }
 
+  function printAcademicReport(title){
+    const report=document.querySelector('#modalRoot [data-academic-report]');
+    if(!report)return false;
+    const previous=document.title;
+    const reportTitle=String(title||report.getAttribute('data-academic-report-title')||'Báo cáo học vụ');
+    document.documentElement.dataset.academicPrint='1';
+    document.title=reportTitle;
+    const cleanup=()=>{delete document.documentElement.dataset.academicPrint;document.title=previous;window.removeEventListener('afterprint',cleanup)};
+    window.addEventListener('afterprint',cleanup,{once:true});
+    window.print();
+    setTimeout(()=>{if(document.documentElement.dataset.academicPrint==='1')cleanup()},1000);
+    return true;
+  }
+
+  window.printAcademicReport2026=printAcademicReport;
   window.openAcademicGate=openGate;window.openPrerequisiteOverview2026=openPrereqOverview;window.openOfficialCourse2026=openCourse;window.saveAcademicDiagnostic2026=saveDiagnosticFromModal;window.clearAcademicDiagnostic2026=clearDiagnosticFromModal;
   window.BAUMAN_ACADEMIC_2026_RUNTIME=Object.freeze({version:VERSION,load,scoreForGate,gateState,courseReadiness,currentStageId,currentCourseHorizon,gateActivation,courseRisk,courseRiskBoard,gateIntervention,activeRepairPlan,schedulerCompatibility,recordDiagnostic,clearDiagnostic,repairRoutesForGate,shouldStopGate,stopDecision,schedulerMutationEnabled:SCHEDULER_MUTATION_ENABLED,storageKey:DIAGNOSTIC_STORAGE_KEY});
   document.addEventListener('DOMContentLoaded',()=>setTimeout(load,0));
