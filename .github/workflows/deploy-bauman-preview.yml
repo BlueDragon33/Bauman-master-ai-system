@@ -169,13 +169,20 @@ jobs:
           curl --fail --silent --show-error --max-time 20 --output /dev/null "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/subjects/russian/assets/russian-future-ui.css"
           curl --fail --silent --show-error --max-time 20 --output /dev/null "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/subjects/russian/assets/russian-optional-data-loader.js"
 
+          # The packaged CI above proves manifests/chunks exist and are structurally valid.
+          # Live runtime deliberately protects learning JSON behind the server-side Device Gate,
+          # so an anonymous smoke request must be rejected instead of downloading learner data.
           for dataset in dialogue-bauman-az deep-speaking-bauman; do
-            manifest="/tmp/${dataset}-manifest.json"
-            curl --fail --silent --show-error --max-time 20 \
-              "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/subjects/russian/data/chunks/$dataset/manifest.json" > "$manifest"
-            first="$(node -e "const m=require(process.argv[1]); if(m.format!=='json-array-chunks-v1'||!m.chunks?.length) process.exit(2); process.stdout.write(m.chunks[0].file)" "$manifest")"
-            curl --fail --silent --show-error --max-time 30 --output /dev/null \
-              "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/subjects/russian/data/chunks/$dataset/$first"
+            manifest_url="$BAUMAN_RUNTIME_PREVIEW_ORIGIN/subjects/russian/data/chunks/$dataset/manifest.json"
+            manifest_body="/tmp/${dataset}-anonymous.json"
+            manifest_code="$(curl --silent --show-error --max-time 20 \
+              --output "$manifest_body" --write-out '%{http_code}' "$manifest_url")"
+            test "$manifest_code" = "401"
+            node --input-type=module - "$manifest_body" <<'NODE'
+          import fs from 'node:fs';
+          const value = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
+          if (value.code !== 'DEVICE_SESSION_REQUIRED') throw new Error('Protected Russian dataset did not fail closed through the Device Gate.');
+          NODE
           done
 
       - name: Deployment boundary summary
@@ -186,6 +193,6 @@ jobs:
           echo 'D1: bauman-control-preview-db'
           echo 'Learning Worker: bauman-master-ai-preview'
           echo 'Subject Web Apps: /subjects/* packaged and smoke-tested.'
-          echo 'Russian lazy datasets: chunk manifests and first chunks smoke-tested.'
+          echo 'Russian lazy datasets: package integrity validated; live anonymous JSON access rejected by Device Gate.'
           echo 'Application-Management remains the only central control-plane.'
           echo 'No production Worker or production D1 is changed by this workflow.'
