@@ -164,6 +164,25 @@ jobs:
           grep -Fq "name=\"bauman-control-origin\" content=\"$BAUMAN_CONTROL_PREVIEW_ORIGIN\"" /tmp/bauman-home.html
           grep -Fq 'assets/js/platform/device-access-gate.js' /tmp/bauman-home.html
 
+          # Prove Learning Runtime can reach the separate Control Worker in the same Cloudflare account.
+          # A syntactically valid but unknown session must be rejected by Control (401/403), never fail as 503/BAUMAN_CONTROL_UNAVAILABLE.
+          RUNTIME_SESSION_CODE="$(curl --silent --show-error --output /tmp/bauman-runtime-control-probe.json --write-out '%{http_code}' --max-time 20 \
+            -X POST -H "Authorization: Bearer bm1.AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" \
+            "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/api/runtime/session" || true)"
+          if [[ "$RUNTIME_SESSION_CODE" != "401" && "$RUNTIME_SESSION_CODE" != "403" ]]; then
+            echo "::error::Runtime-to-Control probe expected fail-closed 401/403; got $RUNTIME_SESSION_CODE."
+            cat /tmp/bauman-runtime-control-probe.json || true
+            exit 1
+          fi
+          node --input-type=module - <<'NODE'
+          import fs from 'node:fs';
+          const value = JSON.parse(fs.readFileSync('/tmp/bauman-runtime-control-probe.json', 'utf8'));
+          if (value.code === 'BAUMAN_CONTROL_UNAVAILABLE') throw new Error('Learning Runtime cannot reach Bauman Control Worker.');
+          if (!['DEVICE_SESSION_REVOKED','DEVICE_SESSION_INVALID','DEVICE_SESSION_EXPIRED','DEVICE_NOT_FOUND','DEVICE_ACCESS_DENIED'].includes(value.code)) {
+            throw new Error(`Unexpected runtime-to-control probe code: ${value.code}`);
+          }
+          NODE
+
           curl --fail --silent --show-error --max-time 20 "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/subjects/russian/" > /tmp/bauman-russian.html
           grep -Fq 'assets/russian-future-ui.js' /tmp/bauman-russian.html
           grep -Fq 'assets/russian-future-ui.css' /tmp/bauman-russian.html
