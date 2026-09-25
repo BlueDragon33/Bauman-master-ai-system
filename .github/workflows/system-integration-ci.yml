@@ -16,6 +16,8 @@ on:
       - "tests/math-study-command-center-browser.mjs"
       - "tests/math-learning-journey-browser.mjs"
       - "tests/hub-premium-responsive-browser.mjs"
+      - "tests/hub-primary-pages-v6-static.mjs"
+      - "tests/hub-primary-pages-v6-static.mjs"
       - "tests/russian-handwriting-recognition-browser.mjs"
       - "tests/russian-handwriting-offline-authority-browser.mjs"
       - "tests/russian-capability-hub-static.mjs"
@@ -100,6 +102,8 @@ jobs:
         run: node tests/subject-progress-contract-static.mjs
       - name: Validate Deep Study Journal boundaries
         run: node scripts/validate-deep-study-journal-v1.js
+      - name: Validate stable V6 primary-page shell
+        run: node tests/hub-primary-pages-v6-static.mjs
       - name: Validate deployment propagation fail-closed helper
         run: node scripts/test-deployment-propagation-wait.mjs
       - name: Parse changed runtime JavaScript
@@ -109,6 +113,8 @@ jobs:
           node --check scripts/validate-deep-study-journal-v1.js
           node --check assets/js/hub-safe-shell.js
           node --check assets/js/hub-overview-search-v2.js
+          node --check assets/js/hub-primary-pages-v6.js
+          node --check tests/hub-primary-pages-v6-static.mjs
           node --check assets/js/planning-main.js
           node --check assets/js/hub-premium-v2.js
           node --check subjects/shared/host-bridge.js
