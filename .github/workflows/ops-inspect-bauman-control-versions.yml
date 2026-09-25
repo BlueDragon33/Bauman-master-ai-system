@@ -1,0 +1,51 @@
+name: Inspect Bauman Control Versions
+
+on:
+  push:
+    branches:
+      - "ops/inspect-bauman-control-versions-20260925"
+
+permissions:
+  contents: read
+
+jobs:
+  inspect:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    environment: bauman-production
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate Cloudflare credentials
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "${CLOUDFLARE_API_TOKEN:-}" || { echo "::error::CLOUDFLARE_API_TOKEN missing"; exit 1; }
+          test -n "${CLOUDFLARE_ACCOUNT_ID:-}" || { echo "::error::CLOUDFLARE_ACCOUNT_ID missing"; exit 1; }
+
+      - name: Show Wrangler version commands
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes wrangler@4.92.0 --version
+          npx --yes wrangler@4.92.0 versions list --help || true
+          npx --yes wrangler@4.92.0 deployments status --help || true
+          npx --yes wrangler@4.92.0 rollback --help || true
+
+      - name: List Bauman Control versions
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "=== VERSIONS ==="
+          npx --yes wrangler@4.92.0 versions list --name bauman-control
+
+      - name: Show Bauman Control deployment status
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "=== DEPLOYMENT STATUS ==="
+          npx --yes wrangler@4.92.0 deployments status --name bauman-control || true
