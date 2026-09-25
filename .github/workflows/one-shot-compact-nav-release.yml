@@ -18,7 +18,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          ACTUAL="$(gh api -R "$GITHUB_REPOSITORY" "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq '.object.sha')"
+          ACTUAL="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq '.object.sha')"
           test "$ACTUAL" = "$TARGET_SHA"
 
       - name: Dispatch exact Preview
@@ -39,7 +39,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          ACTUAL="$(gh api -R "$GITHUB_REPOSITORY" "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq '.object.sha')"
+          ACTUAL="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq '.object.sha')"
           test "$ACTUAL" = "$TARGET_SHA"
 
       - name: Dispatch exact Production
