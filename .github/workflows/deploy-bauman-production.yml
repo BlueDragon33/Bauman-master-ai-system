@@ -25,7 +25,6 @@ jobs:
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
       BAUMAN_CONTROL_PREVIEW_D1_DATABASE_ID: ${{ secrets.BAUMAN_CONTROL_PREVIEW_D1_DATABASE_ID }}
       BAUMAN_CONTROL_PRODUCTION_D1_DATABASE_ID: ${{ secrets.BAUMAN_CONTROL_PRODUCTION_D1_DATABASE_ID }}
-      BAUMAN_CONTROL_PRODUCTION_SERVICE_SECRET: ${{ secrets.BAUMAN_CONTROL_PRODUCTION_SERVICE_SECRET }}
       APPLICATION_MANAGEMENT_PRODUCTION_ORIGIN: ${{ vars.APPLICATION_MANAGEMENT_PRODUCTION_ORIGIN }}
       BAUMAN_CONTROL_PREVIEW_ORIGIN: ${{ vars.BAUMAN_CONTROL_PREVIEW_ORIGIN }}
       BAUMAN_RUNTIME_PREVIEW_ORIGIN: ${{ vars.BAUMAN_RUNTIME_PREVIEW_ORIGIN }}
@@ -54,17 +53,12 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          for key in CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID BAUMAN_CONTROL_PREVIEW_D1_DATABASE_ID BAUMAN_CONTROL_PRODUCTION_D1_DATABASE_ID BAUMAN_CONTROL_PRODUCTION_SERVICE_SECRET APPLICATION_MANAGEMENT_PRODUCTION_ORIGIN BAUMAN_CONTROL_PREVIEW_ORIGIN BAUMAN_RUNTIME_PREVIEW_ORIGIN BAUMAN_CONTROL_PRODUCTION_ORIGIN BAUMAN_RUNTIME_PRODUCTION_ORIGIN; do
+          for key in CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID BAUMAN_CONTROL_PREVIEW_D1_DATABASE_ID BAUMAN_CONTROL_PRODUCTION_D1_DATABASE_ID APPLICATION_MANAGEMENT_PRODUCTION_ORIGIN BAUMAN_CONTROL_PREVIEW_ORIGIN BAUMAN_RUNTIME_PREVIEW_ORIGIN BAUMAN_CONTROL_PRODUCTION_ORIGIN BAUMAN_RUNTIME_PRODUCTION_ORIGIN; do
             if [[ -z "${!key:-}" ]]; then
               echo "::error::$key is required in the bauman-production GitHub environment."
               exit 1
             fi
           done
-          if [[ ${#BAUMAN_CONTROL_PRODUCTION_SERVICE_SECRET} -lt 32 ]]; then
-            echo '::error::BAUMAN_CONTROL_PRODUCTION_SERVICE_SECRET must contain at least 32 characters.'
-            exit 1
-          fi
-
       - name: Install Bauman Control dependencies
         working-directory: control-service
         run: npm ci --no-audit --no-fund
@@ -121,11 +115,6 @@ jobs:
         working-directory: control-service
         run: npx wrangler deploy --config wrangler.production.jsonc
 
-      - name: Install or rotate Bauman production control secret
-        working-directory: control-service
-        shell: bash
-        run: printf '%s' "$BAUMAN_CONTROL_PRODUCTION_SERVICE_SECRET" | npx wrangler secret put BAUMAN_CONTROL_SERVICE_SECRET --config wrangler.production.jsonc
-
       - name: Deploy Bauman Learning Runtime production Worker
         run: npx --yes wrangler@4.92.0 deploy --config wrangler.runtime.production.jsonc
 
@@ -146,13 +135,16 @@ jobs:
           if (runtime.channel !== 'cloudflare-production' || runtime.revision !== expected || !runtime.controlOriginConfigured) throw new Error('Production Runtime read-back mismatch.');
           NODE
 
-          curl --fail --silent --show-error --max-time 20             -H "Authorization: Bearer $BAUMAN_CONTROL_PRODUCTION_SERVICE_SECRET"             -H "x-control-actor: github-production-smoke"             -H "x-control-role: owner"             "$BAUMAN_CONTROL_PRODUCTION_ORIGIN/api/control/status" > /tmp/bauman-prod-status.json
+          CONTROL_STATUS_CODE="$(curl --silent --show-error --output /tmp/bauman-prod-status-anonymous.json --write-out '%{http_code}' --max-time 20 "$BAUMAN_CONTROL_PRODUCTION_ORIGIN/api/control/status" || true)"
+          if [[ "$CONTROL_STATUS_CODE" != "403" ]]; then
+            echo "::error::Anonymous Bauman control status must remain fail-closed with HTTP 403; got $CONTROL_STATUS_CODE."
+            cat /tmp/bauman-prod-status-anonymous.json || true
+            exit 1
+          fi
           node --input-type=module - <<'NODE'
           import fs from 'node:fs';
-          const value = JSON.parse(fs.readFileSync('/tmp/bauman-prod-status.json', 'utf8'));
-          if (value.application !== 'bauman-master-ai') throw new Error('Production control status application mismatch.');
-          if (value.readiness?.deviceRegistry !== 'available') throw new Error('Production device registry is not ready.');
-          if (!value.capabilities?.learningAccessGate) throw new Error('Production learning access gate is not live.');
+          const value = JSON.parse(fs.readFileSync('/tmp/bauman-prod-status-anonymous.json', 'utf8'));
+          if (value.code !== 'CONTROL_TICKET_FORBIDDEN') throw new Error('Anonymous Bauman control status did not fail closed with CONTROL_TICKET_FORBIDDEN.');
           NODE
 
           curl --fail --silent --show-error --max-time 20 "$BAUMAN_RUNTIME_PRODUCTION_ORIGIN/" > /tmp/bauman-prod-home.html
@@ -172,3 +164,4 @@ jobs:
           echo 'Learning Worker: bauman-master-ai'
           echo "Revision: $GITHUB_SHA"
           echo 'Promotion source: exact same revision verified live in Cloudflare preview before production.'
+          echo 'Manager-owned BAUMAN_CONTROL_SERVICE_SECRET preserved; Bauman deploy does not rotate the shared control-plane secret.'
