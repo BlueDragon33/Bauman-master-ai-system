@@ -271,12 +271,12 @@ function install(){
   compactSubjectCapability();
   const host=q('#page-home');
   if(host&&!observer){
-    observer=new MutationObserver(()=>{if(host.classList.contains('active'))setTimeout(compactHome,0);else document.body.dataset.hubReferenceHome='0'});
+    observer=new MutationObserver(()=>{if(host.classList.contains('active'))compactHome();else document.body.dataset.hubReferenceHome='0'});
     observer.observe(host,{childList:true,subtree:false,attributes:true,attributeFilter:['class']});
   }
   const subjects=q('#page-subjects');
   if(subjects&&!subjectObserver){
-    subjectObserver=new MutationObserver(()=>setTimeout(compactSubjectCapability,0));
+    subjectObserver=new MutationObserver(()=>compactSubjectCapability());
     subjectObserver.observe(subjects,{childList:true,subtree:false});
   }
 }
