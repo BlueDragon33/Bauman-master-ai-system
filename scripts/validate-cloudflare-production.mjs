@@ -20,6 +20,12 @@ const runtime = fs.readFileSync('wrangler.runtime.production.example.jsonc', 'ut
 const prepare = fs.readFileSync('scripts/prepare-cloudflare-production.mjs', 'utf8');
 
 if (!workflow.includes('workflow_dispatch')) throw new Error('Production deploy must remain manual-only.');
+if (workflow.includes('BAUMAN_CONTROL_PRODUCTION_SERVICE_SECRET')) {
+  throw new Error('Bauman production deploy must not bind a second production control secret; Application Management owns the live shared secret.');
+}
+if (workflow.includes('wrangler secret put BAUMAN_CONTROL_SERVICE_SECRET')) {
+  throw new Error('Bauman production deploy must preserve the existing Manager-owned BAUMAN_CONTROL_SERVICE_SECRET binding.');
+}
 
 if (workflow.includes('BAUMAN_CONTROL_PRODUCTION_SERVICE_SECRET')) {
   throw new Error('Bauman production deploy must not bind a second production control secret; Application Management owns the live shared secret.');
@@ -42,6 +48,8 @@ for (const token of [
   'cloudflare-preview',
   'cloudflare-production',
   'revision !== expected',
+  'Manager-owned BAUMAN_CONTROL_SERVICE_SECRET preserved',
+  'CONTROL_TICKET_FORBIDDEN',
   'Manager-owned BAUMAN_CONTROL_SERVICE_SECRET preserved',
   'CONTROL_TICKET_FORBIDDEN',
   'bauman-control-db --remote',
