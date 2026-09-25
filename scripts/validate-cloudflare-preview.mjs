@@ -54,8 +54,12 @@ for (const token of [
   'data/chunks/$dataset/manifest.json',
   "test \"$manifest_code\" = \"401\"",
   "DEVICE_SESSION_REQUIRED",
-  'value.revision !== expected',
-  'process.env.GITHUB_SHA',
+  'wait-cloudflare-deployment-revision.mjs',
+  'BAUMAN_EXPECTED_REVISION="$GITHUB_SHA"',
+  'BAUMAN_EXPECTED_CHANNEL="cloudflare-preview"',
+  'BAUMAN_EXPECTED_RUNTIME="control-service"',
+  'BAUMAN_EXPECTED_RUNTIME="learning-runtime"',
+  'Re-deploy Bauman Control preview Worker after secret rotation',
 ]) {
   if (!workflow.includes(token)) throw new Error(`Bauman preview workflow thiếu: ${token}`);
 }
