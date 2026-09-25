@@ -108,7 +108,6 @@ for (const token of [
   '__APPLICATION_MANAGEMENT_PREVIEW_ORIGIN__',
   '__BAUMAN_RUNTIME_PREVIEW_ORIGIN__',
   '__BAUMAN_BUILD_REVISION__',
-  'global_fetch_strictly_public',
 ]) {
   if (!controlTemplate.includes(token)) throw new Error(`Bauman Control preview template thiếu: ${token}`);
 }
@@ -121,6 +120,7 @@ for (const token of [
   '"directory": "./runtime-dist"',
   '__BAUMAN_CONTROL_PREVIEW_ORIGIN__',
   '__BAUMAN_BUILD_REVISION__',
+  'global_fetch_strictly_public',
 ]) {
   if (!runtimeTemplate.includes(token)) throw new Error(`Bauman runtime preview template thiếu: ${token}`);
 }
