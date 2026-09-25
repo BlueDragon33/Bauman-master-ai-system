@@ -209,3 +209,12 @@ test("Bauman topology remains under one level-1 hub", async () => {
   assert.match(worker, /BlueDragon33\/Math_Bauman/);
   assert.match(worker, /subclients: "Bauman-master-ai-system"/);
 });
+
+
+test("Bauman Control root is a human-safe redirect to the learning runtime", async () => {
+  const preview = await source("../src/cloudflare-preview.ts");
+  assert.match(preview, /url\.pathname === "\/"/);
+  assert.match(preview, /BAUMAN_APP_ORIGIN/);
+  assert.match(preview, /Response\.redirect\(/);
+  assert.match(preview, /BAUMAN_APP_ORIGIN_NOT_CONFIGURED/);
+});
