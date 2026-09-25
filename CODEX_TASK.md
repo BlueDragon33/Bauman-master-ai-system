@@ -1,17 +1,17 @@
 # CODEX_TASK
 
-Task: `BAUMAN_CURRENT_MAIN_POST_PR121_RECONCILIATION`
+Task: `BAUMAN_CURRENT_MAIN_POST_RELEASE_RECONCILIATION_AND_DEPLOY_PROPAGATION_FX`
 Mode: `CHAT_FIRST / CURRENT_MAIN / FAIL_CLOSED`
 
 ## Current objective
 
-Keep future work aligned with the true current-main baseline after PR #121 promoted QA/UX destructive-action safety and professional academic report metadata as merge commit `f76ce9c4235cc11a36ee3649c699553b2bf67022`. Preserve PR #119 protected-learning JSON smoke semantics, PR #120 Application Management ChatGPT Site control-plane origin exception, PR #121 readiness-evidence confirmation and shared report metadata, together with exact-preview revision truthfulness and all existing academic authority boundaries.
+Keep future work aligned with the true current-main baseline after PR #123 promoted the E16R m_p07 covariance/correlation/PCA recovery as merge commit `0674f5c93704078424897714f4bab9815e358ddd` and that exact revision passed preview + production deployment. Preserve PR #119 protected-learning JSON smoke semantics, PR #120 Application Management ChatGPT Site control-plane origin exception, PR #121 readiness-evidence confirmation/shared report metadata, PR #123 learner-first Math + durable E186/E240 theory-source behavior, together with exact-preview revision truthfulness and all existing academic authority boundaries. Harden Cloudflare deployment propagation without weakening the exact-revision gate.
 
-Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A6, Device Contract v6, Content Review API v1, Deep Study Journal v1, its packaged-readiness Fx #88, Current-Main Control-State Gate v1.1, Russian Future Reference UI, Russian Future UI idempotence Fx #95, Russian Future UI package-readiness Fx #97, Russian Vocabulary Visual Immersion v1 #99, Production Publish Gate v1 #102, Russian UX/UI refactor PASS 1→10, Professional UX/reporting QA hardening #111, Professional academic reports UX round 2 #113, Professional UX/reporting QA round 3 #115, and Cloudflare Preview exact-revision Fx #117 are promoted.
+Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A6, Device Contract v6, Content Review API v1, Deep Study Journal v1, its packaged-readiness Fx #88, Current-Main Control-State Gate v1.1, Russian Future Reference UI, Russian Future UI idempotence Fx #95, Russian Future UI package-readiness Fx #97, Russian Vocabulary Visual Immersion v1 #99, Production Publish Gate v1 #102, Russian UX/UI refactor PASS 1→10, Professional UX/reporting QA hardening #111, Professional academic reports UX round 2 #113, Professional UX/reporting QA round 3 #115, Cloudflare Preview exact-revision Fx #117, Preview protected-dataset smoke Fx #119, Application Management origin Fx #120, QA/UX reporting hardening #121, and E16R m_p07 recovery #123 are promoted.
 
 ## Mandatory sequence
 
-1. Use current `main` at or after `f76ce9c4235cc11a36ee3649c699553b2bf67022` as the baseline.
+1. Use current `main` at or after `0674f5c93704078424897714f4bab9815e358ddd` as the baseline.
 2. Do not reopen historical Roadmap rounds or stale candidate branches as current work.
 3. Preserve Russian Listen+Write, Academic Phase2, Device Contract v6 and Content Review API v1.
 4. Preserve fail-closed learning-gate layering; the base worker must not advertise the learning gate as live before deployment/preview readiness.
@@ -44,6 +44,10 @@ Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A
 26. Preserve PR #115 print pagination: the whole academic report/panel must allow page breaks while individual report rows/cards retain anti-split protection.
 27. Preserve Russian modal accessibility from PR #115: opening a generic modal must immediately move focus inside; Tab/Shift+Tab remain trapped and close restores focus to the opener.
 28. Preserve PR #117 preview release truthfulness: both Bauman Control preview and Learning Runtime preview `/__deployment` revisions must equal `GITHUB_SHA`; a merely non-empty revision is insufficient.
+29. Preserve PR #123 E16R m_p07 recovery: canonical covariance/correlation/PCA sidecars, four missing theory cores, 22-slide PCA anchor, learner-first Math UI, and the E186 durable E240 theory-content bridge.
+30. Harden deploy propagation without weakening truthfulness: bounded retries may tolerate only transient stale/missing revisions or transient request failures; wrong application, runtime or channel must fail immediately; exhaustion must fail closed.
+31. After Control secret rotation, perform an authoritative final Control deploy before smoke/read-back so secret version creation cannot re-promote stale code/config.
+32. Preserve the verified release evidence for `0674f5c93704078424897714f4bab9815e358ddd`: preview run `36079732967` attempt 2 and production run `36079959055` are SUCCESS; the earlier failed preview/production attempts are diagnostic evidence only, not release state.
 
 ## Protected contracts
 
@@ -74,6 +78,9 @@ Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A
 - PR #119 protected-learning JSON behavior must remain fail-closed for anonymous access; do not weaken Device Gate enforcement to satisfy deployment smoke tests.
 - PR #120 Application Management ChatGPT Site control-plane exception is origin-specific and must never spread to Bauman Control/Learning Runtime preview or production origins.
 - PR #121 readiness-evidence destructive deletion remains confirmation-guarded and shared academic report metadata remains learner-scoped, timestamped, responsive and paper-safe.
+- PR #123 E16R m_p07 recovery remains learner-first and source-truthful; do not reintroduce stale #104 navigation/runtime code or disconnect E186 from durable E240 theory content.
+- Deployment propagation hardening must never convert exact-revision verification into eventual-any-revision acceptance; only the requested `GITHUB_SHA` can pass.
+- Control secret rotation must not be the final deployment mutation; the final Control deploy reasserts the intended revision and configuration before smoke/read-back.
 
 ## Completion condition
 
@@ -95,4 +102,6 @@ Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A
 - Preview protected-dataset smoke alignment (PR #119) is promoted as `de61b57e5526626e36eb9d7f2f15548afe1da1cd`; head `89b22b0160be64f584714453b403b00c76c44e6e` passed Bauman Cloudflare Preview CI run `35963527802` and Windows checkout safety run `35963527960`.
 - Application Management ChatGPT Site production control-plane exception (PR #120) is promoted as `65158604c141cf94a1c213fcba15c127cb9f18eb`; head `9cc4a55c37257ef7bb2867eb8379f42e2a9ff782` passed Production Publish Gate CI run `35971286270` and Windows checkout safety run `35971286240`.
 - QA/UX destructive-action safety + professional academic reports (PR #121) is promoted as `f76ce9c4235cc11a36ee3649c699553b2bf67022`; head `a54a6f2742efff670debf60d50fcdb8aebbd88c8` passed Academic Reporting UX QA `35974609095`, Academic 2026 Prerequisite Gate `35974608750`, Whole System Integration `35974608628`, Windows checkout safety `35974608866`, Production Publish Gate CI `35974608889`, and Cloudflare Preview CI `35974608855`.
+- E16R m_p07 recovery (PR #123) is promoted as `0674f5c93704078424897714f4bab9815e358ddd`; post-merge current-main Whole System, Windows checkout, Cloudflare Preview boundary and Production Publish Gate CI passed, preview deploy run `36079732967` attempt 2 passed exact-revision smoke, and production deploy run `36079959055` passed exact-preview promotion + production read-back/smoke.
+- this propagation hardening is complete only when the deterministic waiter self-test, preview boundary, production publish gate, current-main control-state gate, Windows checkout and Whole System Integration pass on the final PR head; only then may it merge. Live publish remains manual-only and must promote the exact merged revision preview → production.
 - future work resumes from current `main` only when a concrete defect, missing capability or explicit feature request exists.
