@@ -105,6 +105,6 @@
     const shellComplete=canonical&&!!q('#appearanceBtn')&&!!q('#aiBtn')&&!!original&&!!dashboard&&!!detailButton&&appearancePresets===3;
     return{release:RELEASE,ready:shellComplete,canonicalPages:canonical,authoritativeHome:AUTHORITATIVE_HOME?A()?.home===AUTHORITATIVE_HOME:true,originalHomePreserved:!!original,additiveDashboard:!!dashboard,capabilitySnapshot:!!capability,capabilitySurface:!capability||!!q('[data-safe-capability="russian"]'),capabilityRouteReceipt:!!receipt,capabilityRouteReceiptSurface:!receipt||!!q('[data-safe-capability-receipt="confirmed"]'),canonicalDetailsAvailable:!!original&&!!detailButton,canonicalDetailsOpen:detailOpen(),appearancePresets,routesOwned:false,dataWrites:false}
   }
-  bind();setTimeout(ensureAll,0);setTimeout(ensureAll,350);setTimeout(ensureAll,1200);
+  bind();ensureAll();
   window.BAUMAN_HUB_SAFE={release:RELEASE,refresh:()=>{ensureAll();return selfCheck()},selfCheck,openDetails:()=>{localStorage.setItem(DETAIL_KEY,'1');applyDetailState();},closeDetails:()=>{localStorage.setItem(DETAIL_KEY,'0');applyDetailState();}};
 })();
