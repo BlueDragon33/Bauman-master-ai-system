@@ -97,6 +97,10 @@ jobs:
         shell: bash
         run: printf '%s' "$BAUMAN_CONTROL_SERVICE_SECRET" | npx wrangler secret put BAUMAN_CONTROL_SERVICE_SECRET --config wrangler.preview.jsonc
 
+      - name: Re-deploy Bauman Control preview Worker after secret rotation
+        working-directory: control-service
+        run: npx wrangler deploy --config wrangler.preview.jsonc
+
       - name: Deploy Bauman Learning Runtime preview Worker
         run: npx --yes wrangler@4.92.0 deploy --config wrangler.runtime.preview.jsonc
 
@@ -116,16 +120,15 @@ jobs:
             fi
           done
 
-          curl --fail --silent --show-error --max-time 15 "$BAUMAN_CONTROL_PREVIEW_ORIGIN/__deployment" > /tmp/bauman-control-deploy.json
+          BAUMAN_DEPLOYMENT_URL="$BAUMAN_CONTROL_PREVIEW_ORIGIN/__deployment" \
+          BAUMAN_EXPECTED_REVISION="$GITHUB_SHA" \
+          BAUMAN_EXPECTED_CHANNEL="cloudflare-preview" \
+          BAUMAN_EXPECTED_RUNTIME="control-service" \
+          node scripts/wait-cloudflare-deployment-revision.mjs > /tmp/bauman-control-deploy.json
           node --input-type=module - <<'NODE'
           import fs from 'node:fs';
           const value = JSON.parse(fs.readFileSync('/tmp/bauman-control-deploy.json', 'utf8'));
-          if (value.application !== 'bauman-master-ai' || value.runtime !== 'control-service') throw new Error('Bauman Control identity mismatch.');
-          if (value.channel !== 'cloudflare-preview') throw new Error('Bauman Control deployment channel mismatch.');
           if (!value.databaseReady) throw new Error('Bauman preview D1 schema is not ready.');
-          const expected = process.env.GITHUB_SHA;
-          if (!value.revision || value.revision === 'unknown') throw new Error('Bauman Control build revision missing.');
-          if (value.revision !== expected) throw new Error(`Bauman Control preview revision ${value.revision} !== expected ${expected}`);
           NODE
 
           curl --fail --silent --show-error --max-time 15 \
@@ -146,15 +149,15 @@ jobs:
             "$BAUMAN_CONTROL_PREVIEW_ORIGIN/api/device/status")"
           test "$PREFLIGHT_CODE" = "204"
 
-          curl --fail --silent --show-error --max-time 15 "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/__deployment" > /tmp/bauman-runtime-deploy.json
+          BAUMAN_DEPLOYMENT_URL="$BAUMAN_RUNTIME_PREVIEW_ORIGIN/__deployment" \
+          BAUMAN_EXPECTED_REVISION="$GITHUB_SHA" \
+          BAUMAN_EXPECTED_CHANNEL="cloudflare-preview" \
+          BAUMAN_EXPECTED_RUNTIME="learning-runtime" \
+          node scripts/wait-cloudflare-deployment-revision.mjs > /tmp/bauman-runtime-deploy.json
           node --input-type=module - <<'NODE'
           import fs from 'node:fs';
           const value = JSON.parse(fs.readFileSync('/tmp/bauman-runtime-deploy.json', 'utf8'));
-          if (value.application !== 'bauman-master-ai' || value.runtime !== 'learning-runtime') throw new Error('Bauman Learning Runtime identity mismatch.');
-          if (value.channel !== 'cloudflare-preview' || !value.controlOriginConfigured) throw new Error('Bauman Learning Runtime preview configuration mismatch.');
-          const expected = process.env.GITHUB_SHA;
-          if (!value.revision || value.revision === 'unknown') throw new Error('Bauman Learning Runtime build revision missing.');
-          if (value.revision !== expected) throw new Error(`Bauman Learning Runtime preview revision ${value.revision} !== expected ${expected}`);
+          if (!value.controlOriginConfigured) throw new Error('Bauman Learning Runtime preview configuration mismatch.');
           NODE
 
           curl --fail --silent --show-error --max-time 15 "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/" > /tmp/bauman-home.html
