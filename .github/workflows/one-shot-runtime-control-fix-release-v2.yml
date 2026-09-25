@@ -28,16 +28,16 @@ jobs:
         run: |
           set -euo pipefail
           START="$(date -u +%s)"
-          gh workflow run deploy-bauman-preview.yml --ref main -f confirm=DEPLOY_PREVIEW
+          gh workflow run deploy-bauman-preview.yml -R "$GITHUB_REPOSITORY" --ref main -f confirm=DEPLOY_PREVIEW
           ID=""
           for i in $(seq 1 30); do
-            ID="$(gh run list --workflow deploy-bauman-preview.yml --branch main --event workflow_dispatch --limit 20 --json databaseId,headSha,createdAt --jq '.[] | select(.headSha == env.TARGET_SHA) | .databaseId' | head -n1)"
+            ID="$(gh run list -R "$GITHUB_REPOSITORY" --workflow deploy-bauman-preview.yml --branch main --event workflow_dispatch --limit 20 --json databaseId,headSha,createdAt | jq -r --arg sha "$TARGET_SHA" '.[] | select(.headSha == $sha) | .databaseId' | head -n1)"
             test -n "$ID" && break
             sleep 5
           done
           test -n "$ID"
           echo "Preview run: $ID"
-          gh run watch "$ID" --exit-status
+          gh run watch "$ID" -R "$GITHUB_REPOSITORY" --exit-status
 
       - name: Re-verify main after Preview
         shell: bash
@@ -50,13 +50,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          gh workflow run deploy-bauman-production.yml --ref main -f confirm=DEPLOY_PRODUCTION
+          gh workflow run deploy-bauman-production.yml -R "$GITHUB_REPOSITORY" --ref main -f confirm=DEPLOY_PRODUCTION
           ID=""
           for i in $(seq 1 30); do
-            ID="$(gh run list --workflow deploy-bauman-production.yml --branch main --event workflow_dispatch --limit 20 --json databaseId,headSha,createdAt --jq '.[] | select(.headSha == env.TARGET_SHA) | .databaseId' | head -n1)"
+            ID="$(gh run list -R "$GITHUB_REPOSITORY" --workflow deploy-bauman-production.yml --branch main --event workflow_dispatch --limit 20 --json databaseId,headSha,createdAt | jq -r --arg sha "$TARGET_SHA" '.[] | select(.headSha == $sha) | .databaseId' | head -n1)"
             test -n "$ID" && break
             sleep 5
           done
           test -n "$ID"
           echo "Production run: $ID"
-          gh run watch "$ID" --exit-status
+          gh run watch "$ID" -R "$GITHUB_REPOSITORY" --exit-status
