@@ -110,3 +110,24 @@ test("runtime session exchange binds only an approved bm1 session", async () => 
     globalThis.fetch = originalFetch;
   }
 });
+
+
+test("runtime control-link probe reports same-account Control reachability", async () => {
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async (input) => {
+    assert.equal(String(input), `${CONTROL_ORIGIN}/health`);
+    return Response.json({ ok: true, application: "bauman-master-ai" });
+  };
+  try {
+    const response = await runtimeWorker.fetch(
+      request("/__control-link"),
+      env(async () => new Response("unused")),
+    );
+    assert.equal(response.status, 200);
+    const payload = await response.json();
+    assert.equal(payload.ok, true);
+    assert.equal(payload.controlReachable, true);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});

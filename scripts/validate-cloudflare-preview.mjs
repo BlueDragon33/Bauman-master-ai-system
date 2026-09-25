@@ -60,6 +60,7 @@ for (const token of [
   'BAUMAN_EXPECTED_RUNTIME="control-service"',
   'BAUMAN_EXPECTED_RUNTIME="learning-runtime"',
   'Re-deploy Bauman Control preview Worker after secret rotation',
+  '/__control-link',
 ]) {
   if (!workflow.includes(token)) throw new Error(`Bauman preview workflow thiếu: ${token}`);
 }
@@ -119,6 +120,7 @@ for (const token of [
   '"directory": "./runtime-dist"',
   '__BAUMAN_CONTROL_PREVIEW_ORIGIN__',
   '__BAUMAN_BUILD_REVISION__',
+  'global_fetch_strictly_public',
 ]) {
   if (!runtimeTemplate.includes(token)) throw new Error(`Bauman runtime preview template thiếu: ${token}`);
 }
@@ -149,7 +151,7 @@ for (const marker of ['dialogue-bauman-az.json','deep-speaking-bauman.json','jso
   if (!optionalLoader.includes(marker)) throw new Error(`Russian optional data loader thiếu marker: ${marker}`);
 }
 
-for (const marker of ['HTMLRewriter', 'bauman-control-origin', '/__deployment', 'BAUMAN_CONTROL_ORIGIN']) {
+for (const marker of ['HTMLRewriter', 'bauman-control-origin', '/__deployment', '/__control-link', 'BAUMAN_CONTROL_ORIGIN']) {
   if (!runtimeWorker.includes(marker)) throw new Error(`Bauman runtime Worker thiếu: ${marker}`);
 }
 if (!runtimeConfig.includes("local ? 'http://127.0.0.1:3003' : (injected || declared)")) {

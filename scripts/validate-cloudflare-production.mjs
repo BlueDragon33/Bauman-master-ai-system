@@ -19,6 +19,7 @@ const workflow = fs.readFileSync('.github/workflows/deploy-bauman-production.yml
 const ci = fs.readFileSync('.github/workflows/cloudflare-production-ci.yml', 'utf8');
 const control = fs.readFileSync('control-service/wrangler.production.example.jsonc', 'utf8');
 const runtime = fs.readFileSync('wrangler.runtime.production.example.jsonc', 'utf8');
+const runtimeWorker = fs.readFileSync('cloudflare/runtime-worker.mjs', 'utf8');
 const prepare = fs.readFileSync('scripts/prepare-cloudflare-production.mjs', 'utf8');
 const propagationWaiter = fs.readFileSync('scripts/wait-cloudflare-deployment-revision.mjs', 'utf8');
 const propagationTest = fs.readFileSync('scripts/test-deployment-propagation-wait.mjs', 'utf8');
@@ -75,8 +76,13 @@ for (const token of [
   '"directory": "./runtime-dist"',
   '__BAUMAN_CONTROL_PRODUCTION_ORIGIN__',
   '"BAUMAN_DEPLOYMENT_CHANNEL": "cloudflare-production"',
+  'global_fetch_strictly_public',
 ]) {
   if (!runtime.includes(token)) throw new Error(`Production runtime template missing: ${token}`);
+}
+
+if (!runtimeWorker.includes("/__control-link")) {
+  throw new Error('Production Runtime-to-Control endpoint missing.');
 }
 
 for (const token of [

@@ -3,7 +3,7 @@
   "name": "bauman-master-ai-preview",
   "main": "cloudflare/runtime-worker.mjs",
   "compatibility_date": "2026-09-01",
-  "compatibility_flags": ["nodejs_compat"],
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
   "vars": {
     "BAUMAN_CONTROL_ORIGIN": "__BAUMAN_CONTROL_PREVIEW_ORIGIN__",
     "BAUMAN_DEPLOYMENT_CHANNEL": "cloudflare-preview",
