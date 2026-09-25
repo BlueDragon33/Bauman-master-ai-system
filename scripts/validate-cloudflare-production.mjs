@@ -66,7 +66,6 @@ for (const token of [
   '__APPLICATION_MANAGEMENT_PRODUCTION_ORIGIN__',
   '__BAUMAN_RUNTIME_PRODUCTION_ORIGIN__',
   '"BAUMAN_DEPLOYMENT_CHANNEL": "cloudflare-production"',
-  'global_fetch_strictly_public',
 ]) {
   if (!control.includes(token)) throw new Error(`Production control template missing: ${token}`);
 }
@@ -77,6 +76,7 @@ for (const token of [
   '"directory": "./runtime-dist"',
   '__BAUMAN_CONTROL_PRODUCTION_ORIGIN__',
   '"BAUMAN_DEPLOYMENT_CHANNEL": "cloudflare-production"',
+  'global_fetch_strictly_public',
 ]) {
   if (!runtime.includes(token)) throw new Error(`Production runtime template missing: ${token}`);
 }
