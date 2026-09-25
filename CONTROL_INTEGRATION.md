@@ -51,7 +51,7 @@ Gateway chỉ nhận browser từ `BAUMAN_APP_ORIGIN` đã cấu hình. Nếu ch
 - `POST /api/control/device-commands`
 - `GET /api/control/audit`
 
-Vé quản trị giữ issuer `application-management`, audience `bauman-control`, app `bauman-master-ai`, actor, role, central control-device id và expiry ngắn hạn. Service-to-service dùng `BAUMAN_CONTROL_SERVICE_SECRET` riêng của Bauman.
+Vé quản trị giữ issuer `application-management`, audience `bauman-control`, app `bauman-master-ai`, actor, role, central control-device id và expiry ngắn hạn. Service-to-service dùng `BAUMAN_CONTROL_SERVICE_SECRET`. **Application Management/hosting là canonical owner của production shared secret**; workflow deploy Bauman production chỉ deploy code/runtime và phải giữ nguyên secret binding đang hoạt động. Rotation secret là thao tác liên-hệ thống riêng, chỉ thực hiện khi Manager và Bauman được cập nhật đồng bộ.
 
 ## Local / offline
 
@@ -107,7 +107,7 @@ Preview smoke bắt buộc xác minh: D1 schema thật đã sẵn sàng, control
 
 ## Production sau preview
 
-Repo hiện chưa tự động promote preview sang production. Chỉ tạo production path sau khi preview pass và Application Management kết nối thử thành công. Production cần D1 Bauman riêng, secret riêng, exact origin của Application Management và exact origin của Bauman Learning Runtime. Không thay URL cũ hoặc tắt rollback path trước khi read-back production pass.
+Repo hiện chưa tự động promote preview sang production. Chỉ tạo production path sau khi preview pass và Application Management kết nối thử thành công. Production cần D1 Bauman riêng, shared secret do Application Management/hosting quản lý, exact origin của Application Management và exact origin của Bauman Learning Runtime. Deploy Bauman **không được tự rotate** `BAUMAN_CONTROL_SERVICE_SECRET`; nếu cần rotation phải đồng bộ hai phía như một thao tác riêng. Không thay URL cũ hoặc tắt rollback path trước khi read-back production pass.
 
 ## Quy tắc an toàn
 
@@ -119,5 +119,6 @@ Repo hiện chưa tự động promote preview sang production. Chỉ tạo prod
 - Không coi P-256 public key đơn thuần là proof; quyền truy cập cần challenge + chữ ký + session.
 - Không coi GitHub CI xanh là production đã deploy.
 - Không hard-code ChatGPT Sites làm fallback mới.
+- Không rotate `BAUMAN_CONTROL_SERVICE_SECRET` trong workflow deploy Bauman production; secret production thuộc contract liên-hệ thống và phải do Application Management/hosting làm nguồn canonical.
 
 Nguồn machine-readable: `control/application-management.contract.json`.
