@@ -30,5 +30,7 @@ assert.ok(!shell.includes('setTimeout(ensureAll,1200)'),'Safe shell still perfor
 assert.ok(!safeUx.includes('setTimeout(refresh,1400)'),'Safe UX still performs delayed startup reflow');
 assert.ok(!search.includes('setTimeout(install,350)'),'Overview/search still performs delayed 350ms startup reflow');
 assert.ok(!search.includes('setTimeout(install,1200)'),'Overview/search still performs delayed 1200ms startup reflow');
+assert.ok(!search.includes('setTimeout(compactHome,0)'),'Home observer still defers layout mutation to a later paint');
+assert.ok(!search.includes('setTimeout(compactSubjectCapability,0)'),'Subject capability observer still defers layout mutation to a later paint');
 
 console.log('HUB_PRIMARY_PAGES_V6_STATIC_PASS');
