@@ -131,3 +131,17 @@ test("runtime control-link probe reports same-account Control reachability", asy
     globalThis.fetch = originalFetch;
   }
 });
+
+
+test("HTML runtime pages may be embedded only by the same Bauman origin", async () => {
+  const response = await runtimeWorker.fetch(
+    request("/subjects/russian/"),
+    env(async () => new Response("<!doctype html><html><body>Russian</body></html>", {
+      headers: { "content-type": "text/html; charset=utf-8" },
+    })),
+  );
+  assert.equal(response.status, 200);
+  const csp = response.headers.get("content-security-policy") || "";
+  assert.match(csp, /frame-ancestors 'self'/);
+  assert.doesNotMatch(csp, /frame-ancestors 'none'/);
+});
