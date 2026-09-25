@@ -8,6 +8,8 @@ const required = [
   'wrangler.runtime.production.example.jsonc',
   'scripts/prepare-cloudflare-production.mjs',
   'scripts/validate-cloudflare-production.mjs',
+  'scripts/wait-cloudflare-deployment-revision.mjs',
+  'scripts/test-deployment-propagation-wait.mjs',
 ];
 for (const file of required) {
   if (!fs.existsSync(file)) throw new Error(`Missing Bauman production scaffold: ${file}`);
@@ -18,6 +20,8 @@ const ci = fs.readFileSync('.github/workflows/cloudflare-production-ci.yml', 'ut
 const control = fs.readFileSync('control-service/wrangler.production.example.jsonc', 'utf8');
 const runtime = fs.readFileSync('wrangler.runtime.production.example.jsonc', 'utf8');
 const prepare = fs.readFileSync('scripts/prepare-cloudflare-production.mjs', 'utf8');
+const propagationWaiter = fs.readFileSync('scripts/wait-cloudflare-deployment-revision.mjs', 'utf8');
+const propagationTest = fs.readFileSync('scripts/test-deployment-propagation-wait.mjs', 'utf8');
 
 if (!workflow.includes('workflow_dispatch')) throw new Error('Production deploy must remain manual-only.');
 if (/\n\s*push\s*:/.test(workflow.split('jobs:')[0])) throw new Error('Production deploy must never run automatically on push.');
@@ -35,7 +39,11 @@ for (const token of [
   'Verify exact preview revision before production',
   'cloudflare-preview',
   'cloudflare-production',
-  'revision !== expected',
+  'wait-cloudflare-deployment-revision.mjs',
+  'BAUMAN_EXPECTED_REVISION="$GITHUB_SHA"',
+  'BAUMAN_EXPECTED_CHANNEL="cloudflare-preview"',
+  'BAUMAN_EXPECTED_CHANNEL="cloudflare-production"',
+  'Re-deploy Bauman Control production Worker after secret rotation',
   'bauman-control-db --remote',
   'wrangler.production.jsonc',
   'wrangler.runtime.production.jsonc',
@@ -80,6 +88,28 @@ for (const token of [
   'subjects/russian/assets/russian-future-ui.js',
 ]) {
   if (!prepare.includes(token)) throw new Error(`Production materializer missing guard/package marker: ${token}`);
+}
+
+
+
+for (const marker of [
+  'DEFAULT_ATTEMPTS = 15',
+  '_bauman_revision_probe',
+  'Deployment identity mismatch:',
+  'Deployment channel mismatch:',
+  'Deployment revision did not converge after',
+  'lastRevision === expectedRevision',
+  'AbortSignal.timeout',
+]) {
+  if (!propagationWaiter.includes(marker)) throw new Error(`Deployment propagation waiter missing fail-closed marker: ${marker}`);
+}
+for (const marker of [
+  'stale revisions must be retried until the exact revision is visible',
+  'transient request failures must remain retryable',
+  'wrong deployment identity must fail immediately',
+  'bounded polling must still fail closed',
+]) {
+  if (!propagationTest.includes(marker)) throw new Error(`Deployment propagation test missing assertion: ${marker}`);
 }
 
 if (!ci.includes('wrangler deploy --dry-run')) throw new Error('Production CI must dry-run both Workers.');
