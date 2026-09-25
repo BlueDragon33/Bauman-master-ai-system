@@ -176,22 +176,9 @@
   }
 
   function ensureReferenceChrome(){
-    const top=q('.topbar');
-    if(top&&!q('#hubRoadmapTopNav',top)){
-      const nav=document.createElement('nav');
-      nav.id='hubRoadmapTopNav';
-      nav.className='hub-rm-topnav';
-      nav.innerHTML=[
-        ['home','⌂','Tổng quan'],
-        ['study','▣','Học bài'],
-        ['roadmap','⌘','Lộ trình'],
-        ['schedule','▣','Lịch học'],
-        ['exercise','✓','Bài tập'],
-        ['exam','◉','Kiểm tra'],
-        ['subjects','▤','Tài liệu']
-      ].map(x=>'<button type="button" data-rm-top="'+x[0]+'" class="'+(x[0]==='roadmap'?'active':'')+'"><i>'+x[1]+'</i><span>'+x[2]+'</span></button>').join('');
-      top.insertBefore(nav,q('.top-actions',top));
-    }
+    // V5 keeps one navigation authority only: the main sidebar.
+    // Remove the old Roadmap top-nav because it duplicated Home/Study/Roadmap/Schedule/Subjects.
+    q('#hubRoadmapTopNav')?.remove();
     const side=q('.sidebar');
     if(side&&!q('#hubRoadmapJourney',side)){
       const card=document.createElement('section');
@@ -201,13 +188,14 @@
       card.innerHTML='<button type="button" data-rm-journey-close title="Ẩn thẻ">×</button><b>Hành trình của bạn</b><span>'+esc(subjectName(current.id))+' · Mở tương lai</span><small>Tiến độ và lộ trình hiện tại được đồng bộ từ dữ liệu Hub.</small>';
       side.insertBefore(card,q('#nav',side));
     }
+    window.BAUMAN_HUB_LEARNING_CLUSTER?.apply?.();
     return true;
   }
 
   function setRoadmapChrome(active){
     document.body.dataset.hubRoadmapV3=active?'1':'0';
     document.body.dataset.hubRoadmapV4=active?'1':'0';
-    q('#hubRoadmapTopNav')?.classList.toggle('hidden',!active);
+    q('#hubRoadmapTopNav')?.remove();
     q('#hubRoadmapJourney')?.classList.toggle('hidden',!active);
     const brand=q('.brand'),brandTitle=q('.brand b'),brandSub=q('.brand small');
     if(brandTitle&&!brandTitle.dataset.rmOriginal)brandTitle.dataset.rmOriginal=brandTitle.textContent||'BAUMAN';
@@ -215,35 +203,7 @@
     if(brandTitle)brandTitle.textContent=active?'BAUMAN HUB':brandTitle.dataset.rmOriginal;
     if(brandSub)brandSub.textContent=active?'Русский язык':brandSub.dataset.rmOriginal;
     brand?.classList.toggle('hub-rm-brand-active',active);
-    const nav=q('#nav');
-    if(nav){
-      const visiblePages=new Set(['home','roadmap','schedule','subjects']);
-      const visibleActions=new Set(['study','exercise','exam','review','achievement','settings']);
-      qa(':scope > button',nav).forEach(btn=>{
-        const page=btn.dataset.page||'',action=btn.dataset.safeNav||'';
-        const show=page?visiblePages.has(page):(action?visibleActions.has(action):true);
-        btn.classList.toggle('hub-rm-v4-hidden',active&&!show);
-        if(active&&page==='subjects'){btn.classList.remove('hub-nav-reference-hidden');const span=q('span',btn);if(span)span.textContent='Tài liệu';btn.title='Tài liệu'}
-        if(active&&page==='schedule')btn.classList.remove('hub-nav-reference-hidden');
-        if(active&&action==='study'){const span=q('span',btn);if(span)span.textContent='Học bài';btn.title='Học bài'}
-        if(active&&action==='review'){const span=q('span',btn);if(span)span.textContent='Ôn tập';btn.title='Ôn tập'}
-        if(active&&action==='achievement'){const span=q('span',btn);if(span)span.textContent='Thành tích';btn.title='Thành tích'}
-      });
-      const order=[
-        q(':scope > button[data-page="home"]',nav),
-        q(':scope > button[data-safe-nav="study"]',nav),
-        q(':scope > button[data-page="roadmap"]',nav),
-        q(':scope > button[data-page="schedule"]',nav),
-        q(':scope > button[data-safe-nav="exercise"]',nav),
-        q(':scope > button[data-safe-nav="exam"]',nav),
-        q(':scope > button[data-page="subjects"]',nav),
-        q(':scope > button[data-safe-nav="review"]',nav),
-        q(':scope > button[data-safe-nav="achievement"]',nav),
-        q(':scope > button[data-safe-nav="settings"]',nav)
-      ].filter(Boolean);
-      if(active)order.forEach(btn=>nav.appendChild(btn));
-      if(!active)window.BAUMAN_HUB_LEARNING_CLUSTER?.apply?.();
-    }
+    window.BAUMAN_HUB_LEARNING_CLUSTER?.apply?.();
   }
 
   function render(){
