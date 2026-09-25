@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `BAUMAN_CLOUDFLARE_PREVIEW_EXACT_REVISION_FX_POST_MERGE_RECONCILIATION`
+Current task: `BAUMAN_CURRENT_MAIN_POST_PR121_RECONCILIATION`
 
-Status: `ROADMAP_V2_COMPLETE · RUSSIAN_LISTEN_WRITE_PROMOTED · ACADEMIC_PHASE2_A1_A6_PROMOTED · DEVICE_CONTRACT_V6_PROMOTED · CONTENT_REVIEW_V1_PROMOTED · DEEP_STUDY_JOURNAL_V1_PROMOTED · DSJ_PACKAGED_READINESS_FX_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_1_PROMOTED · RUSSIAN_FUTURE_REFERENCE_UI_PROMOTED · RUSSIAN_FUTURE_UI_IDEMPOTENCE_FX_PROMOTED · RUSSIAN_FUTURE_UI_PACKAGE_READINESS_FX_PROMOTED · RUSSIAN_VOCAB_VISUAL_IMMERSION_V1_PROMOTED · PRODUCTION_PUBLISH_GATE_V1_PROMOTED · RUSSIAN_UX_REFACTOR_PASS_1_10_PROMOTED · PROFESSIONAL_UX_REPORTING_QA_PROMOTED · PROFESSIONAL_REPORTING_UX_ROUND2_PROMOTED · PROFESSIONAL_UX_REPORTING_QA_ROUND3_PROMOTED · CLOUDFLARE_PREVIEW_EXACT_REVISION_FX_PROMOTED · CURRENT_MAIN_CLEAN`
+Status: `ROADMAP_V2_COMPLETE · RUSSIAN_LISTEN_WRITE_PROMOTED · ACADEMIC_PHASE2_A1_A6_PROMOTED · DEVICE_CONTRACT_V6_PROMOTED · CONTENT_REVIEW_V1_PROMOTED · DEEP_STUDY_JOURNAL_V1_PROMOTED · DSJ_PACKAGED_READINESS_FX_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_1_PROMOTED · RUSSIAN_FUTURE_REFERENCE_UI_PROMOTED · RUSSIAN_FUTURE_UI_IDEMPOTENCE_FX_PROMOTED · RUSSIAN_FUTURE_UI_PACKAGE_READINESS_FX_PROMOTED · RUSSIAN_VOCAB_VISUAL_IMMERSION_V1_PROMOTED · PRODUCTION_PUBLISH_GATE_V1_PROMOTED · RUSSIAN_UX_REFACTOR_PASS_1_10_PROMOTED · PROFESSIONAL_UX_REPORTING_QA_PROMOTED · PROFESSIONAL_REPORTING_UX_ROUND2_PROMOTED · PROFESSIONAL_UX_REPORTING_QA_ROUND3_PROMOTED · CLOUDFLARE_PREVIEW_EXACT_REVISION_FX_PROMOTED · PREVIEW_PROTECTED_DATASET_SMOKE_FX_PROMOTED · APPLICATION_MANAGEMENT_CHATGPT_SITE_CONTROL_PLANE_FX_PROMOTED · QA_UX_REPORTING_PROFESSIONAL_FX_PROMOTED · CURRENT_MAIN_CLEAN`
 
 Date: 2026-09-24
 Branch: `main`
@@ -17,6 +17,9 @@ The single authoritative Roadmap progress marker remains:
 That marker records Roadmap V2 complete through **L35** with no L36 required by the accepted architecture. Production execution/deployment remains outside the Roadmap V2 authority boundary.
 
 Promoted current-main capabilities:
+- Preview protected-dataset smoke alignment — PR #119 merged as `de61b57e5526626e36eb9d7f2f15548afe1da1cd`; anonymous protected Russian learning JSON remains fail-closed with `401 DEVICE_SESSION_REQUIRED`, while package/materialization CI remains authoritative for manifest/chunk integrity.
+- Application Management ChatGPT Site production control-plane exception — PR #120 merged as `65158604c141cf94a1c213fcba15c127cb9f18eb`; only the central Application Management production origin may remain on an exact HTTPS `*.chatgpt.site` origin, while Bauman preview/production Control and Learning Runtime origins remain Cloudflare-only.
+- QA/UX destructive-action safety + professional academic reports — PR #121 merged as `f76ce9c4235cc11a36ee3649c699553b2bf67022`; readiness-evidence deletion is confirmation-guarded and professional academic report metadata is shared, learner-scoped and paper-safe.
 
 - Russian Handwriting Listen+Write — PR #72 merged as `4c2e9c7c85edaabbea036b2953f670710f2fe67b`.
 - Academic Phase2 A1→A6 — PR #76 merged as `30092c01cf8ce41cf612823299195aaff240b3f0`.
@@ -429,6 +432,37 @@ Promoted to current `main` as merge commit `64405e2f14eb91716a71bc164364494b654e
 
 This Fx strengthens preview truthfulness only. A production publish still requires a real manual preview deployment of the exact final main revision, followed by the manual production workflow and production smoke tests.
 
+## Post-PR #121 current-main reconciliation
+
+Current-main audit on 2026-09-24 found control-state drift: runtime/code promotions #119, #120 and #121 were already merged after the previous #117/#118 reconciliation, while CODEX_STATE/CODEX_TASK still stopped at the earlier checkpoint.
+
+This reconciliation records the already-promoted behavior without reopening Roadmap V2 or changing runtime semantics:
+
+- PR #119 merge `de61b57e5526626e36eb9d7f2f15548afe1da1cd`: live preview smoke now treats anonymous access to protected Russian learning JSON as correct only when it fails closed with HTTP 401 + `DEVICE_SESSION_REQUIRED`; the Device Gate is not weakened.
+- PR #120 merge `65158604c141cf94a1c213fcba15c127cb9f18eb`: the existing authenticated Application Management ChatGPT Site remains the central production control-plane origin; Bauman Control/Learning Runtime preview and production origins remain Cloudflare Workers and remain isolated.
+- PR #121 merge `f76ce9c4235cc11a36ee3649c699553b2bf67022`: readiness-evidence deletion now requires explicit confirmation, and grade/transcript/command-center reports share learner identity + generation timestamp metadata with responsive and paper-safe presentation.
+
+Validated on PR #119 head `89b22b0160be64f584714453b403b00c76c44e6e`:
+
+- Bauman Cloudflare Preview CI run `35963527802` — SUCCESS;
+- Windows checkout safety run `35963527960` — SUCCESS.
+
+Validated on PR #120 head `9cc4a55c37257ef7bb2867eb8379f42e2a9ff782`:
+
+- Bauman Cloudflare Production Publish Gate CI run `35971286270` — SUCCESS;
+- Windows checkout safety run `35971286240` — SUCCESS.
+
+Validated on PR #121 head `a54a6f2742efff670debf60d50fcdb8aebbd88c8`:
+
+- Academic Reporting UX QA run `35974609095` — SUCCESS;
+- Academic 2026 Prerequisite Gate run `35974608750` — SUCCESS;
+- Whole System Integration Gate run `35974608628` — SUCCESS;
+- Windows checkout safety run `35974608866` — SUCCESS;
+- Bauman Cloudflare Production Publish Gate CI run `35974608889` — SUCCESS;
+- Bauman Cloudflare Preview CI run `35974608855` — SUCCESS.
+
+This is a documentation/control-state reconciliation only. It does not authorize production deployment. Exact final-main preview deployment and smoke must still succeed before any production promotion.
+
 ## Intentional capability layering
 
 The base control worker intentionally keeps `learningAccessGate: false` until the deployment/preview wrapper verifies D1 + app-origin readiness. Do not flatten this fail-closed layering.
@@ -463,3 +497,6 @@ Roadmap V2 itself does **not** authorize production deployment. Production Publi
 11. Preserve Professional UX/reporting QA round 3 from PR #115: diagnostic deletion must remain confirmation-guarded/cancel-safe, long academic reports must remain multi-page printable, and Russian modal focus must enter the dialog synchronously with focus trapping/restoration intact.
 12. Preserve PR #117 exact-preview revision verification: both preview deployment endpoints must report `revision === GITHUB_SHA` before the preview workflow may pass.
 13. Create a new round only for a concrete defect, explicit missing capability or newly requested feature.
+14. Preserve PR #119 protected-learning JSON smoke semantics: anonymous Russian learning JSON must remain fail-closed with `401 DEVICE_SESSION_REQUIRED`; do not weaken the Device Gate to make smoke tests pass.
+15. Preserve PR #120 production-origin boundary: Application Management may use the existing authenticated ChatGPT Site as its control-plane origin, but Bauman Control and Learning Runtime preview/production origins remain Cloudflare-only.
+16. Preserve PR #121 readiness-evidence destructive-action confirmation and shared learner/timestamp report metadata across grade, transcript/honors and command-center reports.
