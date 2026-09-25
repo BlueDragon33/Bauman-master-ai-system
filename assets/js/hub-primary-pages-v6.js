@@ -42,6 +42,7 @@
         {value:String(stage).toUpperCase(),label:'giai đoạn'}
       ]
     }));
+    window.BAUMAN_HUB_OVERVIEW_SEARCH_V2?.compactSubjectCapability?.();
     document.body.dataset.hubPrimaryPage='subjects';
     return true;
   }
