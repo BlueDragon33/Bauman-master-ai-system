@@ -83,23 +83,22 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          curl --fail --silent --show-error --max-time 20 "$BAUMAN_CONTROL_PREVIEW_ORIGIN/__deployment" > /tmp/bauman-preview-control.json
-          curl --fail --silent --show-error --max-time 20 "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/__deployment" > /tmp/bauman-preview-runtime.json
-          EXPECTED="$GITHUB_SHA" node --input-type=module - <<'NODE'
+          BAUMAN_DEPLOYMENT_URL="$BAUMAN_CONTROL_PREVIEW_ORIGIN/__deployment" \
+          BAUMAN_EXPECTED_REVISION="$GITHUB_SHA" \
+          BAUMAN_EXPECTED_CHANNEL="cloudflare-preview" \
+          BAUMAN_EXPECTED_RUNTIME="control-service" \
+          node scripts/wait-cloudflare-deployment-revision.mjs > /tmp/bauman-preview-control.json
+          BAUMAN_DEPLOYMENT_URL="$BAUMAN_RUNTIME_PREVIEW_ORIGIN/__deployment" \
+          BAUMAN_EXPECTED_REVISION="$GITHUB_SHA" \
+          BAUMAN_EXPECTED_CHANNEL="cloudflare-preview" \
+          BAUMAN_EXPECTED_RUNTIME="learning-runtime" \
+          node scripts/wait-cloudflare-deployment-revision.mjs > /tmp/bauman-preview-runtime.json
+          node --input-type=module - <<'NODE'
           import fs from 'node:fs';
-          const expected = process.env.EXPECTED;
           const control = JSON.parse(fs.readFileSync('/tmp/bauman-preview-control.json', 'utf8'));
           const runtime = JSON.parse(fs.readFileSync('/tmp/bauman-preview-runtime.json', 'utf8'));
-          for (const [name, value] of [['control', control], ['runtime', runtime]]) {
-            if (value.channel !== 'cloudflare-preview') throw new Error(`${name}: preview channel mismatch`);
-            if (value.revision !== expected) throw new Error(`${name}: preview revision ${value.revision} !== expected ${expected}`);
-          }
-          if (control.application !== 'bauman-master-ai' || control.runtime !== 'control-service' || !control.databaseReady) {
-            throw new Error('Bauman Control preview is not deployment-ready.');
-          }
-          if (runtime.application !== 'bauman-master-ai' || runtime.runtime !== 'learning-runtime' || !runtime.controlOriginConfigured) {
-            throw new Error('Bauman Learning Runtime preview is not deployment-ready.');
-          }
+          if (!control.databaseReady) throw new Error('Bauman Control preview is not deployment-ready.');
+          if (!runtime.controlOriginConfigured) throw new Error('Bauman Learning Runtime preview is not deployment-ready.');
           console.log('Exact-revision preview promotion gate PASS.');
           NODE
 
@@ -126,6 +125,10 @@ jobs:
         shell: bash
         run: printf '%s' "$BAUMAN_CONTROL_PRODUCTION_SERVICE_SECRET" | npx wrangler secret put BAUMAN_CONTROL_SERVICE_SECRET --config wrangler.production.jsonc
 
+      - name: Re-deploy Bauman Control production Worker after secret rotation
+        working-directory: control-service
+        run: npx wrangler deploy --config wrangler.production.jsonc
+
       - name: Deploy Bauman Learning Runtime production Worker
         run: npx --yes wrangler@4.92.0 deploy --config wrangler.runtime.production.jsonc
 
@@ -133,17 +136,22 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          curl --fail --silent --show-error --max-time 20 "$BAUMAN_CONTROL_PRODUCTION_ORIGIN/__deployment" > /tmp/bauman-prod-control.json
-          curl --fail --silent --show-error --max-time 20 "$BAUMAN_RUNTIME_PRODUCTION_ORIGIN/__deployment" > /tmp/bauman-prod-runtime.json
-          EXPECTED="$GITHUB_SHA" node --input-type=module - <<'NODE'
+          BAUMAN_DEPLOYMENT_URL="$BAUMAN_CONTROL_PRODUCTION_ORIGIN/__deployment" \
+          BAUMAN_EXPECTED_REVISION="$GITHUB_SHA" \
+          BAUMAN_EXPECTED_CHANNEL="cloudflare-production" \
+          BAUMAN_EXPECTED_RUNTIME="control-service" \
+          node scripts/wait-cloudflare-deployment-revision.mjs > /tmp/bauman-prod-control.json
+          BAUMAN_DEPLOYMENT_URL="$BAUMAN_RUNTIME_PRODUCTION_ORIGIN/__deployment" \
+          BAUMAN_EXPECTED_REVISION="$GITHUB_SHA" \
+          BAUMAN_EXPECTED_CHANNEL="cloudflare-production" \
+          BAUMAN_EXPECTED_RUNTIME="learning-runtime" \
+          node scripts/wait-cloudflare-deployment-revision.mjs > /tmp/bauman-prod-runtime.json
+          node --input-type=module - <<'NODE'
           import fs from 'node:fs';
-          const expected = process.env.EXPECTED;
           const control = JSON.parse(fs.readFileSync('/tmp/bauman-prod-control.json', 'utf8'));
           const runtime = JSON.parse(fs.readFileSync('/tmp/bauman-prod-runtime.json', 'utf8'));
-          if (control.application !== 'bauman-master-ai' || control.runtime !== 'control-service') throw new Error('Production Control identity mismatch.');
-          if (control.channel !== 'cloudflare-production' || control.revision !== expected || !control.databaseReady) throw new Error('Production Control read-back mismatch.');
-          if (runtime.application !== 'bauman-master-ai' || runtime.runtime !== 'learning-runtime') throw new Error('Production Runtime identity mismatch.');
-          if (runtime.channel !== 'cloudflare-production' || runtime.revision !== expected || !runtime.controlOriginConfigured) throw new Error('Production Runtime read-back mismatch.');
+          if (!control.databaseReady) throw new Error('Production Control read-back mismatch.');
+          if (!runtime.controlOriginConfigured) throw new Error('Production Runtime read-back mismatch.');
           NODE
 
           curl --fail --silent --show-error --max-time 20             -H "Authorization: Bearer $BAUMAN_CONTROL_PRODUCTION_SERVICE_SECRET"             -H "x-control-actor: github-production-smoke"             -H "x-control-role: owner"             "$BAUMAN_CONTROL_PRODUCTION_ORIGIN/api/control/status" > /tmp/bauman-prod-status.json

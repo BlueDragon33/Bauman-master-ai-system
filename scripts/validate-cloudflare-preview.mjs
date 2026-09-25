@@ -6,6 +6,8 @@ const required = [
   'wrangler.runtime.preview.example.jsonc',
   'cloudflare/runtime-worker.mjs',
   'scripts/prepare-cloudflare-preview.mjs',
+  'scripts/wait-cloudflare-deployment-revision.mjs',
+  'scripts/test-deployment-propagation-wait.mjs',
   'control-service/wrangler.preview.example.jsonc',
   'control-service/src/cloudflare-preview.ts',
   'control-service/wrangler.local.jsonc',
@@ -31,6 +33,8 @@ const deviceGate = fs.readFileSync('assets/js/platform/device-access-gate.js', '
 const localConfig = fs.readFileSync('control-service/wrangler.local.jsonc', 'utf8');
 const russianIndex = fs.readFileSync('subjects/russian/index.html', 'utf8');
 const optionalLoader = fs.readFileSync('subjects/russian/assets/russian-optional-data-loader.js', 'utf8');
+const propagationWaiter = fs.readFileSync('scripts/wait-cloudflare-deployment-revision.mjs', 'utf8');
+const propagationTest = fs.readFileSync('scripts/test-deployment-propagation-wait.mjs', 'utf8');
 
 if (!workflow.includes('workflow_dispatch')) throw new Error('Bauman preview deploy phải manual-only.');
 if (/\n\s*push\s*:/.test(workflow)) throw new Error('Bauman preview không được auto-deploy theo push.');
@@ -50,13 +54,37 @@ for (const token of [
   'data/chunks/$dataset/manifest.json',
   "test \"$manifest_code\" = \"401\"",
   "DEVICE_SESSION_REQUIRED",
-  'value.revision !== expected',
-  'process.env.GITHUB_SHA',
+  'wait-cloudflare-deployment-revision.mjs',
+  'BAUMAN_EXPECTED_REVISION="$GITHUB_SHA"',
+  'BAUMAN_EXPECTED_CHANNEL="cloudflare-preview"',
+  'BAUMAN_EXPECTED_RUNTIME="control-service"',
+  'BAUMAN_EXPECTED_RUNTIME="learning-runtime"',
+  'Re-deploy Bauman Control preview Worker after secret rotation',
 ]) {
   if (!workflow.includes(token)) throw new Error(`Bauman preview workflow thiếu: ${token}`);
 }
 if (workflow.includes('bauman-control-local --remote')) throw new Error('Bauman preview tuyệt đối không migrate local D1 qua remote.');
 if (workflow.includes('first="$(node -e "const m=require(process.argv[1])')) throw new Error('Live preview smoke không được tải nội dung learning JSON ẩn danh; package CI chịu trách nhiệm kiểm tra manifest/chunk, runtime smoke phải xác nhận Device Gate fail-closed.');
+
+for (const marker of [
+  'DEFAULT_ATTEMPTS = 15',
+  '_bauman_revision_probe',
+  'Deployment identity mismatch:',
+  'Deployment channel mismatch:',
+  'Deployment revision did not converge after',
+  'lastRevision === expectedRevision',
+  'AbortSignal.timeout',
+]) {
+  if (!propagationWaiter.includes(marker)) throw new Error(`Deployment propagation waiter thiếu fail-closed marker: ${marker}`);
+}
+for (const marker of [
+  'stale revisions must be retried until the exact revision is visible',
+  'transient request failures must remain retryable',
+  'wrong deployment identity must fail immediately',
+  'bounded polling must still fail closed',
+]) {
+  if (!propagationTest.includes(marker)) throw new Error(`Deployment propagation test thiếu assertion: ${marker}`);
+}
 
 if (!ciWorkflow.includes('"subjects/**"')) throw new Error('Cloudflare preview CI phải chạy khi Subject Web Apps thay đổi.');
 for (const token of [

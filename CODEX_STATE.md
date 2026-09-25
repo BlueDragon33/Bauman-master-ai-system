@@ -1,10 +1,10 @@
 # CODEX_STATE
 
-Current task: `BAUMAN_CURRENT_MAIN_POST_PR121_RECONCILIATION`
+Current task: `BAUMAN_CURRENT_MAIN_POST_RELEASE_RECONCILIATION_AND_DEPLOY_PROPAGATION_FX`
 
-Status: `ROADMAP_V2_COMPLETE · RUSSIAN_LISTEN_WRITE_PROMOTED · ACADEMIC_PHASE2_A1_A6_PROMOTED · DEVICE_CONTRACT_V6_PROMOTED · CONTENT_REVIEW_V1_PROMOTED · DEEP_STUDY_JOURNAL_V1_PROMOTED · DSJ_PACKAGED_READINESS_FX_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_1_PROMOTED · RUSSIAN_FUTURE_REFERENCE_UI_PROMOTED · RUSSIAN_FUTURE_UI_IDEMPOTENCE_FX_PROMOTED · RUSSIAN_FUTURE_UI_PACKAGE_READINESS_FX_PROMOTED · RUSSIAN_VOCAB_VISUAL_IMMERSION_V1_PROMOTED · PRODUCTION_PUBLISH_GATE_V1_PROMOTED · RUSSIAN_UX_REFACTOR_PASS_1_10_PROMOTED · PROFESSIONAL_UX_REPORTING_QA_PROMOTED · PROFESSIONAL_REPORTING_UX_ROUND2_PROMOTED · PROFESSIONAL_UX_REPORTING_QA_ROUND3_PROMOTED · CLOUDFLARE_PREVIEW_EXACT_REVISION_FX_PROMOTED · PREVIEW_PROTECTED_DATASET_SMOKE_FX_PROMOTED · APPLICATION_MANAGEMENT_CHATGPT_SITE_CONTROL_PLANE_FX_PROMOTED · QA_UX_REPORTING_PROFESSIONAL_FX_PROMOTED · CURRENT_MAIN_CLEAN`
+Status: `ROADMAP_V2_COMPLETE · RUSSIAN_LISTEN_WRITE_PROMOTED · ACADEMIC_PHASE2_A1_A6_PROMOTED · DEVICE_CONTRACT_V6_PROMOTED · CONTENT_REVIEW_V1_PROMOTED · DEEP_STUDY_JOURNAL_V1_PROMOTED · DSJ_PACKAGED_READINESS_FX_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_1_PROMOTED · RUSSIAN_FUTURE_REFERENCE_UI_PROMOTED · RUSSIAN_FUTURE_UI_IDEMPOTENCE_FX_PROMOTED · RUSSIAN_FUTURE_UI_PACKAGE_READINESS_FX_PROMOTED · RUSSIAN_VOCAB_VISUAL_IMMERSION_V1_PROMOTED · PRODUCTION_PUBLISH_GATE_V1_PROMOTED · RUSSIAN_UX_REFACTOR_PASS_1_10_PROMOTED · PROFESSIONAL_UX_REPORTING_QA_PROMOTED · PROFESSIONAL_REPORTING_UX_ROUND2_PROMOTED · PROFESSIONAL_UX_REPORTING_QA_ROUND3_PROMOTED · CLOUDFLARE_PREVIEW_EXACT_REVISION_FX_PROMOTED · PREVIEW_PROTECTED_DATASET_SMOKE_FX_PROMOTED · APPLICATION_MANAGEMENT_CHATGPT_SITE_CONTROL_PLANE_FX_PROMOTED · QA_UX_REPORTING_PROFESSIONAL_FX_PROMOTED · E16R_MP07_RECOVERY_PROMOTED · POST_RELEASE_DEPLOY_PROPAGATION_FX_ACTIVE · CURRENT_MAIN_CLEAN`
 
-Date: 2026-09-24
+Date: 2026-09-25
 Branch: `main`
 Base: `main`
 
@@ -20,6 +20,7 @@ Promoted current-main capabilities:
 - Preview protected-dataset smoke alignment — PR #119 merged as `de61b57e5526626e36eb9d7f2f15548afe1da1cd`; anonymous protected Russian learning JSON remains fail-closed with `401 DEVICE_SESSION_REQUIRED`, while package/materialization CI remains authoritative for manifest/chunk integrity.
 - Application Management ChatGPT Site production control-plane exception — PR #120 merged as `65158604c141cf94a1c213fcba15c127cb9f18eb`; only the central Application Management production origin may remain on an exact HTTPS `*.chatgpt.site` origin, while Bauman preview/production Control and Learning Runtime origins remain Cloudflare-only.
 - QA/UX destructive-action safety + professional academic reports — PR #121 merged as `f76ce9c4235cc11a36ee3649c699553b2bf67022`; readiness-evidence deletion is confirmation-guarded and professional academic report metadata is shared, learner-scoped and paper-safe.
+- E16R m_p07 recovery on current main — PR #123 merged as `0674f5c93704078424897714f4bab9815e358ddd`; restores covariance/correlation/PCA canonical content, keeps learner-first Math UI, bridges E186 lesson selection to durable E240 theory content, and preserves fail-closed browser/static acceptance.
 
 - Russian Handwriting Listen+Write — PR #72 merged as `4c2e9c7c85edaabbea036b2953f670710f2fe67b`.
 - Academic Phase2 A1→A6 — PR #76 merged as `30092c01cf8ce41cf612823299195aaff240b3f0`.
@@ -463,6 +464,19 @@ Validated on PR #121 head `a54a6f2742efff670debf60d50fcdb8aebbd88c8`:
 
 This is a documentation/control-state reconciliation only. It does not authorize production deployment. Exact final-main preview deployment and smoke must still succeed before any production promotion.
 
+## PR #123 E16R promotion and post-release deployment truth
+
+PR #123 is promoted on current `main` as `0674f5c93704078424897714f4bab9815e358ddd`.
+
+Verified release evidence for that exact revision:
+
+- Bauman Cloudflare Preview Deploy run `36079732967`, attempt 2 — SUCCESS; exact Control + Learning Runtime revision smoke passed.
+- Bauman Cloudflare Production Deploy run `36079959055` — SUCCESS; exact-preview promotion gate, Control deploy, Learning Runtime deploy, production read-back and smoke all passed.
+- The first preview attempt observed a transient stale Control `/__deployment` revision immediately after secret rotation even though Wrangler had uploaded the new revision. Retrying the same immutable SHA succeeded.
+- The current hardening track therefore keeps exact-revision fail-closed semantics but removes propagation false failures through a bounded revision waiter plus a final Control re-deploy after secret rotation. It must never accept a different revision, wrong runtime, wrong channel or wrong application identity.
+
+This is a current-main operational hardening track, not Roadmap V2 L36.
+
 ## Intentional capability layering
 
 The base control worker intentionally keeps `learningAccessGate: false` until the deployment/preview wrapper verifies D1 + app-origin readiness. Do not flatten this fail-closed layering.
@@ -500,3 +514,6 @@ Roadmap V2 itself does **not** authorize production deployment. Production Publi
 14. Preserve PR #119 protected-learning JSON smoke semantics: anonymous Russian learning JSON must remain fail-closed with `401 DEVICE_SESSION_REQUIRED`; do not weaken the Device Gate to make smoke tests pass.
 15. Preserve PR #120 production-origin boundary: Application Management may use the existing authenticated ChatGPT Site as its control-plane origin, but Bauman Control and Learning Runtime preview/production origins remain Cloudflare-only.
 16. Preserve PR #121 readiness-evidence destructive-action confirmation and shared learner/timestamp report metadata across grade, transcript/honors and command-center reports.
+17. Preserve PR #123 E16R m_p07 recovery, including durable E240 → E186 lesson-source bridging and the current learner-first Math navigation/runtime.
+18. Preserve exact-revision deployment truth while tolerating only bounded Cloudflare propagation delay; wrong application/runtime/channel must fail immediately and a stale revision must fail after the bounded retry window.
+19. Keep Control secret rotation followed by an authoritative final Control deploy so secret-version propagation cannot silently restore an older build revision.
