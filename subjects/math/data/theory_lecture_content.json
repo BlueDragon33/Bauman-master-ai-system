@@ -4752,14 +4752,26 @@
         "stageId": "vn",
         "disciplineId": "linear_algebra_data_space",
         "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
-        "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps"
+        "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+        "logicalModuleId": "m_p07",
+        "logicalCoverage": [
+          "m_p07_t06",
+          "m_p07_t07",
+          "m_p07_t08"
+        ],
+        "e16rUpgrade": "eigen_explained_variance_reconstruction",
+        "provenancePolicy": "preserve_e143_plus_e16r_academic_addendum"
       },
       "tags": [
         "PCA",
         "covariance",
         "linear model",
         "projection",
-        "data matrix"
+        "data matrix",
+        "covariance eigen",
+        "explained variance",
+        "reconstruction error",
+        "m_p07"
       ],
       "slides": [
         {
@@ -4950,6 +4962,132 @@
               "type": "text",
               "title": "Cốt lõi",
               "body": "PCA và mô hình tuyến tính đều là câu chuyện ma trận biến đổi dữ liệu; khác nhau ở mục tiêu: PCA tìm cấu trúc không giám sát, mô hình tuyến tính tìm quan hệ dự đoán."
+            }
+          ]
+        },
+        {
+          "role": "covariance_eigen_structure",
+          "title": "Eigen của covariance matrix: các trục chính xuất hiện từ đâu?",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Bài toán trị riêng",
+              "body": "C v_i = λ_i v_i"
+            },
+            {
+              "type": "text",
+              "title": "Ý nghĩa",
+              "body": "Với covariance matrix đối xứng, các eigenvector có thể chọn trực chuẩn. Mỗi v_i là một hướng trong không gian đặc trưng; λ_i là phương sai của dữ liệu theo hướng đó."
+            },
+            {
+              "type": "text",
+              "title": "Cổng kiểm tra",
+              "body": "Covariance matrix lý tưởng là positive semidefinite nên λ_i ≥ 0. Eigenvalue âm đáng kể cần được xem như dấu hiệu sai công thức, sai dữ liệu hoặc vấn đề số."
+            }
+          ]
+        },
+        {
+          "role": "principal_axis_ordering",
+          "title": "Sắp thứ tự trục chính theo eigenvalue",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Thứ tự",
+              "body": "λ_1 ≥ λ_2 ≥ ... ≥ λ_p ≥ 0"
+            },
+            {
+              "type": "text",
+              "title": "Cơ sở PCA",
+              "body": "W = [v_1, v_2, ..., v_p]. Chọn W_k = [v_1,...,v_k] để giữ k hướng có phương sai lớn nhất."
+            },
+            {
+              "type": "text",
+              "title": "Không được suy diễn quá mức",
+              "body": "Phương sai lớn nhất không tự động đồng nghĩa với tín hiệu hữu ích nhất cho mọi nhiệm vụ dự đoán hay phát hiện sự kiện hiếm."
+            }
+          ]
+        },
+        {
+          "role": "explained_variance",
+          "title": "Explained variance ratio và cumulative variance",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Tỷ lệ phương sai giải thích",
+              "body": "EVR_i = λ_i / Σ_j λ_j"
+            },
+            {
+              "type": "formula",
+              "title": "Tích lũy đến k chiều",
+              "body": "CEVR_k = Σ_{i=1}^k λ_i / Σ_j λ_j"
+            },
+            {
+              "type": "text",
+              "title": "Cách chọn k",
+              "body": "Có thể dùng ngưỡng CEVR như một bằng chứng, nhưng phải kiểm thêm reconstruction error và hiệu năng nhiệm vụ kỹ thuật. Không chọn k chỉ vì 'nhìn có vẻ hợp lý'."
+            }
+          ]
+        },
+        {
+          "role": "projection_reconstruction",
+          "title": "Chiếu xuống k chiều và tái tạo về không gian gốc",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Projection",
+              "body": "Z = X_c W_k"
+            },
+            {
+              "type": "formula",
+              "title": "Reconstruction",
+              "body": "X_hat = Z W_k^T + 1 μ^T"
+            },
+            {
+              "type": "text",
+              "title": "Ý nghĩa",
+              "body": "Z là tọa độ n×k trong không gian PCA. X_hat đưa dữ liệu trở về p đặc trưng để đo phần thông tin bị mất khi giảm chiều."
+            }
+          ]
+        },
+        {
+          "role": "reconstruction_error",
+          "title": "Reconstruction error: lượng hóa cái giá của giảm chiều",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Sai số Frobenius",
+              "body": "E_k = ||X - X_hat||_F^2"
+            },
+            {
+              "type": "formula",
+              "title": "Liên hệ eigenvalue khi C dùng mẫu n−1",
+              "body": "E_k = (n − 1) Σ_{i=k+1}^p λ_i"
+            },
+            {
+              "type": "text",
+              "title": "Điều kiện đọc",
+              "body": "Đẳng thức trên dùng cùng convention: hàng là quan sát, X đã center và λ_i là eigenvalue của sample covariance C = X_c^T X_c/(n−1). Nếu đổi normalization, hệ số phải đổi theo."
+            }
+          ]
+        },
+        {
+          "role": "pca_decision_gate",
+          "title": "Gate chọn k: không dùng một metric duy nhất",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Bằng chứng cần xem cùng nhau",
+              "items": [
+                "Cumulative explained variance.",
+                "Reconstruction error trên dữ liệu chưa thấy nếu phù hợp.",
+                "Độ ổn định của component khi đổi mẫu hoặc có nhiễu.",
+                "Hiệu năng nhiệm vụ downstream và ý nghĩa kỹ thuật của component."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Quy tắc",
+              "body": "PCA là công cụ nén/biểu diễn không giám sát. Nếu mục tiêu là dự đoán hoặc phát hiện bất thường, k phải được kiểm chứng theo nhiệm vụ chứ không chỉ theo variance."
             }
           ]
         }
@@ -6335,6 +6473,816 @@
               "type": "text",
               "title": "Cốt lõi",
               "body": "Backpropagation tính gradient hiệu quả cho mô hình nhiều tầng. Gradient descent dùng các gradient đó để cập nhật tham số; optimizer quyết định cách bước đi trên bề mặt loss."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T02-centering-scaling",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "lessonTitle": "m_p07 · §3.2 · Trung tâm hóa và chuẩn hóa đặc trưng trước khi phân tích",
+      "title": "m_p07 · §3.2 · Trung tâm hóa và chuẩn hóa đặc trưng trước khi phân tích",
+      "roadmapRole": "m_p07_t02",
+      "sourceAnchors": {
+        "logicalModuleId": "m_p07",
+        "logicalLessonId": "m_p07_t02",
+        "legacyLessonIds": [
+          "MATH-HK2-MLB-C25-L07"
+        ],
+        "prerequisiteModernLessonIds": [
+          "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+          "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L01-matrix-as-data-and-transform-e142"
+        ],
+        "provenancePolicy": "legacy_anchor_plus_e16r_academic_regeneration"
+      },
+      "tags": [
+        "centering",
+        "standardization",
+        "feature scaling",
+        "PCA",
+        "data leakage"
+      ],
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "Vì sao phải biến đổi dữ liệu trước khi PCA?",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Vấn đề",
+              "body": "Covariance và PCA phụ thuộc vào khoảng cách tới trung bình và thang đo của từng đặc trưng. Nếu giữ nguyên offset hoặc để một đơn vị có biên độ lớn lấn át, trục chính có thể phản ánh đơn vị đo hơn là cấu trúc dữ liệu."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Phân biệt trung tâm hóa với chuẩn hóa, biết khi nào dùng mỗi bước và tránh rò rỉ dữ liệu khi xử lý train/test."
+            }
+          ]
+        },
+        {
+          "role": "definition",
+          "title": "Trung tâm hóa và chuẩn hóa là hai phép biến đổi khác nhau",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Trung tâm hóa",
+              "body": "Với đặc trưng j, trừ trung bình x̄ⱼ khỏi mọi quan sát. Sau biến đổi, trung bình của đặc trưng xấp xỉ 0."
+            },
+            {
+              "type": "text",
+              "title": "Chuẩn hóa z-score",
+              "body": "Sau khi trung tâm hóa, chia cho độ lệch chuẩn sⱼ để đặc trưng có độ lệch chuẩn xấp xỉ 1, nếu sⱼ > 0."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức ma trận và theo từng đặc trưng",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Theo phần tử",
+              "body": "xᶜᵢⱼ = xᵢⱼ − x̄ⱼ"
+            },
+            {
+              "type": "formula",
+              "title": "Theo ma trận",
+              "body": "Xc = X − 1 μᵀ"
+            },
+            {
+              "type": "formula",
+              "title": "Z-score",
+              "body": "zᵢⱼ = (xᵢⱼ − x̄ⱼ) / sⱼ"
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ nhỏ: hai đặc trưng khác thang đo",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Dữ liệu",
+              "body": "Ba quan sát có X = [(1,10), (2,20), (3,30)]. Trung bình là μ = (2,20)."
+            },
+            {
+              "type": "text",
+              "title": "Sau trung tâm hóa",
+              "body": "Xc = [(-1,-10), (0,0), (1,10)]."
+            },
+            {
+              "type": "text",
+              "title": "Sau z-score",
+              "body": "Với độ lệch chuẩn mẫu s = (1,10), Z = [(-1,-1), (0,0), (1,1)]. Hai đặc trưng lúc này cùng thang chuẩn."
+            }
+          ]
+        },
+        {
+          "role": "properties",
+          "title": "Điều gì thay đổi và điều gì không?",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tính chất",
+              "items": [
+                "Trung tâm hóa không làm thay đổi phương sai hay covariance; nó chỉ đưa gốc tọa độ về trung bình.",
+                "Chuẩn hóa thay đổi độ lớn covariance vì thay đổi đơn vị; ma trận covariance của Z trở thành ma trận tương quan khi dùng cùng quy ước mẫu.",
+                "Một đặc trưng có phương sai bằng 0 không thể z-score theo công thức thông thường."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy: PCA trên dữ liệu chưa scale khi đơn vị lệch lớn",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Phản ví dụ",
+              "body": "Một cột đo mét và một cột đo milimét có thể mô tả mức biến thiên vật lý tương tự nhưng covariance theo số học chênh lệch hàng nghìn lần. PCA không biết đây chỉ là đổi đơn vị."
+            },
+            {
+              "type": "text",
+              "title": "Quy tắc",
+              "body": "Nếu thang đo khác nhau và không có lý do vật lý để giữ trọng số tuyệt đối, cân nhắc chuẩn hóa trước PCA."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng dữ liệu: tuyệt đối không fit scaler trên cả train và test",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Đúng",
+              "body": "Tính μ và s chỉ từ tập train, lưu lại rồi áp dụng cùng tham số lên validation/test."
+            },
+            {
+              "type": "text",
+              "title": "Sai",
+              "body": "Gộp train và test để tính μ,s. Việc này làm thông tin phân phối của test rò rỉ vào quá trình học."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ cảm biến và Bauman",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Sensor fusion / telemetry",
+              "body": "Các kênh nhiệt độ, gia tốc, tốc độ quay, RSSI hoặc latency có đơn vị và dải đo rất khác nhau. Center/scale đúng giúp covariance matrix và PCA phản ánh quan hệ giữa kênh thay vì kích thước đơn vị."
+            },
+            {
+              "type": "text",
+              "title": "Notebook kiểm chứng",
+              "body": "Luôn báo cáo tham số scaler, tập dữ liệu dùng để fit và lý do có/không chuẩn hóa."
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Vấn đáp kiểm tra hiểu sâu",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Câu hỏi",
+              "items": [
+                {
+                  "q": "Trung tâm hóa có làm đổi covariance không?",
+                  "a": "Không, nếu cùng quy ước covariance; trừ hằng số khỏi mỗi biến không làm đổi covariance."
+                },
+                {
+                  "q": "Khi nào chuẩn hóa có thể không cần?",
+                  "a": "Khi các đặc trưng cùng đơn vị/thang đo và độ lớn tuyệt đối mang ý nghĩa vật lý cần được giữ."
+                },
+                {
+                  "q": "Vì sao fit scaler trên test là sai?",
+                  "a": "Vì tham số preprocessing đã sử dụng thông tin từ dữ liệu dùng để đánh giá, gây leakage."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §3.2",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Center: trừ trung bình.",
+                "Standardize: center rồi chia độ lệch chuẩn.",
+                "PCA luôn cần xem xét vấn đề thang đo.",
+                "Scaler chỉ fit trên train; test chỉ transform."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E16R-MP07-T03-covariance",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "lessonTitle": "m_p07 · §3.3 · Hiệp phương sai: cùng tăng, cùng giảm và độ lệch khỏi trung bình",
+      "title": "m_p07 · §3.3 · Hiệp phương sai: cùng tăng, cùng giảm và độ lệch khỏi trung bình",
+      "roadmapRole": "m_p07_t03",
+      "sourceAnchors": {
+        "logicalModuleId": "m_p07",
+        "logicalLessonId": "m_p07_t03",
+        "legacyLessonIds": [
+          "MATH-VN-PS-C05-L05"
+        ],
+        "provenancePolicy": "legacy_anchor_plus_e16r_academic_regeneration"
+      },
+      "tags": [
+        "covariance",
+        "variance",
+        "random variables",
+        "sensor noise"
+      ],
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "Covariance đo điều gì?",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Vấn đề",
+              "body": "Hai đại lượng có thể cùng dao động quanh trung bình hoặc dao động ngược chiều. Covariance đo khuynh hướng đồng biến tuyến tính bằng tích các độ lệch khỏi trung bình."
+            },
+            {
+              "type": "text",
+              "title": "Câu hỏi",
+              "body": "Dấu của covariance nói gì, còn độ lớn tuyệt đối có thể so sánh trực tiếp giữa các cặp biến hay không?"
+            }
+          ]
+        },
+        {
+          "role": "definition",
+          "title": "Định nghĩa population và sample covariance",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Population",
+              "body": "Cov(X,Y) = E[(X − μₓ)(Y − μᵧ)]"
+            },
+            {
+              "type": "formula",
+              "title": "Mẫu",
+              "body": "sₓᵧ = Σ[(xᵢ − x̄)(yᵢ − ȳ)] / (n − 1)"
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Liên hệ với variance",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Tự hiệp phương sai",
+              "body": "Cov(X,X) = Var(X)"
+            },
+            {
+              "type": "text",
+              "title": "Ý nghĩa dấu",
+              "body": "Cov > 0: hai biến có xu hướng lệch cùng dấu; Cov < 0: lệch trái dấu; Cov ≈ 0: không có quan hệ tuyến tính rõ theo thước đo này."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ tính tay",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Dữ liệu",
+              "body": "x = [1,2,3], y = [2,4,6]. Ta có x̄ = 2, ȳ = 4."
+            },
+            {
+              "type": "text",
+              "title": "Tích độ lệch",
+              "body": "Các tích là 2, 0, 2; tổng bằng 4."
+            },
+            {
+              "type": "text",
+              "title": "Kết quả",
+              "body": "Sample covariance = 4/(3−1) = 2. Hai biến đồng biến tuyến tính hoàn hảo trong ví dụ này."
+            }
+          ]
+        },
+        {
+          "role": "properties",
+          "title": "Các tính chất phải biết",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tính chất",
+              "items": [
+                "Cov(X,Y) = Cov(Y,X).",
+                "Cov(aX+b, cY+d) = ac·Cov(X,Y).",
+                "Cov(X,X) = Var(X) ≥ 0.",
+                "Covariance có đơn vị bằng tích đơn vị của hai biến."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Covariance bằng 0 không đồng nghĩa độc lập",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Phản ví dụ",
+              "body": "Nếu X đối xứng quanh 0 và Y = X², covariance có thể bằng 0 dù Y phụ thuộc hoàn toàn vào X."
+            },
+            {
+              "type": "text",
+              "title": "Ngoại lệ quan trọng",
+              "body": "Trong một số mô hình đặc biệt như Gaussian joint, zero covariance có ý nghĩa mạnh hơn; không được áp dụng kết luận đó cho mọi phân phối."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng tính toán mẫu",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Kiểm tra trước khi tính",
+              "items": [
+                "Cùng số quan sát và ghép đúng cặp xᵢ,yᵢ.",
+                "Xử lý missing values nhất quán.",
+                "Phân biệt mẫu n−1 với population n.",
+                "Không diễn giải độ lớn covariance mà bỏ qua đơn vị/thang đo."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Ứng dụng trong nhiễu cảm biến",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "Nếu nhiễu gyro X và gyro Y có covariance khác 0, giả định nhiễu độc lập giữa hai trục có thể sai."
+            },
+            {
+              "type": "text",
+              "title": "Cầu nối",
+              "body": "Covariance là phần tử nền của covariance matrix, từ đó đi tới PCA, Kalman filter và sensor fusion."
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Vấn đáp",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Câu hỏi",
+              "items": [
+                {
+                  "q": "Vì sao covariance phụ thuộc đơn vị?",
+                  "a": "Vì tích độ lệch mang tích đơn vị của X và Y."
+                },
+                {
+                  "q": "Covariance âm có nghĩa gì?",
+                  "a": "Khi một biến lớn hơn trung bình, biến kia có xu hướng nhỏ hơn trung bình theo quan hệ tuyến tính."
+                },
+                {
+                  "q": "Covariance 0 có chứng minh độc lập không?",
+                  "a": "Không trong trường hợp tổng quát."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §3.3",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Covariance đo đồng biến tuyến tính quanh trung bình.",
+                "Dấu có ý nghĩa hướng; độ lớn phụ thuộc scale.",
+                "Variance là covariance của biến với chính nó.",
+                "Zero covariance không đủ để kết luận độc lập."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T04-pearson",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "lessonTitle": "m_p07 · §3.4 · Tương quan Pearson và giới hạn của việc đọc tương quan",
+      "title": "m_p07 · §3.4 · Tương quan Pearson và giới hạn của việc đọc tương quan",
+      "roadmapRole": "m_p07_t04",
+      "sourceAnchors": {
+        "logicalModuleId": "m_p07",
+        "logicalLessonId": "m_p07_t04",
+        "legacyLessonIds": [
+          "MATH-PREP-PS2-C15-L06"
+        ],
+        "provenancePolicy": "legacy_anchor_plus_e16r_academic_regeneration"
+      },
+      "tags": [
+        "pearson correlation",
+        "correlation",
+        "outlier",
+        "causality"
+      ],
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "Tại sao cần chuẩn hóa covariance?",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Vấn đề",
+              "body": "Covariance khó so sánh giữa các cặp biến vì phụ thuộc đơn vị. Pearson correlation chia covariance cho độ lệch chuẩn để tạo thước đo không đơn vị trong khoảng −1 đến 1."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Đọc đúng dấu/độ mạnh tuyến tính và nhận diện lúc Pearson gây hiểu nhầm."
+            }
+          ]
+        },
+        {
+          "role": "definition",
+          "title": "Định nghĩa Pearson correlation",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Công thức mẫu",
+              "body": "r = sₓᵧ / (sₓ sᵧ)"
+            },
+            {
+              "type": "text",
+              "title": "Điều kiện",
+              "body": "sₓ > 0 và sᵧ > 0. Nếu một biến hằng, Pearson không xác định."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Cách đọc r",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Diễn giải",
+              "items": [
+                "r gần +1: quan hệ tuyến tính tăng mạnh.",
+                "r gần −1: quan hệ tuyến tính giảm mạnh.",
+                "r gần 0: không thấy quan hệ tuyến tính mạnh; có thể vẫn tồn tại quan hệ phi tuyến."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ r = 0,5",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Dữ liệu",
+              "body": "x = [1,2,3], y = [2,1,3]. Cả hai có trung bình 2."
+            },
+            {
+              "type": "text",
+              "title": "Tính",
+              "body": "Sample covariance = 0,5; sample standard deviation của cả hai bằng 1."
+            },
+            {
+              "type": "text",
+              "title": "Kết quả",
+              "body": "r = 0,5: quan hệ tuyến tính dương mức vừa trong bộ dữ liệu rất nhỏ này; không được suy rộng quá mức."
+            }
+          ]
+        },
+        {
+          "role": "properties",
+          "title": "Tính bất biến theo đổi scale tuyến tính",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Scale dương",
+              "body": "Đổi đơn vị X → aX+b với a>0 không đổi |r| và không đổi dấu."
+            },
+            {
+              "type": "text",
+              "title": "Scale âm",
+              "body": "Nếu a<0, dấu correlation đổi vì hướng trục bị đảo."
+            },
+            {
+              "type": "text",
+              "title": "Không đơn vị",
+              "body": "Đây là lợi thế lớn so với covariance khi so sánh nhiều cặp đặc trưng."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "r = 0 vẫn có thể phụ thuộc mạnh",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Phản ví dụ",
+              "body": "Với X phân bố đối xứng quanh 0 và Y=X², quan hệ là xác định nhưng Pearson có thể bằng 0."
+            },
+            {
+              "type": "text",
+              "title": "Kết luận",
+              "body": "Pearson chỉ đo cấu trúc tuyến tính; trước khi kết luận cần xem scatter plot hoặc mô hình quan hệ phù hợp."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Correlation không phải causation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Hai biến tương quan có thể cùng bị chi phối bởi biến thứ ba, có thể có đảo chiều nhân quả hoặc chỉ trùng hợp trong mẫu."
+            },
+            {
+              "type": "text",
+              "title": "Nguyên tắc báo cáo",
+              "body": "Viết 'có tương quan trong dữ liệu quan sát' thay vì suy ra 'X gây ra Y' nếu không có thiết kế nhận dạng nhân quả."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Outlier và dữ liệu cảm biến",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Độ nhạy",
+              "body": "Pearson nhạy với outlier; một vài điểm cực trị có thể kéo r mạnh."
+            },
+            {
+              "type": "text",
+              "title": "Thực hành",
+              "body": "Khi phân tích telemetry, báo cáo số mẫu, missing/outlier handling và scatter plot cùng với r."
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Vấn đáp",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Câu hỏi",
+              "items": [
+                {
+                  "q": "r=0 có nghĩa hai biến độc lập?",
+                  "a": "Không. Nó chỉ nói covariance tuyến tính đã chuẩn hóa bằng 0."
+                },
+                {
+                  "q": "Vì sao Pearson không có đơn vị?",
+                  "a": "Covariance được chia cho tích hai độ lệch chuẩn cùng đơn vị tương ứng."
+                },
+                {
+                  "q": "Một r cao có chứng minh quan hệ nhân quả?",
+                  "a": "Không."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §3.4",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "r chuẩn hóa covariance về [−1,1].",
+                "Pearson đo quan hệ tuyến tính.",
+                "Kiểm tra outlier và quan hệ phi tuyến.",
+                "Tương quan không tự động suy ra nhân quả."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T05-covariance-matrix",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "lessonTitle": "m_p07 · §3.5 · Ma trận hiệp phương sai và ý nghĩa từng ô",
+      "title": "m_p07 · §3.5 · Ma trận hiệp phương sai và ý nghĩa từng ô",
+      "roadmapRole": "m_p07_t05",
+      "sourceAnchors": {
+        "logicalModuleId": "m_p07",
+        "logicalLessonId": "m_p07_t05",
+        "legacyLessonIds": [
+          "MATH-PREP-LA2-C10-L05"
+        ],
+        "prerequisiteModernLessonIds": [
+          "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L01-matrix-as-data-and-transform-e142"
+        ],
+        "provenancePolicy": "legacy_anchor_plus_e16r_academic_regeneration"
+      },
+      "tags": [
+        "covariance matrix",
+        "multivariate data",
+        "positive semidefinite",
+        "PCA"
+      ],
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "Từ từng cặp biến sang cấu trúc nhiều chiều",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Vấn đề",
+              "body": "Với p đặc trưng, tính từng covariance riêng lẻ rất khó quản lý. Covariance matrix gom variance và mọi pairwise covariance vào một ma trận p×p."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Biết dựng ma trận từ Xc, đọc diagonal/off-diagonal và hiểu vì sao nó là đối tượng đầu vào tự nhiên của PCA."
+            }
+          ]
+        },
+        {
+          "role": "definition",
+          "title": "Định nghĩa covariance matrix",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Dữ liệu dạng hàng là quan sát",
+              "body": "C = Xcᵀ Xc / (n − 1)"
+            },
+            {
+              "type": "text",
+              "title": "Kích thước",
+              "body": "Nếu X có n quan sát và p đặc trưng, Xc là n×p và C là p×p."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Ý nghĩa từng phần tử",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Phần tử",
+              "body": "Cⱼₖ = Cov(Xⱼ, Xₖ)"
+            },
+            {
+              "type": "text",
+              "title": "Đường chéo",
+              "body": "Cⱼⱼ = Var(Xⱼ)."
+            },
+            {
+              "type": "text",
+              "title": "Ngoài đường chéo",
+              "body": "Cⱼₖ cho biết hai đặc trưng j,k đồng biến tuyến tính ra sao."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ hai đặc trưng đồng tuyến",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Dữ liệu centered",
+              "body": "Xc = [(-1,-1),(0,0),(1,1)]."
+            },
+            {
+              "type": "text",
+              "title": "Tính",
+              "body": "XcᵀXc = [[2,2],[2,2]], chia n−1=2."
+            },
+            {
+              "type": "formula",
+              "title": "Kết quả",
+              "body": "C = [[1,1],[1,1]]"
+            },
+            {
+              "type": "text",
+              "title": "Diễn giải",
+              "body": "Hai đặc trưng có variance 1 và covariance 1; thông tin nằm trên một hướng chung."
+            }
+          ]
+        },
+        {
+          "role": "properties",
+          "title": "Đối xứng và positive semidefinite",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tính chất",
+              "items": [
+                "C = Cᵀ vì Cov(Xⱼ,Xₖ)=Cov(Xₖ,Xⱼ).",
+                "Với mọi vector v, vᵀCv ≥ 0; do đó eigenvalue lý tưởng không âm.",
+                "Trace(C) bằng tổng variance của các đặc trưng.",
+                "Nếu dữ liệu có phụ thuộc tuyến tính mạnh, C có thể suy hạng."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy hàng/cột và mẫu/population",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Sai phổ biến",
+              "body": "Nếu code coi hàng là feature trong khi công thức giả định hàng là observation, kích thước covariance matrix bị đảo."
+            },
+            {
+              "type": "text",
+              "title": "Quy tắc",
+              "body": "Ghi rõ convention X∈Rⁿˣᵖ và denominator n−1 hay n trước khi so sánh kết quả giữa thư viện."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Khi nào covariance matrix đáng tin?",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Kiểm tra",
+              "items": [
+                "Đã center theo đúng tập dữ liệu dùng để ước lượng.",
+                "Số quan sát đủ so với số chiều để ước lượng ổn định.",
+                "Missing/outlier được xử lý nhất quán.",
+                "Scale của đặc trưng phù hợp với mục tiêu phân tích."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Cầu nối trực tiếp sang PCA và sensor fusion",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "PCA",
+              "body": "Eigenvector của C cho các hướng trực giao; eigenvalue cho variance dọc theo từng hướng."
+            },
+            {
+              "type": "text",
+              "title": "Sensor fusion",
+              "body": "Covariance matrix mô tả mức bất định từng kênh và tương quan chéo, là thành phần lõi của nhiều bộ lọc trạng thái."
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Vấn đáp",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Câu hỏi",
+              "items": [
+                {
+                  "q": "Vì sao C phải đối xứng?",
+                  "a": "Vì covariance của cặp j,k bằng covariance của k,j."
+                },
+                {
+                  "q": "Đường chéo của C là gì?",
+                  "a": "Variance của từng đặc trưng."
+                },
+                {
+                  "q": "Vì sao eigenvalue âm lớn là dấu hiệu lỗi?",
+                  "a": "Covariance matrix lý tưởng là positive semidefinite; âm đáng kể thường do công thức, dữ liệu hoặc lỗi số."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §3.5",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "C = XcᵀXc/(n−1) khi hàng là quan sát.",
+                "Diagonal = variance; off-diagonal = covariance.",
+                "C đối xứng và PSD.",
+                "PCA bắt đầu từ cấu trúc eigen của C hoặc SVD tương đương."
+              ]
             }
           ]
         }

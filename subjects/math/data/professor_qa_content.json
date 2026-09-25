@@ -10,7 +10,161 @@
   "frameSource": "professor_qa_frame.json",
   "legacyExportTarget": "professor_qa.json",
   "recordKey": "qaId",
-  "records": [],
+  "records": [
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t01",
+      "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+      "chapterId": "MATH-VN-C01-vector_trong_khong_gian_",
+      "tags": [
+        "data matrix",
+        "multivariate data",
+        "orientation",
+        "feature schema"
+      ],
+      "sourceAnchors": [
+        "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+        "MATH-PREP-LA2-C10-L07"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "qaId": "E16R-M_P07_T01-QA01",
+      "question": "Vì sao ma trận dữ liệu phải được xem như semantic contract chứ không chỉ là array?",
+      "answer": "Vì phép tính đúng shape vẫn có thể sai nghĩa nếu orientation, schema, units, identity hoặc version không khớp."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t02",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T02-centering-scaling",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "centering",
+        "standardization",
+        "z-score",
+        "leakage"
+      ],
+      "sourceAnchors": [
+        "MATH-HK2-MLB-C25-L07"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "qaId": "E16R-M_P07_T02-QA01",
+      "question": "Khi nào standardization có thể làm mất ý nghĩa mong muốn?",
+      "answer": "Khi độ lớn/đơn vị vật lý tuyệt đối chính là thông tin cần giữ; khi đó phải có lý do rõ nếu ép mọi feature về variance 1."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t03",
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E16R-MP07-T03-covariance",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "tags": [
+        "covariance",
+        "variance",
+        "random variables"
+      ],
+      "sourceAnchors": [
+        "MATH-VN-PS-C05-L05"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "qaId": "E16R-M_P07_T03-QA01",
+      "question": "Covariance bằng 0 có đủ để kết luận độc lập không?",
+      "answer": "Không trong trường hợp tổng quát; covariance chỉ nắm quan hệ tuyến tính bậc hai."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t04",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T04-pearson",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "pearson",
+        "correlation",
+        "causality",
+        "outlier"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-PS2-C15-L06"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "qaId": "E16R-M_P07_T04-QA01",
+      "question": "Tại sao Pearson cao không chứng minh X gây ra Y?",
+      "answer": "Vì tương quan quan sát không loại trừ confounder, reverse causality hay selection effects; cần thiết kế nhân quả riêng."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t05",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T05-covariance-matrix",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "covariance matrix",
+        "PSD",
+        "multivariate"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L05",
+        "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L01-matrix-as-data-and-transform-e142"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "qaId": "E16R-M_P07_T05-QA01",
+      "question": "Vì sao covariance matrix là đầu vào tự nhiên của PCA?",
+      "answer": "Vì quadratic form v^T C v chính là variance theo hướng v; PCA tìm các hướng trực giao tối đa hóa lần lượt đại lượng này."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t06",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "eigenvalue",
+        "eigenvector",
+        "covariance"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L01",
+        "MATH-PREP-LA2-C10-L05",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "qaId": "E16R-M_P07_T06-QA01",
+      "question": "Vì sao eigenvalue lớn nhất của covariance tương ứng hướng phương sai lớn nhất?",
+      "answer": "Rayleigh quotient v^TCv trên ||v||=1 đạt cực đại tại eigenvector của eigenvalue lớn nhất."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t07",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "PCA",
+        "explained variance",
+        "projection"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L06",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "qaId": "E16R-M_P07_T07-QA01",
+      "question": "Tại sao không nên chọn k chỉ theo explained variance?",
+      "answer": "Variance không biết mục tiêu downstream; component variance nhỏ có thể chứa class/anomaly signal quan trọng."
+    },
+    {
+      "logicalModuleId": "m_p07",
+      "logicalLessonId": "m_p07_t08",
+      "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "tags": [
+        "reconstruction",
+        "low rank",
+        "PCA error"
+      ],
+      "sourceAnchors": [
+        "MATH-PREP-LA2-C10-L08",
+        "E16R-MP07-C02-L06-PCA-DEPTH-UPGRADE"
+      ],
+      "auditStatus": "E16R_STAGED",
+      "qaId": "E16R-M_P07_T08-QA01",
+      "question": "Reconstruction error nhỏ có đủ để khẳng định PCA representation tốt cho mọi mục tiêu không?",
+      "answer": "Không; nó chứng minh xấp xỉ dữ liệu tốt theo metric đã chọn, không chứng minh giữ tín hiệu mục tiêu."
+    }
+  ],
   "importPolicy": {
     "key": "qaId",
     "requires": [
@@ -54,12 +208,21 @@
     "answer": "Vì tích vô hướng bị ảnh hưởng bởi độ dài; cần chuẩn hóa để xét hướng.",
     "auditStatus": "DRAFT"
   },
-  "updatedAt": "2026-06-22",
+  "updatedAt": "2026-09-23",
   "emoji": "🎓",
   "cleanArchitecturePolicy": {
     "contentMustNotStoreStageTree": true,
     "recordsMustUseStableIds": true,
     "defaultImportMode": "replace_by_key_then_append",
     "auditBeforeImport": true
+  },
+  "recoveryMeta": {
+    "E16R": {
+      "moduleId": "m_p07",
+      "imported": 8,
+      "key": "qaId",
+      "branchOnly": true,
+      "status": "CONTENT_IMPORTED_PENDING_RUNTIME_GATE"
+    }
   }
 }
