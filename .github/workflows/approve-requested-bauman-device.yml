@@ -1,0 +1,97 @@
+name: Approve requested Bauman device
+
+on:
+  push:
+    branches:
+      - "ops/approve-device-bm-eaaa-c072-59ee-3964"
+
+permissions:
+  contents: read
+
+jobs:
+  approve:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    environment: bauman-production
+    env:
+      BAUMAN_CONTROL_SERVICE_SECRET: ${{ secrets.BAUMAN_CONTROL_SERVICE_SECRET }}
+      BAUMAN_CONTROL_PRODUCTION_ORIGIN: ${{ vars.BAUMAN_CONTROL_PRODUCTION_ORIGIN }}
+      TARGET_DEVICE_CODE: BM-EAAA-C072-59EE-3964
+    steps:
+      - name: Validate Production control configuration
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ -n "$BAUMAN_CONTROL_SERVICE_SECRET" ]] || { echo "::error::BAUMAN_CONTROL_SERVICE_SECRET missing"; exit 1; }
+          [[ -n "$BAUMAN_CONTROL_PRODUCTION_ORIGIN" ]] || { echo "::error::BAUMAN_CONTROL_PRODUCTION_ORIGIN missing"; exit 1; }
+
+      - name: Read device registry and approve exact pending device
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          CODE="$(curl --silent --show-error --output /tmp/devices.json --write-out '%{http_code}' --max-time 20             -H "Authorization: Bearer $BAUMAN_CONTROL_SERVICE_SECRET"             -H "x-control-role: owner"             -H "x-control-actor: application-management@system.local"             "$BAUMAN_CONTROL_PRODUCTION_ORIGIN/api/control/devices")"
+
+          [[ "$CODE" == "200" ]] || { echo "::error::Cannot read Bauman Production registry (HTTP $CODE)"; cat /tmp/devices.json || true; exit 1; }
+
+          node --input-type=module - <<'NODE' > /tmp/device.env
+          import fs from "node:fs";
+          const body=JSON.parse(fs.readFileSync("/tmp/devices.json","utf8"));
+          const devices=Array.isArray(body.devices)?body.devices:[];
+          const target=devices.find(d=>String(d.deviceCode||"").toUpperCase()===process.env.TARGET_DEVICE_CODE);
+          if(!target) throw new Error(`Device ${process.env.TARGET_DEVICE_CODE} not found in Production registry`);
+          if(!/^[a-f0-9]{64}$/.test(String(target.deviceId||""))) throw new Error("Invalid deviceId read back");
+          if(!["pending","approved","blocked"].includes(target.status)) throw new Error(`Unexpected status ${target.status}`);
+          console.error(`TARGET_FOUND code=${target.deviceCode} status=${target.status} type=${target.deviceType||""} platform=${target.platform||""} browser=${target.browser||""}`);
+          console.log(`DEVICE_ID=${target.deviceId}`);
+          console.log(`DEVICE_STATUS=${target.status}`);
+          NODE
+
+          source /tmp/device.env
+
+          if [[ "$DEVICE_STATUS" == "approved" ]]; then
+            echo "Device is already approved; mutation not needed."
+            exit 0
+          fi
+          if [[ "$DEVICE_STATUS" != "pending" ]]; then
+            echo "::error::Device is $DEVICE_STATUS, refusing automatic approve."
+            exit 1
+          fi
+
+          COMMAND_ID="$(node -e 'console.log(require("crypto").randomUUID())')"
+          export DEVICE_ID COMMAND_ID
+          node --input-type=module - <<'NODE' > /tmp/command.json
+          const body={
+            commandId: process.env.COMMAND_ID,
+            deviceId: process.env.DEVICE_ID,
+            expectedStatus: "pending",
+            operation: "approve",
+          };
+          process.stdout.write(JSON.stringify(body));
+          NODE
+
+          CODE="$(curl --silent --show-error --output /tmp/approve.json --write-out '%{http_code}' --max-time 20             -X POST             -H "Authorization: Bearer $BAUMAN_CONTROL_SERVICE_SECRET"             -H "x-control-role: owner"             -H "x-control-actor: application-management@system.local"             -H "content-type: application/json"             --data-binary @/tmp/command.json             "$BAUMAN_CONTROL_PRODUCTION_ORIGIN/api/control/device-commands")"
+
+          [[ "$CODE" == "200" ]] || { echo "::error::Approve failed (HTTP $CODE)"; cat /tmp/approve.json || true; exit 1; }
+          node --input-type=module - <<'NODE'
+          import fs from "node:fs";
+          const v=JSON.parse(fs.readFileSync("/tmp/approve.json","utf8"));
+          if(v.status!=="approved") throw new Error(`Approve read-back status mismatch: ${v.status}`);
+          if(String(v.device?.deviceCode||"").toUpperCase()!==process.env.TARGET_DEVICE_CODE) throw new Error("Approved wrong device");
+          console.log(`APPROVED ${v.device.deviceCode} status=${v.status}`);
+          NODE
+
+      - name: Final registry read-back
+        shell: bash
+        run: |
+          set -euo pipefail
+          CODE="$(curl --silent --show-error --output /tmp/final.json --write-out '%{http_code}' --max-time 20             -H "Authorization: Bearer $BAUMAN_CONTROL_SERVICE_SECRET"             -H "x-control-role: owner"             -H "x-control-actor: application-management@system.local"             "$BAUMAN_CONTROL_PRODUCTION_ORIGIN/api/control/devices")"
+          [[ "$CODE" == "200" ]] || exit 1
+          node --input-type=module - <<'NODE'
+          import fs from "node:fs";
+          const body=JSON.parse(fs.readFileSync("/tmp/final.json","utf8"));
+          const target=(body.devices||[]).find(d=>String(d.deviceCode||"").toUpperCase()===process.env.TARGET_DEVICE_CODE);
+          if(!target) throw new Error("Device disappeared after approval");
+          if(target.status!=="approved") throw new Error(`Final status is ${target.status}, expected approved`);
+          console.log(`FINAL_READBACK_PASS ${target.deviceCode} status=${target.status}`);
+          NODE
