@@ -10,6 +10,8 @@ on:
       - "wrangler.runtime.production.example.jsonc"
       - "scripts/prepare-cloudflare-production.mjs"
       - "scripts/validate-cloudflare-production.mjs"
+      - "scripts/wait-cloudflare-deployment-revision.mjs"
+      - "scripts/test-deployment-propagation-wait.mjs"
       - "cloudflare/**"
       - "index.html"
       - "assets/**"
@@ -25,6 +27,8 @@ on:
       - "wrangler.runtime.production.example.jsonc"
       - "scripts/prepare-cloudflare-production.mjs"
       - "scripts/validate-cloudflare-production.mjs"
+      - "scripts/wait-cloudflare-deployment-revision.mjs"
+      - "scripts/test-deployment-propagation-wait.mjs"
       - "cloudflare/**"
       - "index.html"
       - "assets/**"
@@ -61,6 +65,9 @@ jobs:
 
       - name: Validate production publish boundary
         run: node scripts/validate-cloudflare-production.mjs
+
+      - name: Validate deployment propagation fail-closed helper
+        run: node scripts/test-deployment-propagation-wait.mjs
 
       - name: Preserve preview boundary
         run: node scripts/validate-cloudflare-preview.mjs
