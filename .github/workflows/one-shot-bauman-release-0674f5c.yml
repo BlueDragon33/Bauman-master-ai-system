@@ -1,0 +1,145 @@
+name: One-shot Bauman exact-revision release
+
+on:
+  push:
+    branches:
+      - "ops/auto-release-0674f5c-20260925"
+
+permissions:
+  contents: read
+  actions: write
+
+concurrency:
+  group: one-shot-bauman-release-0674f5c
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      TARGET_SHA: 0674f5c93704078424897714f4bab9815e358ddd
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Verify main has not moved
+        shell: bash
+        run: |
+          node <<'NODE'
+          const repo = process.env.GITHUB_REPOSITORY;
+          const target = process.env.TARGET_SHA;
+          const token = process.env.GH_TOKEN;
+          const headers = {
+            authorization: `Bearer ${token}`,
+            accept: 'application/vnd.github+json',
+            'x-github-api-version': '2022-11-28'
+          };
+          const r = await fetch(`https://api.github.com/repos/${repo}/git/ref/heads/main`, {headers});
+          if (!r.ok) throw new Error(`Cannot read main ref: ${r.status} ${await r.text()}`);
+          const body = await r.json();
+          const actual = body?.object?.sha;
+          if (actual !== target) throw new Error(`Main moved: ${actual} !== ${target}. Refusing release.`);
+          console.log(`MAIN_EXACT_TARGET_PASS ${actual}`);
+          NODE
+
+      - name: Dispatch preview and wait for exact revision
+        shell: bash
+        run: |
+          node <<'NODE'
+          const repo = process.env.GITHUB_REPOSITORY;
+          const target = process.env.TARGET_SHA;
+          const token = process.env.GH_TOKEN;
+          const workflow = 'deploy-bauman-preview.yml';
+          const confirm = 'DEPLOY_PREVIEW';
+          const headers = {
+            authorization: `Bearer ${token}`,
+            accept: 'application/vnd.github+json',
+            'content-type': 'application/json',
+            'x-github-api-version': '2022-11-28'
+          };
+          const started = Date.now() - 15000;
+          const dispatch = await fetch(`https://api.github.com/repos/${repo}/actions/workflows/${workflow}/dispatches`, {
+            method: 'POST', headers, body: JSON.stringify({ref:'main', inputs:{confirm}})
+          });
+          if (!dispatch.ok) throw new Error(`Preview dispatch failed: ${dispatch.status} ${await dispatch.text()}`);
+          console.log('PREVIEW_DISPATCH_ACCEPTED');
+          let runId = null;
+          const deadline = Date.now() + 30*60*1000;
+          while (Date.now() < deadline) {
+            const list = await fetch(`https://api.github.com/repos/${repo}/actions/workflows/${workflow}/runs?branch=main&event=workflow_dispatch&per_page=20`, {headers});
+            if (!list.ok) throw new Error(`Preview run lookup failed: ${list.status} ${await list.text()}`);
+            const runs = (await list.json()).workflow_runs || [];
+            const match = runs.find(r => r.head_sha === target && Date.parse(r.created_at) >= started);
+            if (match) {
+              runId = match.id;
+              console.log(`PREVIEW_RUN_FOUND id=${runId} status=${match.status}`);
+              if (match.status === 'completed') {
+                if (match.conclusion !== 'success') throw new Error(`Preview run ${runId} concluded ${match.conclusion}`);
+                console.log(`PREVIEW_SUCCESS id=${runId}`);
+                process.exit(0);
+              }
+            }
+            await new Promise(r => setTimeout(r,10000));
+          }
+          throw new Error(`Timed out waiting for preview run. Last run id=${runId || 'none'}`);
+          NODE
+
+      - name: Re-verify main before production promotion
+        shell: bash
+        run: |
+          node <<'NODE'
+          const repo = process.env.GITHUB_REPOSITORY;
+          const target = process.env.TARGET_SHA;
+          const token = process.env.GH_TOKEN;
+          const headers = {
+            authorization: `Bearer ${token}`,
+            accept: 'application/vnd.github+json',
+            'x-github-api-version': '2022-11-28'
+          };
+          const r = await fetch(`https://api.github.com/repos/${repo}/git/ref/heads/main`, {headers});
+          if (!r.ok) throw new Error(`Cannot read main ref: ${r.status} ${await r.text()}`);
+          const actual = (await r.json())?.object?.sha;
+          if (actual !== target) throw new Error(`Main moved after preview: ${actual} !== ${target}. Refusing production.`);
+          console.log(`MAIN_STILL_EXACT_TARGET_PASS ${actual}`);
+          NODE
+
+      - name: Dispatch production and wait
+        shell: bash
+        run: |
+          node <<'NODE'
+          const repo = process.env.GITHUB_REPOSITORY;
+          const target = process.env.TARGET_SHA;
+          const token = process.env.GH_TOKEN;
+          const workflow = 'deploy-bauman-production.yml';
+          const confirm = 'DEPLOY_PRODUCTION';
+          const headers = {
+            authorization: `Bearer ${token}`,
+            accept: 'application/vnd.github+json',
+            'content-type': 'application/json',
+            'x-github-api-version': '2022-11-28'
+          };
+          const started = Date.now() - 15000;
+          const dispatch = await fetch(`https://api.github.com/repos/${repo}/actions/workflows/${workflow}/dispatches`, {
+            method: 'POST', headers, body: JSON.stringify({ref:'main', inputs:{confirm}})
+          });
+          if (!dispatch.ok) throw new Error(`Production dispatch failed: ${dispatch.status} ${await dispatch.text()}`);
+          console.log('PRODUCTION_DISPATCH_ACCEPTED');
+          let runId = null;
+          const deadline = Date.now() + 30*60*1000;
+          while (Date.now() < deadline) {
+            const list = await fetch(`https://api.github.com/repos/${repo}/actions/workflows/${workflow}/runs?branch=main&event=workflow_dispatch&per_page=20`, {headers});
+            if (!list.ok) throw new Error(`Production run lookup failed: ${list.status} ${await list.text()}`);
+            const runs = (await list.json()).workflow_runs || [];
+            const match = runs.find(r => r.head_sha === target && Date.parse(r.created_at) >= started);
+            if (match) {
+              runId = match.id;
+              console.log(`PRODUCTION_RUN_FOUND id=${runId} status=${match.status}`);
+              if (match.status === 'completed') {
+                if (match.conclusion !== 'success') throw new Error(`Production run ${runId} concluded ${match.conclusion}`);
+                console.log(`PRODUCTION_SUCCESS id=${runId}`);
+                process.exit(0);
+              }
+            }
+            await new Promise(r => setTimeout(r,10000));
+          }
+          throw new Error(`Timed out waiting for production run. Last run id=${runId || 'none'}`);
+          NODE
