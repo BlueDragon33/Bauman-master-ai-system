@@ -7,6 +7,7 @@ const css=fs.readFileSync('assets/css/hub-learning-cluster.css','utf8');
 const shell=fs.readFileSync('assets/js/hub-safe-shell.js','utf8');
 const safeUx=fs.readFileSync('assets/js/hub-safe-ux.js','utf8');
 const roadmap=fs.readFileSync('assets/js/hub-roadmap-comprehensive-v2.js','utf8');
+const main=fs.readFileSync('assets/js/main.js','utf8');
 
 assert.ok(index.includes('assets/js/hub-learning-cluster.js?v=5'),'compact primary navigation runtime is not loaded');
 assert.ok(index.includes('assets/css/hub-learning-cluster.css?v=5'),'compact primary navigation CSS is not loaded');
@@ -27,5 +28,8 @@ assert.ok(css.includes('#nav>.hub-nav-secondary-action{display:none!important}')
 assert.ok(roadmap.includes("q('#hubRoadmapTopNav')?.remove()"),'Roadmap must remove the duplicate top navigation');
 assert.ok(!roadmap.includes("nav.id='hubRoadmapTopNav'"),'Roadmap must not recreate a second navigation row');
 assert.ok(!js.includes('cloneNode(true)'),'primary sidebar must not use display clones');
+assert.ok(!main.includes('Mở tab riêng'),'subject launcher must not expose a redundant separate-tab control');
+assert.ok(!main.includes('Học trong trang này'),'subject launcher copy must not preserve the old nested-tab wording');
+assert.ok(main.includes('Học trực tiếp trong Bauman Hub'),'subject launcher must communicate the single in-Hub path');
 
 console.log('HUB_PRIMARY_NAV_V5_STATIC_PASS');
