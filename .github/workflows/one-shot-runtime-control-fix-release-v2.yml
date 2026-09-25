@@ -1,0 +1,62 @@
+name: One-shot Bauman Runtime-Control fix release v2
+on:
+  push:
+    branches:
+      - "ops/one-shot-runtime-control-fix-release-v2-20260925"
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 70
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TARGET_SHA: f9213a1b74551650d4eea8377d12224eebe23906
+    steps:
+      - name: Verify exact main
+        shell: bash
+        run: |
+          set -euo pipefail
+          ACTUAL="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq '.object.sha')"
+          test "$ACTUAL" = "$TARGET_SHA"
+
+      - name: Dispatch exact Preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          START="$(date -u +%s)"
+          gh workflow run deploy-bauman-preview.yml --ref main -f confirm=DEPLOY_PREVIEW
+          ID=""
+          for i in $(seq 1 30); do
+            ID="$(gh run list --workflow deploy-bauman-preview.yml --branch main --event workflow_dispatch --limit 20 --json databaseId,headSha,createdAt --jq '.[] | select(.headSha == env.TARGET_SHA) | .databaseId' | head -n1)"
+            test -n "$ID" && break
+            sleep 5
+          done
+          test -n "$ID"
+          echo "Preview run: $ID"
+          gh run watch "$ID" --exit-status
+
+      - name: Re-verify main after Preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          ACTUAL="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq '.object.sha')"
+          test "$ACTUAL" = "$TARGET_SHA"
+
+      - name: Dispatch exact Production
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh workflow run deploy-bauman-production.yml --ref main -f confirm=DEPLOY_PRODUCTION
+          ID=""
+          for i in $(seq 1 30); do
+            ID="$(gh run list --workflow deploy-bauman-production.yml --branch main --event workflow_dispatch --limit 20 --json databaseId,headSha,createdAt --jq '.[] | select(.headSha == env.TARGET_SHA) | .databaseId' | head -n1)"
+            test -n "$ID" && break
+            sleep 5
+          done
+          test -n "$ID"
+          echo "Production run: $ID"
+          gh run watch "$ID" --exit-status
