@@ -125,6 +125,28 @@ export default {
       );
     }
 
+    if (request.method === 'GET' && url.pathname === '/__control-link') {
+      try {
+        const response = await fetch(`${controlOrigin}/health`, { cache: 'no-store' });
+        const payload = await response.json().catch(() => ({}));
+        if (!response.ok || payload?.application !== 'bauman-master-ai') {
+          return Response.json(
+            { ok: false, code: 'BAUMAN_CONTROL_LINK_UNHEALTHY' },
+            { status: 502, headers: { 'cache-control': 'no-store', 'x-content-type-options': 'nosniff' } },
+          );
+        }
+        return Response.json(
+          { ok: true, controlReachable: true, controlApplication: payload.application },
+          { headers: { 'cache-control': 'no-store', 'x-content-type-options': 'nosniff' } },
+        );
+      } catch {
+        return Response.json(
+          { ok: false, code: 'BAUMAN_CONTROL_UNAVAILABLE' },
+          { status: 503, headers: { 'cache-control': 'no-store', 'x-content-type-options': 'nosniff' } },
+        );
+      }
+    }
+
     if (url.pathname === '/api/runtime/session') {
       if (request.method === 'DELETE') {
         return Response.json({ ok: true }, {
