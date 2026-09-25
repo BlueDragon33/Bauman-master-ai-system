@@ -10,6 +10,8 @@ on:
       - "wrangler.runtime.preview.example.jsonc"
       - "scripts/prepare-cloudflare-preview.mjs"
       - "scripts/validate-cloudflare-preview.mjs"
+      - "scripts/wait-cloudflare-deployment-revision.mjs"
+      - "scripts/test-deployment-propagation-wait.mjs"
       - "index.html"
       - "assets/css/academic-2026.css"
       - "assets/data/official-curriculum-iu5-2026.json"
@@ -34,6 +36,8 @@ on:
       - "wrangler.runtime.preview.example.jsonc"
       - "scripts/prepare-cloudflare-preview.mjs"
       - "scripts/validate-cloudflare-preview.mjs"
+      - "scripts/wait-cloudflare-deployment-revision.mjs"
+      - "scripts/test-deployment-propagation-wait.mjs"
       - "index.html"
       - "assets/css/academic-2026.css"
       - "assets/data/official-curriculum-iu5-2026.json"
@@ -76,6 +80,9 @@ jobs:
 
       - name: Validate migration boundary
         run: node scripts/validate-cloudflare-preview.mjs
+
+      - name: Validate deployment propagation fail-closed helper
+        run: node scripts/test-deployment-propagation-wait.mjs
 
       - name: Preserve runtime device-gate regression
         run: node scripts/runtime-device-gate-regression.mjs
