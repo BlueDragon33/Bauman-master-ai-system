@@ -1,0 +1,73 @@
+name: Restore Bauman Control Pre-Rotation Version
+
+on:
+  push:
+    branches:
+      - "ops/restore-bauman-pre-rotation-secret-20260925"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: restore-bauman-control-pre-rotation
+  cancel-in-progress: false
+
+jobs:
+  restore:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    environment: bauman-production
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      BAUMAN_CONTROL_PRODUCTION_ORIGIN: ${{ vars.BAUMAN_CONTROL_PRODUCTION_ORIGIN }}
+      TARGET_VERSION: 8bb55a4c-2be6-47fc-8785-2853f982301d
+      TARGET_SHA: 0674f5c93704078424897714f4bab9815e358ddd
+    steps:
+      - name: Validate restore target
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "${CLOUDFLARE_API_TOKEN:-}" || { echo "::error::CLOUDFLARE_API_TOKEN missing"; exit 1; }
+          test -n "${CLOUDFLARE_ACCOUNT_ID:-}" || { echo "::error::CLOUDFLARE_ACCOUNT_ID missing"; exit 1; }
+          case "$BAUMAN_CONTROL_PRODUCTION_ORIGIN" in https://*) ;; *) echo "::error::Invalid production origin"; exit 1 ;; esac
+
+      - name: Roll back Bauman Control to pre-secret-rotation version
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes wrangler@4.92.0 rollback "$TARGET_VERSION" --name bauman-control --yes --message "Restore pre-rotation shared secret binding while preserving current 0674f5c control code"
+
+      - name: Verify deployment identity and revision
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f /tmp/deploy.json
+          READY=0
+          for attempt in {1..12}; do
+            CODE="$(curl --silent --show-error --output /tmp/deploy.json --write-out '%{http_code}' --max-time 20 "$BAUMAN_CONTROL_PRODUCTION_ORIGIN/__deployment" || true)"
+            if [[ "$CODE" == "200" ]]; then READY=1; break; fi
+            echo "Control read-back not ready (HTTP $CODE, attempt $attempt/12)"
+            sleep 5
+          done
+          if [[ "$READY" != "1" ]]; then
+            echo "::error::Bauman Control read-back unavailable after rollback."
+            cat /tmp/deploy.json || true
+            exit 1
+          fi
+          node --input-type=module - <<'NODE'
+          import fs from 'node:fs';
+          const value=JSON.parse(fs.readFileSync('/tmp/deploy.json','utf8'));
+          const expected=process.env.TARGET_SHA;
+          if (value.application !== 'bauman-master-ai' || value.runtime !== 'control-service') throw new Error('Control identity mismatch');
+          if (value.channel !== 'cloudflare-production') throw new Error('Control channel mismatch');
+          if (value.revision !== expected) throw new Error(`Control revision ${value.revision} !== ${expected}`);
+          if (!value.databaseReady) throw new Error('Production D1 not ready');
+          console.log('BAUMAN_CONTROL_PRE_ROTATION_RESTORE=PASS');
+          NODE
+
+      - name: Confirm active deployment version
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes wrangler@4.92.0 deployments status --name bauman-control
