@@ -33,6 +33,25 @@ function deployment(env: PreviewEnv, ready: boolean) {
 export default {
   async fetch(request: Request, env: PreviewEnv, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
+    if (request.method === "GET" && url.pathname === "/") {
+      const target = (env.BAUMAN_APP_ORIGIN ?? "").trim().replace(/\/$/, "");
+      if (target) {
+        return Response.redirect(`${target}/`, 302);
+      }
+      return Response.json({
+        ok: false,
+        code: "BAUMAN_APP_ORIGIN_NOT_CONFIGURED",
+        message: "Bauman Control is an API service; learning runtime origin is not configured.",
+      }, {
+        status: 503,
+        headers: {
+          "cache-control": "no-store, private",
+          "content-security-policy": "default-src 'none'; frame-ancestors 'none'",
+          "x-content-type-options": "nosniff",
+        },
+      });
+    }
+
     if (request.method === "GET" && url.pathname === "/__deployment") {
       const ready = await databaseReady(env);
       return Response.json({
