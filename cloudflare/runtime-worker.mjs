@@ -32,7 +32,7 @@ function securityHeaders(headers) {
   next.set('x-content-type-options', 'nosniff');
   next.set('referrer-policy', 'strict-origin-when-cross-origin');
   next.set('permissions-policy', 'camera=(), microphone=(), geolocation=()');
-  next.set('content-security-policy', "frame-ancestors 'none'; object-src 'none'; base-uri 'self'");
+  next.set('content-security-policy', "frame-ancestors 'self'; object-src 'none'; base-uri 'self'");
   return next;
 }
 
