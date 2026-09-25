@@ -1,75 +1,82 @@
-/* Bauman Master Hub · Reference navigation V4
-   Presentation-only: keeps canonical buttons/handlers and flattens them to match the approved Hub reference UI. */
+/* Bauman Master Hub · Compact primary navigation V5
+   Sidebar owns only five top-level destinations.
+   Study/review/exam/AI/progress/settings remain in-page actions, not duplicate tabs. */
 (()=>{
   'use strict';
-  const RELEASE='HUB_REFERENCE_NAV_2026_09_V4';
+  const RELEASE='HUB_PRIMARY_NAV_2026_09_V5';
   const q=(s,r=document)=>r.querySelector(s);
   const qa=(s,r=document)=>[...r.querySelectorAll(s)];
-  const actionId=el=>el?.dataset?.safeNav||el?.dataset?.hubAction||'';
-  const ACTION_IDS=['study','simulation','exercise','ai','exam','review','progress','achievement','community','settings'];
-  const ORDER=[
-    ['page','home'],['action','study'],['page','roadmap'],['page','subjects'],
-    ['action','simulation'],['action','exercise'],['action','ai'],['action','exam'],
-    ['action','review'],['action','progress'],['action','achievement'],['action','community'],
-    ['action','settings'],['page','schedule'],['page','research']
+  const PRIMARY=[
+    ['home','Trang chủ'],
+    ['roadmap','Lộ trình'],
+    ['subjects','Môn học'],
+    ['schedule','Lịch học'],
+    ['research','НИР & Luận văn'],
   ];
+  const actionId=el=>el?.dataset?.safeNav||el?.dataset?.hubAction||'';
 
-  function actionButton(nav,id){return qa(':scope > button',nav).find(button=>actionId(button)===id)||null}
   function pageButton(nav,id){return q(':scope > button[data-page="'+id+'"]',nav)}
+  function secondaryButtons(nav){return qa(':scope > button',nav).filter(button=>Boolean(actionId(button)))}
 
-  function labelButton(button,label){
-    if(!button)return;
-    const span=q('span',button);if(span)span.textContent=label;
-    button.title=label;button.setAttribute('aria-label',label);
-  }
-
-  function clearLegacyCluster(nav){
-    q(':scope > [data-hub-learning-cluster="1"]',nav)?.remove();
-    qa(':scope > button',nav).forEach(button=>{
-      button.classList.remove('hub-nav-hidden-by-policy','hub-nav-cluster-source');
+  function normalizePrimary(nav){
+    for(const [id,label] of PRIMARY){
+      const button=pageButton(nav,id);
+      if(!button)continue;
+      button.classList.remove('hub-nav-reference-hidden','hub-nav-hidden-by-policy','hub-rm-v4-hidden');
       button.removeAttribute('aria-hidden');
       button.removeAttribute('tabindex');
+      button.title=label;
+      button.setAttribute('aria-label',label);
+      const span=q('span',button);if(span)span.textContent=label;
+      nav.appendChild(button);
+    }
+  }
+
+  function hideSecondary(nav){
+    secondaryButtons(nav).forEach(button=>{
+      button.classList.add('hub-nav-reference-hidden','hub-nav-secondary-action');
+      button.setAttribute('aria-hidden','true');
+      button.setAttribute('tabindex','-1');
     });
-    qa(':scope > .hub-safe-nav-divider,:scope > .hub-nav-divider',nav).forEach(divider=>divider.classList.add('hub-nav-reference-hidden'));
+    qa(':scope > .hub-safe-nav-divider,:scope > .hub-nav-divider,:scope > [data-hub-learning-cluster="1"]',nav)
+      .forEach(node=>node.classList.add('hub-nav-reference-hidden'));
   }
 
   function apply(){
     const nav=q('#nav');if(!nav)return false;
-    clearLegacyCluster(nav);
-    labelButton(actionButton(nav,'progress'),'Bản đồ năng lực');
-    labelButton(actionButton(nav,'achievement'),'Thành tích');
-    const schedule=pageButton(nav,'schedule'),research=pageButton(nav,'research');
-    schedule?.classList.add('hub-nav-reference-hidden');
-    research?.classList.add('hub-nav-reference-hidden');
-    const nodes=ORDER.map(([kind,id])=>kind==='page'?pageButton(nav,id):actionButton(nav,id)).filter(Boolean);
-    nodes.forEach(node=>nav.appendChild(node));
-    nav.dataset.learningCluster='flat-v4';
+    hideSecondary(nav);
+    normalizePrimary(nav);
+    nav.dataset.learningCluster='primary-v5';
     nav.dataset.referenceNav='1';
+    nav.dataset.primaryCount=String(PRIMARY.length);
     document.documentElement.dataset.hubLearningCluster=RELEASE;
-    return ACTION_IDS.every(id=>Boolean(actionButton(nav,id)));
+    return PRIMARY.every(([id])=>Boolean(pageButton(nav,id)));
   }
 
   function boot(){
     let attempts=0;
-    const tick=()=>{attempts+=1;const ready=apply();if(attempts<18)setTimeout(tick,ready?220:90)};
+    const tick=()=>{attempts+=1;apply();if(attempts<20)setTimeout(tick,attempts<5?90:240)};
     tick();
   }
 
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
-  window.BAUMAN_HUB_LEARNING_CLUSTER={release:RELEASE,apply,selfCheck:()=>{
-    const nav=q('#nav');
-    const visibleActions=ACTION_IDS.filter(id=>{const el=actionButton(nav,id);return !!el&&getComputedStyle(el).display!=='none'});
-    const visiblePages=['home','roadmap','subjects'].filter(id=>{const el=pageButton(nav,id);return !!el&&getComputedStyle(el).display!=='none'});
-    return{
-      release:RELEASE,
-      installed:Boolean(nav?.dataset.referenceNav==='1'),
-      flatLayout:Boolean(nav?.dataset.learningCluster==='flat-v4'),
-      visibleActions,
-      visiblePages,
-      scheduleHidden:Boolean(pageButton(nav,'schedule')?.classList.contains('hub-nav-reference-hidden')),
-      researchHidden:Boolean(pageButton(nav,'research')?.classList.contains('hub-nav-reference-hidden')),
-      progressLabel:q('span',actionButton(nav,'progress'))?.textContent?.trim()||'',
-      achievementLabel:q('span',actionButton(nav,'achievement'))?.textContent?.trim()||''
-    };
-  }};
+
+  window.BAUMAN_HUB_LEARNING_CLUSTER={
+    release:RELEASE,
+    apply,
+    selfCheck:()=>{
+      const nav=q('#nav');
+      const visiblePages=PRIMARY.filter(([id])=>{const el=pageButton(nav,id);return !!el&&getComputedStyle(el).display!=='none'}).map(([id])=>id);
+      const visibleActions=secondaryButtons(nav).filter(el=>getComputedStyle(el).display!=='none').map(actionId);
+      return{
+        release:RELEASE,
+        installed:Boolean(nav?.dataset.referenceNav==='1'),
+        layout:nav?.dataset.learningCluster||'',
+        primaryCount:Number(nav?.dataset.primaryCount||0),
+        visiblePages,
+        visibleActions,
+        secondaryActionsHidden:visibleActions.length===0,
+      };
+    }
+  };
 })();

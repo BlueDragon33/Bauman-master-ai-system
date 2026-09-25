@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import fs from "node:fs";
 import runtimeWorker from "../../cloudflare/runtime-worker.mjs";
 
 const CONTROL_ORIGIN = "https://control.example.test";
@@ -130,4 +131,10 @@ test("runtime control-link probe reports same-account Control reachability", asy
   } finally {
     globalThis.fetch = originalFetch;
   }
+});
+
+
+test("HTML runtime pages may be embedded only by the same Bauman origin", () => {
+  const source = fs.readFileSync(new URL("../../cloudflare/runtime-worker.mjs", import.meta.url), "utf8");
+  assert.match(source, /frame-ancestors 'self'; object-src 'none'; base-uri 'self'/);
 });
