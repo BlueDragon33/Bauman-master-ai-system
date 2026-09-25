@@ -32,6 +32,8 @@ on:
       - "tests/deep-study-journal-browser.mjs"
       - "scripts/validate-deep-study-journal-v1.js"
       - "scripts/prepare-cloudflare-preview.mjs"
+      - "scripts/wait-cloudflare-deployment-revision.mjs"
+      - "scripts/test-deployment-propagation-wait.mjs"
       - "scripts/prepare-chatgpt-site.mjs"
       - ".openai/hosting.json"
       - ".github/workflows/system-integration-ci.yml"
@@ -64,6 +66,8 @@ on:
       - "tests/deep-study-journal-browser.mjs"
       - "scripts/validate-deep-study-journal-v1.js"
       - "scripts/prepare-cloudflare-preview.mjs"
+      - "scripts/wait-cloudflare-deployment-revision.mjs"
+      - "scripts/test-deployment-propagation-wait.mjs"
       - "scripts/prepare-chatgpt-site.mjs"
       - ".openai/hosting.json"
       - ".github/workflows/system-integration-ci.yml"
@@ -96,6 +100,8 @@ jobs:
         run: node tests/subject-progress-contract-static.mjs
       - name: Validate Deep Study Journal boundaries
         run: node scripts/validate-deep-study-journal-v1.js
+      - name: Validate deployment propagation fail-closed helper
+        run: node scripts/test-deployment-propagation-wait.mjs
       - name: Parse changed runtime JavaScript
         run: |
           node --check assets/js/main.js
