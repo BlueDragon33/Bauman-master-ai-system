@@ -1,0 +1,46 @@
+{
+  "schema": "BAUMAN_ARCHITECTURE_BLUEPRINT_MANIFEST_V1",
+  "status": "design-baseline",
+  "baselineRevision": "c195f2abc4fe0ee6a6cf3f05aab04e814a07d0b2",
+  "program": "BAUMAN_NEXT_GENERATION_PLATFORM_PROGRAM",
+  "roadmapV2Terminal": "L35",
+  "mustNotCreateL36": true,
+  "implementationAuthorized": false,
+  "documents": [
+    "00-PRODUCT-CHARTER.md",
+    "01-AS-IS-ARCHITECTURE.md",
+    "02-TARGET-SYSTEM-ARCHITECTURE.md",
+    "03-PLATFORM-FOUNDATION.md",
+    "04-DOMAIN-DATA-CONTRACTS.md",
+    "05-EXTENSION-CONTENT-ARCHITECTURE.md",
+    "06-REAL-LEARNING-ARCHITECTURE.md",
+    "07-UI-UX-ARCHITECTURE.md",
+    "08-SECURITY-TRUST-MODEL.md",
+    "09-RUNTIME-DEPLOYMENT-TOPOLOGY.md",
+    "10-QUALITY-ATTRIBUTES-AND-GATES.md",
+    "11-OBSERVABILITY-OPERATIONS.md",
+    "12-MIGRATION-STRATEGY.md",
+    "13-EVOLUTION-GOVERNANCE.md",
+    "14-MASTER-DEPENDENCY-ROADMAP.md",
+    "15-ARCHITECTURE-READY-GATE.md",
+    "adr/0000-template.md"
+  ],
+  "constructionGates": [
+    "A0_ARCHITECTURE_READY",
+    "A1_FOUNDATION_READY",
+    "A2_VERTICAL_SLICE_READY",
+    "A3_PLATFORM_READY",
+    "A4_MIGRATION_READY",
+    "A5_PRODUCT_READY"
+  ],
+  "protectedPrinciples": [
+    "core-stable-extension-first",
+    "evidence-not-equal-mastery",
+    "additive-versioned-migration",
+    "device-gate-fail-closed",
+    "manager-owned-production-control-secret",
+    "manual-exact-preview-first-production",
+    "human-ux-acceptance-required",
+    "no-destructive-global-storage-reset"
+  ]
+}
