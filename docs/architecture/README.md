@@ -46,8 +46,13 @@ Roadmap V2 remains terminal at L35. This program must not be named L36.
 14. [13 Evolution and Governance](13-EVOLUTION-GOVERNANCE.md)
 15. [14 Master Dependency Roadmap](14-MASTER-DEPENDENCY-ROADMAP.md)
 16. [15 Architecture Ready Gate](15-ARCHITECTURE-READY-GATE.md)
-17. [ADR template](adr/0000-template.md)
-18. [Machine-readable blueprint manifest](BLUEPRINT_MANIFEST.v1.json)
+17. [16 API and Integration Architecture](16-API-INTEGRATION-ARCHITECTURE.md)
+18. [17 Non-Functional Requirements and Capacity Budgets](17-NONFUNCTIONAL-CAPACITY-BUDGETS.md)
+19. [18 Data Lifecycle, Classification and Privacy](18-DATA-LIFECYCLE-PRIVACY.md)
+20. [19 Critical Sequence Flows](19-CRITICAL-SEQUENCE-FLOWS.md)
+21. [20 Blueprint Review Checklist](20-BLUEPRINT-REVIEW-CHECKLIST.md)
+22. [ADR template](adr/0000-template.md)
+23. [Machine-readable blueprint manifest](BLUEPRINT_MANIFEST.v1.json)
 
 ## Four existing constitutions retained
 
