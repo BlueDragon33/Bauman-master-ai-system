@@ -46,7 +46,11 @@ async function openHub(page){
   assert.equal(access.academicWrites,false);
   await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'),null,{timeout:30000});
   await page.waitForFunction(()=>!!window.BAUMAN_HUB_SAFE?.selfCheck,null,{timeout:10000});
-  await page.waitForFunction(()=>window.BAUMAN_HUB_LEARNING_CLUSTER?.selfCheck?.().flatLayout===true&&window.BAUMAN_HUB_LEARNING_CLUSTER?.selfCheck?.().visibleActions?.length===10,null,{timeout:10000});
+  await page.waitForFunction(()=>{
+    const nav=window.BAUMAN_HUB_LEARNING_CLUSTER?.selfCheck?.();
+    return nav?.layout==='primary-v5'&&nav?.primaryCount===5&&nav?.visiblePages?.length===5&&nav?.secondaryActionsHidden===true;
+  },null,{timeout:10000});
+  await page.waitForFunction(()=>window.BAUMAN_HUB_PRIMARY_PAGES_V6?.selfCheck?.().patched===true,null,{timeout:10000});
   await page.waitForFunction(()=>window.BAUMAN_HUB_OVERVIEW_SEARCH_V2?.selfCheck?.().referenceHome===true,null,{timeout:10000});
   await page.waitForFunction(()=>window.BAUMAN_HUB_REFERENCE_V5?.selfCheck?.().active===true,null,{timeout:10000});
   await page.waitForFunction(()=>(window.BAUMAN_HUB_ROADMAP_V3?.selfCheck?.().active===true||window.BAUMAN_HUB_ROADMAP_V2?.selfCheck?.().active===true),null,{timeout:10000});
@@ -74,7 +78,8 @@ async function checkCanonicalContent(page){
     learningCluster:window.BAUMAN_HUB_LEARNING_CLUSTER?.selfCheck?.(),
     overviewSearch:window.BAUMAN_HUB_OVERVIEW_SEARCH_V2?.selfCheck?.(),
     referenceV5:window.BAUMAN_HUB_REFERENCE_V5?.selfCheck?.(),
-    roadmapV3:window.BAUMAN_HUB_ROADMAP_V3?.selfCheck?.()||window.BAUMAN_HUB_ROADMAP_V2?.selfCheck?.()
+    roadmapV3:window.BAUMAN_HUB_ROADMAP_V3?.selfCheck?.()||window.BAUMAN_HUB_ROADMAP_V2?.selfCheck?.(),
+    primaryPagesV6:window.BAUMAN_HUB_PRIMARY_PAGES_V6?.selfCheck?.()
   }));
   assert.deepEqual(content.subjectIds,['ai','foundation','math','programming','research','russian','signal','systems']);
   assert.equal(content.pages.length,5,'canonical Hub pages were removed');
@@ -93,12 +98,13 @@ async function checkCanonicalContent(page){
   assert.equal(content.safeCheck?.dataWrites,false,'Safe Hub must not own academic data');
   assert.equal(content.managedAccess?.ready,true,'App Manager managed access is not healthy');
   assert.equal(content.managedAccess?.credentialStorePresent,false,'Local credential store must stay empty');
-  assert.equal(content.learningCluster?.flatLayout,true,'Reference sidebar is not using the flat layout');
-  assert.deepEqual(content.learningCluster?.visibleActions,['study','simulation','exercise','ai','exam','review','progress','achievement','community','settings'],'Reference sidebar lost a required action');
-  assert.equal(content.learningCluster?.progressLabel,'Bản đồ năng lực','Reference progress label drift');
-  assert.equal(content.learningCluster?.achievementLabel,'Thành tích','Reference achievement label drift');
-  assert.equal(content.learningCluster?.scheduleHidden,true,'Schedule route should not be duplicated in the reference sidebar');
-  assert.equal(content.learningCluster?.researchHidden,true,'Research route should not be duplicated in the reference sidebar');
+  assert.equal(content.learningCluster?.layout,'primary-v5','Hub sidebar is not using the compact primary layout');
+  assert.equal(content.learningCluster?.primaryCount,5,'Hub sidebar must expose exactly five primary destinations');
+  assert.deepEqual(content.learningCluster?.visiblePages,['home','roadmap','subjects','schedule','research'],'Primary navigation order drift');
+  assert.deepEqual(content.learningCluster?.visibleActions,[],'Secondary actions leaked back into the primary sidebar');
+  assert.equal(content.learningCluster?.secondaryActionsHidden,true,'Secondary action shortcuts must remain inside pages, not as tabs');
+  assert.equal(content.primaryPagesV6?.patched,true,'Unified V6 primary-page renderer is not active');
+  assert.equal(content.primaryPagesV6?.booting,false,'Hub is still stuck behind the boot guard');
   assert.equal(content.overviewSearch?.referenceHome,true,'Reference dashboard Home is not active');
   assert.equal(content.overviewSearch?.canonicalHomeHidden,true,'Legacy canonical Home is still user-facing');
   assert.equal(content.overviewSearch?.searchInstalled,true,'Global search V3 is not installed');
@@ -242,6 +248,27 @@ try{
     if(id==='home')await page.evaluate(()=>{window.BAUMAN_HUB_SAFE?.refresh?.();window.BAUMAN_HUB_OVERVIEW_SEARCH_V2?.compactHome?.()});
   }
 
+  for(const id of ['subjects','schedule','research']){
+    await page.evaluate(id=>window.app?.page?.(id,false),id);
+    await page.waitForFunction(id=>!!document.querySelector(`#page-${id} .hub-v6-hero`),id,{timeout:10000});
+    const before=await page.evaluate(id=>{
+      const page=document.getElementById(`page-${id}`);
+      const hero=page?.querySelector('.hub-v6-hero')?.getBoundingClientRect();
+      const first=page?.querySelector('.hub-v6-hero + *')?.getBoundingClientRect();
+      return {booting:document.body.classList.contains('hub-ui-booting'),hero:hero?{x:hero.x,y:hero.y,w:hero.width,h:hero.height}:null,first:first?{x:first.x,y:first.y,w:first.width,h:first.height}:null};
+    },id);
+    await page.waitForTimeout(1450);
+    const after=await page.evaluate(id=>{
+      const page=document.getElementById(`page-${id}`);
+      const hero=page?.querySelector('.hub-v6-hero')?.getBoundingClientRect();
+      const first=page?.querySelector('.hub-v6-hero + *')?.getBoundingClientRect();
+      return {booting:document.body.classList.contains('hub-ui-booting'),hero:hero?{x:hero.x,y:hero.y,w:hero.width,h:hero.height}:null,first:first?{x:first.x,y:first.y,w:first.width,h:first.height}:null};
+    },id);
+    assert.equal(before.booting,false,`${id}: boot guard remained active`);
+    assert.deepEqual(after,before,`${id}: layout changed after delayed enhancement window`);
+    await page.screenshot({path:path.join(OUT,`primary-v6-${id}.png`),fullPage:true});
+  }
+
   await page.setViewportSize({width:1920,height:1080});
   await page.evaluate(()=>window.app?.page?.('roadmap',false));
   await page.waitForFunction(()=>document.getElementById('page-roadmap')?.classList.contains('active')===true&&window.BAUMAN_HUB_ROADMAP_V2?.selfCheck?.().active===true,null,{timeout:10000});
@@ -258,11 +285,11 @@ try{
     filterLabels:[...document.querySelectorAll('#page-roadmap [data-rm-filter]')].map(x=>x.textContent.replace(/\s+/g,' ').trim()),
     brandTitle:document.querySelector('.brand b')?.textContent?.trim()||'',
     brandSub:document.querySelector('.brand small')?.textContent?.trim()||'',
-    topNavBackground:getComputedStyle(document.querySelector('#hubRoadmapTopNav')).backgroundColor
+    topNavPresent:!!document.querySelector('#hubRoadmapTopNav')
   }));
   assert.deepEqual([roadmapAudit.stages,roadmapAudit.filters,roadmapAudit.levels,roadmapAudit.sideCards],[4,5,4,4],'Roadmap reference structure drift');
   const roadmapChrome=await page.evaluate(()=>window.BAUMAN_HUB_ROADMAP_V3?.selfCheck?.()||window.BAUMAN_HUB_ROADMAP_V2?.selfCheck?.());
-  assert.equal(roadmapChrome?.topNav,7,'Roadmap V4 top navigation must expose seven reference actions');
+  assert.equal(roadmapChrome?.topNav,0,'Roadmap must not recreate a duplicate top navigation row');
   assert.equal(roadmapChrome?.journey,true,'Roadmap V4 journey card is missing');
   assert.equal(roadmapChrome?.chromeActive,true,'Roadmap V4 route chrome is not active');
   assert.equal(roadmapAudit.canonicalVisible,false,'Canonical roadmap leaked below the reference roadmap');
@@ -271,7 +298,7 @@ try{
   assert.ok(roadmapAudit.filterLabels.some(x=>x.includes('Hòa nhập Nga')),'Roadmap V4 missing Hòa nhập Nga filter');
   assert.equal(roadmapAudit.brandTitle,'BAUMAN HUB','Roadmap V4 route brand title drift');
   assert.equal(roadmapAudit.brandSub,'Русский язык','Roadmap V4 route brand subtitle drift');
-  assert.notEqual(roadmapAudit.topNavBackground,'rgb(255, 255, 255)','Roadmap V4 top navigation regressed to white tabs');
+  assert.equal(roadmapAudit.topNavPresent,false,'Duplicate Roadmap top navigation returned');
   assert.ok(roadmapAudit.scroll<=roadmapAudit.client+2,`Roadmap desktop horizontal overflow ${roadmapAudit.scroll}/${roadmapAudit.client}`);
   const roadmapGeometry=await page.evaluate(()=>{
     const rect=s=>{const r=document.querySelector(s)?.getBoundingClientRect();return r?{x:r.x,y:r.y,w:r.width,h:r.height,b:r.bottom}:null};

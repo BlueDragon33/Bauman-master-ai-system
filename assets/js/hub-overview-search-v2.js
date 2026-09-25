@@ -271,12 +271,12 @@ function install(){
   compactSubjectCapability();
   const host=q('#page-home');
   if(host&&!observer){
-    observer=new MutationObserver(()=>{if(host.classList.contains('active'))setTimeout(compactHome,0);else document.body.dataset.hubReferenceHome='0'});
+    observer=new MutationObserver(()=>{if(host.classList.contains('active'))compactHome();else document.body.dataset.hubReferenceHome='0'});
     observer.observe(host,{childList:true,subtree:false,attributes:true,attributeFilter:['class']});
   }
   const subjects=q('#page-subjects');
   if(subjects&&!subjectObserver){
-    subjectObserver=new MutationObserver(()=>setTimeout(compactSubjectCapability,0));
+    subjectObserver=new MutationObserver(()=>compactSubjectCapability());
     subjectObserver.observe(subjects,{childList:true,subtree:false});
   }
 }
@@ -287,7 +287,7 @@ function selfCheck(){
   return{release:RELEASE,referenceHome:q('#page-home .hub-safe-dashboard')?.dataset.homeReferenceV4===RELEASE,canonicalHomeHidden:!!q('#page-home .hub-v2-canonical-hidden'),searchInstalled:q('#hubSafeSearch')?.dataset.searchV2==='1',accentInsensitive:results.some(x=>x.subjectId==='math'),referencePanelsVisible,homeSummary:false};
 }
 bind();
-setTimeout(install,0);setTimeout(install,350);setTimeout(install,1200);
+install();
 const oldRefresh=window.BAUMAN_HUB_SAFE?.refresh;
 if(typeof oldRefresh==='function')window.BAUMAN_HUB_SAFE.refresh=()=>{const result=oldRefresh();install();return result};
 window.BAUMAN_HUB_OVERVIEW_SEARCH_V2={release:RELEASE,install,compactHome,compactSubjectCapability,search:searchCatalog,openSearch:showSearch,selfCheck};
