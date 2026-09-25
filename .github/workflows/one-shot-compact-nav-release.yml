@@ -1,0 +1,57 @@
+name: One-shot compact navigation release
+on:
+  push:
+    branches:
+      - "ops/one-shot-compact-nav-release-20260925"
+permissions:
+  contents: read
+  actions: write
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 70
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TARGET_SHA: bc0e8c445944f74dcc16fb5880998c49e1dbbe75
+    steps:
+      - name: Verify exact main
+        shell: bash
+        run: |
+          set -euo pipefail
+          ACTUAL="$(gh api -R "$GITHUB_REPOSITORY" "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq '.object.sha')"
+          test "$ACTUAL" = "$TARGET_SHA"
+
+      - name: Dispatch exact Preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh workflow run deploy-bauman-preview.yml -R "$GITHUB_REPOSITORY" --ref main -f confirm=DEPLOY_PREVIEW
+          ID=""
+          for i in $(seq 1 36); do
+            ID="$(gh run list -R "$GITHUB_REPOSITORY" --workflow deploy-bauman-preview.yml --branch main --event workflow_dispatch --limit 20 --json databaseId,headSha | jq -r --arg sha "$TARGET_SHA" '.[] | select(.headSha == $sha) | .databaseId' | head -n1)"
+            test -n "$ID" && break
+            sleep 5
+          done
+          test -n "$ID"
+          gh run watch "$ID" -R "$GITHUB_REPOSITORY" --exit-status
+
+      - name: Re-verify main
+        shell: bash
+        run: |
+          set -euo pipefail
+          ACTUAL="$(gh api -R "$GITHUB_REPOSITORY" "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq '.object.sha')"
+          test "$ACTUAL" = "$TARGET_SHA"
+
+      - name: Dispatch exact Production
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh workflow run deploy-bauman-production.yml -R "$GITHUB_REPOSITORY" --ref main -f confirm=DEPLOY_PRODUCTION
+          ID=""
+          for i in $(seq 1 36); do
+            ID="$(gh run list -R "$GITHUB_REPOSITORY" --workflow deploy-bauman-production.yml --branch main --event workflow_dispatch --limit 20 --json databaseId,headSha | jq -r --arg sha "$TARGET_SHA" '.[] | select(.headSha == $sha) | .databaseId' | head -n1)"
+            test -n "$ID" && break
+            sleep 5
+          done
+          test -n "$ID"
+          gh run watch "$ID" -R "$GITHUB_REPOSITORY" --exit-status
