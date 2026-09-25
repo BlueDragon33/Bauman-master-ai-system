@@ -20,13 +20,19 @@ const runtime = fs.readFileSync('wrangler.runtime.production.example.jsonc', 'ut
 const prepare = fs.readFileSync('scripts/prepare-cloudflare-production.mjs', 'utf8');
 
 if (!workflow.includes('workflow_dispatch')) throw new Error('Production deploy must remain manual-only.');
+
+if (workflow.includes('BAUMAN_CONTROL_PRODUCTION_SERVICE_SECRET')) {
+  throw new Error('Bauman production deploy must not bind a second production control secret; Application Management owns the live shared secret.');
+}
+if (workflow.includes('wrangler secret put BAUMAN_CONTROL_SERVICE_SECRET')) {
+  throw new Error('Bauman production deploy must preserve the existing Manager-owned BAUMAN_CONTROL_SERVICE_SECRET binding.');
+}
 if (/\n\s*push\s*:/.test(workflow.split('jobs:')[0])) throw new Error('Production deploy must never run automatically on push.');
 for (const token of [
   'DEPLOY_PRODUCTION',
   'environment: bauman-production',
   'BAUMAN_CONTROL_PREVIEW_D1_DATABASE_ID',
   'BAUMAN_CONTROL_PRODUCTION_D1_DATABASE_ID',
-  'BAUMAN_CONTROL_PRODUCTION_SERVICE_SECRET',
   'BAUMAN_CONTROL_PREVIEW_ORIGIN',
   'BAUMAN_RUNTIME_PREVIEW_ORIGIN',
   'BAUMAN_CONTROL_PRODUCTION_ORIGIN',
@@ -36,6 +42,8 @@ for (const token of [
   'cloudflare-preview',
   'cloudflare-production',
   'revision !== expected',
+  'Manager-owned BAUMAN_CONTROL_SERVICE_SECRET preserved',
+  'CONTROL_TICKET_FORBIDDEN',
   'bauman-control-db --remote',
   'wrangler.production.jsonc',
   'wrangler.runtime.production.jsonc',
@@ -95,4 +103,4 @@ if (prepare.includes("exactHttpsOrigin('BAUMAN_CONTROL_PRODUCTION_ORIGIN', { all
 if (ci.includes('wrangler d1 migrations apply bauman-control-db --remote')) throw new Error('Production CI must never mutate remote production D1.');
 if (ci.includes('DEPLOY_PRODUCTION')) throw new Error('Production CI must not contain the live deployment confirmation token.');
 
-console.log('Bauman production publish gate PASS: manual-only, exact-preview-first, isolated D1, production artifacts dry-run capable, no automatic production deployment.');
+console.log('Bauman production publish gate PASS: manual-only, exact-preview-first, isolated D1, Manager-owned shared secret preserved, production artifacts dry-run capable, no automatic production deployment.');
