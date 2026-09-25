@@ -165,3 +165,4 @@ jobs:
           echo "Revision: $GITHUB_SHA"
           echo 'Promotion source: exact same revision verified live in Cloudflare preview before production.'
           echo 'Manager-owned BAUMAN_CONTROL_SERVICE_SECRET preserved; Bauman deploy does not rotate the shared control-plane secret.'
+          echo 'Manager-owned BAUMAN_CONTROL_SERVICE_SECRET preserved; Bauman deploy does not rotate the shared control-plane secret.'
