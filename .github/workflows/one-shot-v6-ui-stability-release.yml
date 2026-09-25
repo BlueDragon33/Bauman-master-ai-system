@@ -1,0 +1,62 @@
+name: One-shot V6 UI stability release
+on:
+  push:
+    branches:
+      - "ops/one-shot-v6-ui-stability-release-20260925"
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 75
+    env:
+      GH_TOKEN: ${{ github.token }}
+      TARGET_SHA: d5a7130e1e41c3fdcd1a4ea058d0e9f768e6a0d7
+    steps:
+      - name: Verify exact main
+        shell: bash
+        run: |
+          set -euo pipefail
+          ACTUAL="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq '.object.sha')"
+          test "$ACTUAL" = "$TARGET_SHA"
+
+      - name: Dispatch exact Preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          STARTED_AT="$(date -u +%s)"
+          gh workflow run deploy-bauman-preview.yml -R "$GITHUB_REPOSITORY" --ref main -f confirm=DEPLOY_PREVIEW
+          ID=""
+          for i in $(seq 1 40); do
+            ID="$(gh run list -R "$GITHUB_REPOSITORY" --workflow deploy-bauman-preview.yml --branch main --event workflow_dispatch --limit 30 --json databaseId,headSha,createdAt | jq -r --arg sha "$TARGET_SHA" '.[] | select(.headSha == $sha) | .databaseId' | head -n1)"
+            test -n "$ID" && break
+            sleep 5
+          done
+          test -n "$ID"
+          echo "Preview run: $ID"
+          gh run watch "$ID" -R "$GITHUB_REPOSITORY" --exit-status
+
+      - name: Re-verify exact main
+        shell: bash
+        run: |
+          set -euo pipefail
+          ACTUAL="$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq '.object.sha')"
+          test "$ACTUAL" = "$TARGET_SHA"
+
+      - name: Dispatch exact Production
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh workflow run deploy-bauman-production.yml -R "$GITHUB_REPOSITORY" --ref main -f confirm=DEPLOY_PRODUCTION
+          ID=""
+          for i in $(seq 1 40); do
+            ID="$(gh run list -R "$GITHUB_REPOSITORY" --workflow deploy-bauman-production.yml --branch main --event workflow_dispatch --limit 30 --json databaseId,headSha,createdAt | jq -r --arg sha "$TARGET_SHA" '.[] | select(.headSha == $sha) | .databaseId' | head -n1)"
+            test -n "$ID" && break
+            sleep 5
+          done
+          test -n "$ID"
+          echo "Production run: $ID"
+          gh run watch "$ID" -R "$GITHUB_REPOSITORY" --exit-status
