@@ -53,11 +53,7 @@
     return PRIMARY.every(([id])=>Boolean(pageButton(nav,id)));
   }
 
-  function boot(){
-    let attempts=0;
-    const tick=()=>{attempts+=1;apply();if(attempts<20)setTimeout(tick,attempts<5?90:240)};
-    tick();
-  }
+  function boot(){apply();}
 
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 
