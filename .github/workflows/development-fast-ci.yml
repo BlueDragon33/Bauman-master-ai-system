@@ -32,6 +32,7 @@ jobs:
           files=(
             assets/js/main.js
             assets/js/hub-primary-pages-v6.js
+            assets/js/subjects-reference-v1.js
             assets/js/planning-main.js
             subjects/shared/host-bridge.js
             subjects/russian/assets/core.js
@@ -43,6 +44,9 @@ jobs:
               node --check "$file"
             fi
           done
+
+      - name: Subjects reference static
+        run: node tests/subjects-reference-v1-static.mjs
 
       - name: Fast shell contract
         shell: bash
