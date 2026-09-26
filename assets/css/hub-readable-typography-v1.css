@@ -1,0 +1,400 @@
+/* Bauman Master Hub · Readable Typography V1
+   Global readability layer requested for ALL primary tabs.
+   Goal: ChatGPT-like reading size, useful appearance controls, no 6–10px UI copy.
+   Loaded last so it can repair overly dense reference-specific rules. */
+
+body{
+  --hub-readable-body:16px;
+  --hub-readable-control:14px;
+  --hub-readable-small:13px;
+  --hub-readable-micro:12px;
+  --hub-readable-card:15px;
+  --hub-readable-section:18px;
+  --hub-readable-page-title:30px;
+  --hub-readable-line:1.5;
+}
+body[data-size="compact"]{
+  --hub-readable-body:15px;
+  --hub-readable-control:13px;
+  --hub-readable-small:12px;
+  --hub-readable-micro:11.5px;
+  --hub-readable-card:14px;
+  --hub-readable-section:17px;
+  --hub-readable-page-title:28px;
+}
+body[data-size="normal"]{
+  --hub-readable-body:16px;
+  --hub-readable-control:14px;
+  --hub-readable-small:13px;
+  --hub-readable-micro:12px;
+  --hub-readable-card:15px;
+  --hub-readable-section:18px;
+  --hub-readable-page-title:30px;
+}
+body[data-size="large"]{
+  --hub-readable-body:18px;
+  --hub-readable-control:16px;
+  --hub-readable-small:14.5px;
+  --hub-readable-micro:13px;
+  --hub-readable-card:17px;
+  --hub-readable-section:20px;
+  --hub-readable-page-title:34px;
+}
+body[data-size="xlarge"]{
+  --hub-readable-body:20px;
+  --hub-readable-control:18px;
+  --hub-readable-small:16px;
+  --hub-readable-micro:14px;
+  --hub-readable-card:19px;
+  --hub-readable-section:22px;
+  --hub-readable-page-title:38px;
+}
+
+html,body{font-size:var(--hub-readable-body)!important;line-height:var(--hub-readable-line)!important}
+#appRoot .page{font-size:var(--hub-readable-body)!important;line-height:var(--hub-readable-line)!important}
+#appRoot .page :is(p,li){font-size:var(--hub-readable-body)!important;line-height:1.5!important}
+#appRoot .page :is(button,input,select,textarea){font-size:var(--hub-readable-control)!important;line-height:1.35!important}
+#appRoot .page small{font-size:var(--hub-readable-small)!important;line-height:1.35!important}
+#appRoot .page :is(.pill,.tag){font-size:var(--hub-readable-small)!important}
+#appRoot .toast{font-size:var(--hub-readable-control)!important}
+
+/* Shared shell: readable navigation/search/profile. */
+body[data-hub-reference-v5="1"] #nav>button{
+  min-height:48px!important;
+  font-size:15px!important;
+  line-height:1.25!important;
+}
+body[data-size="large"][data-hub-reference-v5="1"] #nav>button{font-size:16px!important}
+body[data-size="xlarge"][data-hub-reference-v5="1"] #nav>button{font-size:18px!important}
+body[data-hub-reference-v5="1"] .brand small{font-size:11px!important}
+body[data-hub-reference-v5="1"] .side-note span{font-size:12px!important}
+body[data-hub-reference-v5="1"] .hub-safe-search input{
+  font-size:var(--hub-readable-control)!important;
+  line-height:1.4!important;
+}
+body[data-hub-reference-v5="1"] .hub-top-profile-copy small{font-size:12px!important}
+body[data-hub-reference-v5="1"] .hub-top-profile-copy b{font-size:14px!important}
+body[data-hub-reference-v5="1"] #userAvatar{font-size:14px!important}
+
+/* Appearance must be a real, visible control instead of a hidden no-op. */
+body[data-hub-reference-v5="1"] .appearance-wrap{
+  order:8!important;
+  position:relative!important;
+  display:block!important;
+  flex:0 0 auto!important;
+  width:auto!important;
+  height:auto!important;
+  margin-right:8px!important;
+  overflow:visible!important;
+}
+body[data-hub-reference-v5="1"] #appearanceBtn{
+  display:inline-flex!important;
+  min-width:108px!important;
+  height:40px!important;
+  padding:0 14px!important;
+  border:1px solid rgba(106,137,172,.55)!important;
+  border-radius:10px!important;
+  background:#102039!important;
+  color:#eef5ff!important;
+  font-size:14px!important;
+  font-weight:750!important;
+  box-shadow:none!important;
+}
+body[data-hub-reference-v5="1"] #appearanceBtn::before{content:"Aa";font-weight:900;color:#f0c96d}
+body[data-hub-reference-v5="1"] .appearance-menu{
+  display:block;
+  width:min(370px,calc(100vw - 24px))!important;
+  padding:14px!important;
+  border-radius:16px!important;
+  font-size:var(--hub-readable-control)!important;
+}
+body[data-hub-reference-v5="1"] .appearance-menu.hidden{display:none!important}
+body[data-hub-reference-v5="1"] .appearance-menu .profile-line,
+.appearance-menu .profile-line:has(#themeSelect){
+  display:grid!important;
+  gap:7px!important;
+  padding:11px 8px!important;
+  font-size:14px!important;
+}
+body[data-hub-reference-v5="1"] .appearance-menu select{
+  min-height:40px!important;
+  font-size:14px!important;
+}
+body[data-hub-reference-v5="1"] .hub-safe-appearance-section>b{font-size:15px!important}
+body[data-hub-reference-v5="1"] .hub-safe-preset-grid button{
+  min-height:62px!important;
+  font-size:14px!important;
+}
+body[data-hub-reference-v5="1"] .hub-safe-preset-grid button small{font-size:12px!important}
+
+/* Home: stop the one-screen reference from shrinking reading text.
+   Height may grow and scroll; readability is now the priority. */
+body[data-hub-reference-v5="1"] #page-home .hub-safe-dashboard{
+  height:auto!important;
+  min-height:calc(100dvh - var(--hub-v5-topbar) - 22px)!important;
+  overflow:visible!important;
+}
+body[data-hub-reference-v5="1"] #page-home .hub-safe-layout{
+  height:auto!important;
+  align-items:start!important;
+}
+body[data-hub-reference-v5="1"] #page-home .hub-safe-main,
+body[data-hub-reference-v5="1"] #page-home .hub-safe-rail{
+  height:auto!important;
+  grid-template-rows:none!important;
+  grid-auto-rows:auto!important;
+}
+body[data-hub-reference-v5="1"] #page-home .hub-safe-hero p{font-size:var(--hub-readable-body)!important;line-height:1.5!important}
+body[data-hub-reference-v5="1"] #page-home .hub-safe-hero-actions .btn{font-size:var(--hub-readable-control)!important}
+body[data-hub-reference-v5="1"] #page-home .hub-safe-quote{font-size:var(--hub-readable-small)!important}
+body[data-hub-reference-v5="1"] #page-home .hub-safe-section-head h2,
+body[data-hub-reference-v5="1"] #page-home :is(.hub-safe-achievements,.hub-safe-overall,.hub-safe-schedule)>.hub-safe-section-head h2{
+  font-size:var(--hub-readable-section)!important;
+  line-height:1.25!important;
+}
+body[data-hub-reference-v5="1"] #page-home .hub-safe-main>.hub-safe-section-head h2,
+body[data-hub-reference-v5="1"] #page-home .hub-safe-main .hub-safe-section-head h2{
+  font-size:var(--hub-readable-section)!important;
+  line-height:1.25!important;
+}
+body[data-hub-reference-v5="1"] #page-home .hub-safe-dashboard h2{
+  font-size:var(--hub-readable-section)!important;
+  line-height:1.25!important;
+}
+body[data-hub-reference-v5="1"] #page-home .hub-safe-dashboard :is(.hub-safe-card,.hub-safe-quick-card,.hub-safe-subject-card,.hub-safe-achievement-card,.hub-safe-overall-card,.hub-safe-schedule-card) b{
+  font-size:var(--hub-readable-card)!important;
+  line-height:1.3!important;
+}
+body[data-hub-reference-v5="1"] #page-home .hub-safe-dashboard :is(.hub-safe-card,.hub-safe-quick-card,.hub-safe-subject-card,.hub-safe-achievement-card,.hub-safe-overall-card,.hub-safe-schedule-card) :is(p,small,span){
+  font-size:var(--hub-readable-small)!important;
+  line-height:1.4!important;
+}
+
+/* Roadmap / legacy primary surfaces. */
+#page-roadmap :is(.roadmap-card,.phase-card,.semester-card,.course-card,.roadmap-node,.roadmap-summary) :is(b,strong,h3){
+  font-size:var(--hub-readable-card)!important;
+  line-height:1.3!important;
+}
+#page-roadmap :is(.roadmap-card,.phase-card,.semester-card,.course-card,.roadmap-node,.roadmap-summary) :is(p,small,span){
+  font-size:var(--hub-readable-small)!important;
+  line-height:1.4!important;
+}
+#page-roadmap :is(button,select){font-size:var(--hub-readable-control)!important}
+
+
+/* Roadmap V4 reference surfaces. */
+#page-roadmap .hub-roadmap-v3{font-size:var(--hub-readable-body)!important;line-height:1.5!important}
+#page-roadmap .hub-rm-hero h1{font-size:var(--hub-readable-page-title)!important;line-height:1.12!important}
+#page-roadmap .hub-rm-hero p,
+#page-roadmap .hub-rm-block-head p,
+#page-roadmap .hub-rm-subject-head p,
+#page-roadmap .hub-rm-track-title p,
+#page-roadmap .hub-rm-plan p{font-size:var(--hub-readable-body)!important;line-height:1.45!important}
+#page-roadmap :is(.hub-rm-block-head,.hub-rm-subject-head,.hub-rm-track-title) h2{font-size:var(--hub-readable-section)!important;line-height:1.25!important}
+#page-roadmap .hub-rm-stage-card h3,
+#page-roadmap .hub-rm-side-card h3,
+#page-roadmap .hub-rm-level-copy b,
+#page-roadmap .hub-rm-course b,
+#page-roadmap .hub-rm-task b,
+#page-roadmap .hub-rm-current b{font-size:var(--hub-readable-card)!important;line-height:1.3!important}
+#page-roadmap .hub-roadmap-v3 :is(small,.hub-rm-stage-subject,.hub-rm-level-count,.hub-rm-course em,.hub-rm-task small,.hub-rm-current small,.hub-rm-legend,.hub-rm-doing){
+  font-size:var(--hub-readable-small)!important;
+  line-height:1.35!important;
+}
+#page-roadmap .hub-roadmap-v3 button{font-size:var(--hub-readable-control)!important}
+#page-roadmap .hub-rm-filters button{min-height:38px!important}
+#page-roadmap .hub-rm-level-head{min-height:58px!important}
+#page-roadmap .hub-rm-course{min-height:64px!important}
+
+/* Subjects reference: ChatGPT-like reading size throughout. */
+#page-subjects .subjects-page__header h2{font-size:var(--hub-readable-page-title)!important}
+#page-subjects .subjects-page__header p{font-size:var(--hub-readable-body)!important}
+#page-subjects .subjects-page__select,
+#page-subjects .subjects-page__button{font-size:var(--hub-readable-control)!important;min-height:42px!important}
+#page-subjects .subjects-page__summary-card{
+  height:auto!important;
+  min-height:128px!important;
+}
+#page-subjects .subjects-page__summary-card small{font-size:var(--hub-readable-small)!important}
+#page-subjects .subjects-page__summary-card b{font-size:calc(var(--hub-readable-card) + 2px)!important}
+#page-subjects .subjects-page__summary-card strong{font-size:var(--hub-readable-control)!important}
+#page-subjects .subjects-page__summary-card p{font-size:var(--hub-readable-small)!important}
+#page-subjects .subjects-page__list-title b{font-size:var(--hub-readable-card)!important}
+#page-subjects .subjects-page__tabs button,
+#page-subjects .subjects-page__list-actions :is(span,button){font-size:var(--hub-readable-small)!important;min-height:34px!important}
+#page-subjects .subjects-page__course-card{
+  height:auto!important;
+  min-height:190px!important;
+}
+#page-subjects .subjects-page__course-name b{font-size:var(--hub-readable-card)!important}
+#page-subjects .subjects-page__course-name small{font-size:var(--hub-readable-small)!important}
+#page-subjects .subjects-page__status{font-size:var(--hub-readable-micro)!important;min-height:26px!important}
+#page-subjects .subjects-page__course-progress>b{font-size:var(--hub-readable-small)!important}
+#page-subjects .subjects-page__course-meta>span,
+#page-subjects .subjects-page__course-meta small,
+#page-subjects .subjects-page__course-meta b{font-size:var(--hub-readable-micro)!important;line-height:1.3!important}
+#page-subjects .subjects-page__course-actions button{font-size:var(--hub-readable-small)!important;min-height:34px!important}
+#page-subjects .subjects-page__panel-head b{font-size:var(--hub-readable-card)!important}
+#page-subjects .subjects-page__panel-head button{font-size:var(--hub-readable-small)!important}
+#page-subjects .subjects-page__ai-intro p{font-size:var(--hub-readable-small)!important}
+#page-subjects .subjects-page__ai-list>button{min-height:60px!important}
+#page-subjects .subjects-page__ai-list b{font-size:var(--hub-readable-small)!important}
+#page-subjects .subjects-page__ai-list small{font-size:var(--hub-readable-micro)!important}
+#page-subjects .subjects-page__calendar-week span,
+#page-subjects .subjects-page__calendar-grid button{font-size:var(--hub-readable-micro)!important}
+#page-subjects .subjects-page__calendar-grid button{height:28px!important}
+#page-subjects .subjects-page__deadline-list>button{min-height:50px!important}
+#page-subjects .subjects-page__deadline-list b{font-size:var(--hub-readable-small)!important}
+#page-subjects .subjects-page__deadline-list small,
+#page-subjects .subjects-page__deadline-list em{font-size:var(--hub-readable-micro)!important}
+#page-subjects .subjects-page__progress-list>div>span:first-child,
+#page-subjects .subjects-page__progress-list>div>b,
+#page-subjects .subjects-page__heat-grid>b,
+#page-subjects .subjects-page__heat-grid>span,
+#page-subjects .subjects-page__heat-legend span,
+#page-subjects .subjects-page__notes-list label,
+#page-subjects .subjects-page__notes-list time{font-size:var(--hub-readable-micro)!important}
+
+/* Schedule reference: replace 6–10px microcopy with readable text. */
+#page-schedule .schedule-ref__header h2{font-size:var(--hub-readable-page-title)!important}
+#page-schedule .schedule-ref__header p{font-size:var(--hub-readable-body)!important}
+#page-schedule .schedule-ref__range,
+#page-schedule .schedule-ref__btn,
+#page-schedule .schedule-ref__today-btn{font-size:var(--hub-readable-control)!important;min-height:40px!important}
+#page-schedule .schedule-ref__range b{font-size:var(--hub-readable-small)!important}
+#page-schedule .schedule-ref__filter-head,
+#page-schedule .schedule-ref__filter-panel label,
+#page-schedule .schedule-ref__filter-head button{font-size:var(--hub-readable-small)!important}
+#page-schedule .schedule-ref__summary-card{min-height:128px!important}
+#page-schedule .schedule-ref__summary-card small{font-size:var(--hub-readable-small)!important}
+#page-schedule .schedule-ref__summary-card b{font-size:calc(var(--hub-readable-card) + 1px)!important}
+#page-schedule .schedule-ref__summary-card strong{font-size:var(--hub-readable-control)!important}
+#page-schedule .schedule-ref__summary-card p,
+#page-schedule .schedule-ref__summary-card p button{font-size:var(--hub-readable-small)!important}
+#page-schedule .schedule-ref__ring i{font-size:var(--hub-readable-micro)!important}
+#page-schedule .schedule-ref__week-nav b{font-size:var(--hub-readable-small)!important}
+#page-schedule .schedule-ref__segments{height:36px!important}
+#page-schedule .schedule-ref__segments button{font-size:var(--hub-readable-small)!important;min-width:54px!important}
+#page-schedule .schedule-ref__day-heads{height:54px!important}
+#page-schedule .schedule-ref__day-heads b,
+#page-schedule .schedule-ref__day-heads small{font-size:var(--hub-readable-micro)!important}
+#page-schedule .schedule-ref__timeline{height:560px!important}
+#page-schedule .schedule-ref__time-axis span{font-size:var(--hub-readable-micro)!important}
+#page-schedule .schedule-ref__event{
+  min-height:48px!important;
+  padding:6px 7px!important;
+}
+#page-schedule .schedule-ref__event b{font-size:var(--hub-readable-small)!important;line-height:1.15!important}
+#page-schedule .schedule-ref__event span{font-size:var(--hub-readable-micro)!important}
+#page-schedule .schedule-ref__event small{font-size:var(--hub-readable-micro)!important}
+#page-schedule .schedule-ref__day-view-head small,
+#page-schedule .schedule-ref__day-view-head button,
+#page-schedule .schedule-ref__day-event time,
+#page-schedule .schedule-ref__day-empty time,
+#page-schedule .schedule-ref__day-event span,
+#page-schedule .schedule-ref__day-empty span{font-size:var(--hub-readable-small)!important}
+#page-schedule .schedule-ref__day-event b{font-size:var(--hub-readable-card)!important}
+#page-schedule .schedule-ref__month-head h3{font-size:var(--hub-readable-card)!important}
+#page-schedule .schedule-ref__month-weekdays span,
+#page-schedule .schedule-ref__month-grid b,
+#page-schedule .schedule-ref__month-grid span{font-size:var(--hub-readable-micro)!important}
+#page-schedule .schedule-ref__panel-head b{font-size:var(--hub-readable-card)!important}
+#page-schedule .schedule-ref__panel-head button{font-size:var(--hub-readable-small)!important}
+#page-schedule .schedule-ref__progress-list>div>span:first-child,
+#page-schedule .schedule-ref__progress-list>div>b,
+#page-schedule .schedule-ref__heat-grid b,
+#page-schedule .schedule-ref__heat-grid span,
+#page-schedule .schedule-ref__heat-legend span,
+#page-schedule .schedule-ref__notes-grid label,
+#page-schedule .schedule-ref__notes-grid b,
+#page-schedule .schedule-ref__notes-grid small,
+#page-schedule .schedule-ref__notes-grid>p,
+#page-schedule .schedule-ref__notes blockquote{
+  font-size:var(--hub-readable-micro)!important;
+  line-height:1.35!important;
+}
+#page-schedule .schedule-ref__priority-legend>span{font-size:var(--hub-readable-micro)!important;min-height:28px!important}
+
+/* Thesis reference: preserve palette and geometry, but make the text human-readable. */
+#page-research .thesis-page__header h2{font-size:var(--hub-readable-page-title)!important}
+#page-research .thesis-page__header p{font-size:var(--hub-readable-body)!important}
+#page-research .thesis-page__select,
+#page-research .thesis-page__button{font-size:var(--hub-readable-control)!important;min-height:42px!important}
+#page-research .thesis-page__metrics .thesis-page__summary-card{
+  height:auto!important;
+  min-height:128px!important;
+}
+#page-research .thesis-page__summary-card small{font-size:var(--hub-readable-small)!important}
+#page-research .thesis-page__summary-card b{font-size:calc(var(--hub-readable-card) + 2px)!important}
+#page-research .thesis-page__summary-card strong{font-size:var(--hub-readable-control)!important}
+#page-research .thesis-page__summary-card p{font-size:var(--hub-readable-small)!important}
+#page-research .thesis-page__plan-title b{font-size:var(--hub-readable-card)!important}
+#page-research .thesis-page__tabs button,
+#page-research .thesis-page__plan-nav button{font-size:var(--hub-readable-small)!important;min-height:34px!important}
+#page-research .thesis-page__week-label{font-size:var(--hub-readable-card)!important;height:38px!important}
+#page-research .thesis-page__timeline{
+  --tp-timeline-height:520px!important;
+  grid-template-rows:56px var(--tp-timeline-height)!important;
+}
+#page-research .thesis-page__day-head b,
+#page-research .thesis-page__day-head span,
+#page-research .thesis-page__time-axis span{font-size:var(--hub-readable-micro)!important}
+#page-research .thesis-page__event{
+  min-height:48px!important;
+  padding:7px!important;
+}
+#page-research .thesis-page__event b{font-size:var(--hub-readable-small)!important;line-height:1.15!important}
+#page-research .thesis-page__event span{font-size:var(--hub-readable-micro)!important}
+#page-research .thesis-page__panel-head b{font-size:var(--hub-readable-card)!important}
+#page-research .thesis-page__panel-head button{font-size:var(--hub-readable-small)!important}
+#page-research .thesis-page__ai-intro p{font-size:var(--hub-readable-small)!important}
+#page-research .thesis-page__ai-list>button{min-height:60px!important}
+#page-research .thesis-page__ai-list b{font-size:var(--hub-readable-small)!important}
+#page-research .thesis-page__ai-list small{font-size:var(--hub-readable-micro)!important}
+#page-research .thesis-page__mini-week span,
+#page-research .thesis-page__mini-grid button,
+#page-research .thesis-page__milestone-list b,
+#page-research .thesis-page__milestone-list small,
+#page-research .thesis-page__milestone-list em,
+#page-research .thesis-page__progress-list>div>span:first-child,
+#page-research .thesis-page__progress-list>div>b,
+#page-research .thesis-page__heat-grid>b,
+#page-research .thesis-page__heat-grid>span,
+#page-research .thesis-page__heat-legend span,
+#page-research .thesis-page__notes-grid label,
+#page-research .thesis-page__notes-grid b,
+#page-research .thesis-page__notes-grid small{
+  font-size:var(--hub-readable-micro)!important;
+  line-height:1.35!important;
+}
+#page-research .thesis-page__milestone-list>button{min-height:50px!important}
+
+/* Larger text needs fluid wrapping instead of clipping. */
+#page-subjects :is(.subjects-page__course-name b,.subjects-page__course-name small,.subjects-page__course-meta b),
+#page-schedule :is(.schedule-ref__event small,.schedule-ref__week-nav b),
+#page-research :is(.thesis-page__event b,.thesis-page__event span){
+  text-overflow:ellipsis;
+}
+body[data-size="large"] #appRoot .page,
+body[data-size="xlarge"] #appRoot .page{overflow-wrap:anywhere}
+
+/* A comfortable desktop width is more useful than forcing one-screen microtype. */
+@media(min-width:1100px){
+  #appRoot .main{max-width:1720px!important}
+}
+@media(max-width:980px){
+  body{--hub-readable-body:16px;--hub-readable-control:14px;--hub-readable-small:13px;--hub-readable-micro:12px}
+  #page-schedule .schedule-ref__timeline{height:500px!important}
+  #page-research .thesis-page__timeline{--tp-timeline-height:480px!important}
+}
+@media(max-width:620px){
+  #appRoot .main{padding:12px!important}
+  #page-subjects .subjects-page__course-card{min-height:0!important}
+  #page-schedule .schedule-ref__timeline{height:440px!important}
+  #page-research .thesis-page__timeline{--tp-timeline-height:440px!important}
+  #page-schedule .schedule-ref__mobile-agenda time b,
+  #page-schedule .schedule-ref__mobile-agenda time span,
+  #page-schedule .schedule-ref__mobile-agenda>button>div b,
+  #page-schedule .schedule-ref__mobile-agenda>button>div span,
+  #page-schedule .schedule-ref__mobile-agenda>p{font-size:var(--hub-readable-small)!important}
+}
