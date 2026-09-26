@@ -86,6 +86,8 @@ try{
       timelineHeight:Math.round(timeline.getBoundingClientRect().height),
       todayBg:getComputedStyle(today).backgroundColor,
       rootHeight:Math.round(root.getBoundingClientRect().height),
+      eventTitleFont:parseFloat(getComputedStyle(document.querySelector('#page-research .thesis-page__event b')).fontSize)||0,
+      metricBodyFont:parseFloat(getComputedStyle(document.querySelector('#page-research .thesis-page__summary-card small')).fontSize)||0,
       viewportHeight:innerHeight,
       workspaceWidth:Math.round(workspace.getBoundingClientRect().width)
     };
@@ -93,10 +95,11 @@ try{
   console.log('THESIS_GEOMETRY',JSON.stringify(geometry));
   await page.screenshot({path:path.join(OUT,'thesis-desktop-initial-1672x941.png'),fullPage:false});
   assert.ok(geometry.ratio>1.9&&geometry.ratio<2.45,'Desktop thesis workspace is not close to the 67/33 reference split');
-  assert.ok(geometry.metricHeights.every(x=>x>=104&&x<=112),'KPI card height drifted from reference');
-  assert.ok(geometry.timelineHeight>=390&&geometry.timelineHeight<=405,'Weekly timeline geometry drifted');
+  assert.ok(geometry.metricHeights.every(x=>x>=124&&x<=155),'KPI readable height drifted unexpectedly');
+  assert.ok(geometry.timelineHeight>=570&&geometry.timelineHeight<=595,'Weekly timeline readable geometry drifted');
   assert.equal(geometry.todayBg,'rgb(234, 243, 255)','Thursday highlight is not the reference light blue');
-  assert.ok(geometry.rootHeight<=875,'Thesis dashboard became too tall for the high-density reference viewport');
+  assert.ok(geometry.eventTitleFont>=12.5,'Thesis event title fell below readable size');
+  assert.ok(geometry.metricBodyFont>=12.5,'Thesis KPI copy fell below readable size');
 
   const eventChecks=await page.evaluate(()=>{
     const rows=[...document.querySelectorAll('#page-research .thesis-page__event')];
