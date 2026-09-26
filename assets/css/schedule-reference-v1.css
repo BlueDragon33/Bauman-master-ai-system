@@ -460,3 +460,133 @@
   border-color:var(--event-line)!important;
   border-left-color:var(--event-fg)!important;
 }
+
+
+/* Schedule Priority Matrix V4
+   Semantic palette:
+   q1 red    = Khẩn cấp + Quan trọng
+   q3 orange = Khẩn cấp + Không quan trọng
+   q2 blue   = Quan trọng + Không khẩn cấp
+   q4 green  = Không quan trọng + Không khẩn cấp
+   Scope lock: #page-schedule only. */
+#page-schedule .schedule-ref__summary-card.is-neutral{
+  background:linear-gradient(135deg,#f5f8fc,#fbfcfe);
+  border-color:#d9e3ef;
+}
+#page-schedule .schedule-ref__summary-card.is-neutral .schedule-ref__summary-icon{
+  color:#536a88;background:#e8eef6;
+}
+#page-schedule .schedule-ref__priority-summary{border-left-width:4px}
+#page-schedule .schedule-ref__priority-summary.is-priority-q1{background:linear-gradient(135deg,#FDEBEC,#fff7f8);border-color:#F6C7CC;border-left-color:#D84C63}
+#page-schedule .schedule-ref__priority-summary.is-priority-q3{background:linear-gradient(135deg,#FFF2E5,#fffaf5);border-color:#F2D2A8;border-left-color:#E08A2E}
+#page-schedule .schedule-ref__priority-summary.is-priority-q2{background:linear-gradient(135deg,#EAF2FF,#f7faff);border-color:#C8DAF8;border-left-color:#3E7BE0}
+#page-schedule .schedule-ref__priority-summary.is-priority-q4{background:linear-gradient(135deg,#EAF7EF,#f7fcf9);border-color:#C8E4D3;border-left-color:#35A76B}
+#page-schedule .schedule-ref__priority-summary.is-priority-q1 .schedule-ref__summary-icon{background:#f8d8dc;color:#9F3045}
+#page-schedule .schedule-ref__priority-summary.is-priority-q3 .schedule-ref__summary-icon{background:#f8dfbf;color:#9A5E18}
+#page-schedule .schedule-ref__priority-summary.is-priority-q2 .schedule-ref__summary-icon{background:#d7e6fb;color:#234F99}
+#page-schedule .schedule-ref__priority-summary.is-priority-q4 .schedule-ref__summary-icon{background:#d8ecdf;color:#1F7148}
+#page-schedule .schedule-ref__priority-summary>div>button{
+  margin-top:5px;border:0;background:transparent;padding:0;font-size:9.5px;font-weight:800;cursor:pointer;
+}
+#page-schedule .schedule-ref__priority-summary.is-priority-q1>div>button{color:#9F3045}
+#page-schedule .schedule-ref__priority-summary.is-priority-q3>div>button{color:#9A5E18}
+#page-schedule .schedule-ref__priority-summary.is-priority-q2>div>button{color:#234F99}
+#page-schedule .schedule-ref__priority-summary.is-priority-q4>div>button{color:#1F7148}
+
+#page-schedule .schedule-ref__priority-legend{
+  display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:6px 9px;
+  border-bottom:1px solid #e7edf4;background:#fbfcfe;
+}
+#page-schedule .schedule-ref__priority-legend>span{
+  display:inline-flex;align-items:center;gap:4px;min-height:22px;padding:3px 7px;
+  border:1px solid transparent;border-radius:999px;font-size:7.5px;font-weight:800;white-space:nowrap;
+}
+#page-schedule .schedule-ref__priority-legend>span>i{width:7px;height:7px;border-radius:50%;flex:0 0 auto}
+#page-schedule .schedule-ref__priority-legend .is-priority-q1{background:#FDEBEC;border-color:#F6C7CC;color:#9F3045}
+#page-schedule .schedule-ref__priority-legend .is-priority-q1>i{background:#D84C63}
+#page-schedule .schedule-ref__priority-legend .is-priority-q3{background:#FFF2E5;border-color:#F2D2A8;color:#9A5E18}
+#page-schedule .schedule-ref__priority-legend .is-priority-q3>i{background:#E08A2E}
+#page-schedule .schedule-ref__priority-legend .is-priority-q2{background:#EAF2FF;border-color:#C8DAF8;color:#234F99}
+#page-schedule .schedule-ref__priority-legend .is-priority-q2>i{background:#3E7BE0}
+#page-schedule .schedule-ref__priority-legend .is-priority-q4{background:#EAF7EF;border-color:#C8E4D3;color:#1F7148}
+#page-schedule .schedule-ref__priority-legend .is-priority-q4>i{background:#35A76B}
+
+#page-schedule .schedule-ref__dot.is-priority-q1{background:#D84C63}
+#page-schedule .schedule-ref__dot.is-priority-q3{background:#E08A2E}
+#page-schedule .schedule-ref__dot.is-priority-q2{background:#3E7BE0}
+#page-schedule .schedule-ref__dot.is-priority-q4{background:#35A76B}
+
+#page-schedule .schedule-ref__event[data-priority]{
+  background:var(--event-bg)!important;
+  color:var(--event-fg)!important;
+  border-color:var(--event-line)!important;
+  border-left:4px solid var(--event-accent)!important;
+}
+#page-schedule .schedule-ref__event[data-priority]:after{
+  content:"";position:absolute;right:5px;top:5px;width:5px;height:5px;border-radius:50%;background:var(--event-accent);opacity:.9;
+}
+#page-schedule .schedule-ref__event.is-priority-q1{box-shadow:0 3px 9px rgba(216,76,99,.13)}
+#page-schedule .schedule-ref__event.is-priority-q3{box-shadow:0 3px 9px rgba(224,138,46,.12)}
+#page-schedule .schedule-ref__event.is-priority-q2{box-shadow:0 3px 9px rgba(62,123,224,.11)}
+#page-schedule .schedule-ref__event.is-priority-q4{box-shadow:0 3px 9px rgba(53,167,107,.10)}
+
+#page-schedule .schedule-ref__day-event{border-left-width:4px}
+#page-schedule .schedule-ref__day-event.is-priority-q1{background:#FDEBEC;border-color:#F6C7CC;border-left-color:#D84C63}
+#page-schedule .schedule-ref__day-event.is-priority-q3{background:#FFF2E5;border-color:#F2D2A8;border-left-color:#E08A2E}
+#page-schedule .schedule-ref__day-event.is-priority-q2{background:#EAF2FF;border-color:#C8DAF8;border-left-color:#3E7BE0}
+#page-schedule .schedule-ref__day-event.is-priority-q4{background:#EAF7EF;border-color:#C8E4D3;border-left-color:#35A76B}
+#page-schedule .schedule-ref__day-event em,#page-schedule .schedule-ref__mobile-agenda em{
+  display:inline-flex;width:max-content;margin-top:4px;padding:2px 6px;border-radius:999px;font-size:7.5px;font-style:normal;font-weight:800;
+}
+#page-schedule .schedule-ref__day-event.is-priority-q1 em,#page-schedule .schedule-ref__mobile-agenda .is-priority-q1 em{background:#f8d8dc;color:#9F3045}
+#page-schedule .schedule-ref__day-event.is-priority-q3 em,#page-schedule .schedule-ref__mobile-agenda .is-priority-q3 em{background:#f8dfbf;color:#9A5E18}
+#page-schedule .schedule-ref__day-event.is-priority-q2 em,#page-schedule .schedule-ref__mobile-agenda .is-priority-q2 em{background:#d7e6fb;color:#234F99}
+#page-schedule .schedule-ref__day-event.is-priority-q4 em,#page-schedule .schedule-ref__mobile-agenda .is-priority-q4 em{background:#d8ecdf;color:#1F7148}
+
+#page-schedule .schedule-ref__month-grid button[class*="is-priority-"]{position:relative}
+#page-schedule .schedule-ref__month-grid button.is-priority-q1{box-shadow:inset 4px 0 #D84C63}
+#page-schedule .schedule-ref__month-grid button.is-priority-q3{box-shadow:inset 4px 0 #E08A2E}
+#page-schedule .schedule-ref__month-grid button.is-priority-q2{box-shadow:inset 4px 0 #3E7BE0}
+#page-schedule .schedule-ref__month-grid button.is-priority-q4{box-shadow:inset 4px 0 #35A76B}
+#page-schedule .schedule-ref__month-grid button.is-priority-q1 span{color:#9F3045}
+#page-schedule .schedule-ref__month-grid button.is-priority-q3 span{color:#9A5E18}
+#page-schedule .schedule-ref__month-grid button.is-priority-q2 span{color:#234F99}
+#page-schedule .schedule-ref__month-grid button.is-priority-q4 span{color:#1F7148}
+
+#page-schedule .schedule-ref__mini-grid i.is-priority-q1{background:#D84C63}
+#page-schedule .schedule-ref__mini-grid i.is-priority-q3{background:#E08A2E}
+#page-schedule .schedule-ref__mini-grid i.is-priority-q2{background:#3E7BE0}
+#page-schedule .schedule-ref__mini-grid i.is-priority-q4{background:#35A76B}
+
+#page-schedule .schedule-ref__upcoming-list>button[class*="is-priority-"]{border-left:3px solid transparent;padding-left:5px}
+#page-schedule .schedule-ref__upcoming-list>button.is-priority-q1{border-left-color:#D84C63}
+#page-schedule .schedule-ref__upcoming-list>button.is-priority-q3{border-left-color:#E08A2E}
+#page-schedule .schedule-ref__upcoming-list>button.is-priority-q2{border-left-color:#3E7BE0}
+#page-schedule .schedule-ref__upcoming-list>button.is-priority-q4{border-left-color:#35A76B}
+#page-schedule .schedule-ref__upcoming-icon.is-priority-q1{background:#FDEBEC;color:#9F3045}
+#page-schedule .schedule-ref__upcoming-icon.is-priority-q3{background:#FFF2E5;color:#9A5E18}
+#page-schedule .schedule-ref__upcoming-icon.is-priority-q2{background:#EAF2FF;color:#234F99}
+#page-schedule .schedule-ref__upcoming-icon.is-priority-q4{background:#EAF7EF;color:#1F7148}
+
+#page-schedule .schedule-ref__progress-track i.is-priority-q1{background:#D84C63}
+#page-schedule .schedule-ref__progress-track i.is-priority-q3{background:#E08A2E}
+#page-schedule .schedule-ref__progress-track i.is-priority-q2{background:#3E7BE0}
+#page-schedule .schedule-ref__progress-track i.is-priority-q4{background:#35A76B}
+
+#page-schedule .schedule-ref__notes-grid label.is-derived[class*="is-priority-"]{padding-left:7px;border-left:3px solid transparent;border-radius:4px}
+#page-schedule .schedule-ref__notes-grid label.is-derived.is-priority-q1{border-left-color:#D84C63;background:#fff8f9}
+#page-schedule .schedule-ref__notes-grid label.is-derived.is-priority-q3{border-left-color:#E08A2E;background:#fffaf6}
+#page-schedule .schedule-ref__notes-grid label.is-derived.is-priority-q2{border-left-color:#3E7BE0;background:#f8fbff}
+#page-schedule .schedule-ref__notes-grid label.is-derived.is-priority-q4{border-left-color:#35A76B;background:#f8fcf9}
+
+@media(max-width:760px){
+#page-schedule .schedule-ref__priority-legend{display:grid;grid-template-columns:1fr 1fr}
+#page-schedule .schedule-ref__priority-legend>span{white-space:normal;line-height:1.15}
+}
+@media(max-width:620px){
+#page-schedule .schedule-ref__mobile-agenda>button[class*="is-priority-"]{border-left:4px solid transparent}
+#page-schedule .schedule-ref__mobile-agenda>button.is-priority-q1{border-left-color:#D84C63;background:#fffafb}
+#page-schedule .schedule-ref__mobile-agenda>button.is-priority-q3{border-left-color:#E08A2E;background:#fffdf9}
+#page-schedule .schedule-ref__mobile-agenda>button.is-priority-q2{border-left-color:#3E7BE0;background:#fbfdff}
+#page-schedule .schedule-ref__mobile-agenda>button.is-priority-q4{border-left-color:#35A76B;background:#fbfefc}
+}
