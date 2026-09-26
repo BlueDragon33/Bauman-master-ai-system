@@ -152,6 +152,11 @@ body[data-hub-reference-v5="1"] #page-home :is(.hub-safe-achievements,.hub-safe-
   font-size:var(--hub-readable-section)!important;
   line-height:1.25!important;
 }
+body[data-hub-reference-v5="1"] #page-home .hub-safe-main>.hub-safe-section-head h2,
+body[data-hub-reference-v5="1"] #page-home .hub-safe-main .hub-safe-section-head h2{
+  font-size:var(--hub-readable-section)!important;
+  line-height:1.25!important;
+}
 body[data-hub-reference-v5="1"] #page-home .hub-safe-dashboard h2{
   font-size:var(--hub-readable-section)!important;
   line-height:1.25!important;
