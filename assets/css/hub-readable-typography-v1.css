@@ -152,6 +152,10 @@ body[data-hub-reference-v5="1"] #page-home :is(.hub-safe-achievements,.hub-safe-
   font-size:var(--hub-readable-section)!important;
   line-height:1.25!important;
 }
+body[data-hub-reference-v5="1"] #page-home .hub-safe-dashboard h2{
+  font-size:var(--hub-readable-section)!important;
+  line-height:1.25!important;
+}
 body[data-hub-reference-v5="1"] #page-home .hub-safe-dashboard :is(.hub-safe-card,.hub-safe-quick-card,.hub-safe-subject-card,.hub-safe-achievement-card,.hub-safe-overall-card,.hub-safe-schedule-card) b{
   font-size:var(--hub-readable-card)!important;
   line-height:1.3!important;
