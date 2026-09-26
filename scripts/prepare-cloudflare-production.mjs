@@ -39,6 +39,12 @@ function revision() {
   return value;
 }
 
+function accessMode() {
+  return String(process.env.BAUMAN_ACCESS_MODE || 'standalone').trim().toLowerCase() === 'managed'
+    ? 'managed'
+    : 'standalone';
+}
+
 function materialize(templatePath, outputPath, replacements) {
   let source = fs.readFileSync(path.join(root, templatePath), 'utf8');
   for (const [token, value] of Object.entries(replacements)) {
@@ -141,6 +147,15 @@ const runtimeDist = path.join(root, 'runtime-dist');
 fs.rmSync(runtimeDist, { recursive: true, force: true });
 fs.mkdirSync(runtimeDist, { recursive: true });
 fs.copyFileSync(path.join(root, 'index.html'), path.join(runtimeDist, 'index.html'));
+{
+  const runtimeIndexPath = path.join(runtimeDist, 'index.html');
+  let runtimeIndex = fs.readFileSync(runtimeIndexPath, 'utf8');
+  if (!runtimeIndex.includes('meta name="bauman-access-mode"')) {
+    runtimeIndex = runtimeIndex.replace('<meta name="theme-color" content="#050b14">', '<meta name="theme-color" content="#050b14">\n  <meta name="bauman-access-mode" content="standalone">');
+  }
+  runtimeIndex = runtimeIndex.replace(/(<meta name="bauman-access-mode" content=")[^"]*(">)/, `$1${accessMode()}$2`);
+  fs.writeFileSync(runtimeIndexPath, runtimeIndex);
+}
 fs.cpSync(path.join(root, 'assets'), path.join(runtimeDist, 'assets'), { recursive: true });
 fs.cpSync(path.join(root, 'subjects'), path.join(runtimeDist, 'subjects'), { recursive: true });
 fs.cpSync(path.join(root, 'foundation'), path.join(runtimeDist, 'foundation'), { recursive: true });
