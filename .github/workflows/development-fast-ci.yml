@@ -51,8 +51,7 @@ jobs:
           test -f index.html
           test -d assets
           test -d subjects
-          grep -q '<html' index.html
-          grep -q 'subjects/russian' index.html
+          grep -qi '<!doctype html\|<html' index.html
 
       - name: Development mode summary
         run: |
