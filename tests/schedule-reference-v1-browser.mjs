@@ -71,6 +71,34 @@ try{
   await page.waitForSelector('#page-schedule .schedule-ref__filter-panel.is-open',{state:'visible'});
   await page.evaluate(()=>window.BAUMAN_SCHEDULE_REF.toggleFilter());
 
+  await page.evaluate(()=>window.BAUMAN_SCHEDULE_REF.toggleRange());
+  await page.waitForSelector('#page-schedule .schedule-ref__range-popover.is-open',{state:'visible'});
+  await page.evaluate(()=>window.BAUMAN_SCHEDULE_REF.jumpToDate('2026-06-22'));
+  const jumped=await page.evaluate(()=>state.schedule.weekStart);
+  assert.equal(jumped,'2026-06-22','Date navigator did not move to the selected week');
+  await page.evaluate(()=>window.BAUMAN_SCHEDULE_REF.jumpToDate('2026-06-08'));
+
+  const attentionCopy=await page.textContent('#page-schedule .schedule-ref__summary-card.is-orange');
+  assert.ok(!attentionCopy.includes('ca lặp'),'Attention card still treats ordinary repeat sessions as an error');
+
+  const savedWeek=await page.evaluate(()=>state.schedule.weekStart);
+  await page.evaluate(()=>{state.schedule.weekStart='2026-07-13';state.schedule.edit=true;save();window.BAUMAN_SCHEDULE_REF.render()});
+  const blocked=await page.evaluate(()=>({
+    disabledDays:document.querySelectorAll('#page-schedule .schedule-ref__day-col.is-disabled').length,
+    emptySlots:document.querySelectorAll('#page-schedule .schedule-ref__empty-slot').length,
+    blockedBadges:document.querySelectorAll('#page-schedule .schedule-ref__blocked-badge').length
+  }));
+  assert.ok(blocked.disabledDays>=1,'No-study dates are not visibly blocked');
+  assert.equal(blocked.emptySlots,0,'Manual edit exposed assignable slots on blocked dates');
+  assert.ok(blocked.blockedBadges>=1,'Blocked date reason is not visible');
+  await page.evaluate(saved=>{state.schedule.weekStart=saved;state.schedule.edit=false;save();window.BAUMAN_SCHEDULE_REF.render()},savedWeek);
+
+  const upcomingBefore=await page.locator('#page-schedule .schedule-ref__upcoming-list>button').count();
+  await page.evaluate(()=>window.BAUMAN_SCHEDULE_REF.toggleUpcoming());
+  const upcomingAfter=await page.locator('#page-schedule .schedule-ref__upcoming-list>button').count();
+  assert.ok(upcomingAfter>=upcomingBefore,'Expand upcoming reduced the visible schedule list');
+  await page.evaluate(()=>window.BAUMAN_SCHEDULE_REF.toggleUpcoming());
+
   await page.evaluate(()=>window.BAUMAN_SCHEDULE_REF.toggleManual());
   await page.waitForSelector('#page-schedule .schedule-ref__today-btn.is-editing',{state:'visible'});
   await page.evaluate(()=>window.BAUMAN_SCHEDULE_REF.toggleManual());
@@ -90,6 +118,10 @@ try{
   assert.equal(after.topbar,before.topbar,'Schedule interactions mutated shared topbar');
   assert.deepEqual(after.activePage,['page-schedule'],'Schedule interactions changed active route');
   assert.equal(after.ui?.view,'week','Schedule did not return to week view');
+  await page.waitForTimeout(2800);
+  const desktopType=await page.evaluate(()=>({event:parseFloat(getComputedStyle(document.querySelector('#page-schedule .schedule-ref__event b')).fontSize),summary:parseFloat(getComputedStyle(document.querySelector('#page-schedule .schedule-ref__summary-card b')).fontSize)}));
+  assert.ok(desktopType.event>=9,'Desktop calendar event type is too small to scan comfortably');
+  assert.ok(desktopType.summary>=15,'Desktop summary hierarchy regressed');
   await page.screenshot({path:path.join(OUT,'schedule-desktop-1920x1080.png'),fullPage:true});
 
   await page.setViewportSize({width:390,height:844});
@@ -105,6 +137,8 @@ try{
   assert.equal(mobile.weekDisplay,'none','Desktop week grid must collapse on narrow mobile');
   assert.notEqual(mobile.agendaDisplay,'none','Mobile schedule agenda is hidden');
   assert.equal(mobile.active,true,'Schedule reference UI disappeared on mobile');
+  const mobileType=await page.evaluate(()=>parseFloat(getComputedStyle(document.querySelector('#page-schedule .schedule-ref__mobile-agenda>button>div b')).fontSize));
+  assert.ok(mobileType>=10,'Mobile agenda subject type is too small');
   await page.screenshot({path:path.join(OUT,'schedule-mobile-390x844.png'),fullPage:true});
 
   assert.deepEqual(errors,[],'Schedule browser emitted console/page errors');
