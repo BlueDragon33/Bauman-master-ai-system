@@ -90,6 +90,8 @@ try{
       workspaceWidth:Math.round(workspace.getBoundingClientRect().width)
     };
   });
+  console.log('THESIS_GEOMETRY',JSON.stringify(geometry));
+  await page.screenshot({path:path.join(OUT,'thesis-desktop-initial-1672x941.png'),fullPage:false});
   assert.ok(geometry.ratio>1.9&&geometry.ratio<2.45,'Desktop thesis workspace is not close to the 67/33 reference split');
   assert.ok(geometry.metricHeights.every(x=>x>=104&&x<=112),'KPI card height drifted from reference');
   assert.ok(geometry.timelineHeight>=390&&geometry.timelineHeight<=405,'Weekly timeline geometry drifted');
