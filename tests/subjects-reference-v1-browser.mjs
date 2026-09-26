@@ -25,7 +25,7 @@ async function mockControl(page){
 
 async function openSubjects(page){
   await page.goto(BASE,{waitUntil:'domcontentloaded',timeout:30000});
-  await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='authorized',null,{timeout:30000});
+  await page.waitForFunction(()=>['standalone','authorized','offline-grace'].includes(document.documentElement.dataset.baumanDeviceAccess),null,{timeout:30000});
   await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'),null,{timeout:30000});
   await page.waitForFunction(()=>window.BAUMAN_SUBJECTS_REF?.selfCheck?.().patched===true,null,{timeout:15000});
   await page.evaluate(()=>window.app?.page?.('subjects',false));
