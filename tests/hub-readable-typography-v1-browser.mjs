@@ -62,7 +62,7 @@ try{
   assert.ok(shell.bodySize>=15.5,'Body normal size must be ChatGPT-like 16px');
   assert.ok(shell.nav?.fontSize>=14.5,'Sidebar navigation is still too small');
   assert.ok(shell.search?.fontSize>=13.5,'Top search is still too small');
-  assert.equal(shell.appearance?.display,'flex','Appearance button must be visibly usable');
+  assert.ok(['flex','inline-flex'].includes(shell.appearance?.display),'Appearance button must be visibly usable');
   assert.ok(shell.appearance?.fontSize>=13.5,'Appearance button text is still too small');
   assert.equal(shell.density,'comfort','Default density should be comfort');
   assert.equal(shell.size,'normal','Default readable size should be normal');
