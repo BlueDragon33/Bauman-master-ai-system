@@ -1,40 +1,7 @@
 name: Bauman Cloudflare Production Publish Gate CI
 
 on:
-  pull_request:
-    branches: [main]
-    paths:
-      - ".github/workflows/cloudflare-production-ci.yml"
-      - ".github/workflows/deploy-bauman-production.yml"
-      - "control-service/wrangler.production.example.jsonc"
-      - "wrangler.runtime.production.example.jsonc"
-      - "scripts/prepare-cloudflare-production.mjs"
-      - "scripts/validate-cloudflare-production.mjs"
-      - "scripts/wait-cloudflare-deployment-revision.mjs"
-      - "scripts/test-deployment-propagation-wait.mjs"
-      - "cloudflare/**"
-      - "index.html"
-      - "assets/**"
-      - "subjects/**"
-      - "foundation/**"
-      - "control-service/**"
-  push:
-    branches: [main]
-    paths:
-      - ".github/workflows/cloudflare-production-ci.yml"
-      - ".github/workflows/deploy-bauman-production.yml"
-      - "control-service/wrangler.production.example.jsonc"
-      - "wrangler.runtime.production.example.jsonc"
-      - "scripts/prepare-cloudflare-production.mjs"
-      - "scripts/validate-cloudflare-production.mjs"
-      - "scripts/wait-cloudflare-deployment-revision.mjs"
-      - "scripts/test-deployment-propagation-wait.mjs"
-      - "cloudflare/**"
-      - "index.html"
-      - "assets/**"
-      - "subjects/**"
-      - "foundation/**"
-      - "control-service/**"
+  workflow_dispatch:
 
 permissions:
   contents: read

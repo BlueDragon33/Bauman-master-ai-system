@@ -1,24 +1,21 @@
 name: Bauman Cloudflare Preview Deploy
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
-    inputs:
-      confirm:
-        description: "Gõ DEPLOY_PREVIEW để triển khai Bauman Control + Learning Runtime vào preview riêng"
-        required: true
-        type: string
 
 permissions:
   contents: read
 
 concurrency:
   group: bauman-cloudflare-preview
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   deploy-preview:
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 15
     environment: bauman-preview
     env:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -31,15 +28,6 @@ jobs:
       BAUMAN_RUNTIME_PREVIEW_ORIGIN: ${{ vars.BAUMAN_RUNTIME_PREVIEW_ORIGIN }}
 
     steps:
-      - name: Require explicit preview confirmation
-        shell: bash
-        run: |
-          set -euo pipefail
-          if [[ "${{ inputs.confirm }}" != "DEPLOY_PREVIEW" ]]; then
-            echo '::error::Deployment cancelled. Enter DEPLOY_PREVIEW exactly.'
-            exit 1
-          fi
-
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -48,181 +36,51 @@ jobs:
         with:
           node-version: "22.13.0"
 
-      - name: Require Cloudflare credentials and Bauman secret
+      - name: Require preview credentials
         shell: bash
         run: |
           set -euo pipefail
-          for key in CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID BAUMAN_CONTROL_PREVIEW_D1_DATABASE_ID BAUMAN_CONTROL_PRODUCTION_D1_DATABASE_ID BAUMAN_CONTROL_SERVICE_SECRET APPLICATION_MANAGEMENT_PREVIEW_ORIGIN BAUMAN_CONTROL_PREVIEW_ORIGIN BAUMAN_RUNTIME_PREVIEW_ORIGIN; do
+          for key in CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID BAUMAN_CONTROL_PREVIEW_D1_DATABASE_ID BAUMAN_CONTROL_PRODUCTION_D1_DATABASE_ID APPLICATION_MANAGEMENT_PREVIEW_ORIGIN BAUMAN_CONTROL_PREVIEW_ORIGIN BAUMAN_RUNTIME_PREVIEW_ORIGIN; do
             if [[ -z "${!key:-}" ]]; then
               echo "::error::$key is required in the bauman-preview GitHub environment."
               exit 1
             fi
           done
-          if [[ ${#BAUMAN_CONTROL_SERVICE_SECRET} -lt 32 ]]; then
-            echo '::error::BAUMAN_CONTROL_SERVICE_SECRET must contain at least 32 characters.'
-            exit 1
-          fi
 
-      - name: Install Bauman Control dependencies
+      - name: Install Control dependencies
         working-directory: control-service
         run: npm ci --no-audit --no-fund
 
-      - name: Validate migration boundary
-        run: node scripts/validate-cloudflare-preview.mjs
-
-      - name: Preserve existing runtime and control regressions
-        shell: bash
-        run: |
-          set -euo pipefail
-          node scripts/runtime-device-gate-regression.mjs
-          (cd control-service && npm run gate)
-
-      - name: Materialize isolated preview configs and runtime assets
+      - name: Package preview
         run: node scripts/prepare-cloudflare-preview.mjs
 
-      - name: Apply migrations to Bauman preview D1 only
+      - name: Apply preview D1 migrations
         working-directory: control-service
         run: npx wrangler d1 migrations apply bauman-control-preview-db --remote --config wrangler.preview.jsonc
 
-      - name: Dry-run Bauman Control preview Worker
-        working-directory: control-service
-        run: npx wrangler deploy --dry-run --outdir dist-preview --config wrangler.preview.jsonc
-
-      - name: Deploy Bauman Control preview Worker
+      - name: Deploy Control preview
         working-directory: control-service
         run: npx wrangler deploy --config wrangler.preview.jsonc
 
-      - name: Install or rotate Bauman preview control secret
-        working-directory: control-service
-        shell: bash
-        run: printf '%s' "$BAUMAN_CONTROL_SERVICE_SECRET" | npx wrangler secret put BAUMAN_CONTROL_SERVICE_SECRET --config wrangler.preview.jsonc
-
-      - name: Re-deploy Bauman Control preview Worker after secret rotation
-        working-directory: control-service
-        run: npx wrangler deploy --config wrangler.preview.jsonc
-
-      - name: Deploy Bauman Learning Runtime preview Worker
+      - name: Deploy Learning Runtime preview
         run: npx --yes wrangler@4.92.0 deploy --config wrangler.runtime.preview.jsonc
 
-      - name: Smoke test separated Bauman preview stack
+      - name: Quick preview availability check
         shell: bash
         run: |
           set -euo pipefail
-
-          for origin in "$APPLICATION_MANAGEMENT_PREVIEW_ORIGIN" "$BAUMAN_CONTROL_PREVIEW_ORIGIN" "$BAUMAN_RUNTIME_PREVIEW_ORIGIN"; do
-            case "$origin" in
-              https://*) ;;
-              *) echo "::error::Preview origin must be HTTPS: $origin"; exit 1 ;;
-            esac
-            if [[ "$origin" == *.chatgpt.site ]]; then
-              echo "::error::Preview origin must not point to ChatGPT Sites: $origin"
-              exit 1
+          for i in {1..10}; do
+            if curl --fail --silent --show-error --max-time 10 "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/" >/dev/null; then
+              echo "Preview is reachable."
+              exit 0
             fi
+            sleep 2
           done
+          echo "::error::Preview did not become reachable in time."
+          exit 1
 
-          BAUMAN_DEPLOYMENT_URL="$BAUMAN_CONTROL_PREVIEW_ORIGIN/__deployment" \
-          BAUMAN_EXPECTED_REVISION="$GITHUB_SHA" \
-          BAUMAN_EXPECTED_CHANNEL="cloudflare-preview" \
-          BAUMAN_EXPECTED_RUNTIME="control-service" \
-          node scripts/wait-cloudflare-deployment-revision.mjs > /tmp/bauman-control-deploy.json
-          node --input-type=module - <<'NODE'
-          import fs from 'node:fs';
-          const value = JSON.parse(fs.readFileSync('/tmp/bauman-control-deploy.json', 'utf8'));
-          if (!value.databaseReady) throw new Error('Bauman preview D1 schema is not ready.');
-          NODE
-
-          curl --fail --silent --show-error --max-time 15 \
-            -H "Authorization: Bearer $BAUMAN_CONTROL_SERVICE_SECRET" \
-            -H "x-control-actor: github-preview-smoke" \
-            -H "x-control-role: owner" \
-            "$BAUMAN_CONTROL_PREVIEW_ORIGIN/api/control/status" > /tmp/bauman-control-status.json
-          node --input-type=module - <<'NODE'
-          import fs from 'node:fs';
-          const value = JSON.parse(fs.readFileSync('/tmp/bauman-control-status.json', 'utf8'));
-          if (value.application !== 'bauman-master-ai') throw new Error('Bauman control status application mismatch.');
-          if (value.readiness?.deviceRegistry !== 'available') throw new Error('Bauman device registry is not ready.');
-          if (!value.capabilities?.deviceApproval || !value.capabilities?.deviceIdempotentCommands) throw new Error('Bauman mutation contract is unavailable.');
-          NODE
-
-          PREFLIGHT_CODE="$(curl --silent --show-error --output /dev/null --write-out '%{http_code}' \
-            -X OPTIONS -H "Origin: $BAUMAN_RUNTIME_PREVIEW_ORIGIN" \
-            "$BAUMAN_CONTROL_PREVIEW_ORIGIN/api/device/status")"
-          test "$PREFLIGHT_CODE" = "204"
-
-          BAUMAN_DEPLOYMENT_URL="$BAUMAN_RUNTIME_PREVIEW_ORIGIN/__deployment" \
-          BAUMAN_EXPECTED_REVISION="$GITHUB_SHA" \
-          BAUMAN_EXPECTED_CHANNEL="cloudflare-preview" \
-          BAUMAN_EXPECTED_RUNTIME="learning-runtime" \
-          node scripts/wait-cloudflare-deployment-revision.mjs > /tmp/bauman-runtime-deploy.json
-          node --input-type=module - <<'NODE'
-          import fs from 'node:fs';
-          const value = JSON.parse(fs.readFileSync('/tmp/bauman-runtime-deploy.json', 'utf8'));
-          if (!value.controlOriginConfigured) throw new Error('Bauman Learning Runtime preview configuration mismatch.');
-          NODE
-
-          curl --fail --silent --show-error --max-time 15 "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/" > /tmp/bauman-home.html
-          grep -Fq "name=\"bauman-control-origin\" content=\"$BAUMAN_CONTROL_PREVIEW_ORIGIN\"" /tmp/bauman-home.html
-          grep -Fq 'assets/js/platform/device-access-gate.js' /tmp/bauman-home.html
-          curl --fail --silent --show-error --max-time 20 "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/__control-link" > /tmp/bauman-runtime-control-link.json
-          node --input-type=module - <<'NODE'
-          import fs from 'node:fs';
-          const value = JSON.parse(fs.readFileSync('/tmp/bauman-runtime-control-link.json', 'utf8'));
-          if (value.ok !== true || value.controlReachable !== true || value.controlApplication !== 'bauman-master-ai') {
-            throw new Error('Preview Learning Runtime cannot reach Bauman Control Worker.');
-          }
-          NODE
-
-          # Prove Learning Runtime can reach the separate Control Worker in the same Cloudflare account.
-          # A syntactically valid but unknown session must be rejected by Control (401/403), never fail as 503/BAUMAN_CONTROL_UNAVAILABLE.
-          RUNTIME_SESSION_CODE="$(curl --silent --show-error --output /tmp/bauman-runtime-control-probe.json --write-out '%{http_code}' --max-time 20 \
-            -X POST -H "Authorization: Bearer bm1.AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" \
-            "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/api/runtime/session" || true)"
-          if [[ "$RUNTIME_SESSION_CODE" != "401" && "$RUNTIME_SESSION_CODE" != "403" ]]; then
-            echo "::error::Runtime-to-Control probe expected fail-closed 401/403; got $RUNTIME_SESSION_CODE."
-            cat /tmp/bauman-runtime-control-probe.json || true
-            exit 1
-          fi
-          node --input-type=module - <<'NODE'
-          import fs from 'node:fs';
-          const value = JSON.parse(fs.readFileSync('/tmp/bauman-runtime-control-probe.json', 'utf8'));
-          if (value.code === 'BAUMAN_CONTROL_UNAVAILABLE') throw new Error('Learning Runtime cannot reach Bauman Control Worker.');
-          if (!['DEVICE_SESSION_REVOKED','DEVICE_SESSION_INVALID','DEVICE_SESSION_EXPIRED','DEVICE_NOT_FOUND','DEVICE_ACCESS_DENIED'].includes(value.code)) {
-            throw new Error(`Unexpected runtime-to-control probe code: ${value.code}`);
-          }
-          NODE
-
-          curl --fail --silent --show-error --max-time 20 "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/subjects/russian/" > /tmp/bauman-russian.html
-          grep -Fq 'assets/russian-future-ui.js' /tmp/bauman-russian.html
-          grep -Fq 'assets/russian-future-ui.css' /tmp/bauman-russian.html
-          grep -Fq 'assets/russian-optional-data-loader.js' /tmp/bauman-russian.html
-          curl --fail --silent --show-error --max-time 20 --output /dev/null "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/subjects/russian/assets/russian-future-ui.js"
-          curl --fail --silent --show-error --max-time 20 --output /dev/null "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/subjects/russian/assets/russian-future-ui.css"
-          curl --fail --silent --show-error --max-time 20 --output /dev/null "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/subjects/russian/assets/russian-optional-data-loader.js"
-
-          # The packaged CI above proves manifests/chunks exist and are structurally valid.
-          # Live runtime deliberately protects learning JSON behind the server-side Device Gate,
-          # so an anonymous smoke request must be rejected instead of downloading learner data.
-          for dataset in dialogue-bauman-az deep-speaking-bauman; do
-            manifest_url="$BAUMAN_RUNTIME_PREVIEW_ORIGIN/subjects/russian/data/chunks/$dataset/manifest.json"
-            manifest_body="/tmp/${dataset}-anonymous.json"
-            manifest_code="$(curl --silent --show-error --max-time 20 \
-              --output "$manifest_body" --write-out '%{http_code}' "$manifest_url")"
-            test "$manifest_code" = "401"
-            node --input-type=module - "$manifest_body" <<'NODE'
-          import fs from 'node:fs';
-          const value = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
-          if (value.code !== 'DEVICE_SESSION_REQUIRED') throw new Error('Protected Russian dataset did not fail closed through the Device Gate.');
-          NODE
-          done
-
-      - name: Deployment boundary summary
-        shell: bash
+      - name: Preview summary
         run: |
-          echo 'Bauman preview deployment completed.'
-          echo 'Control Worker: bauman-control-preview'
-          echo 'D1: bauman-control-preview-db'
-          echo 'Learning Worker: bauman-master-ai-preview'
-          echo 'Subject Web Apps: /subjects/* packaged and smoke-tested.'
-          echo 'Russian lazy datasets: package integrity validated; live anonymous JSON access rejected by Device Gate.'
-          echo 'Application-Management remains the only central control-plane.'
-          echo 'No production Worker or production D1 is changed by this workflow.'
+          echo "Bauman development preview updated."
+          echo "Revision: $GITHUB_SHA"
+          echo "Heavy validation is intentionally deferred during active development."

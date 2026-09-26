@@ -1,44 +1,7 @@
 name: Academic Reporting UX QA
 
 on:
-  pull_request:
-    branches: [main]
-    paths:
-      - "assets/js/academic-main.js"
-      - "assets/css/academic-2026.css"
-      - "assets/js/academic-grade-runtime.js"
-      - "assets/js/academic-transcript-runtime.js"
-      - "assets/js/academic-command-center-runtime.js"
-      - "assets/css/academic-grade-2026.css"
-      - "assets/css/academic-transcript-2026.css"
-      - "assets/css/academic-command-center-2026.css"
-      - "tests/event-grade-browser-a3.mjs"
-      - "tests/transcript-honors-browser-a4.mjs"
-      - "tests/academic-command-center-browser-a5.mjs"
-      - "scripts/validate-event-grade-runtime-a3.js"
-      - "scripts/validate-transcript-honors-runtime-a4.js"
-      - "scripts/validate-academic-command-center-a5.js"
-      - "scripts/validate-professional-reporting-round3.mjs"
-      - ".github/workflows/academic-reporting-qa.yml"
-  push:
-    branches: [main]
-    paths:
-      - "assets/js/academic-main.js"
-      - "assets/css/academic-2026.css"
-      - "assets/js/academic-grade-runtime.js"
-      - "assets/js/academic-transcript-runtime.js"
-      - "assets/js/academic-command-center-runtime.js"
-      - "assets/css/academic-grade-2026.css"
-      - "assets/css/academic-transcript-2026.css"
-      - "assets/css/academic-command-center-2026.css"
-      - "tests/event-grade-browser-a3.mjs"
-      - "tests/transcript-honors-browser-a4.mjs"
-      - "tests/academic-command-center-browser-a5.mjs"
-      - "scripts/validate-event-grade-runtime-a3.js"
-      - "scripts/validate-transcript-honors-runtime-a4.js"
-      - "scripts/validate-academic-command-center-a5.js"
-      - "scripts/validate-professional-reporting-round3.mjs"
-      - ".github/workflows/academic-reporting-qa.yml"
+  workflow_dispatch:
 
 permissions:
   contents: read

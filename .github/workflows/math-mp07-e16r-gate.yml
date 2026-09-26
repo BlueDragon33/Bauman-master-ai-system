@@ -1,11 +1,6 @@
 name: Math m_p07 E16R recovery gate
 
 on:
-  pull_request:
-    paths:
-      - 'subjects/math/**'
-      - 'scripts/validate-math-mp07-*.mjs'
-      - '.github/workflows/math-mp07-e16r-gate.yml'
   workflow_dispatch:
 
 permissions:

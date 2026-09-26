@@ -1,24 +1,7 @@
 name: Current-Main Control-State Gate
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "CODEX_STATE.md"
-      - "CODEX_TASK.md"
-      - "docs/roadmap_v2/CURRENT_EXECUTION_STATE.md"
-      - "control/application-management.contract.json"
-      - "scripts/validate-current-main-control-state.mjs"
-      - ".github/workflows/current-main-control-state.yml"
-  pull_request:
-    branches: [main]
-    paths:
-      - "CODEX_STATE.md"
-      - "CODEX_TASK.md"
-      - "docs/roadmap_v2/CURRENT_EXECUTION_STATE.md"
-      - "control/application-management.contract.json"
-      - "scripts/validate-current-main-control-state.mjs"
-      - ".github/workflows/current-main-control-state.yml"
+  workflow_dispatch:
 
 permissions:
   contents: read

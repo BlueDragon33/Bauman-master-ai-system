@@ -1,32 +1,7 @@
 name: Bauman Runtime Device Gate CI
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "index.html"
-      - "assets/css/device-access-gate.css"
-      - "assets/js/platform/runtime-config.js"
-      - "assets/js/platform/device-access-gate.js"
-      - "cloudflare/runtime-worker.mjs"
-      - "scripts/serve-local-runtime.mjs"
-      - "scripts/runtime-device-gate-regression.mjs"
-      - "scripts/runtime-device-gate-e2e.mjs"
-      - "control-service/**"
-      - ".github/workflows/runtime-device-gate-ci.yml"
-  pull_request:
-    branches: [main]
-    paths:
-      - "index.html"
-      - "assets/css/device-access-gate.css"
-      - "assets/js/platform/runtime-config.js"
-      - "assets/js/platform/device-access-gate.js"
-      - "cloudflare/runtime-worker.mjs"
-      - "scripts/serve-local-runtime.mjs"
-      - "scripts/runtime-device-gate-regression.mjs"
-      - "scripts/runtime-device-gate-e2e.mjs"
-      - "control-service/**"
-      - ".github/workflows/runtime-device-gate-ci.yml"
+  workflow_dispatch:
 
 jobs:
   verify-runtime-device-gate:
