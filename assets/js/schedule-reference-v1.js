@@ -180,7 +180,7 @@ function toolbar(){
 }
 function eventCard(r,d){
   var w=slotWindow(r.slot),top=((w[0]-360)/720*100),h=Math.max(5,(w[1]-w[0])/720*100),k=priorityKey(r.entry),m=priorityMeta(k);
-  return '<button type="button" class="schedule-ref__event is-priority-'+k+'" data-priority="'+k+'" data-subject="'+esc(r.entry.subjectId||'')+'" style="--top:'+top+'%;--height:'+h+'%;--event-bg:'+m.bg+';--event-fg:'+m.fg+';--event-line:'+m.line+';--event-accent:'+m.accent+'" onclick="BAUMAN_SCHEDULE_REF.openSlot(\''+iso(d)+'\',\''+esc(r.slotId)+'\')" title="'+esc(m.label+' · '+(r.entry.learningItem||r.entry.label||'Học theo lịch'))+'"><b>'+esc(subjectName(r.entry.subjectId))+'</b><span>'+esc(r.slot.time)+'</span><small>'+esc(r.entry.learningItem||r.entry.label||'Học theo lịch')+'</small></button>';
+  return '<button type="button" class="schedule-ref__event is-priority-'+k+'" data-priority="'+k+'" data-subject="'+esc(r.entry.subjectId||'')+'" data-entry-key="'+esc(r.key||'')+'" style="--top:'+top+'%;--height:'+h+'%;--event-bg:'+m.bg+';--event-fg:'+m.fg+';--event-line:'+m.line+';--event-accent:'+m.accent+'" onclick="BAUMAN_SCHEDULE_REF.openSlot(\''+iso(d)+'\',\''+esc(r.slotId)+'\')" title="'+esc(m.label+' · '+(r.entry.learningItem||r.entry.label||'Học theo lịch'))+'"><b>'+esc(subjectName(r.entry.subjectId))+'</b><span>'+esc(r.slot.time)+'</span><small>'+esc(r.entry.learningItem||r.entry.label||'Học theo lịch')+'</small></button>';
 }
 function emptySlots(d){
   var sc=scheduleState();if(!sc||!sc.edit||!dateStatus(d).allowed)return '';
