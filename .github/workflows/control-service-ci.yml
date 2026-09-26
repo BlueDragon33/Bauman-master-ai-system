@@ -1,20 +1,7 @@
 name: Bauman Control Service CI
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - "control-service/**"
-      - "control/application-management.contract.json"
-      - "CONTROL_INTEGRATION.md"
-      - ".github/workflows/control-service-ci.yml"
-  pull_request:
-    branches: [main]
-    paths:
-      - "control-service/**"
-      - "control/application-management.contract.json"
-      - "CONTROL_INTEGRATION.md"
-      - ".github/workflows/control-service-ci.yml"
+  workflow_dispatch:
 
 jobs:
   verify:
