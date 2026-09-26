@@ -4,6 +4,8 @@
   const config = global.BAUMAN_RUNTIME_CONFIG && global.BAUMAN_RUNTIME_CONFIG.control;
   const platformAccessMode = document.querySelector('meta[name="bauman-platform-access"]')?.content?.trim() || '';
   const platformAuthorized = platformAccessMode === 'chatgpt-site-owner-private';
+  const standaloneDevelopment = config?.accessMode === 'standalone'
+    || (document.querySelector('meta[name="bauman-access-mode"]')?.content || '').trim().toLowerCase() === 'standalone';
   const ROOT_STATE = 'baumanDeviceAccess';
   const DB_NAME = 'bauman-device-identity-v4';
   const STORE_NAME = 'identity';
@@ -12,8 +14,9 @@
   const encoder = new TextEncoder();
 
   global.BAUMAN_DEVICE_ACCESS_BOUNDARY = Object.freeze({
-    mode: platformAuthorized ? platformAccessMode : 'bauman-control-v4',
+    mode: standaloneDevelopment ? 'standalone-development' : (platformAuthorized ? platformAccessMode : 'bauman-control-v4'),
     platformAuthorized,
+    standaloneDevelopment,
     controlProtocol: config?.protocol || '',
   });
 
@@ -398,6 +401,10 @@
     clearTimers();
     let identity = null;
     try {
+      if (standaloneDevelopment) {
+        allow('standalone', 'Standalone Development Mode · không yêu cầu duyệt thiết bị.');
+        return;
+      }
       if (platformAuthorized) {
         allow('authorized', 'Quyền truy cập được bảo vệ bởi ChatGPT Site owner-private.');
         return;
@@ -476,6 +483,6 @@
     if (event.key === SESSION_KEY) void reconcile(false);
   });
 
-  gateElement();
-  void reconcile(true);
+  if (!standaloneDevelopment) gateElement();
+  void reconcile(!standaloneDevelopment);
 })(window);
