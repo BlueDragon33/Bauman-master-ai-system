@@ -3,7 +3,7 @@
    Canonical state and scheduling semantics remain owned by main.js. */
 (function(){
 'use strict';
-var RELEASE='SCHEDULE_REFERENCE_V2_2026_09_26';
+var RELEASE='SCHEDULE_PRIORITY_MATRIX_V4_2026_09_26';
 var VIEW_KEY='bauman_schedule_reference_view_v1';
 var NOTE_KEY='bauman_schedule_reference_notes_v1';
 var SUGGESTION_KEY='bauman_schedule_reference_suggestions_v2';
@@ -24,8 +24,34 @@ function fmt(d){return pad(d.getDate())+'/'+pad(d.getMonth()+1)+'/'+d.getFullYea
 function short(d){return pad(d.getDate())+'/'+pad(d.getMonth()+1)}
 function dayName(d){return ['Chủ nhật','Thứ 2','Thứ 3','Thứ 4','Thứ 5','Thứ 6','Thứ 7'][d.getDay()]}
 function monthLabel(d){return 'Tháng '+(d.getMonth()+1)+', '+d.getFullYear()}
-function tone(id){return ({russian:'rose',math:'blue',programming:'violet',ai:'cyan',systems:'amber',signal:'green',research:'pink',foundation:'slate'})[id]||'slate'}
-function tonePaint(t){return ({rose:{bg:'#ffd2da',fg:'#9e2d45',line:'#eaa9b6'},blue:{bg:'#cee2ff',fg:'#2459a4',line:'#a9c7f1'},violet:{bg:'#ddd2ff',fg:'#593eaa',line:'#bfaef0'},cyan:{bg:'#cfeef3',fg:'#1b7186',line:'#a7d8e1'},amber:{bg:'#ffe9a9',fg:'#88610e',line:'#e7cc78'},green:{bg:'#cdebd9',fg:'#1f7047',line:'#a7d4b8'},pink:{bg:'#f5d1e3',fg:'#9b3a72',line:'#deb0c8'},slate:{bg:'#dde7f0',fg:'#4c5e73',line:'#becddd'}})[t]||{bg:'#dde7f0',fg:'#4c5e73',line:'#becddd'}}
+var PRIORITY_KEYS=['q1','q3','q2','q4'];
+function priorityMeta(key){
+  return ({
+    q1:{key:'q1',label:'Khẩn cấp + Quan trọng',short:'Khẩn + Quan trọng',tone:'red',bg:'#FDEBEC',fg:'#9F3045',line:'#F6C7CC',accent:'#D84C63',rank:1},
+    q3:{key:'q3',label:'Khẩn cấp + Không quan trọng',short:'Khẩn + Không quan trọng',tone:'orange',bg:'#FFF2E5',fg:'#9A5E18',line:'#F2D2A8',accent:'#E08A2E',rank:2},
+    q2:{key:'q2',label:'Quan trọng + Không khẩn cấp',short:'Quan trọng + Không khẩn',tone:'blue',bg:'#EAF2FF',fg:'#234F99',line:'#C8DAF8',accent:'#3E7BE0',rank:3},
+    q4:{key:'q4',label:'Không quan trọng + Không khẩn cấp',short:'Bình thường',tone:'green',bg:'#EAF7EF',fg:'#1F7148',line:'#C8E4D3',accent:'#35A76B',rank:4}
+  })[key]||({key:'q4',label:'Không quan trọng + Không khẩn cấp',short:'Bình thường',tone:'green',bg:'#EAF7EF',fg:'#1F7148',line:'#C8E4D3',accent:'#35A76B',rank:4});
+}
+function priorityKey(entryOrSubject){
+  var entry=entryOrSubject&&typeof entryOrSubject==='object'?entryOrSubject:null;
+  var direct=entry&&String(entry.priority||'');
+  if(PRIORITY_KEYS.indexOf(direct)>=0)return direct;
+  var id=entry?entry.subjectId:entryOrSubject,s=subjects()[id],fallback=s&&String(s.priority||'');
+  return PRIORITY_KEYS.indexOf(fallback)>=0?fallback:'q4';
+}
+function priorityCounts(records){
+  var out={q1:0,q3:0,q2:0,q4:0};
+  (records||[]).forEach(function(r){var k=priorityKey(r.entry||r);out[k]=(out[k]||0)+1});
+  return out;
+}
+function highestPriority(records){
+  var counts=priorityCounts(records);
+  return PRIORITY_KEYS.find(function(k){return counts[k]>0})||'q4';
+}
+function priorityLegend(){
+  return '<div class="schedule-ref__priority-legend" aria-label="Mức độ ưu tiên">'+PRIORITY_KEYS.map(function(k){var m=priorityMeta(k);return '<span class="is-priority-'+k+'" title="'+esc(m.label)+'"><i></i><b>'+esc(m.label)+'</b></span>'}).join('')+'</div>';
+}
 function subjectName(id){var s=subjects()[id];return s&&s.name?s.name:(id||'Môn học')}
 function allSlots(){var a=[];try{if(typeof MAIN_SLOTS!=='undefined')a=a.concat(MAIN_SLOTS)}catch(e){}try{if(typeof REVIEW_SLOTS!=='undefined')a=a.concat(REVIEW_SLOTS)}catch(e){}return a}
 function slotById(id){return allSlots().find(function(x){return x.id===id})||null}
@@ -100,7 +126,7 @@ function weekCapacity(){var total=0;weekDays().forEach(function(d){if(dateStatus
 function filterPanel(){
   var list=Object.values(subjects());
   return '<div class="schedule-ref__filter-panel '+(ui.filterOpen?'is-open':'')+'"><div class="schedule-ref__filter-head"><b>Hiển thị môn</b><button type="button" onclick="BAUMAN_SCHEDULE_REF.clearFilters()">Tất cả</button></div>'+
-    list.map(function(s){return '<label><input type="checkbox" '+(ui.hidden.has(s.id)?'':'checked')+' onchange="BAUMAN_SCHEDULE_REF.filterSubject(\''+esc(s.id)+'\',this.checked)"><i class="schedule-ref__dot is-'+tone(s.id)+'"></i><span>'+esc(s.name)+'</span></label>'}).join('')+
+    list.map(function(s){var k=priorityKey(s.id),m=priorityMeta(k);return '<label title="'+esc(m.label)+'"><input type="checkbox" '+(ui.hidden.has(s.id)?'':'checked')+' onchange="BAUMAN_SCHEDULE_REF.filterSubject(\''+esc(s.id)+'\',this.checked)"><i class="schedule-ref__dot is-priority-'+k+'"></i><span>'+esc(s.name)+'</span></label>'}).join('')+
     '</div>';
 }
 function rangePanel(){
@@ -124,12 +150,16 @@ function suggestions(){
   if(least)out.push({id:'balance-'+least.id,title:'Cân bằng thêm môn '+least.name,desc:least.name+' đang có '+(count[least.id]||0)+' ca trong tuần đang xem.'});
   return out.slice(0,3);
 }
+function prioritySummaryCard(records){
+  var c=priorityCounts(records),top=highestPriority(records),m=priorityMeta(top),urgent=c.q1+c.q3;
+  return '<article class="schedule-ref__summary-card schedule-ref__priority-summary is-priority-'+top+'"><span class="schedule-ref__summary-icon">!</span><div><small>Ưu tiên tuần này</small><b>'+urgent+' việc khẩn cấp</b><strong>'+c.q1+' đỏ · '+c.q3+' cam · '+c.q2+' xanh dương · '+c.q4+' xanh lá</strong><p>'+esc(m.label)+'</p><button type="button" onclick="BAUMAN_SCHEDULE_REF.openPlan()">Điều chỉnh mức độ →</button></div></article>';
+}
 function summary(){
-  var today=stats(entriesForDate(new Date())),week=stats(weekRecords()),p=progress(),sug=suggestions(),attention=Math.max(0,weekCapacity()-week.sessions);
+  var todayRecords=entriesForDate(new Date()),weekRecordsNow=weekRecords(),today=stats(todayRecords),week=stats(weekRecordsNow),p=progress(),sug=suggestions();
   return '<section class="schedule-ref__summary">'+
-    card('blue','▣','Hôm nay',today.sessions+' phiên học',today.hours.toFixed(1)+' giờ','Hoàn thành '+(p.pct||0)+'% lịch giai đoạn','ring',p.pct||0)+
-    card('green','▥','Tuần này',week.sessions+' buổi học',week.hours.toFixed(1)+' giờ','Theo tuần đang hiển thị','bars',0)+
-    card('orange','!','Công việc cần chú ý',attention+' ca trống tuần',week.subjects+' môn đang phân bổ',attention?'Có thể cân đối thêm trong tuần':'Lịch tuần đã được phủ kín','link',0)+
+    card('neutral','▣','Hôm nay',today.sessions+' phiên học',today.hours.toFixed(1)+' giờ','Hoàn thành '+(p.pct||0)+'% lịch giai đoạn','ring',p.pct||0)+
+    card('neutral','▥','Tuần này',week.sessions+' buổi học',week.hours.toFixed(1)+' giờ','Theo tuần đang hiển thị','bars',0)+
+    prioritySummaryCard(weekRecordsNow)+
     card('purple','✦','Gợi ý tự động',sug.length+' gợi ý mới','Theo '+week.subjects+' môn','Dựa trên lịch và tiến độ hiện có','chev',0)+
     '</section>';
 }
@@ -149,8 +179,8 @@ function toolbar(){
     '<button class="schedule-ref__today-btn" type="button" onclick="BAUMAN_SCHEDULE_REF.today()">＋ Hôm nay</button></div></div>';
 }
 function eventCard(r,d){
-  var w=slotWindow(r.slot),top=((w[0]-360)/720*100),h=Math.max(5,(w[1]-w[0])/720*100),t=tone(r.entry.subjectId),paint=tonePaint(t);
-  return '<button type="button" class="schedule-ref__event is-'+t+'" style="--top:'+top+'%;--height:'+h+'%;--event-bg:'+paint.bg+';--event-fg:'+paint.fg+';--event-line:'+paint.line+'" onclick="BAUMAN_SCHEDULE_REF.openSlot(\''+iso(d)+'\',\''+esc(r.slotId)+'\')" title="'+esc(r.entry.learningItem||r.entry.label||'Học theo lịch')+'"><b>'+esc(subjectName(r.entry.subjectId))+'</b><span>'+esc(r.slot.time)+'</span><small>'+esc(r.entry.learningItem||r.entry.label||'Học theo lịch')+'</small></button>';
+  var w=slotWindow(r.slot),top=((w[0]-360)/720*100),h=Math.max(5,(w[1]-w[0])/720*100),k=priorityKey(r.entry),m=priorityMeta(k);
+  return '<button type="button" class="schedule-ref__event is-priority-'+k+'" data-priority="'+k+'" data-subject="'+esc(r.entry.subjectId||'')+'" data-entry-key="'+esc(r.key||'')+'" style="--top:'+top+'%;--height:'+h+'%;--event-bg:'+m.bg+';--event-fg:'+m.fg+';--event-line:'+m.line+';--event-accent:'+m.accent+'" onclick="BAUMAN_SCHEDULE_REF.openSlot(\''+iso(d)+'\',\''+esc(r.slotId)+'\')" title="'+esc(m.label+' · '+(r.entry.learningItem||r.entry.label||'Học theo lịch'))+'"><b>'+esc(subjectName(r.entry.subjectId))+'</b><span>'+esc(r.slot.time)+'</span><small>'+esc(r.entry.learningItem||r.entry.label||'Học theo lịch')+'</small></button>';
 }
 function emptySlots(d){
   var sc=scheduleState();if(!sc||!sc.edit||!dateStatus(d).allowed)return '';
@@ -168,37 +198,37 @@ function dayView(){
   var d=parse(ui.selectedDate||iso(weekStart())),existing=new Map(entriesForDate(d).map(function(x){return [x.slotId,x]})),slots=eligibleSlots(d),st=dateStatus(d);
   return '<div class="schedule-ref__day-view"><div class="schedule-ref__day-view-head"><div><small>'+dayName(d)+'</small><h3>'+fmt(d)+'</h3></div><button type="button" onclick="BAUMAN_SCHEDULE_REF.setView(\'week\')">Xem tuần</button></div>'+
   (!st.allowed?'<div class="schedule-ref__day-blocked"><b>'+esc(st.reason)+'</b><span>Ngày này được khóa theo quy tắc lịch hiện tại; không tạo ca mới.</span></div>':'')+
-  '<div class="schedule-ref__day-agenda">'+slots.map(function(s){var r=existing.get(s.id);if(r)return '<button type="button" class="schedule-ref__day-event is-'+tone(r.entry.subjectId)+'" onclick="BAUMAN_SCHEDULE_REF.openSlot(\''+iso(d)+'\',\''+esc(s.id)+'\')"><time>'+esc(s.time)+'</time><div><b>'+esc(subjectName(r.entry.subjectId))+'</b><span>'+esc(r.entry.learningItem||r.entry.label||'Học theo lịch')+'</span></div></button>';if(!st.allowed)return '<div class="schedule-ref__day-empty is-disabled"><time>'+esc(s.time)+'</time><span>Không xếp lịch</span></div>';return '<button type="button" class="schedule-ref__day-empty" onclick="BAUMAN_SCHEDULE_REF.openSlot(\''+iso(d)+'\',\''+esc(s.id)+'\')"><time>'+esc(s.time)+'</time><span>'+(scheduleState()&&scheduleState().edit?'＋ Gán ca học':'Chưa có lịch')+'</span></button>'}).join('')+
+  '<div class="schedule-ref__day-agenda">'+slots.map(function(s){var r=existing.get(s.id);if(r){var k=priorityKey(r.entry),m=priorityMeta(k);return '<button type="button" class="schedule-ref__day-event is-priority-'+k+'" data-priority="'+k+'" onclick="BAUMAN_SCHEDULE_REF.openSlot(\''+iso(d)+'\',\''+esc(s.id)+'\')"><time>'+esc(s.time)+'</time><div><b>'+esc(subjectName(r.entry.subjectId))+'</b><span>'+esc(r.entry.learningItem||r.entry.label||'Học theo lịch')+'</span><em>'+esc(m.short)+'</em></div></button>'}if(!st.allowed)return '<div class="schedule-ref__day-empty is-disabled"><time>'+esc(s.time)+'</time><span>Không xếp lịch</span></div>';return '<button type="button" class="schedule-ref__day-empty" onclick="BAUMAN_SCHEDULE_REF.openSlot(\''+iso(d)+'\',\''+esc(s.id)+'\')"><time>'+esc(s.time)+'</time><span>'+(scheduleState()&&scheduleState().edit?'＋ Gán ca học':'Chưa có lịch')+'</span></button>'}).join('')+
   '</div></div>';
 }
 function monthCells(base){var first=new Date(base.getFullYear(),base.getMonth(),1),start=monday(first),a=[];for(var i=0;i<42;i++)a.push(add(start,i));return a}
 function monthView(){
   var base=parse(ui.selectedDate||iso(weekStart())),cells=monthCells(base);
-  return '<div class="schedule-ref__month-view"><div class="schedule-ref__month-head"><button type="button" onclick="BAUMAN_SCHEDULE_REF.shiftMonth(-1)">‹</button><h3>'+monthLabel(base)+'</h3><button type="button" onclick="BAUMAN_SCHEDULE_REF.shiftMonth(1)">›</button></div><div class="schedule-ref__month-weekdays">'+['T2','T3','T4','T5','T6','T7','CN'].map(function(x){return '<span>'+x+'</span>'}).join('')+'</div><div class="schedule-ref__month-grid">'+cells.map(function(d){var n=entriesForDate(d).length;return '<button type="button" class="'+(d.getMonth()!==base.getMonth()?'is-outside ':'')+(iso(d)===iso(new Date())?'is-today':'')+'" onclick="BAUMAN_SCHEDULE_REF.selectDay(\''+iso(d)+'\')"><b>'+d.getDate()+'</b><span>'+(n?n+' phiên':'')+'</span></button>'}).join('')+'</div></div>';
+  return '<div class="schedule-ref__month-view"><div class="schedule-ref__month-head"><button type="button" onclick="BAUMAN_SCHEDULE_REF.shiftMonth(-1)">‹</button><h3>'+monthLabel(base)+'</h3><button type="button" onclick="BAUMAN_SCHEDULE_REF.shiftMonth(1)">›</button></div><div class="schedule-ref__month-weekdays">'+['T2','T3','T4','T5','T6','T7','CN'].map(function(x){return '<span>'+x+'</span>'}).join('')+'</div><div class="schedule-ref__month-grid">'+cells.map(function(d){var records=entriesForDate(d),n=records.length,k=n?highestPriority(records):'';return '<button type="button" class="'+(d.getMonth()!==base.getMonth()?'is-outside ':'')+(iso(d)===iso(new Date())?'is-today ':'')+(k?'is-priority-'+k:'')+'" onclick="BAUMAN_SCHEDULE_REF.selectDay(\''+iso(d)+'\')"><b>'+d.getDate()+'</b><span>'+(n?n+' phiên':'')+'</span></button>'}).join('')+'</div></div>';
 }
 function mobileAgenda(){
   if(ui.view!=='week')return '';
   var rows=[];weekDays().forEach(function(d){entriesForDate(d).forEach(function(r){rows.push({d:d,r:r})})});
-  return '<div class="schedule-ref__mobile-agenda">'+(rows.length?rows.map(function(x){return '<button type="button" onclick="BAUMAN_SCHEDULE_REF.openSlot(\''+iso(x.d)+'\',\''+esc(x.r.slotId)+'\')"><time><b>'+dayName(x.d).replace('Thứ ','T')+'</b><span>'+short(x.d)+'</span></time><i class="schedule-ref__dot is-'+tone(x.r.entry.subjectId)+'"></i><div><b>'+esc(subjectName(x.r.entry.subjectId))+'</b><span>'+esc(x.r.slot.time)+' · '+esc(x.r.entry.learningItem||x.r.entry.label||'Học theo lịch')+'</span></div></button>'}).join(''):'<p>Tuần này chưa có phiên học.</p>')+'</div>';
+  return '<div class="schedule-ref__mobile-agenda">'+(rows.length?rows.map(function(x){var k=priorityKey(x.r.entry),m=priorityMeta(k);return '<button type="button" class="is-priority-'+k+'" data-priority="'+k+'" onclick="BAUMAN_SCHEDULE_REF.openSlot(\''+iso(x.d)+'\',\''+esc(x.r.slotId)+'\')"><time><b>'+dayName(x.d).replace('Thứ ','T')+'</b><span>'+short(x.d)+'</span></time><i class="schedule-ref__dot is-priority-'+k+'"></i><div><b>'+esc(subjectName(x.r.entry.subjectId))+'</b><span>'+esc(x.r.slot.time)+' · '+esc(x.r.entry.learningItem||x.r.entry.label||'Học theo lịch')+'</span><em>'+esc(m.short)+'</em></div></button>'}).join(''):'<p>Tuần này chưa có phiên học.</p>')+'</div>';
 }
 function calendar(){
   var content=ui.view==='day'?dayView():ui.view==='month'?monthView():weekView();
-  return '<section class="schedule-ref__calendar-card">'+toolbar()+'<div class="schedule-ref__calendar-body">'+content+'</div>'+mobileAgenda()+'</section>';
+  return '<section class="schedule-ref__calendar-card">'+toolbar()+priorityLegend()+'<div class="schedule-ref__calendar-body">'+content+'</div>'+mobileAgenda()+'</section>';
 }
 function suggestionsPanel(){
   return '<section class="schedule-ref__panel schedule-ref__ai" id="scheduleRefSuggestions"><div class="schedule-ref__panel-head"><div><span>✦</span><b>Lập kế hoạch tự động</b><em>AI</em></div><button type="button" onclick="BAUMAN_SCHEDULE_REF.openPlan()">Xem thêm →</button></div><div class="schedule-ref__ai-intro"><span>🤖</span><p>Dựa trên lịch học và tiến độ hiện tại, đây là các gợi ý cân bằng cho tuần đang xem.</p></div><div class="schedule-ref__suggestions">'+suggestions().map(function(s){var done=ui.accepted.has(s.id);return '<button type="button" class="'+(done?'is-done':'')+'" onclick="BAUMAN_SCHEDULE_REF.acceptSuggestion(\''+esc(s.id)+'\')"><span class="schedule-ref__check">'+(done?'✓':'')+'</span><i>✧</i><div><b>'+esc(s.title)+'</b><p>'+esc(s.desc)+'</p></div><span>›</span></button>'}).join('')+'</div></section>';
 }
 function miniCalendar(){
   var base=parse(ui.selectedDate||iso(weekStart())),cells=monthCells(base);
-  return '<section class="schedule-ref__panel schedule-ref__mini-calendar"><div class="schedule-ref__panel-head"><b>'+monthLabel(base)+'</b><div><button type="button" onclick="BAUMAN_SCHEDULE_REF.shiftMonth(-1)">‹</button><button type="button" onclick="BAUMAN_SCHEDULE_REF.shiftMonth(1)">›</button></div></div><div class="schedule-ref__mini-weekdays">'+['T2','T3','T4','T5','T6','T7','CN'].map(function(x){return '<span>'+x+'</span>'}).join('')+'</div><div class="schedule-ref__mini-grid">'+cells.map(function(d){var n=entriesForDate(d).length;return '<button type="button" class="'+(d.getMonth()!==base.getMonth()?'is-outside ':'')+(iso(d)===iso(new Date())?'is-today':'')+'" onclick="BAUMAN_SCHEDULE_REF.selectDay(\''+iso(d)+'\')"><b>'+d.getDate()+'</b>'+(n?'<i class="l'+Math.min(4,n)+'"></i>':'')+'</button>'}).join('')+'</div></section>';
+  return '<section class="schedule-ref__panel schedule-ref__mini-calendar"><div class="schedule-ref__panel-head"><b>'+monthLabel(base)+'</b><div><button type="button" onclick="BAUMAN_SCHEDULE_REF.shiftMonth(-1)">‹</button><button type="button" onclick="BAUMAN_SCHEDULE_REF.shiftMonth(1)">›</button></div></div><div class="schedule-ref__mini-weekdays">'+['T2','T3','T4','T5','T6','T7','CN'].map(function(x){return '<span>'+x+'</span>'}).join('')+'</div><div class="schedule-ref__mini-grid">'+cells.map(function(d){var records=entriesForDate(d),n=records.length,k=n?highestPriority(records):'';return '<button type="button" class="'+(d.getMonth()!==base.getMonth()?'is-outside ':'')+(iso(d)===iso(new Date())?'is-today':'')+'" onclick="BAUMAN_SCHEDULE_REF.selectDay(\''+iso(d)+'\')"><b>'+d.getDate()+'</b>'+(n?'<i class="is-priority-'+k+'" title="'+esc(priorityMeta(k).label)+'"></i>':'')+'</button>'}).join('')+'</div></section>';
 }
 function upcoming(){
   var start=weekStart(),end=add(start,6),future=allRecords().filter(function(x){return x.dt>=start}),list=ui.upcomingExpanded?future.slice(0,12):future.filter(function(x){return x.dt<=end}).slice(0,5);
-  return '<section class="schedule-ref__panel schedule-ref__upcoming"><div class="schedule-ref__panel-head"><b>Sắp tới</b><button type="button" onclick="BAUMAN_SCHEDULE_REF.toggleUpcoming()">'+(ui.upcomingExpanded?'Thu gọn':'Xem tất cả →')+'</button></div><div class="schedule-ref__upcoming-list">'+(list.length?list.map(function(x){return '<button type="button" onclick="BAUMAN_SCHEDULE_REF.openSlot(\''+esc(x.date)+'\',\''+esc(x.slotId)+'\')"><span class="schedule-ref__upcoming-icon is-'+tone(x.entry.subjectId)+'">▣</span><div><b>'+esc(subjectName(x.entry.subjectId))+'</b><small>'+esc(x.entry.learningItem||x.entry.label||'Học theo lịch')+'</small></div><em>'+short(x.dt)+'</em></button>'}).join(''):'<p>Không có phiên học sắp tới trong phạm vi hiện tại.</p>')+'</div></section>';
+  return '<section class="schedule-ref__panel schedule-ref__upcoming"><div class="schedule-ref__panel-head"><b>Sắp tới</b><button type="button" onclick="BAUMAN_SCHEDULE_REF.toggleUpcoming()">'+(ui.upcomingExpanded?'Thu gọn':'Xem tất cả →')+'</button></div><div class="schedule-ref__upcoming-list">'+(list.length?list.map(function(x){var k=priorityKey(x.entry),m=priorityMeta(k);return '<button type="button" class="is-priority-'+k+'" data-priority="'+k+'" onclick="BAUMAN_SCHEDULE_REF.openSlot(\''+esc(x.date)+'\',\''+esc(x.slotId)+'\')"><span class="schedule-ref__upcoming-icon is-priority-'+k+'">▣</span><div><b>'+esc(subjectName(x.entry.subjectId))+'</b><small>'+esc(x.entry.learningItem||x.entry.label||'Học theo lịch')+'</small></div><em title="'+esc(m.label)+'">'+short(x.dt)+'</em></button>'}).join(''):'<p>Không có phiên học sắp tới trong phạm vi hiện tại.</p>')+'</div></section>';
 }
 function progressPanel(){
   var rows=Object.values(subjects()).map(function(s){var v=0;try{v=Math.max(0,Math.min(100,Math.round(Number(state.progress&&state.progress[s.id]||0))))}catch(e){}return {s:s,v:v}}).sort(function(a,b){return b.v-a.v}).slice(0,5);
-  return '<section class="schedule-ref__panel schedule-ref__progress"><div class="schedule-ref__panel-head"><b>Tiến độ môn học</b><button type="button" onclick="BAUMAN_SCHEDULE_REF.scrollCalendar()">Xem lịch →</button></div><div class="schedule-ref__progress-list">'+rows.map(function(r){return '<div><span><i class="schedule-ref__dot is-'+tone(r.s.id)+'"></i>'+esc(r.s.name)+'</span><span class="schedule-ref__progress-track"><i class="is-'+tone(r.s.id)+'" style="--value:'+r.v+'%"></i></span><b>'+r.v+'%</b></div>'}).join('')+'</div></section>';
+  return '<section class="schedule-ref__panel schedule-ref__progress"><div class="schedule-ref__panel-head"><b>Tiến độ môn học</b><button type="button" onclick="BAUMAN_SCHEDULE_REF.scrollCalendar()">Xem lịch →</button></div><div class="schedule-ref__progress-list">'+rows.map(function(r){var k=priorityKey(r.s.id),m=priorityMeta(k);return '<div title="'+esc(m.label)+'"><span><i class="schedule-ref__dot is-priority-'+k+'"></i>'+esc(r.s.name)+'</span><span class="schedule-ref__progress-track"><i class="is-priority-'+k+'" style="--value:'+r.v+'%"></i></span><b>'+r.v+'%</b></div>'}).join('')+'</div></section>';
 }
 function heatmap(){
   var ds=weekDays(),periods=[['Sáng',6,11],['Trưa',11,13],['Chiều',13,18],['Tối',18,24]];
@@ -210,7 +240,7 @@ function notesPanel(){
   var notes=readNotes(),derived=weekRecords().slice(0,2);
   return '<section class="schedule-ref__panel schedule-ref__notes"><div class="schedule-ref__panel-head"><b>Ghi chú / Nhắc việc</b><button type="button" onclick="BAUMAN_SCHEDULE_REF.addNote()">＋ Thêm mới</button></div><div class="schedule-ref__notes-grid">'+
     notes.map(function(n){return '<label class="'+(n.done?'is-done':'')+'"><input type="checkbox" '+(n.done?'checked':'')+' onchange="BAUMAN_SCHEDULE_REF.toggleNote(\''+esc(n.id)+'\',this.checked)"><span><b>'+esc(n.text)+'</b><small>'+esc(n.when||'Ghi chú cá nhân')+'</small></span><button type="button" onclick="event.preventDefault();BAUMAN_SCHEDULE_REF.removeNote(\''+esc(n.id)+'\')">×</button></label>'}).join('')+
-    derived.map(function(x){return '<label class="is-derived"><input type="checkbox" disabled><span><b>'+esc(subjectName(x.entry.subjectId))+': '+esc(x.entry.learningItem||x.entry.label||'Học theo lịch')+'</b><small>'+fmt(x.dt)+' · '+esc(x.slot.time)+'</small></span></label>'}).join('')+
+    derived.map(function(x){var k=priorityKey(x.entry),m=priorityMeta(k);return '<label class="is-derived is-priority-'+k+'" title="'+esc(m.label)+'"><input type="checkbox" disabled><span><b>'+esc(subjectName(x.entry.subjectId))+': '+esc(x.entry.learningItem||x.entry.label||'Học theo lịch')+'</b><small>'+fmt(x.dt)+' · '+esc(x.slot.time)+' · '+esc(m.short)+'</small></span></label>'}).join('')+
     (!notes.length&&!derived.length?'<p>Chưa có ghi chú hoặc phiên học trong tuần.</p>':'')+'</div><blockquote>“Kỷ luật hôm nay, kết quả ngày mai.”</blockquote></section>';
 }
 function rightRail(){return '<aside class="schedule-ref__right-rail">'+suggestionsPanel()+'<div class="schedule-ref__right-split">'+miniCalendar()+upcoming()+'</div></aside>'}
@@ -220,7 +250,7 @@ function render(){
   var host=document.getElementById('page-schedule');if(!host||!scheduleState())return false;
   if(!ui.selectedDate)ui.selectedDate=iso(weekStart());
   host.innerHTML='<div class="schedule-page schedule-ref-page" data-schedule-reference="'+RELEASE+'">'+header()+summary()+'<section class="schedule-ref__workspace"><div class="schedule-ref__main-column">'+calendar()+'</div>'+rightRail()+'</section>'+footer()+'</div>';
-  host.dataset.scheduleReference='v2';
+  host.dataset.scheduleReference='v4';
   document.body.dataset.hubPrimaryPage='schedule';
   return true;
 }
@@ -246,7 +276,7 @@ function toggleNote(id,done){var a=readNotes(),n=a.find(function(x){return x.id=
 function removeNote(id){writeNotes(readNotes().filter(function(x){return x.id!==id}));rerender()}
 function toggleManual(){var sc=scheduleState();if(!sc)return;sc.edit=!sc.edit;saveState();rerender();toastSafe(sc.edit?'Đã bật chỉnh lịch thủ công.':'Đã tắt chỉnh lịch thủ công.')}
 function patch(){var a=appRef();if(!a||a.__scheduleReferenceV1)return false;var previous=typeof a.schedule==='function'?a.schedule.bind(a):null;a.schedule=function(){return render()};a.__scheduleReferenceV1={release:RELEASE,previousSchedule:previous};if(typeof state!=='undefined'&&state&&state.page==='schedule')render();return true}
-function selfCheck(){var h=document.getElementById('page-schedule');return {release:RELEASE,patched:!!(appRef()&&appRef().__scheduleReferenceV1),active:!!(h&&h.querySelector('.schedule-ref-page')),view:ui.view,summaryCards:h?h.querySelectorAll('.schedule-ref__summary-card').length:0,rightRail:!!(h&&h.querySelector('.schedule-ref__right-rail')),footerPanels:h?h.querySelectorAll('.schedule-ref__footer-grid>.schedule-ref__panel').length:0,blockedDays:h?h.querySelectorAll('.schedule-ref__day-col.is-disabled').length:0,touchesOnlySchedule:true}}
+function selfCheck(){var h=document.getElementById('page-schedule');return {release:RELEASE,patched:!!(appRef()&&appRef().__scheduleReferenceV1),active:!!(h&&h.querySelector('.schedule-ref-page')),view:ui.view,summaryCards:h?h.querySelectorAll('.schedule-ref__summary-card').length:0,rightRail:!!(h&&h.querySelector('.schedule-ref__right-rail')),footerPanels:h?h.querySelectorAll('.schedule-ref__footer-grid>.schedule-ref__panel').length:0,priorityLegendItems:h?h.querySelectorAll('.schedule-ref__priority-legend>span').length:0,blockedDays:h?h.querySelectorAll('.schedule-ref__day-col.is-disabled').length:0,touchesOnlySchedule:true}}
 window.BAUMAN_SCHEDULE_REF={release:RELEASE,patch:patch,render:render,selfCheck:selfCheck,changeWeek:changeWeek,today:today,setView:setView,selectDay:selectDay,shiftMonth:shiftMonth,toggleRange:toggleRange,jumpToDate:jumpToDate,toggleFilter:toggleFilter,clearFilters:clearFilters,filterSubject:filterSubject,toggleUpcoming:toggleUpcoming,openPlan:openPlan,openSlot:openSlot,acceptSuggestion:acceptSuggestion,scrollSuggestions:scrollSuggestions,scrollCalendar:scrollCalendar,addNote:addNote,toggleNote:toggleNote,removeNote:removeNote,toggleManual:toggleManual};
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',patch,{once:true});else patch();
 })();
