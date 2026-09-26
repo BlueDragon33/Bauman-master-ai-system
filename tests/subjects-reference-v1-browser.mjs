@@ -74,12 +74,15 @@ try{
       ratio:lr.width/rr.width,
       courseColumns:new Set(cards.slice(0,2).map(x=>Math.round(x.getBoundingClientRect().top))).size===1,
       firstHeight:cards[0]?.getBoundingClientRect().height||0,
+      courseTitleFont:parseFloat(getComputedStyle(cards[0]?.querySelector('.subjects-page__course-name b')).fontSize)||0,
+      courseMetaFont:parseFloat(getComputedStyle(cards[0]?.querySelector('.subjects-page__course-meta')).fontSize)||0,
       workspaceWidth:wr.width
     };
   });
   assert.ok(geometry.ratio>1.75&&geometry.ratio<2.35,'Desktop subjects workspace is not close to the reference 67/33 split');
   assert.equal(geometry.courseColumns,true,'Desktop course grid is not two columns');
-  assert.ok(geometry.firstHeight>=138&&geometry.firstHeight<=155,'Course-card density drifted from the reference');
+  assert.ok(geometry.firstHeight>=185&&geometry.firstHeight<=240,'Course-card readable height drifted unexpectedly');
+  assert.ok(geometry.courseTitleFont>=14.5,'Course title font fell below readable size');
 
   await page.evaluate(()=>window.BAUMAN_SUBJECTS_REF.toggleTab('exam'));
   assert.equal(await page.locator('#page-subjects .subjects-page__course-card').count(),1,'Sắp thi filter did not reduce list to one course');
