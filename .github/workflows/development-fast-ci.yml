@@ -1,0 +1,61 @@
+name: Development Fast CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bauman-development-fast-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  fast-check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+
+      - name: Fast syntax check
+        shell: bash
+        run: |
+          set -euo pipefail
+          files=(
+            assets/js/main.js
+            assets/js/hub-primary-pages-v6.js
+            assets/js/planning-main.js
+            subjects/shared/host-bridge.js
+            subjects/russian/assets/core.js
+            subjects/russian/assets/russian-future-ui.js
+            scripts/prepare-cloudflare-preview.mjs
+          )
+          for file in "${files[@]}"; do
+            if [[ -f "$file" ]]; then
+              node --check "$file"
+            fi
+          done
+
+      - name: Fast shell contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f index.html
+          test -d assets
+          test -d subjects
+          grep -q '<html' index.html
+          grep -q 'subjects/russian' index.html
+
+      - name: Development mode summary
+        run: |
+          echo "Development mode: PASS"
+          echo "Heavy release gates are manual."
+          echo "No browser suite or full-system gate is run here."
