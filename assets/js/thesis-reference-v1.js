@@ -211,7 +211,7 @@ function milestones(){
   var list=ui.upcomingExpanded?MILESTONES:MILESTONES.slice(0,4);
   return '<section class="thesis-page__panel thesis-page__milestones"><div class="thesis-page__panel-head"><b>Mốc sắp tới</b><button onclick="BAUMAN_THESIS_REF.toggleUpcoming()">'+(ui.upcomingExpanded?'Thu gọn':'Xem tất cả →')+'</button></div><div class="thesis-page__milestone-list">'+list.map(function(x){return '<button onclick="BAUMAN_THESIS_REF.openMilestone(\''+x.id+'\')"><span class="thesis-page__milestone-icon is-'+x.tone+'">'+x.icon+'</span><div><b>'+esc(x.title)+'</b><small>'+esc(x.date)+'</small></div><em class="is-'+x.tone+'">'+esc(x.badge)+'</em></button>'}).join('')+'</div></section>';
 }
-function rightRail(){return '<aside class="thesis-page__right-rail">'+aiPanel()+'<div class="thesis-page__right-split">'+miniCalendar()+milestones()+'</div></aside>'}
+function rightRail(){return '<aside class="thesis-page__right-rail">'+aiPanel()+'<div class="thesis-page__right-split">'+miniCalendar()+milestones()+'</div>'+notes()+'</aside>'}
 function chapterProgress(){
   return '<section class="thesis-page__panel thesis-page__progress"><div class="thesis-page__panel-head"><b>Tiến độ theo chương</b><button onclick="BAUMAN_THESIS_REF.setView(\'list\')">Xem chi tiết →</button></div><div class="thesis-page__progress-list">'+CHAPTERS.map(function(c,i){return '<div><span><i class="is-'+c.tone+'">'+(i+1)+'</i>'+esc(c.title)+'</span><span class="thesis-page__progress-track"><i class="is-'+c.tone+'" style="--value:'+c.value+'%"></i></span><b>'+c.value+'%</b></div>'}).join('')+'</div></section>';
 }
@@ -233,7 +233,7 @@ function createModal(){
 }
 function render(){
   var host=document.getElementById('page-research');if(!host)return false;
-  host.innerHTML='<div class="thesis-page" data-thesis-reference="'+RELEASE+'">'+header()+summary()+'<section class="thesis-page__workspace"><div class="thesis-page__main-column">'+plan()+'</div>'+rightRail()+'</section><section class="thesis-page__bottom">'+chapterProgress()+heatmap()+notes()+'</section>'+taskDetail()+createModal()+'</div>';
+  host.innerHTML='<div class="thesis-page" data-thesis-reference="'+RELEASE+'">'+header()+summary()+'<section class="thesis-page__workspace"><div class="thesis-page__main-column">'+plan()+'<div class="thesis-page__left-bottom">'+chapterProgress()+heatmap()+'</div></div>'+rightRail()+'</section>'+taskDetail()+createModal()+'</div>';
   host.dataset.thesisReference='v1';
   document.body.dataset.hubPrimaryPage='research';
   return true;
@@ -248,7 +248,7 @@ function patch(){
 }
 function selfCheck(){
   var h=document.getElementById('page-research');
-  return {release:RELEASE,patched:!!(appRef()&&appRef().__thesisReferenceV1),active:!!(h&&h.querySelector('.thesis-page')),summaryCards:h?h.querySelectorAll('.thesis-page__summary-card').length:0,timelineEvents:h?h.querySelectorAll('.thesis-page__event').length:0,aiRows:h?h.querySelectorAll('.thesis-page__ai-list>button').length:0,rightRail:!!(h&&h.querySelector('.thesis-page__right-rail')),bottomPanels:h?h.querySelectorAll('.thesis-page__bottom>.thesis-page__panel').length:0,touchesOnlyResearch:true};
+  return {release:RELEASE,patched:!!(appRef()&&appRef().__thesisReferenceV1),active:!!(h&&h.querySelector('.thesis-page')),summaryCards:h?h.querySelectorAll('.thesis-page__summary-card').length:0,timelineEvents:h?h.querySelectorAll('.thesis-page__event').length:0,aiRows:h?h.querySelectorAll('.thesis-page__ai-list>button').length:0,rightRail:!!(h&&h.querySelector('.thesis-page__right-rail')),bottomPanels:h?h.querySelectorAll('.thesis-page__progress,.thesis-page__heatmap,.thesis-page__notes').length:0,touchesOnlyResearch:true};
 }
 
 window.BAUMAN_THESIS_REF={
