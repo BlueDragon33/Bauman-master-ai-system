@@ -85,17 +85,22 @@ jobs:
           for i in {1..15}; do
             STATUS="$(curl --silent --show-error --output /tmp/bauman-live-deployment.json --write-out '%{http_code}' --max-time 15 "$BAUMAN_RUNTIME_PRODUCTION_ORIGIN/__deployment" || true)"
             if [[ "$STATUS" == "200" ]]; then
-              node --input-type=module - <<'NODE'
+              if node --input-type=module - <<'NODE'
           import fs from 'node:fs';
           const payload = JSON.parse(fs.readFileSync('/tmp/bauman-live-deployment.json', 'utf8'));
-          if (payload.ok !== true) throw new Error('Runtime deployment endpoint is not healthy.');
-          if (payload.runtime !== 'learning-runtime') throw new Error('Unexpected runtime identity.');
-          if (payload.channel !== 'cloudflare-production') throw new Error('Unexpected deployment channel.');
-          if (payload.revision !== process.env.GITHUB_SHA) throw new Error(`Revision mismatch: ${payload.revision} != ${process.env.GITHUB_SHA}`);
-          if (payload.controlOriginConfigured !== true) throw new Error('Production Control origin is not configured.');
+          if (payload.ok !== true) process.exit(2);
+          if (payload.runtime !== 'learning-runtime') process.exit(3);
+          if (payload.channel !== 'cloudflare-production') process.exit(4);
+          if (payload.revision !== process.env.GITHUB_SHA) {
+            console.error(`Propagation pending: live revision ${payload.revision}, expected ${process.env.GITHUB_SHA}`);
+            process.exit(5);
+          }
+          if (payload.controlOriginConfigured !== true) process.exit(6);
           NODE
-              DEPLOYMENT_OK=true
-              break
+              then
+                DEPLOYMENT_OK=true
+                break
+              fi
             fi
             echo "Deployment endpoint not ready yet (attempt $i, HTTP $STATUS)."
             sleep 2
