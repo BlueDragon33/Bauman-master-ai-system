@@ -56,7 +56,7 @@ try{
     events:document.querySelectorAll('#page-research .thesis-page__event').length,
     ai:document.querySelectorAll('#page-research .thesis-page__ai-list>button').length,
     milestones:document.querySelectorAll('#page-research .thesis-page__milestone-list>button').length,
-    bottom:document.querySelectorAll('#page-research .thesis-page__bottom>.thesis-page__panel').length
+    bottom:document.querySelectorAll('#page-research .thesis-page__progress,#page-research .thesis-page__heatmap,#page-research .thesis-page__notes').length
   }));
 
   assert.deepEqual(before.navOrder,['home','roadmap','subjects','schedule','research'],'Thesis rebuild changed primary navigation');
@@ -162,7 +162,7 @@ try{
     scroll:document.documentElement.scrollWidth,
     active:window.BAUMAN_THESIS_REF?.selfCheck?.().active,
     metrics:getComputedStyle(document.querySelector('#page-research .thesis-page__metrics')).gridTemplateColumns,
-    bottom:getComputedStyle(document.querySelector('#page-research .thesis-page__bottom')).gridTemplateColumns
+    bottom:getComputedStyle(document.querySelector('#page-research .thesis-page__left-bottom')).gridTemplateColumns
   }));
   assert.ok(mobile.scroll<=mobile.client+1,'Thesis mobile view has horizontal page overflow');
   assert.equal(mobile.active,true,'Thesis reference UI disappeared on mobile');
