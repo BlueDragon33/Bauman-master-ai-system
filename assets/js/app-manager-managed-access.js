@@ -11,6 +11,11 @@ const RELEASE='APP_MANAGER_MANAGED_ACCESS_2026_09';
 const USERS_KEY='bauman_main_users_fullcode_v1';
 const CURRENT_USER_KEY='bauman_current_user_fullcode_v1';
 const ALLOWED_DEVICE_ACCESS=new Set(['authorized','offline-grace']);
+function standaloneRuntime(){
+  const meta=(document.querySelector('meta[name="bauman-access-mode"]')?.content||'').trim().toLowerCase();
+  const config=(window.BAUMAN_RUNTIME_CONFIG?.control?.accessMode||'').trim().toLowerCase();
+  return meta==='standalone'||config==='standalone';
+}
 const PROFILE=Object.freeze({
   name:'Bauman Master Hub',
   email:'app-manager@bauman.local',
@@ -22,7 +27,7 @@ const q=id=>document.getElementById(id);
 let observer=null;
 
 function deviceAccess(){return document.documentElement.dataset.baumanDeviceAccess||'unknown'}
-function deviceAllowed(){return ALLOWED_DEVICE_ACCESS.has(deviceAccess())}
+function deviceAllowed(){return standaloneRuntime()||ALLOWED_DEVICE_ACCESS.has(deviceAccess())}
 function clearCredentialStore(){
   try{localStorage.removeItem(USERS_KEY)}catch{}
 }
@@ -46,6 +51,15 @@ function keepLocalAdminOutOfFlow(){
   }
 }
 function syncAccess(){
+  if(standaloneRuntime()){
+    document.documentElement.dataset.baumanHubAccess='standalone';
+    document.documentElement.dataset.baumanLocalAuth='bypassed';
+    const screen=q('authScreen');
+    if(screen){screen.classList.add('hidden');screen.setAttribute('aria-hidden','true')}
+    const root=q('appRoot');
+    if(root)root.classList.remove('hidden');
+    return true;
+  }
   document.documentElement.dataset.baumanHubAccess='app-manager';
   document.documentElement.dataset.baumanLocalAuth='bypassed';
   clearCredentialStore();
@@ -75,6 +89,13 @@ function managedLogout(){
   try{typeof toast==='function'&&toast('Quyền truy cập được quản trị bởi App Manager.')}catch{}
 }
 function install(){
+  if(standaloneRuntime()){
+    document.documentElement.dataset.baumanHubAccess='standalone';
+    document.documentElement.dataset.baumanLocalAuth='bypassed';
+    if(document.readyState!=='loading')syncAccess();
+    else document.addEventListener('DOMContentLoaded',syncAccess,{once:true});
+    return;
+  }
   document.documentElement.dataset.baumanHubAccess='app-manager';
   clearCredentialStore();
   persistManagedScope();
@@ -100,9 +121,10 @@ function selfCheck(){
     const stored=JSON.parse(localStorage.getItem(CURRENT_USER_KEY)||'null');
     managedScopeStored=stored?.managedBy==='app-manager'&&stored?.email===PROFILE.email;
   }catch{}
+  const standalone=standaloneRuntime();
   return{
     release:RELEASE,
-    mode:'app-manager',
+    mode:standalone?'standalone':'app-manager',
     ready:deviceAllowed()&&root?.classList.contains('hidden')===false&&screen?.classList.contains('hidden')===true,
     deviceAccess:deviceAccess(),
     deviceAuthorized:deviceAllowed(),
