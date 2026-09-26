@@ -46,7 +46,7 @@ try{
 
   const before=await page.evaluate(()=>({
     nav:document.getElementById('nav')?.innerHTML||'',
-    topbar:document.querySelector('.topbar')?.innerHTML||'',
+    topbar:(document.querySelector('.topbar')?.innerHTML||'').replace(/\\sstyle=\"\"/g,''),
     navOrder:[...document.querySelectorAll('#nav [data-page]')].map(x=>x.dataset.page),
     active:[...document.querySelectorAll('.page.active')].map(x=>x.id),
     ui:window.BAUMAN_THESIS_REF?.selfCheck?.(),
