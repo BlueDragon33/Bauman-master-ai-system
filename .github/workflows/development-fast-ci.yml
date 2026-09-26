@@ -52,6 +52,9 @@ jobs:
       - name: Thesis reference static
         run: node tests/thesis-reference-v1-static.mjs
 
+      - name: Readable typography static
+        run: node tests/hub-readable-typography-v1-static.mjs
+
       - name: Fast shell contract
         shell: bash
         run: |
