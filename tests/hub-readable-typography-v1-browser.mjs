@@ -89,6 +89,7 @@ try{
     action:await style(page,'#page-home .hub-safe-hero-actions .btn'),
     heading:await style(page,'#page-home .hub-safe-section-head h2')
   };
+  console.log('READABLE_HOME',JSON.stringify(home));
   assert.ok(home.copy?.fontSize>=15.5,'Home body copy is below readable size');
   assert.ok(home.action?.fontSize>=13.5,'Home action text is below readable size');
   assert.ok(home.heading?.fontSize>=17.5,'Home section heading is below readable size');
@@ -103,6 +104,7 @@ try{
     small:await style(page,'#page-roadmap .hub-rm-stage-card small'),
     button:await style(page,'#page-roadmap .hub-rm-filters button')
   };
+  console.log('READABLE_ROADMAP',JSON.stringify(roadmap));
   assert.ok(roadmap.title?.fontSize>=14.5,'Roadmap card title is below readable size');
   assert.ok(roadmap.body?.fontSize>=15.5,'Roadmap body copy is below readable size');
   assert.ok(roadmap.small?.fontSize>=12.5,'Roadmap small copy is below readable size');
@@ -118,6 +120,7 @@ try{
     action:await style(page,'#page-subjects .subjects-page__course-actions button'),
     kpi:await style(page,'#page-subjects .subjects-page__summary-card small')
   };
+  console.log('READABLE_SUBJECTS',JSON.stringify(subjects));
   assert.ok(subjects.title?.fontSize>=14.5,'Subjects course title is below readable size');
   assert.ok(subjects.small?.fontSize>=12.5,'Subjects metadata is below readable size');
   assert.ok(subjects.action?.fontSize>=12.5,'Subjects action button is below readable size');
@@ -133,6 +136,7 @@ try{
     kpi:await style(page,'#page-schedule .schedule-ref__summary-card small'),
     tab:await style(page,'#page-schedule .schedule-ref__segments button')
   };
+  console.log('READABLE_SCHEDULE',JSON.stringify(schedule));
   assert.ok(schedule.event?.fontSize>=12.5,'Schedule event title is below readable size');
   assert.ok(schedule.eventMeta?.fontSize>=11.5,'Schedule event metadata is below readable size');
   assert.ok(schedule.kpi?.fontSize>=12.5,'Schedule KPI copy is below readable size');
@@ -148,6 +152,7 @@ try{
     kpi:await style(page,'#page-research .thesis-page__summary-card small'),
     ai:await style(page,'#page-research .thesis-page__ai-list b')
   };
+  console.log('READABLE_THESIS',JSON.stringify(thesis));
   assert.ok(thesis.event?.fontSize>=12.5,'Thesis event title is below readable size');
   assert.ok(thesis.eventMeta?.fontSize>=11.5,'Thesis event metadata is below readable size');
   assert.ok(thesis.kpi?.fontSize>=12.5,'Thesis KPI copy is below readable size');
