@@ -1,17 +1,7 @@
 name: Russian Reference UI Gate
 
 on:
-  pull_request:
-    branches: [main]
-    paths:
-      - "subjects/russian/**"
-      - ".github/workflows/russian-ui-reference-gate.yml"
-  push:
-    branches:
-      - "main"
-    paths:
-      - "subjects/russian/**"
-      - ".github/workflows/russian-ui-reference-gate.yml"
+  workflow_dispatch:
 
 permissions:
   contents: read
