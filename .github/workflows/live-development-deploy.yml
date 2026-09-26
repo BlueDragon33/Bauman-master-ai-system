@@ -74,6 +74,70 @@ jobs:
         if: steps.ready.outputs.deploy == 'true'
         run: npx --yes wrangler@4.92.0 deploy --config wrangler.runtime.production.jsonc
 
+      - name: Verify live Runtime availability
+        if: steps.ready.outputs.deploy == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          echo "Checking production deployment metadata..."
+          DEPLOYMENT_OK=false
+          for i in {1..15}; do
+            STATUS="$(curl --silent --show-error --output /tmp/bauman-live-deployment.json --write-out '%{http_code}' --max-time 15 "$BAUMAN_RUNTIME_PRODUCTION_ORIGIN/__deployment" || true)"
+            if [[ "$STATUS" == "200" ]]; then
+              node --input-type=module - <<'NODE'
+          import fs from 'node:fs';
+          const payload = JSON.parse(fs.readFileSync('/tmp/bauman-live-deployment.json', 'utf8'));
+          if (payload.ok !== true) throw new Error('Runtime deployment endpoint is not healthy.');
+          if (payload.runtime !== 'learning-runtime') throw new Error('Unexpected runtime identity.');
+          if (payload.channel !== 'cloudflare-production') throw new Error('Unexpected deployment channel.');
+          if (payload.revision !== process.env.GITHUB_SHA) throw new Error(`Revision mismatch: ${payload.revision} != ${process.env.GITHUB_SHA}`);
+          if (payload.controlOriginConfigured !== true) throw new Error('Production Control origin is not configured.');
+          NODE
+              DEPLOYMENT_OK=true
+              break
+            fi
+            echo "Deployment endpoint not ready yet (attempt $i, HTTP $STATUS)."
+            sleep 2
+          done
+          if [[ "$DEPLOYMENT_OK" != "true" ]]; then
+            echo "::error::Bauman production deployment endpoint is not reachable."
+            cat /tmp/bauman-live-deployment.json || true
+            exit 1
+          fi
+
+          echo "Checking public homepage..."
+          HOME_OK=false
+          for i in {1..15}; do
+            STATUS="$(curl --silent --show-error --location --output /tmp/bauman-live-home.html --write-out '%{http_code}' --max-time 15 "$BAUMAN_RUNTIME_PRODUCTION_ORIGIN/" || true)"
+            if [[ "$STATUS" == "200" ]] && grep -Fqi '<html' /tmp/bauman-live-home.html && grep -Fq 'Bauman Master Hub' /tmp/bauman-live-home.html; then
+              HOME_OK=true
+              break
+            fi
+            echo "Homepage not ready yet (attempt $i, HTTP $STATUS)."
+            sleep 2
+          done
+          if [[ "$HOME_OK" != "true" ]]; then
+            echo "::error::Bauman public homepage is not reachable or returned unexpected content."
+            head -c 1200 /tmp/bauman-live-home.html || true
+            exit 1
+          fi
+
+          echo "Checking Runtime → Control link..."
+          LINK_STATUS="$(curl --silent --show-error --output /tmp/bauman-live-control-link.json --write-out '%{http_code}' --max-time 15 "$BAUMAN_RUNTIME_PRODUCTION_ORIGIN/__control-link" || true)"
+          if [[ "$LINK_STATUS" != "200" ]]; then
+            echo "::error::Runtime cannot reach production Control (HTTP $LINK_STATUS)."
+            cat /tmp/bauman-live-control-link.json || true
+            exit 1
+          fi
+          node --input-type=module - <<'NODE'
+          import fs from 'node:fs';
+          const payload = JSON.parse(fs.readFileSync('/tmp/bauman-live-control-link.json', 'utf8'));
+          if (payload.ok !== true || payload.controlReachable !== true) throw new Error('Runtime → Control link is unhealthy.');
+          NODE
+
+          echo "Bauman live Runtime availability PASS."
+
       - name: Summary
         if: always()
         run: |
