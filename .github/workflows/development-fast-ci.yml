@@ -33,6 +33,7 @@ jobs:
             assets/js/main.js
             assets/js/hub-primary-pages-v6.js
             assets/js/subjects-reference-v1.js
+            assets/js/thesis-reference-v1.js
             assets/js/planning-main.js
             subjects/shared/host-bridge.js
             subjects/russian/assets/core.js
@@ -47,6 +48,9 @@ jobs:
 
       - name: Subjects reference static
         run: node tests/subjects-reference-v1-static.mjs
+
+      - name: Thesis reference static
+        run: node tests/thesis-reference-v1-static.mjs
 
       - name: Fast shell contract
         shell: bash

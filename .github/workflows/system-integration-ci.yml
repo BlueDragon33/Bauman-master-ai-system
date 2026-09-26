@@ -37,6 +37,8 @@ jobs:
         run: node tests/schedule-reference-v1-static.mjs
       - name: Validate scoped Subjects reference UI
         run: node tests/subjects-reference-v1-static.mjs
+      - name: Validate scoped Thesis reference UI
+        run: node tests/thesis-reference-v1-static.mjs
       - name: Validate deployment propagation fail-closed helper
         run: node scripts/test-deployment-propagation-wait.mjs
       - name: Parse changed runtime JavaScript
@@ -49,11 +51,14 @@ jobs:
           node --check assets/js/hub-primary-pages-v6.js
           node --check assets/js/schedule-reference-v1.js
           node --check assets/js/subjects-reference-v1.js
+          node --check assets/js/thesis-reference-v1.js
           node --check tests/hub-primary-pages-v6-static.mjs
           node --check tests/schedule-reference-v1-static.mjs
           node --check tests/schedule-reference-v1-browser.mjs
           node --check tests/subjects-reference-v1-static.mjs
           node --check tests/subjects-reference-v1-browser.mjs
+          node --check tests/thesis-reference-v1-static.mjs
+          node --check tests/thesis-reference-v1-browser.mjs
           node --check assets/js/planning-main.js
           node --check assets/js/hub-premium-v2.js
           node --check subjects/shared/host-bridge.js
@@ -165,6 +170,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/subjects-reference-v1
         run: node tests/subjects-reference-v1-browser.mjs
+      - name: Run scoped Thesis reference browser acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/thesis-reference-v1
+        run: node tests/thesis-reference-v1-browser.mjs
       - name: Run Russian Handwriting Recognition Acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
@@ -264,6 +274,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-subjects-reference-v1
         run: node tests/subjects-reference-v1-browser.mjs
+      - name: Run packaged Thesis reference acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-thesis-reference-v1
+        run: node tests/thesis-reference-v1-browser.mjs
       - name: Run Packaged Russian Handwriting Recognition Acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
