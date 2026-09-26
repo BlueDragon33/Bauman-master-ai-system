@@ -1,8 +1,6 @@
 name: Bauman Cloudflare Preview Deploy
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -26,6 +24,7 @@ jobs:
       APPLICATION_MANAGEMENT_PREVIEW_ORIGIN: ${{ vars.APPLICATION_MANAGEMENT_PREVIEW_ORIGIN }}
       BAUMAN_CONTROL_PREVIEW_ORIGIN: ${{ vars.BAUMAN_CONTROL_PREVIEW_ORIGIN }}
       BAUMAN_RUNTIME_PREVIEW_ORIGIN: ${{ vars.BAUMAN_RUNTIME_PREVIEW_ORIGIN }}
+      BAUMAN_ACCESS_MODE: standalone
 
     steps:
       - name: Checkout repository
