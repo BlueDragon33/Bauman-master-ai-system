@@ -46,7 +46,9 @@ assert.ok(css.includes('#page-research .thesis-page'),'thesis namespace missing'
 assert.ok(css.includes('grid-template-columns:minmax(0,2.08fr) minmax(330px,.92fr)'),'desktop 67/33 split missing');
 assert.ok(css.includes('--tp-timeline-height:350px'),'timeline fixed geometry missing');
 assert.ok(css.includes('grid-template-columns:50px repeat(7,minmax(0,1fr))'),'7-day timeline grid missing');
-assert.ok(css.includes('grid-template-columns:1fr 1.05fr 1.1fr'),'bottom three-panel layout missing');
+assert.ok(js.includes('thesis-page__left-bottom'),'reference lower-left mosaic missing');
+assert.ok(css.includes('grid-template-columns:1fr 1.08fr'),'lower-left progress/heatmap split missing');
+assert.ok(js.includes("'+notes()+'</aside>'"),'notes must stay in the right rail like the reference');
 assert.ok(css.includes('@media(max-width:820px)'),'thesis responsive gate missing');
 
 console.log('THESIS_REFERENCE_V1_STATIC_PASS');
