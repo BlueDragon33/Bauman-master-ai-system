@@ -172,6 +172,31 @@ body[data-hub-reference-v5="1"] #page-home .hub-safe-dashboard :is(.hub-safe-car
 }
 #page-roadmap :is(button,select){font-size:var(--hub-readable-control)!important}
 
+
+/* Roadmap V4 reference surfaces. */
+#page-roadmap .hub-roadmap-v3{font-size:var(--hub-readable-body)!important;line-height:1.5!important}
+#page-roadmap .hub-rm-hero h1{font-size:var(--hub-readable-page-title)!important;line-height:1.12!important}
+#page-roadmap .hub-rm-hero p,
+#page-roadmap .hub-rm-block-head p,
+#page-roadmap .hub-rm-subject-head p,
+#page-roadmap .hub-rm-track-title p,
+#page-roadmap .hub-rm-plan p{font-size:var(--hub-readable-body)!important;line-height:1.45!important}
+#page-roadmap :is(.hub-rm-block-head,.hub-rm-subject-head,.hub-rm-track-title) h2{font-size:var(--hub-readable-section)!important;line-height:1.25!important}
+#page-roadmap .hub-rm-stage-card h3,
+#page-roadmap .hub-rm-side-card h3,
+#page-roadmap .hub-rm-level-copy b,
+#page-roadmap .hub-rm-course b,
+#page-roadmap .hub-rm-task b,
+#page-roadmap .hub-rm-current b{font-size:var(--hub-readable-card)!important;line-height:1.3!important}
+#page-roadmap .hub-roadmap-v3 :is(small,.hub-rm-stage-subject,.hub-rm-level-count,.hub-rm-course em,.hub-rm-task small,.hub-rm-current small,.hub-rm-legend,.hub-rm-doing){
+  font-size:var(--hub-readable-small)!important;
+  line-height:1.35!important;
+}
+#page-roadmap .hub-roadmap-v3 button{font-size:var(--hub-readable-control)!important}
+#page-roadmap .hub-rm-filters button{min-height:38px!important}
+#page-roadmap .hub-rm-level-head{min-height:58px!important}
+#page-roadmap .hub-rm-course{min-height:64px!important}
+
 /* Subjects reference: ChatGPT-like reading size throughout. */
 #page-subjects .subjects-page__header h2{font-size:var(--hub-readable-page-title)!important}
 #page-subjects .subjects-page__header p{font-size:var(--hub-readable-body)!important}
