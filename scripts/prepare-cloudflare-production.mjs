@@ -12,8 +12,11 @@ function required(name) {
   return value;
 }
 
-function exactHttpsOrigin(name, { allowChatgptSite = false } = {}) {
-  const raw = required(name).replace(/\/$/, '');
+function exactHttpsOrigin(name, { allowChatgptSite = false, optional = false } = {}) {
+  const rawInput = String(process.env[name] || '').trim();
+  if (!rawInput && optional) return '';
+  if (!rawInput) throw new Error(`${name} is required.`);
+  const raw = rawInput.replace(/\/$/, '');
   let url;
   try { url = new URL(raw); } catch { throw new Error(`${name} must be a valid URL.`); }
   if (url.protocol !== 'https:' || url.username || url.password || url.pathname !== '/' || url.search || url.hash) {
@@ -219,4 +222,4 @@ for (const resource of [
 console.log('Bauman Cloudflare production package materialized safely.');
 console.log(`Control Worker: bauman-control -> ${controlOrigin}`);
 console.log(`Learning Worker: bauman-master-ai -> ${runtimeOrigin}`);
-console.log('Production D1 is distinct from preview/local and runtime package preserves promoted Russian/Foundation assets.');
+console.log('Production D1 is isolated from local runtime and the learning app is packaged in standalone mode.');
