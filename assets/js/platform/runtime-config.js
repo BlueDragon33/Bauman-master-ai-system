@@ -3,6 +3,9 @@
 
   const host = global.location && global.location.hostname ? global.location.hostname.toLowerCase() : '';
   const local = host === '127.0.0.1' || host === 'localhost' || host === '::1';
+  const accessMode = (document.querySelector('meta[name="bauman-access-mode"]')?.content || 'standalone').trim().toLowerCase() === 'managed'
+    ? 'managed'
+    : 'standalone';
   const meta = document.querySelector('meta[name="bauman-control-origin"]');
   const declared = meta && typeof meta.content === 'string' ? meta.content.trim().replace(/\/$/, '') : '';
   const injected = typeof global.BAUMAN_CONTROL_BASE_URL === 'string'
@@ -13,7 +16,8 @@
     runtime: 'bauman-master-ai',
     control: {
       protocol: 'bauman-control-v4',
-      deviceAccess: true,
+      accessMode,
+      deviceAccess: accessMode === 'managed',
       baseUrl: local ? 'http://127.0.0.1:3003' : (injected || declared),
       pendingPollMs: 15000,
       heartbeatMs: 60000,
@@ -21,7 +25,8 @@
       offlineGraceMs: 86400000,
     },
     features: {
-      deviceAccessControl: true,
+      deviceAccessControl: accessMode === 'managed',
+      standaloneDevelopment: accessMode === 'standalone',
       offlineGrace: true,
     },
   };
