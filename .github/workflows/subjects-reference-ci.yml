@@ -1,0 +1,64 @@
+name: Subjects Reference CI
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "assets/js/subjects-reference-v1.js"
+      - "assets/css/subjects-reference-v1.css"
+      - "tests/subjects-reference-v1-static.mjs"
+      - "tests/subjects-reference-v1-browser.mjs"
+      - "index.html"
+      - ".github/workflows/subjects-reference-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  subjects-reference:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+
+      - name: Static scope gate
+        run: |
+          node --check assets/js/subjects-reference-v1.js
+          node --check tests/subjects-reference-v1-static.mjs
+          node --check tests/subjects-reference-v1-browser.mjs
+          node tests/subjects-reference-v1-static.mjs
+
+      - name: Install Playwright Chromium
+        run: |
+          printf '{"private":true,"type":"module"}\n' > package.json
+          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Start local runtime
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/bauman-subjects-http.log 2>&1 &
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/bauman-subjects-http.log
+          exit 1
+
+      - name: Run Subjects 1672x941 browser acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/subjects-reference-v1
+        run: node tests/subjects-reference-v1-browser.mjs
+
+      - name: Upload Subjects screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: subjects-reference-v1-${{ github.run_id }}
+          path: artifacts/subjects-reference-v1
+          if-no-files-found: warn
+          retention-days: 7
