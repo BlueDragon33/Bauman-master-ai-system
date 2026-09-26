@@ -451,3 +451,12 @@
 #page-schedule .schedule-ref__progress-track i.is-green{background:#36a86b}
 #page-schedule .schedule-ref__progress-track i.is-pink{background:#cc6ba0}
 #page-schedule .schedule-ref__progress-track i.is-slate{background:#71839a}
+
+
+/* Schedule Reference V3.2 · force rendered subject palette through local CSS variables */
+#page-schedule .schedule-ref__event[style*="--event-bg"]{
+  background:var(--event-bg)!important;
+  color:var(--event-fg)!important;
+  border-color:var(--event-line)!important;
+  border-left-color:var(--event-fg)!important;
+}
