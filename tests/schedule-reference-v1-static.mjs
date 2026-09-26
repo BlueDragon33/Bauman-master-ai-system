@@ -5,8 +5,8 @@ const index=fs.readFileSync('index.html','utf8');
 const js=fs.readFileSync('assets/js/schedule-reference-v1.js','utf8');
 const css=fs.readFileSync('assets/css/schedule-reference-v1.css','utf8');
 
-assert.ok(index.includes('assets/css/schedule-reference-v1.css?v=2'),'schedule stylesheet is not loaded');
-assert.ok(index.includes('assets/js/schedule-reference-v1.js?v=2'),'schedule renderer is not loaded');
+assert.ok(index.includes('assets/css/schedule-reference-v1.css?v=5'),'schedule stylesheet is not loaded');
+assert.ok(index.includes('assets/js/schedule-reference-v1.js?v=3'),'schedule renderer is not loaded');
 assert.ok(js.includes("a.schedule=function(){return render()}"),'module must patch app.schedule only');
 assert.ok(!js.includes('a.page=function'),'module must not patch app.page');
 assert.ok(!js.includes("querySelector('#nav"),'module must not touch sidebar/navigation');
@@ -27,4 +27,9 @@ assert.ok(js.includes('weekCapacity()'),'week attention metric must be based on 
 assert.ok(js.includes('stageSubjects()'),'schedule suggestions must respect the active stage');
 assert.ok(js.includes('writeAccepted()'),'schedule suggestion acknowledgement must persist');
 assert.ok(!js.includes("' ca lặp'"),'misleading repeated-session warning returned');
+assert.ok(css.includes('Schedule Reference V3 color balance'),'V3 schedule color balance layer missing');
+assert.ok(css.includes('Schedule Reference V3.1'),'V3.1 stronger subject color layer missing');
+assert.ok(js.includes('tonePaint(t)'),'rendered schedule event palette binding missing');
+assert.ok(css.includes('var(--event-bg)!important'),'schedule event color must survive later button styling');
+for(const tone of ['is-rose','is-blue','is-violet','is-cyan','is-amber','is-green']) assert.ok(css.includes('.schedule-ref__event.'+tone),'subject event color missing: '+tone);
 console.log('SCHEDULE_REFERENCE_V1_STATIC_PASS');

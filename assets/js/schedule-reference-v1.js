@@ -25,6 +25,7 @@ function short(d){return pad(d.getDate())+'/'+pad(d.getMonth()+1)}
 function dayName(d){return ['Chủ nhật','Thứ 2','Thứ 3','Thứ 4','Thứ 5','Thứ 6','Thứ 7'][d.getDay()]}
 function monthLabel(d){return 'Tháng '+(d.getMonth()+1)+', '+d.getFullYear()}
 function tone(id){return ({russian:'rose',math:'blue',programming:'violet',ai:'cyan',systems:'amber',signal:'green',research:'pink',foundation:'slate'})[id]||'slate'}
+function tonePaint(t){return ({rose:{bg:'#ffd2da',fg:'#9e2d45',line:'#eaa9b6'},blue:{bg:'#cee2ff',fg:'#2459a4',line:'#a9c7f1'},violet:{bg:'#ddd2ff',fg:'#593eaa',line:'#bfaef0'},cyan:{bg:'#cfeef3',fg:'#1b7186',line:'#a7d8e1'},amber:{bg:'#ffe9a9',fg:'#88610e',line:'#e7cc78'},green:{bg:'#cdebd9',fg:'#1f7047',line:'#a7d4b8'},pink:{bg:'#f5d1e3',fg:'#9b3a72',line:'#deb0c8'},slate:{bg:'#dde7f0',fg:'#4c5e73',line:'#becddd'}})[t]||{bg:'#dde7f0',fg:'#4c5e73',line:'#becddd'}}
 function subjectName(id){var s=subjects()[id];return s&&s.name?s.name:(id||'Môn học')}
 function allSlots(){var a=[];try{if(typeof MAIN_SLOTS!=='undefined')a=a.concat(MAIN_SLOTS)}catch(e){}try{if(typeof REVIEW_SLOTS!=='undefined')a=a.concat(REVIEW_SLOTS)}catch(e){}return a}
 function slotById(id){return allSlots().find(function(x){return x.id===id})||null}
@@ -148,8 +149,8 @@ function toolbar(){
     '<button class="schedule-ref__today-btn" type="button" onclick="BAUMAN_SCHEDULE_REF.today()">＋ Hôm nay</button></div></div>';
 }
 function eventCard(r,d){
-  var w=slotWindow(r.slot),top=((w[0]-360)/720*100),h=Math.max(5,(w[1]-w[0])/720*100);
-  return '<button type="button" class="schedule-ref__event is-'+tone(r.entry.subjectId)+'" style="--top:'+top+'%;--height:'+h+'%" onclick="BAUMAN_SCHEDULE_REF.openSlot(\''+iso(d)+'\',\''+esc(r.slotId)+'\')" title="'+esc(r.entry.learningItem||r.entry.label||'Học theo lịch')+'"><b>'+esc(subjectName(r.entry.subjectId))+'</b><span>'+esc(r.slot.time)+'</span><small>'+esc(r.entry.learningItem||r.entry.label||'Học theo lịch')+'</small></button>';
+  var w=slotWindow(r.slot),top=((w[0]-360)/720*100),h=Math.max(5,(w[1]-w[0])/720*100),t=tone(r.entry.subjectId),paint=tonePaint(t);
+  return '<button type="button" class="schedule-ref__event is-'+t+'" style="--top:'+top+'%;--height:'+h+'%;--event-bg:'+paint.bg+';--event-fg:'+paint.fg+';--event-line:'+paint.line+'" onclick="BAUMAN_SCHEDULE_REF.openSlot(\''+iso(d)+'\',\''+esc(r.slotId)+'\')" title="'+esc(r.entry.learningItem||r.entry.label||'Học theo lịch')+'"><b>'+esc(subjectName(r.entry.subjectId))+'</b><span>'+esc(r.slot.time)+'</span><small>'+esc(r.entry.learningItem||r.entry.label||'Học theo lịch')+'</small></button>';
 }
 function emptySlots(d){
   var sc=scheduleState();if(!sc||!sc.edit||!dateStatus(d).allowed)return '';
