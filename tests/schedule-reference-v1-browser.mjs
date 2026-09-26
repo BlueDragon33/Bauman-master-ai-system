@@ -60,6 +60,15 @@ try{
   assert.equal(before.footer,3,'Schedule footer must contain progress, workload and notes');
   assert.equal(before.rightRail,true,'Schedule right rail is missing');
 
+  const palette=await page.evaluate(()=>{
+    const rows=[...document.querySelectorAll('#page-schedule .schedule-ref__event')];
+    const values=rows.map(x=>getComputedStyle(x).backgroundColor);
+    return {count:rows.length,values,unique:[...new Set(values)]};
+  });
+  assert.ok(palette.count>=4,'Schedule week does not expose enough colored event cards for visual QA');
+  assert.ok(palette.unique.length>=4,'Schedule events are not visually separated by subject color');
+  assert.ok(palette.values.every(v=>v!=='rgb(255, 255, 255)'&&v!=='rgba(0, 0, 0, 0)'),'Schedule event palette collapsed back to white/transparent');
+
   await page.evaluate(()=>window.BAUMAN_SCHEDULE_REF.setView('day'));
   await page.waitForSelector('#page-schedule .schedule-ref__day-view',{state:'visible'});
   await page.evaluate(()=>window.BAUMAN_SCHEDULE_REF.setView('month'));
