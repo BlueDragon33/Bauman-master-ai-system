@@ -8,7 +8,7 @@ const OUT=process.env.BAUMAN_E2E_ARTIFACT_DIR||'artifacts/schedule-reference-v1'
 fs.mkdirSync(OUT,{recursive:true});
 
 async function mockControl(page){
-  const deviceId='s'.repeat(64),deviceCode='BM-SCHEDULE-E2E';
+  const deviceId='d'.repeat(64),deviceCode='BM-SCHEDULE-E2E';
   const cors={'access-control-allow-origin':'*','access-control-allow-methods':'GET,POST,OPTIONS','access-control-allow-headers':'content-type,authorization','cache-control':'no-store'};
   await page.route('http://127.0.0.1:3003/**',async route=>{
     const req=route.request();
