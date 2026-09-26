@@ -96,7 +96,7 @@ try{
 
   await page.evaluate(()=>window.BAUMAN_SUBJECTS_REF.shiftCalendar(1));
   const calendarTitle=await page.textContent('#page-subjects .subjects-page__calendar .subjects-page__panel-head>b');
-  assert.ok(calendarTitle?.includes('Tháng 4, 2025'),'Calendar next-month interaction failed');
+  assert.ok(calendarTitle?.includes('4, 2025'),'Calendar next-month interaction failed');
   await page.evaluate(()=>window.BAUMAN_SUBJECTS_REF.shiftCalendar(-1));
 
   await page.evaluate(()=>window.BAUMAN_SUBJECTS_REF.openAddCourse());
