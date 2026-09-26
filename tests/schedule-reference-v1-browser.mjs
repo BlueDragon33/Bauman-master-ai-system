@@ -59,15 +59,35 @@ try{
   assert.equal(before.summaries,4,'Schedule summary must contain four cards');
   assert.equal(before.footer,3,'Schedule footer must contain progress, workload and notes');
   assert.equal(before.rightRail,true,'Schedule right rail is missing');
+  assert.equal(before.schedule?.priorityLegendItems,4,'Schedule must explain all four priority colors');
 
+  await page.evaluate(()=>{
+    const nodes=[...document.querySelectorAll('#page-schedule .schedule-ref__event')].slice(0,4);
+    if(nodes.length<4)throw new Error('Need at least four schedule events for priority palette QA');
+    ['q1','q3','q2','q4'].forEach((priority,i)=>{
+      const key=nodes[i].dataset.entryKey;
+      if(!key||!state.schedule.entries[key])throw new Error('Missing schedule entry key for priority QA');
+      state.schedule.entries[key].priority=priority;
+    });
+    save();
+    window.BAUMAN_SCHEDULE_REF.render();
+  });
   const palette=await page.evaluate(()=>{
     const rows=[...document.querySelectorAll('#page-schedule .schedule-ref__event')];
-    const values=rows.map(x=>getComputedStyle(x).backgroundColor);
-    return {count:rows.length,values,unique:[...new Set(values)]};
+    const byPriority={};
+    rows.forEach(x=>{if(x.dataset.priority&&!byPriority[x.dataset.priority])byPriority[x.dataset.priority]=getComputedStyle(x).backgroundColor});
+    return {count:rows.length,byPriority,legend:[...document.querySelectorAll('#page-schedule .schedule-ref__priority-legend>span')].map(x=>x.textContent.trim())};
   });
-  assert.ok(palette.count>=4,'Schedule week does not expose enough colored event cards for visual QA');
-  assert.ok(palette.unique.length>=4,'Schedule events are not visually separated by subject color');
-  assert.ok(palette.values.every(v=>v!=='rgb(255, 255, 255)'&&v!=='rgba(0, 0, 0, 0)'),'Schedule event palette collapsed back to white/transparent');
+  assert.ok(palette.count>=4,'Schedule week does not expose enough event cards for priority QA');
+  assert.deepEqual(Object.keys(palette.byPriority).sort(),['q1','q2','q3','q4'],'All four priority quadrants must be visible when present');
+  assert.equal(palette.byPriority.q1,'rgb(253, 235, 236)','q1 must render red/pink emergency-important palette');
+  assert.equal(palette.byPriority.q3,'rgb(255, 242, 229)','q3 must render orange urgent-not-important palette');
+  assert.equal(palette.byPriority.q2,'rgb(234, 242, 255)','q2 must render blue important-not-urgent palette');
+  assert.equal(palette.byPriority.q4,'rgb(234, 247, 239)','q4 must render green non-important/non-urgent palette');
+  assert.ok(palette.legend.some(x=>x.includes('Khẩn cấp + Quan trọng')),'Red priority legend is missing');
+  assert.ok(palette.legend.some(x=>x.includes('Khẩn cấp + Không quan trọng')),'Orange priority legend is missing');
+  assert.ok(palette.legend.some(x=>x.includes('Quan trọng + Không khẩn cấp')),'Blue priority legend is missing');
+  assert.ok(palette.legend.some(x=>x.includes('Không quan trọng + Không khẩn cấp')),'Green priority legend is missing');
 
   await page.evaluate(()=>window.BAUMAN_SCHEDULE_REF.setView('day'));
   await page.waitForSelector('#page-schedule .schedule-ref__day-view',{state:'visible'});
@@ -87,8 +107,9 @@ try{
   assert.equal(jumped,'2026-06-22','Date navigator did not move to the selected week');
   await page.evaluate(()=>window.BAUMAN_SCHEDULE_REF.jumpToDate('2026-06-08'));
 
-  const attentionCopy=await page.textContent('#page-schedule .schedule-ref__summary-card.is-orange');
-  assert.ok(!attentionCopy.includes('ca lặp'),'Attention card still treats ordinary repeat sessions as an error');
+  const priorityCopy=await page.textContent('#page-schedule .schedule-ref__priority-summary');
+  assert.ok(priorityCopy.includes('Ưu tiên tuần này'),'Priority summary card is missing');
+  assert.ok(priorityCopy.includes('đỏ')&&priorityCopy.includes('cam')&&priorityCopy.includes('xanh dương')&&priorityCopy.includes('xanh lá'),'Priority summary does not expose four-level counts');
 
   const savedWeek=await page.evaluate(()=>state.schedule.weekStart);
   await page.evaluate(()=>{state.schedule.weekStart='2026-07-13';state.schedule.edit=true;save();window.BAUMAN_SCHEDULE_REF.render()});
