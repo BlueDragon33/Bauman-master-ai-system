@@ -46,7 +46,7 @@ try{
 
   const before=await page.evaluate(()=>({
     nav:document.getElementById('nav')?.innerHTML||'',
-    topbar:(document.querySelector('.topbar')?.innerHTML||'').replace(/\\sstyle=\"\"/g,''),
+    topbar:(()=>{const n=document.querySelector('.topbar')?.cloneNode(true);n?.querySelectorAll('[style]').forEach(x=>{if(!x.getAttribute('style'))x.removeAttribute('style')});return n?.innerHTML||''})(),
     navOrder:[...document.querySelectorAll('#nav [data-page]')].map(x=>x.dataset.page),
     active:[...document.querySelectorAll('.page.active')].map(x=>x.id),
     ui:window.BAUMAN_THESIS_REF?.selfCheck?.(),
@@ -144,7 +144,7 @@ try{
 
   const after=await page.evaluate(()=>({
     nav:document.getElementById('nav')?.innerHTML||'',
-    topbar:(document.querySelector('.topbar')?.innerHTML||'').replace(/\\sstyle=\"\"/g,''),
+    topbar:(()=>{const n=document.querySelector('.topbar')?.cloneNode(true);n?.querySelectorAll('[style]').forEach(x=>{if(!x.getAttribute('style'))x.removeAttribute('style')});return n?.innerHTML||''})(),
     active:[...document.querySelectorAll('.page.active')].map(x=>x.id),
     ui:window.BAUMAN_THESIS_REF?.selfCheck?.()
   }));
