@@ -1432,6 +1432,774 @@
         }
       ],
       "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t01",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T01-task-language",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "task-language"
+      ],
+      "sourceAnchors": [
+        "m_p09_t01",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "simulationId": "E18-M_P09_T01-SIM01",
+      "title": "Russian term/oral explorer · Cấu trúc đề toán tiếng Nga: дано, найти, доказать, вычислить",
+      "purpose": "Luyện nhận diện thuật ngữ, trọng âm và chuyển ký hiệu thành lời.",
+      "controls": [
+        {
+          "key": "term_count",
+          "type": "number",
+          "default": 8
+        },
+        {
+          "key": "show_translation",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "term_accuracy",
+          "label": "Độ chính xác thuật ngữ"
+        },
+        {
+          "key": "oral_readiness",
+          "label": "Mức sẵn sàng vấn đáp"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t01",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T01-task-language",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "task-language"
+      ],
+      "sourceAnchors": [
+        "m_p09_t01",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "simulationId": "E18-M_P09_T01-SIM02",
+      "title": "Timed oral defense · Cấu trúc đề toán tiếng Nga: дано, найти, доказать, вычислить",
+      "purpose": "Mô phỏng 60 giây trả lời giảng viên và một vòng sửa lỗi.",
+      "controls": [
+        {
+          "key": "time_limit_sec",
+          "type": "number",
+          "default": 60
+        },
+        {
+          "key": "inject_error",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "structure_score",
+          "label": "Đủ 4 bước trả lời"
+        },
+        {
+          "key": "repair_score",
+          "label": "Khả năng sửa lỗi"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t02",
+      "lessonId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_-E18-MP09-T02-sets-functions",
+      "chapterId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "sets-functions"
+      ],
+      "sourceAnchors": [
+        "m_p09_t02",
+        "m_s01",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "simulationId": "E18-M_P09_T02-SIM01",
+      "title": "Russian term/oral explorer · Số, tập hợp, hàm số và biểu thức đại số bằng tiếng Nga",
+      "purpose": "Luyện nhận diện thuật ngữ, trọng âm và chuyển ký hiệu thành lời.",
+      "controls": [
+        {
+          "key": "term_count",
+          "type": "number",
+          "default": 8
+        },
+        {
+          "key": "show_translation",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "term_accuracy",
+          "label": "Độ chính xác thuật ngữ"
+        },
+        {
+          "key": "oral_readiness",
+          "label": "Mức sẵn sàng vấn đáp"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t02",
+      "lessonId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_-E18-MP09-T02-sets-functions",
+      "chapterId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "sets-functions"
+      ],
+      "sourceAnchors": [
+        "m_p09_t02",
+        "m_s01",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "simulationId": "E18-M_P09_T02-SIM02",
+      "title": "Timed oral defense · Số, tập hợp, hàm số và biểu thức đại số bằng tiếng Nga",
+      "purpose": "Mô phỏng 60 giây trả lời giảng viên và một vòng sửa lỗi.",
+      "controls": [
+        {
+          "key": "time_limit_sec",
+          "type": "number",
+          "default": 60
+        },
+        {
+          "key": "inject_error",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "structure_score",
+          "label": "Đủ 4 bước trả lời"
+        },
+        {
+          "key": "repair_score",
+          "label": "Khả năng sửa lỗi"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E18-MP09-T03-linear-algebra",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "linear-algebra"
+      ],
+      "sourceAnchors": [
+        "m_p09_t03",
+        "m_s01",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "simulationId": "E18-M_P09_T03-SIM01",
+      "title": "Russian term/oral explorer · Vector, ma trận và hệ phương trình bằng tiếng Nga",
+      "purpose": "Luyện nhận diện thuật ngữ, trọng âm và chuyển ký hiệu thành lời.",
+      "controls": [
+        {
+          "key": "term_count",
+          "type": "number",
+          "default": 8
+        },
+        {
+          "key": "show_translation",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "term_accuracy",
+          "label": "Độ chính xác thuật ngữ"
+        },
+        {
+          "key": "oral_readiness",
+          "label": "Mức sẵn sàng vấn đáp"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E18-MP09-T03-linear-algebra",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "linear-algebra"
+      ],
+      "sourceAnchors": [
+        "m_p09_t03",
+        "m_s01",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "simulationId": "E18-M_P09_T03-SIM02",
+      "title": "Timed oral defense · Vector, ma trận và hệ phương trình bằng tiếng Nga",
+      "purpose": "Mô phỏng 60 giây trả lời giảng viên và một vòng sửa lỗi.",
+      "controls": [
+        {
+          "key": "time_limit_sec",
+          "type": "number",
+          "default": 60
+        },
+        {
+          "key": "inject_error",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "structure_score",
+          "label": "Đủ 4 bước trả lời"
+        },
+        {
+          "key": "repair_score",
+          "label": "Khả năng sửa lỗi"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t04",
+      "lessonId": "MATH-PREP-C11-giai_tich_i_gioi_han_lie-E18-MP09-T04-calculus",
+      "chapterId": "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "calculus"
+      ],
+      "sourceAnchors": [
+        "m_p09_t04",
+        "m_s01",
+        "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+        "MATH-PROG-L04-single-variable-analysis",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "simulationId": "E18-M_P09_T04-SIM01",
+      "title": "Russian term/oral explorer · Giới hạn, đạo hàm và tích phân bằng tiếng Nga",
+      "purpose": "Luyện nhận diện thuật ngữ, trọng âm và chuyển ký hiệu thành lời.",
+      "controls": [
+        {
+          "key": "term_count",
+          "type": "number",
+          "default": 8
+        },
+        {
+          "key": "show_translation",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "term_accuracy",
+          "label": "Độ chính xác thuật ngữ"
+        },
+        {
+          "key": "oral_readiness",
+          "label": "Mức sẵn sàng vấn đáp"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t04",
+      "lessonId": "MATH-PREP-C11-giai_tich_i_gioi_han_lie-E18-MP09-T04-calculus",
+      "chapterId": "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "calculus"
+      ],
+      "sourceAnchors": [
+        "m_p09_t04",
+        "m_s01",
+        "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+        "MATH-PROG-L04-single-variable-analysis",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "simulationId": "E18-M_P09_T04-SIM02",
+      "title": "Timed oral defense · Giới hạn, đạo hàm và tích phân bằng tiếng Nga",
+      "purpose": "Mô phỏng 60 giây trả lời giảng viên và một vòng sửa lỗi.",
+      "controls": [
+        {
+          "key": "time_limit_sec",
+          "type": "number",
+          "default": 60
+        },
+        {
+          "key": "inject_error",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "structure_score",
+          "label": "Đủ 4 bước trả lời"
+        },
+        {
+          "key": "repair_score",
+          "label": "Khả năng sửa lỗi"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t05",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E18-MP09-T05-probability-statistics",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "probability-statistics"
+      ],
+      "sourceAnchors": [
+        "m_p09_t05",
+        "m_s01",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "simulationId": "E18-M_P09_T05-SIM01",
+      "title": "Russian term/oral explorer · Xác suất, thống kê và dữ liệu bằng tiếng Nga",
+      "purpose": "Luyện nhận diện thuật ngữ, trọng âm và chuyển ký hiệu thành lời.",
+      "controls": [
+        {
+          "key": "term_count",
+          "type": "number",
+          "default": 8
+        },
+        {
+          "key": "show_translation",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "term_accuracy",
+          "label": "Độ chính xác thuật ngữ"
+        },
+        {
+          "key": "oral_readiness",
+          "label": "Mức sẵn sàng vấn đáp"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t05",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E18-MP09-T05-probability-statistics",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "probability-statistics"
+      ],
+      "sourceAnchors": [
+        "m_p09_t05",
+        "m_s01",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "simulationId": "E18-M_P09_T05-SIM02",
+      "title": "Timed oral defense · Xác suất, thống kê và dữ liệu bằng tiếng Nga",
+      "purpose": "Mô phỏng 60 giây trả lời giảng viên và một vòng sửa lỗi.",
+      "controls": [
+        {
+          "key": "time_limit_sec",
+          "type": "number",
+          "default": 60
+        },
+        {
+          "key": "inject_error",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "structure_score",
+          "label": "Đủ 4 bước trả lời"
+        },
+        {
+          "key": "repair_score",
+          "label": "Khả năng sửa lỗi"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t06",
+      "lessonId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_-E18-MP09-T06-geometry-coordinates",
+      "chapterId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "geometry-coordinates"
+      ],
+      "sourceAnchors": [
+        "m_p09_t06",
+        "m_s01",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PROG-L08-euclidean-computational-geometry",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "simulationId": "E18-M_P09_T06-SIM01",
+      "title": "Russian term/oral explorer · Đồ thị, hình học và biến đổi tọa độ bằng tiếng Nga",
+      "purpose": "Luyện nhận diện thuật ngữ, trọng âm và chuyển ký hiệu thành lời.",
+      "controls": [
+        {
+          "key": "term_count",
+          "type": "number",
+          "default": 8
+        },
+        {
+          "key": "show_translation",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "term_accuracy",
+          "label": "Độ chính xác thuật ngữ"
+        },
+        {
+          "key": "oral_readiness",
+          "label": "Mức sẵn sàng vấn đáp"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t06",
+      "lessonId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_-E18-MP09-T06-geometry-coordinates",
+      "chapterId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "geometry-coordinates"
+      ],
+      "sourceAnchors": [
+        "m_p09_t06",
+        "m_s01",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PROG-L08-euclidean-computational-geometry",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "simulationId": "E18-M_P09_T06-SIM02",
+      "title": "Timed oral defense · Đồ thị, hình học và biến đổi tọa độ bằng tiếng Nga",
+      "purpose": "Mô phỏng 60 giây trả lời giảng viên và một vòng sửa lỗi.",
+      "controls": [
+        {
+          "key": "time_limit_sec",
+          "type": "number",
+          "default": 60
+        },
+        {
+          "key": "inject_error",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "structure_score",
+          "label": "Đủ 4 bước trả lời"
+        },
+        {
+          "key": "repair_score",
+          "label": "Khả năng sửa lỗi"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t07",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T07-proof-language",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "proof-language"
+      ],
+      "sourceAnchors": [
+        "m_p09_t07",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "simulationId": "E18-M_P09_T07-SIM01",
+      "title": "Russian term/oral explorer · Mẫu câu trình bày lời giải và chứng minh bằng tiếng Nga",
+      "purpose": "Luyện nhận diện thuật ngữ, trọng âm và chuyển ký hiệu thành lời.",
+      "controls": [
+        {
+          "key": "term_count",
+          "type": "number",
+          "default": 8
+        },
+        {
+          "key": "show_translation",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "term_accuracy",
+          "label": "Độ chính xác thuật ngữ"
+        },
+        {
+          "key": "oral_readiness",
+          "label": "Mức sẵn sàng vấn đáp"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t07",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T07-proof-language",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "proof-language"
+      ],
+      "sourceAnchors": [
+        "m_p09_t07",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "simulationId": "E18-M_P09_T07-SIM02",
+      "title": "Timed oral defense · Mẫu câu trình bày lời giải và chứng minh bằng tiếng Nga",
+      "purpose": "Mô phỏng 60 giây trả lời giảng viên và một vòng sửa lỗi.",
+      "controls": [
+        {
+          "key": "time_limit_sec",
+          "type": "number",
+          "default": 60
+        },
+        {
+          "key": "inject_error",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "structure_score",
+          "label": "Đủ 4 bước trả lời"
+        },
+        {
+          "key": "repair_score",
+          "label": "Khả năng sửa lỗi"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t08",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T08-oral-defense",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "oral-defense"
+      ],
+      "sourceAnchors": [
+        "m_p09_t08",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "simulationId": "E18-M_P09_T08-SIM01",
+      "title": "Russian term/oral explorer · Vấn đáp toán dự bị: đọc, trả lời, sửa lỗi và bảo vệ lời giải",
+      "purpose": "Luyện nhận diện thuật ngữ, trọng âm và chuyển ký hiệu thành lời.",
+      "controls": [
+        {
+          "key": "term_count",
+          "type": "number",
+          "default": 8
+        },
+        {
+          "key": "show_translation",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "term_accuracy",
+          "label": "Độ chính xác thuật ngữ"
+        },
+        {
+          "key": "oral_readiness",
+          "label": "Mức sẵn sàng vấn đáp"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t08",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T08-oral-defense",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "oral-defense"
+      ],
+      "sourceAnchors": [
+        "m_p09_t08",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "simulationId": "E18-M_P09_T08-SIM02",
+      "title": "Timed oral defense · Vấn đáp toán dự bị: đọc, trả lời, sửa lỗi và bảo vệ lời giải",
+      "purpose": "Mô phỏng 60 giây trả lời giảng viên và một vòng sửa lỗi.",
+      "controls": [
+        {
+          "key": "time_limit_sec",
+          "type": "number",
+          "default": 60
+        },
+        {
+          "key": "inject_error",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "structure_score",
+          "label": "Đủ 4 bước trả lời"
+        },
+        {
+          "key": "repair_score",
+          "label": "Khả năng sửa lỗi"
+        }
+      ],
+      "simulationClass": "application"
     }
   ],
   "importPolicy": {
@@ -1517,6 +2285,22 @@
       "architecture": "logical_module_over_physical_content",
       "verifiedAt": "2026-09-27",
       "pr": 144
+    },
+    "E18": {
+      "status": "PASS_STATIC_BROWSER_CI",
+      "frameworkChapterId": "m_s01",
+      "logicalModuleId": "m_p09",
+      "lessons": 8,
+      "theorySlides": 160,
+      "updatedAt": "2026-09-27",
+      "verifiedAt": "2026-09-27",
+      "pr": 145,
+      "gateResults": {
+        "academic": "PASS",
+        "runtimeStatic": "PASS",
+        "browser": "PASS",
+        "developmentFastCI": "PASS"
+      }
     }
   }
 }

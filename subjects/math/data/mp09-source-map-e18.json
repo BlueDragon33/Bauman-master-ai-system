@@ -1,0 +1,187 @@
+{
+  "schema": "bauman_math_logical_module_source_map_v1",
+  "recoveryId": "E18",
+  "frameworkChapterId": "m_s01",
+  "logicalModuleId": "m_p09",
+  "moduleId": "m_p09",
+  "moduleTitle": "Thuật ngữ toán tiếng Nga cho lớp dự bị kỹ thuật",
+  "stageId": "prep",
+  "architecture": "framework_chapter_logical_lesson_group_over_physical_prep_spine",
+  "status": "PASS_STATIC_BROWSER_CI",
+  "correction": {
+    "rule": "m_s01 là chapter khung trong theory-framework; m_p09 là nhóm ID của 8 bài con. Không suy diễn m_p09 thành một physical chapter mới. Mỗi bài neo vào physical prep chapter có thật theo bản chất toán học.",
+    "physicalSpineTruth": [
+      "Physical prep spine dùng MATH-PREP-C07..C18 hiện có.",
+      "m_p09_t01..t08 tồn tại trong theory-framework dưới framework chapter m_s01.",
+      "Modern Content Vault là runtime content authority; source-map giữ liên kết logical ↔ physical."
+    ]
+  },
+  "commonBridgeProgramAnchor": "MATH-PROG-L10-logic-set-theory-boolean",
+  "logicalLessons": [
+    {
+      "logicalId": "m_p09_t01",
+      "title": "Cấu trúc đề toán tiếng Nga: дано, найти, доказать, вычислить",
+      "physicalChapterIds": [
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n"
+      ],
+      "runtimeChapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "theoryLessonIds": [
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T01-task-language"
+      ],
+      "programLectureId": "MATH-PROG-L10-logic-set-theory-boolean",
+      "bridgeProgramLectureId": "MATH-PROG-L10-logic-set-theory-boolean",
+      "coverage": "AUTHORED_MODERN_THEORY_E18",
+      "prerequisiteLogicalIds": []
+    },
+    {
+      "logicalId": "m_p09_t02",
+      "title": "Số, tập hợp, hàm số và biểu thức đại số bằng tiếng Nga",
+      "physicalChapterIds": [
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_"
+      ],
+      "runtimeChapterId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+      "theoryLessonIds": [
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_-E18-MP09-T02-sets-functions"
+      ],
+      "programLectureId": "MATH-PROG-L10-logic-set-theory-boolean",
+      "bridgeProgramLectureId": "MATH-PROG-L10-logic-set-theory-boolean",
+      "coverage": "AUTHORED_MODERN_THEORY_E18",
+      "prerequisiteLogicalIds": [
+        "m_p09_t01"
+      ]
+    },
+    {
+      "logicalId": "m_p09_t03",
+      "title": "Vector, ma trận và hệ phương trình bằng tiếng Nga",
+      "physicalChapterIds": [
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto"
+      ],
+      "runtimeChapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "theoryLessonIds": [
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E18-MP09-T03-linear-algebra"
+      ],
+      "programLectureId": "MATH-PROG-L01-linear-algebra-basic",
+      "bridgeProgramLectureId": "MATH-PROG-L10-logic-set-theory-boolean",
+      "coverage": "AUTHORED_MODERN_THEORY_E18",
+      "prerequisiteLogicalIds": [
+        "m_p09_t02"
+      ]
+    },
+    {
+      "logicalId": "m_p09_t04",
+      "title": "Giới hạn, đạo hàm và tích phân bằng tiếng Nga",
+      "physicalChapterIds": [
+        "MATH-PREP-C11-giai_tich_i_gioi_han_lie"
+      ],
+      "runtimeChapterId": "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+      "theoryLessonIds": [
+        "MATH-PREP-C11-giai_tich_i_gioi_han_lie-E18-MP09-T04-calculus"
+      ],
+      "programLectureId": "MATH-PROG-L04-single-variable-analysis",
+      "bridgeProgramLectureId": "MATH-PROG-L10-logic-set-theory-boolean",
+      "coverage": "AUTHORED_MODERN_THEORY_E18",
+      "prerequisiteLogicalIds": [
+        "m_p09_t03"
+      ]
+    },
+    {
+      "logicalId": "m_p09_t05",
+      "title": "Xác suất, thống kê và dữ liệu bằng tiếng Nga",
+      "physicalChapterIds": [
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_"
+      ],
+      "runtimeChapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "theoryLessonIds": [
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E18-MP09-T05-probability-statistics"
+      ],
+      "programLectureId": "MATH-PROG-L12-probability-random-variables",
+      "bridgeProgramLectureId": "MATH-PROG-L10-logic-set-theory-boolean",
+      "coverage": "AUTHORED_MODERN_THEORY_E18",
+      "prerequisiteLogicalIds": [
+        "m_p09_t04"
+      ]
+    },
+    {
+      "logicalId": "m_p09_t06",
+      "title": "Đồ thị, hình học và biến đổi tọa độ bằng tiếng Nga",
+      "physicalChapterIds": [
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_"
+      ],
+      "runtimeChapterId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+      "theoryLessonIds": [
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_-E18-MP09-T06-geometry-coordinates"
+      ],
+      "programLectureId": "MATH-PROG-L08-euclidean-computational-geometry",
+      "bridgeProgramLectureId": "MATH-PROG-L10-logic-set-theory-boolean",
+      "coverage": "AUTHORED_MODERN_THEORY_E18",
+      "prerequisiteLogicalIds": [
+        "m_p09_t05"
+      ]
+    },
+    {
+      "logicalId": "m_p09_t07",
+      "title": "Mẫu câu trình bày lời giải và chứng minh bằng tiếng Nga",
+      "physicalChapterIds": [
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n"
+      ],
+      "runtimeChapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "theoryLessonIds": [
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T07-proof-language"
+      ],
+      "programLectureId": "MATH-PROG-L10-logic-set-theory-boolean",
+      "bridgeProgramLectureId": "MATH-PROG-L10-logic-set-theory-boolean",
+      "coverage": "AUTHORED_MODERN_THEORY_E18",
+      "prerequisiteLogicalIds": [
+        "m_p09_t06"
+      ]
+    },
+    {
+      "logicalId": "m_p09_t08",
+      "title": "Vấn đáp toán dự bị: đọc, trả lời, sửa lỗi và bảo vệ lời giải",
+      "physicalChapterIds": [
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n"
+      ],
+      "runtimeChapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "theoryLessonIds": [
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T08-oral-defense"
+      ],
+      "programLectureId": "MATH-PROG-L10-logic-set-theory-boolean",
+      "bridgeProgramLectureId": "MATH-PROG-L10-logic-set-theory-boolean",
+      "coverage": "AUTHORED_MODERN_THEORY_E18",
+      "prerequisiteLogicalIds": [
+        "m_p09_t07"
+      ]
+    }
+  ],
+  "contentGate": {
+    "requiredLogicalLessons": 8,
+    "expected": {
+      "theorySlides": 160,
+      "formulas": 24,
+      "exercises": 64,
+      "applications": 16,
+      "simulations": 16,
+      "professorQA": 8,
+      "questions": 48,
+      "reviewPacks": 8
+    },
+    "requiredSlideRoles": [
+      "russian_term_bridge",
+      "pronunciation_drill",
+      "oral_response",
+      "warning_counterexample",
+      "assumption_gate",
+      "error_repair"
+    ],
+    "completionRule": "PASS only when 8 lessons/160 slides, trilingual terminology, pronunciation/oral/error-repair coverage, sidecar links, physical prep spine integrity, runtime routing and Chromium acceptance all pass."
+  },
+  "verifiedAt": "2026-09-27",
+  "pr": 145,
+  "gateResults": {
+    "academic": "PASS",
+    "runtimeStatic": "PASS",
+    "browser": "PASS",
+    "developmentFastCI": "PASS"
+  }
+}

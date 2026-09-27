@@ -2770,6 +2770,1670 @@
       "level": "hard",
       "prompt": "So sánh hai lựa chọn xử lý hợp lệ và không hợp lệ trong bài này.",
       "solution": "Hợp lệ: giữ causal ordering/provenance. Không hợp lệ: dùng dữ liệu tương lai hoặc bỏ qua điều kiện dữ liệu. Future leakage thường không gây lỗi code; nó gây metric đẹp giả. Leakage có thể đến từ preprocessing, aggregation, label construction hoặc feature được cập nhật sau thời điểm dự đoán."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t01",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T01-task-language",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "task-language"
+      ],
+      "sourceAnchors": [
+        "m_p09_t01",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T01-E01",
+      "level": "easy",
+      "prompt": "Nối 4 thuật ngữ Nga đầu tiên của bài với nghĩa Việt/Anh.",
+      "solution": "Đáp án chuẩn: дано́=đã cho / dữ kiện (given); найти́=tìm (find); доказа́ть=chứng minh (prove); вы́числить=tính giá trị (calculate)."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t01",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T01-task-language",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "task-language"
+      ],
+      "sourceAnchors": [
+        "m_p09_t01",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T01-E02",
+      "level": "easy",
+      "prompt": "Đọc thành lời tiếng Nga: Дано: x ∈ ℝ. Найти: f(x)..",
+      "solution": "Khung đọc nhanh: xác định dữ kiện trước, rồi xác định đại lượng cần tìm."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t01",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T01-task-language",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "task-language"
+      ],
+      "sourceAnchors": [
+        "m_p09_t01",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T01-E03",
+      "level": "medium",
+      "prompt": "Dịch và xác định thao tác toán của câu: «Что дано в задаче? — В задаче дано …»",
+      "solution": "Dịch theo ngữ cảnh bài; sau đó nêu rõ cần tìm/tính/giải/chứng minh gì trước khi thao tác."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t01",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T01-task-language",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "task-language"
+      ],
+      "sourceAnchors": [
+        "m_p09_t01",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T01-E04",
+      "level": "medium",
+      "prompt": "Tự tạo một đề cực ngắn dùng ít nhất 3 từ: дано́, найти́, доказа́ть.",
+      "solution": "Đề đạt nếu nghĩa toán nhất quán và dùng thuật ngữ đúng vai trò."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t01",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T01-task-language",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "task-language"
+      ],
+      "sourceAnchors": [
+        "m_p09_t01",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T01-E05",
+      "level": "medium",
+      "prompt": "Phân tích bẫy dịch thuật sau và sửa: `определить` trong đề có thể là «xác định/tìm» chứ không phải lúc nào cũng là «định nghĩa»; `решить` thường là giải bài toán/phương trình.",
+      "solution": "Sửa bằng cách khóa ngữ cảnh toán, đối chiếu ký hiệu và dùng nghĩa chuyên ngành thay vì nghĩa đời thường."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t01",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T01-task-language",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "task-language"
+      ],
+      "sourceAnchors": [
+        "m_p09_t01",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T01-E06",
+      "level": "hard",
+      "prompt": "Trình bày ví dụ sau bằng tiếng Nga, không nhìn mẫu: Дано: a = 3, b = 4. Найти: c = √(a²+b²). Ta đọc dữ kiện, nêu công thức và kết luận: c = 5.",
+      "solution": "Дано a равно трём, b равно четырём. Нужно найти c. По теореме Пифагора c равно пяти."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t01",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T01-task-language",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "task-language"
+      ],
+      "sourceAnchors": [
+        "m_p09_t01",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T01-E07",
+      "level": "hard",
+      "prompt": "Trả lời câu hỏi giảng viên: Nếu đề ghi «Докажите, что функция непрерывна», em có được chỉ thay số vài điểm để kết luận không?",
+      "solution": "Không. «Докажите» đòi hỏi lập luận tổng quát theo định nghĩa/định lý; kiểm tra vài điểm chỉ là minh họa."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t01",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T01-task-language",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "task-language"
+      ],
+      "sourceAnchors": [
+        "m_p09_t01",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T01-E08",
+      "level": "hard",
+      "prompt": "Giả sử em vừa nói sai trong vấn đáp. Hãy dùng một câu sửa lỗi phù hợp.",
+      "solution": "Nếu lỡ hiểu sai câu lệnh, nói: «Я неправильно понял условие. Здесь нужно доказать, а не вычислить. Исправляю решение.»"
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t02",
+      "lessonId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_-E18-MP09-T02-sets-functions",
+      "chapterId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "sets-functions"
+      ],
+      "sourceAnchors": [
+        "m_p09_t02",
+        "m_s01",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T02-E01",
+      "level": "easy",
+      "prompt": "Nối 4 thuật ngữ Nga đầu tiên của bài với nghĩa Việt/Anh.",
+      "solution": "Đáp án chuẩn: число́=số (number); мно́жество=tập hợp (set); элеме́нт=phần tử (element); подмно́жество=tập con (subset)."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t02",
+      "lessonId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_-E18-MP09-T02-sets-functions",
+      "chapterId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "sets-functions"
+      ],
+      "sourceAnchors": [
+        "m_p09_t02",
+        "m_s01",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T02-E02",
+      "level": "easy",
+      "prompt": "Đọc thành lời tiếng Nga: x ∈ A.",
+      "solution": "x thuộc tập A; tiếng Nga: x принадлежит множеству A."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t02",
+      "lessonId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_-E18-MP09-T02-sets-functions",
+      "chapterId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "sets-functions"
+      ],
+      "sourceAnchors": [
+        "m_p09_t02",
+        "m_s01",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T02-E03",
+      "level": "medium",
+      "prompt": "Dịch và xác định thao tác toán của câu: «Найдите область определения функции.»",
+      "solution": "Dịch theo ngữ cảnh bài; sau đó nêu rõ cần tìm/tính/giải/chứng minh gì trước khi thao tác."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t02",
+      "lessonId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_-E18-MP09-T02-sets-functions",
+      "chapterId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "sets-functions"
+      ],
+      "sourceAnchors": [
+        "m_p09_t02",
+        "m_s01",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T02-E04",
+      "level": "medium",
+      "prompt": "Tự tạo một đề cực ngắn dùng ít nhất 3 từ: число́, мно́жество, элеме́нт.",
+      "solution": "Đề đạt nếu nghĩa toán nhất quán và dùng thuật ngữ đúng vai trò."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t02",
+      "lessonId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_-E18-MP09-T02-sets-functions",
+      "chapterId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "sets-functions"
+      ],
+      "sourceAnchors": [
+        "m_p09_t02",
+        "m_s01",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T02-E05",
+      "level": "medium",
+      "prompt": "Phân tích bẫy dịch thuật sau và sửa: `область значений` là miền giá trị/range, còn `значение функции` là một giá trị cụ thể của hàm; hai cụm không được dịch lẫn.",
+      "solution": "Sửa bằng cách khóa ngữ cảnh toán, đối chiếu ký hiệu và dùng nghĩa chuyên ngành thay vì nghĩa đời thường."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t02",
+      "lessonId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_-E18-MP09-T02-sets-functions",
+      "chapterId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "sets-functions"
+      ],
+      "sourceAnchors": [
+        "m_p09_t02",
+        "m_s01",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T02-E06",
+      "level": "hard",
+      "prompt": "Trình bày ví dụ sau bằng tiếng Nga, không nhìn mẫu: Для f(x)=1/(x−2) область определения: x ≠ 2. Trả lời: «Область определения — все действительные числа, кроме двух.»",
+      "solution": "Функция f от x равна единице, делённой на x минус два. Икс не равен двум."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t02",
+      "lessonId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_-E18-MP09-T02-sets-functions",
+      "chapterId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "sets-functions"
+      ],
+      "sourceAnchors": [
+        "m_p09_t02",
+        "m_s01",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T02-E07",
+      "level": "hard",
+      "prompt": "Trả lời câu hỏi giảng viên: `значение функции` và `область значений` khác nhau thế nào?",
+      "solution": "`значение функции` là f(x) tại một x cụ thể; `область значений` là tập tất cả giá trị hàm có thể nhận."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t02",
+      "lessonId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_-E18-MP09-T02-sets-functions",
+      "chapterId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "sets-functions"
+      ],
+      "sourceAnchors": [
+        "m_p09_t02",
+        "m_s01",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T02-E08",
+      "level": "hard",
+      "prompt": "Giả sử em vừa nói sai trong vấn đáp. Hãy dùng một câu sửa lỗi phù hợp.",
+      "solution": "Nếu nhầm domain/range: «Я перепутал область определения и область значений. Область определения относится к допустимым x.»"
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E18-MP09-T03-linear-algebra",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "linear-algebra"
+      ],
+      "sourceAnchors": [
+        "m_p09_t03",
+        "m_s01",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T03-E01",
+      "level": "easy",
+      "prompt": "Nối 4 thuật ngữ Nga đầu tiên của bài với nghĩa Việt/Anh.",
+      "solution": "Đáp án chuẩn: ве́ктор=vector (vector); матри́ца=ma trận (matrix); стро́ка=hàng (row); столбе́ц=cột (column)."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E18-MP09-T03-linear-algebra",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "linear-algebra"
+      ],
+      "sourceAnchors": [
+        "m_p09_t03",
+        "m_s01",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T03-E02",
+      "level": "easy",
+      "prompt": "Đọc thành lời tiếng Nga: Ax = b.",
+      "solution": "Матрица A nhân vector ẩn x bằng vector vế phải b."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E18-MP09-T03-linear-algebra",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "linear-algebra"
+      ],
+      "sourceAnchors": [
+        "m_p09_t03",
+        "m_s01",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T03-E03",
+      "level": "medium",
+      "prompt": "Dịch và xác định thao tác toán của câu: «Найдите определитель матрицы A.»",
+      "solution": "Dịch theo ngữ cảnh bài; sau đó nêu rõ cần tìm/tính/giải/chứng minh gì trước khi thao tác."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E18-MP09-T03-linear-algebra",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "linear-algebra"
+      ],
+      "sourceAnchors": [
+        "m_p09_t03",
+        "m_s01",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T03-E04",
+      "level": "medium",
+      "prompt": "Tự tạo một đề cực ngắn dùng ít nhất 3 từ: ве́ктор, матри́ца, стро́ка.",
+      "solution": "Đề đạt nếu nghĩa toán nhất quán và dùng thuật ngữ đúng vai trò."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E18-MP09-T03-linear-algebra",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "linear-algebra"
+      ],
+      "sourceAnchors": [
+        "m_p09_t03",
+        "m_s01",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T03-E05",
+      "level": "medium",
+      "prompt": "Phân tích bẫy dịch thuật sau và sửa: `строка` trong đại số tuyến tính là hàng của ma trận, còn `столбец` là cột; tránh dịch theo nghĩa «dòng văn bản/cột báo» khi đang ở ngữ cảnh ma trận.",
+      "solution": "Sửa bằng cách khóa ngữ cảnh toán, đối chiếu ký hiệu và dùng nghĩa chuyên ngành thay vì nghĩa đời thường."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E18-MP09-T03-linear-algebra",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "linear-algebra"
+      ],
+      "sourceAnchors": [
+        "m_p09_t03",
+        "m_s01",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T03-E06",
+      "level": "hard",
+      "prompt": "Trình bày ví dụ sau bằng tiếng Nga, không nhìn mẫu: Для A=[[1,2],[3,4]] det A = 1·4−2·3 = −2, поэтому обратная матрица существует.",
+      "solution": "Определитель матрицы A равен минус двум. Он не равен нулю, поэтому обратная матрица существует."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E18-MP09-T03-linear-algebra",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "linear-algebra"
+      ],
+      "sourceAnchors": [
+        "m_p09_t03",
+        "m_s01",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T03-E07",
+      "level": "hard",
+      "prompt": "Trả lời câu hỏi giảng viên: Tại sao từ det(A)≠0 em được nói ma trận nghịch đảo tồn tại?",
+      "solution": "Với ma trận vuông, định thức khác 0 tương đương hạng đầy đủ và khả nghịch."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E18-MP09-T03-linear-algebra",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "linear-algebra"
+      ],
+      "sourceAnchors": [
+        "m_p09_t03",
+        "m_s01",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T03-E08",
+      "level": "hard",
+      "prompt": "Giả sử em vừa nói sai trong vấn đáp. Hãy dùng một câu sửa lỗi phù hợp.",
+      "solution": "Nếu nói nhầm row/column: «Исправляю: это не строка, а столбец матрицы.»"
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t04",
+      "lessonId": "MATH-PREP-C11-giai_tich_i_gioi_han_lie-E18-MP09-T04-calculus",
+      "chapterId": "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "calculus"
+      ],
+      "sourceAnchors": [
+        "m_p09_t04",
+        "m_s01",
+        "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+        "MATH-PROG-L04-single-variable-analysis",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T04-E01",
+      "level": "easy",
+      "prompt": "Nối 4 thuật ngữ Nga đầu tiên của bài với nghĩa Việt/Anh.",
+      "solution": "Đáp án chuẩn: преде́л=giới hạn (limit); непреры́вность=tính liên tục (continuity); произво́дная=đạo hàm (derivative); дифференци́руемый=khả vi (differentiable)."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t04",
+      "lessonId": "MATH-PREP-C11-giai_tich_i_gioi_han_lie-E18-MP09-T04-calculus",
+      "chapterId": "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "calculus"
+      ],
+      "sourceAnchors": [
+        "m_p09_t04",
+        "m_s01",
+        "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+        "MATH-PROG-L04-single-variable-analysis",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T04-E02",
+      "level": "easy",
+      "prompt": "Đọc thành lời tiếng Nga: lim_{x→a} f(x) = L.",
+      "solution": "Предел функции f(x) при x, стремящемся к a, равен L."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t04",
+      "lessonId": "MATH-PREP-C11-giai_tich_i_gioi_han_lie-E18-MP09-T04-calculus",
+      "chapterId": "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "calculus"
+      ],
+      "sourceAnchors": [
+        "m_p09_t04",
+        "m_s01",
+        "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+        "MATH-PROG-L04-single-variable-analysis",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T04-E03",
+      "level": "medium",
+      "prompt": "Dịch và xác định thao tác toán của câu: «Найдите предел функции.»",
+      "solution": "Dịch theo ngữ cảnh bài; sau đó nêu rõ cần tìm/tính/giải/chứng minh gì trước khi thao tác."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t04",
+      "lessonId": "MATH-PREP-C11-giai_tich_i_gioi_han_lie-E18-MP09-T04-calculus",
+      "chapterId": "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "calculus"
+      ],
+      "sourceAnchors": [
+        "m_p09_t04",
+        "m_s01",
+        "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+        "MATH-PROG-L04-single-variable-analysis",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T04-E04",
+      "level": "medium",
+      "prompt": "Tự tạo một đề cực ngắn dùng ít nhất 3 từ: преде́л, непреры́вность, произво́дная.",
+      "solution": "Đề đạt nếu nghĩa toán nhất quán và dùng thuật ngữ đúng vai trò."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t04",
+      "lessonId": "MATH-PREP-C11-giai_tich_i_gioi_han_lie-E18-MP09-T04-calculus",
+      "chapterId": "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "calculus"
+      ],
+      "sourceAnchors": [
+        "m_p09_t04",
+        "m_s01",
+        "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+        "MATH-PROG-L04-single-variable-analysis",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T04-E05",
+      "level": "medium",
+      "prompt": "Phân tích bẫy dịch thuật sau và sửa: `первообразная` là nguyên hàm, không phải «đạo hàm đầu tiên»; `определённый интеграл` là tích phân xác định.",
+      "solution": "Sửa bằng cách khóa ngữ cảnh toán, đối chiếu ký hiệu và dùng nghĩa chuyên ngành thay vì nghĩa đời thường."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t04",
+      "lessonId": "MATH-PREP-C11-giai_tich_i_gioi_han_lie-E18-MP09-T04-calculus",
+      "chapterId": "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "calculus"
+      ],
+      "sourceAnchors": [
+        "m_p09_t04",
+        "m_s01",
+        "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+        "MATH-PROG-L04-single-variable-analysis",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T04-E06",
+      "level": "hard",
+      "prompt": "Trình bày ví dụ sau bằng tiếng Nga, không nhìn mẫu: Если f(x)=x², то f′(x)=2x. В точке x=3 производная равна 6.",
+      "solution": "Производная функции икс в квадрате равна двум икс. При икс равном трём получаем шесть."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t04",
+      "lessonId": "MATH-PREP-C11-giai_tich_i_gioi_han_lie-E18-MP09-T04-calculus",
+      "chapterId": "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "calculus"
+      ],
+      "sourceAnchors": [
+        "m_p09_t04",
+        "m_s01",
+        "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+        "MATH-PROG-L04-single-variable-analysis",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T04-E07",
+      "level": "hard",
+      "prompt": "Trả lời câu hỏi giảng viên: Liên tục có luôn suy ra khả vi không?",
+      "solution": "Không. Khả vi suy ra liên tục tại điểm đó, nhưng liên tục không nhất thiết khả vi; |x| tại 0 là phản ví dụ."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t04",
+      "lessonId": "MATH-PREP-C11-giai_tich_i_gioi_han_lie-E18-MP09-T04-calculus",
+      "chapterId": "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "calculus"
+      ],
+      "sourceAnchors": [
+        "m_p09_t04",
+        "m_s01",
+        "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+        "MATH-PROG-L04-single-variable-analysis",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T04-E08",
+      "level": "hard",
+      "prompt": "Giả sử em vừa nói sai trong vấn đáp. Hãy dùng một câu sửa lỗi phù hợp.",
+      "solution": "Nếu lẫn limit và derivative: «Я назвал производную пределом. Исправляю: производная определяется через предел разностного отношения.»"
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t05",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E18-MP09-T05-probability-statistics",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "probability-statistics"
+      ],
+      "sourceAnchors": [
+        "m_p09_t05",
+        "m_s01",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T05-E01",
+      "level": "easy",
+      "prompt": "Nối 4 thuật ngữ Nga đầu tiên của bài với nghĩa Việt/Anh.",
+      "solution": "Đáp án chuẩn: вероя́тность=xác suất (probability); случа́йная величина́=biến ngẫu nhiên (random variable); распределе́ние=phân phối (distribution); математи́ческое ожида́ние=kỳ vọng (expectation)."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t05",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E18-MP09-T05-probability-statistics",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "probability-statistics"
+      ],
+      "sourceAnchors": [
+        "m_p09_t05",
+        "m_s01",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T05-E02",
+      "level": "easy",
+      "prompt": "Đọc thành lời tiếng Nga: 0 ≤ P(A) ≤ 1.",
+      "solution": "Вероятность события A nằm trong [0,1]."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t05",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E18-MP09-T05-probability-statistics",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "probability-statistics"
+      ],
+      "sourceAnchors": [
+        "m_p09_t05",
+        "m_s01",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T05-E03",
+      "level": "medium",
+      "prompt": "Dịch và xác định thao tác toán của câu: «Найдите вероятность события A.»",
+      "solution": "Dịch theo ngữ cảnh bài; sau đó nêu rõ cần tìm/tính/giải/chứng minh gì trước khi thao tác."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t05",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E18-MP09-T05-probability-statistics",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "probability-statistics"
+      ],
+      "sourceAnchors": [
+        "m_p09_t05",
+        "m_s01",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T05-E04",
+      "level": "medium",
+      "prompt": "Tự tạo một đề cực ngắn dùng ít nhất 3 từ: вероя́тность, случа́йная величина́, распределе́ние.",
+      "solution": "Đề đạt nếu nghĩa toán nhất quán và dùng thuật ngữ đúng vai trò."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t05",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E18-MP09-T05-probability-statistics",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "probability-statistics"
+      ],
+      "sourceAnchors": [
+        "m_p09_t05",
+        "m_s01",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T05-E05",
+      "level": "medium",
+      "prompt": "Phân tích bẫy dịch thuật sau và sửa: `математическое ожидание` là kỳ vọng toán học, không dịch máy thành «sự chờ đợi»; `выборка` là mẫu thống kê, không phải thao tác «chọn» chung.",
+      "solution": "Sửa bằng cách khóa ngữ cảnh toán, đối chiếu ký hiệu và dùng nghĩa chuyên ngành thay vì nghĩa đời thường."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t05",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E18-MP09-T05-probability-statistics",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "probability-statistics"
+      ],
+      "sourceAnchors": [
+        "m_p09_t05",
+        "m_s01",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T05-E06",
+      "level": "hard",
+      "prompt": "Trình bày ví dụ sau bằng tiếng Nga, không nhìn mẫu: Если X принимает 0 и 1 с вероятностями 0,3 и 0,7, то E[X]=0,7 и Var(X)=0,21.",
+      "solution": "Математическое ожидание X равно ноль целых семь десятых, дисперсия равна ноль целых двадцать одна сотая."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t05",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E18-MP09-T05-probability-statistics",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "probability-statistics"
+      ],
+      "sourceAnchors": [
+        "m_p09_t05",
+        "m_s01",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T05-E07",
+      "level": "hard",
+      "prompt": "Trả lời câu hỏi giảng viên: `выборка` và `генеральная совокупность` khác nhau thế nào?",
+      "solution": "Генеральная совокупность là toàn bộ đối tượng quan tâm; выборка là phần quan sát dùng để suy luận về tổng thể."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t05",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E18-MP09-T05-probability-statistics",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "probability-statistics"
+      ],
+      "sourceAnchors": [
+        "m_p09_t05",
+        "m_s01",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T05-E08",
+      "level": "hard",
+      "prompt": "Giả sử em vừa nói sai trong vấn đáp. Hãy dùng một câu sửa lỗi phù hợp.",
+      "solution": "Nếu dịch математическое ожидание sai: «Исправляю: здесь математическое ожидание означает expectation, а не бытовое ожидание.»"
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t06",
+      "lessonId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_-E18-MP09-T06-geometry-coordinates",
+      "chapterId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "geometry-coordinates"
+      ],
+      "sourceAnchors": [
+        "m_p09_t06",
+        "m_s01",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PROG-L08-euclidean-computational-geometry",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T06-E01",
+      "level": "easy",
+      "prompt": "Nối 4 thuật ngữ Nga đầu tiên của bài với nghĩa Việt/Anh.",
+      "solution": "Đáp án chuẩn: гра́фик=đồ thị (graph/plot); координа́та=tọa độ (coordinate); ось=trục (axis); пло́скость=mặt phẳng (plane)."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t06",
+      "lessonId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_-E18-MP09-T06-geometry-coordinates",
+      "chapterId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "geometry-coordinates"
+      ],
+      "sourceAnchors": [
+        "m_p09_t06",
+        "m_s01",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PROG-L08-euclidean-computational-geometry",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T06-E02",
+      "level": "easy",
+      "prompt": "Đọc thành lời tiếng Nga: d=√[(x₂−x₁)²+(y₂−y₁)²].",
+      "solution": "Расстояние между двумя точками trên mặt phẳng Euclid."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t06",
+      "lessonId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_-E18-MP09-T06-geometry-coordinates",
+      "chapterId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "geometry-coordinates"
+      ],
+      "sourceAnchors": [
+        "m_p09_t06",
+        "m_s01",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PROG-L08-euclidean-computational-geometry",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T06-E03",
+      "level": "medium",
+      "prompt": "Dịch và xác định thao tác toán của câu: «Постройте график функции.»",
+      "solution": "Dịch theo ngữ cảnh bài; sau đó nêu rõ cần tìm/tính/giải/chứng minh gì trước khi thao tác."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t06",
+      "lessonId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_-E18-MP09-T06-geometry-coordinates",
+      "chapterId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "geometry-coordinates"
+      ],
+      "sourceAnchors": [
+        "m_p09_t06",
+        "m_s01",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PROG-L08-euclidean-computational-geometry",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T06-E04",
+      "level": "medium",
+      "prompt": "Tự tạo một đề cực ngắn dùng ít nhất 3 từ: гра́фик, координа́та, ось.",
+      "solution": "Đề đạt nếu nghĩa toán nhất quán và dùng thuật ngữ đúng vai trò."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t06",
+      "lessonId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_-E18-MP09-T06-geometry-coordinates",
+      "chapterId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "geometry-coordinates"
+      ],
+      "sourceAnchors": [
+        "m_p09_t06",
+        "m_s01",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PROG-L08-euclidean-computational-geometry",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T06-E05",
+      "level": "medium",
+      "prompt": "Phân tích bẫy dịch thuật sau và sửa: `график` trong toán là đồ thị, nhưng trong tiếng Nga đời thường còn có nghĩa lịch/biểu; phải dựa vào ngữ cảnh «график функции».",
+      "solution": "Sửa bằng cách khóa ngữ cảnh toán, đối chiếu ký hiệu và dùng nghĩa chuyên ngành thay vì nghĩa đời thường."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t06",
+      "lessonId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_-E18-MP09-T06-geometry-coordinates",
+      "chapterId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "geometry-coordinates"
+      ],
+      "sourceAnchors": [
+        "m_p09_t06",
+        "m_s01",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PROG-L08-euclidean-computational-geometry",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T06-E06",
+      "level": "hard",
+      "prompt": "Trình bày ví dụ sau bằng tiếng Nga, không nhìn mẫu: Точки A(1,2) и B(4,6): расстояние d=5. Ta nói rõ hiệu tọa độ rồi mới kết luận.",
+      "solution": "Расстояние между точками A и B равно пяти. Мы использовали формулу евклидова расстояния."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t06",
+      "lessonId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_-E18-MP09-T06-geometry-coordinates",
+      "chapterId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "geometry-coordinates"
+      ],
+      "sourceAnchors": [
+        "m_p09_t06",
+        "m_s01",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PROG-L08-euclidean-computational-geometry",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T06-E07",
+      "level": "hard",
+      "prompt": "Trả lời câu hỏi giảng viên: Khi nào `график` không nên dịch là đồ thị?",
+      "solution": "Ngoài ngữ cảnh toán, график có thể là lịch/biểu thời gian. Trong «график функции» mới chắc chắn là đồ thị hàm."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t06",
+      "lessonId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_-E18-MP09-T06-geometry-coordinates",
+      "chapterId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "geometry-coordinates"
+      ],
+      "sourceAnchors": [
+        "m_p09_t06",
+        "m_s01",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PROG-L08-euclidean-computational-geometry",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T06-E08",
+      "level": "hard",
+      "prompt": "Giả sử em vừa nói sai trong vấn đáp. Hãy dùng một câu sửa lỗi phù hợp.",
+      "solution": "Nếu nhầm axis/origin: «Исправляю: ось — это axis, а начало координат — origin.»"
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t07",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T07-proof-language",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "proof-language"
+      ],
+      "sourceAnchors": [
+        "m_p09_t07",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T07-E01",
+      "level": "easy",
+      "prompt": "Nối 4 thuật ngữ Nga đầu tiên của bài với nghĩa Việt/Anh.",
+      "solution": "Đáp án chuẩn: предполо́жим=giả sử (suppose); так как=vì (since); сле́довательно=do đó (therefore); отсю́да=từ đây (hence)."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t07",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T07-proof-language",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "proof-language"
+      ],
+      "sourceAnchors": [
+        "m_p09_t07",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T07-E02",
+      "level": "easy",
+      "prompt": "Đọc thành lời tiếng Nga: A ⇒ B.",
+      "solution": "Nếu A thì B; mẫu nói: «Из A следует B»."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t07",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T07-proof-language",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "proof-language"
+      ],
+      "sourceAnchors": [
+        "m_p09_t07",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T07-E03",
+      "level": "medium",
+      "prompt": "Dịch và xác định thao tác toán của câu: «Предположим, что …»",
+      "solution": "Dịch theo ngữ cảnh bài; sau đó nêu rõ cần tìm/tính/giải/chứng minh gì trước khi thao tác."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t07",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T07-proof-language",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "proof-language"
+      ],
+      "sourceAnchors": [
+        "m_p09_t07",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T07-E04",
+      "level": "medium",
+      "prompt": "Tự tạo một đề cực ngắn dùng ít nhất 3 từ: предполо́жим, так как, сле́довательно.",
+      "solution": "Đề đạt nếu nghĩa toán nhất quán và dùng thuật ngữ đúng vai trò."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t07",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T07-proof-language",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "proof-language"
+      ],
+      "sourceAnchors": [
+        "m_p09_t07",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T07-E05",
+      "level": "medium",
+      "prompt": "Phân tích bẫy dịch thuật sau và sửa: `следовательно` là kết nối logic «do đó», không phải phép tính tự thân; không dùng nó khi bước suy luận chưa được biện minh.",
+      "solution": "Sửa bằng cách khóa ngữ cảnh toán, đối chiếu ký hiệu và dùng nghĩa chuyên ngành thay vì nghĩa đời thường."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t07",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T07-proof-language",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "proof-language"
+      ],
+      "sourceAnchors": [
+        "m_p09_t07",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T07-E06",
+      "level": "hard",
+      "prompt": "Trình bày ví dụ sau bằng tiếng Nga, không nhìn mẫu: Пусть n — чётное число. Тогда n=2k. Следовательно, n²=4k²=2(2k²), поэтому n² также чётное.",
+      "solution": "Предположим, что n чётное. Тогда n равно двум k. Следовательно, квадрат n тоже чётный."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t07",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T07-proof-language",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "proof-language"
+      ],
+      "sourceAnchors": [
+        "m_p09_t07",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T07-E07",
+      "level": "hard",
+      "prompt": "Trả lời câu hỏi giảng viên: Em có thể nói «следовательно» sau một bước chưa chứng minh không?",
+      "solution": "Không. Từ nối logic chỉ hợp lệ khi quan hệ suy ra đã được biện minh bằng định nghĩa, định lý hoặc biến đổi tương đương."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t07",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T07-proof-language",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "proof-language"
+      ],
+      "sourceAnchors": [
+        "m_p09_t07",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T07-E08",
+      "level": "hard",
+      "prompt": "Giả sử em vừa nói sai trong vấn đáp. Hãy dùng một câu sửa lỗi phù hợp.",
+      "solution": "Nếu phát hiện bước suy luận thiếu: «Этот переход не обоснован. Добавлю условие/теорему и повторю доказательство.»"
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t08",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T08-oral-defense",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "oral-defense"
+      ],
+      "sourceAnchors": [
+        "m_p09_t08",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T08-E01",
+      "level": "easy",
+      "prompt": "Nối 4 thuật ngữ Nga đầu tiên của bài với nghĩa Việt/Anh.",
+      "solution": "Đáp án chuẩn: усло́вие зада́чи=đề/điều kiện bài toán (problem statement); ход реше́ния=quá trình giải (solution path); обоснова́ть=biện minh (justify); о́шибка=lỗi (error)."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t08",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T08-oral-defense",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "oral-defense"
+      ],
+      "sourceAnchors": [
+        "m_p09_t08",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T08-E02",
+      "level": "easy",
+      "prompt": "Đọc thành lời tiếng Nga: Условие → Идея → Вычисление/Доказательство → Ответ.",
+      "solution": "Đọc đề, nêu ý tưởng, thực hiện phép toán/lập luận, chốt đáp án."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t08",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T08-oral-defense",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "oral-defense"
+      ],
+      "sourceAnchors": [
+        "m_p09_t08",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T08-E03",
+      "level": "medium",
+      "prompt": "Dịch và xác định thao tác toán của câu: «Сначала прочитаю условие и выделю, что дано.»",
+      "solution": "Dịch theo ngữ cảnh bài; sau đó nêu rõ cần tìm/tính/giải/chứng minh gì trước khi thao tác."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t08",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T08-oral-defense",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "oral-defense"
+      ],
+      "sourceAnchors": [
+        "m_p09_t08",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T08-E04",
+      "level": "medium",
+      "prompt": "Tự tạo một đề cực ngắn dùng ít nhất 3 từ: усло́вие зада́чи, ход реше́ния, обоснова́ть.",
+      "solution": "Đề đạt nếu nghĩa toán nhất quán và dùng thuật ngữ đúng vai trò."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t08",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T08-oral-defense",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "oral-defense"
+      ],
+      "sourceAnchors": [
+        "m_p09_t08",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T08-E05",
+      "level": "medium",
+      "prompt": "Phân tích bẫy dịch thuật sau và sửa: Im lặng sửa kết quả nhưng không giải thích thường kém thuyết phục trong vấn đáp; cần nói rõ lỗi ở bước nào và vì sao sửa.",
+      "solution": "Sửa bằng cách khóa ngữ cảnh toán, đối chiếu ký hiệu và dùng nghĩa chuyên ngành thay vì nghĩa đời thường."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t08",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T08-oral-defense",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "oral-defense"
+      ],
+      "sourceAnchors": [
+        "m_p09_t08",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T08-E06",
+      "level": "hard",
+      "prompt": "Trình bày ví dụ sau bằng tiếng Nga, không nhìn mẫu: Giảng viên hỏi «Почему здесь можно делить на x?». Trả lời đúng phải nêu điều kiện x≠0 trước khi chia, rồi tiếp tục.",
+      "solution": "Сначала сформулирую условие. Затем объясню идею решения. Здесь x не равен нулю, поэтому деление допустимо. В конце проверю ответ."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t08",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T08-oral-defense",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "oral-defense"
+      ],
+      "sourceAnchors": [
+        "m_p09_t08",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T08-E07",
+      "level": "hard",
+      "prompt": "Trả lời câu hỏi giảng viên: Khi bị phát hiện sai dấu, em nên xử lý thế nào để vẫn thể hiện hiểu bài?",
+      "solution": "Chỉ rõ bước sai, nói nguyên nhân ngắn gọn, sửa phép biến đổi, kiểm tra lại hệ quả và kết luận mới."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t08",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T08-oral-defense",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "oral-defense"
+      ],
+      "sourceAnchors": [
+        "m_p09_t08",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "exerciseId": "E18-M_P09_T08-E08",
+      "level": "hard",
+      "prompt": "Giả sử em vừa nói sai trong vấn đáp. Hãy dùng một câu sửa lỗi phù hợp.",
+      "solution": "Mẫu đầy đủ: «Я допустил ошибку на втором шаге: знак должен быть минус. Исправляю выражение и пересчитываю результат.»"
     }
   ],
   "importPolicy": {
@@ -2842,6 +4506,22 @@
       "architecture": "logical_module_over_physical_content",
       "verifiedAt": "2026-09-27",
       "pr": 144
+    },
+    "E18": {
+      "status": "PASS_STATIC_BROWSER_CI",
+      "frameworkChapterId": "m_s01",
+      "logicalModuleId": "m_p09",
+      "lessons": 8,
+      "theorySlides": 160,
+      "updatedAt": "2026-09-27",
+      "verifiedAt": "2026-09-27",
+      "pr": 145,
+      "gateResults": {
+        "academic": "PASS",
+        "runtimeStatic": "PASS",
+        "browser": "PASS",
+        "developmentFastCI": "PASS"
+      }
     }
   }
 }
