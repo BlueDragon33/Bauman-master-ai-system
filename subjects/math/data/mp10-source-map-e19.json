@@ -7,7 +7,7 @@
   "moduleTitle": "Đại số tuyến tính bằng tiếng Nga",
   "stageId": "prep",
   "architecture": "framework_chapter_logical_lesson_group_over_existing_prep_linear_algebra_spine",
-  "status": "IMPLEMENTED_PENDING_CI",
+  "status": "PASS_STATIC_BROWSER_CI",
   "correction": {
     "rule": "m_s02 là framework chapter; m_p10 là nhóm ID của 8 bài con. E19 không tạo physical chapter m_p10 mới; bài 1-5 neo PREP-C09, bài 6-8 neo PREP-C10, seminar cuối tham chiếu cả hai.",
     "physicalSpineTruth": [
@@ -205,13 +205,15 @@
     ],
     "completionRule": "PASS only when 8 lessons/160 slides, Russian terminology/oral defense, dimension/condition gates, sidecar links, C09/C10 physical integrity, L01/L02 routing and Chromium acceptance all pass."
   },
-  "verifiedAt": null,
-  "pr": null,
+  "verifiedAt": "2026-09-27",
+  "pr": 148,
   "gateResults": {
-    "academic": "PENDING",
-    "runtimeStatic": "PENDING",
-    "browser": "PENDING",
-    "developmentFastCI": "PENDING",
-    "e18Regression": "PENDING"
+    "academic": "PASS",
+    "runtimeStatic": "PASS",
+    "browser": "PASS",
+    "developmentFastCI": "PASS",
+    "e18Regression": "PASS",
+    "e17Regression": "PASS",
+    "universalConstitution": "PASS"
   }
 }
