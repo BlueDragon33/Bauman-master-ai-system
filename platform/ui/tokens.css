@@ -1,0 +1,112 @@
+/* BAUMAN FUTURE INTERFACE SYSTEM · Design Tokens V1
+   Source of truth for semantic color, surfaces, spacing, radius, elevation,
+   typography, motion and z-index. Component CSS must consume these tokens. */
+
+:root{
+  /* color */
+  --bui-color-primary:#2563eb;
+  --bui-color-primary-strong:#1d4ed8;
+  --bui-color-primary-soft:#eaf2ff;
+  --bui-color-success:#15803d;
+  --bui-color-success-soft:#ecfdf3;
+  --bui-color-warning:#b45309;
+  --bui-color-warning-soft:#fff7e8;
+  --bui-color-danger:#c2414b;
+  --bui-color-danger-soft:#fff0f1;
+  --bui-color-info:#0f6fad;
+  --bui-color-info-soft:#edf7ff;
+
+  /* surface */
+  --bui-surface-canvas:#f6f8fb;
+  --bui-surface-primary:#ffffff;
+  --bui-surface-secondary:#f9fbfd;
+  --bui-surface-elevated:#ffffff;
+  --bui-surface-overlay:rgba(255,255,255,.96);
+
+  /* typography */
+  --bui-text-primary:#172033;
+  --bui-text-secondary:#56647a;
+  --bui-text-tertiary:#78869a;
+  --bui-text-inverse:#ffffff;
+  --bui-font-sans:Inter,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --bui-font-mono:"JetBrains Mono","SFMono-Regular",Consolas,monospace;
+  --bui-type-display:clamp(2rem,2.6vw,3rem);
+  --bui-type-h1:clamp(1.75rem,2vw,2.25rem);
+  --bui-type-h2:1.5rem;
+  --bui-type-h3:1.125rem;
+  --bui-type-title:1rem;
+  --bui-type-body:1rem;
+  --bui-type-small:.875rem;
+  --bui-type-caption:.8125rem;
+  --bui-type-label:.8125rem;
+
+  /* spacing */
+  --bui-space-1:4px;
+  --bui-space-2:8px;
+  --bui-space-3:12px;
+  --bui-space-4:16px;
+  --bui-space-5:20px;
+  --bui-space-6:24px;
+  --bui-space-8:32px;
+  --bui-space-10:40px;
+  --bui-space-12:48px;
+  --bui-space-16:64px;
+
+  /* radius */
+  --bui-radius-sm:8px;
+  --bui-radius-md:12px;
+  --bui-radius-lg:16px;
+  --bui-radius-xl:22px;
+  --bui-radius-full:999px;
+
+  /* border */
+  --bui-border-subtle:#e4eaf2;
+  --bui-border-strong:#cbd6e4;
+
+  /* elevation */
+  --bui-shadow-base:none;
+  --bui-shadow-raised:0 8px 24px rgba(25,39,70,.07);
+  --bui-shadow-floating:0 16px 42px rgba(25,39,70,.12);
+  --bui-shadow-modal:0 24px 64px rgba(16,27,48,.18);
+
+  /* motion */
+  --bui-motion-fast:120ms;
+  --bui-motion-normal:180ms;
+  --bui-motion-slow:240ms;
+  --bui-ease:cubic-bezier(.2,.8,.2,1);
+
+  /* layout */
+  --bui-reading-width:76ch;
+  --bui-workspace-width:1600px;
+  --bui-sidebar-width:248px;
+  --bui-touch:44px;
+
+  /* z-index */
+  --bui-z-base:1;
+  --bui-z-sticky:40;
+  --bui-z-overlay:80;
+  --bui-z-modal:120;
+  --bui-z-toast:160;
+}
+
+body[data-theme="night"],
+body[data-ui-theme="dark"]{
+  --bui-surface-canvas:#0d1118;
+  --bui-surface-primary:#121821;
+  --bui-surface-secondary:#171e29;
+  --bui-surface-elevated:#1a2230;
+  --bui-surface-overlay:rgba(18,24,33,.96);
+  --bui-text-primary:#edf2f8;
+  --bui-text-secondary:#b5c0cf;
+  --bui-text-tertiary:#8795a9;
+  --bui-border-subtle:#263244;
+  --bui-border-strong:#354258;
+  --bui-color-primary-soft:#172c52;
+  --bui-color-success-soft:#102b1d;
+  --bui-color-warning-soft:#332511;
+  --bui-color-danger-soft:#34191d;
+  --bui-color-info-soft:#14283a;
+  --bui-shadow-raised:0 8px 24px rgba(0,0,0,.18);
+  --bui-shadow-floating:0 16px 42px rgba(0,0,0,.28);
+  --bui-shadow-modal:0 24px 64px rgba(0,0,0,.38);
+}
