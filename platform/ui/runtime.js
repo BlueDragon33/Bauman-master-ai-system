@@ -15,6 +15,13 @@
   function ensure(){
     if(q('#baumanCommandPalette'))return;
     document.body.insertAdjacentHTML('beforeend',
+      '<nav class="ui-mobile-nav" id="baumanMobileNav" aria-label="Điều hướng chính trên điện thoại">'+
+        '<button type="button" data-ui-page="home"><span>⌂</span><span>Tổng quan</span></button>'+
+        '<button type="button" data-ui-page="roadmap"><span>⌘</span><span>Lộ trình</span></button>'+
+        '<button type="button" data-ui-page="subjects"><span>▦</span><span>Môn học</span></button>'+
+        '<button type="button" data-ui-page="schedule"><span>◷</span><span>Lịch</span></button>'+
+        '<button type="button" data-ui-page="research"><span>✦</span><span>Luận văn</span></button>'+
+      '</nav>'+
       '<div id="baumanCommandPalette" class="ui-command-overlay" hidden aria-hidden="true">'+
         '<section class="ui-command" role="dialog" aria-modal="true" aria-label="Command Palette">'+
           '<div class="ui-command__search"><span aria-hidden="true">⌕</span><input id="baumanCommandInput" autocomplete="off" spellcheck="false" aria-label="Tìm kiếm hoặc chạy lệnh" placeholder="Tìm môn, bài học, tài nguyên hoặc lệnh…"><kbd class="ui-command__kbd">Esc</kbd></div>'+
@@ -27,6 +34,8 @@
     q('#baumanCommandPalette').addEventListener('mousedown',e=>{if(e.target.id==='baumanCommandPalette')close()});
     q('#baumanCommandResults').addEventListener('click',e=>{const b=e.target.closest('[data-ui-command-index]');if(!b)return;run(Number(b.dataset.uiCommandIndex))});
     q('[data-ui-exit-focus]').addEventListener('click',()=>setFocus(false));
+    q('#baumanMobileNav').addEventListener('click',e=>{const b=e.target.closest('[data-ui-page]');if(!b)return;appRef()?.page?.(b.dataset.uiPage);syncMobileNav()});
+    syncMobileNav();
   }
 
   function commands(){
@@ -84,6 +93,11 @@
     ).join('');
   }
 
+  function syncMobileNav(){
+    const current=stateRef()?.page||qa('.page.active')[0]?.id?.replace('page-','')||'home';
+    qa('#baumanMobileNav [data-ui-page]').forEach(b=>{const active=b.dataset.uiPage===current;b.toggleAttribute('aria-current',active);if(active)b.setAttribute('aria-current','page')});
+  }
+
   function open(seed=''){
     ensure();
     const overlay=q('#baumanCommandPalette'),input=q('#baumanCommandInput');
@@ -120,11 +134,13 @@
       search.setAttribute('aria-label','Tìm kiếm toàn hệ thống');
       search.addEventListener('focus',()=>open(search.value),{once:false});
     }
+    document.addEventListener('click',e=>{if(e.target.closest('#nav [data-page]'))setTimeout(syncMobileNav,0)},true);
+    const pageHost=q('.main');if(pageHost)new MutationObserver(syncMobileNav).observe(pageHost,{subtree:true,attributes:true,attributeFilter:['class']});
     const saved=localStorage.getItem('bauman_ui_focus_mode')==='1';
     if(saved)setFocus(true);
   }
   function selfCheck(){
-    return {release:RELEASE,palette:!!q('#baumanCommandPalette'),focusMode:document.body.dataset.uiFocusMode==='true',touchTarget:getComputedStyle(document.documentElement).getPropertyValue('--ui-touch').trim(),routesOwned:false};
+    return {release:RELEASE,palette:!!q('#baumanCommandPalette'),mobileNav:!!q('#baumanMobileNav'),focusMode:document.body.dataset.uiFocusMode==='true',touchTarget:getComputedStyle(document.documentElement).getPropertyValue('--ui-touch').trim(),routesOwned:false};
   }
   ensure();bind();
   window.BAUMAN_FUTURE_UI={release:RELEASE,openCommand:open,closeCommand:close,setFocus,selfCheck};
