@@ -1,0 +1,42 @@
+/* UI-E14 · HTML Micro-App / Simulation Resource Shell */
+body[data-bui-micro-app]{
+  --bg:var(--bui-canvas);--card:var(--bui-surface);--line:var(--bui-border);--text:var(--bui-text);--muted:var(--bui-text-soft);
+  --gold:var(--bui-warning);--cyan:var(--bui-primary);
+  margin:0;background:var(--bui-canvas);color:var(--bui-text);font-family:var(--bui-font-sans)
+}
+body[data-bui-micro-app] .bui-micro-header{
+  position:sticky;top:0;z-index:var(--bui-z-nav);min-height:var(--bui-topbar);display:flex;align-items:center;gap:var(--bui-space-3);
+  padding:var(--bui-space-2) max(var(--bui-space-4),env(safe-area-inset-left));border-bottom:1px solid var(--bui-border);
+  background:color-mix(in srgb,var(--bui-surface) 94%,transparent);backdrop-filter:blur(14px)
+}
+body[data-bui-micro-app] .bui-micro-header__copy{min-width:0;display:grid;gap:.1rem}
+body[data-bui-micro-app] .bui-micro-header__copy b{font-size:var(--bui-type-title);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body[data-bui-micro-app] .bui-micro-header__copy small{color:var(--bui-text-muted);font-size:var(--bui-type-caption)}
+body[data-bui-micro-app] .bui-micro-header__actions{margin-left:auto;display:flex;align-items:center;gap:var(--bui-space-2)}
+body[data-bui-micro-app] .bui-micro-header button{
+  min-height:var(--bui-touch);border:1px solid var(--bui-border);border-radius:var(--bui-radius-md);background:var(--bui-surface);color:var(--bui-text);padding:.55rem .7rem;font-weight:700
+}
+body[data-bui-micro-app] .bui-micro-header button:hover{border-color:var(--bui-border-strong);background:var(--bui-surface-subtle)}
+body[data-bui-micro-app] main{max-width:1200px;margin-inline:auto;padding:var(--bui-space-6)}
+body[data-bui-micro-app] .card{
+  background:var(--bui-surface);color:var(--bui-text);border:1px solid var(--bui-border);border-radius:var(--bui-radius-xl);box-shadow:var(--bui-shadow-base)
+}
+body[data-bui-micro-app] :where(p,.note){color:var(--bui-text-soft)}
+body[data-bui-micro-app] :where(label,.result article,.note){
+  background:var(--bui-surface-subtle);border-color:var(--bui-border);border-radius:var(--bui-radius-lg)
+}
+body[data-bui-micro-app] :where(input,select,button,textarea){font:inherit}
+body[data-bui-micro-app] .result b{color:var(--bui-text)}
+body[data-bui-micro-app] code{color:var(--bui-primary)}
+body[data-bui-micro-app] .bui-micro-help{
+  position:fixed;right:var(--bui-space-4);top:calc(var(--bui-topbar) + var(--bui-space-3));z-index:var(--bui-z-popover);
+  width:min(360px,calc(100vw - 32px));padding:var(--bui-space-4);border:1px solid var(--bui-border);border-radius:var(--bui-radius-lg);
+  background:var(--bui-surface-elevated);box-shadow:var(--bui-shadow-floating)
+}
+body[data-bui-micro-app] .bui-micro-help h2{font-size:var(--bui-type-h3);margin:0 0 var(--bui-space-2)}
+body[data-bui-micro-app] .bui-micro-help p{margin:0;color:var(--bui-text-soft)}
+@media(max-width:620px){
+  body[data-bui-micro-app] .bui-micro-header__copy small{display:none}
+  body[data-bui-micro-app] .bui-micro-header__actions button span{display:none}
+  body[data-bui-micro-app] main{padding:var(--bui-space-3)}
+}
