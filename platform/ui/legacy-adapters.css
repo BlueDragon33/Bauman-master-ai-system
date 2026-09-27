@@ -151,3 +151,21 @@
 
 /* Hierarchy floor: section headings remain clearly above body text. */
 #page-home .hub-safe-section-head h2{font-size:var(--ui-size-h3)!important;line-height:1.25!important}
+
+
+/* Component-owned responsive behavior: Subjects toolbar adapts to its own width. */
+#page-subjects .subjects-page__course-list{container-type:inline-size;container-name:subjects-course-list}
+@container subjects-course-list (max-width:900px){
+  #page-subjects .subjects-page__list-head{
+    grid-template-columns:auto minmax(0,1fr)!important;
+    grid-template-areas:"title tabs" "actions actions";
+    row-gap:8px!important
+  }
+  #page-subjects .subjects-page__list-title{grid-area:title}
+  #page-subjects .subjects-page__tabs{grid-area:tabs;overflow:auto;min-width:0}
+  #page-subjects .subjects-page__list-actions{grid-area:actions;justify-content:flex-end!important;margin-top:0!important}
+}
+@container subjects-course-list (max-width:620px){
+  #page-subjects .subjects-page__list-head{grid-template-columns:1fr!important;grid-template-areas:"title" "tabs" "actions"}
+  #page-subjects .subjects-page__list-actions{justify-content:flex-start!important;overflow:auto}
+}
