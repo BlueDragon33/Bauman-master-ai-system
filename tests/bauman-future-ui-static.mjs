@@ -45,7 +45,7 @@ assert.ok(runtime.includes("e.key.toLowerCase()==='k'"),'Ctrl/Cmd+K command pale
 assert.ok(runtime.includes('data-ui-page="schedule"'),'Mobile schedule navigation missing');
 assert.ok(runtime.includes('setFocus'),'Focus mode runtime missing');
 assert.ok(!main.startsWith(':root{'),'Legacy main.css still owns root tokens');
-assert.ok(safe.includes('wallpaper:'plain''),'Safe shell still defaults to decorative wallpaper');
+assert.ok(safe.includes("wallpaper:'plain'"),'Safe shell still defaults to decorative wallpaper');
 assert.ok(!safe.includes("e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'"),'Legacy Ctrl/Cmd+K listener still conflicts with command palette');
 
 const platformFiles=required.filter(p=>p.startsWith('platform/ui/')&&p.endsWith('.css'));
