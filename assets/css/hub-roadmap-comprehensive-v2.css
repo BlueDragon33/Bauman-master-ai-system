@@ -4,33 +4,33 @@
 #page-roadmap .canva-roadmap-page,
 #page-roadmap [data-academic2026="roadmap"]{display:none!important}
 
-body[data-hub-roadmap-v4="1"]{
+body[data-hub-roadmap-v4="legacy"]{
   background:#eef5fb!important;
   color:#102849;
 }
-body[data-hub-roadmap-v4="1"] .main{
+body[data-hub-roadmap-v4="legacy"] .main{
   padding:10px 14px 16px!important;
   background:linear-gradient(180deg,#eef5fb 0%,#f6f9fc 100%)!important;
 }
-body[data-hub-roadmap-v4="1"] .topbar{
+body[data-hub-roadmap-v4="legacy"] .topbar{
   min-height:54px!important;
   height:54px!important;
   padding:0 14px 0 10px!important;
   background:linear-gradient(180deg,#0c2b4e,#0b2443)!important;
   border-bottom:1px solid rgba(255,255,255,.07)!important;
 }
-body[data-hub-roadmap-v4="1"] .top-title,
-body[data-hub-roadmap-v4="1"] .hub-safe-search,
-body[data-hub-roadmap-v4="1"] .hub-safe-motto{display:none!important}
-body[data-hub-roadmap-v4="1"] .top-actions{margin-left:auto!important}
-body[data-hub-roadmap-v4="1"] #hubRoadmapTopNav{
+body[data-hub-roadmap-v4="legacy"] .top-title,
+body[data-hub-roadmap-v4="legacy"] .hub-safe-search,
+body[data-hub-roadmap-v4="legacy"] .hub-safe-motto{display:none!important}
+body[data-hub-roadmap-v4="legacy"] .top-actions{margin-left:auto!important}
+body[data-hub-roadmap-v4="legacy"] #hubRoadmapTopNav{
   display:flex!important;
   align-self:stretch;
   gap:1px;
   margin-right:auto;
 }
-body[data-hub-roadmap-v4="1"] #hubRoadmapTopNav.hidden{display:none!important}
-body[data-hub-roadmap-v4="1"] #hubRoadmapTopNav button{
+body[data-hub-roadmap-v4="legacy"] #hubRoadmapTopNav.hidden{display:none!important}
+body[data-hub-roadmap-v4="legacy"] #hubRoadmapTopNav button{
   min-width:108px;
   height:54px;
   padding:0 14px;
@@ -46,16 +46,16 @@ body[data-hub-roadmap-v4="1"] #hubRoadmapTopNav button{
   font-weight:700;
   cursor:pointer;
 }
-body[data-hub-roadmap-v4="1"] #hubRoadmapTopNav button i{
+body[data-hub-roadmap-v4="legacy"] #hubRoadmapTopNav button i{
   font-style:normal;
   color:#b4c7dc;
   font-size:16px;
 }
-body[data-hub-roadmap-v4="1"] #hubRoadmapTopNav button:hover{
+body[data-hub-roadmap-v4="legacy"] #hubRoadmapTopNav button:hover{
   background:rgba(255,255,255,.05);
   color:#fff;
 }
-body[data-hub-roadmap-v4="1"] #hubRoadmapTopNav button.active{
+body[data-hub-roadmap-v4="legacy"] #hubRoadmapTopNav button.active{
   color:#fff;
   background:linear-gradient(180deg,rgba(34,128,246,.30),rgba(34,128,246,.10));
   border-bottom-color:#28a2ff;
@@ -63,10 +63,10 @@ body[data-hub-roadmap-v4="1"] #hubRoadmapTopNav button.active{
 }
 
 /* Sidebar follows the reference while reusing canonical buttons. */
-body[data-hub-roadmap-v4="1"] .app{
+body[data-hub-roadmap-v4="legacy"] .app{
   grid-template-columns:205px minmax(0,1fr)!important;
 }
-body[data-hub-roadmap-v4="1"] .sidebar{
+body[data-hub-roadmap-v4="legacy"] .sidebar{
   width:205px!important;
   padding:10px 10px 12px!important;
   background:
@@ -74,24 +74,24 @@ body[data-hub-roadmap-v4="1"] .sidebar{
     linear-gradient(180deg,#0b2949 0%,#0b3158 58%,#0c335a 100%)!important;
   border-right:1px solid rgba(255,255,255,.07)!important;
 }
-body[data-hub-roadmap-v4="1"] .brand-row{min-height:50px!important;margin-bottom:8px!important}
-body[data-hub-roadmap-v4="1"] .brand{gap:9px!important}
-body[data-hub-roadmap-v4="1"] .logo{
+body[data-hub-roadmap-v4="legacy"] .brand-row{min-height:50px!important;margin-bottom:8px!important}
+body[data-hub-roadmap-v4="legacy"] .brand{gap:9px!important}
+body[data-hub-roadmap-v4="legacy"] .logo{
   width:42px!important;height:42px!important;color:#dcefff!important;
 }
-body[data-hub-roadmap-v4="1"] .logo svg{width:39px!important;height:39px!important}
-body[data-hub-roadmap-v4="1"] .brand b{
+body[data-hub-roadmap-v4="legacy"] .logo svg{width:39px!important;height:39px!important}
+body[data-hub-roadmap-v4="legacy"] .brand b{
   font-size:17px!important;
   letter-spacing:.02em!important;
   color:#fff!important;
 }
-body[data-hub-roadmap-v4="1"] .brand small{
+body[data-hub-roadmap-v4="legacy"] .brand small{
   font-size:8px!important;
   letter-spacing:.03em!important;
   color:#c2d4e6!important;
 }
-body[data-hub-roadmap-v4="1"] .sidebar-toggle{display:none!important}
-body[data-hub-roadmap-v4="1"] #hubRoadmapJourney{
+body[data-hub-roadmap-v4="legacy"] .sidebar-toggle{display:none!important}
+body[data-hub-roadmap-v4="legacy"] #hubRoadmapJourney{
   position:relative;
   display:block;
   min-height:108px;
@@ -105,22 +105,22 @@ body[data-hub-roadmap-v4="1"] #hubRoadmapJourney{
     url('../media/roadmap-bauman-winter-v4.svg') center 54%/cover no-repeat;
   color:#fff;
 }
-body[data-hub-roadmap-v4="1"] #hubRoadmapJourney.hidden{display:none!important}
-body[data-hub-roadmap-v4="1"] #hubRoadmapJourney b{
+body[data-hub-roadmap-v4="legacy"] #hubRoadmapJourney.hidden{display:none!important}
+body[data-hub-roadmap-v4="legacy"] #hubRoadmapJourney b{
   position:relative;z-index:1;display:block;font-size:13px;margin-bottom:4px;
 }
-body[data-hub-roadmap-v4="1"] #hubRoadmapJourney span{
+body[data-hub-roadmap-v4="legacy"] #hubRoadmapJourney span{
   position:relative;z-index:1;display:block;font-size:10px;color:#dce8f3;
 }
-body[data-hub-roadmap-v4="1"] #hubRoadmapJourney small{display:none}
-body[data-hub-roadmap-v4="1"] #hubRoadmapJourney button{
+body[data-hub-roadmap-v4="legacy"] #hubRoadmapJourney small{display:none}
+body[data-hub-roadmap-v4="legacy"] #hubRoadmapJourney button{
   position:absolute;right:8px;top:7px;z-index:2;border:0;background:transparent;color:#a8bdd2;font-size:14px;cursor:pointer;
 }
-body[data-hub-roadmap-v4="1"] #nav{
+body[data-hub-roadmap-v4="legacy"] #nav{
   gap:3px!important;
   overflow:auto;
 }
-body[data-hub-roadmap-v4="1"] #nav>button{
+body[data-hub-roadmap-v4="legacy"] #nav>button{
   min-height:42px!important;
   padding:6px 10px!important;
   border-radius:7px!important;
@@ -129,17 +129,17 @@ body[data-hub-roadmap-v4="1"] #nav>button{
   color:#d7e4ef!important;
   font-size:12px!important;
 }
-body[data-hub-roadmap-v4="1"] #nav>button i{
+body[data-hub-roadmap-v4="legacy"] #nav>button i{
   width:26px!important;height:26px!important;font-size:15px!important;color:#c9d9e9!important;
 }
-body[data-hub-roadmap-v4="1"] #nav>button.active{
+body[data-hub-roadmap-v4="legacy"] #nav>button.active{
   background:linear-gradient(90deg,#1f82e5,#1680e8)!important;
   border-color:#2894f2!important;
   color:#fff!important;
   box-shadow:0 6px 18px rgba(0,105,218,.20)!important;
 }
-body[data-hub-roadmap-v4="1"] #nav>button.hub-rm-v4-hidden{display:none!important}
-body[data-hub-roadmap-v4="1"] .side-note{
+body[data-hub-roadmap-v4="legacy"] #nav>button.hub-rm-v4-hidden{display:none!important}
+body[data-hub-roadmap-v4="legacy"] .side-note{
   margin-top:auto!important;
   min-height:170px!important;
   padding:14px!important;
@@ -152,11 +152,11 @@ body[data-hub-roadmap-v4="1"] .side-note{
     url('../media/roadmap-bauman-winter-v4.svg') 78% 50%/cover no-repeat!important;
   border:1px solid rgba(170,201,229,.15)!important;
 }
-body[data-hub-roadmap-v4="1"] .side-note b{
+body[data-hub-roadmap-v4="legacy"] .side-note b{
   font:500 12px/1.45 Inter,Arial,sans-serif!important;
   color:#f0f6fb!important;
 }
-body[data-hub-roadmap-v4="1"] .side-note span{display:none!important}
+body[data-hub-roadmap-v4="legacy"] .side-note span{display:none!important}
 
 /* Page geometry */
 #page-roadmap{min-width:0}
