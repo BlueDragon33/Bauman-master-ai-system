@@ -64,7 +64,7 @@ assert.ok(tokens.includes('body[data-theme="mint"]'),'mint token scale missing')
 const runtime=read('platform/ui/runtime.js');
 for(const marker of [
   'BaumanUI','commands:{','search:{','slots:{','icons:{','installAccessibility',
-  'installPrimaryMobileNav','Ctrl','dataSearch','bauman-ui-ready'
+  'installPrimaryMobileNav','e.ctrlKey||e.metaKey','dataSearch','bauman-ui-ready'
 ]) assert.ok(runtime.includes(marker),'runtime capability missing: '+marker);
 
 const subjectAdapter=read('platform/ui/subject-adapter.js');
