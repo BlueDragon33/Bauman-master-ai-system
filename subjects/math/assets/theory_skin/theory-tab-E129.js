@@ -153,10 +153,12 @@
     if(activityId) p.activityId=activityId;
     if(lessonId) p.lessonId=lessonId;
     var frame=e169FrameChapter(); var act=e169Activity(p.activityId);
+    var selectedRecord=p.lessonId?cache.records.find(function(r){return r.lessonId===p.lessonId;}):null;
+    if(selectedRecord&&selectedRecord.chapterId) frame=chapterById(selectedRecord.chapterId)||frame;
     if(frame) state().e129ChapterId=frame.chapterId;
     if(p.activityId==='theory'){
       state().learnTab='theory'; state().view='learning';
-      var recs=e169Records();
+      var recs=selectedRecord?[selectedRecord]:e169Records();
       state().e129LessonId=p.lessonId || (recs[0]&&recs[0].lessonId) || '';
       p.lessonId=state().e129LessonId;
     }else{
