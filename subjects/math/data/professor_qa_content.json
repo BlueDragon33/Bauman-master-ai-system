@@ -539,6 +539,206 @@
       "qaId": "E18-M_P09_T08-QA01",
       "question": "Khi bị phát hiện sai dấu, em nên xử lý thế nào để vẫn thể hiện hiểu bài?",
       "answer": "Chỉ rõ bước sai, nói nguyên nhân ngắn gọn, sửa phép biến đổi, kiểm tra lại hệ quả và kết luận mới."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T01-vectors-basis",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "vectors-basis"
+      ],
+      "sourceAnchors": [
+        "m_p10_t01",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "qaId": "E19-M_P10_T01-QA01",
+      "question": "Hai vector khác nhau có thể có cùng bộ tọa độ không?",
+      "answer": "Có, nếu chúng được viết trong hai cơ sở/không gian khác nhau. Tọa độ chỉ có nghĩa khi kèm basis."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t02",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T02-matrix-operations",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "matrix-operations"
+      ],
+      "sourceAnchors": [
+        "m_p10_t02",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "qaId": "E19-M_P10_T02-QA01",
+      "question": "Từ AB tồn tại có suy ra BA tồn tại không?",
+      "answer": "Không. Điều kiện AB là n_Acols=m_Brows; điều kiện BA là n_Bcols=m_Arows, hai điều kiện độc lập."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T03-det-rank-inverse",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "det-rank-inverse"
+      ],
+      "sourceAnchors": [
+        "m_p10_t03",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "qaId": "E19-M_P10_T03-QA01",
+      "question": "Ma trận 3×5 có thể có rank 5 không?",
+      "answer": "Không. rank(A)≤min(3,5)=3."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t04",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T04-gaussian-elimination",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "gaussian-elimination"
+      ],
+      "sourceAnchors": [
+        "m_p10_t04",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "qaId": "E19-M_P10_T04-QA01",
+      "question": "Một hàng [0 0 0 | 1] trong augmented matrix nói gì?",
+      "answer": "Nó tương đương 0=1, nên hệ vô nghiệm."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t05",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T05-linear-maps",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "linear-maps"
+      ],
+      "sourceAnchors": [
+        "m_p10_t05",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "qaId": "E19-M_P10_T05-QA01",
+      "question": "Nếu ker(T)={0}, T có luôn onto không?",
+      "answer": "Không. ker(T)={0} chỉ cho injective; onto còn phụ thuộc dimension/image và codomain."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t06",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T06-eigen-diagonalization",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "eigen-diagonalization"
+      ],
+      "sourceAnchors": [
+        "m_p10_t06",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "qaId": "E19-M_P10_T06-QA01",
+      "question": "Vector zero có thể là eigenvector không?",
+      "answer": "Không. Định nghĩa eigenvector yêu cầu v≠0, nếu không phương trình Av=λv đúng với mọi λ và mất ý nghĩa."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t07",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T07-orthogonal-projection-ls",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "orthogonal-projection-ls"
+      ],
+      "sourceAnchors": [
+        "m_p10_t07",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "qaId": "E19-M_P10_T07-QA01",
+      "question": "Residual của least squares có trực giao với b không?",
+      "answer": "Không nhất thiết; residual b−Ax̂ trực giao với column space của A, tức Aᵀr=0."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t08",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T08-russian-linear-algebra-seminar",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "russian-linear-algebra-seminar"
+      ],
+      "sourceAnchors": [
+        "m_p10_t08",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "qaId": "E19-M_P10_T08-QA01",
+      "question": "Nếu giảng viên chỉ ra một bước sai, em nên bắt đầu sửa từ đâu?",
+      "answer": "Từ giả thiết/điều kiện của chính bước đó, xác định hệ quả bị ảnh hưởng rồi tính lại downstream; không chỉ thay đáp số cuối."
     }
   ],
   "importPolicy": {
@@ -625,6 +825,14 @@
         "browser": "PASS",
         "developmentFastCI": "PASS"
       }
+    },
+    "E19": {
+      "status": "IMPLEMENTED_PENDING_CI",
+      "frameworkChapterId": "m_s02",
+      "logicalModuleId": "m_p10",
+      "lessons": 8,
+      "theorySlides": 160,
+      "updatedAt": "2026-09-27"
     }
   }
 }
