@@ -1,0 +1,64 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
+const {chromium}=await import(process.env.BAUMAN_PLAYWRIGHT_MODULE||'playwright');
+const BASE=process.env.BAUMAN_E2E_BASE_URL||'http://127.0.0.1:4173/';
+const OUT=process.env.BAUMAN_E2E_ARTIFACT_DIR||'artifacts/math-mp09-e18';
+const T01='MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T01-task-language';
+const T03='MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E18-MP09-T03-linear-algebra';
+const report={status:'RUNNING',checks:{},consoleErrors:[],pageErrors:[],failedRequests:[],httpErrors:[]};
+fs.mkdirSync(OUT,{recursive:true});
+let browser;
+try{
+ browser=await chromium.launch({headless:true});
+ const context=await browser.newContext({viewport:{width:1440,height:900}});
+ const page=await context.newPage();
+ page.on('console',m=>{if(m.type()==='error')report.consoleErrors.push(m.text())});
+ page.on('pageerror',e=>report.pageErrors.push(String(e?.stack||e)));
+ page.on('requestfailed',r=>report.failedRequests.push(`${r.method()} ${r.url()} ${r.failure()?.errorText||''}`));
+ page.on('response',r=>{if(r.status()>=400)report.httpErrors.push(`${r.status()} ${r.url()}`)});
+ const url=`${BASE}subjects/math/index.html?host=main&hostOrigin=${encodeURIComponent(new URL(BASE).origin)}&subjectId=math&taskId=mp09-e18-browser&stage=prep`;
+ await page.goto(url,{waitUntil:'load',timeout:30000});
+ await page.waitForFunction(()=>window.BAUMAN_MATH_THEORY_E129&&window.BAUMAN_MATH_E186_LESSON_FIRST&&window.BAUMAN_MATH_ACTIVITY_STUDIO,null,{timeout:30000});
+ await page.waitForFunction(()=>window.BAUMAN_MATH_E186_LESSON_FIRST?.release==='E197_PROGRAM_ANCHOR_ROUTING_MP08',null,{timeout:30000});
+ await page.evaluate(()=>window.BAUMAN_MATH_E186_LESSON_FIRST.open('module'));
+ await page.locator('[data-e186-pick="module"][data-e186-id="pure"]').click();
+ await page.locator('[data-e186-pick="course"][data-e186-id="pure-logic"]').click();
+ await page.locator('[data-e186-pick="chapter"][data-e186-id="c10"]').click();
+ const options=await page.evaluate(()=>window.BAUMAN_MATH_E186_LESSON_FIRST.lessonOptions());
+ const e18=options.map(x=>x.id).filter(id=>id.includes('-E18-MP09-'));
+ assert.equal(e18.length,8,'Program L10 must expose all eight E18 m_p09 bridge lessons');
+ assert.ok(e18.includes(T01)&&e18.includes(T03),'Program L10 lesson list misses E18 anchors');
+ report.checks.programL10=e18;
+ await page.locator(`[data-e186-pick="lesson"][data-e186-id="${T03}"]`).click();
+ await page.waitForFunction(id=>window.BAUMAN_MATH_E186_LESSON_FIRST.path().lessonId===id,T03,{timeout:10000});
+ await page.waitForFunction(id=>document.querySelector(`[data-current-lesson="${id}"]`),T03,{timeout:10000});
+ const route=await page.evaluate(()=>({path:window.BAUMAN_MATH_E186_LESSON_FIRST.path(),chapter:window.__MATH_STATE?.e129ChapterId}));
+ assert.equal(route.path.chapterId,'c10','logical program chapter must remain L10 route');
+ assert.equal(route.chapter,'MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto','selected linear-algebra language lesson must route renderer to real prep C09');
+ report.checks.routeBridge=route;
+ async function activity(id,min){
+  await page.evaluate(()=>window.BAUMAN_MATH_E186_LESSON_FIRST.open('activity'));
+  await page.locator(`[data-e186-pick="activity"][data-e186-id="${id}"]`).click();
+  await page.waitForFunction(({lesson,id,min})=>{const x=window.BAUMAN_MATH_ACTIVITY_STUDIO?.selfCheck?.();return x?.lessonId===lesson&&x?.activity===id&&x?.companionMatches>=min;},{lesson:T03,id,min},{timeout:10000});
+  return page.evaluate(()=>window.BAUMAN_MATH_ACTIVITY_STUDIO.selfCheck());
+ }
+ report.checks.exercises=await activity('exercises',14);
+ report.checks.practice=await activity('practice',2);
+ report.checks.application=await activity('application',2);
+ report.checks.review=await activity('review',1);
+ report.checks.exam=await activity('exam',7);
+ await page.evaluate(()=>window.BAUMAN_MATH_FORMULA_LIBRARY.open());
+ await page.waitForFunction(()=>window.BAUMAN_MATH_FORMULA_LIBRARY?.selfCheck?.().loaded,null,{timeout:10000});
+ const search=page.locator('#mathFlSearch');await search.fill('Điều kiện nghịch đảo');await page.waitForTimeout(150);
+ assert.ok(await page.locator('#mathFlList .math-fl-item').count()>0,'E18 inverse-matrix formula is not searchable');
+ await page.evaluate(()=>window.BAUMAN_MATH_FORMULA_LIBRARY.close());
+ assert.deepEqual(report.pageErrors,[],'browser emitted page errors');
+ assert.deepEqual(report.failedRequests,[],'browser emitted failed requests');
+ assert.deepEqual(report.httpErrors,[],'browser emitted HTTP errors');
+ await page.screenshot({path:path.join(OUT,'math-mp09-e18.png'),fullPage:true});
+ report.status='PASS';report.completedAt=new Date().toISOString();
+ fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify(report,null,2));
+ await context.close();
+}catch(error){report.status='FAIL';report.error=String(error?.stack||error);report.completedAt=new Date().toISOString();fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify(report,null,2));throw error;}
+finally{await browser?.close();}
