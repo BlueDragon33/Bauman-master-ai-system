@@ -1,0 +1,217 @@
+{
+  "schema": "bauman_math_logical_module_source_map_v1",
+  "recoveryId": "E19",
+  "frameworkChapterId": "m_s02",
+  "logicalModuleId": "m_p10",
+  "moduleId": "m_p10",
+  "moduleTitle": "Đại số tuyến tính bằng tiếng Nga",
+  "stageId": "prep",
+  "architecture": "framework_chapter_logical_lesson_group_over_existing_prep_linear_algebra_spine",
+  "status": "IMPLEMENTED_PENDING_CI",
+  "correction": {
+    "rule": "m_s02 là framework chapter; m_p10 là nhóm ID của 8 bài con. E19 không tạo physical chapter m_p10 mới; bài 1-5 neo PREP-C09, bài 6-8 neo PREP-C10, seminar cuối tham chiếu cả hai.",
+    "physicalSpineTruth": [
+      "MATH-PREP-C09 là Linear Algebra I: vector, matrix, systems.",
+      "MATH-PREP-C10 là Linear Algebra II: eigen, orthogonality, SVD/PCA.",
+      "Modern Content Vault là runtime content authority; source-map giữ liên kết framework/logical/program/physical."
+    ]
+  },
+  "commonProgramAnchors": [
+    "MATH-PROG-L01-linear-algebra-basic",
+    "MATH-PROG-L02-vector-spaces-linear-maps"
+  ],
+  "logicalLessons": [
+    {
+      "logicalId": "m_p10_t01",
+      "title": "Vector, tọa độ và cơ sở trong ngôn ngữ đại số tuyến tính Nga",
+      "physicalChapterIds": [
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto"
+      ],
+      "runtimeChapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "theoryLessonIds": [
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T01-vectors-basis"
+      ],
+      "programLectureId": "MATH-PROG-L01-linear-algebra-basic",
+      "commonProgramLectureIds": [
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E19",
+      "prerequisiteLogicalIds": []
+    },
+    {
+      "logicalId": "m_p10_t02",
+      "title": "Ma trận, hàng, cột và phép toán ma trận bằng tiếng Nga",
+      "physicalChapterIds": [
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto"
+      ],
+      "runtimeChapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "theoryLessonIds": [
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T02-matrix-operations"
+      ],
+      "programLectureId": "MATH-PROG-L01-linear-algebra-basic",
+      "commonProgramLectureIds": [
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E19",
+      "prerequisiteLogicalIds": [
+        "m_p10_t01"
+      ]
+    },
+    {
+      "logicalId": "m_p10_t03",
+      "title": "Định thức, hạng ma trận và khả nghịch bằng tiếng Nga",
+      "physicalChapterIds": [
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto"
+      ],
+      "runtimeChapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "theoryLessonIds": [
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T03-det-rank-inverse"
+      ],
+      "programLectureId": "MATH-PROG-L01-linear-algebra-basic",
+      "commonProgramLectureIds": [
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E19",
+      "prerequisiteLogicalIds": [
+        "m_p10_t02"
+      ]
+    },
+    {
+      "logicalId": "m_p10_t04",
+      "title": "Hệ phương trình tuyến tính và phương pháp Gauss bằng tiếng Nga",
+      "physicalChapterIds": [
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto"
+      ],
+      "runtimeChapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "theoryLessonIds": [
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T04-gaussian-elimination"
+      ],
+      "programLectureId": "MATH-PROG-L01-linear-algebra-basic",
+      "commonProgramLectureIds": [
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E19",
+      "prerequisiteLogicalIds": [
+        "m_p10_t03"
+      ]
+    },
+    {
+      "logicalId": "m_p10_t05",
+      "title": "Ánh xạ tuyến tính, nhân, ảnh và ma trận biểu diễn bằng tiếng Nga",
+      "physicalChapterIds": [
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto"
+      ],
+      "runtimeChapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "theoryLessonIds": [
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T05-linear-maps"
+      ],
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "commonProgramLectureIds": [
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E19",
+      "prerequisiteLogicalIds": [
+        "m_p10_t04"
+      ]
+    },
+    {
+      "logicalId": "m_p10_t06",
+      "title": "Trị riêng, vector riêng và chéo hóa bằng tiếng Nga",
+      "physicalChapterIds": [
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_"
+      ],
+      "runtimeChapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "theoryLessonIds": [
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T06-eigen-diagonalization"
+      ],
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "commonProgramLectureIds": [
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E19",
+      "prerequisiteLogicalIds": [
+        "m_p10_t05"
+      ]
+    },
+    {
+      "logicalId": "m_p10_t07",
+      "title": "Trực giao, chiếu vector và bình phương tối thiểu bằng tiếng Nga",
+      "physicalChapterIds": [
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_"
+      ],
+      "runtimeChapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "theoryLessonIds": [
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T07-orthogonal-projection-ls"
+      ],
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "commonProgramLectureIds": [
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E19",
+      "prerequisiteLogicalIds": [
+        "m_p10_t06"
+      ]
+    },
+    {
+      "logicalId": "m_p10_t08",
+      "title": "Seminar đại số tuyến tính Nga: đọc đề, giải, kiểm và bảo vệ lời giải",
+      "physicalChapterIds": [
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_"
+      ],
+      "runtimeChapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "theoryLessonIds": [
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T08-russian-linear-algebra-seminar"
+      ],
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "commonProgramLectureIds": [
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E19",
+      "prerequisiteLogicalIds": [
+        "m_p10_t07"
+      ]
+    }
+  ],
+  "contentGate": {
+    "requiredLogicalLessons": 8,
+    "expected": {
+      "theorySlides": 160,
+      "formulas": 24,
+      "exercises": 64,
+      "applications": 16,
+      "simulations": 16,
+      "professorQA": 8,
+      "questions": 48,
+      "reviewPacks": 8
+    },
+    "requiredSlideRoles": [
+      "russian_term_bridge",
+      "pronunciation_drill",
+      "condition_gate",
+      "dimension_logic_gate",
+      "oral_response",
+      "warning_counterexample",
+      "assumption_gate",
+      "error_repair"
+    ],
+    "completionRule": "PASS only when 8 lessons/160 slides, Russian terminology/oral defense, dimension/condition gates, sidecar links, C09/C10 physical integrity, L01/L02 routing and Chromium acceptance all pass."
+  },
+  "verifiedAt": null,
+  "pr": null,
+  "gateResults": {
+    "academic": "PENDING",
+    "runtimeStatic": "PENDING",
+    "browser": "PENDING",
+    "developmentFastCI": "PENDING",
+    "e18Regression": "PENDING"
+  }
+}
