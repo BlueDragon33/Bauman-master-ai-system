@@ -32,8 +32,15 @@
   }
 
   function apply(){
-    document.body.dataset.hubReferenceV5='1';
-    document.documentElement.dataset.hubReferencePrecision=RELEASE;
+    const future=Boolean(window.BaumanUI?.ready?.());
+    if(future){
+      delete document.body.dataset.hubReferenceV5;
+      document.body.dataset.buiShell='1';
+      document.documentElement.dataset.hubReferencePrecision='BFIS_CANONICAL';
+    }else{
+      document.body.dataset.hubReferenceV5='1';
+      document.documentElement.dataset.hubReferencePrecision=RELEASE;
+    }
     syncTopbar();
     suppressSecondaryHome();
     return true;
@@ -61,7 +68,8 @@
     const g=geometry();
     return{
       release:RELEASE,
-      active:document.body.dataset.hubReferenceV5==='1',
+      active:document.body.dataset.hubReferenceV5==='1'||document.body.dataset.buiShell==='1',
+      mode:document.body.dataset.buiShell==='1'?'future':'legacy',
       searchPlaceholder:q('#hubSafeSearch')?.placeholder||'',
       profileCopy:Boolean(q('.hub-top-profile-copy')),
       secondaryHomeHidden:[...document.querySelectorAll('#page-home [data-academic2026="home"]')].every(el=>getComputedStyle(el).display==='none'),
