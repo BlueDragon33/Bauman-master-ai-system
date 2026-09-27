@@ -89,6 +89,8 @@
   --bui-z-toast:160;
 }
 
+html[data-bauman-ui="future-v1"]:has(body[data-theme="night"]),
+html[data-bauman-ui="future-v1"]:has(body[data-ui-theme="dark"]),
 body[data-theme="night"],
 body[data-ui-theme="dark"]{
   --bui-surface-canvas:#0d1118;
