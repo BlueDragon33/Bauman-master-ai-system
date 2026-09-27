@@ -1669,6 +1669,630 @@
       "title": "Khung sửa lỗi",
       "formula": "Ошибка → причина → исправление → новый вывод",
       "meaning": "Nêu lỗi, nguyên nhân, sửa và cập nhật kết luận thay vì xóa dấu vết tư duy."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T01-vectors-basis",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "vectors-basis"
+      ],
+      "sourceAnchors": [
+        "m_p10_t01",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "formulaId": "E19-M_P10_T01-F01",
+      "title": "Tổ hợp tuyến tính",
+      "formula": "v = α₁b₁ + ⋯ + αₙbₙ",
+      "meaning": "Các αᵢ là tọa độ của v trong cơ sở B=(b₁,…,bₙ) khi B là một basis."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T01-vectors-basis",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "vectors-basis"
+      ],
+      "sourceAnchors": [
+        "m_p10_t01",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "formulaId": "E19-M_P10_T01-F02",
+      "title": "Điều kiện độc lập",
+      "formula": "α₁b₁+⋯+αₙbₙ=0 ⇒ α₁=⋯=αₙ=0",
+      "meaning": "Định nghĩa tuyến tính độc lập."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T01-vectors-basis",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "vectors-basis"
+      ],
+      "sourceAnchors": [
+        "m_p10_t01",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "formulaId": "E19-M_P10_T01-F03",
+      "title": "Tọa độ trong basis",
+      "formula": "[v]ᴮ = (α₁,…,αₙ)ᵀ",
+      "meaning": "Vector tọa độ phụ thuộc vào cơ sở đã chọn, còn vector hình học là cùng một đối tượng."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t02",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T02-matrix-operations",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "matrix-operations"
+      ],
+      "sourceAnchors": [
+        "m_p10_t02",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "formulaId": "E19-M_P10_T02-F01",
+      "title": "Kích thước tích",
+      "formula": "A∈ℝ^{m×n}, B∈ℝ^{n×p} ⇒ AB∈ℝ^{m×p}",
+      "meaning": "Số cột A phải bằng số hàng B."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t02",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T02-matrix-operations",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "matrix-operations"
+      ],
+      "sourceAnchors": [
+        "m_p10_t02",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "formulaId": "E19-M_P10_T02-F02",
+      "title": "Phần tử tích",
+      "formula": "(AB)ᵢⱼ = Σₖ aᵢₖbₖⱼ",
+      "meaning": "Hàng i của A nhân vô hướng với cột j của B."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t02",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T02-matrix-operations",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "matrix-operations"
+      ],
+      "sourceAnchors": [
+        "m_p10_t02",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "formulaId": "E19-M_P10_T02-F03",
+      "title": "Chuyển vị tích",
+      "formula": "(AB)ᵀ = BᵀAᵀ",
+      "meaning": "Khi chuyển vị tích phải đảo thứ tự nhân."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T03-det-rank-inverse",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "det-rank-inverse"
+      ],
+      "sourceAnchors": [
+        "m_p10_t03",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "formulaId": "E19-M_P10_T03-F01",
+      "title": "Khả nghịch",
+      "formula": "A∈ℝ^{n×n}: det(A)≠0 ⇔ rank(A)=n ⇔ A⁻¹ существует",
+      "meaning": "Ba điều kiện tương đương cho ma trận vuông."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T03-det-rank-inverse",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "det-rank-inverse"
+      ],
+      "sourceAnchors": [
+        "m_p10_t03",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "formulaId": "E19-M_P10_T03-F02",
+      "title": "Nghịch đảo",
+      "formula": "AA⁻¹=A⁻¹A=I",
+      "meaning": "Định nghĩa ma trận nghịch đảo."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T03-det-rank-inverse",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "det-rank-inverse"
+      ],
+      "sourceAnchors": [
+        "m_p10_t03",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "formulaId": "E19-M_P10_T03-F03",
+      "title": "Định thức tích",
+      "formula": "det(AB)=det(A)det(B)",
+      "meaning": "Cho ma trận vuông cùng cấp; suy ra tích của hai ma trận khả nghịch cũng khả nghịch."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t04",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T04-gaussian-elimination",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "gaussian-elimination"
+      ],
+      "sourceAnchors": [
+        "m_p10_t04",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "formulaId": "E19-M_P10_T04-F01",
+      "title": "Dạng ma trận",
+      "formula": "Ax=b",
+      "meaning": "A là ma trận hệ số, x vector ẩn, b vế phải."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t04",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T04-gaussian-elimination",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "gaussian-elimination"
+      ],
+      "sourceAnchors": [
+        "m_p10_t04",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "formulaId": "E19-M_P10_T04-F02",
+      "title": "Tiêu chuẩn hạng",
+      "formula": "rank(A)=rank([A|b]) ⇔ hệ có nghiệm",
+      "meaning": "Rouché–Capelli cho tính tương thích."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t04",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T04-gaussian-elimination",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "gaussian-elimination"
+      ],
+      "sourceAnchors": [
+        "m_p10_t04",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "formulaId": "E19-M_P10_T04-F03",
+      "title": "Nghiệm duy nhất",
+      "formula": "rank(A)=rank([A|b])=n",
+      "meaning": "Với n ẩn, hệ tương thích và rank bằng n thì nghiệm duy nhất."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t05",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T05-linear-maps",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "linear-maps"
+      ],
+      "sourceAnchors": [
+        "m_p10_t05",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "formulaId": "E19-M_P10_T05-F01",
+      "title": "Tuyến tính",
+      "formula": "T(αu+βv)=αT(u)+βT(v)",
+      "meaning": "Điều kiện tuyến tính cho mọi u,v và vô hướng α,β."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t05",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T05-linear-maps",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "linear-maps"
+      ],
+      "sourceAnchors": [
+        "m_p10_t05",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "formulaId": "E19-M_P10_T05-F02",
+      "title": "Kernel",
+      "formula": "ker(T)={x:T(x)=0}",
+      "meaning": "Tập vector bị ánh xạ về zero; là một không gian con."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t05",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T05-linear-maps",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "linear-maps"
+      ],
+      "sourceAnchors": [
+        "m_p10_t05",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "formulaId": "E19-M_P10_T05-F03",
+      "title": "Rank-nullity",
+      "formula": "dim(V)=rank(T)+nullity(T)",
+      "meaning": "V hữu hạn chiều; rank là dim(image), nullity là dim(kernel)."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t06",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T06-eigen-diagonalization",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "eigen-diagonalization"
+      ],
+      "sourceAnchors": [
+        "m_p10_t06",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "formulaId": "E19-M_P10_T06-F01",
+      "title": "Phương trình riêng",
+      "formula": "Av=λv, v≠0",
+      "meaning": "v là eigenvector ứng với eigenvalue λ."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t06",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T06-eigen-diagonalization",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "eigen-diagonalization"
+      ],
+      "sourceAnchors": [
+        "m_p10_t06",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "formulaId": "E19-M_P10_T06-F02",
+      "title": "Phương trình đặc trưng",
+      "formula": "det(A−λI)=0",
+      "meaning": "Nghiệm λ là các trị riêng."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t06",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T06-eigen-diagonalization",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "eigen-diagonalization"
+      ],
+      "sourceAnchors": [
+        "m_p10_t06",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "formulaId": "E19-M_P10_T06-F03",
+      "title": "Chéo hóa",
+      "formula": "A=PDP⁻¹",
+      "meaning": "Các cột P là n eigenvector độc lập, D chứa trị riêng tương ứng."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t07",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T07-orthogonal-projection-ls",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "orthogonal-projection-ls"
+      ],
+      "sourceAnchors": [
+        "m_p10_t07",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "formulaId": "E19-M_P10_T07-F01",
+      "title": "Trực giao",
+      "formula": "u⊥v ⇔ uᵀv=0",
+      "meaning": "Trong Euclidean space với inner product chuẩn."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t07",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T07-orthogonal-projection-ls",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "orthogonal-projection-ls"
+      ],
+      "sourceAnchors": [
+        "m_p10_t07",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "formulaId": "E19-M_P10_T07-F02",
+      "title": "Chiếu lên vector",
+      "formula": "projᵤ(v)=(uᵀv/uᵀu)u",
+      "meaning": "Yêu cầu u≠0."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t07",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T07-orthogonal-projection-ls",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "orthogonal-projection-ls"
+      ],
+      "sourceAnchors": [
+        "m_p10_t07",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "formulaId": "E19-M_P10_T07-F03",
+      "title": "Least squares",
+      "formula": "AᵀA x̂=Aᵀb",
+      "meaning": "Normal equations; nếu A full column rank thì nghiệm least-squares duy nhất."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t08",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T08-russian-linear-algebra-seminar",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "russian-linear-algebra-seminar"
+      ],
+      "sourceAnchors": [
+        "m_p10_t08",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "formulaId": "E19-M_P10_T08-F01",
+      "title": "Gate kích thước",
+      "formula": "shape → operation → result shape",
+      "meaning": "Mọi phép toán ma trận phải qua kiểm shape."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t08",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T08-russian-linear-algebra-seminar",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "russian-linear-algebra-seminar"
+      ],
+      "sourceAnchors": [
+        "m_p10_t08",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "formulaId": "E19-M_P10_T08-F02",
+      "title": "Gate nghiệm",
+      "formula": "substitute x̂ into Ax=b",
+      "meaning": "Thay ngược để kiểm nghiệm hệ tuyến tính khi khả thi."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t08",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T08-russian-linear-algebra-seminar",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "russian-linear-algebra-seminar"
+      ],
+      "sourceAnchors": [
+        "m_p10_t08",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "formulaId": "E19-M_P10_T08-F03",
+      "title": "Gate logic",
+      "formula": "assumption → theorem/operation → conclusion",
+      "meaning": "Mỗi bước bảo vệ được bằng điều kiện hoặc định lý."
     }
   ],
   "importPolicy": {
@@ -1759,6 +2383,14 @@
         "browser": "PASS",
         "developmentFastCI": "PASS"
       }
+    },
+    "E19": {
+      "status": "IMPLEMENTED_PENDING_CI",
+      "frameworkChapterId": "m_s02",
+      "logicalModuleId": "m_p10",
+      "lessons": 8,
+      "theorySlides": 160,
+      "updatedAt": "2026-09-27"
     }
   }
 }
