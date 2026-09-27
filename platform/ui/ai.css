@@ -17,7 +17,7 @@ body[data-bui="1"] .bubble{
   width:fit-content;max-width:92%;padding:.7rem .85rem;border:1px solid var(--bui-border);border-radius:var(--bui-radius-lg);
   background:var(--bui-surface);color:var(--bui-text);box-shadow:none;line-height:1.5
 }
-body[data-bui="1"] .bubble.user{justify-self:end;background:var(--bui-primary);border-color:var(--bui-primary);color:#fff}
+body[data-bui="1"] .bubble.user{justify-self:end;background:var(--bui-primary);border-color:var(--bui-primary);color:var(--bui-on-primary)}
 body[data-bui="1"] .ai-compose{
   display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--bui-space-2);padding:var(--bui-space-3);
   border-top:1px solid var(--bui-border);background:var(--bui-surface)
