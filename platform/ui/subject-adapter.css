@@ -1,17 +1,17 @@
 /* UI-E20 · shared Subject UI contract. Safe semantic layer for all subject apps. */
 body[data-bui-subject]{
-  background:var(--bui-canvas)!important;color:var(--bui-text)!important;font-family:var(--bui-font-sans)!important;
-  font-size:16px!important;line-height:1.55!important
+  background:var(--bui-canvas);color:var(--bui-text);font-family:var(--bui-font-sans);
+  font-size:16px;line-height:1.55
 }
-body[data-bui-subject] :where(button,input,select,textarea){font-family:inherit!important;font-size:.9375rem;min-height:var(--bui-touch)}
+body[data-bui-subject] :where(button,input,select,textarea){font-family:inherit;font-size:.9375rem;min-height:var(--bui-touch)}
 body[data-bui-subject] :where(button,[role="button"],a[href]){touch-action:manipulation}
-body[data-bui-subject] :where(h1){font-size:var(--bui-type-h1)!important;line-height:var(--bui-leading-tight)!important}
-body[data-bui-subject] :where(h2){font-size:var(--bui-type-h2)!important;line-height:var(--bui-leading-tight)!important}
-body[data-bui-subject] :where(h3){font-size:var(--bui-type-h3)!important}
+body[data-bui-subject] :where(h1){font-size:var(--bui-type-h1);line-height:var(--bui-leading-tight)}
+body[data-bui-subject] :where(h2){font-size:var(--bui-type-h2);line-height:var(--bui-leading-tight)}
+body[data-bui-subject] :where(h3){font-size:var(--bui-type-h3)}
 body[data-bui-subject] :where(p,li){font-size:1rem;line-height:1.55}
 body[data-bui-subject] :where(small){font-size:.8125rem}
 body[data-bui-subject] :where(.card,.panel,.tile,.lesson-card,.resource-card,.topic-card){
-  border-color:var(--bui-border)!important;border-radius:var(--bui-radius-lg)!important
+  border-color:var(--bui-border);border-radius:var(--bui-radius-lg)
 }
 body[data-bui-subject] :where(.modal,.dialog,[role="dialog"]){border-radius:var(--bui-radius-xl)}
 body[data-bui-subject] :where(input,select,textarea){border-color:var(--bui-border);border-radius:var(--bui-radius-md)}
@@ -26,10 +26,10 @@ body[data-bui-subject][data-bui-focus="1"] :where(header,nav,aside):not([data-bu
 }
 
 /* UI-E11 · Learning Focus Experience */
-body[data-bui-subject][data-bui-focus="1"] :where(.side,.sidebar){display:none!important}
-body[data-bui-subject][data-bui-focus="1"] :where(.app,.ru-app-shell){grid-template-columns:minmax(0,1fr)!important}
+body[data-bui-subject][data-bui-focus="1"] :where(.side,.sidebar){display:none}
+body[data-bui-subject][data-bui-focus="1"] :where(.app,.ru-app-shell){grid-template-columns:minmax(0,1fr)}
 body[data-bui-subject][data-bui-focus="1"] :where(.main,.ru-main){width:min(100%,1180px);margin-inline:auto}
-body[data-bui-subject][data-bui-focus="1"] :where(.top-actions,.ru-top-actions){display:none!important}
+body[data-bui-subject][data-bui-focus="1"] :where(.top-actions,.ru-top-actions){display:none}
 body[data-bui-subject][data-bui-focus="1"] :where(.top,.topbar,.ru-topbar){position:sticky;top:0;z-index:var(--bui-z-sticky);background:color-mix(in srgb,var(--bui-surface) 94%,transparent);backdrop-filter:blur(12px)}
 body[data-bui-subject][data-bui-focus="1"] :where(.view,.content,.ru-view){max-width:1100px;margin-inline:auto}
 
