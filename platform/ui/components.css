@@ -1,0 +1,95 @@
+/* BAUMAN FUTURE INTERFACE SYSTEM · Components V1 */
+html[data-bauman-ui="future-v1"] :where(.btn,button.bui-button){
+  border:1px solid var(--bui-border-strong);
+  border-radius:var(--bui-radius-md);
+  background:var(--bui-surface-primary);
+  color:var(--bui-text-primary);
+  padding:10px 14px;
+  font-weight:700;
+  line-height:1.2;
+  transition:
+    background var(--bui-motion-fast) var(--bui-ease),
+    border-color var(--bui-motion-fast) var(--bui-ease),
+    transform var(--bui-motion-fast) var(--bui-ease),
+    box-shadow var(--bui-motion-fast) var(--bui-ease);
+}
+html[data-bauman-ui="future-v1"] :where(.btn,button.bui-button):hover:not(:disabled){
+  border-color:color-mix(in srgb,var(--bui-color-primary) 35%,var(--bui-border-strong));
+  background:var(--bui-surface-secondary);
+}
+html[data-bauman-ui="future-v1"] :where(.btn,button.bui-button):active:not(:disabled){transform:translateY(1px)}
+html[data-bauman-ui="future-v1"] :where(.btn.primary,.bui-button--primary){
+  background:var(--bui-color-primary);
+  border-color:var(--bui-color-primary);
+  color:var(--bui-text-inverse);
+}
+html[data-bauman-ui="future-v1"] :where(.btn.primary,.bui-button--primary):hover:not(:disabled){
+  background:var(--bui-color-primary-strong);
+  border-color:var(--bui-color-primary-strong);
+}
+html[data-bauman-ui="future-v1"] :where(button,.btn):disabled{
+  opacity:.48;
+  cursor:not-allowed;
+  transform:none;
+}
+html[data-bauman-ui="future-v1"] :where(input,select,textarea,.field,.input){
+  border:1px solid var(--bui-border-strong);
+  border-radius:var(--bui-radius-md);
+  background:var(--bui-surface-primary);
+  color:var(--bui-text-primary);
+  min-height:var(--bui-touch);
+}
+html[data-bauman-ui="future-v1"] :where(input,select,textarea,.field,.input):hover{
+  border-color:color-mix(in srgb,var(--bui-color-primary) 25%,var(--bui-border-strong));
+}
+html[data-bauman-ui="future-v1"] :where(.panel,.card,.bui-card){
+  border:1px solid var(--bui-border-subtle);
+  border-radius:var(--bui-radius-lg);
+  background:var(--bui-surface-primary);
+  box-shadow:var(--bui-shadow-base);
+}
+html[data-bauman-ui="future-v1"] .bui-card--raised{box-shadow:var(--bui-shadow-raised)}
+html[data-bauman-ui="future-v1"] :where(.pill,.tag,.status,.bui-badge){
+  border-radius:var(--bui-radius-full);
+  font-size:var(--bui-type-label);
+  line-height:1.2;
+}
+html[data-bauman-ui="future-v1"] :where(.modal-card,.dialog,.bui-dialog){
+  background:var(--bui-surface-elevated);
+  border:1px solid var(--bui-border-subtle);
+  border-radius:var(--bui-radius-xl);
+  box-shadow:var(--bui-shadow-modal);
+}
+html[data-bauman-ui="future-v1"] :where(table,.bui-table){
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+}
+html[data-bauman-ui="future-v1"] :where(table,.bui-table) th{
+  position:sticky;
+  top:0;
+  z-index:var(--bui-z-base);
+  background:var(--bui-surface-secondary);
+  color:var(--bui-text-secondary);
+  text-align:left;
+  font-size:var(--bui-type-label);
+}
+html[data-bauman-ui="future-v1"] :where(table,.bui-table) :is(th,td){
+  border-bottom:1px solid var(--bui-border-subtle);
+  padding:12px 14px;
+}
+html[data-bauman-ui="future-v1"] .bui-empty,
+html[data-bauman-ui="future-v1"] .bui-error{
+  padding:var(--bui-space-8);
+  border:1px dashed var(--bui-border-strong);
+  border-radius:var(--bui-radius-lg);
+  background:var(--bui-surface-secondary);
+}
+html[data-bauman-ui="future-v1"] .bui-error{border-style:solid;background:var(--bui-color-danger-soft)}
+html[data-bauman-ui="future-v1"] .bui-skeleton{
+  border-radius:var(--bui-radius-sm);
+  background:linear-gradient(90deg,var(--bui-surface-secondary),var(--bui-surface-primary),var(--bui-surface-secondary));
+  background-size:220% 100%;
+  animation:bui-skeleton 1.35s linear infinite;
+}
+@keyframes bui-skeleton{to{background-position:-220% 0}}
