@@ -339,6 +339,206 @@
       "qaId": "E17-M_P08_T08-QA01",
       "question": "Vì sao random split nguy hiểm cho time series?",
       "answer": "Vì có thể đưa tương lai vào train và phá quan hệ triển khai thật."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t01",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T01-task-language",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "task-language"
+      ],
+      "sourceAnchors": [
+        "m_p09_t01",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "qaId": "E18-M_P09_T01-QA01",
+      "question": "Nếu đề ghi «Докажите, что функция непрерывна», em có được chỉ thay số vài điểm để kết luận không?",
+      "answer": "Không. «Докажите» đòi hỏi lập luận tổng quát theo định nghĩa/định lý; kiểm tra vài điểm chỉ là minh họa."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t02",
+      "lessonId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_-E18-MP09-T02-sets-functions",
+      "chapterId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "sets-functions"
+      ],
+      "sourceAnchors": [
+        "m_p09_t02",
+        "m_s01",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "qaId": "E18-M_P09_T02-QA01",
+      "question": "`значение функции` và `область значений` khác nhau thế nào?",
+      "answer": "`значение функции` là f(x) tại một x cụ thể; `область значений` là tập tất cả giá trị hàm có thể nhận."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E18-MP09-T03-linear-algebra",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "linear-algebra"
+      ],
+      "sourceAnchors": [
+        "m_p09_t03",
+        "m_s01",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "qaId": "E18-M_P09_T03-QA01",
+      "question": "Tại sao từ det(A)≠0 em được nói ma trận nghịch đảo tồn tại?",
+      "answer": "Với ma trận vuông, định thức khác 0 tương đương hạng đầy đủ và khả nghịch."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t04",
+      "lessonId": "MATH-PREP-C11-giai_tich_i_gioi_han_lie-E18-MP09-T04-calculus",
+      "chapterId": "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "calculus"
+      ],
+      "sourceAnchors": [
+        "m_p09_t04",
+        "m_s01",
+        "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+        "MATH-PROG-L04-single-variable-analysis",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "qaId": "E18-M_P09_T04-QA01",
+      "question": "Liên tục có luôn suy ra khả vi không?",
+      "answer": "Không. Khả vi suy ra liên tục tại điểm đó, nhưng liên tục không nhất thiết khả vi; |x| tại 0 là phản ví dụ."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t05",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E18-MP09-T05-probability-statistics",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "probability-statistics"
+      ],
+      "sourceAnchors": [
+        "m_p09_t05",
+        "m_s01",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "qaId": "E18-M_P09_T05-QA01",
+      "question": "`выборка` và `генеральная совокупность` khác nhau thế nào?",
+      "answer": "Генеральная совокупность là toàn bộ đối tượng quan tâm; выборка là phần quan sát dùng để suy luận về tổng thể."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t06",
+      "lessonId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_-E18-MP09-T06-geometry-coordinates",
+      "chapterId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "geometry-coordinates"
+      ],
+      "sourceAnchors": [
+        "m_p09_t06",
+        "m_s01",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PROG-L08-euclidean-computational-geometry",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "qaId": "E18-M_P09_T06-QA01",
+      "question": "Khi nào `график` không nên dịch là đồ thị?",
+      "answer": "Ngoài ngữ cảnh toán, график có thể là lịch/biểu thời gian. Trong «график функции» mới chắc chắn là đồ thị hàm."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t07",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T07-proof-language",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "proof-language"
+      ],
+      "sourceAnchors": [
+        "m_p09_t07",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "qaId": "E18-M_P09_T07-QA01",
+      "question": "Em có thể nói «следовательно» sau một bước chưa chứng minh không?",
+      "answer": "Không. Từ nối logic chỉ hợp lệ khi quan hệ suy ra đã được biện minh bằng định nghĩa, định lý hoặc biến đổi tương đương."
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t08",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T08-oral-defense",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "oral-defense"
+      ],
+      "sourceAnchors": [
+        "m_p09_t08",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "qaId": "E18-M_P09_T08-QA01",
+      "question": "Khi bị phát hiện sai dấu, em nên xử lý thế nào để vẫn thể hiện hiểu bài?",
+      "answer": "Chỉ rõ bước sai, nói nguyên nhân ngắn gọn, sửa phép biến đổi, kiểm tra lại hệ quả và kết luận mới."
     }
   ],
   "importPolicy": {
@@ -409,6 +609,14 @@
       "architecture": "logical_module_over_physical_content",
       "verifiedAt": "2026-09-27",
       "pr": 144
+    },
+    "E18": {
+      "status": "IMPLEMENTED_PENDING_CI",
+      "frameworkChapterId": "m_s01",
+      "logicalModuleId": "m_p09",
+      "lessons": 8,
+      "theorySlides": 160,
+      "updatedAt": "2026-09-27"
     }
   }
 }
