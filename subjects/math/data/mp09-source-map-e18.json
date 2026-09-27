@@ -7,7 +7,7 @@
   "moduleTitle": "Thuật ngữ toán tiếng Nga cho lớp dự bị kỹ thuật",
   "stageId": "prep",
   "architecture": "framework_chapter_logical_lesson_group_over_physical_prep_spine",
-  "status": "IMPLEMENTED_PENDING_CI",
+  "status": "PASS_STATIC_BROWSER_CI",
   "correction": {
     "rule": "m_s01 là chapter khung trong theory-framework; m_p09 là nhóm ID của 8 bài con. Không suy diễn m_p09 thành một physical chapter mới. Mỗi bài neo vào physical prep chapter có thật theo bản chất toán học.",
     "physicalSpineTruth": [
@@ -176,12 +176,12 @@
     ],
     "completionRule": "PASS only when 8 lessons/160 slides, trilingual terminology, pronunciation/oral/error-repair coverage, sidecar links, physical prep spine integrity, runtime routing and Chromium acceptance all pass."
   },
-  "verifiedAt": null,
-  "pr": null,
+  "verifiedAt": "2026-09-27",
+  "pr": 145,
   "gateResults": {
-    "academic": "PENDING",
-    "runtimeStatic": "PENDING",
-    "browser": "PENDING",
-    "developmentFastCI": "PENDING"
+    "academic": "PASS",
+    "runtimeStatic": "PASS",
+    "browser": "PASS",
+    "developmentFastCI": "PASS"
   }
 }
