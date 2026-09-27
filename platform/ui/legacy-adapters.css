@@ -147,3 +147,7 @@
 }
 #page-home .hub-safe-motivation blockquote{margin:0!important;color:var(--ui-text-primary)!important;font:650 var(--ui-size-h3)/1.35 var(--ui-font-sans)!important}
 #page-home .hub-safe-motivation small{margin-top:8px!important;color:var(--ui-text-secondary)!important;font:600 var(--ui-size-caption)/1.2 var(--ui-font-sans)!important;letter-spacing:normal!important}
+
+
+/* Hierarchy floor: section headings remain clearly above body text. */
+#page-home .hub-safe-section-head h2{font-size:var(--ui-size-h3)!important;line-height:1.25!important}
