@@ -163,6 +163,182 @@
       "qaId": "E16R-M_P07_T08-QA01",
       "question": "Reconstruction error nhỏ có đủ để khẳng định PCA representation tốt cho mọi mục tiêu không?",
       "answer": "Không; nó chứng minh xấp xỉ dữ liệu tốt theo metric đã chọn, không chứng minh giữ tín hiệu mục tiêu."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t01",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T01-time-index-sampling",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "time index",
+        "sampling frequency",
+        "missing timestamp",
+        "telemetry",
+        "resampling"
+      ],
+      "sourceAnchors": [
+        "m_p08_t01",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "qaId": "E17-M_P08_T01-QA01",
+      "question": "Vì sao không được random shuffle trước khi kiểm tra time index?",
+      "answer": "Vì shuffle phá thứ tự và che mất gap, duplicate, drift tần số."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t02",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T02-trend-seasonality-noise",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "trend",
+        "seasonality",
+        "cycle",
+        "noise",
+        "decomposition"
+      ],
+      "sourceAnchors": [
+        "m_p08_t02",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "qaId": "E17-M_P08_T02-QA01",
+      "question": "Trend có bắt buộc là đường thẳng không?",
+      "answer": "Không; trend chỉ là thành phần biến đổi chậm tương đối so với nhiễu ngắn hạn."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t03",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T03-rolling-smoothing",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling mean",
+        "moving average",
+        "smoothing",
+        "window",
+        "causal filter"
+      ],
+      "sourceAnchors": [
+        "m_p08_t03",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "qaId": "E17-M_P08_T03-QA01",
+      "question": "Tại sao cửa sổ lớn không luôn tốt hơn?",
+      "answer": "Vì nó giảm nhiễu nhưng tăng độ trễ và có thể che anomaly/sự kiện nhanh."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t04",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T04-changing-variance",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling variance",
+        "heteroscedasticity",
+        "regime change",
+        "nonstationarity",
+        "variance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t04",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "qaId": "E17-M_P08_T04-QA01",
+      "question": "Rolling variance có phải kiểm định stationarity không?",
+      "answer": "Không; nó là chẩn đoán trực quan/thống kê cục bộ, không thay thế kiểm định."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t05",
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E17-MP08-T05-autocorrelation",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "tags": [
+        "autocorrelation",
+        "lag",
+        "ACF",
+        "serial dependence",
+        "random process"
+      ],
+      "sourceAnchors": [
+        "m_p08_t05",
+        "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "qaId": "E17-M_P08_T05-QA01",
+      "question": "ACF cao có chứng minh quan hệ nhân quả theo thời gian không?",
+      "answer": "Không; nó chỉ cho phụ thuộc tuyến tính giữa các độ trễ."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t06",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T06-lag-features",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "lag feature",
+        "forecasting",
+        "supervised learning",
+        "feature engineering",
+        "causality"
+      ],
+      "sourceAnchors": [
+        "m_p08_t06",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "qaId": "E17-M_P08_T06-QA01",
+      "question": "Lag feature có causal mặc định không?",
+      "answer": "Chỉ nếu mọi nguồn feature thực sự sẵn có trước hoặc tại thời điểm dự đoán."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t07",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T07-stationarity-intuition",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "stationarity",
+        "weak stationarity",
+        "mean",
+        "variance",
+        "autocovariance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t07",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "qaId": "E17-M_P08_T07-QA01",
+      "question": "Stationarity có nghĩa chuỗi không thay đổi không?",
+      "answer": "Không; chuỗi vẫn dao động, nhưng các đặc trưng phân phối chính không trôi theo thời gian theo định nghĩa đang dùng."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t08",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T08-temporal-split-leakage",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "temporal split",
+        "time series cross validation",
+        "future leakage",
+        "backtesting",
+        "evaluation"
+      ],
+      "sourceAnchors": [
+        "m_p08_t08",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "qaId": "E17-M_P08_T08-QA01",
+      "question": "Vì sao random split nguy hiểm cho time series?",
+      "answer": "Vì có thể đưa tương lai vào train và phá quan hệ triển khai thật."
     }
   ],
   "importPolicy": {
@@ -208,7 +384,7 @@
     "answer": "Vì tích vô hướng bị ảnh hưởng bởi độ dài; cần chuẩn hóa để xét hướng.",
     "auditStatus": "DRAFT"
   },
-  "updatedAt": "2026-09-23",
+  "updatedAt": "2026-09-27",
   "emoji": "🎓",
   "cleanArchitecturePolicy": {
     "contentMustNotStoreStageTree": true,
@@ -223,6 +399,14 @@
       "key": "qaId",
       "branchOnly": true,
       "status": "CONTENT_IMPORTED_PENDING_RUNTIME_GATE"
+    }
+  },
+  "authoringMeta": {
+    "E17": {
+      "moduleId": "m_p08",
+      "records": 8,
+      "status": "AUTHORED_PENDING_CI",
+      "architecture": "logical_module_over_physical_content"
     }
   }
 }
