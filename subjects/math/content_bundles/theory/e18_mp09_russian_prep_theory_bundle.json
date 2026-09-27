@@ -1,0 +1,3503 @@
+{
+  "schema": "bauman_math_content_bundle_v1",
+  "bundleId": "e18_mp09_russian_prep_theory_bundle",
+  "frameworkChapterId": "m_s01",
+  "moduleId": "m_p09",
+  "records": [
+    {
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T01-task-language",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "lessonTitle": "m_p09 · §1.1 · Cấu trúc đề toán tiếng Nga: дано, найти, доказать, вычислить",
+      "title": "m_p09 · §1.1 · Cấu trúc đề toán tiếng Nga: дано, найти, доказать, вычислить",
+      "programLectureId": "MATH-PROG-L10-logic-set-theory-boolean",
+      "programLectureIds": [
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L04-single-variable-analysis",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "roadmapRole": "m_p09_t01",
+      "baumanFocus": "Russian mathematical language bridge for preparatory engineering study, oral defense and technical problem solving.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_p09",
+        "frameworkChapterId": "m_s01",
+        "logicalLessonId": "m_p09_t01",
+        "frameworkAnchor": "m_p09_t01",
+        "programLectureId": "MATH-PROG-L10-logic-set-theory-boolean",
+        "bridgeProgramLectureId": "MATH-PROG-L10-logic-set-theory-boolean",
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e18_russian_math_bridge_authoring"
+      },
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "task-language"
+      ],
+      "speechDrill": {
+        "language": "ru-RU",
+        "mode": "read_repeat_defend",
+        "requiredStressAware": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_p09 · §1.1 · Cấu trúc đề toán tiếng Nga: дано, найти, доказать, вычислить",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "Bài bridge Nga–Việt–Anh cho lớp dự bị kỹ thuật. Trọng tâm là đọc đúng đề, nối thuật ngữ với ký hiệu và trả lời vấn đáp, không học từ vựng rời khỏi toán."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Sau bài này phải đọc/diễn đạt được chủ đề «Cấu trúc đề toán tiếng Nga: дано, найти, доказать, вычислить» bằng câu ngắn, chính xác và có thể tự sửa lỗi khi bị hỏi lại."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra 4 lớp",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài học",
+              "items": [
+                "Nhận diện thuật ngữ Nga trong đề và nối sang nghĩa Việt/Anh.",
+                "Đọc ký hiệu/công thức thành câu tiếng Nga có nghĩa.",
+                "Thực hiện đúng thao tác toán tương ứng với câu lệnh.",
+                "Trả lời miệng theo cấu trúc: dữ kiện → ý tưởng → phép toán/lập luận → kết luận."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Thuật ngữ Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Bộ từ khóa",
+              "items": [
+                "дано́ — đã cho / dữ kiện — given",
+                "найти́ — tìm — find",
+                "доказа́ть — chứng minh — prove",
+                "вы́числить — tính giá trị — calculate",
+                "реши́ть — giải — solve",
+                "определи́ть — xác định — determine",
+                "пусть — giả sử / cho — let",
+                "тре́буется — yêu cầu — required"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "pronunciation_drill",
+          "title": "Phát âm và trọng âm",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Đọc chậm → nối cụm → đọc trong câu",
+              "items": [
+                "дано́ · đã cho / dữ kiện",
+                "найти́ · tìm",
+                "доказа́ть · chứng minh",
+                "вы́числить · tính giá trị",
+                "реши́ть · giải",
+                "определи́ть · xác định",
+                "пусть · giả sử / cho",
+                "тре́буется · yêu cầu"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Nguyên tắc",
+              "body": "Ưu tiên đúng trọng âm và âm cuối rõ. Không cần nói nhanh; tốc độ tăng sau khi đọc đúng thuật ngữ và ký hiệu."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Ký hiệu/công thức phải đọc được",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Mẫu Дано → Найти",
+              "body": "Дано: x ∈ ℝ. Найти: f(x).\nKhung đọc nhanh: xác định dữ kiện trước, rồi xác định đại lượng cần tìm."
+            },
+            {
+              "type": "formula",
+              "title": "Mẫu chứng minh",
+              "body": "Доказать: A ⇒ B\nKhi đề dùng доказать, nhiệm vụ là lập luận để suy ra mệnh đề kết luận, không chỉ tính số."
+            },
+            {
+              "type": "formula",
+              "title": "Mẫu tính toán",
+              "body": "Вычислить: S = Σ_{k=1}^{n} a_k\nВычислить yêu cầu giá trị/biểu thức tính được; cần nêu phép biến đổi và kết quả."
+            }
+          ]
+        },
+        {
+          "role": "phrase_pattern",
+          "title": "Mẫu câu lớp dự bị",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Mẫu bắt buộc",
+              "items": [
+                "Что дано в задаче? — В задаче дано …",
+                "Что нужно найти? — Нужно найти …",
+                "Докажем, что … / Вычислим …"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Cách luyện",
+              "body": "Đổi số/ký hiệu nhưng giữ khung câu, sau đó bỏ nhìn mẫu và nói lại."
+            }
+          ]
+        },
+        {
+          "role": "symbol_to_speech",
+          "title": "Từ ký hiệu sang lời nói",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cách đọc",
+              "body": "x ∈ ℝ đọc: «икс принадлежит множеству действительных чисел»."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Quy trình",
+              "items": [
+                "Nhìn toàn biểu thức trước.",
+                "Xác định toán tử/quan hệ chính.",
+                "Đọc theo cụm nghĩa, không đánh vần từng ký tự.",
+                "Kết thúc bằng một câu diễn giải ý nghĩa toán học."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "reading_example",
+          "title": "Đọc một đề mẫu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Đề/Ví dụ",
+              "body": "Дано: a = 3, b = 4. Найти: c = √(a²+b²). Ta đọc dữ kiện, nêu công thức và kết luận: c = 5."
+            },
+            {
+              "type": "text",
+              "title": "Nhiệm vụ",
+              "body": "Gạch chân câu lệnh, khoanh dữ kiện, nói lại «что дано / что найти» trước khi giải."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Trình bày lời giải mẫu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu trả lời",
+              "body": "Дано a равно трём, b равно четырём. Нужно найти c. По теореме Пифагора c равно пяти."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Điểm cần có",
+              "items": [
+                "Nêu đại lượng hoặc mệnh đề đang xử lý.",
+                "Dùng đúng thuật ngữ chủ đề.",
+                "Nêu điều kiện nếu phép biến đổi cần điều kiện.",
+                "Chốt kết quả bằng câu hoàn chỉnh."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "oral_response",
+          "title": "Vấn đáp 30–60 giây",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Prompt",
+              "body": "Giải thích chủ đề «Cấu trúc đề toán tiếng Nga: дано, найти, доказать, вычислить» trong 30–60 giây, bắt buộc dùng ít nhất 3 thuật ngữ tiếng Nga và một ký hiệu/công thức."
+            },
+            {
+              "type": "text",
+              "title": "Khung đáp",
+              "body": "Дано a равно трём, b равно четырём. Нужно найти c. По теореме Пифагора c равно пяти."
+            }
+          ]
+        },
+        {
+          "role": "professor_prompt",
+          "title": "Giảng viên hỏi sâu",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Vấn đáp",
+              "items": [
+                {
+                  "q": "Nếu đề ghi «Докажите, что функция непрерывна», em có được chỉ thay số vài điểm để kết luận không?",
+                  "a": "Không. «Докажите» đòi hỏi lập luận tổng quát theo định nghĩa/định lý; kiểm tra vài điểm chỉ là minh họa."
+                },
+                {
+                  "q": "Em hãy nói lại kết luận bằng một câu tiếng Nga ngắn hơn.",
+                  "a": "Дано a равно трём, b равно четырём. Нужно найти c. По теореме Пифагора c равно пяти."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy dịch thuật / phản ví dụ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bẫy",
+              "body": "`определить` trong đề có thể là «xác định/tìm» chứ không phải lúc nào cũng là «định nghĩa»; `решить` thường là giải bài toán/phương trình."
+            },
+            {
+              "type": "text",
+              "title": "Cách chống dịch máy",
+              "body": "Xác định ngữ cảnh toán trước, sau đó kiểm ký hiệu đi kèm và chỉ cuối cùng mới chọn nghĩa tiếng Việt/Anh."
+            }
+          ]
+        },
+        {
+          "role": "grammar_micro",
+          "title": "Ngữ pháp vừa đủ để nói toán",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Micro-grammar",
+              "body": "Động từ nguyên mẫu sau câu lệnh của đề: найти, доказать, вычислить, решить. Khi trả lời miệng chuyển sang ngôi thứ nhất số nhiều: найдём, докажем, вычислим."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Không học lan man",
+              "items": [
+                "Chỉ giữ cấu trúc giúp đọc đề và trình bày lời giải.",
+                "Ưu tiên mẫu câu tái sử dụng được ở nhiều bài.",
+                "Nếu câu dài gây lỗi ngữ pháp, tách thành hai câu ngắn."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "translation_gate",
+          "title": "Cổng dịch thuật Nga ↔ ký hiệu ↔ Việt/Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Ba chiều phải khớp",
+              "items": [
+                "дано́ ↔ đã cho / dữ kiện ↔ given",
+                "найти́ ↔ tìm ↔ find",
+                "доказа́ть ↔ chứng minh ↔ prove"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Không cho qua nếu bản dịch đúng từ nhưng dẫn tới thao tác toán sai."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ Bauman / kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Trong lớp dự bị, đọc đúng động từ mệnh lệnh giúp chọn đúng loại thao tác: tính, giải, chứng minh hay xác định; đây là bước đầu để không mất điểm vì hiểu sai đề."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu chuyển giao",
+              "body": "Từ vựng phải được dùng lại khi đọc giáo trình, nghe giảng, làm bài và bảo vệ lời giải."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng an toàn trước khi trả lời",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Tôi đã xác định đúng câu lệnh của đề chưa?",
+                "Tôi có hiểu đúng nghĩa thuật ngữ trong ngữ cảnh toán không?",
+                "Phép biến đổi có điều kiện nào phải nói ra không?",
+                "Kết luận có trả lời đúng cái đề hỏi không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi ngay trong vấn đáp",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu sửa",
+              "body": "Nếu lỡ hiểu sai câu lệnh, nói: «Я неправильно понял условие. Здесь нужно доказать, а не вычислить. Исправляю решение.»"
+            },
+            {
+              "type": "bullet-list",
+              "title": "Quy tắc",
+              "items": [
+                "Không cố bảo vệ một bước đã biết sai.",
+                "Nói rõ vị trí lỗi.",
+                "Sửa đúng nguyên nhân, không chỉ đổi đáp số.",
+                "Kiểm lại kết luận sau khi sửa."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "mini_drill",
+          "title": "Drill 5 phút",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "5 vòng",
+              "items": [
+                "Đọc 8 thuật ngữ có trọng âm.",
+                "Đọc 3 công thức/ký hiệu thành lời.",
+                "Dịch 3 câu lệnh Nga → Việt.",
+                "Nói 1 lời giải 30 giây không nhìn mẫu.",
+                "Tự tạo 1 lỗi dịch và sửa bằng tiếng Nga."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Câu hỏi tự kiểm kiểu giảng viên",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Q&A",
+              "items": [
+                {
+                  "q": "Nếu đề ghi «Докажите, что функция непрерывна», em có được chỉ thay số vài điểm để kết luận không?",
+                  "a": "Không. «Докажите» đòi hỏi lập luận tổng quát theo định nghĩa/định lý; kiểm tra vài điểm chỉ là minh họa."
+                },
+                {
+                  "q": "Một lỗi dịch thuật quan trọng của bài là gì?",
+                  "a": "`определить` trong đề có thể là «xác định/tìm» chứ không phải lúc nào cũng là «định nghĩa»; `решить` thường là giải bài toán/phương trình."
+                },
+                {
+                  "q": "Nếu trả lời sai em sửa thế nào?",
+                  "a": "Nếu lỡ hiểu sai câu lệnh, nói: «Я неправильно понял условие. Здесь нужно доказать, а не вычислить. Исправляю решение.»"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "self_check",
+          "title": "Tự chấm trước khi qua bài",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Đạt khi",
+              "items": [
+                "≥ 7/8 thuật ngữ đọc đúng trọng âm ở tốc độ chậm.",
+                "Đọc được 3 biểu thức mà không quay về tiếng Việt giữa câu.",
+                "Trả lời được câu hỏi giảng viên trong ≤60 giây.",
+                "Tự phát hiện và sửa được ít nhất một bẫy dịch thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.1",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Nhìn động từ mệnh lệnh trước khi tính.",
+                "Tách Дано / Найти / Требуется.",
+                "Trình bày miệng theo đúng loại nhiệm vụ.",
+                "Khi sai, sửa câu lệnh trước rồi mới sửa phép toán."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Exit ticket",
+              "body": "Nói một câu Nga chứa thuật ngữ «дано́» và giải thích lại bằng tiếng Việt/Anh mà không đổi nghĩa toán."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_-E18-MP09-T02-sets-functions",
+      "chapterId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+      "lessonTitle": "m_p09 · §1.2 · Số, tập hợp, hàm số và biểu thức đại số bằng tiếng Nga",
+      "title": "m_p09 · §1.2 · Số, tập hợp, hàm số và biểu thức đại số bằng tiếng Nga",
+      "programLectureId": "MATH-PROG-L10-logic-set-theory-boolean",
+      "programLectureIds": [
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "roadmapRole": "m_p09_t02",
+      "baumanFocus": "Russian mathematical language bridge for preparatory engineering study, oral defense and technical problem solving.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_p09",
+        "frameworkChapterId": "m_s01",
+        "logicalLessonId": "m_p09_t02",
+        "frameworkAnchor": "m_p09_t02",
+        "programLectureId": "MATH-PROG-L10-logic-set-theory-boolean",
+        "bridgeProgramLectureId": "MATH-PROG-L10-logic-set-theory-boolean",
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e18_russian_math_bridge_authoring"
+      },
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "sets-functions"
+      ],
+      "speechDrill": {
+        "language": "ru-RU",
+        "mode": "read_repeat_defend",
+        "requiredStressAware": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_p09 · §1.2 · Số, tập hợp, hàm số và biểu thức đại số bằng tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "Bài bridge Nga–Việt–Anh cho lớp dự bị kỹ thuật. Trọng tâm là đọc đúng đề, nối thuật ngữ với ký hiệu và trả lời vấn đáp, không học từ vựng rời khỏi toán."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Sau bài này phải đọc/diễn đạt được chủ đề «Số, tập hợp, hàm số và biểu thức đại số bằng tiếng Nga» bằng câu ngắn, chính xác và có thể tự sửa lỗi khi bị hỏi lại."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra 4 lớp",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài học",
+              "items": [
+                "Nhận diện thuật ngữ Nga trong đề và nối sang nghĩa Việt/Anh.",
+                "Đọc ký hiệu/công thức thành câu tiếng Nga có nghĩa.",
+                "Thực hiện đúng thao tác toán tương ứng với câu lệnh.",
+                "Trả lời miệng theo cấu trúc: dữ kiện → ý tưởng → phép toán/lập luận → kết luận."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Thuật ngữ Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Bộ từ khóa",
+              "items": [
+                "число́ — số — number",
+                "мно́жество — tập hợp — set",
+                "элеме́нт — phần tử — element",
+                "подмно́жество — tập con — subset",
+                "фу́нкция — hàm số — function",
+                "о́бласть определе́ния — miền xác định — domain",
+                "о́бласть значе́ний — miền giá trị — range",
+                "нера́венство — bất phương trình — inequality"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "pronunciation_drill",
+          "title": "Phát âm và trọng âm",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Đọc chậm → nối cụm → đọc trong câu",
+              "items": [
+                "число́ · số",
+                "мно́жество · tập hợp",
+                "элеме́нт · phần tử",
+                "подмно́жество · tập con",
+                "фу́нкция · hàm số",
+                "о́бласть определе́ния · miền xác định",
+                "о́бласть значе́ний · miền giá trị",
+                "нера́венство · bất phương trình"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Nguyên tắc",
+              "body": "Ưu tiên đúng trọng âm và âm cuối rõ. Không cần nói nhanh; tốc độ tăng sau khi đọc đúng thuật ngữ và ký hiệu."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Ký hiệu/công thức phải đọc được",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Phần tử của tập",
+              "body": "x ∈ A\nx thuộc tập A; tiếng Nga: x принадлежит множеству A."
+            },
+            {
+              "type": "formula",
+              "title": "Tập con",
+              "body": "A ⊆ B\nMọi phần tử của A đều thuộc B; tiếng Nga: A является подмножеством B."
+            },
+            {
+              "type": "formula",
+              "title": "Hàm và miền",
+              "body": "f: D → Y,  y = f(x)\nD là область определения; tập giá trị thực tế là область значений."
+            }
+          ]
+        },
+        {
+          "role": "phrase_pattern",
+          "title": "Mẫu câu lớp dự bị",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Mẫu bắt buộc",
+              "items": [
+                "Найдите область определения функции.",
+                "Решите неравенство.",
+                "Принадлежит ли число x множеству A?"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Cách luyện",
+              "body": "Đổi số/ký hiệu nhưng giữ khung câu, sau đó bỏ nhìn mẫu và nói lại."
+            }
+          ]
+        },
+        {
+          "role": "symbol_to_speech",
+          "title": "Từ ký hiệu sang lời nói",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cách đọc",
+              "body": "A ⊆ B đọc: «множество A является подмножеством множества B»."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Quy trình",
+              "items": [
+                "Nhìn toàn biểu thức trước.",
+                "Xác định toán tử/quan hệ chính.",
+                "Đọc theo cụm nghĩa, không đánh vần từng ký tự.",
+                "Kết thúc bằng một câu diễn giải ý nghĩa toán học."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "reading_example",
+          "title": "Đọc một đề mẫu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Đề/Ví dụ",
+              "body": "Для f(x)=1/(x−2) область определения: x ≠ 2. Trả lời: «Область определения — все действительные числа, кроме двух.»"
+            },
+            {
+              "type": "text",
+              "title": "Nhiệm vụ",
+              "body": "Gạch chân câu lệnh, khoanh dữ kiện, nói lại «что дано / что найти» trước khi giải."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Trình bày lời giải mẫu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu trả lời",
+              "body": "Функция f от x равна единице, делённой на x минус два. Икс не равен двум."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Điểm cần có",
+              "items": [
+                "Nêu đại lượng hoặc mệnh đề đang xử lý.",
+                "Dùng đúng thuật ngữ chủ đề.",
+                "Nêu điều kiện nếu phép biến đổi cần điều kiện.",
+                "Chốt kết quả bằng câu hoàn chỉnh."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "oral_response",
+          "title": "Vấn đáp 30–60 giây",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Prompt",
+              "body": "Giải thích chủ đề «Số, tập hợp, hàm số và biểu thức đại số bằng tiếng Nga» trong 30–60 giây, bắt buộc dùng ít nhất 3 thuật ngữ tiếng Nga và một ký hiệu/công thức."
+            },
+            {
+              "type": "text",
+              "title": "Khung đáp",
+              "body": "Функция f от x равна единице, делённой на x минус два. Икс не равен двум."
+            }
+          ]
+        },
+        {
+          "role": "professor_prompt",
+          "title": "Giảng viên hỏi sâu",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Vấn đáp",
+              "items": [
+                {
+                  "q": "`значение функции` và `область значений` khác nhau thế nào?",
+                  "a": "`значение функции` là f(x) tại một x cụ thể; `область значений` là tập tất cả giá trị hàm có thể nhận."
+                },
+                {
+                  "q": "Em hãy nói lại kết luận bằng một câu tiếng Nga ngắn hơn.",
+                  "a": "Функция f от x равна единице, делённой на x минус два. Икс не равен двум."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy dịch thuật / phản ví dụ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bẫy",
+              "body": "`область значений` là miền giá trị/range, còn `значение функции` là một giá trị cụ thể của hàm; hai cụm không được dịch lẫn."
+            },
+            {
+              "type": "text",
+              "title": "Cách chống dịch máy",
+              "body": "Xác định ngữ cảnh toán trước, sau đó kiểm ký hiệu đi kèm và chỉ cuối cùng mới chọn nghĩa tiếng Việt/Anh."
+            }
+          ]
+        },
+        {
+          "role": "grammar_micro",
+          "title": "Ngữ pháp vừa đủ để nói toán",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Micro-grammar",
+              "body": "Danh từ sau «принадлежит» dùng cách Dative trong câu tự nhiên: принадлежит множеству; nhưng khi đọc công thức có thể giữ nhịp ngắn, rõ ký hiệu."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Không học lan man",
+              "items": [
+                "Chỉ giữ cấu trúc giúp đọc đề và trình bày lời giải.",
+                "Ưu tiên mẫu câu tái sử dụng được ở nhiều bài.",
+                "Nếu câu dài gây lỗi ngữ pháp, tách thành hai câu ngắn."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "translation_gate",
+          "title": "Cổng dịch thuật Nga ↔ ký hiệu ↔ Việt/Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Ba chiều phải khớp",
+              "items": [
+                "число́ ↔ số ↔ number",
+                "мно́жество ↔ tập hợp ↔ set",
+                "элеме́нт ↔ phần tử ↔ element"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Không cho qua nếu bản dịch đúng từ nhưng dẫn tới thao tác toán sai."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ Bauman / kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Ngôn ngữ tập hợp và hàm xuất hiện trong mọi chương sau: miền điều khiển, miền tham số, dữ liệu hợp lệ, ánh xạ đặc trưng."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu chuyển giao",
+              "body": "Từ vựng phải được dùng lại khi đọc giáo trình, nghe giảng, làm bài và bảo vệ lời giải."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng an toàn trước khi trả lời",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Tôi đã xác định đúng câu lệnh của đề chưa?",
+                "Tôi có hiểu đúng nghĩa thuật ngữ trong ngữ cảnh toán không?",
+                "Phép biến đổi có điều kiện nào phải nói ra không?",
+                "Kết luận có trả lời đúng cái đề hỏi không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi ngay trong vấn đáp",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu sửa",
+              "body": "Nếu nhầm domain/range: «Я перепутал область определения и область значений. Область определения относится к допустимым x.»"
+            },
+            {
+              "type": "bullet-list",
+              "title": "Quy tắc",
+              "items": [
+                "Không cố bảo vệ một bước đã biết sai.",
+                "Nói rõ vị trí lỗi.",
+                "Sửa đúng nguyên nhân, không chỉ đổi đáp số.",
+                "Kiểm lại kết luận sau khi sửa."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "mini_drill",
+          "title": "Drill 5 phút",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "5 vòng",
+              "items": [
+                "Đọc 8 thuật ngữ có trọng âm.",
+                "Đọc 3 công thức/ký hiệu thành lời.",
+                "Dịch 3 câu lệnh Nga → Việt.",
+                "Nói 1 lời giải 30 giây không nhìn mẫu.",
+                "Tự tạo 1 lỗi dịch và sửa bằng tiếng Nga."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Câu hỏi tự kiểm kiểu giảng viên",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Q&A",
+              "items": [
+                {
+                  "q": "`значение функции` và `область значений` khác nhau thế nào?",
+                  "a": "`значение функции` là f(x) tại một x cụ thể; `область значений` là tập tất cả giá trị hàm có thể nhận."
+                },
+                {
+                  "q": "Một lỗi dịch thuật quan trọng của bài là gì?",
+                  "a": "`область значений` là miền giá trị/range, còn `значение функции` là một giá trị cụ thể của hàm; hai cụm không được dịch lẫn."
+                },
+                {
+                  "q": "Nếu trả lời sai em sửa thế nào?",
+                  "a": "Nếu nhầm domain/range: «Я перепутал область определения и область значений. Область определения относится к допустимым x.»"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "self_check",
+          "title": "Tự chấm trước khi qua bài",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Đạt khi",
+              "items": [
+                "≥ 7/8 thuật ngữ đọc đúng trọng âm ở tốc độ chậm.",
+                "Đọc được 3 biểu thức mà không quay về tiếng Việt giữa câu.",
+                "Trả lời được câu hỏi giảng viên trong ≤60 giây.",
+                "Tự phát hiện và sửa được ít nhất một bẫy dịch thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.2",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Phân biệt элемент / множество / подмножество.",
+                "Phân biệt область определения / область значений.",
+                "Đọc được ∈, ⊆, →.",
+                "Gắn câu lệnh Nga với thao tác đại số đúng."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Exit ticket",
+              "body": "Nói một câu Nga chứa thuật ngữ «число́» và giải thích lại bằng tiếng Việt/Anh mà không đổi nghĩa toán."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E18-MP09-T03-linear-algebra",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "lessonTitle": "m_p09 · §1.3 · Vector, ma trận và hệ phương trình bằng tiếng Nga",
+      "title": "m_p09 · §1.3 · Vector, ma trận và hệ phương trình bằng tiếng Nga",
+      "programLectureId": "MATH-PROG-L01-linear-algebra-basic",
+      "programLectureIds": [
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "roadmapRole": "m_p09_t03",
+      "baumanFocus": "Russian mathematical language bridge for preparatory engineering study, oral defense and technical problem solving.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_p09",
+        "frameworkChapterId": "m_s01",
+        "logicalLessonId": "m_p09_t03",
+        "frameworkAnchor": "m_p09_t03",
+        "programLectureId": "MATH-PROG-L01-linear-algebra-basic",
+        "bridgeProgramLectureId": "MATH-PROG-L10-logic-set-theory-boolean",
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e18_russian_math_bridge_authoring"
+      },
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "linear-algebra"
+      ],
+      "speechDrill": {
+        "language": "ru-RU",
+        "mode": "read_repeat_defend",
+        "requiredStressAware": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_p09 · §1.3 · Vector, ma trận và hệ phương trình bằng tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "Bài bridge Nga–Việt–Anh cho lớp dự bị kỹ thuật. Trọng tâm là đọc đúng đề, nối thuật ngữ với ký hiệu và trả lời vấn đáp, không học từ vựng rời khỏi toán."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Sau bài này phải đọc/diễn đạt được chủ đề «Vector, ma trận và hệ phương trình bằng tiếng Nga» bằng câu ngắn, chính xác và có thể tự sửa lỗi khi bị hỏi lại."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra 4 lớp",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài học",
+              "items": [
+                "Nhận diện thuật ngữ Nga trong đề và nối sang nghĩa Việt/Anh.",
+                "Đọc ký hiệu/công thức thành câu tiếng Nga có nghĩa.",
+                "Thực hiện đúng thao tác toán tương ứng với câu lệnh.",
+                "Trả lời miệng theo cấu trúc: dữ kiện → ý tưởng → phép toán/lập luận → kết luận."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Thuật ngữ Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Bộ từ khóa",
+              "items": [
+                "ве́ктор — vector — vector",
+                "матри́ца — ma trận — matrix",
+                "стро́ка — hàng — row",
+                "столбе́ц — cột — column",
+                "определи́тель — định thức — determinant",
+                "ра́нг — hạng — rank",
+                "обра́тная ма́трица — ma trận nghịch đảo — inverse matrix",
+                "систе́ма лине́йных уравне́ний — hệ phương trình tuyến tính — linear system"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "pronunciation_drill",
+          "title": "Phát âm và trọng âm",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Đọc chậm → nối cụm → đọc trong câu",
+              "items": [
+                "ве́ктор · vector",
+                "матри́ца · ma trận",
+                "стро́ка · hàng",
+                "столбе́ц · cột",
+                "определи́тель · định thức",
+                "ра́нг · hạng",
+                "обра́тная ма́трица · ma trận nghịch đảo",
+                "систе́ма лине́йных уравне́ний · hệ phương trình tuyến tính"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Nguyên tắc",
+              "body": "Ưu tiên đúng trọng âm và âm cuối rõ. Không cần nói nhanh; tốc độ tăng sau khi đọc đúng thuật ngữ và ký hiệu."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Ký hiệu/công thức phải đọc được",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Hệ tuyến tính",
+              "body": "Ax = b\nМатрица A nhân vector ẩn x bằng vector vế phải b."
+            },
+            {
+              "type": "formula",
+              "title": "Điều kiện nghịch đảo",
+              "body": "det(A) ≠ 0 ⇒ A⁻¹ существует\nMa trận vuông khả nghịch khi định thức khác 0."
+            },
+            {
+              "type": "formula",
+              "title": "Nghiệm bằng nghịch đảo",
+              "body": "x = A⁻¹b\nDùng được khi A vuông và khả nghịch; không thay thế mọi phương pháp giải số."
+            }
+          ]
+        },
+        {
+          "role": "phrase_pattern",
+          "title": "Mẫu câu lớp dự bị",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Mẫu bắt buộc",
+              "items": [
+                "Найдите определитель матрицы A.",
+                "Решите систему линейных уравнений.",
+                "Найдите ранг матрицы."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Cách luyện",
+              "body": "Đổi số/ký hiệu nhưng giữ khung câu, sau đó bỏ nhìn mẫu và nói lại."
+            }
+          ]
+        },
+        {
+          "role": "symbol_to_speech",
+          "title": "Từ ký hiệu sang lời nói",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cách đọc",
+              "body": "Aᵀ đọc: «A транспонированная»; A⁻¹: «A в минус первой степени» hoặc «обратная матрица A» theo ngữ cảnh."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Quy trình",
+              "items": [
+                "Nhìn toàn biểu thức trước.",
+                "Xác định toán tử/quan hệ chính.",
+                "Đọc theo cụm nghĩa, không đánh vần từng ký tự.",
+                "Kết thúc bằng một câu diễn giải ý nghĩa toán học."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "reading_example",
+          "title": "Đọc một đề mẫu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Đề/Ví dụ",
+              "body": "Для A=[[1,2],[3,4]] det A = 1·4−2·3 = −2, поэтому обратная матрица существует."
+            },
+            {
+              "type": "text",
+              "title": "Nhiệm vụ",
+              "body": "Gạch chân câu lệnh, khoanh dữ kiện, nói lại «что дано / что найти» trước khi giải."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Trình bày lời giải mẫu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu trả lời",
+              "body": "Определитель матрицы A равен минус двум. Он не равен нулю, поэтому обратная матрица существует."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Điểm cần có",
+              "items": [
+                "Nêu đại lượng hoặc mệnh đề đang xử lý.",
+                "Dùng đúng thuật ngữ chủ đề.",
+                "Nêu điều kiện nếu phép biến đổi cần điều kiện.",
+                "Chốt kết quả bằng câu hoàn chỉnh."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "oral_response",
+          "title": "Vấn đáp 30–60 giây",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Prompt",
+              "body": "Giải thích chủ đề «Vector, ma trận và hệ phương trình bằng tiếng Nga» trong 30–60 giây, bắt buộc dùng ít nhất 3 thuật ngữ tiếng Nga và một ký hiệu/công thức."
+            },
+            {
+              "type": "text",
+              "title": "Khung đáp",
+              "body": "Определитель матрицы A равен минус двум. Он не равен нулю, поэтому обратная матрица существует."
+            }
+          ]
+        },
+        {
+          "role": "professor_prompt",
+          "title": "Giảng viên hỏi sâu",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Vấn đáp",
+              "items": [
+                {
+                  "q": "Tại sao từ det(A)≠0 em được nói ma trận nghịch đảo tồn tại?",
+                  "a": "Với ma trận vuông, định thức khác 0 tương đương hạng đầy đủ và khả nghịch."
+                },
+                {
+                  "q": "Em hãy nói lại kết luận bằng một câu tiếng Nga ngắn hơn.",
+                  "a": "Определитель матрицы A равен минус двум. Он не равен нулю, поэтому обратная матрица существует."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy dịch thuật / phản ví dụ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bẫy",
+              "body": "`строка` trong đại số tuyến tính là hàng của ma trận, còn `столбец` là cột; tránh dịch theo nghĩa «dòng văn bản/cột báo» khi đang ở ngữ cảnh ma trận."
+            },
+            {
+              "type": "text",
+              "title": "Cách chống dịch máy",
+              "body": "Xác định ngữ cảnh toán trước, sau đó kiểm ký hiệu đi kèm và chỉ cuối cùng mới chọn nghĩa tiếng Việt/Anh."
+            }
+          ]
+        },
+        {
+          "role": "grammar_micro",
+          "title": "Ngữ pháp vừa đủ để nói toán",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Micro-grammar",
+              "body": "Số thứ tự ma trận thường đi với giống/cách phù hợp: первая строка, второй столбец; khi vấn đáp ưu tiên câu ngắn và chính xác hơn câu quá phức tạp."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Không học lan man",
+              "items": [
+                "Chỉ giữ cấu trúc giúp đọc đề và trình bày lời giải.",
+                "Ưu tiên mẫu câu tái sử dụng được ở nhiều bài.",
+                "Nếu câu dài gây lỗi ngữ pháp, tách thành hai câu ngắn."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "translation_gate",
+          "title": "Cổng dịch thuật Nga ↔ ký hiệu ↔ Việt/Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Ba chiều phải khớp",
+              "items": [
+                "ве́ктор ↔ vector ↔ vector",
+                "матри́ца ↔ ma trận ↔ matrix",
+                "стро́ка ↔ hàng ↔ row"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Không cho qua nếu bản dịch đúng từ nhưng dẫn tới thao tác toán sai."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ Bauman / kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Đây là lớp từ vựng bắt buộc trước khi học state-space, least squares, PCA và các môn điều khiển tại Bauman."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu chuyển giao",
+              "body": "Từ vựng phải được dùng lại khi đọc giáo trình, nghe giảng, làm bài và bảo vệ lời giải."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng an toàn trước khi trả lời",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Tôi đã xác định đúng câu lệnh của đề chưa?",
+                "Tôi có hiểu đúng nghĩa thuật ngữ trong ngữ cảnh toán không?",
+                "Phép biến đổi có điều kiện nào phải nói ra không?",
+                "Kết luận có trả lời đúng cái đề hỏi không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi ngay trong vấn đáp",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu sửa",
+              "body": "Nếu nói nhầm row/column: «Исправляю: это не строка, а столбец матрицы.»"
+            },
+            {
+              "type": "bullet-list",
+              "title": "Quy tắc",
+              "items": [
+                "Không cố bảo vệ một bước đã biết sai.",
+                "Nói rõ vị trí lỗi.",
+                "Sửa đúng nguyên nhân, không chỉ đổi đáp số.",
+                "Kiểm lại kết luận sau khi sửa."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "mini_drill",
+          "title": "Drill 5 phút",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "5 vòng",
+              "items": [
+                "Đọc 8 thuật ngữ có trọng âm.",
+                "Đọc 3 công thức/ký hiệu thành lời.",
+                "Dịch 3 câu lệnh Nga → Việt.",
+                "Nói 1 lời giải 30 giây không nhìn mẫu.",
+                "Tự tạo 1 lỗi dịch và sửa bằng tiếng Nga."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Câu hỏi tự kiểm kiểu giảng viên",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Q&A",
+              "items": [
+                {
+                  "q": "Tại sao từ det(A)≠0 em được nói ma trận nghịch đảo tồn tại?",
+                  "a": "Với ma trận vuông, định thức khác 0 tương đương hạng đầy đủ và khả nghịch."
+                },
+                {
+                  "q": "Một lỗi dịch thuật quan trọng của bài là gì?",
+                  "a": "`строка` trong đại số tuyến tính là hàng của ma trận, còn `столбец` là cột; tránh dịch theo nghĩa «dòng văn bản/cột báo» khi đang ở ngữ cảnh ma trận."
+                },
+                {
+                  "q": "Nếu trả lời sai em sửa thế nào?",
+                  "a": "Nếu nói nhầm row/column: «Исправляю: это не строка, а столбец матрицы.»"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "self_check",
+          "title": "Tự chấm trước khi qua bài",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Đạt khi",
+              "items": [
+                "≥ 7/8 thuật ngữ đọc đúng trọng âm ở tốc độ chậm.",
+                "Đọc được 3 biểu thức mà không quay về tiếng Việt giữa câu.",
+                "Trả lời được câu hỏi giảng viên trong ≤60 giây.",
+                "Tự phát hiện và sửa được ít nhất một bẫy dịch thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.3",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Thuộc bộ từ vector–matrix–rank–determinant.",
+                "Đọc được Ax=b, det(A), A⁻¹, Aᵀ.",
+                "Nói được điều kiện khả nghịch.",
+                "Sửa được lỗi строка / столбец khi vấn đáp."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Exit ticket",
+              "body": "Nói một câu Nga chứa thuật ngữ «ве́ктор» và giải thích lại bằng tiếng Việt/Anh mà không đổi nghĩa toán."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C11-giai_tich_i_gioi_han_lie-E18-MP09-T04-calculus",
+      "chapterId": "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+      "lessonTitle": "m_p09 · §1.4 · Giới hạn, đạo hàm và tích phân bằng tiếng Nga",
+      "title": "m_p09 · §1.4 · Giới hạn, đạo hàm và tích phân bằng tiếng Nga",
+      "programLectureId": "MATH-PROG-L04-single-variable-analysis",
+      "programLectureIds": [
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L04-single-variable-analysis",
+        "MATH-PROG-L05-multivariable-analysis-differential-geometry"
+      ],
+      "roadmapRole": "m_p09_t04",
+      "baumanFocus": "Russian mathematical language bridge for preparatory engineering study, oral defense and technical problem solving.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_p09",
+        "frameworkChapterId": "m_s01",
+        "logicalLessonId": "m_p09_t04",
+        "frameworkAnchor": "m_p09_t04",
+        "programLectureId": "MATH-PROG-L04-single-variable-analysis",
+        "bridgeProgramLectureId": "MATH-PROG-L10-logic-set-theory-boolean",
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e18_russian_math_bridge_authoring"
+      },
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "calculus"
+      ],
+      "speechDrill": {
+        "language": "ru-RU",
+        "mode": "read_repeat_defend",
+        "requiredStressAware": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_p09 · §1.4 · Giới hạn, đạo hàm và tích phân bằng tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "Bài bridge Nga–Việt–Anh cho lớp dự bị kỹ thuật. Trọng tâm là đọc đúng đề, nối thuật ngữ với ký hiệu và trả lời vấn đáp, không học từ vựng rời khỏi toán."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Sau bài này phải đọc/diễn đạt được chủ đề «Giới hạn, đạo hàm và tích phân bằng tiếng Nga» bằng câu ngắn, chính xác và có thể tự sửa lỗi khi bị hỏi lại."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra 4 lớp",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài học",
+              "items": [
+                "Nhận diện thuật ngữ Nga trong đề và nối sang nghĩa Việt/Anh.",
+                "Đọc ký hiệu/công thức thành câu tiếng Nga có nghĩa.",
+                "Thực hiện đúng thao tác toán tương ứng với câu lệnh.",
+                "Trả lời miệng theo cấu trúc: dữ kiện → ý tưởng → phép toán/lập luận → kết luận."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Thuật ngữ Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Bộ từ khóa",
+              "items": [
+                "преде́л — giới hạn — limit",
+                "непреры́вность — tính liên tục — continuity",
+                "произво́дная — đạo hàm — derivative",
+                "дифференци́руемый — khả vi — differentiable",
+                "интегра́л — tích phân — integral",
+                "первообра́зная — nguyên hàm — antiderivative",
+                "прираще́ние — số gia — increment",
+                "каса́тельная — tiếp tuyến — tangent"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "pronunciation_drill",
+          "title": "Phát âm và trọng âm",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Đọc chậm → nối cụm → đọc trong câu",
+              "items": [
+                "преде́л · giới hạn",
+                "непреры́вность · tính liên tục",
+                "произво́дная · đạo hàm",
+                "дифференци́руемый · khả vi",
+                "интегра́л · tích phân",
+                "первообра́зная · nguyên hàm",
+                "прираще́ние · số gia",
+                "каса́тельная · tiếp tuyến"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Nguyên tắc",
+              "body": "Ưu tiên đúng trọng âm và âm cuối rõ. Không cần nói nhanh; tốc độ tăng sau khi đọc đúng thuật ngữ và ký hiệu."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Ký hiệu/công thức phải đọc được",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Giới hạn",
+              "body": "lim_{x→a} f(x) = L\nПредел функции f(x) при x, стремящемся к a, равен L."
+            },
+            {
+              "type": "formula",
+              "title": "Đạo hàm",
+              "body": "f′(x)=lim_{h→0}[f(x+h)−f(x)]/h\nĐịnh nghĩa đạo hàm qua giới hạn tỉ số sai phân."
+            },
+            {
+              "type": "formula",
+              "title": "Tích phân xác định",
+              "body": "∫_a^b f(x) dx = F(b)−F(a)\nDùng định lý Newton–Leibniz khi F là một nguyên hàm phù hợp."
+            }
+          ]
+        },
+        {
+          "role": "phrase_pattern",
+          "title": "Mẫu câu lớp dự bị",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Mẫu bắt buộc",
+              "items": [
+                "Найдите предел функции.",
+                "Вычислите производную.",
+                "Вычислите определённый интеграл."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Cách luyện",
+              "body": "Đổi số/ký hiệu nhưng giữ khung câu, sau đó bỏ nhìn mẫu và nói lại."
+            }
+          ]
+        },
+        {
+          "role": "symbol_to_speech",
+          "title": "Từ ký hiệu sang lời nói",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cách đọc",
+              "body": "x→a đọc: «икс стремится к а»; ∫_a^b đọc: «интеграл от a до b»."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Quy trình",
+              "items": [
+                "Nhìn toàn biểu thức trước.",
+                "Xác định toán tử/quan hệ chính.",
+                "Đọc theo cụm nghĩa, không đánh vần từng ký tự.",
+                "Kết thúc bằng một câu diễn giải ý nghĩa toán học."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "reading_example",
+          "title": "Đọc một đề mẫu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Đề/Ví dụ",
+              "body": "Если f(x)=x², то f′(x)=2x. В точке x=3 производная равна 6."
+            },
+            {
+              "type": "text",
+              "title": "Nhiệm vụ",
+              "body": "Gạch chân câu lệnh, khoanh dữ kiện, nói lại «что дано / что найти» trước khi giải."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Trình bày lời giải mẫu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu trả lời",
+              "body": "Производная функции икс в квадрате равна двум икс. При икс равном трём получаем шесть."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Điểm cần có",
+              "items": [
+                "Nêu đại lượng hoặc mệnh đề đang xử lý.",
+                "Dùng đúng thuật ngữ chủ đề.",
+                "Nêu điều kiện nếu phép biến đổi cần điều kiện.",
+                "Chốt kết quả bằng câu hoàn chỉnh."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "oral_response",
+          "title": "Vấn đáp 30–60 giây",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Prompt",
+              "body": "Giải thích chủ đề «Giới hạn, đạo hàm và tích phân bằng tiếng Nga» trong 30–60 giây, bắt buộc dùng ít nhất 3 thuật ngữ tiếng Nga và một ký hiệu/công thức."
+            },
+            {
+              "type": "text",
+              "title": "Khung đáp",
+              "body": "Производная функции икс в квадрате равна двум икс. При икс равном трём получаем шесть."
+            }
+          ]
+        },
+        {
+          "role": "professor_prompt",
+          "title": "Giảng viên hỏi sâu",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Vấn đáp",
+              "items": [
+                {
+                  "q": "Liên tục có luôn suy ra khả vi không?",
+                  "a": "Không. Khả vi suy ra liên tục tại điểm đó, nhưng liên tục không nhất thiết khả vi; |x| tại 0 là phản ví dụ."
+                },
+                {
+                  "q": "Em hãy nói lại kết luận bằng một câu tiếng Nga ngắn hơn.",
+                  "a": "Производная функции икс в квадрате равна двум икс. При икс равном трём получаем шесть."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy dịch thuật / phản ví dụ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bẫy",
+              "body": "`первообразная` là nguyên hàm, không phải «đạo hàm đầu tiên»; `определённый интеграл` là tích phân xác định."
+            },
+            {
+              "type": "text",
+              "title": "Cách chống dịch máy",
+              "body": "Xác định ngữ cảnh toán trước, sau đó kiểm ký hiệu đi kèm và chỉ cuối cùng mới chọn nghĩa tiếng Việt/Anh."
+            }
+          ]
+        },
+        {
+          "role": "grammar_micro",
+          "title": "Ngữ pháp vừa đủ để nói toán",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Micro-grammar",
+              "body": "Mẫu «при x, стремящемся к a» dùng để đọc x→a; mẫu «производная функции по x» diễn đạt đạo hàm theo biến x."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Không học lan man",
+              "items": [
+                "Chỉ giữ cấu trúc giúp đọc đề và trình bày lời giải.",
+                "Ưu tiên mẫu câu tái sử dụng được ở nhiều bài.",
+                "Nếu câu dài gây lỗi ngữ pháp, tách thành hai câu ngắn."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "translation_gate",
+          "title": "Cổng dịch thuật Nga ↔ ký hiệu ↔ Việt/Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Ba chiều phải khớp",
+              "items": [
+                "преде́л ↔ giới hạn ↔ limit",
+                "непреры́вность ↔ tính liên tục ↔ continuity",
+                "произво́дная ↔ đạo hàm ↔ derivative"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Không cho qua nếu bản dịch đúng từ nhưng dẫn tới thao tác toán sai."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ Bauman / kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Đọc đúng giải tích bằng tiếng Nga là cầu nối trực tiếp sang tối ưu, hệ động lực, điều khiển và mô hình hóa."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu chuyển giao",
+              "body": "Từ vựng phải được dùng lại khi đọc giáo trình, nghe giảng, làm bài và bảo vệ lời giải."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng an toàn trước khi trả lời",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Tôi đã xác định đúng câu lệnh của đề chưa?",
+                "Tôi có hiểu đúng nghĩa thuật ngữ trong ngữ cảnh toán không?",
+                "Phép biến đổi có điều kiện nào phải nói ra không?",
+                "Kết luận có trả lời đúng cái đề hỏi không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi ngay trong vấn đáp",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu sửa",
+              "body": "Nếu lẫn limit và derivative: «Я назвал производную пределом. Исправляю: производная определяется через предел разностного отношения.»"
+            },
+            {
+              "type": "bullet-list",
+              "title": "Quy tắc",
+              "items": [
+                "Không cố bảo vệ một bước đã biết sai.",
+                "Nói rõ vị trí lỗi.",
+                "Sửa đúng nguyên nhân, không chỉ đổi đáp số.",
+                "Kiểm lại kết luận sau khi sửa."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "mini_drill",
+          "title": "Drill 5 phút",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "5 vòng",
+              "items": [
+                "Đọc 8 thuật ngữ có trọng âm.",
+                "Đọc 3 công thức/ký hiệu thành lời.",
+                "Dịch 3 câu lệnh Nga → Việt.",
+                "Nói 1 lời giải 30 giây không nhìn mẫu.",
+                "Tự tạo 1 lỗi dịch và sửa bằng tiếng Nga."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Câu hỏi tự kiểm kiểu giảng viên",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Q&A",
+              "items": [
+                {
+                  "q": "Liên tục có luôn suy ra khả vi không?",
+                  "a": "Không. Khả vi suy ra liên tục tại điểm đó, nhưng liên tục không nhất thiết khả vi; |x| tại 0 là phản ví dụ."
+                },
+                {
+                  "q": "Một lỗi dịch thuật quan trọng của bài là gì?",
+                  "a": "`первообразная` là nguyên hàm, không phải «đạo hàm đầu tiên»; `определённый интеграл` là tích phân xác định."
+                },
+                {
+                  "q": "Nếu trả lời sai em sửa thế nào?",
+                  "a": "Nếu lẫn limit và derivative: «Я назвал производную пределом. Исправляю: производная определяется через предел разностного отношения.»"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "self_check",
+          "title": "Tự chấm trước khi qua bài",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Đạt khi",
+              "items": [
+                "≥ 7/8 thuật ngữ đọc đúng trọng âm ở tốc độ chậm.",
+                "Đọc được 3 biểu thức mà không quay về tiếng Việt giữa câu.",
+                "Trả lời được câu hỏi giảng viên trong ≤60 giây.",
+                "Tự phát hiện và sửa được ít nhất một bẫy dịch thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.4",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Đọc được limit/derivative/integral.",
+                "Phân biệt непрерывность và дифференцируемость.",
+                "Thuộc mẫu x стремится к a.",
+                "Biết nêu phản ví dụ khi bị hỏi sâu."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Exit ticket",
+              "body": "Nói một câu Nga chứa thuật ngữ «преде́л» và giải thích lại bằng tiếng Việt/Anh mà không đổi nghĩa toán."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E18-MP09-T05-probability-statistics",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "lessonTitle": "m_p09 · §1.5 · Xác suất, thống kê và dữ liệu bằng tiếng Nga",
+      "title": "m_p09 · §1.5 · Xác suất, thống kê và dữ liệu bằng tiếng Nga",
+      "programLectureId": "MATH-PROG-L12-probability-random-variables",
+      "programLectureIds": [
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "roadmapRole": "m_p09_t05",
+      "baumanFocus": "Russian mathematical language bridge for preparatory engineering study, oral defense and technical problem solving.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_p09",
+        "frameworkChapterId": "m_s01",
+        "logicalLessonId": "m_p09_t05",
+        "frameworkAnchor": "m_p09_t05",
+        "programLectureId": "MATH-PROG-L12-probability-random-variables",
+        "bridgeProgramLectureId": "MATH-PROG-L10-logic-set-theory-boolean",
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e18_russian_math_bridge_authoring"
+      },
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "probability-statistics"
+      ],
+      "speechDrill": {
+        "language": "ru-RU",
+        "mode": "read_repeat_defend",
+        "requiredStressAware": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_p09 · §1.5 · Xác suất, thống kê và dữ liệu bằng tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "Bài bridge Nga–Việt–Anh cho lớp dự bị kỹ thuật. Trọng tâm là đọc đúng đề, nối thuật ngữ với ký hiệu và trả lời vấn đáp, không học từ vựng rời khỏi toán."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Sau bài này phải đọc/diễn đạt được chủ đề «Xác suất, thống kê và dữ liệu bằng tiếng Nga» bằng câu ngắn, chính xác và có thể tự sửa lỗi khi bị hỏi lại."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra 4 lớp",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài học",
+              "items": [
+                "Nhận diện thuật ngữ Nga trong đề và nối sang nghĩa Việt/Anh.",
+                "Đọc ký hiệu/công thức thành câu tiếng Nga có nghĩa.",
+                "Thực hiện đúng thao tác toán tương ứng với câu lệnh.",
+                "Trả lời miệng theo cấu trúc: dữ kiện → ý tưởng → phép toán/lập luận → kết luận."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Thuật ngữ Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Bộ từ khóa",
+              "items": [
+                "вероя́тность — xác suất — probability",
+                "случа́йная величина́ — biến ngẫu nhiên — random variable",
+                "распределе́ние — phân phối — distribution",
+                "математи́ческое ожида́ние — kỳ vọng — expectation",
+                "диспе́рсия — phương sai — variance",
+                "вы́борка — mẫu — sample",
+                "генера́льная совоку́пность — tổng thể — population",
+                "довери́тельный интерва́л — khoảng tin cậy — confidence interval"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "pronunciation_drill",
+          "title": "Phát âm và trọng âm",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Đọc chậm → nối cụm → đọc trong câu",
+              "items": [
+                "вероя́тность · xác suất",
+                "случа́йная величина́ · biến ngẫu nhiên",
+                "распределе́ние · phân phối",
+                "математи́ческое ожида́ние · kỳ vọng",
+                "диспе́рсия · phương sai",
+                "вы́борка · mẫu",
+                "генера́льная совоку́пность · tổng thể",
+                "довери́тельный интерва́л · khoảng tin cậy"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Nguyên tắc",
+              "body": "Ưu tiên đúng trọng âm và âm cuối rõ. Không cần nói nhanh; tốc độ tăng sau khi đọc đúng thuật ngữ và ký hiệu."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Ký hiệu/công thức phải đọc được",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Xác suất",
+              "body": "0 ≤ P(A) ≤ 1\nВероятность события A nằm trong [0,1]."
+            },
+            {
+              "type": "formula",
+              "title": "Kỳ vọng",
+              "body": "E[X] = Σ x_i p_i\nДля дискретной случайной величины: математическое ожидание là trung bình có trọng số xác suất."
+            },
+            {
+              "type": "formula",
+              "title": "Phương sai",
+              "body": "Var(X)=E[(X−E[X])²]\nДисперсия đo mức phân tán bình phương quanh kỳ vọng."
+            }
+          ]
+        },
+        {
+          "role": "phrase_pattern",
+          "title": "Mẫu câu lớp dự bị",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Mẫu bắt buộc",
+              "items": [
+                "Найдите вероятность события A.",
+                "Вычислите математическое ожидание и дисперсию.",
+                "По выборке оцените среднее значение."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Cách luyện",
+              "body": "Đổi số/ký hiệu nhưng giữ khung câu, sau đó bỏ nhìn mẫu và nói lại."
+            }
+          ]
+        },
+        {
+          "role": "symbol_to_speech",
+          "title": "Từ ký hiệu sang lời nói",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cách đọc",
+              "body": "P(A|B) đọc: «вероятность события A при условии B»."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Quy trình",
+              "items": [
+                "Nhìn toàn biểu thức trước.",
+                "Xác định toán tử/quan hệ chính.",
+                "Đọc theo cụm nghĩa, không đánh vần từng ký tự.",
+                "Kết thúc bằng một câu diễn giải ý nghĩa toán học."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "reading_example",
+          "title": "Đọc một đề mẫu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Đề/Ví dụ",
+              "body": "Если X принимает 0 и 1 с вероятностями 0,3 и 0,7, то E[X]=0,7 и Var(X)=0,21."
+            },
+            {
+              "type": "text",
+              "title": "Nhiệm vụ",
+              "body": "Gạch chân câu lệnh, khoanh dữ kiện, nói lại «что дано / что найти» trước khi giải."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Trình bày lời giải mẫu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu trả lời",
+              "body": "Математическое ожидание X равно ноль целых семь десятых, дисперсия равна ноль целых двадцать одна сотая."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Điểm cần có",
+              "items": [
+                "Nêu đại lượng hoặc mệnh đề đang xử lý.",
+                "Dùng đúng thuật ngữ chủ đề.",
+                "Nêu điều kiện nếu phép biến đổi cần điều kiện.",
+                "Chốt kết quả bằng câu hoàn chỉnh."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "oral_response",
+          "title": "Vấn đáp 30–60 giây",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Prompt",
+              "body": "Giải thích chủ đề «Xác suất, thống kê và dữ liệu bằng tiếng Nga» trong 30–60 giây, bắt buộc dùng ít nhất 3 thuật ngữ tiếng Nga và một ký hiệu/công thức."
+            },
+            {
+              "type": "text",
+              "title": "Khung đáp",
+              "body": "Математическое ожидание X равно ноль целых семь десятых, дисперсия равна ноль целых двадцать одна сотая."
+            }
+          ]
+        },
+        {
+          "role": "professor_prompt",
+          "title": "Giảng viên hỏi sâu",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Vấn đáp",
+              "items": [
+                {
+                  "q": "`выборка` và `генеральная совокупность` khác nhau thế nào?",
+                  "a": "Генеральная совокупность là toàn bộ đối tượng quan tâm; выборка là phần quan sát dùng để suy luận về tổng thể."
+                },
+                {
+                  "q": "Em hãy nói lại kết luận bằng một câu tiếng Nga ngắn hơn.",
+                  "a": "Математическое ожидание X равно ноль целых семь десятых, дисперсия равна ноль целых двадцать одна сотая."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy dịch thuật / phản ví dụ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bẫy",
+              "body": "`математическое ожидание` là kỳ vọng toán học, không dịch máy thành «sự chờ đợi»; `выборка` là mẫu thống kê, không phải thao tác «chọn» chung."
+            },
+            {
+              "type": "text",
+              "title": "Cách chống dịch máy",
+              "body": "Xác định ngữ cảnh toán trước, sau đó kiểm ký hiệu đi kèm và chỉ cuối cùng mới chọn nghĩa tiếng Việt/Anh."
+            }
+          ]
+        },
+        {
+          "role": "grammar_micro",
+          "title": "Ngữ pháp vừa đủ để nói toán",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Micro-grammar",
+              "body": "Cụm «вероятность события» dùng Genitive; «по выборке оценить» thường nghĩa là ước lượng dựa trên mẫu."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Không học lan man",
+              "items": [
+                "Chỉ giữ cấu trúc giúp đọc đề và trình bày lời giải.",
+                "Ưu tiên mẫu câu tái sử dụng được ở nhiều bài.",
+                "Nếu câu dài gây lỗi ngữ pháp, tách thành hai câu ngắn."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "translation_gate",
+          "title": "Cổng dịch thuật Nga ↔ ký hiệu ↔ Việt/Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Ba chiều phải khớp",
+              "items": [
+                "вероя́тность ↔ xác suất ↔ probability",
+                "случа́йная величина́ ↔ biến ngẫu nhiên ↔ random variable",
+                "распределе́ние ↔ phân phối ↔ distribution"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Không cho qua nếu bản dịch đúng từ nhưng dẫn tới thao tác toán sai."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ Bauman / kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Thuật ngữ này dùng khi đọc dữ liệu cảm biến, kiểm định mô hình, ước lượng nhiễu và đánh giá độ tin cậy hệ thống."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu chuyển giao",
+              "body": "Từ vựng phải được dùng lại khi đọc giáo trình, nghe giảng, làm bài và bảo vệ lời giải."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng an toàn trước khi trả lời",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Tôi đã xác định đúng câu lệnh của đề chưa?",
+                "Tôi có hiểu đúng nghĩa thuật ngữ trong ngữ cảnh toán không?",
+                "Phép biến đổi có điều kiện nào phải nói ra không?",
+                "Kết luận có trả lời đúng cái đề hỏi không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi ngay trong vấn đáp",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu sửa",
+              "body": "Nếu dịch математическое ожидание sai: «Исправляю: здесь математическое ожидание означает expectation, а не бытовое ожидание.»"
+            },
+            {
+              "type": "bullet-list",
+              "title": "Quy tắc",
+              "items": [
+                "Không cố bảo vệ một bước đã biết sai.",
+                "Nói rõ vị trí lỗi.",
+                "Sửa đúng nguyên nhân, không chỉ đổi đáp số.",
+                "Kiểm lại kết luận sau khi sửa."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "mini_drill",
+          "title": "Drill 5 phút",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "5 vòng",
+              "items": [
+                "Đọc 8 thuật ngữ có trọng âm.",
+                "Đọc 3 công thức/ký hiệu thành lời.",
+                "Dịch 3 câu lệnh Nga → Việt.",
+                "Nói 1 lời giải 30 giây không nhìn mẫu.",
+                "Tự tạo 1 lỗi dịch và sửa bằng tiếng Nga."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Câu hỏi tự kiểm kiểu giảng viên",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Q&A",
+              "items": [
+                {
+                  "q": "`выборка` và `генеральная совокупность` khác nhau thế nào?",
+                  "a": "Генеральная совокупность là toàn bộ đối tượng quan tâm; выборка là phần quan sát dùng để suy luận về tổng thể."
+                },
+                {
+                  "q": "Một lỗi dịch thuật quan trọng của bài là gì?",
+                  "a": "`математическое ожидание` là kỳ vọng toán học, không dịch máy thành «sự chờ đợi»; `выборка` là mẫu thống kê, không phải thao tác «chọn» chung."
+                },
+                {
+                  "q": "Nếu trả lời sai em sửa thế nào?",
+                  "a": "Nếu dịch математическое ожидание sai: «Исправляю: здесь математическое ожидание означает expectation, а не бытовое ожидание.»"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "self_check",
+          "title": "Tự chấm trước khi qua bài",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Đạt khi",
+              "items": [
+                "≥ 7/8 thuật ngữ đọc đúng trọng âm ở tốc độ chậm.",
+                "Đọc được 3 biểu thức mà không quay về tiếng Việt giữa câu.",
+                "Trả lời được câu hỏi giảng viên trong ≤60 giây.",
+                "Tự phát hiện và sửa được ít nhất một bẫy dịch thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.5",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Thuộc probability–random variable–distribution.",
+                "Phân biệt sample và population.",
+                "Đọc P(A|B), E[X], Var(X).",
+                "Không dịch máy các thuật ngữ thống kê."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Exit ticket",
+              "body": "Nói một câu Nga chứa thuật ngữ «вероя́тность» và giải thích lại bằng tiếng Việt/Anh mà không đổi nghĩa toán."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_-E18-MP09-T06-geometry-coordinates",
+      "chapterId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+      "lessonTitle": "m_p09 · §1.6 · Đồ thị, hình học và biến đổi tọa độ bằng tiếng Nga",
+      "title": "m_p09 · §1.6 · Đồ thị, hình học và biến đổi tọa độ bằng tiếng Nga",
+      "programLectureId": "MATH-PROG-L08-euclidean-computational-geometry",
+      "programLectureIds": [
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L08-euclidean-computational-geometry",
+        "MATH-PROG-L05-multivariable-analysis-differential-geometry"
+      ],
+      "roadmapRole": "m_p09_t06",
+      "baumanFocus": "Russian mathematical language bridge for preparatory engineering study, oral defense and technical problem solving.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_p09",
+        "frameworkChapterId": "m_s01",
+        "logicalLessonId": "m_p09_t06",
+        "frameworkAnchor": "m_p09_t06",
+        "programLectureId": "MATH-PROG-L08-euclidean-computational-geometry",
+        "bridgeProgramLectureId": "MATH-PROG-L10-logic-set-theory-boolean",
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e18_russian_math_bridge_authoring"
+      },
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "geometry-coordinates"
+      ],
+      "speechDrill": {
+        "language": "ru-RU",
+        "mode": "read_repeat_defend",
+        "requiredStressAware": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_p09 · §1.6 · Đồ thị, hình học và biến đổi tọa độ bằng tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "Bài bridge Nga–Việt–Anh cho lớp dự bị kỹ thuật. Trọng tâm là đọc đúng đề, nối thuật ngữ với ký hiệu và trả lời vấn đáp, không học từ vựng rời khỏi toán."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Sau bài này phải đọc/diễn đạt được chủ đề «Đồ thị, hình học và biến đổi tọa độ bằng tiếng Nga» bằng câu ngắn, chính xác và có thể tự sửa lỗi khi bị hỏi lại."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra 4 lớp",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài học",
+              "items": [
+                "Nhận diện thuật ngữ Nga trong đề và nối sang nghĩa Việt/Anh.",
+                "Đọc ký hiệu/công thức thành câu tiếng Nga có nghĩa.",
+                "Thực hiện đúng thao tác toán tương ứng với câu lệnh.",
+                "Trả lời miệng theo cấu trúc: dữ kiện → ý tưởng → phép toán/lập luận → kết luận."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Thuật ngữ Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Bộ từ khóa",
+              "items": [
+                "гра́фик — đồ thị — graph/plot",
+                "координа́та — tọa độ — coordinate",
+                "ось — trục — axis",
+                "пло́скость — mặt phẳng — plane",
+                "расстоя́ние — khoảng cách — distance",
+                "у́гол — góc — angle",
+                "преобразова́ние координа́т — biến đổi tọa độ — coordinate transform",
+                "нача́ло координа́т — gốc tọa độ — origin"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "pronunciation_drill",
+          "title": "Phát âm và trọng âm",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Đọc chậm → nối cụm → đọc trong câu",
+              "items": [
+                "гра́фик · đồ thị",
+                "координа́та · tọa độ",
+                "ось · trục",
+                "пло́скость · mặt phẳng",
+                "расстоя́ние · khoảng cách",
+                "у́гол · góc",
+                "преобразова́ние координа́т · biến đổi tọa độ",
+                "нача́ло координа́т · gốc tọa độ"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Nguyên tắc",
+              "body": "Ưu tiên đúng trọng âm và âm cuối rõ. Không cần nói nhanh; tốc độ tăng sau khi đọc đúng thuật ngữ và ký hiệu."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Ký hiệu/công thức phải đọc được",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Khoảng cách 2D",
+              "body": "d=√[(x₂−x₁)²+(y₂−y₁)²]\nРасстояние между двумя точками trên mặt phẳng Euclid."
+            },
+            {
+              "type": "formula",
+              "title": "Đường thẳng",
+              "body": "y = kx + b\nУравнение прямой với hệ số góc k và hệ số tự do b."
+            },
+            {
+              "type": "formula",
+              "title": "Phép quay",
+              "body": "[x′;y′]=[[cosθ,−sinθ],[sinθ,cosθ]][x;y]\nПоворот системы/вектора trên mặt phẳng một góc θ."
+            }
+          ]
+        },
+        {
+          "role": "phrase_pattern",
+          "title": "Mẫu câu lớp dự bị",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Mẫu bắt buộc",
+              "items": [
+                "Постройте график функции.",
+                "Найдите координаты точки.",
+                "Выполните преобразование координат."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Cách luyện",
+              "body": "Đổi số/ký hiệu nhưng giữ khung câu, sau đó bỏ nhìn mẫu và nói lại."
+            }
+          ]
+        },
+        {
+          "role": "symbol_to_speech",
+          "title": "Từ ký hiệu sang lời nói",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cách đọc",
+              "body": "θ đọc «тэта»; x′, y′ đọc «икс штрих, игрек штрих»."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Quy trình",
+              "items": [
+                "Nhìn toàn biểu thức trước.",
+                "Xác định toán tử/quan hệ chính.",
+                "Đọc theo cụm nghĩa, không đánh vần từng ký tự.",
+                "Kết thúc bằng một câu diễn giải ý nghĩa toán học."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "reading_example",
+          "title": "Đọc một đề mẫu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Đề/Ví dụ",
+              "body": "Точки A(1,2) и B(4,6): расстояние d=5. Ta nói rõ hiệu tọa độ rồi mới kết luận."
+            },
+            {
+              "type": "text",
+              "title": "Nhiệm vụ",
+              "body": "Gạch chân câu lệnh, khoanh dữ kiện, nói lại «что дано / что найти» trước khi giải."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Trình bày lời giải mẫu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu trả lời",
+              "body": "Расстояние между точками A и B равно пяти. Мы использовали формулу евклидова расстояния."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Điểm cần có",
+              "items": [
+                "Nêu đại lượng hoặc mệnh đề đang xử lý.",
+                "Dùng đúng thuật ngữ chủ đề.",
+                "Nêu điều kiện nếu phép biến đổi cần điều kiện.",
+                "Chốt kết quả bằng câu hoàn chỉnh."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "oral_response",
+          "title": "Vấn đáp 30–60 giây",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Prompt",
+              "body": "Giải thích chủ đề «Đồ thị, hình học và biến đổi tọa độ bằng tiếng Nga» trong 30–60 giây, bắt buộc dùng ít nhất 3 thuật ngữ tiếng Nga và một ký hiệu/công thức."
+            },
+            {
+              "type": "text",
+              "title": "Khung đáp",
+              "body": "Расстояние между точками A и B равно пяти. Мы использовали формулу евклидова расстояния."
+            }
+          ]
+        },
+        {
+          "role": "professor_prompt",
+          "title": "Giảng viên hỏi sâu",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Vấn đáp",
+              "items": [
+                {
+                  "q": "Khi nào `график` không nên dịch là đồ thị?",
+                  "a": "Ngoài ngữ cảnh toán, график có thể là lịch/biểu thời gian. Trong «график функции» mới chắc chắn là đồ thị hàm."
+                },
+                {
+                  "q": "Em hãy nói lại kết luận bằng một câu tiếng Nga ngắn hơn.",
+                  "a": "Расстояние между точками A и B равно пяти. Мы использовали формулу евклидова расстояния."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy dịch thuật / phản ví dụ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bẫy",
+              "body": "`график` trong toán là đồ thị, nhưng trong tiếng Nga đời thường còn có nghĩa lịch/biểu; phải dựa vào ngữ cảnh «график функции»."
+            },
+            {
+              "type": "text",
+              "title": "Cách chống dịch máy",
+              "body": "Xác định ngữ cảnh toán trước, sau đó kiểm ký hiệu đi kèm và chỉ cuối cùng mới chọn nghĩa tiếng Việt/Anh."
+            }
+          ]
+        },
+        {
+          "role": "grammar_micro",
+          "title": "Ngữ pháp vừa đủ để nói toán",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Micro-grammar",
+              "body": "«между точками A и B» dùng Instrumental sau между; «относительно начала координат» thường dùng khi mô tả vị trí/biến đổi."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Không học lan man",
+              "items": [
+                "Chỉ giữ cấu trúc giúp đọc đề và trình bày lời giải.",
+                "Ưu tiên mẫu câu tái sử dụng được ở nhiều bài.",
+                "Nếu câu dài gây lỗi ngữ pháp, tách thành hai câu ngắn."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "translation_gate",
+          "title": "Cổng dịch thuật Nga ↔ ký hiệu ↔ Việt/Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Ba chiều phải khớp",
+              "items": [
+                "гра́фик ↔ đồ thị ↔ graph/plot",
+                "координа́та ↔ tọa độ ↔ coordinate",
+                "ось ↔ trục ↔ axis"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Không cho qua nếu bản dịch đúng từ nhưng dẫn tới thao tác toán sai."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ Bauman / kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Từ vựng tọa độ cần cho robot/UAV, camera geometry, quỹ đạo, biến đổi hệ quy chiếu và đồ họa kỹ thuật."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu chuyển giao",
+              "body": "Từ vựng phải được dùng lại khi đọc giáo trình, nghe giảng, làm bài và bảo vệ lời giải."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng an toàn trước khi trả lời",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Tôi đã xác định đúng câu lệnh của đề chưa?",
+                "Tôi có hiểu đúng nghĩa thuật ngữ trong ngữ cảnh toán không?",
+                "Phép biến đổi có điều kiện nào phải nói ra không?",
+                "Kết luận có trả lời đúng cái đề hỏi không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi ngay trong vấn đáp",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu sửa",
+              "body": "Nếu nhầm axis/origin: «Исправляю: ось — это axis, а начало координат — origin.»"
+            },
+            {
+              "type": "bullet-list",
+              "title": "Quy tắc",
+              "items": [
+                "Không cố bảo vệ một bước đã biết sai.",
+                "Nói rõ vị trí lỗi.",
+                "Sửa đúng nguyên nhân, không chỉ đổi đáp số.",
+                "Kiểm lại kết luận sau khi sửa."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "mini_drill",
+          "title": "Drill 5 phút",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "5 vòng",
+              "items": [
+                "Đọc 8 thuật ngữ có trọng âm.",
+                "Đọc 3 công thức/ký hiệu thành lời.",
+                "Dịch 3 câu lệnh Nga → Việt.",
+                "Nói 1 lời giải 30 giây không nhìn mẫu.",
+                "Tự tạo 1 lỗi dịch và sửa bằng tiếng Nga."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Câu hỏi tự kiểm kiểu giảng viên",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Q&A",
+              "items": [
+                {
+                  "q": "Khi nào `график` không nên dịch là đồ thị?",
+                  "a": "Ngoài ngữ cảnh toán, график có thể là lịch/biểu thời gian. Trong «график функции» mới chắc chắn là đồ thị hàm."
+                },
+                {
+                  "q": "Một lỗi dịch thuật quan trọng của bài là gì?",
+                  "a": "`график` trong toán là đồ thị, nhưng trong tiếng Nga đời thường còn có nghĩa lịch/biểu; phải dựa vào ngữ cảnh «график функции»."
+                },
+                {
+                  "q": "Nếu trả lời sai em sửa thế nào?",
+                  "a": "Nếu nhầm axis/origin: «Исправляю: ось — это axis, а начало координат — origin.»"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "self_check",
+          "title": "Tự chấm trước khi qua bài",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Đạt khi",
+              "items": [
+                "≥ 7/8 thuật ngữ đọc đúng trọng âm ở tốc độ chậm.",
+                "Đọc được 3 biểu thức mà không quay về tiếng Việt giữa câu.",
+                "Trả lời được câu hỏi giảng viên trong ≤60 giây.",
+                "Tự phát hiện và sửa được ít nhất một bẫy dịch thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.6",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Đọc được tọa độ, trục, mặt phẳng, góc.",
+                "Thuộc công thức distance/line/rotation.",
+                "Nhận biết nghĩa theo ngữ cảnh của график.",
+                "Liên hệ trực tiếp tới hệ tọa độ robot."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Exit ticket",
+              "body": "Nói một câu Nga chứa thuật ngữ «гра́фик» và giải thích lại bằng tiếng Việt/Anh mà không đổi nghĩa toán."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T07-proof-language",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "lessonTitle": "m_p09 · §1.7 · Mẫu câu trình bày lời giải và chứng minh bằng tiếng Nga",
+      "title": "m_p09 · §1.7 · Mẫu câu trình bày lời giải và chứng minh bằng tiếng Nga",
+      "programLectureId": "MATH-PROG-L10-logic-set-theory-boolean",
+      "programLectureIds": [
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L04-single-variable-analysis"
+      ],
+      "roadmapRole": "m_p09_t07",
+      "baumanFocus": "Russian mathematical language bridge for preparatory engineering study, oral defense and technical problem solving.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_p09",
+        "frameworkChapterId": "m_s01",
+        "logicalLessonId": "m_p09_t07",
+        "frameworkAnchor": "m_p09_t07",
+        "programLectureId": "MATH-PROG-L10-logic-set-theory-boolean",
+        "bridgeProgramLectureId": "MATH-PROG-L10-logic-set-theory-boolean",
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e18_russian_math_bridge_authoring"
+      },
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "proof-language"
+      ],
+      "speechDrill": {
+        "language": "ru-RU",
+        "mode": "read_repeat_defend",
+        "requiredStressAware": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_p09 · §1.7 · Mẫu câu trình bày lời giải và chứng minh bằng tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "Bài bridge Nga–Việt–Anh cho lớp dự bị kỹ thuật. Trọng tâm là đọc đúng đề, nối thuật ngữ với ký hiệu và trả lời vấn đáp, không học từ vựng rời khỏi toán."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Sau bài này phải đọc/diễn đạt được chủ đề «Mẫu câu trình bày lời giải và chứng minh bằng tiếng Nga» bằng câu ngắn, chính xác và có thể tự sửa lỗi khi bị hỏi lại."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra 4 lớp",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài học",
+              "items": [
+                "Nhận diện thuật ngữ Nga trong đề và nối sang nghĩa Việt/Anh.",
+                "Đọc ký hiệu/công thức thành câu tiếng Nga có nghĩa.",
+                "Thực hiện đúng thao tác toán tương ứng với câu lệnh.",
+                "Trả lời miệng theo cấu trúc: dữ kiện → ý tưởng → phép toán/lập luận → kết luận."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Thuật ngữ Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Bộ từ khóa",
+              "items": [
+                "предполо́жим — giả sử — suppose",
+                "так как — vì — since",
+                "сле́довательно — do đó — therefore",
+                "отсю́да — từ đây — hence",
+                "получа́ем — ta nhận được — we obtain",
+                "равноси́льно — tương đương — equivalent",
+                "необходи́мо — cần thiết — necessary",
+                "доста́точно — đủ — sufficient"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "pronunciation_drill",
+          "title": "Phát âm và trọng âm",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Đọc chậm → nối cụm → đọc trong câu",
+              "items": [
+                "предполо́жим · giả sử",
+                "так как · vì",
+                "сле́довательно · do đó",
+                "отсю́да · từ đây",
+                "получа́ем · ta nhận được",
+                "равноси́льно · tương đương",
+                "необходи́мо · cần thiết",
+                "доста́точно · đủ"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Nguyên tắc",
+              "body": "Ưu tiên đúng trọng âm và âm cuối rõ. Không cần nói nhanh; tốc độ tăng sau khi đọc đúng thuật ngữ và ký hiệu."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Ký hiệu/công thức phải đọc được",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Suy luận",
+              "body": "A ⇒ B\nNếu A thì B; mẫu nói: «Из A следует B»."
+            },
+            {
+              "type": "formula",
+              "title": "Tương đương",
+              "body": "A ⇔ B\nA và B tương đương; mẫu nói: «A равносильно B»."
+            },
+            {
+              "type": "formula",
+              "title": "Phản chứng",
+              "body": "Предположим ¬B ⇒ противоречие\nGiả sử phủ định kết luận và dẫn đến mâu thuẫn."
+            }
+          ]
+        },
+        {
+          "role": "phrase_pattern",
+          "title": "Mẫu câu lớp dự bị",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Mẫu bắt buộc",
+              "items": [
+                "Предположим, что …",
+                "Так как …, следовательно …",
+                "Получаем противоречие, значит предположение неверно."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Cách luyện",
+              "body": "Đổi số/ký hiệu nhưng giữ khung câu, sau đó bỏ nhìn mẫu và nói lại."
+            }
+          ]
+        },
+        {
+          "role": "symbol_to_speech",
+          "title": "Từ ký hiệu sang lời nói",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cách đọc",
+              "body": "A⇒B đọc: «из A следует B»; A⇔B: «A равносильно B»."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Quy trình",
+              "items": [
+                "Nhìn toàn biểu thức trước.",
+                "Xác định toán tử/quan hệ chính.",
+                "Đọc theo cụm nghĩa, không đánh vần từng ký tự.",
+                "Kết thúc bằng một câu diễn giải ý nghĩa toán học."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "reading_example",
+          "title": "Đọc một đề mẫu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Đề/Ví dụ",
+              "body": "Пусть n — чётное число. Тогда n=2k. Следовательно, n²=4k²=2(2k²), поэтому n² также чётное."
+            },
+            {
+              "type": "text",
+              "title": "Nhiệm vụ",
+              "body": "Gạch chân câu lệnh, khoanh dữ kiện, nói lại «что дано / что найти» trước khi giải."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Trình bày lời giải mẫu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu trả lời",
+              "body": "Предположим, что n чётное. Тогда n равно двум k. Следовательно, квадрат n тоже чётный."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Điểm cần có",
+              "items": [
+                "Nêu đại lượng hoặc mệnh đề đang xử lý.",
+                "Dùng đúng thuật ngữ chủ đề.",
+                "Nêu điều kiện nếu phép biến đổi cần điều kiện.",
+                "Chốt kết quả bằng câu hoàn chỉnh."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "oral_response",
+          "title": "Vấn đáp 30–60 giây",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Prompt",
+              "body": "Giải thích chủ đề «Mẫu câu trình bày lời giải và chứng minh bằng tiếng Nga» trong 30–60 giây, bắt buộc dùng ít nhất 3 thuật ngữ tiếng Nga và một ký hiệu/công thức."
+            },
+            {
+              "type": "text",
+              "title": "Khung đáp",
+              "body": "Предположим, что n чётное. Тогда n равно двум k. Следовательно, квадрат n тоже чётный."
+            }
+          ]
+        },
+        {
+          "role": "professor_prompt",
+          "title": "Giảng viên hỏi sâu",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Vấn đáp",
+              "items": [
+                {
+                  "q": "Em có thể nói «следовательно» sau một bước chưa chứng minh không?",
+                  "a": "Không. Từ nối logic chỉ hợp lệ khi quan hệ suy ra đã được biện minh bằng định nghĩa, định lý hoặc biến đổi tương đương."
+                },
+                {
+                  "q": "Em hãy nói lại kết luận bằng một câu tiếng Nga ngắn hơn.",
+                  "a": "Предположим, что n чётное. Тогда n равно двум k. Следовательно, квадрат n тоже чётный."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy dịch thuật / phản ví dụ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bẫy",
+              "body": "`следовательно` là kết nối logic «do đó», không phải phép tính tự thân; không dùng nó khi bước suy luận chưa được biện minh."
+            },
+            {
+              "type": "text",
+              "title": "Cách chống dịch máy",
+              "body": "Xác định ngữ cảnh toán trước, sau đó kiểm ký hiệu đi kèm và chỉ cuối cùng mới chọn nghĩa tiếng Việt/Anh."
+            }
+          ]
+        },
+        {
+          "role": "grammar_micro",
+          "title": "Ngữ pháp vừa đủ để nói toán",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Micro-grammar",
+              "body": "Kết nối lời giải bằng các câu ngắn: «так как …, то …»; «из этого следует …»; tránh chuỗi danh từ khó nói khi vấn đáp."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Không học lan man",
+              "items": [
+                "Chỉ giữ cấu trúc giúp đọc đề và trình bày lời giải.",
+                "Ưu tiên mẫu câu tái sử dụng được ở nhiều bài.",
+                "Nếu câu dài gây lỗi ngữ pháp, tách thành hai câu ngắn."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "translation_gate",
+          "title": "Cổng dịch thuật Nga ↔ ký hiệu ↔ Việt/Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Ba chiều phải khớp",
+              "items": [
+                "предполо́жим ↔ giả sử ↔ suppose",
+                "так как ↔ vì ↔ since",
+                "сле́довательно ↔ do đó ↔ therefore"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Không cho qua nếu bản dịch đúng từ nhưng dẫn tới thao tác toán sai."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ Bauman / kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Mẫu câu proof giúp bảo vệ lời giải trước giảng viên, đặc biệt khi phải giải thích vì sao mỗi phép biến đổi là hợp lệ."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu chuyển giao",
+              "body": "Từ vựng phải được dùng lại khi đọc giáo trình, nghe giảng, làm bài và bảo vệ lời giải."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng an toàn trước khi trả lời",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Tôi đã xác định đúng câu lệnh của đề chưa?",
+                "Tôi có hiểu đúng nghĩa thuật ngữ trong ngữ cảnh toán không?",
+                "Phép biến đổi có điều kiện nào phải nói ra không?",
+                "Kết luận có trả lời đúng cái đề hỏi không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi ngay trong vấn đáp",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu sửa",
+              "body": "Nếu phát hiện bước suy luận thiếu: «Этот переход не обоснован. Добавлю условие/теорему и повторю доказательство.»"
+            },
+            {
+              "type": "bullet-list",
+              "title": "Quy tắc",
+              "items": [
+                "Không cố bảo vệ một bước đã biết sai.",
+                "Nói rõ vị trí lỗi.",
+                "Sửa đúng nguyên nhân, không chỉ đổi đáp số.",
+                "Kiểm lại kết luận sau khi sửa."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "mini_drill",
+          "title": "Drill 5 phút",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "5 vòng",
+              "items": [
+                "Đọc 8 thuật ngữ có trọng âm.",
+                "Đọc 3 công thức/ký hiệu thành lời.",
+                "Dịch 3 câu lệnh Nga → Việt.",
+                "Nói 1 lời giải 30 giây không nhìn mẫu.",
+                "Tự tạo 1 lỗi dịch và sửa bằng tiếng Nga."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Câu hỏi tự kiểm kiểu giảng viên",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Q&A",
+              "items": [
+                {
+                  "q": "Em có thể nói «следовательно» sau một bước chưa chứng minh không?",
+                  "a": "Không. Từ nối logic chỉ hợp lệ khi quan hệ suy ra đã được biện minh bằng định nghĩa, định lý hoặc biến đổi tương đương."
+                },
+                {
+                  "q": "Một lỗi dịch thuật quan trọng của bài là gì?",
+                  "a": "`следовательно` là kết nối logic «do đó», không phải phép tính tự thân; không dùng nó khi bước suy luận chưa được biện minh."
+                },
+                {
+                  "q": "Nếu trả lời sai em sửa thế nào?",
+                  "a": "Nếu phát hiện bước suy luận thiếu: «Этот переход не обоснован. Добавлю условие/теорему и повторю доказательство.»"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "self_check",
+          "title": "Tự chấm trước khi qua bài",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Đạt khi",
+              "items": [
+                "≥ 7/8 thuật ngữ đọc đúng trọng âm ở tốc độ chậm.",
+                "Đọc được 3 biểu thức mà không quay về tiếng Việt giữa câu.",
+                "Trả lời được câu hỏi giảng viên trong ≤60 giây.",
+                "Tự phát hiện và sửa được ít nhất một bẫy dịch thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.7",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Dùng đúng suppose/since/therefore/hence.",
+                "Đọc ⇒ và ⇔ bằng lời Nga.",
+                "Biết mẫu phản chứng.",
+                "Không dùng từ nối để che bước suy luận thiếu."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Exit ticket",
+              "body": "Nói một câu Nga chứa thuật ngữ «предполо́жим» và giải thích lại bằng tiếng Việt/Anh mà không đổi nghĩa toán."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T08-oral-defense",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "lessonTitle": "m_p09 · §1.8 · Vấn đáp toán dự bị: đọc, trả lời, sửa lỗi và bảo vệ lời giải",
+      "title": "m_p09 · §1.8 · Vấn đáp toán dự bị: đọc, trả lời, sửa lỗi và bảo vệ lời giải",
+      "programLectureId": "MATH-PROG-L10-logic-set-theory-boolean",
+      "programLectureIds": [
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L04-single-variable-analysis",
+        "MATH-PROG-L12-probability-random-variables"
+      ],
+      "roadmapRole": "m_p09_t08",
+      "baumanFocus": "Russian mathematical language bridge for preparatory engineering study, oral defense and technical problem solving.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_p09",
+        "frameworkChapterId": "m_s01",
+        "logicalLessonId": "m_p09_t08",
+        "frameworkAnchor": "m_p09_t08",
+        "programLectureId": "MATH-PROG-L10-logic-set-theory-boolean",
+        "bridgeProgramLectureId": "MATH-PROG-L10-logic-set-theory-boolean",
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e18_russian_math_bridge_authoring"
+      },
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "oral-defense"
+      ],
+      "speechDrill": {
+        "language": "ru-RU",
+        "mode": "read_repeat_defend",
+        "requiredStressAware": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_p09 · §1.8 · Vấn đáp toán dự bị: đọc, trả lời, sửa lỗi và bảo vệ lời giải",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "Bài bridge Nga–Việt–Anh cho lớp dự bị kỹ thuật. Trọng tâm là đọc đúng đề, nối thuật ngữ với ký hiệu và trả lời vấn đáp, không học từ vựng rời khỏi toán."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Sau bài này phải đọc/diễn đạt được chủ đề «Vấn đáp toán dự bị: đọc, trả lời, sửa lỗi và bảo vệ lời giải» bằng câu ngắn, chính xác và có thể tự sửa lỗi khi bị hỏi lại."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra 4 lớp",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài học",
+              "items": [
+                "Nhận diện thuật ngữ Nga trong đề và nối sang nghĩa Việt/Anh.",
+                "Đọc ký hiệu/công thức thành câu tiếng Nga có nghĩa.",
+                "Thực hiện đúng thao tác toán tương ứng với câu lệnh.",
+                "Trả lời miệng theo cấu trúc: dữ kiện → ý tưởng → phép toán/lập luận → kết luận."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Thuật ngữ Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Bộ từ khóa",
+              "items": [
+                "усло́вие зада́чи — đề/điều kiện bài toán — problem statement",
+                "ход реше́ния — quá trình giải — solution path",
+                "обоснова́ть — biện minh — justify",
+                "о́шибка — lỗi — error",
+                "исправи́ть — sửa — correct",
+                "прове́рить — kiểm tra — check",
+                "о́твет — đáp số/câu trả lời — answer",
+                "вы́вод — kết luận — conclusion"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "pronunciation_drill",
+          "title": "Phát âm và trọng âm",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Đọc chậm → nối cụm → đọc trong câu",
+              "items": [
+                "усло́вие зада́чи · đề/điều kiện bài toán",
+                "ход реше́ния · quá trình giải",
+                "обоснова́ть · biện minh",
+                "о́шибка · lỗi",
+                "исправи́ть · sửa",
+                "прове́рить · kiểm tra",
+                "о́твет · đáp số/câu trả lời",
+                "вы́вод · kết luận"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Nguyên tắc",
+              "body": "Ưu tiên đúng trọng âm và âm cuối rõ. Không cần nói nhanh; tốc độ tăng sau khi đọc đúng thuật ngữ và ký hiệu."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Ký hiệu/công thức phải đọc được",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Khung trả lời 4 bước",
+              "body": "Условие → Идея → Вычисление/Доказательство → Ответ\nĐọc đề, nêu ý tưởng, thực hiện phép toán/lập luận, chốt đáp án."
+            },
+            {
+              "type": "formula",
+              "title": "Khung tự kiểm",
+              "body": "Ответ → подстановка/проверка → единицы/условия\nKiểm lại bằng thay ngược, đơn vị và điều kiện xác định."
+            },
+            {
+              "type": "formula",
+              "title": "Khung sửa lỗi",
+              "body": "Ошибка → причина → исправление → новый вывод\nNêu lỗi, nguyên nhân, sửa và cập nhật kết luận thay vì xóa dấu vết tư duy."
+            }
+          ]
+        },
+        {
+          "role": "phrase_pattern",
+          "title": "Mẫu câu lớp dự bị",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Mẫu bắt buộc",
+              "items": [
+                "Сначала прочитаю условие и выделю, что дано.",
+                "Идея решения состоит в том, что …",
+                "Я допустил ошибку в знаке. Исправляю и проверяю ответ."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Cách luyện",
+              "body": "Đổi số/ký hiệu nhưng giữ khung câu, sau đó bỏ nhìn mẫu và nói lại."
+            }
+          ]
+        },
+        {
+          "role": "symbol_to_speech",
+          "title": "Từ ký hiệu sang lời nói",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cách đọc",
+              "body": "Dùng câu «читается как …» khi cần chuyển ký hiệu sang lời; ví dụ x≠0: «икс не равен нулю»."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Quy trình",
+              "items": [
+                "Nhìn toàn biểu thức trước.",
+                "Xác định toán tử/quan hệ chính.",
+                "Đọc theo cụm nghĩa, không đánh vần từng ký tự.",
+                "Kết thúc bằng một câu diễn giải ý nghĩa toán học."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "reading_example",
+          "title": "Đọc một đề mẫu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Đề/Ví dụ",
+              "body": "Giảng viên hỏi «Почему здесь можно делить на x?». Trả lời đúng phải nêu điều kiện x≠0 trước khi chia, rồi tiếp tục."
+            },
+            {
+              "type": "text",
+              "title": "Nhiệm vụ",
+              "body": "Gạch chân câu lệnh, khoanh dữ kiện, nói lại «что дано / что найти» trước khi giải."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Trình bày lời giải mẫu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu trả lời",
+              "body": "Сначала сформулирую условие. Затем объясню идею решения. Здесь x не равен нулю, поэтому деление допустимо. В конце проверю ответ."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Điểm cần có",
+              "items": [
+                "Nêu đại lượng hoặc mệnh đề đang xử lý.",
+                "Dùng đúng thuật ngữ chủ đề.",
+                "Nêu điều kiện nếu phép biến đổi cần điều kiện.",
+                "Chốt kết quả bằng câu hoàn chỉnh."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "oral_response",
+          "title": "Vấn đáp 30–60 giây",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Prompt",
+              "body": "Giải thích chủ đề «Vấn đáp toán dự bị: đọc, trả lời, sửa lỗi và bảo vệ lời giải» trong 30–60 giây, bắt buộc dùng ít nhất 3 thuật ngữ tiếng Nga và một ký hiệu/công thức."
+            },
+            {
+              "type": "text",
+              "title": "Khung đáp",
+              "body": "Сначала сформулирую условие. Затем объясню идею решения. Здесь x не равен нулю, поэтому деление допустимо. В конце проверю ответ."
+            }
+          ]
+        },
+        {
+          "role": "professor_prompt",
+          "title": "Giảng viên hỏi sâu",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Vấn đáp",
+              "items": [
+                {
+                  "q": "Khi bị phát hiện sai dấu, em nên xử lý thế nào để vẫn thể hiện hiểu bài?",
+                  "a": "Chỉ rõ bước sai, nói nguyên nhân ngắn gọn, sửa phép biến đổi, kiểm tra lại hệ quả và kết luận mới."
+                },
+                {
+                  "q": "Em hãy nói lại kết luận bằng một câu tiếng Nga ngắn hơn.",
+                  "a": "Сначала сформулирую условие. Затем объясню идею решения. Здесь x не равен нулю, поэтому деление допустимо. В конце проверю ответ."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy dịch thuật / phản ví dụ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bẫy",
+              "body": "Im lặng sửa kết quả nhưng không giải thích thường kém thuyết phục trong vấn đáp; cần nói rõ lỗi ở bước nào và vì sao sửa."
+            },
+            {
+              "type": "text",
+              "title": "Cách chống dịch máy",
+              "body": "Xác định ngữ cảnh toán trước, sau đó kiểm ký hiệu đi kèm và chỉ cuối cùng mới chọn nghĩa tiếng Việt/Anh."
+            }
+          ]
+        },
+        {
+          "role": "grammar_micro",
+          "title": "Ngữ pháp vừa đủ để nói toán",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Micro-grammar",
+              "body": "Dùng câu chuyển ý rõ: сначала, затем, поэтому, проверим, в итоге. Khi chưa nghe rõ: «Повторите, пожалуйста, вопрос.»"
+            },
+            {
+              "type": "bullet-list",
+              "title": "Không học lan man",
+              "items": [
+                "Chỉ giữ cấu trúc giúp đọc đề và trình bày lời giải.",
+                "Ưu tiên mẫu câu tái sử dụng được ở nhiều bài.",
+                "Nếu câu dài gây lỗi ngữ pháp, tách thành hai câu ngắn."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "translation_gate",
+          "title": "Cổng dịch thuật Nga ↔ ký hiệu ↔ Việt/Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Ba chiều phải khớp",
+              "items": [
+                "усло́вие зада́чи ↔ đề/điều kiện bài toán ↔ problem statement",
+                "ход реше́ния ↔ quá trình giải ↔ solution path",
+                "обоснова́ть ↔ biện minh ↔ justify"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Không cho qua nếu bản dịch đúng từ nhưng dẫn tới thao tác toán sai."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ Bauman / kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Đây là kỹ năng sống còn trong lớp dự bị: không chỉ làm đúng mà còn phải đọc, giải thích, nhận phản biện và sửa lời giải bằng tiếng Nga."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu chuyển giao",
+              "body": "Từ vựng phải được dùng lại khi đọc giáo trình, nghe giảng, làm bài và bảo vệ lời giải."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng an toàn trước khi trả lời",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Tôi đã xác định đúng câu lệnh của đề chưa?",
+                "Tôi có hiểu đúng nghĩa thuật ngữ trong ngữ cảnh toán không?",
+                "Phép biến đổi có điều kiện nào phải nói ra không?",
+                "Kết luận có trả lời đúng cái đề hỏi không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi ngay trong vấn đáp",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu sửa",
+              "body": "Mẫu đầy đủ: «Я допустил ошибку на втором шаге: знак должен быть минус. Исправляю выражение и пересчитываю результат.»"
+            },
+            {
+              "type": "bullet-list",
+              "title": "Quy tắc",
+              "items": [
+                "Không cố bảo vệ một bước đã biết sai.",
+                "Nói rõ vị trí lỗi.",
+                "Sửa đúng nguyên nhân, không chỉ đổi đáp số.",
+                "Kiểm lại kết luận sau khi sửa."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "mini_drill",
+          "title": "Drill 5 phút",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "5 vòng",
+              "items": [
+                "Đọc 8 thuật ngữ có trọng âm.",
+                "Đọc 3 công thức/ký hiệu thành lời.",
+                "Dịch 3 câu lệnh Nga → Việt.",
+                "Nói 1 lời giải 30 giây không nhìn mẫu.",
+                "Tự tạo 1 lỗi dịch và sửa bằng tiếng Nga."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Câu hỏi tự kiểm kiểu giảng viên",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Q&A",
+              "items": [
+                {
+                  "q": "Khi bị phát hiện sai dấu, em nên xử lý thế nào để vẫn thể hiện hiểu bài?",
+                  "a": "Chỉ rõ bước sai, nói nguyên nhân ngắn gọn, sửa phép biến đổi, kiểm tra lại hệ quả và kết luận mới."
+                },
+                {
+                  "q": "Một lỗi dịch thuật quan trọng của bài là gì?",
+                  "a": "Im lặng sửa kết quả nhưng không giải thích thường kém thuyết phục trong vấn đáp; cần nói rõ lỗi ở bước nào và vì sao sửa."
+                },
+                {
+                  "q": "Nếu trả lời sai em sửa thế nào?",
+                  "a": "Mẫu đầy đủ: «Я допустил ошибку на втором шаге: знак должен быть минус. Исправляю выражение и пересчитываю результат.»"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "self_check",
+          "title": "Tự chấm trước khi qua bài",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Đạt khi",
+              "items": [
+                "≥ 7/8 thuật ngữ đọc đúng trọng âm ở tốc độ chậm.",
+                "Đọc được 3 biểu thức mà không quay về tiếng Việt giữa câu.",
+                "Trả lời được câu hỏi giảng viên trong ≤60 giây.",
+                "Tự phát hiện và sửa được ít nhất một bẫy dịch thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.8",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Đọc đề trước khi lao vào tính.",
+                "Nêu ý tưởng trước chi tiết.",
+                "Biết xin nhắc lại câu hỏi.",
+                "Sửa lỗi công khai, có nguyên nhân và kiểm tra lại."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Exit ticket",
+              "body": "Nói một câu Nga chứa thuật ngữ «усло́вие зада́чи» và giải thích lại bằng tiếng Việt/Anh mà không đổi nghĩa toán."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
