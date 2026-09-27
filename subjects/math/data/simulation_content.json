@@ -712,6 +712,726 @@
         }
       ],
       "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t01",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T01-time-index-sampling",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "time index",
+        "sampling frequency",
+        "missing timestamp",
+        "telemetry",
+        "resampling"
+      ],
+      "sourceAnchors": [
+        "m_p08_t01",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "simulationId": "E17-M_P08_T01-SIM01",
+      "title": "Theory explorer · Dữ liệu chuỗi thời gian: chỉ số thời gian, tần số lấy mẫu và missing timestamp",
+      "purpose": "Quan sát trực quan ảnh hưởng của tham số lên time index.",
+      "controls": [
+        {
+          "key": "window_or_lag",
+          "type": "number",
+          "default": 5
+        },
+        {
+          "key": "noise",
+          "type": "number",
+          "default": 0.1
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "core_metric",
+          "label": "Tần số lấy mẫu"
+        },
+        {
+          "key": "stability",
+          "label": "Độ ổn định theo thời gian"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t01",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T01-time-index-sampling",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "time index",
+        "sampling frequency",
+        "missing timestamp",
+        "telemetry",
+        "resampling"
+      ],
+      "sourceAnchors": [
+        "m_p08_t01",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "simulationId": "E17-M_P08_T01-SIM02",
+      "title": "Telemetry scenario · Dữ liệu chuỗi thời gian: chỉ số thời gian, tần số lấy mẫu và missing timestamp",
+      "purpose": "So sánh pipeline causal với pipeline có leakage/misalignment.",
+      "controls": [
+        {
+          "key": "gap_rate",
+          "type": "number",
+          "default": 0.05
+        },
+        {
+          "key": "causal_only",
+          "type": "boolean",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "valid_samples",
+          "label": "Mẫu hợp lệ"
+        },
+        {
+          "key": "leakage_flag",
+          "label": "Future leakage"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t02",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T02-trend-seasonality-noise",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "trend",
+        "seasonality",
+        "cycle",
+        "noise",
+        "decomposition"
+      ],
+      "sourceAnchors": [
+        "m_p08_t02",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "simulationId": "E17-M_P08_T02-SIM01",
+      "title": "Theory explorer · Xu hướng, mùa vụ, chu kỳ và nhiễu",
+      "purpose": "Quan sát trực quan ảnh hưởng của tham số lên trend.",
+      "controls": [
+        {
+          "key": "window_or_lag",
+          "type": "number",
+          "default": 5
+        },
+        {
+          "key": "noise",
+          "type": "number",
+          "default": 0.1
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "core_metric",
+          "label": "Mô hình cộng"
+        },
+        {
+          "key": "stability",
+          "label": "Độ ổn định theo thời gian"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t02",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T02-trend-seasonality-noise",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "trend",
+        "seasonality",
+        "cycle",
+        "noise",
+        "decomposition"
+      ],
+      "sourceAnchors": [
+        "m_p08_t02",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "simulationId": "E17-M_P08_T02-SIM02",
+      "title": "Telemetry scenario · Xu hướng, mùa vụ, chu kỳ và nhiễu",
+      "purpose": "So sánh pipeline causal với pipeline có leakage/misalignment.",
+      "controls": [
+        {
+          "key": "gap_rate",
+          "type": "number",
+          "default": 0.05
+        },
+        {
+          "key": "causal_only",
+          "type": "boolean",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "valid_samples",
+          "label": "Mẫu hợp lệ"
+        },
+        {
+          "key": "leakage_flag",
+          "label": "Future leakage"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t03",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T03-rolling-smoothing",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling mean",
+        "moving average",
+        "smoothing",
+        "window",
+        "causal filter"
+      ],
+      "sourceAnchors": [
+        "m_p08_t03",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "simulationId": "E17-M_P08_T03-SIM01",
+      "title": "Theory explorer · Trung bình trượt và làm mượt dữ liệu",
+      "purpose": "Quan sát trực quan ảnh hưởng của tham số lên rolling mean.",
+      "controls": [
+        {
+          "key": "window_or_lag",
+          "type": "number",
+          "default": 5
+        },
+        {
+          "key": "noise",
+          "type": "number",
+          "default": 0.1
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "core_metric",
+          "label": "Moving average nhân quả"
+        },
+        {
+          "key": "stability",
+          "label": "Độ ổn định theo thời gian"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t03",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T03-rolling-smoothing",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling mean",
+        "moving average",
+        "smoothing",
+        "window",
+        "causal filter"
+      ],
+      "sourceAnchors": [
+        "m_p08_t03",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "simulationId": "E17-M_P08_T03-SIM02",
+      "title": "Telemetry scenario · Trung bình trượt và làm mượt dữ liệu",
+      "purpose": "So sánh pipeline causal với pipeline có leakage/misalignment.",
+      "controls": [
+        {
+          "key": "gap_rate",
+          "type": "number",
+          "default": 0.05
+        },
+        {
+          "key": "causal_only",
+          "type": "boolean",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "valid_samples",
+          "label": "Mẫu hợp lệ"
+        },
+        {
+          "key": "leakage_flag",
+          "label": "Future leakage"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t04",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T04-changing-variance",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling variance",
+        "heteroscedasticity",
+        "regime change",
+        "nonstationarity",
+        "variance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t04",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "simulationId": "E17-M_P08_T04-SIM01",
+      "title": "Theory explorer · Phương sai thay đổi và dấu hiệu không ổn định",
+      "purpose": "Quan sát trực quan ảnh hưởng của tham số lên rolling variance.",
+      "controls": [
+        {
+          "key": "window_or_lag",
+          "type": "number",
+          "default": 5
+        },
+        {
+          "key": "noise",
+          "type": "number",
+          "default": 0.1
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "core_metric",
+          "label": "Rolling variance"
+        },
+        {
+          "key": "stability",
+          "label": "Độ ổn định theo thời gian"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t04",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T04-changing-variance",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling variance",
+        "heteroscedasticity",
+        "regime change",
+        "nonstationarity",
+        "variance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t04",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "simulationId": "E17-M_P08_T04-SIM02",
+      "title": "Telemetry scenario · Phương sai thay đổi và dấu hiệu không ổn định",
+      "purpose": "So sánh pipeline causal với pipeline có leakage/misalignment.",
+      "controls": [
+        {
+          "key": "gap_rate",
+          "type": "number",
+          "default": 0.05
+        },
+        {
+          "key": "causal_only",
+          "type": "boolean",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "valid_samples",
+          "label": "Mẫu hợp lệ"
+        },
+        {
+          "key": "leakage_flag",
+          "label": "Future leakage"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t05",
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E17-MP08-T05-autocorrelation",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "tags": [
+        "autocorrelation",
+        "lag",
+        "ACF",
+        "serial dependence",
+        "random process"
+      ],
+      "sourceAnchors": [
+        "m_p08_t05",
+        "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "simulationId": "E17-M_P08_T05-SIM01",
+      "title": "Theory explorer · Autocorrelation và ý nghĩa phụ thuộc theo độ trễ",
+      "purpose": "Quan sát trực quan ảnh hưởng của tham số lên autocorrelation.",
+      "controls": [
+        {
+          "key": "window_or_lag",
+          "type": "number",
+          "default": 5
+        },
+        {
+          "key": "noise",
+          "type": "number",
+          "default": 0.1
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "core_metric",
+          "label": "Sample autocovariance"
+        },
+        {
+          "key": "stability",
+          "label": "Độ ổn định theo thời gian"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t05",
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E17-MP08-T05-autocorrelation",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "tags": [
+        "autocorrelation",
+        "lag",
+        "ACF",
+        "serial dependence",
+        "random process"
+      ],
+      "sourceAnchors": [
+        "m_p08_t05",
+        "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "simulationId": "E17-M_P08_T05-SIM02",
+      "title": "Telemetry scenario · Autocorrelation và ý nghĩa phụ thuộc theo độ trễ",
+      "purpose": "So sánh pipeline causal với pipeline có leakage/misalignment.",
+      "controls": [
+        {
+          "key": "gap_rate",
+          "type": "number",
+          "default": 0.05
+        },
+        {
+          "key": "causal_only",
+          "type": "boolean",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "valid_samples",
+          "label": "Mẫu hợp lệ"
+        },
+        {
+          "key": "leakage_flag",
+          "label": "Future leakage"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t06",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T06-lag-features",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "lag feature",
+        "forecasting",
+        "supervised learning",
+        "feature engineering",
+        "causality"
+      ],
+      "sourceAnchors": [
+        "m_p08_t06",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "simulationId": "E17-M_P08_T06-SIM01",
+      "title": "Theory explorer · Lag features cho mô hình dự báo",
+      "purpose": "Quan sát trực quan ảnh hưởng của tham số lên lag feature.",
+      "controls": [
+        {
+          "key": "window_or_lag",
+          "type": "number",
+          "default": 5
+        },
+        {
+          "key": "noise",
+          "type": "number",
+          "default": 0.1
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "core_metric",
+          "label": "Vector lag"
+        },
+        {
+          "key": "stability",
+          "label": "Độ ổn định theo thời gian"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t06",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T06-lag-features",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "lag feature",
+        "forecasting",
+        "supervised learning",
+        "feature engineering",
+        "causality"
+      ],
+      "sourceAnchors": [
+        "m_p08_t06",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "simulationId": "E17-M_P08_T06-SIM02",
+      "title": "Telemetry scenario · Lag features cho mô hình dự báo",
+      "purpose": "So sánh pipeline causal với pipeline có leakage/misalignment.",
+      "controls": [
+        {
+          "key": "gap_rate",
+          "type": "number",
+          "default": 0.05
+        },
+        {
+          "key": "causal_only",
+          "type": "boolean",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "valid_samples",
+          "label": "Mẫu hợp lệ"
+        },
+        {
+          "key": "leakage_flag",
+          "label": "Future leakage"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t07",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T07-stationarity-intuition",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "stationarity",
+        "weak stationarity",
+        "mean",
+        "variance",
+        "autocovariance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t07",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "simulationId": "E17-M_P08_T07-SIM01",
+      "title": "Theory explorer · Stationarity ở mức trực giác và vì sao cần kiểm tra",
+      "purpose": "Quan sát trực quan ảnh hưởng của tham số lên stationarity.",
+      "controls": [
+        {
+          "key": "window_or_lag",
+          "type": "number",
+          "default": 5
+        },
+        {
+          "key": "noise",
+          "type": "number",
+          "default": 0.1
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "core_metric",
+          "label": "Mean ổn định"
+        },
+        {
+          "key": "stability",
+          "label": "Độ ổn định theo thời gian"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t07",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T07-stationarity-intuition",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "stationarity",
+        "weak stationarity",
+        "mean",
+        "variance",
+        "autocovariance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t07",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "simulationId": "E17-M_P08_T07-SIM02",
+      "title": "Telemetry scenario · Stationarity ở mức trực giác và vì sao cần kiểm tra",
+      "purpose": "So sánh pipeline causal với pipeline có leakage/misalignment.",
+      "controls": [
+        {
+          "key": "gap_rate",
+          "type": "number",
+          "default": 0.05
+        },
+        {
+          "key": "causal_only",
+          "type": "boolean",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "valid_samples",
+          "label": "Mẫu hợp lệ"
+        },
+        {
+          "key": "leakage_flag",
+          "label": "Future leakage"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t08",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T08-temporal-split-leakage",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "temporal split",
+        "time series cross validation",
+        "future leakage",
+        "backtesting",
+        "evaluation"
+      ],
+      "sourceAnchors": [
+        "m_p08_t08",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "simulationId": "E17-M_P08_T08-SIM01",
+      "title": "Theory explorer · Chia train/test theo thời gian và lỗi rò rỉ tương lai",
+      "purpose": "Quan sát trực quan ảnh hưởng của tham số lên temporal split.",
+      "controls": [
+        {
+          "key": "window_or_lag",
+          "type": "number",
+          "default": 5
+        },
+        {
+          "key": "noise",
+          "type": "number",
+          "default": 0.1
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "core_metric",
+          "label": "Temporal holdout"
+        },
+        {
+          "key": "stability",
+          "label": "Độ ổn định theo thời gian"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t08",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T08-temporal-split-leakage",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "temporal split",
+        "time series cross validation",
+        "future leakage",
+        "backtesting",
+        "evaluation"
+      ],
+      "sourceAnchors": [
+        "m_p08_t08",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "simulationId": "E17-M_P08_T08-SIM02",
+      "title": "Telemetry scenario · Chia train/test theo thời gian và lỗi rò rỉ tương lai",
+      "purpose": "So sánh pipeline causal với pipeline có leakage/misalignment.",
+      "controls": [
+        {
+          "key": "gap_rate",
+          "type": "number",
+          "default": 0.05
+        },
+        {
+          "key": "causal_only",
+          "type": "boolean",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "valid_samples",
+          "label": "Mẫu hợp lệ"
+        },
+        {
+          "key": "leakage_flag",
+          "label": "Future leakage"
+        }
+      ],
+      "simulationClass": "application"
     }
   ],
   "importPolicy": {
@@ -772,7 +1492,7 @@
     ],
     "auditStatus": "DRAFT"
   },
-  "updatedAt": "2026-09-23",
+  "updatedAt": "2026-09-27",
   "emoji": "🔬",
   "cleanArchitecturePolicy": {
     "contentMustNotStoreStageTree": true,
@@ -787,6 +1507,14 @@
       "key": "simulationId",
       "branchOnly": true,
       "status": "CONTENT_IMPORTED_PENDING_RUNTIME_GATE"
+    }
+  },
+  "authoringMeta": {
+    "E17": {
+      "moduleId": "m_p08",
+      "records": 16,
+      "status": "AUTHORED_PENDING_CI",
+      "architecture": "logical_module_over_physical_content"
     }
   }
 }
