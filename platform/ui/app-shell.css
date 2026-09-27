@@ -112,3 +112,58 @@ body[data-ui-focus-mode="true"] #baumanFocusBanner{display:flex}
   .hub-safe-search{min-width:0}
   .profile-wrap{display:none}
 }
+
+
+/* Canonical shell hardening after cross-device screenshot review */
+.app>.sidebar{
+  margin:0!important;
+  height:100dvh!important;
+  border-radius:0!important;
+  background:var(--ui-surface-primary)!important;
+  border:0!important;
+  border-right:1px solid var(--ui-border-subtle)!important;
+  box-shadow:none!important;
+}
+.sidebar .side-note{
+  min-height:0!important;
+  flex:0 0 auto!important;
+  background:var(--ui-surface-secondary)!important;
+  background-image:none!important;
+  color:var(--ui-text-primary)!important;
+  border:1px solid var(--ui-border-subtle)!important;
+  border-radius:var(--ui-radius-md)!important;
+}
+.sidebar .side-note :is(b,span){color:inherit!important;text-transform:none!important;letter-spacing:normal!important;font-family:var(--ui-font-sans)!important}
+.sidebar .side-note span::after{content:none!important}
+
+.hub-safe-topmeta{display:flex;align-items:center;gap:var(--ui-space-2);flex:0 0 auto}
+.hub-safe-icon-btn{
+  position:relative;width:var(--ui-touch);height:var(--ui-touch);min-height:var(--ui-touch);
+  display:grid;place-items:center;border:1px solid var(--ui-border-default);border-radius:var(--ui-radius-md);
+  background:var(--ui-surface-primary);color:var(--ui-text-secondary);box-shadow:none
+}
+.hub-safe-icon-btn:hover{background:var(--ui-surface-secondary);color:var(--ui-text-primary)}
+.hub-v5-bell,.hub-v5-bell svg{width:20px;height:20px}
+.hub-safe-alert-btn>[data-safe-alert-count]{
+  position:absolute;right:-4px;top:-4px;min-width:18px;height:18px;padding:0 4px;display:grid;place-items:center;
+  border:2px solid var(--ui-surface-primary);border-radius:var(--ui-radius-full);background:var(--ui-danger);color:white;
+  font:700 10px/1 var(--ui-font-sans)
+}
+
+.profile-wrap #profileBtn{
+  width:auto;min-width:154px;height:var(--ui-touch);padding:0 10px;display:flex;align-items:center;gap:8px;
+  border:1px solid var(--ui-border-default);border-radius:var(--ui-radius-md);background:var(--ui-surface-primary);color:var(--ui-text-primary)
+}
+#profileBtn #userAvatar{
+  width:30px;height:30px;flex:0 0 30px;display:grid;place-items:center;border-radius:50%;
+  background:var(--ui-primary-soft);color:var(--ui-primary);font-size:12px;font-weight:800
+}
+.hub-top-profile-copy{min-width:0;display:grid;gap:1px;text-align:left;line-height:1.1}
+.hub-top-profile-copy small{display:block;color:var(--ui-text-tertiary);font-size:11px;white-space:nowrap}
+.hub-top-profile-copy b{display:block;max-width:112px;color:var(--ui-text-primary);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hub-profile-chevron{margin-left:auto;color:var(--ui-text-tertiary)}
+
+@media(max-width:1024px){
+  .profile-wrap #profileBtn{width:var(--ui-touch);min-width:var(--ui-touch);padding:0;justify-content:center}
+  .hub-top-profile-copy,.hub-profile-chevron{display:none}
+}
