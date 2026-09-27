@@ -1,0 +1,141 @@
+/* BAUMAN FUTURE INTERFACE SYSTEM · UI-E2 Design Tokens
+   Single source of truth for visual primitives. */
+:root{
+  color-scheme:light;
+  --bui-font-sans:Inter,"Segoe UI Variable","Segoe UI",Arial,sans-serif;
+  --bui-font-serif:Georgia,"Times New Roman",serif;
+  --bui-font-mono:"JetBrains Mono","SFMono-Regular",Consolas,monospace;
+
+  --bui-type-display:clamp(2rem,1.4rem + 2vw,3.25rem);
+  --bui-type-h1:clamp(1.75rem,1.45rem + 1vw,2.35rem);
+  --bui-type-h2:clamp(1.35rem,1.18rem + .55vw,1.7rem);
+  --bui-type-h3:1.125rem;
+  --bui-type-title:1rem;
+  --bui-type-body:1rem;
+  --bui-type-small:.875rem;
+  --bui-type-caption:.8125rem;
+  --bui-type-label:.875rem;
+  --bui-leading-tight:1.18;
+  --bui-leading-body:1.55;
+  --bui-leading-relaxed:1.7;
+  --bui-reading-width:72ch;
+
+  --bui-space-1:.25rem;
+  --bui-space-2:.5rem;
+  --bui-space-3:.75rem;
+  --bui-space-4:1rem;
+  --bui-space-5:1.25rem;
+  --bui-space-6:1.5rem;
+  --bui-space-8:2rem;
+  --bui-space-10:2.5rem;
+  --bui-space-12:3rem;
+  --bui-space-16:4rem;
+
+  --bui-radius-sm:.5rem;
+  --bui-radius-md:.75rem;
+  --bui-radius-lg:1rem;
+  --bui-radius-xl:1.25rem;
+  --bui-radius-full:999px;
+
+  --bui-canvas:#f5f7fb;
+  --bui-surface:#ffffff;
+  --bui-surface-subtle:#f8fafc;
+  --bui-surface-muted:#eef3f8;
+  --bui-surface-elevated:#ffffff;
+  --bui-surface-overlay:rgba(15,23,42,.58);
+  --bui-text:#102033;
+  --bui-text-soft:#53657c;
+  --bui-text-muted:#718096;
+  --bui-text-inverse:#f8fbff;
+  --bui-border:#dbe4ee;
+  --bui-border-strong:#bfd0e2;
+
+  --bui-primary:#2563eb;
+  --bui-primary-hover:#1d4ed8;
+  --bui-primary-soft:#eaf2ff;
+  --bui-info:#2563eb;
+  --bui-info-soft:#eaf2ff;
+  --bui-success:#168a5b;
+  --bui-success-soft:#e9f7f1;
+  --bui-warning:#c16d16;
+  --bui-warning-soft:#fff4e6;
+  --bui-danger:#c2414c;
+  --bui-danger-soft:#fff0f1;
+  --bui-neutral:#64748b;
+  --bui-neutral-soft:#f1f5f9;
+
+  /* Eisenhower priority contract used by Schedule and planning surfaces. */
+  --bui-priority-q1:#c43d4c;
+  --bui-priority-q1-soft:#ffe9ec;
+  --bui-priority-q2:#2f6fce;
+  --bui-priority-q2-soft:#eaf2ff;
+  --bui-priority-q3:#cf731f;
+  --bui-priority-q3-soft:#fff0df;
+  --bui-priority-q4:#23845d;
+  --bui-priority-q4-soft:#e8f7f0;
+
+  --bui-shadow-base:0 1px 2px rgba(15,23,42,.04);
+  --bui-shadow-raised:0 8px 24px rgba(15,23,42,.08);
+  --bui-shadow-floating:0 18px 48px rgba(15,23,42,.14);
+  --bui-focus:0 0 0 3px rgba(37,99,235,.22);
+
+  --bui-motion-fast:120ms;
+  --bui-motion-base:180ms;
+  --bui-motion-slow:240ms;
+  --bui-ease:cubic-bezier(.2,.7,.2,1);
+
+  --bui-z-base:0;
+  --bui-z-sticky:20;
+  --bui-z-nav:40;
+  --bui-z-popover:70;
+  --bui-z-modal:100;
+  --bui-z-toast:120;
+
+  --bui-shell-max:1720px;
+  --bui-workspace-max:1540px;
+  --bui-reading-max:780px;
+  --bui-sidebar:236px;
+  --bui-topbar:64px;
+  --bui-touch:44px;
+}
+
+body[data-theme="night"],
+body[data-bui-theme="dark"]{
+  color-scheme:dark;
+  --bui-canvas:#0b111b;
+  --bui-surface:#101827;
+  --bui-surface-subtle:#131d2d;
+  --bui-surface-muted:#1a2638;
+  --bui-surface-elevated:#182337;
+  --bui-surface-overlay:rgba(0,0,0,.68);
+  --bui-text:#edf3fb;
+  --bui-text-soft:#b8c5d6;
+  --bui-text-muted:#8fa0b6;
+  --bui-text-inverse:#0b111b;
+  --bui-border:#27364a;
+  --bui-border-strong:#3a4c65;
+  --bui-primary:#6ea0ff;
+  --bui-primary-hover:#8bb3ff;
+  --bui-primary-soft:#182a4d;
+  --bui-info:#6ea0ff;
+  --bui-info-soft:#182a4d;
+  --bui-success:#53c38f;
+  --bui-success-soft:#14372b;
+  --bui-warning:#efad5d;
+  --bui-warning-soft:#3a2916;
+  --bui-danger:#ef7b85;
+  --bui-danger-soft:#3f2025;
+  --bui-neutral:#aab6c6;
+  --bui-neutral-soft:#1b2738;
+  --bui-priority-q1:#ef7b85;
+  --bui-priority-q1-soft:#3f2025;
+  --bui-priority-q2:#7eabff;
+  --bui-priority-q2-soft:#182a4d;
+  --bui-priority-q3:#efad5d;
+  --bui-priority-q3-soft:#3a2916;
+  --bui-priority-q4:#65c89a;
+  --bui-priority-q4-soft:#14372b;
+  --bui-shadow-base:0 1px 2px rgba(0,0,0,.18);
+  --bui-shadow-raised:0 10px 28px rgba(0,0,0,.24);
+  --bui-shadow-floating:0 22px 54px rgba(0,0,0,.34);
+}
