@@ -89,3 +89,61 @@
 @media(max-width:430px){
   #page-home .hub-safe-subjects{grid-template-columns:1fr}
 }
+
+
+/* Overview internals · migrate old dense/dark fragments to canonical tokens */
+#page-home .hub-safe-continue,
+#page-home .hub-safe-assistant,
+#page-home .hub-safe-achievements,
+#page-home .hub-safe-overall{
+  background:var(--ui-surface-primary)!important;
+  color:var(--ui-text-primary)!important;
+  border:1px solid var(--ui-border-subtle)!important;
+  box-shadow:none!important;
+}
+#page-home .hub-safe-breadcrumb,
+#page-home .hub-safe-ring-label,
+#page-home .hub-safe-stats,
+#page-home .hub-safe-date{color:var(--ui-text-secondary)!important;font-size:var(--ui-size-caption)!important}
+#page-home .hub-safe-lesson{
+  min-height:var(--ui-touch)!important;padding:8px 10px!important;border:1px solid var(--ui-border-subtle)!important;
+  border-radius:var(--ui-radius-md)!important;background:var(--ui-surface-secondary)!important;color:var(--ui-text-primary)!important;
+  font-size:var(--ui-size-body-sm)!important
+}
+#page-home .hub-safe-lesson.active{background:var(--ui-primary-soft)!important;outline:1px solid color-mix(in srgb,var(--ui-primary) 28%,var(--ui-border-default))!important}
+#page-home .hub-safe-play{background:var(--ui-primary)!important}
+#page-home .hub-safe-stats{border-color:var(--ui-border-subtle)!important}
+#page-home .hub-safe-stats b{color:var(--ui-text-primary)!important;font-size:var(--ui-size-body-sm)!important}
+#page-home .hub-safe-art{border:1px solid var(--ui-border-subtle)!important;background-color:var(--ui-surface-secondary)!important;border-radius:var(--ui-radius-lg)!important}
+#page-home .hub-safe-assistant-intro{border-color:var(--ui-border-subtle)!important}
+#page-home .hub-safe-assistant-intro p{color:var(--ui-text-secondary)!important;font-size:var(--ui-size-body-sm)!important}
+#page-home .hub-safe-suggestions button{
+  min-height:var(--ui-touch)!important;padding:10px 12px!important;border:1px solid var(--ui-border-subtle)!important;
+  border-radius:var(--ui-radius-md)!important;background:var(--ui-surface-secondary)!important;color:var(--ui-text-primary)!important;
+  font-size:var(--ui-size-body-sm)!important;text-align:left!important
+}
+#page-home .hub-safe-ai-input{
+  min-height:var(--ui-touch)!important;height:auto!important;padding:8px 10px!important;border:1px solid var(--ui-border-default)!important;
+  border-radius:var(--ui-radius-md)!important;background:var(--ui-surface-secondary)!important;color:var(--ui-text-secondary)!important;
+  font-size:var(--ui-size-body-sm)!important
+}
+#page-home .hub-safe-ai-input b{background:var(--ui-primary-soft)!important;color:var(--ui-primary)!important}
+#page-home .hub-safe-schedule-row{font-size:var(--ui-size-caption)!important}
+#page-home .hub-safe-schedule-row time{color:var(--ui-text-secondary)!important}
+#page-home .hub-safe-schedule-row div{
+  border-left:3px solid var(--slot,var(--ui-primary))!important;background:var(--ui-surface-secondary)!important;
+  color:var(--ui-text-primary)!important;border-radius:0 var(--ui-radius-sm) var(--ui-radius-sm) 0!important
+}
+#page-home .hub-safe-ach{color:var(--ui-text-primary)!important;font-size:var(--ui-size-caption)!important}
+#page-home .hub-safe-badge{box-shadow:none!important}
+#page-home .hub-safe-donut{background:conic-gradient(var(--ui-primary) calc(var(--pct,0)*1%),var(--ui-border-subtle) 0)!important}
+#page-home .hub-safe-donut::after{background:var(--ui-surface-primary)!important}
+#page-home .hub-safe-bar{color:var(--ui-text-secondary)!important;font-size:var(--ui-size-caption)!important}
+#page-home .hub-safe-bar i{background:var(--ui-border-subtle)!important}
+#page-home .hub-safe-bar b{font-size:var(--ui-size-caption)!important}
+#page-home .hub-safe-motivation{
+  min-height:96px!important;padding:var(--ui-space-5)!important;background:var(--ui-primary-soft)!important;
+  border:1px solid color-mix(in srgb,var(--ui-primary) 16%,var(--ui-border-subtle))!important;border-radius:var(--ui-radius-lg)!important
+}
+#page-home .hub-safe-motivation blockquote{margin:0!important;color:var(--ui-text-primary)!important;font:650 var(--ui-size-h3)/1.35 var(--ui-font-sans)!important}
+#page-home .hub-safe-motivation small{margin-top:8px!important;color:var(--ui-text-secondary)!important;font:600 var(--ui-size-caption)/1.2 var(--ui-font-sans)!important;letter-spacing:normal!important}
