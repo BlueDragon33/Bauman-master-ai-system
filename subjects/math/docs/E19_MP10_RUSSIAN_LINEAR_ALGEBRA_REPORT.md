@@ -45,6 +45,6 @@ Mỗi bài đúng 20 slide, bắt buộc có Nga–Việt–Anh, trọng âm, fo
 - Regression: thay đổi `subjects/math/**` cũng kích hoạt gate E18/E17 hiện hữu.
 
 ## Trạng thái
-**IMPLEMENTED · PENDING CI**
+**PASS · E19 + E18/E17 REGRESSION + FAST CI + CONSTITUTION**
 
-Chỉ merge/publish sau khi E19 + regression + Development Fast CI đều PASS.
+PR #148 đã đạt E19 academic/runtime/browser, E18/E17 regression, Development Fast CI và Universal Constitution. Checkpoint E19 được khóa PASS trước merge/publish.
