@@ -189,3 +189,4 @@ body[data-bui-shell="1"] #page-home :where(.hub-safe-continue,.hub-safe-assistan
 /* UI-E11 · main Hub Focus Mode */
 body[data-bui-shell="1"][data-bui-focus="1"] #appRoot{grid-template-columns:minmax(0,1fr)}
 body[data-bui-shell="1"][data-bui-focus="1"] .main{width:min(100%,1180px);padding-top:var(--bui-space-6)}
+body[data-bui-shell="1"][data-bui-focus="1"] [data-bui-focus-hide]{display:none}
