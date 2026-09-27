@@ -23,7 +23,7 @@ body[data-bui-shell="1"] .brand-row{min-height:52px;margin:0;display:flex;align-
 body[data-bui-shell="1"] .brand{display:flex;align-items:center;gap:var(--bui-space-3);min-width:0;padding:0}
 body[data-bui-shell="1"] .logo{
   width:42px;height:42px;display:grid;place-items:center;flex:0 0 auto;border-radius:var(--bui-radius-md);
-  background:var(--bui-primary);color:#fff;border:0;box-shadow:none
+  background:var(--bui-primary);color:var(--bui-on-primary);border:0;box-shadow:none
 }
 body[data-bui-shell="1"] .logo svg{width:30px;height:30px;filter:none}
 body[data-bui-shell="1"] .brand b{
