@@ -100,7 +100,7 @@ function save(){localStorage.setItem(KEY,JSON.stringify(state))}
 let state=readState();
 const liveCapabilitySubjects=new Set();
 const pendingCapabilityIntents=new Map();
-function applyAppearance(){document.body.dataset.theme=state.theme||'academic';document.body.dataset.font=state.font||'system';document.body.dataset.size=state.fontSize||'normal'}
+function applyAppearance(){document.body.dataset.theme=state.theme||'academic';document.body.dataset.font=state.font||'system';document.body.dataset.size=state.fontSize||'normal';document.body.dataset.scheduleEditing=state.schedule?.edit?'true':'false'}
 
 const auth={
   current:null,
@@ -128,9 +128,9 @@ const app={
     $('adminOpenBtn').onclick=()=>{closeProfileMenu();this.page('admin')}; $('logoutBtn').onclick=()=>auth.logout();
     $('backupBtn').onclick=()=>this.exportBackup(); $('restoreInput').onchange=e=>this.importBackup(e.target.files[0]);
     $('themeSelect').value=state.theme; $('fontSelect').value=state.font; $('fontSizeSelect').value=state.fontSize;
-    $('themeSelect').onchange=e=>{state.theme=e.target.value;save();applyAppearance()};
-    $('fontSelect').onchange=e=>{state.font=e.target.value;save();applyAppearance()};
-    $('fontSizeSelect').onchange=e=>{state.fontSize=e.target.value;save();applyAppearance()};
+    $('themeSelect').onchange=e=>{state.theme=e.target.value;save();applyAppearance();toast('Đã áp dụng giao diện '+e.target.selectedOptions[0]?.textContent)};
+    $('fontSelect').onchange=e=>{state.font=e.target.value;save();applyAppearance();toast('Đã áp dụng kiểu chữ '+e.target.selectedOptions[0]?.textContent)};
+    $('fontSizeSelect').onchange=e=>{state.fontSize=e.target.value;save();applyAppearance();toast('Đã áp dụng cỡ chữ '+e.target.selectedOptions[0]?.textContent)};
     $('aiBtn').onclick=()=>mentor.open();
     $('modalRoot').addEventListener('click',e=>{const a=e.target.dataset.action;if(!a)return;e.preventDefault();e.stopPropagation();if(a==='close-modal')closeModal();if(a==='auto-schedule'){applyAutoScheduleSettings()}if(a==='toggle-edit'){state.schedule.edit=!state.schedule.edit;save();this.schedule();this.openManualScheduleMode()}if(a==='save-user')this.saveUser()});
     $('studyRoot').addEventListener('click',e=>{if(e.target.dataset.action==='close-study')this.closeStudy()});
@@ -297,7 +297,7 @@ const app={
     $('page-schedule').innerHTML=`<div class="schedule-page compact-schedule"><div class="schedule-head compact"><div><h2>Thời khóa biểu tuần</h2><p>Múi giờ: <b>${tz}</b>. Auto bám theo <b>${stageShort(sc.autoStage||'prepare')}</b>, áp dụng <b>${esc(sc.autoFrom||'2026-06-08')}</b> → <b>${esc(sc.autoTo||'2026-10-31')}</b>, nghỉ 11/7–4/8/2026.</p></div><div class="schedule-actions"><div class="schedule-settings-wrap"><button class="btn primary" onclick="toggleScheduleSettingsMenu(event)">⚙ Cài đặt</button><div id="scheduleSettingsMenu" class="schedule-settings-menu hidden"><button onclick="startManualScheduleMode()">Thủ công</button><button onclick="showAutoScheduleSettings()">Tự động</button></div></div>${sc.edit?'<button class="btn success" onclick="finishManualScheduleMode()">✓ Đã xong</button>':''}</div></div><div class="schedule-control-line"><div class="schedule-mode-row"><button class="btn ${main?'active':''}" onclick="setScheduleView('main')">Học chính</button><button class="btn ${!main?'active':''}" onclick="setScheduleView('review')">Ôn tập</button></div><div class="week-nav big compact-nav"><button class="btn big" onclick="changeWeek(-1)">‹ Tuần trước</button><b>${iso(start)} – ${iso(addDays(start,6))}</b><button class="btn big" onclick="changeWeek(1)">Tuần sau ›</button></div></div><div class="calendar-wrap tight-calendar"><table class="calendar"><thead><tr><th>Ca học</th>${days.map(d=>`<th>${DAYS[d]}<br><small>${iso(addDays(start,d))}</small></th>`).join('')}</tr></thead><tbody>${slots.map(slot=>`<tr><td class="time-cell">${slot.label}<br><small>${slot.time}</small></td>${days.map(d=>this.slotHTML(iso(addDays(start,d)),slot,d)).join('')}</tr>`).join('')}</tbody></table></div></div>`},
   slotHTML(dateStr,slot,dayIndex){const key=dateStr+'|'+slot.id;const e=state.schedule.entries[key];if(this.isNoStudyDate(dateStr))return `<td><div class="slot-card rest"><b>Nghỉ thăm gia đình</b><small>Không xếp lịch 11/7–4/8/2026</small></div></td>`;if(!this.isEligibleStudyDate(dateStr))return `<td><div class="slot-card muted"><b>Ngoài giai đoạn</b><small>Không xếp lịch tự động</small></div></td>`;if(!e)return `<td><div class="slot-card" onclick="openScheduleSlot('${dateStr}','${slot.id}')">${state.schedule.edit?'＋ Gán ca học':'Trống'}</div></td>`;const s=state.subjects[e.subjectId];const review=e.source==='review';return `<td><div class="slot-card has ${review?'review':''} ${e.source==='manual'?'manual':''}" onclick="openScheduleSlot('${dateStr}','${slot.id}')"><b>${esc(s?.name||'Môn học')}</b><small>${esc(e.learningItem||e.label||'Học theo lịch')}</small><em>${esc(slotTaskMeta(e,slot,dateStr))}</em><span>${esc(e.source==='manual'?'Sửa tay':review?'Ôn tập':'Tự động')}</span></div></td>`},
   openManualScheduleMode(){
-    state.schedule.edit=true;save();this.schedule();closeModal();toast('Đã bật sửa tay. Bấm vào từng ca trong thời khóa biểu để chỉnh.')
+    state.schedule.edit=true;save();applyAppearance();this.schedule();closeModal();toast('Đã bật sửa tay. Các ca trống và nút chỉnh lịch đang ở trạng thái chỉnh sửa.')
   },
   openAutoScheduleSettings(){
     const priorityLabels={q1:'Quan trọng & Khẩn cấp',q2:'Quan trọng & Không khẩn cấp',q3:'Không quan trọng & Khẩn cấp',q4:'Không quan trọng & Không khẩn cấp'};
@@ -588,8 +588,8 @@ function saveScheduleSlot(date,slot){
 }
 function openScheduleSlot(date,slot){const e=state.schedule.entries[date+'|'+slot];if(!e)return editScheduleSlot(date,slot);if(state.schedule.edit)return editScheduleSlot(date,slot);if(e.subjectId){pickSubject(e.subjectId);app.openSubjectInPage(e.subjectId,{date,slotId:slot})}}
 function toggleScheduleSettingsMenu(event){event?.stopPropagation?.();const menu=$('scheduleSettingsMenu');if(menu)menu.classList.toggle('hidden')}
-function startManualScheduleMode(){state.schedule.edit=true;save();app.schedule();toast('Đã bật sửa tay. Bấm vào từng ca để chỉnh.')}
-function finishManualScheduleMode(){state.schedule.edit=false;save();app.schedule();toast('Đã kết thúc sửa tay')}
+function startManualScheduleMode(){state.schedule.edit=true;save();applyAppearance();app.schedule();toast('Đã bật sửa tay. Các ca trống và nút chỉnh lịch đang ở trạng thái chỉnh sửa.')}
+function finishManualScheduleMode(){state.schedule.edit=false;save();applyAppearance();app.schedule();toast('Đã kết thúc sửa tay')}
 function showAutoScheduleSettings(){app.openAutoScheduleSettings()}
 function applyAutoScheduleSettings(){state.schedule.autoStage=$('scheduleStageSelect')?.value||state.schedule.autoStage;state.schedule.timezone=$('scheduleTzSelect')?.value||state.schedule.timezone;state.schedule.autoFrom=$('autoFromInput')?.value||state.schedule.autoFrom;state.schedule.autoTo=$('autoToInput')?.value||state.schedule.autoTo;state.schedule.targetQuestions=Number($('targetQuestionsInput')?.value)||FINAL_TARGET_QUESTIONS;state.schedule.targetScore=Number($('targetScoreInput')?.value)||DEFAULT_TARGET_SCORE;save();app.autoSchedule();closeModal()}
 function useFullStageRange(){const b=app.defaultStageBounds($('scheduleStageSelect').value);$('autoFromInput').value=b[0];$('autoToInput').value=b[1]}
