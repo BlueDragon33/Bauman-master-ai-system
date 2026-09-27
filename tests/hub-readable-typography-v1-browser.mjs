@@ -122,9 +122,9 @@ try{
   };
   console.log('READABLE_SUBJECTS',JSON.stringify(subjects));
   assert.ok(subjects.title?.fontSize>=14.5,'Subjects course title is below readable size');
-  assert.ok(subjects.small?.fontSize>=12.5,'Subjects metadata is below readable size');
-  assert.ok(subjects.action?.fontSize>=12.5,'Subjects action button is below readable size');
-  assert.ok(subjects.kpi?.fontSize>=12.5,'Subjects KPI copy is below readable size');
+  assert.ok(subjects.small?.fontSize>=13.5,'Subjects metadata is below readable size');
+  assert.ok(subjects.action?.fontSize>=13.5,'Subjects action button is below readable size');
+  assert.ok(subjects.kpi?.fontSize>=13.5,'Subjects KPI copy is below readable size');
   await noPageOverflow(page,'Subjects');
   await page.screenshot({path:path.join(OUT,'subjects-readable-1440x1000.png'),fullPage:true});
 
@@ -137,10 +137,24 @@ try{
     tab:await style(page,'#page-schedule .schedule-ref__segments button')
   };
   console.log('READABLE_SCHEDULE',JSON.stringify(schedule));
-  assert.ok(schedule.event?.fontSize>=12.5,'Schedule event title is below readable size');
-  assert.ok(schedule.eventMeta?.fontSize>=11.5,'Schedule event metadata is below readable size');
-  assert.ok(schedule.kpi?.fontSize>=12.5,'Schedule KPI copy is below readable size');
-  assert.ok(schedule.tab?.fontSize>=12.5,'Schedule view controls are below readable size');
+  assert.ok(schedule.event?.fontSize>=13.5,'Schedule event title is below readable size');
+  assert.ok(schedule.eventMeta?.fontSize>=12.5,'Schedule event metadata is below readable size');
+  assert.ok(schedule.kpi?.fontSize>=13.5,'Schedule KPI copy is below readable size');
+  assert.ok(schedule.tab?.fontSize>=13.5,'Schedule view controls are below readable size');
+  // Manual edit mode must visibly change state, not only write hidden data.
+  await page.evaluate(()=>{if(state.schedule.edit) window.BAUMAN_SCHEDULE_REF.toggleManual();});
+  await page.evaluate(()=>window.BAUMAN_SCHEDULE_REF.toggleManual());
+  const editMode=await page.evaluate(()=>({
+    body:document.body.dataset.scheduleEditing,
+    button:[...document.querySelectorAll('#page-schedule .schedule-ref__today-btn')].find(x=>x.classList.contains('is-editing'))?.textContent||'',
+    outline:getComputedStyle(document.querySelector('#page-schedule .schedule-ref__calendar-card')).outlineStyle
+  }));
+  assert.equal(editMode.body,'true','Schedule edit mode is not exposed to the UI');
+  assert.ok(editMode.button.includes('Xong'),'Schedule edit button does not visibly switch state');
+  assert.notEqual(editMode.outline,'none','Schedule edit mode has no visible calendar feedback');
+  await page.evaluate(()=>window.BAUMAN_SCHEDULE_REF.toggleManual());
+  console.log('EDIT_MODE_READABLE_PASS',JSON.stringify(editMode));
+
   await noPageOverflow(page,'Schedule');
   await page.screenshot({path:path.join(OUT,'schedule-readable-1440x1000.png'),fullPage:true});
 
@@ -153,10 +167,10 @@ try{
     ai:await style(page,'#page-research .thesis-page__ai-list b')
   };
   console.log('READABLE_THESIS',JSON.stringify(thesis));
-  assert.ok(thesis.event?.fontSize>=12.5,'Thesis event title is below readable size');
-  assert.ok(thesis.eventMeta?.fontSize>=11.5,'Thesis event metadata is below readable size');
-  assert.ok(thesis.kpi?.fontSize>=12.5,'Thesis KPI copy is below readable size');
-  assert.ok(thesis.ai?.fontSize>=12.5,'Thesis AI suggestions are below readable size');
+  assert.ok(thesis.event?.fontSize>=13.5,'Thesis event title is below readable size');
+  assert.ok(thesis.eventMeta?.fontSize>=12.5,'Thesis event metadata is below readable size');
+  assert.ok(thesis.kpi?.fontSize>=13.5,'Thesis KPI copy is below readable size');
+  assert.ok(thesis.ai?.fontSize>=13.5,'Thesis AI suggestions are below readable size');
   await noPageOverflow(page,'Thesis');
   await page.screenshot({path:path.join(OUT,'thesis-readable-1440x1000.png'),fullPage:true});
 
