@@ -23,6 +23,9 @@ const shell=fs.readFileSync('platform/ui/app-shell.css','utf8');
 const runtime=fs.readFileSync('platform/ui/runtime.js','utf8');
 const main=fs.readFileSync('assets/css/main.css','utf8');
 const safe=fs.readFileSync('assets/js/hub-safe-shell.js','utf8');
+const ux=fs.readFileSync('assets/js/hub-safe-ux.js','utf8');
+const precision=fs.readFileSync('assets/js/hub-reference-precision-v5.js','utf8');
+const roadmapCss=fs.readFileSync('assets/css/hub-roadmap-comprehensive-v2.css','utf8');
 
 for(const href of ['platform/ui/tokens.css?v=1','platform/ui/components.css?v=1','platform/ui/layouts.css?v=1','platform/ui/patterns.css?v=1','platform/ui/motion.css?v=1','platform/ui/utilities.css?v=1','platform/ui/app-shell.css?v=1','platform/ui/legacy-adapters.css?v=1']) assert.ok(index.includes(href),'Future UI stylesheet missing: '+href);
 assert.ok(index.includes('platform/ui/runtime.js?v=1'),'Future UI runtime is not activated');
@@ -48,6 +51,12 @@ assert.ok(runtime.includes('setFocus'),'Focus mode runtime missing');
 assert.ok(!main.startsWith(':root{'),'Legacy main.css still owns root tokens');
 assert.ok(safe.includes("wallpaper:'plain'"),'Safe shell still defaults to decorative wallpaper');
 assert.ok(!safe.includes("e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'"),'Legacy Ctrl/Cmd+K listener still conflicts with command palette');
+assert.ok(!ux.includes('hub-safe-motto'),'Legacy motto must not clutter the canonical topbar');
+assert.ok(!ux.includes('data-safe-ux="appearance"'),'Appearance duplicate must not be injected into the topbar');
+assert.ok(precision.includes("dataset.hubReferenceV5='retired'"),'Legacy precision orchestrator must be retired');
+assert.ok(!precision.includes("dataset.hubReferenceV5='1'"),'Legacy precision shell must not reactivate');
+const roadmapShellPrefix=roadmapCss.split('/* Page geometry */')[0];
+assert.ok(!roadmapShellPrefix.includes('data-hub-roadmap-v4="1"'),'Roadmap must not own the global App Shell');
 
 const platformFiles=required.filter(p=>p.startsWith('platform/ui/')&&p.endsWith('.css'));
 for(const p of platformFiles){
