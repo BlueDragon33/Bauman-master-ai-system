@@ -291,6 +291,342 @@
           "prompt": "Nêu một tình huống AI/tín hiệu/điều khiển mà bài này được dùng và giới hạn kết luận."
         }
       ]
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t01",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T01-time-index-sampling",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "time index",
+        "sampling frequency",
+        "missing timestamp",
+        "telemetry",
+        "resampling"
+      ],
+      "sourceAnchors": [
+        "m_p08_t01",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "reviewPackId": "E17-M_P08_T01-RP01",
+      "items": [
+        {
+          "type": "concept",
+          "prompt": "Tóm tắt bằng lời: Dữ liệu chuỗi thời gian: chỉ số thời gian, tần số lấy mẫu và missing timestamp."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và giải nghĩa biến/điều kiện."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích bẫy: Sai lầm phổ biến là thấy đủ số dòng rồi kết luận dữ liệu liên tục. Hai dòng liên tiếp có thể cách nhau 20 ms hoặc 2 s; phải kiểm tra chênh lệch timestamp."
+        },
+        {
+          "type": "application",
+          "prompt": "Nêu một tình huống telemetry/AI và cách giữ pipeline causal."
+        },
+        {
+          "type": "self_check",
+          "prompt": "Tự trả lời 3 câu vấn đáp của bài mà không nhìn đáp án."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t02",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T02-trend-seasonality-noise",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "trend",
+        "seasonality",
+        "cycle",
+        "noise",
+        "decomposition"
+      ],
+      "sourceAnchors": [
+        "m_p08_t02",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "reviewPackId": "E17-M_P08_T02-RP01",
+      "items": [
+        {
+          "type": "concept",
+          "prompt": "Tóm tắt bằng lời: Xu hướng, mùa vụ, chu kỳ và nhiễu."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và giải nghĩa biến/điều kiện."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích bẫy: Không nên gọi mọi dao động lặp lại là seasonality. Nếu chu kỳ trôi mạnh hoặc phụ thuộc trạng thái vận hành, nó có thể là cycle hoặc chế độ hệ thống."
+        },
+        {
+          "type": "application",
+          "prompt": "Nêu một tình huống telemetry/AI và cách giữ pipeline causal."
+        },
+        {
+          "type": "self_check",
+          "prompt": "Tự trả lời 3 câu vấn đáp của bài mà không nhìn đáp án."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t03",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T03-rolling-smoothing",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling mean",
+        "moving average",
+        "smoothing",
+        "window",
+        "causal filter"
+      ],
+      "sourceAnchors": [
+        "m_p08_t03",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "reviewPackId": "E17-M_P08_T03-RP01",
+      "items": [
+        {
+          "type": "concept",
+          "prompt": "Tóm tắt bằng lời: Trung bình trượt và làm mượt dữ liệu."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và giải nghĩa biến/điều kiện."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích bẫy: Centered rolling mean có thể gây future leakage nếu dùng làm feature cho dự báo vì nó chứa điểm ở tương lai so với mốc dự đoán."
+        },
+        {
+          "type": "application",
+          "prompt": "Nêu một tình huống telemetry/AI và cách giữ pipeline causal."
+        },
+        {
+          "type": "self_check",
+          "prompt": "Tự trả lời 3 câu vấn đáp của bài mà không nhìn đáp án."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t04",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T04-changing-variance",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling variance",
+        "heteroscedasticity",
+        "regime change",
+        "nonstationarity",
+        "variance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t04",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "reviewPackId": "E17-M_P08_T04-RP01",
+      "items": [
+        {
+          "type": "concept",
+          "prompt": "Tóm tắt bằng lời: Phương sai thay đổi và dấu hiệu không ổn định."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và giải nghĩa biến/điều kiện."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích bẫy: Đừng gọi chuỗi 'không ổn định' chỉ vì một cửa sổ có variance lớn. Cần tách outlier, regime change và thay đổi cảm biến."
+        },
+        {
+          "type": "application",
+          "prompt": "Nêu một tình huống telemetry/AI và cách giữ pipeline causal."
+        },
+        {
+          "type": "self_check",
+          "prompt": "Tự trả lời 3 câu vấn đáp của bài mà không nhìn đáp án."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t05",
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E17-MP08-T05-autocorrelation",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "tags": [
+        "autocorrelation",
+        "lag",
+        "ACF",
+        "serial dependence",
+        "random process"
+      ],
+      "sourceAnchors": [
+        "m_p08_t05",
+        "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "reviewPackId": "E17-M_P08_T05-RP01",
+      "items": [
+        {
+          "type": "concept",
+          "prompt": "Tóm tắt bằng lời: Autocorrelation và ý nghĩa phụ thuộc theo độ trễ."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và giải nghĩa biến/điều kiện."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích bẫy: Trend mạnh có thể tạo autocorrelation cao ở nhiều lag dù không có cơ chế nhớ thực sự. Nên detrend/difference phù hợp trước khi diễn giải sâu."
+        },
+        {
+          "type": "application",
+          "prompt": "Nêu một tình huống telemetry/AI và cách giữ pipeline causal."
+        },
+        {
+          "type": "self_check",
+          "prompt": "Tự trả lời 3 câu vấn đáp của bài mà không nhìn đáp án."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t06",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T06-lag-features",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "lag feature",
+        "forecasting",
+        "supervised learning",
+        "feature engineering",
+        "causality"
+      ],
+      "sourceAnchors": [
+        "m_p08_t06",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "reviewPackId": "E17-M_P08_T06-RP01",
+      "items": [
+        {
+          "type": "concept",
+          "prompt": "Tóm tắt bằng lời: Lag features cho mô hình dự báo."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và giải nghĩa biến/điều kiện."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích bẫy: Dùng x_{t+1} hoặc centered rolling feature để dự báo x_t là rò rỉ tương lai dù code chạy và metric rất đẹp."
+        },
+        {
+          "type": "application",
+          "prompt": "Nêu một tình huống telemetry/AI và cách giữ pipeline causal."
+        },
+        {
+          "type": "self_check",
+          "prompt": "Tự trả lời 3 câu vấn đáp của bài mà không nhìn đáp án."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t07",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T07-stationarity-intuition",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "stationarity",
+        "weak stationarity",
+        "mean",
+        "variance",
+        "autocovariance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t07",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "reviewPackId": "E17-M_P08_T07-RP01",
+      "items": [
+        {
+          "type": "concept",
+          "prompt": "Tóm tắt bằng lời: Stationarity ở mức trực giác và vì sao cần kiểm tra."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và giải nghĩa biến/điều kiện."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích bẫy: Không kết luận stationary chỉ vì đồ thị 'trông ổn'. Kiểm tra định lượng và kiến thức miền phải đi cùng nhau."
+        },
+        {
+          "type": "application",
+          "prompt": "Nêu một tình huống telemetry/AI và cách giữ pipeline causal."
+        },
+        {
+          "type": "self_check",
+          "prompt": "Tự trả lời 3 câu vấn đáp của bài mà không nhìn đáp án."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t08",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T08-temporal-split-leakage",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "temporal split",
+        "time series cross validation",
+        "future leakage",
+        "backtesting",
+        "evaluation"
+      ],
+      "sourceAnchors": [
+        "m_p08_t08",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "reviewPackId": "E17-M_P08_T08-RP01",
+      "items": [
+        {
+          "type": "concept",
+          "prompt": "Tóm tắt bằng lời: Chia train/test theo thời gian và lỗi rò rỉ tương lai."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và giải nghĩa biến/điều kiện."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích bẫy: Future leakage thường không gây lỗi code; nó gây metric đẹp giả. Leakage có thể đến từ preprocessing, aggregation, label construction hoặc feature được cập nhật sau thời điểm dự đoán."
+        },
+        {
+          "type": "application",
+          "prompt": "Nêu một tình huống telemetry/AI và cách giữ pipeline causal."
+        },
+        {
+          "type": "self_check",
+          "prompt": "Tự trả lời 3 câu vấn đáp của bài mà không nhìn đáp án."
+        }
+      ]
     }
   ],
   "importPolicy": {
@@ -339,7 +675,7 @@
     ],
     "auditStatus": "DRAFT"
   },
-  "updatedAt": "2026-09-23",
+  "updatedAt": "2026-09-27",
   "emoji": "🧪",
   "cleanArchitecturePolicy": {
     "contentMustNotStoreStageTree": true,
@@ -354,6 +690,14 @@
       "key": "reviewPackId",
       "branchOnly": true,
       "status": "CONTENT_IMPORTED_PENDING_RUNTIME_GATE"
+    }
+  },
+  "authoringMeta": {
+    "E17": {
+      "moduleId": "m_p08",
+      "records": 8,
+      "status": "AUTHORED_PENDING_CI",
+      "architecture": "logical_module_over_physical_content"
     }
   }
 }
