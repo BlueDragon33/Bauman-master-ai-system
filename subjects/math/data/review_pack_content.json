@@ -1019,6 +1019,398 @@
           "prompt": "Dùng mẫu sửa lỗi: Mẫu đầy đủ: «Я допустил ошибку на втором шаге: знак должен быть минус. Исправляю выражение и пересчитываю результат.»"
         }
       ]
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T01-vectors-basis",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "vectors-basis"
+      ],
+      "sourceAnchors": [
+        "m_p10_t01",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "reviewPackId": "E19-M_P10_T01-RP01",
+      "items": [
+        {
+          "type": "terms",
+          "prompt": "Đọc 8 thuật ngữ Nga, nói nghĩa Việt và English."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi, nêu điều kiện và dimension."
+        },
+        {
+          "type": "logic_gate",
+          "prompt": "Nêu cổng condition/rank/shape trước phép biến đổi."
+        },
+        {
+          "type": "worked_problem",
+          "prompt": "Giải một ví dụ nhỏ theo algorithm của bài."
+        },
+        {
+          "type": "oral",
+          "prompt": "Bảo vệ lời giải bằng tiếng Nga trong tối đa 90 giây."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích và sửa bẫy: Không được gọi một tập vector là basis chỉ vì có đúng n vector trong ℝⁿ; còn phải kiểm tra độc lập tuyến tính/spanning."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t02",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T02-matrix-operations",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "matrix-operations"
+      ],
+      "sourceAnchors": [
+        "m_p10_t02",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "reviewPackId": "E19-M_P10_T02-RP01",
+      "items": [
+        {
+          "type": "terms",
+          "prompt": "Đọc 8 thuật ngữ Nga, nói nghĩa Việt và English."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi, nêu điều kiện và dimension."
+        },
+        {
+          "type": "logic_gate",
+          "prompt": "Nêu cổng condition/rank/shape trước phép biến đổi."
+        },
+        {
+          "type": "worked_problem",
+          "prompt": "Giải một ví dụ nhỏ theo algorithm của bài."
+        },
+        {
+          "type": "oral",
+          "prompt": "Bảo vệ lời giải bằng tiếng Nga trong tối đa 90 giây."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích và sửa bẫy: AB và BA nói chung khác nhau, thậm chí một trong hai tích có thể không tồn tại. Không được suy từ tích vô hướng sang giao hoán ma trận."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T03-det-rank-inverse",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "det-rank-inverse"
+      ],
+      "sourceAnchors": [
+        "m_p10_t03",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "reviewPackId": "E19-M_P10_T03-RP01",
+      "items": [
+        {
+          "type": "terms",
+          "prompt": "Đọc 8 thuật ngữ Nga, nói nghĩa Việt và English."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi, nêu điều kiện và dimension."
+        },
+        {
+          "type": "logic_gate",
+          "prompt": "Nêu cổng condition/rank/shape trước phép biến đổi."
+        },
+        {
+          "type": "worked_problem",
+          "prompt": "Giải một ví dụ nhỏ theo algorithm của bài."
+        },
+        {
+          "type": "oral",
+          "prompt": "Bảo vệ lời giải bằng tiếng Nga trong tối đa 90 giây."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích và sửa bẫy: Rank được định nghĩa cho cả ma trận chữ nhật, còn determinant chỉ cho ma trận vuông. Không dùng det để kiểm rank của ma trận không vuông."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t04",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T04-gaussian-elimination",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "gaussian-elimination"
+      ],
+      "sourceAnchors": [
+        "m_p10_t04",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "reviewPackId": "E19-M_P10_T04-RP01",
+      "items": [
+        {
+          "type": "terms",
+          "prompt": "Đọc 8 thuật ngữ Nga, nói nghĩa Việt và English."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi, nêu điều kiện và dimension."
+        },
+        {
+          "type": "logic_gate",
+          "prompt": "Nêu cổng condition/rank/shape trước phép biến đổi."
+        },
+        {
+          "type": "worked_problem",
+          "prompt": "Giải một ví dụ nhỏ theo algorithm của bài."
+        },
+        {
+          "type": "oral",
+          "prompt": "Bảo vệ lời giải bằng tiếng Nga trong tối đa 90 giây."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích và sửa bẫy: Không được chia một hàng cho pivot bằng 0; cần đổi hàng hoặc chọn pivot khác. Trong tính số, pivot quá nhỏ còn gây mất ổn định."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t05",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T05-linear-maps",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "linear-maps"
+      ],
+      "sourceAnchors": [
+        "m_p10_t05",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "reviewPackId": "E19-M_P10_T05-RP01",
+      "items": [
+        {
+          "type": "terms",
+          "prompt": "Đọc 8 thuật ngữ Nga, nói nghĩa Việt và English."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi, nêu điều kiện và dimension."
+        },
+        {
+          "type": "logic_gate",
+          "prompt": "Nêu cổng condition/rank/shape trước phép biến đổi."
+        },
+        {
+          "type": "worked_problem",
+          "prompt": "Giải một ví dụ nhỏ theo algorithm của bài."
+        },
+        {
+          "type": "oral",
+          "prompt": "Bảo vệ lời giải bằng tiếng Nga trong tối đa 90 giây."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích và sửa bẫy: Image/range của T không nhất thiết bằng toàn codomain; phải phân biệt `образ` và `кообласть`."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t06",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T06-eigen-diagonalization",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "eigen-diagonalization"
+      ],
+      "sourceAnchors": [
+        "m_p10_t06",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "reviewPackId": "E19-M_P10_T06-RP01",
+      "items": [
+        {
+          "type": "terms",
+          "prompt": "Đọc 8 thuật ngữ Nga, nói nghĩa Việt và English."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi, nêu điều kiện và dimension."
+        },
+        {
+          "type": "logic_gate",
+          "prompt": "Nêu cổng condition/rank/shape trước phép biến đổi."
+        },
+        {
+          "type": "worked_problem",
+          "prompt": "Giải một ví dụ nhỏ theo algorithm của bài."
+        },
+        {
+          "type": "oral",
+          "prompt": "Bảo vệ lời giải bằng tiếng Nga trong tối đa 90 giây."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích và sửa bẫy: Có n trị riêng tính theo bội đại số không đảm bảo có n eigenvector độc lập; ma trận có thể không chéo hóa được."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t07",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T07-orthogonal-projection-ls",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "orthogonal-projection-ls"
+      ],
+      "sourceAnchors": [
+        "m_p10_t07",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "reviewPackId": "E19-M_P10_T07-RP01",
+      "items": [
+        {
+          "type": "terms",
+          "prompt": "Đọc 8 thuật ngữ Nga, nói nghĩa Việt và English."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi, nêu điều kiện và dimension."
+        },
+        {
+          "type": "logic_gate",
+          "prompt": "Nêu cổng condition/rank/shape trước phép biến đổi."
+        },
+        {
+          "type": "worked_problem",
+          "prompt": "Giải một ví dụ nhỏ theo algorithm của bài."
+        },
+        {
+          "type": "oral",
+          "prompt": "Bảo vệ lời giải bằng tiếng Nga trong tối đa 90 giây."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích và sửa bẫy: Không được dùng (AᵀA)⁻¹Aᵀb khi A không full column rank; trong tính số QR/SVD thường ổn định hơn normal equations."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t08",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T08-russian-linear-algebra-seminar",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "russian-linear-algebra-seminar"
+      ],
+      "sourceAnchors": [
+        "m_p10_t08",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "reviewPackId": "E19-M_P10_T08-RP01",
+      "items": [
+        {
+          "type": "terms",
+          "prompt": "Đọc 8 thuật ngữ Nga, nói nghĩa Việt và English."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi, nêu điều kiện và dimension."
+        },
+        {
+          "type": "logic_gate",
+          "prompt": "Nêu cổng condition/rank/shape trước phép biến đổi."
+        },
+        {
+          "type": "worked_problem",
+          "prompt": "Giải một ví dụ nhỏ theo algorithm của bài."
+        },
+        {
+          "type": "oral",
+          "prompt": "Bảo vệ lời giải bằng tiếng Nga trong tối đa 90 giây."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích và sửa bẫy: Một lời giải có đáp số đúng nhưng dùng phép biến đổi không hợp lệ vẫn không đạt chuẩn seminar; phải bảo vệ điều kiện của từng bước."
+        }
+      ]
     }
   ],
   "importPolicy": {
@@ -1108,6 +1500,14 @@
         "browser": "PASS",
         "developmentFastCI": "PASS"
       }
+    },
+    "E19": {
+      "status": "IMPLEMENTED_PENDING_CI",
+      "frameworkChapterId": "m_s02",
+      "logicalModuleId": "m_p10",
+      "lessons": 8,
+      "theorySlides": 160,
+      "updatedAt": "2026-09-27"
     }
   }
 }
