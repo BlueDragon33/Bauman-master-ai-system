@@ -28,6 +28,7 @@ for(const href of ['platform/ui/tokens.css?v=1','platform/ui/components.css?v=1'
 assert.ok(index.includes('platform/ui/runtime.js?v=1'),'Future UI runtime is not activated');
 assert.ok(index.indexOf('platform/ui/app-shell.css?v=1')>index.indexOf('hub-readable-typography-v1.css?v=2'),'Canonical App Shell must load after legacy styles during migration');
 assert.ok(index.includes('data-hub-wallpaper="plain"'),'Default product surface must not depend on decorative wallpaper');
+assert.ok(!index.includes('canva-main-v1 canva-main-v2'),'Legacy Canva body generations must not own the canonical shell');
 
 for(const marker of [
   '--ui-surface-primary',
