@@ -5,20 +5,20 @@
 
 body{
   --hub-readable-body:16px;
-  --hub-readable-control:14px;
-  --hub-readable-small:13px;
-  --hub-readable-micro:12px;
-  --hub-readable-card:15px;
+  --hub-readable-control:15px;
+  --hub-readable-small:14px;
+  --hub-readable-micro:14.5px;
+  --hub-readable-card:16px;
   --hub-readable-section:18px;
   --hub-readable-page-title:30px;
   --hub-readable-line:1.5;
 }
 body[data-size="compact"]{
   --hub-readable-body:15px;
-  --hub-readable-control:13px;
-  --hub-readable-small:12px;
-  --hub-readable-micro:11.5px;
-  --hub-readable-card:14px;
+  --hub-readable-control:14px;
+  --hub-readable-small:13px;
+  --hub-readable-micro:12px;
+  --hub-readable-card:15px;
   --hub-readable-section:17px;
   --hub-readable-page-title:28px;
 }
@@ -33,19 +33,19 @@ body[data-size="normal"]{
 }
 body[data-size="large"]{
   --hub-readable-body:18px;
-  --hub-readable-control:16px;
-  --hub-readable-small:14.5px;
+  --hub-readable-control:17px;
+  --hub-readable-small:18px;
   --hub-readable-micro:13px;
-  --hub-readable-card:17px;
+  --hub-readable-card:18px;
   --hub-readable-section:20px;
   --hub-readable-page-title:34px;
 }
 body[data-size="xlarge"]{
   --hub-readable-body:20px;
-  --hub-readable-control:18px;
+  --hub-readable-control:19px;
   --hub-readable-small:16px;
-  --hub-readable-micro:14px;
-  --hub-readable-card:19px;
+  --hub-readable-micro:16px;
+  --hub-readable-card:20px;
   --hub-readable-section:22px;
   --hub-readable-page-title:38px;
 }
@@ -383,7 +383,7 @@ body[data-size="xlarge"] #appRoot .page{overflow-wrap:anywhere}
   #appRoot .main{max-width:1720px!important}
 }
 @media(max-width:980px){
-  body{--hub-readable-body:16px;--hub-readable-control:14px;--hub-readable-small:13px;--hub-readable-micro:12px}
+  body{--hub-readable-body:16px;--hub-readable-control:15px;--hub-readable-small:14px;--hub-readable-micro:13px}
   #page-schedule .schedule-ref__timeline{height:500px!important}
   #page-research .thesis-page__timeline{--tp-timeline-height:480px!important}
 }
@@ -398,3 +398,45 @@ body[data-size="xlarge"] #appRoot .page{overflow-wrap:anywhere}
   #page-schedule .schedule-ref__mobile-agenda>button>div span,
   #page-schedule .schedule-ref__mobile-agenda>p{font-size:var(--hub-readable-small)!important}
 }
+
+
+/* Readability V1.1 · stronger controls and edit feedback */
+body[data-hub-reference-v5="1"] #appearanceBtn{
+  min-width:122px!important;
+  height:44px!important;
+  font-size:15px!important;
+  border-width:2px!important;
+}
+body[data-hub-reference-v5="1"] .hub-safe-preset-grid button{
+  min-height:70px!important;
+  border:2px solid color-mix(in srgb,var(--primary) 22%,var(--line))!important;
+}
+body[data-hub-reference-v5="1"] .hub-safe-preset-grid button span{
+  font-size:15px!important;
+  font-weight:850!important;
+}
+body[data-hub-reference-v5="1"] .hub-safe-preset-grid button small{
+  font-size:13px!important;
+}
+#page-schedule .schedule-ref__today-btn.is-editing{
+  background:#eaf2ff!important;
+  color:#234f99!important;
+  border:2px solid #3e7be0!important;
+  box-shadow:0 0 0 3px rgba(62,123,224,.14)!important;
+  font-weight:900!important;
+}
+body[data-schedule-editing="true"] #page-schedule .schedule-ref__calendar-card{
+  outline:2px solid rgba(62,123,224,.38)!important;
+  outline-offset:3px!important;
+}
+body[data-schedule-editing="true"] #page-schedule .schedule-ref__empty-slot{
+  min-width:34px!important;
+  min-height:34px!important;
+  border:2px dashed #3e7be0!important;
+  background:#eef5ff!important;
+  color:#234f99!important;
+  font-size:18px!important;
+  font-weight:900!important;
+}
+#modalRoot .dialog :is(label,p,li){font-size:var(--hub-readable-body)!important}
+#modalRoot .dialog :is(input,select,textarea,button){font-size:var(--hub-readable-control)!important;min-height:40px!important}
