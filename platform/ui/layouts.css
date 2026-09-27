@@ -1,0 +1,27 @@
+/* UI-E4/UI-E7 · shared shell and layout contracts */
+.bui-app-layout{min-height:100dvh;background:var(--bui-canvas);color:var(--bui-text)}
+.bui-context-header{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--bui-space-6);margin-bottom:var(--bui-space-6)}
+.bui-context-header__copy{min-width:0}
+.bui-context-header__copy>p{max-width:var(--bui-reading-width);margin:var(--bui-space-2) 0 0;color:var(--bui-text-soft)}
+.bui-context-header__actions{display:flex;align-items:center;gap:var(--bui-space-2);flex-wrap:wrap}
+.bui-workspace{width:min(100%,var(--bui-workspace-max));margin-inline:auto}
+.bui-dashboard-layout{display:grid;grid-template-columns:minmax(0,2fr) minmax(300px,.82fr);gap:var(--bui-space-5);align-items:start}
+.bui-learning-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,340px);gap:var(--bui-space-6);align-items:start}
+.bui-resource-layout{display:grid;grid-template-rows:auto minmax(0,1fr);min-height:calc(100dvh - var(--bui-topbar))}
+.bui-resource-layout__body{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,320px);min-height:0}
+.bui-admin-layout{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--bui-space-5)}
+.bui-focus-layout{width:min(100%,1100px);margin-inline:auto;padding:var(--bui-space-6)}
+body[data-bui-focus="1"] [data-bui-focus-hide]{display:none!important}
+body[data-bui-focus="1"] .bui-focus-layout{width:min(100%,980px)}
+.bui-grid-12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--bui-space-4)}
+.bui-grid-8{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:var(--bui-space-4)}
+.bui-grid-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--bui-space-3)}
+@media(max-width:1024px){
+  .bui-dashboard-layout,.bui-learning-layout{grid-template-columns:1fr}
+  .bui-resource-layout__body{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .bui-context-header{display:grid;gap:var(--bui-space-4)}
+  .bui-context-header__actions{width:100%}
+  .bui-context-header__actions>.bui-button{flex:1 1 auto}
+}
