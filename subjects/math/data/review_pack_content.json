@@ -627,6 +627,398 @@
           "prompt": "Tự trả lời 3 câu vấn đáp của bài mà không nhìn đáp án."
         }
       ]
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t01",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T01-task-language",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "task-language"
+      ],
+      "sourceAnchors": [
+        "m_p09_t01",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "reviewPackId": "E18-M_P09_T01-RP01",
+      "items": [
+        {
+          "type": "concept",
+          "prompt": "Tóm tắt chủ đề Cấu trúc đề toán tiếng Nga: дано, найти, доказать, вычислить bằng 4 câu ngắn."
+        },
+        {
+          "type": "terms",
+          "prompt": "Đọc 8 thuật ngữ Nga, nói nghĩa Việt và English tương ứng."
+        },
+        {
+          "type": "formula",
+          "prompt": "Đọc 3 biểu thức/ký hiệu bằng tiếng Nga và giải thích điều kiện sử dụng."
+        },
+        {
+          "type": "oral",
+          "prompt": "Trả lời một câu hỏi giảng viên trong tối đa 60 giây."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích và sửa bẫy: `определить` trong đề có thể là «xác định/tìm» chứ không phải lúc nào cũng là «định nghĩa»; `решить` thường là giải bài toán/phương trình."
+        },
+        {
+          "type": "repair",
+          "prompt": "Dùng mẫu sửa lỗi: Nếu lỡ hiểu sai câu lệnh, nói: «Я неправильно понял условие. Здесь нужно доказать, а не вычислить. Исправляю решение.»"
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t02",
+      "lessonId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_-E18-MP09-T02-sets-functions",
+      "chapterId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "sets-functions"
+      ],
+      "sourceAnchors": [
+        "m_p09_t02",
+        "m_s01",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "reviewPackId": "E18-M_P09_T02-RP01",
+      "items": [
+        {
+          "type": "concept",
+          "prompt": "Tóm tắt chủ đề Số, tập hợp, hàm số và biểu thức đại số bằng tiếng Nga bằng 4 câu ngắn."
+        },
+        {
+          "type": "terms",
+          "prompt": "Đọc 8 thuật ngữ Nga, nói nghĩa Việt và English tương ứng."
+        },
+        {
+          "type": "formula",
+          "prompt": "Đọc 3 biểu thức/ký hiệu bằng tiếng Nga và giải thích điều kiện sử dụng."
+        },
+        {
+          "type": "oral",
+          "prompt": "Trả lời một câu hỏi giảng viên trong tối đa 60 giây."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích và sửa bẫy: `область значений` là miền giá trị/range, còn `значение функции` là một giá trị cụ thể của hàm; hai cụm không được dịch lẫn."
+        },
+        {
+          "type": "repair",
+          "prompt": "Dùng mẫu sửa lỗi: Nếu nhầm domain/range: «Я перепутал область определения и область значений. Область определения относится к допустимым x.»"
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E18-MP09-T03-linear-algebra",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "linear-algebra"
+      ],
+      "sourceAnchors": [
+        "m_p09_t03",
+        "m_s01",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "reviewPackId": "E18-M_P09_T03-RP01",
+      "items": [
+        {
+          "type": "concept",
+          "prompt": "Tóm tắt chủ đề Vector, ma trận và hệ phương trình bằng tiếng Nga bằng 4 câu ngắn."
+        },
+        {
+          "type": "terms",
+          "prompt": "Đọc 8 thuật ngữ Nga, nói nghĩa Việt và English tương ứng."
+        },
+        {
+          "type": "formula",
+          "prompt": "Đọc 3 biểu thức/ký hiệu bằng tiếng Nga và giải thích điều kiện sử dụng."
+        },
+        {
+          "type": "oral",
+          "prompt": "Trả lời một câu hỏi giảng viên trong tối đa 60 giây."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích và sửa bẫy: `строка` trong đại số tuyến tính là hàng của ma trận, còn `столбец` là cột; tránh dịch theo nghĩa «dòng văn bản/cột báo» khi đang ở ngữ cảnh ma trận."
+        },
+        {
+          "type": "repair",
+          "prompt": "Dùng mẫu sửa lỗi: Nếu nói nhầm row/column: «Исправляю: это не строка, а столбец матрицы.»"
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t04",
+      "lessonId": "MATH-PREP-C11-giai_tich_i_gioi_han_lie-E18-MP09-T04-calculus",
+      "chapterId": "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "calculus"
+      ],
+      "sourceAnchors": [
+        "m_p09_t04",
+        "m_s01",
+        "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+        "MATH-PROG-L04-single-variable-analysis",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "reviewPackId": "E18-M_P09_T04-RP01",
+      "items": [
+        {
+          "type": "concept",
+          "prompt": "Tóm tắt chủ đề Giới hạn, đạo hàm và tích phân bằng tiếng Nga bằng 4 câu ngắn."
+        },
+        {
+          "type": "terms",
+          "prompt": "Đọc 8 thuật ngữ Nga, nói nghĩa Việt và English tương ứng."
+        },
+        {
+          "type": "formula",
+          "prompt": "Đọc 3 biểu thức/ký hiệu bằng tiếng Nga và giải thích điều kiện sử dụng."
+        },
+        {
+          "type": "oral",
+          "prompt": "Trả lời một câu hỏi giảng viên trong tối đa 60 giây."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích và sửa bẫy: `первообразная` là nguyên hàm, không phải «đạo hàm đầu tiên»; `определённый интеграл` là tích phân xác định."
+        },
+        {
+          "type": "repair",
+          "prompt": "Dùng mẫu sửa lỗi: Nếu lẫn limit và derivative: «Я назвал производную пределом. Исправляю: производная определяется через предел разностного отношения.»"
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t05",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E18-MP09-T05-probability-statistics",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "probability-statistics"
+      ],
+      "sourceAnchors": [
+        "m_p09_t05",
+        "m_s01",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "reviewPackId": "E18-M_P09_T05-RP01",
+      "items": [
+        {
+          "type": "concept",
+          "prompt": "Tóm tắt chủ đề Xác suất, thống kê và dữ liệu bằng tiếng Nga bằng 4 câu ngắn."
+        },
+        {
+          "type": "terms",
+          "prompt": "Đọc 8 thuật ngữ Nga, nói nghĩa Việt và English tương ứng."
+        },
+        {
+          "type": "formula",
+          "prompt": "Đọc 3 biểu thức/ký hiệu bằng tiếng Nga và giải thích điều kiện sử dụng."
+        },
+        {
+          "type": "oral",
+          "prompt": "Trả lời một câu hỏi giảng viên trong tối đa 60 giây."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích và sửa bẫy: `математическое ожидание` là kỳ vọng toán học, không dịch máy thành «sự chờ đợi»; `выборка` là mẫu thống kê, không phải thao tác «chọn» chung."
+        },
+        {
+          "type": "repair",
+          "prompt": "Dùng mẫu sửa lỗi: Nếu dịch математическое ожидание sai: «Исправляю: здесь математическое ожидание означает expectation, а не бытовое ожидание.»"
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t06",
+      "lessonId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_-E18-MP09-T06-geometry-coordinates",
+      "chapterId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "geometry-coordinates"
+      ],
+      "sourceAnchors": [
+        "m_p09_t06",
+        "m_s01",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PROG-L08-euclidean-computational-geometry",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "reviewPackId": "E18-M_P09_T06-RP01",
+      "items": [
+        {
+          "type": "concept",
+          "prompt": "Tóm tắt chủ đề Đồ thị, hình học và biến đổi tọa độ bằng tiếng Nga bằng 4 câu ngắn."
+        },
+        {
+          "type": "terms",
+          "prompt": "Đọc 8 thuật ngữ Nga, nói nghĩa Việt và English tương ứng."
+        },
+        {
+          "type": "formula",
+          "prompt": "Đọc 3 biểu thức/ký hiệu bằng tiếng Nga và giải thích điều kiện sử dụng."
+        },
+        {
+          "type": "oral",
+          "prompt": "Trả lời một câu hỏi giảng viên trong tối đa 60 giây."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích và sửa bẫy: `график` trong toán là đồ thị, nhưng trong tiếng Nga đời thường còn có nghĩa lịch/biểu; phải dựa vào ngữ cảnh «график функции»."
+        },
+        {
+          "type": "repair",
+          "prompt": "Dùng mẫu sửa lỗi: Nếu nhầm axis/origin: «Исправляю: ось — это axis, а начало координат — origin.»"
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t07",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T07-proof-language",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "proof-language"
+      ],
+      "sourceAnchors": [
+        "m_p09_t07",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "reviewPackId": "E18-M_P09_T07-RP01",
+      "items": [
+        {
+          "type": "concept",
+          "prompt": "Tóm tắt chủ đề Mẫu câu trình bày lời giải và chứng minh bằng tiếng Nga bằng 4 câu ngắn."
+        },
+        {
+          "type": "terms",
+          "prompt": "Đọc 8 thuật ngữ Nga, nói nghĩa Việt và English tương ứng."
+        },
+        {
+          "type": "formula",
+          "prompt": "Đọc 3 biểu thức/ký hiệu bằng tiếng Nga và giải thích điều kiện sử dụng."
+        },
+        {
+          "type": "oral",
+          "prompt": "Trả lời một câu hỏi giảng viên trong tối đa 60 giây."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích và sửa bẫy: `следовательно` là kết nối logic «do đó», không phải phép tính tự thân; không dùng nó khi bước suy luận chưa được biện minh."
+        },
+        {
+          "type": "repair",
+          "prompt": "Dùng mẫu sửa lỗi: Nếu phát hiện bước suy luận thiếu: «Этот переход не обоснован. Добавлю условие/теорему и повторю доказательство.»"
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_p09",
+      "frameworkChapterId": "m_s01",
+      "logicalLessonId": "m_p09_t08",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E18-MP09-T08-oral-defense",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "russian math",
+        "prep",
+        "oral exam",
+        "technical russian",
+        "oral-defense"
+      ],
+      "sourceAnchors": [
+        "m_p09_t08",
+        "m_s01",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E18_AUTHORED",
+      "reviewPackId": "E18-M_P09_T08-RP01",
+      "items": [
+        {
+          "type": "concept",
+          "prompt": "Tóm tắt chủ đề Vấn đáp toán dự bị: đọc, trả lời, sửa lỗi và bảo vệ lời giải bằng 4 câu ngắn."
+        },
+        {
+          "type": "terms",
+          "prompt": "Đọc 8 thuật ngữ Nga, nói nghĩa Việt và English tương ứng."
+        },
+        {
+          "type": "formula",
+          "prompt": "Đọc 3 biểu thức/ký hiệu bằng tiếng Nga và giải thích điều kiện sử dụng."
+        },
+        {
+          "type": "oral",
+          "prompt": "Trả lời một câu hỏi giảng viên trong tối đa 60 giây."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích và sửa bẫy: Im lặng sửa kết quả nhưng không giải thích thường kém thuyết phục trong vấn đáp; cần nói rõ lỗi ở bước nào và vì sao sửa."
+        },
+        {
+          "type": "repair",
+          "prompt": "Dùng mẫu sửa lỗi: Mẫu đầy đủ: «Я допустил ошибку на втором шаге: знак должен быть минус. Исправляю выражение и пересчитываю результат.»"
+        }
+      ]
     }
   ],
   "importPolicy": {
@@ -700,6 +1092,14 @@
       "architecture": "logical_module_over_physical_content",
       "verifiedAt": "2026-09-27",
       "pr": 144
+    },
+    "E18": {
+      "status": "IMPLEMENTED_PENDING_CI",
+      "frameworkChapterId": "m_s01",
+      "logicalModuleId": "m_p09",
+      "lessons": 8,
+      "theorySlides": 160,
+      "updatedAt": "2026-09-27"
     }
   }
 }
