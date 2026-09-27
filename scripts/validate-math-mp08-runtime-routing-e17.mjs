@@ -12,6 +12,10 @@ if(!process.exitCode)ok("E186 can aggregate program L14 across physical chapters
 
 const theoryTab=read("subjects/math/assets/theory_skin/theory-tab-E129.js");
 if(!theoryTab.includes("data/theory_lecture_content.json"))fail("theory runtime lost canonical content source");
+for(const token of ["selectedRecord=p.lessonId?cache.records.find","chapterById(selectedRecord.chapterId)"]){
+ if(!theoryTab.includes(token))fail("E129 selected-lesson physical bridge missing token: "+token);
+}
+if(!process.exitCode)ok("E129 preserves selected program-anchored lesson and resolves its real physical chapter");
 const activity=read("subjects/math/assets/math-activity-studio.js");
 for(const p of ["data/exercise_content.json","data/application_content.json","data/simulation_content.json","data/review_pack_content.json","data/question_bank_content.json","data/professor_qa_content.json"])if(!activity.includes(p))fail("Activity Studio missing "+p);
 const formula=read("subjects/math/assets/math-formula-library.js");
