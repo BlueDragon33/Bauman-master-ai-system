@@ -4508,12 +4508,20 @@
       "pr": 144
     },
     "E18": {
-      "status": "IMPLEMENTED_PENDING_CI",
+      "status": "PASS_STATIC_BROWSER_CI",
       "frameworkChapterId": "m_s01",
       "logicalModuleId": "m_p09",
       "lessons": 8,
       "theorySlides": 160,
-      "updatedAt": "2026-09-27"
+      "updatedAt": "2026-09-27",
+      "verifiedAt": "2026-09-27",
+      "pr": 145,
+      "gateResults": {
+        "academic": "PASS",
+        "runtimeStatic": "PASS",
+        "browser": "PASS",
+        "developmentFastCI": "PASS"
+      }
     }
   }
 }
