@@ -1,0 +1,3079 @@
+{
+  "schema": "bauman_math_content_bundle_v1",
+  "bundleId": "e19_mp10_russian_linear_algebra_theory_bundle",
+  "frameworkChapterId": "m_s02",
+  "moduleId": "m_p10",
+  "records": [
+    {
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T01-vectors-basis",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "lessonTitle": "m_p10 · §1.1 · Vector, tọa độ và cơ sở trong ngôn ngữ đại số tuyến tính Nga",
+      "title": "m_p10 · §1.1 · Vector, tọa độ và cơ sở trong ngôn ngữ đại số tuyến tính Nga",
+      "programLectureId": "MATH-PROG-L01-linear-algebra-basic",
+      "programLectureIds": [
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "roadmapRole": "m_p10_t01",
+      "baumanFocus": "Russian linear algebra bridge for preparatory engineering study, seminar defense, AI and control foundations.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_p10",
+        "frameworkChapterId": "m_s02",
+        "logicalLessonId": "m_p10_t01",
+        "frameworkAnchor": "m_p10_t01",
+        "programLectureId": "MATH-PROG-L01-linear-algebra-basic",
+        "commonBridgeProgramLectureId": "MATH-PROG-L01-linear-algebra-basic",
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e19_russian_linear_algebra_authoring"
+      },
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "vectors-basis"
+      ],
+      "speechDrill": {
+        "language": "ru-RU",
+        "mode": "read_solve_defend",
+        "requiredStressAware": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_p10 · §1.1 · Vector, tọa độ và cơ sở trong ngôn ngữ đại số tuyến tính Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "Đại số tuyến tính dự bị theo ngôn ngữ Nga kỹ thuật: hiểu bản chất toán, đọc ký hiệu, nói điều kiện và bảo vệ lời giải."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Làm chủ vector, tọa độ và cơ sở trong ngôn ngữ đại số tuyến tính nga ở mức có thể giải và vấn đáp bằng tiếng Nga."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài học",
+              "items": [
+                "Nhận diện thuật ngữ Nga–Việt–Anh.",
+                "Đọc và giải thích đúng ký hiệu/công thức.",
+                "Kiểm tra điều kiện/kích thước trước thao tác.",
+                "Trình bày lời giải 30–90 giây và trả lời phản biện."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Thuật ngữ Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Từ khóa",
+              "items": [
+                "ве́ктор — vector — vector",
+                "координа́ты — tọa độ — coordinates",
+                "ба́зис — cơ sở — basis",
+                "лине́йная комбина́ция — tổ hợp tuyến tính — linear combination",
+                "лине́йная зави́симость — phụ thuộc tuyến tính — linear dependence",
+                "лине́йная незави́симость — độc lập tuyến tính — linear independence",
+                "простра́нство — không gian — space",
+                "разме́рность — số chiều — dimension"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "pronunciation_drill",
+          "title": "Trọng âm và phát âm kỹ thuật",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Đọc chậm, đúng trọng âm",
+              "items": [
+                "ве́ктор · vector",
+                "координа́ты · tọa độ",
+                "ба́зис · cơ sở",
+                "лине́йная комбина́ция · tổ hợp tuyến tính",
+                "лине́йная зави́симость · phụ thuộc tuyến tính",
+                "лине́йная незави́симость · độc lập tuyến tính",
+                "простра́нство · không gian",
+                "разме́рность · số chiều"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Quy tắc",
+              "body": "Đọc thuật ngữ theo cụm toán học; ưu tiên chính xác hơn tốc độ."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Ký hiệu và công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Tổ hợp tuyến tính",
+              "body": "v = α₁b₁ + ⋯ + αₙbₙ\nCác αᵢ là tọa độ của v trong cơ sở B=(b₁,…,bₙ) khi B là một basis."
+            },
+            {
+              "type": "formula",
+              "title": "Điều kiện độc lập",
+              "body": "α₁b₁+⋯+αₙbₙ=0 ⇒ α₁=⋯=αₙ=0\nĐịnh nghĩa tuyến tính độc lập."
+            },
+            {
+              "type": "formula",
+              "title": "Tọa độ trong basis",
+              "body": "[v]ᴮ = (α₁,…,αₙ)ᵀ\nVector tọa độ phụ thuộc vào cơ sở đã chọn, còn vector hình học là cùng một đối tượng."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Trước khi lấy tọa độ [v]ᴮ phải biết B thực sự là một cơ sở của không gian đang xét."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Trước khi biến đổi",
+              "items": [
+                "Đối tượng đúng loại chưa?",
+                "Kích thước có khớp không?",
+                "Giả thiết của định lý/công thức có đủ không?",
+                "Kết quả kỳ vọng có đúng shape/dimension không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "phrase_pattern",
+          "title": "Mẫu câu seminar tiếng Nga",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Mẫu",
+              "items": [
+                "Представьте вектор v в данном базисе.",
+                "Проверьте линейную независимость векторов.",
+                "Найдите координаты вектора в базисе B."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "symbol_to_speech",
+          "title": "Đọc ký hiệu thành lời",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cách luyện",
+              "body": "Chọn công thức «v = α₁b₁ + ⋯ + αₙbₙ», đọc tên đối tượng, quan hệ chính và điều kiện bằng tiếng Nga; sau đó diễn giải lại bằng tiếng Việt."
+            }
+          ]
+        },
+        {
+          "role": "reading_example",
+          "title": "Đọc đề và phân loại dạng bài",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "B={(1,0),(1,1)}, v=(3,2). Giải α(1,0)+β(1,1)=(3,2) ⇒ β=2, α=1, nên [v]ᴮ=(1,2)ᵀ."
+            },
+            {
+              "type": "text",
+              "title": "Phân loại",
+              "body": "Xác định câu lệnh, dữ kiện, điều kiện và đầu ra trước khi tính."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Lời giải mẫu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu trả lời",
+              "body": "Вектор v представляется как b один плюс два b два. Поэтому его координаты в базисе B равны один и два."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Bắt buộc",
+              "items": [
+                "Nêu dữ kiện/đối tượng.",
+                "Nêu công thức hoặc định lý.",
+                "Nêu điều kiện hợp lệ.",
+                "Chốt kết quả bằng câu hoàn chỉnh."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Thuật toán giải",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Quy trình",
+              "items": [
+                "Xác định không gian và số chiều.",
+                "Kiểm tra tập B có độc lập và sinh không gian.",
+                "Lập phương trình v=Σαᵢbᵢ.",
+                "Giải α và viết [v]ᴮ."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "oral_response",
+          "title": "Vấn đáp 30–90 giây",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Prompt",
+              "body": "Trình bày vector, tọa độ và cơ sở trong ngôn ngữ đại số tuyến tính nga bằng tiếng Nga, dùng ít nhất 3 thuật ngữ và 1 công thức."
+            },
+            {
+              "type": "text",
+              "title": "Mẫu",
+              "body": "Вектор v представляется как b один плюс два b два. Поэтому его координаты в базисе B равны один и два."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy logic / phản ví dụ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Không được gọi một tập vector là basis chỉ vì có đúng n vector trong ℝⁿ; còn phải kiểm tra độc lập tuyến tính/spanning."
+            }
+          ]
+        },
+        {
+          "role": "dimension_logic_gate",
+          "title": "Cổng dimension / logic",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tự kiểm",
+              "items": [
+                "Dimension/rank có vượt giới hạn không?",
+                "Phép nhân/biến đổi có hợp shape không?",
+                "Có nhầm điều kiện cần với điều kiện đủ không?",
+                "Có suy luận từ ví dụ riêng sang kết luận tổng quát không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ AI – điều khiển – Bauman",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Vector trạng thái, vector đặc trưng và embedding đều dựa trên cùng ngôn ngữ vector–basis–coordinates; đổi basis tương ứng đổi cách biểu diễn dữ liệu."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng giả thiết trước kết luận",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Nêu rõ không gian/field nếu cần.",
+                "Nêu basis/shape/rank khi chúng ảnh hưởng kết quả.",
+                "Không dùng inverse/eigen/projection ngoài điều kiện.",
+                "Tách kết luận toán học khỏi trực giác ứng dụng."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi trong seminar",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu sửa",
+              "body": "Я использовал набор векторов как базис без проверки независимости. Сначала проверю ранг, затем пересчитаю координаты."
+            },
+            {
+              "type": "text",
+              "title": "Nguyên tắc",
+              "body": "Nói rõ lỗi → điều kiện đúng → tính/suy luận lại → kiểm lại kết luận."
+            }
+          ]
+        },
+        {
+          "role": "mini_drill",
+          "title": "Drill 5 phút",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "5 vòng",
+              "items": [
+                "Đọc 8 thuật ngữ có trọng âm.",
+                "Đọc 3 công thức thành lời.",
+                "Làm một kiểm tra shape/rank.",
+                "Giải một ví dụ nhỏ.",
+                "Nói một câu sửa lỗi bằng tiếng Nga."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Câu hỏi giảng viên",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Q&A",
+              "items": [
+                {
+                  "q": "Hai vector khác nhau có thể có cùng bộ tọa độ không?",
+                  "a": "Có, nếu chúng được viết trong hai cơ sở/không gian khác nhau. Tọa độ chỉ có nghĩa khi kèm basis."
+                },
+                {
+                  "q": "Điều kiện quan trọng nhất của bài là gì?",
+                  "a": "Trước khi lấy tọa độ [v]ᴮ phải biết B thực sự là một cơ sở của không gian đang xét."
+                },
+                {
+                  "q": "Bẫy cần tránh?",
+                  "a": "Không được gọi một tập vector là basis chỉ vì có đúng n vector trong ℝⁿ; còn phải kiểm tra độc lập tuyến tính/spanning."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.1",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Các αᵢ là tọa độ của v trong cơ sở B=(b₁,…,bₙ) khi B là một basis.",
+                "Trước khi lấy tọa độ [v]ᴮ phải biết B thực sự là một cơ sở của không gian đang xét.",
+                "Không được gọi một tập vector là basis chỉ vì có đúng n vector trong ℝⁿ; còn phải kiểm tra độc lập tuyến tính/spanning.",
+                "Có thể đọc–giải–kiểm–bảo vệ bằng tiếng Nga kỹ thuật."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Exit ticket",
+              "body": "Nói một câu tiếng Nga chứa «ве́ктор» và giải thích một công thức của bài."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T02-matrix-operations",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "lessonTitle": "m_p10 · §1.2 · Ma trận, hàng, cột và phép toán ma trận bằng tiếng Nga",
+      "title": "m_p10 · §1.2 · Ma trận, hàng, cột và phép toán ma trận bằng tiếng Nga",
+      "programLectureId": "MATH-PROG-L01-linear-algebra-basic",
+      "programLectureIds": [
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "roadmapRole": "m_p10_t02",
+      "baumanFocus": "Russian linear algebra bridge for preparatory engineering study, seminar defense, AI and control foundations.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_p10",
+        "frameworkChapterId": "m_s02",
+        "logicalLessonId": "m_p10_t02",
+        "frameworkAnchor": "m_p10_t02",
+        "programLectureId": "MATH-PROG-L01-linear-algebra-basic",
+        "commonBridgeProgramLectureId": "MATH-PROG-L01-linear-algebra-basic",
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e19_russian_linear_algebra_authoring"
+      },
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "matrix-operations"
+      ],
+      "speechDrill": {
+        "language": "ru-RU",
+        "mode": "read_solve_defend",
+        "requiredStressAware": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_p10 · §1.2 · Ma trận, hàng, cột và phép toán ma trận bằng tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "Đại số tuyến tính dự bị theo ngôn ngữ Nga kỹ thuật: hiểu bản chất toán, đọc ký hiệu, nói điều kiện và bảo vệ lời giải."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Làm chủ ma trận, hàng, cột và phép toán ma trận bằng tiếng nga ở mức có thể giải và vấn đáp bằng tiếng Nga."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài học",
+              "items": [
+                "Nhận diện thuật ngữ Nga–Việt–Anh.",
+                "Đọc và giải thích đúng ký hiệu/công thức.",
+                "Kiểm tra điều kiện/kích thước trước thao tác.",
+                "Trình bày lời giải 30–90 giây và trả lời phản biện."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Thuật ngữ Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Từ khóa",
+              "items": [
+                "матри́ца — ma trận — matrix",
+                "стро́ка — hàng — row",
+                "столбе́ц — cột — column",
+                "разме́р — kích thước — shape/dimension",
+                "транспони́рованная ма́трица — ma trận chuyển vị — transpose",
+                "произведе́ние ма́триц — tích ma trận — matrix product",
+                "едини́чная ма́трица — ma trận đơn vị — identity matrix",
+                "нулева́я ма́трица — ma trận không — zero matrix"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "pronunciation_drill",
+          "title": "Trọng âm và phát âm kỹ thuật",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Đọc chậm, đúng trọng âm",
+              "items": [
+                "матри́ца · ma trận",
+                "стро́ка · hàng",
+                "столбе́ц · cột",
+                "разме́р · kích thước",
+                "транспони́рованная ма́трица · ma trận chuyển vị",
+                "произведе́ние ма́триц · tích ma trận",
+                "едини́чная ма́трица · ma trận đơn vị",
+                "нулева́я ма́трица · ma trận không"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Quy tắc",
+              "body": "Đọc thuật ngữ theo cụm toán học; ưu tiên chính xác hơn tốc độ."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Ký hiệu và công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Kích thước tích",
+              "body": "A∈ℝ^{m×n}, B∈ℝ^{n×p} ⇒ AB∈ℝ^{m×p}\nSố cột A phải bằng số hàng B."
+            },
+            {
+              "type": "formula",
+              "title": "Phần tử tích",
+              "body": "(AB)ᵢⱼ = Σₖ aᵢₖbₖⱼ\nHàng i của A nhân vô hướng với cột j của B."
+            },
+            {
+              "type": "formula",
+              "title": "Chuyển vị tích",
+              "body": "(AB)ᵀ = BᵀAᵀ\nKhi chuyển vị tích phải đảo thứ tự nhân."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Luôn khóa shape trước phép cộng/nhân; A+B cần cùng kích thước, AB cần inner dimensions khớp."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Trước khi biến đổi",
+              "items": [
+                "Đối tượng đúng loại chưa?",
+                "Kích thước có khớp không?",
+                "Giả thiết của định lý/công thức có đủ không?",
+                "Kết quả kỳ vọng có đúng shape/dimension không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "phrase_pattern",
+          "title": "Mẫu câu seminar tiếng Nga",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Mẫu",
+              "items": [
+                "Определите размер матрицы.",
+                "Выполните умножение матриц A и B.",
+                "Найдите транспонированную матрицу."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "symbol_to_speech",
+          "title": "Đọc ký hiệu thành lời",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cách luyện",
+              "body": "Chọn công thức «A∈ℝ^{m×n}, B∈ℝ^{n×p} ⇒ AB∈ℝ^{m×p}», đọc tên đối tượng, quan hệ chính và điều kiện bằng tiếng Nga; sau đó diễn giải lại bằng tiếng Việt."
+            }
+          ]
+        },
+        {
+          "role": "reading_example",
+          "title": "Đọc đề và phân loại dạng bài",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "A∈ℝ^{2×3}, B∈ℝ^{3×4}; AB tồn tại và có kích thước 2×4, còn BA không tồn tại vì 4? Không: B có 4 cột, A có 2 hàng nên 4≠2."
+            },
+            {
+              "type": "text",
+              "title": "Phân loại",
+              "body": "Xác định câu lệnh, dữ kiện, điều kiện và đầu ra trước khi tính."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Lời giải mẫu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu trả lời",
+              "body": "Матрица A имеет размер два на три, B — три на четыре. Произведение AB существует и имеет размер два на четыре."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Bắt buộc",
+              "items": [
+                "Nêu dữ kiện/đối tượng.",
+                "Nêu công thức hoặc định lý.",
+                "Nêu điều kiện hợp lệ.",
+                "Chốt kết quả bằng câu hoàn chỉnh."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Thuật toán giải",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Quy trình",
+              "items": [
+                "Ghi shape A và B.",
+                "Kiểm tra phép toán hợp lệ.",
+                "Tính từng phần tử theo row×column.",
+                "Kiểm shape kết quả và đối chiếu ví dụ nhỏ."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "oral_response",
+          "title": "Vấn đáp 30–90 giây",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Prompt",
+              "body": "Trình bày ma trận, hàng, cột và phép toán ma trận bằng tiếng nga bằng tiếng Nga, dùng ít nhất 3 thuật ngữ và 1 công thức."
+            },
+            {
+              "type": "text",
+              "title": "Mẫu",
+              "body": "Матрица A имеет размер два на три, B — три на четыре. Произведение AB существует и имеет размер два на четыре."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy logic / phản ví dụ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "AB và BA nói chung khác nhau, thậm chí một trong hai tích có thể không tồn tại. Không được suy từ tích vô hướng sang giao hoán ma trận."
+            }
+          ]
+        },
+        {
+          "role": "dimension_logic_gate",
+          "title": "Cổng dimension / logic",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tự kiểm",
+              "items": [
+                "Dimension/rank có vượt giới hạn không?",
+                "Phép nhân/biến đổi có hợp shape không?",
+                "Có nhầm điều kiện cần với điều kiện đủ không?",
+                "Có suy luận từ ví dụ riêng sang kết luận tổng quát không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ AI – điều khiển – Bauman",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Shape checking là cổng an toàn cho NumPy, mạng nơ-ron, state-space và mọi pipeline dữ liệu ma trận."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng giả thiết trước kết luận",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Nêu rõ không gian/field nếu cần.",
+                "Nêu basis/shape/rank khi chúng ảnh hưởng kết quả.",
+                "Không dùng inverse/eigen/projection ngoài điều kiện.",
+                "Tách kết luận toán học khỏi trực giác ứng dụng."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi trong seminar",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu sửa",
+              "body": "Я перепутал число строк и столбцов. Исправляю размеры и только после этого выполняю умножение."
+            },
+            {
+              "type": "text",
+              "title": "Nguyên tắc",
+              "body": "Nói rõ lỗi → điều kiện đúng → tính/suy luận lại → kiểm lại kết luận."
+            }
+          ]
+        },
+        {
+          "role": "mini_drill",
+          "title": "Drill 5 phút",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "5 vòng",
+              "items": [
+                "Đọc 8 thuật ngữ có trọng âm.",
+                "Đọc 3 công thức thành lời.",
+                "Làm một kiểm tra shape/rank.",
+                "Giải một ví dụ nhỏ.",
+                "Nói một câu sửa lỗi bằng tiếng Nga."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Câu hỏi giảng viên",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Q&A",
+              "items": [
+                {
+                  "q": "Từ AB tồn tại có suy ra BA tồn tại không?",
+                  "a": "Không. Điều kiện AB là n_Acols=m_Brows; điều kiện BA là n_Bcols=m_Arows, hai điều kiện độc lập."
+                },
+                {
+                  "q": "Điều kiện quan trọng nhất của bài là gì?",
+                  "a": "Luôn khóa shape trước phép cộng/nhân; A+B cần cùng kích thước, AB cần inner dimensions khớp."
+                },
+                {
+                  "q": "Bẫy cần tránh?",
+                  "a": "AB và BA nói chung khác nhau, thậm chí một trong hai tích có thể không tồn tại. Không được suy từ tích vô hướng sang giao hoán ma trận."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.2",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Số cột A phải bằng số hàng B.",
+                "Luôn khóa shape trước phép cộng/nhân; A+B cần cùng kích thước, AB cần inner dimensions khớp.",
+                "AB và BA nói chung khác nhau, thậm chí một trong hai tích có thể không tồn tại. Không được suy từ tích vô hướng sang giao hoán ma trận.",
+                "Có thể đọc–giải–kiểm–bảo vệ bằng tiếng Nga kỹ thuật."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Exit ticket",
+              "body": "Nói một câu tiếng Nga chứa «матри́ца» và giải thích một công thức của bài."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T03-det-rank-inverse",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "lessonTitle": "m_p10 · §1.3 · Định thức, hạng ma trận và khả nghịch bằng tiếng Nga",
+      "title": "m_p10 · §1.3 · Định thức, hạng ma trận và khả nghịch bằng tiếng Nga",
+      "programLectureId": "MATH-PROG-L01-linear-algebra-basic",
+      "programLectureIds": [
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "roadmapRole": "m_p10_t03",
+      "baumanFocus": "Russian linear algebra bridge for preparatory engineering study, seminar defense, AI and control foundations.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_p10",
+        "frameworkChapterId": "m_s02",
+        "logicalLessonId": "m_p10_t03",
+        "frameworkAnchor": "m_p10_t03",
+        "programLectureId": "MATH-PROG-L01-linear-algebra-basic",
+        "commonBridgeProgramLectureId": "MATH-PROG-L01-linear-algebra-basic",
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e19_russian_linear_algebra_authoring"
+      },
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "det-rank-inverse"
+      ],
+      "speechDrill": {
+        "language": "ru-RU",
+        "mode": "read_solve_defend",
+        "requiredStressAware": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_p10 · §1.3 · Định thức, hạng ma trận và khả nghịch bằng tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "Đại số tuyến tính dự bị theo ngôn ngữ Nga kỹ thuật: hiểu bản chất toán, đọc ký hiệu, nói điều kiện và bảo vệ lời giải."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Làm chủ định thức, hạng ma trận và khả nghịch bằng tiếng nga ở mức có thể giải và vấn đáp bằng tiếng Nga."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài học",
+              "items": [
+                "Nhận diện thuật ngữ Nga–Việt–Anh.",
+                "Đọc và giải thích đúng ký hiệu/công thức.",
+                "Kiểm tra điều kiện/kích thước trước thao tác.",
+                "Trình bày lời giải 30–90 giây và trả lời phản biện."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Thuật ngữ Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Từ khóa",
+              "items": [
+                "определи́тель — định thức — determinant",
+                "ра́нг — hạng — rank",
+                "обрати́мая ма́трица — ma trận khả nghịch — invertible matrix",
+                "обра́тная ма́трица — ma trận nghịch đảo — inverse matrix",
+                "вырожденная ма́трица — ma trận suy biến — singular matrix",
+                "невырожденная ма́трица — ma trận không suy biến — nonsingular matrix",
+                "мино́р — minor — minor",
+                "лине́йно незави́симые стро́ки — các hàng độc lập tuyến tính — linearly independent rows"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "pronunciation_drill",
+          "title": "Trọng âm và phát âm kỹ thuật",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Đọc chậm, đúng trọng âm",
+              "items": [
+                "определи́тель · định thức",
+                "ра́нг · hạng",
+                "обрати́мая ма́трица · ma trận khả nghịch",
+                "обра́тная ма́трица · ma trận nghịch đảo",
+                "вырожденная ма́трица · ma trận suy biến",
+                "невырожденная ма́трица · ma trận không suy biến",
+                "мино́р · minor",
+                "лине́йно незави́симые стро́ки · các hàng độc lập tuyến tính"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Quy tắc",
+              "body": "Đọc thuật ngữ theo cụm toán học; ưu tiên chính xác hơn tốc độ."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Ký hiệu và công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Khả nghịch",
+              "body": "A∈ℝ^{n×n}: det(A)≠0 ⇔ rank(A)=n ⇔ A⁻¹ существует\nBa điều kiện tương đương cho ma trận vuông."
+            },
+            {
+              "type": "formula",
+              "title": "Nghịch đảo",
+              "body": "AA⁻¹=A⁻¹A=I\nĐịnh nghĩa ma trận nghịch đảo."
+            },
+            {
+              "type": "formula",
+              "title": "Định thức tích",
+              "body": "det(AB)=det(A)det(B)\nCho ma trận vuông cùng cấp; suy ra tích của hai ma trận khả nghịch cũng khả nghịch."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Chỉ nói A⁻¹ khi A vuông; trước khi dùng công thức nghịch đảo phải kiểm det(A)≠0 hoặc rank đầy đủ."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Trước khi biến đổi",
+              "items": [
+                "Đối tượng đúng loại chưa?",
+                "Kích thước có khớp không?",
+                "Giả thiết của định lý/công thức có đủ không?",
+                "Kết quả kỳ vọng có đúng shape/dimension không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "phrase_pattern",
+          "title": "Mẫu câu seminar tiếng Nga",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Mẫu",
+              "items": [
+                "Вычислите определитель матрицы.",
+                "Найдите ранг матрицы.",
+                "Проверьте, существует ли обратная матрица."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "symbol_to_speech",
+          "title": "Đọc ký hiệu thành lời",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cách luyện",
+              "body": "Chọn công thức «A∈ℝ^{n×n}: det(A)≠0 ⇔ rank(A)=n ⇔ A⁻¹ существует», đọc tên đối tượng, quan hệ chính và điều kiện bằng tiếng Nga; sau đó diễn giải lại bằng tiếng Việt."
+            }
+          ]
+        },
+        {
+          "role": "reading_example",
+          "title": "Đọc đề và phân loại dạng bài",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "A=[[1,2],[2,4]] có det=0, rank=1 nên suy biến và không có nghịch đảo."
+            },
+            {
+              "type": "text",
+              "title": "Phân loại",
+              "body": "Xác định câu lệnh, dữ kiện, điều kiện và đầu ra trước khi tính."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Lời giải mẫu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu trả lời",
+              "body": "Определитель матрицы A равен нулю. Ранг равен единице, поэтому матрица вырождена и обратной матрицы не существует."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Bắt buộc",
+              "items": [
+                "Nêu dữ kiện/đối tượng.",
+                "Nêu công thức hoặc định lý.",
+                "Nêu điều kiện hợp lệ.",
+                "Chốt kết quả bằng câu hoàn chỉnh."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Thuật toán giải",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Quy trình",
+              "items": [
+                "Kiểm tra shape vuông nếu cần determinant/inverse.",
+                "Biến đổi sơ cấp hoặc tính determinant phù hợp.",
+                "Xác định rank từ số pivot.",
+                "Kết luận khả nghịch/suy biến với điều kiện rõ."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "oral_response",
+          "title": "Vấn đáp 30–90 giây",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Prompt",
+              "body": "Trình bày định thức, hạng ma trận và khả nghịch bằng tiếng nga bằng tiếng Nga, dùng ít nhất 3 thuật ngữ và 1 công thức."
+            },
+            {
+              "type": "text",
+              "title": "Mẫu",
+              "body": "Определитель матрицы A равен нулю. Ранг равен единице, поэтому матрица вырождена и обратной матрицы не существует."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy logic / phản ví dụ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Rank được định nghĩa cho cả ma trận chữ nhật, còn determinant chỉ cho ma trận vuông. Không dùng det để kiểm rank của ma trận không vuông."
+            }
+          ]
+        },
+        {
+          "role": "dimension_logic_gate",
+          "title": "Cổng dimension / logic",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tự kiểm",
+              "items": [
+                "Dimension/rank có vượt giới hạn không?",
+                "Phép nhân/biến đổi có hợp shape không?",
+                "Có nhầm điều kiện cần với điều kiện đủ không?",
+                "Có suy luận từ ví dụ riêng sang kết luận tổng quát không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ AI – điều khiển – Bauman",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Rank deficiency xuất hiện trong cảm biến trùng thông tin, hệ phương trình dư/thừa và feature đa cộng tuyến."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng giả thiết trước kết luận",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Nêu rõ không gian/field nếu cần.",
+                "Nêu basis/shape/rank khi chúng ảnh hưởng kết quả.",
+                "Không dùng inverse/eigen/projection ngoài điều kiện.",
+                "Tách kết luận toán học khỏi trực giác ứng dụng."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi trong seminar",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu sửa",
+              "body": "Я применил определитель к прямоугольной матрице. Это неверно. Для неё проверю ранг методом Гаусса."
+            },
+            {
+              "type": "text",
+              "title": "Nguyên tắc",
+              "body": "Nói rõ lỗi → điều kiện đúng → tính/suy luận lại → kiểm lại kết luận."
+            }
+          ]
+        },
+        {
+          "role": "mini_drill",
+          "title": "Drill 5 phút",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "5 vòng",
+              "items": [
+                "Đọc 8 thuật ngữ có trọng âm.",
+                "Đọc 3 công thức thành lời.",
+                "Làm một kiểm tra shape/rank.",
+                "Giải một ví dụ nhỏ.",
+                "Nói một câu sửa lỗi bằng tiếng Nga."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Câu hỏi giảng viên",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Q&A",
+              "items": [
+                {
+                  "q": "Ma trận 3×5 có thể có rank 5 không?",
+                  "a": "Không. rank(A)≤min(3,5)=3."
+                },
+                {
+                  "q": "Điều kiện quan trọng nhất của bài là gì?",
+                  "a": "Chỉ nói A⁻¹ khi A vuông; trước khi dùng công thức nghịch đảo phải kiểm det(A)≠0 hoặc rank đầy đủ."
+                },
+                {
+                  "q": "Bẫy cần tránh?",
+                  "a": "Rank được định nghĩa cho cả ma trận chữ nhật, còn determinant chỉ cho ma trận vuông. Không dùng det để kiểm rank của ma trận không vuông."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.3",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Ba điều kiện tương đương cho ma trận vuông.",
+                "Chỉ nói A⁻¹ khi A vuông; trước khi dùng công thức nghịch đảo phải kiểm det(A)≠0 hoặc rank đầy đủ.",
+                "Rank được định nghĩa cho cả ma trận chữ nhật, còn determinant chỉ cho ma trận vuông. Không dùng det để kiểm rank của ma trận không vuông.",
+                "Có thể đọc–giải–kiểm–bảo vệ bằng tiếng Nga kỹ thuật."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Exit ticket",
+              "body": "Nói một câu tiếng Nga chứa «определи́тель» và giải thích một công thức của bài."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T04-gaussian-elimination",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "lessonTitle": "m_p10 · §1.4 · Hệ phương trình tuyến tính và phương pháp Gauss bằng tiếng Nga",
+      "title": "m_p10 · §1.4 · Hệ phương trình tuyến tính và phương pháp Gauss bằng tiếng Nga",
+      "programLectureId": "MATH-PROG-L01-linear-algebra-basic",
+      "programLectureIds": [
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "roadmapRole": "m_p10_t04",
+      "baumanFocus": "Russian linear algebra bridge for preparatory engineering study, seminar defense, AI and control foundations.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_p10",
+        "frameworkChapterId": "m_s02",
+        "logicalLessonId": "m_p10_t04",
+        "frameworkAnchor": "m_p10_t04",
+        "programLectureId": "MATH-PROG-L01-linear-algebra-basic",
+        "commonBridgeProgramLectureId": "MATH-PROG-L01-linear-algebra-basic",
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e19_russian_linear_algebra_authoring"
+      },
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "gaussian-elimination"
+      ],
+      "speechDrill": {
+        "language": "ru-RU",
+        "mode": "read_solve_defend",
+        "requiredStressAware": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_p10 · §1.4 · Hệ phương trình tuyến tính và phương pháp Gauss bằng tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "Đại số tuyến tính dự bị theo ngôn ngữ Nga kỹ thuật: hiểu bản chất toán, đọc ký hiệu, nói điều kiện và bảo vệ lời giải."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Làm chủ hệ phương trình tuyến tính và phương pháp gauss bằng tiếng nga ở mức có thể giải và vấn đáp bằng tiếng Nga."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài học",
+              "items": [
+                "Nhận diện thuật ngữ Nga–Việt–Anh.",
+                "Đọc và giải thích đúng ký hiệu/công thức.",
+                "Kiểm tra điều kiện/kích thước trước thao tác.",
+                "Trình bày lời giải 30–90 giây và trả lời phản biện."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Thuật ngữ Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Từ khóa",
+              "items": [
+                "систе́ма лине́йных уравне́ний — hệ phương trình tuyến tính — linear system",
+                "расши́ренная ма́трица — ma trận mở rộng — augmented matrix",
+                "мето́д Га́усса — phương pháp Gauss — Gaussian elimination",
+                "элемента́рное преобразова́ние — biến đổi sơ cấp — elementary row operation",
+                "веду́щий элеме́нт — phần tử dẫn/pivot — pivot",
+                "совме́стная систе́ма — hệ tương thích — consistent system",
+                "несовме́стная систе́ма — hệ vô nghiệm — inconsistent system",
+                "свобо́дная пере́менная — biến tự do — free variable"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "pronunciation_drill",
+          "title": "Trọng âm và phát âm kỹ thuật",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Đọc chậm, đúng trọng âm",
+              "items": [
+                "систе́ма лине́йных уравне́ний · hệ phương trình tuyến tính",
+                "расши́ренная ма́трица · ma trận mở rộng",
+                "мето́д Га́усса · phương pháp Gauss",
+                "элемента́рное преобразова́ние · biến đổi sơ cấp",
+                "веду́щий элеме́нт · phần tử dẫn/pivot",
+                "совме́стная систе́ма · hệ tương thích",
+                "несовме́стная систе́ма · hệ vô nghiệm",
+                "свобо́дная пере́менная · biến tự do"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Quy tắc",
+              "body": "Đọc thuật ngữ theo cụm toán học; ưu tiên chính xác hơn tốc độ."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Ký hiệu và công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Dạng ma trận",
+              "body": "Ax=b\nA là ma trận hệ số, x vector ẩn, b vế phải."
+            },
+            {
+              "type": "formula",
+              "title": "Tiêu chuẩn hạng",
+              "body": "rank(A)=rank([A|b]) ⇔ hệ có nghiệm\nRouché–Capelli cho tính tương thích."
+            },
+            {
+              "type": "formula",
+              "title": "Nghiệm duy nhất",
+              "body": "rank(A)=rank([A|b])=n\nVới n ẩn, hệ tương thích và rank bằng n thì nghiệm duy nhất."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Mọi phép biến đổi sơ cấp phải giữ tập nghiệm; cần theo dõi hàng dạng 0…0|c với c≠0 để phát hiện vô nghiệm."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Trước khi biến đổi",
+              "items": [
+                "Đối tượng đúng loại chưa?",
+                "Kích thước có khớp không?",
+                "Giả thiết của định lý/công thức có đủ không?",
+                "Kết quả kỳ vọng có đúng shape/dimension không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "phrase_pattern",
+          "title": "Mẫu câu seminar tiếng Nga",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Mẫu",
+              "items": [
+                "Решите систему методом Гаусса.",
+                "Запишите расширенную матрицу.",
+                "Определите число свободных переменных."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "symbol_to_speech",
+          "title": "Đọc ký hiệu thành lời",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cách luyện",
+              "body": "Chọn công thức «Ax=b», đọc tên đối tượng, quan hệ chính và điều kiện bằng tiếng Nga; sau đó diễn giải lại bằng tiếng Việt."
+            }
+          ]
+        },
+        {
+          "role": "reading_example",
+          "title": "Đọc đề và phân loại dạng bài",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "Hệ x+y=2, 2x+2y=4 có rank=1<n=2 nên vô số nghiệm: x=2−t, y=t."
+            },
+            {
+              "type": "text",
+              "title": "Phân loại",
+              "body": "Xác định câu lệnh, dữ kiện, điều kiện và đầu ra trước khi tính."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Lời giải mẫu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu trả lời",
+              "body": "После исключения получаем одну ведущую переменную и одну свободную. Система совместна и имеет бесконечно много решений."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Bắt buộc",
+              "items": [
+                "Nêu dữ kiện/đối tượng.",
+                "Nêu công thức hoặc định lý.",
+                "Nêu điều kiện hợp lệ.",
+                "Chốt kết quả bằng câu hoàn chỉnh."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Thuật toán giải",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Quy trình",
+              "items": [
+                "Lập augmented matrix [A|b].",
+                "Chọn pivot và khử dưới/trên.",
+                "Theo dõi zero rows và pivot columns.",
+                "Kết luận unique/infinite/none rồi back-substitute."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "oral_response",
+          "title": "Vấn đáp 30–90 giây",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Prompt",
+              "body": "Trình bày hệ phương trình tuyến tính và phương pháp gauss bằng tiếng nga bằng tiếng Nga, dùng ít nhất 3 thuật ngữ và 1 công thức."
+            },
+            {
+              "type": "text",
+              "title": "Mẫu",
+              "body": "После исключения получаем одну ведущую переменную и одну свободную. Система совместна и имеет бесконечно много решений."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy logic / phản ví dụ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Không được chia một hàng cho pivot bằng 0; cần đổi hàng hoặc chọn pivot khác. Trong tính số, pivot quá nhỏ còn gây mất ổn định."
+            }
+          ]
+        },
+        {
+          "role": "dimension_logic_gate",
+          "title": "Cổng dimension / logic",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tự kiểm",
+              "items": [
+                "Dimension/rank có vượt giới hạn không?",
+                "Phép nhân/biến đổi có hợp shape không?",
+                "Có nhầm điều kiện cần với điều kiện đủ không?",
+                "Có suy luận từ ví dụ riêng sang kết luận tổng quát không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ AI – điều khiển – Bauman",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Gaussian elimination là lõi của solver tuyến tính; tư duy pivot/rank được dùng trong estimation, calibration và state estimation."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng giả thiết trước kết luận",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Nêu rõ không gian/field nếu cần.",
+                "Nêu basis/shape/rank khi chúng ảnh hưởng kết quả.",
+                "Không dùng inverse/eigen/projection ngoài điều kiện.",
+                "Tách kết luận toán học khỏi trực giác ứng dụng."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi trong seminar",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu sửa",
+              "body": "Я разделил строку на нулевой ведущий элемент. Нужно переставить строки и выбрать ненулевой pivot."
+            },
+            {
+              "type": "text",
+              "title": "Nguyên tắc",
+              "body": "Nói rõ lỗi → điều kiện đúng → tính/suy luận lại → kiểm lại kết luận."
+            }
+          ]
+        },
+        {
+          "role": "mini_drill",
+          "title": "Drill 5 phút",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "5 vòng",
+              "items": [
+                "Đọc 8 thuật ngữ có trọng âm.",
+                "Đọc 3 công thức thành lời.",
+                "Làm một kiểm tra shape/rank.",
+                "Giải một ví dụ nhỏ.",
+                "Nói một câu sửa lỗi bằng tiếng Nga."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Câu hỏi giảng viên",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Q&A",
+              "items": [
+                {
+                  "q": "Một hàng [0 0 0 | 1] trong augmented matrix nói gì?",
+                  "a": "Nó tương đương 0=1, nên hệ vô nghiệm."
+                },
+                {
+                  "q": "Điều kiện quan trọng nhất của bài là gì?",
+                  "a": "Mọi phép biến đổi sơ cấp phải giữ tập nghiệm; cần theo dõi hàng dạng 0…0|c với c≠0 để phát hiện vô nghiệm."
+                },
+                {
+                  "q": "Bẫy cần tránh?",
+                  "a": "Không được chia một hàng cho pivot bằng 0; cần đổi hàng hoặc chọn pivot khác. Trong tính số, pivot quá nhỏ còn gây mất ổn định."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.4",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "A là ma trận hệ số, x vector ẩn, b vế phải.",
+                "Mọi phép biến đổi sơ cấp phải giữ tập nghiệm; cần theo dõi hàng dạng 0…0|c với c≠0 để phát hiện vô nghiệm.",
+                "Không được chia một hàng cho pivot bằng 0; cần đổi hàng hoặc chọn pivot khác. Trong tính số, pivot quá nhỏ còn gây mất ổn định.",
+                "Có thể đọc–giải–kiểm–bảo vệ bằng tiếng Nga kỹ thuật."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Exit ticket",
+              "body": "Nói một câu tiếng Nga chứa «систе́ма лине́йных уравне́ний» và giải thích một công thức của bài."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T05-linear-maps",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "lessonTitle": "m_p10 · §1.5 · Ánh xạ tuyến tính, nhân, ảnh và ma trận biểu diễn bằng tiếng Nga",
+      "title": "m_p10 · §1.5 · Ánh xạ tuyến tính, nhân, ảnh và ma trận biểu diễn bằng tiếng Nga",
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "programLectureIds": [
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "roadmapRole": "m_p10_t05",
+      "baumanFocus": "Russian linear algebra bridge for preparatory engineering study, seminar defense, AI and control foundations.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_p10",
+        "frameworkChapterId": "m_s02",
+        "logicalLessonId": "m_p10_t05",
+        "frameworkAnchor": "m_p10_t05",
+        "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+        "commonBridgeProgramLectureId": "MATH-PROG-L01-linear-algebra-basic",
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e19_russian_linear_algebra_authoring"
+      },
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "linear-maps"
+      ],
+      "speechDrill": {
+        "language": "ru-RU",
+        "mode": "read_solve_defend",
+        "requiredStressAware": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_p10 · §1.5 · Ánh xạ tuyến tính, nhân, ảnh và ma trận biểu diễn bằng tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "Đại số tuyến tính dự bị theo ngôn ngữ Nga kỹ thuật: hiểu bản chất toán, đọc ký hiệu, nói điều kiện và bảo vệ lời giải."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Làm chủ ánh xạ tuyến tính, nhân, ảnh và ma trận biểu diễn bằng tiếng nga ở mức có thể giải và vấn đáp bằng tiếng Nga."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài học",
+              "items": [
+                "Nhận diện thuật ngữ Nga–Việt–Anh.",
+                "Đọc và giải thích đúng ký hiệu/công thức.",
+                "Kiểm tra điều kiện/kích thước trước thao tác.",
+                "Trình bày lời giải 30–90 giây và trả lời phản biện."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Thuật ngữ Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Từ khóa",
+              "items": [
+                "лине́йное отображе́ние — ánh xạ tuyến tính — linear map",
+                "я́дро — hạt nhân — kernel",
+                "о́браз — ảnh — image/range",
+                "обла́сть определе́ния — miền xác định — domain",
+                "кообла́сть — đối miền — codomain",
+                "ма́трица отображе́ния — ma trận biểu diễn — matrix representation",
+                "теоре́ма о ра́нге и дефе́кте — định lý rank-nullity — rank-nullity theorem",
+                "нукллите́т — số chiều kernel — nullity"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "pronunciation_drill",
+          "title": "Trọng âm và phát âm kỹ thuật",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Đọc chậm, đúng trọng âm",
+              "items": [
+                "лине́йное отображе́ние · ánh xạ tuyến tính",
+                "я́дро · hạt nhân",
+                "о́браз · ảnh",
+                "обла́сть определе́ния · miền xác định",
+                "кообла́сть · đối miền",
+                "ма́трица отображе́ния · ma trận biểu diễn",
+                "теоре́ма о ра́нге и дефе́кте · định lý rank-nullity",
+                "нукллите́т · số chiều kernel"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Quy tắc",
+              "body": "Đọc thuật ngữ theo cụm toán học; ưu tiên chính xác hơn tốc độ."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Ký hiệu và công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Tuyến tính",
+              "body": "T(αu+βv)=αT(u)+βT(v)\nĐiều kiện tuyến tính cho mọi u,v và vô hướng α,β."
+            },
+            {
+              "type": "formula",
+              "title": "Kernel",
+              "body": "ker(T)={x:T(x)=0}\nTập vector bị ánh xạ về zero; là một không gian con."
+            },
+            {
+              "type": "formula",
+              "title": "Rank-nullity",
+              "body": "dim(V)=rank(T)+nullity(T)\nV hữu hạn chiều; rank là dim(image), nullity là dim(kernel)."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Ma trận của T phụ thuộc basis ở domain và codomain; thay basis thì ma trận đổi dù ánh xạ tuyến tính không đổi."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Trước khi biến đổi",
+              "items": [
+                "Đối tượng đúng loại chưa?",
+                "Kích thước có khớp không?",
+                "Giả thiết của định lý/công thức có đủ không?",
+                "Kết quả kỳ vọng có đúng shape/dimension không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "phrase_pattern",
+          "title": "Mẫu câu seminar tiếng Nga",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Mẫu",
+              "items": [
+                "Проверьте линейность отображения.",
+                "Найдите ядро и образ.",
+                "Запишите матрицу линейного отображения в заданных базисах."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "symbol_to_speech",
+          "title": "Đọc ký hiệu thành lời",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cách luyện",
+              "body": "Chọn công thức «T(αu+βv)=αT(u)+βT(v)», đọc tên đối tượng, quan hệ chính và điều kiện bằng tiếng Nga; sau đó diễn giải lại bằng tiếng Việt."
+            }
+          ]
+        },
+        {
+          "role": "reading_example",
+          "title": "Đọc đề và phân loại dạng bài",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "T(x,y)=(x+y,0). Kernel={(-t,t)}, image=span{(1,0)}, rank=1, nullity=1."
+            },
+            {
+              "type": "text",
+              "title": "Phân loại",
+              "body": "Xác định câu lệnh, dữ kiện, điều kiện và đầu ra trước khi tính."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Lời giải mẫu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu trả lời",
+              "body": "Ядро состоит из векторов вида минус t, t. Образ порождён вектором один, ноль. По теореме rank-nullity сумма размерностей равна двум."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Bắt buộc",
+              "items": [
+                "Nêu dữ kiện/đối tượng.",
+                "Nêu công thức hoặc định lý.",
+                "Nêu điều kiện hợp lệ.",
+                "Chốt kết quả bằng câu hoàn chỉnh."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Thuật toán giải",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Quy trình",
+              "items": [
+                "Kiểm T(αu+βv).",
+                "Giải T(x)=0 để tìm kernel.",
+                "Sinh image từ ảnh của basis.",
+                "Kiểm rank-nullity và viết ma trận theo basis đã nêu."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "oral_response",
+          "title": "Vấn đáp 30–90 giây",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Prompt",
+              "body": "Trình bày ánh xạ tuyến tính, nhân, ảnh và ma trận biểu diễn bằng tiếng nga bằng tiếng Nga, dùng ít nhất 3 thuật ngữ và 1 công thức."
+            },
+            {
+              "type": "text",
+              "title": "Mẫu",
+              "body": "Ядро состоит из векторов вида минус t, t. Образ порождён вектором один, ноль. По теореме rank-nullity сумма размерностей равна двум."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy logic / phản ví dụ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Image/range của T không nhất thiết bằng toàn codomain; phải phân biệt `образ` và `кообласть`."
+            }
+          ]
+        },
+        {
+          "role": "dimension_logic_gate",
+          "title": "Cổng dimension / logic",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tự kiểm",
+              "items": [
+                "Dimension/rank có vượt giới hạn không?",
+                "Phép nhân/biến đổi có hợp shape không?",
+                "Có nhầm điều kiện cần với điều kiện đủ không?",
+                "Có suy luận từ ví dụ riêng sang kết luận tổng quát không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ AI – điều khiển – Bauman",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "State transformation, feature projection và linear layers đều là ánh xạ tuyến tính/affine; kernel cho biết thông tin bị mất."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng giả thiết trước kết luận",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Nêu rõ không gian/field nếu cần.",
+                "Nêu basis/shape/rank khi chúng ảnh hưởng kết quả.",
+                "Không dùng inverse/eigen/projection ngoài điều kiện.",
+                "Tách kết luận toán học khỏi trực giác ứng dụng."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi trong seminar",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu sửa",
+              "body": "Я перепутал образ с кообластью. Образ — это фактически достигаемые векторы, а кообласть задаётся заранее."
+            },
+            {
+              "type": "text",
+              "title": "Nguyên tắc",
+              "body": "Nói rõ lỗi → điều kiện đúng → tính/suy luận lại → kiểm lại kết luận."
+            }
+          ]
+        },
+        {
+          "role": "mini_drill",
+          "title": "Drill 5 phút",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "5 vòng",
+              "items": [
+                "Đọc 8 thuật ngữ có trọng âm.",
+                "Đọc 3 công thức thành lời.",
+                "Làm một kiểm tra shape/rank.",
+                "Giải một ví dụ nhỏ.",
+                "Nói một câu sửa lỗi bằng tiếng Nga."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Câu hỏi giảng viên",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Q&A",
+              "items": [
+                {
+                  "q": "Nếu ker(T)={0}, T có luôn onto không?",
+                  "a": "Không. ker(T)={0} chỉ cho injective; onto còn phụ thuộc dimension/image và codomain."
+                },
+                {
+                  "q": "Điều kiện quan trọng nhất của bài là gì?",
+                  "a": "Ma trận của T phụ thuộc basis ở domain và codomain; thay basis thì ma trận đổi dù ánh xạ tuyến tính không đổi."
+                },
+                {
+                  "q": "Bẫy cần tránh?",
+                  "a": "Image/range của T không nhất thiết bằng toàn codomain; phải phân biệt `образ` và `кообласть`."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.5",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Điều kiện tuyến tính cho mọi u,v và vô hướng α,β.",
+                "Ma trận của T phụ thuộc basis ở domain và codomain; thay basis thì ma trận đổi dù ánh xạ tuyến tính không đổi.",
+                "Image/range của T không nhất thiết bằng toàn codomain; phải phân biệt `образ` và `кообласть`.",
+                "Có thể đọc–giải–kiểm–bảo vệ bằng tiếng Nga kỹ thuật."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Exit ticket",
+              "body": "Nói một câu tiếng Nga chứa «лине́йное отображе́ние» và giải thích một công thức của bài."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T06-eigen-diagonalization",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "lessonTitle": "m_p10 · §1.6 · Trị riêng, vector riêng và chéo hóa bằng tiếng Nga",
+      "title": "m_p10 · §1.6 · Trị riêng, vector riêng và chéo hóa bằng tiếng Nga",
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "programLectureIds": [
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "roadmapRole": "m_p10_t06",
+      "baumanFocus": "Russian linear algebra bridge for preparatory engineering study, seminar defense, AI and control foundations.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_p10",
+        "frameworkChapterId": "m_s02",
+        "logicalLessonId": "m_p10_t06",
+        "frameworkAnchor": "m_p10_t06",
+        "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+        "commonBridgeProgramLectureId": "MATH-PROG-L01-linear-algebra-basic",
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e19_russian_linear_algebra_authoring"
+      },
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "eigen-diagonalization"
+      ],
+      "speechDrill": {
+        "language": "ru-RU",
+        "mode": "read_solve_defend",
+        "requiredStressAware": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_p10 · §1.6 · Trị riêng, vector riêng và chéo hóa bằng tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "Đại số tuyến tính dự bị theo ngôn ngữ Nga kỹ thuật: hiểu bản chất toán, đọc ký hiệu, nói điều kiện và bảo vệ lời giải."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Làm chủ trị riêng, vector riêng và chéo hóa bằng tiếng nga ở mức có thể giải và vấn đáp bằng tiếng Nga."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài học",
+              "items": [
+                "Nhận diện thuật ngữ Nga–Việt–Anh.",
+                "Đọc và giải thích đúng ký hiệu/công thức.",
+                "Kiểm tra điều kiện/kích thước trước thao tác.",
+                "Trình bày lời giải 30–90 giây và trả lời phản biện."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Thuật ngữ Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Từ khóa",
+              "items": [
+                "со́бственное значе́ние — trị riêng — eigenvalue",
+                "со́бственный ве́ктор — vector riêng — eigenvector",
+                "характеристи́ческий многочле́н — đa thức đặc trưng — characteristic polynomial",
+                "со́бственное подпростра́нство — không gian riêng — eigenspace",
+                "диагонализа́ция — chéo hóa — diagonalization",
+                "диагона́льная ма́трица — ma trận chéo — diagonal matrix",
+                "кратность — bội — multiplicity",
+                "спектр — phổ — spectrum"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "pronunciation_drill",
+          "title": "Trọng âm và phát âm kỹ thuật",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Đọc chậm, đúng trọng âm",
+              "items": [
+                "со́бственное значе́ние · trị riêng",
+                "со́бственный ве́ктор · vector riêng",
+                "характеристи́ческий многочле́н · đa thức đặc trưng",
+                "со́бственное подпростра́нство · không gian riêng",
+                "диагонализа́ция · chéo hóa",
+                "диагона́льная ма́трица · ma trận chéo",
+                "кратность · bội",
+                "спектр · phổ"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Quy tắc",
+              "body": "Đọc thuật ngữ theo cụm toán học; ưu tiên chính xác hơn tốc độ."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Ký hiệu và công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Phương trình riêng",
+              "body": "Av=λv, v≠0\nv là eigenvector ứng với eigenvalue λ."
+            },
+            {
+              "type": "formula",
+              "title": "Phương trình đặc trưng",
+              "body": "det(A−λI)=0\nNghiệm λ là các trị riêng."
+            },
+            {
+              "type": "formula",
+              "title": "Chéo hóa",
+              "body": "A=PDP⁻¹\nCác cột P là n eigenvector độc lập, D chứa trị riêng tương ứng."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Eigenvector phải khác 0; diagonalization cần đủ n eigenvector độc lập."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Trước khi biến đổi",
+              "items": [
+                "Đối tượng đúng loại chưa?",
+                "Kích thước có khớp không?",
+                "Giả thiết của định lý/công thức có đủ không?",
+                "Kết quả kỳ vọng có đúng shape/dimension không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "phrase_pattern",
+          "title": "Mẫu câu seminar tiếng Nga",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Mẫu",
+              "items": [
+                "Найдите собственные значения и собственные векторы.",
+                "Составьте характеристический многочлен.",
+                "Определите, диагонализируема ли матрица."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "symbol_to_speech",
+          "title": "Đọc ký hiệu thành lời",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cách luyện",
+              "body": "Chọn công thức «Av=λv, v≠0», đọc tên đối tượng, quan hệ chính và điều kiện bằng tiếng Nga; sau đó diễn giải lại bằng tiếng Việt."
+            }
+          ]
+        },
+        {
+          "role": "reading_example",
+          "title": "Đọc đề và phân loại dạng bài",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "A=[[2,1],[0,2]] có λ=2 bội đại số 2 nhưng eigenspace dimension 1, nên không diagonalizable."
+            },
+            {
+              "type": "text",
+              "title": "Phân loại",
+              "body": "Xác định câu lệnh, dữ kiện, điều kiện và đầu ra trước khi tính."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Lời giải mẫu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu trả lời",
+              "body": "Собственное значение два имеет алгебраическую кратность два, но геометрическая кратность равна единице. Поэтому матрица не диагонализируема."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Bắt buộc",
+              "items": [
+                "Nêu dữ kiện/đối tượng.",
+                "Nêu công thức hoặc định lý.",
+                "Nêu điều kiện hợp lệ.",
+                "Chốt kết quả bằng câu hoàn chỉnh."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Thuật toán giải",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Quy trình",
+              "items": [
+                "Lập det(A−λI).",
+                "Giải eigenvalues λ.",
+                "Giải (A−λI)v=0 cho từng λ.",
+                "Kiểm đủ eigenvector độc lập trước khi chéo hóa."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "oral_response",
+          "title": "Vấn đáp 30–90 giây",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Prompt",
+              "body": "Trình bày trị riêng, vector riêng và chéo hóa bằng tiếng nga bằng tiếng Nga, dùng ít nhất 3 thuật ngữ và 1 công thức."
+            },
+            {
+              "type": "text",
+              "title": "Mẫu",
+              "body": "Собственное значение два имеет алгебраическую кратность два, но геометрическая кратность равна единице. Поэтому матрица не диагонализируема."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy logic / phản ví dụ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Có n trị riêng tính theo bội đại số không đảm bảo có n eigenvector độc lập; ma trận có thể không chéo hóa được."
+            }
+          ]
+        },
+        {
+          "role": "dimension_logic_gate",
+          "title": "Cổng dimension / logic",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tự kiểm",
+              "items": [
+                "Dimension/rank có vượt giới hạn không?",
+                "Phép nhân/biến đổi có hợp shape không?",
+                "Có nhầm điều kiện cần với điều kiện đủ không?",
+                "Có suy luận từ ví dụ riêng sang kết luận tổng quát không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ AI – điều khiển – Bauman",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Eigenvalues mô tả mode của hệ động lực, ổn định tuyến tính và các hướng chính trong nhiều bài toán dữ liệu."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng giả thiết trước kết luận",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Nêu rõ không gian/field nếu cần.",
+                "Nêu basis/shape/rank khi chúng ảnh hưởng kết quả.",
+                "Không dùng inverse/eigen/projection ngoài điều kiện.",
+                "Tách kết luận toán học khỏi trực giác ứng dụng."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi trong seminar",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu sửa",
+              "body": "Я посчитал нулевой вектор собственным. Это запрещено определением; нужно выбрать ненулевой вектор из собственного подпространства."
+            },
+            {
+              "type": "text",
+              "title": "Nguyên tắc",
+              "body": "Nói rõ lỗi → điều kiện đúng → tính/suy luận lại → kiểm lại kết luận."
+            }
+          ]
+        },
+        {
+          "role": "mini_drill",
+          "title": "Drill 5 phút",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "5 vòng",
+              "items": [
+                "Đọc 8 thuật ngữ có trọng âm.",
+                "Đọc 3 công thức thành lời.",
+                "Làm một kiểm tra shape/rank.",
+                "Giải một ví dụ nhỏ.",
+                "Nói một câu sửa lỗi bằng tiếng Nga."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Câu hỏi giảng viên",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Q&A",
+              "items": [
+                {
+                  "q": "Vector zero có thể là eigenvector không?",
+                  "a": "Không. Định nghĩa eigenvector yêu cầu v≠0, nếu không phương trình Av=λv đúng với mọi λ và mất ý nghĩa."
+                },
+                {
+                  "q": "Điều kiện quan trọng nhất của bài là gì?",
+                  "a": "Eigenvector phải khác 0; diagonalization cần đủ n eigenvector độc lập."
+                },
+                {
+                  "q": "Bẫy cần tránh?",
+                  "a": "Có n trị riêng tính theo bội đại số không đảm bảo có n eigenvector độc lập; ma trận có thể không chéo hóa được."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.6",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "v là eigenvector ứng với eigenvalue λ.",
+                "Eigenvector phải khác 0; diagonalization cần đủ n eigenvector độc lập.",
+                "Có n trị riêng tính theo bội đại số không đảm bảo có n eigenvector độc lập; ma trận có thể không chéo hóa được.",
+                "Có thể đọc–giải–kiểm–bảo vệ bằng tiếng Nga kỹ thuật."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Exit ticket",
+              "body": "Nói một câu tiếng Nga chứa «со́бственное значе́ние» và giải thích một công thức của bài."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T07-orthogonal-projection-ls",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "lessonTitle": "m_p10 · §1.7 · Trực giao, chiếu vector và bình phương tối thiểu bằng tiếng Nga",
+      "title": "m_p10 · §1.7 · Trực giao, chiếu vector và bình phương tối thiểu bằng tiếng Nga",
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "programLectureIds": [
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "roadmapRole": "m_p10_t07",
+      "baumanFocus": "Russian linear algebra bridge for preparatory engineering study, seminar defense, AI and control foundations.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_p10",
+        "frameworkChapterId": "m_s02",
+        "logicalLessonId": "m_p10_t07",
+        "frameworkAnchor": "m_p10_t07",
+        "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+        "commonBridgeProgramLectureId": "MATH-PROG-L01-linear-algebra-basic",
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e19_russian_linear_algebra_authoring"
+      },
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "orthogonal-projection-ls"
+      ],
+      "speechDrill": {
+        "language": "ru-RU",
+        "mode": "read_solve_defend",
+        "requiredStressAware": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_p10 · §1.7 · Trực giao, chiếu vector và bình phương tối thiểu bằng tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "Đại số tuyến tính dự bị theo ngôn ngữ Nga kỹ thuật: hiểu bản chất toán, đọc ký hiệu, nói điều kiện và bảo vệ lời giải."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Làm chủ trực giao, chiếu vector và bình phương tối thiểu bằng tiếng nga ở mức có thể giải và vấn đáp bằng tiếng Nga."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài học",
+              "items": [
+                "Nhận diện thuật ngữ Nga–Việt–Anh.",
+                "Đọc và giải thích đúng ký hiệu/công thức.",
+                "Kiểm tra điều kiện/kích thước trước thao tác.",
+                "Trình bày lời giải 30–90 giây và trả lời phản biện."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Thuật ngữ Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Từ khóa",
+              "items": [
+                "ортогона́льность — tính trực giao — orthogonality",
+                "скаля́рное произведе́ние — tích vô hướng — inner product",
+                "но́рма — chuẩn — norm",
+                "прое́кция — phép chiếu — projection",
+                "ортонорми́рованный ба́зис — cơ sở trực chuẩn — orthonormal basis",
+                "мето́д наиме́ньших квадра́тов — bình phương tối thiểu — least squares",
+                "невя́зка — phần dư — residual",
+                "норма́льные уравне́ния — phương trình chuẩn — normal equations"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "pronunciation_drill",
+          "title": "Trọng âm và phát âm kỹ thuật",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Đọc chậm, đúng trọng âm",
+              "items": [
+                "ортогона́льность · tính trực giao",
+                "скаля́рное произведе́ние · tích vô hướng",
+                "но́рма · chuẩn",
+                "прое́кция · phép chiếu",
+                "ортонорми́рованный ба́зис · cơ sở trực chuẩn",
+                "мето́д наиме́ньших квадра́тов · bình phương tối thiểu",
+                "невя́зка · phần dư",
+                "норма́льные уравне́ния · phương trình chuẩn"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Quy tắc",
+              "body": "Đọc thuật ngữ theo cụm toán học; ưu tiên chính xác hơn tốc độ."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Ký hiệu và công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Trực giao",
+              "body": "u⊥v ⇔ uᵀv=0\nTrong Euclidean space với inner product chuẩn."
+            },
+            {
+              "type": "formula",
+              "title": "Chiếu lên vector",
+              "body": "projᵤ(v)=(uᵀv/uᵀu)u\nYêu cầu u≠0."
+            },
+            {
+              "type": "formula",
+              "title": "Least squares",
+              "body": "AᵀA x̂=Aᵀb\nNormal equations; nếu A full column rank thì nghiệm least-squares duy nhất."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Projection formula cần u≠0; least squares phải nêu chuẩn đang tối thiểu hóa và kiểm rank khi muốn nghiệm duy nhất."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Trước khi biến đổi",
+              "items": [
+                "Đối tượng đúng loại chưa?",
+                "Kích thước có khớp không?",
+                "Giả thiết của định lý/công thức có đủ không?",
+                "Kết quả kỳ vọng có đúng shape/dimension không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "phrase_pattern",
+          "title": "Mẫu câu seminar tiếng Nga",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Mẫu",
+              "items": [
+                "Проверьте ортогональность векторов.",
+                "Найдите ортогональную проекцию.",
+                "Решите задачу методом наименьших квадратов."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "symbol_to_speech",
+          "title": "Đọc ký hiệu thành lời",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cách luyện",
+              "body": "Chọn công thức «u⊥v ⇔ uᵀv=0», đọc tên đối tượng, quan hệ chính và điều kiện bằng tiếng Nga; sau đó diễn giải lại bằng tiếng Việt."
+            }
+          ]
+        },
+        {
+          "role": "reading_example",
+          "title": "Đọc đề và phân loại dạng bài",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "u=(1,1), v=(2,0): projᵤ(v)=(2/2)u=(1,1), residual=(1,-1) và residual ⟂ u."
+            },
+            {
+              "type": "text",
+              "title": "Phân loại",
+              "body": "Xác định câu lệnh, dữ kiện, điều kiện và đầu ra trước khi tính."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Lời giải mẫu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu trả lời",
+              "body": "Проекция v на u равна один, один. Невязка равна один, минус один и ортогональна вектору u."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Bắt buộc",
+              "items": [
+                "Nêu dữ kiện/đối tượng.",
+                "Nêu công thức hoặc định lý.",
+                "Nêu điều kiện hợp lệ.",
+                "Chốt kết quả bằng câu hoàn chỉnh."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Thuật toán giải",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Quy trình",
+              "items": [
+                "Xác định subspace/columns.",
+                "Lập projection hoặc normal equations.",
+                "Giải nghiệm và tính residual.",
+                "Kiểm điều kiện trực giao Aᵀr=0."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "oral_response",
+          "title": "Vấn đáp 30–90 giây",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Prompt",
+              "body": "Trình bày trực giao, chiếu vector và bình phương tối thiểu bằng tiếng nga bằng tiếng Nga, dùng ít nhất 3 thuật ngữ và 1 công thức."
+            },
+            {
+              "type": "text",
+              "title": "Mẫu",
+              "body": "Проекция v на u равна один, один. Невязка равна один, минус один и ортогональна вектору u."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy logic / phản ví dụ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Không được dùng (AᵀA)⁻¹Aᵀb khi A không full column rank; trong tính số QR/SVD thường ổn định hơn normal equations."
+            }
+          ]
+        },
+        {
+          "role": "dimension_logic_gate",
+          "title": "Cổng dimension / logic",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tự kiểm",
+              "items": [
+                "Dimension/rank có vượt giới hạn không?",
+                "Phép nhân/biến đổi có hợp shape không?",
+                "Có nhầm điều kiện cần với điều kiện đủ không?",
+                "Có suy luận từ ví dụ riêng sang kết luận tổng quát không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ AI – điều khiển – Bauman",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Least squares là nền của fitting cảm biến, calibration, regression tuyến tính và estimation trong điều khiển."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng giả thiết trước kết luận",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Nêu rõ không gian/field nếu cần.",
+                "Nêu basis/shape/rank khi chúng ảnh hưởng kết quả.",
+                "Không dùng inverse/eigen/projection ngoài điều kiện.",
+                "Tách kết luận toán học khỏi trực giác ứng dụng."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi trong seminar",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu sửa",
+              "body": "Я сказал, что невязка ортогональна b. Исправляю: она ортогональна пространству столбцов A."
+            },
+            {
+              "type": "text",
+              "title": "Nguyên tắc",
+              "body": "Nói rõ lỗi → điều kiện đúng → tính/suy luận lại → kiểm lại kết luận."
+            }
+          ]
+        },
+        {
+          "role": "mini_drill",
+          "title": "Drill 5 phút",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "5 vòng",
+              "items": [
+                "Đọc 8 thuật ngữ có trọng âm.",
+                "Đọc 3 công thức thành lời.",
+                "Làm một kiểm tra shape/rank.",
+                "Giải một ví dụ nhỏ.",
+                "Nói một câu sửa lỗi bằng tiếng Nga."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Câu hỏi giảng viên",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Q&A",
+              "items": [
+                {
+                  "q": "Residual của least squares có trực giao với b không?",
+                  "a": "Không nhất thiết; residual b−Ax̂ trực giao với column space của A, tức Aᵀr=0."
+                },
+                {
+                  "q": "Điều kiện quan trọng nhất của bài là gì?",
+                  "a": "Projection formula cần u≠0; least squares phải nêu chuẩn đang tối thiểu hóa và kiểm rank khi muốn nghiệm duy nhất."
+                },
+                {
+                  "q": "Bẫy cần tránh?",
+                  "a": "Không được dùng (AᵀA)⁻¹Aᵀb khi A không full column rank; trong tính số QR/SVD thường ổn định hơn normal equations."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.7",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Trong Euclidean space với inner product chuẩn.",
+                "Projection formula cần u≠0; least squares phải nêu chuẩn đang tối thiểu hóa và kiểm rank khi muốn nghiệm duy nhất.",
+                "Không được dùng (AᵀA)⁻¹Aᵀb khi A không full column rank; trong tính số QR/SVD thường ổn định hơn normal equations.",
+                "Có thể đọc–giải–kiểm–bảo vệ bằng tiếng Nga kỹ thuật."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Exit ticket",
+              "body": "Nói một câu tiếng Nga chứa «ортогона́льность» và giải thích một công thức của bài."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T08-russian-linear-algebra-seminar",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "lessonTitle": "m_p10 · §1.8 · Seminar đại số tuyến tính Nga: đọc đề, giải, kiểm và bảo vệ lời giải",
+      "title": "m_p10 · §1.8 · Seminar đại số tuyến tính Nga: đọc đề, giải, kiểm và bảo vệ lời giải",
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "programLectureIds": [
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "roadmapRole": "m_p10_t08",
+      "baumanFocus": "Russian linear algebra bridge for preparatory engineering study, seminar defense, AI and control foundations.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_p10",
+        "frameworkChapterId": "m_s02",
+        "logicalLessonId": "m_p10_t08",
+        "frameworkAnchor": "m_p10_t08",
+        "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+        "commonBridgeProgramLectureId": "MATH-PROG-L01-linear-algebra-basic",
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e19_russian_linear_algebra_authoring"
+      },
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "russian-linear-algebra-seminar"
+      ],
+      "speechDrill": {
+        "language": "ru-RU",
+        "mode": "read_solve_defend",
+        "requiredStressAware": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_p10 · §1.8 · Seminar đại số tuyến tính Nga: đọc đề, giải, kiểm và bảo vệ lời giải",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "Đại số tuyến tính dự bị theo ngôn ngữ Nga kỹ thuật: hiểu bản chất toán, đọc ký hiệu, nói điều kiện và bảo vệ lời giải."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Làm chủ seminar đại số tuyến tính nga: đọc đề, giải, kiểm và bảo vệ lời giải ở mức có thể giải và vấn đáp bằng tiếng Nga."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài học",
+              "items": [
+                "Nhận diện thuật ngữ Nga–Việt–Anh.",
+                "Đọc và giải thích đúng ký hiệu/công thức.",
+                "Kiểm tra điều kiện/kích thước trước thao tác.",
+                "Trình bày lời giải 30–90 giây và trả lời phản biện."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Thuật ngữ Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Từ khóa",
+              "items": [
+                "усло́вие — điều kiện/đề bài — condition/problem statement",
+                "обоснова́ние — sự biện minh — justification",
+                "проверка — kiểm tra — verification",
+                "промежу́точный результа́т — kết quả trung gian — intermediate result",
+                "о́твет — đáp án — answer",
+                "вы́вод — kết luận — conclusion",
+                "до́пущение — giả thiết — assumption",
+                "исправле́ние оши́бки — sửa lỗi — error correction"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "pronunciation_drill",
+          "title": "Trọng âm và phát âm kỹ thuật",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Đọc chậm, đúng trọng âm",
+              "items": [
+                "усло́вие · điều kiện/đề bài",
+                "обоснова́ние · sự biện minh",
+                "проверка · kiểm tra",
+                "промежу́точный результа́т · kết quả trung gian",
+                "о́твет · đáp án",
+                "вы́вод · kết luận",
+                "до́пущение · giả thiết",
+                "исправле́ние оши́бки · sửa lỗi"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Quy tắc",
+              "body": "Đọc thuật ngữ theo cụm toán học; ưu tiên chính xác hơn tốc độ."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Ký hiệu và công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Gate kích thước",
+              "body": "shape → operation → result shape\nMọi phép toán ma trận phải qua kiểm shape."
+            },
+            {
+              "type": "formula",
+              "title": "Gate nghiệm",
+              "body": "substitute x̂ into Ax=b\nThay ngược để kiểm nghiệm hệ tuyến tính khi khả thi."
+            },
+            {
+              "type": "formula",
+              "title": "Gate logic",
+              "body": "assumption → theorem/operation → conclusion\nMỗi bước bảo vệ được bằng điều kiện hoặc định lý."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Trước khi kết luận phải có ít nhất một verification phù hợp: shape/rank/substitution/orthogonality/eigen equation."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Trước khi biến đổi",
+              "items": [
+                "Đối tượng đúng loại chưa?",
+                "Kích thước có khớp không?",
+                "Giả thiết của định lý/công thức có đủ không?",
+                "Kết quả kỳ vọng có đúng shape/dimension không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "phrase_pattern",
+          "title": "Mẫu câu seminar tiếng Nga",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Mẫu",
+              "items": [
+                "Сначала сформулирую условие задачи.",
+                "Обосную, почему это преобразование допустимо.",
+                "Проверю результат подстановкой и сформулирую ответ."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "symbol_to_speech",
+          "title": "Đọc ký hiệu thành lời",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cách luyện",
+              "body": "Chọn công thức «shape → operation → result shape», đọc tên đối tượng, quan hệ chính và điều kiện bằng tiếng Nga; sau đó diễn giải lại bằng tiếng Việt."
+            }
+          ]
+        },
+        {
+          "role": "reading_example",
+          "title": "Đọc đề và phân loại dạng bài",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "Giảng viên hỏi vì sao A⁻¹ tồn tại. Không được nói «vì em đã tính được»; phải nêu A vuông và det(A)≠0 hoặc rank(A)=n."
+            },
+            {
+              "type": "text",
+              "title": "Phân loại",
+              "body": "Xác định câu lệnh, dữ kiện, điều kiện và đầu ra trước khi tính."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Lời giải mẫu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu trả lời",
+              "body": "Матрица квадратная, её определитель не равен нулю. Поэтому обратная матрица существует. После решения я проверю результат подстановкой."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Bắt buộc",
+              "items": [
+                "Nêu dữ kiện/đối tượng.",
+                "Nêu công thức hoặc định lý.",
+                "Nêu điều kiện hợp lệ.",
+                "Chốt kết quả bằng câu hoàn chỉnh."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Thuật toán giải",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Quy trình",
+              "items": [
+                "Đọc đề và phân loại dạng bài.",
+                "Nêu điều kiện trước thao tác.",
+                "Giải từng bước, nói lý do.",
+                "Kiểm kết quả và bảo vệ kết luận; nếu sai thì sửa có truy vết."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "oral_response",
+          "title": "Vấn đáp 30–90 giây",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Prompt",
+              "body": "Trình bày seminar đại số tuyến tính nga: đọc đề, giải, kiểm và bảo vệ lời giải bằng tiếng Nga, dùng ít nhất 3 thuật ngữ và 1 công thức."
+            },
+            {
+              "type": "text",
+              "title": "Mẫu",
+              "body": "Матрица квадратная, её определитель не равен нулю. Поэтому обратная матрица существует. После решения я проверю результат подстановкой."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy logic / phản ví dụ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Một lời giải có đáp số đúng nhưng dùng phép biến đổi không hợp lệ vẫn không đạt chuẩn seminar; phải bảo vệ điều kiện của từng bước."
+            }
+          ]
+        },
+        {
+          "role": "dimension_logic_gate",
+          "title": "Cổng dimension / logic",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tự kiểm",
+              "items": [
+                "Dimension/rank có vượt giới hạn không?",
+                "Phép nhân/biến đổi có hợp shape không?",
+                "Có nhầm điều kiện cần với điều kiện đủ không?",
+                "Có suy luận từ ví dụ riêng sang kết luận tổng quát không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ AI – điều khiển – Bauman",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Kỹ năng này chuyển trực tiếp sang seminar Bauman, bảo vệ đồ án, giải thích code/solver và luận văn."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng giả thiết trước kết luận",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Nêu rõ không gian/field nếu cần.",
+                "Nêu basis/shape/rank khi chúng ảnh hưởng kết quả.",
+                "Không dùng inverse/eigen/projection ngoài điều kiện.",
+                "Tách kết luận toán học khỏi trực giác ứng dụng."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi trong seminar",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu sửa",
+              "body": "Я допустил ошибку в условии применимости. Исправляю этот шаг, затем пересчитаю все результаты, которые от него зависят."
+            },
+            {
+              "type": "text",
+              "title": "Nguyên tắc",
+              "body": "Nói rõ lỗi → điều kiện đúng → tính/suy luận lại → kiểm lại kết luận."
+            }
+          ]
+        },
+        {
+          "role": "mini_drill",
+          "title": "Drill 5 phút",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "5 vòng",
+              "items": [
+                "Đọc 8 thuật ngữ có trọng âm.",
+                "Đọc 3 công thức thành lời.",
+                "Làm một kiểm tra shape/rank.",
+                "Giải một ví dụ nhỏ.",
+                "Nói một câu sửa lỗi bằng tiếng Nga."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Câu hỏi giảng viên",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Q&A",
+              "items": [
+                {
+                  "q": "Nếu giảng viên chỉ ra một bước sai, em nên bắt đầu sửa từ đâu?",
+                  "a": "Từ giả thiết/điều kiện của chính bước đó, xác định hệ quả bị ảnh hưởng rồi tính lại downstream; không chỉ thay đáp số cuối."
+                },
+                {
+                  "q": "Điều kiện quan trọng nhất của bài là gì?",
+                  "a": "Trước khi kết luận phải có ít nhất một verification phù hợp: shape/rank/substitution/orthogonality/eigen equation."
+                },
+                {
+                  "q": "Bẫy cần tránh?",
+                  "a": "Một lời giải có đáp số đúng nhưng dùng phép biến đổi không hợp lệ vẫn không đạt chuẩn seminar; phải bảo vệ điều kiện của từng bước."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.8",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Mọi phép toán ma trận phải qua kiểm shape.",
+                "Trước khi kết luận phải có ít nhất một verification phù hợp: shape/rank/substitution/orthogonality/eigen equation.",
+                "Một lời giải có đáp số đúng nhưng dùng phép biến đổi không hợp lệ vẫn không đạt chuẩn seminar; phải bảo vệ điều kiện của từng bước.",
+                "Có thể đọc–giải–kiểm–bảo vệ bằng tiếng Nga kỹ thuật."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Exit ticket",
+              "body": "Nói một câu tiếng Nga chứa «усло́вие» và giải thích một công thức của bài."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

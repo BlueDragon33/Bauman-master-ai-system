@@ -4434,6 +4434,1670 @@
       "level": "hard",
       "prompt": "Giả sử em vừa nói sai trong vấn đáp. Hãy dùng một câu sửa lỗi phù hợp.",
       "solution": "Mẫu đầy đủ: «Я допустил ошибку на втором шаге: знак должен быть минус. Исправляю выражение и пересчитываю результат.»"
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T01-vectors-basis",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "vectors-basis"
+      ],
+      "sourceAnchors": [
+        "m_p10_t01",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T01-E01",
+      "level": "easy",
+      "prompt": "Nối 4 thuật ngữ Nga đầu bài với nghĩa Việt/Anh.",
+      "solution": "Đáp án: ве́ктор=vector (vector); координа́ты=tọa độ (coordinates); ба́зис=cơ sở (basis); лине́йная комбина́ция=tổ hợp tuyến tính (linear combination)."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T01-vectors-basis",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "vectors-basis"
+      ],
+      "sourceAnchors": [
+        "m_p10_t01",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T01-E02",
+      "level": "easy",
+      "prompt": "Đọc và giải thích: v = α₁b₁ + ⋯ + αₙbₙ",
+      "solution": "Các αᵢ là tọa độ của v trong cơ sở B=(b₁,…,bₙ) khi B là một basis."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T01-vectors-basis",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "vectors-basis"
+      ],
+      "sourceAnchors": [
+        "m_p10_t01",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T01-E03",
+      "level": "medium",
+      "prompt": "Nêu điều kiện áp dụng trọng tâm của bài.",
+      "solution": "Trước khi lấy tọa độ [v]ᴮ phải biết B thực sự là một cơ sở của không gian đang xét."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T01-vectors-basis",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "vectors-basis"
+      ],
+      "sourceAnchors": [
+        "m_p10_t01",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T01-E04",
+      "level": "medium",
+      "prompt": "Thực hiện quy trình giải theo 4 bước cho ví dụ: B={(1,0),(1,1)}, v=(3,2). Giải α(1,0)+β(1,1)=(3,2) ⇒ β=2, α=1, nên [v]ᴮ=(1,2)ᵀ.",
+      "solution": "Xác định không gian và số chiều. → Kiểm tra tập B có độc lập và sinh không gian. → Lập phương trình v=Σαᵢbᵢ. → Giải α và viết [v]ᴮ."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T01-vectors-basis",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "vectors-basis"
+      ],
+      "sourceAnchors": [
+        "m_p10_t01",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T01-E05",
+      "level": "medium",
+      "prompt": "Phân tích bẫy: Không được gọi một tập vector là basis chỉ vì có đúng n vector trong ℝⁿ; còn phải kiểm tra độc lập tuyến tính/spanning.",
+      "solution": "Nêu phản ví dụ hoặc điều kiện làm bẫy này sai; sau đó phát biểu quy tắc đúng."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T01-vectors-basis",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "vectors-basis"
+      ],
+      "sourceAnchors": [
+        "m_p10_t01",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T01-E06",
+      "level": "hard",
+      "prompt": "Trình bày ví dụ bằng tiếng Nga không nhìn mẫu.",
+      "solution": "Вектор v представляется как b один плюс два b два. Поэтому его координаты в базисе B равны один и два."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T01-vectors-basis",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "vectors-basis"
+      ],
+      "sourceAnchors": [
+        "m_p10_t01",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T01-E07",
+      "level": "hard",
+      "prompt": "Hai vector khác nhau có thể có cùng bộ tọa độ không?",
+      "solution": "Có, nếu chúng được viết trong hai cơ sở/không gian khác nhau. Tọa độ chỉ có nghĩa khi kèm basis."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T01-vectors-basis",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "vectors-basis"
+      ],
+      "sourceAnchors": [
+        "m_p10_t01",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T01-E08",
+      "level": "hard",
+      "prompt": "Tự tạo một lỗi thường gặp và sửa bằng mẫu seminar tiếng Nga.",
+      "solution": "Я использовал набор векторов как базис без проверки независимости. Сначала проверю ранг, затем пересчитаю координаты."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t02",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T02-matrix-operations",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "matrix-operations"
+      ],
+      "sourceAnchors": [
+        "m_p10_t02",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T02-E01",
+      "level": "easy",
+      "prompt": "Nối 4 thuật ngữ Nga đầu bài với nghĩa Việt/Anh.",
+      "solution": "Đáp án: матри́ца=ma trận (matrix); стро́ка=hàng (row); столбе́ц=cột (column); разме́р=kích thước (shape/dimension)."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t02",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T02-matrix-operations",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "matrix-operations"
+      ],
+      "sourceAnchors": [
+        "m_p10_t02",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T02-E02",
+      "level": "easy",
+      "prompt": "Đọc và giải thích: A∈ℝ^{m×n}, B∈ℝ^{n×p} ⇒ AB∈ℝ^{m×p}",
+      "solution": "Số cột A phải bằng số hàng B."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t02",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T02-matrix-operations",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "matrix-operations"
+      ],
+      "sourceAnchors": [
+        "m_p10_t02",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T02-E03",
+      "level": "medium",
+      "prompt": "Nêu điều kiện áp dụng trọng tâm của bài.",
+      "solution": "Luôn khóa shape trước phép cộng/nhân; A+B cần cùng kích thước, AB cần inner dimensions khớp."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t02",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T02-matrix-operations",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "matrix-operations"
+      ],
+      "sourceAnchors": [
+        "m_p10_t02",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T02-E04",
+      "level": "medium",
+      "prompt": "Thực hiện quy trình giải theo 4 bước cho ví dụ: A∈ℝ^{2×3}, B∈ℝ^{3×4}; AB tồn tại và có kích thước 2×4, còn BA không tồn tại vì 4? Không: B có 4 cột, A có 2 hàng nên 4≠2.",
+      "solution": "Ghi shape A và B. → Kiểm tra phép toán hợp lệ. → Tính từng phần tử theo row×column. → Kiểm shape kết quả và đối chiếu ví dụ nhỏ."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t02",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T02-matrix-operations",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "matrix-operations"
+      ],
+      "sourceAnchors": [
+        "m_p10_t02",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T02-E05",
+      "level": "medium",
+      "prompt": "Phân tích bẫy: AB và BA nói chung khác nhau, thậm chí một trong hai tích có thể không tồn tại. Không được suy từ tích vô hướng sang giao hoán ma trận.",
+      "solution": "Nêu phản ví dụ hoặc điều kiện làm bẫy này sai; sau đó phát biểu quy tắc đúng."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t02",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T02-matrix-operations",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "matrix-operations"
+      ],
+      "sourceAnchors": [
+        "m_p10_t02",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T02-E06",
+      "level": "hard",
+      "prompt": "Trình bày ví dụ bằng tiếng Nga không nhìn mẫu.",
+      "solution": "Матрица A имеет размер два на три, B — три на четыре. Произведение AB существует и имеет размер два на четыре."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t02",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T02-matrix-operations",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "matrix-operations"
+      ],
+      "sourceAnchors": [
+        "m_p10_t02",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T02-E07",
+      "level": "hard",
+      "prompt": "Từ AB tồn tại có suy ra BA tồn tại không?",
+      "solution": "Không. Điều kiện AB là n_Acols=m_Brows; điều kiện BA là n_Bcols=m_Arows, hai điều kiện độc lập."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t02",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T02-matrix-operations",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "matrix-operations"
+      ],
+      "sourceAnchors": [
+        "m_p10_t02",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T02-E08",
+      "level": "hard",
+      "prompt": "Tự tạo một lỗi thường gặp và sửa bằng mẫu seminar tiếng Nga.",
+      "solution": "Я перепутал число строк и столбцов. Исправляю размеры и только после этого выполняю умножение."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T03-det-rank-inverse",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "det-rank-inverse"
+      ],
+      "sourceAnchors": [
+        "m_p10_t03",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T03-E01",
+      "level": "easy",
+      "prompt": "Nối 4 thuật ngữ Nga đầu bài với nghĩa Việt/Anh.",
+      "solution": "Đáp án: определи́тель=định thức (determinant); ра́нг=hạng (rank); обрати́мая ма́трица=ma trận khả nghịch (invertible matrix); обра́тная ма́трица=ma trận nghịch đảo (inverse matrix)."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T03-det-rank-inverse",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "det-rank-inverse"
+      ],
+      "sourceAnchors": [
+        "m_p10_t03",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T03-E02",
+      "level": "easy",
+      "prompt": "Đọc và giải thích: A∈ℝ^{n×n}: det(A)≠0 ⇔ rank(A)=n ⇔ A⁻¹ существует",
+      "solution": "Ba điều kiện tương đương cho ma trận vuông."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T03-det-rank-inverse",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "det-rank-inverse"
+      ],
+      "sourceAnchors": [
+        "m_p10_t03",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T03-E03",
+      "level": "medium",
+      "prompt": "Nêu điều kiện áp dụng trọng tâm của bài.",
+      "solution": "Chỉ nói A⁻¹ khi A vuông; trước khi dùng công thức nghịch đảo phải kiểm det(A)≠0 hoặc rank đầy đủ."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T03-det-rank-inverse",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "det-rank-inverse"
+      ],
+      "sourceAnchors": [
+        "m_p10_t03",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T03-E04",
+      "level": "medium",
+      "prompt": "Thực hiện quy trình giải theo 4 bước cho ví dụ: A=[[1,2],[2,4]] có det=0, rank=1 nên suy biến và không có nghịch đảo.",
+      "solution": "Kiểm tra shape vuông nếu cần determinant/inverse. → Biến đổi sơ cấp hoặc tính determinant phù hợp. → Xác định rank từ số pivot. → Kết luận khả nghịch/suy biến với điều kiện rõ."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T03-det-rank-inverse",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "det-rank-inverse"
+      ],
+      "sourceAnchors": [
+        "m_p10_t03",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T03-E05",
+      "level": "medium",
+      "prompt": "Phân tích bẫy: Rank được định nghĩa cho cả ma trận chữ nhật, còn determinant chỉ cho ma trận vuông. Không dùng det để kiểm rank của ma trận không vuông.",
+      "solution": "Nêu phản ví dụ hoặc điều kiện làm bẫy này sai; sau đó phát biểu quy tắc đúng."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T03-det-rank-inverse",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "det-rank-inverse"
+      ],
+      "sourceAnchors": [
+        "m_p10_t03",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T03-E06",
+      "level": "hard",
+      "prompt": "Trình bày ví dụ bằng tiếng Nga không nhìn mẫu.",
+      "solution": "Определитель матрицы A равен нулю. Ранг равен единице, поэтому матрица вырождена и обратной матрицы не существует."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T03-det-rank-inverse",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "det-rank-inverse"
+      ],
+      "sourceAnchors": [
+        "m_p10_t03",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T03-E07",
+      "level": "hard",
+      "prompt": "Ma trận 3×5 có thể có rank 5 không?",
+      "solution": "Không. rank(A)≤min(3,5)=3."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T03-det-rank-inverse",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "det-rank-inverse"
+      ],
+      "sourceAnchors": [
+        "m_p10_t03",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T03-E08",
+      "level": "hard",
+      "prompt": "Tự tạo một lỗi thường gặp và sửa bằng mẫu seminar tiếng Nga.",
+      "solution": "Я применил определитель к прямоугольной матрице. Это неверно. Для неё проверю ранг методом Гаусса."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t04",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T04-gaussian-elimination",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "gaussian-elimination"
+      ],
+      "sourceAnchors": [
+        "m_p10_t04",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T04-E01",
+      "level": "easy",
+      "prompt": "Nối 4 thuật ngữ Nga đầu bài với nghĩa Việt/Anh.",
+      "solution": "Đáp án: систе́ма лине́йных уравне́ний=hệ phương trình tuyến tính (linear system); расши́ренная ма́трица=ma trận mở rộng (augmented matrix); мето́д Га́усса=phương pháp Gauss (Gaussian elimination); элемента́рное преобразова́ние=biến đổi sơ cấp (elementary row operation)."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t04",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T04-gaussian-elimination",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "gaussian-elimination"
+      ],
+      "sourceAnchors": [
+        "m_p10_t04",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T04-E02",
+      "level": "easy",
+      "prompt": "Đọc và giải thích: Ax=b",
+      "solution": "A là ma trận hệ số, x vector ẩn, b vế phải."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t04",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T04-gaussian-elimination",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "gaussian-elimination"
+      ],
+      "sourceAnchors": [
+        "m_p10_t04",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T04-E03",
+      "level": "medium",
+      "prompt": "Nêu điều kiện áp dụng trọng tâm của bài.",
+      "solution": "Mọi phép biến đổi sơ cấp phải giữ tập nghiệm; cần theo dõi hàng dạng 0…0|c với c≠0 để phát hiện vô nghiệm."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t04",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T04-gaussian-elimination",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "gaussian-elimination"
+      ],
+      "sourceAnchors": [
+        "m_p10_t04",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T04-E04",
+      "level": "medium",
+      "prompt": "Thực hiện quy trình giải theo 4 bước cho ví dụ: Hệ x+y=2, 2x+2y=4 có rank=1<n=2 nên vô số nghiệm: x=2−t, y=t.",
+      "solution": "Lập augmented matrix [A|b]. → Chọn pivot và khử dưới/trên. → Theo dõi zero rows và pivot columns. → Kết luận unique/infinite/none rồi back-substitute."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t04",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T04-gaussian-elimination",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "gaussian-elimination"
+      ],
+      "sourceAnchors": [
+        "m_p10_t04",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T04-E05",
+      "level": "medium",
+      "prompt": "Phân tích bẫy: Không được chia một hàng cho pivot bằng 0; cần đổi hàng hoặc chọn pivot khác. Trong tính số, pivot quá nhỏ còn gây mất ổn định.",
+      "solution": "Nêu phản ví dụ hoặc điều kiện làm bẫy này sai; sau đó phát biểu quy tắc đúng."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t04",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T04-gaussian-elimination",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "gaussian-elimination"
+      ],
+      "sourceAnchors": [
+        "m_p10_t04",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T04-E06",
+      "level": "hard",
+      "prompt": "Trình bày ví dụ bằng tiếng Nga không nhìn mẫu.",
+      "solution": "После исключения получаем одну ведущую переменную и одну свободную. Система совместна и имеет бесконечно много решений."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t04",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T04-gaussian-elimination",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "gaussian-elimination"
+      ],
+      "sourceAnchors": [
+        "m_p10_t04",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T04-E07",
+      "level": "hard",
+      "prompt": "Một hàng [0 0 0 | 1] trong augmented matrix nói gì?",
+      "solution": "Nó tương đương 0=1, nên hệ vô nghiệm."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t04",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T04-gaussian-elimination",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "gaussian-elimination"
+      ],
+      "sourceAnchors": [
+        "m_p10_t04",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T04-E08",
+      "level": "hard",
+      "prompt": "Tự tạo một lỗi thường gặp và sửa bằng mẫu seminar tiếng Nga.",
+      "solution": "Я разделил строку на нулевой ведущий элемент. Нужно переставить строки и выбрать ненулевой pivot."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t05",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T05-linear-maps",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "linear-maps"
+      ],
+      "sourceAnchors": [
+        "m_p10_t05",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T05-E01",
+      "level": "easy",
+      "prompt": "Nối 4 thuật ngữ Nga đầu bài với nghĩa Việt/Anh.",
+      "solution": "Đáp án: лине́йное отображе́ние=ánh xạ tuyến tính (linear map); я́дро=hạt nhân (kernel); о́браз=ảnh (image/range); обла́сть определе́ния=miền xác định (domain)."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t05",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T05-linear-maps",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "linear-maps"
+      ],
+      "sourceAnchors": [
+        "m_p10_t05",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T05-E02",
+      "level": "easy",
+      "prompt": "Đọc và giải thích: T(αu+βv)=αT(u)+βT(v)",
+      "solution": "Điều kiện tuyến tính cho mọi u,v và vô hướng α,β."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t05",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T05-linear-maps",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "linear-maps"
+      ],
+      "sourceAnchors": [
+        "m_p10_t05",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T05-E03",
+      "level": "medium",
+      "prompt": "Nêu điều kiện áp dụng trọng tâm của bài.",
+      "solution": "Ma trận của T phụ thuộc basis ở domain và codomain; thay basis thì ma trận đổi dù ánh xạ tuyến tính không đổi."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t05",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T05-linear-maps",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "linear-maps"
+      ],
+      "sourceAnchors": [
+        "m_p10_t05",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T05-E04",
+      "level": "medium",
+      "prompt": "Thực hiện quy trình giải theo 4 bước cho ví dụ: T(x,y)=(x+y,0). Kernel={(-t,t)}, image=span{(1,0)}, rank=1, nullity=1.",
+      "solution": "Kiểm T(αu+βv). → Giải T(x)=0 để tìm kernel. → Sinh image từ ảnh của basis. → Kiểm rank-nullity và viết ma trận theo basis đã nêu."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t05",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T05-linear-maps",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "linear-maps"
+      ],
+      "sourceAnchors": [
+        "m_p10_t05",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T05-E05",
+      "level": "medium",
+      "prompt": "Phân tích bẫy: Image/range của T không nhất thiết bằng toàn codomain; phải phân biệt `образ` và `кообласть`.",
+      "solution": "Nêu phản ví dụ hoặc điều kiện làm bẫy này sai; sau đó phát biểu quy tắc đúng."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t05",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T05-linear-maps",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "linear-maps"
+      ],
+      "sourceAnchors": [
+        "m_p10_t05",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T05-E06",
+      "level": "hard",
+      "prompt": "Trình bày ví dụ bằng tiếng Nga không nhìn mẫu.",
+      "solution": "Ядро состоит из векторов вида минус t, t. Образ порождён вектором один, ноль. По теореме rank-nullity сумма размерностей равна двум."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t05",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T05-linear-maps",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "linear-maps"
+      ],
+      "sourceAnchors": [
+        "m_p10_t05",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T05-E07",
+      "level": "hard",
+      "prompt": "Nếu ker(T)={0}, T có luôn onto không?",
+      "solution": "Không. ker(T)={0} chỉ cho injective; onto còn phụ thuộc dimension/image và codomain."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t05",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T05-linear-maps",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "linear-maps"
+      ],
+      "sourceAnchors": [
+        "m_p10_t05",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T05-E08",
+      "level": "hard",
+      "prompt": "Tự tạo một lỗi thường gặp và sửa bằng mẫu seminar tiếng Nga.",
+      "solution": "Я перепутал образ с кообластью. Образ — это фактически достигаемые векторы, а кообласть задаётся заранее."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t06",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T06-eigen-diagonalization",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "eigen-diagonalization"
+      ],
+      "sourceAnchors": [
+        "m_p10_t06",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T06-E01",
+      "level": "easy",
+      "prompt": "Nối 4 thuật ngữ Nga đầu bài với nghĩa Việt/Anh.",
+      "solution": "Đáp án: со́бственное значе́ние=trị riêng (eigenvalue); со́бственный ве́ктор=vector riêng (eigenvector); характеристи́ческий многочле́н=đa thức đặc trưng (characteristic polynomial); со́бственное подпростра́нство=không gian riêng (eigenspace)."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t06",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T06-eigen-diagonalization",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "eigen-diagonalization"
+      ],
+      "sourceAnchors": [
+        "m_p10_t06",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T06-E02",
+      "level": "easy",
+      "prompt": "Đọc và giải thích: Av=λv, v≠0",
+      "solution": "v là eigenvector ứng với eigenvalue λ."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t06",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T06-eigen-diagonalization",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "eigen-diagonalization"
+      ],
+      "sourceAnchors": [
+        "m_p10_t06",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T06-E03",
+      "level": "medium",
+      "prompt": "Nêu điều kiện áp dụng trọng tâm của bài.",
+      "solution": "Eigenvector phải khác 0; diagonalization cần đủ n eigenvector độc lập."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t06",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T06-eigen-diagonalization",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "eigen-diagonalization"
+      ],
+      "sourceAnchors": [
+        "m_p10_t06",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T06-E04",
+      "level": "medium",
+      "prompt": "Thực hiện quy trình giải theo 4 bước cho ví dụ: A=[[2,1],[0,2]] có λ=2 bội đại số 2 nhưng eigenspace dimension 1, nên không diagonalizable.",
+      "solution": "Lập det(A−λI). → Giải eigenvalues λ. → Giải (A−λI)v=0 cho từng λ. → Kiểm đủ eigenvector độc lập trước khi chéo hóa."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t06",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T06-eigen-diagonalization",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "eigen-diagonalization"
+      ],
+      "sourceAnchors": [
+        "m_p10_t06",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T06-E05",
+      "level": "medium",
+      "prompt": "Phân tích bẫy: Có n trị riêng tính theo bội đại số không đảm bảo có n eigenvector độc lập; ma trận có thể không chéo hóa được.",
+      "solution": "Nêu phản ví dụ hoặc điều kiện làm bẫy này sai; sau đó phát biểu quy tắc đúng."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t06",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T06-eigen-diagonalization",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "eigen-diagonalization"
+      ],
+      "sourceAnchors": [
+        "m_p10_t06",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T06-E06",
+      "level": "hard",
+      "prompt": "Trình bày ví dụ bằng tiếng Nga không nhìn mẫu.",
+      "solution": "Собственное значение два имеет алгебраическую кратность два, но геометрическая кратность равна единице. Поэтому матрица не диагонализируема."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t06",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T06-eigen-diagonalization",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "eigen-diagonalization"
+      ],
+      "sourceAnchors": [
+        "m_p10_t06",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T06-E07",
+      "level": "hard",
+      "prompt": "Vector zero có thể là eigenvector không?",
+      "solution": "Không. Định nghĩa eigenvector yêu cầu v≠0, nếu không phương trình Av=λv đúng với mọi λ và mất ý nghĩa."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t06",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T06-eigen-diagonalization",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "eigen-diagonalization"
+      ],
+      "sourceAnchors": [
+        "m_p10_t06",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T06-E08",
+      "level": "hard",
+      "prompt": "Tự tạo một lỗi thường gặp và sửa bằng mẫu seminar tiếng Nga.",
+      "solution": "Я посчитал нулевой вектор собственным. Это запрещено определением; нужно выбрать ненулевой вектор из собственного подпространства."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t07",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T07-orthogonal-projection-ls",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "orthogonal-projection-ls"
+      ],
+      "sourceAnchors": [
+        "m_p10_t07",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T07-E01",
+      "level": "easy",
+      "prompt": "Nối 4 thuật ngữ Nga đầu bài với nghĩa Việt/Anh.",
+      "solution": "Đáp án: ортогона́льность=tính trực giao (orthogonality); скаля́рное произведе́ние=tích vô hướng (inner product); но́рма=chuẩn (norm); прое́кция=phép chiếu (projection)."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t07",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T07-orthogonal-projection-ls",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "orthogonal-projection-ls"
+      ],
+      "sourceAnchors": [
+        "m_p10_t07",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T07-E02",
+      "level": "easy",
+      "prompt": "Đọc và giải thích: u⊥v ⇔ uᵀv=0",
+      "solution": "Trong Euclidean space với inner product chuẩn."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t07",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T07-orthogonal-projection-ls",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "orthogonal-projection-ls"
+      ],
+      "sourceAnchors": [
+        "m_p10_t07",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T07-E03",
+      "level": "medium",
+      "prompt": "Nêu điều kiện áp dụng trọng tâm của bài.",
+      "solution": "Projection formula cần u≠0; least squares phải nêu chuẩn đang tối thiểu hóa và kiểm rank khi muốn nghiệm duy nhất."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t07",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T07-orthogonal-projection-ls",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "orthogonal-projection-ls"
+      ],
+      "sourceAnchors": [
+        "m_p10_t07",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T07-E04",
+      "level": "medium",
+      "prompt": "Thực hiện quy trình giải theo 4 bước cho ví dụ: u=(1,1), v=(2,0): projᵤ(v)=(2/2)u=(1,1), residual=(1,-1) và residual ⟂ u.",
+      "solution": "Xác định subspace/columns. → Lập projection hoặc normal equations. → Giải nghiệm và tính residual. → Kiểm điều kiện trực giao Aᵀr=0."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t07",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T07-orthogonal-projection-ls",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "orthogonal-projection-ls"
+      ],
+      "sourceAnchors": [
+        "m_p10_t07",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T07-E05",
+      "level": "medium",
+      "prompt": "Phân tích bẫy: Không được dùng (AᵀA)⁻¹Aᵀb khi A không full column rank; trong tính số QR/SVD thường ổn định hơn normal equations.",
+      "solution": "Nêu phản ví dụ hoặc điều kiện làm bẫy này sai; sau đó phát biểu quy tắc đúng."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t07",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T07-orthogonal-projection-ls",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "orthogonal-projection-ls"
+      ],
+      "sourceAnchors": [
+        "m_p10_t07",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T07-E06",
+      "level": "hard",
+      "prompt": "Trình bày ví dụ bằng tiếng Nga không nhìn mẫu.",
+      "solution": "Проекция v на u равна один, один. Невязка равна один, минус один и ортогональна вектору u."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t07",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T07-orthogonal-projection-ls",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "orthogonal-projection-ls"
+      ],
+      "sourceAnchors": [
+        "m_p10_t07",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T07-E07",
+      "level": "hard",
+      "prompt": "Residual của least squares có trực giao với b không?",
+      "solution": "Không nhất thiết; residual b−Ax̂ trực giao với column space của A, tức Aᵀr=0."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t07",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T07-orthogonal-projection-ls",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "orthogonal-projection-ls"
+      ],
+      "sourceAnchors": [
+        "m_p10_t07",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T07-E08",
+      "level": "hard",
+      "prompt": "Tự tạo một lỗi thường gặp và sửa bằng mẫu seminar tiếng Nga.",
+      "solution": "Я сказал, что невязка ортогональна b. Исправляю: она ортогональна пространству столбцов A."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t08",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T08-russian-linear-algebra-seminar",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "russian-linear-algebra-seminar"
+      ],
+      "sourceAnchors": [
+        "m_p10_t08",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T08-E01",
+      "level": "easy",
+      "prompt": "Nối 4 thuật ngữ Nga đầu bài với nghĩa Việt/Anh.",
+      "solution": "Đáp án: усло́вие=điều kiện/đề bài (condition/problem statement); обоснова́ние=sự biện minh (justification); проверка=kiểm tra (verification); промежу́точный результа́т=kết quả trung gian (intermediate result)."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t08",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T08-russian-linear-algebra-seminar",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "russian-linear-algebra-seminar"
+      ],
+      "sourceAnchors": [
+        "m_p10_t08",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T08-E02",
+      "level": "easy",
+      "prompt": "Đọc và giải thích: shape → operation → result shape",
+      "solution": "Mọi phép toán ma trận phải qua kiểm shape."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t08",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T08-russian-linear-algebra-seminar",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "russian-linear-algebra-seminar"
+      ],
+      "sourceAnchors": [
+        "m_p10_t08",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T08-E03",
+      "level": "medium",
+      "prompt": "Nêu điều kiện áp dụng trọng tâm của bài.",
+      "solution": "Trước khi kết luận phải có ít nhất một verification phù hợp: shape/rank/substitution/orthogonality/eigen equation."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t08",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T08-russian-linear-algebra-seminar",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "russian-linear-algebra-seminar"
+      ],
+      "sourceAnchors": [
+        "m_p10_t08",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T08-E04",
+      "level": "medium",
+      "prompt": "Thực hiện quy trình giải theo 4 bước cho ví dụ: Giảng viên hỏi vì sao A⁻¹ tồn tại. Không được nói «vì em đã tính được»; phải nêu A vuông và det(A)≠0 hoặc rank(A)=n.",
+      "solution": "Đọc đề và phân loại dạng bài. → Nêu điều kiện trước thao tác. → Giải từng bước, nói lý do. → Kiểm kết quả và bảo vệ kết luận; nếu sai thì sửa có truy vết."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t08",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T08-russian-linear-algebra-seminar",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "russian-linear-algebra-seminar"
+      ],
+      "sourceAnchors": [
+        "m_p10_t08",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T08-E05",
+      "level": "medium",
+      "prompt": "Phân tích bẫy: Một lời giải có đáp số đúng nhưng dùng phép biến đổi không hợp lệ vẫn không đạt chuẩn seminar; phải bảo vệ điều kiện của từng bước.",
+      "solution": "Nêu phản ví dụ hoặc điều kiện làm bẫy này sai; sau đó phát biểu quy tắc đúng."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t08",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T08-russian-linear-algebra-seminar",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "russian-linear-algebra-seminar"
+      ],
+      "sourceAnchors": [
+        "m_p10_t08",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T08-E06",
+      "level": "hard",
+      "prompt": "Trình bày ví dụ bằng tiếng Nga không nhìn mẫu.",
+      "solution": "Матрица квадратная, её определитель не равен нулю. Поэтому обратная матрица существует. После решения я проверю результат подстановкой."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t08",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T08-russian-linear-algebra-seminar",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "russian-linear-algebra-seminar"
+      ],
+      "sourceAnchors": [
+        "m_p10_t08",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T08-E07",
+      "level": "hard",
+      "prompt": "Nếu giảng viên chỉ ra một bước sai, em nên bắt đầu sửa từ đâu?",
+      "solution": "Từ giả thiết/điều kiện của chính bước đó, xác định hệ quả bị ảnh hưởng rồi tính lại downstream; không chỉ thay đáp số cuối."
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t08",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T08-russian-linear-algebra-seminar",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "russian-linear-algebra-seminar"
+      ],
+      "sourceAnchors": [
+        "m_p10_t08",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "exerciseId": "E19-M_P10_T08-E08",
+      "level": "hard",
+      "prompt": "Tự tạo một lỗi thường gặp và sửa bằng mẫu seminar tiếng Nga.",
+      "solution": "Я допустил ошибку в условии применимости. Исправляю этот шаг, затем пересчитаю все результаты, которые от него зависят."
     }
   ],
   "importPolicy": {
@@ -4521,6 +6185,25 @@
         "runtimeStatic": "PASS",
         "browser": "PASS",
         "developmentFastCI": "PASS"
+      }
+    },
+    "E19": {
+      "status": "PASS_STATIC_BROWSER_CI",
+      "frameworkChapterId": "m_s02",
+      "logicalModuleId": "m_p10",
+      "lessons": 8,
+      "theorySlides": 160,
+      "updatedAt": "2026-09-27",
+      "verifiedAt": "2026-09-27",
+      "pr": 148,
+      "gateResults": {
+        "academic": "PASS",
+        "runtimeStatic": "PASS",
+        "browser": "PASS",
+        "developmentFastCI": "PASS",
+        "e18Regression": "PASS",
+        "e17Regression": "PASS",
+        "universalConstitution": "PASS"
       }
     }
   }

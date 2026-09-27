@@ -1,0 +1,56 @@
+name: Math m_p10 E19 Russian linear algebra gate
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'subjects/math/**'
+      - 'scripts/validate-math-mp10-e19.mjs'
+      - 'scripts/validate-math-mp10-runtime-routing-e19.mjs'
+      - 'tests/math-mp10-e19-browser.mjs'
+      - '.github/workflows/math-mp10-e19-gate.yml'
+permissions:
+  contents: read
+jobs:
+  mp10-static:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.13.0'
+      - run: node scripts/validate-math-mp10-e19.mjs
+      - run: node scripts/validate-math-mp10-runtime-routing-e19.mjs
+  mp10-browser:
+    needs: mp10-static
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.13.0'
+      - name: Install Playwright Chromium
+        run: |
+          printf '{"private":true,"type":"module"}\n' > package.json
+          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Start local runtime
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/bauman-mp10-http.log 2>&1 &
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/bauman-mp10-http.log
+          exit 1
+      - name: Run E19 browser acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/math-mp10-e19
+        run: node tests/math-mp10-e19-browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: math-mp10-e19-${{ github.run_id }}
+          path: artifacts/math-mp10-e19
+          if-no-files-found: ignore
