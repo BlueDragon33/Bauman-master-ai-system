@@ -167,3 +167,20 @@ body[data-ui-focus-mode="true"] #baumanFocusBanner{display:flex}
   .profile-wrap #profileBtn{width:var(--ui-touch);min-width:var(--ui-touch);padding:0;justify-content:center}
   .hub-top-profile-copy,.hub-profile-chevron{display:none}
 }
+
+
+/* Mobile global search stays a real input, never a pair of icon-only fragments. */
+@media(max-width:430px){
+  .topbar{display:flex!important;align-items:center!important;gap:8px!important}
+  .topbar>.hub-safe-search{
+    flex:1 1 auto!important;width:auto!important;max-width:none!important;min-width:0!important;height:var(--ui-touch)!important;
+    display:flex!important;padding:0 12px!important;border:1px solid var(--ui-border-default)!important;border-radius:var(--ui-radius-md)!important;
+    background:var(--ui-surface-secondary)!important;color:var(--ui-text-secondary)!important
+  }
+  .topbar>.hub-safe-search .hub-safe-search-icon{display:inline-grid!important;place-items:center!important;flex:0 0 auto!important}
+  .topbar>.hub-safe-search input{display:block!important;flex:1 1 auto!important;width:100%!important;min-width:0!important;padding:0!important;color:var(--ui-text-primary)!important}
+  .topbar>.hub-safe-search input::placeholder{color:var(--ui-text-tertiary)!important}
+  .topbar>.hub-safe-search .hub-v2-search-submit,.topbar>.hub-safe-search kbd{display:none!important}
+  .top-actions{flex:0 0 auto!important;margin:0!important;width:auto!important}
+  .hub-safe-topmeta{display:flex!important}
+}
