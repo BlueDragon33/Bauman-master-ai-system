@@ -103,7 +103,7 @@ body[data-bui-subject] :where(.top-actions,.ru-top-actions) :where(button,.btn){
   min-height:40px;border:1px solid var(--bui-border);border-radius:var(--bui-radius-md);background:var(--bui-surface);color:var(--bui-text);box-shadow:none
 }
 body[data-bui-subject] :where(.top-actions,.ru-top-actions) :where(.primary,#aiBtn){
-  background:var(--bui-primary);border-color:var(--bui-primary);color:#fff
+  background:var(--bui-primary);border-color:var(--bui-primary);color:var(--bui-on-primary)
 }
 body[data-bui-subject] :where(.content,.view,.ru-view){
   width:min(100%,var(--bui-workspace-max));min-width:0;margin-inline:auto;padding:var(--bui-space-5)
