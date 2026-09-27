@@ -7,7 +7,7 @@ body{
   --hub-readable-body:16px;
   --hub-readable-control:15px;
   --hub-readable-small:14px;
-  --hub-readable-micro:14.5px;
+  --hub-readable-micro:13px;
   --hub-readable-card:16px;
   --hub-readable-section:18px;
   --hub-readable-page-title:30px;
@@ -24,18 +24,18 @@ body[data-size="compact"]{
 }
 body[data-size="normal"]{
   --hub-readable-body:16px;
-  --hub-readable-control:14px;
-  --hub-readable-small:13px;
-  --hub-readable-micro:12px;
-  --hub-readable-card:15px;
+  --hub-readable-control:15px;
+  --hub-readable-small:14px;
+  --hub-readable-micro:13px;
+  --hub-readable-card:16px;
   --hub-readable-section:18px;
   --hub-readable-page-title:30px;
 }
 body[data-size="large"]{
   --hub-readable-body:18px;
   --hub-readable-control:17px;
-  --hub-readable-small:18px;
-  --hub-readable-micro:13px;
+  --hub-readable-small:16px;
+  --hub-readable-micro:14.5px;
   --hub-readable-card:18px;
   --hub-readable-section:20px;
   --hub-readable-page-title:34px;
@@ -43,7 +43,7 @@ body[data-size="large"]{
 body[data-size="xlarge"]{
   --hub-readable-body:20px;
   --hub-readable-control:19px;
-  --hub-readable-small:16px;
+  --hub-readable-small:18px;
   --hub-readable-micro:16px;
   --hub-readable-card:20px;
   --hub-readable-section:22px;
