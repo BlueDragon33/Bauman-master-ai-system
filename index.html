@@ -8,6 +8,7 @@
   <title>Bauman Master Hub · Trung tâm học tập</title>
   <link rel="icon" href="assets/media/favicon.svg?v=site-id-1" type="image/svg+xml">
   <link rel="manifest" href="app.webmanifest">
+  <link rel="stylesheet" href="platform/ui/index.css?v=bfis-e10">
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/device-access-gate.css">
   <link rel="stylesheet" href="assets/css/academic-2026.css?v=2">
@@ -29,7 +30,7 @@
   <link rel="stylesheet" href="assets/css/thesis-reference-v1.css?v=1">
   <link rel="stylesheet" href="assets/css/hub-readable-typography-v1.css?v=2">
 </head>
-<body data-theme="academic" data-hub-wallpaper="mountain" data-hub-density="comfort" class="canva-main-v1 canva-main-v2 canva-main-v3 canva-main-v4 canva-contrast-r2 canva-contrast-r3 canva-contrast-r4 hub-ui-booting">
+<body data-bui="1" data-theme="academic" data-hub-wallpaper="mountain" data-hub-density="comfort" class="canva-main-v1 canva-main-v2 canva-main-v3 canva-main-v4 canva-contrast-r2 canva-contrast-r3 canva-contrast-r4 hub-ui-booting">
   <div id="authScreen" class="auth-screen">
     <div class="auth-card">
       <div class="auth-visual-mark"><div class="auth-logo"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6 55 49h-9L32 23 18 49H9L32 6Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/><path d="M20 50 32 32l12 18" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 50h38" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg></div><span class="auth-kicker">Bauman Master Hub</span></div>
@@ -44,13 +45,13 @@
   </div>
 
   <div class="app hidden" id="appRoot">
-    <aside class="sidebar" id="sidebar">
+    <aside class="sidebar" id="sidebar" data-bui-focus-hide>
       <div class="brand-row">
         <div class="brand">
           <div class="logo"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6 55 49h-9L32 23 18 49H9L32 6Z" fill="none" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/><path d="M20 50 32 32l12 18" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 50h38" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg></div>
           <div><b>BAUMAN</b><small>MASTER HUB</small></div>
         </div>
-        <button class="sidebar-toggle" id="sidebarToggle" title="Thu gọn/mở rộng menu">☰</button>
+        <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-label="Thu gọn hoặc mở rộng điều hướng" title="Thu gọn/mở rộng menu">☰</button>
       </div>
       <nav class="nav" id="nav">
         <button data-page="home" class="active" title="Trang chủ"><i>⌂</i><span>Trang chủ</span></button>
@@ -65,9 +66,9 @@
     <div class="shell">
       <header class="topbar">
         <div class="top-title"><h1 id="pageTitle">Trang chủ</h1><p id="pageSubtitle">Bauman Master Hub · học tập, lộ trình và tiến độ.</p></div>
-        <div class="top-actions canva-top-actions">
+        <div class="top-actions canva-top-actions" data-bui-focus-hide>
           <div class="appearance-wrap">
-            <button class="btn appearance-trigger" id="appearanceBtn">Giao diện</button>
+            <button class="btn appearance-trigger" id="appearanceBtn" type="button" aria-haspopup="true" aria-controls="appearanceMenu">Giao diện</button>
             <div id="appearanceMenu" class="appearance-menu hidden">
               <label class="profile-line">Nền giao diện
                 <select id="themeSelect" class="field sm-field">
@@ -95,7 +96,7 @@
               </label>
             </div>
           </div>
-          <button class="btn primary ai-trigger" id="aiBtn">✨ Trợ lý AI</button>
+          <button class="btn primary ai-trigger" id="aiBtn" type="button">Trợ lý AI</button>
           <div class="profile-wrap">
             <button class="avatar-btn canva-avatar-btn" id="profileBtn" title="Tài khoản"><span id="userAvatar">?</span><span class="hub-top-profile-copy"><small>Good to see you,</small><b id="hubTopProfileName">Learner</b></span><span class="hub-profile-chevron">⌄</span></button>
             <div id="profileMenu" class="profile-menu hidden">
@@ -126,6 +127,7 @@
   <script src="assets/js/platform/device-access-gate.js"></script>
   <script src="assets/js/platform/device-access-gate-ui.js"></script>
   <script src="assets/js/data.js"></script>
+  <script src="platform/ui/runtime.js?v=bfis-e10"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/deep-study-journal-v1.js"></script>
   <script src="assets/js/app-manager-managed-access.js?v=2"></script>
