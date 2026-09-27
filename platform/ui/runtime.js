@@ -30,6 +30,7 @@
 
   function boot(){
     document.body?.setAttribute('data-bui','1');
+    installAccessibility();
     bindFocusMode();
     bindCommandPalette();
     registerDefaultCommands();
@@ -37,6 +38,28 @@
     normalizePrimaryIcons();
     document.documentElement.dataset.buiReady='1';
     document.dispatchEvent(new CustomEvent('bauman-ui-ready',{detail:{version:VERSION}}));
+  }
+
+
+  function installAccessibility(){
+    const main=q('main');
+    if(main&&!main.id)main.id='bui-main';
+    if(main&&!main.getAttribute('role'))main.setAttribute('role','main');
+    const nav=q('#nav');if(nav&&!nav.getAttribute('aria-label'))nav.setAttribute('aria-label','Điều hướng chính');
+    if(main&&!q('[data-bui-skip]')){
+      const a=document.createElement('a');a.href='#'+main.id;a.dataset.buiSkip='1';a.className='bui-skip-link';a.textContent='Bỏ qua điều hướng';document.body.insertBefore(a,document.body.firstChild);
+    }
+    if(nav){
+      nav.addEventListener('keydown',e=>{
+        if(!['ArrowDown','ArrowUp','Home','End'].includes(e.key))return;
+        const items=qa('button:not([disabled]),a[href]',nav);if(!items.length)return;
+        const current=items.indexOf(document.activeElement);let next=current;
+        if(e.key==='ArrowDown')next=(current+1+items.length)%items.length;
+        if(e.key==='ArrowUp')next=(current-1+items.length)%items.length;
+        if(e.key==='Home')next=0;if(e.key==='End')next=items.length-1;
+        e.preventDefault();items[next<0?0:next]?.focus();
+      });
+    }
   }
 
   function setFocusMode(next){
