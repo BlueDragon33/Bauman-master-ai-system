@@ -1,0 +1,73 @@
+name: Bauman Future Interface System CI
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "platform/ui/**"
+      - "assets/js/hub-reference-precision-v5.js"
+      - "assets/js/hub-safe-shell.js"
+      - "index.html"
+      - "subjects/**/index.html"
+      - "subjects/**/editor.html"
+      - "subjects/**/simulations/*.html"
+      - "tests/future-interface-system-*.mjs"
+      - "docs/BAUMAN_FUTURE_INTERFACE_SYSTEM.md"
+      - ".github/workflows/future-interface-system-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bfis:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+
+      - name: Static architecture gate
+        run: |
+          node --check platform/ui/runtime.js
+          node --check platform/ui/subject-adapter.js
+          node --check platform/ui/resource-viewer.js
+          node --check platform/ui/micro-app.js
+          node --check platform/ui/import-center.js
+          node --check platform/ui/performance.js
+          node --check tests/future-interface-system-static.mjs
+          node --check tests/future-interface-system-browser.mjs
+          node tests/future-interface-system-static.mjs
+
+      - name: Install Playwright Chromium
+        run: |
+          printf '{"private":true,"type":"module"}\n' > package.json
+          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Start local runtime
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/bfis-http.log 2>&1 &
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/bfis-http.log
+          exit 1
+
+      - name: Browser, responsive and visual acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/future-interface-system
+        run: node tests/future-interface-system-browser.mjs
+
+      - name: Upload BFIS visual evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: future-interface-system-${{ github.run_id }}
+          path: artifacts/future-interface-system
+          if-no-files-found: warn
+          retention-days: 14
