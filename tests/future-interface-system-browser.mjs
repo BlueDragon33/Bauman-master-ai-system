@@ -70,7 +70,8 @@ try{
 
   // Command Palette: keyboard, semantic search, close.
   await page.keyboard.press('Control+K');
-  await page.waitForSelector('[data-bui-command-root]:not([hidden])',{state:'visible'});
+  await page.waitForFunction(()=>document.querySelector('[data-bui-command-root]')?.hidden===false,null,{timeout:10000});
+  await page.waitForSelector('.bui-command-backdrop',{state:'visible'});
   const commandInput=page.locator('[data-bui-command-input]');
   await commandInput.fill('Tiếng Nga');
   await page.waitForTimeout(80);
