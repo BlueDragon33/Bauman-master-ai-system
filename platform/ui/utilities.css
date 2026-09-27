@@ -1,0 +1,11 @@
+/* BAUMAN FUTURE PROFESSIONAL INTERFACE SYSTEM · Utilities */
+.ui-sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+.ui-stack{display:grid;gap:var(--ui-space-4)}
+.ui-stack--sm{gap:var(--ui-space-2)}
+.ui-stack--lg{gap:var(--ui-space-6)}
+.ui-cluster{display:flex;align-items:center;gap:var(--ui-space-3);flex-wrap:wrap}
+.ui-truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ui-muted{color:var(--ui-text-secondary)}
+.ui-hidden{display:none!important}
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:3px solid color-mix(in srgb,var(--ui-focus) 30%,transparent);outline-offset:2px}
+:where(button,a,[role="button"],input,select,textarea){min-height:var(--ui-touch)}
