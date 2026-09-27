@@ -1,0 +1,66 @@
+name: Bauman Future UI CI
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "platform/ui/**"
+      - "assets/css/main.css"
+      - "assets/js/hub-safe-shell.js"
+      - "index.html"
+      - "tests/bauman-future-ui-*.mjs"
+      - "docs/future-interface/**"
+      - ".github/workflows/bauman-future-ui-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  future-ui:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+
+      - name: Static architecture gate
+        run: |
+          node --check platform/ui/runtime.js
+          node --check assets/js/hub-safe-shell.js
+          node --check tests/bauman-future-ui-static.mjs
+          node --check tests/bauman-future-ui-browser.mjs
+          node tests/bauman-future-ui-static.mjs
+
+      - name: Install Playwright Chromium
+        run: |
+          printf '{"private":true,"type":"module"}\n' > package.json
+          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Start local runtime
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/bauman-future-ui-http.log 2>&1 &
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/bauman-future-ui-http.log
+          exit 1
+
+      - name: Run cross-device acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/bauman-future-ui
+        run: node tests/bauman-future-ui-browser.mjs
+
+      - name: Upload visual review evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bauman-future-ui-${{ github.run_id }}
+          path: artifacts/bauman-future-ui
+          if-no-files-found: warn
+          retention-days: 7
