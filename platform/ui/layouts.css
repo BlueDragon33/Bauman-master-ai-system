@@ -1,0 +1,23 @@
+/* BAUMAN FUTURE PROFESSIONAL INTERFACE SYSTEM · Layout contracts */
+.ui-app-layout{min-height:100dvh;background:var(--ui-canvas);color:var(--ui-text-primary)}
+.ui-workspace{width:min(100%,var(--ui-workspace-max));margin-inline:auto;padding:var(--ui-space-6)}
+.ui-dashboard-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,380px);gap:var(--ui-space-5);align-items:start}
+.ui-dashboard-layout__main,.ui-dashboard-layout__rail{display:grid;gap:var(--ui-space-5);min-width:0}
+.ui-learning-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,340px);gap:var(--ui-space-6);align-items:start}
+.ui-resource-layout{display:grid;grid-template-rows:auto minmax(0,1fr);min-height:calc(100dvh - var(--ui-topbar-height));background:var(--ui-canvas)}
+.ui-resource-layout__viewer{min-height:0;overflow:hidden;background:var(--ui-surface-secondary)}
+.ui-admin-layout{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--ui-space-5)}
+.ui-focus-layout{min-height:100dvh;background:var(--ui-canvas)}
+.ui-focus-layout .sidebar,.ui-focus-layout .topbar{display:none!important}
+.ui-focus-layout .main{max-width:1200px!important;margin-inline:auto!important}
+.ui-reading-width{max-width:var(--ui-reading-max)}
+@media(max-width:1024px){
+  .ui-dashboard-layout,.ui-learning-layout{grid-template-columns:1fr}
+  .ui-workspace{padding:var(--ui-space-5)}
+}
+@media(max-width:768px){
+  .ui-workspace{padding:var(--ui-space-4)}
+}
+@media(max-width:430px){
+  .ui-workspace{padding:var(--ui-space-3)}
+}
