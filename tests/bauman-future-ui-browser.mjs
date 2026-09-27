@@ -46,9 +46,25 @@ try{
   assert.equal(core.sidebarShadow,'none','Canonical shell still has heavy sidebar shadow');
   assert.equal(core.topbarShadow,'none','Canonical shell still has heavy topbar shadow');
 
+  const shellByRoute={};
   for(const route of ['home','roadmap','subjects','schedule','research']){
     await openRoute(page,route);
     await assertNoOverflow(page,'Desktop '+route);
+    shellByRoute[route]=await page.evaluate(()=>({
+      sidebarWidth:Math.round(document.querySelector('.sidebar').getBoundingClientRect().width),
+      sidebarBg:getComputedStyle(document.querySelector('.sidebar')).backgroundColor,
+      sidebarShadow:getComputedStyle(document.querySelector('.sidebar')).boxShadow,
+      topbarHeight:Math.round(document.querySelector('.topbar').getBoundingClientRect().height),
+      topbarShadow:getComputedStyle(document.querySelector('.topbar')).boxShadow
+    }));
+  }
+  const shellBaseline=shellByRoute.home;
+  for(const [route,shape] of Object.entries(shellByRoute)){
+    assert.equal(shape.sidebarWidth,shellBaseline.sidebarWidth,'App Shell sidebar width changed on '+route);
+    assert.equal(shape.sidebarBg,shellBaseline.sidebarBg,'App Shell sidebar surface changed on '+route);
+    assert.equal(shape.sidebarShadow,'none','Heavy sidebar shadow returned on '+route);
+    assert.equal(shape.topbarHeight,shellBaseline.topbarHeight,'App Shell topbar height changed on '+route);
+    assert.equal(shape.topbarShadow,'none','Heavy topbar shadow returned on '+route);
   }
 
   // Command palette keyboard acceptance.
@@ -102,11 +118,13 @@ try{
   await openRoute(page,'home');
   await page.setViewportSize({width:1920,height:1080});
   await assertNoOverflow(page,'1920 home');
+  await page.evaluate(()=>{const t=document.getElementById('toast');if(t)t.style.display='none'});
   await page.screenshot({path:path.join(OUT,'desktop-1920-home.png'),fullPage:false});
 
   await page.setViewportSize({width:1440,height:1000});
   await openRoute(page,'subjects');
   await assertNoOverflow(page,'1440 subjects');
+  await page.evaluate(()=>{const t=document.getElementById('toast');if(t)t.style.display='none'});
   await page.screenshot({path:path.join(OUT,'desktop-1440-subjects.png'),fullPage:false});
 
   // Tablet
@@ -121,6 +139,8 @@ try{
   }));
   assert.equal(tablet.sidebar,'none','Desktop sidebar still shown on tablet');
   assert.notEqual(tablet.mobileNav,'none','Mobile/tablet navigation missing');
+  await openRoute(page,'schedule');
+  await page.evaluate(()=>{const t=document.getElementById('toast');if(t)t.style.display='none'});
   await page.screenshot({path:path.join(OUT,'tablet-768-schedule.png'),fullPage:false});
 
   // Mobile
@@ -137,10 +157,11 @@ try{
   assert.notEqual(mobile.nav,'none');
   assert.deepEqual(mobile.active,['research'],'Mobile nav active route did not sync');
   assert.ok(mobile.targets.every(x=>x>=44),'Mobile nav has touch targets below 44px');
+  await page.evaluate(()=>{const t=document.getElementById('toast');if(t)t.style.display='none'});
   await page.screenshot({path:path.join(OUT,'mobile-390-research.png'),fullPage:false});
 
   assert.deepEqual(errors,[],'Future UI browser emitted console/page errors');
-  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({core,palette,focus,dark,tablet,mobile},null,2));
+  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({core,shellByRoute,palette,focus,dark,tablet,mobile},null,2));
   console.log('BAUMAN_FUTURE_UI_BROWSER_PASS');
 }finally{
   await browser?.close();
