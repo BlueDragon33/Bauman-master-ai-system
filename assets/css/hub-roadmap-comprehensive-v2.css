@@ -556,21 +556,21 @@ body[data-hub-roadmap-v4="legacy"] .side-note span{display:none!important}
 
 /* Reference-specific responsive behavior */
 @media(max-width:1450px){
-  body[data-hub-roadmap-v4="1"] .app{grid-template-columns:184px minmax(0,1fr)!important}
-  body[data-hub-roadmap-v4="1"] .sidebar{width:184px!important}
+  body[data-hub-roadmap-v4="legacy"] .app{grid-template-columns:184px minmax(0,1fr)!important}
+  body[data-hub-roadmap-v4="legacy"] .sidebar{width:184px!important}
   body[data-hub-roadmap-v4="1"] #hubRoadmapTopNav button{min-width:92px;padding:0 10px}
   #page-roadmap .hub-rm-content{grid-template-columns:minmax(0,1fr) 320px}
   #page-roadmap .hub-rm-course-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 @media(max-width:1180px){
-  body[data-hub-roadmap-v4="1"] .app{grid-template-columns:78px minmax(0,1fr)!important}
-  body[data-hub-roadmap-v4="1"] .sidebar{width:78px!important;padding:8px 6px!important}
-  body[data-hub-roadmap-v4="1"] .brand b,
-  body[data-hub-roadmap-v4="1"] .brand small,
+  body[data-hub-roadmap-v4="legacy"] .app{grid-template-columns:78px minmax(0,1fr)!important}
+  body[data-hub-roadmap-v4="legacy"] .sidebar{width:78px!important;padding:8px 6px!important}
+  body[data-hub-roadmap-v4="legacy"] .brand b,
+  body[data-hub-roadmap-v4="legacy"] .brand small,
   body[data-hub-roadmap-v4="1"] #hubRoadmapJourney,
-  body[data-hub-roadmap-v4="1"] .side-note,
-  body[data-hub-roadmap-v4="1"] #nav span{display:none!important}
-  body[data-hub-roadmap-v4="1"] #nav>button{justify-content:center!important;padding:5px!important}
+  body[data-hub-roadmap-v4="legacy"] .side-note,
+  body[data-hub-roadmap-v4="legacy"] #nav span{display:none!important}
+  body[data-hub-roadmap-v4="legacy"] #nav>button{justify-content:center!important;padding:5px!important}
   body[data-hub-roadmap-v4="1"] #hubRoadmapTopNav button{min-width:72px;padding:0 8px}
   body[data-hub-roadmap-v4="1"] #hubRoadmapTopNav button span{display:none}
   #page-roadmap .hub-rm-stage-grid{grid-template-columns:1fr 1fr}
@@ -579,9 +579,9 @@ body[data-hub-roadmap-v4="legacy"] .side-note span{display:none!important}
   #page-roadmap .hub-rm-rail{grid-template-columns:1fr 1fr;grid-template-rows:auto auto}
 }
 @media(max-width:760px){
-  body[data-hub-roadmap-v4="1"] .app{display:block!important}
-  body[data-hub-roadmap-v4="1"] .sidebar{width:auto!important}
-  body[data-hub-roadmap-v4="1"] .topbar{height:auto!important;min-height:52px!important}
+  body[data-hub-roadmap-v4="legacy"] .app{display:block!important}
+  body[data-hub-roadmap-v4="legacy"] .sidebar{width:auto!important}
+  body[data-hub-roadmap-v4="legacy"] .topbar{height:auto!important;min-height:52px!important}
   body[data-hub-roadmap-v4="1"] #hubRoadmapTopNav{overflow-x:auto}
   body[data-hub-roadmap-v4="1"] #hubRoadmapTopNav button{flex:0 0 66px;min-width:66px}
   #page-roadmap .hub-rm-hero{min-height:126px;align-items:flex-start}
@@ -678,8 +678,8 @@ body[data-hub-roadmap-v4="1"] #page-roadmap .hub-rm-side-card{
 
 /* Match the reference header/sidebar proportions more closely on 16:9 desktops. */
 @media(min-width:1500px) and (min-height:900px){
-  body[data-hub-roadmap-v4="1"] .app{grid-template-columns:210px minmax(0,1fr)!important}
-  body[data-hub-roadmap-v4="1"] .sidebar{width:210px!important}
+  body[data-hub-roadmap-v4="legacy"] .app{grid-template-columns:210px minmax(0,1fr)!important}
+  body[data-hub-roadmap-v4="legacy"] .sidebar{width:210px!important}
   body[data-hub-roadmap-v4="1"] #page-roadmap .hub-rm-content{
     grid-template-columns:minmax(0,1fr) 372px!important;
   }
