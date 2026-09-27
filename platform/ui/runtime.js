@@ -4,7 +4,7 @@
   'use strict';
   if(window.BaumanUI?.version)return;
   const VERSION='BFIS-E1-E10-20260927';
-  const commandMap=new Map(),slotMap=new Map();
+  const commandMap=new Map(),slotMap=new Map(),searchProviders=new Map();
   const ICONS={
     home:'<path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1Z"/>',
     roadmap:'<path d="M6 4v16M18 4v16M6 7h7l2 3-2 3H6M18 11h-5l-2 3 2 3h5"/>',
@@ -85,6 +85,8 @@
 
   function registerDefaultCommands(){
     registerCommand({id:'focus.toggle',label:'Bật / tắt Focus Mode',group:'Giao diện',keywords:'focus tập trung',icon:'◉',run:()=>setFocusMode()});
+    registerCommand({id:'appearance.open',label:'Mở cài đặt giao diện',group:'Giao diện',keywords:'theme font cỡ chữ dark mode',icon:'◌',run:()=>q('#appearanceBtn')?.click()});
+    registerCommand({id:'assistant.open',label:'Mở Trợ lý AI',group:'Học tập',keywords:'ai trợ lý hỏi đáp',icon:'✦',run:()=>q('#aiBtn')?.click()});
     const pageMap=[['home','Tổng quan'],['roadmap','Lộ trình'],['subjects','Môn học'],['schedule','Lịch học'],['research','Luận văn']];
     pageMap.forEach(([id,label])=>registerCommand({id:'nav.'+id,label:'Mở '+label,group:'Điều hướng',icon:'→',keywords:label.toLowerCase(),run:()=>{
       if(window.app?.page)window.app.page(id); else q('[data-page="'+id+'"]')?.click();
@@ -109,9 +111,26 @@
     q('[data-bui-command-input]',root).addEventListener('input',renderCommands);
     return root;
   }
+  function registerSearchProvider(id,provider){if(!id||typeof provider!=='function')return false;searchProviders.set(String(id),provider);return true}
+  function unregisterSearchProvider(id){return searchProviders.delete(String(id))}
+  function dataSearch(t){
+    if(!t)return [];
+    const data=window.BAUMAN_DATA||window.DATA||null;if(!data)return [];
+    const out=[];
+    (data.subjects||[]).filter(x=>[x.name,x.desc,x.main,(x.eq||[]).join(' ')].join(' ').toLowerCase().includes(t)).slice(0,8).forEach(x=>{
+      out.push({id:'data.subject.'+x.id,label:x.name,description:'Môn học',group:'Môn học',icon:'▦',run:()=>{try{window.pickSubject?.(x.id);window.app?.page?.('subjects')}catch{}}});
+    });
+    (data.courses||[]).filter(x=>[x.name,x.ru,x.stage,x.deliverable,x.note].join(' ').toLowerCase().includes(t)).slice(0,12).forEach(x=>{
+      out.push({id:'data.course.'+x.id,label:x.name,description:(x.stage||'')+' · '+(x.ru||''),group:'Bài học / học phần',icon:'→',run:()=>{try{window.pickSubject?.(x.subject);window.app?.page?.('subjects')}catch{}}});
+    });
+    return out;
+  }
+  registerSearchProvider('bauman-data',dataSearch);
+
   function commandSearchRows(term=''){
     const t=String(term).trim().toLowerCase();
     const commands=[...commandMap.values()].filter(c=>!t||[c.label,c.group,c.keywords].join(' ').toLowerCase().includes(t));
+    if(t){for(const provider of searchProviders.values()){try{const rows=provider(t);if(Array.isArray(rows))commands.push(...rows)}catch(e){console.warn('[BaumanUI] search provider failed',e)}}}
     if(t){
       qa('a[href],button').forEach((el,i)=>{
         const text=(el.textContent||el.getAttribute('aria-label')||'').trim();
@@ -121,7 +140,7 @@
         }
       });
     }
-    return commands.slice(0,40);
+    const seen=new Set();return commands.filter(x=>x&&x.id&&!seen.has(x.id)&&seen.add(x.id)).slice(0,40);
   }
   function renderCommands(){
     const root=ensurePalette(),input=q('[data-bui-command-input]',root),list=q('[data-bui-command-list]',root),rows=commandSearchRows(input?.value||'');
@@ -156,6 +175,7 @@
     version:VERSION,
     focus:{set:setFocusMode,toggle:()=>setFocusMode(),get:()=>document.body?.dataset.buiFocus==='1'},
     commands:{register:registerCommand,unregister:unregisterCommand,open:openPalette,close:closePalette,run:runCommand,list:()=>[...commandMap.values()]},
+    search:{register:registerSearchProvider,unregister:unregisterSearchProvider,providers:()=>[...searchProviders.keys()]},
     slots:{register:registerSlot,resolve:resolveSlot,mount:mountSlot},
     icons:{svg:icon,names:()=>Object.keys(ICONS)},
     ready:()=>document.documentElement.dataset.buiReady==='1'
