@@ -1,0 +1,159 @@
+{
+  "schema": "bauman_math_logical_module_source_map_v1",
+  "recoveryId": "E17",
+  "moduleId": "m_p08",
+  "moduleTitle": "Chuỗi thời gian nhập môn",
+  "stageId": "prepare",
+  "architecture": "logical_module_over_physical_content",
+  "status": "AUTHORED_PENDING_CI",
+  "correction": {
+    "rule": "m_p08 là module logic, không tạo chapter vật lý MATH-VN-C08. Nội dung được đặt vào các chapter vật lý C04/C05/C06 theo bản chất toán học và giữ liên kết học thuật sang MATH-PROG-L14 / HK1-C22.",
+    "physicalSpineTruth": [
+      "VN physical spine chỉ có C01-C06.",
+      "m_p08 tồn tại trong theory-framework.json như module logic 8 bài.",
+      "Legacy sidecars không phải completion authority; modern Content Vault là nguồn runtime."
+    ]
+  },
+  "programAnchor": "MATH-PROG-L14-stochastic-processes-time-series",
+  "futureAnchors": [
+    "MATH-HK1-C22-qua_trinh_ngau_nhien_va_",
+    "MATH-HK3-C31-chuoi_thoi_gian_nang_cao"
+  ],
+  "logicalLessons": [
+    {
+      "logicalId": "m_p08_t01",
+      "title": "Dữ liệu chuỗi thời gian: chỉ số thời gian, tần số lấy mẫu và missing timestamp",
+      "physicalChapterIds": [
+        "MATH-VN-C06-python_numpy_cho_tinh_to"
+      ],
+      "theoryLessonIds": [
+        "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T01-time-index-sampling"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E17",
+      "prerequisiteLogicalIds": []
+    },
+    {
+      "logicalId": "m_p08_t02",
+      "title": "Xu hướng, mùa vụ, chu kỳ và nhiễu",
+      "physicalChapterIds": [
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie"
+      ],
+      "theoryLessonIds": [
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T02-trend-seasonality-noise"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E17",
+      "prerequisiteLogicalIds": [
+        "m_p08_t01"
+      ]
+    },
+    {
+      "logicalId": "m_p08_t03",
+      "title": "Trung bình trượt và làm mượt dữ liệu",
+      "physicalChapterIds": [
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie"
+      ],
+      "theoryLessonIds": [
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T03-rolling-smoothing"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E17",
+      "prerequisiteLogicalIds": [
+        "m_p08_t02"
+      ]
+    },
+    {
+      "logicalId": "m_p08_t04",
+      "title": "Phương sai thay đổi và dấu hiệu không ổn định",
+      "physicalChapterIds": [
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie"
+      ],
+      "theoryLessonIds": [
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T04-changing-variance"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E17",
+      "prerequisiteLogicalIds": [
+        "m_p08_t03"
+      ]
+    },
+    {
+      "logicalId": "m_p08_t05",
+      "title": "Autocorrelation và ý nghĩa phụ thuộc theo độ trễ",
+      "physicalChapterIds": [
+        "MATH-VN-C04-xac_suat_co_ban_va_bien_"
+      ],
+      "theoryLessonIds": [
+        "MATH-VN-C04-xac_suat_co_ban_va_bien_-E17-MP08-T05-autocorrelation"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E17",
+      "prerequisiteLogicalIds": [
+        "m_p08_t04"
+      ]
+    },
+    {
+      "logicalId": "m_p08_t06",
+      "title": "Lag features cho mô hình dự báo",
+      "physicalChapterIds": [
+        "MATH-VN-C06-python_numpy_cho_tinh_to"
+      ],
+      "theoryLessonIds": [
+        "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T06-lag-features"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E17",
+      "prerequisiteLogicalIds": [
+        "m_p08_t05"
+      ]
+    },
+    {
+      "logicalId": "m_p08_t07",
+      "title": "Stationarity ở mức trực giác và vì sao cần kiểm tra",
+      "physicalChapterIds": [
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie"
+      ],
+      "theoryLessonIds": [
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T07-stationarity-intuition"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E17",
+      "prerequisiteLogicalIds": [
+        "m_p08_t06"
+      ]
+    },
+    {
+      "logicalId": "m_p08_t08",
+      "title": "Chia train/test theo thời gian và lỗi rò rỉ tương lai",
+      "physicalChapterIds": [
+        "MATH-VN-C06-python_numpy_cho_tinh_to"
+      ],
+      "theoryLessonIds": [
+        "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T08-temporal-split-leakage"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E17",
+      "prerequisiteLogicalIds": [
+        "m_p08_t07"
+      ]
+    }
+  ],
+  "contentGate": {
+    "requiredLogicalLessons": 8,
+    "forbidPhysicalChapterId": "MATH-VN-C08",
+    "theoryTarget": "subjects/math/data/theory_lecture_content.json",
+    "sidecarTargets": [
+      "formula_content.json",
+      "exercise_content.json",
+      "application_content.json",
+      "simulation_content.json",
+      "professor_qa_content.json",
+      "question_bank_content.json",
+      "review_pack_content.json"
+    ],
+    "expected": {
+      "theorySlides": 82,
+      "formulas": 24,
+      "exercises": 64,
+      "applications": 16,
+      "simulations": 16,
+      "professorQA": 8,
+      "questions": 48,
+      "reviewPacks": 8
+    },
+    "completionRule": "PASS only when 8 logical lessons resolve to modern theory, sidecars link by logicalLessonId/lessonId, questions resolve to review packs, and runtime/browser gates pass."
+  }
+}
