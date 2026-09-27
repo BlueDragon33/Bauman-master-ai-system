@@ -5,7 +5,7 @@
   "moduleTitle": "Chuỗi thời gian nhập môn",
   "stageId": "prepare",
   "architecture": "logical_module_over_physical_content",
-  "status": "AUTHORED_PENDING_CI",
+  "status": "PASS_STATIC_BROWSER_CI",
   "correction": {
     "rule": "m_p08 là module logic, không tạo chapter vật lý MATH-VN-C08. Nội dung được đặt vào các chapter vật lý C04/C05/C06 theo bản chất toán học và giữ liên kết học thuật sang MATH-PROG-L14 / HK1-C22.",
     "physicalSpineTruth": [
@@ -155,5 +155,13 @@
       "reviewPacks": 8
     },
     "completionRule": "PASS only when 8 logical lessons resolve to modern theory, sidecars link by logicalLessonId/lessonId, questions resolve to review packs, and runtime/browser gates pass."
+  },
+  "verifiedAt": "2026-09-27",
+  "pr": 144,
+  "gateResults": {
+    "academic": "PASS",
+    "runtimeStatic": "PASS",
+    "browser": "PASS",
+    "developmentFastCI": "PASS"
   }
 }

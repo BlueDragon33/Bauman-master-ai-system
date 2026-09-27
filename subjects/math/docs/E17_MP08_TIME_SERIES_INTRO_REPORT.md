@@ -48,6 +48,7 @@ E186 hiển thị hierarchy 21 program lectures nhưng trước đây `lessonOpt
 E17 nâng E186 lên `E197_PROGRAM_ANCHOR_ROUTING_MP08`:
 
 - ưu tiên tìm lesson theo `programLectureId/programLectureIds`;
+- E129 giữ `lessonId` đã chọn và truy ngược `chapterId` vật lý thật trước khi render, tránh router cũ ghi đè;
 - L14 có thể gom học liệu m_p08 từ C04/C05/C06;
 - khi chọn lesson, renderer nhận lại `chapterId` vật lý thật của chính lesson;
 - fallback chapter-number cũ vẫn giữ để tương thích nội dung chưa có program anchor.
@@ -61,6 +62,15 @@ E17 nâng E186 lên `E197_PROGRAM_ANCHOR_ROUTING_MP08`:
 
 ## Trạng thái
 
-**AUTHORED · LOCAL/STRUCTURAL AUDIT PASS · PENDING PR CI**
+**PASS · ACADEMIC + RUNTIME STATIC + CHROMIUM BROWSER + DEVELOPMENT FAST CI**
 
 Không merge/publish cho tới khi dedicated E17 CI và các gate hiện hữu cùng xanh.
+
+
+## Kết quả PR #144
+
+- Academic gate: PASS.
+- Runtime static gate: PASS.
+- Chromium browser acceptance: PASS.
+- Development Fast CI: PASS.
+- Hai lỗi phát hiện trong gate (validator tự bắt policy text và E129 ghi đè physical chapter) đã được sửa trước checkpoint.
