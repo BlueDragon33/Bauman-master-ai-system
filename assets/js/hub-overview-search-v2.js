@@ -237,10 +237,7 @@ function installSearch(){
   input.placeholder='Tìm môn, học phần, GĐ/HK, НИР...';
   input.setAttribute('aria-label','Tìm kiếm toàn Bauman Hub');
   input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();e.stopImmediatePropagation();showSearch(input.value)}},true);
-  const label=input.closest('.hub-safe-search');
-  if(label&&!q('[data-hub-search-submit]',label)){
-    const button=document.createElement('button');button.type='button';button.className='hub-v2-search-submit';button.dataset.hubSearchSubmit='1';button.title='Tìm kiếm';button.setAttribute('aria-label','Tìm kiếm');button.textContent='⌕';label.appendChild(button);
-  }
+  // One global search surface only: platform/ui Command Palette owns execution.
   return true;
 }
 function handleHomeAction(id){
@@ -260,7 +257,6 @@ function handleHomeAction(id){
 function bind(){
   document.addEventListener('click',e=>{
     const result=e.target.closest('[data-hub-search-kind]');if(result){e.preventDefault();e.stopImmediatePropagation();openSearchResult(result);return}
-    const submit=e.target.closest('[data-hub-search-submit]');if(submit){e.preventDefault();e.stopImmediatePropagation();showSearch(q('#hubSafeSearch')?.value||'');return}
     const action=e.target.closest('[data-hub-v2-action]');if(action){e.preventDefault();e.stopImmediatePropagation();handleHomeAction(action.dataset.hubV2Action);return}
   },true);
 }
