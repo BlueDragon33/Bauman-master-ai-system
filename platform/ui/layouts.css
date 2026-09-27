@@ -1,0 +1,66 @@
+/* BAUMAN FUTURE INTERFACE SYSTEM · Layouts + compatibility V1
+   Transitional compatibility layer for the current Hub and subject modules.
+   New components should prefer .bui-* contracts instead of adding one-off CSS. */
+
+html[data-bauman-ui="future-v1"] .bui-workspace,
+html[data-bauman-ui="future-v1"] :where(.main,.content,.view){
+  min-width:0;
+}
+html[data-bauman-ui="future-v1"] .bui-workspace{
+  width:min(100%,var(--bui-workspace-width));
+  margin-inline:auto;
+  padding-inline:clamp(16px,2vw,32px);
+}
+html[data-bauman-ui="future-v1"] .bui-grid{
+  display:grid;
+  grid-template-columns:repeat(12,minmax(0,1fr));
+  gap:var(--bui-space-4);
+}
+html[data-bauman-ui="future-v1"] .bui-stack{display:grid;gap:var(--bui-space-4)}
+html[data-bauman-ui="future-v1"] .bui-cluster{display:flex;align-items:center;gap:var(--bui-space-3);flex-wrap:wrap}
+
+/* Main Hub */
+html[data-bauman-ui="future-v1"] body:has(#appRoot) #appRoot{
+  background:var(--bui-surface-canvas);
+  color:var(--bui-text-primary);
+}
+html[data-bauman-ui="future-v1"] body:has(#appRoot) .sidebar{
+  border-right:1px solid color-mix(in srgb,var(--bui-border-subtle) 70%,transparent);
+}
+html[data-bauman-ui="future-v1"] body:has(#appRoot) .topbar{
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--bui-border-subtle);
+}
+html[data-bauman-ui="future-v1"] body:has(#appRoot) .main{
+  width:min(100%,var(--bui-workspace-width));
+  margin-inline:auto;
+}
+
+/* Subject shells: normalize proportions without erasing subject identity. */
+html[data-bauman-ui="future-v1"] body:not(:has(#appRoot)) :where(.app){
+  min-height:100dvh;
+}
+html[data-bauman-ui="future-v1"] body:not(:has(#appRoot)) :where(.side,.sidebar){
+  width:var(--bui-sidebar-width);
+}
+html[data-bauman-ui="future-v1"] body:not(:has(#appRoot)) :where(.top,.topbar){
+  border-bottom:1px solid var(--bui-border-subtle);
+  background:color-mix(in srgb,var(--bui-surface-primary) 94%,transparent);
+  backdrop-filter:blur(14px);
+}
+html[data-bauman-ui="future-v1"] body:not(:has(#appRoot)) :where(.content,.view){
+  width:min(100%,var(--bui-workspace-width));
+  margin-inline:auto;
+}
+html[data-bauman-ui="future-v1"] body:not(:has(#appRoot)) :where(.nav button){
+  border-radius:var(--bui-radius-md);
+  min-height:var(--bui-touch);
+}
+html[data-bauman-ui="future-v1"] body:not(:has(#appRoot)) :where(.section,.page){
+  min-width:0;
+}
+
+/* Reading-first content */
+html[data-bauman-ui="future-v1"] :where(.lesson-body,.reader,.article,.theory-content,.content-prose){
+  max-width:var(--bui-reading-width);
+}
