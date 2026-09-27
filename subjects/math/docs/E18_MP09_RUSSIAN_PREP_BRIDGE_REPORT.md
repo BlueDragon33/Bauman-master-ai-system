@@ -52,6 +52,6 @@ Mỗi bài có đúng 20 slide: Nga–Việt–Anh, trọng âm/phát âm, đọ
 
 ## Trạng thái
 
-**IMPLEMENTED · PENDING CI**
+**PASS · ACADEMIC + RUNTIME STATIC + CHROMIUM BROWSER + DEVELOPMENT FAST CI**
 
-Chỉ chuyển sang PASS và merge/publish sau khi academic static, runtime static, Chromium browser và Development Fast CI đều xanh.
+PR #145 đã đạt academic static, runtime static, Chromium browser và Development Fast CI. Checkpoint E18 được khóa PASS trước bước merge/publish.
