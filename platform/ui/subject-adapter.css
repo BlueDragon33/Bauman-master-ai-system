@@ -1,0 +1,26 @@
+/* UI-E20 · shared Subject UI contract. Safe semantic layer for all subject apps. */
+body[data-bui-subject]{
+  background:var(--bui-canvas)!important;color:var(--bui-text)!important;font-family:var(--bui-font-sans)!important;
+  font-size:16px!important;line-height:1.55!important
+}
+body[data-bui-subject] :where(button,input,select,textarea){font-family:inherit!important;font-size:.9375rem;min-height:var(--bui-touch)}
+body[data-bui-subject] :where(button,[role="button"],a[href]){touch-action:manipulation}
+body[data-bui-subject] :where(h1){font-size:var(--bui-type-h1)!important;line-height:var(--bui-leading-tight)!important}
+body[data-bui-subject] :where(h2){font-size:var(--bui-type-h2)!important;line-height:var(--bui-leading-tight)!important}
+body[data-bui-subject] :where(h3){font-size:var(--bui-type-h3)!important}
+body[data-bui-subject] :where(p,li){font-size:1rem;line-height:1.55}
+body[data-bui-subject] :where(small){font-size:.8125rem}
+body[data-bui-subject] :where(.card,.panel,.tile,.lesson-card,.resource-card,.topic-card){
+  border-color:var(--bui-border)!important;border-radius:var(--bui-radius-lg)!important
+}
+body[data-bui-subject] :where(.modal,.dialog,[role="dialog"]){border-radius:var(--bui-radius-xl)}
+body[data-bui-subject] :where(input,select,textarea){border-color:var(--bui-border);border-radius:var(--bui-radius-md)}
+body[data-bui-subject] :where(button):not([class*="icon"]){border-radius:var(--bui-radius-md)}
+body[data-bui-subject] main{max-width:var(--bui-shell-max);margin-inline:auto}
+body[data-bui-subject][data-bui-focus="1"] :where(header,nav,aside):not([data-bui-focus-keep]){opacity:.2;transition:opacity var(--bui-motion-base) var(--bui-ease)}
+body[data-bui-subject][data-bui-focus="1"] :where(header,nav,aside):not([data-bui-focus-keep]):hover,
+body[data-bui-subject][data-bui-focus="1"] :where(header,nav,aside):not([data-bui-focus-keep]):focus-within{opacity:1}
+@media(max-width:768px){
+  body[data-bui-subject] :where(button,input,select,textarea){min-height:44px}
+  body[data-bui-subject] main{padding-inline:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right))}
+}
