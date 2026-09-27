@@ -24,3 +24,11 @@ body[data-bui-subject][data-bui-focus="1"] :where(header,nav,aside):not([data-bu
   body[data-bui-subject] :where(button,input,select,textarea){min-height:44px}
   body[data-bui-subject] main{padding-inline:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right))}
 }
+
+/* UI-E11 · Learning Focus Experience */
+body[data-bui-subject][data-bui-focus="1"] :where(.side,.sidebar){display:none!important}
+body[data-bui-subject][data-bui-focus="1"] :where(.app,.ru-app-shell){grid-template-columns:minmax(0,1fr)!important}
+body[data-bui-subject][data-bui-focus="1"] :where(.main,.ru-main){width:min(100%,1180px);margin-inline:auto}
+body[data-bui-subject][data-bui-focus="1"] :where(.top-actions,.ru-top-actions){display:none!important}
+body[data-bui-subject][data-bui-focus="1"] :where(.top,.topbar,.ru-topbar){position:sticky;top:0;z-index:var(--bui-z-sticky);background:color-mix(in srgb,var(--bui-surface) 94%,transparent);backdrop-filter:blur(12px)}
+body[data-bui-subject][data-bui-focus="1"] :where(.view,.content,.ru-view){max-width:1100px;margin-inline:auto}
