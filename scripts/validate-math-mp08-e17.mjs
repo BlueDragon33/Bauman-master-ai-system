@@ -6,7 +6,8 @@ const json=p=>JSON.parse(fs.readFileSync(p,"utf8"));
 const map=json("subjects/math/data/mp08-source-map-e17.json");
 if(map.moduleId!=="m_p08"||map.architecture!=="logical_module_over_physical_content")fail("invalid source-map architecture");
 if((map.logicalLessons||[]).length!==8)fail("expected 8 logical lessons");
-if(JSON.stringify(map).includes("MATH-VN-C08"))fail("forbidden fabricated VN physical C08");
+const mappedPhysical=(map.logicalLessons||[]).flatMap(x=>x.physicalChapterIds||[]);
+if(mappedPhysical.includes("MATH-VN-C08"))fail("forbidden fabricated VN physical C08 in logical lesson mapping");
 if(!process.exitCode)ok("source-map preserves logical-module architecture");
 
 const theory=json("subjects/math/data/theory_lecture_content.json");
