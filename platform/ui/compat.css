@@ -1,0 +1,31 @@
+/* UI migration contract.
+   This is a governed bridge from legacy Bauman primitives to the new design tokens.
+   New components must use .bui-* classes; do not add page-specific patches here. */
+body[data-bui="1"]{
+  --bg:var(--bui-canvas);
+  --surface:var(--bui-surface);
+  --surface2:var(--bui-surface-subtle);
+  --line:var(--bui-border);
+  --text:var(--bui-text);
+  --muted:var(--bui-text-soft);
+  --primary:var(--bui-primary);
+  --green:var(--bui-success);
+  --amber:var(--bui-warning);
+  --red:var(--bui-danger);
+  --shadow:var(--bui-shadow-raised);
+}
+body[data-bui="1"] :where(.btn,.field,.panel,.card,.course,.dialog,.appearance-menu,.profile-menu){font-family:var(--bui-font-sans)}
+body[data-bui="1"] :where(.btn,button,input,select,textarea){min-height:min(var(--bui-touch),100%)}
+body[data-bui="1"] :where(.btn,.field){border-radius:var(--bui-radius-md)}
+body[data-bui="1"] :where(.panel,.card,.course,.dialog){border-radius:var(--bui-radius-lg)}
+body[data-bui="1"] :where(.panel,.card,.course){border-color:var(--bui-border)}
+body[data-bui="1"] :where(.modal-backdrop){background:var(--bui-surface-overlay)}
+body[data-bui="1"] :where(.dialog){background:var(--bui-surface-elevated);box-shadow:var(--bui-shadow-floating)}
+body[data-bui="1"] :where(.toast){z-index:var(--bui-z-toast)}
+body[data-bui="1"] :where(.pill,.tag){border-radius:var(--bui-radius-full)}
+body[data-bui="1"] :where(.main){width:min(100%,var(--bui-shell-max));margin-inline:auto}
+body[data-bui="1"] :where(.topbar){z-index:var(--bui-z-nav)}
+body[data-bui="1"] :where(.sidebar){z-index:var(--bui-z-sticky)}
+body[data-bui="1"][data-size="normal"]{font-size:16px;line-height:1.55}
+body[data-bui="1"][data-size="large"]{font-size:18px}
+body[data-bui="1"][data-size="xlarge"]{font-size:20px}
