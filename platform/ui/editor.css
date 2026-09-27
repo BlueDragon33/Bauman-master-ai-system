@@ -1,0 +1,35 @@
+/* BFIS · shared editor/admin utility layout */
+body[data-bui-editor]{
+  margin:0!important;min-height:100dvh;background:var(--bui-canvas)!important;color:var(--bui-text)!important;
+  font:var(--bui-type-body)/var(--bui-leading-body) var(--bui-font-sans)!important
+}
+body[data-bui-editor] .wrap{
+  width:min(100%,var(--bui-shell-max));margin-inline:auto!important;min-height:100dvh;height:auto!important;
+  display:grid!important;grid-template-columns:minmax(280px,360px) minmax(0,1fr)!important;gap:var(--bui-space-4)!important;padding:var(--bui-space-4)!important
+}
+body[data-bui-editor] .panel{
+  background:var(--bui-surface)!important;color:var(--bui-text)!important;border:1px solid var(--bui-border)!important;
+  border-radius:var(--bui-radius-lg)!important;padding:var(--bui-space-5)!important;box-shadow:var(--bui-shadow-base)!important
+}
+body[data-bui-editor] h1{font-size:var(--bui-type-h2)!important;line-height:1.2!important}
+body[data-bui-editor] p{color:var(--bui-text-soft)!important}
+body[data-bui-editor] textarea{
+  width:100%!important;min-height:calc(100dvh - 72px)!important;height:auto!important;resize:vertical!important;
+  border:1px solid var(--bui-border)!important;border-radius:var(--bui-radius-md)!important;padding:var(--bui-space-4)!important;
+  background:var(--bui-surface-subtle)!important;color:var(--bui-text)!important;font:14px/1.55 var(--bui-font-mono)!important
+}
+body[data-bui-editor] :where(button,select,a.bui-button){
+  min-height:var(--bui-touch)!important;border:1px solid var(--bui-border)!important;border-radius:var(--bui-radius-md)!important;
+  background:var(--bui-surface)!important;color:var(--bui-text)!important;padding:.6rem .8rem!important;font-weight:700!important
+}
+body[data-bui-editor] button.primary{background:var(--bui-primary)!important;color:#fff!important;border-color:var(--bui-primary)!important}
+body[data-bui-editor] code{font-family:var(--bui-font-mono);font-size:.9em}
+body[data-bui-editor]>p{
+  width:min(720px,calc(100% - 32px));margin:12dvh auto!important;padding:var(--bui-space-8)!important;
+  border:1px solid var(--bui-border)!important;border-radius:var(--bui-radius-xl)!important;background:var(--bui-surface)!important;box-shadow:var(--bui-shadow-raised)!important
+}
+body[data-bui-editor]>p a{color:var(--bui-primary);font-weight:800}
+@media(max-width:820px){
+  body[data-bui-editor] .wrap{grid-template-columns:1fr!important;padding:var(--bui-space-3)!important}
+  body[data-bui-editor] textarea{min-height:60dvh!important}
+}
