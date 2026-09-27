@@ -2200,6 +2200,774 @@
         }
       ],
       "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T01-vectors-basis",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "vectors-basis"
+      ],
+      "sourceAnchors": [
+        "m_p10_t01",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "simulationId": "E19-M_P10_T01-SIM01",
+      "title": "Theory explorer · m_p10 · §1.1 · Vector, tọa độ và cơ sở trong ngôn ngữ đại số tuyến tính Nga",
+      "purpose": "Tương tác với shape/rank/basis/parameter để quan sát điều kiện đại số tuyến tính trước khi tính.",
+      "controls": [
+        {
+          "key": "dimension",
+          "type": "number",
+          "default": 2
+        },
+        {
+          "key": "show_condition_gate",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "validity",
+          "label": "Điều kiện hợp lệ"
+        },
+        {
+          "key": "dimension_check",
+          "label": "Kiểm tra dimension/rank"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T01-vectors-basis",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "vectors-basis"
+      ],
+      "sourceAnchors": [
+        "m_p10_t01",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "simulationId": "E19-M_P10_T01-SIM02",
+      "title": "Russian seminar simulator · m_p10 · §1.1 · Vector, tọa độ và cơ sở trong ngôn ngữ đại số tuyến tính Nga",
+      "purpose": "Mô phỏng vấn đáp: đọc đề → nêu điều kiện → giải → kiểm → sửa lỗi.",
+      "controls": [
+        {
+          "key": "time_limit_sec",
+          "type": "number",
+          "default": 75
+        },
+        {
+          "key": "inject_logic_error",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "structure_score",
+          "label": "Đủ cấu trúc lời giải"
+        },
+        {
+          "key": "repair_score",
+          "label": "Khả năng sửa lỗi"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t02",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T02-matrix-operations",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "matrix-operations"
+      ],
+      "sourceAnchors": [
+        "m_p10_t02",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "simulationId": "E19-M_P10_T02-SIM01",
+      "title": "Theory explorer · m_p10 · §1.2 · Ma trận, hàng, cột và phép toán ma trận bằng tiếng Nga",
+      "purpose": "Tương tác với shape/rank/basis/parameter để quan sát điều kiện đại số tuyến tính trước khi tính.",
+      "controls": [
+        {
+          "key": "dimension",
+          "type": "number",
+          "default": 2
+        },
+        {
+          "key": "show_condition_gate",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "validity",
+          "label": "Điều kiện hợp lệ"
+        },
+        {
+          "key": "dimension_check",
+          "label": "Kiểm tra dimension/rank"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t02",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T02-matrix-operations",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "matrix-operations"
+      ],
+      "sourceAnchors": [
+        "m_p10_t02",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "simulationId": "E19-M_P10_T02-SIM02",
+      "title": "Russian seminar simulator · m_p10 · §1.2 · Ma trận, hàng, cột và phép toán ma trận bằng tiếng Nga",
+      "purpose": "Mô phỏng vấn đáp: đọc đề → nêu điều kiện → giải → kiểm → sửa lỗi.",
+      "controls": [
+        {
+          "key": "time_limit_sec",
+          "type": "number",
+          "default": 75
+        },
+        {
+          "key": "inject_logic_error",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "structure_score",
+          "label": "Đủ cấu trúc lời giải"
+        },
+        {
+          "key": "repair_score",
+          "label": "Khả năng sửa lỗi"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T03-det-rank-inverse",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "det-rank-inverse"
+      ],
+      "sourceAnchors": [
+        "m_p10_t03",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "simulationId": "E19-M_P10_T03-SIM01",
+      "title": "Theory explorer · m_p10 · §1.3 · Định thức, hạng ma trận và khả nghịch bằng tiếng Nga",
+      "purpose": "Tương tác với shape/rank/basis/parameter để quan sát điều kiện đại số tuyến tính trước khi tính.",
+      "controls": [
+        {
+          "key": "dimension",
+          "type": "number",
+          "default": 2
+        },
+        {
+          "key": "show_condition_gate",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "validity",
+          "label": "Điều kiện hợp lệ"
+        },
+        {
+          "key": "dimension_check",
+          "label": "Kiểm tra dimension/rank"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T03-det-rank-inverse",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "det-rank-inverse"
+      ],
+      "sourceAnchors": [
+        "m_p10_t03",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "simulationId": "E19-M_P10_T03-SIM02",
+      "title": "Russian seminar simulator · m_p10 · §1.3 · Định thức, hạng ma trận và khả nghịch bằng tiếng Nga",
+      "purpose": "Mô phỏng vấn đáp: đọc đề → nêu điều kiện → giải → kiểm → sửa lỗi.",
+      "controls": [
+        {
+          "key": "time_limit_sec",
+          "type": "number",
+          "default": 75
+        },
+        {
+          "key": "inject_logic_error",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "structure_score",
+          "label": "Đủ cấu trúc lời giải"
+        },
+        {
+          "key": "repair_score",
+          "label": "Khả năng sửa lỗi"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t04",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T04-gaussian-elimination",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "gaussian-elimination"
+      ],
+      "sourceAnchors": [
+        "m_p10_t04",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "simulationId": "E19-M_P10_T04-SIM01",
+      "title": "Theory explorer · m_p10 · §1.4 · Hệ phương trình tuyến tính và phương pháp Gauss bằng tiếng Nga",
+      "purpose": "Tương tác với shape/rank/basis/parameter để quan sát điều kiện đại số tuyến tính trước khi tính.",
+      "controls": [
+        {
+          "key": "dimension",
+          "type": "number",
+          "default": 2
+        },
+        {
+          "key": "show_condition_gate",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "validity",
+          "label": "Điều kiện hợp lệ"
+        },
+        {
+          "key": "dimension_check",
+          "label": "Kiểm tra dimension/rank"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t04",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T04-gaussian-elimination",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "gaussian-elimination"
+      ],
+      "sourceAnchors": [
+        "m_p10_t04",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "simulationId": "E19-M_P10_T04-SIM02",
+      "title": "Russian seminar simulator · m_p10 · §1.4 · Hệ phương trình tuyến tính và phương pháp Gauss bằng tiếng Nga",
+      "purpose": "Mô phỏng vấn đáp: đọc đề → nêu điều kiện → giải → kiểm → sửa lỗi.",
+      "controls": [
+        {
+          "key": "time_limit_sec",
+          "type": "number",
+          "default": 75
+        },
+        {
+          "key": "inject_logic_error",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "structure_score",
+          "label": "Đủ cấu trúc lời giải"
+        },
+        {
+          "key": "repair_score",
+          "label": "Khả năng sửa lỗi"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t05",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T05-linear-maps",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "linear-maps"
+      ],
+      "sourceAnchors": [
+        "m_p10_t05",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "simulationId": "E19-M_P10_T05-SIM01",
+      "title": "Theory explorer · m_p10 · §1.5 · Ánh xạ tuyến tính, nhân, ảnh và ma trận biểu diễn bằng tiếng Nga",
+      "purpose": "Tương tác với shape/rank/basis/parameter để quan sát điều kiện đại số tuyến tính trước khi tính.",
+      "controls": [
+        {
+          "key": "dimension",
+          "type": "number",
+          "default": 2
+        },
+        {
+          "key": "show_condition_gate",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "validity",
+          "label": "Điều kiện hợp lệ"
+        },
+        {
+          "key": "dimension_check",
+          "label": "Kiểm tra dimension/rank"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t05",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E19-MP10-T05-linear-maps",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "linear-maps"
+      ],
+      "sourceAnchors": [
+        "m_p10_t05",
+        "m_s02",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "simulationId": "E19-M_P10_T05-SIM02",
+      "title": "Russian seminar simulator · m_p10 · §1.5 · Ánh xạ tuyến tính, nhân, ảnh và ma trận biểu diễn bằng tiếng Nga",
+      "purpose": "Mô phỏng vấn đáp: đọc đề → nêu điều kiện → giải → kiểm → sửa lỗi.",
+      "controls": [
+        {
+          "key": "time_limit_sec",
+          "type": "number",
+          "default": 75
+        },
+        {
+          "key": "inject_logic_error",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "structure_score",
+          "label": "Đủ cấu trúc lời giải"
+        },
+        {
+          "key": "repair_score",
+          "label": "Khả năng sửa lỗi"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t06",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T06-eigen-diagonalization",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "eigen-diagonalization"
+      ],
+      "sourceAnchors": [
+        "m_p10_t06",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "simulationId": "E19-M_P10_T06-SIM01",
+      "title": "Theory explorer · m_p10 · §1.6 · Trị riêng, vector riêng và chéo hóa bằng tiếng Nga",
+      "purpose": "Tương tác với shape/rank/basis/parameter để quan sát điều kiện đại số tuyến tính trước khi tính.",
+      "controls": [
+        {
+          "key": "dimension",
+          "type": "number",
+          "default": 2
+        },
+        {
+          "key": "show_condition_gate",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "validity",
+          "label": "Điều kiện hợp lệ"
+        },
+        {
+          "key": "dimension_check",
+          "label": "Kiểm tra dimension/rank"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t06",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T06-eigen-diagonalization",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "eigen-diagonalization"
+      ],
+      "sourceAnchors": [
+        "m_p10_t06",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "simulationId": "E19-M_P10_T06-SIM02",
+      "title": "Russian seminar simulator · m_p10 · §1.6 · Trị riêng, vector riêng và chéo hóa bằng tiếng Nga",
+      "purpose": "Mô phỏng vấn đáp: đọc đề → nêu điều kiện → giải → kiểm → sửa lỗi.",
+      "controls": [
+        {
+          "key": "time_limit_sec",
+          "type": "number",
+          "default": 75
+        },
+        {
+          "key": "inject_logic_error",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "structure_score",
+          "label": "Đủ cấu trúc lời giải"
+        },
+        {
+          "key": "repair_score",
+          "label": "Khả năng sửa lỗi"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t07",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T07-orthogonal-projection-ls",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "orthogonal-projection-ls"
+      ],
+      "sourceAnchors": [
+        "m_p10_t07",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "simulationId": "E19-M_P10_T07-SIM01",
+      "title": "Theory explorer · m_p10 · §1.7 · Trực giao, chiếu vector và bình phương tối thiểu bằng tiếng Nga",
+      "purpose": "Tương tác với shape/rank/basis/parameter để quan sát điều kiện đại số tuyến tính trước khi tính.",
+      "controls": [
+        {
+          "key": "dimension",
+          "type": "number",
+          "default": 2
+        },
+        {
+          "key": "show_condition_gate",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "validity",
+          "label": "Điều kiện hợp lệ"
+        },
+        {
+          "key": "dimension_check",
+          "label": "Kiểm tra dimension/rank"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t07",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T07-orthogonal-projection-ls",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "orthogonal-projection-ls"
+      ],
+      "sourceAnchors": [
+        "m_p10_t07",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "simulationId": "E19-M_P10_T07-SIM02",
+      "title": "Russian seminar simulator · m_p10 · §1.7 · Trực giao, chiếu vector và bình phương tối thiểu bằng tiếng Nga",
+      "purpose": "Mô phỏng vấn đáp: đọc đề → nêu điều kiện → giải → kiểm → sửa lỗi.",
+      "controls": [
+        {
+          "key": "time_limit_sec",
+          "type": "number",
+          "default": 75
+        },
+        {
+          "key": "inject_logic_error",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "structure_score",
+          "label": "Đủ cấu trúc lời giải"
+        },
+        {
+          "key": "repair_score",
+          "label": "Khả năng sửa lỗi"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t08",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T08-russian-linear-algebra-seminar",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "russian-linear-algebra-seminar"
+      ],
+      "sourceAnchors": [
+        "m_p10_t08",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "simulationId": "E19-M_P10_T08-SIM01",
+      "title": "Theory explorer · m_p10 · §1.8 · Seminar đại số tuyến tính Nga: đọc đề, giải, kiểm và bảo vệ lời giải",
+      "purpose": "Tương tác với shape/rank/basis/parameter để quan sát điều kiện đại số tuyến tính trước khi tính.",
+      "controls": [
+        {
+          "key": "dimension",
+          "type": "number",
+          "default": 2
+        },
+        {
+          "key": "show_condition_gate",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "validity",
+          "label": "Điều kiện hợp lệ"
+        },
+        {
+          "key": "dimension_check",
+          "label": "Kiểm tra dimension/rank"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_p10",
+      "frameworkChapterId": "m_s02",
+      "logicalLessonId": "m_p10_t08",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E19-MP10-T08-russian-linear-algebra-seminar",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "linear algebra",
+        "russian math",
+        "prep",
+        "seminar",
+        "russian-linear-algebra-seminar"
+      ],
+      "sourceAnchors": [
+        "m_p10_t08",
+        "m_s02",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E19_AUTHORED",
+      "simulationId": "E19-M_P10_T08-SIM02",
+      "title": "Russian seminar simulator · m_p10 · §1.8 · Seminar đại số tuyến tính Nga: đọc đề, giải, kiểm và bảo vệ lời giải",
+      "purpose": "Mô phỏng vấn đáp: đọc đề → nêu điều kiện → giải → kiểm → sửa lỗi.",
+      "controls": [
+        {
+          "key": "time_limit_sec",
+          "type": "number",
+          "default": 75
+        },
+        {
+          "key": "inject_logic_error",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "structure_score",
+          "label": "Đủ cấu trúc lời giải"
+        },
+        {
+          "key": "repair_score",
+          "label": "Khả năng sửa lỗi"
+        }
+      ],
+      "simulationClass": "application"
     }
   ],
   "importPolicy": {
@@ -2301,6 +3069,14 @@
         "browser": "PASS",
         "developmentFastCI": "PASS"
       }
+    },
+    "E19": {
+      "status": "IMPLEMENTED_PENDING_CI",
+      "frameworkChapterId": "m_s02",
+      "logicalModuleId": "m_p10",
+      "lessons": 8,
+      "theorySlides": 160,
+      "updatedAt": "2026-09-27"
     }
   }
 }
