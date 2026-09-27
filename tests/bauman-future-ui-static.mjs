@@ -24,9 +24,9 @@ const runtime=fs.readFileSync('platform/ui/runtime.js','utf8');
 const main=fs.readFileSync('assets/css/main.css','utf8');
 const safe=fs.readFileSync('assets/js/hub-safe-shell.js','utf8');
 
-assert.ok(index.includes('platform/ui/index.css?v=1'),'Future UI CSS package is not activated');
+for(const href of ['platform/ui/tokens.css?v=1','platform/ui/components.css?v=1','platform/ui/layouts.css?v=1','platform/ui/patterns.css?v=1','platform/ui/motion.css?v=1','platform/ui/utilities.css?v=1','platform/ui/app-shell.css?v=1','platform/ui/legacy-adapters.css?v=1']) assert.ok(index.includes(href),'Future UI stylesheet missing: '+href);
 assert.ok(index.includes('platform/ui/runtime.js?v=1'),'Future UI runtime is not activated');
-assert.ok(index.indexOf('platform/ui/index.css?v=1')>index.indexOf('hub-readable-typography-v1.css?v=2'),'Canonical UI package must load after legacy styles during migration');
+assert.ok(index.indexOf('platform/ui/app-shell.css?v=1')>index.indexOf('hub-readable-typography-v1.css?v=2'),'Canonical App Shell must load after legacy styles during migration');
 assert.ok(index.includes('data-hub-wallpaper="plain"'),'Default product surface must not depend on decorative wallpaper');
 
 for(const marker of [
