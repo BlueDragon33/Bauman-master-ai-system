@@ -493,6 +493,558 @@
       "title": "Sai số và eigenvalues bị bỏ",
       "formula": "E_k=(n−1)Σ_{i=k+1}^p λ_i",
       "meaning": "Khi λ từ sample covariance Xc^T Xc/(n−1)."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t01",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T01-time-index-sampling",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "time index",
+        "sampling frequency",
+        "missing timestamp",
+        "telemetry",
+        "resampling"
+      ],
+      "sourceAnchors": [
+        "m_p08_t01",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "formulaId": "E17-M_P08_T01-F01",
+      "title": "Tần số lấy mẫu",
+      "formula": "f_s = 1 / Δt",
+      "meaning": "Liên hệ giữa chu kỳ lấy mẫu và số mẫu trên một đơn vị thời gian."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t01",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T01-time-index-sampling",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "time index",
+        "sampling frequency",
+        "missing timestamp",
+        "telemetry",
+        "resampling"
+      ],
+      "sourceAnchors": [
+        "m_p08_t01",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "formulaId": "E17-M_P08_T01-F02",
+      "title": "Khoảng thời gian quan sát",
+      "formula": "T = (N − 1)Δt",
+      "meaning": "Với N mẫu đều, thời lượng từ mẫu đầu đến mẫu cuối bằng (N−1) khoảng lấy mẫu."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t01",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T01-time-index-sampling",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "time index",
+        "sampling frequency",
+        "missing timestamp",
+        "telemetry",
+        "resampling"
+      ],
+      "sourceAnchors": [
+        "m_p08_t01",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "formulaId": "E17-M_P08_T01-F03",
+      "title": "Tỷ lệ timestamp thiếu",
+      "formula": "r_missing = N_missing / N_expected",
+      "meaning": "Đo tỷ lệ mốc thời gian đáng lẽ có nhưng không xuất hiện."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t02",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T02-trend-seasonality-noise",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "trend",
+        "seasonality",
+        "cycle",
+        "noise",
+        "decomposition"
+      ],
+      "sourceAnchors": [
+        "m_p08_t02",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "formulaId": "E17-M_P08_T02-F01",
+      "title": "Mô hình cộng",
+      "formula": "x_t = T_t + S_t + C_t + ε_t",
+      "meaning": "Hợp lý khi biên độ mùa vụ tương đối ổn định theo mức chuỗi."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t02",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T02-trend-seasonality-noise",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "trend",
+        "seasonality",
+        "cycle",
+        "noise",
+        "decomposition"
+      ],
+      "sourceAnchors": [
+        "m_p08_t02",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "formulaId": "E17-M_P08_T02-F02",
+      "title": "Mô hình nhân",
+      "formula": "x_t = T_t × S_t × C_t × ε_t",
+      "meaning": "Hữu ích khi biên độ dao động tăng theo mức của chuỗi."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t02",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T02-trend-seasonality-noise",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "trend",
+        "seasonality",
+        "cycle",
+        "noise",
+        "decomposition"
+      ],
+      "sourceAnchors": [
+        "m_p08_t02",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "formulaId": "E17-M_P08_T02-F03",
+      "title": "Biên độ mùa vụ tương đối",
+      "formula": "a_t = |x_t − T_t| / (|T_t| + ε)",
+      "meaning": "Thước đo đơn giản để xem dao động có tỷ lệ với mức nền hay không."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t03",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T03-rolling-smoothing",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling mean",
+        "moving average",
+        "smoothing",
+        "window",
+        "causal filter"
+      ],
+      "sourceAnchors": [
+        "m_p08_t03",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "formulaId": "E17-M_P08_T03-F01",
+      "title": "Moving average nhân quả",
+      "formula": "m_t = (1/w) Σ_{i=0}^{w−1} x_{t−i}",
+      "meaning": "Làm mượt bằng w mẫu gần nhất và không nhìn tương lai."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t03",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T03-rolling-smoothing",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling mean",
+        "moving average",
+        "smoothing",
+        "window",
+        "causal filter"
+      ],
+      "sourceAnchors": [
+        "m_p08_t03",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "formulaId": "E17-M_P08_T03-F02",
+      "title": "Exponential smoothing",
+      "formula": "s_t = αx_t + (1−α)s_{t−1}",
+      "meaning": "Cho trọng số giảm dần cho quá khứ; α lớn phản ứng nhanh hơn."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t03",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T03-rolling-smoothing",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling mean",
+        "moving average",
+        "smoothing",
+        "window",
+        "causal filter"
+      ],
+      "sourceAnchors": [
+        "m_p08_t03",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "formulaId": "E17-M_P08_T03-F03",
+      "title": "Độ trễ xấp xỉ của MA đối xứng",
+      "formula": "lag ≈ (w−1)/2 samples",
+      "meaning": "Cửa sổ lớn làm mượt mạnh nhưng tăng độ trễ/bo tròn sự kiện."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t04",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T04-changing-variance",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling variance",
+        "heteroscedasticity",
+        "regime change",
+        "nonstationarity",
+        "variance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t04",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "formulaId": "E17-M_P08_T04-F01",
+      "title": "Rolling variance",
+      "formula": "s_t² = (1/(w−1)) Σ_{i=0}^{w−1}(x_{t−i}−m_t)²",
+      "meaning": "Ước lượng phương sai trong cửa sổ w mẫu gần nhất."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t04",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T04-changing-variance",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling variance",
+        "heteroscedasticity",
+        "regime change",
+        "nonstationarity",
+        "variance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t04",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "formulaId": "E17-M_P08_T04-F02",
+      "title": "Rolling standard deviation",
+      "formula": "s_t = √(s_t²)",
+      "meaning": "Đưa thước đo phân tán về cùng đơn vị với dữ liệu."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t04",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T04-changing-variance",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling variance",
+        "heteroscedasticity",
+        "regime change",
+        "nonstationarity",
+        "variance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t04",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "formulaId": "E17-M_P08_T04-F03",
+      "title": "Variance ratio",
+      "formula": "R = s_after² / s_before²",
+      "meaning": "So sánh độ phân tán giữa hai giai đoạn, chỉ nên diễn giải cùng cơ chế đo."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t05",
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E17-MP08-T05-autocorrelation",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "tags": [
+        "autocorrelation",
+        "lag",
+        "ACF",
+        "serial dependence",
+        "random process"
+      ],
+      "sourceAnchors": [
+        "m_p08_t05",
+        "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "formulaId": "E17-M_P08_T05-F01",
+      "title": "Sample autocovariance",
+      "formula": "γ̂_k = (1/(N−k)) Σ_{t=k+1}^{N}(x_t−x̄)(x_{t−k}−x̄)",
+      "meaning": "Đo đồng biến giữa chuỗi và bản dịch k bước."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t05",
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E17-MP08-T05-autocorrelation",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "tags": [
+        "autocorrelation",
+        "lag",
+        "ACF",
+        "serial dependence",
+        "random process"
+      ],
+      "sourceAnchors": [
+        "m_p08_t05",
+        "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "formulaId": "E17-M_P08_T05-F02",
+      "title": "Sample autocorrelation",
+      "formula": "ρ̂_k = γ̂_k / γ̂_0",
+      "meaning": "Chuẩn hóa autocovariance về thang tương quan."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t05",
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E17-MP08-T05-autocorrelation",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "tags": [
+        "autocorrelation",
+        "lag",
+        "ACF",
+        "serial dependence",
+        "random process"
+      ],
+      "sourceAnchors": [
+        "m_p08_t05",
+        "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "formulaId": "E17-M_P08_T05-F03",
+      "title": "Độ trễ vật lý",
+      "formula": "τ_k = kΔt",
+      "meaning": "Chuyển lag theo mẫu thành thời gian vật lý."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t06",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T06-lag-features",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "lag feature",
+        "forecasting",
+        "supervised learning",
+        "feature engineering",
+        "causality"
+      ],
+      "sourceAnchors": [
+        "m_p08_t06",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "formulaId": "E17-M_P08_T06-F01",
+      "title": "Vector lag",
+      "formula": "z_t = [x_{t−1}, x_{t−2}, …, x_{t−p}]",
+      "meaning": "Biến chuỗi thành bài toán supervised với p giá trị quá khứ."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t06",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T06-lag-features",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "lag feature",
+        "forecasting",
+        "supervised learning",
+        "feature engineering",
+        "causality"
+      ],
+      "sourceAnchors": [
+        "m_p08_t06",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "formulaId": "E17-M_P08_T06-F02",
+      "title": "Dự báo một bước",
+      "formula": "ŷ_t = f(z_t)",
+      "meaning": "Mô hình f học ánh xạ từ lịch sử sang giá trị mục tiêu."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t06",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T06-lag-features",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "lag feature",
+        "forecasting",
+        "supervised learning",
+        "feature engineering",
+        "causality"
+      ],
+      "sourceAnchors": [
+        "m_p08_t06",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "formulaId": "E17-M_P08_T06-F03",
+      "title": "Forecast horizon",
+      "formula": "y_t^(h) = x_{t+h}",
+      "meaning": "Horizon h phải được cố định khi dựng target để tránh lệch nhãn."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t07",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T07-stationarity-intuition",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "stationarity",
+        "weak stationarity",
+        "mean",
+        "variance",
+        "autocovariance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t07",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "formulaId": "E17-M_P08_T07-F01",
+      "title": "Mean ổn định",
+      "formula": "E[X_t] = μ",
+      "meaning": "Kỳ vọng không đổi theo thời gian."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t07",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T07-stationarity-intuition",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "stationarity",
+        "weak stationarity",
+        "mean",
+        "variance",
+        "autocovariance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t07",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "formulaId": "E17-M_P08_T07-F02",
+      "title": "Variance ổn định",
+      "formula": "Var(X_t) = σ²",
+      "meaning": "Độ phân tán không phụ thuộc t."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t07",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T07-stationarity-intuition",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "stationarity",
+        "weak stationarity",
+        "mean",
+        "variance",
+        "autocovariance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t07",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "formulaId": "E17-M_P08_T07-F03",
+      "title": "Autocovariance theo lag",
+      "formula": "Cov(X_t, X_{t−k}) = γ(k)",
+      "meaning": "Phụ thuộc khoảng cách k, không phụ thuộc vị trí thời gian tuyệt đối."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t08",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T08-temporal-split-leakage",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "temporal split",
+        "time series cross validation",
+        "future leakage",
+        "backtesting",
+        "evaluation"
+      ],
+      "sourceAnchors": [
+        "m_p08_t08",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "formulaId": "E17-M_P08_T08-F01",
+      "title": "Temporal holdout",
+      "formula": "Train = {t ≤ T₀}, Test = {t > T₀}",
+      "meaning": "Tách theo cutoff thời gian."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t08",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T08-temporal-split-leakage",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "temporal split",
+        "time series cross validation",
+        "future leakage",
+        "backtesting",
+        "evaluation"
+      ],
+      "sourceAnchors": [
+        "m_p08_t08",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "formulaId": "E17-M_P08_T08-F02",
+      "title": "Expanding window",
+      "formula": "Train_j = [1..T_j], Test_j = [T_j+1..T_j+h]",
+      "meaning": "Backtest nhiều cửa sổ với tập train mở rộng."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t08",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T08-temporal-split-leakage",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "temporal split",
+        "time series cross validation",
+        "future leakage",
+        "backtesting",
+        "evaluation"
+      ],
+      "sourceAnchors": [
+        "m_p08_t08",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "formulaId": "E17-M_P08_T08-F03",
+      "title": "Sai số MAE theo horizon",
+      "formula": "MAE_h = (1/N_h) Σ |y_{t+h} − ŷ_{t+h}|",
+      "meaning": "Đánh giá riêng theo horizon để tránh che suy giảm xa tương lai."
     }
   ],
   "importPolicy": {
@@ -542,7 +1094,7 @@
     ],
     "auditStatus": "DRAFT"
   },
-  "updatedAt": "2026-09-23",
+  "updatedAt": "2026-09-27",
   "emoji": "∑",
   "cleanArchitecturePolicy": {
     "contentMustNotStoreStageTree": true,
@@ -557,6 +1109,16 @@
       "key": "formulaId",
       "branchOnly": true,
       "status": "CONTENT_IMPORTED_PENDING_RUNTIME_GATE"
+    }
+  },
+  "authoringMeta": {
+    "E17": {
+      "moduleId": "m_p08",
+      "records": 24,
+      "status": "PASS_STATIC_BROWSER_CI",
+      "architecture": "logical_module_over_physical_content",
+      "verifiedAt": "2026-09-27",
+      "pr": 144
     }
   }
 }

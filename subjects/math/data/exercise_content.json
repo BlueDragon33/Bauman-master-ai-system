@@ -1298,6 +1298,1478 @@
       "level": "hard",
       "prompt": "Tại sao low reconstruction error chưa chắc downstream tốt?",
       "solution": "Nó tối ưu tái tạo toàn cục, không trực tiếp tối ưu target/anomaly utility."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t01",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T01-time-index-sampling",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "time index",
+        "sampling frequency",
+        "missing timestamp",
+        "telemetry",
+        "resampling"
+      ],
+      "sourceAnchors": [
+        "m_p08_t01",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T01-E01",
+      "level": "easy",
+      "prompt": "Giải thích bằng lời khái niệm trọng tâm của Dữ liệu chuỗi thời gian: chỉ số thời gian, tần số lấy mẫu và missing timestamp.",
+      "solution": "Chuỗi thời gian là dãy quan sát x_t gắn với thứ tự hoặc mốc thời gian t. Với dữ liệu lấy mẫu đều, khoảng lấy mẫu Δt gần như cố định và tần số lấy mẫu f_s = 1/Δt."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t01",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T01-time-index-sampling",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "time index",
+        "sampling frequency",
+        "missing timestamp",
+        "telemetry",
+        "resampling"
+      ],
+      "sourceAnchors": [
+        "m_p08_t01",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T01-E02",
+      "level": "easy",
+      "prompt": "Viết và giải nghĩa công thức: Tần số lấy mẫu.",
+      "solution": "f_s = 1 / Δt. Liên hệ giữa chu kỳ lấy mẫu và số mẫu trên một đơn vị thời gian."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t01",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T01-time-index-sampling",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "time index",
+        "sampling frequency",
+        "missing timestamp",
+        "telemetry",
+        "resampling"
+      ],
+      "sourceAnchors": [
+        "m_p08_t01",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T01-E03",
+      "level": "medium",
+      "prompt": "Áp dụng vào ví dụ sau và nêu kết luận: Một cảm biến ghi mỗi 0,02 s thì f_s = 50 Hz. Trong 10 s kỳ vọng 501 mốc nếu tính cả hai đầu; nếu chỉ có 496 mốc thì có 5 timestamp bị thiếu và phải xác định vị trí trước khi nội suy.",
+      "solution": "Thực hiện theo định nghĩa/công thức của bài; kết luận phải giữ thứ tự thời gian và điều kiện dữ liệu. Khóa time index trước mọi phân tích."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t01",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T01-time-index-sampling",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "time index",
+        "sampling frequency",
+        "missing timestamp",
+        "telemetry",
+        "resampling"
+      ],
+      "sourceAnchors": [
+        "m_p08_t01",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T01-E04",
+      "level": "medium",
+      "prompt": "Nêu hai tính chất quan trọng của bài và vì sao chúng ảnh hưởng pipeline.",
+      "solution": "Thứ tự thời gian là một phần của dữ liệu, không được xáo trộn tùy ý. Timestamp không đều làm nhiều công thức giả định lấy mẫu đều mất hiệu lực."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t01",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T01-time-index-sampling",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "time index",
+        "sampling frequency",
+        "missing timestamp",
+        "telemetry",
+        "resampling"
+      ],
+      "sourceAnchors": [
+        "m_p08_t01",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T01-E05",
+      "level": "medium",
+      "prompt": "Phát hiện lỗi trong tình huống: Sai lầm phổ biến là thấy đủ số dòng rồi kết luận dữ liệu liên tục. Hai dòng liên tiếp có thể cách nhau 20 ms hoặc 2 s; phải kiểm tra chênh lệch timestamp.",
+      "solution": "Lỗi nằm ở giả định/đường thời gian. Cách sửa: Chuẩn hóa timezone và kiểu timestamp trước khi ghép nguồn. Sắp xếp tăng dần theo thời gian và kiểm tra duplicate."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t01",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T01-time-index-sampling",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "time index",
+        "sampling frequency",
+        "missing timestamp",
+        "telemetry",
+        "resampling"
+      ],
+      "sourceAnchors": [
+        "m_p08_t01",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T01-E06",
+      "level": "hard",
+      "prompt": "Thiết kế checklist kiểm dữ liệu trước khi dùng time index.",
+      "solution": "Chuẩn hóa timezone và kiểu timestamp trước khi ghép nguồn. Sắp xếp tăng dần theo thời gian và kiểm tra duplicate. Tính Δt thực tế; phát hiện gap trước khi resample. Không nội suy qua khoảng mất dữ liệu dài mà không đánh dấu."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t01",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T01-time-index-sampling",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "time index",
+        "sampling frequency",
+        "missing timestamp",
+        "telemetry",
+        "resampling"
+      ],
+      "sourceAnchors": [
+        "m_p08_t01",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T01-E07",
+      "level": "hard",
+      "prompt": "Liên hệ bài với một hệ telemetry/AI và nêu một giới hạn diễn giải.",
+      "solution": "Telemetry UAV/robot thường ghép IMU, GPS, pin và network ở tần số khác nhau. Time-index contract giúp đồng bộ kênh trước khi tính feature hoặc huấn luyện mô hình. Giới hạn: không suy luận vượt quá giả định và thông tin sẵn có theo thời gian."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t01",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T01-time-index-sampling",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "time index",
+        "sampling frequency",
+        "missing timestamp",
+        "telemetry",
+        "resampling"
+      ],
+      "sourceAnchors": [
+        "m_p08_t01",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T01-E08",
+      "level": "hard",
+      "prompt": "So sánh hai lựa chọn xử lý hợp lệ và không hợp lệ trong bài này.",
+      "solution": "Hợp lệ: giữ causal ordering/provenance. Không hợp lệ: dùng dữ liệu tương lai hoặc bỏ qua điều kiện dữ liệu. Sai lầm phổ biến là thấy đủ số dòng rồi kết luận dữ liệu liên tục. Hai dòng liên tiếp có thể cách nhau 20 ms hoặc 2 s; phải kiểm tra chênh lệch timestamp."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t02",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T02-trend-seasonality-noise",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "trend",
+        "seasonality",
+        "cycle",
+        "noise",
+        "decomposition"
+      ],
+      "sourceAnchors": [
+        "m_p08_t02",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T02-E01",
+      "level": "easy",
+      "prompt": "Giải thích bằng lời khái niệm trọng tâm của Xu hướng, mùa vụ, chu kỳ và nhiễu.",
+      "solution": "Một chuỗi có thể được xem ở mức mô tả như sự kết hợp của xu hướng T_t, mùa vụ S_t, dao động chu kỳ C_t và nhiễu ε_t. Phân rã là mô hình giải thích, không phải chân lý duy nhất của dữ liệu."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t02",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T02-trend-seasonality-noise",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "trend",
+        "seasonality",
+        "cycle",
+        "noise",
+        "decomposition"
+      ],
+      "sourceAnchors": [
+        "m_p08_t02",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T02-E02",
+      "level": "easy",
+      "prompt": "Viết và giải nghĩa công thức: Mô hình cộng.",
+      "solution": "x_t = T_t + S_t + C_t + ε_t. Hợp lý khi biên độ mùa vụ tương đối ổn định theo mức chuỗi."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t02",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T02-trend-seasonality-noise",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "trend",
+        "seasonality",
+        "cycle",
+        "noise",
+        "decomposition"
+      ],
+      "sourceAnchors": [
+        "m_p08_t02",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T02-E03",
+      "level": "medium",
+      "prompt": "Áp dụng vào ví dụ sau và nêu kết luận: Nhiệt độ thiết bị tăng dần sau khi bật máy là trend; nhịp tải lặp theo ca làm việc là seasonality; chu kỳ bảo trì dài hơn có thể tạo cycle; rung cảm biến ngắn hạn là noise.",
+      "solution": "Thực hiện theo định nghĩa/công thức của bài; kết luận phải giữ thứ tự thời gian và điều kiện dữ liệu. Tách trend/seasonality/cycle/noise để mô tả, không để áp đặt."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t02",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T02-trend-seasonality-noise",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "trend",
+        "seasonality",
+        "cycle",
+        "noise",
+        "decomposition"
+      ],
+      "sourceAnchors": [
+        "m_p08_t02",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T02-E04",
+      "level": "medium",
+      "prompt": "Nêu hai tính chất quan trọng của bài và vì sao chúng ảnh hưởng pipeline.",
+      "solution": "Trend mô tả thay đổi dài hạn, không nhất thiết tuyến tính. Seasonality gắn với chu kỳ thời gian có quy luật tương đối ổn định."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t02",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T02-trend-seasonality-noise",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "trend",
+        "seasonality",
+        "cycle",
+        "noise",
+        "decomposition"
+      ],
+      "sourceAnchors": [
+        "m_p08_t02",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T02-E05",
+      "level": "medium",
+      "prompt": "Phát hiện lỗi trong tình huống: Không nên gọi mọi dao động lặp lại là seasonality. Nếu chu kỳ trôi mạnh hoặc phụ thuộc trạng thái vận hành, nó có thể là cycle hoặc chế độ hệ thống.",
+      "solution": "Lỗi nằm ở giả định/đường thời gian. Cách sửa: Vẽ chuỗi theo thời gian trước khi phân rã. Xác minh tần số lấy mẫu và độ dài đủ để quan sát ít nhất vài chu kỳ."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t02",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T02-trend-seasonality-noise",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "trend",
+        "seasonality",
+        "cycle",
+        "noise",
+        "decomposition"
+      ],
+      "sourceAnchors": [
+        "m_p08_t02",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T02-E06",
+      "level": "hard",
+      "prompt": "Thiết kế checklist kiểm dữ liệu trước khi dùng trend.",
+      "solution": "Vẽ chuỗi theo thời gian trước khi phân rã. Xác minh tần số lấy mẫu và độ dài đủ để quan sát ít nhất vài chu kỳ. Không dùng decomposition để che missing/outlier chưa xử lý. So sánh mô hình cộng và nhân khi biên độ thay đổi theo mức."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t02",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T02-trend-seasonality-noise",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "trend",
+        "seasonality",
+        "cycle",
+        "noise",
+        "decomposition"
+      ],
+      "sourceAnchors": [
+        "m_p08_t02",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T02-E07",
+      "level": "hard",
+      "prompt": "Liên hệ bài với một hệ telemetry/AI và nêu một giới hạn diễn giải.",
+      "solution": "Phân rã telemetry máy chủ hoặc robot giúp tách tải nền dài hạn, lịch vận hành lặp lại và nhiễu để thiết kế cảnh báo/anomaly detection. Giới hạn: không suy luận vượt quá giả định và thông tin sẵn có theo thời gian."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t02",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T02-trend-seasonality-noise",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "trend",
+        "seasonality",
+        "cycle",
+        "noise",
+        "decomposition"
+      ],
+      "sourceAnchors": [
+        "m_p08_t02",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T02-E08",
+      "level": "hard",
+      "prompt": "So sánh hai lựa chọn xử lý hợp lệ và không hợp lệ trong bài này.",
+      "solution": "Hợp lệ: giữ causal ordering/provenance. Không hợp lệ: dùng dữ liệu tương lai hoặc bỏ qua điều kiện dữ liệu. Không nên gọi mọi dao động lặp lại là seasonality. Nếu chu kỳ trôi mạnh hoặc phụ thuộc trạng thái vận hành, nó có thể là cycle hoặc chế độ hệ thống."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t03",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T03-rolling-smoothing",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling mean",
+        "moving average",
+        "smoothing",
+        "window",
+        "causal filter"
+      ],
+      "sourceAnchors": [
+        "m_p08_t03",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T03-E01",
+      "level": "easy",
+      "prompt": "Giải thích bằng lời khái niệm trọng tâm của Trung bình trượt và làm mượt dữ liệu.",
+      "solution": "Trung bình trượt độ dài w thay mỗi điểm bằng trung bình của một cửa sổ lân cận. Trong dự báo online cần dùng cửa sổ nhân quả chỉ chứa hiện tại và quá khứ."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t03",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T03-rolling-smoothing",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling mean",
+        "moving average",
+        "smoothing",
+        "window",
+        "causal filter"
+      ],
+      "sourceAnchors": [
+        "m_p08_t03",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T03-E02",
+      "level": "easy",
+      "prompt": "Viết và giải nghĩa công thức: Moving average nhân quả.",
+      "solution": "m_t = (1/w) Σ_{i=0}^{w−1} x_{t−i}. Làm mượt bằng w mẫu gần nhất và không nhìn tương lai."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t03",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T03-rolling-smoothing",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling mean",
+        "moving average",
+        "smoothing",
+        "window",
+        "causal filter"
+      ],
+      "sourceAnchors": [
+        "m_p08_t03",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T03-E03",
+      "level": "medium",
+      "prompt": "Áp dụng vào ví dụ sau và nêu kết luận: Với x=[2,4,8,6,10] và w=3, moving average nhân quả tại t=3 dùng [2,4,8] cho m=14/3; tại t=4 dùng [4,8,6] cho m=6.",
+      "solution": "Thực hiện theo định nghĩa/công thức của bài; kết luận phải giữ thứ tự thời gian và điều kiện dữ liệu. Window là tham số theo thang thời gian."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t03",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T03-rolling-smoothing",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling mean",
+        "moving average",
+        "smoothing",
+        "window",
+        "causal filter"
+      ],
+      "sourceAnchors": [
+        "m_p08_t03",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T03-E04",
+      "level": "medium",
+      "prompt": "Nêu hai tính chất quan trọng của bài và vì sao chúng ảnh hưởng pipeline.",
+      "solution": "w lớn giảm nhiễu tần số cao mạnh hơn nhưng che biến đổi nhanh. Moving average nhân quả phù hợp online; centered moving average dùng tương lai nên không dùng làm feature dự báo tại thời điểm hiện tại."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t03",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T03-rolling-smoothing",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling mean",
+        "moving average",
+        "smoothing",
+        "window",
+        "causal filter"
+      ],
+      "sourceAnchors": [
+        "m_p08_t03",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T03-E05",
+      "level": "medium",
+      "prompt": "Phát hiện lỗi trong tình huống: Centered rolling mean có thể gây future leakage nếu dùng làm feature cho dự báo vì nó chứa điểm ở tương lai so với mốc dự đoán.",
+      "solution": "Lỗi nằm ở giả định/đường thời gian. Cách sửa: Chọn w theo thang thời gian vật lý, không chỉ theo số mẫu. Ghi rõ min_periods và cách xử lý biên."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t03",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T03-rolling-smoothing",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling mean",
+        "moving average",
+        "smoothing",
+        "window",
+        "causal filter"
+      ],
+      "sourceAnchors": [
+        "m_p08_t03",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T03-E06",
+      "level": "hard",
+      "prompt": "Thiết kế checklist kiểm dữ liệu trước khi dùng rolling mean.",
+      "solution": "Chọn w theo thang thời gian vật lý, không chỉ theo số mẫu. Ghi rõ min_periods và cách xử lý biên. Với online inference, kiểm tra mọi feature là causal. Đánh giá cả độ mượt và độ trễ."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t03",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T03-rolling-smoothing",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling mean",
+        "moving average",
+        "smoothing",
+        "window",
+        "causal filter"
+      ],
+      "sourceAnchors": [
+        "m_p08_t03",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T03-E07",
+      "level": "hard",
+      "prompt": "Liên hệ bài với một hệ telemetry/AI và nêu một giới hạn diễn giải.",
+      "solution": "Làm mượt dòng gia tốc, tải CPU hoặc RSSI trước khi phát hiện xu hướng; nhưng sự kiện đột biến có thể bị giảm biên độ nên cần giữ kênh raw song song. Giới hạn: không suy luận vượt quá giả định và thông tin sẵn có theo thời gian."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t03",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T03-rolling-smoothing",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling mean",
+        "moving average",
+        "smoothing",
+        "window",
+        "causal filter"
+      ],
+      "sourceAnchors": [
+        "m_p08_t03",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T03-E08",
+      "level": "hard",
+      "prompt": "So sánh hai lựa chọn xử lý hợp lệ và không hợp lệ trong bài này.",
+      "solution": "Hợp lệ: giữ causal ordering/provenance. Không hợp lệ: dùng dữ liệu tương lai hoặc bỏ qua điều kiện dữ liệu. Centered rolling mean có thể gây future leakage nếu dùng làm feature cho dự báo vì nó chứa điểm ở tương lai so với mốc dự đoán."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t04",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T04-changing-variance",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling variance",
+        "heteroscedasticity",
+        "regime change",
+        "nonstationarity",
+        "variance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t04",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T04-E01",
+      "level": "easy",
+      "prompt": "Giải thích bằng lời khái niệm trọng tâm của Phương sai thay đổi và dấu hiệu không ổn định.",
+      "solution": "Nếu độ phân tán của x_t thay đổi theo thời gian, phương sai không còn ổn định trên toàn chuỗi. Rolling variance giúp quan sát thay đổi cục bộ nhưng phụ thuộc mạnh vào kích thước cửa sổ."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t04",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T04-changing-variance",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling variance",
+        "heteroscedasticity",
+        "regime change",
+        "nonstationarity",
+        "variance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t04",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T04-E02",
+      "level": "easy",
+      "prompt": "Viết và giải nghĩa công thức: Rolling variance.",
+      "solution": "s_t² = (1/(w−1)) Σ_{i=0}^{w−1}(x_{t−i}−m_t)². Ước lượng phương sai trong cửa sổ w mẫu gần nhất."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t04",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T04-changing-variance",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling variance",
+        "heteroscedasticity",
+        "regime change",
+        "nonstationarity",
+        "variance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t04",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T04-E03",
+      "level": "medium",
+      "prompt": "Áp dụng vào ví dụ sau và nêu kết luận: Một cảm biến gyro có σ≈0,02 khi máy đứng yên nhưng σ≈0,15 khi động cơ quay. Dùng một variance duy nhất cho cả hai chế độ sẽ che thay đổi trạng thái.",
+      "solution": "Thực hiện theo định nghĩa/công thức của bài; kết luận phải giữ thứ tự thời gian và điều kiện dữ liệu. Theo dõi cả mean và variance theo thời gian."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t04",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T04-changing-variance",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling variance",
+        "heteroscedasticity",
+        "regime change",
+        "nonstationarity",
+        "variance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t04",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T04-E04",
+      "level": "medium",
+      "prompt": "Nêu hai tính chất quan trọng của bài và vì sao chúng ảnh hưởng pipeline.",
+      "solution": "Phương sai tăng có thể do nhiễu, thay đổi chế độ hoặc tăng biên độ tín hiệu. Rolling variance không chứng minh nguyên nhân."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t04",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T04-changing-variance",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling variance",
+        "heteroscedasticity",
+        "regime change",
+        "nonstationarity",
+        "variance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t04",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T04-E05",
+      "level": "medium",
+      "prompt": "Phát hiện lỗi trong tình huống: Đừng gọi chuỗi 'không ổn định' chỉ vì một cửa sổ có variance lớn. Cần tách outlier, regime change và thay đổi cảm biến.",
+      "solution": "Lỗi nằm ở giả định/đường thời gian. Cách sửa: So sánh rolling mean và rolling variance cùng lúc. Đánh dấu sự kiện vận hành để phân biệt regime có chủ đích."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t04",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T04-changing-variance",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling variance",
+        "heteroscedasticity",
+        "regime change",
+        "nonstationarity",
+        "variance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t04",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T04-E06",
+      "level": "hard",
+      "prompt": "Thiết kế checklist kiểm dữ liệu trước khi dùng rolling variance.",
+      "solution": "So sánh rolling mean và rolling variance cùng lúc. Đánh dấu sự kiện vận hành để phân biệt regime có chủ đích. Kiểm tra outlier trước khi suy luận variance change. Không fit threshold trên cả tương lai rồi đánh giá quá khứ."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t04",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T04-changing-variance",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling variance",
+        "heteroscedasticity",
+        "regime change",
+        "nonstationarity",
+        "variance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t04",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T04-E07",
+      "level": "hard",
+      "prompt": "Liên hệ bài với một hệ telemetry/AI và nêu một giới hạn diễn giải.",
+      "solution": "Variance change là tín hiệu hữu ích để phát hiện rung bất thường, lỗi cảm biến, thay đổi tải hoặc chế độ bay; nhưng cần đối chiếu trạng thái hệ thống. Giới hạn: không suy luận vượt quá giả định và thông tin sẵn có theo thời gian."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t04",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T04-changing-variance",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling variance",
+        "heteroscedasticity",
+        "regime change",
+        "nonstationarity",
+        "variance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t04",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T04-E08",
+      "level": "hard",
+      "prompt": "So sánh hai lựa chọn xử lý hợp lệ và không hợp lệ trong bài này.",
+      "solution": "Hợp lệ: giữ causal ordering/provenance. Không hợp lệ: dùng dữ liệu tương lai hoặc bỏ qua điều kiện dữ liệu. Đừng gọi chuỗi 'không ổn định' chỉ vì một cửa sổ có variance lớn. Cần tách outlier, regime change và thay đổi cảm biến."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t05",
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E17-MP08-T05-autocorrelation",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "tags": [
+        "autocorrelation",
+        "lag",
+        "ACF",
+        "serial dependence",
+        "random process"
+      ],
+      "sourceAnchors": [
+        "m_p08_t05",
+        "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T05-E01",
+      "level": "easy",
+      "prompt": "Giải thích bằng lời khái niệm trọng tâm của Autocorrelation và ý nghĩa phụ thuộc theo độ trễ.",
+      "solution": "Autocorrelation tại độ trễ k đo mức liên hệ tuyến tính giữa x_t và x_{t−k}. Nó cho biết chuỗi có 'nhớ' quá khứ theo thước đo tuyến tính hay không."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t05",
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E17-MP08-T05-autocorrelation",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "tags": [
+        "autocorrelation",
+        "lag",
+        "ACF",
+        "serial dependence",
+        "random process"
+      ],
+      "sourceAnchors": [
+        "m_p08_t05",
+        "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T05-E02",
+      "level": "easy",
+      "prompt": "Viết và giải nghĩa công thức: Sample autocovariance.",
+      "solution": "γ̂_k = (1/(N−k)) Σ_{t=k+1}^{N}(x_t−x̄)(x_{t−k}−x̄). Đo đồng biến giữa chuỗi và bản dịch k bước."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t05",
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E17-MP08-T05-autocorrelation",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "tags": [
+        "autocorrelation",
+        "lag",
+        "ACF",
+        "serial dependence",
+        "random process"
+      ],
+      "sourceAnchors": [
+        "m_p08_t05",
+        "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T05-E03",
+      "level": "medium",
+      "prompt": "Áp dụng vào ví dụ sau và nêu kết luận: Với dữ liệu 10 Hz, lag k=20 tương ứng 2 s. Nếu ACF có đỉnh lặp ở k≈50 thì chu kỳ ứng viên khoảng 5 s, nhưng cần kiểm tra đủ nhiều chu kỳ và nguyên nhân vật lý.",
+      "solution": "Thực hiện theo định nghĩa/công thức của bài; kết luận phải giữ thứ tự thời gian và điều kiện dữ liệu. ACF đo correlation của chuỗi với chính nó theo lag."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t05",
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E17-MP08-T05-autocorrelation",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "tags": [
+        "autocorrelation",
+        "lag",
+        "ACF",
+        "serial dependence",
+        "random process"
+      ],
+      "sourceAnchors": [
+        "m_p08_t05",
+        "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T05-E04",
+      "level": "medium",
+      "prompt": "Nêu hai tính chất quan trọng của bài và vì sao chúng ảnh hưởng pipeline.",
+      "solution": "ρ_0=1 nếu variance khác 0. ACF lớn ở lag nhỏ thường xuất hiện ở tín hiệu biến đổi chậm."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t05",
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E17-MP08-T05-autocorrelation",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "tags": [
+        "autocorrelation",
+        "lag",
+        "ACF",
+        "serial dependence",
+        "random process"
+      ],
+      "sourceAnchors": [
+        "m_p08_t05",
+        "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T05-E05",
+      "level": "medium",
+      "prompt": "Phát hiện lỗi trong tình huống: Trend mạnh có thể tạo autocorrelation cao ở nhiều lag dù không có cơ chế nhớ thực sự. Nên detrend/difference phù hợp trước khi diễn giải sâu.",
+      "solution": "Lỗi nằm ở giả định/đường thời gian. Cách sửa: Xác định Δt để đổi lag sang đơn vị thời gian. Kiểm tra trend/seasonality trước khi đọc ACF."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t05",
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E17-MP08-T05-autocorrelation",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "tags": [
+        "autocorrelation",
+        "lag",
+        "ACF",
+        "serial dependence",
+        "random process"
+      ],
+      "sourceAnchors": [
+        "m_p08_t05",
+        "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T05-E06",
+      "level": "hard",
+      "prompt": "Thiết kế checklist kiểm dữ liệu trước khi dùng autocorrelation.",
+      "solution": "Xác định Δt để đổi lag sang đơn vị thời gian. Kiểm tra trend/seasonality trước khi đọc ACF. Không chọn lag chỉ vì một spike đơn lẻ. Giữ train/test tách biệt khi dùng ACF để thiết kế feature."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t05",
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E17-MP08-T05-autocorrelation",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "tags": [
+        "autocorrelation",
+        "lag",
+        "ACF",
+        "serial dependence",
+        "random process"
+      ],
+      "sourceAnchors": [
+        "m_p08_t05",
+        "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T05-E07",
+      "level": "hard",
+      "prompt": "Liên hệ bài với một hệ telemetry/AI và nêu một giới hạn diễn giải.",
+      "solution": "ACF giúp chọn lag cho dự báo tải mạng, rung máy, telemetry robot và đánh giá dư của mô hình còn phụ thuộc thời gian hay không. Giới hạn: không suy luận vượt quá giả định và thông tin sẵn có theo thời gian."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t05",
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E17-MP08-T05-autocorrelation",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "tags": [
+        "autocorrelation",
+        "lag",
+        "ACF",
+        "serial dependence",
+        "random process"
+      ],
+      "sourceAnchors": [
+        "m_p08_t05",
+        "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T05-E08",
+      "level": "hard",
+      "prompt": "So sánh hai lựa chọn xử lý hợp lệ và không hợp lệ trong bài này.",
+      "solution": "Hợp lệ: giữ causal ordering/provenance. Không hợp lệ: dùng dữ liệu tương lai hoặc bỏ qua điều kiện dữ liệu. Trend mạnh có thể tạo autocorrelation cao ở nhiều lag dù không có cơ chế nhớ thực sự. Nên detrend/difference phù hợp trước khi diễn giải sâu."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t06",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T06-lag-features",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "lag feature",
+        "forecasting",
+        "supervised learning",
+        "feature engineering",
+        "causality"
+      ],
+      "sourceAnchors": [
+        "m_p08_t06",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T06-E01",
+      "level": "easy",
+      "prompt": "Giải thích bằng lời khái niệm trọng tâm của Lag features cho mô hình dự báo.",
+      "solution": "Lag feature x_{t−k} đưa thông tin quá khứ của chuỗi vào vector đặc trưng tại thời điểm t. Feature hợp lệ cho dự báo chỉ được dùng dữ liệu có sẵn tại thời điểm ra quyết định."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t06",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T06-lag-features",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "lag feature",
+        "forecasting",
+        "supervised learning",
+        "feature engineering",
+        "causality"
+      ],
+      "sourceAnchors": [
+        "m_p08_t06",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T06-E02",
+      "level": "easy",
+      "prompt": "Viết và giải nghĩa công thức: Vector lag.",
+      "solution": "z_t = [x_{t−1}, x_{t−2}, …, x_{t−p}]. Biến chuỗi thành bài toán supervised với p giá trị quá khứ."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t06",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T06-lag-features",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "lag feature",
+        "forecasting",
+        "supervised learning",
+        "feature engineering",
+        "causality"
+      ],
+      "sourceAnchors": [
+        "m_p08_t06",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T06-E03",
+      "level": "medium",
+      "prompt": "Áp dụng vào ví dụ sau và nêu kết luận: Với x=[10,12,11,15,14] và p=2, mẫu huấn luyện tại t=3 có z=[12,10], target=11; tại t=4 có z=[11,12], target=15.",
+      "solution": "Thực hiện theo định nghĩa/công thức của bài; kết luận phải giữ thứ tự thời gian và điều kiện dữ liệu. Biến lịch sử thành vector lag có thứ tự."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t06",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T06-lag-features",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "lag feature",
+        "forecasting",
+        "supervised learning",
+        "feature engineering",
+        "causality"
+      ],
+      "sourceAnchors": [
+        "m_p08_t06",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T06-E04",
+      "level": "medium",
+      "prompt": "Nêu hai tính chất quan trọng của bài và vì sao chúng ảnh hưởng pipeline.",
+      "solution": "p lớn cho nhiều lịch sử hơn nhưng tăng chiều và số mẫu mất ở đầu chuỗi. Lag feature không thay thế seasonality feature theo lịch nếu cơ chế có chu kỳ dài."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t06",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T06-lag-features",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "lag feature",
+        "forecasting",
+        "supervised learning",
+        "feature engineering",
+        "causality"
+      ],
+      "sourceAnchors": [
+        "m_p08_t06",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T06-E05",
+      "level": "medium",
+      "prompt": "Phát hiện lỗi trong tình huống: Dùng x_{t+1} hoặc centered rolling feature để dự báo x_t là rò rỉ tương lai dù code chạy và metric rất đẹp.",
+      "solution": "Lỗi nằm ở giả định/đường thời gian. Cách sửa: Định nghĩa thời điểm prediction và cutoff dữ liệu. Kiểm tra timestamp của từng feature ≤ prediction time."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t06",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T06-lag-features",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "lag feature",
+        "forecasting",
+        "supervised learning",
+        "feature engineering",
+        "causality"
+      ],
+      "sourceAnchors": [
+        "m_p08_t06",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T06-E06",
+      "level": "hard",
+      "prompt": "Thiết kế checklist kiểm dữ liệu trước khi dùng lag feature.",
+      "solution": "Định nghĩa thời điểm prediction và cutoff dữ liệu. Kiểm tra timestamp của từng feature ≤ prediction time. Tạo target sau khi khóa horizon. Tách train/test trước mọi transform học từ dữ liệu."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t06",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T06-lag-features",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "lag feature",
+        "forecasting",
+        "supervised learning",
+        "feature engineering",
+        "causality"
+      ],
+      "sourceAnchors": [
+        "m_p08_t06",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T06-E07",
+      "level": "hard",
+      "prompt": "Liên hệ bài với một hệ telemetry/AI và nêu một giới hạn diễn giải.",
+      "solution": "Lag features là baseline mạnh cho dự báo latency, pin, nhiệt độ, tải mạng hoặc tín hiệu cảm biến trước khi dùng RNN/Transformer. Giới hạn: không suy luận vượt quá giả định và thông tin sẵn có theo thời gian."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t06",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T06-lag-features",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "lag feature",
+        "forecasting",
+        "supervised learning",
+        "feature engineering",
+        "causality"
+      ],
+      "sourceAnchors": [
+        "m_p08_t06",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T06-E08",
+      "level": "hard",
+      "prompt": "So sánh hai lựa chọn xử lý hợp lệ và không hợp lệ trong bài này.",
+      "solution": "Hợp lệ: giữ causal ordering/provenance. Không hợp lệ: dùng dữ liệu tương lai hoặc bỏ qua điều kiện dữ liệu. Dùng x_{t+1} hoặc centered rolling feature để dự báo x_t là rò rỉ tương lai dù code chạy và metric rất đẹp."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t07",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T07-stationarity-intuition",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "stationarity",
+        "weak stationarity",
+        "mean",
+        "variance",
+        "autocovariance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t07",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T07-E01",
+      "level": "easy",
+      "prompt": "Giải thích bằng lời khái niệm trọng tâm của Stationarity ở mức trực giác và vì sao cần kiểm tra.",
+      "solution": "Ở mức nền, weak stationarity yêu cầu mean không phụ thuộc thời gian, variance hữu hạn và không đổi, còn covariance giữa x_t và x_{t−k} chỉ phụ thuộc lag k chứ không phụ thuộc t tuyệt đối."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t07",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T07-stationarity-intuition",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "stationarity",
+        "weak stationarity",
+        "mean",
+        "variance",
+        "autocovariance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t07",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T07-E02",
+      "level": "easy",
+      "prompt": "Viết và giải nghĩa công thức: Mean ổn định.",
+      "solution": "E[X_t] = μ. Kỳ vọng không đổi theo thời gian."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t07",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T07-stationarity-intuition",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "stationarity",
+        "weak stationarity",
+        "mean",
+        "variance",
+        "autocovariance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t07",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T07-E03",
+      "level": "medium",
+      "prompt": "Áp dụng vào ví dụ sau và nêu kết luận: Chuỗi x_t = 0,1t + ε_t có mean tăng theo t nên không stationary theo nghĩa yếu, dù noise ε_t có variance cố định.",
+      "solution": "Thực hiện theo định nghĩa/công thức của bài; kết luận phải giữ thứ tự thời gian và điều kiện dữ liệu. Weak stationarity: mean, variance ổn định và covariance theo lag."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t07",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T07-stationarity-intuition",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "stationarity",
+        "weak stationarity",
+        "mean",
+        "variance",
+        "autocovariance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t07",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T07-E04",
+      "level": "medium",
+      "prompt": "Nêu hai tính chất quan trọng của bài và vì sao chúng ảnh hưởng pipeline.",
+      "solution": "Stationarity là giả định mô hình, không phải nhãn vĩnh viễn của mọi dữ liệu. Trend và seasonality thường vi phạm stationarity mean."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t07",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T07-stationarity-intuition",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "stationarity",
+        "weak stationarity",
+        "mean",
+        "variance",
+        "autocovariance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t07",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T07-E05",
+      "level": "medium",
+      "prompt": "Phát hiện lỗi trong tình huống: Không kết luận stationary chỉ vì đồ thị 'trông ổn'. Kiểm tra định lượng và kiến thức miền phải đi cùng nhau.",
+      "solution": "Lỗi nằm ở giả định/đường thời gian. Cách sửa: Vẽ rolling mean/variance theo nhiều window hợp lý. Xem ACF theo đoạn thời gian."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t07",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T07-stationarity-intuition",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "stationarity",
+        "weak stationarity",
+        "mean",
+        "variance",
+        "autocovariance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t07",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T07-E06",
+      "level": "hard",
+      "prompt": "Thiết kế checklist kiểm dữ liệu trước khi dùng stationarity.",
+      "solution": "Vẽ rolling mean/variance theo nhiều window hợp lý. Xem ACF theo đoạn thời gian. Nếu dùng kiểm định thống kê sau này, hiểu giả thuyết H0 trước khi đọc p-value. Không difference máy móc nếu level tuyệt đối mang ý nghĩa kỹ thuật."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t07",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T07-stationarity-intuition",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "stationarity",
+        "weak stationarity",
+        "mean",
+        "variance",
+        "autocovariance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t07",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T07-E07",
+      "level": "hard",
+      "prompt": "Liên hệ bài với một hệ telemetry/AI và nêu một giới hạn diễn giải.",
+      "solution": "Nhiều mô hình chuỗi thời gian cổ điển giả định cấu trúc ổn định; trong telemetry, vi phạm stationarity có thể báo regime change cần mô hình riêng. Giới hạn: không suy luận vượt quá giả định và thông tin sẵn có theo thời gian."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t07",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T07-stationarity-intuition",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "stationarity",
+        "weak stationarity",
+        "mean",
+        "variance",
+        "autocovariance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t07",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T07-E08",
+      "level": "hard",
+      "prompt": "So sánh hai lựa chọn xử lý hợp lệ và không hợp lệ trong bài này.",
+      "solution": "Hợp lệ: giữ causal ordering/provenance. Không hợp lệ: dùng dữ liệu tương lai hoặc bỏ qua điều kiện dữ liệu. Không kết luận stationary chỉ vì đồ thị 'trông ổn'. Kiểm tra định lượng và kiến thức miền phải đi cùng nhau."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t08",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T08-temporal-split-leakage",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "temporal split",
+        "time series cross validation",
+        "future leakage",
+        "backtesting",
+        "evaluation"
+      ],
+      "sourceAnchors": [
+        "m_p08_t08",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T08-E01",
+      "level": "easy",
+      "prompt": "Giải thích bằng lời khái niệm trọng tâm của Chia train/test theo thời gian và lỗi rò rỉ tương lai.",
+      "solution": "Đánh giá dự báo phải mô phỏng đúng hướng thời gian: mô hình chỉ học từ quá khứ và được đánh giá trên đoạn tương lai. Random split thường phá điều kiện này."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t08",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T08-temporal-split-leakage",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "temporal split",
+        "time series cross validation",
+        "future leakage",
+        "backtesting",
+        "evaluation"
+      ],
+      "sourceAnchors": [
+        "m_p08_t08",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T08-E02",
+      "level": "easy",
+      "prompt": "Viết và giải nghĩa công thức: Temporal holdout.",
+      "solution": "Train = {t ≤ T₀}, Test = {t > T₀}. Tách theo cutoff thời gian."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t08",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T08-temporal-split-leakage",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "temporal split",
+        "time series cross validation",
+        "future leakage",
+        "backtesting",
+        "evaluation"
+      ],
+      "sourceAnchors": [
+        "m_p08_t08",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T08-E03",
+      "level": "medium",
+      "prompt": "Áp dụng vào ví dụ sau và nêu kết luận: Nếu có dữ liệu tháng 1–12, train tháng 1–9 và test tháng 10–12 phản ánh triển khai thật tốt hơn random 75/25, vì random có thể cho dữ liệu tháng 12 vào train rồi đánh giá tháng 3.",
+      "solution": "Thực hiện theo định nghĩa/công thức của bài; kết luận phải giữ thứ tự thời gian và điều kiện dữ liệu. Split theo thời gian, không random mặc định."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t08",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T08-temporal-split-leakage",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "temporal split",
+        "time series cross validation",
+        "future leakage",
+        "backtesting",
+        "evaluation"
+      ],
+      "sourceAnchors": [
+        "m_p08_t08",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T08-E04",
+      "level": "medium",
+      "prompt": "Nêu hai tính chất quan trọng của bài và vì sao chúng ảnh hưởng pipeline.",
+      "solution": "Cutoff phải theo thời gian sự kiện, không theo thứ tự file nếu file đã bị xáo. Scaler/imputer/feature selector chỉ fit trên train của từng fold."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t08",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T08-temporal-split-leakage",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "temporal split",
+        "time series cross validation",
+        "future leakage",
+        "backtesting",
+        "evaluation"
+      ],
+      "sourceAnchors": [
+        "m_p08_t08",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T08-E05",
+      "level": "medium",
+      "prompt": "Phát hiện lỗi trong tình huống: Future leakage thường không gây lỗi code; nó gây metric đẹp giả. Leakage có thể đến từ preprocessing, aggregation, label construction hoặc feature được cập nhật sau thời điểm dự đoán.",
+      "solution": "Lỗi nằm ở giả định/đường thời gian. Cách sửa: Viết rõ prediction timestamp và data availability timestamp. Tách thời gian trước khi fit preprocessing."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t08",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T08-temporal-split-leakage",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "temporal split",
+        "time series cross validation",
+        "future leakage",
+        "backtesting",
+        "evaluation"
+      ],
+      "sourceAnchors": [
+        "m_p08_t08",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T08-E06",
+      "level": "hard",
+      "prompt": "Thiết kế checklist kiểm dữ liệu trước khi dùng temporal split.",
+      "solution": "Viết rõ prediction timestamp và data availability timestamp. Tách thời gian trước khi fit preprocessing. Kiểm tra mọi rolling/aggregate chỉ dùng quá khứ. Dùng walk-forward/expanding window khi cần nhiều fold."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t08",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T08-temporal-split-leakage",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "temporal split",
+        "time series cross validation",
+        "future leakage",
+        "backtesting",
+        "evaluation"
+      ],
+      "sourceAnchors": [
+        "m_p08_t08",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T08-E07",
+      "level": "hard",
+      "prompt": "Liên hệ bài với một hệ telemetry/AI và nêu một giới hạn diễn giải.",
+      "solution": "Một hệ cảnh báo dự báo lỗi thiết bị cần được backtest như lúc triển khai: mô hình ở ngày D chỉ được nhìn dữ liệu có sẵn đến D, không nhìn log sửa chữa ghi sau đó. Giới hạn: không suy luận vượt quá giả định và thông tin sẵn có theo thời gian."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t08",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T08-temporal-split-leakage",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "temporal split",
+        "time series cross validation",
+        "future leakage",
+        "backtesting",
+        "evaluation"
+      ],
+      "sourceAnchors": [
+        "m_p08_t08",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "exerciseId": "E17-M_P08_T08-E08",
+      "level": "hard",
+      "prompt": "So sánh hai lựa chọn xử lý hợp lệ và không hợp lệ trong bài này.",
+      "solution": "Hợp lệ: giữ causal ordering/provenance. Không hợp lệ: dùng dữ liệu tương lai hoặc bỏ qua điều kiện dữ liệu. Future leakage thường không gây lỗi code; nó gây metric đẹp giả. Leakage có thể đến từ preprocessing, aggregation, label construction hoặc feature được cập nhật sau thời điểm dự đoán."
     }
   ],
   "importPolicy": {
@@ -1345,7 +2817,7 @@
     "solution": "Nhân từng thành phần rồi cộng lại.",
     "auditStatus": "DRAFT"
   },
-  "updatedAt": "2026-09-23",
+  "updatedAt": "2026-09-27",
   "emoji": "📝",
   "cleanArchitecturePolicy": {
     "contentMustNotStoreStageTree": true,
@@ -1360,6 +2832,16 @@
       "key": "exerciseId",
       "branchOnly": true,
       "status": "CONTENT_IMPORTED_PENDING_RUNTIME_GATE"
+    }
+  },
+  "authoringMeta": {
+    "E17": {
+      "moduleId": "m_p08",
+      "records": 64,
+      "status": "PASS_STATIC_BROWSER_CI",
+      "architecture": "logical_module_over_physical_content",
+      "verifiedAt": "2026-09-27",
+      "pr": 144
     }
   }
 }

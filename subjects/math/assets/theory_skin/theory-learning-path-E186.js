@@ -5,7 +5,7 @@
  */
 (function(){
   'use strict';
-  var RELEASE='E195_C03_LESSON_PICKER_FIX';
+  var RELEASE='E197_PROGRAM_ANCHOR_ROUTING_MP08';
   var C01_CHAPTER_ID='MATH-VN-C01-vector_trong_khong_gian_';
   var HIERARCHY=[
     {id:'pure',code:'I',title:'Toán học Thuần túy',en:'Pure Mathematics Module',courses:[
@@ -98,10 +98,24 @@
   function frameByNo(no){return frames().find(function(ch){return Number(ch.chapterNo||ch.localChapterNo||ch.globalChapterNo||0)===Number(no);})||null;}
   function currentFrame(){var p=path(), ch=chapter(p.moduleId,p.courseId,p.chapterId);return frameByNo(ch&&ch.no);}
   function staticLessons(chapterId){if(chapterId==='c01')return C01_LESSONS;if(chapterId==='c02')return C02_LESSONS;if(chapterId==='c03')return C03_LESSONS;return [];}
+  function programLectureMatches(r,no){
+    if(!r||!no)return false;
+    var token='-L'+String(no).padStart(2,'0')+'-';
+    var ids=[];
+    if(r.programLectureId)ids.push(r.programLectureId);
+    if(Array.isArray(r.programLectureIds))ids=ids.concat(r.programLectureIds);
+    if(r.sourceAnchors&&r.sourceAnchors.programLectureId)ids.push(r.sourceAnchors.programLectureId);
+    return ids.some(function(v){return S(v).indexOf(token)>=0;});
+  }
   function lessonOptions(){var p=path(), fr=currentFrame(), all=records(), ch=chapter(p.moduleId,p.courseId,p.chapterId), no=Number(ch&&ch.no||0), recs=[];
-    if(fr)recs=all.filter(function(r){return r.chapterId===(fr.chapterId||fr.id);});
+    if(no)recs=all.filter(function(r){return programLectureMatches(r,no);});
+    if(!recs.length&&fr)recs=all.filter(function(r){return r.chapterId===(fr.chapterId||fr.id);});
     if(!recs.length&&no){var token='-C'+String(no).padStart(2,'0')+'-';recs=all.filter(function(r){return S(r.chapterId).indexOf(token)>=0;});}
-    if(recs.length)return recs.map(function(r){return {id:S(r.lessonId||r.id),label:cleanLessonTitle(r.title||r.lessonTitle||r.lessonId),sub:'Chọn bài trước, rồi chọn phân mục học tập.'};});
+    if(recs.length){
+      var seen={};
+      return recs.filter(function(r){var id=S(r.lessonId||r.id);if(!id||seen[id])return false;seen[id]=true;return true;})
+        .map(function(r){return {id:S(r.lessonId||r.id),label:cleanLessonTitle(r.title||r.lessonTitle||r.lessonId),sub:'Chọn bài trước, rồi chọn phân mục học tập.'};});
+    }
     var stat=staticLessons(p.chapterId);if(stat.length)return stat.map(function(x){return {id:x.id,label:x.label,sub:'Chọn bài trước, rồi chọn phân mục học tập.'};});
     return [{id:p.chapterId+'-overview',label:'Bài '+(ch&&ch.no||'')+'.1 · Bài giảng tổng quan',sub:'Khung bài tạm cho chương này.'}];
   }
@@ -142,7 +156,7 @@
     else {title='Chọn phân mục';html=ACTIVITIES.map(function(x){return option(x.label,x.summary,{'data-e186-pick':'activity','data-e186-id':x.id},x.id===p.activityId);}).join('');}
     modal('<header><div><span class="e129-badge">E186 · Lesson First</span><h3>'+H(title)+'</h3><p>Thứ tự: Khối → Học phần → Chương → Bài → Phân mục.</p></div><button class="e129-close" data-e186-close>×</button></header><div class="e169-choice-grid e186-choice-grid">'+html+'</div>');
   }
-  function renderRoute(){var p=ensureLesson(), st=state(), fr=currentFrame();syncLegacy();st.view='learning';st.learnTab=ROUTES[p.activityId]||p.activityId;if(fr)st.e129ChapterId=fr.chapterId||fr.id||'';if(p.chapterId==='c01')st.e129ChapterId=C01_CHAPTER_ID;st.e129LessonId=p.lessonId;save();close();try{window.BAUMAN_MATH_THEORY_E129&&window.BAUMAN_MATH_THEORY_E129.render&&window.BAUMAN_MATH_THEORY_E129.render();}catch(_){location.reload();return;}try{window.dispatchEvent(new CustomEvent('bauman:math:route-changed',{detail:{lessonId:p.lessonId,activityId:p.activityId,source:RELEASE}}));}catch(_){}}
+  function renderRoute(){var p=ensureLesson(), st=state(), fr=currentFrame(), active=records().find(function(r){return S(r.lessonId||r.id)===p.lessonId;});syncLegacy();st.view='learning';st.learnTab=ROUTES[p.activityId]||p.activityId;if(active&&active.chapterId)st.e129ChapterId=active.chapterId;else if(fr)st.e129ChapterId=fr.chapterId||fr.id||'';if(p.chapterId==='c01'&&!active)st.e129ChapterId=C01_CHAPTER_ID;st.e129LessonId=p.lessonId;save();close();try{window.BAUMAN_MATH_THEORY_E129&&window.BAUMAN_MATH_THEORY_E129.render&&window.BAUMAN_MATH_THEORY_E129.render();}catch(_){location.reload();return;}try{window.dispatchEvent(new CustomEvent('bauman:math:route-changed',{detail:{lessonId:p.lessonId,activityId:p.activityId,source:RELEASE}}));}catch(_){}}
   function patchSurface(){
     syncLegacy();
     var summary=pathSummary();

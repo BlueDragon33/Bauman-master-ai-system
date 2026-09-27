@@ -332,6 +332,374 @@
       "title": "Anomaly score theo reconstruction",
       "scenario": "Điểm có lỗi tái tạo cao có thể lệch subspace bình thường.",
       "method": "Calibrate threshold trên validation; không suy anomaly chỉ từ một điểm cao đơn lẻ."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t01",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T01-time-index-sampling",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "time index",
+        "sampling frequency",
+        "missing timestamp",
+        "telemetry",
+        "resampling"
+      ],
+      "sourceAnchors": [
+        "m_p08_t01",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "applicationId": "E17-M_P08_T01-A01",
+      "title": "Telemetry/AI · Dữ liệu chuỗi thời gian: chỉ số thời gian, tần số lấy mẫu và missing timestamp",
+      "scenario": "Telemetry UAV/robot thường ghép IMU, GPS, pin và network ở tần số khác nhau. Time-index contract giúp đồng bộ kênh trước khi tính feature hoặc huấn luyện mô hình.",
+      "method": "Khóa time-index contract; áp dụng time index, sampling frequency, missing timestamp; kiểm assumption gate và báo cáo giới hạn."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t01",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T01-time-index-sampling",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "time index",
+        "sampling frequency",
+        "missing timestamp",
+        "telemetry",
+        "resampling"
+      ],
+      "sourceAnchors": [
+        "m_p08_t01",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "applicationId": "E17-M_P08_T01-A02",
+      "title": "Kiểm chứng kỹ thuật · Dữ liệu chuỗi thời gian: chỉ số thời gian, tần số lấy mẫu và missing timestamp",
+      "scenario": "Đánh giá cùng khái niệm trên dữ liệu cảm biến có regime, missing và nhiễu.",
+      "method": "Giữ raw data, dựng diagnostic theo thời gian, so sánh trước/sau xử lý và không dùng thông tin tương lai."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t02",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T02-trend-seasonality-noise",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "trend",
+        "seasonality",
+        "cycle",
+        "noise",
+        "decomposition"
+      ],
+      "sourceAnchors": [
+        "m_p08_t02",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "applicationId": "E17-M_P08_T02-A01",
+      "title": "Telemetry/AI · Xu hướng, mùa vụ, chu kỳ và nhiễu",
+      "scenario": "Phân rã telemetry máy chủ hoặc robot giúp tách tải nền dài hạn, lịch vận hành lặp lại và nhiễu để thiết kế cảnh báo/anomaly detection.",
+      "method": "Khóa time-index contract; áp dụng trend, seasonality, cycle; kiểm assumption gate và báo cáo giới hạn."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t02",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T02-trend-seasonality-noise",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "trend",
+        "seasonality",
+        "cycle",
+        "noise",
+        "decomposition"
+      ],
+      "sourceAnchors": [
+        "m_p08_t02",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "applicationId": "E17-M_P08_T02-A02",
+      "title": "Kiểm chứng kỹ thuật · Xu hướng, mùa vụ, chu kỳ và nhiễu",
+      "scenario": "Đánh giá cùng khái niệm trên dữ liệu cảm biến có regime, missing và nhiễu.",
+      "method": "Giữ raw data, dựng diagnostic theo thời gian, so sánh trước/sau xử lý và không dùng thông tin tương lai."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t03",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T03-rolling-smoothing",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling mean",
+        "moving average",
+        "smoothing",
+        "window",
+        "causal filter"
+      ],
+      "sourceAnchors": [
+        "m_p08_t03",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "applicationId": "E17-M_P08_T03-A01",
+      "title": "Telemetry/AI · Trung bình trượt và làm mượt dữ liệu",
+      "scenario": "Làm mượt dòng gia tốc, tải CPU hoặc RSSI trước khi phát hiện xu hướng; nhưng sự kiện đột biến có thể bị giảm biên độ nên cần giữ kênh raw song song.",
+      "method": "Khóa time-index contract; áp dụng rolling mean, moving average, smoothing; kiểm assumption gate và báo cáo giới hạn."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t03",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T03-rolling-smoothing",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling mean",
+        "moving average",
+        "smoothing",
+        "window",
+        "causal filter"
+      ],
+      "sourceAnchors": [
+        "m_p08_t03",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "applicationId": "E17-M_P08_T03-A02",
+      "title": "Kiểm chứng kỹ thuật · Trung bình trượt và làm mượt dữ liệu",
+      "scenario": "Đánh giá cùng khái niệm trên dữ liệu cảm biến có regime, missing và nhiễu.",
+      "method": "Giữ raw data, dựng diagnostic theo thời gian, so sánh trước/sau xử lý và không dùng thông tin tương lai."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t04",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T04-changing-variance",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling variance",
+        "heteroscedasticity",
+        "regime change",
+        "nonstationarity",
+        "variance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t04",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "applicationId": "E17-M_P08_T04-A01",
+      "title": "Telemetry/AI · Phương sai thay đổi và dấu hiệu không ổn định",
+      "scenario": "Variance change là tín hiệu hữu ích để phát hiện rung bất thường, lỗi cảm biến, thay đổi tải hoặc chế độ bay; nhưng cần đối chiếu trạng thái hệ thống.",
+      "method": "Khóa time-index contract; áp dụng rolling variance, heteroscedasticity, regime change; kiểm assumption gate và báo cáo giới hạn."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t04",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T04-changing-variance",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "rolling variance",
+        "heteroscedasticity",
+        "regime change",
+        "nonstationarity",
+        "variance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t04",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "applicationId": "E17-M_P08_T04-A02",
+      "title": "Kiểm chứng kỹ thuật · Phương sai thay đổi và dấu hiệu không ổn định",
+      "scenario": "Đánh giá cùng khái niệm trên dữ liệu cảm biến có regime, missing và nhiễu.",
+      "method": "Giữ raw data, dựng diagnostic theo thời gian, so sánh trước/sau xử lý và không dùng thông tin tương lai."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t05",
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E17-MP08-T05-autocorrelation",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "tags": [
+        "autocorrelation",
+        "lag",
+        "ACF",
+        "serial dependence",
+        "random process"
+      ],
+      "sourceAnchors": [
+        "m_p08_t05",
+        "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "applicationId": "E17-M_P08_T05-A01",
+      "title": "Telemetry/AI · Autocorrelation và ý nghĩa phụ thuộc theo độ trễ",
+      "scenario": "ACF giúp chọn lag cho dự báo tải mạng, rung máy, telemetry robot và đánh giá dư của mô hình còn phụ thuộc thời gian hay không.",
+      "method": "Khóa time-index contract; áp dụng autocorrelation, lag, ACF; kiểm assumption gate và báo cáo giới hạn."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t05",
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E17-MP08-T05-autocorrelation",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "tags": [
+        "autocorrelation",
+        "lag",
+        "ACF",
+        "serial dependence",
+        "random process"
+      ],
+      "sourceAnchors": [
+        "m_p08_t05",
+        "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "applicationId": "E17-M_P08_T05-A02",
+      "title": "Kiểm chứng kỹ thuật · Autocorrelation và ý nghĩa phụ thuộc theo độ trễ",
+      "scenario": "Đánh giá cùng khái niệm trên dữ liệu cảm biến có regime, missing và nhiễu.",
+      "method": "Giữ raw data, dựng diagnostic theo thời gian, so sánh trước/sau xử lý và không dùng thông tin tương lai."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t06",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T06-lag-features",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "lag feature",
+        "forecasting",
+        "supervised learning",
+        "feature engineering",
+        "causality"
+      ],
+      "sourceAnchors": [
+        "m_p08_t06",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "applicationId": "E17-M_P08_T06-A01",
+      "title": "Telemetry/AI · Lag features cho mô hình dự báo",
+      "scenario": "Lag features là baseline mạnh cho dự báo latency, pin, nhiệt độ, tải mạng hoặc tín hiệu cảm biến trước khi dùng RNN/Transformer.",
+      "method": "Khóa time-index contract; áp dụng lag feature, forecasting, supervised learning; kiểm assumption gate và báo cáo giới hạn."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t06",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T06-lag-features",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "lag feature",
+        "forecasting",
+        "supervised learning",
+        "feature engineering",
+        "causality"
+      ],
+      "sourceAnchors": [
+        "m_p08_t06",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "applicationId": "E17-M_P08_T06-A02",
+      "title": "Kiểm chứng kỹ thuật · Lag features cho mô hình dự báo",
+      "scenario": "Đánh giá cùng khái niệm trên dữ liệu cảm biến có regime, missing và nhiễu.",
+      "method": "Giữ raw data, dựng diagnostic theo thời gian, so sánh trước/sau xử lý và không dùng thông tin tương lai."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t07",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T07-stationarity-intuition",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "stationarity",
+        "weak stationarity",
+        "mean",
+        "variance",
+        "autocovariance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t07",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "applicationId": "E17-M_P08_T07-A01",
+      "title": "Telemetry/AI · Stationarity ở mức trực giác và vì sao cần kiểm tra",
+      "scenario": "Nhiều mô hình chuỗi thời gian cổ điển giả định cấu trúc ổn định; trong telemetry, vi phạm stationarity có thể báo regime change cần mô hình riêng.",
+      "method": "Khóa time-index contract; áp dụng stationarity, weak stationarity, mean; kiểm assumption gate và báo cáo giới hạn."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t07",
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T07-stationarity-intuition",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "tags": [
+        "stationarity",
+        "weak stationarity",
+        "mean",
+        "variance",
+        "autocovariance"
+      ],
+      "sourceAnchors": [
+        "m_p08_t07",
+        "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "applicationId": "E17-M_P08_T07-A02",
+      "title": "Kiểm chứng kỹ thuật · Stationarity ở mức trực giác và vì sao cần kiểm tra",
+      "scenario": "Đánh giá cùng khái niệm trên dữ liệu cảm biến có regime, missing và nhiễu.",
+      "method": "Giữ raw data, dựng diagnostic theo thời gian, so sánh trước/sau xử lý và không dùng thông tin tương lai."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t08",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T08-temporal-split-leakage",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "temporal split",
+        "time series cross validation",
+        "future leakage",
+        "backtesting",
+        "evaluation"
+      ],
+      "sourceAnchors": [
+        "m_p08_t08",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "applicationId": "E17-M_P08_T08-A01",
+      "title": "Telemetry/AI · Chia train/test theo thời gian và lỗi rò rỉ tương lai",
+      "scenario": "Một hệ cảnh báo dự báo lỗi thiết bị cần được backtest như lúc triển khai: mô hình ở ngày D chỉ được nhìn dữ liệu có sẵn đến D, không nhìn log sửa chữa ghi sau đó.",
+      "method": "Khóa time-index contract; áp dụng temporal split, time series cross validation, future leakage; kiểm assumption gate và báo cáo giới hạn."
+    },
+    {
+      "logicalModuleId": "m_p08",
+      "logicalLessonId": "m_p08_t08",
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T08-temporal-split-leakage",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "tags": [
+        "temporal split",
+        "time series cross validation",
+        "future leakage",
+        "backtesting",
+        "evaluation"
+      ],
+      "sourceAnchors": [
+        "m_p08_t08",
+        "MATH-VN-C06-python_numpy_cho_tinh_to",
+        "MATH-PROG-L14-stochastic-processes-time-series"
+      ],
+      "auditStatus": "E17_AUTHORED",
+      "applicationId": "E17-M_P08_T08-A02",
+      "title": "Kiểm chứng kỹ thuật · Chia train/test theo thời gian và lỗi rò rỉ tương lai",
+      "scenario": "Đánh giá cùng khái niệm trên dữ liệu cảm biến có regime, missing và nhiễu.",
+      "method": "Giữ raw data, dựng diagnostic theo thời gian, so sánh trước/sau xử lý và không dùng thông tin tương lai."
     }
   ],
   "importPolicy": {
@@ -379,7 +747,7 @@
     "method": "Chuẩn hóa rồi tính cosine similarity.",
     "auditStatus": "DRAFT"
   },
-  "updatedAt": "2026-09-23",
+  "updatedAt": "2026-09-27",
   "emoji": "🧩",
   "cleanArchitecturePolicy": {
     "contentMustNotStoreStageTree": true,
@@ -394,6 +762,16 @@
       "key": "applicationId",
       "branchOnly": true,
       "status": "CONTENT_IMPORTED_PENDING_RUNTIME_GATE"
+    }
+  },
+  "authoringMeta": {
+    "E17": {
+      "moduleId": "m_p08",
+      "records": 16,
+      "status": "PASS_STATIC_BROWSER_CI",
+      "architecture": "logical_module_over_physical_content",
+      "verifiedAt": "2026-09-27",
+      "pr": 144
     }
   }
 }

@@ -7287,6 +7287,1591 @@
           ]
         }
       ]
+    },
+    {
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T01-time-index-sampling",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "lessonTitle": "m_p08 · §1.1 · Dữ liệu chuỗi thời gian: chỉ số thời gian, tần số lấy mẫu và missing timestamp",
+      "title": "m_p08 · §1.1 · Dữ liệu chuỗi thời gian: chỉ số thời gian, tần số lấy mẫu và missing timestamp",
+      "programLectureId": "MATH-PROG-L14-stochastic-processes-time-series",
+      "roadmapRole": "m_p08_t01",
+      "baumanFocus": "Nền chuỗi thời gian cho telemetry, xử lý tín hiệu, dự báo, anomaly detection và hệ điều khiển.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_p08",
+        "logicalLessonId": "m_p08_t01",
+        "frameworkAnchor": "m_p08_t01",
+        "programLectureId": "MATH-PROG-L14-stochastic-processes-time-series",
+        "futurePhysicalAnchors": [
+          "MATH-HK1-C22-qua_trinh_ngau_nhien_va_",
+          "MATH-HK3-C31-chuoi_thoi_gian_nang_cao"
+        ],
+        "provenancePolicy": "theory_framework_plus_e17_academic_authoring"
+      },
+      "tags": [
+        "time index",
+        "sampling frequency",
+        "missing timestamp",
+        "telemetry",
+        "resampling"
+      ],
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_p08 · §1.1 · Dữ liệu chuỗi thời gian: chỉ số thời gian, tần số lấy mẫu và missing timestamp",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Vấn đề học tập",
+              "body": "Chuỗi thời gian là dãy quan sát x_t gắn với thứ tự hoặc mốc thời gian t. Với dữ liệu lấy mẫu đều, khoảng lấy mẫu Δt gần như cố định và tần số lấy mẫu f_s = 1/Δt."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Hiểu đúng khái niệm, tính được đại lượng lõi, nhận diện bẫy dữ liệu và nối trực tiếp sang telemetry/AI/điều khiển."
+            }
+          ]
+        },
+        {
+          "role": "definition",
+          "title": "Định nghĩa và điều kiện sử dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Định nghĩa",
+              "body": "Chuỗi thời gian là dãy quan sát x_t gắn với thứ tự hoặc mốc thời gian t. Với dữ liệu lấy mẫu đều, khoảng lấy mẫu Δt gần như cố định và tần số lấy mẫu f_s = 1/Δt."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Từ khóa bắt buộc",
+              "items": [
+                "time index",
+                "sampling frequency",
+                "missing timestamp",
+                "telemetry",
+                "resampling"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Tần số lấy mẫu",
+              "body": "f_s = 1 / Δt\nLiên hệ giữa chu kỳ lấy mẫu và số mẫu trên một đơn vị thời gian."
+            },
+            {
+              "type": "formula",
+              "title": "Khoảng thời gian quan sát",
+              "body": "T = (N − 1)Δt\nVới N mẫu đều, thời lượng từ mẫu đầu đến mẫu cuối bằng (N−1) khoảng lấy mẫu."
+            },
+            {
+              "type": "formula",
+              "title": "Tỷ lệ timestamp thiếu",
+              "body": "r_missing = N_missing / N_expected\nĐo tỷ lệ mốc thời gian đáng lẽ có nhưng không xuất hiện."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ tính/diễn giải nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "Một cảm biến ghi mỗi 0,02 s thì f_s = 50 Hz. Trong 10 s kỳ vọng 501 mốc nếu tính cả hai đầu; nếu chỉ có 496 mốc thì có 5 timestamp bị thiếu và phải xác định vị trí trước khi nội suy."
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Time-index contract trước khi phân tích",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Bốn trường cần khóa",
+              "items": [
+                "timestamp chuẩn hóa và timezone",
+                "sample interval/tần số kỳ vọng",
+                "quy tắc duplicate",
+                "quy tắc gap/missing timestamp"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Phân biệt missing timestamp và missing value",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Missing timestamp",
+              "body": "Mốc t kỳ vọng không tồn tại trong index; cần phát hiện từ khoảng cách thời gian."
+            },
+            {
+              "type": "text",
+              "title": "Missing value",
+              "body": "Mốc t tồn tại nhưng một hoặc nhiều biến là null/NaN; cách xử lý có thể khác hoàn toàn."
+            }
+          ]
+        },
+        {
+          "role": "properties",
+          "title": "Tính chất cần giữ",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tính chất",
+              "items": [
+                "Thứ tự thời gian là một phần của dữ liệu, không được xáo trộn tùy ý.",
+                "Timestamp không đều làm nhiều công thức giả định lấy mẫu đều mất hiệu lực.",
+                "Resampling có thể tạo giá trị mới nên phải ghi rõ phương pháp nội suy/aggregation."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy và phản ví dụ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Sai lầm phổ biến là thấy đủ số dòng rồi kết luận dữ liệu liên tục. Hai dòng liên tiếp có thể cách nhau 20 ms hoặc 2 s; phải kiểm tra chênh lệch timestamp."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng dữ liệu trước khi tính",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Chuẩn hóa timezone và kiểu timestamp trước khi ghép nguồn.",
+                "Sắp xếp tăng dần theo thời gian và kiểm tra duplicate.",
+                "Tính Δt thực tế; phát hiện gap trước khi resample.",
+                "Không nội suy qua khoảng mất dữ liệu dài mà không đánh dấu."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ AI/Bauman và hệ kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Telemetry UAV/robot thường ghép IMU, GPS, pin và network ở tần số khác nhau. Time-index contract giúp đồng bộ kênh trước khi tính feature hoặc huấn luyện mô hình."
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Vấn đáp kiểm tra hiểu sâu",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Câu hỏi",
+              "items": [
+                {
+                  "q": "Vì sao không được random shuffle trước khi kiểm tra time index?",
+                  "a": "Vì shuffle phá thứ tự và che mất gap, duplicate, drift tần số."
+                },
+                {
+                  "q": "50 Hz có nghĩa gì?",
+                  "a": "Lý tưởng có 50 mẫu mỗi giây, tương ứng Δt = 0,02 s."
+                },
+                {
+                  "q": "Missing timestamp khác missing value thế nào?",
+                  "a": "Missing timestamp là cả mốc quan sát không tồn tại; missing value là mốc có nhưng một hoặc nhiều biến bị thiếu."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.1",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Khóa time index trước mọi phân tích.",
+                "f_s và Δt phải nhất quán với dữ liệu thật.",
+                "Gap/duplicate/timezone là lỗi dữ liệu, không phải chi tiết trình bày.",
+                "Resampling phải có provenance rõ."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T02-trend-seasonality-noise",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "lessonTitle": "m_p08 · §1.2 · Xu hướng, mùa vụ, chu kỳ và nhiễu",
+      "title": "m_p08 · §1.2 · Xu hướng, mùa vụ, chu kỳ và nhiễu",
+      "programLectureId": "MATH-PROG-L14-stochastic-processes-time-series",
+      "roadmapRole": "m_p08_t02",
+      "baumanFocus": "Nền chuỗi thời gian cho telemetry, xử lý tín hiệu, dự báo, anomaly detection và hệ điều khiển.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_p08",
+        "logicalLessonId": "m_p08_t02",
+        "frameworkAnchor": "m_p08_t02",
+        "programLectureId": "MATH-PROG-L14-stochastic-processes-time-series",
+        "futurePhysicalAnchors": [
+          "MATH-HK1-C22-qua_trinh_ngau_nhien_va_",
+          "MATH-HK3-C31-chuoi_thoi_gian_nang_cao"
+        ],
+        "provenancePolicy": "theory_framework_plus_e17_academic_authoring"
+      },
+      "tags": [
+        "trend",
+        "seasonality",
+        "cycle",
+        "noise",
+        "decomposition"
+      ],
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_p08 · §1.2 · Xu hướng, mùa vụ, chu kỳ và nhiễu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Vấn đề học tập",
+              "body": "Một chuỗi có thể được xem ở mức mô tả như sự kết hợp của xu hướng T_t, mùa vụ S_t, dao động chu kỳ C_t và nhiễu ε_t. Phân rã là mô hình giải thích, không phải chân lý duy nhất của dữ liệu."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Hiểu đúng khái niệm, tính được đại lượng lõi, nhận diện bẫy dữ liệu và nối trực tiếp sang telemetry/AI/điều khiển."
+            }
+          ]
+        },
+        {
+          "role": "definition",
+          "title": "Định nghĩa và điều kiện sử dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Định nghĩa",
+              "body": "Một chuỗi có thể được xem ở mức mô tả như sự kết hợp của xu hướng T_t, mùa vụ S_t, dao động chu kỳ C_t và nhiễu ε_t. Phân rã là mô hình giải thích, không phải chân lý duy nhất của dữ liệu."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Từ khóa bắt buộc",
+              "items": [
+                "trend",
+                "seasonality",
+                "cycle",
+                "noise",
+                "decomposition"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Mô hình cộng",
+              "body": "x_t = T_t + S_t + C_t + ε_t\nHợp lý khi biên độ mùa vụ tương đối ổn định theo mức chuỗi."
+            },
+            {
+              "type": "formula",
+              "title": "Mô hình nhân",
+              "body": "x_t = T_t × S_t × C_t × ε_t\nHữu ích khi biên độ dao động tăng theo mức của chuỗi."
+            },
+            {
+              "type": "formula",
+              "title": "Biên độ mùa vụ tương đối",
+              "body": "a_t = |x_t − T_t| / (|T_t| + ε)\nThước đo đơn giản để xem dao động có tỷ lệ với mức nền hay không."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ tính/diễn giải nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "Nhiệt độ thiết bị tăng dần sau khi bật máy là trend; nhịp tải lặp theo ca làm việc là seasonality; chu kỳ bảo trì dài hơn có thể tạo cycle; rung cảm biến ngắn hạn là noise."
+            }
+          ]
+        },
+        {
+          "role": "properties",
+          "title": "Tính chất cần giữ",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tính chất",
+              "items": [
+                "Trend mô tả thay đổi dài hạn, không nhất thiết tuyến tính.",
+                "Seasonality gắn với chu kỳ thời gian có quy luật tương đối ổn định.",
+                "Cycle thường dài và ít cố định hơn seasonality.",
+                "Noise không đồng nghĩa vô nghĩa; có thể chứa anomaly hoặc động lực chưa mô hình hóa."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy và phản ví dụ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Không nên gọi mọi dao động lặp lại là seasonality. Nếu chu kỳ trôi mạnh hoặc phụ thuộc trạng thái vận hành, nó có thể là cycle hoặc chế độ hệ thống."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng dữ liệu trước khi tính",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Vẽ chuỗi theo thời gian trước khi phân rã.",
+                "Xác minh tần số lấy mẫu và độ dài đủ để quan sát ít nhất vài chu kỳ.",
+                "Không dùng decomposition để che missing/outlier chưa xử lý.",
+                "So sánh mô hình cộng và nhân khi biên độ thay đổi theo mức."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ AI/Bauman và hệ kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Phân rã telemetry máy chủ hoặc robot giúp tách tải nền dài hạn, lịch vận hành lặp lại và nhiễu để thiết kế cảnh báo/anomaly detection."
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Vấn đáp kiểm tra hiểu sâu",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Câu hỏi",
+              "items": [
+                {
+                  "q": "Trend có bắt buộc là đường thẳng không?",
+                  "a": "Không; trend chỉ là thành phần biến đổi chậm tương đối so với nhiễu ngắn hạn."
+                },
+                {
+                  "q": "Seasonality và cycle khác nhau ở đâu?",
+                  "a": "Seasonality thường gắn chu kỳ lịch/thời gian tương đối cố định; cycle dài và có thể thay đổi độ dài."
+                },
+                {
+                  "q": "Noise có thể chứa thông tin không?",
+                  "a": "Có; phần dư có thể chứa anomaly, chế độ mới hoặc cấu trúc chưa được mô hình hóa."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.2",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Tách trend/seasonality/cycle/noise để mô tả, không để áp đặt.",
+                "Chọn additive hay multiplicative theo cơ chế và biên độ.",
+                "Phải có đủ chu kỳ quan sát trước khi kết luận seasonality.",
+                "Residual cần tiếp tục kiểm tra."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T03-rolling-smoothing",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "lessonTitle": "m_p08 · §1.3 · Trung bình trượt và làm mượt dữ liệu",
+      "title": "m_p08 · §1.3 · Trung bình trượt và làm mượt dữ liệu",
+      "programLectureId": "MATH-PROG-L14-stochastic-processes-time-series",
+      "roadmapRole": "m_p08_t03",
+      "baumanFocus": "Nền chuỗi thời gian cho telemetry, xử lý tín hiệu, dự báo, anomaly detection và hệ điều khiển.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_p08",
+        "logicalLessonId": "m_p08_t03",
+        "frameworkAnchor": "m_p08_t03",
+        "programLectureId": "MATH-PROG-L14-stochastic-processes-time-series",
+        "futurePhysicalAnchors": [
+          "MATH-HK1-C22-qua_trinh_ngau_nhien_va_",
+          "MATH-HK3-C31-chuoi_thoi_gian_nang_cao"
+        ],
+        "provenancePolicy": "theory_framework_plus_e17_academic_authoring"
+      },
+      "tags": [
+        "rolling mean",
+        "moving average",
+        "smoothing",
+        "window",
+        "causal filter"
+      ],
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_p08 · §1.3 · Trung bình trượt và làm mượt dữ liệu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Vấn đề học tập",
+              "body": "Trung bình trượt độ dài w thay mỗi điểm bằng trung bình của một cửa sổ lân cận. Trong dự báo online cần dùng cửa sổ nhân quả chỉ chứa hiện tại và quá khứ."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Hiểu đúng khái niệm, tính được đại lượng lõi, nhận diện bẫy dữ liệu và nối trực tiếp sang telemetry/AI/điều khiển."
+            }
+          ]
+        },
+        {
+          "role": "definition",
+          "title": "Định nghĩa và điều kiện sử dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Định nghĩa",
+              "body": "Trung bình trượt độ dài w thay mỗi điểm bằng trung bình của một cửa sổ lân cận. Trong dự báo online cần dùng cửa sổ nhân quả chỉ chứa hiện tại và quá khứ."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Từ khóa bắt buộc",
+              "items": [
+                "rolling mean",
+                "moving average",
+                "smoothing",
+                "window",
+                "causal filter"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Moving average nhân quả",
+              "body": "m_t = (1/w) Σ_{i=0}^{w−1} x_{t−i}\nLàm mượt bằng w mẫu gần nhất và không nhìn tương lai."
+            },
+            {
+              "type": "formula",
+              "title": "Exponential smoothing",
+              "body": "s_t = αx_t + (1−α)s_{t−1}\nCho trọng số giảm dần cho quá khứ; α lớn phản ứng nhanh hơn."
+            },
+            {
+              "type": "formula",
+              "title": "Độ trễ xấp xỉ của MA đối xứng",
+              "body": "lag ≈ (w−1)/2 samples\nCửa sổ lớn làm mượt mạnh nhưng tăng độ trễ/bo tròn sự kiện."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ tính/diễn giải nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "Với x=[2,4,8,6,10] và w=3, moving average nhân quả tại t=3 dùng [2,4,8] cho m=14/3; tại t=4 dùng [4,8,6] cho m=6."
+            }
+          ]
+        },
+        {
+          "role": "properties",
+          "title": "Tính chất cần giữ",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tính chất",
+              "items": [
+                "w lớn giảm nhiễu tần số cao mạnh hơn nhưng che biến đổi nhanh.",
+                "Moving average nhân quả phù hợp online; centered moving average dùng tương lai nên không dùng làm feature dự báo tại thời điểm hiện tại.",
+                "Exponential smoothing không cần lưu toàn bộ cửa sổ."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy và phản ví dụ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Centered rolling mean có thể gây future leakage nếu dùng làm feature cho dự báo vì nó chứa điểm ở tương lai so với mốc dự đoán."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng dữ liệu trước khi tính",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Chọn w theo thang thời gian vật lý, không chỉ theo số mẫu.",
+                "Ghi rõ min_periods và cách xử lý biên.",
+                "Với online inference, kiểm tra mọi feature là causal.",
+                "Đánh giá cả độ mượt và độ trễ."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ AI/Bauman và hệ kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Làm mượt dòng gia tốc, tải CPU hoặc RSSI trước khi phát hiện xu hướng; nhưng sự kiện đột biến có thể bị giảm biên độ nên cần giữ kênh raw song song."
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Vấn đáp kiểm tra hiểu sâu",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Câu hỏi",
+              "items": [
+                {
+                  "q": "Tại sao cửa sổ lớn không luôn tốt hơn?",
+                  "a": "Vì nó giảm nhiễu nhưng tăng độ trễ và có thể che anomaly/sự kiện nhanh."
+                },
+                {
+                  "q": "Centered rolling mean có dùng cho mô tả offline được không?",
+                  "a": "Có, nếu mục tiêu mô tả; nhưng không dùng làm feature causal cho dự báo tương lai."
+                },
+                {
+                  "q": "α lớn trong exponential smoothing có tác động gì?",
+                  "a": "Tăng trọng số điểm mới, phản ứng nhanh hơn nhưng ít mượt hơn."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.3",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Window là tham số theo thang thời gian.",
+                "Phân biệt causal và centered smoothing.",
+                "Làm mượt đổi bias/variance và độ trễ.",
+                "Giữ dữ liệu raw để kiểm chứng sự kiện."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T04-changing-variance",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "lessonTitle": "m_p08 · §1.4 · Phương sai thay đổi và dấu hiệu không ổn định",
+      "title": "m_p08 · §1.4 · Phương sai thay đổi và dấu hiệu không ổn định",
+      "programLectureId": "MATH-PROG-L14-stochastic-processes-time-series",
+      "roadmapRole": "m_p08_t04",
+      "baumanFocus": "Nền chuỗi thời gian cho telemetry, xử lý tín hiệu, dự báo, anomaly detection và hệ điều khiển.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_p08",
+        "logicalLessonId": "m_p08_t04",
+        "frameworkAnchor": "m_p08_t04",
+        "programLectureId": "MATH-PROG-L14-stochastic-processes-time-series",
+        "futurePhysicalAnchors": [
+          "MATH-HK1-C22-qua_trinh_ngau_nhien_va_",
+          "MATH-HK3-C31-chuoi_thoi_gian_nang_cao"
+        ],
+        "provenancePolicy": "theory_framework_plus_e17_academic_authoring"
+      },
+      "tags": [
+        "rolling variance",
+        "heteroscedasticity",
+        "regime change",
+        "nonstationarity",
+        "variance"
+      ],
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_p08 · §1.4 · Phương sai thay đổi và dấu hiệu không ổn định",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Vấn đề học tập",
+              "body": "Nếu độ phân tán của x_t thay đổi theo thời gian, phương sai không còn ổn định trên toàn chuỗi. Rolling variance giúp quan sát thay đổi cục bộ nhưng phụ thuộc mạnh vào kích thước cửa sổ."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Hiểu đúng khái niệm, tính được đại lượng lõi, nhận diện bẫy dữ liệu và nối trực tiếp sang telemetry/AI/điều khiển."
+            }
+          ]
+        },
+        {
+          "role": "definition",
+          "title": "Định nghĩa và điều kiện sử dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Định nghĩa",
+              "body": "Nếu độ phân tán của x_t thay đổi theo thời gian, phương sai không còn ổn định trên toàn chuỗi. Rolling variance giúp quan sát thay đổi cục bộ nhưng phụ thuộc mạnh vào kích thước cửa sổ."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Từ khóa bắt buộc",
+              "items": [
+                "rolling variance",
+                "heteroscedasticity",
+                "regime change",
+                "nonstationarity",
+                "variance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Rolling variance",
+              "body": "s_t² = (1/(w−1)) Σ_{i=0}^{w−1}(x_{t−i}−m_t)²\nƯớc lượng phương sai trong cửa sổ w mẫu gần nhất."
+            },
+            {
+              "type": "formula",
+              "title": "Rolling standard deviation",
+              "body": "s_t = √(s_t²)\nĐưa thước đo phân tán về cùng đơn vị với dữ liệu."
+            },
+            {
+              "type": "formula",
+              "title": "Variance ratio",
+              "body": "R = s_after² / s_before²\nSo sánh độ phân tán giữa hai giai đoạn, chỉ nên diễn giải cùng cơ chế đo."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ tính/diễn giải nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "Một cảm biến gyro có σ≈0,02 khi máy đứng yên nhưng σ≈0,15 khi động cơ quay. Dùng một variance duy nhất cho cả hai chế độ sẽ che thay đổi trạng thái."
+            }
+          ]
+        },
+        {
+          "role": "properties",
+          "title": "Tính chất cần giữ",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tính chất",
+              "items": [
+                "Phương sai tăng có thể do nhiễu, thay đổi chế độ hoặc tăng biên độ tín hiệu.",
+                "Rolling variance không chứng minh nguyên nhân.",
+                "Outlier đơn lẻ có thể làm variance cửa sổ tăng mạnh.",
+                "Biến đổi log hoặc chuẩn hóa theo mức đôi khi ổn định variance."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy và phản ví dụ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Đừng gọi chuỗi 'không ổn định' chỉ vì một cửa sổ có variance lớn. Cần tách outlier, regime change và thay đổi cảm biến."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng dữ liệu trước khi tính",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "So sánh rolling mean và rolling variance cùng lúc.",
+                "Đánh dấu sự kiện vận hành để phân biệt regime có chủ đích.",
+                "Kiểm tra outlier trước khi suy luận variance change.",
+                "Không fit threshold trên cả tương lai rồi đánh giá quá khứ."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ AI/Bauman và hệ kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Variance change là tín hiệu hữu ích để phát hiện rung bất thường, lỗi cảm biến, thay đổi tải hoặc chế độ bay; nhưng cần đối chiếu trạng thái hệ thống."
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Vấn đáp kiểm tra hiểu sâu",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Câu hỏi",
+              "items": [
+                {
+                  "q": "Rolling variance có phải kiểm định stationarity không?",
+                  "a": "Không; nó là chẩn đoán trực quan/thống kê cục bộ, không thay thế kiểm định."
+                },
+                {
+                  "q": "Vì sao outlier ảnh hưởng mạnh?",
+                  "a": "Vì variance dùng bình phương độ lệch nên điểm cực trị được khuếch đại."
+                },
+                {
+                  "q": "Variance thay đổi có nghĩa cảm biến hỏng?",
+                  "a": "Không nhất thiết; có thể là thay đổi chế độ vận hành thực."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.4",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Theo dõi cả mean và variance theo thời gian.",
+                "Window size quyết định độ nhạy.",
+                "Variance change cần ngữ cảnh vận hành.",
+                "Tránh dùng thông tin tương lai khi xây threshold."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-E17-MP08-T05-autocorrelation",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "lessonTitle": "m_p08 · §1.5 · Autocorrelation và ý nghĩa phụ thuộc theo độ trễ",
+      "title": "m_p08 · §1.5 · Autocorrelation và ý nghĩa phụ thuộc theo độ trễ",
+      "programLectureId": "MATH-PROG-L14-stochastic-processes-time-series",
+      "roadmapRole": "m_p08_t05",
+      "baumanFocus": "Nền chuỗi thời gian cho telemetry, xử lý tín hiệu, dự báo, anomaly detection và hệ điều khiển.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_p08",
+        "logicalLessonId": "m_p08_t05",
+        "frameworkAnchor": "m_p08_t05",
+        "programLectureId": "MATH-PROG-L14-stochastic-processes-time-series",
+        "futurePhysicalAnchors": [
+          "MATH-HK1-C22-qua_trinh_ngau_nhien_va_",
+          "MATH-HK3-C31-chuoi_thoi_gian_nang_cao"
+        ],
+        "provenancePolicy": "theory_framework_plus_e17_academic_authoring"
+      },
+      "tags": [
+        "autocorrelation",
+        "lag",
+        "ACF",
+        "serial dependence",
+        "random process"
+      ],
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_p08 · §1.5 · Autocorrelation và ý nghĩa phụ thuộc theo độ trễ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Vấn đề học tập",
+              "body": "Autocorrelation tại độ trễ k đo mức liên hệ tuyến tính giữa x_t và x_{t−k}. Nó cho biết chuỗi có 'nhớ' quá khứ theo thước đo tuyến tính hay không."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Hiểu đúng khái niệm, tính được đại lượng lõi, nhận diện bẫy dữ liệu và nối trực tiếp sang telemetry/AI/điều khiển."
+            }
+          ]
+        },
+        {
+          "role": "definition",
+          "title": "Định nghĩa và điều kiện sử dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Định nghĩa",
+              "body": "Autocorrelation tại độ trễ k đo mức liên hệ tuyến tính giữa x_t và x_{t−k}. Nó cho biết chuỗi có 'nhớ' quá khứ theo thước đo tuyến tính hay không."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Từ khóa bắt buộc",
+              "items": [
+                "autocorrelation",
+                "lag",
+                "ACF",
+                "serial dependence",
+                "random process"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Sample autocovariance",
+              "body": "γ̂_k = (1/(N−k)) Σ_{t=k+1}^{N}(x_t−x̄)(x_{t−k}−x̄)\nĐo đồng biến giữa chuỗi và bản dịch k bước."
+            },
+            {
+              "type": "formula",
+              "title": "Sample autocorrelation",
+              "body": "ρ̂_k = γ̂_k / γ̂_0\nChuẩn hóa autocovariance về thang tương quan."
+            },
+            {
+              "type": "formula",
+              "title": "Độ trễ vật lý",
+              "body": "τ_k = kΔt\nChuyển lag theo mẫu thành thời gian vật lý."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ tính/diễn giải nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "Với dữ liệu 10 Hz, lag k=20 tương ứng 2 s. Nếu ACF có đỉnh lặp ở k≈50 thì chu kỳ ứng viên khoảng 5 s, nhưng cần kiểm tra đủ nhiều chu kỳ và nguyên nhân vật lý."
+            }
+          ]
+        },
+        {
+          "role": "properties",
+          "title": "Tính chất cần giữ",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tính chất",
+              "items": [
+                "ρ_0=1 nếu variance khác 0.",
+                "ACF lớn ở lag nhỏ thường xuất hiện ở tín hiệu biến đổi chậm.",
+                "Đỉnh ACF lặp có thể gợi ý seasonality.",
+                "ACF chỉ phản ánh phụ thuộc tuyến tính và bị trend làm sai lệch."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy và phản ví dụ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Trend mạnh có thể tạo autocorrelation cao ở nhiều lag dù không có cơ chế nhớ thực sự. Nên detrend/difference phù hợp trước khi diễn giải sâu."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng dữ liệu trước khi tính",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Xác định Δt để đổi lag sang đơn vị thời gian.",
+                "Kiểm tra trend/seasonality trước khi đọc ACF.",
+                "Không chọn lag chỉ vì một spike đơn lẻ.",
+                "Giữ train/test tách biệt khi dùng ACF để thiết kế feature."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ AI/Bauman và hệ kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "ACF giúp chọn lag cho dự báo tải mạng, rung máy, telemetry robot và đánh giá dư của mô hình còn phụ thuộc thời gian hay không."
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Vấn đáp kiểm tra hiểu sâu",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Câu hỏi",
+              "items": [
+                {
+                  "q": "ACF cao có chứng minh quan hệ nhân quả theo thời gian không?",
+                  "a": "Không; nó chỉ cho phụ thuộc tuyến tính giữa các độ trễ."
+                },
+                {
+                  "q": "Lag 10 là bao nhiêu giây?",
+                  "a": "Phải biết Δt; thời gian bằng 10Δt."
+                },
+                {
+                  "q": "Vì sao trend làm ACF cao giả?",
+                  "a": "Vì các điểm gần nhau cùng nằm trên nền tăng/giảm dài hạn, tạo đồng biến không phải memory cục bộ."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.5",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "ACF đo correlation của chuỗi với chính nó theo lag.",
+                "Đổi lag mẫu sang thời gian vật lý.",
+                "Trend/seasonality ảnh hưởng mạnh tới ACF.",
+                "Dùng ACF như chẩn đoán, không như bằng chứng nhân quả."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T06-lag-features",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "lessonTitle": "m_p08 · §1.6 · Lag features cho mô hình dự báo",
+      "title": "m_p08 · §1.6 · Lag features cho mô hình dự báo",
+      "programLectureId": "MATH-PROG-L14-stochastic-processes-time-series",
+      "roadmapRole": "m_p08_t06",
+      "baumanFocus": "Nền chuỗi thời gian cho telemetry, xử lý tín hiệu, dự báo, anomaly detection và hệ điều khiển.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_p08",
+        "logicalLessonId": "m_p08_t06",
+        "frameworkAnchor": "m_p08_t06",
+        "programLectureId": "MATH-PROG-L14-stochastic-processes-time-series",
+        "futurePhysicalAnchors": [
+          "MATH-HK1-C22-qua_trinh_ngau_nhien_va_",
+          "MATH-HK3-C31-chuoi_thoi_gian_nang_cao"
+        ],
+        "provenancePolicy": "theory_framework_plus_e17_academic_authoring"
+      },
+      "tags": [
+        "lag feature",
+        "forecasting",
+        "supervised learning",
+        "feature engineering",
+        "causality"
+      ],
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_p08 · §1.6 · Lag features cho mô hình dự báo",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Vấn đề học tập",
+              "body": "Lag feature x_{t−k} đưa thông tin quá khứ của chuỗi vào vector đặc trưng tại thời điểm t. Feature hợp lệ cho dự báo chỉ được dùng dữ liệu có sẵn tại thời điểm ra quyết định."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Hiểu đúng khái niệm, tính được đại lượng lõi, nhận diện bẫy dữ liệu và nối trực tiếp sang telemetry/AI/điều khiển."
+            }
+          ]
+        },
+        {
+          "role": "definition",
+          "title": "Định nghĩa và điều kiện sử dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Định nghĩa",
+              "body": "Lag feature x_{t−k} đưa thông tin quá khứ của chuỗi vào vector đặc trưng tại thời điểm t. Feature hợp lệ cho dự báo chỉ được dùng dữ liệu có sẵn tại thời điểm ra quyết định."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Từ khóa bắt buộc",
+              "items": [
+                "lag feature",
+                "forecasting",
+                "supervised learning",
+                "feature engineering",
+                "causality"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Vector lag",
+              "body": "z_t = [x_{t−1}, x_{t−2}, …, x_{t−p}]\nBiến chuỗi thành bài toán supervised với p giá trị quá khứ."
+            },
+            {
+              "type": "formula",
+              "title": "Dự báo một bước",
+              "body": "ŷ_t = f(z_t)\nMô hình f học ánh xạ từ lịch sử sang giá trị mục tiêu."
+            },
+            {
+              "type": "formula",
+              "title": "Forecast horizon",
+              "body": "y_t^(h) = x_{t+h}\nHorizon h phải được cố định khi dựng target để tránh lệch nhãn."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ tính/diễn giải nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "Với x=[10,12,11,15,14] và p=2, mẫu huấn luyện tại t=3 có z=[12,10], target=11; tại t=4 có z=[11,12], target=15."
+            }
+          ]
+        },
+        {
+          "role": "properties",
+          "title": "Tính chất cần giữ",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tính chất",
+              "items": [
+                "p lớn cho nhiều lịch sử hơn nhưng tăng chiều và số mẫu mất ở đầu chuỗi.",
+                "Lag feature không thay thế seasonality feature theo lịch nếu cơ chế có chu kỳ dài.",
+                "Mọi bước scale/feature selection phải fit trên train.",
+                "Forecast horizon khác nhau có thể cần tập feature khác nhau."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy và phản ví dụ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Dùng x_{t+1} hoặc centered rolling feature để dự báo x_t là rò rỉ tương lai dù code chạy và metric rất đẹp."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng dữ liệu trước khi tính",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Định nghĩa thời điểm prediction và cutoff dữ liệu.",
+                "Kiểm tra timestamp của từng feature ≤ prediction time.",
+                "Tạo target sau khi khóa horizon.",
+                "Tách train/test trước mọi transform học từ dữ liệu."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ AI/Bauman và hệ kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Lag features là baseline mạnh cho dự báo latency, pin, nhiệt độ, tải mạng hoặc tín hiệu cảm biến trước khi dùng RNN/Transformer."
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Vấn đáp kiểm tra hiểu sâu",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Câu hỏi",
+              "items": [
+                {
+                  "q": "Lag feature có causal mặc định không?",
+                  "a": "Chỉ nếu mọi nguồn feature thực sự sẵn có trước hoặc tại thời điểm dự đoán."
+                },
+                {
+                  "q": "p càng lớn càng tốt không?",
+                  "a": "Không; tăng p làm tăng chiều, giảm mẫu hiệu dụng và có thể overfit."
+                },
+                {
+                  "q": "Horizon là gì?",
+                  "a": "Khoảng thời gian hoặc số bước từ thời điểm ra dự báo tới target cần dự báo."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.6",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Biến lịch sử thành vector lag có thứ tự.",
+                "Khóa prediction time và horizon.",
+                "Không cho feature nhìn tương lai.",
+                "Dùng lag baseline trước mô hình phức tạp."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E17-MP08-T07-stationarity-intuition",
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "lessonTitle": "m_p08 · §1.7 · Stationarity ở mức trực giác và vì sao cần kiểm tra",
+      "title": "m_p08 · §1.7 · Stationarity ở mức trực giác và vì sao cần kiểm tra",
+      "programLectureId": "MATH-PROG-L14-stochastic-processes-time-series",
+      "roadmapRole": "m_p08_t07",
+      "baumanFocus": "Nền chuỗi thời gian cho telemetry, xử lý tín hiệu, dự báo, anomaly detection và hệ điều khiển.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_p08",
+        "logicalLessonId": "m_p08_t07",
+        "frameworkAnchor": "m_p08_t07",
+        "programLectureId": "MATH-PROG-L14-stochastic-processes-time-series",
+        "futurePhysicalAnchors": [
+          "MATH-HK1-C22-qua_trinh_ngau_nhien_va_",
+          "MATH-HK3-C31-chuoi_thoi_gian_nang_cao"
+        ],
+        "provenancePolicy": "theory_framework_plus_e17_academic_authoring"
+      },
+      "tags": [
+        "stationarity",
+        "weak stationarity",
+        "mean",
+        "variance",
+        "autocovariance"
+      ],
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_p08 · §1.7 · Stationarity ở mức trực giác và vì sao cần kiểm tra",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Vấn đề học tập",
+              "body": "Ở mức nền, weak stationarity yêu cầu mean không phụ thuộc thời gian, variance hữu hạn và không đổi, còn covariance giữa x_t và x_{t−k} chỉ phụ thuộc lag k chứ không phụ thuộc t tuyệt đối."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Hiểu đúng khái niệm, tính được đại lượng lõi, nhận diện bẫy dữ liệu và nối trực tiếp sang telemetry/AI/điều khiển."
+            }
+          ]
+        },
+        {
+          "role": "definition",
+          "title": "Định nghĩa và điều kiện sử dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Định nghĩa",
+              "body": "Ở mức nền, weak stationarity yêu cầu mean không phụ thuộc thời gian, variance hữu hạn và không đổi, còn covariance giữa x_t và x_{t−k} chỉ phụ thuộc lag k chứ không phụ thuộc t tuyệt đối."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Từ khóa bắt buộc",
+              "items": [
+                "stationarity",
+                "weak stationarity",
+                "mean",
+                "variance",
+                "autocovariance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Mean ổn định",
+              "body": "E[X_t] = μ\nKỳ vọng không đổi theo thời gian."
+            },
+            {
+              "type": "formula",
+              "title": "Variance ổn định",
+              "body": "Var(X_t) = σ²\nĐộ phân tán không phụ thuộc t."
+            },
+            {
+              "type": "formula",
+              "title": "Autocovariance theo lag",
+              "body": "Cov(X_t, X_{t−k}) = γ(k)\nPhụ thuộc khoảng cách k, không phụ thuộc vị trí thời gian tuyệt đối."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ tính/diễn giải nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "Chuỗi x_t = 0,1t + ε_t có mean tăng theo t nên không stationary theo nghĩa yếu, dù noise ε_t có variance cố định."
+            }
+          ]
+        },
+        {
+          "role": "properties",
+          "title": "Tính chất cần giữ",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tính chất",
+              "items": [
+                "Stationarity là giả định mô hình, không phải nhãn vĩnh viễn của mọi dữ liệu.",
+                "Trend và seasonality thường vi phạm stationarity mean.",
+                "Variance change vi phạm stationarity variance.",
+                "Difference/detrend có thể giúp nhưng cũng làm thay đổi ý nghĩa tín hiệu."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy và phản ví dụ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Không kết luận stationary chỉ vì đồ thị 'trông ổn'. Kiểm tra định lượng và kiến thức miền phải đi cùng nhau."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng dữ liệu trước khi tính",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Vẽ rolling mean/variance theo nhiều window hợp lý.",
+                "Xem ACF theo đoạn thời gian.",
+                "Nếu dùng kiểm định thống kê sau này, hiểu giả thuyết H0 trước khi đọc p-value.",
+                "Không difference máy móc nếu level tuyệt đối mang ý nghĩa kỹ thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ AI/Bauman và hệ kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Nhiều mô hình chuỗi thời gian cổ điển giả định cấu trúc ổn định; trong telemetry, vi phạm stationarity có thể báo regime change cần mô hình riêng."
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Vấn đáp kiểm tra hiểu sâu",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Câu hỏi",
+              "items": [
+                {
+                  "q": "Stationarity có nghĩa chuỗi không thay đổi không?",
+                  "a": "Không; chuỗi vẫn dao động, nhưng các đặc trưng phân phối chính không trôi theo thời gian theo định nghĩa đang dùng."
+                },
+                {
+                  "q": "Trend có ảnh hưởng stationarity không?",
+                  "a": "Có; trend làm mean phụ thuộc thời gian."
+                },
+                {
+                  "q": "Difference luôn tốt không?",
+                  "a": "Không; nó có thể bỏ thông tin mức tuyệt đối và tăng nhiễu."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.7",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Weak stationarity: mean, variance ổn định và covariance theo lag.",
+                "Trend/seasonality/variance change là dấu hiệu cần kiểm tra.",
+                "Chẩn đoán trực quan không đủ một mình.",
+                "Transformation phải giữ ý nghĩa bài toán."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-VN-C06-python_numpy_cho_tinh_to-E17-MP08-T08-temporal-split-leakage",
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "lessonTitle": "m_p08 · §1.8 · Chia train/test theo thời gian và lỗi rò rỉ tương lai",
+      "title": "m_p08 · §1.8 · Chia train/test theo thời gian và lỗi rò rỉ tương lai",
+      "programLectureId": "MATH-PROG-L14-stochastic-processes-time-series",
+      "roadmapRole": "m_p08_t08",
+      "baumanFocus": "Nền chuỗi thời gian cho telemetry, xử lý tín hiệu, dự báo, anomaly detection và hệ điều khiển.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_p08",
+        "logicalLessonId": "m_p08_t08",
+        "frameworkAnchor": "m_p08_t08",
+        "programLectureId": "MATH-PROG-L14-stochastic-processes-time-series",
+        "futurePhysicalAnchors": [
+          "MATH-HK1-C22-qua_trinh_ngau_nhien_va_",
+          "MATH-HK3-C31-chuoi_thoi_gian_nang_cao"
+        ],
+        "provenancePolicy": "theory_framework_plus_e17_academic_authoring"
+      },
+      "tags": [
+        "temporal split",
+        "time series cross validation",
+        "future leakage",
+        "backtesting",
+        "evaluation"
+      ],
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_p08 · §1.8 · Chia train/test theo thời gian và lỗi rò rỉ tương lai",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Vấn đề học tập",
+              "body": "Đánh giá dự báo phải mô phỏng đúng hướng thời gian: mô hình chỉ học từ quá khứ và được đánh giá trên đoạn tương lai. Random split thường phá điều kiện này."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Hiểu đúng khái niệm, tính được đại lượng lõi, nhận diện bẫy dữ liệu và nối trực tiếp sang telemetry/AI/điều khiển."
+            }
+          ]
+        },
+        {
+          "role": "definition",
+          "title": "Định nghĩa và điều kiện sử dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Định nghĩa",
+              "body": "Đánh giá dự báo phải mô phỏng đúng hướng thời gian: mô hình chỉ học từ quá khứ và được đánh giá trên đoạn tương lai. Random split thường phá điều kiện này."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Từ khóa bắt buộc",
+              "items": [
+                "temporal split",
+                "time series cross validation",
+                "future leakage",
+                "backtesting",
+                "evaluation"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Temporal holdout",
+              "body": "Train = {t ≤ T₀}, Test = {t > T₀}\nTách theo cutoff thời gian."
+            },
+            {
+              "type": "formula",
+              "title": "Expanding window",
+              "body": "Train_j = [1..T_j], Test_j = [T_j+1..T_j+h]\nBacktest nhiều cửa sổ với tập train mở rộng."
+            },
+            {
+              "type": "formula",
+              "title": "Sai số MAE theo horizon",
+              "body": "MAE_h = (1/N_h) Σ |y_{t+h} − ŷ_{t+h}|\nĐánh giá riêng theo horizon để tránh che suy giảm xa tương lai."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ tính/diễn giải nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "Nếu có dữ liệu tháng 1–12, train tháng 1–9 và test tháng 10–12 phản ánh triển khai thật tốt hơn random 75/25, vì random có thể cho dữ liệu tháng 12 vào train rồi đánh giá tháng 3."
+            }
+          ]
+        },
+        {
+          "role": "properties",
+          "title": "Tính chất cần giữ",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tính chất",
+              "items": [
+                "Cutoff phải theo thời gian sự kiện, không theo thứ tự file nếu file đã bị xáo.",
+                "Scaler/imputer/feature selector chỉ fit trên train của từng fold.",
+                "Backtesting cho thấy độ ổn định qua nhiều giai đoạn.",
+                "Metric nên báo theo horizon và regime khi có thể."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy và phản ví dụ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Future leakage thường không gây lỗi code; nó gây metric đẹp giả. Leakage có thể đến từ preprocessing, aggregation, label construction hoặc feature được cập nhật sau thời điểm dự đoán."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng dữ liệu trước khi tính",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Viết rõ prediction timestamp và data availability timestamp.",
+                "Tách thời gian trước khi fit preprocessing.",
+                "Kiểm tra mọi rolling/aggregate chỉ dùng quá khứ.",
+                "Dùng walk-forward/expanding window khi cần nhiều fold."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ AI/Bauman và hệ kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Một hệ cảnh báo dự báo lỗi thiết bị cần được backtest như lúc triển khai: mô hình ở ngày D chỉ được nhìn dữ liệu có sẵn đến D, không nhìn log sửa chữa ghi sau đó."
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Vấn đáp kiểm tra hiểu sâu",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Câu hỏi",
+              "items": [
+                {
+                  "q": "Vì sao random split nguy hiểm cho time series?",
+                  "a": "Vì có thể đưa tương lai vào train và phá quan hệ triển khai thật."
+                },
+                {
+                  "q": "Scaler có thể gây leakage không?",
+                  "a": "Có, nếu fit bằng cả train và test."
+                },
+                {
+                  "q": "Backtest nhiều fold để làm gì?",
+                  "a": "Để đánh giá tính ổn định qua nhiều giai đoạn và regime thay vì phụ thuộc một cutoff."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.8",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Split theo thời gian, không random mặc định.",
+                "Preprocessing cũng phải obey cutoff.",
+                "Backtest nhiều cửa sổ khi có đủ dữ liệu.",
+                "Metric đẹp không có giá trị nếu pipeline nhìn tương lai."
+              ]
+            }
+          ]
+        }
+      ]
     }
-  ]
+  ],
+  "updatedAt": "2026-09-27",
+  "authoringMeta": {
+    "E17": {
+      "moduleId": "m_p08",
+      "records": 8,
+      "status": "PASS_STATIC_BROWSER_CI",
+      "architecture": "logical_module_over_physical_content",
+      "verifiedAt": "2026-09-27",
+      "pr": 144
+    }
+  }
 }
