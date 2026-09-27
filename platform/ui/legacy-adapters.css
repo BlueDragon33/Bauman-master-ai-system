@@ -1,0 +1,91 @@
+/* BAUMAN FUTURE PROFESSIONAL INTERFACE SYSTEM · Legacy migration adapters
+   Compatibility bridge while existing page renderers migrate to platform/ui components.
+   No new feature should add selectors here. */
+
+/* Overview */
+#page-home .hub-safe-dashboard{gap:var(--ui-space-4);margin:0}
+#page-home .hub-safe-layout{grid-template-columns:minmax(0,1fr) minmax(300px,360px);gap:var(--ui-space-4)}
+#page-home .hub-safe-main,#page-home .hub-safe-rail{gap:var(--ui-space-4)}
+#page-home .hub-safe-card,
+#page-home .hub-safe-hero,
+#page-home .hub-safe-subject,
+#page-home .hub-safe-ach,
+#page-home .hub-safe-overall,
+#page-home .hub-safe-schedule{
+  border-color:var(--ui-border-subtle);background:var(--ui-surface-primary);color:var(--ui-text-primary);box-shadow:none
+}
+#page-home .hub-safe-hero{min-height:190px;background:var(--ui-surface-primary);overflow:hidden}
+#page-home .hub-safe-hero::after{display:none}
+#page-home .hub-safe-hero-copy{width:min(760px,100%);padding:var(--ui-space-6)}
+#page-home .hub-safe-hero h1{color:var(--ui-text-primary);font-family:var(--ui-font-sans);font-size:var(--ui-size-h1);font-weight:750}
+#page-home .hub-safe-hero p{color:var(--ui-text-secondary);font-size:var(--ui-size-body)}
+#page-home .hub-safe-quote{display:none}
+#page-home .hub-safe-gold{background:var(--ui-primary);color:white;border-color:var(--ui-primary);box-shadow:none}
+#page-home .hub-safe-outline{background:var(--ui-surface-primary);border-color:var(--ui-border-default);color:var(--ui-text-primary)}
+#page-home .hub-safe-section-head h2{font-size:var(--ui-size-h3);color:var(--ui-text-primary)}
+#page-home .hub-safe-link{color:var(--ui-text-link);font-size:var(--ui-size-body-sm)}
+#page-home .hub-safe-subject{min-height:120px;padding:var(--ui-space-4);border-radius:var(--ui-radius-lg)}
+#page-home .hub-safe-subject:hover{transform:none;background:var(--ui-surface-secondary);box-shadow:none}
+#page-home .hub-safe-subject .icon{font-size:1.5rem;margin-bottom:var(--ui-space-3)}
+#page-home .hub-safe-subject b{font-size:var(--ui-size-body-sm);color:var(--ui-text-primary)}
+#page-home .hub-safe-subject small{font-size:var(--ui-size-caption);color:var(--ui-text-secondary)}
+#page-home .hub-safe-empty{color:var(--ui-text-secondary);background:var(--ui-surface-secondary);border-color:var(--ui-border-subtle)}
+
+/* Roadmap */
+#page-roadmap .hub-roadmap-v3{color:var(--ui-text-primary)}
+#page-roadmap .hub-rm-hero,
+#page-roadmap .hub-rm-stage-card,
+#page-roadmap .hub-rm-side-card,
+#page-roadmap .hub-rm-level,
+#page-roadmap .hub-rm-course,
+#page-roadmap .hub-rm-task,
+#page-roadmap .hub-rm-plan{
+  background:var(--ui-surface-primary);border-color:var(--ui-border-subtle);box-shadow:none
+}
+#page-roadmap .hub-rm-hero h1,
+#page-roadmap .hub-rm-block-head h2,
+#page-roadmap .hub-rm-subject-head h2{color:var(--ui-text-primary)}
+#page-roadmap .hub-rm-hero p,
+#page-roadmap .hub-rm-block-head p,
+#page-roadmap .hub-rm-stage-card p,
+#page-roadmap .hub-rm-side-card p{color:var(--ui-text-secondary)}
+#page-roadmap button{box-shadow:none}
+
+/* Reference pages share the same canvas/surface language. */
+#page-subjects .subjects-page,
+#page-schedule .schedule-ref-page,
+#page-research .thesis-page{color:var(--ui-text-primary)}
+#page-subjects :is(.subjects-page__summary-card,.subjects-page__list,.subjects-page__panel,.subjects-page__course-card),
+#page-schedule :is(.schedule-ref__summary-card,.schedule-ref__calendar-card,.schedule-ref__panel),
+#page-research :is(.thesis-page__summary-card,.thesis-page__plan,.thesis-page__panel){
+  background:var(--ui-surface-primary);border-color:var(--ui-border-subtle);box-shadow:none
+}
+#page-subjects :is(.subjects-page__header p,.subjects-page__course-name small,.subjects-page__ai-list small,.subjects-page__deadline-list small),
+#page-schedule :is(.schedule-ref__header p,.schedule-ref__summary-card p,.schedule-ref__ai-intro p,.schedule-ref__upcoming-list small),
+#page-research :is(.thesis-page__header p,.thesis-page__summary-card p,.thesis-page__ai-intro p,.thesis-page__milestone-list small){
+  color:var(--ui-text-secondary)
+}
+#page-subjects :is(.subjects-page__button,.subjects-page__select),
+#page-schedule :is(.schedule-ref__btn,.schedule-ref__range,.schedule-ref__today-btn),
+#page-research :is(.thesis-page__button,.thesis-page__select){
+  min-height:var(--ui-touch);border-radius:var(--ui-radius-md);border-color:var(--ui-border-default);box-shadow:none
+}
+#page-subjects .subjects-page__button--primary,
+#page-schedule .schedule-ref__btn--primary,
+#page-research .thesis-page__button--primary{background:var(--ui-primary);border-color:var(--ui-primary);color:white}
+
+/* Semantic priority matrix remains functional: red / orange / blue / green. */
+#page-schedule [data-priority="q1"]{--event-bg:var(--ui-danger-soft);--event-fg:var(--ui-danger)}
+#page-schedule [data-priority="q3"]{--event-bg:var(--ui-warning-soft);--event-fg:var(--ui-warning)}
+#page-schedule [data-priority="q2"]{--event-bg:var(--ui-info-soft);--event-fg:var(--ui-info)}
+#page-schedule [data-priority="q4"]{--event-bg:var(--ui-success-soft);--event-fg:var(--ui-success)}
+
+@media(max-width:1024px){
+  #page-home .hub-safe-layout{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  #page-home .hub-safe-subjects{grid-template-columns:1fr 1fr}
+}
+@media(max-width:430px){
+  #page-home .hub-safe-subjects{grid-template-columns:1fr}
+}
