@@ -1,0 +1,18 @@
+/* UI-E17 · professional table and data patterns */
+.bui-table-wrap{width:100%;overflow:auto;border:1px solid var(--bui-border);border-radius:var(--bui-radius-lg);background:var(--bui-surface)}
+.bui-table{width:100%;border-collapse:separate;border-spacing:0;min-width:640px}
+.bui-table th,.bui-table td{padding:.7rem .8rem;border-bottom:1px solid var(--bui-border);text-align:left;vertical-align:middle}
+.bui-table th{position:sticky;top:0;z-index:1;background:var(--bui-surface-subtle);color:var(--bui-text-soft);font-size:var(--bui-type-caption);font-weight:800}
+.bui-table td{font-size:var(--bui-type-small)}
+.bui-table tbody tr:hover td{background:color-mix(in srgb,var(--bui-primary-soft) 38%,var(--bui-surface))}
+.bui-table tbody tr:last-child td{border-bottom:0}
+.bui-table-tools{display:flex;gap:var(--bui-space-2);align-items:center;flex-wrap:wrap;margin-bottom:var(--bui-space-3)}
+.bui-table-tools .bui-input{width:min(360px,100%)}
+@media(max-width:620px){
+  .bui-table[data-bui-responsive="cards"]{min-width:0}
+  .bui-table[data-bui-responsive="cards"] thead{display:none}
+  .bui-table[data-bui-responsive="cards"] tbody,.bui-table[data-bui-responsive="cards"] tr,.bui-table[data-bui-responsive="cards"] td{display:block;width:100%}
+  .bui-table[data-bui-responsive="cards"] tr{padding:var(--bui-space-3);border-bottom:1px solid var(--bui-border)}
+  .bui-table[data-bui-responsive="cards"] td{display:grid;grid-template-columns:minmax(100px,38%) minmax(0,1fr);gap:var(--bui-space-2);padding:.35rem 0;border:0}
+  .bui-table[data-bui-responsive="cards"] td::before{content:attr(data-label);font-weight:800;color:var(--bui-text-muted)}
+}
