@@ -39,6 +39,8 @@ try{
   await page.goto(BASE,{waitUntil:'domcontentloaded',timeout:30000});
   await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'),null,{timeout:30000});
   await page.waitForFunction(()=>window.app&&window.BAUMAN_HUB_SAFE?.selfCheck?.().ready===true,null,{timeout:30000});
+  // BFIS is now the canonical visual shell; wait for the handoff before measuring typography.
+  if(window.BaumanUI) await page.waitForFunction(()=>document.body.dataset.buiShell==='1',null,{timeout:15000});
 
   // Normalize to the requested ChatGPT-like default.
   await page.evaluate(()=>{
