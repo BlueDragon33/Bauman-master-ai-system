@@ -36,3 +36,8 @@
   .bui-mobile-nav button,.bui-mobile-nav a{min-height:2.8rem;border:0;border-radius:var(--bui-radius-md);background:transparent;color:var(--bui-text-soft);display:grid;place-items:center;font-size:var(--bui-type-caption);text-decoration:none}
   .bui-mobile-nav .is-active{background:var(--bui-primary-soft);color:var(--bui-primary);font-weight:800}
 }
+
+.bui-icon{width:1.15rem;height:1.15rem;display:block;flex:0 0 auto}
+.bui-mobile-nav button{gap:.15rem}
+.bui-mobile-nav button>.bui-icon{width:1.1rem;height:1.1rem}
+.bui-mobile-nav button>span{font-size:.7rem;line-height:1}
