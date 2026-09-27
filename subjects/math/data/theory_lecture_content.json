@@ -9091,26 +9091,6 @@
           ]
         },
         {
-          "role": "professor_prompt",
-          "title": "Giảng viên hỏi sâu",
-          "blocks": [
-            {
-              "type": "qa-list",
-              "title": "Vấn đáp",
-              "items": [
-                {
-                  "q": "Nếu đề ghi «Докажите, что функция непрерывна», em có được chỉ thay số vài điểm để kết luận không?",
-                  "a": "Không. «Докажите» đòi hỏi lập luận tổng quát theo định nghĩa/định lý; kiểm tra vài điểm chỉ là minh họa."
-                },
-                {
-                  "q": "Em hãy nói lại kết luận bằng một câu tiếng Nga ngắn hơn.",
-                  "a": "Дано a равно трём, b равно четырём. Нужно найти c. По теореме Пифагора c равно пяти."
-                }
-              ]
-            }
-          ]
-        },
-        {
           "role": "warning_counterexample",
           "title": "Bẫy dịch thuật / phản ví dụ",
           "blocks": [
@@ -9522,26 +9502,6 @@
               "type": "text",
               "title": "Khung đáp",
               "body": "Функция f от x равна единице, делённой на x минус два. Икс не равен двум."
-            }
-          ]
-        },
-        {
-          "role": "professor_prompt",
-          "title": "Giảng viên hỏi sâu",
-          "blocks": [
-            {
-              "type": "qa-list",
-              "title": "Vấn đáp",
-              "items": [
-                {
-                  "q": "`значение функции` và `область значений` khác nhau thế nào?",
-                  "a": "`значение функции` là f(x) tại một x cụ thể; `область значений` là tập tất cả giá trị hàm có thể nhận."
-                },
-                {
-                  "q": "Em hãy nói lại kết luận bằng một câu tiếng Nga ngắn hơn.",
-                  "a": "Функция f от x равна единице, делённой на x минус два. Икс не равен двум."
-                }
-              ]
             }
           ]
         },
@@ -9963,26 +9923,6 @@
           ]
         },
         {
-          "role": "professor_prompt",
-          "title": "Giảng viên hỏi sâu",
-          "blocks": [
-            {
-              "type": "qa-list",
-              "title": "Vấn đáp",
-              "items": [
-                {
-                  "q": "Tại sao từ det(A)≠0 em được nói ma trận nghịch đảo tồn tại?",
-                  "a": "Với ma trận vuông, định thức khác 0 tương đương hạng đầy đủ và khả nghịch."
-                },
-                {
-                  "q": "Em hãy nói lại kết luận bằng một câu tiếng Nga ngắn hơn.",
-                  "a": "Определитель матрицы A равен минус двум. Он не равен нулю, поэтому обратная матрица существует."
-                }
-              ]
-            }
-          ]
-        },
-        {
           "role": "warning_counterexample",
           "title": "Bẫy dịch thuật / phản ví dụ",
           "blocks": [
@@ -10396,26 +10336,6 @@
               "type": "text",
               "title": "Khung đáp",
               "body": "Производная функции икс в квадрате равна двум икс. При икс равном трём получаем шесть."
-            }
-          ]
-        },
-        {
-          "role": "professor_prompt",
-          "title": "Giảng viên hỏi sâu",
-          "blocks": [
-            {
-              "type": "qa-list",
-              "title": "Vấn đáp",
-              "items": [
-                {
-                  "q": "Liên tục có luôn suy ra khả vi không?",
-                  "a": "Không. Khả vi suy ra liên tục tại điểm đó, nhưng liên tục không nhất thiết khả vi; |x| tại 0 là phản ví dụ."
-                },
-                {
-                  "q": "Em hãy nói lại kết luận bằng một câu tiếng Nga ngắn hơn.",
-                  "a": "Производная функции икс в квадрате равна двум икс. При икс равном трём получаем шесть."
-                }
-              ]
             }
           ]
         },
@@ -10837,26 +10757,6 @@
           ]
         },
         {
-          "role": "professor_prompt",
-          "title": "Giảng viên hỏi sâu",
-          "blocks": [
-            {
-              "type": "qa-list",
-              "title": "Vấn đáp",
-              "items": [
-                {
-                  "q": "`выборка` và `генеральная совокупность` khác nhau thế nào?",
-                  "a": "Генеральная совокупность là toàn bộ đối tượng quan tâm; выборка là phần quan sát dùng để suy luận về tổng thể."
-                },
-                {
-                  "q": "Em hãy nói lại kết luận bằng một câu tiếng Nga ngắn hơn.",
-                  "a": "Математическое ожидание X равно ноль целых семь десятых, дисперсия равна ноль целых двадцать одна сотая."
-                }
-              ]
-            }
-          ]
-        },
-        {
           "role": "warning_counterexample",
           "title": "Bẫy dịch thuật / phản ví dụ",
           "blocks": [
@@ -11270,26 +11170,6 @@
               "type": "text",
               "title": "Khung đáp",
               "body": "Расстояние между точками A и B равно пяти. Мы использовали формулу евклидова расстояния."
-            }
-          ]
-        },
-        {
-          "role": "professor_prompt",
-          "title": "Giảng viên hỏi sâu",
-          "blocks": [
-            {
-              "type": "qa-list",
-              "title": "Vấn đáp",
-              "items": [
-                {
-                  "q": "Khi nào `график` không nên dịch là đồ thị?",
-                  "a": "Ngoài ngữ cảnh toán, график có thể là lịch/biểu thời gian. Trong «график функции» mới chắc chắn là đồ thị hàm."
-                },
-                {
-                  "q": "Em hãy nói lại kết luận bằng một câu tiếng Nga ngắn hơn.",
-                  "a": "Расстояние между точками A и B равно пяти. Мы использовали формулу евклидова расстояния."
-                }
-              ]
             }
           ]
         },
@@ -11711,26 +11591,6 @@
           ]
         },
         {
-          "role": "professor_prompt",
-          "title": "Giảng viên hỏi sâu",
-          "blocks": [
-            {
-              "type": "qa-list",
-              "title": "Vấn đáp",
-              "items": [
-                {
-                  "q": "Em có thể nói «следовательно» sau một bước chưa chứng minh không?",
-                  "a": "Không. Từ nối logic chỉ hợp lệ khi quan hệ suy ra đã được biện minh bằng định nghĩa, định lý hoặc biến đổi tương đương."
-                },
-                {
-                  "q": "Em hãy nói lại kết luận bằng một câu tiếng Nga ngắn hơn.",
-                  "a": "Предположим, что n чётное. Тогда n равно двум k. Следовательно, квадрат n тоже чётный."
-                }
-              ]
-            }
-          ]
-        },
-        {
           "role": "warning_counterexample",
           "title": "Bẫy dịch thuật / phản ví dụ",
           "blocks": [
@@ -12145,26 +12005,6 @@
               "type": "text",
               "title": "Khung đáp",
               "body": "Сначала сформулирую условие. Затем объясню идею решения. Здесь x не равен нулю, поэтому деление допустимо. В конце проверю ответ."
-            }
-          ]
-        },
-        {
-          "role": "professor_prompt",
-          "title": "Giảng viên hỏi sâu",
-          "blocks": [
-            {
-              "type": "qa-list",
-              "title": "Vấn đáp",
-              "items": [
-                {
-                  "q": "Khi bị phát hiện sai dấu, em nên xử lý thế nào để vẫn thể hiện hiểu bài?",
-                  "a": "Chỉ rõ bước sai, nói nguyên nhân ngắn gọn, sửa phép biến đổi, kiểm tra lại hệ quả và kết luận mới."
-                },
-                {
-                  "q": "Em hãy nói lại kết luận bằng một câu tiếng Nga ngắn hơn.",
-                  "a": "Сначала сформулирую условие. Затем объясню идею решения. Здесь x не равен нулю, поэтому деление допустимо. В конце проверю ответ."
-                }
-              ]
             }
           ]
         },
