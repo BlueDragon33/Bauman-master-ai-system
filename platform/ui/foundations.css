@@ -1,0 +1,51 @@
+/* BAUMAN FUTURE INTERFACE SYSTEM · Foundations V1 */
+html[data-bauman-ui="future-v1"]{
+  font-size:16px;
+  color-scheme:light;
+  background:var(--bui-surface-canvas);
+}
+html[data-bauman-ui="future-v1"] body[data-theme="night"],
+html[data-bauman-ui="future-v1"] body[data-ui-theme="dark"]{color-scheme:dark}
+html[data-bauman-ui="future-v1"] *,
+html[data-bauman-ui="future-v1"] *::before,
+html[data-bauman-ui="future-v1"] *::after{box-sizing:border-box}
+html[data-bauman-ui="future-v1"] body{
+  margin:0;
+  min-height:100%;
+  background:var(--bui-surface-canvas);
+  color:var(--bui-text-primary);
+  font-family:var(--bui-font-sans);
+  font-size:var(--bui-type-body);
+  line-height:1.55;
+  text-rendering:optimizeLegibility;
+  -webkit-font-smoothing:antialiased;
+}
+html[data-bauman-ui="future-v1"] :where(h1,h2,h3,p){margin-top:0}
+html[data-bauman-ui="future-v1"] :where(h1,h2,h3,strong,b){color:var(--bui-text-primary)}
+html[data-bauman-ui="future-v1"] :where(p,small,label,li,td,th){line-height:1.5}
+html[data-bauman-ui="future-v1"] :where(p,small){color:var(--bui-text-secondary)}
+html[data-bauman-ui="future-v1"] :where(button,input,select,textarea){font:inherit}
+html[data-bauman-ui="future-v1"] :where(button,[role="button"],a,input,select,textarea):focus-visible{
+  outline:3px solid color-mix(in srgb,var(--bui-color-primary) 35%,transparent);
+  outline-offset:2px;
+}
+html[data-bauman-ui="future-v1"] :where(button,[role="button"],a){-webkit-tap-highlight-color:transparent}
+html[data-bauman-ui="future-v1"] :where(button,.btn,.nav button){
+  min-height:var(--bui-touch);
+}
+html[data-bauman-ui="future-v1"] :where(.hidden,[hidden]){display:none!important}
+html[data-bauman-ui="future-v1"] ::selection{background:color-mix(in srgb,var(--bui-color-primary) 24%,transparent)}
+html[data-bauman-ui="future-v1"] .bui-reading{max-width:var(--bui-reading-width)}
+html[data-bauman-ui="future-v1"] .bui-mono{font-family:var(--bui-font-mono)}
+html[data-bauman-ui="future-v1"][data-input-mode="keyboard"] :focus-visible{outline-width:3px}
+html[data-bauman-ui="future-v1"][data-input-mode="pointer"] :focus:not(:focus-visible){outline:none}
+@media(prefers-reduced-motion:reduce){
+  html[data-bauman-ui="future-v1"] *,
+  html[data-bauman-ui="future-v1"] *::before,
+  html[data-bauman-ui="future-v1"] *::after{
+    scroll-behavior:auto!important;
+    animation-duration:.001ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.001ms!important;
+  }
+}

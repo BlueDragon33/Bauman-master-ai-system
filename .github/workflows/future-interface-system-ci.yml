@@ -1,0 +1,59 @@
+name: Future Interface System CI
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "platform/ui/**"
+      - "index.html"
+      - "subjects/**/*.html"
+      - "tests/future-interface-system-*.mjs"
+      - "docs/BAUMAN_FUTURE_INTERFACE_SYSTEM_E1_E4.md"
+      - ".github/workflows/future-interface-system-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  future-interface:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - name: Static architecture gate
+        run: |
+          node --check platform/ui/bauman-ui.js
+          node --check tests/future-interface-system-static.mjs
+          node --check tests/future-interface-system-browser.mjs
+          node tests/future-interface-system-static.mjs
+      - name: Install Playwright Chromium
+        run: |
+          printf '{"private":true,"type":"module"}\n' > package.json
+          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Start local runtime
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/bauman-ui-http.log 2>&1 &
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/bauman-ui-http.log
+          exit 1
+      - name: Browser acceptance + screenshots
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/future-interface-system
+        run: node tests/future-interface-system-browser.mjs
+      - name: Upload visual evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: future-interface-system-${{ github.run_id }}
+          path: artifacts/future-interface-system
+          if-no-files-found: warn
+          retention-days: 7
