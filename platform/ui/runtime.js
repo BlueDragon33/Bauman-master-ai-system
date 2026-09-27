@@ -5,15 +5,36 @@
   if(window.BaumanUI?.version)return;
   const VERSION='BFIS-E1-E10-20260927';
   const commandMap=new Map(),slotMap=new Map();
+  const ICONS={
+    home:'<path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1Z"/>',
+    roadmap:'<path d="M6 4v16M18 4v16M6 7h7l2 3-2 3H6M18 11h-5l-2 3 2 3h5"/>',
+    subjects:'<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H11a3 3 0 0 1 3 3v15a3 3 0 0 0-3-3H6.5A2.5 2.5 0 0 0 4 20.5ZM20 5.5A2.5 2.5 0 0 0 17.5 3H14v15a3 3 0 0 1 3-3h.5A2.5 2.5 0 0 1 20 17.5Z"/>',
+    schedule:'<path d="M6 3v3M18 3v3M4 8h16M5 5h14a1 1 0 0 1 1 1v14H4V6a1 1 0 0 1 1-1Zm3 7h3v3H8Z"/>',
+    research:'<path d="M9 3h6v4l4 8a4 4 0 0 1-3.6 6H8.6A4 4 0 0 1 5 15l4-8Zm0 9h6M8 16h8"/>',
+    lessons:'<path d="M5 4h14v16H5zM8 8h8M8 12h8M8 16h5"/>',
+    formulas:'<path d="M17 5H8l5 7-5 7h9M5 5h2M5 19h2"/>',
+    exercises:'<path d="m5 13 4 4L19 7M4 4h16v16H4z"/>',
+    tests:'<path d="M7 3h10v4H7zM5 5h14v16H5zM8 11l2 2 5-5M8 17h8"/>',
+    simulations:'<path d="M12 3v5M12 16v5M3 12h5M16 12h5M6 6l3 3M15 15l3 3M18 6l-3 3M9 15l-3 3"/><circle cx="12" cy="12" r="3"/>',
+    assistant:'<path d="M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6ZM18 15l.8 2.2L21 18l-2.2.8L18 21l-.8-2.2L15 18l2.2-.8Z"/>',
+    data:'<ellipse cx="12" cy="5" rx="7" ry="3"/><path d="M5 5v7c0 1.7 3.1 3 7 3s7-1.3 7-3V5M5 12v7c0 1.7 3.1 3 7 3s7-1.3 7-3v-7"/>',
+    focus:'<path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5"/><circle cx="12" cy="12" r="3"/>'
+  };
   const q=(s,r=document)=>r.querySelector(s);
   const qa=(s,r=document)=>Array.from(r.querySelectorAll(s));
   const safe=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  function icon(name,label=''){
+    const p=ICONS[name]||ICONS.focus;
+    return '<svg class="bui-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+p+'</svg>'+(label?'<span class="bui-visually-hidden">'+safe(label)+'</span>':'');
+  }
 
   function boot(){
     document.body?.setAttribute('data-bui','1');
     bindFocusMode();
     bindCommandPalette();
     registerDefaultCommands();
+    installPrimaryMobileNav();
+    normalizePrimaryIcons();
     document.documentElement.dataset.buiReady='1';
     document.dispatchEvent(new CustomEvent('bauman-ui-ready',{detail:{version:VERSION}}));
   }
@@ -39,6 +60,29 @@
     return true;
   }
   function unregisterCommand(id){return commandMap.delete(String(id))}
+  function normalizePrimaryIcons(){
+    const map={home:'home',roadmap:'roadmap',subjects:'subjects',schedule:'schedule',research:'research'};
+    qa('#nav [data-page]').forEach(btn=>{
+      const name=map[btn.dataset.page];if(!name||btn.dataset.buiIconized==='1')return;
+      const span=q('span',btn),label=(span?.textContent||btn.textContent||'').trim();
+      const old=q('i',btn);if(old){old.innerHTML=icon(name);old.setAttribute('aria-hidden','true')}
+      btn.dataset.buiIconized='1';if(label)btn.setAttribute('aria-label',label);
+    });
+  }
+  function installPrimaryMobileNav(){
+    if(document.body?.hasAttribute('data-bui-subject')||q('[data-bui-mobile-nav]'))return;
+    const nav=q('#nav');if(!nav)return;
+    const primary=qa('[data-page]',nav).slice(0,5);if(!primary.length)return;
+    const mobile=document.createElement('nav');mobile.className='bui-mobile-nav';mobile.dataset.buiMobileNav='1';mobile.setAttribute('aria-label','Điều hướng chính trên di động');
+    primary.forEach(source=>{
+      const b=document.createElement('button');b.type='button';b.dataset.page=source.dataset.page;b.innerHTML=icon(({home:'home',roadmap:'roadmap',subjects:'subjects',schedule:'schedule',research:'research'})[source.dataset.page]||'home')+'<span>'+safe(q('span',source)?.textContent||source.textContent)+'</span>';
+      b.addEventListener('click',()=>source.click());mobile.appendChild(b);
+    });
+    document.body.appendChild(mobile);
+    const sync=()=>qa('[data-page]',mobile).forEach(b=>b.classList.toggle('is-active',q('#nav [data-page="'+b.dataset.page+'"]')?.classList.contains('active')));
+    new MutationObserver(sync).observe(nav,{subtree:true,attributes:true,attributeFilter:['class']});sync();
+  }
+
   function registerDefaultCommands(){
     registerCommand({id:'focus.toggle',label:'Bật / tắt Focus Mode',group:'Giao diện',keywords:'focus tập trung',icon:'◉',run:()=>setFocusMode()});
     const pageMap=[['home','Tổng quan'],['roadmap','Lộ trình'],['subjects','Môn học'],['schedule','Lịch học'],['research','Luận văn']];
@@ -113,6 +157,7 @@
     focus:{set:setFocusMode,toggle:()=>setFocusMode(),get:()=>document.body?.dataset.buiFocus==='1'},
     commands:{register:registerCommand,unregister:unregisterCommand,open:openPalette,close:closePalette,run:runCommand,list:()=>[...commandMap.values()]},
     slots:{register:registerSlot,resolve:resolveSlot,mount:mountSlot},
+    icons:{svg:icon,names:()=>Object.keys(ICONS)},
     ready:()=>document.documentElement.dataset.buiReady==='1'
   };
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
