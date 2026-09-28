@@ -1,7 +1,7 @@
 {
   "recoveryId": "E24",
   "scope": "HK1 · m_m103 Similarity & clustering",
-  "status": "IMPLEMENTED_PENDING_CI",
+  "status": "PASS",
   "branch": "feat/math-e24-hk1-similarity-clustering-20260928",
   "sourceMap": "subjects/math/data/mm103-source-map-e24.json",
   "theoryBundle": "subjects/math/content_bundles/theory/e24_mm103_similarity_clustering_theory_bundle.json",
@@ -18,11 +18,13 @@
     "reviewPacks": 8
   },
   "gates": {
-    "jsonShape": "PASS_GENERATED",
-    "contentCounts": "PASS_GENERATED",
-    "runtimeRouting": "PENDING_CI",
-    "browserRegression": "PENDING_CI",
-    "timeSeriesIsolation": "PENDING_CI"
+    "jsonShape": "PASS",
+    "contentCounts": "PASS",
+    "runtimeRouting": "PASS_CI",
+    "browserRegression": "PASS_FAST_CI",
+    "timeSeriesIsolation": "PASS",
+    "developmentFastCI": "PASS",
+    "universalConstitutionCompliance": "PASS"
   },
-  "next": "E25 · m_m104 Sát hạch học kỳ 1 after E24 CI gate PASS"
+  "next": "E25 · m_m104 Sát hạch học kỳ 1"
 }
