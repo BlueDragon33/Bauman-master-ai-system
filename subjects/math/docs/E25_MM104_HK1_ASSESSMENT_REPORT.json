@@ -1,0 +1,36 @@
+{
+  "recoveryId": "E25",
+  "scope": "HK1 · m_m104 Sát hạch học kỳ 1",
+  "status": "IMPLEMENTED_PENDING_CI",
+  "branch": "feat/math-e24-hk1-similarity-clustering-20260928",
+  "pr": 152,
+  "sourceMap": "subjects/math/data/mm104-source-map-e25.json",
+  "theoryBundle": "subjects/math/content_bundles/theory/e25_mm104_hk1_assessment_theory_bundle.json",
+  "sidecarBundle": "subjects/math/content_bundles/e25_mm104_hk1_assessment_sidecar_bundle.json",
+  "counts": {
+    "lessons": 8,
+    "theorySlides": 160,
+    "formulas": 24,
+    "exercises": 64,
+    "applications": 16,
+    "simulations": 16,
+    "professorQA": 8,
+    "questions": 48,
+    "reviewPacks": 8
+  },
+  "cumulativeCoverage": [
+    "m_m101",
+    "m_m102",
+    "m_m103"
+  ],
+  "gates": {
+    "jsonShape": "PASS_GENERATED",
+    "contentCounts": "PASS_GENERATED",
+    "developmentFastCI": "PENDING",
+    "constitutionCompliance": "PENDING",
+    "runtimeRouting": "PENDING_CI",
+    "browserRegression": "PENDING_CI",
+    "timeSeriesIsolation": "PENDING_CI"
+  },
+  "next": "E26 · HK1 cumulative release/readiness gate; only then merge and publish."
+}
