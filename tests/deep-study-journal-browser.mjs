@@ -4,6 +4,7 @@ import path from 'node:path';
 import {chromium} from 'playwright';
 
 const BASE=process.env.BAUMAN_E2E_BASE_URL||'http://127.0.0.1:4173/';
+const EXPECT_PLATFORM_ACCESS=process.env.BAUMAN_E2E_EXPECT_PLATFORM_ACCESS==='1';
 const OUT=process.env.BAUMAN_E2E_ARTIFACT_DIR||'artifacts/deep-study-journal';
 fs.mkdirSync(OUT,{recursive:true});
 const errors=[],failed=[];
@@ -32,7 +33,8 @@ try{
   page.on('pageerror',e=>errors.push(String(e?.stack||e)));
   page.on('requestfailed',r=>{if(!r.url().startsWith('http://127.0.0.1:3003/'))failed.push(`${r.method()} ${r.url()} ${r.failure()?.errorText||''}`)});
   await page.goto(BASE,{waitUntil:'domcontentloaded',timeout:30000});
-  await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='authorized',null,{timeout:15000});
+  const expectedDeviceState=EXPECT_PLATFORM_ACCESS?'authorized':'standalone';
+  await page.waitForFunction(expected=>document.documentElement.dataset.baumanDeviceAccess===expected,expectedDeviceState,{timeout:15000});
   await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'),null,{timeout:10000});
   await page.waitForFunction(()=>Boolean(window.BAUMAN_DEEP_STUDY_JOURNAL_V1),null,{timeout:10000});
   // The Progress action is owned by the asynchronously bootstrapped Phase2 course runtime.
@@ -71,7 +73,7 @@ try{
   assert.equal(after.self.noSeparateStorage,true);
 
   await page.reload({waitUntil:'domcontentloaded'});
-  await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='authorized',null,{timeout:15000});
+  await page.waitForFunction(expected=>document.documentElement.dataset.baumanDeviceAccess===expected,expectedDeviceState,{timeout:15000});
   await page.waitForFunction(()=>Boolean(window.BAUMAN_DEEP_STUDY_JOURNAL_V1),null,{timeout:10000});
   assert.equal(await page.evaluate(()=>window.state.deepStudyJournal.entries.length),1,'DSJ learner-state entry did not persist');
 
