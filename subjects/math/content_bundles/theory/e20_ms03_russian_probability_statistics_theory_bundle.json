@@ -1,0 +1,3116 @@
+{
+  "schema": "bauman_math_content_bundle_v1",
+  "bundleId": "e20_ms03_russian_probability_statistics_theory_bundle",
+  "frameworkChapterId": "m_s03",
+  "moduleId": "m_s03",
+  "records": [
+    {
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T01-events-sample-space",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "lessonTitle": "m_s03 · §1.1 · Biến cố, không gian mẫu và xác suất trong tiếng Nga",
+      "title": "m_s03 · §1.1 · Biến cố, không gian mẫu và xác suất trong tiếng Nga",
+      "programLectureId": "MATH-PROG-L12-probability-random-variables",
+      "programLectureIds": [
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "roadmapRole": "m_s03_t01",
+      "baumanFocus": "Russian probability/statistics bridge for preparatory engineering study, AI, sensor uncertainty, reliability and seminar defense.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_s03",
+        "frameworkChapterId": "m_s03",
+        "legacyFrameworkChapterAlias": "MATH-PREP-PS-C11",
+        "logicalLessonId": "m_s03_t01",
+        "frameworkAnchor": "m_s03_t01",
+        "programLectureId": "MATH-PROG-L12-probability-random-variables",
+        "commonProgramLectureIds": [
+          "MATH-PROG-L12-probability-random-variables",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e20_russian_probability_statistics_authoring"
+      },
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "events-sample-space"
+      ],
+      "speechDrill": {
+        "language": "ru-RU",
+        "mode": "read_model_infer_defend",
+        "requiredStressAware": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_s03 · §1.1 · Biến cố, không gian mẫu và xác suất trong tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "Bridge xác suất–thống kê Nga cho lớp dự bị: công thức phải đi cùng mô hình, assumptions và cách diễn giải kết quả."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Giải và bảo vệ chủ đề «Biến cố, không gian mẫu và xác suất trong tiếng Nga» bằng tiếng Nga kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài học",
+              "items": [
+                "Nhận diện thuật ngữ Nga–Việt–Anh.",
+                "Chọn đúng công thức/mô hình theo điều kiện.",
+                "Phân biệt xác suất, thống kê mô tả và suy luận.",
+                "Trình bày kết luận có uncertainty và giới hạn."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Thuật ngữ Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Từ khóa",
+              "items": [
+                "случа́йное собы́тие — biến cố ngẫu nhiên — random event",
+                "простра́нство элеме́нтарных исхо́дов — không gian mẫu — sample space",
+                "элемента́рный исхо́д — kết quả sơ cấp — elementary outcome",
+                "вероя́тность — xác suất — probability",
+                "достове́рное собы́тие — biến cố chắc chắn — sure event",
+                "невозмо́жное собы́тие — biến cố không thể — impossible event",
+                "объедине́ние собы́тий — hợp biến cố — union",
+                "пересече́ние собы́тий — giao biến cố — intersection"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "pronunciation_drill",
+          "title": "Trọng âm và phát âm",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Đọc chậm",
+              "items": [
+                "случа́йное собы́тие · biến cố ngẫu nhiên",
+                "простра́нство элеме́нтарных исхо́дов · không gian mẫu",
+                "элемента́рный исхо́д · kết quả sơ cấp",
+                "вероя́тность · xác suất",
+                "достове́рное собы́тие · biến cố chắc chắn",
+                "невозмо́жное собы́тие · biến cố không thể",
+                "объедине́ние собы́тий · hợp biến cố",
+                "пересече́ние собы́тий · giao biến cố"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Quy tắc",
+              "body": "Đọc chính xác thuật ngữ và số thập phân; không hy sinh nghĩa toán để nói nhanh."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức an toàn",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Tiên đề biên",
+              "body": "0 ≤ P(A) ≤ 1\nMọi xác suất hợp lệ nằm trong [0,1]."
+            },
+            {
+              "type": "formula",
+              "title": "Biến cố bù",
+              "body": "P(Aᶜ)=1−P(A)\nXác suất biến cố đối lập bằng một trừ xác suất biến cố."
+            },
+            {
+              "type": "formula",
+              "title": "Công thức cộng",
+              "body": "P(A∪B)=P(A)+P(B)−P(A∩B)\nTránh đếm trùng phần giao."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Điều kiện / giả thiết",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Trước khi gán xác suất phải xác định rõ sample space và biến cố; mô hình đồng khả năng chỉ dùng khi các outcome thực sự đối xứng/đồng khả năng."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Trước khi tính",
+              "items": [
+                "Xác định mô hình/data-generating process.",
+                "Kiểm điều kiện tồn tại/normalization.",
+                "Kiểm independence/iid nếu công thức cần.",
+                "Nêu rõ tham số, sample size và phạm vi suy luận."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "phrase_pattern",
+          "title": "Mẫu câu seminar",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Mẫu",
+              "items": [
+                "Опишите пространство элементарных исходов.",
+                "Найдите вероятность события A.",
+                "Найдите вероятность объединения событий A и B."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "symbol_to_speech",
+          "title": "Đọc ký hiệu thành lời",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cách luyện",
+              "body": "Đọc công thức «0 ≤ P(A) ≤ 1» bằng tiếng Nga rồi giải thích điều kiện áp dụng bằng một câu thứ hai."
+            }
+          ]
+        },
+        {
+          "role": "reading_example",
+          "title": "Đọc đề và xác định mô hình",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "Tung một xúc xắc cân bằng: Ω={1,…,6}, A={2,4,6}; P(A)=3/6=1/2."
+            },
+            {
+              "type": "text",
+              "title": "Nhiệm vụ",
+              "body": "Khoanh câu lệnh, xác định biến ngẫu nhiên/parameter/sample, rồi mới chọn công thức."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Lời giải mẫu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu",
+              "body": "Пространство исходов содержит шесть равновероятных результатов. Событие A — выпадение чётного числа. Поэтому вероятность A равна одной второй."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Cấu trúc",
+              "items": [
+                "Mô hình/dữ kiện.",
+                "Công thức hoặc statistic.",
+                "Điều kiện/assumption.",
+                "Kết luận có diễn giải."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "reasoning_pipeline",
+          "title": "Pipeline suy luận",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Quy trình",
+              "items": [
+                "Định nghĩa event/variable/sample.",
+                "Chọn model/statistic phù hợp.",
+                "Tính probability/estimate/interval/test.",
+                "Sanity check và diễn giải giới hạn."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "oral_response",
+          "title": "Vấn đáp 30–90 giây",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Prompt",
+              "body": "Giải thích «Biến cố, không gian mẫu và xác suất trong tiếng Nga» bằng tiếng Nga, bắt buộc nêu một assumption và một công thức."
+            },
+            {
+              "type": "text",
+              "title": "Mẫu",
+              "body": "Пространство исходов содержит шесть равновероятных результатов. Событие A — выпадение чётного числа. Поэтому вероятность A равна одной второй."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy suy luận thống kê",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Không được cộng P(A)+P(B) trực tiếp nếu A và B không xung khắc; phải trừ phần giao."
+            }
+          ]
+        },
+        {
+          "role": "statistical_logic_gate",
+          "title": "Cổng logic xác suất–thống kê",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tự kiểm",
+              "items": [
+                "Có nhầm conditional với reverse conditional không?",
+                "Có nhầm density với probability không?",
+                "Có suy từ correlation/significance sang causality/importance không?",
+                "Có bỏ qua sample design/base rate/effect size không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ AI – sensor – reliability",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Mô hình event/sample space là nền để mô tả lỗi cảm biến, dropout mạng, sự kiện lỗi hệ thống và xác suất thành công của nhiệm vụ."
+            }
+          ]
+        },
+        {
+          "role": "uncertainty_gate",
+          "title": "Cổng bất định trước kết luận",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Báo uncertainty/dispersion khi phù hợp.",
+                "Không biến estimate thành ground truth.",
+                "Tách statistical significance khỏi practical significance.",
+                "Nêu assumptions và giới hạn dữ liệu."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi trong seminar",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu sửa",
+              "body": "Я сложил вероятности без учёта пересечения. Исправляю: нужно вычесть вероятность A пересечение B."
+            },
+            {
+              "type": "text",
+              "title": "Nguyên tắc",
+              "body": "Nêu lỗi diễn giải/model → sửa điều kiện → tính/diễn giải lại → cập nhật kết luận."
+            }
+          ]
+        },
+        {
+          "role": "mini_drill",
+          "title": "Drill 5 phút",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "5 vòng",
+              "items": [
+                "Đọc 8 thuật ngữ có trọng âm.",
+                "Đọc 3 công thức thành lời.",
+                "Nêu một assumption.",
+                "Giải một ví dụ nhỏ.",
+                "Sửa một lỗi diễn giải bằng tiếng Nga."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Câu hỏi giảng viên",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Q&A",
+              "items": [
+                {
+                  "q": "Khi nào có thể tính P(A)=|A|/|Ω|?",
+                  "a": "Chỉ khi Ω hữu hạn và các outcome trong mô hình được coi là đồng khả năng."
+                },
+                {
+                  "q": "Giả thiết nào quan trọng nhất?",
+                  "a": "Trước khi gán xác suất phải xác định rõ sample space và biến cố; mô hình đồng khả năng chỉ dùng khi các outcome thực sự đối xứng/đồng khả năng."
+                },
+                {
+                  "q": "Bẫy suy luận nào phải tránh?",
+                  "a": "Không được cộng P(A)+P(B) trực tiếp nếu A và B không xung khắc; phải trừ phần giao."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.1",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Mọi xác suất hợp lệ nằm trong [0,1].",
+                "Trước khi gán xác suất phải xác định rõ sample space và biến cố; mô hình đồng khả năng chỉ dùng khi các outcome thực sự đối xứng/đồng khả năng.",
+                "Không được cộng P(A)+P(B) trực tiếp nếu A và B không xung khắc; phải trừ phần giao.",
+                "Kết luận luôn đi cùng uncertainty/assumptions."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Exit ticket",
+              "body": "Nói một câu Nga chứa «случа́йное собы́тие» và giải thích một công thức của bài."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T02-conditional-bayes",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "lessonTitle": "m_s03 · §1.2 · Xác suất có điều kiện, độc lập và công thức Bayes bằng tiếng Nga",
+      "title": "m_s03 · §1.2 · Xác suất có điều kiện, độc lập và công thức Bayes bằng tiếng Nga",
+      "programLectureId": "MATH-PROG-L12-probability-random-variables",
+      "programLectureIds": [
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "roadmapRole": "m_s03_t02",
+      "baumanFocus": "Russian probability/statistics bridge for preparatory engineering study, AI, sensor uncertainty, reliability and seminar defense.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_s03",
+        "frameworkChapterId": "m_s03",
+        "legacyFrameworkChapterAlias": "MATH-PREP-PS-C11",
+        "logicalLessonId": "m_s03_t02",
+        "frameworkAnchor": "m_s03_t02",
+        "programLectureId": "MATH-PROG-L12-probability-random-variables",
+        "commonProgramLectureIds": [
+          "MATH-PROG-L12-probability-random-variables",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e20_russian_probability_statistics_authoring"
+      },
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "conditional-bayes"
+      ],
+      "speechDrill": {
+        "language": "ru-RU",
+        "mode": "read_model_infer_defend",
+        "requiredStressAware": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_s03 · §1.2 · Xác suất có điều kiện, độc lập và công thức Bayes bằng tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "Bridge xác suất–thống kê Nga cho lớp dự bị: công thức phải đi cùng mô hình, assumptions và cách diễn giải kết quả."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Giải và bảo vệ chủ đề «Xác suất có điều kiện, độc lập và công thức Bayes bằng tiếng Nga» bằng tiếng Nga kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài học",
+              "items": [
+                "Nhận diện thuật ngữ Nga–Việt–Anh.",
+                "Chọn đúng công thức/mô hình theo điều kiện.",
+                "Phân biệt xác suất, thống kê mô tả và suy luận.",
+                "Trình bày kết luận có uncertainty và giới hạn."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Thuật ngữ Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Từ khóa",
+              "items": [
+                "усло́вная вероя́тность — xác suất có điều kiện — conditional probability",
+                "незави́симость — độc lập — independence",
+                "совме́стная вероя́тность — xác suất đồng thời — joint probability",
+                "форму́ла Ба́йеса — công thức Bayes — Bayes formula",
+                "априо́рная вероя́тность — xác suất tiên nghiệm — prior probability",
+                "апостерио́рная вероя́тность — xác suất hậu nghiệm — posterior probability",
+                "полна́я вероя́тность — xác suất toàn phần — total probability",
+                "условие — điều kiện — condition"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "pronunciation_drill",
+          "title": "Trọng âm và phát âm",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Đọc chậm",
+              "items": [
+                "усло́вная вероя́тность · xác suất có điều kiện",
+                "незави́симость · độc lập",
+                "совме́стная вероя́тность · xác suất đồng thời",
+                "форму́ла Ба́йеса · công thức Bayes",
+                "априо́рная вероя́тность · xác suất tiên nghiệm",
+                "апостерио́рная вероя́тность · xác suất hậu nghiệm",
+                "полна́я вероя́тность · xác suất toàn phần",
+                "условие · điều kiện"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Quy tắc",
+              "body": "Đọc chính xác thuật ngữ và số thập phân; không hy sinh nghĩa toán để nói nhanh."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức an toàn",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Conditional probability",
+              "body": "P(A|B)=P(A∩B)/P(B), P(B)>0\nXác suất A khi biết B."
+            },
+            {
+              "type": "formula",
+              "title": "Độc lập",
+              "body": "A ⫫ B ⇔ P(A∩B)=P(A)P(B)\nMột tiêu chuẩn độc lập cho hai biến cố."
+            },
+            {
+              "type": "formula",
+              "title": "Bayes",
+              "body": "P(Hᵢ|D)=P(D|Hᵢ)P(Hᵢ)/ΣⱼP(D|Hⱼ)P(Hⱼ)\nCập nhật prior thành posterior sau khi quan sát dữ liệu D."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Điều kiện / giả thiết",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "P(A|B) chỉ xác định khi P(B)>0; Bayes cần tập giả thuyết phù hợp và likelihood/prior nhất quán."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Trước khi tính",
+              "items": [
+                "Xác định mô hình/data-generating process.",
+                "Kiểm điều kiện tồn tại/normalization.",
+                "Kiểm independence/iid nếu công thức cần.",
+                "Nêu rõ tham số, sample size và phạm vi suy luận."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "phrase_pattern",
+          "title": "Mẫu câu seminar",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Mẫu",
+              "items": [
+                "Найдите условную вероятность.",
+                "Проверьте независимость событий.",
+                "Используйте формулу Байеса."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "symbol_to_speech",
+          "title": "Đọc ký hiệu thành lời",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cách luyện",
+              "body": "Đọc công thức «P(A|B)=P(A∩B)/P(B), P(B)>0» bằng tiếng Nga rồi giải thích điều kiện áp dụng bằng một câu thứ hai."
+            }
+          ]
+        },
+        {
+          "role": "reading_example",
+          "title": "Đọc đề và xác định mô hình",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "Sensor báo lỗi với sensitivity 0.9, false positive 0.1, prior lỗi 0.01; posterior không phải 0.9 mà phải tính Bayes."
+            },
+            {
+              "type": "text",
+              "title": "Nhiệm vụ",
+              "body": "Khoanh câu lệnh, xác định biến ngẫu nhiên/parameter/sample, rồi mới chọn công thức."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Lời giải mẫu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu",
+              "body": "Условная вероятность A при условии B равна вероятности пересечения A и B, делённой на вероятность B. Вероятность B должна быть положительной."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Cấu trúc",
+              "items": [
+                "Mô hình/dữ kiện.",
+                "Công thức hoặc statistic.",
+                "Điều kiện/assumption.",
+                "Kết luận có diễn giải."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "reasoning_pipeline",
+          "title": "Pipeline suy luận",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Quy trình",
+              "items": [
+                "Định nghĩa event/variable/sample.",
+                "Chọn model/statistic phù hợp.",
+                "Tính probability/estimate/interval/test.",
+                "Sanity check và diễn giải giới hạn."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "oral_response",
+          "title": "Vấn đáp 30–90 giây",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Prompt",
+              "body": "Giải thích «Xác suất có điều kiện, độc lập và công thức Bayes bằng tiếng Nga» bằng tiếng Nga, bắt buộc nêu một assumption và một công thức."
+            },
+            {
+              "type": "text",
+              "title": "Mẫu",
+              "body": "Условная вероятность A при условии B равна вероятности пересечения A и B, делённой на вероятность B. Вероятность B должна быть положительной."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy suy luận thống kê",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Không được đồng nhất P(A|B) với P(B|A). Base-rate neglect là lỗi rất phổ biến khi đọc test y tế/cảnh báo hệ thống."
+            }
+          ]
+        },
+        {
+          "role": "statistical_logic_gate",
+          "title": "Cổng logic xác suất–thống kê",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tự kiểm",
+              "items": [
+                "Có nhầm conditional với reverse conditional không?",
+                "Có nhầm density với probability không?",
+                "Có suy từ correlation/significance sang causality/importance không?",
+                "Có bỏ qua sample design/base rate/effect size không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ AI – sensor – reliability",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Bayes dùng trong chẩn đoán lỗi, sensor fusion, lọc trạng thái và cập nhật niềm tin khi có dữ liệu mới."
+            }
+          ]
+        },
+        {
+          "role": "uncertainty_gate",
+          "title": "Cổng bất định trước kết luận",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Báo uncertainty/dispersion khi phù hợp.",
+                "Không biến estimate thành ground truth.",
+                "Tách statistical significance khỏi practical significance.",
+                "Nêu assumptions và giới hạn dữ liệu."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi trong seminar",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu sửa",
+              "body": "Я перепутал P(A при B) и P(B при A). Исправляю направление условия и пересчитываю posterior."
+            },
+            {
+              "type": "text",
+              "title": "Nguyên tắc",
+              "body": "Nêu lỗi diễn giải/model → sửa điều kiện → tính/diễn giải lại → cập nhật kết luận."
+            }
+          ]
+        },
+        {
+          "role": "mini_drill",
+          "title": "Drill 5 phút",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "5 vòng",
+              "items": [
+                "Đọc 8 thuật ngữ có trọng âm.",
+                "Đọc 3 công thức thành lời.",
+                "Nêu một assumption.",
+                "Giải một ví dụ nhỏ.",
+                "Sửa một lỗi diễn giải bằng tiếng Nga."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Câu hỏi giảng viên",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Q&A",
+              "items": [
+                {
+                  "q": "P(A|B)=P(B|A) có đúng không?",
+                  "a": "Nói chung không. Hai đại lượng liên hệ qua Bayes và phụ thuộc prior/base rate."
+                },
+                {
+                  "q": "Giả thiết nào quan trọng nhất?",
+                  "a": "P(A|B) chỉ xác định khi P(B)>0; Bayes cần tập giả thuyết phù hợp và likelihood/prior nhất quán."
+                },
+                {
+                  "q": "Bẫy suy luận nào phải tránh?",
+                  "a": "Không được đồng nhất P(A|B) với P(B|A). Base-rate neglect là lỗi rất phổ biến khi đọc test y tế/cảnh báo hệ thống."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.2",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Xác suất A khi biết B.",
+                "P(A|B) chỉ xác định khi P(B)>0; Bayes cần tập giả thuyết phù hợp và likelihood/prior nhất quán.",
+                "Không được đồng nhất P(A|B) với P(B|A). Base-rate neglect là lỗi rất phổ biến khi đọc test y tế/cảnh báo hệ thống.",
+                "Kết luận luôn đi cùng uncertainty/assumptions."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Exit ticket",
+              "body": "Nói một câu Nga chứa «усло́вная вероя́тность» và giải thích một công thức của bài."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T03-random-variables-distributions",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "lessonTitle": "m_s03 · §1.3 · Biến ngẫu nhiên và phân phối xác suất bằng tiếng Nga",
+      "title": "m_s03 · §1.3 · Biến ngẫu nhiên và phân phối xác suất bằng tiếng Nga",
+      "programLectureId": "MATH-PROG-L12-probability-random-variables",
+      "programLectureIds": [
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "roadmapRole": "m_s03_t03",
+      "baumanFocus": "Russian probability/statistics bridge for preparatory engineering study, AI, sensor uncertainty, reliability and seminar defense.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_s03",
+        "frameworkChapterId": "m_s03",
+        "legacyFrameworkChapterAlias": "MATH-PREP-PS-C11",
+        "logicalLessonId": "m_s03_t03",
+        "frameworkAnchor": "m_s03_t03",
+        "programLectureId": "MATH-PROG-L12-probability-random-variables",
+        "commonProgramLectureIds": [
+          "MATH-PROG-L12-probability-random-variables",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e20_russian_probability_statistics_authoring"
+      },
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "random-variables-distributions"
+      ],
+      "speechDrill": {
+        "language": "ru-RU",
+        "mode": "read_model_infer_defend",
+        "requiredStressAware": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_s03 · §1.3 · Biến ngẫu nhiên và phân phối xác suất bằng tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "Bridge xác suất–thống kê Nga cho lớp dự bị: công thức phải đi cùng mô hình, assumptions và cách diễn giải kết quả."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Giải và bảo vệ chủ đề «Biến ngẫu nhiên và phân phối xác suất bằng tiếng Nga» bằng tiếng Nga kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài học",
+              "items": [
+                "Nhận diện thuật ngữ Nga–Việt–Anh.",
+                "Chọn đúng công thức/mô hình theo điều kiện.",
+                "Phân biệt xác suất, thống kê mô tả và suy luận.",
+                "Trình bày kết luận có uncertainty và giới hạn."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Thuật ngữ Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Từ khóa",
+              "items": [
+                "случа́йная величина́ — biến ngẫu nhiên — random variable",
+                "дискретная случайная величина — biến ngẫu nhiên rời rạc — discrete random variable",
+                "непреры́вная случайная величина — biến ngẫu nhiên liên tục — continuous random variable",
+                "фу́нкция распределе́ния — hàm phân phối — CDF",
+                "фу́нкция ма́ссы вероя́тности — hàm khối xác suất — PMF",
+                "пло́тность вероя́тности — mật độ xác suất — PDF",
+                "распределе́ние — phân phối — distribution",
+                "кванти́ль — phân vị — quantile"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "pronunciation_drill",
+          "title": "Trọng âm và phát âm",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Đọc chậm",
+              "items": [
+                "случа́йная величина́ · biến ngẫu nhiên",
+                "дискретная случайная величина · biến ngẫu nhiên rời rạc",
+                "непреры́вная случайная величина · biến ngẫu nhiên liên tục",
+                "фу́нкция распределе́ния · hàm phân phối",
+                "фу́нкция ма́ссы вероя́тности · hàm khối xác suất",
+                "пло́тность вероя́тности · mật độ xác suất",
+                "распределе́ние · phân phối",
+                "кванти́ль · phân vị"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Quy tắc",
+              "body": "Đọc chính xác thuật ngữ và số thập phân; không hy sinh nghĩa toán để nói nhanh."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức an toàn",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "CDF",
+              "body": "F_X(x)=P(X≤x)\nHàm phân phối tích lũy, không giảm và tiến từ 0 đến 1."
+            },
+            {
+              "type": "formula",
+              "title": "PMF",
+              "body": "p_X(x)=P(X=x), Σ_x p_X(x)=1\nCho biến rời rạc."
+            },
+            {
+              "type": "formula",
+              "title": "PDF",
+              "body": "P(a≤X≤b)=∫_a^b f_X(x)dx\nVới biến liên tục; f(x) là mật độ, không phải xác suất tại một điểm."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Điều kiện / giả thiết",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Phải phân biệt discrete/continuous trước khi chọn PMF/PDF và phép tổng/tích phân."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Trước khi tính",
+              "items": [
+                "Xác định mô hình/data-generating process.",
+                "Kiểm điều kiện tồn tại/normalization.",
+                "Kiểm independence/iid nếu công thức cần.",
+                "Nêu rõ tham số, sample size và phạm vi suy luận."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "phrase_pattern",
+          "title": "Mẫu câu seminar",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Mẫu",
+              "items": [
+                "Запишите функцию распределения.",
+                "Найдите вероятность для случайной величины X.",
+                "Определите тип распределения."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "symbol_to_speech",
+          "title": "Đọc ký hiệu thành lời",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cách luyện",
+              "body": "Đọc công thức «F_X(x)=P(X≤x)» bằng tiếng Nga rồi giải thích điều kiện áp dụng bằng một câu thứ hai."
+            }
+          ]
+        },
+        {
+          "role": "reading_example",
+          "title": "Đọc đề và xác định mô hình",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "X~Uniform(0,0.5) có density f=2 trên [0,0.5]; density 2>1 vẫn hợp lệ vì tích phân toàn miền bằng 1."
+            },
+            {
+              "type": "text",
+              "title": "Nhiệm vụ",
+              "body": "Khoanh câu lệnh, xác định biến ngẫu nhiên/parameter/sample, rồi mới chọn công thức."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Lời giải mẫu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu",
+              "body": "Для непрерывной случайной величины вероятность отдельной точки равна нулю. Вероятность интервала вычисляется интегралом плотности."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Cấu trúc",
+              "items": [
+                "Mô hình/dữ kiện.",
+                "Công thức hoặc statistic.",
+                "Điều kiện/assumption.",
+                "Kết luận có diễn giải."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "reasoning_pipeline",
+          "title": "Pipeline suy luận",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Quy trình",
+              "items": [
+                "Định nghĩa event/variable/sample.",
+                "Chọn model/statistic phù hợp.",
+                "Tính probability/estimate/interval/test.",
+                "Sanity check và diễn giải giới hạn."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "oral_response",
+          "title": "Vấn đáp 30–90 giây",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Prompt",
+              "body": "Giải thích «Biến ngẫu nhiên và phân phối xác suất bằng tiếng Nga» bằng tiếng Nga, bắt buộc nêu một assumption và một công thức."
+            },
+            {
+              "type": "text",
+              "title": "Mẫu",
+              "body": "Для непрерывной случайной величины вероятность отдельной точки равна нулю. Вероятность интервала вычисляется интегралом плотности."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy suy luận thống kê",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Với biến liên tục, f_X(x) có thể lớn hơn 1 và P(X=x)=0; PDF không phải xác suất điểm."
+            }
+          ]
+        },
+        {
+          "role": "statistical_logic_gate",
+          "title": "Cổng logic xác suất–thống kê",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tự kiểm",
+              "items": [
+                "Có nhầm conditional với reverse conditional không?",
+                "Có nhầm density với probability không?",
+                "Có suy từ correlation/significance sang causality/importance không?",
+                "Có bỏ qua sample design/base rate/effect size không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ AI – sensor – reliability",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Phân phối mô tả nhiễu sensor, thời gian chờ, lỗi đo và uncertainty của mô hình."
+            }
+          ]
+        },
+        {
+          "role": "uncertainty_gate",
+          "title": "Cổng bất định trước kết luận",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Báo uncertainty/dispersion khi phù hợp.",
+                "Không biến estimate thành ground truth.",
+                "Tách statistical significance khỏi practical significance.",
+                "Nêu assumptions và giới hạn dữ liệu."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi trong seminar",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu sửa",
+              "body": "Я назвал плотность вероятностью точки. Для непрерывной величины нужно интегрировать плотность по интервалу."
+            },
+            {
+              "type": "text",
+              "title": "Nguyên tắc",
+              "body": "Nêu lỗi diễn giải/model → sửa điều kiện → tính/diễn giải lại → cập nhật kết luận."
+            }
+          ]
+        },
+        {
+          "role": "mini_drill",
+          "title": "Drill 5 phút",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "5 vòng",
+              "items": [
+                "Đọc 8 thuật ngữ có trọng âm.",
+                "Đọc 3 công thức thành lời.",
+                "Nêu một assumption.",
+                "Giải một ví dụ nhỏ.",
+                "Sửa một lỗi diễn giải bằng tiếng Nga."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Câu hỏi giảng viên",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Q&A",
+              "items": [
+                {
+                  "q": "PDF f(x)=1.5 tại một điểm có vô lý không?",
+                  "a": "Không. Mật độ có thể lớn hơn 1; điều kiện là f≥0 và tích phân toàn miền bằng 1."
+                },
+                {
+                  "q": "Giả thiết nào quan trọng nhất?",
+                  "a": "Phải phân biệt discrete/continuous trước khi chọn PMF/PDF và phép tổng/tích phân."
+                },
+                {
+                  "q": "Bẫy suy luận nào phải tránh?",
+                  "a": "Với biến liên tục, f_X(x) có thể lớn hơn 1 và P(X=x)=0; PDF không phải xác suất điểm."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.3",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Hàm phân phối tích lũy, không giảm và tiến từ 0 đến 1.",
+                "Phải phân biệt discrete/continuous trước khi chọn PMF/PDF và phép tổng/tích phân.",
+                "Với biến liên tục, f_X(x) có thể lớn hơn 1 và P(X=x)=0; PDF không phải xác suất điểm.",
+                "Kết luận luôn đi cùng uncertainty/assumptions."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Exit ticket",
+              "body": "Nói một câu Nga chứa «случа́йная величина́» và giải thích một công thức của bài."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T04-moments-variance",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "lessonTitle": "m_s03 · §1.4 · Kỳ vọng, phương sai, độ lệch chuẩn và moment bằng tiếng Nga",
+      "title": "m_s03 · §1.4 · Kỳ vọng, phương sai, độ lệch chuẩn và moment bằng tiếng Nga",
+      "programLectureId": "MATH-PROG-L12-probability-random-variables",
+      "programLectureIds": [
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "roadmapRole": "m_s03_t04",
+      "baumanFocus": "Russian probability/statistics bridge for preparatory engineering study, AI, sensor uncertainty, reliability and seminar defense.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_s03",
+        "frameworkChapterId": "m_s03",
+        "legacyFrameworkChapterAlias": "MATH-PREP-PS-C11",
+        "logicalLessonId": "m_s03_t04",
+        "frameworkAnchor": "m_s03_t04",
+        "programLectureId": "MATH-PROG-L12-probability-random-variables",
+        "commonProgramLectureIds": [
+          "MATH-PROG-L12-probability-random-variables",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e20_russian_probability_statistics_authoring"
+      },
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "moments-variance"
+      ],
+      "speechDrill": {
+        "language": "ru-RU",
+        "mode": "read_model_infer_defend",
+        "requiredStressAware": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_s03 · §1.4 · Kỳ vọng, phương sai, độ lệch chuẩn và moment bằng tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "Bridge xác suất–thống kê Nga cho lớp dự bị: công thức phải đi cùng mô hình, assumptions và cách diễn giải kết quả."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Giải và bảo vệ chủ đề «Kỳ vọng, phương sai, độ lệch chuẩn và moment bằng tiếng Nga» bằng tiếng Nga kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài học",
+              "items": [
+                "Nhận diện thuật ngữ Nga–Việt–Anh.",
+                "Chọn đúng công thức/mô hình theo điều kiện.",
+                "Phân biệt xác suất, thống kê mô tả và suy luận.",
+                "Trình bày kết luận có uncertainty và giới hạn."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Thuật ngữ Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Từ khóa",
+              "items": [
+                "математи́ческое ожида́ние — kỳ vọng — expectation",
+                "диспе́рсия — phương sai — variance",
+                "среднеквадрати́ческое отклоне́ние — độ lệch chuẩn — standard deviation",
+                "моме́нт — moment — moment",
+                "центра́льный моме́нт — moment trung tâm — central moment",
+                "коэффициент вариа́ции — hệ số biến thiên — coefficient of variation",
+                "сре́днее значе́ние — giá trị trung bình — mean",
+                "разбро́с — độ phân tán — spread"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "pronunciation_drill",
+          "title": "Trọng âm và phát âm",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Đọc chậm",
+              "items": [
+                "математи́ческое ожида́ние · kỳ vọng",
+                "диспе́рсия · phương sai",
+                "среднеквадрати́ческое отклоне́ние · độ lệch chuẩn",
+                "моме́нт · moment",
+                "центра́льный моме́нт · moment trung tâm",
+                "коэффициент вариа́ции · hệ số biến thiên",
+                "сре́днее значе́ние · giá trị trung bình",
+                "разбро́с · độ phân tán"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Quy tắc",
+              "body": "Đọc chính xác thuật ngữ và số thập phân; không hy sinh nghĩa toán để nói nhanh."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức an toàn",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Kỳ vọng",
+              "body": "E[X]=Σ x p(x)  hoặc  ∫x f(x)dx\nTrung bình lý thuyết của biến ngẫu nhiên."
+            },
+            {
+              "type": "formula",
+              "title": "Phương sai",
+              "body": "Var(X)=E[(X−μ)²]=E[X²]−μ²\nĐo phân tán bình phương quanh kỳ vọng."
+            },
+            {
+              "type": "formula",
+              "title": "Độ lệch chuẩn",
+              "body": "σ=√Var(X)\nCùng đơn vị với X."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Điều kiện / giả thiết",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Moment chỉ có ý nghĩa khi kỳ vọng tương ứng tồn tại/hữu hạn; cần kiểm điều kiện tích phân/tổng."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Trước khi tính",
+              "items": [
+                "Xác định mô hình/data-generating process.",
+                "Kiểm điều kiện tồn tại/normalization.",
+                "Kiểm independence/iid nếu công thức cần.",
+                "Nêu rõ tham số, sample size và phạm vi suy luận."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "phrase_pattern",
+          "title": "Mẫu câu seminar",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Mẫu",
+              "items": [
+                "Вычислите математическое ожидание.",
+                "Найдите дисперсию и среднеквадратическое отклонение.",
+                "Сравните разброс двух распределений."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "symbol_to_speech",
+          "title": "Đọc ký hiệu thành lời",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cách luyện",
+              "body": "Đọc công thức «E[X]=Σ x p(x)  hoặc  ∫x f(x)dx» bằng tiếng Nga rồi giải thích điều kiện áp dụng bằng một câu thứ hai."
+            }
+          ]
+        },
+        {
+          "role": "reading_example",
+          "title": "Đọc đề và xác định mô hình",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "X Bernoulli(p): E[X]=p, Var(X)=p(1−p)."
+            },
+            {
+              "type": "text",
+              "title": "Nhiệm vụ",
+              "body": "Khoanh câu lệnh, xác định biến ngẫu nhiên/parameter/sample, rồi mới chọn công thức."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Lời giải mẫu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu",
+              "body": "Математическое ожидание Бернулли равно p, дисперсия равна p умножить на один минус p."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Cấu trúc",
+              "items": [
+                "Mô hình/dữ kiện.",
+                "Công thức hoặc statistic.",
+                "Điều kiện/assumption.",
+                "Kết luận có diễn giải."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "reasoning_pipeline",
+          "title": "Pipeline suy luận",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Quy trình",
+              "items": [
+                "Định nghĩa event/variable/sample.",
+                "Chọn model/statistic phù hợp.",
+                "Tính probability/estimate/interval/test.",
+                "Sanity check và diễn giải giới hạn."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "oral_response",
+          "title": "Vấn đáp 30–90 giây",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Prompt",
+              "body": "Giải thích «Kỳ vọng, phương sai, độ lệch chuẩn và moment bằng tiếng Nga» bằng tiếng Nga, bắt buộc nêu một assumption và một công thức."
+            },
+            {
+              "type": "text",
+              "title": "Mẫu",
+              "body": "Математическое ожидание Бернулли равно p, дисперсия равна p умножить на один минус p."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy suy luận thống kê",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Không được lấy E[g(X)]=g(E[X]) nói chung; điều này chỉ đúng cho một số g đặc biệt (ví dụ affine)."
+            }
+          ]
+        },
+        {
+          "role": "statistical_logic_gate",
+          "title": "Cổng logic xác suất–thống kê",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tự kiểm",
+              "items": [
+                "Có nhầm conditional với reverse conditional không?",
+                "Có nhầm density với probability không?",
+                "Có suy từ correlation/significance sang causality/importance không?",
+                "Có bỏ qua sample design/base rate/effect size không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ AI – sensor – reliability",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Mean/variance là ngôn ngữ cơ bản của nhiễu, uncertainty, Monte Carlo và đánh giá độ ổn định dữ liệu."
+            }
+          ]
+        },
+        {
+          "role": "uncertainty_gate",
+          "title": "Cổng bất định trước kết luận",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Báo uncertainty/dispersion khi phù hợp.",
+                "Không biến estimate thành ground truth.",
+                "Tách statistical significance khỏi practical significance.",
+                "Nêu assumptions và giới hạn dữ liệu."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi trong seminar",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu sửa",
+              "body": "Я применил E[g(X)]=g(E[X]) без основания. Это неверно в общем случае; нужно вычислить ожидание функции напрямую."
+            },
+            {
+              "type": "text",
+              "title": "Nguyên tắc",
+              "body": "Nêu lỗi diễn giải/model → sửa điều kiện → tính/diễn giải lại → cập nhật kết luận."
+            }
+          ]
+        },
+        {
+          "role": "mini_drill",
+          "title": "Drill 5 phút",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "5 vòng",
+              "items": [
+                "Đọc 8 thuật ngữ có trọng âm.",
+                "Đọc 3 công thức thành lời.",
+                "Nêu một assumption.",
+                "Giải một ví dụ nhỏ.",
+                "Sửa một lỗi diễn giải bằng tiếng Nga."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Câu hỏi giảng viên",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Q&A",
+              "items": [
+                {
+                  "q": "Var(X) có thể âm không?",
+                  "a": "Không. Nó là kỳ vọng của bình phương độ lệch nên không âm."
+                },
+                {
+                  "q": "Giả thiết nào quan trọng nhất?",
+                  "a": "Moment chỉ có ý nghĩa khi kỳ vọng tương ứng tồn tại/hữu hạn; cần kiểm điều kiện tích phân/tổng."
+                },
+                {
+                  "q": "Bẫy suy luận nào phải tránh?",
+                  "a": "Không được lấy E[g(X)]=g(E[X]) nói chung; điều này chỉ đúng cho một số g đặc biệt (ví dụ affine)."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.4",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Trung bình lý thuyết của biến ngẫu nhiên.",
+                "Moment chỉ có ý nghĩa khi kỳ vọng tương ứng tồn tại/hữu hạn; cần kiểm điều kiện tích phân/tổng.",
+                "Không được lấy E[g(X)]=g(E[X]) nói chung; điều này chỉ đúng cho một số g đặc biệt (ví dụ affine).",
+                "Kết luận luôn đi cùng uncertainty/assumptions."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Exit ticket",
+              "body": "Nói một câu Nga chứa «математи́ческое ожида́ние» và giải thích một công thức của bài."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T05-named-distributions",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "lessonTitle": "m_s03 · §1.5 · Bernoulli, nhị thức, Poisson, chuẩn và mũ bằng tiếng Nga",
+      "title": "m_s03 · §1.5 · Bernoulli, nhị thức, Poisson, chuẩn và mũ bằng tiếng Nga",
+      "programLectureId": "MATH-PROG-L12-probability-random-variables",
+      "programLectureIds": [
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "roadmapRole": "m_s03_t05",
+      "baumanFocus": "Russian probability/statistics bridge for preparatory engineering study, AI, sensor uncertainty, reliability and seminar defense.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_s03",
+        "frameworkChapterId": "m_s03",
+        "legacyFrameworkChapterAlias": "MATH-PREP-PS-C11",
+        "logicalLessonId": "m_s03_t05",
+        "frameworkAnchor": "m_s03_t05",
+        "programLectureId": "MATH-PROG-L12-probability-random-variables",
+        "commonProgramLectureIds": [
+          "MATH-PROG-L12-probability-random-variables",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e20_russian_probability_statistics_authoring"
+      },
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "named-distributions"
+      ],
+      "speechDrill": {
+        "language": "ru-RU",
+        "mode": "read_model_infer_defend",
+        "requiredStressAware": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_s03 · §1.5 · Bernoulli, nhị thức, Poisson, chuẩn và mũ bằng tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "Bridge xác suất–thống kê Nga cho lớp dự bị: công thức phải đi cùng mô hình, assumptions và cách diễn giải kết quả."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Giải và bảo vệ chủ đề «Bernoulli, nhị thức, Poisson, chuẩn và mũ bằng tiếng Nga» bằng tiếng Nga kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài học",
+              "items": [
+                "Nhận diện thuật ngữ Nga–Việt–Anh.",
+                "Chọn đúng công thức/mô hình theo điều kiện.",
+                "Phân biệt xác suất, thống kê mô tả và suy luận.",
+                "Trình bày kết luận có uncertainty và giới hạn."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Thuật ngữ Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Từ khóa",
+              "items": [
+                "распределе́ние Берну́лли — phân phối Bernoulli — Bernoulli distribution",
+                "биномиа́льное распределе́ние — phân phối nhị thức — binomial distribution",
+                "распределе́ние Пуассо́на — phân phối Poisson — Poisson distribution",
+                "норма́льное распределе́ние — phân phối chuẩn — normal distribution",
+                "экспоненциа́льное распределе́ние — phân phối mũ — exponential distribution",
+                "пара́метр — tham số — parameter",
+                "интенсивность — cường độ/tốc độ — rate",
+                "стандартиза́ция — chuẩn hóa — standardization"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "pronunciation_drill",
+          "title": "Trọng âm và phát âm",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Đọc chậm",
+              "items": [
+                "распределе́ние Берну́лли · phân phối Bernoulli",
+                "биномиа́льное распределе́ние · phân phối nhị thức",
+                "распределе́ние Пуассо́на · phân phối Poisson",
+                "норма́льное распределе́ние · phân phối chuẩn",
+                "экспоненциа́льное распределе́ние · phân phối mũ",
+                "пара́метр · tham số",
+                "интенсивность · cường độ/tốc độ",
+                "стандартиза́ция · chuẩn hóa"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Quy tắc",
+              "body": "Đọc chính xác thuật ngữ và số thập phân; không hy sinh nghĩa toán để nói nhanh."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức an toàn",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Binomial",
+              "body": "P(X=k)=C(n,k)p^k(1−p)^{n−k}\nSố thành công trong n phép thử Bernoulli độc lập cùng p."
+            },
+            {
+              "type": "formula",
+              "title": "Poisson",
+              "body": "P(X=k)=e^{−λ}λ^k/k!\nMô hình count với rate λ trong khoảng quan sát."
+            },
+            {
+              "type": "formula",
+              "title": "Normal standardization",
+              "body": "Z=(X−μ)/σ\nNếu X~N(μ,σ²), thì Z~N(0,1)."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Điều kiện / giả thiết",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Binomial cần n cố định, thử độc lập, cùng p; Poisson thường giả định rate ổn định/independent increments; normal cần kiểm tính hợp lý của mô hình."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Trước khi tính",
+              "items": [
+                "Xác định mô hình/data-generating process.",
+                "Kiểm điều kiện tồn tại/normalization.",
+                "Kiểm independence/iid nếu công thức cần.",
+                "Nêu rõ tham số, sample size và phạm vi suy luận."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "phrase_pattern",
+          "title": "Mẫu câu seminar",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Mẫu",
+              "items": [
+                "Определите подходящее распределение.",
+                "Найдите параметр распределения.",
+                "Стандартизируйте нормальную случайную величину."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "symbol_to_speech",
+          "title": "Đọc ký hiệu thành lời",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cách luyện",
+              "body": "Đọc công thức «P(X=k)=C(n,k)p^k(1−p)^{n−k}» bằng tiếng Nga rồi giải thích điều kiện áp dụng bằng một câu thứ hai."
+            }
+          ]
+        },
+        {
+          "role": "reading_example",
+          "title": "Đọc đề và xác định mô hình",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "Đếm số lỗi hiếm độc lập theo thời gian với rate gần ổn định có thể dùng Poisson; số thành công trong n phép thử dùng Binomial."
+            },
+            {
+              "type": "text",
+              "title": "Nhiệm vụ",
+              "body": "Khoanh câu lệnh, xác định biến ngẫu nhiên/parameter/sample, rồi mới chọn công thức."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Lời giải mẫu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu",
+              "body": "Биномиальное распределение описывает число успехов в фиксированном числе независимых испытаний с одинаковой вероятностью успеха."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Cấu trúc",
+              "items": [
+                "Mô hình/dữ kiện.",
+                "Công thức hoặc statistic.",
+                "Điều kiện/assumption.",
+                "Kết luận có diễn giải."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "reasoning_pipeline",
+          "title": "Pipeline suy luận",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Quy trình",
+              "items": [
+                "Định nghĩa event/variable/sample.",
+                "Chọn model/statistic phù hợp.",
+                "Tính probability/estimate/interval/test.",
+                "Sanity check và diễn giải giới hạn."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "oral_response",
+          "title": "Vấn đáp 30–90 giây",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Prompt",
+              "body": "Giải thích «Bernoulli, nhị thức, Poisson, chuẩn và mũ bằng tiếng Nga» bằng tiếng Nga, bắt buộc nêu một assumption và một công thức."
+            },
+            {
+              "type": "text",
+              "title": "Mẫu",
+              "body": "Биномиальное распределение описывает число успехов в фиксированном числе независимых испытаний с одинаковой вероятностью успеха."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy suy luận thống kê",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Không chọn distribution chỉ vì histogram trông giống; phải xét cơ chế sinh dữ liệu và assumptions."
+            }
+          ]
+        },
+        {
+          "role": "statistical_logic_gate",
+          "title": "Cổng logic xác suất–thống kê",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tự kiểm",
+              "items": [
+                "Có nhầm conditional với reverse conditional không?",
+                "Có nhầm density với probability không?",
+                "Có suy từ correlation/significance sang causality/importance không?",
+                "Có bỏ qua sample design/base rate/effect size không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ AI – sensor – reliability",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Các phân phối nền giúp mô hình hóa lỗi hiếm, packet loss, thời gian chờ, nhiễu Gaussian và dữ liệu nhị phân trong ML."
+            }
+          ]
+        },
+        {
+          "role": "uncertainty_gate",
+          "title": "Cổng bất định trước kết luận",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Báo uncertainty/dispersion khi phù hợp.",
+                "Không biến estimate thành ground truth.",
+                "Tách statistical significance khỏi practical significance.",
+                "Nêu assumptions và giới hạn dữ liệu."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi trong seminar",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu sửa",
+              "body": "Я выбрал распределение только по форме графика. Нужно проверить механизм генерации данных и предпосылки модели."
+            },
+            {
+              "type": "text",
+              "title": "Nguyên tắc",
+              "body": "Nêu lỗi diễn giải/model → sửa điều kiện → tính/diễn giải lại → cập nhật kết luận."
+            }
+          ]
+        },
+        {
+          "role": "mini_drill",
+          "title": "Drill 5 phút",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "5 vòng",
+              "items": [
+                "Đọc 8 thuật ngữ có trọng âm.",
+                "Đọc 3 công thức thành lời.",
+                "Nêu một assumption.",
+                "Giải một ví dụ nhỏ.",
+                "Sửa một lỗi diễn giải bằng tiếng Nga."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Câu hỏi giảng viên",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Q&A",
+              "items": [
+                {
+                  "q": "Có thể dùng Binomial nếu xác suất p thay đổi theo từng phép thử không?",
+                  "a": "Không theo mô hình Binomial chuẩn; khi p_i khác nhau cần mô hình khác như Poisson-binomial."
+                },
+                {
+                  "q": "Giả thiết nào quan trọng nhất?",
+                  "a": "Binomial cần n cố định, thử độc lập, cùng p; Poisson thường giả định rate ổn định/independent increments; normal cần kiểm tính hợp lý của mô hình."
+                },
+                {
+                  "q": "Bẫy suy luận nào phải tránh?",
+                  "a": "Không chọn distribution chỉ vì histogram trông giống; phải xét cơ chế sinh dữ liệu và assumptions."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.5",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Số thành công trong n phép thử Bernoulli độc lập cùng p.",
+                "Binomial cần n cố định, thử độc lập, cùng p; Poisson thường giả định rate ổn định/independent increments; normal cần kiểm tính hợp lý của mô hình.",
+                "Không chọn distribution chỉ vì histogram trông giống; phải xét cơ chế sinh dữ liệu và assumptions.",
+                "Kết luận luôn đi cùng uncertainty/assumptions."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Exit ticket",
+              "body": "Nói một câu Nga chứa «распределе́ние Берну́лли» và giải thích một công thức của bài."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T06-sample-statistics-histogram",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "lessonTitle": "m_s03 · §1.6 · Thống kê mẫu, trung bình mẫu, phương sai mẫu và histogram bằng tiếng Nga",
+      "title": "m_s03 · §1.6 · Thống kê mẫu, trung bình mẫu, phương sai mẫu và histogram bằng tiếng Nga",
+      "programLectureId": "MATH-PROG-L13-mathematical-statistics",
+      "programLectureIds": [
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "roadmapRole": "m_s03_t06",
+      "baumanFocus": "Russian probability/statistics bridge for preparatory engineering study, AI, sensor uncertainty, reliability and seminar defense.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_s03",
+        "frameworkChapterId": "m_s03",
+        "legacyFrameworkChapterAlias": "MATH-PREP-PS-C11",
+        "logicalLessonId": "m_s03_t06",
+        "frameworkAnchor": "m_s03_t06",
+        "programLectureId": "MATH-PROG-L13-mathematical-statistics",
+        "commonProgramLectureIds": [
+          "MATH-PROG-L12-probability-random-variables",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e20_russian_probability_statistics_authoring"
+      },
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "sample-statistics-histogram"
+      ],
+      "speechDrill": {
+        "language": "ru-RU",
+        "mode": "read_model_infer_defend",
+        "requiredStressAware": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_s03 · §1.6 · Thống kê mẫu, trung bình mẫu, phương sai mẫu và histogram bằng tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "Bridge xác suất–thống kê Nga cho lớp dự bị: công thức phải đi cùng mô hình, assumptions và cách diễn giải kết quả."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Giải và bảo vệ chủ đề «Thống kê mẫu, trung bình mẫu, phương sai mẫu và histogram bằng tiếng Nga» bằng tiếng Nga kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài học",
+              "items": [
+                "Nhận diện thuật ngữ Nga–Việt–Anh.",
+                "Chọn đúng công thức/mô hình theo điều kiện.",
+                "Phân biệt xác suất, thống kê mô tả và suy luận.",
+                "Trình bày kết luận có uncertainty và giới hạn."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Thuật ngữ Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Từ khóa",
+              "items": [
+                "вы́борка — mẫu — sample",
+                "генера́льная совоку́пность — tổng thể — population",
+                "вы́борочное сре́днее — trung bình mẫu — sample mean",
+                "вы́борочная диспе́рсия — phương sai mẫu — sample variance",
+                "гистогра́мма — histogram — histogram",
+                "оце́нка — ước lượng — estimate",
+                "смещённая оце́нка — ước lượng chệch — biased estimator",
+                "несмещённая оце́нка — ước lượng không chệch — unbiased estimator"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "pronunciation_drill",
+          "title": "Trọng âm và phát âm",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Đọc chậm",
+              "items": [
+                "вы́борка · mẫu",
+                "генера́льная совоку́пность · tổng thể",
+                "вы́борочное сре́днее · trung bình mẫu",
+                "вы́борочная диспе́рсия · phương sai mẫu",
+                "гистогра́мма · histogram",
+                "оце́нка · ước lượng",
+                "смещённая оце́нка · ước lượng chệch",
+                "несмещённая оце́нка · ước lượng không chệch"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Quy tắc",
+              "body": "Đọc chính xác thuật ngữ và số thập phân; không hy sinh nghĩa toán để nói nhanh."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức an toàn",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Sample mean",
+              "body": "x̄=(1/n)Σᵢxᵢ\nƯớc lượng trung tâm mẫu."
+            },
+            {
+              "type": "formula",
+              "title": "Unbiased sample variance",
+              "body": "s²=(1/(n−1))Σᵢ(xᵢ−x̄)²\nƯớc lượng không chệch của variance khi mẫu iid với moment hữu hạn phù hợp."
+            },
+            {
+              "type": "formula",
+              "title": "Standard error mean",
+              "body": "SE(x̄)=s/√n\nƯớc lượng độ bất định của sample mean trong bối cảnh thích hợp."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Điều kiện / giả thiết",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Cần xác định sampling mechanism; nhiều công thức chuẩn giả định quan sát độc lập/đại diện."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Trước khi tính",
+              "items": [
+                "Xác định mô hình/data-generating process.",
+                "Kiểm điều kiện tồn tại/normalization.",
+                "Kiểm independence/iid nếu công thức cần.",
+                "Nêu rõ tham số, sample size và phạm vi suy luận."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "phrase_pattern",
+          "title": "Mẫu câu seminar",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Mẫu",
+              "items": [
+                "Вычислите выборочное среднее и дисперсию.",
+                "Постройте гистограмму.",
+                "Сравните выборку с генеральной совокупностью."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "symbol_to_speech",
+          "title": "Đọc ký hiệu thành lời",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cách luyện",
+              "body": "Đọc công thức «x̄=(1/n)Σᵢxᵢ» bằng tiếng Nga rồi giải thích điều kiện áp dụng bằng một câu thứ hai."
+            }
+          ]
+        },
+        {
+          "role": "reading_example",
+          "title": "Đọc đề và xác định mô hình",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "Mẫu 2,4,6 có x̄=4 và s²=[4+0+4]/2=4."
+            },
+            {
+              "type": "text",
+              "title": "Nhiệm vụ",
+              "body": "Khoanh câu lệnh, xác định biến ngẫu nhiên/parameter/sample, rồi mới chọn công thức."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Lời giải mẫu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu",
+              "body": "Выборочное среднее равно четырём. Несмещённая выборочная дисперсия равна четырём, потому что делим сумму квадратов отклонений на n минус один."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Cấu trúc",
+              "items": [
+                "Mô hình/dữ kiện.",
+                "Công thức hoặc statistic.",
+                "Điều kiện/assumption.",
+                "Kết luận có diễn giải."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "reasoning_pipeline",
+          "title": "Pipeline suy luận",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Quy trình",
+              "items": [
+                "Định nghĩa event/variable/sample.",
+                "Chọn model/statistic phù hợp.",
+                "Tính probability/estimate/interval/test.",
+                "Sanity check và diễn giải giới hạn."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "oral_response",
+          "title": "Vấn đáp 30–90 giây",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Prompt",
+              "body": "Giải thích «Thống kê mẫu, trung bình mẫu, phương sai mẫu và histogram bằng tiếng Nga» bằng tiếng Nga, bắt buộc nêu một assumption và một công thức."
+            },
+            {
+              "type": "text",
+              "title": "Mẫu",
+              "body": "Выборочное среднее равно четырём. Несмещённая выборочная дисперсия равна четырём, потому что делим сумму квадратов отклонений на n минус один."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy suy luận thống kê",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Histogram phụ thuộc bin width; hình dạng khác nhau có thể do cách chia bin chứ không phải dữ liệu khác."
+            }
+          ]
+        },
+        {
+          "role": "statistical_logic_gate",
+          "title": "Cổng logic xác suất–thống kê",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tự kiểm",
+              "items": [
+                "Có nhầm conditional với reverse conditional không?",
+                "Có nhầm density với probability không?",
+                "Có suy từ correlation/significance sang causality/importance không?",
+                "Có bỏ qua sample design/base rate/effect size không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ AI – sensor – reliability",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Sample statistics dùng để tóm tắt telemetry, benchmark model, kiểm tra drift và báo cáo thử nghiệm."
+            }
+          ]
+        },
+        {
+          "role": "uncertainty_gate",
+          "title": "Cổng bất định trước kết luận",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Báo uncertainty/dispersion khi phù hợp.",
+                "Không biến estimate thành ground truth.",
+                "Tách statistical significance khỏi practical significance.",
+                "Nêu assumptions và giới hạn dữ liệu."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi trong seminar",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu sửa",
+              "body": "Я сравнил две гистограммы с разными границами bin. Сначала унифицирую bins, затем сравню форму."
+            },
+            {
+              "type": "text",
+              "title": "Nguyên tắc",
+              "body": "Nêu lỗi diễn giải/model → sửa điều kiện → tính/diễn giải lại → cập nhật kết luận."
+            }
+          ]
+        },
+        {
+          "role": "mini_drill",
+          "title": "Drill 5 phút",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "5 vòng",
+              "items": [
+                "Đọc 8 thuật ngữ có trọng âm.",
+                "Đọc 3 công thức thành lời.",
+                "Nêu một assumption.",
+                "Giải một ví dụ nhỏ.",
+                "Sửa một lỗi diễn giải bằng tiếng Nga."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Câu hỏi giảng viên",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Q&A",
+              "items": [
+                {
+                  "q": "Vì sao sample variance không chia n trong công thức không chệch quen thuộc?",
+                  "a": "Vì đã ước lượng mean từ chính mẫu, mất một bậc tự do; chia n−1 hiệu chỉnh bias trong bối cảnh iid hữu hạn variance."
+                },
+                {
+                  "q": "Giả thiết nào quan trọng nhất?",
+                  "a": "Cần xác định sampling mechanism; nhiều công thức chuẩn giả định quan sát độc lập/đại diện."
+                },
+                {
+                  "q": "Bẫy suy luận nào phải tránh?",
+                  "a": "Histogram phụ thuộc bin width; hình dạng khác nhau có thể do cách chia bin chứ không phải dữ liệu khác."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.6",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Ước lượng trung tâm mẫu.",
+                "Cần xác định sampling mechanism; nhiều công thức chuẩn giả định quan sát độc lập/đại diện.",
+                "Histogram phụ thuộc bin width; hình dạng khác nhau có thể do cách chia bin chứ không phải dữ liệu khác.",
+                "Kết luận luôn đi cùng uncertainty/assumptions."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Exit ticket",
+              "body": "Nói một câu Nga chứa «вы́борка» và giải thích một công thức của bài."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T07-confidence-hypothesis-pvalue",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "lessonTitle": "m_s03 · §1.7 · Khoảng tin cậy, kiểm định giả thuyết và p-value bằng tiếng Nga",
+      "title": "m_s03 · §1.7 · Khoảng tin cậy, kiểm định giả thuyết và p-value bằng tiếng Nga",
+      "programLectureId": "MATH-PROG-L13-mathematical-statistics",
+      "programLectureIds": [
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "roadmapRole": "m_s03_t07",
+      "baumanFocus": "Russian probability/statistics bridge for preparatory engineering study, AI, sensor uncertainty, reliability and seminar defense.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_s03",
+        "frameworkChapterId": "m_s03",
+        "legacyFrameworkChapterAlias": "MATH-PREP-PS-C11",
+        "logicalLessonId": "m_s03_t07",
+        "frameworkAnchor": "m_s03_t07",
+        "programLectureId": "MATH-PROG-L13-mathematical-statistics",
+        "commonProgramLectureIds": [
+          "MATH-PROG-L12-probability-random-variables",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e20_russian_probability_statistics_authoring"
+      },
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "confidence-hypothesis-pvalue"
+      ],
+      "speechDrill": {
+        "language": "ru-RU",
+        "mode": "read_model_infer_defend",
+        "requiredStressAware": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_s03 · §1.7 · Khoảng tin cậy, kiểm định giả thuyết và p-value bằng tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "Bridge xác suất–thống kê Nga cho lớp dự bị: công thức phải đi cùng mô hình, assumptions và cách diễn giải kết quả."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Giải và bảo vệ chủ đề «Khoảng tin cậy, kiểm định giả thuyết và p-value bằng tiếng Nga» bằng tiếng Nga kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài học",
+              "items": [
+                "Nhận diện thuật ngữ Nga–Việt–Anh.",
+                "Chọn đúng công thức/mô hình theo điều kiện.",
+                "Phân biệt xác suất, thống kê mô tả và suy luận.",
+                "Trình bày kết luận có uncertainty và giới hạn."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Thuật ngữ Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Từ khóa",
+              "items": [
+                "довери́тельный интерва́л — khoảng tin cậy — confidence interval",
+                "нулева́я гипо́теза — giả thuyết không — null hypothesis",
+                "альтернати́вная гипо́теза — giả thuyết đối — alternative hypothesis",
+                "уро́вень значи́мости — mức ý nghĩa — significance level",
+                "p-значе́ние — p-value — p-value",
+                "статисти́ческий крите́рий — thống kê kiểm định — test statistic",
+                "о́шибка пе́рвого ро́да — sai lầm loại I — type I error",
+                "о́шибка второ́го ро́да — sai lầm loại II — type II error"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "pronunciation_drill",
+          "title": "Trọng âm và phát âm",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Đọc chậm",
+              "items": [
+                "довери́тельный интерва́л · khoảng tin cậy",
+                "нулева́я гипо́теза · giả thuyết không",
+                "альтернати́вная гипо́теза · giả thuyết đối",
+                "уро́вень значи́мости · mức ý nghĩa",
+                "p-значе́ние · p-value",
+                "статисти́ческий крите́рий · thống kê kiểm định",
+                "о́шибка пе́рвого ро́да · sai lầm loại I",
+                "о́шибка второ́го ро́да · sai lầm loại II"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Quy tắc",
+              "body": "Đọc chính xác thuật ngữ và số thập phân; không hy sinh nghĩa toán để nói nhanh."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức an toàn",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "CI mean (xấp xỉ z)",
+              "body": "x̄ ± z_{1−α/2}·SE\nDạng cơ bản khi assumptions/approximation phù hợp."
+            },
+            {
+              "type": "formula",
+              "title": "Quy tắc p-value",
+              "body": "p ≤ α ⇒ reject H₀\nQuy tắc quyết định đã chọn trước; không đồng nghĩa H₀ chắc chắn sai."
+            },
+            {
+              "type": "formula",
+              "title": "Type I error",
+              "body": "P(reject H₀ | H₀ true)=α\nTrong test được hiệu chỉnh ở mức α."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Điều kiện / giả thiết",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Phải xác định test design, sampling assumptions, one/two-sided và α trước khi đọc kết quả."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Trước khi tính",
+              "items": [
+                "Xác định mô hình/data-generating process.",
+                "Kiểm điều kiện tồn tại/normalization.",
+                "Kiểm independence/iid nếu công thức cần.",
+                "Nêu rõ tham số, sample size và phạm vi suy luận."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "phrase_pattern",
+          "title": "Mẫu câu seminar",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Mẫu",
+              "items": [
+                "Постройте доверительный интервал.",
+                "Сформулируйте нулевую и альтернативную гипотезы.",
+                "Интерпретируйте p-значение."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "symbol_to_speech",
+          "title": "Đọc ký hiệu thành lời",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cách luyện",
+              "body": "Đọc công thức «x̄ ± z_{1−α/2}·SE» bằng tiếng Nga rồi giải thích điều kiện áp dụng bằng một câu thứ hai."
+            }
+          ]
+        },
+        {
+          "role": "reading_example",
+          "title": "Đọc đề và xác định mô hình",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "p=0.03 với α=0.05 → reject H₀ theo rule, nhưng không kết luận effect lớn hay thực tế quan trọng."
+            },
+            {
+              "type": "text",
+              "title": "Nhiệm vụ",
+              "body": "Khoanh câu lệnh, xác định biến ngẫu nhiên/parameter/sample, rồi mới chọn công thức."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Lời giải mẫu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu",
+              "body": "p-значение равно ноль целых три сотых, что меньше уровня значимости 0.05. Поэтому нулевая гипотеза отклоняется в рамках выбранного критерия."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Cấu trúc",
+              "items": [
+                "Mô hình/dữ kiện.",
+                "Công thức hoặc statistic.",
+                "Điều kiện/assumption.",
+                "Kết luận có diễn giải."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "reasoning_pipeline",
+          "title": "Pipeline suy luận",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Quy trình",
+              "items": [
+                "Định nghĩa event/variable/sample.",
+                "Chọn model/statistic phù hợp.",
+                "Tính probability/estimate/interval/test.",
+                "Sanity check và diễn giải giới hạn."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "oral_response",
+          "title": "Vấn đáp 30–90 giây",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Prompt",
+              "body": "Giải thích «Khoảng tin cậy, kiểm định giả thuyết và p-value bằng tiếng Nga» bằng tiếng Nga, bắt buộc nêu một assumption và một công thức."
+            },
+            {
+              "type": "text",
+              "title": "Mẫu",
+              "body": "p-значение равно ноль целых три сотых, что меньше уровня значимости 0.05. Поэтому нулевая гипотеза отклоняется в рамках выбранного критерия."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy suy luận thống kê",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "p-value không phải P(H₀ đúng | dữ liệu), và 95% confidence interval không có nghĩa tham số cố định có xác suất 95% nằm trong interval sau khi đã quan sát dữ liệu."
+            }
+          ]
+        },
+        {
+          "role": "statistical_logic_gate",
+          "title": "Cổng logic xác suất–thống kê",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tự kiểm",
+              "items": [
+                "Có nhầm conditional với reverse conditional không?",
+                "Có nhầm density với probability không?",
+                "Có suy từ correlation/significance sang causality/importance không?",
+                "Có bỏ qua sample design/base rate/effect size không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ AI – sensor – reliability",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Đây là nền để đánh giá mô hình, A/B test, reliability test và xác minh cải tiến hệ thống."
+            }
+          ]
+        },
+        {
+          "role": "uncertainty_gate",
+          "title": "Cổng bất định trước kết luận",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Báo uncertainty/dispersion khi phù hợp.",
+                "Không biến estimate thành ground truth.",
+                "Tách statistical significance khỏi practical significance.",
+                "Nêu assumptions và giới hạn dữ liệu."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi trong seminar",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu sửa",
+              "body": "Я интерпретировал p-value как вероятность истинности H0. Это неверно; нужно интерпретировать его условно при H0."
+            },
+            {
+              "type": "text",
+              "title": "Nguyên tắc",
+              "body": "Nêu lỗi diễn giải/model → sửa điều kiện → tính/diễn giải lại → cập nhật kết luận."
+            }
+          ]
+        },
+        {
+          "role": "mini_drill",
+          "title": "Drill 5 phút",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "5 vòng",
+              "items": [
+                "Đọc 8 thuật ngữ có trọng âm.",
+                "Đọc 3 công thức thành lời.",
+                "Nêu một assumption.",
+                "Giải một ví dụ nhỏ.",
+                "Sửa một lỗi diễn giải bằng tiếng Nga."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Câu hỏi giảng viên",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Q&A",
+              "items": [
+                {
+                  "q": "p=0.03 có nghĩa xác suất H₀ đúng là 3% không?",
+                  "a": "Không. p-value là xác suất của dữ liệu/statistic ít nhất cực đoan như quan sát dưới giả định H₀ và mô hình test."
+                },
+                {
+                  "q": "Giả thiết nào quan trọng nhất?",
+                  "a": "Phải xác định test design, sampling assumptions, one/two-sided và α trước khi đọc kết quả."
+                },
+                {
+                  "q": "Bẫy suy luận nào phải tránh?",
+                  "a": "p-value không phải P(H₀ đúng | dữ liệu), và 95% confidence interval không có nghĩa tham số cố định có xác suất 95% nằm trong interval sau khi đã quan sát dữ liệu."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.7",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Dạng cơ bản khi assumptions/approximation phù hợp.",
+                "Phải xác định test design, sampling assumptions, one/two-sided và α trước khi đọc kết quả.",
+                "p-value không phải P(H₀ đúng | dữ liệu), và 95% confidence interval không có nghĩa tham số cố định có xác suất 95% nằm trong interval sau khi đã quan sát dữ liệu.",
+                "Kết luận luôn đi cùng uncertainty/assumptions."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Exit ticket",
+              "body": "Nói một câu Nga chứa «довери́тельный интерва́л» và giải thích một công thức của bài."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T08-russian-probability-statistics-seminar",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "lessonTitle": "m_s03 · §1.8 · Seminar xác suất - thống kê Nga: đọc đề, giải bảng và bảo vệ kết luận",
+      "title": "m_s03 · §1.8 · Seminar xác suất - thống kê Nga: đọc đề, giải bảng và bảo vệ kết luận",
+      "programLectureId": "MATH-PROG-L13-mathematical-statistics",
+      "programLectureIds": [
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "roadmapRole": "m_s03_t08",
+      "baumanFocus": "Russian probability/statistics bridge for preparatory engineering study, AI, sensor uncertainty, reliability and seminar defense.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_s03",
+        "frameworkChapterId": "m_s03",
+        "legacyFrameworkChapterAlias": "MATH-PREP-PS-C11",
+        "logicalLessonId": "m_s03_t08",
+        "frameworkAnchor": "m_s03_t08",
+        "programLectureId": "MATH-PROG-L13-mathematical-statistics",
+        "commonProgramLectureIds": [
+          "MATH-PROG-L12-probability-random-variables",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e20_russian_probability_statistics_authoring"
+      },
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "russian-probability-statistics-seminar"
+      ],
+      "speechDrill": {
+        "language": "ru-RU",
+        "mode": "read_model_infer_defend",
+        "requiredStressAware": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_s03 · §1.8 · Seminar xác suất - thống kê Nga: đọc đề, giải bảng và bảo vệ kết luận",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "Bridge xác suất–thống kê Nga cho lớp dự bị: công thức phải đi cùng mô hình, assumptions và cách diễn giải kết quả."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Giải và bảo vệ chủ đề «Seminar xác suất - thống kê Nga: đọc đề, giải bảng và bảo vệ kết luận» bằng tiếng Nga kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài học",
+              "items": [
+                "Nhận diện thuật ngữ Nga–Việt–Anh.",
+                "Chọn đúng công thức/mô hình theo điều kiện.",
+                "Phân biệt xác suất, thống kê mô tả và suy luận.",
+                "Trình bày kết luận có uncertainty và giới hạn."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Thuật ngữ Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Từ khóa",
+              "items": [
+                "усло́вие зада́чи — điều kiện bài toán — problem statement",
+                "предпосы́лка — giả thiết mô hình — assumption",
+                "табли́ца да́нных — bảng dữ liệu — data table",
+                "вы́вод — kết luận — conclusion",
+                "статисти́ческая значи́мость — ý nghĩa thống kê — statistical significance",
+                "практи́ческая значи́мость — ý nghĩa thực tiễn — practical significance",
+                "прове́рка — kiểm tra — verification",
+                "исправле́ние — sửa lỗi — correction"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "pronunciation_drill",
+          "title": "Trọng âm và phát âm",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Đọc chậm",
+              "items": [
+                "усло́вие зада́чи · điều kiện bài toán",
+                "предпосы́лка · giả thiết mô hình",
+                "табли́ца да́нных · bảng dữ liệu",
+                "вы́вод · kết luận",
+                "статисти́ческая значи́мость · ý nghĩa thống kê",
+                "практи́ческая значи́мость · ý nghĩa thực tiễn",
+                "прове́рка · kiểm tra",
+                "исправле́ние · sửa lỗi"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Quy tắc",
+              "body": "Đọc chính xác thuật ngữ và số thập phân; không hy sinh nghĩa toán để nói nhanh."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức an toàn",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Seminar flow",
+              "body": "model → assumptions → statistic → uncertainty → conclusion\nKhông được bỏ qua assumptions và uncertainty."
+            },
+            {
+              "type": "formula",
+              "title": "Probability check",
+              "body": "0≤P≤1, Σp=1 / ∫f=1\nSanity check cho mô hình xác suất."
+            },
+            {
+              "type": "formula",
+              "title": "Inference check",
+              "body": "effect size + interval + p-value\nKết luận tốt không dựa vào p-value một mình."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Điều kiện / giả thiết",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Mọi kết luận seminar phải nêu phạm vi dữ liệu, assumptions và mức bất định; nếu dữ liệu vi phạm assumptions phải nói rõ giới hạn."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Trước khi tính",
+              "items": [
+                "Xác định mô hình/data-generating process.",
+                "Kiểm điều kiện tồn tại/normalization.",
+                "Kiểm independence/iid nếu công thức cần.",
+                "Nêu rõ tham số, sample size và phạm vi suy luận."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "phrase_pattern",
+          "title": "Mẫu câu seminar",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Mẫu",
+              "items": [
+                "Сначала сформулирую модель и предпосылки.",
+                "Затем вычислю статистику и оценю неопределённость.",
+                "В конце отделю статистическую значимость от практической."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "symbol_to_speech",
+          "title": "Đọc ký hiệu thành lời",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cách luyện",
+              "body": "Đọc công thức «model → assumptions → statistic → uncertainty → conclusion» bằng tiếng Nga rồi giải thích điều kiện áp dụng bằng một câu thứ hai."
+            }
+          ]
+        },
+        {
+          "role": "reading_example",
+          "title": "Đọc đề và xác định mô hình",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "Giảng viên cho bảng latency trước/sau tối ưu. Cần kiểm pairing/sampling, chọn summary/test phù hợp, báo effect + CI + p-value và ý nghĩa kỹ thuật."
+            },
+            {
+              "type": "text",
+              "title": "Nhiệm vụ",
+              "body": "Khoanh câu lệnh, xác định biến ngẫu nhiên/parameter/sample, rồi mới chọn công thức."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Lời giải mẫu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu",
+              "body": "Сначала проверю структуру выборки и предпосылки. Затем оценю эффект и доверительный интервал. p-значение использую только как часть вывода, а не как единственный критерий."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Cấu trúc",
+              "items": [
+                "Mô hình/dữ kiện.",
+                "Công thức hoặc statistic.",
+                "Điều kiện/assumption.",
+                "Kết luận có diễn giải."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "reasoning_pipeline",
+          "title": "Pipeline suy luận",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Quy trình",
+              "items": [
+                "Định nghĩa event/variable/sample.",
+                "Chọn model/statistic phù hợp.",
+                "Tính probability/estimate/interval/test.",
+                "Sanity check và diễn giải giới hạn."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "oral_response",
+          "title": "Vấn đáp 30–90 giây",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Prompt",
+              "body": "Giải thích «Seminar xác suất - thống kê Nga: đọc đề, giải bảng và bảo vệ kết luận» bằng tiếng Nga, bắt buộc nêu một assumption và một công thức."
+            },
+            {
+              "type": "text",
+              "title": "Mẫu",
+              "body": "Сначала проверю структуру выборки и предпосылки. Затем оценю эффект и доверительный интервал. p-значение использую только как часть вывода, а не как единственный критерий."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy suy luận thống kê",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Kết luận chỉ từ một con số p-value hoặc một histogram là không đủ; phải kiểm model, sampling, effect size và uncertainty."
+            }
+          ]
+        },
+        {
+          "role": "statistical_logic_gate",
+          "title": "Cổng logic xác suất–thống kê",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tự kiểm",
+              "items": [
+                "Có nhầm conditional với reverse conditional không?",
+                "Có nhầm density với probability không?",
+                "Có suy từ correlation/significance sang causality/importance không?",
+                "Có bỏ qua sample design/base rate/effect size không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ AI – sensor – reliability",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Đây là format trực tiếp cho báo cáo thí nghiệm, benchmark AI, reliability testing và bảo vệ kết quả nghiên cứu."
+            }
+          ]
+        },
+        {
+          "role": "uncertainty_gate",
+          "title": "Cổng bất định trước kết luận",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Báo uncertainty/dispersion khi phù hợp.",
+                "Không biến estimate thành ground truth.",
+                "Tách statistical significance khỏi practical significance.",
+                "Nêu assumptions và giới hạn dữ liệu."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi trong seminar",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu sửa",
+              "body": "Я сделал вывод только по p-value. Исправляю: добавлю размер эффекта, интервал неопределённости и проверку предпосылок."
+            },
+            {
+              "type": "text",
+              "title": "Nguyên tắc",
+              "body": "Nêu lỗi diễn giải/model → sửa điều kiện → tính/diễn giải lại → cập nhật kết luận."
+            }
+          ]
+        },
+        {
+          "role": "mini_drill",
+          "title": "Drill 5 phút",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "5 vòng",
+              "items": [
+                "Đọc 8 thuật ngữ có trọng âm.",
+                "Đọc 3 công thức thành lời.",
+                "Nêu một assumption.",
+                "Giải một ví dụ nhỏ.",
+                "Sửa một lỗi diễn giải bằng tiếng Nga."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Câu hỏi giảng viên",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Q&A",
+              "items": [
+                {
+                  "q": "Nếu p<0.05 nhưng effect rất nhỏ, kết luận nên thế nào?",
+                  "a": "Có thể có statistical significance nhưng practical significance thấp; cần báo effect size/CI và bối cảnh kỹ thuật."
+                },
+                {
+                  "q": "Giả thiết nào quan trọng nhất?",
+                  "a": "Mọi kết luận seminar phải nêu phạm vi dữ liệu, assumptions và mức bất định; nếu dữ liệu vi phạm assumptions phải nói rõ giới hạn."
+                },
+                {
+                  "q": "Bẫy suy luận nào phải tránh?",
+                  "a": "Kết luận chỉ từ một con số p-value hoặc một histogram là không đủ; phải kiểm model, sampling, effect size và uncertainty."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.8",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Không được bỏ qua assumptions và uncertainty.",
+                "Mọi kết luận seminar phải nêu phạm vi dữ liệu, assumptions và mức bất định; nếu dữ liệu vi phạm assumptions phải nói rõ giới hạn.",
+                "Kết luận chỉ từ một con số p-value hoặc một histogram là không đủ; phải kiểm model, sampling, effect size và uncertainty.",
+                "Kết luận luôn đi cùng uncertainty/assumptions."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Exit ticket",
+              "body": "Nói một câu Nga chứa «усло́вие зада́чи» và giải thích một công thức của bài."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

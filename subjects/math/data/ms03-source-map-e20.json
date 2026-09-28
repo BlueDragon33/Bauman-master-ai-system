@@ -1,0 +1,234 @@
+{
+  "schema": "bauman_math_logical_module_source_map_v1",
+  "recoveryId": "E20",
+  "frameworkChapterId": "m_s03",
+  "logicalModuleId": "m_s03",
+  "moduleId": "m_s03",
+  "moduleTitle": "Xác suất - thống kê bằng tiếng Nga",
+  "stageId": "prep",
+  "architecture": "framework_chapter_over_existing_prep_probability_statistics_spine",
+  "legacyFrameworkAlias": "MATH-PREP-PS-C11",
+  "legacyAliasPolicy": "reference_only_not_runtime_physical_chapter",
+  "status": "PASS_STATIC_BROWSER_CI",
+  "correction": {
+    "rule": "m_s03 là framework/logical chapter. Giá trị MATH-PREP-PS-C11 trong framework là alias legacy, không tồn tại trong physical chapter_spine và không được materialize thành chapter mới.",
+    "physicalSpineTruth": [
+      "MATH-PREP-C15 là Probability: events, conditional probability, random variables, moments, named distributions.",
+      "MATH-PREP-C16 là Statistics: sample statistics, confidence intervals, hypothesis testing and seminar inference.",
+      "Modern Content Vault là runtime authority; source-map giữ liên kết framework/logical/program/physical."
+    ]
+  },
+  "commonProgramAnchors": [
+    "MATH-PROG-L12-probability-random-variables",
+    "MATH-PROG-L13-mathematical-statistics"
+  ],
+  "logicalLessons": [
+    {
+      "logicalId": "m_s03_t01",
+      "title": "Biến cố, không gian mẫu và xác suất trong tiếng Nga",
+      "physicalChapterIds": [
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo"
+      ],
+      "runtimeChapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "theoryLessonIds": [
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T01-events-sample-space"
+      ],
+      "programLectureId": "MATH-PROG-L12-probability-random-variables",
+      "commonProgramLectureIds": [
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E20",
+      "prerequisiteLogicalIds": []
+    },
+    {
+      "logicalId": "m_s03_t02",
+      "title": "Xác suất có điều kiện, độc lập và công thức Bayes bằng tiếng Nga",
+      "physicalChapterIds": [
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo"
+      ],
+      "runtimeChapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "theoryLessonIds": [
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T02-conditional-bayes"
+      ],
+      "programLectureId": "MATH-PROG-L12-probability-random-variables",
+      "commonProgramLectureIds": [
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E20",
+      "prerequisiteLogicalIds": [
+        "m_s03_t01"
+      ]
+    },
+    {
+      "logicalId": "m_s03_t03",
+      "title": "Biến ngẫu nhiên và phân phối xác suất bằng tiếng Nga",
+      "physicalChapterIds": [
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo"
+      ],
+      "runtimeChapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "theoryLessonIds": [
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T03-random-variables-distributions"
+      ],
+      "programLectureId": "MATH-PROG-L12-probability-random-variables",
+      "commonProgramLectureIds": [
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E20",
+      "prerequisiteLogicalIds": [
+        "m_s03_t02"
+      ]
+    },
+    {
+      "logicalId": "m_s03_t04",
+      "title": "Kỳ vọng, phương sai, độ lệch chuẩn và moment bằng tiếng Nga",
+      "physicalChapterIds": [
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo"
+      ],
+      "runtimeChapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "theoryLessonIds": [
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T04-moments-variance"
+      ],
+      "programLectureId": "MATH-PROG-L12-probability-random-variables",
+      "commonProgramLectureIds": [
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E20",
+      "prerequisiteLogicalIds": [
+        "m_s03_t03"
+      ]
+    },
+    {
+      "logicalId": "m_s03_t05",
+      "title": "Bernoulli, nhị thức, Poisson, chuẩn và mũ bằng tiếng Nga",
+      "physicalChapterIds": [
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo"
+      ],
+      "runtimeChapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "theoryLessonIds": [
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T05-named-distributions"
+      ],
+      "programLectureId": "MATH-PROG-L12-probability-random-variables",
+      "commonProgramLectureIds": [
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E20",
+      "prerequisiteLogicalIds": [
+        "m_s03_t04"
+      ]
+    },
+    {
+      "logicalId": "m_s03_t06",
+      "title": "Thống kê mẫu, trung bình mẫu, phương sai mẫu và histogram bằng tiếng Nga",
+      "physicalChapterIds": [
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_"
+      ],
+      "runtimeChapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "theoryLessonIds": [
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T06-sample-statistics-histogram"
+      ],
+      "programLectureId": "MATH-PROG-L13-mathematical-statistics",
+      "commonProgramLectureIds": [
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E20",
+      "prerequisiteLogicalIds": [
+        "m_s03_t05"
+      ]
+    },
+    {
+      "logicalId": "m_s03_t07",
+      "title": "Khoảng tin cậy, kiểm định giả thuyết và p-value bằng tiếng Nga",
+      "physicalChapterIds": [
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_"
+      ],
+      "runtimeChapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "theoryLessonIds": [
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T07-confidence-hypothesis-pvalue"
+      ],
+      "programLectureId": "MATH-PROG-L13-mathematical-statistics",
+      "commonProgramLectureIds": [
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E20",
+      "prerequisiteLogicalIds": [
+        "m_s03_t06"
+      ]
+    },
+    {
+      "logicalId": "m_s03_t08",
+      "title": "Seminar xác suất - thống kê Nga: đọc đề, giải bảng và bảo vệ kết luận",
+      "physicalChapterIds": [
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_"
+      ],
+      "runtimeChapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "theoryLessonIds": [
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T08-russian-probability-statistics-seminar"
+      ],
+      "programLectureId": "MATH-PROG-L13-mathematical-statistics",
+      "commonProgramLectureIds": [
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E20",
+      "prerequisiteLogicalIds": [
+        "m_s03_t07"
+      ]
+    }
+  ],
+  "contentGate": {
+    "requiredLogicalLessons": 8,
+    "expected": {
+      "theorySlides": 160,
+      "formulas": 24,
+      "exercises": 64,
+      "applications": 16,
+      "simulations": 16,
+      "professorQA": 8,
+      "questions": 48,
+      "reviewPacks": 8
+    },
+    "requiredSlideRoles": [
+      "russian_term_bridge",
+      "pronunciation_drill",
+      "assumption_gate",
+      "statistical_logic_gate",
+      "uncertainty_gate",
+      "oral_response",
+      "warning_counterexample",
+      "error_repair"
+    ],
+    "completionRule": "PASS only when content counts, Russian terminology, assumption/uncertainty/statistical-logic gates, sidecar links, C15/C16 integrity, L12/L13 routing and Chromium acceptance all pass."
+  },
+  "constitutionalEvidence": {
+    "policyId": "blueprint-os:universal-century-grade",
+    "policyVersion": "1.1.0",
+    "blueprintLevel": "B4",
+    "evidenceAuthority": "canonical-quality-gates",
+    "productionAuthority": "separate-explicit-release-gate"
+  },
+  "verifiedAt": "2026-09-28",
+  "pr": 149,
+  "gateResults": {
+    "academic": "PASS",
+    "runtimeStatic": "PASS",
+    "browser": "PASS",
+    "developmentFastCI": "PASS",
+    "e19Regression": "PASS",
+    "e18Regression": "PASS",
+    "e17Regression": "PASS",
+    "universalConstitution": "PASS"
+  },
+  "runtimeIsolation": {
+    "rule": "E20 runtime programLectureIds are restricted to L12/L13; L14 is forbidden to preserve E17 time-series route isolation.",
+    "regressionIncident": "Initial E20 draft leaked two lessons into L14, causing E17 browser to see 10 instead of 8 lessons; fixed and regression-tested.",
+    "status": "PASS"
+  }
+}

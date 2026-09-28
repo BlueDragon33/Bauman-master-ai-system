@@ -1532,6 +1532,454 @@
       "title": "Engineering/AI bridge · Seminar đại số tuyến tính Nga: đọc đề, giải, kiểm và bảo vệ lời giải",
       "scenario": "Kỹ năng này chuyển trực tiếp sang seminar Bauman, bảo vệ đồ án, giải thích code/solver và luận văn.",
       "method": "Map đối tượng kỹ thuật về vector/matrix/map/subspace, kiểm shape/rank/assumption rồi mới áp dụng công thức."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t01",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T01-events-sample-space",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "events-sample-space"
+      ],
+      "sourceAnchors": [
+        "m_s03_t01",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "applicationId": "E20-M_S03_T01-A01",
+      "title": "Russian seminar · Biến cố, không gian mẫu và xác suất trong tiếng Nga",
+      "scenario": "Giảng viên đưa đề/bảng dữ liệu và yêu cầu nêu model, assumptions, phép tính và bảo vệ kết luận.",
+      "method": "Dùng thuật ngữ m_s03_t01, assumption gate và statistical-logic gate; không kết luận ngoài dữ liệu."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t01",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T01-events-sample-space",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "events-sample-space"
+      ],
+      "sourceAnchors": [
+        "m_s03_t01",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "applicationId": "E20-M_S03_T01-A02",
+      "title": "AI/sensor/reliability bridge · Biến cố, không gian mẫu và xác suất trong tiếng Nga",
+      "scenario": "Mô hình event/sample space là nền để mô tả lỗi cảm biến, dropout mạng, sự kiện lỗi hệ thống và xác suất thành công của nhiệm vụ.",
+      "method": "Xác định uncertainty source → model → statistic → validation → conclusion có giới hạn."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t02",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T02-conditional-bayes",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "conditional-bayes"
+      ],
+      "sourceAnchors": [
+        "m_s03_t02",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "applicationId": "E20-M_S03_T02-A01",
+      "title": "Russian seminar · Xác suất có điều kiện, độc lập và công thức Bayes bằng tiếng Nga",
+      "scenario": "Giảng viên đưa đề/bảng dữ liệu và yêu cầu nêu model, assumptions, phép tính và bảo vệ kết luận.",
+      "method": "Dùng thuật ngữ m_s03_t02, assumption gate và statistical-logic gate; không kết luận ngoài dữ liệu."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t02",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T02-conditional-bayes",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "conditional-bayes"
+      ],
+      "sourceAnchors": [
+        "m_s03_t02",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "applicationId": "E20-M_S03_T02-A02",
+      "title": "AI/sensor/reliability bridge · Xác suất có điều kiện, độc lập và công thức Bayes bằng tiếng Nga",
+      "scenario": "Bayes dùng trong chẩn đoán lỗi, sensor fusion, lọc trạng thái và cập nhật niềm tin khi có dữ liệu mới.",
+      "method": "Xác định uncertainty source → model → statistic → validation → conclusion có giới hạn."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t03",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T03-random-variables-distributions",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "random-variables-distributions"
+      ],
+      "sourceAnchors": [
+        "m_s03_t03",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "applicationId": "E20-M_S03_T03-A01",
+      "title": "Russian seminar · Biến ngẫu nhiên và phân phối xác suất bằng tiếng Nga",
+      "scenario": "Giảng viên đưa đề/bảng dữ liệu và yêu cầu nêu model, assumptions, phép tính và bảo vệ kết luận.",
+      "method": "Dùng thuật ngữ m_s03_t03, assumption gate và statistical-logic gate; không kết luận ngoài dữ liệu."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t03",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T03-random-variables-distributions",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "random-variables-distributions"
+      ],
+      "sourceAnchors": [
+        "m_s03_t03",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "applicationId": "E20-M_S03_T03-A02",
+      "title": "AI/sensor/reliability bridge · Biến ngẫu nhiên và phân phối xác suất bằng tiếng Nga",
+      "scenario": "Phân phối mô tả nhiễu sensor, thời gian chờ, lỗi đo và uncertainty của mô hình.",
+      "method": "Xác định uncertainty source → model → statistic → validation → conclusion có giới hạn."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t04",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T04-moments-variance",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "moments-variance"
+      ],
+      "sourceAnchors": [
+        "m_s03_t04",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "applicationId": "E20-M_S03_T04-A01",
+      "title": "Russian seminar · Kỳ vọng, phương sai, độ lệch chuẩn và moment bằng tiếng Nga",
+      "scenario": "Giảng viên đưa đề/bảng dữ liệu và yêu cầu nêu model, assumptions, phép tính và bảo vệ kết luận.",
+      "method": "Dùng thuật ngữ m_s03_t04, assumption gate và statistical-logic gate; không kết luận ngoài dữ liệu."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t04",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T04-moments-variance",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "moments-variance"
+      ],
+      "sourceAnchors": [
+        "m_s03_t04",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "applicationId": "E20-M_S03_T04-A02",
+      "title": "AI/sensor/reliability bridge · Kỳ vọng, phương sai, độ lệch chuẩn và moment bằng tiếng Nga",
+      "scenario": "Mean/variance là ngôn ngữ cơ bản của nhiễu, uncertainty, Monte Carlo và đánh giá độ ổn định dữ liệu.",
+      "method": "Xác định uncertainty source → model → statistic → validation → conclusion có giới hạn."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t05",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T05-named-distributions",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "named-distributions"
+      ],
+      "sourceAnchors": [
+        "m_s03_t05",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "applicationId": "E20-M_S03_T05-A01",
+      "title": "Russian seminar · Bernoulli, nhị thức, Poisson, chuẩn và mũ bằng tiếng Nga",
+      "scenario": "Giảng viên đưa đề/bảng dữ liệu và yêu cầu nêu model, assumptions, phép tính và bảo vệ kết luận.",
+      "method": "Dùng thuật ngữ m_s03_t05, assumption gate và statistical-logic gate; không kết luận ngoài dữ liệu."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t05",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T05-named-distributions",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "named-distributions"
+      ],
+      "sourceAnchors": [
+        "m_s03_t05",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "applicationId": "E20-M_S03_T05-A02",
+      "title": "AI/sensor/reliability bridge · Bernoulli, nhị thức, Poisson, chuẩn và mũ bằng tiếng Nga",
+      "scenario": "Các phân phối nền giúp mô hình hóa lỗi hiếm, packet loss, thời gian chờ, nhiễu Gaussian và dữ liệu nhị phân trong ML.",
+      "method": "Xác định uncertainty source → model → statistic → validation → conclusion có giới hạn."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t06",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T06-sample-statistics-histogram",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "sample-statistics-histogram"
+      ],
+      "sourceAnchors": [
+        "m_s03_t06",
+        "m_s03",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "applicationId": "E20-M_S03_T06-A01",
+      "title": "Russian seminar · Thống kê mẫu, trung bình mẫu, phương sai mẫu và histogram bằng tiếng Nga",
+      "scenario": "Giảng viên đưa đề/bảng dữ liệu và yêu cầu nêu model, assumptions, phép tính và bảo vệ kết luận.",
+      "method": "Dùng thuật ngữ m_s03_t06, assumption gate và statistical-logic gate; không kết luận ngoài dữ liệu."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t06",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T06-sample-statistics-histogram",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "sample-statistics-histogram"
+      ],
+      "sourceAnchors": [
+        "m_s03_t06",
+        "m_s03",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "applicationId": "E20-M_S03_T06-A02",
+      "title": "AI/sensor/reliability bridge · Thống kê mẫu, trung bình mẫu, phương sai mẫu và histogram bằng tiếng Nga",
+      "scenario": "Sample statistics dùng để tóm tắt telemetry, benchmark model, kiểm tra drift và báo cáo thử nghiệm.",
+      "method": "Xác định uncertainty source → model → statistic → validation → conclusion có giới hạn."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t07",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T07-confidence-hypothesis-pvalue",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "confidence-hypothesis-pvalue"
+      ],
+      "sourceAnchors": [
+        "m_s03_t07",
+        "m_s03",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "applicationId": "E20-M_S03_T07-A01",
+      "title": "Russian seminar · Khoảng tin cậy, kiểm định giả thuyết và p-value bằng tiếng Nga",
+      "scenario": "Giảng viên đưa đề/bảng dữ liệu và yêu cầu nêu model, assumptions, phép tính và bảo vệ kết luận.",
+      "method": "Dùng thuật ngữ m_s03_t07, assumption gate và statistical-logic gate; không kết luận ngoài dữ liệu."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t07",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T07-confidence-hypothesis-pvalue",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "confidence-hypothesis-pvalue"
+      ],
+      "sourceAnchors": [
+        "m_s03_t07",
+        "m_s03",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "applicationId": "E20-M_S03_T07-A02",
+      "title": "AI/sensor/reliability bridge · Khoảng tin cậy, kiểm định giả thuyết và p-value bằng tiếng Nga",
+      "scenario": "Đây là nền để đánh giá mô hình, A/B test, reliability test và xác minh cải tiến hệ thống.",
+      "method": "Xác định uncertainty source → model → statistic → validation → conclusion có giới hạn."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t08",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T08-russian-probability-statistics-seminar",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "russian-probability-statistics-seminar"
+      ],
+      "sourceAnchors": [
+        "m_s03_t08",
+        "m_s03",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "applicationId": "E20-M_S03_T08-A01",
+      "title": "Russian seminar · Seminar xác suất - thống kê Nga: đọc đề, giải bảng và bảo vệ kết luận",
+      "scenario": "Giảng viên đưa đề/bảng dữ liệu và yêu cầu nêu model, assumptions, phép tính và bảo vệ kết luận.",
+      "method": "Dùng thuật ngữ m_s03_t08, assumption gate và statistical-logic gate; không kết luận ngoài dữ liệu."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t08",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T08-russian-probability-statistics-seminar",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "russian-probability-statistics-seminar"
+      ],
+      "sourceAnchors": [
+        "m_s03_t08",
+        "m_s03",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "applicationId": "E20-M_S03_T08-A02",
+      "title": "AI/sensor/reliability bridge · Seminar xác suất - thống kê Nga: đọc đề, giải bảng và bảo vệ kết luận",
+      "scenario": "Đây là format trực tiếp cho báo cáo thí nghiệm, benchmark AI, reliability testing và bảo vệ kết quả nghiên cứu.",
+      "method": "Xác định uncertainty source → model → statistic → validation → conclusion có giới hạn."
     }
   ],
   "importPolicy": {
@@ -1579,7 +2027,7 @@
     "method": "Chuẩn hóa rồi tính cosine similarity.",
     "auditStatus": "DRAFT"
   },
-  "updatedAt": "2026-09-27",
+  "updatedAt": "2026-09-28",
   "emoji": "🧩",
   "cleanArchitecturePolicy": {
     "contentMustNotStoreStageTree": true,
@@ -1635,6 +2083,26 @@
         "runtimeStatic": "PASS",
         "browser": "PASS",
         "developmentFastCI": "PASS",
+        "e18Regression": "PASS",
+        "e17Regression": "PASS",
+        "universalConstitution": "PASS"
+      }
+    },
+    "E20": {
+      "status": "PASS_STATIC_BROWSER_CI",
+      "frameworkChapterId": "m_s03",
+      "logicalModuleId": "m_s03",
+      "lessons": 8,
+      "theorySlides": 160,
+      "updatedAt": "2026-09-28",
+      "verifiedAt": "2026-09-28",
+      "pr": 149,
+      "gateResults": {
+        "academic": "PASS",
+        "runtimeStatic": "PASS",
+        "browser": "PASS",
+        "developmentFastCI": "PASS",
+        "e19Regression": "PASS",
         "e18Regression": "PASS",
         "e17Regression": "PASS",
         "universalConstitution": "PASS"

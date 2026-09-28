@@ -1411,6 +1411,414 @@
           "prompt": "Giải thích và sửa bẫy: Một lời giải có đáp số đúng nhưng dùng phép biến đổi không hợp lệ vẫn không đạt chuẩn seminar; phải bảo vệ điều kiện của từng bước."
         }
       ]
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t01",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T01-events-sample-space",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "events-sample-space"
+      ],
+      "sourceAnchors": [
+        "m_s03_t01",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "reviewPackId": "E20-M_S03_T01-RP01",
+      "items": [
+        {
+          "type": "terms",
+          "prompt": "Đọc 8 thuật ngữ Nga, nói nghĩa Việt và English."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và nêu assumptions."
+        },
+        {
+          "type": "model_gate",
+          "prompt": "Xác định model/data-generating process trước khi chọn công thức."
+        },
+        {
+          "type": "worked_problem",
+          "prompt": "Giải một ví dụ nhỏ và sanity-check kết quả."
+        },
+        {
+          "type": "oral",
+          "prompt": "Bảo vệ kết luận bằng tiếng Nga trong tối đa 90 giây."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích và sửa bẫy: Không được cộng P(A)+P(B) trực tiếp nếu A và B không xung khắc; phải trừ phần giao."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t02",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T02-conditional-bayes",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "conditional-bayes"
+      ],
+      "sourceAnchors": [
+        "m_s03_t02",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "reviewPackId": "E20-M_S03_T02-RP01",
+      "items": [
+        {
+          "type": "terms",
+          "prompt": "Đọc 8 thuật ngữ Nga, nói nghĩa Việt và English."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và nêu assumptions."
+        },
+        {
+          "type": "model_gate",
+          "prompt": "Xác định model/data-generating process trước khi chọn công thức."
+        },
+        {
+          "type": "worked_problem",
+          "prompt": "Giải một ví dụ nhỏ và sanity-check kết quả."
+        },
+        {
+          "type": "oral",
+          "prompt": "Bảo vệ kết luận bằng tiếng Nga trong tối đa 90 giây."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích và sửa bẫy: Không được đồng nhất P(A|B) với P(B|A). Base-rate neglect là lỗi rất phổ biến khi đọc test y tế/cảnh báo hệ thống."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t03",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T03-random-variables-distributions",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "random-variables-distributions"
+      ],
+      "sourceAnchors": [
+        "m_s03_t03",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "reviewPackId": "E20-M_S03_T03-RP01",
+      "items": [
+        {
+          "type": "terms",
+          "prompt": "Đọc 8 thuật ngữ Nga, nói nghĩa Việt và English."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và nêu assumptions."
+        },
+        {
+          "type": "model_gate",
+          "prompt": "Xác định model/data-generating process trước khi chọn công thức."
+        },
+        {
+          "type": "worked_problem",
+          "prompt": "Giải một ví dụ nhỏ và sanity-check kết quả."
+        },
+        {
+          "type": "oral",
+          "prompt": "Bảo vệ kết luận bằng tiếng Nga trong tối đa 90 giây."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích và sửa bẫy: Với biến liên tục, f_X(x) có thể lớn hơn 1 và P(X=x)=0; PDF không phải xác suất điểm."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t04",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T04-moments-variance",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "moments-variance"
+      ],
+      "sourceAnchors": [
+        "m_s03_t04",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "reviewPackId": "E20-M_S03_T04-RP01",
+      "items": [
+        {
+          "type": "terms",
+          "prompt": "Đọc 8 thuật ngữ Nga, nói nghĩa Việt và English."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và nêu assumptions."
+        },
+        {
+          "type": "model_gate",
+          "prompt": "Xác định model/data-generating process trước khi chọn công thức."
+        },
+        {
+          "type": "worked_problem",
+          "prompt": "Giải một ví dụ nhỏ và sanity-check kết quả."
+        },
+        {
+          "type": "oral",
+          "prompt": "Bảo vệ kết luận bằng tiếng Nga trong tối đa 90 giây."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích và sửa bẫy: Không được lấy E[g(X)]=g(E[X]) nói chung; điều này chỉ đúng cho một số g đặc biệt (ví dụ affine)."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t05",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T05-named-distributions",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "named-distributions"
+      ],
+      "sourceAnchors": [
+        "m_s03_t05",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "reviewPackId": "E20-M_S03_T05-RP01",
+      "items": [
+        {
+          "type": "terms",
+          "prompt": "Đọc 8 thuật ngữ Nga, nói nghĩa Việt và English."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và nêu assumptions."
+        },
+        {
+          "type": "model_gate",
+          "prompt": "Xác định model/data-generating process trước khi chọn công thức."
+        },
+        {
+          "type": "worked_problem",
+          "prompt": "Giải một ví dụ nhỏ và sanity-check kết quả."
+        },
+        {
+          "type": "oral",
+          "prompt": "Bảo vệ kết luận bằng tiếng Nga trong tối đa 90 giây."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích và sửa bẫy: Không chọn distribution chỉ vì histogram trông giống; phải xét cơ chế sinh dữ liệu và assumptions."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t06",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T06-sample-statistics-histogram",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "sample-statistics-histogram"
+      ],
+      "sourceAnchors": [
+        "m_s03_t06",
+        "m_s03",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "reviewPackId": "E20-M_S03_T06-RP01",
+      "items": [
+        {
+          "type": "terms",
+          "prompt": "Đọc 8 thuật ngữ Nga, nói nghĩa Việt và English."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và nêu assumptions."
+        },
+        {
+          "type": "model_gate",
+          "prompt": "Xác định model/data-generating process trước khi chọn công thức."
+        },
+        {
+          "type": "worked_problem",
+          "prompt": "Giải một ví dụ nhỏ và sanity-check kết quả."
+        },
+        {
+          "type": "oral",
+          "prompt": "Bảo vệ kết luận bằng tiếng Nga trong tối đa 90 giây."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích và sửa bẫy: Histogram phụ thuộc bin width; hình dạng khác nhau có thể do cách chia bin chứ không phải dữ liệu khác."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t07",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T07-confidence-hypothesis-pvalue",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "confidence-hypothesis-pvalue"
+      ],
+      "sourceAnchors": [
+        "m_s03_t07",
+        "m_s03",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "reviewPackId": "E20-M_S03_T07-RP01",
+      "items": [
+        {
+          "type": "terms",
+          "prompt": "Đọc 8 thuật ngữ Nga, nói nghĩa Việt và English."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và nêu assumptions."
+        },
+        {
+          "type": "model_gate",
+          "prompt": "Xác định model/data-generating process trước khi chọn công thức."
+        },
+        {
+          "type": "worked_problem",
+          "prompt": "Giải một ví dụ nhỏ và sanity-check kết quả."
+        },
+        {
+          "type": "oral",
+          "prompt": "Bảo vệ kết luận bằng tiếng Nga trong tối đa 90 giây."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích và sửa bẫy: p-value không phải P(H₀ đúng | dữ liệu), và 95% confidence interval không có nghĩa tham số cố định có xác suất 95% nằm trong interval sau khi đã quan sát dữ liệu."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t08",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T08-russian-probability-statistics-seminar",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "russian-probability-statistics-seminar"
+      ],
+      "sourceAnchors": [
+        "m_s03_t08",
+        "m_s03",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "reviewPackId": "E20-M_S03_T08-RP01",
+      "items": [
+        {
+          "type": "terms",
+          "prompt": "Đọc 8 thuật ngữ Nga, nói nghĩa Việt và English."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và nêu assumptions."
+        },
+        {
+          "type": "model_gate",
+          "prompt": "Xác định model/data-generating process trước khi chọn công thức."
+        },
+        {
+          "type": "worked_problem",
+          "prompt": "Giải một ví dụ nhỏ và sanity-check kết quả."
+        },
+        {
+          "type": "oral",
+          "prompt": "Bảo vệ kết luận bằng tiếng Nga trong tối đa 90 giây."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích và sửa bẫy: Kết luận chỉ từ một con số p-value hoặc một histogram là không đủ; phải kiểm model, sampling, effect size và uncertainty."
+        }
+      ]
     }
   ],
   "importPolicy": {
@@ -1459,7 +1867,7 @@
     ],
     "auditStatus": "DRAFT"
   },
-  "updatedAt": "2026-09-27",
+  "updatedAt": "2026-09-28",
   "emoji": "🧪",
   "cleanArchitecturePolicy": {
     "contentMustNotStoreStageTree": true,
@@ -1515,6 +1923,26 @@
         "runtimeStatic": "PASS",
         "browser": "PASS",
         "developmentFastCI": "PASS",
+        "e18Regression": "PASS",
+        "e17Regression": "PASS",
+        "universalConstitution": "PASS"
+      }
+    },
+    "E20": {
+      "status": "PASS_STATIC_BROWSER_CI",
+      "frameworkChapterId": "m_s03",
+      "logicalModuleId": "m_s03",
+      "lessons": 8,
+      "theorySlides": 160,
+      "updatedAt": "2026-09-28",
+      "verifiedAt": "2026-09-28",
+      "pr": 149,
+      "gateResults": {
+        "academic": "PASS",
+        "runtimeStatic": "PASS",
+        "browser": "PASS",
+        "developmentFastCI": "PASS",
+        "e19Regression": "PASS",
         "e18Regression": "PASS",
         "e17Regression": "PASS",
         "universalConstitution": "PASS"
