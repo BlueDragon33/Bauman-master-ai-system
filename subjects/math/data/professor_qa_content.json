@@ -1942,6 +1942,198 @@
       "qaId": "E24-MM103-T08-QA01",
       "question": "Vì sao Mini-project: clustering telemetry, đánh giá và báo cáo cần condition gate trước khi kết luận?",
       "answer": "Pipeline phải giữ provenance: split/fit transform/seed/metric/k hoặc ε-MinPts và mapping cluster→diễn giải. Không đạt gate thì metric/cluster có thể chạy nhưng không có ý nghĩa kỹ thuật."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t01",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T01-readiness-diagnostic",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "readiness-diagnostic"
+      ],
+      "sourceAnchors": [
+        "m_m104_t01",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "qaId": "E25-MM104-T01-QA01",
+      "question": "Điều gì khiến một đáp án của «Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering» bị FAIL dù đáp số cuối đúng?",
+      "answer": "Vi phạm condition/provenance/data leakage hoặc không kiểm chứng được reasoning. Gate: Chỉ PASS khi lỗi công thức, condition và data-leakage đều dưới ngưỡng; không bù lỗi nền bằng điểm ứng dụng."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t02",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-contract-exam",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "multidim-contract-exam"
+      ],
+      "sourceAnchors": [
+        "m_m104_t02",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "qaId": "E25-MM104-T02-QA01",
+      "question": "Điều gì khiến một đáp án của «Sát hạch data matrix, scale, covariance và geometry» bị FAIL dù đáp số cuối đúng?",
+      "answer": "Vi phạm condition/provenance/data leakage hoặc không kiểm chứng được reasoning. Gate: Khóa orientation, units, centering/scaling và split provenance trước phép tính."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t03",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-pca-svd-exam",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "pca-svd-exam"
+      ],
+      "sourceAnchors": [
+        "m_m104_t03",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "qaId": "E25-MM104-T03-QA01",
+      "question": "Điều gì khiến một đáp án của «Sát hạch PCA/SVD, explained variance và reconstruction» bị FAIL dù đáp số cuối đúng?",
+      "answer": "Vi phạm condition/provenance/data leakage hoặc không kiểm chứng được reasoning. Gate: Center đúng; chọn k bằng explained variance + task utility; kiểm orthogonality, reconstruction error và train-fit provenance."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t04",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-similarity-exam",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "similarity-exam"
+      ],
+      "sourceAnchors": [
+        "m_m104_t04",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "qaId": "E25-MM104-T04-QA01",
+      "question": "Điều gì khiến một đáp án của «Sát hạch similarity, metric và nearest-neighbor geometry» bị FAIL dù đáp số cuối đúng?",
+      "answer": "Vi phạm condition/provenance/data leakage hoặc không kiểm chứng được reasoning. Gate: Metric phải phản ánh semantics; kiểm scale, zero vector, high-dimensional concentration và tie handling."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t05",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-kmeans-exam",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "kmeans-exam"
+      ],
+      "sourceAnchors": [
+        "m_m104_t05",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "qaId": "E25-MM104-T05-QA01",
+      "question": "Điều gì khiến một đáp án của «Sát hạch K-means, k, inertia, silhouette và stability» bị FAIL dù đáp số cuối đúng?",
+      "answer": "Vi phạm condition/provenance/data leakage hoặc không kiểm chứng được reasoning. Gate: Multi-seed, scale đúng, empty-cluster handling và chọn k bằng nhiều bằng chứng."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t06",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-density-hierarchical-exam",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "density-hierarchical-exam"
+      ],
+      "sourceAnchors": [
+        "m_m104_t06",
+        "m_m104",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "qaId": "E25-MM104-T06-QA01",
+      "question": "Điều gì khiến một đáp án của «Sát hạch hierarchical clustering và DBSCAN» bị FAIL dù đáp số cuối đúng?",
+      "answer": "Vi phạm condition/provenance/data leakage hoặc không kiểm chứng được reasoning. Gate: Metric/linkage hoặc ε-MinPts phải phù hợp topology và density; noise không mặc định là anomaly."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t07",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-integrated-case",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "integrated-case"
+      ],
+      "sourceAnchors": [
+        "m_m104_t07",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "qaId": "E25-MM104-T07-QA01",
+      "question": "Điều gì khiến một đáp án của «Integrated case: telemetry → PCA → clustering → validation» bị FAIL dù đáp số cuối đúng?",
+      "answer": "Vi phạm condition/provenance/data leakage hoặc không kiểm chứng được reasoning. Gate: Phải có provenance đầy đủ từ input→transform→PCA→cluster→metric; mọi thông số tuning ghi rõ nguồn."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t08",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-oral-written-gate",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "oral-written-gate"
+      ],
+      "sourceAnchors": [
+        "m_m104_t08",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "qaId": "E25-MM104-T08-QA01",
+      "question": "Điều gì khiến một đáp án của «Final HK1 gate: written + oral defense + error repair» bị FAIL dù đáp số cuối đúng?",
+      "answer": "Vi phạm condition/provenance/data leakage hoặc không kiểm chứng được reasoning. Gate: Sát hạch phải có written calculation, oral explanation, error repair và application transfer; critical leakage = FAIL."
     }
   ],
   "importPolicy": {
@@ -2096,6 +2288,8 @@
       "records": 8,
       "updatedAt": "2026-09-28",
       "branch": "feat/math-e24-hk1-similarity-clustering-20260928"
-    }
+    },
+    "latestMaterialization": "E25",
+    "latestModule": "m_m104"
   }
 }
