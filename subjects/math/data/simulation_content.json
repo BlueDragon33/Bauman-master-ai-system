@@ -2968,6 +2968,806 @@
         }
       ],
       "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t01",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T01-events-sample-space",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "events-sample-space"
+      ],
+      "sourceAnchors": [
+        "m_s03_t01",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "simulationId": "E20-M_S03_T01-SIM01",
+      "title": "Probability/statistics explorer · m_s03 · §1.1 · Biến cố, không gian mẫu và xác suất trong tiếng Nga",
+      "purpose": "Tương tác với parameter/sample size/uncertainty để thấy điều kiện và cách diễn giải thay đổi.",
+      "controls": [
+        {
+          "key": "sample_size",
+          "type": "number",
+          "default": 30
+        },
+        {
+          "key": "show_assumptions",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "estimate",
+          "label": "Estimate/Probability"
+        },
+        {
+          "key": "uncertainty",
+          "label": "Uncertainty"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t01",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T01-events-sample-space",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "events-sample-space"
+      ],
+      "sourceAnchors": [
+        "m_s03_t01",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "simulationId": "E20-M_S03_T01-SIM02",
+      "title": "Russian inference seminar · m_s03 · §1.1 · Biến cố, không gian mẫu và xác suất trong tiếng Nga",
+      "purpose": "Mô phỏng đọc đề/bảng dữ liệu, chọn model, tính statistic và bảo vệ conclusion.",
+      "controls": [
+        {
+          "key": "time_limit_sec",
+          "type": "number",
+          "default": 90
+        },
+        {
+          "key": "inject_inference_trap",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "model_score",
+          "label": "Model/assumption score"
+        },
+        {
+          "key": "interpretation_score",
+          "label": "Interpretation/repair score"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t02",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T02-conditional-bayes",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "conditional-bayes"
+      ],
+      "sourceAnchors": [
+        "m_s03_t02",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "simulationId": "E20-M_S03_T02-SIM01",
+      "title": "Probability/statistics explorer · m_s03 · §1.2 · Xác suất có điều kiện, độc lập và công thức Bayes bằng tiếng Nga",
+      "purpose": "Tương tác với parameter/sample size/uncertainty để thấy điều kiện và cách diễn giải thay đổi.",
+      "controls": [
+        {
+          "key": "sample_size",
+          "type": "number",
+          "default": 30
+        },
+        {
+          "key": "show_assumptions",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "estimate",
+          "label": "Estimate/Probability"
+        },
+        {
+          "key": "uncertainty",
+          "label": "Uncertainty"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t02",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T02-conditional-bayes",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "conditional-bayes"
+      ],
+      "sourceAnchors": [
+        "m_s03_t02",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "simulationId": "E20-M_S03_T02-SIM02",
+      "title": "Russian inference seminar · m_s03 · §1.2 · Xác suất có điều kiện, độc lập và công thức Bayes bằng tiếng Nga",
+      "purpose": "Mô phỏng đọc đề/bảng dữ liệu, chọn model, tính statistic và bảo vệ conclusion.",
+      "controls": [
+        {
+          "key": "time_limit_sec",
+          "type": "number",
+          "default": 90
+        },
+        {
+          "key": "inject_inference_trap",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "model_score",
+          "label": "Model/assumption score"
+        },
+        {
+          "key": "interpretation_score",
+          "label": "Interpretation/repair score"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t03",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T03-random-variables-distributions",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "random-variables-distributions"
+      ],
+      "sourceAnchors": [
+        "m_s03_t03",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "simulationId": "E20-M_S03_T03-SIM01",
+      "title": "Probability/statistics explorer · m_s03 · §1.3 · Biến ngẫu nhiên và phân phối xác suất bằng tiếng Nga",
+      "purpose": "Tương tác với parameter/sample size/uncertainty để thấy điều kiện và cách diễn giải thay đổi.",
+      "controls": [
+        {
+          "key": "sample_size",
+          "type": "number",
+          "default": 30
+        },
+        {
+          "key": "show_assumptions",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "estimate",
+          "label": "Estimate/Probability"
+        },
+        {
+          "key": "uncertainty",
+          "label": "Uncertainty"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t03",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T03-random-variables-distributions",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "random-variables-distributions"
+      ],
+      "sourceAnchors": [
+        "m_s03_t03",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "simulationId": "E20-M_S03_T03-SIM02",
+      "title": "Russian inference seminar · m_s03 · §1.3 · Biến ngẫu nhiên và phân phối xác suất bằng tiếng Nga",
+      "purpose": "Mô phỏng đọc đề/bảng dữ liệu, chọn model, tính statistic và bảo vệ conclusion.",
+      "controls": [
+        {
+          "key": "time_limit_sec",
+          "type": "number",
+          "default": 90
+        },
+        {
+          "key": "inject_inference_trap",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "model_score",
+          "label": "Model/assumption score"
+        },
+        {
+          "key": "interpretation_score",
+          "label": "Interpretation/repair score"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t04",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T04-moments-variance",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "moments-variance"
+      ],
+      "sourceAnchors": [
+        "m_s03_t04",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "simulationId": "E20-M_S03_T04-SIM01",
+      "title": "Probability/statistics explorer · m_s03 · §1.4 · Kỳ vọng, phương sai, độ lệch chuẩn và moment bằng tiếng Nga",
+      "purpose": "Tương tác với parameter/sample size/uncertainty để thấy điều kiện và cách diễn giải thay đổi.",
+      "controls": [
+        {
+          "key": "sample_size",
+          "type": "number",
+          "default": 30
+        },
+        {
+          "key": "show_assumptions",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "estimate",
+          "label": "Estimate/Probability"
+        },
+        {
+          "key": "uncertainty",
+          "label": "Uncertainty"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t04",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T04-moments-variance",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "moments-variance"
+      ],
+      "sourceAnchors": [
+        "m_s03_t04",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "simulationId": "E20-M_S03_T04-SIM02",
+      "title": "Russian inference seminar · m_s03 · §1.4 · Kỳ vọng, phương sai, độ lệch chuẩn và moment bằng tiếng Nga",
+      "purpose": "Mô phỏng đọc đề/bảng dữ liệu, chọn model, tính statistic và bảo vệ conclusion.",
+      "controls": [
+        {
+          "key": "time_limit_sec",
+          "type": "number",
+          "default": 90
+        },
+        {
+          "key": "inject_inference_trap",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "model_score",
+          "label": "Model/assumption score"
+        },
+        {
+          "key": "interpretation_score",
+          "label": "Interpretation/repair score"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t05",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T05-named-distributions",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "named-distributions"
+      ],
+      "sourceAnchors": [
+        "m_s03_t05",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "simulationId": "E20-M_S03_T05-SIM01",
+      "title": "Probability/statistics explorer · m_s03 · §1.5 · Bernoulli, nhị thức, Poisson, chuẩn và mũ bằng tiếng Nga",
+      "purpose": "Tương tác với parameter/sample size/uncertainty để thấy điều kiện và cách diễn giải thay đổi.",
+      "controls": [
+        {
+          "key": "sample_size",
+          "type": "number",
+          "default": 30
+        },
+        {
+          "key": "show_assumptions",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "estimate",
+          "label": "Estimate/Probability"
+        },
+        {
+          "key": "uncertainty",
+          "label": "Uncertainty"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t05",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T05-named-distributions",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "named-distributions"
+      ],
+      "sourceAnchors": [
+        "m_s03_t05",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "simulationId": "E20-M_S03_T05-SIM02",
+      "title": "Russian inference seminar · m_s03 · §1.5 · Bernoulli, nhị thức, Poisson, chuẩn và mũ bằng tiếng Nga",
+      "purpose": "Mô phỏng đọc đề/bảng dữ liệu, chọn model, tính statistic và bảo vệ conclusion.",
+      "controls": [
+        {
+          "key": "time_limit_sec",
+          "type": "number",
+          "default": 90
+        },
+        {
+          "key": "inject_inference_trap",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "model_score",
+          "label": "Model/assumption score"
+        },
+        {
+          "key": "interpretation_score",
+          "label": "Interpretation/repair score"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t06",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T06-sample-statistics-histogram",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "sample-statistics-histogram"
+      ],
+      "sourceAnchors": [
+        "m_s03_t06",
+        "m_s03",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "simulationId": "E20-M_S03_T06-SIM01",
+      "title": "Probability/statistics explorer · m_s03 · §1.6 · Thống kê mẫu, trung bình mẫu, phương sai mẫu và histogram bằng tiếng Nga",
+      "purpose": "Tương tác với parameter/sample size/uncertainty để thấy điều kiện và cách diễn giải thay đổi.",
+      "controls": [
+        {
+          "key": "sample_size",
+          "type": "number",
+          "default": 30
+        },
+        {
+          "key": "show_assumptions",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "estimate",
+          "label": "Estimate/Probability"
+        },
+        {
+          "key": "uncertainty",
+          "label": "Uncertainty"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t06",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T06-sample-statistics-histogram",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "sample-statistics-histogram"
+      ],
+      "sourceAnchors": [
+        "m_s03_t06",
+        "m_s03",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "simulationId": "E20-M_S03_T06-SIM02",
+      "title": "Russian inference seminar · m_s03 · §1.6 · Thống kê mẫu, trung bình mẫu, phương sai mẫu và histogram bằng tiếng Nga",
+      "purpose": "Mô phỏng đọc đề/bảng dữ liệu, chọn model, tính statistic và bảo vệ conclusion.",
+      "controls": [
+        {
+          "key": "time_limit_sec",
+          "type": "number",
+          "default": 90
+        },
+        {
+          "key": "inject_inference_trap",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "model_score",
+          "label": "Model/assumption score"
+        },
+        {
+          "key": "interpretation_score",
+          "label": "Interpretation/repair score"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t07",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T07-confidence-hypothesis-pvalue",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "confidence-hypothesis-pvalue"
+      ],
+      "sourceAnchors": [
+        "m_s03_t07",
+        "m_s03",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "simulationId": "E20-M_S03_T07-SIM01",
+      "title": "Probability/statistics explorer · m_s03 · §1.7 · Khoảng tin cậy, kiểm định giả thuyết và p-value bằng tiếng Nga",
+      "purpose": "Tương tác với parameter/sample size/uncertainty để thấy điều kiện và cách diễn giải thay đổi.",
+      "controls": [
+        {
+          "key": "sample_size",
+          "type": "number",
+          "default": 30
+        },
+        {
+          "key": "show_assumptions",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "estimate",
+          "label": "Estimate/Probability"
+        },
+        {
+          "key": "uncertainty",
+          "label": "Uncertainty"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t07",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T07-confidence-hypothesis-pvalue",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "confidence-hypothesis-pvalue"
+      ],
+      "sourceAnchors": [
+        "m_s03_t07",
+        "m_s03",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "simulationId": "E20-M_S03_T07-SIM02",
+      "title": "Russian inference seminar · m_s03 · §1.7 · Khoảng tin cậy, kiểm định giả thuyết và p-value bằng tiếng Nga",
+      "purpose": "Mô phỏng đọc đề/bảng dữ liệu, chọn model, tính statistic và bảo vệ conclusion.",
+      "controls": [
+        {
+          "key": "time_limit_sec",
+          "type": "number",
+          "default": 90
+        },
+        {
+          "key": "inject_inference_trap",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "model_score",
+          "label": "Model/assumption score"
+        },
+        {
+          "key": "interpretation_score",
+          "label": "Interpretation/repair score"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t08",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T08-russian-probability-statistics-seminar",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "russian-probability-statistics-seminar"
+      ],
+      "sourceAnchors": [
+        "m_s03_t08",
+        "m_s03",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "simulationId": "E20-M_S03_T08-SIM01",
+      "title": "Probability/statistics explorer · m_s03 · §1.8 · Seminar xác suất - thống kê Nga: đọc đề, giải bảng và bảo vệ kết luận",
+      "purpose": "Tương tác với parameter/sample size/uncertainty để thấy điều kiện và cách diễn giải thay đổi.",
+      "controls": [
+        {
+          "key": "sample_size",
+          "type": "number",
+          "default": 30
+        },
+        {
+          "key": "show_assumptions",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "estimate",
+          "label": "Estimate/Probability"
+        },
+        {
+          "key": "uncertainty",
+          "label": "Uncertainty"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t08",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T08-russian-probability-statistics-seminar",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "russian-probability-statistics-seminar"
+      ],
+      "sourceAnchors": [
+        "m_s03_t08",
+        "m_s03",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "simulationId": "E20-M_S03_T08-SIM02",
+      "title": "Russian inference seminar · m_s03 · §1.8 · Seminar xác suất - thống kê Nga: đọc đề, giải bảng và bảo vệ kết luận",
+      "purpose": "Mô phỏng đọc đề/bảng dữ liệu, chọn model, tính statistic và bảo vệ conclusion.",
+      "controls": [
+        {
+          "key": "time_limit_sec",
+          "type": "number",
+          "default": 90
+        },
+        {
+          "key": "inject_inference_trap",
+          "type": "toggle",
+          "default": true
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "model_score",
+          "label": "Model/assumption score"
+        },
+        {
+          "key": "interpretation_score",
+          "label": "Interpretation/repair score"
+        }
+      ],
+      "simulationClass": "application"
     }
   ],
   "importPolicy": {
@@ -3028,7 +3828,7 @@
     ],
     "auditStatus": "DRAFT"
   },
-  "updatedAt": "2026-09-27",
+  "updatedAt": "2026-09-28",
   "emoji": "🔬",
   "cleanArchitecturePolicy": {
     "contentMustNotStoreStageTree": true,
@@ -3088,6 +3888,14 @@
         "e17Regression": "PASS",
         "universalConstitution": "PASS"
       }
+    },
+    "E20": {
+      "status": "IMPLEMENTED_PENDING_CI",
+      "frameworkChapterId": "m_s03",
+      "logicalModuleId": "m_s03",
+      "lessons": 8,
+      "theorySlides": 160,
+      "updatedAt": "2026-09-28"
     }
   }
 }
