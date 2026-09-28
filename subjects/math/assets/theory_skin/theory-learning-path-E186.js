@@ -108,9 +108,11 @@
     return ids.some(function(v){return S(v).indexOf(token)>=0;});
   }
   function lessonOptions(){var p=path(), fr=currentFrame(), all=records(), ch=chapter(p.moduleId,p.courseId,p.chapterId), no=Number(ch&&ch.no||0), recs=[];
-    if(no)recs=all.filter(function(r){return programLectureMatches(r,no);});
-    if(!recs.length&&fr)recs=all.filter(function(r){return r.chapterId===(fr.chapterId||fr.id);});
+    /* Resolve the selected physical chapter first. Program-lecture anchors are cross-stage
+       references and must never hijack the learner's current stage/chapter picker. */
+    if(fr)recs=all.filter(function(r){return r.chapterId===(fr.chapterId||fr.id);});
     if(!recs.length&&no){var token='-C'+String(no).padStart(2,'0')+'-';recs=all.filter(function(r){return S(r.chapterId).indexOf(token)>=0;});}
+    if(!recs.length&&no)recs=all.filter(function(r){return programLectureMatches(r,no);});
     if(recs.length){
       var seen={};
       return recs.filter(function(r){var id=S(r.lessonId||r.id);if(!id||seen[id])return false;seen[id]=true;return true;})
