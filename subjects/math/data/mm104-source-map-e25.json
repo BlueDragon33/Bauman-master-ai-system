@@ -1,0 +1,228 @@
+{
+  "schema": "bauman_math_logical_module_source_map_v1",
+  "recoveryId": "E25",
+  "frameworkChapterId": "m_m104",
+  "logicalModuleId": "m_m104",
+  "moduleId": "m_m104",
+  "moduleTitle": "Sát hạch học kỳ 1: dữ liệu đa chiều, PCA/SVD, similarity và clustering",
+  "stageId": "hk1",
+  "architecture": "framework_assessment_gate_over_existing_hk1_multidisciplinary_spine",
+  "legacyFrameworkAlias": "MATH-HK1-GATE-C17",
+  "legacyAliasPolicy": "reference_only_not_runtime_physical_chapter",
+  "status": "IMPLEMENTED_PENDING_CI",
+  "correction": {
+    "rule": "m_m104 là logical assessment gate, không tạo physical chapter độc lập.",
+    "physicalSpineTruth": [
+      "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "MATH-HK1-C24-mo_hinh_trang_thai_va_mo"
+    ]
+  },
+  "prerequisiteGate": {
+    "requiredModules": [
+      "m_m101",
+      "m_m102",
+      "m_m103"
+    ],
+    "status": "SATISFIED_BY_E23_E24_CHAIN"
+  },
+  "logicalLessons": [
+    {
+      "logicalId": "m_m104_t01",
+      "title": "Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering",
+      "physicalChapterIds": [
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo"
+      ],
+      "runtimeChapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "theoryLessonIds": [
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T01-readiness-diagnostic"
+      ],
+      "programLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+      "programLectureIds": [
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "coverage": "AUTHORED_ASSESSMENT_E25",
+      "prerequisiteLogicalIds": [
+        "m_m103_t08"
+      ]
+    },
+    {
+      "logicalId": "m_m104_t02",
+      "title": "Sát hạch data matrix, scale, covariance và geometry",
+      "physicalChapterIds": [
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t"
+      ],
+      "runtimeChapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "theoryLessonIds": [
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-contract-exam"
+      ],
+      "programLectureId": "MATH-PROG-L01-linear-algebra-basic",
+      "programLectureIds": [
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "coverage": "AUTHORED_ASSESSMENT_E25",
+      "prerequisiteLogicalIds": [
+        "m_m104_t01"
+      ]
+    },
+    {
+      "logicalId": "m_m104_t03",
+      "title": "Sát hạch PCA/SVD, explained variance và reconstruction",
+      "physicalChapterIds": [
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t"
+      ],
+      "runtimeChapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "theoryLessonIds": [
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-pca-svd-exam"
+      ],
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "programLectureIds": [
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "coverage": "AUTHORED_ASSESSMENT_E25",
+      "prerequisiteLogicalIds": [
+        "m_m104_t02"
+      ]
+    },
+    {
+      "logicalId": "m_m104_t04",
+      "title": "Sát hạch similarity, metric và nearest-neighbor geometry",
+      "physicalChapterIds": [
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t"
+      ],
+      "runtimeChapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "theoryLessonIds": [
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-similarity-exam"
+      ],
+      "programLectureId": "MATH-PROG-L09-topology-metric-spaces",
+      "programLectureIds": [
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "coverage": "AUTHORED_ASSESSMENT_E25",
+      "prerequisiteLogicalIds": [
+        "m_m104_t03"
+      ]
+    },
+    {
+      "logicalId": "m_m104_t05",
+      "title": "Sát hạch K-means, k, inertia, silhouette và stability",
+      "physicalChapterIds": [
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo"
+      ],
+      "runtimeChapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "theoryLessonIds": [
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-kmeans-exam"
+      ],
+      "programLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+      "programLectureIds": [
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "coverage": "AUTHORED_ASSESSMENT_E25",
+      "prerequisiteLogicalIds": [
+        "m_m104_t04"
+      ]
+    },
+    {
+      "logicalId": "m_m104_t06",
+      "title": "Sát hạch hierarchical clustering và DBSCAN",
+      "physicalChapterIds": [
+        "MATH-HK1-C21-entropy_thong_tin_va_pha"
+      ],
+      "runtimeChapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "theoryLessonIds": [
+        "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-density-hierarchical-exam"
+      ],
+      "programLectureId": "MATH-PROG-L09-topology-metric-spaces",
+      "programLectureIds": [
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "coverage": "AUTHORED_ASSESSMENT_E25",
+      "prerequisiteLogicalIds": [
+        "m_m104_t05"
+      ]
+    },
+    {
+      "logicalId": "m_m104_t07",
+      "title": "Integrated case: telemetry → PCA → clustering → validation",
+      "physicalChapterIds": [
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo"
+      ],
+      "runtimeChapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "theoryLessonIds": [
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-integrated-case"
+      ],
+      "programLectureId": "MATH-PROG-L16-numerical-methods-computing",
+      "programLectureIds": [
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "coverage": "AUTHORED_ASSESSMENT_E25",
+      "prerequisiteLogicalIds": [
+        "m_m104_t06"
+      ]
+    },
+    {
+      "logicalId": "m_m104_t08",
+      "title": "Final HK1 gate: written + oral defense + error repair",
+      "physicalChapterIds": [
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo"
+      ],
+      "runtimeChapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "theoryLessonIds": [
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-oral-written-gate"
+      ],
+      "programLectureId": "MATH-PROG-L16-numerical-methods-computing",
+      "programLectureIds": [
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "coverage": "AUTHORED_ASSESSMENT_E25",
+      "prerequisiteLogicalIds": [
+        "m_m104_t07"
+      ]
+    }
+  ],
+  "renderGate": {
+    "formulaBlockOnly": true,
+    "matrixBlockOnly": true,
+    "noRawLatex": true,
+    "noCodeStyleFormula": true,
+    "hideSearchMeta": true
+  },
+  "contentGate": {
+    "requiredLogicalLessons": 8,
+    "expected": {
+      "theorySlides": 160,
+      "formulas": 24,
+      "exercises": 64,
+      "applications": 16,
+      "simulations": 16,
+      "professorQA": 8,
+      "questions": 48,
+      "reviewPacks": 8
+    },
+    "assessmentRules": {
+      "criticalLeakageFails": true,
+      "requiresWritten": true,
+      "requiresOral": true,
+      "requiresErrorRepair": true,
+      "requiresApplicationTransfer": true
+    },
+    "completionRule": "PASS only when counts, routing, CI, constitutional compliance and assessment linkage pass."
+  },
+  "constitutionalEvidence": {
+    "policyVersion": "1.1.0",
+    "blueprintLevel": "B4",
+    "qualityGate": "canonical-quality-gates",
+    "productionAuthority": "separate"
+  },
+  "verifiedAt": null,
+  "pr": null,
+  "gateResults": {}
+}
