@@ -108,11 +108,21 @@
     return ids.some(function(v){return S(v).indexOf(token)>=0;});
   }
   function lessonOptions(){var p=path(), fr=currentFrame(), all=records(), ch=chapter(p.moduleId,p.courseId,p.chapterId), no=Number(ch&&ch.no||0), recs=[];
-    /* Resolve the selected physical chapter first. Program-lecture anchors are cross-stage
-       references and must never hijack the learner's current stage/chapter picker. */
+    /* The learning hierarchy is program-oriented while content records may live in a
+       different physical stage/chapter. Keep the physical chapter records, but also
+       union records explicitly anchored to the selected program lecture. This preserves
+       cross-stage bridge lessons (E18-E22) after later batches materialize physical HK1
+       content, without letting an anchor replace the physical route used by renderRoute(). */
     if(fr)recs=all.filter(function(r){return r.chapterId===(fr.chapterId||fr.id);});
     if(!recs.length&&no){var token='-C'+String(no).padStart(2,'0')+'-';recs=all.filter(function(r){return S(r.chapterId).indexOf(token)>=0;});}
-    if(!recs.length&&no)recs=all.filter(function(r){return programLectureMatches(r,no);});
+    if(no){
+      var anchored=all.filter(function(r){return programLectureMatches(r,no);});
+      if(anchored.length){
+        var merged={}, union=[];
+        recs.concat(anchored).forEach(function(r){var id=S(r.lessonId||r.id);if(!id||merged[id])return;merged[id]=true;union.push(r);});
+        recs=union;
+      }
+    }
     if(recs.length){
       var seen={};
       return recs.filter(function(r){var id=S(r.lessonId||r.id);if(!id||seen[id])return false;seen[id]=true;return true;})
