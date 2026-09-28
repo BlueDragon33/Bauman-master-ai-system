@@ -136,7 +136,7 @@
     document.body.classList.add('math-roadmap-active');
     const view=$('#view'); if(!view) return;
     setPageHeader('Lộ trình','Giai đoạn → Cụm kiến thức → Chương. Tiến độ chỉ dùng dữ liệu học đã ghi nhận.');
-    view.innerHTML='<section class="math-roadmap-loading">Đang đọc lộ trình Toán…</section>';
+    view.innerHTML='<section class="math-roadmap-shell math-roadmap-loading" aria-busy="true">Đang đọc lộ trình Toán…</section>';
     try{
       const data=await loadRoadmap();
       const fallback=$('#stageSelect')?.value||data.curriculum?.stages?.[0]?.id||'vn';
