@@ -9,7 +9,7 @@
   "architecture": "framework_chapter_over_existing_multidisciplinary_prep_spine",
   "legacyFrameworkAlias": "MATH-PREP-PS-C13",
   "legacyAliasPolicy": "reference_only_not_runtime_physical_chapter",
-  "status": "IMPLEMENTED_PENDING_CI",
+  "status": "PASS_STATIC_BROWSER_CI",
   "correction": {
     "rule": "m_s05 là framework/logical synthesis gate; MATH-PREP-PS-C13 chỉ là alias khung, không materialize. Nội dung neo vào spine dự bị thật C07/C08/C09/C11/C12/C15/C16/C18 theo bản chất bài.",
     "physicalSpineTruth": [
@@ -26,7 +26,7 @@
       "MATH-PROG-L14-stochastic-processes-time-series"
     ],
     "reason": "E22 is pre-HK1 synthesis; do not leak into E17 time-series ownership.",
-    "status": "PENDING_CI"
+    "status": "PASS"
   },
   "logicalLessons": [
     {
@@ -245,7 +245,16 @@
     "qualityGate": "canonical-quality-gates",
     "productionAuthority": "separate"
   },
-  "verifiedAt": null,
-  "pr": null,
-  "gateResults": {}
+  "verifiedAt": "2026-09-28",
+  "pr": 151,
+  "gateResults": {
+    "Math m_s05 E22 prep synthesis gate": "success",
+    "Math m_s04 E21 multidimensional AI gate": "success",
+    "Math m_s03 E20 Russian probability statistics gate": "success",
+    "Math m_p10 E19 Russian linear algebra gate": "success",
+    "Math m_p09 E18 Russian prep gate": "success",
+    "Math m_p08 E17 time-series gate": "success",
+    "Development Fast CI": "success",
+    "Universal Constitution Compliance": "success"
+  }
 }
