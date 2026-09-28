@@ -4715,6 +4715,32 @@
           "phát hiện bẫy",
           "giải ví dụ",
           "liên hệ ứng dụng"
+        ],
+        "items": [
+          {
+            "type": "notation",
+            "prompt": "Viết metric/notation + data geometry contract chính."
+          },
+          {
+            "type": "formula",
+            "prompt": "Viết 3 công thức lõi và điều kiện áp dụng."
+          },
+          {
+            "type": "worked_example",
+            "prompt": "Giải ví dụ nhỏ và có sanity-check/stability-check."
+          },
+          {
+            "type": "trap",
+            "prompt": "Giải thích và sửa bẫy: Chạy clustering trực tiếp trên feature khác đơn vị khiến một trục chi phối toàn bộ khoảng cách."
+          },
+          {
+            "type": "application",
+            "prompt": "Phân tích application: Phân cụm trạng thái vận hành từ telemetry nhiều cảm biến."
+          },
+          {
+            "type": "reproducibility",
+            "prompt": "Ghi scale/metric/seed/k hoặc ε-MinPts/provenance cần lưu."
+          }
         ]
       },
       {
@@ -4758,6 +4784,32 @@
           "phát hiện bẫy",
           "giải ví dụ",
           "liên hệ ứng dụng"
+        ],
+        "items": [
+          {
+            "type": "notation",
+            "prompt": "Viết metric/notation + data geometry contract chính."
+          },
+          {
+            "type": "formula",
+            "prompt": "Viết 3 công thức lõi và điều kiện áp dụng."
+          },
+          {
+            "type": "worked_example",
+            "prompt": "Giải ví dụ nhỏ và có sanity-check/stability-check."
+          },
+          {
+            "type": "trap",
+            "prompt": "Giải thích và sửa bẫy: Dùng cosine khi magnitude mang ý nghĩa vật lý quan trọng rồi kết luận sai về độ gần."
+          },
+          {
+            "type": "application",
+            "prompt": "Phân tích application: So mẫu rung hoặc embedding trạng thái máy theo hướng đặc trưng."
+          },
+          {
+            "type": "reproducibility",
+            "prompt": "Ghi scale/metric/seed/k hoặc ε-MinPts/provenance cần lưu."
+          }
         ]
       },
       {
@@ -4801,6 +4853,32 @@
           "phát hiện bẫy",
           "giải ví dụ",
           "liên hệ ứng dụng"
+        ],
+        "items": [
+          {
+            "type": "notation",
+            "prompt": "Viết metric/notation + data geometry contract chính."
+          },
+          {
+            "type": "formula",
+            "prompt": "Viết 3 công thức lõi và điều kiện áp dụng."
+          },
+          {
+            "type": "worked_example",
+            "prompt": "Giải ví dụ nhỏ và có sanity-check/stability-check."
+          },
+          {
+            "type": "trap",
+            "prompt": "Giải thích và sửa bẫy: Tăng k tùy ý làm mất cụm nhỏ hoặc che vùng chuyển trạng thái."
+          },
+          {
+            "type": "application",
+            "prompt": "Phân tích application: Tìm trạng thái tương tự và phát hiện vùng dữ liệu thưa."
+          },
+          {
+            "type": "reproducibility",
+            "prompt": "Ghi scale/metric/seed/k hoặc ε-MinPts/provenance cần lưu."
+          }
         ]
       },
       {
@@ -4844,6 +4922,32 @@
           "phát hiện bẫy",
           "giải ví dụ",
           "liên hệ ứng dụng"
+        ],
+        "items": [
+          {
+            "type": "notation",
+            "prompt": "Viết metric/notation + data geometry contract chính."
+          },
+          {
+            "type": "formula",
+            "prompt": "Viết 3 công thức lõi và điều kiện áp dụng."
+          },
+          {
+            "type": "worked_example",
+            "prompt": "Giải ví dụ nhỏ và có sanity-check/stability-check."
+          },
+          {
+            "type": "trap",
+            "prompt": "Giải thích và sửa bẫy: Đọc cluster ID như thứ tự tự nhiên hoặc tin một lần khởi tạo duy nhất."
+          },
+          {
+            "type": "application",
+            "prompt": "Phân tích application: Phân nhóm chế độ vận hành của hệ thống từ feature đã chuẩn hóa."
+          },
+          {
+            "type": "reproducibility",
+            "prompt": "Ghi scale/metric/seed/k hoặc ε-MinPts/provenance cần lưu."
+          }
         ]
       },
       {
@@ -4887,6 +4991,32 @@
           "phát hiện bẫy",
           "giải ví dụ",
           "liên hệ ứng dụng"
+        ],
+        "items": [
+          {
+            "type": "notation",
+            "prompt": "Viết metric/notation + data geometry contract chính."
+          },
+          {
+            "type": "formula",
+            "prompt": "Viết 3 công thức lõi và điều kiện áp dụng."
+          },
+          {
+            "type": "worked_example",
+            "prompt": "Giải ví dụ nhỏ và có sanity-check/stability-check."
+          },
+          {
+            "type": "trap",
+            "prompt": "Giải thích và sửa bẫy: Chọn k chỉ vì elbow nhìn bằng mắt hoặc tối đa silhouette trên một sample duy nhất."
+          },
+          {
+            "type": "application",
+            "prompt": "Phân tích application: Chọn số trạng thái vận hành có ý nghĩa kỹ thuật."
+          },
+          {
+            "type": "reproducibility",
+            "prompt": "Ghi scale/metric/seed/k hoặc ε-MinPts/provenance cần lưu."
+          }
         ]
       },
       {
@@ -4930,6 +5060,32 @@
           "phát hiện bẫy",
           "giải ví dụ",
           "liên hệ ứng dụng"
+        ],
+        "items": [
+          {
+            "type": "notation",
+            "prompt": "Viết metric/notation + data geometry contract chính."
+          },
+          {
+            "type": "formula",
+            "prompt": "Viết 3 công thức lõi và điều kiện áp dụng."
+          },
+          {
+            "type": "worked_example",
+            "prompt": "Giải ví dụ nhỏ và có sanity-check/stability-check."
+          },
+          {
+            "type": "trap",
+            "prompt": "Giải thích và sửa bẫy: Đọc chiều cao dendrogram như xác suất hoặc cắt cây mà không xét semantics."
+          },
+          {
+            "type": "application",
+            "prompt": "Phân tích application: Khám phá cấu trúc phân cấp giữa các trạng thái thiết bị."
+          },
+          {
+            "type": "reproducibility",
+            "prompt": "Ghi scale/metric/seed/k hoặc ε-MinPts/provenance cần lưu."
+          }
         ]
       },
       {
@@ -4973,6 +5129,32 @@
           "phát hiện bẫy",
           "giải ví dụ",
           "liên hệ ứng dụng"
+        ],
+        "items": [
+          {
+            "type": "notation",
+            "prompt": "Viết metric/notation + data geometry contract chính."
+          },
+          {
+            "type": "formula",
+            "prompt": "Viết 3 công thức lõi và điều kiện áp dụng."
+          },
+          {
+            "type": "worked_example",
+            "prompt": "Giải ví dụ nhỏ và có sanity-check/stability-check."
+          },
+          {
+            "type": "trap",
+            "prompt": "Giải thích và sửa bẫy: Xem mọi noise point là bất thường hoặc ép DBSCAN cho dữ liệu density biến thiên mạnh."
+          },
+          {
+            "type": "application",
+            "prompt": "Phân tích application: Tách trạng thái hiếm và vùng vận hành chính trong telemetry."
+          },
+          {
+            "type": "reproducibility",
+            "prompt": "Ghi scale/metric/seed/k hoặc ε-MinPts/provenance cần lưu."
+          }
         ]
       },
       {
@@ -5016,6 +5198,32 @@
           "phát hiện bẫy",
           "giải ví dụ",
           "liên hệ ứng dụng"
+        ],
+        "items": [
+          {
+            "type": "notation",
+            "prompt": "Viết metric/notation + data geometry contract chính."
+          },
+          {
+            "type": "formula",
+            "prompt": "Viết 3 công thức lõi và điều kiện áp dụng."
+          },
+          {
+            "type": "worked_example",
+            "prompt": "Giải ví dụ nhỏ và có sanity-check/stability-check."
+          },
+          {
+            "type": "trap",
+            "prompt": "Giải thích và sửa bẫy: Đặt tên cụm theo cảm tính rồi dùng như nhãn ground-truth."
+          },
+          {
+            "type": "application",
+            "prompt": "Phân tích application: Báo cáo các chế độ vận hành, drift và nhóm mẫu cần kiểm tra thủ công."
+          },
+          {
+            "type": "reproducibility",
+            "prompt": "Ghi scale/metric/seed/k hoặc ε-MinPts/provenance cần lưu."
+          }
         ]
       }
     ]
