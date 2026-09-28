@@ -46,7 +46,7 @@ try{
   await page.evaluate(()=>window.BAUMAN_MATH_NAVIGATION.route('roadmap'));
   await page.waitForSelector('.math-roadmap-shell',{timeout:10000});
   // Regression: the deferred E129 startup renderer must not steal #view from learner-owned routes.
-  await page.evaluate(()=>window.BAUMAN_MATH_THEORY_E129?.render?.());
+  await page.evaluate(()=>window.BAUMAN_MATH_THEORY_E129?.renderDeferred?.());
   await page.waitForTimeout(750);
   await page.waitForSelector('.math-roadmap-shell',{timeout:10000});
   assert.equal(await page.evaluate(()=>document.body.dataset.mathPrimaryRoute),'roadmap','Deferred E129 render stole the Roadmap primary route');
