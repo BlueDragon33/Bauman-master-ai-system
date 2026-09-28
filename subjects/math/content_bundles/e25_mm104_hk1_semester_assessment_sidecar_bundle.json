@@ -1,0 +1,5271 @@
+{
+  "schema": "bauman_math_sidecar_bundle_v1",
+  "bundleId": "e25_mm104_hk1_semester_assessment_sidecar_bundle",
+  "frameworkChapterId": "m_m104",
+  "moduleId": "m_m104",
+  "counts": {
+    "formulas": 24,
+    "exercises": 64,
+    "applications": 16,
+    "simulations": 16,
+    "professorQA": 8,
+    "questions": 48,
+    "reviewPacks": 8
+  },
+  "stores": {
+    "formula_content": [
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t01",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T01-readiness-diagnostic",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "readiness-diagnostic"
+        ],
+        "sourceAnchors": [
+          "m_m104_t01",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "formulaId": "E25-MM104-T01-F01",
+        "title": "Pipeline invariant",
+        "formula": "raw → clean → split → fit(train) → transform → model → evaluate",
+        "meaning": "Không fit preprocessing trên test."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t01",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T01-readiness-diagnostic",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "readiness-diagnostic"
+        ],
+        "sourceAnchors": [
+          "m_m104_t01",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "formulaId": "E25-MM104-T01-F02",
+        "title": "Readiness score",
+        "formula": "R=(w₁F+w₂C+w₃A+w₄V)/Σw",
+        "meaning": "F=formula, C=condition, A=application, V=verification."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t01",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T01-readiness-diagnostic",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "readiness-diagnostic"
+        ],
+        "sourceAnchors": [
+          "m_m104_t01",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "formulaId": "E25-MM104-T01-F03",
+        "title": "Error rate",
+        "formula": "e=n_error/n_total",
+        "meaning": "Tách theo miền để biết lỗ hổng."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-contract-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "multidim-contract-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t02",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "formulaId": "E25-MM104-T02-F01",
+        "title": "Data matrix",
+        "formula": "X ∈ ℝ^(n×p)",
+        "meaning": "n sample × p feature."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-contract-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "multidim-contract-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t02",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "formulaId": "E25-MM104-T02-F02",
+        "title": "Covariance",
+        "formula": "C=(1/(n−1))XcᵀXc",
+        "meaning": "Feature covariance p×p."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-contract-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "multidim-contract-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t02",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "formulaId": "E25-MM104-T02-F03",
+        "title": "Cosine",
+        "formula": "cos(x,y)=xᵀy/(‖x‖₂‖y‖₂)",
+        "meaning": "So hướng, không so magnitude."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-pca-svd-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "pca-svd-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t03",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "formulaId": "E25-MM104-T03-F01",
+        "title": "PCA projection",
+        "formula": "Z=XcV_k",
+        "meaning": "Chiếu dữ liệu đã center lên k principal directions."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-pca-svd-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "pca-svd-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t03",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "formulaId": "E25-MM104-T03-F02",
+        "title": "SVD",
+        "formula": "Xc=UΣVᵀ",
+        "meaning": "Liên hệ singular values với variance."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-pca-svd-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "pca-svd-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t03",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "formulaId": "E25-MM104-T03-F03",
+        "title": "Reconstruction",
+        "formula": "X̂_k=U_kΣ_kV_kᵀ",
+        "meaning": "Low-rank approximation."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-similarity-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "similarity-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t04",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "formulaId": "E25-MM104-T04-F01",
+        "title": "L2 distance",
+        "formula": "d₂(x,y)=√Σⱼ(xⱼ−yⱼ)²",
+        "meaning": "Nhạy với scale."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-similarity-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "similarity-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t04",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "formulaId": "E25-MM104-T04-F02",
+        "title": "L1 distance",
+        "formula": "d₁(x,y)=Σⱼ|xⱼ−yⱼ|",
+        "meaning": "Manhattan."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-similarity-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "similarity-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t04",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "formulaId": "E25-MM104-T04-F03",
+        "title": "Angular distance",
+        "formula": "d_ang=arccos(cos(x,y))/π",
+        "meaning": "So orientation."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t05",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-kmeans-exam",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "kmeans-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t05",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "formulaId": "E25-MM104-T05-F01",
+        "title": "K-means objective",
+        "formula": "J=Σ_i ‖x_i−μ_{c_i}‖₂²",
+        "meaning": "Within-cluster SSE."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t05",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-kmeans-exam",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "kmeans-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t05",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "formulaId": "E25-MM104-T05-F02",
+        "title": "Silhouette",
+        "formula": "s(i)=(b(i)−a(i))/max(a(i),b(i))",
+        "meaning": "[-1,1]."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t05",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-kmeans-exam",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "kmeans-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t05",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "formulaId": "E25-MM104-T05-F03",
+        "title": "Cluster proportion",
+        "formula": "p_k=n_k/n",
+        "meaning": "Theo dõi imbalance."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-density-hierarchical-exam",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "density-hierarchical-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t06",
+          "m_m104",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "formulaId": "E25-MM104-T06-F01",
+        "title": "Single linkage",
+        "formula": "D(A,B)=min d(a,b)",
+        "meaning": "Có thể chaining."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-density-hierarchical-exam",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "density-hierarchical-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t06",
+          "m_m104",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "formulaId": "E25-MM104-T06-F02",
+        "title": "Complete linkage",
+        "formula": "D(A,B)=max d(a,b)",
+        "meaning": "Ưu tiên cụm compact."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-density-hierarchical-exam",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "density-hierarchical-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t06",
+          "m_m104",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "formulaId": "E25-MM104-T06-F03",
+        "title": "DBSCAN core",
+        "formula": "|N_ε(x)|≥MinPts",
+        "meaning": "Điểm core theo mật độ."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-integrated-case",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "integrated-case"
+        ],
+        "sourceAnchors": [
+          "m_m104_t07",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "formulaId": "E25-MM104-T07-F01",
+        "title": "Transform contract",
+        "formula": "θ=fit(X_train); X′=transform(X;θ)",
+        "meaning": "Fit-state thuộc train."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-integrated-case",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "integrated-case"
+        ],
+        "sourceAnchors": [
+          "m_m104_t07",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "formulaId": "E25-MM104-T07-F02",
+        "title": "Variance retention",
+        "formula": "R_k=Σ_{j≤k}λ_j/Σ_jλ_j",
+        "meaning": "Theo dõi thông tin giữ lại."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-integrated-case",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "integrated-case"
+        ],
+        "sourceAnchors": [
+          "m_m104_t07",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "formulaId": "E25-MM104-T07-F03",
+        "title": "Stability",
+        "formula": "S=mean agreement(partition_r,partition_s)",
+        "meaning": "Độ bền qua seed/resample."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-oral-written-gate",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "oral-written-gate"
+        ],
+        "sourceAnchors": [
+          "m_m104_t08",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "formulaId": "E25-MM104-T08-F01",
+        "title": "Gate score",
+        "formula": "G=min(F,C,V,A)",
+        "meaning": "Không cho điểm trung bình che miền fail."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-oral-written-gate",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "oral-written-gate"
+        ],
+        "sourceAnchors": [
+          "m_m104_t08",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "formulaId": "E25-MM104-T08-F02",
+        "title": "Repair priority",
+        "formula": "P=severity×frequency×transfer_risk",
+        "meaning": "Ưu tiên lỗi nền có rủi ro lan truyền."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-oral-written-gate",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "oral-written-gate"
+        ],
+        "sourceAnchors": [
+          "m_m104_t08",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "formulaId": "E25-MM104-T08-F03",
+        "title": "Pass condition",
+        "formula": "PASS ⇔ G≥τ ∧ no critical leakage",
+        "meaning": "Bắt buộc không có lỗi leakage nghiêm trọng."
+      }
+    ],
+    "exercise_content": [
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t01",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T01-readiness-diagnostic",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "readiness-diagnostic"
+        ],
+        "sourceAnchors": [
+          "m_m104_t01",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T01-E01",
+        "level": "easy",
+        "prompt": "Nhận dạng miền kiến thức và invariant của Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t01",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T01-readiness-diagnostic",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "readiness-diagnostic"
+        ],
+        "sourceAnchors": [
+          "m_m104_t01",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T01-E02",
+        "level": "easy",
+        "prompt": "Viết Pipeline invariant và nêu điều kiện.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t01",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T01-readiness-diagnostic",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "readiness-diagnostic"
+        ],
+        "sourceAnchors": [
+          "m_m104_t01",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T01-E03",
+        "level": "medium",
+        "prompt": "Giải thích Readiness score bằng lời kỹ thuật.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t01",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T01-readiness-diagnostic",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "readiness-diagnostic"
+        ],
+        "sourceAnchors": [
+          "m_m104_t01",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T01-E04",
+        "level": "medium",
+        "prompt": "Từ kết quả 4 miền, tính readiness và xác định miền bắt buộc ôn lại.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t01",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T01-readiness-diagnostic",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "readiness-diagnostic"
+        ],
+        "sourceAnchors": [
+          "m_m104_t01",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T01-E05",
+        "level": "medium",
+        "prompt": "Nêu gate bắt buộc để bài được tính PASS.",
+        "solution": "Chỉ PASS khi lỗi công thức, condition và data-leakage đều dưới ngưỡng; không bù lỗi nền bằng điểm ứng dụng."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t01",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T01-readiness-diagnostic",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "readiness-diagnostic"
+        ],
+        "sourceAnchors": [
+          "m_m104_t01",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T01-E06",
+        "level": "hard",
+        "prompt": "Sửa lỗi: Điểm tổng cao che một lỗ hổng nghiêm trọng ở data leakage hoặc dimension semantics.",
+        "solution": "Xác định lỗi đầu tiên, đánh dấu critical/non-critical, sửa invariant rồi tính/diễn giải lại."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t01",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T01-readiness-diagnostic",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "readiness-diagnostic"
+        ],
+        "sourceAnchors": [
+          "m_m104_t01",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T01-E07",
+        "level": "medium",
+        "prompt": "Đưa ra một sanity-check hoặc provenance-check.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t01",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T01-readiness-diagnostic",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "readiness-diagnostic"
+        ],
+        "sourceAnchors": [
+          "m_m104_t01",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T01-E08",
+        "level": "hard",
+        "prompt": "Transfer sang ứng dụng: Dashboard readiness trước sát hạch HK1.",
+        "solution": "Dashboard readiness trước sát hạch HK1."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-contract-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "multidim-contract-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t02",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T02-E01",
+        "level": "easy",
+        "prompt": "Nhận dạng miền kiến thức và invariant của Sát hạch data matrix, scale, covariance và geometry.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-contract-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "multidim-contract-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t02",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T02-E02",
+        "level": "easy",
+        "prompt": "Viết Data matrix và nêu điều kiện.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-contract-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "multidim-contract-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t02",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T02-E03",
+        "level": "medium",
+        "prompt": "Giải thích Covariance bằng lời kỹ thuật.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-contract-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "multidim-contract-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t02",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T02-E04",
+        "level": "medium",
+        "prompt": "Cho X 5×3, xác định shape covariance và giải thích tác động của rescale một feature.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-contract-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "multidim-contract-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t02",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T02-E05",
+        "level": "medium",
+        "prompt": "Nêu gate bắt buộc để bài được tính PASS.",
+        "solution": "Khóa orientation, units, centering/scaling và split provenance trước phép tính."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-contract-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "multidim-contract-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t02",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T02-E06",
+        "level": "hard",
+        "prompt": "Sửa lỗi: Tính đúng ma trận nhưng sai trục sample/feature hoặc dùng statistics của toàn bộ dataset.",
+        "solution": "Xác định lỗi đầu tiên, đánh dấu critical/non-critical, sửa invariant rồi tính/diễn giải lại."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-contract-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "multidim-contract-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t02",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T02-E07",
+        "level": "medium",
+        "prompt": "Đưa ra một sanity-check hoặc provenance-check.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-contract-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "multidim-contract-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t02",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T02-E08",
+        "level": "hard",
+        "prompt": "Transfer sang ứng dụng: Kiểm tra feature contract cho telemetry.",
+        "solution": "Kiểm tra feature contract cho telemetry."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-pca-svd-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "pca-svd-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t03",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T03-E01",
+        "level": "easy",
+        "prompt": "Nhận dạng miền kiến thức và invariant của Sát hạch PCA/SVD, explained variance và reconstruction.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-pca-svd-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "pca-svd-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t03",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T03-E02",
+        "level": "easy",
+        "prompt": "Viết PCA projection và nêu điều kiện.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-pca-svd-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "pca-svd-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t03",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T03-E03",
+        "level": "medium",
+        "prompt": "Giải thích SVD bằng lời kỹ thuật.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-pca-svd-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "pca-svd-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t03",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T03-E04",
+        "level": "medium",
+        "prompt": "Từ singular values cho trước, tính tỷ lệ variance giữ lại khi k=2.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-pca-svd-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "pca-svd-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t03",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T03-E05",
+        "level": "medium",
+        "prompt": "Nêu gate bắt buộc để bài được tính PASS.",
+        "solution": "Center đúng; chọn k bằng explained variance + task utility; kiểm orthogonality, reconstruction error và train-fit provenance."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-pca-svd-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "pca-svd-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t03",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T03-E06",
+        "level": "hard",
+        "prompt": "Sửa lỗi: Coi PCA là feature selection nguyên bản hoặc kết luận giảm chiều không mất thông tin.",
+        "solution": "Xác định lỗi đầu tiên, đánh dấu critical/non-critical, sửa invariant rồi tính/diễn giải lại."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-pca-svd-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "pca-svd-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t03",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T03-E07",
+        "level": "medium",
+        "prompt": "Đưa ra một sanity-check hoặc provenance-check.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-pca-svd-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "pca-svd-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t03",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T03-E08",
+        "level": "hard",
+        "prompt": "Transfer sang ứng dụng: Giảm chiều telemetry/embedding trước clustering.",
+        "solution": "Giảm chiều telemetry/embedding trước clustering."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-similarity-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "similarity-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t04",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T04-E01",
+        "level": "easy",
+        "prompt": "Nhận dạng miền kiến thức và invariant của Sát hạch similarity, metric và nearest-neighbor geometry.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-similarity-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "similarity-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t04",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T04-E02",
+        "level": "easy",
+        "prompt": "Viết L2 distance và nêu điều kiện.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-similarity-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "similarity-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t04",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T04-E03",
+        "level": "medium",
+        "prompt": "Giải thích L1 distance bằng lời kỹ thuật.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-similarity-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "similarity-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t04",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T04-E04",
+        "level": "medium",
+        "prompt": "So ranking nearest neighbor theo Euclidean và cosine trên ba điểm.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-similarity-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "similarity-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t04",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T04-E05",
+        "level": "medium",
+        "prompt": "Nêu gate bắt buộc để bài được tính PASS.",
+        "solution": "Metric phải phản ánh semantics; kiểm scale, zero vector, high-dimensional concentration và tie handling."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-similarity-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "similarity-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t04",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T04-E06",
+        "level": "hard",
+        "prompt": "Sửa lỗi: Chọn metric theo thói quen thay vì mục tiêu vật lý/dữ liệu.",
+        "solution": "Xác định lỗi đầu tiên, đánh dấu critical/non-critical, sửa invariant rồi tính/diễn giải lại."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-similarity-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "similarity-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t04",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T04-E07",
+        "level": "medium",
+        "prompt": "Đưa ra một sanity-check hoặc provenance-check.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-similarity-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "similarity-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t04",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T04-E08",
+        "level": "hard",
+        "prompt": "Transfer sang ứng dụng: Retrieval trạng thái máy tương tự.",
+        "solution": "Retrieval trạng thái máy tương tự."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t05",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-kmeans-exam",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "kmeans-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t05",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T05-E01",
+        "level": "easy",
+        "prompt": "Nhận dạng miền kiến thức và invariant của Sát hạch K-means, k, inertia, silhouette và stability.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t05",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-kmeans-exam",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "kmeans-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t05",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T05-E02",
+        "level": "easy",
+        "prompt": "Viết K-means objective và nêu điều kiện.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t05",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-kmeans-exam",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "kmeans-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t05",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T05-E03",
+        "level": "medium",
+        "prompt": "Giải thích Silhouette bằng lời kỹ thuật.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t05",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-kmeans-exam",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "kmeans-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t05",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T05-E04",
+        "level": "medium",
+        "prompt": "So k=2,3,4 bằng inertia + silhouette + stability.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t05",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-kmeans-exam",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "kmeans-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t05",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T05-E05",
+        "level": "medium",
+        "prompt": "Nêu gate bắt buộc để bài được tính PASS.",
+        "solution": "Multi-seed, scale đúng, empty-cluster handling và chọn k bằng nhiều bằng chứng."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t05",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-kmeans-exam",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "kmeans-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t05",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T05-E06",
+        "level": "hard",
+        "prompt": "Sửa lỗi: Dùng một seed hoặc một metric để tuyên bố k tối ưu tuyệt đối.",
+        "solution": "Xác định lỗi đầu tiên, đánh dấu critical/non-critical, sửa invariant rồi tính/diễn giải lại."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t05",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-kmeans-exam",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "kmeans-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t05",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T05-E07",
+        "level": "medium",
+        "prompt": "Đưa ra một sanity-check hoặc provenance-check.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t05",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-kmeans-exam",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "kmeans-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t05",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T05-E08",
+        "level": "hard",
+        "prompt": "Transfer sang ứng dụng: Phân nhóm chế độ vận hành.",
+        "solution": "Phân nhóm chế độ vận hành."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-density-hierarchical-exam",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "density-hierarchical-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t06",
+          "m_m104",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T06-E01",
+        "level": "easy",
+        "prompt": "Nhận dạng miền kiến thức và invariant của Sát hạch hierarchical clustering và DBSCAN.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-density-hierarchical-exam",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "density-hierarchical-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t06",
+          "m_m104",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T06-E02",
+        "level": "easy",
+        "prompt": "Viết Single linkage và nêu điều kiện.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-density-hierarchical-exam",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "density-hierarchical-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t06",
+          "m_m104",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T06-E03",
+        "level": "medium",
+        "prompt": "Giải thích Complete linkage bằng lời kỹ thuật.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-density-hierarchical-exam",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "density-hierarchical-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t06",
+          "m_m104",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T06-E04",
+        "level": "medium",
+        "prompt": "Cùng dataset, giải thích khi nào hierarchical và DBSCAN cho kết quả khác nhau.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-density-hierarchical-exam",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "density-hierarchical-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t06",
+          "m_m104",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T06-E05",
+        "level": "medium",
+        "prompt": "Nêu gate bắt buộc để bài được tính PASS.",
+        "solution": "Metric/linkage hoặc ε-MinPts phải phù hợp topology và density; noise không mặc định là anomaly."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-density-hierarchical-exam",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "density-hierarchical-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t06",
+          "m_m104",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T06-E06",
+        "level": "hard",
+        "prompt": "Sửa lỗi: Cắt dendrogram tùy ý hoặc gán mọi DBSCAN noise thành lỗi.",
+        "solution": "Xác định lỗi đầu tiên, đánh dấu critical/non-critical, sửa invariant rồi tính/diễn giải lại."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-density-hierarchical-exam",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "density-hierarchical-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t06",
+          "m_m104",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T06-E07",
+        "level": "medium",
+        "prompt": "Đưa ra một sanity-check hoặc provenance-check.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-density-hierarchical-exam",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "density-hierarchical-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t06",
+          "m_m104",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T06-E08",
+        "level": "hard",
+        "prompt": "Transfer sang ứng dụng: Khám phá cấu trúc trạng thái và vùng hiếm.",
+        "solution": "Khám phá cấu trúc trạng thái và vùng hiếm."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-integrated-case",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "integrated-case"
+        ],
+        "sourceAnchors": [
+          "m_m104_t07",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T07-E01",
+        "level": "easy",
+        "prompt": "Nhận dạng miền kiến thức và invariant của Integrated case: telemetry → PCA → clustering → validation.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-integrated-case",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "integrated-case"
+        ],
+        "sourceAnchors": [
+          "m_m104_t07",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T07-E02",
+        "level": "easy",
+        "prompt": "Viết Transform contract và nêu điều kiện.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-integrated-case",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "integrated-case"
+        ],
+        "sourceAnchors": [
+          "m_m104_t07",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T07-E03",
+        "level": "medium",
+        "prompt": "Giải thích Variance retention bằng lời kỹ thuật.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-integrated-case",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "integrated-case"
+        ],
+        "sourceAnchors": [
+          "m_m104_t07",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T07-E04",
+        "level": "medium",
+        "prompt": "Thiết kế pipeline cho 10 cảm biến, nêu split, scaling, PCA, clustering, metrics và artifact.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-integrated-case",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "integrated-case"
+        ],
+        "sourceAnchors": [
+          "m_m104_t07",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T07-E05",
+        "level": "medium",
+        "prompt": "Nêu gate bắt buộc để bài được tính PASS.",
+        "solution": "Phải có provenance đầy đủ từ input→transform→PCA→cluster→metric; mọi thông số tuning ghi rõ nguồn."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-integrated-case",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "integrated-case"
+        ],
+        "sourceAnchors": [
+          "m_m104_t07",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T07-E06",
+        "level": "hard",
+        "prompt": "Sửa lỗi: Dùng test để chọn số PCA component hoặc cluster parameter rồi báo metric test như khách quan.",
+        "solution": "Xác định lỗi đầu tiên, đánh dấu critical/non-critical, sửa invariant rồi tính/diễn giải lại."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-integrated-case",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "integrated-case"
+        ],
+        "sourceAnchors": [
+          "m_m104_t07",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T07-E07",
+        "level": "medium",
+        "prompt": "Đưa ra một sanity-check hoặc provenance-check.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-integrated-case",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "integrated-case"
+        ],
+        "sourceAnchors": [
+          "m_m104_t07",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T07-E08",
+        "level": "hard",
+        "prompt": "Transfer sang ứng dụng: Case study hoàn chỉnh cho dữ liệu cảm biến.",
+        "solution": "Case study hoàn chỉnh cho dữ liệu cảm biến."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-oral-written-gate",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "oral-written-gate"
+        ],
+        "sourceAnchors": [
+          "m_m104_t08",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T08-E01",
+        "level": "easy",
+        "prompt": "Nhận dạng miền kiến thức và invariant của Final HK1 gate: written + oral defense + error repair.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-oral-written-gate",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "oral-written-gate"
+        ],
+        "sourceAnchors": [
+          "m_m104_t08",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T08-E02",
+        "level": "easy",
+        "prompt": "Viết Gate score và nêu điều kiện.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-oral-written-gate",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "oral-written-gate"
+        ],
+        "sourceAnchors": [
+          "m_m104_t08",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T08-E03",
+        "level": "medium",
+        "prompt": "Giải thích Repair priority bằng lời kỹ thuật.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-oral-written-gate",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "oral-written-gate"
+        ],
+        "sourceAnchors": [
+          "m_m104_t08",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T08-E04",
+        "level": "medium",
+        "prompt": "Một bài có đáp số đúng nhưng dùng test để fit scaler: xác định trạng thái PASS/FAIL và cách sửa.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-oral-written-gate",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "oral-written-gate"
+        ],
+        "sourceAnchors": [
+          "m_m104_t08",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T08-E05",
+        "level": "medium",
+        "prompt": "Nêu gate bắt buộc để bài được tính PASS.",
+        "solution": "Sát hạch phải có written calculation, oral explanation, error repair và application transfer; critical leakage = FAIL."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-oral-written-gate",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "oral-written-gate"
+        ],
+        "sourceAnchors": [
+          "m_m104_t08",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T08-E06",
+        "level": "hard",
+        "prompt": "Sửa lỗi: Chấm chỉ đáp số mà bỏ reasoning/condition/provenance.",
+        "solution": "Xác định lỗi đầu tiên, đánh dấu critical/non-critical, sửa invariant rồi tính/diễn giải lại."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-oral-written-gate",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "oral-written-gate"
+        ],
+        "sourceAnchors": [
+          "m_m104_t08",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T08-E07",
+        "level": "medium",
+        "prompt": "Đưa ra một sanity-check hoặc provenance-check.",
+        "solution": "Trả lời theo 5 bước: dữ kiện → công thức → condition → tính/giải thích → sanity-check."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-oral-written-gate",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "oral-written-gate"
+        ],
+        "sourceAnchors": [
+          "m_m104_t08",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "exerciseId": "E25-MM104-T08-E08",
+        "level": "hard",
+        "prompt": "Transfer sang ứng dụng: Cổng mở khóa phần tiếp theo của lộ trình HK1.",
+        "solution": "Cổng mở khóa phần tiếp theo của lộ trình HK1."
+      }
+    ],
+    "application_content": [
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t01",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T01-readiness-diagnostic",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "readiness-diagnostic"
+        ],
+        "sourceAnchors": [
+          "m_m104_t01",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "applicationId": "E25-MM104-T01-A01",
+        "title": "Assessment transfer",
+        "scenario": "Dashboard readiness trước sát hạch HK1.",
+        "method": "Nêu dữ liệu, assumption, method, metric, limitation và bằng chứng kiểm chứng."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t01",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T01-readiness-diagnostic",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "readiness-diagnostic"
+        ],
+        "sourceAnchors": [
+          "m_m104_t01",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "applicationId": "E25-MM104-T01-A02",
+        "title": "Engineering defense",
+        "scenario": "Bảo vệ lựa chọn phương pháp của Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering trước câu hỏi phản biện.",
+        "method": "Nêu dữ liệu, assumption, method, metric, limitation và bằng chứng kiểm chứng."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-contract-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "multidim-contract-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t02",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "applicationId": "E25-MM104-T02-A01",
+        "title": "Assessment transfer",
+        "scenario": "Kiểm tra feature contract cho telemetry.",
+        "method": "Nêu dữ liệu, assumption, method, metric, limitation và bằng chứng kiểm chứng."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-contract-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "multidim-contract-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t02",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "applicationId": "E25-MM104-T02-A02",
+        "title": "Engineering defense",
+        "scenario": "Bảo vệ lựa chọn phương pháp của Sát hạch data matrix, scale, covariance và geometry trước câu hỏi phản biện.",
+        "method": "Nêu dữ liệu, assumption, method, metric, limitation và bằng chứng kiểm chứng."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-pca-svd-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "pca-svd-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t03",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "applicationId": "E25-MM104-T03-A01",
+        "title": "Assessment transfer",
+        "scenario": "Giảm chiều telemetry/embedding trước clustering.",
+        "method": "Nêu dữ liệu, assumption, method, metric, limitation và bằng chứng kiểm chứng."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-pca-svd-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "pca-svd-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t03",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "applicationId": "E25-MM104-T03-A02",
+        "title": "Engineering defense",
+        "scenario": "Bảo vệ lựa chọn phương pháp của Sát hạch PCA/SVD, explained variance và reconstruction trước câu hỏi phản biện.",
+        "method": "Nêu dữ liệu, assumption, method, metric, limitation và bằng chứng kiểm chứng."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-similarity-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "similarity-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t04",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "applicationId": "E25-MM104-T04-A01",
+        "title": "Assessment transfer",
+        "scenario": "Retrieval trạng thái máy tương tự.",
+        "method": "Nêu dữ liệu, assumption, method, metric, limitation và bằng chứng kiểm chứng."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-similarity-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "similarity-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t04",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "applicationId": "E25-MM104-T04-A02",
+        "title": "Engineering defense",
+        "scenario": "Bảo vệ lựa chọn phương pháp của Sát hạch similarity, metric và nearest-neighbor geometry trước câu hỏi phản biện.",
+        "method": "Nêu dữ liệu, assumption, method, metric, limitation và bằng chứng kiểm chứng."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t05",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-kmeans-exam",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "kmeans-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t05",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "applicationId": "E25-MM104-T05-A01",
+        "title": "Assessment transfer",
+        "scenario": "Phân nhóm chế độ vận hành.",
+        "method": "Nêu dữ liệu, assumption, method, metric, limitation và bằng chứng kiểm chứng."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t05",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-kmeans-exam",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "kmeans-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t05",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "applicationId": "E25-MM104-T05-A02",
+        "title": "Engineering defense",
+        "scenario": "Bảo vệ lựa chọn phương pháp của Sát hạch K-means, k, inertia, silhouette và stability trước câu hỏi phản biện.",
+        "method": "Nêu dữ liệu, assumption, method, metric, limitation và bằng chứng kiểm chứng."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-density-hierarchical-exam",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "density-hierarchical-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t06",
+          "m_m104",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "applicationId": "E25-MM104-T06-A01",
+        "title": "Assessment transfer",
+        "scenario": "Khám phá cấu trúc trạng thái và vùng hiếm.",
+        "method": "Nêu dữ liệu, assumption, method, metric, limitation và bằng chứng kiểm chứng."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-density-hierarchical-exam",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "density-hierarchical-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t06",
+          "m_m104",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "applicationId": "E25-MM104-T06-A02",
+        "title": "Engineering defense",
+        "scenario": "Bảo vệ lựa chọn phương pháp của Sát hạch hierarchical clustering và DBSCAN trước câu hỏi phản biện.",
+        "method": "Nêu dữ liệu, assumption, method, metric, limitation và bằng chứng kiểm chứng."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-integrated-case",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "integrated-case"
+        ],
+        "sourceAnchors": [
+          "m_m104_t07",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "applicationId": "E25-MM104-T07-A01",
+        "title": "Assessment transfer",
+        "scenario": "Case study hoàn chỉnh cho dữ liệu cảm biến.",
+        "method": "Nêu dữ liệu, assumption, method, metric, limitation và bằng chứng kiểm chứng."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-integrated-case",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "integrated-case"
+        ],
+        "sourceAnchors": [
+          "m_m104_t07",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "applicationId": "E25-MM104-T07-A02",
+        "title": "Engineering defense",
+        "scenario": "Bảo vệ lựa chọn phương pháp của Integrated case: telemetry → PCA → clustering → validation trước câu hỏi phản biện.",
+        "method": "Nêu dữ liệu, assumption, method, metric, limitation và bằng chứng kiểm chứng."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-oral-written-gate",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "oral-written-gate"
+        ],
+        "sourceAnchors": [
+          "m_m104_t08",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "applicationId": "E25-MM104-T08-A01",
+        "title": "Assessment transfer",
+        "scenario": "Cổng mở khóa phần tiếp theo của lộ trình HK1.",
+        "method": "Nêu dữ liệu, assumption, method, metric, limitation và bằng chứng kiểm chứng."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-oral-written-gate",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "oral-written-gate"
+        ],
+        "sourceAnchors": [
+          "m_m104_t08",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "applicationId": "E25-MM104-T08-A02",
+        "title": "Engineering defense",
+        "scenario": "Bảo vệ lựa chọn phương pháp của Final HK1 gate: written + oral defense + error repair trước câu hỏi phản biện.",
+        "method": "Nêu dữ liệu, assumption, method, metric, limitation và bằng chứng kiểm chứng."
+      }
+    ],
+    "simulation_content": [
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t01",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T01-readiness-diagnostic",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "readiness-diagnostic"
+        ],
+        "sourceAnchors": [
+          "m_m104_t01",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "simulationId": "E25-MM104-T01-S01",
+        "title": "Timed written drill",
+        "simulationClass": "theory",
+        "purpose": "Làm bài có thời gian cho Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering.",
+        "controls": [
+          {
+            "key": "difficulty",
+            "type": "number",
+            "default": 2
+          },
+          {
+            "key": "show_hint",
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "formula_gate",
+            "label": "Formula gate"
+          },
+          {
+            "key": "condition_gate",
+            "label": "Condition gate"
+          },
+          {
+            "key": "verification_gate",
+            "label": "Verification gate"
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t01",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T01-readiness-diagnostic",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "readiness-diagnostic"
+        ],
+        "sourceAnchors": [
+          "m_m104_t01",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "simulationId": "E25-MM104-T01-S02",
+        "title": "Oral defense drill",
+        "simulationClass": "application",
+        "purpose": "Mô phỏng vấn đáp phản biện cho Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering.",
+        "controls": [
+          {
+            "key": "difficulty",
+            "type": "number",
+            "default": 3
+          },
+          {
+            "key": "show_hint",
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "formula_gate",
+            "label": "Formula gate"
+          },
+          {
+            "key": "condition_gate",
+            "label": "Condition gate"
+          },
+          {
+            "key": "verification_gate",
+            "label": "Verification gate"
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-contract-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "multidim-contract-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t02",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "simulationId": "E25-MM104-T02-S01",
+        "title": "Timed written drill",
+        "simulationClass": "theory",
+        "purpose": "Làm bài có thời gian cho Sát hạch data matrix, scale, covariance và geometry.",
+        "controls": [
+          {
+            "key": "difficulty",
+            "type": "number",
+            "default": 2
+          },
+          {
+            "key": "show_hint",
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "formula_gate",
+            "label": "Formula gate"
+          },
+          {
+            "key": "condition_gate",
+            "label": "Condition gate"
+          },
+          {
+            "key": "verification_gate",
+            "label": "Verification gate"
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-contract-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "multidim-contract-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t02",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "simulationId": "E25-MM104-T02-S02",
+        "title": "Oral defense drill",
+        "simulationClass": "application",
+        "purpose": "Mô phỏng vấn đáp phản biện cho Sát hạch data matrix, scale, covariance và geometry.",
+        "controls": [
+          {
+            "key": "difficulty",
+            "type": "number",
+            "default": 3
+          },
+          {
+            "key": "show_hint",
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "formula_gate",
+            "label": "Formula gate"
+          },
+          {
+            "key": "condition_gate",
+            "label": "Condition gate"
+          },
+          {
+            "key": "verification_gate",
+            "label": "Verification gate"
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-pca-svd-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "pca-svd-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t03",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "simulationId": "E25-MM104-T03-S01",
+        "title": "Timed written drill",
+        "simulationClass": "theory",
+        "purpose": "Làm bài có thời gian cho Sát hạch PCA/SVD, explained variance và reconstruction.",
+        "controls": [
+          {
+            "key": "difficulty",
+            "type": "number",
+            "default": 2
+          },
+          {
+            "key": "show_hint",
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "formula_gate",
+            "label": "Formula gate"
+          },
+          {
+            "key": "condition_gate",
+            "label": "Condition gate"
+          },
+          {
+            "key": "verification_gate",
+            "label": "Verification gate"
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-pca-svd-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "pca-svd-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t03",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "simulationId": "E25-MM104-T03-S02",
+        "title": "Oral defense drill",
+        "simulationClass": "application",
+        "purpose": "Mô phỏng vấn đáp phản biện cho Sát hạch PCA/SVD, explained variance và reconstruction.",
+        "controls": [
+          {
+            "key": "difficulty",
+            "type": "number",
+            "default": 3
+          },
+          {
+            "key": "show_hint",
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "formula_gate",
+            "label": "Formula gate"
+          },
+          {
+            "key": "condition_gate",
+            "label": "Condition gate"
+          },
+          {
+            "key": "verification_gate",
+            "label": "Verification gate"
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-similarity-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "similarity-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t04",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "simulationId": "E25-MM104-T04-S01",
+        "title": "Timed written drill",
+        "simulationClass": "theory",
+        "purpose": "Làm bài có thời gian cho Sát hạch similarity, metric và nearest-neighbor geometry.",
+        "controls": [
+          {
+            "key": "difficulty",
+            "type": "number",
+            "default": 2
+          },
+          {
+            "key": "show_hint",
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "formula_gate",
+            "label": "Formula gate"
+          },
+          {
+            "key": "condition_gate",
+            "label": "Condition gate"
+          },
+          {
+            "key": "verification_gate",
+            "label": "Verification gate"
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-similarity-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "similarity-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t04",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "simulationId": "E25-MM104-T04-S02",
+        "title": "Oral defense drill",
+        "simulationClass": "application",
+        "purpose": "Mô phỏng vấn đáp phản biện cho Sát hạch similarity, metric và nearest-neighbor geometry.",
+        "controls": [
+          {
+            "key": "difficulty",
+            "type": "number",
+            "default": 3
+          },
+          {
+            "key": "show_hint",
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "formula_gate",
+            "label": "Formula gate"
+          },
+          {
+            "key": "condition_gate",
+            "label": "Condition gate"
+          },
+          {
+            "key": "verification_gate",
+            "label": "Verification gate"
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t05",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-kmeans-exam",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "kmeans-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t05",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "simulationId": "E25-MM104-T05-S01",
+        "title": "Timed written drill",
+        "simulationClass": "theory",
+        "purpose": "Làm bài có thời gian cho Sát hạch K-means, k, inertia, silhouette và stability.",
+        "controls": [
+          {
+            "key": "difficulty",
+            "type": "number",
+            "default": 2
+          },
+          {
+            "key": "show_hint",
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "formula_gate",
+            "label": "Formula gate"
+          },
+          {
+            "key": "condition_gate",
+            "label": "Condition gate"
+          },
+          {
+            "key": "verification_gate",
+            "label": "Verification gate"
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t05",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-kmeans-exam",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "kmeans-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t05",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "simulationId": "E25-MM104-T05-S02",
+        "title": "Oral defense drill",
+        "simulationClass": "application",
+        "purpose": "Mô phỏng vấn đáp phản biện cho Sát hạch K-means, k, inertia, silhouette và stability.",
+        "controls": [
+          {
+            "key": "difficulty",
+            "type": "number",
+            "default": 3
+          },
+          {
+            "key": "show_hint",
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "formula_gate",
+            "label": "Formula gate"
+          },
+          {
+            "key": "condition_gate",
+            "label": "Condition gate"
+          },
+          {
+            "key": "verification_gate",
+            "label": "Verification gate"
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-density-hierarchical-exam",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "density-hierarchical-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t06",
+          "m_m104",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "simulationId": "E25-MM104-T06-S01",
+        "title": "Timed written drill",
+        "simulationClass": "theory",
+        "purpose": "Làm bài có thời gian cho Sát hạch hierarchical clustering và DBSCAN.",
+        "controls": [
+          {
+            "key": "difficulty",
+            "type": "number",
+            "default": 2
+          },
+          {
+            "key": "show_hint",
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "formula_gate",
+            "label": "Formula gate"
+          },
+          {
+            "key": "condition_gate",
+            "label": "Condition gate"
+          },
+          {
+            "key": "verification_gate",
+            "label": "Verification gate"
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-density-hierarchical-exam",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "density-hierarchical-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t06",
+          "m_m104",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "simulationId": "E25-MM104-T06-S02",
+        "title": "Oral defense drill",
+        "simulationClass": "application",
+        "purpose": "Mô phỏng vấn đáp phản biện cho Sát hạch hierarchical clustering và DBSCAN.",
+        "controls": [
+          {
+            "key": "difficulty",
+            "type": "number",
+            "default": 3
+          },
+          {
+            "key": "show_hint",
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "formula_gate",
+            "label": "Formula gate"
+          },
+          {
+            "key": "condition_gate",
+            "label": "Condition gate"
+          },
+          {
+            "key": "verification_gate",
+            "label": "Verification gate"
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-integrated-case",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "integrated-case"
+        ],
+        "sourceAnchors": [
+          "m_m104_t07",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "simulationId": "E25-MM104-T07-S01",
+        "title": "Timed written drill",
+        "simulationClass": "theory",
+        "purpose": "Làm bài có thời gian cho Integrated case: telemetry → PCA → clustering → validation.",
+        "controls": [
+          {
+            "key": "difficulty",
+            "type": "number",
+            "default": 2
+          },
+          {
+            "key": "show_hint",
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "formula_gate",
+            "label": "Formula gate"
+          },
+          {
+            "key": "condition_gate",
+            "label": "Condition gate"
+          },
+          {
+            "key": "verification_gate",
+            "label": "Verification gate"
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-integrated-case",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "integrated-case"
+        ],
+        "sourceAnchors": [
+          "m_m104_t07",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "simulationId": "E25-MM104-T07-S02",
+        "title": "Oral defense drill",
+        "simulationClass": "application",
+        "purpose": "Mô phỏng vấn đáp phản biện cho Integrated case: telemetry → PCA → clustering → validation.",
+        "controls": [
+          {
+            "key": "difficulty",
+            "type": "number",
+            "default": 3
+          },
+          {
+            "key": "show_hint",
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "formula_gate",
+            "label": "Formula gate"
+          },
+          {
+            "key": "condition_gate",
+            "label": "Condition gate"
+          },
+          {
+            "key": "verification_gate",
+            "label": "Verification gate"
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-oral-written-gate",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "oral-written-gate"
+        ],
+        "sourceAnchors": [
+          "m_m104_t08",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "simulationId": "E25-MM104-T08-S01",
+        "title": "Timed written drill",
+        "simulationClass": "theory",
+        "purpose": "Làm bài có thời gian cho Final HK1 gate: written + oral defense + error repair.",
+        "controls": [
+          {
+            "key": "difficulty",
+            "type": "number",
+            "default": 2
+          },
+          {
+            "key": "show_hint",
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "formula_gate",
+            "label": "Formula gate"
+          },
+          {
+            "key": "condition_gate",
+            "label": "Condition gate"
+          },
+          {
+            "key": "verification_gate",
+            "label": "Verification gate"
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-oral-written-gate",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "oral-written-gate"
+        ],
+        "sourceAnchors": [
+          "m_m104_t08",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "simulationId": "E25-MM104-T08-S02",
+        "title": "Oral defense drill",
+        "simulationClass": "application",
+        "purpose": "Mô phỏng vấn đáp phản biện cho Final HK1 gate: written + oral defense + error repair.",
+        "controls": [
+          {
+            "key": "difficulty",
+            "type": "number",
+            "default": 3
+          },
+          {
+            "key": "show_hint",
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "formula_gate",
+            "label": "Formula gate"
+          },
+          {
+            "key": "condition_gate",
+            "label": "Condition gate"
+          },
+          {
+            "key": "verification_gate",
+            "label": "Verification gate"
+          }
+        ]
+      }
+    ],
+    "professor_qa_content": [
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t01",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T01-readiness-diagnostic",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "readiness-diagnostic"
+        ],
+        "sourceAnchors": [
+          "m_m104_t01",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "qaId": "E25-MM104-T01-QA01",
+        "question": "Điều gì khiến một đáp án của «Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering» bị FAIL dù đáp số cuối đúng?",
+        "answer": "Vi phạm condition/provenance/data leakage hoặc không kiểm chứng được reasoning. Gate: Chỉ PASS khi lỗi công thức, condition và data-leakage đều dưới ngưỡng; không bù lỗi nền bằng điểm ứng dụng."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-contract-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "multidim-contract-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t02",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "qaId": "E25-MM104-T02-QA01",
+        "question": "Điều gì khiến một đáp án của «Sát hạch data matrix, scale, covariance và geometry» bị FAIL dù đáp số cuối đúng?",
+        "answer": "Vi phạm condition/provenance/data leakage hoặc không kiểm chứng được reasoning. Gate: Khóa orientation, units, centering/scaling và split provenance trước phép tính."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-pca-svd-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "pca-svd-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t03",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "qaId": "E25-MM104-T03-QA01",
+        "question": "Điều gì khiến một đáp án của «Sát hạch PCA/SVD, explained variance và reconstruction» bị FAIL dù đáp số cuối đúng?",
+        "answer": "Vi phạm condition/provenance/data leakage hoặc không kiểm chứng được reasoning. Gate: Center đúng; chọn k bằng explained variance + task utility; kiểm orthogonality, reconstruction error và train-fit provenance."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-similarity-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "similarity-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t04",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "qaId": "E25-MM104-T04-QA01",
+        "question": "Điều gì khiến một đáp án của «Sát hạch similarity, metric và nearest-neighbor geometry» bị FAIL dù đáp số cuối đúng?",
+        "answer": "Vi phạm condition/provenance/data leakage hoặc không kiểm chứng được reasoning. Gate: Metric phải phản ánh semantics; kiểm scale, zero vector, high-dimensional concentration và tie handling."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t05",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-kmeans-exam",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "kmeans-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t05",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "qaId": "E25-MM104-T05-QA01",
+        "question": "Điều gì khiến một đáp án của «Sát hạch K-means, k, inertia, silhouette và stability» bị FAIL dù đáp số cuối đúng?",
+        "answer": "Vi phạm condition/provenance/data leakage hoặc không kiểm chứng được reasoning. Gate: Multi-seed, scale đúng, empty-cluster handling và chọn k bằng nhiều bằng chứng."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-density-hierarchical-exam",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "density-hierarchical-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t06",
+          "m_m104",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "qaId": "E25-MM104-T06-QA01",
+        "question": "Điều gì khiến một đáp án của «Sát hạch hierarchical clustering và DBSCAN» bị FAIL dù đáp số cuối đúng?",
+        "answer": "Vi phạm condition/provenance/data leakage hoặc không kiểm chứng được reasoning. Gate: Metric/linkage hoặc ε-MinPts phải phù hợp topology và density; noise không mặc định là anomaly."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-integrated-case",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "integrated-case"
+        ],
+        "sourceAnchors": [
+          "m_m104_t07",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "qaId": "E25-MM104-T07-QA01",
+        "question": "Điều gì khiến một đáp án của «Integrated case: telemetry → PCA → clustering → validation» bị FAIL dù đáp số cuối đúng?",
+        "answer": "Vi phạm condition/provenance/data leakage hoặc không kiểm chứng được reasoning. Gate: Phải có provenance đầy đủ từ input→transform→PCA→cluster→metric; mọi thông số tuning ghi rõ nguồn."
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-oral-written-gate",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "oral-written-gate"
+        ],
+        "sourceAnchors": [
+          "m_m104_t08",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "qaId": "E25-MM104-T08-QA01",
+        "question": "Điều gì khiến một đáp án của «Final HK1 gate: written + oral defense + error repair» bị FAIL dù đáp số cuối đúng?",
+        "answer": "Vi phạm condition/provenance/data leakage hoặc không kiểm chứng được reasoning. Gate: Sát hạch phải có written calculation, oral explanation, error repair và application transfer; critical leakage = FAIL."
+      }
+    ],
+    "question_bank_content": [
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t01",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T01-readiness-diagnostic",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "readiness-diagnostic"
+        ],
+        "sourceAnchors": [
+          "m_m104_t01",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T01-Q001",
+        "level": "easy",
+        "question": "Mục tiêu sát hạch của Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering là gì?",
+        "answer": "Dashboard readiness trước sát hạch HK1.",
+        "reviewPackId": "E25-MM104-T01-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t01",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T01-readiness-diagnostic",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "readiness-diagnostic"
+        ],
+        "sourceAnchors": [
+          "m_m104_t01",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T01-Q002",
+        "level": "easy",
+        "question": "Viết Pipeline invariant.",
+        "answer": "raw → clean → split → fit(train) → transform → model → evaluate",
+        "reviewPackId": "E25-MM104-T01-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t01",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T01-readiness-diagnostic",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "readiness-diagnostic"
+        ],
+        "sourceAnchors": [
+          "m_m104_t01",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T01-Q003",
+        "level": "medium",
+        "question": "Ý nghĩa của Readiness score?",
+        "answer": "F=formula, C=condition, A=application, V=verification.",
+        "reviewPackId": "E25-MM104-T01-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t01",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T01-readiness-diagnostic",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "readiness-diagnostic"
+        ],
+        "sourceAnchors": [
+          "m_m104_t01",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T01-Q004",
+        "level": "medium",
+        "question": "Gate bắt buộc là gì?",
+        "answer": "Chỉ PASS khi lỗi công thức, condition và data-leakage đều dưới ngưỡng; không bù lỗi nền bằng điểm ứng dụng.",
+        "reviewPackId": "E25-MM104-T01-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t01",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T01-readiness-diagnostic",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "readiness-diagnostic"
+        ],
+        "sourceAnchors": [
+          "m_m104_t01",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T01-Q005",
+        "level": "medium",
+        "question": "Bẫy critical là gì?",
+        "answer": "Điểm tổng cao che một lỗ hổng nghiêm trọng ở data leakage hoặc dimension semantics.",
+        "reviewPackId": "E25-MM104-T01-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t01",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T01-readiness-diagnostic",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "readiness-diagnostic"
+        ],
+        "sourceAnchors": [
+          "m_m104_t01",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T01-Q006",
+        "level": "hard",
+        "question": "Nêu application + verification.",
+        "answer": "Dashboard readiness trước sát hạch HK1. Verification: condition + numerical/provenance sanity-check.",
+        "reviewPackId": "E25-MM104-T01-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-contract-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "multidim-contract-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t02",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T02-Q001",
+        "level": "easy",
+        "question": "Mục tiêu sát hạch của Sát hạch data matrix, scale, covariance và geometry là gì?",
+        "answer": "Kiểm tra feature contract cho telemetry.",
+        "reviewPackId": "E25-MM104-T02-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-contract-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "multidim-contract-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t02",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T02-Q002",
+        "level": "easy",
+        "question": "Viết Data matrix.",
+        "answer": "X ∈ ℝ^(n×p)",
+        "reviewPackId": "E25-MM104-T02-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-contract-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "multidim-contract-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t02",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T02-Q003",
+        "level": "medium",
+        "question": "Ý nghĩa của Covariance?",
+        "answer": "Feature covariance p×p.",
+        "reviewPackId": "E25-MM104-T02-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-contract-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "multidim-contract-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t02",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T02-Q004",
+        "level": "medium",
+        "question": "Gate bắt buộc là gì?",
+        "answer": "Khóa orientation, units, centering/scaling và split provenance trước phép tính.",
+        "reviewPackId": "E25-MM104-T02-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-contract-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "multidim-contract-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t02",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T02-Q005",
+        "level": "medium",
+        "question": "Bẫy critical là gì?",
+        "answer": "Tính đúng ma trận nhưng sai trục sample/feature hoặc dùng statistics của toàn bộ dataset.",
+        "reviewPackId": "E25-MM104-T02-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-contract-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "multidim-contract-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t02",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T02-Q006",
+        "level": "hard",
+        "question": "Nêu application + verification.",
+        "answer": "Kiểm tra feature contract cho telemetry. Verification: condition + numerical/provenance sanity-check.",
+        "reviewPackId": "E25-MM104-T02-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-pca-svd-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "pca-svd-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t03",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T03-Q001",
+        "level": "easy",
+        "question": "Mục tiêu sát hạch của Sát hạch PCA/SVD, explained variance và reconstruction là gì?",
+        "answer": "Giảm chiều telemetry/embedding trước clustering.",
+        "reviewPackId": "E25-MM104-T03-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-pca-svd-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "pca-svd-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t03",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T03-Q002",
+        "level": "easy",
+        "question": "Viết PCA projection.",
+        "answer": "Z=XcV_k",
+        "reviewPackId": "E25-MM104-T03-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-pca-svd-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "pca-svd-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t03",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T03-Q003",
+        "level": "medium",
+        "question": "Ý nghĩa của SVD?",
+        "answer": "Liên hệ singular values với variance.",
+        "reviewPackId": "E25-MM104-T03-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-pca-svd-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "pca-svd-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t03",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T03-Q004",
+        "level": "medium",
+        "question": "Gate bắt buộc là gì?",
+        "answer": "Center đúng; chọn k bằng explained variance + task utility; kiểm orthogonality, reconstruction error và train-fit provenance.",
+        "reviewPackId": "E25-MM104-T03-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-pca-svd-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "pca-svd-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t03",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T03-Q005",
+        "level": "medium",
+        "question": "Bẫy critical là gì?",
+        "answer": "Coi PCA là feature selection nguyên bản hoặc kết luận giảm chiều không mất thông tin.",
+        "reviewPackId": "E25-MM104-T03-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-pca-svd-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "pca-svd-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t03",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T03-Q006",
+        "level": "hard",
+        "question": "Nêu application + verification.",
+        "answer": "Giảm chiều telemetry/embedding trước clustering. Verification: condition + numerical/provenance sanity-check.",
+        "reviewPackId": "E25-MM104-T03-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-similarity-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "similarity-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t04",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T04-Q001",
+        "level": "easy",
+        "question": "Mục tiêu sát hạch của Sát hạch similarity, metric và nearest-neighbor geometry là gì?",
+        "answer": "Retrieval trạng thái máy tương tự.",
+        "reviewPackId": "E25-MM104-T04-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-similarity-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "similarity-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t04",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T04-Q002",
+        "level": "easy",
+        "question": "Viết L2 distance.",
+        "answer": "d₂(x,y)=√Σⱼ(xⱼ−yⱼ)²",
+        "reviewPackId": "E25-MM104-T04-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-similarity-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "similarity-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t04",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T04-Q003",
+        "level": "medium",
+        "question": "Ý nghĩa của L1 distance?",
+        "answer": "Manhattan.",
+        "reviewPackId": "E25-MM104-T04-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-similarity-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "similarity-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t04",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T04-Q004",
+        "level": "medium",
+        "question": "Gate bắt buộc là gì?",
+        "answer": "Metric phải phản ánh semantics; kiểm scale, zero vector, high-dimensional concentration và tie handling.",
+        "reviewPackId": "E25-MM104-T04-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-similarity-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "similarity-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t04",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T04-Q005",
+        "level": "medium",
+        "question": "Bẫy critical là gì?",
+        "answer": "Chọn metric theo thói quen thay vì mục tiêu vật lý/dữ liệu.",
+        "reviewPackId": "E25-MM104-T04-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-similarity-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "similarity-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t04",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T04-Q006",
+        "level": "hard",
+        "question": "Nêu application + verification.",
+        "answer": "Retrieval trạng thái máy tương tự. Verification: condition + numerical/provenance sanity-check.",
+        "reviewPackId": "E25-MM104-T04-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t05",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-kmeans-exam",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "kmeans-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t05",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T05-Q001",
+        "level": "easy",
+        "question": "Mục tiêu sát hạch của Sát hạch K-means, k, inertia, silhouette và stability là gì?",
+        "answer": "Phân nhóm chế độ vận hành.",
+        "reviewPackId": "E25-MM104-T05-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t05",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-kmeans-exam",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "kmeans-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t05",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T05-Q002",
+        "level": "easy",
+        "question": "Viết K-means objective.",
+        "answer": "J=Σ_i ‖x_i−μ_{c_i}‖₂²",
+        "reviewPackId": "E25-MM104-T05-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t05",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-kmeans-exam",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "kmeans-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t05",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T05-Q003",
+        "level": "medium",
+        "question": "Ý nghĩa của Silhouette?",
+        "answer": "[-1,1].",
+        "reviewPackId": "E25-MM104-T05-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t05",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-kmeans-exam",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "kmeans-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t05",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T05-Q004",
+        "level": "medium",
+        "question": "Gate bắt buộc là gì?",
+        "answer": "Multi-seed, scale đúng, empty-cluster handling và chọn k bằng nhiều bằng chứng.",
+        "reviewPackId": "E25-MM104-T05-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t05",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-kmeans-exam",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "kmeans-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t05",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T05-Q005",
+        "level": "medium",
+        "question": "Bẫy critical là gì?",
+        "answer": "Dùng một seed hoặc một metric để tuyên bố k tối ưu tuyệt đối.",
+        "reviewPackId": "E25-MM104-T05-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t05",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-kmeans-exam",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "kmeans-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t05",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T05-Q006",
+        "level": "hard",
+        "question": "Nêu application + verification.",
+        "answer": "Phân nhóm chế độ vận hành. Verification: condition + numerical/provenance sanity-check.",
+        "reviewPackId": "E25-MM104-T05-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-density-hierarchical-exam",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "density-hierarchical-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t06",
+          "m_m104",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T06-Q001",
+        "level": "easy",
+        "question": "Mục tiêu sát hạch của Sát hạch hierarchical clustering và DBSCAN là gì?",
+        "answer": "Khám phá cấu trúc trạng thái và vùng hiếm.",
+        "reviewPackId": "E25-MM104-T06-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-density-hierarchical-exam",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "density-hierarchical-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t06",
+          "m_m104",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T06-Q002",
+        "level": "easy",
+        "question": "Viết Single linkage.",
+        "answer": "D(A,B)=min d(a,b)",
+        "reviewPackId": "E25-MM104-T06-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-density-hierarchical-exam",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "density-hierarchical-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t06",
+          "m_m104",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T06-Q003",
+        "level": "medium",
+        "question": "Ý nghĩa của Complete linkage?",
+        "answer": "Ưu tiên cụm compact.",
+        "reviewPackId": "E25-MM104-T06-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-density-hierarchical-exam",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "density-hierarchical-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t06",
+          "m_m104",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T06-Q004",
+        "level": "medium",
+        "question": "Gate bắt buộc là gì?",
+        "answer": "Metric/linkage hoặc ε-MinPts phải phù hợp topology và density; noise không mặc định là anomaly.",
+        "reviewPackId": "E25-MM104-T06-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-density-hierarchical-exam",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "density-hierarchical-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t06",
+          "m_m104",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T06-Q005",
+        "level": "medium",
+        "question": "Bẫy critical là gì?",
+        "answer": "Cắt dendrogram tùy ý hoặc gán mọi DBSCAN noise thành lỗi.",
+        "reviewPackId": "E25-MM104-T06-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-density-hierarchical-exam",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "density-hierarchical-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t06",
+          "m_m104",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T06-Q006",
+        "level": "hard",
+        "question": "Nêu application + verification.",
+        "answer": "Khám phá cấu trúc trạng thái và vùng hiếm. Verification: condition + numerical/provenance sanity-check.",
+        "reviewPackId": "E25-MM104-T06-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-integrated-case",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "integrated-case"
+        ],
+        "sourceAnchors": [
+          "m_m104_t07",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T07-Q001",
+        "level": "easy",
+        "question": "Mục tiêu sát hạch của Integrated case: telemetry → PCA → clustering → validation là gì?",
+        "answer": "Case study hoàn chỉnh cho dữ liệu cảm biến.",
+        "reviewPackId": "E25-MM104-T07-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-integrated-case",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "integrated-case"
+        ],
+        "sourceAnchors": [
+          "m_m104_t07",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T07-Q002",
+        "level": "easy",
+        "question": "Viết Transform contract.",
+        "answer": "θ=fit(X_train); X′=transform(X;θ)",
+        "reviewPackId": "E25-MM104-T07-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-integrated-case",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "integrated-case"
+        ],
+        "sourceAnchors": [
+          "m_m104_t07",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T07-Q003",
+        "level": "medium",
+        "question": "Ý nghĩa của Variance retention?",
+        "answer": "Theo dõi thông tin giữ lại.",
+        "reviewPackId": "E25-MM104-T07-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-integrated-case",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "integrated-case"
+        ],
+        "sourceAnchors": [
+          "m_m104_t07",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T07-Q004",
+        "level": "medium",
+        "question": "Gate bắt buộc là gì?",
+        "answer": "Phải có provenance đầy đủ từ input→transform→PCA→cluster→metric; mọi thông số tuning ghi rõ nguồn.",
+        "reviewPackId": "E25-MM104-T07-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-integrated-case",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "integrated-case"
+        ],
+        "sourceAnchors": [
+          "m_m104_t07",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T07-Q005",
+        "level": "medium",
+        "question": "Bẫy critical là gì?",
+        "answer": "Dùng test để chọn số PCA component hoặc cluster parameter rồi báo metric test như khách quan.",
+        "reviewPackId": "E25-MM104-T07-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-integrated-case",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "integrated-case"
+        ],
+        "sourceAnchors": [
+          "m_m104_t07",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T07-Q006",
+        "level": "hard",
+        "question": "Nêu application + verification.",
+        "answer": "Case study hoàn chỉnh cho dữ liệu cảm biến. Verification: condition + numerical/provenance sanity-check.",
+        "reviewPackId": "E25-MM104-T07-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-oral-written-gate",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "oral-written-gate"
+        ],
+        "sourceAnchors": [
+          "m_m104_t08",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T08-Q001",
+        "level": "easy",
+        "question": "Mục tiêu sát hạch của Final HK1 gate: written + oral defense + error repair là gì?",
+        "answer": "Cổng mở khóa phần tiếp theo của lộ trình HK1.",
+        "reviewPackId": "E25-MM104-T08-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-oral-written-gate",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "oral-written-gate"
+        ],
+        "sourceAnchors": [
+          "m_m104_t08",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T08-Q002",
+        "level": "easy",
+        "question": "Viết Gate score.",
+        "answer": "G=min(F,C,V,A)",
+        "reviewPackId": "E25-MM104-T08-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-oral-written-gate",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "oral-written-gate"
+        ],
+        "sourceAnchors": [
+          "m_m104_t08",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T08-Q003",
+        "level": "medium",
+        "question": "Ý nghĩa của Repair priority?",
+        "answer": "Ưu tiên lỗi nền có rủi ro lan truyền.",
+        "reviewPackId": "E25-MM104-T08-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-oral-written-gate",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "oral-written-gate"
+        ],
+        "sourceAnchors": [
+          "m_m104_t08",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T08-Q004",
+        "level": "medium",
+        "question": "Gate bắt buộc là gì?",
+        "answer": "Sát hạch phải có written calculation, oral explanation, error repair và application transfer; critical leakage = FAIL.",
+        "reviewPackId": "E25-MM104-T08-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-oral-written-gate",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "oral-written-gate"
+        ],
+        "sourceAnchors": [
+          "m_m104_t08",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T08-Q005",
+        "level": "medium",
+        "question": "Bẫy critical là gì?",
+        "answer": "Chấm chỉ đáp số mà bỏ reasoning/condition/provenance.",
+        "reviewPackId": "E25-MM104-T08-RP01"
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-oral-written-gate",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "oral-written-gate"
+        ],
+        "sourceAnchors": [
+          "m_m104_t08",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "questionId": "E25-MM104-T08-Q006",
+        "level": "hard",
+        "question": "Nêu application + verification.",
+        "answer": "Cổng mở khóa phần tiếp theo của lộ trình HK1. Verification: condition + numerical/provenance sanity-check.",
+        "reviewPackId": "E25-MM104-T08-RP01"
+      }
+    ],
+    "review_pack_content": [
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t01",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T01-readiness-diagnostic",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "readiness-diagnostic"
+        ],
+        "sourceAnchors": [
+          "m_m104_t01",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "reviewPackId": "E25-MM104-T01-RP01",
+        "items": [
+          {
+            "type": "recognition",
+            "prompt": "Nhận dạng miền và invariant."
+          },
+          {
+            "type": "formula",
+            "prompt": "Viết 3 công thức lõi + điều kiện."
+          },
+          {
+            "type": "worked_problem",
+            "prompt": "Giải 1 bài tổng hợp có sanity-check."
+          },
+          {
+            "type": "trap",
+            "prompt": "Phân tích bẫy: Điểm tổng cao che một lỗ hổng nghiêm trọng ở data leakage hoặc dimension semantics."
+          },
+          {
+            "type": "oral",
+            "prompt": "Trình bày reasoning 2–3 phút."
+          },
+          {
+            "type": "error_review",
+            "prompt": "Gắn mã READ/MODEL/FORMULA/CALC/CONDITION/LEAK/CHECK và kế hoạch sửa."
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-contract-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "multidim-contract-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t02",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "reviewPackId": "E25-MM104-T02-RP01",
+        "items": [
+          {
+            "type": "recognition",
+            "prompt": "Nhận dạng miền và invariant."
+          },
+          {
+            "type": "formula",
+            "prompt": "Viết 3 công thức lõi + điều kiện."
+          },
+          {
+            "type": "worked_problem",
+            "prompt": "Giải 1 bài tổng hợp có sanity-check."
+          },
+          {
+            "type": "trap",
+            "prompt": "Phân tích bẫy: Tính đúng ma trận nhưng sai trục sample/feature hoặc dùng statistics của toàn bộ dataset."
+          },
+          {
+            "type": "oral",
+            "prompt": "Trình bày reasoning 2–3 phút."
+          },
+          {
+            "type": "error_review",
+            "prompt": "Gắn mã READ/MODEL/FORMULA/CALC/CONDITION/LEAK/CHECK và kế hoạch sửa."
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-pca-svd-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "pca-svd-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t03",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "reviewPackId": "E25-MM104-T03-RP01",
+        "items": [
+          {
+            "type": "recognition",
+            "prompt": "Nhận dạng miền và invariant."
+          },
+          {
+            "type": "formula",
+            "prompt": "Viết 3 công thức lõi + điều kiện."
+          },
+          {
+            "type": "worked_problem",
+            "prompt": "Giải 1 bài tổng hợp có sanity-check."
+          },
+          {
+            "type": "trap",
+            "prompt": "Phân tích bẫy: Coi PCA là feature selection nguyên bản hoặc kết luận giảm chiều không mất thông tin."
+          },
+          {
+            "type": "oral",
+            "prompt": "Trình bày reasoning 2–3 phút."
+          },
+          {
+            "type": "error_review",
+            "prompt": "Gắn mã READ/MODEL/FORMULA/CALC/CONDITION/LEAK/CHECK và kế hoạch sửa."
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-similarity-exam",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "similarity-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t04",
+          "m_m104",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "reviewPackId": "E25-MM104-T04-RP01",
+        "items": [
+          {
+            "type": "recognition",
+            "prompt": "Nhận dạng miền và invariant."
+          },
+          {
+            "type": "formula",
+            "prompt": "Viết 3 công thức lõi + điều kiện."
+          },
+          {
+            "type": "worked_problem",
+            "prompt": "Giải 1 bài tổng hợp có sanity-check."
+          },
+          {
+            "type": "trap",
+            "prompt": "Phân tích bẫy: Chọn metric theo thói quen thay vì mục tiêu vật lý/dữ liệu."
+          },
+          {
+            "type": "oral",
+            "prompt": "Trình bày reasoning 2–3 phút."
+          },
+          {
+            "type": "error_review",
+            "prompt": "Gắn mã READ/MODEL/FORMULA/CALC/CONDITION/LEAK/CHECK và kế hoạch sửa."
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t05",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-kmeans-exam",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "kmeans-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t05",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "reviewPackId": "E25-MM104-T05-RP01",
+        "items": [
+          {
+            "type": "recognition",
+            "prompt": "Nhận dạng miền và invariant."
+          },
+          {
+            "type": "formula",
+            "prompt": "Viết 3 công thức lõi + điều kiện."
+          },
+          {
+            "type": "worked_problem",
+            "prompt": "Giải 1 bài tổng hợp có sanity-check."
+          },
+          {
+            "type": "trap",
+            "prompt": "Phân tích bẫy: Dùng một seed hoặc một metric để tuyên bố k tối ưu tuyệt đối."
+          },
+          {
+            "type": "oral",
+            "prompt": "Trình bày reasoning 2–3 phút."
+          },
+          {
+            "type": "error_review",
+            "prompt": "Gắn mã READ/MODEL/FORMULA/CALC/CONDITION/LEAK/CHECK và kế hoạch sửa."
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-density-hierarchical-exam",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "density-hierarchical-exam"
+        ],
+        "sourceAnchors": [
+          "m_m104_t06",
+          "m_m104",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "reviewPackId": "E25-MM104-T06-RP01",
+        "items": [
+          {
+            "type": "recognition",
+            "prompt": "Nhận dạng miền và invariant."
+          },
+          {
+            "type": "formula",
+            "prompt": "Viết 3 công thức lõi + điều kiện."
+          },
+          {
+            "type": "worked_problem",
+            "prompt": "Giải 1 bài tổng hợp có sanity-check."
+          },
+          {
+            "type": "trap",
+            "prompt": "Phân tích bẫy: Cắt dendrogram tùy ý hoặc gán mọi DBSCAN noise thành lỗi."
+          },
+          {
+            "type": "oral",
+            "prompt": "Trình bày reasoning 2–3 phút."
+          },
+          {
+            "type": "error_review",
+            "prompt": "Gắn mã READ/MODEL/FORMULA/CALC/CONDITION/LEAK/CHECK và kế hoạch sửa."
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-integrated-case",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "integrated-case"
+        ],
+        "sourceAnchors": [
+          "m_m104_t07",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "reviewPackId": "E25-MM104-T07-RP01",
+        "items": [
+          {
+            "type": "recognition",
+            "prompt": "Nhận dạng miền và invariant."
+          },
+          {
+            "type": "formula",
+            "prompt": "Viết 3 công thức lõi + điều kiện."
+          },
+          {
+            "type": "worked_problem",
+            "prompt": "Giải 1 bài tổng hợp có sanity-check."
+          },
+          {
+            "type": "trap",
+            "prompt": "Phân tích bẫy: Dùng test để chọn số PCA component hoặc cluster parameter rồi báo metric test như khách quan."
+          },
+          {
+            "type": "oral",
+            "prompt": "Trình bày reasoning 2–3 phút."
+          },
+          {
+            "type": "error_review",
+            "prompt": "Gắn mã READ/MODEL/FORMULA/CALC/CONDITION/LEAK/CHECK và kế hoạch sửa."
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "logicalLessonId": "m_m104_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-oral-written-gate",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "semester assessment",
+          "m_m104",
+          "oral-written-gate"
+        ],
+        "sourceAnchors": [
+          "m_m104_t08",
+          "m_m104",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E25_AUTHORED",
+        "reviewPackId": "E25-MM104-T08-RP01",
+        "items": [
+          {
+            "type": "recognition",
+            "prompt": "Nhận dạng miền và invariant."
+          },
+          {
+            "type": "formula",
+            "prompt": "Viết 3 công thức lõi + điều kiện."
+          },
+          {
+            "type": "worked_problem",
+            "prompt": "Giải 1 bài tổng hợp có sanity-check."
+          },
+          {
+            "type": "trap",
+            "prompt": "Phân tích bẫy: Chấm chỉ đáp số mà bỏ reasoning/condition/provenance."
+          },
+          {
+            "type": "oral",
+            "prompt": "Trình bày reasoning 2–3 phút."
+          },
+          {
+            "type": "error_review",
+            "prompt": "Gắn mã READ/MODEL/FORMULA/CALC/CONDITION/LEAK/CHECK và kế hoạch sửa."
+          }
+        ]
+      }
+    ]
+  }
+}
