@@ -134,9 +134,14 @@
     if(!recs.length&&no){var token='-C'+String(no).padStart(2,'0')+'-';recs=all.filter(function(r){return S(r.chapterId).indexOf(token)>=0 && (!stageHint||recordStageHint(r)===stageHint);});}
     if(!recs.length&&no)recs=all.filter(function(r){return programLectureMatches(r,no);});
     if(recs.length){
-      var seen={};
-      return recs.filter(function(r){var id=S(r.lessonId||r.id);if(!id||seen[id])return false;seen[id]=true;return true;})
+      var seen={}, out=recs.filter(function(r){var id=S(r.lessonId||r.id);if(!id||seen[id])return false;seen[id]=true;return true;})
         .map(function(r){return {id:S(r.lessonId||r.id),label:cleanLessonTitle(r.title||r.lessonTitle||r.lessonId),sub:'Chọn bài trước, rồi chọn phân mục học tập.'};});
+      /* C01-C03 have canonical baseline lessons that remain valid learner entry points.
+         Keep them visible in addition to stage overlays; do not let a newer batch hide them. */
+      staticLessons(p.chapterId).forEach(function(x){
+        if(!seen[x.id]){seen[x.id]=true;out.push({id:x.id,label:x.label,sub:'Chọn bài trước, rồi chọn phân mục học tập.'});}
+      });
+      return out;
     }
     var stat=staticLessons(p.chapterId);if(stat.length)return stat.map(function(x){return {id:x.id,label:x.label,sub:'Chọn bài trước, rồi chọn phân mục học tập.'};});
     return [{id:p.chapterId+'-overview',label:'Bài '+(ch&&ch.no||'')+'.1 · Bài giảng tổng quan',sub:'Khung bài tạm cho chương này.'}];
