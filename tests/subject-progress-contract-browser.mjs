@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 const {chromium}=await import(process.env.BAUMAN_PLAYWRIGHT_MODULE||'playwright');
 const BASE=process.env.BAUMAN_E2E_BASE_URL||'http://127.0.0.1:4173/';
+const EXPECT_PLATFORM_ACCESS=process.env.BAUMAN_E2E_EXPECT_PLATFORM_ACCESS==='1';
 const OUT=process.env.BAUMAN_E2E_ARTIFACT_DIR||'artifacts/subject-progress-contract';
 fs.mkdirSync(OUT,{recursive:true});
 
@@ -25,7 +26,8 @@ try{
  browser=await chromium.launch({headless:true,...(process.env.BAUMAN_CHROME_PATH?{executablePath:process.env.BAUMAN_CHROME_PATH}:{})});
  const context=await browser.newContext({viewport:{width:1440,height:900}}),page=await context.newPage();await mockControl(page);
  await page.goto(BASE,{waitUntil:'domcontentloaded',timeout:30000});
- await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='authorized',null,{timeout:30000});
+ const expectedDeviceState=EXPECT_PLATFORM_ACCESS?'authorized':'standalone';
+ await page.waitForFunction(expected=>document.documentElement.dataset.baumanDeviceAccess===expected,expectedDeviceState,{timeout:30000});
  await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'),null,{timeout:30000});
 
  const stateOnly=await page.evaluate(()=>{
