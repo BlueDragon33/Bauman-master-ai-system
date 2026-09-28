@@ -1,0 +1,2424 @@
+{
+  "schema": "bauman_math_content_bundle_v1",
+  "bundleId": "e25_mm104_hk1_assessment_theory_bundle",
+  "frameworkChapterId": "m_m104",
+  "moduleId": "m_m104",
+  "records": [
+    {
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T01-data-contract-diagnostics",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "lessonTitle": "m_m104 · §4.1 · Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu",
+      "title": "m_m104 · §4.1 · Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu",
+      "programLectureId": "MATH-PROG-L13-mathematical-statistics",
+      "programLectureIds": [
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "roadmapRole": "m_m104_t01",
+      "baumanFocus": "HK1 capstone E25 · cumulative assessment with evidence-based gates.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "legacyFrameworkChapterAlias": "MATH-HK1-ASSESSMENT-C17",
+        "logicalLessonId": "m_m104_t01",
+        "frameworkAnchor": "m_m104_t01",
+        "programLectureId": "MATH-PROG-L13-mathematical-statistics",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "cumulative_m_m101_m_m102_m_m103_assessment_e25"
+      },
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "data-contract-diagnostics"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu · section_open",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "section open",
+              "body": "Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu · learning_outcomes",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "learning outcomes",
+              "body": "Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu · notation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "notation",
+              "body": "Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu · notation_formula",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Z-score",
+              "body": "z=(x−μ_train)/σ_train\nFit trên train; áp sang validation/test."
+            },
+            {
+              "type": "formula",
+              "title": "Missing rate",
+              "body": "m_j=n_missing,j/n\nTheo dõi theo feature."
+            },
+            {
+              "type": "formula",
+              "title": "Feature ratio",
+              "body": "r=p/n\nCảnh báo khi p lớn so với n."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu · matrix_example",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Assessment data view",
+              "body": "X ∈ ℝ^(n×p) → transform → representation → cluster/metric",
+              "meaning": "Mỗi bước phải giữ shape, provenance và assumptions."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu · condition_gate",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "PASS gate",
+              "body": "Phải khóa schema, units, split provenance, missing/outlier policy và preprocessing fit-state."
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu · data_contract",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "data contract",
+              "body": "Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu · worked_example",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài sát hạch",
+              "body": "Cho dataset 1200×18 có 3 feature khác đơn vị; lập checklist xử lý trước clustering."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Trình bày phép tính, kiểm assumption, sanity-check và limitation."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu · geometry_interpretation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "geometry interpretation",
+              "body": "Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu · algorithm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "algorithm",
+              "body": "Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu · computational_check",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checks",
+              "items": [
+                "shape + finite",
+                "tolerance",
+                "multi-seed/repeatability",
+                "metric sanity",
+                "artifact reproducibility"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu · data_leakage_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "FAIL ngay nếu",
+              "items": [
+                "fit transform trên test",
+                "tuning theo test",
+                "mất provenance",
+                "gán cluster thành ground-truth",
+                "không lưu seed/config"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu · warning_counterexample",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Lỗi làm FAIL",
+              "body": "Tính preprocessing trên toàn bộ dataset trước khi split."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu · error_repair",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "error repair",
+              "body": "Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu · application_link",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Artifact",
+              "items": [
+                "Audit một batch telemetry trước PCA/clustering.",
+                "Phải kèm config + metric + limitation + reproducibility evidence."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu · simulation_plan",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "simulation plan",
+              "body": "Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu · technical_conclusion",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "technical conclusion",
+              "body": "Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu · lab_protocol",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "lab protocol",
+              "body": "Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu · review_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Mastery evidence",
+              "items": [
+                "công thức",
+                "bài tính",
+                "error repair",
+                "simulation",
+                "application artifact",
+                "oral defense"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu · exit_ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "PASS khi",
+              "items": [
+                "đúng toán",
+                "đúng assumption",
+                "không leakage",
+                "evidence tái lập",
+                "kết luận có limitation"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-geometry-metric",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "lessonTitle": "m_m104 · §4.2 · Sát hạch 2 · Hình học nhiều chiều, norm và similarity",
+      "title": "m_m104 · §4.2 · Sát hạch 2 · Hình học nhiều chiều, norm và similarity",
+      "programLectureId": "MATH-PROG-L09-topology-metric-spaces",
+      "programLectureIds": [
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "roadmapRole": "m_m104_t02",
+      "baumanFocus": "HK1 capstone E25 · cumulative assessment with evidence-based gates.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "legacyFrameworkChapterAlias": "MATH-HK1-ASSESSMENT-C17",
+        "logicalLessonId": "m_m104_t02",
+        "frameworkAnchor": "m_m104_t02",
+        "programLectureId": "MATH-PROG-L09-topology-metric-spaces",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "cumulative_m_m101_m_m102_m_m103_assessment_e25"
+      },
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "multidim-geometry-metric"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "Sát hạch 2 · Hình học nhiều chiều, norm và similarity · section_open",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "section open",
+              "body": "Sát hạch 2 · Hình học nhiều chiều, norm và similarity: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Sát hạch 2 · Hình học nhiều chiều, norm và similarity · learning_outcomes",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "learning outcomes",
+              "body": "Sát hạch 2 · Hình học nhiều chiều, norm và similarity: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Sát hạch 2 · Hình học nhiều chiều, norm và similarity · notation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "notation",
+              "body": "Sát hạch 2 · Hình học nhiều chiều, norm và similarity: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Sát hạch 2 · Hình học nhiều chiều, norm và similarity · notation_formula",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "L2",
+              "body": "d₂(x,y)=√Σⱼ(xⱼ−yⱼ)²\nPhụ thuộc scale."
+            },
+            {
+              "type": "formula",
+              "title": "Cosine",
+              "body": "cos(x,y)=xᵀy/(‖x‖₂‖y‖₂)\nSo hướng của vector."
+            },
+            {
+              "type": "formula",
+              "title": "Gram",
+              "body": "G=XXᵀ\nInner product giữa sample khi row=sample."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Sát hạch 2 · Hình học nhiều chiều, norm và similarity · matrix_example",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Assessment data view",
+              "body": "X ∈ ℝ^(n×p) → transform → representation → cluster/metric",
+              "meaning": "Mỗi bước phải giữ shape, provenance và assumptions."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Sát hạch 2 · Hình học nhiều chiều, norm và similarity · condition_gate",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "PASS gate",
+              "body": "Phải xác định sample/feature axis, metric semantics, scale và zero-vector handling."
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Sát hạch 2 · Hình học nhiều chiều, norm và similarity · data_contract",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "data contract",
+              "body": "Sát hạch 2 · Hình học nhiều chiều, norm và similarity: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Sát hạch 2 · Hình học nhiều chiều, norm và similarity · worked_example",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài sát hạch",
+              "body": "So Euclidean/cosine trên ba mẫu có cùng hướng nhưng khác biên độ."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Trình bày phép tính, kiểm assumption, sanity-check và limitation."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Sát hạch 2 · Hình học nhiều chiều, norm và similarity · geometry_interpretation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "geometry interpretation",
+              "body": "Sát hạch 2 · Hình học nhiều chiều, norm và similarity: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Sát hạch 2 · Hình học nhiều chiều, norm và similarity · algorithm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "algorithm",
+              "body": "Sát hạch 2 · Hình học nhiều chiều, norm và similarity: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Sát hạch 2 · Hình học nhiều chiều, norm và similarity · computational_check",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checks",
+              "items": [
+                "shape + finite",
+                "tolerance",
+                "multi-seed/repeatability",
+                "metric sanity",
+                "artifact reproducibility"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Sát hạch 2 · Hình học nhiều chiều, norm và similarity · data_leakage_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "FAIL ngay nếu",
+              "items": [
+                "fit transform trên test",
+                "tuning theo test",
+                "mất provenance",
+                "gán cluster thành ground-truth",
+                "không lưu seed/config"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Sát hạch 2 · Hình học nhiều chiều, norm và similarity · warning_counterexample",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Lỗi làm FAIL",
+              "body": "Nhầm XXᵀ với XᵀX hoặc dùng Euclidean cho feature lệch đơn vị."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sát hạch 2 · Hình học nhiều chiều, norm và similarity · error_repair",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "error repair",
+              "body": "Sát hạch 2 · Hình học nhiều chiều, norm và similarity: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Sát hạch 2 · Hình học nhiều chiều, norm và similarity · application_link",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Artifact",
+              "items": [
+                "Chọn metric cho nearest-neighbor trên trạng thái cảm biến.",
+                "Phải kèm config + metric + limitation + reproducibility evidence."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Sát hạch 2 · Hình học nhiều chiều, norm và similarity · simulation_plan",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "simulation plan",
+              "body": "Sát hạch 2 · Hình học nhiều chiều, norm và similarity: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Sát hạch 2 · Hình học nhiều chiều, norm và similarity · technical_conclusion",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "technical conclusion",
+              "body": "Sát hạch 2 · Hình học nhiều chiều, norm và similarity: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Sát hạch 2 · Hình học nhiều chiều, norm và similarity · lab_protocol",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "lab protocol",
+              "body": "Sát hạch 2 · Hình học nhiều chiều, norm và similarity: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Sát hạch 2 · Hình học nhiều chiều, norm và similarity · review_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Mastery evidence",
+              "items": [
+                "công thức",
+                "bài tính",
+                "error repair",
+                "simulation",
+                "application artifact",
+                "oral defense"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Sát hạch 2 · Hình học nhiều chiều, norm và similarity · exit_ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "PASS khi",
+              "items": [
+                "đúng toán",
+                "đúng assumption",
+                "không leakage",
+                "evidence tái lập",
+                "kết luận có limitation"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-covariance-eigen-pca",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "lessonTitle": "m_m104 · §4.3 · Sát hạch 3 · Covariance, eigen và PCA",
+      "title": "m_m104 · §4.3 · Sát hạch 3 · Covariance, eigen và PCA",
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "programLectureIds": [
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "roadmapRole": "m_m104_t03",
+      "baumanFocus": "HK1 capstone E25 · cumulative assessment with evidence-based gates.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "legacyFrameworkChapterAlias": "MATH-HK1-ASSESSMENT-C17",
+        "logicalLessonId": "m_m104_t03",
+        "frameworkAnchor": "m_m104_t03",
+        "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "cumulative_m_m101_m_m102_m_m103_assessment_e25"
+      },
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "covariance-eigen-pca"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "Sát hạch 3 · Covariance, eigen và PCA · section_open",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "section open",
+              "body": "Sát hạch 3 · Covariance, eigen và PCA: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Sát hạch 3 · Covariance, eigen và PCA · learning_outcomes",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "learning outcomes",
+              "body": "Sát hạch 3 · Covariance, eigen và PCA: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Sát hạch 3 · Covariance, eigen và PCA · notation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "notation",
+              "body": "Sát hạch 3 · Covariance, eigen và PCA: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Sát hạch 3 · Covariance, eigen và PCA · notation_formula",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Covariance matrix",
+              "body": "C=(1/(n−1))XcᵀXc\nShape p×p nếu row=sample."
+            },
+            {
+              "type": "formula",
+              "title": "Eigen equation",
+              "body": "Cv=λv\nλ biểu diễn variance theo eigen-direction."
+            },
+            {
+              "type": "formula",
+              "title": "Explained variance ratio",
+              "body": "EVR_k=Σ_{j=1}^k λ_j / Σ_{j=1}^p λ_j\nDùng để hỗ trợ chọn k."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Sát hạch 3 · Covariance, eigen và PCA · matrix_example",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Assessment data view",
+              "body": "X ∈ ℝ^(n×p) → transform → representation → cluster/metric",
+              "meaning": "Mỗi bước phải giữ shape, provenance và assumptions."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Sát hạch 3 · Covariance, eigen và PCA · condition_gate",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "PASS gate",
+              "body": "Center đúng, scale phù hợp, covariance symmetric và eigenvalues không âm ngoài tolerance số."
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Sát hạch 3 · Covariance, eigen và PCA · data_contract",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "data contract",
+              "body": "Sát hạch 3 · Covariance, eigen và PCA: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Sát hạch 3 · Covariance, eigen và PCA · worked_example",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài sát hạch",
+              "body": "Cho eigenvalues [6,2,1,1], tính EVR với k=1,2,3."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Trình bày phép tính, kiểm assumption, sanity-check và limitation."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Sát hạch 3 · Covariance, eigen và PCA · geometry_interpretation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "geometry interpretation",
+              "body": "Sát hạch 3 · Covariance, eigen và PCA: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Sát hạch 3 · Covariance, eigen và PCA · algorithm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "algorithm",
+              "body": "Sát hạch 3 · Covariance, eigen và PCA: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Sát hạch 3 · Covariance, eigen và PCA · computational_check",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checks",
+              "items": [
+                "shape + finite",
+                "tolerance",
+                "multi-seed/repeatability",
+                "metric sanity",
+                "artifact reproducibility"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Sát hạch 3 · Covariance, eigen và PCA · data_leakage_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "FAIL ngay nếu",
+              "items": [
+                "fit transform trên test",
+                "tuning theo test",
+                "mất provenance",
+                "gán cluster thành ground-truth",
+                "không lưu seed/config"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Sát hạch 3 · Covariance, eigen và PCA · warning_counterexample",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Lỗi làm FAIL",
+              "body": "Chạy PCA trên dữ liệu chưa scale khi units lệch lớn hoặc chọn k chỉ bằng cảm tính."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sát hạch 3 · Covariance, eigen và PCA · error_repair",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "error repair",
+              "body": "Sát hạch 3 · Covariance, eigen và PCA: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Sát hạch 3 · Covariance, eigen và PCA · application_link",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Artifact",
+              "items": [
+                "Giảm chiều telemetry trước visualization/clustering.",
+                "Phải kèm config + metric + limitation + reproducibility evidence."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Sát hạch 3 · Covariance, eigen và PCA · simulation_plan",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "simulation plan",
+              "body": "Sát hạch 3 · Covariance, eigen và PCA: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Sát hạch 3 · Covariance, eigen và PCA · technical_conclusion",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "technical conclusion",
+              "body": "Sát hạch 3 · Covariance, eigen và PCA: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Sát hạch 3 · Covariance, eigen và PCA · lab_protocol",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "lab protocol",
+              "body": "Sát hạch 3 · Covariance, eigen và PCA: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Sát hạch 3 · Covariance, eigen và PCA · review_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Mastery evidence",
+              "items": [
+                "công thức",
+                "bài tính",
+                "error repair",
+                "simulation",
+                "application artifact",
+                "oral defense"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Sát hạch 3 · Covariance, eigen và PCA · exit_ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "PASS khi",
+              "items": [
+                "đúng toán",
+                "đúng assumption",
+                "không leakage",
+                "evidence tái lập",
+                "kết luận có limitation"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-svd-low-rank",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "lessonTitle": "m_m104 · §4.4 · Sát hạch 4 · SVD, low-rank và reconstruction error",
+      "title": "m_m104 · §4.4 · Sát hạch 4 · SVD, low-rank và reconstruction error",
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "programLectureIds": [
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "roadmapRole": "m_m104_t04",
+      "baumanFocus": "HK1 capstone E25 · cumulative assessment with evidence-based gates.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "legacyFrameworkChapterAlias": "MATH-HK1-ASSESSMENT-C17",
+        "logicalLessonId": "m_m104_t04",
+        "frameworkAnchor": "m_m104_t04",
+        "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "cumulative_m_m101_m_m102_m_m103_assessment_e25"
+      },
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "svd-low-rank"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "Sát hạch 4 · SVD, low-rank và reconstruction error · section_open",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "section open",
+              "body": "Sát hạch 4 · SVD, low-rank và reconstruction error: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Sát hạch 4 · SVD, low-rank và reconstruction error · learning_outcomes",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "learning outcomes",
+              "body": "Sát hạch 4 · SVD, low-rank và reconstruction error: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Sát hạch 4 · SVD, low-rank và reconstruction error · notation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "notation",
+              "body": "Sát hạch 4 · SVD, low-rank và reconstruction error: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Sát hạch 4 · SVD, low-rank và reconstruction error · notation_formula",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "SVD",
+              "body": "X=UΣVᵀ\nPhân rã theo singular vectors/values."
+            },
+            {
+              "type": "formula",
+              "title": "Rank-k approximation",
+              "body": "X_k=U_kΣ_kV_kᵀ\nXấp xỉ hạng thấp."
+            },
+            {
+              "type": "formula",
+              "title": "Relative reconstruction error",
+              "body": "e_k=‖X−X_k‖_F/‖X‖_F\nĐánh giá mất mát khi giảm hạng."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Sát hạch 4 · SVD, low-rank và reconstruction error · matrix_example",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Assessment data view",
+              "body": "X ∈ ℝ^(n×p) → transform → representation → cluster/metric",
+              "meaning": "Mỗi bước phải giữ shape, provenance và assumptions."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Sát hạch 4 · SVD, low-rank và reconstruction error · condition_gate",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "PASS gate",
+              "body": "Kiểm orientation, rank, singular value ordering và tolerance; dữ liệu phải dùng đúng preprocessing contract."
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Sát hạch 4 · SVD, low-rank và reconstruction error · data_contract",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "data contract",
+              "body": "Sát hạch 4 · SVD, low-rank và reconstruction error: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Sát hạch 4 · SVD, low-rank và reconstruction error · worked_example",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài sát hạch",
+              "body": "So reconstruction error khi giữ 1,2,3 singular values."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Trình bày phép tính, kiểm assumption, sanity-check và limitation."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Sát hạch 4 · SVD, low-rank và reconstruction error · geometry_interpretation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "geometry interpretation",
+              "body": "Sát hạch 4 · SVD, low-rank và reconstruction error: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Sát hạch 4 · SVD, low-rank và reconstruction error · algorithm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "algorithm",
+              "body": "Sát hạch 4 · SVD, low-rank và reconstruction error: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Sát hạch 4 · SVD, low-rank và reconstruction error · computational_check",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checks",
+              "items": [
+                "shape + finite",
+                "tolerance",
+                "multi-seed/repeatability",
+                "metric sanity",
+                "artifact reproducibility"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Sát hạch 4 · SVD, low-rank và reconstruction error · data_leakage_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "FAIL ngay nếu",
+              "items": [
+                "fit transform trên test",
+                "tuning theo test",
+                "mất provenance",
+                "gán cluster thành ground-truth",
+                "không lưu seed/config"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Sát hạch 4 · SVD, low-rank và reconstruction error · warning_counterexample",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Lỗi làm FAIL",
+              "body": "Coi low-rank luôn bảo toàn thông tin quan trọng về nhiệm vụ."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sát hạch 4 · SVD, low-rank và reconstruction error · error_repair",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "error repair",
+              "body": "Sát hạch 4 · SVD, low-rank và reconstruction error: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Sát hạch 4 · SVD, low-rank và reconstruction error · application_link",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Artifact",
+              "items": [
+                "Nén dữ liệu/khử nhiễu trước downstream model.",
+                "Phải kèm config + metric + limitation + reproducibility evidence."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Sát hạch 4 · SVD, low-rank và reconstruction error · simulation_plan",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "simulation plan",
+              "body": "Sát hạch 4 · SVD, low-rank và reconstruction error: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Sát hạch 4 · SVD, low-rank và reconstruction error · technical_conclusion",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "technical conclusion",
+              "body": "Sát hạch 4 · SVD, low-rank và reconstruction error: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Sát hạch 4 · SVD, low-rank và reconstruction error · lab_protocol",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "lab protocol",
+              "body": "Sát hạch 4 · SVD, low-rank và reconstruction error: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Sát hạch 4 · SVD, low-rank và reconstruction error · review_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Mastery evidence",
+              "items": [
+                "công thức",
+                "bài tính",
+                "error repair",
+                "simulation",
+                "application artifact",
+                "oral defense"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Sát hạch 4 · SVD, low-rank và reconstruction error · exit_ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "PASS khi",
+              "items": [
+                "đúng toán",
+                "đúng assumption",
+                "không leakage",
+                "evidence tái lập",
+                "kết luận có limitation"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-clustering-objective-validation",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "lessonTitle": "m_m104 · §4.5 · Sát hạch 5 · K-means, số cụm và validation",
+      "title": "m_m104 · §4.5 · Sát hạch 5 · K-means, số cụm và validation",
+      "programLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+      "programLectureIds": [
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "roadmapRole": "m_m104_t05",
+      "baumanFocus": "HK1 capstone E25 · cumulative assessment with evidence-based gates.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "legacyFrameworkChapterAlias": "MATH-HK1-ASSESSMENT-C17",
+        "logicalLessonId": "m_m104_t05",
+        "frameworkAnchor": "m_m104_t05",
+        "programLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "cumulative_m_m101_m_m102_m_m103_assessment_e25"
+      },
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "clustering-objective-validation"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "Sát hạch 5 · K-means, số cụm và validation · section_open",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "section open",
+              "body": "Sát hạch 5 · K-means, số cụm và validation: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Sát hạch 5 · K-means, số cụm và validation · learning_outcomes",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "learning outcomes",
+              "body": "Sát hạch 5 · K-means, số cụm và validation: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Sát hạch 5 · K-means, số cụm và validation · notation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "notation",
+              "body": "Sát hạch 5 · K-means, số cụm và validation: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Sát hạch 5 · K-means, số cụm và validation · notation_formula",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "K-means objective",
+              "body": "J=Σ_i ‖x_i−μ_{c_i}‖₂²\nWithin-cluster SSE."
+            },
+            {
+              "type": "formula",
+              "title": "Silhouette",
+              "body": "s(i)=(b(i)−a(i))/max(a(i),b(i))\nĐánh giá separation/cohesion."
+            },
+            {
+              "type": "formula",
+              "title": "Cluster proportion",
+              "body": "p_k=n_k/n\nTheo dõi cluster imbalance."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Sát hạch 5 · K-means, số cụm và validation · matrix_example",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Assessment data view",
+              "body": "X ∈ ℝ^(n×p) → transform → representation → cluster/metric",
+              "meaning": "Mỗi bước phải giữ shape, provenance và assumptions."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Sát hạch 5 · K-means, số cụm và validation · condition_gate",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "PASS gate",
+              "body": "Scale + metric + multi-seed stability + interpretability phải được kiểm cùng nhau."
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Sát hạch 5 · K-means, số cụm và validation · data_contract",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "data contract",
+              "body": "Sát hạch 5 · K-means, số cụm và validation: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Sát hạch 5 · K-means, số cụm và validation · worked_example",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài sát hạch",
+              "body": "Với k=2..5, giải thích cách chọn dựa trên inertia, silhouette và stability."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Trình bày phép tính, kiểm assumption, sanity-check và limitation."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Sát hạch 5 · K-means, số cụm và validation · geometry_interpretation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "geometry interpretation",
+              "body": "Sát hạch 5 · K-means, số cụm và validation: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Sát hạch 5 · K-means, số cụm và validation · algorithm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "algorithm",
+              "body": "Sát hạch 5 · K-means, số cụm và validation: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Sát hạch 5 · K-means, số cụm và validation · computational_check",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checks",
+              "items": [
+                "shape + finite",
+                "tolerance",
+                "multi-seed/repeatability",
+                "metric sanity",
+                "artifact reproducibility"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Sát hạch 5 · K-means, số cụm và validation · data_leakage_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "FAIL ngay nếu",
+              "items": [
+                "fit transform trên test",
+                "tuning theo test",
+                "mất provenance",
+                "gán cluster thành ground-truth",
+                "không lưu seed/config"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Sát hạch 5 · K-means, số cụm và validation · warning_counterexample",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Lỗi làm FAIL",
+              "body": "Chọn k chỉ theo elbow hoặc silhouette và gán cluster ID thành nhãn thật."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sát hạch 5 · K-means, số cụm và validation · error_repair",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "error repair",
+              "body": "Sát hạch 5 · K-means, số cụm và validation: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Sát hạch 5 · K-means, số cụm và validation · application_link",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Artifact",
+              "items": [
+                "Phân nhóm chế độ vận hành.",
+                "Phải kèm config + metric + limitation + reproducibility evidence."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Sát hạch 5 · K-means, số cụm và validation · simulation_plan",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "simulation plan",
+              "body": "Sát hạch 5 · K-means, số cụm và validation: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Sát hạch 5 · K-means, số cụm và validation · technical_conclusion",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "technical conclusion",
+              "body": "Sát hạch 5 · K-means, số cụm và validation: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Sát hạch 5 · K-means, số cụm và validation · lab_protocol",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "lab protocol",
+              "body": "Sát hạch 5 · K-means, số cụm và validation: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Sát hạch 5 · K-means, số cụm và validation · review_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Mastery evidence",
+              "items": [
+                "công thức",
+                "bài tính",
+                "error repair",
+                "simulation",
+                "application artifact",
+                "oral defense"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Sát hạch 5 · K-means, số cụm và validation · exit_ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "PASS khi",
+              "items": [
+                "đúng toán",
+                "đúng assumption",
+                "không leakage",
+                "evidence tái lập",
+                "kết luận có limitation"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-hierarchical-dbscan",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "lessonTitle": "m_m104 · §4.6 · Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ",
+      "title": "m_m104 · §4.6 · Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ",
+      "programLectureId": "MATH-PROG-L09-topology-metric-spaces",
+      "programLectureIds": [
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "roadmapRole": "m_m104_t06",
+      "baumanFocus": "HK1 capstone E25 · cumulative assessment with evidence-based gates.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "legacyFrameworkChapterAlias": "MATH-HK1-ASSESSMENT-C17",
+        "logicalLessonId": "m_m104_t06",
+        "frameworkAnchor": "m_m104_t06",
+        "programLectureId": "MATH-PROG-L09-topology-metric-spaces",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "cumulative_m_m101_m_m102_m_m103_assessment_e25"
+      },
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "hierarchical-dbscan"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ · section_open",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "section open",
+              "body": "Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ · learning_outcomes",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "learning outcomes",
+              "body": "Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ · notation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "notation",
+              "body": "Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ · notation_formula",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Single linkage",
+              "body": "D(A,B)=min d(a,b)\nDễ chaining."
+            },
+            {
+              "type": "formula",
+              "title": "Complete linkage",
+              "body": "D(A,B)=max d(a,b)\nƯu tiên compact cluster."
+            },
+            {
+              "type": "formula",
+              "title": "DBSCAN core",
+              "body": "|N_ε(x)|≥MinPts\nĐiểm lõi theo density."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ · matrix_example",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Assessment data view",
+              "body": "X ∈ ℝ^(n×p) → transform → representation → cluster/metric",
+              "meaning": "Mỗi bước phải giữ shape, provenance và assumptions."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ · condition_gate",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "PASS gate",
+              "body": "Metric/scale/linkage hoặc ε-MinPts phải phù hợp topology và density; noise không mặc định là anomaly."
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ · data_contract",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "data contract",
+              "body": "Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ · worked_example",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài sát hạch",
+              "body": "So single linkage với DBSCAN trên dữ liệu có hai cụm và bridge points."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Trình bày phép tính, kiểm assumption, sanity-check và limitation."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ · geometry_interpretation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "geometry interpretation",
+              "body": "Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ · algorithm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "algorithm",
+              "body": "Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ · computational_check",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checks",
+              "items": [
+                "shape + finite",
+                "tolerance",
+                "multi-seed/repeatability",
+                "metric sanity",
+                "artifact reproducibility"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ · data_leakage_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "FAIL ngay nếu",
+              "items": [
+                "fit transform trên test",
+                "tuning theo test",
+                "mất provenance",
+                "gán cluster thành ground-truth",
+                "không lưu seed/config"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ · warning_counterexample",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Lỗi làm FAIL",
+              "body": "Cắt dendrogram tùy ý hoặc xem mọi DBSCAN noise point là lỗi."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ · error_repair",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "error repair",
+              "body": "Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ · application_link",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Artifact",
+              "items": [
+                "Tách vùng vận hành dày/thưa và điểm cần review.",
+                "Phải kèm config + metric + limitation + reproducibility evidence."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ · simulation_plan",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "simulation plan",
+              "body": "Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ · technical_conclusion",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "technical conclusion",
+              "body": "Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ · lab_protocol",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "lab protocol",
+              "body": "Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ · review_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Mastery evidence",
+              "items": [
+                "công thức",
+                "bài tính",
+                "error repair",
+                "simulation",
+                "application artifact",
+                "oral defense"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ · exit_ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "PASS khi",
+              "items": [
+                "đúng toán",
+                "đúng assumption",
+                "không leakage",
+                "evidence tái lập",
+                "kết luận có limitation"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-pipeline-reproducibility",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "lessonTitle": "m_m104 · §4.7 · Sát hạch 7 · Pipeline, provenance và reproducibility",
+      "title": "m_m104 · §4.7 · Sát hạch 7 · Pipeline, provenance và reproducibility",
+      "programLectureId": "MATH-PROG-L16-numerical-methods-computing",
+      "programLectureIds": [
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "roadmapRole": "m_m104_t07",
+      "baumanFocus": "HK1 capstone E25 · cumulative assessment with evidence-based gates.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "legacyFrameworkChapterAlias": "MATH-HK1-ASSESSMENT-C17",
+        "logicalLessonId": "m_m104_t07",
+        "frameworkAnchor": "m_m104_t07",
+        "programLectureId": "MATH-PROG-L16-numerical-methods-computing",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "cumulative_m_m101_m_m102_m_m103_assessment_e25"
+      },
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "pipeline-reproducibility"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "Sát hạch 7 · Pipeline, provenance và reproducibility · section_open",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "section open",
+              "body": "Sát hạch 7 · Pipeline, provenance và reproducibility: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Sát hạch 7 · Pipeline, provenance và reproducibility · learning_outcomes",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "learning outcomes",
+              "body": "Sát hạch 7 · Pipeline, provenance và reproducibility: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Sát hạch 7 · Pipeline, provenance và reproducibility · notation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "notation",
+              "body": "Sát hạch 7 · Pipeline, provenance và reproducibility: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Sát hạch 7 · Pipeline, provenance và reproducibility · notation_formula",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Fit state",
+              "body": "θ=fit(X_train)\nLearned state chỉ lấy từ train."
+            },
+            {
+              "type": "formula",
+              "title": "Transform",
+              "body": "X′=transform(X;θ)\nReuse cùng θ cho val/test."
+            },
+            {
+              "type": "formula",
+              "title": "Stability",
+              "body": "S=mean agreement(partition_r,partition_s)\nKiểm độ bền theo seed/resampling."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Sát hạch 7 · Pipeline, provenance và reproducibility · matrix_example",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Assessment data view",
+              "body": "X ∈ ℝ^(n×p) → transform → representation → cluster/metric",
+              "meaning": "Mỗi bước phải giữ shape, provenance và assumptions."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Sát hạch 7 · Pipeline, provenance và reproducibility · condition_gate",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "PASS gate",
+              "body": "Mọi artifact phải lưu input snapshot, config, seed, transform version, metrics và conclusion."
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Sát hạch 7 · Pipeline, provenance và reproducibility · data_contract",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "data contract",
+              "body": "Sát hạch 7 · Pipeline, provenance và reproducibility: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Sát hạch 7 · Pipeline, provenance và reproducibility · worked_example",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài sát hạch",
+              "body": "Thiết kế manifest tối thiểu để tái lập một thí nghiệm clustering."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Trình bày phép tính, kiểm assumption, sanity-check và limitation."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Sát hạch 7 · Pipeline, provenance và reproducibility · geometry_interpretation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "geometry interpretation",
+              "body": "Sát hạch 7 · Pipeline, provenance và reproducibility: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Sát hạch 7 · Pipeline, provenance và reproducibility · algorithm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "algorithm",
+              "body": "Sát hạch 7 · Pipeline, provenance và reproducibility: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Sát hạch 7 · Pipeline, provenance và reproducibility · computational_check",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checks",
+              "items": [
+                "shape + finite",
+                "tolerance",
+                "multi-seed/repeatability",
+                "metric sanity",
+                "artifact reproducibility"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Sát hạch 7 · Pipeline, provenance và reproducibility · data_leakage_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "FAIL ngay nếu",
+              "items": [
+                "fit transform trên test",
+                "tuning theo test",
+                "mất provenance",
+                "gán cluster thành ground-truth",
+                "không lưu seed/config"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Sát hạch 7 · Pipeline, provenance và reproducibility · warning_counterexample",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Lỗi làm FAIL",
+              "body": "Không lưu seed/config rồi không tái lập được kết quả tốt nhất."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sát hạch 7 · Pipeline, provenance và reproducibility · error_repair",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "error repair",
+              "body": "Sát hạch 7 · Pipeline, provenance và reproducibility: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Sát hạch 7 · Pipeline, provenance và reproducibility · application_link",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Artifact",
+              "items": [
+                "Tạo pipeline PCA→clustering có thể tái chạy.",
+                "Phải kèm config + metric + limitation + reproducibility evidence."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Sát hạch 7 · Pipeline, provenance và reproducibility · simulation_plan",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "simulation plan",
+              "body": "Sát hạch 7 · Pipeline, provenance và reproducibility: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Sát hạch 7 · Pipeline, provenance và reproducibility · technical_conclusion",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "technical conclusion",
+              "body": "Sát hạch 7 · Pipeline, provenance và reproducibility: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Sát hạch 7 · Pipeline, provenance và reproducibility · lab_protocol",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "lab protocol",
+              "body": "Sát hạch 7 · Pipeline, provenance và reproducibility: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Sát hạch 7 · Pipeline, provenance và reproducibility · review_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Mastery evidence",
+              "items": [
+                "công thức",
+                "bài tính",
+                "error repair",
+                "simulation",
+                "application artifact",
+                "oral defense"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Sát hạch 7 · Pipeline, provenance và reproducibility · exit_ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "PASS khi",
+              "items": [
+                "đúng toán",
+                "đúng assumption",
+                "không leakage",
+                "evidence tái lập",
+                "kết luận có limitation"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-hk1-capstone-defense",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "lessonTitle": "m_m104 · §4.8 · Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận",
+      "title": "m_m104 · §4.8 · Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận",
+      "programLectureId": "MATH-PROG-L16-numerical-methods-computing",
+      "programLectureIds": [
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "roadmapRole": "m_m104_t08",
+      "baumanFocus": "HK1 capstone E25 · cumulative assessment with evidence-based gates.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "legacyFrameworkChapterAlias": "MATH-HK1-ASSESSMENT-C17",
+        "logicalLessonId": "m_m104_t08",
+        "frameworkAnchor": "m_m104_t08",
+        "programLectureId": "MATH-PROG-L16-numerical-methods-computing",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "cumulative_m_m101_m_m102_m_m103_assessment_e25"
+      },
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "hk1-capstone-defense"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận · section_open",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "section open",
+              "body": "Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận · learning_outcomes",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "learning outcomes",
+              "body": "Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận · notation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "notation",
+              "body": "Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận · notation_formula",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Variance retained",
+              "body": "R_k=Σ_{j=1}^k λ_j/Σ_j λ_j\nBáo rõ mức variance giữ lại."
+            },
+            {
+              "type": "formula",
+              "title": "Centroid drift",
+              "body": "Δ_k=‖μ_k^{new}−μ_k^{ref}‖₂\nTheo dõi thay đổi chế độ."
+            },
+            {
+              "type": "formula",
+              "title": "Relative error",
+              "body": "ε_rel=‖y−ŷ‖/max(‖y‖,ε)\nChuẩn hóa sai số để so sánh."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận · matrix_example",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Assessment data view",
+              "body": "X ∈ ℝ^(n×p) → transform → representation → cluster/metric",
+              "meaning": "Mỗi bước phải giữ shape, provenance và assumptions."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận · condition_gate",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "PASS gate",
+              "body": "Kết luận phải gắn với số liệu, assumptions, limitations và artifact có thể kiểm chứng."
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận · data_contract",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "data contract",
+              "body": "Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận · worked_example",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài sát hạch",
+              "body": "Trình bày 5 phút: data contract → PCA/SVD → clustering → validation → limitation."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Trình bày phép tính, kiểm assumption, sanity-check và limitation."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận · geometry_interpretation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "geometry interpretation",
+              "body": "Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận · algorithm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "algorithm",
+              "body": "Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận · computational_check",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checks",
+              "items": [
+                "shape + finite",
+                "tolerance",
+                "multi-seed/repeatability",
+                "metric sanity",
+                "artifact reproducibility"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận · data_leakage_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "FAIL ngay nếu",
+              "items": [
+                "fit transform trên test",
+                "tuning theo test",
+                "mất provenance",
+                "gán cluster thành ground-truth",
+                "không lưu seed/config"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận · warning_counterexample",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Lỗi làm FAIL",
+              "body": "Tuyên bố quan hệ nhân quả hoặc chất lượng mô hình chỉ từ visualization đẹp."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận · error_repair",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "error repair",
+              "body": "Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận · application_link",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Artifact",
+              "items": [
+                "Bảo vệ mini-report dữ liệu nhiều chiều/PCA/clustering.",
+                "Phải kèm config + metric + limitation + reproducibility evidence."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận · simulation_plan",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "simulation plan",
+              "body": "Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận · technical_conclusion",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "technical conclusion",
+              "body": "Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận · lab_protocol",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "lab protocol",
+              "body": "Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận: sát hạch theo evidence, không PASS chỉ vì đáp số hoặc hình đẹp."
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận · review_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Mastery evidence",
+              "items": [
+                "công thức",
+                "bài tính",
+                "error repair",
+                "simulation",
+                "application artifact",
+                "oral defense"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận · exit_ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "PASS khi",
+              "items": [
+                "đúng toán",
+                "đúng assumption",
+                "không leakage",
+                "evidence tái lập",
+                "kết luận có limitation"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
