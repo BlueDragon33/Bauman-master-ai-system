@@ -9,7 +9,7 @@
   "architecture": "framework_chapter_over_existing_prep_probability_statistics_spine",
   "legacyFrameworkAlias": "MATH-PREP-PS-C11",
   "legacyAliasPolicy": "reference_only_not_runtime_physical_chapter",
-  "status": "IMPLEMENTED_PENDING_CI",
+  "status": "PASS_STATIC_BROWSER_CI",
   "correction": {
     "rule": "m_s03 là framework/logical chapter. Giá trị MATH-PREP-PS-C11 trong framework là alias legacy, không tồn tại trong physical chapter_spine và không được materialize thành chapter mới.",
     "physicalSpineTruth": [
@@ -214,16 +214,21 @@
     "evidenceAuthority": "canonical-quality-gates",
     "productionAuthority": "separate-explicit-release-gate"
   },
-  "verifiedAt": null,
-  "pr": null,
+  "verifiedAt": "2026-09-28",
+  "pr": 149,
   "gateResults": {
-    "academic": "PENDING",
-    "runtimeStatic": "PENDING",
-    "browser": "PENDING",
-    "developmentFastCI": "PENDING",
-    "e19Regression": "PENDING",
-    "e18Regression": "PENDING",
-    "e17Regression": "PENDING",
-    "universalConstitution": "PENDING"
+    "academic": "PASS",
+    "runtimeStatic": "PASS",
+    "browser": "PASS",
+    "developmentFastCI": "PASS",
+    "e19Regression": "PASS",
+    "e18Regression": "PASS",
+    "e17Regression": "PASS",
+    "universalConstitution": "PASS"
+  },
+  "runtimeIsolation": {
+    "rule": "E20 runtime programLectureIds are restricted to L12/L13; L14 is forbidden to preserve E17 time-series route isolation.",
+    "regressionIncident": "Initial E20 draft leaked two lessons into L14, causing E17 browser to see 10 instead of 8 lessons; fixed and regression-tested.",
+    "status": "PASS"
   }
 }
