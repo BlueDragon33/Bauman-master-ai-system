@@ -1,0 +1,46 @@
+{
+  "recoveryId": "E26",
+  "scope": "HK1 cumulative release/readiness · m_m101 → m_m104",
+  "status": "IMPLEMENTED_PENDING_CI",
+  "branch": "feat/math-e24-hk1-similarity-clustering-20260928",
+  "pr": 152,
+  "modules": [
+    "m_m101",
+    "m_m102",
+    "m_m103",
+    "m_m104"
+  ],
+  "expectedPerModule": {
+    "lessons": 8,
+    "theorySlides": 160,
+    "formulas": 24,
+    "exercises": 64,
+    "applications": 16,
+    "simulations": 16,
+    "professorQA": 8,
+    "questions": 48,
+    "reviewPacks": 8
+  },
+  "cumulativeExpected": {
+    "lessons": 32,
+    "theorySlides": 640,
+    "formulas": 96,
+    "exercises": 256,
+    "applications": 64,
+    "simulations": 64,
+    "professorQA": 32,
+    "questions": 192,
+    "reviewPacks": 32
+  },
+  "gates": {
+    "canonicalMaterialization": "PASS_LOCAL_AUDIT",
+    "reviewPackRuntimeSchema": "PASS_LOCAL_AUDIT",
+    "directAndPackagedOfflineRegression": "PASS_ON_8ac633b5",
+    "e26CI": "PENDING",
+    "wholeSystem": "PENDING_CURRENT_HEAD",
+    "mathLearningApp": "PENDING_CURRENT_HEAD",
+    "constitution": "PENDING_CURRENT_HEAD"
+  },
+  "releaseRule": "Merge only after E26 + relevant current-head CI/browser/package gates are green. Publish only after production deploy of the merged revision and smoke/read-back pass.",
+  "next": "No new academic round is implied by E26. After release, audit current-main before opening any new scope."
+}
