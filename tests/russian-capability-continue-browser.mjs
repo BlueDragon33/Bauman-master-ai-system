@@ -129,7 +129,6 @@ try{
   save();
  },emptyLearningState());
  await page.reload({waitUntil:'domcontentloaded',timeout:30000});
- const expectedDeviceState=EXPECT_PLATFORM_ACCESS?'authorized':'standalone';
   await page.waitForFunction(expected=>document.documentElement.dataset.baumanDeviceAccess===expected,expectedDeviceState,{timeout:30000});
  await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'),null,{timeout:30000});
  const staleBeforeOpen=await page.evaluate(()=>({live:window.isSubjectCapabilityLive?.('russian')===true,hasSnapshot:!!state.subjectCapabilities?.russian}));
