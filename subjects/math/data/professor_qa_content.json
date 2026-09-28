@@ -1942,6 +1942,198 @@
       "qaId": "E24-MM103-T08-QA01",
       "question": "Vì sao Mini-project: clustering telemetry, đánh giá và báo cáo cần condition gate trước khi kết luận?",
       "answer": "Pipeline phải giữ provenance: split/fit transform/seed/metric/k hoặc ε-MinPts và mapping cluster→diễn giải. Không đạt gate thì metric/cluster có thể chạy nhưng không có ý nghĩa kỹ thuật."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t01",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T01-data-contract-diagnostics",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "data-contract-diagnostics"
+      ],
+      "sourceAnchors": [
+        "m_m104_t01",
+        "m_m104",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "qaId": "E25-MM104-T01-QA01",
+      "question": "Nếu kết quả của Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu đẹp nhưng condition gate không đạt thì có được PASS không?",
+      "answer": "Không. Phải khóa schema, units, split provenance, missing/outlier policy và preprocessing fit-state. HK1 gate yêu cầu vừa đúng toán, vừa đúng data/assumption/provenance."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t02",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-geometry-metric",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "multidim-geometry-metric"
+      ],
+      "sourceAnchors": [
+        "m_m104_t02",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "qaId": "E25-MM104-T02-QA01",
+      "question": "Nếu kết quả của Sát hạch 2 · Hình học nhiều chiều, norm và similarity đẹp nhưng condition gate không đạt thì có được PASS không?",
+      "answer": "Không. Phải xác định sample/feature axis, metric semantics, scale và zero-vector handling. HK1 gate yêu cầu vừa đúng toán, vừa đúng data/assumption/provenance."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t03",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-covariance-eigen-pca",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "covariance-eigen-pca"
+      ],
+      "sourceAnchors": [
+        "m_m104_t03",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "qaId": "E25-MM104-T03-QA01",
+      "question": "Nếu kết quả của Sát hạch 3 · Covariance, eigen và PCA đẹp nhưng condition gate không đạt thì có được PASS không?",
+      "answer": "Không. Center đúng, scale phù hợp, covariance symmetric và eigenvalues không âm ngoài tolerance số. HK1 gate yêu cầu vừa đúng toán, vừa đúng data/assumption/provenance."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t04",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-svd-low-rank",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "svd-low-rank"
+      ],
+      "sourceAnchors": [
+        "m_m104_t04",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "qaId": "E25-MM104-T04-QA01",
+      "question": "Nếu kết quả của Sát hạch 4 · SVD, low-rank và reconstruction error đẹp nhưng condition gate không đạt thì có được PASS không?",
+      "answer": "Không. Kiểm orientation, rank, singular value ordering và tolerance; dữ liệu phải dùng đúng preprocessing contract. HK1 gate yêu cầu vừa đúng toán, vừa đúng data/assumption/provenance."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t05",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-clustering-objective-validation",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "clustering-objective-validation"
+      ],
+      "sourceAnchors": [
+        "m_m104_t05",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "qaId": "E25-MM104-T05-QA01",
+      "question": "Nếu kết quả của Sát hạch 5 · K-means, số cụm và validation đẹp nhưng condition gate không đạt thì có được PASS không?",
+      "answer": "Không. Scale + metric + multi-seed stability + interpretability phải được kiểm cùng nhau. HK1 gate yêu cầu vừa đúng toán, vừa đúng data/assumption/provenance."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t06",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-hierarchical-dbscan",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "hierarchical-dbscan"
+      ],
+      "sourceAnchors": [
+        "m_m104_t06",
+        "m_m104",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "qaId": "E25-MM104-T06-QA01",
+      "question": "Nếu kết quả của Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ đẹp nhưng condition gate không đạt thì có được PASS không?",
+      "answer": "Không. Metric/scale/linkage hoặc ε-MinPts phải phù hợp topology và density; noise không mặc định là anomaly. HK1 gate yêu cầu vừa đúng toán, vừa đúng data/assumption/provenance."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t07",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-pipeline-reproducibility",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "pipeline-reproducibility"
+      ],
+      "sourceAnchors": [
+        "m_m104_t07",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "qaId": "E25-MM104-T07-QA01",
+      "question": "Nếu kết quả của Sát hạch 7 · Pipeline, provenance và reproducibility đẹp nhưng condition gate không đạt thì có được PASS không?",
+      "answer": "Không. Mọi artifact phải lưu input snapshot, config, seed, transform version, metrics và conclusion. HK1 gate yêu cầu vừa đúng toán, vừa đúng data/assumption/provenance."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t08",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-hk1-capstone-defense",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "hk1-capstone-defense"
+      ],
+      "sourceAnchors": [
+        "m_m104_t08",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "qaId": "E25-MM104-T08-QA01",
+      "question": "Nếu kết quả của Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận đẹp nhưng condition gate không đạt thì có được PASS không?",
+      "answer": "Không. Kết luận phải gắn với số liệu, assumptions, limitations và artifact có thể kiểm chứng. HK1 gate yêu cầu vừa đúng toán, vừa đúng data/assumption/provenance."
     }
   ],
   "importPolicy": {
