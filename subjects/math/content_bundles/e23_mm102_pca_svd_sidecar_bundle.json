@@ -1,0 +1,5253 @@
+{
+  "schema": "bauman_math_sidecar_bundle_v1",
+  "bundleId": "e23_mm102_pca_svd_sidecar_bundle",
+  "frameworkChapterId": "m_m102",
+  "moduleId": "m_m102",
+  "counts": {
+    "formulas": 24,
+    "exercises": 64,
+    "applications": 16,
+    "simulations": 16,
+    "professorQA": 8,
+    "questions": 48,
+    "reviewPacks": 8
+  },
+  "stores": {
+    "formula_content": [
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T01-covariance-eigen",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "covariance-eigen"
+        ],
+        "sourceAnchors": [
+          "m_m102_t01",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM102-T01-F01",
+        "title": "Covariance",
+        "formula": "C=(1/(n−1))XcᵀXc",
+        "meaning": "C đối xứng bán xác định dương."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T01-covariance-eigen",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "covariance-eigen"
+        ],
+        "sourceAnchors": [
+          "m_m102_t01",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM102-T01-F02",
+        "title": "Eigen equation",
+        "formula": "Cv=λv",
+        "meaning": "λ≥0 về lý thuyết với covariance exact."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T01-covariance-eigen",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "covariance-eigen"
+        ],
+        "sourceAnchors": [
+          "m_m102_t01",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM102-T01-F03",
+        "title": "Trace identity",
+        "formula": "tr(C)=Σ_j λ_j",
+        "meaning": "Tổng variance bằng tổng eigenvalues."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T02-principal-projection",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "principal-projection"
+        ],
+        "sourceAnchors": [
+          "m_m102_t02",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM102-T02-F01",
+        "title": "Scores",
+        "formula": "Z=Xc W_k",
+        "meaning": "W_k gồm k eigenvectors trực chuẩn."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T02-principal-projection",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "principal-projection"
+        ],
+        "sourceAnchors": [
+          "m_m102_t02",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM102-T02-F02",
+        "title": "Projection matrix",
+        "formula": "P=W_k W_kᵀ",
+        "meaning": "P đối xứng và idempotent khi W_k trực chuẩn."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T02-principal-projection",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "principal-projection"
+        ],
+        "sourceAnchors": [
+          "m_m102_t02",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM102-T02-F03",
+        "title": "Reconstruction",
+        "formula": "X̂=ZW_kᵀ+1μᵀ",
+        "meaning": "Trả dữ liệu về feature space sau projection."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T03-explained-variance-k",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "explained-variance-k"
+        ],
+        "sourceAnchors": [
+          "m_m102_t03",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM102-T03-F01",
+        "title": "Explained variance ratio",
+        "formula": "EVR_j=λ_j/Σ_iλ_i",
+        "meaning": "Tỷ lệ variance theo component j."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T03-explained-variance-k",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "explained-variance-k"
+        ],
+        "sourceAnchors": [
+          "m_m102_t03",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM102-T03-F02",
+        "title": "Cumulative EVR",
+        "formula": "CEVR_k=Σ_{j=1}^k EVR_j",
+        "meaning": "Dùng threshold nhưng không là tiêu chí duy nhất."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T03-explained-variance-k",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "explained-variance-k"
+        ],
+        "sourceAnchors": [
+          "m_m102_t03",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM102-T03-F03",
+        "title": "Residual variance",
+        "formula": "1−CEVR_k",
+        "meaning": "Phần variance bỏ đi dưới giả định PCA variance objective."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T04-svd-pca-relation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "svd-pca-relation"
+        ],
+        "sourceAnchors": [
+          "m_m102_t04",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM102-T04-F01",
+        "title": "SVD",
+        "formula": "Xc=UΣVᵀ",
+        "meaning": "U,V trực chuẩn theo không gian tương ứng."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T04-svd-pca-relation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "svd-pca-relation"
+        ],
+        "sourceAnchors": [
+          "m_m102_t04",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM102-T04-F02",
+        "title": "PCA covariance link",
+        "formula": "C=V(Σ²/(n−1))Vᵀ",
+        "meaning": "Right singular vectors là PCA directions của feature covariance."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T04-svd-pca-relation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "svd-pca-relation"
+        ],
+        "sourceAnchors": [
+          "m_m102_t04",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM102-T04-F03",
+        "title": "Eigenvalue link",
+        "formula": "λ_j=σ_j²/(n−1)",
+        "meaning": "Với Xc và sample covariance."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t05",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T05-low-rank-reconstruction",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "low-rank-reconstruction"
+        ],
+        "sourceAnchors": [
+          "m_m102_t05",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM102-T05-F01",
+        "title": "Rank-k SVD",
+        "formula": "X_k=U_kΣ_kV_kᵀ",
+        "meaning": "Best rank-k approximation theo Frobenius/2-norm."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t05",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T05-low-rank-reconstruction",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "low-rank-reconstruction"
+        ],
+        "sourceAnchors": [
+          "m_m102_t05",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM102-T05-F02",
+        "title": "Frobenius error",
+        "formula": "‖X−X_k‖_F²=Σ_{j>k}σ_j²",
+        "meaning": "Tail singular energy."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t05",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T05-low-rank-reconstruction",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "low-rank-reconstruction"
+        ],
+        "sourceAnchors": [
+          "m_m102_t05",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM102-T05-F03",
+        "title": "Relative error",
+        "formula": "e_rel=‖X−X_k‖_F/‖X‖_F",
+        "meaning": "So compression quality giữa datasets."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM102-T06-whitening-stability",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "whitening-stability"
+        ],
+        "sourceAnchors": [
+          "m_m102_t06",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM102-T06-F01",
+        "title": "PCA whitening",
+        "formula": "Z=Xc V Λ^(−1/2)",
+        "meaning": "Sau whitening covariance lý tưởng gần I."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM102-T06-whitening-stability",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "whitening-stability"
+        ],
+        "sourceAnchors": [
+          "m_m102_t06",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM102-T06-F02",
+        "title": "Regularized whitening",
+        "formula": "Λ_ε^(−1/2)=diag((λ_j+ε)^(−1/2))",
+        "meaning": "ε giảm blow-up khi λ rất nhỏ."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM102-T06-whitening-stability",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "whitening-stability"
+        ],
+        "sourceAnchors": [
+          "m_m102_t06",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM102-T06-F03",
+        "title": "Condition number",
+        "formula": "κ=λ_max/λ_min",
+        "meaning": "Large κ báo numerical sensitivity."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T07-pca-svd-applications",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-applications"
+        ],
+        "sourceAnchors": [
+          "m_m102_t07",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM102-T07-F01",
+        "title": "Compression ratio",
+        "formula": "CR=(np)/(k(n+p+1))",
+        "meaning": "Xấp xỉ storage ratio cho rank-k factors."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T07-pca-svd-applications",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-applications"
+        ],
+        "sourceAnchors": [
+          "m_m102_t07",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM102-T07-F02",
+        "title": "Projection",
+        "formula": "z=W_kᵀ(x−μ)",
+        "meaning": "Embed một sample mới bằng transform đã fit."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T07-pca-svd-applications",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-applications"
+        ],
+        "sourceAnchors": [
+          "m_m102_t07",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM102-T07-F03",
+        "title": "Reconstruction error",
+        "formula": "e(x)=‖x−x̂‖₂",
+        "meaning": "Có thể dùng như anomaly signal nhưng cần calibration."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T08-pca-svd-mini-project",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-mini-project"
+        ],
+        "sourceAnchors": [
+          "m_m102_t08",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM102-T08-F01",
+        "title": "Pipeline fit",
+        "formula": "(μ,W_k)=fit_PCA(X_train)",
+        "meaning": "Không fit PCA trên test."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T08-pca-svd-mini-project",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-mini-project"
+        ],
+        "sourceAnchors": [
+          "m_m102_t08",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM102-T08-F02",
+        "title": "Transform",
+        "formula": "Z_test=(X_test−1μᵀ)W_k",
+        "meaning": "Dùng transform train."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T08-pca-svd-mini-project",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-mini-project"
+        ],
+        "sourceAnchors": [
+          "m_m102_t08",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM102-T08-F03",
+        "title": "Quality tuple",
+        "formula": "Q=(CEVR_k,e_recon,metric_downstream)",
+        "meaning": "Báo ít nhất variance, reconstruction và task metric."
+      }
+    ],
+    "exercise_content": [
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T01-covariance-eigen",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "covariance-eigen"
+        ],
+        "sourceAnchors": [
+          "m_m102_t01",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T01-E01",
+        "level": "easy",
+        "prompt": "Nêu shape/data contract cho Eigen decomposition của covariance matrix.",
+        "solution": "Center dữ liệu trước; dùng eigensolver cho ma trận đối xứng; eigenvalue âm nhỏ do roundoff phải được xử lý như lỗi số, không là variance thật."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T01-covariance-eigen",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "covariance-eigen"
+        ],
+        "sourceAnchors": [
+          "m_m102_t01",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T01-E02",
+        "level": "easy",
+        "prompt": "Viết công thức Covariance.",
+        "solution": "C=(1/(n−1))XcᵀXc. C đối xứng bán xác định dương."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T01-covariance-eigen",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "covariance-eigen"
+        ],
+        "sourceAnchors": [
+          "m_m102_t01",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T01-E03",
+        "level": "medium",
+        "prompt": "Giải thích Eigen equation.",
+        "solution": "Cv=λv. λ≥0 về lý thuyết với covariance exact."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T01-covariance-eigen",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "covariance-eigen"
+        ],
+        "sourceAnchors": [
+          "m_m102_t01",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T01-E04",
+        "level": "medium",
+        "prompt": "Cho C=[[2,1],[1,2]], tìm eigenvalues/eigenvectors và giải thích hướng variance lớn/nhỏ.",
+        "solution": "Giải theo formula + condition + sanity-check của bài."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T01-covariance-eigen",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "covariance-eigen"
+        ],
+        "sourceAnchors": [
+          "m_m102_t01",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T01-E05",
+        "level": "medium",
+        "prompt": "Nêu condition gate quan trọng.",
+        "solution": "Center dữ liệu trước; dùng eigensolver cho ma trận đối xứng; eigenvalue âm nhỏ do roundoff phải được xử lý như lỗi số, không là variance thật."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T01-covariance-eigen",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "covariance-eigen"
+        ],
+        "sourceAnchors": [
+          "m_m102_t01",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T01-E06",
+        "level": "hard",
+        "prompt": "Sửa lỗi: Dùng eigendecomposition trên covariance chưa center hoặc coi eigenvalue âm lớn là bình thường.",
+        "solution": "Tìm bước sai đầu tiên, kiểm shape/split/assumption rồi làm lại với invariant."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T01-covariance-eigen",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "covariance-eigen"
+        ],
+        "sourceAnchors": [
+          "m_m102_t01",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T01-E07",
+        "level": "medium",
+        "prompt": "Nêu một numerical hoặc leakage check.",
+        "solution": "Shape + finite + tolerance + split/provenance check."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T01-covariance-eigen",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "covariance-eigen"
+        ],
+        "sourceAnchors": [
+          "m_m102_t01",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T01-E08",
+        "level": "hard",
+        "prompt": "Chuyển giao sang tình huống kỹ thuật.",
+        "solution": "Tìm principal directions của sensor features."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T02-principal-projection",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "principal-projection"
+        ],
+        "sourceAnchors": [
+          "m_m102_t02",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T02-E01",
+        "level": "easy",
+        "prompt": "Nêu shape/data contract cho Projection lên principal components.",
+        "solution": "Columns của W_k phải trực chuẩn và đúng thứ tự eigenvalue; center vector μ phải dùng nhất quán khi project/reconstruct."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T02-principal-projection",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "principal-projection"
+        ],
+        "sourceAnchors": [
+          "m_m102_t02",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T02-E02",
+        "level": "easy",
+        "prompt": "Viết công thức Scores.",
+        "solution": "Z=Xc W_k. W_k gồm k eigenvectors trực chuẩn."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T02-principal-projection",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "principal-projection"
+        ],
+        "sourceAnchors": [
+          "m_m102_t02",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T02-E03",
+        "level": "medium",
+        "prompt": "Giải thích Projection matrix.",
+        "solution": "P=W_k W_kᵀ. P đối xứng và idempotent khi W_k trực chuẩn."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T02-principal-projection",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "principal-projection"
+        ],
+        "sourceAnchors": [
+          "m_m102_t02",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T02-E04",
+        "level": "medium",
+        "prompt": "Chiếu ba điểm 2D đã center lên eigenvector v1=(1,1)/√2 và reconstruct từ score 1D.",
+        "solution": "Giải theo formula + condition + sanity-check của bài."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T02-principal-projection",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "principal-projection"
+        ],
+        "sourceAnchors": [
+          "m_m102_t02",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T02-E05",
+        "level": "medium",
+        "prompt": "Nêu condition gate quan trọng.",
+        "solution": "Columns của W_k phải trực chuẩn và đúng thứ tự eigenvalue; center vector μ phải dùng nhất quán khi project/reconstruct."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T02-principal-projection",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "principal-projection"
+        ],
+        "sourceAnchors": [
+          "m_m102_t02",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T02-E06",
+        "level": "hard",
+        "prompt": "Sửa lỗi: Chiếu raw X bằng W_k nhưng reconstruct với mean khác hoặc không cộng mean lại.",
+        "solution": "Tìm bước sai đầu tiên, kiểm shape/split/assumption rồi làm lại với invariant."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T02-principal-projection",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "principal-projection"
+        ],
+        "sourceAnchors": [
+          "m_m102_t02",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T02-E07",
+        "level": "medium",
+        "prompt": "Nêu một numerical hoặc leakage check.",
+        "solution": "Shape + finite + tolerance + split/provenance check."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T02-principal-projection",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "principal-projection"
+        ],
+        "sourceAnchors": [
+          "m_m102_t02",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T02-E08",
+        "level": "hard",
+        "prompt": "Chuyển giao sang tình huống kỹ thuật.",
+        "solution": "Trực quan hóa dữ liệu xuống 2D."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T03-explained-variance-k",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "explained-variance-k"
+        ],
+        "sourceAnchors": [
+          "m_m102_t03",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T03-E01",
+        "level": "easy",
+        "prompt": "Nêu shape/data contract cho Explained variance và chọn số chiều k.",
+        "solution": "Chọn k phải cân bằng variance, downstream performance, interpretability và stability; threshold 95% không phải luật phổ quát."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T03-explained-variance-k",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "explained-variance-k"
+        ],
+        "sourceAnchors": [
+          "m_m102_t03",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T03-E02",
+        "level": "easy",
+        "prompt": "Viết công thức Explained variance ratio.",
+        "solution": "EVR_j=λ_j/Σ_iλ_i. Tỷ lệ variance theo component j."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T03-explained-variance-k",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "explained-variance-k"
+        ],
+        "sourceAnchors": [
+          "m_m102_t03",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T03-E03",
+        "level": "medium",
+        "prompt": "Giải thích Cumulative EVR.",
+        "solution": "CEVR_k=Σ_{j=1}^k EVR_j. Dùng threshold nhưng không là tiêu chí duy nhất."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T03-explained-variance-k",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "explained-variance-k"
+        ],
+        "sourceAnchors": [
+          "m_m102_t03",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T03-E04",
+        "level": "medium",
+        "prompt": "Eigenvalues [5,3,1,1]: tính EVR/CEVR và so k=2 vs k=3.",
+        "solution": "Giải theo formula + condition + sanity-check của bài."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T03-explained-variance-k",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "explained-variance-k"
+        ],
+        "sourceAnchors": [
+          "m_m102_t03",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T03-E05",
+        "level": "medium",
+        "prompt": "Nêu condition gate quan trọng.",
+        "solution": "Chọn k phải cân bằng variance, downstream performance, interpretability và stability; threshold 95% không phải luật phổ quát."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T03-explained-variance-k",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "explained-variance-k"
+        ],
+        "sourceAnchors": [
+          "m_m102_t03",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T03-E06",
+        "level": "hard",
+        "prompt": "Sửa lỗi: Chọn k chỉ theo 95% explained variance mà không kiểm task performance hoặc cấu trúc noise.",
+        "solution": "Tìm bước sai đầu tiên, kiểm shape/split/assumption rồi làm lại với invariant."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T03-explained-variance-k",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "explained-variance-k"
+        ],
+        "sourceAnchors": [
+          "m_m102_t03",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T03-E07",
+        "level": "medium",
+        "prompt": "Nêu một numerical hoặc leakage check.",
+        "solution": "Shape + finite + tolerance + split/provenance check."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T03-explained-variance-k",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "explained-variance-k"
+        ],
+        "sourceAnchors": [
+          "m_m102_t03",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T03-E08",
+        "level": "hard",
+        "prompt": "Chuyển giao sang tình huống kỹ thuật.",
+        "solution": "Chọn dimension cho visualization."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T04-svd-pca-relation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "svd-pca-relation"
+        ],
+        "sourceAnchors": [
+          "m_m102_t04",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T04-E01",
+        "level": "easy",
+        "prompt": "Nêu shape/data contract cho SVD của ma trận dữ liệu và quan hệ với PCA.",
+        "solution": "Dùng centered matrix; phân biệt full/economy SVD và dimensions của U,Σ,V; không tạo covariance nếu p rất lớn mà SVD trực tiếp phù hợp hơn."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T04-svd-pca-relation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "svd-pca-relation"
+        ],
+        "sourceAnchors": [
+          "m_m102_t04",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T04-E02",
+        "level": "easy",
+        "prompt": "Viết công thức SVD.",
+        "solution": "Xc=UΣVᵀ. U,V trực chuẩn theo không gian tương ứng."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T04-svd-pca-relation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "svd-pca-relation"
+        ],
+        "sourceAnchors": [
+          "m_m102_t04",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T04-E03",
+        "level": "medium",
+        "prompt": "Giải thích PCA covariance link.",
+        "solution": "C=V(Σ²/(n−1))Vᵀ. Right singular vectors là PCA directions của feature covariance."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T04-svd-pca-relation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "svd-pca-relation"
+        ],
+        "sourceAnchors": [
+          "m_m102_t04",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T04-E04",
+        "level": "medium",
+        "prompt": "Với Xc shape 100×5, ghi shapes economy SVD và xác định đâu là principal directions/features.",
+        "solution": "Giải theo formula + condition + sanity-check của bài."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T04-svd-pca-relation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "svd-pca-relation"
+        ],
+        "sourceAnchors": [
+          "m_m102_t04",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T04-E05",
+        "level": "medium",
+        "prompt": "Nêu condition gate quan trọng.",
+        "solution": "Dùng centered matrix; phân biệt full/economy SVD và dimensions của U,Σ,V; không tạo covariance nếu p rất lớn mà SVD trực tiếp phù hợp hơn."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T04-svd-pca-relation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "svd-pca-relation"
+        ],
+        "sourceAnchors": [
+          "m_m102_t04",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T04-E06",
+        "level": "hard",
+        "prompt": "Sửa lỗi: Nhầm columns của U là feature principal axes; với row=sample, feature directions nằm trong V.",
+        "solution": "Tìm bước sai đầu tiên, kiểm shape/split/assumption rồi làm lại với invariant."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T04-svd-pca-relation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "svd-pca-relation"
+        ],
+        "sourceAnchors": [
+          "m_m102_t04",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T04-E07",
+        "level": "medium",
+        "prompt": "Nêu một numerical hoặc leakage check.",
+        "solution": "Shape + finite + tolerance + split/provenance check."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T04-svd-pca-relation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "svd-pca-relation"
+        ],
+        "sourceAnchors": [
+          "m_m102_t04",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T04-E08",
+        "level": "hard",
+        "prompt": "Chuyển giao sang tình huống kỹ thuật.",
+        "solution": "PCA ổn định qua SVD."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t05",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T05-low-rank-reconstruction",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "low-rank-reconstruction"
+        ],
+        "sourceAnchors": [
+          "m_m102_t05",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T05-E01",
+        "level": "easy",
+        "prompt": "Nêu shape/data contract cho Low-rank approximation và sai số tái tạo.",
+        "solution": "Chọn k dựa task/quality budget; reconstruction error thấp không đảm bảo downstream semantics được giữ."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t05",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T05-low-rank-reconstruction",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "low-rank-reconstruction"
+        ],
+        "sourceAnchors": [
+          "m_m102_t05",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T05-E02",
+        "level": "easy",
+        "prompt": "Viết công thức Rank-k SVD.",
+        "solution": "X_k=U_kΣ_kV_kᵀ. Best rank-k approximation theo Frobenius/2-norm."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t05",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T05-low-rank-reconstruction",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "low-rank-reconstruction"
+        ],
+        "sourceAnchors": [
+          "m_m102_t05",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T05-E03",
+        "level": "medium",
+        "prompt": "Giải thích Frobenius error.",
+        "solution": "‖X−X_k‖_F²=Σ_{j>k}σ_j². Tail singular energy."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t05",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T05-low-rank-reconstruction",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "low-rank-reconstruction"
+        ],
+        "sourceAnchors": [
+          "m_m102_t05",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T05-E04",
+        "level": "medium",
+        "prompt": "σ=[10,4,2,1]. Tính squared Frobenius error khi k=2 và tỷ lệ energy giữ lại.",
+        "solution": "Giải theo formula + condition + sanity-check của bài."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t05",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T05-low-rank-reconstruction",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "low-rank-reconstruction"
+        ],
+        "sourceAnchors": [
+          "m_m102_t05",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T05-E05",
+        "level": "medium",
+        "prompt": "Nêu condition gate quan trọng.",
+        "solution": "Chọn k dựa task/quality budget; reconstruction error thấp không đảm bảo downstream semantics được giữ."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t05",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T05-low-rank-reconstruction",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "low-rank-reconstruction"
+        ],
+        "sourceAnchors": [
+          "m_m102_t05",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T05-E06",
+        "level": "hard",
+        "prompt": "Sửa lỗi: Coi low reconstruction error là bằng chứng mọi rare signal/anomaly đều được bảo toàn.",
+        "solution": "Tìm bước sai đầu tiên, kiểm shape/split/assumption rồi làm lại với invariant."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t05",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T05-low-rank-reconstruction",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "low-rank-reconstruction"
+        ],
+        "sourceAnchors": [
+          "m_m102_t05",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T05-E07",
+        "level": "medium",
+        "prompt": "Nêu một numerical hoặc leakage check.",
+        "solution": "Shape + finite + tolerance + split/provenance check."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t05",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T05-low-rank-reconstruction",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "low-rank-reconstruction"
+        ],
+        "sourceAnchors": [
+          "m_m102_t05",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T05-E08",
+        "level": "hard",
+        "prompt": "Chuyển giao sang tình huống kỹ thuật.",
+        "solution": "Nén ảnh/sensor matrix."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM102-T06-whitening-stability",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "whitening-stability"
+        ],
+        "sourceAnchors": [
+          "m_m102_t06",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T06-E01",
+        "level": "easy",
+        "prompt": "Nêu shape/data contract cho Whitening, stability và preprocessing cho PCA/SVD.",
+        "solution": "Center/scale nhất quán, xử lý eigenvalue nhỏ bằng threshold/regularization, fit whitening trên train và lưu transform state."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM102-T06-whitening-stability",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "whitening-stability"
+        ],
+        "sourceAnchors": [
+          "m_m102_t06",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T06-E02",
+        "level": "easy",
+        "prompt": "Viết công thức PCA whitening.",
+        "solution": "Z=Xc V Λ^(−1/2). Sau whitening covariance lý tưởng gần I."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM102-T06-whitening-stability",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "whitening-stability"
+        ],
+        "sourceAnchors": [
+          "m_m102_t06",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T06-E03",
+        "level": "medium",
+        "prompt": "Giải thích Regularized whitening.",
+        "solution": "Λ_ε^(−1/2)=diag((λ_j+ε)^(−1/2)). ε giảm blow-up khi λ rất nhỏ."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM102-T06-whitening-stability",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "whitening-stability"
+        ],
+        "sourceAnchors": [
+          "m_m102_t06",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T06-E04",
+        "level": "medium",
+        "prompt": "λ=[4,1,0.0001]. So scaling factors 1/√λ trước/sau ε=0.01.",
+        "solution": "Giải theo formula + condition + sanity-check của bài."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM102-T06-whitening-stability",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "whitening-stability"
+        ],
+        "sourceAnchors": [
+          "m_m102_t06",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T06-E05",
+        "level": "medium",
+        "prompt": "Nêu condition gate quan trọng.",
+        "solution": "Center/scale nhất quán, xử lý eigenvalue nhỏ bằng threshold/regularization, fit whitening trên train và lưu transform state."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM102-T06-whitening-stability",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "whitening-stability"
+        ],
+        "sourceAnchors": [
+          "m_m102_t06",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T06-E06",
+        "level": "hard",
+        "prompt": "Sửa lỗi: Whitening component có λ gần 0 làm noise bị khuếch đại cực mạnh.",
+        "solution": "Tìm bước sai đầu tiên, kiểm shape/split/assumption rồi làm lại với invariant."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM102-T06-whitening-stability",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "whitening-stability"
+        ],
+        "sourceAnchors": [
+          "m_m102_t06",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T06-E07",
+        "level": "medium",
+        "prompt": "Nêu một numerical hoặc leakage check.",
+        "solution": "Shape + finite + tolerance + split/provenance check."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM102-T06-whitening-stability",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "whitening-stability"
+        ],
+        "sourceAnchors": [
+          "m_m102_t06",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T06-E08",
+        "level": "hard",
+        "prompt": "Chuyển giao sang tình huống kỹ thuật.",
+        "solution": "Decorrelate feature trước model phù hợp."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T07-pca-svd-applications",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-applications"
+        ],
+        "sourceAnchors": [
+          "m_m102_t07",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T07-E01",
+        "level": "easy",
+        "prompt": "Nêu shape/data contract cho PCA/SVD trong dữ liệu cảm biến, ảnh và văn bản.",
+        "solution": "Feature semantics/preprocessing khác nhau giữa sensor, image, text; sparse text thường cần truncated SVD thay vì center dense matrix."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T07-pca-svd-applications",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-applications"
+        ],
+        "sourceAnchors": [
+          "m_m102_t07",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T07-E02",
+        "level": "easy",
+        "prompt": "Viết công thức Compression ratio.",
+        "solution": "CR=(np)/(k(n+p+1)). Xấp xỉ storage ratio cho rank-k factors."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T07-pca-svd-applications",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-applications"
+        ],
+        "sourceAnchors": [
+          "m_m102_t07",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T07-E03",
+        "level": "medium",
+        "prompt": "Giải thích Projection.",
+        "solution": "z=W_kᵀ(x−μ). Embed một sample mới bằng transform đã fit."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T07-pca-svd-applications",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-applications"
+        ],
+        "sourceAnchors": [
+          "m_m102_t07",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T07-E04",
+        "level": "medium",
+        "prompt": "So sensor 10000×20, image 1000×4096 và TF-IDF 5000×50000: chọn PCA/SVD strategy cho từng loại.",
+        "solution": "Giải theo formula + condition + sanity-check của bài."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T07-pca-svd-applications",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-applications"
+        ],
+        "sourceAnchors": [
+          "m_m102_t07",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T07-E05",
+        "level": "medium",
+        "prompt": "Nêu condition gate quan trọng.",
+        "solution": "Feature semantics/preprocessing khác nhau giữa sensor, image, text; sparse text thường cần truncated SVD thay vì center dense matrix."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T07-pca-svd-applications",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-applications"
+        ],
+        "sourceAnchors": [
+          "m_m102_t07",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T07-E06",
+        "level": "hard",
+        "prompt": "Sửa lỗi: Áp cùng pipeline PCA cho ảnh dense và TF-IDF sparse mà không xét memory/sparsity.",
+        "solution": "Tìm bước sai đầu tiên, kiểm shape/split/assumption rồi làm lại với invariant."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T07-pca-svd-applications",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-applications"
+        ],
+        "sourceAnchors": [
+          "m_m102_t07",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T07-E07",
+        "level": "medium",
+        "prompt": "Nêu một numerical hoặc leakage check.",
+        "solution": "Shape + finite + tolerance + split/provenance check."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T07-pca-svd-applications",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-applications"
+        ],
+        "sourceAnchors": [
+          "m_m102_t07",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T07-E08",
+        "level": "hard",
+        "prompt": "Chuyển giao sang tình huống kỹ thuật.",
+        "solution": "Sensor compression/anomaly visualization."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T08-pca-svd-mini-project",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-mini-project"
+        ],
+        "sourceAnchors": [
+          "m_m102_t08",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T08-E01",
+        "level": "easy",
+        "prompt": "Nêu shape/data contract cho Mini-project PCA/SVD: pipeline, hình vẽ và báo cáo.",
+        "solution": "Project phải khóa split, fit state, seed, k-selection rule, figure labels và artifact version; kết quả test chỉ dùng một lần cho final evaluation."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T08-pca-svd-mini-project",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-mini-project"
+        ],
+        "sourceAnchors": [
+          "m_m102_t08",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T08-E02",
+        "level": "easy",
+        "prompt": "Viết công thức Pipeline fit.",
+        "solution": "(μ,W_k)=fit_PCA(X_train). Không fit PCA trên test."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T08-pca-svd-mini-project",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-mini-project"
+        ],
+        "sourceAnchors": [
+          "m_m102_t08",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T08-E03",
+        "level": "medium",
+        "prompt": "Giải thích Transform.",
+        "solution": "Z_test=(X_test−1μᵀ)W_k. Dùng transform train."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T08-pca-svd-mini-project",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-mini-project"
+        ],
+        "sourceAnchors": [
+          "m_m102_t08",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T08-E04",
+        "level": "medium",
+        "prompt": "Thiết kế notebook: load→split→EDA(train)→scale(train)→PCA(train)→select k(validation)→final test→report.",
+        "solution": "Giải theo formula + condition + sanity-check của bài."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T08-pca-svd-mini-project",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-mini-project"
+        ],
+        "sourceAnchors": [
+          "m_m102_t08",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T08-E05",
+        "level": "medium",
+        "prompt": "Nêu condition gate quan trọng.",
+        "solution": "Project phải khóa split, fit state, seed, k-selection rule, figure labels và artifact version; kết quả test chỉ dùng một lần cho final evaluation."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T08-pca-svd-mini-project",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-mini-project"
+        ],
+        "sourceAnchors": [
+          "m_m102_t08",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T08-E06",
+        "level": "hard",
+        "prompt": "Sửa lỗi: Chọn k sau khi xem test accuracy rồi báo test đó như đánh giá cuối cùng.",
+        "solution": "Tìm bước sai đầu tiên, kiểm shape/split/assumption rồi làm lại với invariant."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T08-pca-svd-mini-project",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-mini-project"
+        ],
+        "sourceAnchors": [
+          "m_m102_t08",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T08-E07",
+        "level": "medium",
+        "prompt": "Nêu một numerical hoặc leakage check.",
+        "solution": "Shape + finite + tolerance + split/provenance check."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T08-pca-svd-mini-project",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-mini-project"
+        ],
+        "sourceAnchors": [
+          "m_m102_t08",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM102-T08-E08",
+        "level": "hard",
+        "prompt": "Chuyển giao sang tình huống kỹ thuật.",
+        "solution": "Mini-project telemetry giảm chiều."
+      }
+    ],
+    "application_content": [
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T01-covariance-eigen",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "covariance-eigen"
+        ],
+        "sourceAnchors": [
+          "m_m102_t01",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "applicationId": "E23-MM102-T01-A01",
+        "title": "Ứng dụng 1 · Eigen decomposition của covariance matrix",
+        "scenario": "Tìm principal directions của sensor features.",
+        "method": "Khóa data contract → fit/compute → numerical check → metric → limitation/provenance."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T01-covariance-eigen",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "covariance-eigen"
+        ],
+        "sourceAnchors": [
+          "m_m102_t01",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "applicationId": "E23-MM102-T01-A02",
+        "title": "Ứng dụng 2 · Eigen decomposition của covariance matrix",
+        "scenario": "Kiểm covariance spectrum trước PCA.",
+        "method": "Khóa data contract → fit/compute → numerical check → metric → limitation/provenance."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T02-principal-projection",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "principal-projection"
+        ],
+        "sourceAnchors": [
+          "m_m102_t02",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "applicationId": "E23-MM102-T02-A01",
+        "title": "Ứng dụng 1 · Projection lên principal components",
+        "scenario": "Trực quan hóa dữ liệu xuống 2D.",
+        "method": "Khóa data contract → fit/compute → numerical check → metric → limitation/provenance."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T02-principal-projection",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "principal-projection"
+        ],
+        "sourceAnchors": [
+          "m_m102_t02",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "applicationId": "E23-MM102-T02-A02",
+        "title": "Ứng dụng 2 · Projection lên principal components",
+        "scenario": "Nén feature space trước model.",
+        "method": "Khóa data contract → fit/compute → numerical check → metric → limitation/provenance."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T03-explained-variance-k",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "explained-variance-k"
+        ],
+        "sourceAnchors": [
+          "m_m102_t03",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "applicationId": "E23-MM102-T03-A01",
+        "title": "Ứng dụng 1 · Explained variance và chọn số chiều k",
+        "scenario": "Chọn dimension cho visualization.",
+        "method": "Khóa data contract → fit/compute → numerical check → metric → limitation/provenance."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T03-explained-variance-k",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "explained-variance-k"
+        ],
+        "sourceAnchors": [
+          "m_m102_t03",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "applicationId": "E23-MM102-T03-A02",
+        "title": "Ứng dụng 2 · Explained variance và chọn số chiều k",
+        "scenario": "Tối ưu latency/memory trước classification.",
+        "method": "Khóa data contract → fit/compute → numerical check → metric → limitation/provenance."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T04-svd-pca-relation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "svd-pca-relation"
+        ],
+        "sourceAnchors": [
+          "m_m102_t04",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "applicationId": "E23-MM102-T04-A01",
+        "title": "Ứng dụng 1 · SVD của ma trận dữ liệu và quan hệ với PCA",
+        "scenario": "PCA ổn định qua SVD.",
+        "method": "Khóa data contract → fit/compute → numerical check → metric → limitation/provenance."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T04-svd-pca-relation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "svd-pca-relation"
+        ],
+        "sourceAnchors": [
+          "m_m102_t04",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "applicationId": "E23-MM102-T04-A02",
+        "title": "Ứng dụng 2 · SVD của ma trận dữ liệu và quan hệ với PCA",
+        "scenario": "Low-rank processing dữ liệu rectangular.",
+        "method": "Khóa data contract → fit/compute → numerical check → metric → limitation/provenance."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t05",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T05-low-rank-reconstruction",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "low-rank-reconstruction"
+        ],
+        "sourceAnchors": [
+          "m_m102_t05",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "applicationId": "E23-MM102-T05-A01",
+        "title": "Ứng dụng 1 · Low-rank approximation và sai số tái tạo",
+        "scenario": "Nén ảnh/sensor matrix.",
+        "method": "Khóa data contract → fit/compute → numerical check → metric → limitation/provenance."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t05",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T05-low-rank-reconstruction",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "low-rank-reconstruction"
+        ],
+        "sourceAnchors": [
+          "m_m102_t05",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "applicationId": "E23-MM102-T05-A02",
+        "title": "Ứng dụng 2 · Low-rank approximation và sai số tái tạo",
+        "scenario": "Denoising qua low-rank approximation.",
+        "method": "Khóa data contract → fit/compute → numerical check → metric → limitation/provenance."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM102-T06-whitening-stability",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "whitening-stability"
+        ],
+        "sourceAnchors": [
+          "m_m102_t06",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "applicationId": "E23-MM102-T06-A01",
+        "title": "Ứng dụng 1 · Whitening, stability và preprocessing cho PCA/SVD",
+        "scenario": "Decorrelate feature trước model phù hợp.",
+        "method": "Khóa data contract → fit/compute → numerical check → metric → limitation/provenance."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM102-T06-whitening-stability",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "whitening-stability"
+        ],
+        "sourceAnchors": [
+          "m_m102_t06",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "applicationId": "E23-MM102-T06-A02",
+        "title": "Ứng dụng 2 · Whitening, stability và preprocessing cho PCA/SVD",
+        "scenario": "Phân tích numerical stability của PCA transform.",
+        "method": "Khóa data contract → fit/compute → numerical check → metric → limitation/provenance."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T07-pca-svd-applications",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-applications"
+        ],
+        "sourceAnchors": [
+          "m_m102_t07",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "applicationId": "E23-MM102-T07-A01",
+        "title": "Ứng dụng 1 · PCA/SVD trong dữ liệu cảm biến, ảnh và văn bản",
+        "scenario": "Sensor compression/anomaly visualization.",
+        "method": "Khóa data contract → fit/compute → numerical check → metric → limitation/provenance."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T07-pca-svd-applications",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-applications"
+        ],
+        "sourceAnchors": [
+          "m_m102_t07",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "applicationId": "E23-MM102-T07-A02",
+        "title": "Ứng dụng 2 · PCA/SVD trong dữ liệu cảm biến, ảnh và văn bản",
+        "scenario": "Image/text latent representation.",
+        "method": "Khóa data contract → fit/compute → numerical check → metric → limitation/provenance."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T08-pca-svd-mini-project",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-mini-project"
+        ],
+        "sourceAnchors": [
+          "m_m102_t08",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "applicationId": "E23-MM102-T08-A01",
+        "title": "Ứng dụng 1 · Mini-project PCA/SVD: pipeline, hình vẽ và báo cáo",
+        "scenario": "Mini-project telemetry giảm chiều.",
+        "method": "Khóa data contract → fit/compute → numerical check → metric → limitation/provenance."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T08-pca-svd-mini-project",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-mini-project"
+        ],
+        "sourceAnchors": [
+          "m_m102_t08",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "applicationId": "E23-MM102-T08-A02",
+        "title": "Ứng dụng 2 · Mini-project PCA/SVD: pipeline, hình vẽ và báo cáo",
+        "scenario": "Mẫu Methods/Results cho báo cáo HK1.",
+        "method": "Khóa data contract → fit/compute → numerical check → metric → limitation/provenance."
+      }
+    ],
+    "simulation_content": [
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T01-covariance-eigen",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "covariance-eigen"
+        ],
+        "sourceAnchors": [
+          "m_m102_t01",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "simulationId": "E23-MM102-T01-SIM01",
+        "title": "Theory explorer · m_m102 §1.1",
+        "purpose": "Quan sát geometry/spectrum/error khi thay đổi dimension, scale hoặc noise.",
+        "controls": [
+          {
+            "key": "dimension",
+            "type": "number",
+            "default": 4
+          },
+          {
+            "key": "noise",
+            "type": "number",
+            "default": 0.1
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "primary_metric",
+            "label": "Primary metric"
+          },
+          {
+            "key": "stability",
+            "label": "Stability"
+          }
+        ],
+        "simulationClass": "theory"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T01-covariance-eigen",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "covariance-eigen"
+        ],
+        "sourceAnchors": [
+          "m_m102_t01",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "simulationId": "E23-MM102-T01-SIM02",
+        "title": "Applied lab · m_m102 §1.1",
+        "purpose": "Chạy mini data pipeline và phát warning nếu vi phạm condition/leakage gate.",
+        "controls": [
+          {
+            "key": "scale_ratio",
+            "type": "number",
+            "default": 1
+          },
+          {
+            "key": "leakage",
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "quality",
+            "label": "Quality/readout"
+          },
+          {
+            "key": "warning",
+            "label": "Contract warning"
+          }
+        ],
+        "simulationClass": "application"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T02-principal-projection",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "principal-projection"
+        ],
+        "sourceAnchors": [
+          "m_m102_t02",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "simulationId": "E23-MM102-T02-SIM01",
+        "title": "Theory explorer · m_m102 §1.2",
+        "purpose": "Quan sát geometry/spectrum/error khi thay đổi dimension, scale hoặc noise.",
+        "controls": [
+          {
+            "key": "dimension",
+            "type": "number",
+            "default": 4
+          },
+          {
+            "key": "noise",
+            "type": "number",
+            "default": 0.1
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "primary_metric",
+            "label": "Primary metric"
+          },
+          {
+            "key": "stability",
+            "label": "Stability"
+          }
+        ],
+        "simulationClass": "theory"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T02-principal-projection",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "principal-projection"
+        ],
+        "sourceAnchors": [
+          "m_m102_t02",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "simulationId": "E23-MM102-T02-SIM02",
+        "title": "Applied lab · m_m102 §1.2",
+        "purpose": "Chạy mini data pipeline và phát warning nếu vi phạm condition/leakage gate.",
+        "controls": [
+          {
+            "key": "scale_ratio",
+            "type": "number",
+            "default": 1
+          },
+          {
+            "key": "leakage",
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "quality",
+            "label": "Quality/readout"
+          },
+          {
+            "key": "warning",
+            "label": "Contract warning"
+          }
+        ],
+        "simulationClass": "application"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T03-explained-variance-k",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "explained-variance-k"
+        ],
+        "sourceAnchors": [
+          "m_m102_t03",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "simulationId": "E23-MM102-T03-SIM01",
+        "title": "Theory explorer · m_m102 §1.3",
+        "purpose": "Quan sát geometry/spectrum/error khi thay đổi dimension, scale hoặc noise.",
+        "controls": [
+          {
+            "key": "dimension",
+            "type": "number",
+            "default": 4
+          },
+          {
+            "key": "noise",
+            "type": "number",
+            "default": 0.1
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "primary_metric",
+            "label": "Primary metric"
+          },
+          {
+            "key": "stability",
+            "label": "Stability"
+          }
+        ],
+        "simulationClass": "theory"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T03-explained-variance-k",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "explained-variance-k"
+        ],
+        "sourceAnchors": [
+          "m_m102_t03",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "simulationId": "E23-MM102-T03-SIM02",
+        "title": "Applied lab · m_m102 §1.3",
+        "purpose": "Chạy mini data pipeline và phát warning nếu vi phạm condition/leakage gate.",
+        "controls": [
+          {
+            "key": "scale_ratio",
+            "type": "number",
+            "default": 1
+          },
+          {
+            "key": "leakage",
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "quality",
+            "label": "Quality/readout"
+          },
+          {
+            "key": "warning",
+            "label": "Contract warning"
+          }
+        ],
+        "simulationClass": "application"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T04-svd-pca-relation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "svd-pca-relation"
+        ],
+        "sourceAnchors": [
+          "m_m102_t04",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "simulationId": "E23-MM102-T04-SIM01",
+        "title": "Theory explorer · m_m102 §1.4",
+        "purpose": "Quan sát geometry/spectrum/error khi thay đổi dimension, scale hoặc noise.",
+        "controls": [
+          {
+            "key": "dimension",
+            "type": "number",
+            "default": 4
+          },
+          {
+            "key": "noise",
+            "type": "number",
+            "default": 0.1
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "primary_metric",
+            "label": "Primary metric"
+          },
+          {
+            "key": "stability",
+            "label": "Stability"
+          }
+        ],
+        "simulationClass": "theory"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T04-svd-pca-relation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "svd-pca-relation"
+        ],
+        "sourceAnchors": [
+          "m_m102_t04",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "simulationId": "E23-MM102-T04-SIM02",
+        "title": "Applied lab · m_m102 §1.4",
+        "purpose": "Chạy mini data pipeline và phát warning nếu vi phạm condition/leakage gate.",
+        "controls": [
+          {
+            "key": "scale_ratio",
+            "type": "number",
+            "default": 1
+          },
+          {
+            "key": "leakage",
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "quality",
+            "label": "Quality/readout"
+          },
+          {
+            "key": "warning",
+            "label": "Contract warning"
+          }
+        ],
+        "simulationClass": "application"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t05",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T05-low-rank-reconstruction",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "low-rank-reconstruction"
+        ],
+        "sourceAnchors": [
+          "m_m102_t05",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "simulationId": "E23-MM102-T05-SIM01",
+        "title": "Theory explorer · m_m102 §1.5",
+        "purpose": "Quan sát geometry/spectrum/error khi thay đổi dimension, scale hoặc noise.",
+        "controls": [
+          {
+            "key": "dimension",
+            "type": "number",
+            "default": 4
+          },
+          {
+            "key": "noise",
+            "type": "number",
+            "default": 0.1
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "primary_metric",
+            "label": "Primary metric"
+          },
+          {
+            "key": "stability",
+            "label": "Stability"
+          }
+        ],
+        "simulationClass": "theory"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t05",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T05-low-rank-reconstruction",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "low-rank-reconstruction"
+        ],
+        "sourceAnchors": [
+          "m_m102_t05",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "simulationId": "E23-MM102-T05-SIM02",
+        "title": "Applied lab · m_m102 §1.5",
+        "purpose": "Chạy mini data pipeline và phát warning nếu vi phạm condition/leakage gate.",
+        "controls": [
+          {
+            "key": "scale_ratio",
+            "type": "number",
+            "default": 1
+          },
+          {
+            "key": "leakage",
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "quality",
+            "label": "Quality/readout"
+          },
+          {
+            "key": "warning",
+            "label": "Contract warning"
+          }
+        ],
+        "simulationClass": "application"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM102-T06-whitening-stability",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "whitening-stability"
+        ],
+        "sourceAnchors": [
+          "m_m102_t06",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "simulationId": "E23-MM102-T06-SIM01",
+        "title": "Theory explorer · m_m102 §1.6",
+        "purpose": "Quan sát geometry/spectrum/error khi thay đổi dimension, scale hoặc noise.",
+        "controls": [
+          {
+            "key": "dimension",
+            "type": "number",
+            "default": 4
+          },
+          {
+            "key": "noise",
+            "type": "number",
+            "default": 0.1
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "primary_metric",
+            "label": "Primary metric"
+          },
+          {
+            "key": "stability",
+            "label": "Stability"
+          }
+        ],
+        "simulationClass": "theory"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM102-T06-whitening-stability",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "whitening-stability"
+        ],
+        "sourceAnchors": [
+          "m_m102_t06",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "simulationId": "E23-MM102-T06-SIM02",
+        "title": "Applied lab · m_m102 §1.6",
+        "purpose": "Chạy mini data pipeline và phát warning nếu vi phạm condition/leakage gate.",
+        "controls": [
+          {
+            "key": "scale_ratio",
+            "type": "number",
+            "default": 1
+          },
+          {
+            "key": "leakage",
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "quality",
+            "label": "Quality/readout"
+          },
+          {
+            "key": "warning",
+            "label": "Contract warning"
+          }
+        ],
+        "simulationClass": "application"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T07-pca-svd-applications",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-applications"
+        ],
+        "sourceAnchors": [
+          "m_m102_t07",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "simulationId": "E23-MM102-T07-SIM01",
+        "title": "Theory explorer · m_m102 §1.7",
+        "purpose": "Quan sát geometry/spectrum/error khi thay đổi dimension, scale hoặc noise.",
+        "controls": [
+          {
+            "key": "dimension",
+            "type": "number",
+            "default": 4
+          },
+          {
+            "key": "noise",
+            "type": "number",
+            "default": 0.1
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "primary_metric",
+            "label": "Primary metric"
+          },
+          {
+            "key": "stability",
+            "label": "Stability"
+          }
+        ],
+        "simulationClass": "theory"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T07-pca-svd-applications",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-applications"
+        ],
+        "sourceAnchors": [
+          "m_m102_t07",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "simulationId": "E23-MM102-T07-SIM02",
+        "title": "Applied lab · m_m102 §1.7",
+        "purpose": "Chạy mini data pipeline và phát warning nếu vi phạm condition/leakage gate.",
+        "controls": [
+          {
+            "key": "scale_ratio",
+            "type": "number",
+            "default": 1
+          },
+          {
+            "key": "leakage",
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "quality",
+            "label": "Quality/readout"
+          },
+          {
+            "key": "warning",
+            "label": "Contract warning"
+          }
+        ],
+        "simulationClass": "application"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T08-pca-svd-mini-project",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-mini-project"
+        ],
+        "sourceAnchors": [
+          "m_m102_t08",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "simulationId": "E23-MM102-T08-SIM01",
+        "title": "Theory explorer · m_m102 §1.8",
+        "purpose": "Quan sát geometry/spectrum/error khi thay đổi dimension, scale hoặc noise.",
+        "controls": [
+          {
+            "key": "dimension",
+            "type": "number",
+            "default": 4
+          },
+          {
+            "key": "noise",
+            "type": "number",
+            "default": 0.1
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "primary_metric",
+            "label": "Primary metric"
+          },
+          {
+            "key": "stability",
+            "label": "Stability"
+          }
+        ],
+        "simulationClass": "theory"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T08-pca-svd-mini-project",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-mini-project"
+        ],
+        "sourceAnchors": [
+          "m_m102_t08",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "simulationId": "E23-MM102-T08-SIM02",
+        "title": "Applied lab · m_m102 §1.8",
+        "purpose": "Chạy mini data pipeline và phát warning nếu vi phạm condition/leakage gate.",
+        "controls": [
+          {
+            "key": "scale_ratio",
+            "type": "number",
+            "default": 1
+          },
+          {
+            "key": "leakage",
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "quality",
+            "label": "Quality/readout"
+          },
+          {
+            "key": "warning",
+            "label": "Contract warning"
+          }
+        ],
+        "simulationClass": "application"
+      }
+    ],
+    "professor_qa_content": [
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T01-covariance-eigen",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "covariance-eigen"
+        ],
+        "sourceAnchors": [
+          "m_m102_t01",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "qaId": "E23-MM102-T01-QA01",
+        "question": "Điểm dễ sai nhất khi dùng Eigen decomposition của covariance matrix trong dữ liệu thật là gì?",
+        "answer": "Dùng eigendecomposition trên covariance chưa center hoặc coi eigenvalue âm lớn là bình thường. Cách phòng: Center dữ liệu trước; dùng eigensolver cho ma trận đối xứng; eigenvalue âm nhỏ do roundoff phải được xử lý như lỗi số, không là variance thật."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T02-principal-projection",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "principal-projection"
+        ],
+        "sourceAnchors": [
+          "m_m102_t02",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "qaId": "E23-MM102-T02-QA01",
+        "question": "Điểm dễ sai nhất khi dùng Projection lên principal components trong dữ liệu thật là gì?",
+        "answer": "Chiếu raw X bằng W_k nhưng reconstruct với mean khác hoặc không cộng mean lại. Cách phòng: Columns của W_k phải trực chuẩn và đúng thứ tự eigenvalue; center vector μ phải dùng nhất quán khi project/reconstruct."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T03-explained-variance-k",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "explained-variance-k"
+        ],
+        "sourceAnchors": [
+          "m_m102_t03",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "qaId": "E23-MM102-T03-QA01",
+        "question": "Điểm dễ sai nhất khi dùng Explained variance và chọn số chiều k trong dữ liệu thật là gì?",
+        "answer": "Chọn k chỉ theo 95% explained variance mà không kiểm task performance hoặc cấu trúc noise. Cách phòng: Chọn k phải cân bằng variance, downstream performance, interpretability và stability; threshold 95% không phải luật phổ quát."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T04-svd-pca-relation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "svd-pca-relation"
+        ],
+        "sourceAnchors": [
+          "m_m102_t04",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "qaId": "E23-MM102-T04-QA01",
+        "question": "Điểm dễ sai nhất khi dùng SVD của ma trận dữ liệu và quan hệ với PCA trong dữ liệu thật là gì?",
+        "answer": "Nhầm columns của U là feature principal axes; với row=sample, feature directions nằm trong V. Cách phòng: Dùng centered matrix; phân biệt full/economy SVD và dimensions của U,Σ,V; không tạo covariance nếu p rất lớn mà SVD trực tiếp phù hợp hơn."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t05",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T05-low-rank-reconstruction",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "low-rank-reconstruction"
+        ],
+        "sourceAnchors": [
+          "m_m102_t05",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "qaId": "E23-MM102-T05-QA01",
+        "question": "Điểm dễ sai nhất khi dùng Low-rank approximation và sai số tái tạo trong dữ liệu thật là gì?",
+        "answer": "Coi low reconstruction error là bằng chứng mọi rare signal/anomaly đều được bảo toàn. Cách phòng: Chọn k dựa task/quality budget; reconstruction error thấp không đảm bảo downstream semantics được giữ."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM102-T06-whitening-stability",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "whitening-stability"
+        ],
+        "sourceAnchors": [
+          "m_m102_t06",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "qaId": "E23-MM102-T06-QA01",
+        "question": "Điểm dễ sai nhất khi dùng Whitening, stability và preprocessing cho PCA/SVD trong dữ liệu thật là gì?",
+        "answer": "Whitening component có λ gần 0 làm noise bị khuếch đại cực mạnh. Cách phòng: Center/scale nhất quán, xử lý eigenvalue nhỏ bằng threshold/regularization, fit whitening trên train và lưu transform state."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T07-pca-svd-applications",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-applications"
+        ],
+        "sourceAnchors": [
+          "m_m102_t07",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "qaId": "E23-MM102-T07-QA01",
+        "question": "Điểm dễ sai nhất khi dùng PCA/SVD trong dữ liệu cảm biến, ảnh và văn bản trong dữ liệu thật là gì?",
+        "answer": "Áp cùng pipeline PCA cho ảnh dense và TF-IDF sparse mà không xét memory/sparsity. Cách phòng: Feature semantics/preprocessing khác nhau giữa sensor, image, text; sparse text thường cần truncated SVD thay vì center dense matrix."
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T08-pca-svd-mini-project",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-mini-project"
+        ],
+        "sourceAnchors": [
+          "m_m102_t08",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "qaId": "E23-MM102-T08-QA01",
+        "question": "Điểm dễ sai nhất khi dùng Mini-project PCA/SVD: pipeline, hình vẽ và báo cáo trong dữ liệu thật là gì?",
+        "answer": "Chọn k sau khi xem test accuracy rồi báo test đó như đánh giá cuối cùng. Cách phòng: Project phải khóa split, fit state, seed, k-selection rule, figure labels và artifact version; kết quả test chỉ dùng một lần cho final evaluation."
+      }
+    ],
+    "question_bank_content": [
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T01-covariance-eigen",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "covariance-eigen"
+        ],
+        "sourceAnchors": [
+          "m_m102_t01",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T01-Q001",
+        "level": "easy",
+        "question": "Nêu mục tiêu của Eigen decomposition của covariance matrix.",
+        "answer": "Tìm principal directions của sensor features.",
+        "reviewPackId": "E23-MM102-T01-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T01-covariance-eigen",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "covariance-eigen"
+        ],
+        "sourceAnchors": [
+          "m_m102_t01",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T01-Q002",
+        "level": "easy",
+        "question": "Viết Covariance.",
+        "answer": "C=(1/(n−1))XcᵀXc",
+        "reviewPackId": "E23-MM102-T01-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T01-covariance-eigen",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "covariance-eigen"
+        ],
+        "sourceAnchors": [
+          "m_m102_t01",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T01-Q003",
+        "level": "medium",
+        "question": "Ý nghĩa của Eigen equation?",
+        "answer": "λ≥0 về lý thuyết với covariance exact.",
+        "reviewPackId": "E23-MM102-T01-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T01-covariance-eigen",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "covariance-eigen"
+        ],
+        "sourceAnchors": [
+          "m_m102_t01",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T01-Q004",
+        "level": "medium",
+        "question": "Condition gate là gì?",
+        "answer": "Center dữ liệu trước; dùng eigensolver cho ma trận đối xứng; eigenvalue âm nhỏ do roundoff phải được xử lý như lỗi số, không là variance thật.",
+        "reviewPackId": "E23-MM102-T01-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T01-covariance-eigen",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "covariance-eigen"
+        ],
+        "sourceAnchors": [
+          "m_m102_t01",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T01-Q005",
+        "level": "medium",
+        "question": "Bẫy chính là gì?",
+        "answer": "Dùng eigendecomposition trên covariance chưa center hoặc coi eigenvalue âm lớn là bình thường.",
+        "reviewPackId": "E23-MM102-T01-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T01-covariance-eigen",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "covariance-eigen"
+        ],
+        "sourceAnchors": [
+          "m_m102_t01",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T01-Q006",
+        "level": "hard",
+        "question": "Nêu một application và check đi kèm.",
+        "answer": "Tìm principal directions của sensor features. Check: shape/split/assumption/numerical stability.",
+        "reviewPackId": "E23-MM102-T01-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T02-principal-projection",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "principal-projection"
+        ],
+        "sourceAnchors": [
+          "m_m102_t02",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T02-Q001",
+        "level": "easy",
+        "question": "Nêu mục tiêu của Projection lên principal components.",
+        "answer": "Trực quan hóa dữ liệu xuống 2D.",
+        "reviewPackId": "E23-MM102-T02-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T02-principal-projection",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "principal-projection"
+        ],
+        "sourceAnchors": [
+          "m_m102_t02",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T02-Q002",
+        "level": "easy",
+        "question": "Viết Scores.",
+        "answer": "Z=Xc W_k",
+        "reviewPackId": "E23-MM102-T02-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T02-principal-projection",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "principal-projection"
+        ],
+        "sourceAnchors": [
+          "m_m102_t02",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T02-Q003",
+        "level": "medium",
+        "question": "Ý nghĩa của Projection matrix?",
+        "answer": "P đối xứng và idempotent khi W_k trực chuẩn.",
+        "reviewPackId": "E23-MM102-T02-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T02-principal-projection",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "principal-projection"
+        ],
+        "sourceAnchors": [
+          "m_m102_t02",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T02-Q004",
+        "level": "medium",
+        "question": "Condition gate là gì?",
+        "answer": "Columns của W_k phải trực chuẩn và đúng thứ tự eigenvalue; center vector μ phải dùng nhất quán khi project/reconstruct.",
+        "reviewPackId": "E23-MM102-T02-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T02-principal-projection",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "principal-projection"
+        ],
+        "sourceAnchors": [
+          "m_m102_t02",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T02-Q005",
+        "level": "medium",
+        "question": "Bẫy chính là gì?",
+        "answer": "Chiếu raw X bằng W_k nhưng reconstruct với mean khác hoặc không cộng mean lại.",
+        "reviewPackId": "E23-MM102-T02-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T02-principal-projection",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "principal-projection"
+        ],
+        "sourceAnchors": [
+          "m_m102_t02",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T02-Q006",
+        "level": "hard",
+        "question": "Nêu một application và check đi kèm.",
+        "answer": "Trực quan hóa dữ liệu xuống 2D. Check: shape/split/assumption/numerical stability.",
+        "reviewPackId": "E23-MM102-T02-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T03-explained-variance-k",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "explained-variance-k"
+        ],
+        "sourceAnchors": [
+          "m_m102_t03",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T03-Q001",
+        "level": "easy",
+        "question": "Nêu mục tiêu của Explained variance và chọn số chiều k.",
+        "answer": "Chọn dimension cho visualization.",
+        "reviewPackId": "E23-MM102-T03-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T03-explained-variance-k",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "explained-variance-k"
+        ],
+        "sourceAnchors": [
+          "m_m102_t03",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T03-Q002",
+        "level": "easy",
+        "question": "Viết Explained variance ratio.",
+        "answer": "EVR_j=λ_j/Σ_iλ_i",
+        "reviewPackId": "E23-MM102-T03-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T03-explained-variance-k",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "explained-variance-k"
+        ],
+        "sourceAnchors": [
+          "m_m102_t03",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T03-Q003",
+        "level": "medium",
+        "question": "Ý nghĩa của Cumulative EVR?",
+        "answer": "Dùng threshold nhưng không là tiêu chí duy nhất.",
+        "reviewPackId": "E23-MM102-T03-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T03-explained-variance-k",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "explained-variance-k"
+        ],
+        "sourceAnchors": [
+          "m_m102_t03",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T03-Q004",
+        "level": "medium",
+        "question": "Condition gate là gì?",
+        "answer": "Chọn k phải cân bằng variance, downstream performance, interpretability và stability; threshold 95% không phải luật phổ quát.",
+        "reviewPackId": "E23-MM102-T03-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T03-explained-variance-k",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "explained-variance-k"
+        ],
+        "sourceAnchors": [
+          "m_m102_t03",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T03-Q005",
+        "level": "medium",
+        "question": "Bẫy chính là gì?",
+        "answer": "Chọn k chỉ theo 95% explained variance mà không kiểm task performance hoặc cấu trúc noise.",
+        "reviewPackId": "E23-MM102-T03-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T03-explained-variance-k",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "explained-variance-k"
+        ],
+        "sourceAnchors": [
+          "m_m102_t03",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T03-Q006",
+        "level": "hard",
+        "question": "Nêu một application và check đi kèm.",
+        "answer": "Chọn dimension cho visualization. Check: shape/split/assumption/numerical stability.",
+        "reviewPackId": "E23-MM102-T03-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T04-svd-pca-relation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "svd-pca-relation"
+        ],
+        "sourceAnchors": [
+          "m_m102_t04",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T04-Q001",
+        "level": "easy",
+        "question": "Nêu mục tiêu của SVD của ma trận dữ liệu và quan hệ với PCA.",
+        "answer": "PCA ổn định qua SVD.",
+        "reviewPackId": "E23-MM102-T04-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T04-svd-pca-relation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "svd-pca-relation"
+        ],
+        "sourceAnchors": [
+          "m_m102_t04",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T04-Q002",
+        "level": "easy",
+        "question": "Viết SVD.",
+        "answer": "Xc=UΣVᵀ",
+        "reviewPackId": "E23-MM102-T04-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T04-svd-pca-relation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "svd-pca-relation"
+        ],
+        "sourceAnchors": [
+          "m_m102_t04",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T04-Q003",
+        "level": "medium",
+        "question": "Ý nghĩa của PCA covariance link?",
+        "answer": "Right singular vectors là PCA directions của feature covariance.",
+        "reviewPackId": "E23-MM102-T04-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T04-svd-pca-relation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "svd-pca-relation"
+        ],
+        "sourceAnchors": [
+          "m_m102_t04",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T04-Q004",
+        "level": "medium",
+        "question": "Condition gate là gì?",
+        "answer": "Dùng centered matrix; phân biệt full/economy SVD và dimensions của U,Σ,V; không tạo covariance nếu p rất lớn mà SVD trực tiếp phù hợp hơn.",
+        "reviewPackId": "E23-MM102-T04-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T04-svd-pca-relation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "svd-pca-relation"
+        ],
+        "sourceAnchors": [
+          "m_m102_t04",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T04-Q005",
+        "level": "medium",
+        "question": "Bẫy chính là gì?",
+        "answer": "Nhầm columns của U là feature principal axes; với row=sample, feature directions nằm trong V.",
+        "reviewPackId": "E23-MM102-T04-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T04-svd-pca-relation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "svd-pca-relation"
+        ],
+        "sourceAnchors": [
+          "m_m102_t04",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T04-Q006",
+        "level": "hard",
+        "question": "Nêu một application và check đi kèm.",
+        "answer": "PCA ổn định qua SVD. Check: shape/split/assumption/numerical stability.",
+        "reviewPackId": "E23-MM102-T04-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t05",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T05-low-rank-reconstruction",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "low-rank-reconstruction"
+        ],
+        "sourceAnchors": [
+          "m_m102_t05",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T05-Q001",
+        "level": "easy",
+        "question": "Nêu mục tiêu của Low-rank approximation và sai số tái tạo.",
+        "answer": "Nén ảnh/sensor matrix.",
+        "reviewPackId": "E23-MM102-T05-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t05",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T05-low-rank-reconstruction",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "low-rank-reconstruction"
+        ],
+        "sourceAnchors": [
+          "m_m102_t05",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T05-Q002",
+        "level": "easy",
+        "question": "Viết Rank-k SVD.",
+        "answer": "X_k=U_kΣ_kV_kᵀ",
+        "reviewPackId": "E23-MM102-T05-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t05",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T05-low-rank-reconstruction",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "low-rank-reconstruction"
+        ],
+        "sourceAnchors": [
+          "m_m102_t05",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T05-Q003",
+        "level": "medium",
+        "question": "Ý nghĩa của Frobenius error?",
+        "answer": "Tail singular energy.",
+        "reviewPackId": "E23-MM102-T05-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t05",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T05-low-rank-reconstruction",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "low-rank-reconstruction"
+        ],
+        "sourceAnchors": [
+          "m_m102_t05",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T05-Q004",
+        "level": "medium",
+        "question": "Condition gate là gì?",
+        "answer": "Chọn k dựa task/quality budget; reconstruction error thấp không đảm bảo downstream semantics được giữ.",
+        "reviewPackId": "E23-MM102-T05-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t05",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T05-low-rank-reconstruction",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "low-rank-reconstruction"
+        ],
+        "sourceAnchors": [
+          "m_m102_t05",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T05-Q005",
+        "level": "medium",
+        "question": "Bẫy chính là gì?",
+        "answer": "Coi low reconstruction error là bằng chứng mọi rare signal/anomaly đều được bảo toàn.",
+        "reviewPackId": "E23-MM102-T05-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t05",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T05-low-rank-reconstruction",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "low-rank-reconstruction"
+        ],
+        "sourceAnchors": [
+          "m_m102_t05",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T05-Q006",
+        "level": "hard",
+        "question": "Nêu một application và check đi kèm.",
+        "answer": "Nén ảnh/sensor matrix. Check: shape/split/assumption/numerical stability.",
+        "reviewPackId": "E23-MM102-T05-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM102-T06-whitening-stability",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "whitening-stability"
+        ],
+        "sourceAnchors": [
+          "m_m102_t06",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T06-Q001",
+        "level": "easy",
+        "question": "Nêu mục tiêu của Whitening, stability và preprocessing cho PCA/SVD.",
+        "answer": "Decorrelate feature trước model phù hợp.",
+        "reviewPackId": "E23-MM102-T06-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM102-T06-whitening-stability",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "whitening-stability"
+        ],
+        "sourceAnchors": [
+          "m_m102_t06",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T06-Q002",
+        "level": "easy",
+        "question": "Viết PCA whitening.",
+        "answer": "Z=Xc V Λ^(−1/2)",
+        "reviewPackId": "E23-MM102-T06-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM102-T06-whitening-stability",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "whitening-stability"
+        ],
+        "sourceAnchors": [
+          "m_m102_t06",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T06-Q003",
+        "level": "medium",
+        "question": "Ý nghĩa của Regularized whitening?",
+        "answer": "ε giảm blow-up khi λ rất nhỏ.",
+        "reviewPackId": "E23-MM102-T06-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM102-T06-whitening-stability",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "whitening-stability"
+        ],
+        "sourceAnchors": [
+          "m_m102_t06",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T06-Q004",
+        "level": "medium",
+        "question": "Condition gate là gì?",
+        "answer": "Center/scale nhất quán, xử lý eigenvalue nhỏ bằng threshold/regularization, fit whitening trên train và lưu transform state.",
+        "reviewPackId": "E23-MM102-T06-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM102-T06-whitening-stability",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "whitening-stability"
+        ],
+        "sourceAnchors": [
+          "m_m102_t06",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T06-Q005",
+        "level": "medium",
+        "question": "Bẫy chính là gì?",
+        "answer": "Whitening component có λ gần 0 làm noise bị khuếch đại cực mạnh.",
+        "reviewPackId": "E23-MM102-T06-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM102-T06-whitening-stability",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "whitening-stability"
+        ],
+        "sourceAnchors": [
+          "m_m102_t06",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T06-Q006",
+        "level": "hard",
+        "question": "Nêu một application và check đi kèm.",
+        "answer": "Decorrelate feature trước model phù hợp. Check: shape/split/assumption/numerical stability.",
+        "reviewPackId": "E23-MM102-T06-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T07-pca-svd-applications",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-applications"
+        ],
+        "sourceAnchors": [
+          "m_m102_t07",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T07-Q001",
+        "level": "easy",
+        "question": "Nêu mục tiêu của PCA/SVD trong dữ liệu cảm biến, ảnh và văn bản.",
+        "answer": "Sensor compression/anomaly visualization.",
+        "reviewPackId": "E23-MM102-T07-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T07-pca-svd-applications",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-applications"
+        ],
+        "sourceAnchors": [
+          "m_m102_t07",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T07-Q002",
+        "level": "easy",
+        "question": "Viết Compression ratio.",
+        "answer": "CR=(np)/(k(n+p+1))",
+        "reviewPackId": "E23-MM102-T07-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T07-pca-svd-applications",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-applications"
+        ],
+        "sourceAnchors": [
+          "m_m102_t07",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T07-Q003",
+        "level": "medium",
+        "question": "Ý nghĩa của Projection?",
+        "answer": "Embed một sample mới bằng transform đã fit.",
+        "reviewPackId": "E23-MM102-T07-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T07-pca-svd-applications",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-applications"
+        ],
+        "sourceAnchors": [
+          "m_m102_t07",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T07-Q004",
+        "level": "medium",
+        "question": "Condition gate là gì?",
+        "answer": "Feature semantics/preprocessing khác nhau giữa sensor, image, text; sparse text thường cần truncated SVD thay vì center dense matrix.",
+        "reviewPackId": "E23-MM102-T07-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T07-pca-svd-applications",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-applications"
+        ],
+        "sourceAnchors": [
+          "m_m102_t07",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T07-Q005",
+        "level": "medium",
+        "question": "Bẫy chính là gì?",
+        "answer": "Áp cùng pipeline PCA cho ảnh dense và TF-IDF sparse mà không xét memory/sparsity.",
+        "reviewPackId": "E23-MM102-T07-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T07-pca-svd-applications",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-applications"
+        ],
+        "sourceAnchors": [
+          "m_m102_t07",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T07-Q006",
+        "level": "hard",
+        "question": "Nêu một application và check đi kèm.",
+        "answer": "Sensor compression/anomaly visualization. Check: shape/split/assumption/numerical stability.",
+        "reviewPackId": "E23-MM102-T07-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T08-pca-svd-mini-project",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-mini-project"
+        ],
+        "sourceAnchors": [
+          "m_m102_t08",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T08-Q001",
+        "level": "easy",
+        "question": "Nêu mục tiêu của Mini-project PCA/SVD: pipeline, hình vẽ và báo cáo.",
+        "answer": "Mini-project telemetry giảm chiều.",
+        "reviewPackId": "E23-MM102-T08-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T08-pca-svd-mini-project",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-mini-project"
+        ],
+        "sourceAnchors": [
+          "m_m102_t08",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T08-Q002",
+        "level": "easy",
+        "question": "Viết Pipeline fit.",
+        "answer": "(μ,W_k)=fit_PCA(X_train)",
+        "reviewPackId": "E23-MM102-T08-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T08-pca-svd-mini-project",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-mini-project"
+        ],
+        "sourceAnchors": [
+          "m_m102_t08",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T08-Q003",
+        "level": "medium",
+        "question": "Ý nghĩa của Transform?",
+        "answer": "Dùng transform train.",
+        "reviewPackId": "E23-MM102-T08-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T08-pca-svd-mini-project",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-mini-project"
+        ],
+        "sourceAnchors": [
+          "m_m102_t08",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T08-Q004",
+        "level": "medium",
+        "question": "Condition gate là gì?",
+        "answer": "Project phải khóa split, fit state, seed, k-selection rule, figure labels và artifact version; kết quả test chỉ dùng một lần cho final evaluation.",
+        "reviewPackId": "E23-MM102-T08-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T08-pca-svd-mini-project",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-mini-project"
+        ],
+        "sourceAnchors": [
+          "m_m102_t08",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T08-Q005",
+        "level": "medium",
+        "question": "Bẫy chính là gì?",
+        "answer": "Chọn k sau khi xem test accuracy rồi báo test đó như đánh giá cuối cùng.",
+        "reviewPackId": "E23-MM102-T08-RP01"
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T08-pca-svd-mini-project",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-mini-project"
+        ],
+        "sourceAnchors": [
+          "m_m102_t08",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM102-T08-Q006",
+        "level": "hard",
+        "question": "Nêu một application và check đi kèm.",
+        "answer": "Mini-project telemetry giảm chiều. Check: shape/split/assumption/numerical stability.",
+        "reviewPackId": "E23-MM102-T08-RP01"
+      }
+    ],
+    "review_pack_content": [
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T01-covariance-eigen",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "covariance-eigen"
+        ],
+        "sourceAnchors": [
+          "m_m102_t01",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "reviewPackId": "E23-MM102-T01-RP01",
+        "items": [
+          {
+            "type": "notation",
+            "prompt": "Viết notation + shape chính."
+          },
+          {
+            "type": "formula",
+            "prompt": "Viết 3 công thức lõi và condition."
+          },
+          {
+            "type": "worked_example",
+            "prompt": "Giải ví dụ nhỏ và có sanity-check."
+          },
+          {
+            "type": "trap",
+            "prompt": "Giải thích bẫy: Dùng eigendecomposition trên covariance chưa center hoặc coi eigenvalue âm lớn là bình thường."
+          },
+          {
+            "type": "application",
+            "prompt": "Phân tích application: Tìm principal directions của sensor features."
+          },
+          {
+            "type": "reproducibility",
+            "prompt": "Ghi split/fit-state/tolerance/provenance cần lưu."
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t02",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T02-principal-projection",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "principal-projection"
+        ],
+        "sourceAnchors": [
+          "m_m102_t02",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "reviewPackId": "E23-MM102-T02-RP01",
+        "items": [
+          {
+            "type": "notation",
+            "prompt": "Viết notation + shape chính."
+          },
+          {
+            "type": "formula",
+            "prompt": "Viết 3 công thức lõi và condition."
+          },
+          {
+            "type": "worked_example",
+            "prompt": "Giải ví dụ nhỏ và có sanity-check."
+          },
+          {
+            "type": "trap",
+            "prompt": "Giải thích bẫy: Chiếu raw X bằng W_k nhưng reconstruct với mean khác hoặc không cộng mean lại."
+          },
+          {
+            "type": "application",
+            "prompt": "Phân tích application: Trực quan hóa dữ liệu xuống 2D."
+          },
+          {
+            "type": "reproducibility",
+            "prompt": "Ghi split/fit-state/tolerance/provenance cần lưu."
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T03-explained-variance-k",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "explained-variance-k"
+        ],
+        "sourceAnchors": [
+          "m_m102_t03",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "reviewPackId": "E23-MM102-T03-RP01",
+        "items": [
+          {
+            "type": "notation",
+            "prompt": "Viết notation + shape chính."
+          },
+          {
+            "type": "formula",
+            "prompt": "Viết 3 công thức lõi và condition."
+          },
+          {
+            "type": "worked_example",
+            "prompt": "Giải ví dụ nhỏ và có sanity-check."
+          },
+          {
+            "type": "trap",
+            "prompt": "Giải thích bẫy: Chọn k chỉ theo 95% explained variance mà không kiểm task performance hoặc cấu trúc noise."
+          },
+          {
+            "type": "application",
+            "prompt": "Phân tích application: Chọn dimension cho visualization."
+          },
+          {
+            "type": "reproducibility",
+            "prompt": "Ghi split/fit-state/tolerance/provenance cần lưu."
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T04-svd-pca-relation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "svd-pca-relation"
+        ],
+        "sourceAnchors": [
+          "m_m102_t04",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "reviewPackId": "E23-MM102-T04-RP01",
+        "items": [
+          {
+            "type": "notation",
+            "prompt": "Viết notation + shape chính."
+          },
+          {
+            "type": "formula",
+            "prompt": "Viết 3 công thức lõi và condition."
+          },
+          {
+            "type": "worked_example",
+            "prompt": "Giải ví dụ nhỏ và có sanity-check."
+          },
+          {
+            "type": "trap",
+            "prompt": "Giải thích bẫy: Nhầm columns của U là feature principal axes; với row=sample, feature directions nằm trong V."
+          },
+          {
+            "type": "application",
+            "prompt": "Phân tích application: PCA ổn định qua SVD."
+          },
+          {
+            "type": "reproducibility",
+            "prompt": "Ghi split/fit-state/tolerance/provenance cần lưu."
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t05",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T05-low-rank-reconstruction",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "low-rank-reconstruction"
+        ],
+        "sourceAnchors": [
+          "m_m102_t05",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "reviewPackId": "E23-MM102-T05-RP01",
+        "items": [
+          {
+            "type": "notation",
+            "prompt": "Viết notation + shape chính."
+          },
+          {
+            "type": "formula",
+            "prompt": "Viết 3 công thức lõi và condition."
+          },
+          {
+            "type": "worked_example",
+            "prompt": "Giải ví dụ nhỏ và có sanity-check."
+          },
+          {
+            "type": "trap",
+            "prompt": "Giải thích bẫy: Coi low reconstruction error là bằng chứng mọi rare signal/anomaly đều được bảo toàn."
+          },
+          {
+            "type": "application",
+            "prompt": "Phân tích application: Nén ảnh/sensor matrix."
+          },
+          {
+            "type": "reproducibility",
+            "prompt": "Ghi split/fit-state/tolerance/provenance cần lưu."
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM102-T06-whitening-stability",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "whitening-stability"
+        ],
+        "sourceAnchors": [
+          "m_m102_t06",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "reviewPackId": "E23-MM102-T06-RP01",
+        "items": [
+          {
+            "type": "notation",
+            "prompt": "Viết notation + shape chính."
+          },
+          {
+            "type": "formula",
+            "prompt": "Viết 3 công thức lõi và condition."
+          },
+          {
+            "type": "worked_example",
+            "prompt": "Giải ví dụ nhỏ và có sanity-check."
+          },
+          {
+            "type": "trap",
+            "prompt": "Giải thích bẫy: Whitening component có λ gần 0 làm noise bị khuếch đại cực mạnh."
+          },
+          {
+            "type": "application",
+            "prompt": "Phân tích application: Decorrelate feature trước model phù hợp."
+          },
+          {
+            "type": "reproducibility",
+            "prompt": "Ghi split/fit-state/tolerance/provenance cần lưu."
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T07-pca-svd-applications",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-applications"
+        ],
+        "sourceAnchors": [
+          "m_m102_t07",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L16-numerical-methods-computing"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "reviewPackId": "E23-MM102-T07-RP01",
+        "items": [
+          {
+            "type": "notation",
+            "prompt": "Viết notation + shape chính."
+          },
+          {
+            "type": "formula",
+            "prompt": "Viết 3 công thức lõi và condition."
+          },
+          {
+            "type": "worked_example",
+            "prompt": "Giải ví dụ nhỏ và có sanity-check."
+          },
+          {
+            "type": "trap",
+            "prompt": "Giải thích bẫy: Áp cùng pipeline PCA cho ảnh dense và TF-IDF sparse mà không xét memory/sparsity."
+          },
+          {
+            "type": "application",
+            "prompt": "Phân tích application: Sensor compression/anomaly visualization."
+          },
+          {
+            "type": "reproducibility",
+            "prompt": "Ghi split/fit-state/tolerance/provenance cần lưu."
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "logicalLessonId": "m_m102_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T08-pca-svd-mini-project",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m102",
+          "pca-svd-mini-project"
+        ],
+        "sourceAnchors": [
+          "m_m102_t08",
+          "m_m102",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "reviewPackId": "E23-MM102-T08-RP01",
+        "items": [
+          {
+            "type": "notation",
+            "prompt": "Viết notation + shape chính."
+          },
+          {
+            "type": "formula",
+            "prompt": "Viết 3 công thức lõi và condition."
+          },
+          {
+            "type": "worked_example",
+            "prompt": "Giải ví dụ nhỏ và có sanity-check."
+          },
+          {
+            "type": "trap",
+            "prompt": "Giải thích bẫy: Chọn k sau khi xem test accuracy rồi báo test đó như đánh giá cuối cùng."
+          },
+          {
+            "type": "application",
+            "prompt": "Phân tích application: Mini-project telemetry giảm chiều."
+          },
+          {
+            "type": "reproducibility",
+            "prompt": "Ghi split/fit-state/tolerance/provenance cần lưu."
+          }
+        ]
+      }
+    ]
+  }
+}
