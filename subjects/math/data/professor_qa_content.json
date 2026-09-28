@@ -739,6 +739,222 @@
       "qaId": "E19-M_P10_T08-QA01",
       "question": "Nếu giảng viên chỉ ra một bước sai, em nên bắt đầu sửa từ đâu?",
       "answer": "Từ giả thiết/điều kiện của chính bước đó, xác định hệ quả bị ảnh hưởng rồi tính lại downstream; không chỉ thay đáp số cuối."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t01",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T01-events-sample-space",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "events-sample-space"
+      ],
+      "sourceAnchors": [
+        "m_s03_t01",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "qaId": "E20-M_S03_T01-QA01",
+      "question": "Khi nào có thể tính P(A)=|A|/|Ω|?",
+      "answer": "Chỉ khi Ω hữu hạn và các outcome trong mô hình được coi là đồng khả năng."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t02",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T02-conditional-bayes",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "conditional-bayes"
+      ],
+      "sourceAnchors": [
+        "m_s03_t02",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "qaId": "E20-M_S03_T02-QA01",
+      "question": "P(A|B)=P(B|A) có đúng không?",
+      "answer": "Nói chung không. Hai đại lượng liên hệ qua Bayes và phụ thuộc prior/base rate."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t03",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T03-random-variables-distributions",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "random-variables-distributions"
+      ],
+      "sourceAnchors": [
+        "m_s03_t03",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "qaId": "E20-M_S03_T03-QA01",
+      "question": "PDF f(x)=1.5 tại một điểm có vô lý không?",
+      "answer": "Không. Mật độ có thể lớn hơn 1; điều kiện là f≥0 và tích phân toàn miền bằng 1."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t04",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T04-moments-variance",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "moments-variance"
+      ],
+      "sourceAnchors": [
+        "m_s03_t04",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "qaId": "E20-M_S03_T04-QA01",
+      "question": "Var(X) có thể âm không?",
+      "answer": "Không. Nó là kỳ vọng của bình phương độ lệch nên không âm."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t05",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T05-named-distributions",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "named-distributions"
+      ],
+      "sourceAnchors": [
+        "m_s03_t05",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "qaId": "E20-M_S03_T05-QA01",
+      "question": "Có thể dùng Binomial nếu xác suất p thay đổi theo từng phép thử không?",
+      "answer": "Không theo mô hình Binomial chuẩn; khi p_i khác nhau cần mô hình khác như Poisson-binomial."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t06",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T06-sample-statistics-histogram",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "sample-statistics-histogram"
+      ],
+      "sourceAnchors": [
+        "m_s03_t06",
+        "m_s03",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "qaId": "E20-M_S03_T06-QA01",
+      "question": "Vì sao sample variance không chia n trong công thức không chệch quen thuộc?",
+      "answer": "Vì đã ước lượng mean từ chính mẫu, mất một bậc tự do; chia n−1 hiệu chỉnh bias trong bối cảnh iid hữu hạn variance."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t07",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T07-confidence-hypothesis-pvalue",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "confidence-hypothesis-pvalue"
+      ],
+      "sourceAnchors": [
+        "m_s03_t07",
+        "m_s03",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "qaId": "E20-M_S03_T07-QA01",
+      "question": "p=0.03 có nghĩa xác suất H₀ đúng là 3% không?",
+      "answer": "Không. p-value là xác suất của dữ liệu/statistic ít nhất cực đoan như quan sát dưới giả định H₀ và mô hình test."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t08",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T08-russian-probability-statistics-seminar",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "russian-probability-statistics-seminar"
+      ],
+      "sourceAnchors": [
+        "m_s03_t08",
+        "m_s03",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "qaId": "E20-M_S03_T08-QA01",
+      "question": "Nếu p<0.05 nhưng effect rất nhỏ, kết luận nên thế nào?",
+      "answer": "Có thể có statistical significance nhưng practical significance thấp; cần báo effect size/CI và bối cảnh kỹ thuật."
     }
   ],
   "importPolicy": {
@@ -784,7 +1000,7 @@
     "answer": "Vì tích vô hướng bị ảnh hưởng bởi độ dài; cần chuẩn hóa để xét hướng.",
     "auditStatus": "DRAFT"
   },
-  "updatedAt": "2026-09-27",
+  "updatedAt": "2026-09-28",
   "emoji": "🎓",
   "cleanArchitecturePolicy": {
     "contentMustNotStoreStageTree": true,
@@ -844,6 +1060,14 @@
         "e17Regression": "PASS",
         "universalConstitution": "PASS"
       }
+    },
+    "E20": {
+      "status": "IMPLEMENTED_PENDING_CI",
+      "frameworkChapterId": "m_s03",
+      "logicalModuleId": "m_s03",
+      "lessons": 8,
+      "theorySlides": 160,
+      "updatedAt": "2026-09-28"
     }
   }
 }
