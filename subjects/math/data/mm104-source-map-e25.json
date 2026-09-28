@@ -214,7 +214,19 @@
       "requiresErrorRepair": true,
       "requiresApplicationTransfer": true
     },
-    "completionRule": "PASS only when counts, routing, CI, constitutional compliance and assessment linkage pass."
+    "completionRule": "PASS only when counts, routing, CI, constitutional compliance and assessment linkage pass.",
+    "requiredSlideRoles": [
+      "notation_formula",
+      "matrix_example",
+      "condition_gate",
+      "data_contract",
+      "worked_example",
+      "computational_check",
+      "data_leakage_gate",
+      "warning_counterexample",
+      "error_repair",
+      "exit_ticket"
+    ]
   },
   "constitutionalEvidence": {
     "policyVersion": "1.1.0",
