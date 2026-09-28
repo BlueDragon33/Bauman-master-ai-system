@@ -1,0 +1,34 @@
+{
+  "recoveryId": "E27",
+  "scope": "Current-main reconciliation after E26 release · no new academic content",
+  "status": "AUDIT_PR_OPENING",
+  "auditDate": "2026-09-28",
+  "baseRevision": "d502e7f826c7ee64db7d9c7a8f7b5594cfe77157",
+  "reason": [
+    "E26 explicitly requires current-main audit before opening any new academic scope.",
+    "PR #152 completed E26 and passed Math E26, Math Learning App, Whole System, Constitution and related math gates.",
+    "PR #154 changed the Russian offline shell/workflow after E26; its PR body required Whole System plus relevant gates, but Whole System was not triggered on that head.",
+    "PR #155 restored the manual-only production release boundary and passed Development Fast CI plus Universal Constitution Compliance."
+  ],
+  "evidence": {
+    "e26Pr": 152,
+    "e26Head": "f02e288627e158275d03e80e38cf0662a5556c53",
+    "e26Merge": "0c3fc4e328e6c45a9777de9e1b7915f07be5e0cd",
+    "postE26RussianFixPr": 154,
+    "productionBoundaryPr": 155
+  },
+  "requiredCurrentHeadGates": [
+    "Development Fast CI",
+    "Universal Constitution Compliance",
+    "Russian Reference UI Gate",
+    "Math E26 HK1 cumulative readiness gate",
+    "Math Learning App Gate",
+    "Whole System Integration Gate"
+  ],
+  "releasePolicy": {
+    "merge": "Only after all current-head required gates are green.",
+    "publish": "Only after merge; production remains explicit/manual, exact-preview-first and fail-closed.",
+    "newAcademicRound": "Forbidden until this reconciliation is PASS."
+  },
+  "next": "Run current-head gates through this PR. Fix any failure in-branch. After all green, merge E27, verify merged-main CI, then publish the exact merged revision through the protected production workflow."
+}
