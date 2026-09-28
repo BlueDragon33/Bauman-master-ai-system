@@ -1,0 +1,5230 @@
+{
+  "schema": "bauman_math_sidecar_bundle_v1",
+  "bundleId": "e23_mm101_multidimensional_foundations_sidecar_bundle",
+  "frameworkChapterId": "m_m101",
+  "moduleId": "m_m101",
+  "counts": {
+    "formulas": 24,
+    "exercises": 64,
+    "applications": 16,
+    "simulations": 16,
+    "professorQA": 8,
+    "questions": 48,
+    "reviewPacks": 8
+  },
+  "stores": {
+    "formula_content": [
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T01-data-matrix-notation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-matrix-notation"
+        ],
+        "sourceAnchors": [
+          "m_m101_t01",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM101-T01-F01",
+        "title": "Data matrix",
+        "formula": "X ∈ ℝ^(n×p)",
+        "meaning": "n observations × p features; convention phải được khóa."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T01-data-matrix-notation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-matrix-notation"
+        ],
+        "sourceAnchors": [
+          "m_m101_t01",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM101-T01-F02",
+        "title": "Observation vector",
+        "formula": "xᵢ ∈ ℝ^p",
+        "meaning": "Hàng i là một quan sát nếu row=sample."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T01-data-matrix-notation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-matrix-notation"
+        ],
+        "sourceAnchors": [
+          "m_m101_t01",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM101-T01-F03",
+        "title": "Feature mean",
+        "formula": "μⱼ=(1/n)Σᵢxᵢⱼ",
+        "meaning": "Mean theo cột j."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t02",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T02-centering-scaling-leakage",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "centering-scaling-leakage"
+        ],
+        "sourceAnchors": [
+          "m_m101_t02",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM101-T02-F01",
+        "title": "Centering",
+        "formula": "Xc = X − 1μᵀ",
+        "meaning": "μ phải fit từ train khi dùng trong ML."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t02",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T02-centering-scaling-leakage",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "centering-scaling-leakage"
+        ],
+        "sourceAnchors": [
+          "m_m101_t02",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM101-T02-F02",
+        "title": "Z-score",
+        "formula": "z=(x−μ_train)/σ_train",
+        "meaning": "Train statistics áp sang validation/test."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t02",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T02-centering-scaling-leakage",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "centering-scaling-leakage"
+        ],
+        "sourceAnchors": [
+          "m_m101_t02",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM101-T02-F03",
+        "title": "Min-max",
+        "formula": "x′=(x−min_train)/(max_train−min_train)",
+        "meaning": "Fit extrema trên train."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T03-norm-distance-geometry",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "norm-distance-geometry"
+        ],
+        "sourceAnchors": [
+          "m_m101_t03",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM101-T03-F01",
+        "title": "L2 norm",
+        "formula": "‖x‖₂=√Σⱼxⱼ²",
+        "meaning": "Độ dài Euclid."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T03-norm-distance-geometry",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "norm-distance-geometry"
+        ],
+        "sourceAnchors": [
+          "m_m101_t03",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM101-T03-F02",
+        "title": "L1 distance",
+        "formula": "d₁(x,y)=Σⱼ|xⱼ−yⱼ|",
+        "meaning": "Khoảng cách Manhattan."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T03-norm-distance-geometry",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "norm-distance-geometry"
+        ],
+        "sourceAnchors": [
+          "m_m101_t03",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM101-T03-F03",
+        "title": "Minkowski",
+        "formula": "d_p(x,y)=(Σⱼ|xⱼ−yⱼ|^p)^(1/p)",
+        "meaning": "p≥1 để là metric chuẩn."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T04-cosine-gram-kernel",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "cosine-gram-kernel"
+        ],
+        "sourceAnchors": [
+          "m_m101_t04",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM101-T04-F01",
+        "title": "Cosine",
+        "formula": "cos(x,y)=xᵀy/(‖x‖₂‖y‖₂)",
+        "meaning": "Yêu cầu hai vector khác 0."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T04-cosine-gram-kernel",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "cosine-gram-kernel"
+        ],
+        "sourceAnchors": [
+          "m_m101_t04",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM101-T04-F02",
+        "title": "Gram matrix",
+        "formula": "G=XXᵀ",
+        "meaning": "G_ij là inner product giữa hai sample theo row=sample."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T04-cosine-gram-kernel",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "cosine-gram-kernel"
+        ],
+        "sourceAnchors": [
+          "m_m101_t04",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM101-T04-F03",
+        "title": "Linear kernel",
+        "formula": "k(x,y)=xᵀy",
+        "meaning": "Kernel tuyến tính tương ứng inner product gốc."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t05",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T05-covariance-correlation-dependence",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "covariance-correlation-dependence"
+        ],
+        "sourceAnchors": [
+          "m_m101_t05",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM101-T05-F01",
+        "title": "Sample covariance",
+        "formula": "C=(1/(n−1))XcᵀXc",
+        "meaning": "C có shape p×p."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t05",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T05-covariance-correlation-dependence",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "covariance-correlation-dependence"
+        ],
+        "sourceAnchors": [
+          "m_m101_t05",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM101-T05-F02",
+        "title": "Covariance pair",
+        "formula": "cov(x,y)=Σᵢ(xᵢ−x̄)(yᵢ−ȳ)/(n−1)",
+        "meaning": "Có đơn vị tích của hai feature."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t05",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T05-covariance-correlation-dependence",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "covariance-correlation-dependence"
+        ],
+        "sourceAnchors": [
+          "m_m101_t05",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM101-T05-F03",
+        "title": "Pearson correlation",
+        "formula": "ρ_xy=cov(x,y)/(s_x s_y)",
+        "meaning": "Vô thứ nguyên; cần s_x,s_y>0."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T06-curse-dimensionality-feature-selection",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "curse-dimensionality-feature-selection"
+        ],
+        "sourceAnchors": [
+          "m_m101_t06",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L09-topology-metric-spaces"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM101-T06-F01",
+        "title": "Relative contrast",
+        "formula": "RC=(d_max−d_min)/d_min",
+        "meaning": "RC nhỏ dần có thể báo distance concentration."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T06-curse-dimensionality-feature-selection",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "curse-dimensionality-feature-selection"
+        ],
+        "sourceAnchors": [
+          "m_m101_t06",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L09-topology-metric-spaces"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM101-T06-F02",
+        "title": "Feature ratio",
+        "formula": "r=p/n",
+        "meaning": "p lớn so với n làm tăng variance và khó ước lượng."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T06-curse-dimensionality-feature-selection",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "curse-dimensionality-feature-selection"
+        ],
+        "sourceAnchors": [
+          "m_m101_t06",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L09-topology-metric-spaces"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM101-T06-F03",
+        "title": "Variance retention",
+        "formula": "R_k=Σ_{j=1}^k v_j / Σ_{j=1}^p v_j",
+        "meaning": "Một heuristic giữ variance theo subset/component."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T07-data-pipeline-split",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-pipeline-split"
+        ],
+        "sourceAnchors": [
+          "m_m101_t07",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM101-T07-F01",
+        "title": "Fit transform",
+        "formula": "θ=fit(X_train)",
+        "meaning": "Mọi learned preprocessing parameter thuộc train."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T07-data-pipeline-split",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-pipeline-split"
+        ],
+        "sourceAnchors": [
+          "m_m101_t07",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM101-T07-F02",
+        "title": "Transform",
+        "formula": "X′=transform(X;θ)",
+        "meaning": "Dùng cùng θ cho validation/test."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T07-data-pipeline-split",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-pipeline-split"
+        ],
+        "sourceAnchors": [
+          "m_m101_t07",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM101-T07-F03",
+        "title": "Split partition",
+        "formula": "D_train ∩ D_test = ∅",
+        "meaning": "Với time/group data còn cần chống overlap theo entity/time."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T08-multidim-reporting",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "multidim-reporting"
+        ],
+        "sourceAnchors": [
+          "m_m101_t08",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM101-T08-F01",
+        "title": "Missing rate",
+        "formula": "m_j=n_missing,j/n",
+        "meaning": "Báo theo feature và policy xử lý."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T08-multidim-reporting",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "multidim-reporting"
+        ],
+        "sourceAnchors": [
+          "m_m101_t08",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM101-T08-F02",
+        "title": "Standardized effect",
+        "formula": "z=(x−μ)/σ",
+        "meaning": "Dùng scale-free view khi phù hợp."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T08-multidim-reporting",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "multidim-reporting"
+        ],
+        "sourceAnchors": [
+          "m_m101_t08",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "formulaId": "E23-MM101-T08-F03",
+        "title": "Correlation summary",
+        "formula": "R=[ρ_jk]",
+        "meaning": "Ma trận correlation cần label đầy đủ."
+      }
+    ],
+    "exercise_content": [
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T01-data-matrix-notation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-matrix-notation"
+        ],
+        "sourceAnchors": [
+          "m_m101_t01",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T01-E01",
+        "level": "easy",
+        "prompt": "Nêu shape/data contract cho Ma trận dữ liệu X: quan sát, đặc trưng và notation chuẩn.",
+        "solution": "Khóa row/column semantics, shape, dtype, unit, missing-value policy và sample identity trước mọi phép tính."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T01-data-matrix-notation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-matrix-notation"
+        ],
+        "sourceAnchors": [
+          "m_m101_t01",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T01-E02",
+        "level": "easy",
+        "prompt": "Viết công thức Data matrix.",
+        "solution": "X ∈ ℝ^(n×p). n observations × p features; convention phải được khóa."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T01-data-matrix-notation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-matrix-notation"
+        ],
+        "sourceAnchors": [
+          "m_m101_t01",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T01-E03",
+        "level": "medium",
+        "prompt": "Giải thích Observation vector.",
+        "solution": "xᵢ ∈ ℝ^p. Hàng i là một quan sát nếu row=sample."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T01-data-matrix-notation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-matrix-notation"
+        ],
+        "sourceAnchors": [
+          "m_m101_t01",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T01-E04",
+        "level": "medium",
+        "prompt": "Telemetry 5000 timestamp × 12 cảm biến: viết shape, feature names, units và một row vector.",
+        "solution": "Giải theo formula + condition + sanity-check của bài."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T01-data-matrix-notation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-matrix-notation"
+        ],
+        "sourceAnchors": [
+          "m_m101_t01",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T01-E05",
+        "level": "medium",
+        "prompt": "Nêu condition gate quan trọng.",
+        "solution": "Khóa row/column semantics, shape, dtype, unit, missing-value policy và sample identity trước mọi phép tính."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T01-data-matrix-notation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-matrix-notation"
+        ],
+        "sourceAnchors": [
+          "m_m101_t01",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T01-E06",
+        "level": "hard",
+        "prompt": "Sửa lỗi: Transpose X nhưng không đổi semantic convention khiến covariance/model chạy được nhưng sai trục.",
+        "solution": "Tìm bước sai đầu tiên, kiểm shape/split/assumption rồi làm lại với invariant."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T01-data-matrix-notation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-matrix-notation"
+        ],
+        "sourceAnchors": [
+          "m_m101_t01",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T01-E07",
+        "level": "medium",
+        "prompt": "Nêu một numerical hoặc leakage check.",
+        "solution": "Shape + finite + tolerance + split/provenance check."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T01-data-matrix-notation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-matrix-notation"
+        ],
+        "sourceAnchors": [
+          "m_m101_t01",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T01-E08",
+        "level": "hard",
+        "prompt": "Chuyển giao sang tình huống kỹ thuật.",
+        "solution": "Thiết kế feature matrix cho telemetry điều khiển."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t02",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T02-centering-scaling-leakage",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "centering-scaling-leakage"
+        ],
+        "sourceAnchors": [
+          "m_m101_t02",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T02-E01",
+        "level": "easy",
+        "prompt": "Nêu shape/data contract cho Centering, scaling và chuẩn hóa không gây data leakage.",
+        "solution": "Split train/validation/test trước khi fit bất kỳ statistic preprocessing nào có học từ dữ liệu."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t02",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T02-centering-scaling-leakage",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "centering-scaling-leakage"
+        ],
+        "sourceAnchors": [
+          "m_m101_t02",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T02-E02",
+        "level": "easy",
+        "prompt": "Viết công thức Centering.",
+        "solution": "Xc = X − 1μᵀ. μ phải fit từ train khi dùng trong ML."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t02",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T02-centering-scaling-leakage",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "centering-scaling-leakage"
+        ],
+        "sourceAnchors": [
+          "m_m101_t02",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T02-E03",
+        "level": "medium",
+        "prompt": "Giải thích Z-score.",
+        "solution": "z=(x−μ_train)/σ_train. Train statistics áp sang validation/test."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t02",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T02-centering-scaling-leakage",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "centering-scaling-leakage"
+        ],
+        "sourceAnchors": [
+          "m_m101_t02",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T02-E04",
+        "level": "medium",
+        "prompt": "Train có μ=10, σ=2; test x=13. Tính z bằng train statistics và giải thích vì sao không dùng μ_test.",
+        "solution": "Giải theo formula + condition + sanity-check của bài."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t02",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T02-centering-scaling-leakage",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "centering-scaling-leakage"
+        ],
+        "sourceAnchors": [
+          "m_m101_t02",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T02-E05",
+        "level": "medium",
+        "prompt": "Nêu condition gate quan trọng.",
+        "solution": "Split train/validation/test trước khi fit bất kỳ statistic preprocessing nào có học từ dữ liệu."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t02",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T02-centering-scaling-leakage",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "centering-scaling-leakage"
+        ],
+        "sourceAnchors": [
+          "m_m101_t02",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T02-E06",
+        "level": "hard",
+        "prompt": "Sửa lỗi: Chuẩn hóa toàn bộ dataset rồi mới split gây leakage dù model không trực tiếp thấy nhãn test.",
+        "solution": "Tìm bước sai đầu tiên, kiểm shape/split/assumption rồi làm lại với invariant."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t02",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T02-centering-scaling-leakage",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "centering-scaling-leakage"
+        ],
+        "sourceAnchors": [
+          "m_m101_t02",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T02-E07",
+        "level": "medium",
+        "prompt": "Nêu một numerical hoặc leakage check.",
+        "solution": "Shape + finite + tolerance + split/provenance check."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t02",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T02-centering-scaling-leakage",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "centering-scaling-leakage"
+        ],
+        "sourceAnchors": [
+          "m_m101_t02",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T02-E08",
+        "level": "hard",
+        "prompt": "Chuyển giao sang tình huống kỹ thuật.",
+        "solution": "Chuẩn hóa cảm biến khác đơn vị trước distance/PCA."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T03-norm-distance-geometry",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "norm-distance-geometry"
+        ],
+        "sourceAnchors": [
+          "m_m101_t03",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T03-E01",
+        "level": "easy",
+        "prompt": "Nêu shape/data contract cho Norm, khoảng cách và hình học dữ liệu nhiều chiều.",
+        "solution": "Scale/units phải hợp lý và metric phải phù hợp semantics; dữ liệu nhiều chiều cần kiểm concentration."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T03-norm-distance-geometry",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "norm-distance-geometry"
+        ],
+        "sourceAnchors": [
+          "m_m101_t03",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T03-E02",
+        "level": "easy",
+        "prompt": "Viết công thức L2 norm.",
+        "solution": "‖x‖₂=√Σⱼxⱼ². Độ dài Euclid."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T03-norm-distance-geometry",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "norm-distance-geometry"
+        ],
+        "sourceAnchors": [
+          "m_m101_t03",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T03-E03",
+        "level": "medium",
+        "prompt": "Giải thích L1 distance.",
+        "solution": "d₁(x,y)=Σⱼ|xⱼ−yⱼ|. Khoảng cách Manhattan."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T03-norm-distance-geometry",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "norm-distance-geometry"
+        ],
+        "sourceAnchors": [
+          "m_m101_t03",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T03-E04",
+        "level": "medium",
+        "prompt": "x=(1,10), y=(4,14). Tính L1/L2; sau đó nhân feature thứ hai ×100 và quan sát ranking thay đổi.",
+        "solution": "Giải theo formula + condition + sanity-check của bài."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T03-norm-distance-geometry",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "norm-distance-geometry"
+        ],
+        "sourceAnchors": [
+          "m_m101_t03",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T03-E05",
+        "level": "medium",
+        "prompt": "Nêu condition gate quan trọng.",
+        "solution": "Scale/units phải hợp lý và metric phải phù hợp semantics; dữ liệu nhiều chiều cần kiểm concentration."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T03-norm-distance-geometry",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "norm-distance-geometry"
+        ],
+        "sourceAnchors": [
+          "m_m101_t03",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T03-E06",
+        "level": "hard",
+        "prompt": "Sửa lỗi: Dùng Euclidean distance trên feature lệch đơn vị làm một feature nuốt toàn bộ geometry.",
+        "solution": "Tìm bước sai đầu tiên, kiểm shape/split/assumption rồi làm lại với invariant."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T03-norm-distance-geometry",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "norm-distance-geometry"
+        ],
+        "sourceAnchors": [
+          "m_m101_t03",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T03-E07",
+        "level": "medium",
+        "prompt": "Nêu một numerical hoặc leakage check.",
+        "solution": "Shape + finite + tolerance + split/provenance check."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T03-norm-distance-geometry",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "norm-distance-geometry"
+        ],
+        "sourceAnchors": [
+          "m_m101_t03",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T03-E08",
+        "level": "hard",
+        "prompt": "Chuyển giao sang tình huống kỹ thuật.",
+        "solution": "Nearest-neighbor trên vector cảm biến."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T04-cosine-gram-kernel",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "cosine-gram-kernel"
+        ],
+        "sourceAnchors": [
+          "m_m101_t04",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T04-E01",
+        "level": "easy",
+        "prompt": "Nêu shape/data contract cho Cosine similarity, Gram matrix và kernel nhập môn.",
+        "solution": "Kiểm vector zero, orientation của X và mục tiêu so magnitude hay direction; Gram sample-space khác covariance feature-space."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T04-cosine-gram-kernel",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "cosine-gram-kernel"
+        ],
+        "sourceAnchors": [
+          "m_m101_t04",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T04-E02",
+        "level": "easy",
+        "prompt": "Viết công thức Cosine.",
+        "solution": "cos(x,y)=xᵀy/(‖x‖₂‖y‖₂). Yêu cầu hai vector khác 0."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T04-cosine-gram-kernel",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "cosine-gram-kernel"
+        ],
+        "sourceAnchors": [
+          "m_m101_t04",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T04-E03",
+        "level": "medium",
+        "prompt": "Giải thích Gram matrix.",
+        "solution": "G=XXᵀ. G_ij là inner product giữa hai sample theo row=sample."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T04-cosine-gram-kernel",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "cosine-gram-kernel"
+        ],
+        "sourceAnchors": [
+          "m_m101_t04",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T04-E04",
+        "level": "medium",
+        "prompt": "Với X 3×2, xác định shape của XXᵀ và XᵀX rồi giải thích mỗi ma trận đang so sánh cái gì.",
+        "solution": "Giải theo formula + condition + sanity-check của bài."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T04-cosine-gram-kernel",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "cosine-gram-kernel"
+        ],
+        "sourceAnchors": [
+          "m_m101_t04",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T04-E05",
+        "level": "medium",
+        "prompt": "Nêu condition gate quan trọng.",
+        "solution": "Kiểm vector zero, orientation của X và mục tiêu so magnitude hay direction; Gram sample-space khác covariance feature-space."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T04-cosine-gram-kernel",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "cosine-gram-kernel"
+        ],
+        "sourceAnchors": [
+          "m_m101_t04",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T04-E06",
+        "level": "hard",
+        "prompt": "Sửa lỗi: Nhầm XXᵀ với XᵀX và gán cùng ý nghĩa cho hai ma trận.",
+        "solution": "Tìm bước sai đầu tiên, kiểm shape/split/assumption rồi làm lại với invariant."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T04-cosine-gram-kernel",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "cosine-gram-kernel"
+        ],
+        "sourceAnchors": [
+          "m_m101_t04",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T04-E07",
+        "level": "medium",
+        "prompt": "Nêu một numerical hoặc leakage check.",
+        "solution": "Shape + finite + tolerance + split/provenance check."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T04-cosine-gram-kernel",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "cosine-gram-kernel"
+        ],
+        "sourceAnchors": [
+          "m_m101_t04",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T04-E08",
+        "level": "hard",
+        "prompt": "Chuyển giao sang tình huống kỹ thuật.",
+        "solution": "Similarity retrieval cho embedding."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t05",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T05-covariance-correlation-dependence",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "covariance-correlation-dependence"
+        ],
+        "sourceAnchors": [
+          "m_m101_t05",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T05-E01",
+        "level": "easy",
+        "prompt": "Nêu shape/data contract cho Covariance, correlation và cấu trúc phụ thuộc trong X.",
+        "solution": "Center đúng, sample alignment đúng và hiểu Pearson chủ yếu đo quan hệ tuyến tính; không suy nhân quả từ correlation."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t05",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T05-covariance-correlation-dependence",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "covariance-correlation-dependence"
+        ],
+        "sourceAnchors": [
+          "m_m101_t05",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T05-E02",
+        "level": "easy",
+        "prompt": "Viết công thức Sample covariance.",
+        "solution": "C=(1/(n−1))XcᵀXc. C có shape p×p."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t05",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T05-covariance-correlation-dependence",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "covariance-correlation-dependence"
+        ],
+        "sourceAnchors": [
+          "m_m101_t05",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T05-E03",
+        "level": "medium",
+        "prompt": "Giải thích Covariance pair.",
+        "solution": "cov(x,y)=Σᵢ(xᵢ−x̄)(yᵢ−ȳ)/(n−1). Có đơn vị tích của hai feature."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t05",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T05-covariance-correlation-dependence",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "covariance-correlation-dependence"
+        ],
+        "sourceAnchors": [
+          "m_m101_t05",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T05-E04",
+        "level": "medium",
+        "prompt": "Tính covariance/correlation cho ba cặp điểm nhỏ và so ảnh hưởng khi đổi đơn vị từ m sang mm.",
+        "solution": "Giải theo formula + condition + sanity-check của bài."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t05",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T05-covariance-correlation-dependence",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "covariance-correlation-dependence"
+        ],
+        "sourceAnchors": [
+          "m_m101_t05",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T05-E05",
+        "level": "medium",
+        "prompt": "Nêu condition gate quan trọng.",
+        "solution": "Center đúng, sample alignment đúng và hiểu Pearson chủ yếu đo quan hệ tuyến tính; không suy nhân quả từ correlation."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t05",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T05-covariance-correlation-dependence",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "covariance-correlation-dependence"
+        ],
+        "sourceAnchors": [
+          "m_m101_t05",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T05-E06",
+        "level": "hard",
+        "prompt": "Sửa lỗi: So trực tiếp magnitude covariance giữa các feature khác đơn vị hoặc đọc correlation cao là quan hệ nhân quả.",
+        "solution": "Tìm bước sai đầu tiên, kiểm shape/split/assumption rồi làm lại với invariant."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t05",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T05-covariance-correlation-dependence",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "covariance-correlation-dependence"
+        ],
+        "sourceAnchors": [
+          "m_m101_t05",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T05-E07",
+        "level": "medium",
+        "prompt": "Nêu một numerical hoặc leakage check.",
+        "solution": "Shape + finite + tolerance + split/provenance check."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t05",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T05-covariance-correlation-dependence",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "covariance-correlation-dependence"
+        ],
+        "sourceAnchors": [
+          "m_m101_t05",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T05-E08",
+        "level": "hard",
+        "prompt": "Chuyển giao sang tình huống kỹ thuật.",
+        "solution": "Phát hiện feature dư thừa."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T06-curse-dimensionality-feature-selection",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "curse-dimensionality-feature-selection"
+        ],
+        "sourceAnchors": [
+          "m_m101_t06",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L09-topology-metric-spaces"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T06-E01",
+        "level": "easy",
+        "prompt": "Nêu shape/data contract cho Curse of dimensionality và lựa chọn đặc trưng.",
+        "solution": "Feature selection phải fit trên train và đánh giá bằng validation; không chọn feature dựa trên test performance."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T06-curse-dimensionality-feature-selection",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "curse-dimensionality-feature-selection"
+        ],
+        "sourceAnchors": [
+          "m_m101_t06",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L09-topology-metric-spaces"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T06-E02",
+        "level": "easy",
+        "prompt": "Viết công thức Relative contrast.",
+        "solution": "RC=(d_max−d_min)/d_min. RC nhỏ dần có thể báo distance concentration."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T06-curse-dimensionality-feature-selection",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "curse-dimensionality-feature-selection"
+        ],
+        "sourceAnchors": [
+          "m_m101_t06",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L09-topology-metric-spaces"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T06-E03",
+        "level": "medium",
+        "prompt": "Giải thích Feature ratio.",
+        "solution": "r=p/n. p lớn so với n làm tăng variance và khó ước lượng."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T06-curse-dimensionality-feature-selection",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "curse-dimensionality-feature-selection"
+        ],
+        "sourceAnchors": [
+          "m_m101_t06",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L09-topology-metric-spaces"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T06-E04",
+        "level": "medium",
+        "prompt": "So n=100 với p=5 và p=500; thảo luận r=p/n, nguy cơ overfit và strategy giảm dimension.",
+        "solution": "Giải theo formula + condition + sanity-check của bài."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T06-curse-dimensionality-feature-selection",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "curse-dimensionality-feature-selection"
+        ],
+        "sourceAnchors": [
+          "m_m101_t06",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L09-topology-metric-spaces"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T06-E05",
+        "level": "medium",
+        "prompt": "Nêu condition gate quan trọng.",
+        "solution": "Feature selection phải fit trên train và đánh giá bằng validation; không chọn feature dựa trên test performance."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T06-curse-dimensionality-feature-selection",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "curse-dimensionality-feature-selection"
+        ],
+        "sourceAnchors": [
+          "m_m101_t06",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L09-topology-metric-spaces"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T06-E06",
+        "level": "hard",
+        "prompt": "Sửa lỗi: Giữ nhiều feature chỉ vì storage cho phép; trong high-dimension distance có thể mất khả năng phân biệt.",
+        "solution": "Tìm bước sai đầu tiên, kiểm shape/split/assumption rồi làm lại với invariant."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T06-curse-dimensionality-feature-selection",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "curse-dimensionality-feature-selection"
+        ],
+        "sourceAnchors": [
+          "m_m101_t06",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L09-topology-metric-spaces"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T06-E07",
+        "level": "medium",
+        "prompt": "Nêu một numerical hoặc leakage check.",
+        "solution": "Shape + finite + tolerance + split/provenance check."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T06-curse-dimensionality-feature-selection",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "curse-dimensionality-feature-selection"
+        ],
+        "sourceAnchors": [
+          "m_m101_t06",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L09-topology-metric-spaces"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T06-E08",
+        "level": "hard",
+        "prompt": "Chuyển giao sang tình huống kỹ thuật.",
+        "solution": "Giảm feature cho telemetry nhiều kênh."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T07-data-pipeline-split",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-pipeline-split"
+        ],
+        "sourceAnchors": [
+          "m_m101_t07",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T07-E01",
+        "level": "easy",
+        "prompt": "Nêu shape/data contract cho Pipeline dữ liệu: raw → clean → feature → scale → split.",
+        "solution": "Pipeline phải version hóa schema, split rule, fit state, transform order và provenance; test không được tham gia fit/tuning."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T07-data-pipeline-split",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-pipeline-split"
+        ],
+        "sourceAnchors": [
+          "m_m101_t07",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T07-E02",
+        "level": "easy",
+        "prompt": "Viết công thức Fit transform.",
+        "solution": "θ=fit(X_train). Mọi learned preprocessing parameter thuộc train."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T07-data-pipeline-split",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-pipeline-split"
+        ],
+        "sourceAnchors": [
+          "m_m101_t07",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T07-E03",
+        "level": "medium",
+        "prompt": "Giải thích Transform.",
+        "solution": "X′=transform(X;θ). Dùng cùng θ cho validation/test."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T07-data-pipeline-split",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-pipeline-split"
+        ],
+        "sourceAnchors": [
+          "m_m101_t07",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T07-E04",
+        "level": "medium",
+        "prompt": "Thiết kế pipeline cho sensor windows: raw → QC → window features → group split → fit scaler(train) → transform all.",
+        "solution": "Giải theo formula + condition + sanity-check của bài."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T07-data-pipeline-split",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-pipeline-split"
+        ],
+        "sourceAnchors": [
+          "m_m101_t07",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T07-E05",
+        "level": "medium",
+        "prompt": "Nêu condition gate quan trọng.",
+        "solution": "Pipeline phải version hóa schema, split rule, fit state, transform order và provenance; test không được tham gia fit/tuning."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T07-data-pipeline-split",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-pipeline-split"
+        ],
+        "sourceAnchors": [
+          "m_m101_t07",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T07-E06",
+        "level": "hard",
+        "prompt": "Sửa lỗi: Split row ngẫu nhiên khi các row cùng người/thiết bị/thời đoạn gây leakage theo nhóm hoặc thời gian.",
+        "solution": "Tìm bước sai đầu tiên, kiểm shape/split/assumption rồi làm lại với invariant."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T07-data-pipeline-split",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-pipeline-split"
+        ],
+        "sourceAnchors": [
+          "m_m101_t07",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T07-E07",
+        "level": "medium",
+        "prompt": "Nêu một numerical hoặc leakage check.",
+        "solution": "Shape + finite + tolerance + split/provenance check."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T07-data-pipeline-split",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-pipeline-split"
+        ],
+        "sourceAnchors": [
+          "m_m101_t07",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T07-E08",
+        "level": "hard",
+        "prompt": "Chuyển giao sang tình huống kỹ thuật.",
+        "solution": "Reproducible ML preprocessing."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T08-multidim-reporting",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "multidim-reporting"
+        ],
+        "sourceAnchors": [
+          "m_m101_t08",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T08-E01",
+        "level": "easy",
+        "prompt": "Nêu shape/data contract cho Báo cáo dữ liệu đa chiều: bảng, hình, nhận xét và kết luận.",
+        "solution": "Mọi hình/bảng phải ghi sample count, units, preprocessing, split và statistic definition; nhận xét phải tách observation khỏi causal claim."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T08-multidim-reporting",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "multidim-reporting"
+        ],
+        "sourceAnchors": [
+          "m_m101_t08",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T08-E02",
+        "level": "easy",
+        "prompt": "Viết công thức Missing rate.",
+        "solution": "m_j=n_missing,j/n. Báo theo feature và policy xử lý."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T08-multidim-reporting",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "multidim-reporting"
+        ],
+        "sourceAnchors": [
+          "m_m101_t08",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T08-E03",
+        "level": "medium",
+        "prompt": "Giải thích Standardized effect.",
+        "solution": "z=(x−μ)/σ. Dùng scale-free view khi phù hợp."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T08-multidim-reporting",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "multidim-reporting"
+        ],
+        "sourceAnchors": [
+          "m_m101_t08",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T08-E04",
+        "level": "medium",
+        "prompt": "Tạo outline report 1 trang: data contract, missingness, summary table, correlation figure, 3 findings, 2 limitations.",
+        "solution": "Giải theo formula + condition + sanity-check của bài."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T08-multidim-reporting",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "multidim-reporting"
+        ],
+        "sourceAnchors": [
+          "m_m101_t08",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T08-E05",
+        "level": "medium",
+        "prompt": "Nêu condition gate quan trọng.",
+        "solution": "Mọi hình/bảng phải ghi sample count, units, preprocessing, split và statistic definition; nhận xét phải tách observation khỏi causal claim."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T08-multidim-reporting",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "multidim-reporting"
+        ],
+        "sourceAnchors": [
+          "m_m101_t08",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T08-E06",
+        "level": "hard",
+        "prompt": "Sửa lỗi: Vẽ heatmap đẹp nhưng thiếu labels, units, n và preprocessing làm kết luận không thể tái kiểm.",
+        "solution": "Tìm bước sai đầu tiên, kiểm shape/split/assumption rồi làm lại với invariant."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T08-multidim-reporting",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "multidim-reporting"
+        ],
+        "sourceAnchors": [
+          "m_m101_t08",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T08-E07",
+        "level": "medium",
+        "prompt": "Nêu một numerical hoặc leakage check.",
+        "solution": "Shape + finite + tolerance + split/provenance check."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T08-multidim-reporting",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "multidim-reporting"
+        ],
+        "sourceAnchors": [
+          "m_m101_t08",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "exerciseId": "E23-MM101-T08-E08",
+        "level": "hard",
+        "prompt": "Chuyển giao sang tình huống kỹ thuật.",
+        "solution": "Báo cáo exploratory data analysis."
+      }
+    ],
+    "application_content": [
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T01-data-matrix-notation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-matrix-notation"
+        ],
+        "sourceAnchors": [
+          "m_m101_t01",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "applicationId": "E23-MM101-T01-A01",
+        "title": "Ứng dụng 1 · Ma trận dữ liệu X: quan sát, đặc trưng và notation chuẩn",
+        "scenario": "Thiết kế feature matrix cho telemetry điều khiển.",
+        "method": "Khóa data contract → fit/compute → numerical check → metric → limitation/provenance."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T01-data-matrix-notation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-matrix-notation"
+        ],
+        "sourceAnchors": [
+          "m_m101_t01",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "applicationId": "E23-MM101-T01-A02",
+        "title": "Ứng dụng 2 · Ma trận dữ liệu X: quan sát, đặc trưng và notation chuẩn",
+        "scenario": "Kiểm tra schema của batch dữ liệu trước ML.",
+        "method": "Khóa data contract → fit/compute → numerical check → metric → limitation/provenance."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t02",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T02-centering-scaling-leakage",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "centering-scaling-leakage"
+        ],
+        "sourceAnchors": [
+          "m_m101_t02",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "applicationId": "E23-MM101-T02-A01",
+        "title": "Ứng dụng 1 · Centering, scaling và chuẩn hóa không gây data leakage",
+        "scenario": "Chuẩn hóa cảm biến khác đơn vị trước distance/PCA.",
+        "method": "Khóa data contract → fit/compute → numerical check → metric → limitation/provenance."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t02",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T02-centering-scaling-leakage",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "centering-scaling-leakage"
+        ],
+        "sourceAnchors": [
+          "m_m101_t02",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "applicationId": "E23-MM101-T02-A02",
+        "title": "Ứng dụng 2 · Centering, scaling và chuẩn hóa không gây data leakage",
+        "scenario": "Xây preprocessing pipeline không rò rỉ dữ liệu.",
+        "method": "Khóa data contract → fit/compute → numerical check → metric → limitation/provenance."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T03-norm-distance-geometry",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "norm-distance-geometry"
+        ],
+        "sourceAnchors": [
+          "m_m101_t03",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "applicationId": "E23-MM101-T03-A01",
+        "title": "Ứng dụng 1 · Norm, khoảng cách và hình học dữ liệu nhiều chiều",
+        "scenario": "Nearest-neighbor trên vector cảm biến.",
+        "method": "Khóa data contract → fit/compute → numerical check → metric → limitation/provenance."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T03-norm-distance-geometry",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "norm-distance-geometry"
+        ],
+        "sourceAnchors": [
+          "m_m101_t03",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "applicationId": "E23-MM101-T03-A02",
+        "title": "Ứng dụng 2 · Norm, khoảng cách và hình học dữ liệu nhiều chiều",
+        "scenario": "Chọn metric cho anomaly detection.",
+        "method": "Khóa data contract → fit/compute → numerical check → metric → limitation/provenance."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T04-cosine-gram-kernel",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "cosine-gram-kernel"
+        ],
+        "sourceAnchors": [
+          "m_m101_t04",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "applicationId": "E23-MM101-T04-A01",
+        "title": "Ứng dụng 1 · Cosine similarity, Gram matrix và kernel nhập môn",
+        "scenario": "Similarity retrieval cho embedding.",
+        "method": "Khóa data contract → fit/compute → numerical check → metric → limitation/provenance."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T04-cosine-gram-kernel",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "cosine-gram-kernel"
+        ],
+        "sourceAnchors": [
+          "m_m101_t04",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "applicationId": "E23-MM101-T04-A02",
+        "title": "Ứng dụng 2 · Cosine similarity, Gram matrix và kernel nhập môn",
+        "scenario": "Kernel/Gram inspection trước clustering.",
+        "method": "Khóa data contract → fit/compute → numerical check → metric → limitation/provenance."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t05",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T05-covariance-correlation-dependence",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "covariance-correlation-dependence"
+        ],
+        "sourceAnchors": [
+          "m_m101_t05",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "applicationId": "E23-MM101-T05-A01",
+        "title": "Ứng dụng 1 · Covariance, correlation và cấu trúc phụ thuộc trong X",
+        "scenario": "Phát hiện feature dư thừa.",
+        "method": "Khóa data contract → fit/compute → numerical check → metric → limitation/provenance."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t05",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T05-covariance-correlation-dependence",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "covariance-correlation-dependence"
+        ],
+        "sourceAnchors": [
+          "m_m101_t05",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "applicationId": "E23-MM101-T05-A02",
+        "title": "Ứng dụng 2 · Covariance, correlation và cấu trúc phụ thuộc trong X",
+        "scenario": "Chuẩn bị covariance matrix cho PCA.",
+        "method": "Khóa data contract → fit/compute → numerical check → metric → limitation/provenance."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T06-curse-dimensionality-feature-selection",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "curse-dimensionality-feature-selection"
+        ],
+        "sourceAnchors": [
+          "m_m101_t06",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L09-topology-metric-spaces"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "applicationId": "E23-MM101-T06-A01",
+        "title": "Ứng dụng 1 · Curse of dimensionality và lựa chọn đặc trưng",
+        "scenario": "Giảm feature cho telemetry nhiều kênh.",
+        "method": "Khóa data contract → fit/compute → numerical check → metric → limitation/provenance."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T06-curse-dimensionality-feature-selection",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "curse-dimensionality-feature-selection"
+        ],
+        "sourceAnchors": [
+          "m_m101_t06",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L09-topology-metric-spaces"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "applicationId": "E23-MM101-T06-A02",
+        "title": "Ứng dụng 2 · Curse of dimensionality và lựa chọn đặc trưng",
+        "scenario": "Chuẩn bị dữ liệu trước PCA/clustering.",
+        "method": "Khóa data contract → fit/compute → numerical check → metric → limitation/provenance."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T07-data-pipeline-split",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-pipeline-split"
+        ],
+        "sourceAnchors": [
+          "m_m101_t07",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "applicationId": "E23-MM101-T07-A01",
+        "title": "Ứng dụng 1 · Pipeline dữ liệu: raw → clean → feature → scale → split",
+        "scenario": "Reproducible ML preprocessing.",
+        "method": "Khóa data contract → fit/compute → numerical check → metric → limitation/provenance."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T07-data-pipeline-split",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-pipeline-split"
+        ],
+        "sourceAnchors": [
+          "m_m101_t07",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "applicationId": "E23-MM101-T07-A02",
+        "title": "Ứng dụng 2 · Pipeline dữ liệu: raw → clean → feature → scale → split",
+        "scenario": "Data contract cho luận văn/experiment.",
+        "method": "Khóa data contract → fit/compute → numerical check → metric → limitation/provenance."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T08-multidim-reporting",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "multidim-reporting"
+        ],
+        "sourceAnchors": [
+          "m_m101_t08",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "applicationId": "E23-MM101-T08-A01",
+        "title": "Ứng dụng 1 · Báo cáo dữ liệu đa chiều: bảng, hình, nhận xét và kết luận",
+        "scenario": "Báo cáo exploratory data analysis.",
+        "method": "Khóa data contract → fit/compute → numerical check → metric → limitation/provenance."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T08-multidim-reporting",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "multidim-reporting"
+        ],
+        "sourceAnchors": [
+          "m_m101_t08",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "applicationId": "E23-MM101-T08-A02",
+        "title": "Ứng dụng 2 · Báo cáo dữ liệu đa chiều: bảng, hình, nhận xét và kết luận",
+        "scenario": "Phần Data/Methods cho seminar HK1.",
+        "method": "Khóa data contract → fit/compute → numerical check → metric → limitation/provenance."
+      }
+    ],
+    "simulation_content": [
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T01-data-matrix-notation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-matrix-notation"
+        ],
+        "sourceAnchors": [
+          "m_m101_t01",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "simulationId": "E23-MM101-T01-SIM01",
+        "title": "Theory explorer · m_m101 §1.1",
+        "purpose": "Quan sát geometry/spectrum/error khi thay đổi dimension, scale hoặc noise.",
+        "controls": [
+          {
+            "key": "dimension",
+            "type": "number",
+            "default": 4
+          },
+          {
+            "key": "noise",
+            "type": "number",
+            "default": 0.1
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "primary_metric",
+            "label": "Primary metric"
+          },
+          {
+            "key": "stability",
+            "label": "Stability"
+          }
+        ],
+        "simulationClass": "theory"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T01-data-matrix-notation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-matrix-notation"
+        ],
+        "sourceAnchors": [
+          "m_m101_t01",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "simulationId": "E23-MM101-T01-SIM02",
+        "title": "Applied lab · m_m101 §1.1",
+        "purpose": "Chạy mini data pipeline và phát warning nếu vi phạm condition/leakage gate.",
+        "controls": [
+          {
+            "key": "scale_ratio",
+            "type": "number",
+            "default": 1
+          },
+          {
+            "key": "leakage",
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "quality",
+            "label": "Quality/readout"
+          },
+          {
+            "key": "warning",
+            "label": "Contract warning"
+          }
+        ],
+        "simulationClass": "application"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t02",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T02-centering-scaling-leakage",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "centering-scaling-leakage"
+        ],
+        "sourceAnchors": [
+          "m_m101_t02",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "simulationId": "E23-MM101-T02-SIM01",
+        "title": "Theory explorer · m_m101 §1.2",
+        "purpose": "Quan sát geometry/spectrum/error khi thay đổi dimension, scale hoặc noise.",
+        "controls": [
+          {
+            "key": "dimension",
+            "type": "number",
+            "default": 4
+          },
+          {
+            "key": "noise",
+            "type": "number",
+            "default": 0.1
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "primary_metric",
+            "label": "Primary metric"
+          },
+          {
+            "key": "stability",
+            "label": "Stability"
+          }
+        ],
+        "simulationClass": "theory"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t02",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T02-centering-scaling-leakage",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "centering-scaling-leakage"
+        ],
+        "sourceAnchors": [
+          "m_m101_t02",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "simulationId": "E23-MM101-T02-SIM02",
+        "title": "Applied lab · m_m101 §1.2",
+        "purpose": "Chạy mini data pipeline và phát warning nếu vi phạm condition/leakage gate.",
+        "controls": [
+          {
+            "key": "scale_ratio",
+            "type": "number",
+            "default": 1
+          },
+          {
+            "key": "leakage",
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "quality",
+            "label": "Quality/readout"
+          },
+          {
+            "key": "warning",
+            "label": "Contract warning"
+          }
+        ],
+        "simulationClass": "application"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T03-norm-distance-geometry",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "norm-distance-geometry"
+        ],
+        "sourceAnchors": [
+          "m_m101_t03",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "simulationId": "E23-MM101-T03-SIM01",
+        "title": "Theory explorer · m_m101 §1.3",
+        "purpose": "Quan sát geometry/spectrum/error khi thay đổi dimension, scale hoặc noise.",
+        "controls": [
+          {
+            "key": "dimension",
+            "type": "number",
+            "default": 4
+          },
+          {
+            "key": "noise",
+            "type": "number",
+            "default": 0.1
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "primary_metric",
+            "label": "Primary metric"
+          },
+          {
+            "key": "stability",
+            "label": "Stability"
+          }
+        ],
+        "simulationClass": "theory"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T03-norm-distance-geometry",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "norm-distance-geometry"
+        ],
+        "sourceAnchors": [
+          "m_m101_t03",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "simulationId": "E23-MM101-T03-SIM02",
+        "title": "Applied lab · m_m101 §1.3",
+        "purpose": "Chạy mini data pipeline và phát warning nếu vi phạm condition/leakage gate.",
+        "controls": [
+          {
+            "key": "scale_ratio",
+            "type": "number",
+            "default": 1
+          },
+          {
+            "key": "leakage",
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "quality",
+            "label": "Quality/readout"
+          },
+          {
+            "key": "warning",
+            "label": "Contract warning"
+          }
+        ],
+        "simulationClass": "application"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T04-cosine-gram-kernel",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "cosine-gram-kernel"
+        ],
+        "sourceAnchors": [
+          "m_m101_t04",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "simulationId": "E23-MM101-T04-SIM01",
+        "title": "Theory explorer · m_m101 §1.4",
+        "purpose": "Quan sát geometry/spectrum/error khi thay đổi dimension, scale hoặc noise.",
+        "controls": [
+          {
+            "key": "dimension",
+            "type": "number",
+            "default": 4
+          },
+          {
+            "key": "noise",
+            "type": "number",
+            "default": 0.1
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "primary_metric",
+            "label": "Primary metric"
+          },
+          {
+            "key": "stability",
+            "label": "Stability"
+          }
+        ],
+        "simulationClass": "theory"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T04-cosine-gram-kernel",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "cosine-gram-kernel"
+        ],
+        "sourceAnchors": [
+          "m_m101_t04",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "simulationId": "E23-MM101-T04-SIM02",
+        "title": "Applied lab · m_m101 §1.4",
+        "purpose": "Chạy mini data pipeline và phát warning nếu vi phạm condition/leakage gate.",
+        "controls": [
+          {
+            "key": "scale_ratio",
+            "type": "number",
+            "default": 1
+          },
+          {
+            "key": "leakage",
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "quality",
+            "label": "Quality/readout"
+          },
+          {
+            "key": "warning",
+            "label": "Contract warning"
+          }
+        ],
+        "simulationClass": "application"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t05",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T05-covariance-correlation-dependence",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "covariance-correlation-dependence"
+        ],
+        "sourceAnchors": [
+          "m_m101_t05",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "simulationId": "E23-MM101-T05-SIM01",
+        "title": "Theory explorer · m_m101 §1.5",
+        "purpose": "Quan sát geometry/spectrum/error khi thay đổi dimension, scale hoặc noise.",
+        "controls": [
+          {
+            "key": "dimension",
+            "type": "number",
+            "default": 4
+          },
+          {
+            "key": "noise",
+            "type": "number",
+            "default": 0.1
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "primary_metric",
+            "label": "Primary metric"
+          },
+          {
+            "key": "stability",
+            "label": "Stability"
+          }
+        ],
+        "simulationClass": "theory"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t05",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T05-covariance-correlation-dependence",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "covariance-correlation-dependence"
+        ],
+        "sourceAnchors": [
+          "m_m101_t05",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "simulationId": "E23-MM101-T05-SIM02",
+        "title": "Applied lab · m_m101 §1.5",
+        "purpose": "Chạy mini data pipeline và phát warning nếu vi phạm condition/leakage gate.",
+        "controls": [
+          {
+            "key": "scale_ratio",
+            "type": "number",
+            "default": 1
+          },
+          {
+            "key": "leakage",
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "quality",
+            "label": "Quality/readout"
+          },
+          {
+            "key": "warning",
+            "label": "Contract warning"
+          }
+        ],
+        "simulationClass": "application"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T06-curse-dimensionality-feature-selection",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "curse-dimensionality-feature-selection"
+        ],
+        "sourceAnchors": [
+          "m_m101_t06",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L09-topology-metric-spaces"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "simulationId": "E23-MM101-T06-SIM01",
+        "title": "Theory explorer · m_m101 §1.6",
+        "purpose": "Quan sát geometry/spectrum/error khi thay đổi dimension, scale hoặc noise.",
+        "controls": [
+          {
+            "key": "dimension",
+            "type": "number",
+            "default": 4
+          },
+          {
+            "key": "noise",
+            "type": "number",
+            "default": 0.1
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "primary_metric",
+            "label": "Primary metric"
+          },
+          {
+            "key": "stability",
+            "label": "Stability"
+          }
+        ],
+        "simulationClass": "theory"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T06-curse-dimensionality-feature-selection",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "curse-dimensionality-feature-selection"
+        ],
+        "sourceAnchors": [
+          "m_m101_t06",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L09-topology-metric-spaces"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "simulationId": "E23-MM101-T06-SIM02",
+        "title": "Applied lab · m_m101 §1.6",
+        "purpose": "Chạy mini data pipeline và phát warning nếu vi phạm condition/leakage gate.",
+        "controls": [
+          {
+            "key": "scale_ratio",
+            "type": "number",
+            "default": 1
+          },
+          {
+            "key": "leakage",
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "quality",
+            "label": "Quality/readout"
+          },
+          {
+            "key": "warning",
+            "label": "Contract warning"
+          }
+        ],
+        "simulationClass": "application"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T07-data-pipeline-split",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-pipeline-split"
+        ],
+        "sourceAnchors": [
+          "m_m101_t07",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "simulationId": "E23-MM101-T07-SIM01",
+        "title": "Theory explorer · m_m101 §1.7",
+        "purpose": "Quan sát geometry/spectrum/error khi thay đổi dimension, scale hoặc noise.",
+        "controls": [
+          {
+            "key": "dimension",
+            "type": "number",
+            "default": 4
+          },
+          {
+            "key": "noise",
+            "type": "number",
+            "default": 0.1
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "primary_metric",
+            "label": "Primary metric"
+          },
+          {
+            "key": "stability",
+            "label": "Stability"
+          }
+        ],
+        "simulationClass": "theory"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T07-data-pipeline-split",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-pipeline-split"
+        ],
+        "sourceAnchors": [
+          "m_m101_t07",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "simulationId": "E23-MM101-T07-SIM02",
+        "title": "Applied lab · m_m101 §1.7",
+        "purpose": "Chạy mini data pipeline và phát warning nếu vi phạm condition/leakage gate.",
+        "controls": [
+          {
+            "key": "scale_ratio",
+            "type": "number",
+            "default": 1
+          },
+          {
+            "key": "leakage",
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "quality",
+            "label": "Quality/readout"
+          },
+          {
+            "key": "warning",
+            "label": "Contract warning"
+          }
+        ],
+        "simulationClass": "application"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T08-multidim-reporting",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "multidim-reporting"
+        ],
+        "sourceAnchors": [
+          "m_m101_t08",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "simulationId": "E23-MM101-T08-SIM01",
+        "title": "Theory explorer · m_m101 §1.8",
+        "purpose": "Quan sát geometry/spectrum/error khi thay đổi dimension, scale hoặc noise.",
+        "controls": [
+          {
+            "key": "dimension",
+            "type": "number",
+            "default": 4
+          },
+          {
+            "key": "noise",
+            "type": "number",
+            "default": 0.1
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "primary_metric",
+            "label": "Primary metric"
+          },
+          {
+            "key": "stability",
+            "label": "Stability"
+          }
+        ],
+        "simulationClass": "theory"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T08-multidim-reporting",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "multidim-reporting"
+        ],
+        "sourceAnchors": [
+          "m_m101_t08",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "simulationId": "E23-MM101-T08-SIM02",
+        "title": "Applied lab · m_m101 §1.8",
+        "purpose": "Chạy mini data pipeline và phát warning nếu vi phạm condition/leakage gate.",
+        "controls": [
+          {
+            "key": "scale_ratio",
+            "type": "number",
+            "default": 1
+          },
+          {
+            "key": "leakage",
+            "type": "boolean",
+            "default": false
+          }
+        ],
+        "computedReadouts": [
+          {
+            "key": "quality",
+            "label": "Quality/readout"
+          },
+          {
+            "key": "warning",
+            "label": "Contract warning"
+          }
+        ],
+        "simulationClass": "application"
+      }
+    ],
+    "professor_qa_content": [
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T01-data-matrix-notation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-matrix-notation"
+        ],
+        "sourceAnchors": [
+          "m_m101_t01",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "qaId": "E23-MM101-T01-QA01",
+        "question": "Điểm dễ sai nhất khi dùng Ma trận dữ liệu X: quan sát, đặc trưng và notation chuẩn trong dữ liệu thật là gì?",
+        "answer": "Transpose X nhưng không đổi semantic convention khiến covariance/model chạy được nhưng sai trục. Cách phòng: Khóa row/column semantics, shape, dtype, unit, missing-value policy và sample identity trước mọi phép tính."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t02",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T02-centering-scaling-leakage",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "centering-scaling-leakage"
+        ],
+        "sourceAnchors": [
+          "m_m101_t02",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "qaId": "E23-MM101-T02-QA01",
+        "question": "Điểm dễ sai nhất khi dùng Centering, scaling và chuẩn hóa không gây data leakage trong dữ liệu thật là gì?",
+        "answer": "Chuẩn hóa toàn bộ dataset rồi mới split gây leakage dù model không trực tiếp thấy nhãn test. Cách phòng: Split train/validation/test trước khi fit bất kỳ statistic preprocessing nào có học từ dữ liệu."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T03-norm-distance-geometry",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "norm-distance-geometry"
+        ],
+        "sourceAnchors": [
+          "m_m101_t03",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "qaId": "E23-MM101-T03-QA01",
+        "question": "Điểm dễ sai nhất khi dùng Norm, khoảng cách và hình học dữ liệu nhiều chiều trong dữ liệu thật là gì?",
+        "answer": "Dùng Euclidean distance trên feature lệch đơn vị làm một feature nuốt toàn bộ geometry. Cách phòng: Scale/units phải hợp lý và metric phải phù hợp semantics; dữ liệu nhiều chiều cần kiểm concentration."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T04-cosine-gram-kernel",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "cosine-gram-kernel"
+        ],
+        "sourceAnchors": [
+          "m_m101_t04",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "qaId": "E23-MM101-T04-QA01",
+        "question": "Điểm dễ sai nhất khi dùng Cosine similarity, Gram matrix và kernel nhập môn trong dữ liệu thật là gì?",
+        "answer": "Nhầm XXᵀ với XᵀX và gán cùng ý nghĩa cho hai ma trận. Cách phòng: Kiểm vector zero, orientation của X và mục tiêu so magnitude hay direction; Gram sample-space khác covariance feature-space."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t05",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T05-covariance-correlation-dependence",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "covariance-correlation-dependence"
+        ],
+        "sourceAnchors": [
+          "m_m101_t05",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "qaId": "E23-MM101-T05-QA01",
+        "question": "Điểm dễ sai nhất khi dùng Covariance, correlation và cấu trúc phụ thuộc trong X trong dữ liệu thật là gì?",
+        "answer": "So trực tiếp magnitude covariance giữa các feature khác đơn vị hoặc đọc correlation cao là quan hệ nhân quả. Cách phòng: Center đúng, sample alignment đúng và hiểu Pearson chủ yếu đo quan hệ tuyến tính; không suy nhân quả từ correlation."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T06-curse-dimensionality-feature-selection",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "curse-dimensionality-feature-selection"
+        ],
+        "sourceAnchors": [
+          "m_m101_t06",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L09-topology-metric-spaces"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "qaId": "E23-MM101-T06-QA01",
+        "question": "Điểm dễ sai nhất khi dùng Curse of dimensionality và lựa chọn đặc trưng trong dữ liệu thật là gì?",
+        "answer": "Giữ nhiều feature chỉ vì storage cho phép; trong high-dimension distance có thể mất khả năng phân biệt. Cách phòng: Feature selection phải fit trên train và đánh giá bằng validation; không chọn feature dựa trên test performance."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T07-data-pipeline-split",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-pipeline-split"
+        ],
+        "sourceAnchors": [
+          "m_m101_t07",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "qaId": "E23-MM101-T07-QA01",
+        "question": "Điểm dễ sai nhất khi dùng Pipeline dữ liệu: raw → clean → feature → scale → split trong dữ liệu thật là gì?",
+        "answer": "Split row ngẫu nhiên khi các row cùng người/thiết bị/thời đoạn gây leakage theo nhóm hoặc thời gian. Cách phòng: Pipeline phải version hóa schema, split rule, fit state, transform order và provenance; test không được tham gia fit/tuning."
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T08-multidim-reporting",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "multidim-reporting"
+        ],
+        "sourceAnchors": [
+          "m_m101_t08",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "qaId": "E23-MM101-T08-QA01",
+        "question": "Điểm dễ sai nhất khi dùng Báo cáo dữ liệu đa chiều: bảng, hình, nhận xét và kết luận trong dữ liệu thật là gì?",
+        "answer": "Vẽ heatmap đẹp nhưng thiếu labels, units, n và preprocessing làm kết luận không thể tái kiểm. Cách phòng: Mọi hình/bảng phải ghi sample count, units, preprocessing, split và statistic definition; nhận xét phải tách observation khỏi causal claim."
+      }
+    ],
+    "question_bank_content": [
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T01-data-matrix-notation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-matrix-notation"
+        ],
+        "sourceAnchors": [
+          "m_m101_t01",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T01-Q001",
+        "level": "easy",
+        "question": "Nêu mục tiêu của Ma trận dữ liệu X: quan sát, đặc trưng và notation chuẩn.",
+        "answer": "Thiết kế feature matrix cho telemetry điều khiển.",
+        "reviewPackId": "E23-MM101-T01-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T01-data-matrix-notation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-matrix-notation"
+        ],
+        "sourceAnchors": [
+          "m_m101_t01",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T01-Q002",
+        "level": "easy",
+        "question": "Viết Data matrix.",
+        "answer": "X ∈ ℝ^(n×p)",
+        "reviewPackId": "E23-MM101-T01-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T01-data-matrix-notation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-matrix-notation"
+        ],
+        "sourceAnchors": [
+          "m_m101_t01",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T01-Q003",
+        "level": "medium",
+        "question": "Ý nghĩa của Observation vector?",
+        "answer": "Hàng i là một quan sát nếu row=sample.",
+        "reviewPackId": "E23-MM101-T01-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T01-data-matrix-notation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-matrix-notation"
+        ],
+        "sourceAnchors": [
+          "m_m101_t01",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T01-Q004",
+        "level": "medium",
+        "question": "Condition gate là gì?",
+        "answer": "Khóa row/column semantics, shape, dtype, unit, missing-value policy và sample identity trước mọi phép tính.",
+        "reviewPackId": "E23-MM101-T01-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T01-data-matrix-notation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-matrix-notation"
+        ],
+        "sourceAnchors": [
+          "m_m101_t01",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T01-Q005",
+        "level": "medium",
+        "question": "Bẫy chính là gì?",
+        "answer": "Transpose X nhưng không đổi semantic convention khiến covariance/model chạy được nhưng sai trục.",
+        "reviewPackId": "E23-MM101-T01-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T01-data-matrix-notation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-matrix-notation"
+        ],
+        "sourceAnchors": [
+          "m_m101_t01",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T01-Q006",
+        "level": "hard",
+        "question": "Nêu một application và check đi kèm.",
+        "answer": "Thiết kế feature matrix cho telemetry điều khiển. Check: shape/split/assumption/numerical stability.",
+        "reviewPackId": "E23-MM101-T01-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t02",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T02-centering-scaling-leakage",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "centering-scaling-leakage"
+        ],
+        "sourceAnchors": [
+          "m_m101_t02",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T02-Q001",
+        "level": "easy",
+        "question": "Nêu mục tiêu của Centering, scaling và chuẩn hóa không gây data leakage.",
+        "answer": "Chuẩn hóa cảm biến khác đơn vị trước distance/PCA.",
+        "reviewPackId": "E23-MM101-T02-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t02",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T02-centering-scaling-leakage",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "centering-scaling-leakage"
+        ],
+        "sourceAnchors": [
+          "m_m101_t02",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T02-Q002",
+        "level": "easy",
+        "question": "Viết Centering.",
+        "answer": "Xc = X − 1μᵀ",
+        "reviewPackId": "E23-MM101-T02-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t02",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T02-centering-scaling-leakage",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "centering-scaling-leakage"
+        ],
+        "sourceAnchors": [
+          "m_m101_t02",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T02-Q003",
+        "level": "medium",
+        "question": "Ý nghĩa của Z-score?",
+        "answer": "Train statistics áp sang validation/test.",
+        "reviewPackId": "E23-MM101-T02-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t02",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T02-centering-scaling-leakage",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "centering-scaling-leakage"
+        ],
+        "sourceAnchors": [
+          "m_m101_t02",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T02-Q004",
+        "level": "medium",
+        "question": "Condition gate là gì?",
+        "answer": "Split train/validation/test trước khi fit bất kỳ statistic preprocessing nào có học từ dữ liệu.",
+        "reviewPackId": "E23-MM101-T02-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t02",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T02-centering-scaling-leakage",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "centering-scaling-leakage"
+        ],
+        "sourceAnchors": [
+          "m_m101_t02",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T02-Q005",
+        "level": "medium",
+        "question": "Bẫy chính là gì?",
+        "answer": "Chuẩn hóa toàn bộ dataset rồi mới split gây leakage dù model không trực tiếp thấy nhãn test.",
+        "reviewPackId": "E23-MM101-T02-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t02",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T02-centering-scaling-leakage",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "centering-scaling-leakage"
+        ],
+        "sourceAnchors": [
+          "m_m101_t02",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T02-Q006",
+        "level": "hard",
+        "question": "Nêu một application và check đi kèm.",
+        "answer": "Chuẩn hóa cảm biến khác đơn vị trước distance/PCA. Check: shape/split/assumption/numerical stability.",
+        "reviewPackId": "E23-MM101-T02-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T03-norm-distance-geometry",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "norm-distance-geometry"
+        ],
+        "sourceAnchors": [
+          "m_m101_t03",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T03-Q001",
+        "level": "easy",
+        "question": "Nêu mục tiêu của Norm, khoảng cách và hình học dữ liệu nhiều chiều.",
+        "answer": "Nearest-neighbor trên vector cảm biến.",
+        "reviewPackId": "E23-MM101-T03-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T03-norm-distance-geometry",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "norm-distance-geometry"
+        ],
+        "sourceAnchors": [
+          "m_m101_t03",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T03-Q002",
+        "level": "easy",
+        "question": "Viết L2 norm.",
+        "answer": "‖x‖₂=√Σⱼxⱼ²",
+        "reviewPackId": "E23-MM101-T03-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T03-norm-distance-geometry",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "norm-distance-geometry"
+        ],
+        "sourceAnchors": [
+          "m_m101_t03",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T03-Q003",
+        "level": "medium",
+        "question": "Ý nghĩa của L1 distance?",
+        "answer": "Khoảng cách Manhattan.",
+        "reviewPackId": "E23-MM101-T03-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T03-norm-distance-geometry",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "norm-distance-geometry"
+        ],
+        "sourceAnchors": [
+          "m_m101_t03",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T03-Q004",
+        "level": "medium",
+        "question": "Condition gate là gì?",
+        "answer": "Scale/units phải hợp lý và metric phải phù hợp semantics; dữ liệu nhiều chiều cần kiểm concentration.",
+        "reviewPackId": "E23-MM101-T03-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T03-norm-distance-geometry",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "norm-distance-geometry"
+        ],
+        "sourceAnchors": [
+          "m_m101_t03",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T03-Q005",
+        "level": "medium",
+        "question": "Bẫy chính là gì?",
+        "answer": "Dùng Euclidean distance trên feature lệch đơn vị làm một feature nuốt toàn bộ geometry.",
+        "reviewPackId": "E23-MM101-T03-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T03-norm-distance-geometry",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "norm-distance-geometry"
+        ],
+        "sourceAnchors": [
+          "m_m101_t03",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T03-Q006",
+        "level": "hard",
+        "question": "Nêu một application và check đi kèm.",
+        "answer": "Nearest-neighbor trên vector cảm biến. Check: shape/split/assumption/numerical stability.",
+        "reviewPackId": "E23-MM101-T03-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T04-cosine-gram-kernel",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "cosine-gram-kernel"
+        ],
+        "sourceAnchors": [
+          "m_m101_t04",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T04-Q001",
+        "level": "easy",
+        "question": "Nêu mục tiêu của Cosine similarity, Gram matrix và kernel nhập môn.",
+        "answer": "Similarity retrieval cho embedding.",
+        "reviewPackId": "E23-MM101-T04-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T04-cosine-gram-kernel",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "cosine-gram-kernel"
+        ],
+        "sourceAnchors": [
+          "m_m101_t04",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T04-Q002",
+        "level": "easy",
+        "question": "Viết Cosine.",
+        "answer": "cos(x,y)=xᵀy/(‖x‖₂‖y‖₂)",
+        "reviewPackId": "E23-MM101-T04-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T04-cosine-gram-kernel",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "cosine-gram-kernel"
+        ],
+        "sourceAnchors": [
+          "m_m101_t04",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T04-Q003",
+        "level": "medium",
+        "question": "Ý nghĩa của Gram matrix?",
+        "answer": "G_ij là inner product giữa hai sample theo row=sample.",
+        "reviewPackId": "E23-MM101-T04-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T04-cosine-gram-kernel",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "cosine-gram-kernel"
+        ],
+        "sourceAnchors": [
+          "m_m101_t04",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T04-Q004",
+        "level": "medium",
+        "question": "Condition gate là gì?",
+        "answer": "Kiểm vector zero, orientation của X và mục tiêu so magnitude hay direction; Gram sample-space khác covariance feature-space.",
+        "reviewPackId": "E23-MM101-T04-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T04-cosine-gram-kernel",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "cosine-gram-kernel"
+        ],
+        "sourceAnchors": [
+          "m_m101_t04",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T04-Q005",
+        "level": "medium",
+        "question": "Bẫy chính là gì?",
+        "answer": "Nhầm XXᵀ với XᵀX và gán cùng ý nghĩa cho hai ma trận.",
+        "reviewPackId": "E23-MM101-T04-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T04-cosine-gram-kernel",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "cosine-gram-kernel"
+        ],
+        "sourceAnchors": [
+          "m_m101_t04",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T04-Q006",
+        "level": "hard",
+        "question": "Nêu một application và check đi kèm.",
+        "answer": "Similarity retrieval cho embedding. Check: shape/split/assumption/numerical stability.",
+        "reviewPackId": "E23-MM101-T04-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t05",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T05-covariance-correlation-dependence",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "covariance-correlation-dependence"
+        ],
+        "sourceAnchors": [
+          "m_m101_t05",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T05-Q001",
+        "level": "easy",
+        "question": "Nêu mục tiêu của Covariance, correlation và cấu trúc phụ thuộc trong X.",
+        "answer": "Phát hiện feature dư thừa.",
+        "reviewPackId": "E23-MM101-T05-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t05",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T05-covariance-correlation-dependence",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "covariance-correlation-dependence"
+        ],
+        "sourceAnchors": [
+          "m_m101_t05",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T05-Q002",
+        "level": "easy",
+        "question": "Viết Sample covariance.",
+        "answer": "C=(1/(n−1))XcᵀXc",
+        "reviewPackId": "E23-MM101-T05-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t05",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T05-covariance-correlation-dependence",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "covariance-correlation-dependence"
+        ],
+        "sourceAnchors": [
+          "m_m101_t05",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T05-Q003",
+        "level": "medium",
+        "question": "Ý nghĩa của Covariance pair?",
+        "answer": "Có đơn vị tích của hai feature.",
+        "reviewPackId": "E23-MM101-T05-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t05",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T05-covariance-correlation-dependence",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "covariance-correlation-dependence"
+        ],
+        "sourceAnchors": [
+          "m_m101_t05",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T05-Q004",
+        "level": "medium",
+        "question": "Condition gate là gì?",
+        "answer": "Center đúng, sample alignment đúng và hiểu Pearson chủ yếu đo quan hệ tuyến tính; không suy nhân quả từ correlation.",
+        "reviewPackId": "E23-MM101-T05-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t05",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T05-covariance-correlation-dependence",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "covariance-correlation-dependence"
+        ],
+        "sourceAnchors": [
+          "m_m101_t05",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T05-Q005",
+        "level": "medium",
+        "question": "Bẫy chính là gì?",
+        "answer": "So trực tiếp magnitude covariance giữa các feature khác đơn vị hoặc đọc correlation cao là quan hệ nhân quả.",
+        "reviewPackId": "E23-MM101-T05-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t05",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T05-covariance-correlation-dependence",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "covariance-correlation-dependence"
+        ],
+        "sourceAnchors": [
+          "m_m101_t05",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T05-Q006",
+        "level": "hard",
+        "question": "Nêu một application và check đi kèm.",
+        "answer": "Phát hiện feature dư thừa. Check: shape/split/assumption/numerical stability.",
+        "reviewPackId": "E23-MM101-T05-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T06-curse-dimensionality-feature-selection",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "curse-dimensionality-feature-selection"
+        ],
+        "sourceAnchors": [
+          "m_m101_t06",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L09-topology-metric-spaces"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T06-Q001",
+        "level": "easy",
+        "question": "Nêu mục tiêu của Curse of dimensionality và lựa chọn đặc trưng.",
+        "answer": "Giảm feature cho telemetry nhiều kênh.",
+        "reviewPackId": "E23-MM101-T06-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T06-curse-dimensionality-feature-selection",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "curse-dimensionality-feature-selection"
+        ],
+        "sourceAnchors": [
+          "m_m101_t06",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L09-topology-metric-spaces"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T06-Q002",
+        "level": "easy",
+        "question": "Viết Relative contrast.",
+        "answer": "RC=(d_max−d_min)/d_min",
+        "reviewPackId": "E23-MM101-T06-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T06-curse-dimensionality-feature-selection",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "curse-dimensionality-feature-selection"
+        ],
+        "sourceAnchors": [
+          "m_m101_t06",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L09-topology-metric-spaces"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T06-Q003",
+        "level": "medium",
+        "question": "Ý nghĩa của Feature ratio?",
+        "answer": "p lớn so với n làm tăng variance và khó ước lượng.",
+        "reviewPackId": "E23-MM101-T06-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T06-curse-dimensionality-feature-selection",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "curse-dimensionality-feature-selection"
+        ],
+        "sourceAnchors": [
+          "m_m101_t06",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L09-topology-metric-spaces"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T06-Q004",
+        "level": "medium",
+        "question": "Condition gate là gì?",
+        "answer": "Feature selection phải fit trên train và đánh giá bằng validation; không chọn feature dựa trên test performance.",
+        "reviewPackId": "E23-MM101-T06-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T06-curse-dimensionality-feature-selection",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "curse-dimensionality-feature-selection"
+        ],
+        "sourceAnchors": [
+          "m_m101_t06",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L09-topology-metric-spaces"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T06-Q005",
+        "level": "medium",
+        "question": "Bẫy chính là gì?",
+        "answer": "Giữ nhiều feature chỉ vì storage cho phép; trong high-dimension distance có thể mất khả năng phân biệt.",
+        "reviewPackId": "E23-MM101-T06-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T06-curse-dimensionality-feature-selection",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "curse-dimensionality-feature-selection"
+        ],
+        "sourceAnchors": [
+          "m_m101_t06",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L09-topology-metric-spaces"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T06-Q006",
+        "level": "hard",
+        "question": "Nêu một application và check đi kèm.",
+        "answer": "Giảm feature cho telemetry nhiều kênh. Check: shape/split/assumption/numerical stability.",
+        "reviewPackId": "E23-MM101-T06-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T07-data-pipeline-split",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-pipeline-split"
+        ],
+        "sourceAnchors": [
+          "m_m101_t07",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T07-Q001",
+        "level": "easy",
+        "question": "Nêu mục tiêu của Pipeline dữ liệu: raw → clean → feature → scale → split.",
+        "answer": "Reproducible ML preprocessing.",
+        "reviewPackId": "E23-MM101-T07-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T07-data-pipeline-split",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-pipeline-split"
+        ],
+        "sourceAnchors": [
+          "m_m101_t07",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T07-Q002",
+        "level": "easy",
+        "question": "Viết Fit transform.",
+        "answer": "θ=fit(X_train)",
+        "reviewPackId": "E23-MM101-T07-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T07-data-pipeline-split",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-pipeline-split"
+        ],
+        "sourceAnchors": [
+          "m_m101_t07",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T07-Q003",
+        "level": "medium",
+        "question": "Ý nghĩa của Transform?",
+        "answer": "Dùng cùng θ cho validation/test.",
+        "reviewPackId": "E23-MM101-T07-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T07-data-pipeline-split",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-pipeline-split"
+        ],
+        "sourceAnchors": [
+          "m_m101_t07",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T07-Q004",
+        "level": "medium",
+        "question": "Condition gate là gì?",
+        "answer": "Pipeline phải version hóa schema, split rule, fit state, transform order và provenance; test không được tham gia fit/tuning.",
+        "reviewPackId": "E23-MM101-T07-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T07-data-pipeline-split",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-pipeline-split"
+        ],
+        "sourceAnchors": [
+          "m_m101_t07",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T07-Q005",
+        "level": "medium",
+        "question": "Bẫy chính là gì?",
+        "answer": "Split row ngẫu nhiên khi các row cùng người/thiết bị/thời đoạn gây leakage theo nhóm hoặc thời gian.",
+        "reviewPackId": "E23-MM101-T07-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T07-data-pipeline-split",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-pipeline-split"
+        ],
+        "sourceAnchors": [
+          "m_m101_t07",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T07-Q006",
+        "level": "hard",
+        "question": "Nêu một application và check đi kèm.",
+        "answer": "Reproducible ML preprocessing. Check: shape/split/assumption/numerical stability.",
+        "reviewPackId": "E23-MM101-T07-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T08-multidim-reporting",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "multidim-reporting"
+        ],
+        "sourceAnchors": [
+          "m_m101_t08",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T08-Q001",
+        "level": "easy",
+        "question": "Nêu mục tiêu của Báo cáo dữ liệu đa chiều: bảng, hình, nhận xét và kết luận.",
+        "answer": "Báo cáo exploratory data analysis.",
+        "reviewPackId": "E23-MM101-T08-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T08-multidim-reporting",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "multidim-reporting"
+        ],
+        "sourceAnchors": [
+          "m_m101_t08",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T08-Q002",
+        "level": "easy",
+        "question": "Viết Missing rate.",
+        "answer": "m_j=n_missing,j/n",
+        "reviewPackId": "E23-MM101-T08-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T08-multidim-reporting",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "multidim-reporting"
+        ],
+        "sourceAnchors": [
+          "m_m101_t08",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T08-Q003",
+        "level": "medium",
+        "question": "Ý nghĩa của Standardized effect?",
+        "answer": "Dùng scale-free view khi phù hợp.",
+        "reviewPackId": "E23-MM101-T08-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T08-multidim-reporting",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "multidim-reporting"
+        ],
+        "sourceAnchors": [
+          "m_m101_t08",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T08-Q004",
+        "level": "medium",
+        "question": "Condition gate là gì?",
+        "answer": "Mọi hình/bảng phải ghi sample count, units, preprocessing, split và statistic definition; nhận xét phải tách observation khỏi causal claim.",
+        "reviewPackId": "E23-MM101-T08-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T08-multidim-reporting",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "multidim-reporting"
+        ],
+        "sourceAnchors": [
+          "m_m101_t08",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T08-Q005",
+        "level": "medium",
+        "question": "Bẫy chính là gì?",
+        "answer": "Vẽ heatmap đẹp nhưng thiếu labels, units, n và preprocessing làm kết luận không thể tái kiểm.",
+        "reviewPackId": "E23-MM101-T08-RP01"
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T08-multidim-reporting",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "multidim-reporting"
+        ],
+        "sourceAnchors": [
+          "m_m101_t08",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "questionId": "E23-MM101-T08-Q006",
+        "level": "hard",
+        "question": "Nêu một application và check đi kèm.",
+        "answer": "Báo cáo exploratory data analysis. Check: shape/split/assumption/numerical stability.",
+        "reviewPackId": "E23-MM101-T08-RP01"
+      }
+    ],
+    "review_pack_content": [
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t01",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T01-data-matrix-notation",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-matrix-notation"
+        ],
+        "sourceAnchors": [
+          "m_m101_t01",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L01-linear-algebra-basic",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "reviewPackId": "E23-MM101-T01-RP01",
+        "items": [
+          {
+            "type": "notation",
+            "prompt": "Viết notation + shape chính."
+          },
+          {
+            "type": "formula",
+            "prompt": "Viết 3 công thức lõi và condition."
+          },
+          {
+            "type": "worked_example",
+            "prompt": "Giải ví dụ nhỏ và có sanity-check."
+          },
+          {
+            "type": "trap",
+            "prompt": "Giải thích bẫy: Transpose X nhưng không đổi semantic convention khiến covariance/model chạy được nhưng sai trục."
+          },
+          {
+            "type": "application",
+            "prompt": "Phân tích application: Thiết kế feature matrix cho telemetry điều khiển."
+          },
+          {
+            "type": "reproducibility",
+            "prompt": "Ghi split/fit-state/tolerance/provenance cần lưu."
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t02",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T02-centering-scaling-leakage",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "centering-scaling-leakage"
+        ],
+        "sourceAnchors": [
+          "m_m101_t02",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "reviewPackId": "E23-MM101-T02-RP01",
+        "items": [
+          {
+            "type": "notation",
+            "prompt": "Viết notation + shape chính."
+          },
+          {
+            "type": "formula",
+            "prompt": "Viết 3 công thức lõi và condition."
+          },
+          {
+            "type": "worked_example",
+            "prompt": "Giải ví dụ nhỏ và có sanity-check."
+          },
+          {
+            "type": "trap",
+            "prompt": "Giải thích bẫy: Chuẩn hóa toàn bộ dataset rồi mới split gây leakage dù model không trực tiếp thấy nhãn test."
+          },
+          {
+            "type": "application",
+            "prompt": "Phân tích application: Chuẩn hóa cảm biến khác đơn vị trước distance/PCA."
+          },
+          {
+            "type": "reproducibility",
+            "prompt": "Ghi split/fit-state/tolerance/provenance cần lưu."
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t03",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T03-norm-distance-geometry",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "norm-distance-geometry"
+        ],
+        "sourceAnchors": [
+          "m_m101_t03",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L09-topology-metric-spaces",
+          "MATH-PROG-L01-linear-algebra-basic"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "reviewPackId": "E23-MM101-T03-RP01",
+        "items": [
+          {
+            "type": "notation",
+            "prompt": "Viết notation + shape chính."
+          },
+          {
+            "type": "formula",
+            "prompt": "Viết 3 công thức lõi và condition."
+          },
+          {
+            "type": "worked_example",
+            "prompt": "Giải ví dụ nhỏ và có sanity-check."
+          },
+          {
+            "type": "trap",
+            "prompt": "Giải thích bẫy: Dùng Euclidean distance trên feature lệch đơn vị làm một feature nuốt toàn bộ geometry."
+          },
+          {
+            "type": "application",
+            "prompt": "Phân tích application: Nearest-neighbor trên vector cảm biến."
+          },
+          {
+            "type": "reproducibility",
+            "prompt": "Ghi split/fit-state/tolerance/provenance cần lưu."
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t04",
+        "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T04-cosine-gram-kernel",
+        "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "cosine-gram-kernel"
+        ],
+        "sourceAnchors": [
+          "m_m101_t04",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-PROG-L02-vector-spaces-linear-maps",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "reviewPackId": "E23-MM101-T04-RP01",
+        "items": [
+          {
+            "type": "notation",
+            "prompt": "Viết notation + shape chính."
+          },
+          {
+            "type": "formula",
+            "prompt": "Viết 3 công thức lõi và condition."
+          },
+          {
+            "type": "worked_example",
+            "prompt": "Giải ví dụ nhỏ và có sanity-check."
+          },
+          {
+            "type": "trap",
+            "prompt": "Giải thích bẫy: Nhầm XXᵀ với XᵀX và gán cùng ý nghĩa cho hai ma trận."
+          },
+          {
+            "type": "application",
+            "prompt": "Phân tích application: Similarity retrieval cho embedding."
+          },
+          {
+            "type": "reproducibility",
+            "prompt": "Ghi split/fit-state/tolerance/provenance cần lưu."
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t05",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T05-covariance-correlation-dependence",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "covariance-correlation-dependence"
+        ],
+        "sourceAnchors": [
+          "m_m101_t05",
+          "m_m101",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L13-mathematical-statistics",
+          "MATH-PROG-L02-vector-spaces-linear-maps"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "reviewPackId": "E23-MM101-T05-RP01",
+        "items": [
+          {
+            "type": "notation",
+            "prompt": "Viết notation + shape chính."
+          },
+          {
+            "type": "formula",
+            "prompt": "Viết 3 công thức lõi và condition."
+          },
+          {
+            "type": "worked_example",
+            "prompt": "Giải ví dụ nhỏ và có sanity-check."
+          },
+          {
+            "type": "trap",
+            "prompt": "Giải thích bẫy: So trực tiếp magnitude covariance giữa các feature khác đơn vị hoặc đọc correlation cao là quan hệ nhân quả."
+          },
+          {
+            "type": "application",
+            "prompt": "Phân tích application: Phát hiện feature dư thừa."
+          },
+          {
+            "type": "reproducibility",
+            "prompt": "Ghi split/fit-state/tolerance/provenance cần lưu."
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t06",
+        "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T06-curse-dimensionality-feature-selection",
+        "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "curse-dimensionality-feature-selection"
+        ],
+        "sourceAnchors": [
+          "m_m101_t06",
+          "m_m101",
+          "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+          "MATH-HK1-C21-entropy_thong_tin_va_pha",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations",
+          "MATH-PROG-L09-topology-metric-spaces"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "reviewPackId": "E23-MM101-T06-RP01",
+        "items": [
+          {
+            "type": "notation",
+            "prompt": "Viết notation + shape chính."
+          },
+          {
+            "type": "formula",
+            "prompt": "Viết 3 công thức lõi và condition."
+          },
+          {
+            "type": "worked_example",
+            "prompt": "Giải ví dụ nhỏ và có sanity-check."
+          },
+          {
+            "type": "trap",
+            "prompt": "Giải thích bẫy: Giữ nhiều feature chỉ vì storage cho phép; trong high-dimension distance có thể mất khả năng phân biệt."
+          },
+          {
+            "type": "application",
+            "prompt": "Phân tích application: Giảm feature cho telemetry nhiều kênh."
+          },
+          {
+            "type": "reproducibility",
+            "prompt": "Ghi split/fit-state/tolerance/provenance cần lưu."
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t07",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T07-data-pipeline-split",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "data-pipeline-split"
+        ],
+        "sourceAnchors": [
+          "m_m101_t07",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L17-ai-machine-learning-math-foundations"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "reviewPackId": "E23-MM101-T07-RP01",
+        "items": [
+          {
+            "type": "notation",
+            "prompt": "Viết notation + shape chính."
+          },
+          {
+            "type": "formula",
+            "prompt": "Viết 3 công thức lõi và condition."
+          },
+          {
+            "type": "worked_example",
+            "prompt": "Giải ví dụ nhỏ và có sanity-check."
+          },
+          {
+            "type": "trap",
+            "prompt": "Giải thích bẫy: Split row ngẫu nhiên khi các row cùng người/thiết bị/thời đoạn gây leakage theo nhóm hoặc thời gian."
+          },
+          {
+            "type": "application",
+            "prompt": "Phân tích application: Reproducible ML preprocessing."
+          },
+          {
+            "type": "reproducibility",
+            "prompt": "Ghi split/fit-state/tolerance/provenance cần lưu."
+          }
+        ]
+      },
+      {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "logicalLessonId": "m_m101_t08",
+        "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T08-multidim-reporting",
+        "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "tags": [
+          "HK1",
+          "multidimensional data",
+          "m_m101",
+          "multidim-reporting"
+        ],
+        "sourceAnchors": [
+          "m_m101_t08",
+          "m_m101",
+          "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+          "MATH-PROG-L16-numerical-methods-computing",
+          "MATH-PROG-L13-mathematical-statistics"
+        ],
+        "auditStatus": "E23_AUTHORED",
+        "reviewPackId": "E23-MM101-T08-RP01",
+        "items": [
+          {
+            "type": "notation",
+            "prompt": "Viết notation + shape chính."
+          },
+          {
+            "type": "formula",
+            "prompt": "Viết 3 công thức lõi và condition."
+          },
+          {
+            "type": "worked_example",
+            "prompt": "Giải ví dụ nhỏ và có sanity-check."
+          },
+          {
+            "type": "trap",
+            "prompt": "Giải thích bẫy: Vẽ heatmap đẹp nhưng thiếu labels, units, n và preprocessing làm kết luận không thể tái kiểm."
+          },
+          {
+            "type": "application",
+            "prompt": "Phân tích application: Báo cáo exploratory data analysis."
+          },
+          {
+            "type": "reproducibility",
+            "prompt": "Ghi split/fit-state/tolerance/provenance cần lưu."
+          }
+        ]
+      }
+    ]
+  }
+}
