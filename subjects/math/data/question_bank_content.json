@@ -7591,12 +7591,25 @@
       }
     },
     "E21": {
-      "status": "IMPLEMENTED_PENDING_CI",
+      "status": "PASS_STATIC_BROWSER_CI",
       "frameworkChapterId": "m_s04",
       "logicalModuleId": "m_s04",
       "lessons": 8,
       "theorySlides": 160,
-      "updatedAt": "2026-09-28"
+      "updatedAt": "2026-09-28",
+      "verifiedAt": "2026-09-28",
+      "pr": 150,
+      "gateResults": {
+        "academic": "PASS",
+        "runtimeStatic": "PASS",
+        "browser": "PASS",
+        "developmentFastCI": "PASS",
+        "e20Regression": "PASS",
+        "e19Regression": "PASS",
+        "e18Regression": "PASS",
+        "e17Regression": "PASS",
+        "universalConstitution": "PASS"
+      }
     }
   }
 }
