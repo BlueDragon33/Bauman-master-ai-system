@@ -2,6 +2,13 @@ name: Russian Reference UI Gate
 
 on:
   workflow_dispatch:
+  pull_request:
+    paths:
+      - "subjects/russian/**"
+      - "subjects/shared/**"
+      - "foundation/domain-model/**"
+      - "platform/ui/**"
+      - ".github/workflows/russian-ui-reference-gate.yml"
   push:
     branches:
       - "main"
