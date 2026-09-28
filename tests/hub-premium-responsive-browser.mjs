@@ -239,9 +239,9 @@ try{
   await page.locator('[data-safe-ux="appearance"]').click();
   await page.waitForFunction(()=>!document.getElementById('appearanceMenu')?.classList.contains('hidden'));
   await page.locator('[data-safe-appearance="focus"]').click();
-  await page.waitForFunction(()=>document.body.dataset.theme==='night'&&document.body.dataset.size==='compact'&&document.body.dataset.hubWallpaper==='plain'&&document.body.dataset.hubDensity==='fit1080');
+  await page.waitForFunction(()=>document.body.dataset.theme==='night'&&document.body.dataset.size==='normal'&&document.body.dataset.hubWallpaper==='plain'&&document.body.dataset.hubDensity==='comfort');
   await page.locator('[data-safe-appearance="bauman"]').click();
-  await page.waitForFunction(()=>document.body.dataset.theme==='academic'&&document.body.dataset.font==='system'&&document.body.dataset.size==='normal'&&document.body.dataset.hubWallpaper==='mountain'&&document.body.dataset.hubDensity==='fit1080');
+  await page.waitForFunction(()=>document.body.dataset.theme==='academic'&&document.body.dataset.font==='system'&&document.body.dataset.size==='normal'&&document.body.dataset.hubWallpaper==='mountain'&&document.body.dataset.hubDensity==='comfort');
   await page.locator('[data-safe-ux="appearance"]').click();
 
   for(const id of ['roadmap','subjects','schedule','research','home']){
