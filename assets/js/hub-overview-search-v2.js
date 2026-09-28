@@ -101,11 +101,23 @@ function russianCapabilityHTML(){
   +'</section>';
 }
 function compactSubjectCapability(){
-  const host=q('#page-subjects'),detail=q('.canva-subject-detail',host);
-  if(!host||!detail)return false;
-  q('.hub-v2-subject-capability',detail)?.remove();
+  const host=q('#page-subjects');
+  if(!host)return false;
+
+  // Support both the canonical Canva subject-detail layout and the newer
+  // reference Subjects workspace. Capability state is canonical; only the
+  // presentation anchor differs between the two shells.
+  const detail=q('.canva-subject-detail',host)
+    ||q('.subjects-page__course-list-inner',host)
+    ||q('.subjects-page',host);
+  if(!detail)return false;
+
+  q('.hub-v2-subject-capability',host)?.remove();
   if(S().subject!=='russian'||!S().subjectCapabilities?.russian)return true;
-  const head=q('.subject-head',detail);
+
+  const head=q('.subject-head',detail)
+    ||q('.subjects-page__header',detail)
+    ||q('.subjects-page__summary',detail);
   if(head)head.insertAdjacentHTML('afterend',russianCapabilityHTML());
   else detail.insertAdjacentHTML('afterbegin',russianCapabilityHTML());
   return true;
