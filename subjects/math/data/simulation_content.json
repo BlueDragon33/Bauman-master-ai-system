@@ -5320,6 +5320,1516 @@
         }
       ],
       "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_m101",
+      "frameworkChapterId": "m_m101",
+      "logicalLessonId": "m_m101_t01",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T01-data-matrix-notation",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m101",
+        "data-matrix-notation"
+      ],
+      "sourceAnchors": [
+        "m_m101_t01",
+        "m_m101",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "simulationId": "E23-MM101-T01-SIM01",
+      "title": "Theory explorer · m_m101 §1.1",
+      "purpose": "Quan sát geometry/spectrum/error khi thay đổi dimension, scale hoặc noise.",
+      "controls": [
+        {
+          "key": "dimension",
+          "type": "number",
+          "default": 4
+        },
+        {
+          "key": "noise",
+          "type": "number",
+          "default": 0.1
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "primary_metric",
+          "label": "Primary metric"
+        },
+        {
+          "key": "stability",
+          "label": "Stability"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_m101",
+      "frameworkChapterId": "m_m101",
+      "logicalLessonId": "m_m101_t01",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T01-data-matrix-notation",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m101",
+        "data-matrix-notation"
+      ],
+      "sourceAnchors": [
+        "m_m101_t01",
+        "m_m101",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "simulationId": "E23-MM101-T01-SIM02",
+      "title": "Applied lab · m_m101 §1.1",
+      "purpose": "Chạy mini data pipeline và phát warning nếu vi phạm condition/leakage gate.",
+      "controls": [
+        {
+          "key": "scale_ratio",
+          "type": "number",
+          "default": 1
+        },
+        {
+          "key": "leakage",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "quality",
+          "label": "Quality/readout"
+        },
+        {
+          "key": "warning",
+          "label": "Contract warning"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_m101",
+      "frameworkChapterId": "m_m101",
+      "logicalLessonId": "m_m101_t02",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T02-centering-scaling-leakage",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m101",
+        "centering-scaling-leakage"
+      ],
+      "sourceAnchors": [
+        "m_m101_t02",
+        "m_m101",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "simulationId": "E23-MM101-T02-SIM01",
+      "title": "Theory explorer · m_m101 §1.2",
+      "purpose": "Quan sát geometry/spectrum/error khi thay đổi dimension, scale hoặc noise.",
+      "controls": [
+        {
+          "key": "dimension",
+          "type": "number",
+          "default": 4
+        },
+        {
+          "key": "noise",
+          "type": "number",
+          "default": 0.1
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "primary_metric",
+          "label": "Primary metric"
+        },
+        {
+          "key": "stability",
+          "label": "Stability"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_m101",
+      "frameworkChapterId": "m_m101",
+      "logicalLessonId": "m_m101_t02",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T02-centering-scaling-leakage",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m101",
+        "centering-scaling-leakage"
+      ],
+      "sourceAnchors": [
+        "m_m101_t02",
+        "m_m101",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "simulationId": "E23-MM101-T02-SIM02",
+      "title": "Applied lab · m_m101 §1.2",
+      "purpose": "Chạy mini data pipeline và phát warning nếu vi phạm condition/leakage gate.",
+      "controls": [
+        {
+          "key": "scale_ratio",
+          "type": "number",
+          "default": 1
+        },
+        {
+          "key": "leakage",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "quality",
+          "label": "Quality/readout"
+        },
+        {
+          "key": "warning",
+          "label": "Contract warning"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_m101",
+      "frameworkChapterId": "m_m101",
+      "logicalLessonId": "m_m101_t03",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T03-norm-distance-geometry",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m101",
+        "norm-distance-geometry"
+      ],
+      "sourceAnchors": [
+        "m_m101_t03",
+        "m_m101",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "simulationId": "E23-MM101-T03-SIM01",
+      "title": "Theory explorer · m_m101 §1.3",
+      "purpose": "Quan sát geometry/spectrum/error khi thay đổi dimension, scale hoặc noise.",
+      "controls": [
+        {
+          "key": "dimension",
+          "type": "number",
+          "default": 4
+        },
+        {
+          "key": "noise",
+          "type": "number",
+          "default": 0.1
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "primary_metric",
+          "label": "Primary metric"
+        },
+        {
+          "key": "stability",
+          "label": "Stability"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_m101",
+      "frameworkChapterId": "m_m101",
+      "logicalLessonId": "m_m101_t03",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T03-norm-distance-geometry",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m101",
+        "norm-distance-geometry"
+      ],
+      "sourceAnchors": [
+        "m_m101_t03",
+        "m_m101",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "simulationId": "E23-MM101-T03-SIM02",
+      "title": "Applied lab · m_m101 §1.3",
+      "purpose": "Chạy mini data pipeline và phát warning nếu vi phạm condition/leakage gate.",
+      "controls": [
+        {
+          "key": "scale_ratio",
+          "type": "number",
+          "default": 1
+        },
+        {
+          "key": "leakage",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "quality",
+          "label": "Quality/readout"
+        },
+        {
+          "key": "warning",
+          "label": "Contract warning"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_m101",
+      "frameworkChapterId": "m_m101",
+      "logicalLessonId": "m_m101_t04",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T04-cosine-gram-kernel",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m101",
+        "cosine-gram-kernel"
+      ],
+      "sourceAnchors": [
+        "m_m101_t04",
+        "m_m101",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "simulationId": "E23-MM101-T04-SIM01",
+      "title": "Theory explorer · m_m101 §1.4",
+      "purpose": "Quan sát geometry/spectrum/error khi thay đổi dimension, scale hoặc noise.",
+      "controls": [
+        {
+          "key": "dimension",
+          "type": "number",
+          "default": 4
+        },
+        {
+          "key": "noise",
+          "type": "number",
+          "default": 0.1
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "primary_metric",
+          "label": "Primary metric"
+        },
+        {
+          "key": "stability",
+          "label": "Stability"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_m101",
+      "frameworkChapterId": "m_m101",
+      "logicalLessonId": "m_m101_t04",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T04-cosine-gram-kernel",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m101",
+        "cosine-gram-kernel"
+      ],
+      "sourceAnchors": [
+        "m_m101_t04",
+        "m_m101",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "simulationId": "E23-MM101-T04-SIM02",
+      "title": "Applied lab · m_m101 §1.4",
+      "purpose": "Chạy mini data pipeline và phát warning nếu vi phạm condition/leakage gate.",
+      "controls": [
+        {
+          "key": "scale_ratio",
+          "type": "number",
+          "default": 1
+        },
+        {
+          "key": "leakage",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "quality",
+          "label": "Quality/readout"
+        },
+        {
+          "key": "warning",
+          "label": "Contract warning"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_m101",
+      "frameworkChapterId": "m_m101",
+      "logicalLessonId": "m_m101_t05",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T05-covariance-correlation-dependence",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m101",
+        "covariance-correlation-dependence"
+      ],
+      "sourceAnchors": [
+        "m_m101_t05",
+        "m_m101",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "simulationId": "E23-MM101-T05-SIM01",
+      "title": "Theory explorer · m_m101 §1.5",
+      "purpose": "Quan sát geometry/spectrum/error khi thay đổi dimension, scale hoặc noise.",
+      "controls": [
+        {
+          "key": "dimension",
+          "type": "number",
+          "default": 4
+        },
+        {
+          "key": "noise",
+          "type": "number",
+          "default": 0.1
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "primary_metric",
+          "label": "Primary metric"
+        },
+        {
+          "key": "stability",
+          "label": "Stability"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_m101",
+      "frameworkChapterId": "m_m101",
+      "logicalLessonId": "m_m101_t05",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T05-covariance-correlation-dependence",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m101",
+        "covariance-correlation-dependence"
+      ],
+      "sourceAnchors": [
+        "m_m101_t05",
+        "m_m101",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "simulationId": "E23-MM101-T05-SIM02",
+      "title": "Applied lab · m_m101 §1.5",
+      "purpose": "Chạy mini data pipeline và phát warning nếu vi phạm condition/leakage gate.",
+      "controls": [
+        {
+          "key": "scale_ratio",
+          "type": "number",
+          "default": 1
+        },
+        {
+          "key": "leakage",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "quality",
+          "label": "Quality/readout"
+        },
+        {
+          "key": "warning",
+          "label": "Contract warning"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_m101",
+      "frameworkChapterId": "m_m101",
+      "logicalLessonId": "m_m101_t06",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T06-curse-dimensionality-feature-selection",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m101",
+        "curse-dimensionality-feature-selection"
+      ],
+      "sourceAnchors": [
+        "m_m101_t06",
+        "m_m101",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L09-topology-metric-spaces"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "simulationId": "E23-MM101-T06-SIM01",
+      "title": "Theory explorer · m_m101 §1.6",
+      "purpose": "Quan sát geometry/spectrum/error khi thay đổi dimension, scale hoặc noise.",
+      "controls": [
+        {
+          "key": "dimension",
+          "type": "number",
+          "default": 4
+        },
+        {
+          "key": "noise",
+          "type": "number",
+          "default": 0.1
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "primary_metric",
+          "label": "Primary metric"
+        },
+        {
+          "key": "stability",
+          "label": "Stability"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_m101",
+      "frameworkChapterId": "m_m101",
+      "logicalLessonId": "m_m101_t06",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T06-curse-dimensionality-feature-selection",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m101",
+        "curse-dimensionality-feature-selection"
+      ],
+      "sourceAnchors": [
+        "m_m101_t06",
+        "m_m101",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L09-topology-metric-spaces"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "simulationId": "E23-MM101-T06-SIM02",
+      "title": "Applied lab · m_m101 §1.6",
+      "purpose": "Chạy mini data pipeline và phát warning nếu vi phạm condition/leakage gate.",
+      "controls": [
+        {
+          "key": "scale_ratio",
+          "type": "number",
+          "default": 1
+        },
+        {
+          "key": "leakage",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "quality",
+          "label": "Quality/readout"
+        },
+        {
+          "key": "warning",
+          "label": "Contract warning"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_m101",
+      "frameworkChapterId": "m_m101",
+      "logicalLessonId": "m_m101_t07",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T07-data-pipeline-split",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m101",
+        "data-pipeline-split"
+      ],
+      "sourceAnchors": [
+        "m_m101_t07",
+        "m_m101",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "simulationId": "E23-MM101-T07-SIM01",
+      "title": "Theory explorer · m_m101 §1.7",
+      "purpose": "Quan sát geometry/spectrum/error khi thay đổi dimension, scale hoặc noise.",
+      "controls": [
+        {
+          "key": "dimension",
+          "type": "number",
+          "default": 4
+        },
+        {
+          "key": "noise",
+          "type": "number",
+          "default": 0.1
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "primary_metric",
+          "label": "Primary metric"
+        },
+        {
+          "key": "stability",
+          "label": "Stability"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_m101",
+      "frameworkChapterId": "m_m101",
+      "logicalLessonId": "m_m101_t07",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T07-data-pipeline-split",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m101",
+        "data-pipeline-split"
+      ],
+      "sourceAnchors": [
+        "m_m101_t07",
+        "m_m101",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "simulationId": "E23-MM101-T07-SIM02",
+      "title": "Applied lab · m_m101 §1.7",
+      "purpose": "Chạy mini data pipeline và phát warning nếu vi phạm condition/leakage gate.",
+      "controls": [
+        {
+          "key": "scale_ratio",
+          "type": "number",
+          "default": 1
+        },
+        {
+          "key": "leakage",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "quality",
+          "label": "Quality/readout"
+        },
+        {
+          "key": "warning",
+          "label": "Contract warning"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_m101",
+      "frameworkChapterId": "m_m101",
+      "logicalLessonId": "m_m101_t08",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T08-multidim-reporting",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m101",
+        "multidim-reporting"
+      ],
+      "sourceAnchors": [
+        "m_m101_t08",
+        "m_m101",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "simulationId": "E23-MM101-T08-SIM01",
+      "title": "Theory explorer · m_m101 §1.8",
+      "purpose": "Quan sát geometry/spectrum/error khi thay đổi dimension, scale hoặc noise.",
+      "controls": [
+        {
+          "key": "dimension",
+          "type": "number",
+          "default": 4
+        },
+        {
+          "key": "noise",
+          "type": "number",
+          "default": 0.1
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "primary_metric",
+          "label": "Primary metric"
+        },
+        {
+          "key": "stability",
+          "label": "Stability"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_m101",
+      "frameworkChapterId": "m_m101",
+      "logicalLessonId": "m_m101_t08",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T08-multidim-reporting",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m101",
+        "multidim-reporting"
+      ],
+      "sourceAnchors": [
+        "m_m101_t08",
+        "m_m101",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "simulationId": "E23-MM101-T08-SIM02",
+      "title": "Applied lab · m_m101 §1.8",
+      "purpose": "Chạy mini data pipeline và phát warning nếu vi phạm condition/leakage gate.",
+      "controls": [
+        {
+          "key": "scale_ratio",
+          "type": "number",
+          "default": 1
+        },
+        {
+          "key": "leakage",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "quality",
+          "label": "Quality/readout"
+        },
+        {
+          "key": "warning",
+          "label": "Contract warning"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_m102",
+      "frameworkChapterId": "m_m102",
+      "logicalLessonId": "m_m102_t01",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T01-covariance-eigen",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m102",
+        "covariance-eigen"
+      ],
+      "sourceAnchors": [
+        "m_m102_t01",
+        "m_m102",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "simulationId": "E23-MM102-T01-SIM01",
+      "title": "Theory explorer · m_m102 §1.1",
+      "purpose": "Quan sát geometry/spectrum/error khi thay đổi dimension, scale hoặc noise.",
+      "controls": [
+        {
+          "key": "dimension",
+          "type": "number",
+          "default": 4
+        },
+        {
+          "key": "noise",
+          "type": "number",
+          "default": 0.1
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "primary_metric",
+          "label": "Primary metric"
+        },
+        {
+          "key": "stability",
+          "label": "Stability"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_m102",
+      "frameworkChapterId": "m_m102",
+      "logicalLessonId": "m_m102_t01",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T01-covariance-eigen",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m102",
+        "covariance-eigen"
+      ],
+      "sourceAnchors": [
+        "m_m102_t01",
+        "m_m102",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "simulationId": "E23-MM102-T01-SIM02",
+      "title": "Applied lab · m_m102 §1.1",
+      "purpose": "Chạy mini data pipeline và phát warning nếu vi phạm condition/leakage gate.",
+      "controls": [
+        {
+          "key": "scale_ratio",
+          "type": "number",
+          "default": 1
+        },
+        {
+          "key": "leakage",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "quality",
+          "label": "Quality/readout"
+        },
+        {
+          "key": "warning",
+          "label": "Contract warning"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_m102",
+      "frameworkChapterId": "m_m102",
+      "logicalLessonId": "m_m102_t02",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T02-principal-projection",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m102",
+        "principal-projection"
+      ],
+      "sourceAnchors": [
+        "m_m102_t02",
+        "m_m102",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "simulationId": "E23-MM102-T02-SIM01",
+      "title": "Theory explorer · m_m102 §1.2",
+      "purpose": "Quan sát geometry/spectrum/error khi thay đổi dimension, scale hoặc noise.",
+      "controls": [
+        {
+          "key": "dimension",
+          "type": "number",
+          "default": 4
+        },
+        {
+          "key": "noise",
+          "type": "number",
+          "default": 0.1
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "primary_metric",
+          "label": "Primary metric"
+        },
+        {
+          "key": "stability",
+          "label": "Stability"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_m102",
+      "frameworkChapterId": "m_m102",
+      "logicalLessonId": "m_m102_t02",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T02-principal-projection",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m102",
+        "principal-projection"
+      ],
+      "sourceAnchors": [
+        "m_m102_t02",
+        "m_m102",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "simulationId": "E23-MM102-T02-SIM02",
+      "title": "Applied lab · m_m102 §1.2",
+      "purpose": "Chạy mini data pipeline và phát warning nếu vi phạm condition/leakage gate.",
+      "controls": [
+        {
+          "key": "scale_ratio",
+          "type": "number",
+          "default": 1
+        },
+        {
+          "key": "leakage",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "quality",
+          "label": "Quality/readout"
+        },
+        {
+          "key": "warning",
+          "label": "Contract warning"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_m102",
+      "frameworkChapterId": "m_m102",
+      "logicalLessonId": "m_m102_t03",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T03-explained-variance-k",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m102",
+        "explained-variance-k"
+      ],
+      "sourceAnchors": [
+        "m_m102_t03",
+        "m_m102",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "simulationId": "E23-MM102-T03-SIM01",
+      "title": "Theory explorer · m_m102 §1.3",
+      "purpose": "Quan sát geometry/spectrum/error khi thay đổi dimension, scale hoặc noise.",
+      "controls": [
+        {
+          "key": "dimension",
+          "type": "number",
+          "default": 4
+        },
+        {
+          "key": "noise",
+          "type": "number",
+          "default": 0.1
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "primary_metric",
+          "label": "Primary metric"
+        },
+        {
+          "key": "stability",
+          "label": "Stability"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_m102",
+      "frameworkChapterId": "m_m102",
+      "logicalLessonId": "m_m102_t03",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T03-explained-variance-k",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m102",
+        "explained-variance-k"
+      ],
+      "sourceAnchors": [
+        "m_m102_t03",
+        "m_m102",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "simulationId": "E23-MM102-T03-SIM02",
+      "title": "Applied lab · m_m102 §1.3",
+      "purpose": "Chạy mini data pipeline và phát warning nếu vi phạm condition/leakage gate.",
+      "controls": [
+        {
+          "key": "scale_ratio",
+          "type": "number",
+          "default": 1
+        },
+        {
+          "key": "leakage",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "quality",
+          "label": "Quality/readout"
+        },
+        {
+          "key": "warning",
+          "label": "Contract warning"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_m102",
+      "frameworkChapterId": "m_m102",
+      "logicalLessonId": "m_m102_t04",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T04-svd-pca-relation",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m102",
+        "svd-pca-relation"
+      ],
+      "sourceAnchors": [
+        "m_m102_t04",
+        "m_m102",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "simulationId": "E23-MM102-T04-SIM01",
+      "title": "Theory explorer · m_m102 §1.4",
+      "purpose": "Quan sát geometry/spectrum/error khi thay đổi dimension, scale hoặc noise.",
+      "controls": [
+        {
+          "key": "dimension",
+          "type": "number",
+          "default": 4
+        },
+        {
+          "key": "noise",
+          "type": "number",
+          "default": 0.1
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "primary_metric",
+          "label": "Primary metric"
+        },
+        {
+          "key": "stability",
+          "label": "Stability"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_m102",
+      "frameworkChapterId": "m_m102",
+      "logicalLessonId": "m_m102_t04",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T04-svd-pca-relation",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m102",
+        "svd-pca-relation"
+      ],
+      "sourceAnchors": [
+        "m_m102_t04",
+        "m_m102",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "simulationId": "E23-MM102-T04-SIM02",
+      "title": "Applied lab · m_m102 §1.4",
+      "purpose": "Chạy mini data pipeline và phát warning nếu vi phạm condition/leakage gate.",
+      "controls": [
+        {
+          "key": "scale_ratio",
+          "type": "number",
+          "default": 1
+        },
+        {
+          "key": "leakage",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "quality",
+          "label": "Quality/readout"
+        },
+        {
+          "key": "warning",
+          "label": "Contract warning"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_m102",
+      "frameworkChapterId": "m_m102",
+      "logicalLessonId": "m_m102_t05",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T05-low-rank-reconstruction",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m102",
+        "low-rank-reconstruction"
+      ],
+      "sourceAnchors": [
+        "m_m102_t05",
+        "m_m102",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "simulationId": "E23-MM102-T05-SIM01",
+      "title": "Theory explorer · m_m102 §1.5",
+      "purpose": "Quan sát geometry/spectrum/error khi thay đổi dimension, scale hoặc noise.",
+      "controls": [
+        {
+          "key": "dimension",
+          "type": "number",
+          "default": 4
+        },
+        {
+          "key": "noise",
+          "type": "number",
+          "default": 0.1
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "primary_metric",
+          "label": "Primary metric"
+        },
+        {
+          "key": "stability",
+          "label": "Stability"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_m102",
+      "frameworkChapterId": "m_m102",
+      "logicalLessonId": "m_m102_t05",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T05-low-rank-reconstruction",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m102",
+        "low-rank-reconstruction"
+      ],
+      "sourceAnchors": [
+        "m_m102_t05",
+        "m_m102",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "simulationId": "E23-MM102-T05-SIM02",
+      "title": "Applied lab · m_m102 §1.5",
+      "purpose": "Chạy mini data pipeline và phát warning nếu vi phạm condition/leakage gate.",
+      "controls": [
+        {
+          "key": "scale_ratio",
+          "type": "number",
+          "default": 1
+        },
+        {
+          "key": "leakage",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "quality",
+          "label": "Quality/readout"
+        },
+        {
+          "key": "warning",
+          "label": "Contract warning"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_m102",
+      "frameworkChapterId": "m_m102",
+      "logicalLessonId": "m_m102_t06",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM102-T06-whitening-stability",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m102",
+        "whitening-stability"
+      ],
+      "sourceAnchors": [
+        "m_m102_t06",
+        "m_m102",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "simulationId": "E23-MM102-T06-SIM01",
+      "title": "Theory explorer · m_m102 §1.6",
+      "purpose": "Quan sát geometry/spectrum/error khi thay đổi dimension, scale hoặc noise.",
+      "controls": [
+        {
+          "key": "dimension",
+          "type": "number",
+          "default": 4
+        },
+        {
+          "key": "noise",
+          "type": "number",
+          "default": 0.1
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "primary_metric",
+          "label": "Primary metric"
+        },
+        {
+          "key": "stability",
+          "label": "Stability"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_m102",
+      "frameworkChapterId": "m_m102",
+      "logicalLessonId": "m_m102_t06",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM102-T06-whitening-stability",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m102",
+        "whitening-stability"
+      ],
+      "sourceAnchors": [
+        "m_m102_t06",
+        "m_m102",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "simulationId": "E23-MM102-T06-SIM02",
+      "title": "Applied lab · m_m102 §1.6",
+      "purpose": "Chạy mini data pipeline và phát warning nếu vi phạm condition/leakage gate.",
+      "controls": [
+        {
+          "key": "scale_ratio",
+          "type": "number",
+          "default": 1
+        },
+        {
+          "key": "leakage",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "quality",
+          "label": "Quality/readout"
+        },
+        {
+          "key": "warning",
+          "label": "Contract warning"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_m102",
+      "frameworkChapterId": "m_m102",
+      "logicalLessonId": "m_m102_t07",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T07-pca-svd-applications",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m102",
+        "pca-svd-applications"
+      ],
+      "sourceAnchors": [
+        "m_m102_t07",
+        "m_m102",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "simulationId": "E23-MM102-T07-SIM01",
+      "title": "Theory explorer · m_m102 §1.7",
+      "purpose": "Quan sát geometry/spectrum/error khi thay đổi dimension, scale hoặc noise.",
+      "controls": [
+        {
+          "key": "dimension",
+          "type": "number",
+          "default": 4
+        },
+        {
+          "key": "noise",
+          "type": "number",
+          "default": 0.1
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "primary_metric",
+          "label": "Primary metric"
+        },
+        {
+          "key": "stability",
+          "label": "Stability"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_m102",
+      "frameworkChapterId": "m_m102",
+      "logicalLessonId": "m_m102_t07",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T07-pca-svd-applications",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m102",
+        "pca-svd-applications"
+      ],
+      "sourceAnchors": [
+        "m_m102_t07",
+        "m_m102",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "simulationId": "E23-MM102-T07-SIM02",
+      "title": "Applied lab · m_m102 §1.7",
+      "purpose": "Chạy mini data pipeline và phát warning nếu vi phạm condition/leakage gate.",
+      "controls": [
+        {
+          "key": "scale_ratio",
+          "type": "number",
+          "default": 1
+        },
+        {
+          "key": "leakage",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "quality",
+          "label": "Quality/readout"
+        },
+        {
+          "key": "warning",
+          "label": "Contract warning"
+        }
+      ],
+      "simulationClass": "application"
+    },
+    {
+      "logicalModuleId": "m_m102",
+      "frameworkChapterId": "m_m102",
+      "logicalLessonId": "m_m102_t08",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T08-pca-svd-mini-project",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m102",
+        "pca-svd-mini-project"
+      ],
+      "sourceAnchors": [
+        "m_m102_t08",
+        "m_m102",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "simulationId": "E23-MM102-T08-SIM01",
+      "title": "Theory explorer · m_m102 §1.8",
+      "purpose": "Quan sát geometry/spectrum/error khi thay đổi dimension, scale hoặc noise.",
+      "controls": [
+        {
+          "key": "dimension",
+          "type": "number",
+          "default": 4
+        },
+        {
+          "key": "noise",
+          "type": "number",
+          "default": 0.1
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "primary_metric",
+          "label": "Primary metric"
+        },
+        {
+          "key": "stability",
+          "label": "Stability"
+        }
+      ],
+      "simulationClass": "theory"
+    },
+    {
+      "logicalModuleId": "m_m102",
+      "frameworkChapterId": "m_m102",
+      "logicalLessonId": "m_m102_t08",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T08-pca-svd-mini-project",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m102",
+        "pca-svd-mini-project"
+      ],
+      "sourceAnchors": [
+        "m_m102_t08",
+        "m_m102",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "simulationId": "E23-MM102-T08-SIM02",
+      "title": "Applied lab · m_m102 §1.8",
+      "purpose": "Chạy mini data pipeline và phát warning nếu vi phạm condition/leakage gate.",
+      "controls": [
+        {
+          "key": "scale_ratio",
+          "type": "number",
+          "default": 1
+        },
+        {
+          "key": "leakage",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "quality",
+          "label": "Quality/readout"
+        },
+        {
+          "key": "warning",
+          "label": "Contract warning"
+        }
+      ],
+      "simulationClass": "application"
     }
   ],
   "importPolicy": {
