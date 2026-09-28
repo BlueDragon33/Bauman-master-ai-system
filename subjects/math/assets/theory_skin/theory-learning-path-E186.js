@@ -107,11 +107,31 @@
     if(r.sourceAnchors&&r.sourceAnchors.programLectureId)ids.push(r.sourceAnchors.programLectureId);
     return ids.some(function(v){return S(v).indexOf(token)>=0;});
   }
-  function lessonOptions(){var p=path(), fr=currentFrame(), all=records(), ch=chapter(p.moduleId,p.courseId,p.chapterId), no=Number(ch&&ch.no||0), recs=[];
-    /* Resolve the selected physical chapter first. Program-lecture anchors are cross-stage
-       references and must never hijack the learner's current stage/chapter picker. */
-    if(fr)recs=all.filter(function(r){return r.chapterId===(fr.chapterId||fr.id);});
-    if(!recs.length&&no){var token='-C'+String(no).padStart(2,'0')+'-';recs=all.filter(function(r){return S(r.chapterId).indexOf(token)>=0;});}
+  function routeStageHint(){
+    var q='';
+    try{q=new URLSearchParams(location.search).get('stage')||'';}catch(_){}
+    q=S(q).toLowerCase();
+    if(q==='prep'||q==='preparatory'||q==='stankin')return 'prep';
+    if(q==='hk1'||q==='m1'||q==='bauman-hk1')return 'hk1';
+    if(q==='vn'||q==='prepare'||q==='vietnam')return 'vn';
+    return '';
+  }
+  function recordStageHint(r){
+    var id=S((r&&r.chapterId)||'');
+    if(id.indexOf('MATH-PREP-')===0)return 'prep';
+    if(id.indexOf('MATH-HK1-')===0)return 'hk1';
+    if(id.indexOf('MATH-VN-')===0)return 'vn';
+    return '';
+  }
+  function lessonOptions(){var p=path(), fr=currentFrame(), all=records(), ch=chapter(p.moduleId,p.courseId,p.chapterId), no=Number(ch&&ch.no||0), recs=[], stageHint=routeStageHint();
+    /* Program chapters are logical routes; physical chapters are renderer targets.
+       Prefer program anchors only inside the current stage so cross-stage sourceAnchors
+       cannot hijack the picker. This preserves PREP bridges while isolating HK1 overlays. */
+    if(no){
+      recs=all.filter(function(r){return programLectureMatches(r,no) && (!stageHint||recordStageHint(r)===stageHint);});
+    }
+    if(!recs.length&&fr)recs=all.filter(function(r){return r.chapterId===(fr.chapterId||fr.id);});
+    if(!recs.length&&no){var token='-C'+String(no).padStart(2,'0')+'-';recs=all.filter(function(r){return S(r.chapterId).indexOf(token)>=0 && (!stageHint||recordStageHint(r)===stageHint);});}
     if(!recs.length&&no)recs=all.filter(function(r){return programLectureMatches(r,no);});
     if(recs.length){
       var seen={};
