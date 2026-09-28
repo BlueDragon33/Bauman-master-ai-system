@@ -7438,6 +7438,822 @@
         "warnings"
       ],
       "goal": "Báo cáo các chế độ vận hành, drift và nhóm mẫu cần kiểm tra thủ công."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t01",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T01-readiness-diagnostic",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "readiness-diagnostic"
+      ],
+      "sourceAnchors": [
+        "m_m104_t01",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "simulationId": "E25-MM104-T01-S01",
+      "title": "Timed written drill",
+      "simulationClass": "theory",
+      "purpose": "Làm bài có thời gian cho Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering.",
+      "controls": [
+        {
+          "key": "difficulty",
+          "type": "number",
+          "default": 2
+        },
+        {
+          "key": "show_hint",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "formula_gate",
+          "label": "Formula gate"
+        },
+        {
+          "key": "condition_gate",
+          "label": "Condition gate"
+        },
+        {
+          "key": "verification_gate",
+          "label": "Verification gate"
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t01",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T01-readiness-diagnostic",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "readiness-diagnostic"
+      ],
+      "sourceAnchors": [
+        "m_m104_t01",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "simulationId": "E25-MM104-T01-S02",
+      "title": "Oral defense drill",
+      "simulationClass": "application",
+      "purpose": "Mô phỏng vấn đáp phản biện cho Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering.",
+      "controls": [
+        {
+          "key": "difficulty",
+          "type": "number",
+          "default": 3
+        },
+        {
+          "key": "show_hint",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "formula_gate",
+          "label": "Formula gate"
+        },
+        {
+          "key": "condition_gate",
+          "label": "Condition gate"
+        },
+        {
+          "key": "verification_gate",
+          "label": "Verification gate"
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t02",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-contract-exam",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "multidim-contract-exam"
+      ],
+      "sourceAnchors": [
+        "m_m104_t02",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "simulationId": "E25-MM104-T02-S01",
+      "title": "Timed written drill",
+      "simulationClass": "theory",
+      "purpose": "Làm bài có thời gian cho Sát hạch data matrix, scale, covariance và geometry.",
+      "controls": [
+        {
+          "key": "difficulty",
+          "type": "number",
+          "default": 2
+        },
+        {
+          "key": "show_hint",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "formula_gate",
+          "label": "Formula gate"
+        },
+        {
+          "key": "condition_gate",
+          "label": "Condition gate"
+        },
+        {
+          "key": "verification_gate",
+          "label": "Verification gate"
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t02",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-contract-exam",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "multidim-contract-exam"
+      ],
+      "sourceAnchors": [
+        "m_m104_t02",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "simulationId": "E25-MM104-T02-S02",
+      "title": "Oral defense drill",
+      "simulationClass": "application",
+      "purpose": "Mô phỏng vấn đáp phản biện cho Sát hạch data matrix, scale, covariance và geometry.",
+      "controls": [
+        {
+          "key": "difficulty",
+          "type": "number",
+          "default": 3
+        },
+        {
+          "key": "show_hint",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "formula_gate",
+          "label": "Formula gate"
+        },
+        {
+          "key": "condition_gate",
+          "label": "Condition gate"
+        },
+        {
+          "key": "verification_gate",
+          "label": "Verification gate"
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t03",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-pca-svd-exam",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "pca-svd-exam"
+      ],
+      "sourceAnchors": [
+        "m_m104_t03",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "simulationId": "E25-MM104-T03-S01",
+      "title": "Timed written drill",
+      "simulationClass": "theory",
+      "purpose": "Làm bài có thời gian cho Sát hạch PCA/SVD, explained variance và reconstruction.",
+      "controls": [
+        {
+          "key": "difficulty",
+          "type": "number",
+          "default": 2
+        },
+        {
+          "key": "show_hint",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "formula_gate",
+          "label": "Formula gate"
+        },
+        {
+          "key": "condition_gate",
+          "label": "Condition gate"
+        },
+        {
+          "key": "verification_gate",
+          "label": "Verification gate"
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t03",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-pca-svd-exam",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "pca-svd-exam"
+      ],
+      "sourceAnchors": [
+        "m_m104_t03",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "simulationId": "E25-MM104-T03-S02",
+      "title": "Oral defense drill",
+      "simulationClass": "application",
+      "purpose": "Mô phỏng vấn đáp phản biện cho Sát hạch PCA/SVD, explained variance và reconstruction.",
+      "controls": [
+        {
+          "key": "difficulty",
+          "type": "number",
+          "default": 3
+        },
+        {
+          "key": "show_hint",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "formula_gate",
+          "label": "Formula gate"
+        },
+        {
+          "key": "condition_gate",
+          "label": "Condition gate"
+        },
+        {
+          "key": "verification_gate",
+          "label": "Verification gate"
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t04",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-similarity-exam",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "similarity-exam"
+      ],
+      "sourceAnchors": [
+        "m_m104_t04",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "simulationId": "E25-MM104-T04-S01",
+      "title": "Timed written drill",
+      "simulationClass": "theory",
+      "purpose": "Làm bài có thời gian cho Sát hạch similarity, metric và nearest-neighbor geometry.",
+      "controls": [
+        {
+          "key": "difficulty",
+          "type": "number",
+          "default": 2
+        },
+        {
+          "key": "show_hint",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "formula_gate",
+          "label": "Formula gate"
+        },
+        {
+          "key": "condition_gate",
+          "label": "Condition gate"
+        },
+        {
+          "key": "verification_gate",
+          "label": "Verification gate"
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t04",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-similarity-exam",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "similarity-exam"
+      ],
+      "sourceAnchors": [
+        "m_m104_t04",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "simulationId": "E25-MM104-T04-S02",
+      "title": "Oral defense drill",
+      "simulationClass": "application",
+      "purpose": "Mô phỏng vấn đáp phản biện cho Sát hạch similarity, metric và nearest-neighbor geometry.",
+      "controls": [
+        {
+          "key": "difficulty",
+          "type": "number",
+          "default": 3
+        },
+        {
+          "key": "show_hint",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "formula_gate",
+          "label": "Formula gate"
+        },
+        {
+          "key": "condition_gate",
+          "label": "Condition gate"
+        },
+        {
+          "key": "verification_gate",
+          "label": "Verification gate"
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t05",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-kmeans-exam",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "kmeans-exam"
+      ],
+      "sourceAnchors": [
+        "m_m104_t05",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "simulationId": "E25-MM104-T05-S01",
+      "title": "Timed written drill",
+      "simulationClass": "theory",
+      "purpose": "Làm bài có thời gian cho Sát hạch K-means, k, inertia, silhouette và stability.",
+      "controls": [
+        {
+          "key": "difficulty",
+          "type": "number",
+          "default": 2
+        },
+        {
+          "key": "show_hint",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "formula_gate",
+          "label": "Formula gate"
+        },
+        {
+          "key": "condition_gate",
+          "label": "Condition gate"
+        },
+        {
+          "key": "verification_gate",
+          "label": "Verification gate"
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t05",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-kmeans-exam",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "kmeans-exam"
+      ],
+      "sourceAnchors": [
+        "m_m104_t05",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "simulationId": "E25-MM104-T05-S02",
+      "title": "Oral defense drill",
+      "simulationClass": "application",
+      "purpose": "Mô phỏng vấn đáp phản biện cho Sát hạch K-means, k, inertia, silhouette và stability.",
+      "controls": [
+        {
+          "key": "difficulty",
+          "type": "number",
+          "default": 3
+        },
+        {
+          "key": "show_hint",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "formula_gate",
+          "label": "Formula gate"
+        },
+        {
+          "key": "condition_gate",
+          "label": "Condition gate"
+        },
+        {
+          "key": "verification_gate",
+          "label": "Verification gate"
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t06",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-density-hierarchical-exam",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "density-hierarchical-exam"
+      ],
+      "sourceAnchors": [
+        "m_m104_t06",
+        "m_m104",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "simulationId": "E25-MM104-T06-S01",
+      "title": "Timed written drill",
+      "simulationClass": "theory",
+      "purpose": "Làm bài có thời gian cho Sát hạch hierarchical clustering và DBSCAN.",
+      "controls": [
+        {
+          "key": "difficulty",
+          "type": "number",
+          "default": 2
+        },
+        {
+          "key": "show_hint",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "formula_gate",
+          "label": "Formula gate"
+        },
+        {
+          "key": "condition_gate",
+          "label": "Condition gate"
+        },
+        {
+          "key": "verification_gate",
+          "label": "Verification gate"
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t06",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-density-hierarchical-exam",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "density-hierarchical-exam"
+      ],
+      "sourceAnchors": [
+        "m_m104_t06",
+        "m_m104",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "simulationId": "E25-MM104-T06-S02",
+      "title": "Oral defense drill",
+      "simulationClass": "application",
+      "purpose": "Mô phỏng vấn đáp phản biện cho Sát hạch hierarchical clustering và DBSCAN.",
+      "controls": [
+        {
+          "key": "difficulty",
+          "type": "number",
+          "default": 3
+        },
+        {
+          "key": "show_hint",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "formula_gate",
+          "label": "Formula gate"
+        },
+        {
+          "key": "condition_gate",
+          "label": "Condition gate"
+        },
+        {
+          "key": "verification_gate",
+          "label": "Verification gate"
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t07",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-integrated-case",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "integrated-case"
+      ],
+      "sourceAnchors": [
+        "m_m104_t07",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "simulationId": "E25-MM104-T07-S01",
+      "title": "Timed written drill",
+      "simulationClass": "theory",
+      "purpose": "Làm bài có thời gian cho Integrated case: telemetry → PCA → clustering → validation.",
+      "controls": [
+        {
+          "key": "difficulty",
+          "type": "number",
+          "default": 2
+        },
+        {
+          "key": "show_hint",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "formula_gate",
+          "label": "Formula gate"
+        },
+        {
+          "key": "condition_gate",
+          "label": "Condition gate"
+        },
+        {
+          "key": "verification_gate",
+          "label": "Verification gate"
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t07",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-integrated-case",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "integrated-case"
+      ],
+      "sourceAnchors": [
+        "m_m104_t07",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "simulationId": "E25-MM104-T07-S02",
+      "title": "Oral defense drill",
+      "simulationClass": "application",
+      "purpose": "Mô phỏng vấn đáp phản biện cho Integrated case: telemetry → PCA → clustering → validation.",
+      "controls": [
+        {
+          "key": "difficulty",
+          "type": "number",
+          "default": 3
+        },
+        {
+          "key": "show_hint",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "formula_gate",
+          "label": "Formula gate"
+        },
+        {
+          "key": "condition_gate",
+          "label": "Condition gate"
+        },
+        {
+          "key": "verification_gate",
+          "label": "Verification gate"
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t08",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-oral-written-gate",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "oral-written-gate"
+      ],
+      "sourceAnchors": [
+        "m_m104_t08",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "simulationId": "E25-MM104-T08-S01",
+      "title": "Timed written drill",
+      "simulationClass": "theory",
+      "purpose": "Làm bài có thời gian cho Final HK1 gate: written + oral defense + error repair.",
+      "controls": [
+        {
+          "key": "difficulty",
+          "type": "number",
+          "default": 2
+        },
+        {
+          "key": "show_hint",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "formula_gate",
+          "label": "Formula gate"
+        },
+        {
+          "key": "condition_gate",
+          "label": "Condition gate"
+        },
+        {
+          "key": "verification_gate",
+          "label": "Verification gate"
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t08",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-oral-written-gate",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "oral-written-gate"
+      ],
+      "sourceAnchors": [
+        "m_m104_t08",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "simulationId": "E25-MM104-T08-S02",
+      "title": "Oral defense drill",
+      "simulationClass": "application",
+      "purpose": "Mô phỏng vấn đáp phản biện cho Final HK1 gate: written + oral defense + error repair.",
+      "controls": [
+        {
+          "key": "difficulty",
+          "type": "number",
+          "default": 3
+        },
+        {
+          "key": "show_hint",
+          "type": "boolean",
+          "default": false
+        }
+      ],
+      "computedReadouts": [
+        {
+          "key": "formula_gate",
+          "label": "Formula gate"
+        },
+        {
+          "key": "condition_gate",
+          "label": "Condition gate"
+        },
+        {
+          "key": "verification_gate",
+          "label": "Verification gate"
+        }
+      ]
     }
   ],
   "importPolicy": {
@@ -7607,6 +8423,8 @@
       "records": 16,
       "updatedAt": "2026-09-28",
       "branch": "feat/math-e24-hk1-similarity-clustering-20260928"
-    }
+    },
+    "latestMaterialization": "E25",
+    "latestModule": "m_m104"
   }
 }
