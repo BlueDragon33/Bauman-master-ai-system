@@ -6046,6 +6046,606 @@
       "title": "Assignment confidence proxy",
       "formula": "q_i=(d_2−d_1)/(d_2+ε)",
       "meaning": "Khoảng cách tương đối giữa centroid gần nhất và thứ hai."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t01",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T01-data-contract-diagnostics",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "data-contract-diagnostics"
+      ],
+      "sourceAnchors": [
+        "m_m104_t01",
+        "m_m104",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "formulaId": "E25-MM104-T01-F01",
+      "title": "Z-score",
+      "formula": "z=(x−μ_train)/σ_train",
+      "meaning": "Fit trên train; áp sang validation/test."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t01",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T01-data-contract-diagnostics",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "data-contract-diagnostics"
+      ],
+      "sourceAnchors": [
+        "m_m104_t01",
+        "m_m104",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "formulaId": "E25-MM104-T01-F02",
+      "title": "Missing rate",
+      "formula": "m_j=n_missing,j/n",
+      "meaning": "Theo dõi theo feature."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t01",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T01-data-contract-diagnostics",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "data-contract-diagnostics"
+      ],
+      "sourceAnchors": [
+        "m_m104_t01",
+        "m_m104",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "formulaId": "E25-MM104-T01-F03",
+      "title": "Feature ratio",
+      "formula": "r=p/n",
+      "meaning": "Cảnh báo khi p lớn so với n."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t02",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-geometry-metric",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "multidim-geometry-metric"
+      ],
+      "sourceAnchors": [
+        "m_m104_t02",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "formulaId": "E25-MM104-T02-F01",
+      "title": "L2",
+      "formula": "d₂(x,y)=√Σⱼ(xⱼ−yⱼ)²",
+      "meaning": "Phụ thuộc scale."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t02",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-geometry-metric",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "multidim-geometry-metric"
+      ],
+      "sourceAnchors": [
+        "m_m104_t02",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "formulaId": "E25-MM104-T02-F02",
+      "title": "Cosine",
+      "formula": "cos(x,y)=xᵀy/(‖x‖₂‖y‖₂)",
+      "meaning": "So hướng của vector."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t02",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-geometry-metric",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "multidim-geometry-metric"
+      ],
+      "sourceAnchors": [
+        "m_m104_t02",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "formulaId": "E25-MM104-T02-F03",
+      "title": "Gram",
+      "formula": "G=XXᵀ",
+      "meaning": "Inner product giữa sample khi row=sample."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t03",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-covariance-eigen-pca",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "covariance-eigen-pca"
+      ],
+      "sourceAnchors": [
+        "m_m104_t03",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "formulaId": "E25-MM104-T03-F01",
+      "title": "Covariance matrix",
+      "formula": "C=(1/(n−1))XcᵀXc",
+      "meaning": "Shape p×p nếu row=sample."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t03",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-covariance-eigen-pca",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "covariance-eigen-pca"
+      ],
+      "sourceAnchors": [
+        "m_m104_t03",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "formulaId": "E25-MM104-T03-F02",
+      "title": "Eigen equation",
+      "formula": "Cv=λv",
+      "meaning": "λ biểu diễn variance theo eigen-direction."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t03",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-covariance-eigen-pca",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "covariance-eigen-pca"
+      ],
+      "sourceAnchors": [
+        "m_m104_t03",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "formulaId": "E25-MM104-T03-F03",
+      "title": "Explained variance ratio",
+      "formula": "EVR_k=Σ_{j=1}^k λ_j / Σ_{j=1}^p λ_j",
+      "meaning": "Dùng để hỗ trợ chọn k."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t04",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-svd-low-rank",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "svd-low-rank"
+      ],
+      "sourceAnchors": [
+        "m_m104_t04",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "formulaId": "E25-MM104-T04-F01",
+      "title": "SVD",
+      "formula": "X=UΣVᵀ",
+      "meaning": "Phân rã theo singular vectors/values."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t04",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-svd-low-rank",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "svd-low-rank"
+      ],
+      "sourceAnchors": [
+        "m_m104_t04",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "formulaId": "E25-MM104-T04-F02",
+      "title": "Rank-k approximation",
+      "formula": "X_k=U_kΣ_kV_kᵀ",
+      "meaning": "Xấp xỉ hạng thấp."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t04",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-svd-low-rank",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "svd-low-rank"
+      ],
+      "sourceAnchors": [
+        "m_m104_t04",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "formulaId": "E25-MM104-T04-F03",
+      "title": "Relative reconstruction error",
+      "formula": "e_k=‖X−X_k‖_F/‖X‖_F",
+      "meaning": "Đánh giá mất mát khi giảm hạng."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t05",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-clustering-objective-validation",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "clustering-objective-validation"
+      ],
+      "sourceAnchors": [
+        "m_m104_t05",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "formulaId": "E25-MM104-T05-F01",
+      "title": "K-means objective",
+      "formula": "J=Σ_i ‖x_i−μ_{c_i}‖₂²",
+      "meaning": "Within-cluster SSE."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t05",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-clustering-objective-validation",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "clustering-objective-validation"
+      ],
+      "sourceAnchors": [
+        "m_m104_t05",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "formulaId": "E25-MM104-T05-F02",
+      "title": "Silhouette",
+      "formula": "s(i)=(b(i)−a(i))/max(a(i),b(i))",
+      "meaning": "Đánh giá separation/cohesion."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t05",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-clustering-objective-validation",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "clustering-objective-validation"
+      ],
+      "sourceAnchors": [
+        "m_m104_t05",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "formulaId": "E25-MM104-T05-F03",
+      "title": "Cluster proportion",
+      "formula": "p_k=n_k/n",
+      "meaning": "Theo dõi cluster imbalance."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t06",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-hierarchical-dbscan",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "hierarchical-dbscan"
+      ],
+      "sourceAnchors": [
+        "m_m104_t06",
+        "m_m104",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "formulaId": "E25-MM104-T06-F01",
+      "title": "Single linkage",
+      "formula": "D(A,B)=min d(a,b)",
+      "meaning": "Dễ chaining."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t06",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-hierarchical-dbscan",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "hierarchical-dbscan"
+      ],
+      "sourceAnchors": [
+        "m_m104_t06",
+        "m_m104",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "formulaId": "E25-MM104-T06-F02",
+      "title": "Complete linkage",
+      "formula": "D(A,B)=max d(a,b)",
+      "meaning": "Ưu tiên compact cluster."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t06",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-hierarchical-dbscan",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "hierarchical-dbscan"
+      ],
+      "sourceAnchors": [
+        "m_m104_t06",
+        "m_m104",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "formulaId": "E25-MM104-T06-F03",
+      "title": "DBSCAN core",
+      "formula": "|N_ε(x)|≥MinPts",
+      "meaning": "Điểm lõi theo density."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t07",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-pipeline-reproducibility",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "pipeline-reproducibility"
+      ],
+      "sourceAnchors": [
+        "m_m104_t07",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "formulaId": "E25-MM104-T07-F01",
+      "title": "Fit state",
+      "formula": "θ=fit(X_train)",
+      "meaning": "Learned state chỉ lấy từ train."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t07",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-pipeline-reproducibility",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "pipeline-reproducibility"
+      ],
+      "sourceAnchors": [
+        "m_m104_t07",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "formulaId": "E25-MM104-T07-F02",
+      "title": "Transform",
+      "formula": "X′=transform(X;θ)",
+      "meaning": "Reuse cùng θ cho val/test."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t07",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-pipeline-reproducibility",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "pipeline-reproducibility"
+      ],
+      "sourceAnchors": [
+        "m_m104_t07",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "formulaId": "E25-MM104-T07-F03",
+      "title": "Stability",
+      "formula": "S=mean agreement(partition_r,partition_s)",
+      "meaning": "Kiểm độ bền theo seed/resampling."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t08",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-hk1-capstone-defense",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "hk1-capstone-defense"
+      ],
+      "sourceAnchors": [
+        "m_m104_t08",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "formulaId": "E25-MM104-T08-F01",
+      "title": "Variance retained",
+      "formula": "R_k=Σ_{j=1}^k λ_j/Σ_j λ_j",
+      "meaning": "Báo rõ mức variance giữ lại."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t08",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-hk1-capstone-defense",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "hk1-capstone-defense"
+      ],
+      "sourceAnchors": [
+        "m_m104_t08",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "formulaId": "E25-MM104-T08-F02",
+      "title": "Centroid drift",
+      "formula": "Δ_k=‖μ_k^{new}−μ_k^{ref}‖₂",
+      "meaning": "Theo dõi thay đổi chế độ."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t08",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-hk1-capstone-defense",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "hk1-capstone-defense"
+      ],
+      "sourceAnchors": [
+        "m_m104_t08",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "formulaId": "E25-MM104-T08-F03",
+      "title": "Relative error",
+      "formula": "ε_rel=‖y−ŷ‖/max(‖y‖,ε)",
+      "meaning": "Chuẩn hóa sai số để so sánh."
     }
   ],
   "importPolicy": {
