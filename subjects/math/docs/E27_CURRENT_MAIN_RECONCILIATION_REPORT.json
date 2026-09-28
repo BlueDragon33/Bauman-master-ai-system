@@ -1,0 +1,51 @@
+{
+  "recoveryId": "E27",
+  "scope": "Current-main reconciliation after E26 release · no new academic content",
+  "status": "PASS_PENDING_FINAL_CI_AND_MERGE",
+  "auditDate": "2026-09-28",
+  "baseRevision": "d502e7f826c7ee64db7d9c7a8f7b5594cfe77157",
+  "validatedCodeRevision": "062ee835a3747c6ee62ef6177f1ce54a01f7f151",
+  "reason": [
+    "E26 explicitly requires current-main audit before opening any new academic scope.",
+    "PR #152 completed E26 and passed Math E26, Math Learning App, Whole System, Constitution and related math gates.",
+    "PR #154 changed the Russian offline shell/workflow after E26; its PR body required Whole System plus relevant gates, but Whole System was not triggered on that head.",
+    "PR #155 restored the manual-only production release boundary and passed Development Fast CI plus Universal Constitution Compliance."
+  ],
+  "discoveredFailures": [
+    {
+      "id": "E27-RACE-01",
+      "symptom": "Whole System browser acceptance timed out waiting for .math-roadmap-shell after routing to Roadmap.",
+      "rootCause": "E129 schedules startup render at 650ms and could overwrite #view after learner navigation had claimed the Roadmap route.",
+      "fix": "Separate deferred E129 rendering from explicit route rendering; deferred rendering now fails closed while Roadmap or Chapter Overview owns #view."
+    },
+    {
+      "id": "E27-ROUTE-02",
+      "symptom": "After the first guard, E186 lesson selection timed out waiting for the chosen data-current-lesson.",
+      "rootCause": "The first guard blocked both deferred background renders and explicit learner-driven E129 renders.",
+      "fix": "Explicit E129 renders now claim #view and release Roadmap/Chapter Overview ownership; only renderDeferred is blocked. Browser regression coverage exercises the deferred guard."
+    }
+  ],
+  "changedRuntime": [
+    "subjects/math/assets/theory_skin/theory-tab-E129.js",
+    "tests/math-learning-journey-browser.mjs"
+  ],
+  "validationEvidence": {
+    "codeHead": "062ee835a3747c6ee62ef6177f1ce54a01f7f151",
+    "wholeSystemRun": 36440147291,
+    "wholeSystem": "SUCCESS",
+    "mathLearningAppRun": 36440147152,
+    "mathLearningApp": "SUCCESS",
+    "developmentFastCI": "SUCCESS",
+    "universalConstitutionCompliance": "SUCCESS",
+    "mathE26CumulativeReadiness": "SUCCESS",
+    "mathE17ThroughE22RelevantGates": "SUCCESS",
+    "packagedChatGPTSiteAcceptance": "SUCCESS"
+  },
+  "finalGateRule": "This report-only closeout commit must also pass the triggered current-head CI before merge.",
+  "releasePolicy": {
+    "merge": "Only after every required current-head gate is green on the report-final head.",
+    "publish": "Only after merge; production remains explicit/manual, exact-preview-first and fail-closed.",
+    "newAcademicRound": "Forbidden until E27 is merged and the merged-main verification is green."
+  },
+  "next": "After final CI passes, merge PR #156, verify merged-main CI, then publish the exact merged revision through the protected production workflow."
+}

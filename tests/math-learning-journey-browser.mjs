@@ -45,6 +45,11 @@ try{
   for(const label of ['Tổng quan','Lộ trình','Học','Luyện tập','Ôn tập'])assert.ok(nav.some(x=>x.includes(label)),`Missing primary nav: ${label}`);
   await page.evaluate(()=>window.BAUMAN_MATH_NAVIGATION.route('roadmap'));
   await page.waitForSelector('.math-roadmap-shell',{timeout:10000});
+  // Regression: the deferred E129 startup renderer must not steal #view from learner-owned routes.
+  await page.evaluate(()=>window.BAUMAN_MATH_THEORY_E129?.renderDeferred?.());
+  await page.waitForTimeout(750);
+  await page.waitForSelector('.math-roadmap-shell',{timeout:10000});
+  assert.equal(await page.evaluate(()=>document.body.dataset.mathPrimaryRoute),'roadmap','Deferred E129 render stole the Roadmap primary route');
   report.checks.firstVisitRoadmap=true;
 
   // Journey 2: open a real source-backed lesson through the accepted E186 route.

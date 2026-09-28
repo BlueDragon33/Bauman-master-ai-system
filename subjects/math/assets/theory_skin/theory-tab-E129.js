@@ -570,14 +570,32 @@
   function openTheoryVault(){
     var st=state(); st.view='storage'; st.storageDomain='theory'; st.storageFile=CONTRACT.storageRoute.defaultContentFile; st.storageFrameFile=CONTRACT.storageRoute.defaultFrameFile; st.storageContentFile=CONTRACT.storageRoute.defaultContentFile; st.storageLegacyFile=CONTRACT.storageRoute.legacyFile; save(); renderStorage(); return st;
   }
+  function externalPrimaryRouteOwnsView(){
+    return !!(document.body && (
+      document.body.classList.contains('math-roadmap-active') ||
+      document.body.classList.contains('math-chapter-overview-active')
+    ));
+  }
+  function claimE129View(){
+    if(!document.body) return;
+    document.body.classList.remove('math-roadmap-active','math-chapter-overview-active');
+    if(document.body.dataset.mathPrimaryRoute==='roadmap') document.body.dataset.mathPrimaryRoute='learn';
+  }
   function render(){
+    // Explicit E129 renders are learner actions (open lesson/theory/storage) and may claim #view.
+    claimE129View();
     applyAdapterMetadata(); buildHostNav(); suppressLegacyImporter();
     if(state().view==='storage' && state().storageDomain==='theory') return renderStorage();
     if(isE169ActivityState()) return renderE169Activity();
     if(shouldRenderE129()) return renderTheory();
     return false;
   }
-  function scheduleRender(delay){ setTimeout(function(){ loadData().then(render); },delay||0); }
+  function renderDeferred(){
+    // Startup/background renders must fail closed while learner navigation owns #view.
+    if(externalPrimaryRouteOwnsView()) return false;
+    return render();
+  }
+  function scheduleRender(delay){ setTimeout(function(){ loadData().then(renderDeferred); },delay||0); }
   function selfCheck(){ var status=sourceStatus(); return { ok:!!(cache.chapters.length||status.frame), release:RELEASE, contractDoc:CONTRACT.contractDoc, adapterMarked:!!(window.SUBJECT_ADAPTER&&window.SUBJECT_ADAPTER.theoryContract), sources:status, primaryFrameSource:CONTRACT.primaryFrameSource, primaryContentSource:CONTRACT.primaryContentSource, legacySource:CONTRACT.legacySource, renderReplacement:true, importerTarget:'theory_lecture_content', legacyImporterSuppressedOnTheoryStorage:true, frameOnlyRenderable:cache.chapters.length>0, note:'E129 shell/importer is active. E126/E128 remain compatibility layers outside E129 Theory storage.' }; }
 
   document.addEventListener('change',function(e){
@@ -621,7 +639,7 @@
   function startSuppressor(){ if(obs) return; try{ obs=new MutationObserver(suppressLegacyImporter); obs.observe(document.body,{childList:true,subtree:true}); }catch(_){ } }
 
   window.BAUMAN_MATH_THEORY_E129_CONTRACT = CONTRACT;
-  window.BAUMAN_MATH_THEORY_E129 = { release:RELEASE, contract:CONTRACT, applyAdapterMetadata:applyAdapterMetadata, sourceStatus:sourceStatus, openTheoryVault:openTheoryVault, render:render, commitContent:commitContent, exportContent:exportContent, clearContentOverlay:clearContentOverlay, selfCheck:selfCheck };
+  window.BAUMAN_MATH_THEORY_E129 = { release:RELEASE, contract:CONTRACT, applyAdapterMetadata:applyAdapterMetadata, sourceStatus:sourceStatus, openTheoryVault:openTheoryVault, render:render, renderDeferred:renderDeferred, commitContent:commitContent, exportContent:exportContent, clearContentOverlay:clearContentOverlay, selfCheck:selfCheck };
   window.BAUMAN_MATH_E129_OWNS_THEORY = true;
 
   applyAdapterMetadata();
