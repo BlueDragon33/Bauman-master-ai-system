@@ -2965,6 +2965,630 @@
       "title": "Inference check",
       "formula": "effect size + interval + p-value",
       "meaning": "Kết luận tốt không dựa vào p-value một mình."
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T01-data-matrix-features",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "data-matrix-features"
+      ],
+      "sourceAnchors": [
+        "m_s04_t01",
+        "m_s04",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "formulaId": "E21-M_S04_T01-F01",
+      "title": "Data matrix shape",
+      "formula": "X ∈ ℝ^(n×p)",
+      "meaning": "n quan sát, p đặc trưng theo convention row=sample, column=feature."
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T01-data-matrix-features",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "data-matrix-features"
+      ],
+      "sourceAnchors": [
+        "m_s04_t01",
+        "m_s04",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "formulaId": "E21-M_S04_T01-F02",
+      "title": "Feature vector",
+      "formula": "xᵢ = [xᵢ1,…,xᵢp]ᵀ",
+      "meaning": "Vector đặc trưng của quan sát i."
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T01-data-matrix-features",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "data-matrix-features"
+      ],
+      "sourceAnchors": [
+        "m_s04_t01",
+        "m_s04",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "formulaId": "E21-M_S04_T01-F03",
+      "title": "Column mean",
+      "formula": "μⱼ = (1/n) Σᵢ xᵢⱼ",
+      "meaning": "Trung bình của feature j trên n quan sát."
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t02",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E21-MS04-T02-scaling-units",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "scaling-units"
+      ],
+      "sourceAnchors": [
+        "m_s04_t02",
+        "m_s04",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "formulaId": "E21-M_S04_T02-F01",
+      "title": "Z-score",
+      "formula": "z = (x−μ_train)/σ_train",
+      "meaning": "Mean/std phải fit trên train rồi áp dụng sang validation/test."
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t02",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E21-MS04-T02-scaling-units",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "scaling-units"
+      ],
+      "sourceAnchors": [
+        "m_s04_t02",
+        "m_s04",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "formulaId": "E21-M_S04_T02-F02",
+      "title": "Min-max",
+      "formula": "x′ = (x−min_train)/(max_train−min_train)",
+      "meaning": "Fit extrema trên train để tránh leakage."
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t02",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E21-MS04-T02-scaling-units",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "scaling-units"
+      ],
+      "sourceAnchors": [
+        "m_s04_t02",
+        "m_s04",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "formulaId": "E21-M_S04_T02-F03",
+      "title": "Robust scaling",
+      "formula": "x′ = (x−median_train)/IQR_train",
+      "meaning": "Bền hơn trước outlier khi phù hợp."
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T03-distance-metrics",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "distance-metrics"
+      ],
+      "sourceAnchors": [
+        "m_s04_t03",
+        "m_s04",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "formulaId": "E21-M_S04_T03-F01",
+      "title": "Euclidean",
+      "formula": "d₂(x,y)=√Σⱼ(xⱼ−yⱼ)²",
+      "meaning": "L2 distance; nhạy scale và outlier."
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T03-distance-metrics",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "distance-metrics"
+      ],
+      "sourceAnchors": [
+        "m_s04_t03",
+        "m_s04",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "formulaId": "E21-M_S04_T03-F02",
+      "title": "Manhattan",
+      "formula": "d₁(x,y)=Σⱼ|xⱼ−yⱼ|",
+      "meaning": "L1 distance; thường bền hơn với chênh lệch cục bộ."
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T03-distance-metrics",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "distance-metrics"
+      ],
+      "sourceAnchors": [
+        "m_s04_t03",
+        "m_s04",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "formulaId": "E21-M_S04_T03-F03",
+      "title": "Minkowski",
+      "formula": "d_q(x,y)=(Σⱼ|xⱼ−yⱼ|^q)^(1/q)",
+      "meaning": "Họ metric q≥1, chứa L1/L2."
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t04",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T04-cosine-sparse",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "cosine-sparse"
+      ],
+      "sourceAnchors": [
+        "m_s04_t04",
+        "m_s04",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "formulaId": "E21-M_S04_T04-F01",
+      "title": "Cosine similarity",
+      "formula": "cos(x,y)=xᵀy/(||x||₂||y||₂)",
+      "meaning": "Đo alignment theo hướng, yêu cầu hai norm khác 0."
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t04",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T04-cosine-sparse",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "cosine-sparse"
+      ],
+      "sourceAnchors": [
+        "m_s04_t04",
+        "m_s04",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "formulaId": "E21-M_S04_T04-F02",
+      "title": "Cosine distance",
+      "formula": "d_cos=1−cos(x,y)",
+      "meaning": "Thước đo dissimilarity thường dùng; tính metric phụ thuộc định nghĩa/miền."
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t04",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T04-cosine-sparse",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "cosine-sparse"
+      ],
+      "sourceAnchors": [
+        "m_s04_t04",
+        "m_s04",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "formulaId": "E21-M_S04_T04-F03",
+      "title": "Normalized dot",
+      "formula": "x̂=x/||x||₂, ŷ=y/||y||₂ ⇒ cos=x̂ᵀŷ",
+      "meaning": "Sau L2 normalization, cosine là dot product."
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t05",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E21-MS04-T05-gram-kernel",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "gram-kernel"
+      ],
+      "sourceAnchors": [
+        "m_s04_t05",
+        "m_s04",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "formulaId": "E21-M_S04_T05-F01",
+      "title": "Gram matrix",
+      "formula": "G = XXᵀ",
+      "meaning": "Nếu rows là observations, Gᵢⱼ=xᵢᵀxⱼ đo inner-product similarity giữa samples."
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t05",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E21-MS04-T05-gram-kernel",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "gram-kernel"
+      ],
+      "sourceAnchors": [
+        "m_s04_t05",
+        "m_s04",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "formulaId": "E21-M_S04_T05-F02",
+      "title": "PSD property",
+      "formula": "aᵀGa = ||Xᵀa||₂² ≥ 0",
+      "meaning": "Gram matrix từ inner products luôn PSD."
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t05",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E21-MS04-T05-gram-kernel",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "gram-kernel"
+      ],
+      "sourceAnchors": [
+        "m_s04_t05",
+        "m_s04",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "formulaId": "E21-M_S04_T05-F03",
+      "title": "Kernel matrix",
+      "formula": "Kᵢⱼ = k(xᵢ,xⱼ)",
+      "meaning": "Kernel hợp lệ thường cần symmetric PSD trên mọi finite sample."
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t06",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E21-MS04-T06-pca-projection",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "pca-projection"
+      ],
+      "sourceAnchors": [
+        "m_s04_t06",
+        "m_s04",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "formulaId": "E21-M_S04_T06-F01",
+      "title": "Centering",
+      "formula": "X_c = X − 1μᵀ",
+      "meaning": "PCA chuẩn bắt đầu từ dữ liệu centered."
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t06",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E21-MS04-T06-pca-projection",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "pca-projection"
+      ],
+      "sourceAnchors": [
+        "m_s04_t06",
+        "m_s04",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "formulaId": "E21-M_S04_T06-F02",
+      "title": "Projection",
+      "formula": "Z = X_c W_k",
+      "meaning": "W_k chứa k principal directions; Z là representation k chiều."
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t06",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E21-MS04-T06-pca-projection",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "pca-projection"
+      ],
+      "sourceAnchors": [
+        "m_s04_t06",
+        "m_s04",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "formulaId": "E21-M_S04_T06-F03",
+      "title": "Explained variance ratio",
+      "formula": "EVR_k = Σ_{i=1}^k λᵢ / Σ_i λᵢ",
+      "meaning": "Tỷ lệ variance giữ lại bởi k component."
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t07",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E21-MS04-T07-feature-pipeline",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "feature-pipeline"
+      ],
+      "sourceAnchors": [
+        "m_s04_t07",
+        "m_s04",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "formulaId": "E21-M_S04_T07-F01",
+      "title": "Pipeline order",
+      "formula": "raw → clean → split → fit transforms(train) → transform(all) → model",
+      "meaning": "Split trước các transform học parameter để chống leakage."
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t07",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E21-MS04-T07-feature-pipeline",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "feature-pipeline"
+      ],
+      "sourceAnchors": [
+        "m_s04_t07",
+        "m_s04",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "formulaId": "E21-M_S04_T07-F02",
+      "title": "Feature matrix contract",
+      "formula": "X_train ∈ ℝ^(n_train×p), X_test ∈ ℝ^(n_test×p)",
+      "meaning": "Feature schema/order phải giống giữa train/test."
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t07",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E21-MS04-T07-feature-pipeline",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "feature-pipeline"
+      ],
+      "sourceAnchors": [
+        "m_s04_t07",
+        "m_s04",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "formulaId": "E21-M_S04_T07-F03",
+      "title": "Missing rate",
+      "formula": "r_missing,j = N_missing,j / N",
+      "meaning": "Theo dõi missingness theo feature trước imputation."
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t08",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E21-MS04-T08-mini-project-report",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "mini-project-report"
+      ],
+      "sourceAnchors": [
+        "m_s04_t08",
+        "m_s04",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "formulaId": "E21-M_S04_T08-F01",
+      "title": "Report contract",
+      "formula": "Problem → Data → Method → Validation → Result → Limitation",
+      "meaning": "Chuỗi tối thiểu để báo cáo kỹ thuật có thể kiểm tra."
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t08",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E21-MS04-T08-mini-project-report",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "mini-project-report"
+      ],
+      "sourceAnchors": [
+        "m_s04_t08",
+        "m_s04",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "formulaId": "E21-M_S04_T08-F02",
+      "title": "Reproducibility",
+      "formula": "result = f(data_version, code_version, parameters, seed)",
+      "meaning": "Kết quả phải truy vết được về version và tham số."
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t08",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E21-MS04-T08-mini-project-report",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "mini-project-report"
+      ],
+      "sourceAnchors": [
+        "m_s04_t08",
+        "m_s04",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "formulaId": "E21-M_S04_T08-F03",
+      "title": "Comparison delta",
+      "formula": "Δmetric = metric_new − metric_baseline",
+      "meaning": "Báo cải tiến so với baseline cùng protocol."
     }
   ],
   "importPolicy": {
@@ -3094,6 +3718,14 @@
         "e17Regression": "PASS",
         "universalConstitution": "PASS"
       }
+    },
+    "E21": {
+      "status": "IMPLEMENTED_PENDING_CI",
+      "frameworkChapterId": "m_s04",
+      "logicalModuleId": "m_s04",
+      "lessons": 8,
+      "theorySlides": 160,
+      "updatedAt": "2026-09-28"
     }
   }
 }
