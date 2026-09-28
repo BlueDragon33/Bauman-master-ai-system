@@ -1,0 +1,232 @@
+{
+  "schema": "bauman_math_logical_module_source_map_v1",
+  "recoveryId": "E23",
+  "frameworkChapterId": "m_m102",
+  "logicalModuleId": "m_m102",
+  "moduleId": "m_m102",
+  "moduleTitle": "PCA, SVD và trực quan hóa không gian đặc trưng",
+  "stageId": "hk1",
+  "architecture": "framework_chapter_over_existing_hk1_multidisciplinary_spine",
+  "legacyFrameworkAlias": "MATH-HK1-LA-C15",
+  "legacyAliasPolicy": "reference_only_not_runtime_physical_chapter",
+  "status": "IMPLEMENTED_PENDING_CI",
+  "correction": {
+    "rule": "m_m102 là framework/logical HK1 chapter; MATH-HK1-LA-C15 chỉ là alias khung, không materialize.",
+    "physicalSpineTruth": [
+      "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "MATH-HK1-C24-mo_hinh_trang_thai_va_mo"
+    ]
+  },
+  "runtimeIsolation": {
+    "forbiddenProgramLectureIds": [
+      "MATH-PROG-L14-stochastic-processes-time-series"
+    ],
+    "reason": "Keep time-series ownership isolated from E23 multidimensional/PCA batch.",
+    "status": "PENDING_CI"
+  },
+  "logicalLessons": [
+    {
+      "logicalId": "m_m102_t01",
+      "title": "Eigen decomposition của covariance matrix",
+      "physicalChapterIds": [
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t"
+      ],
+      "runtimeChapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "theoryLessonIds": [
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T01-covariance-eigen"
+      ],
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "programLectureIds": [
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E23",
+      "prerequisiteLogicalIds": []
+    },
+    {
+      "logicalId": "m_m102_t02",
+      "title": "Projection lên principal components",
+      "physicalChapterIds": [
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t"
+      ],
+      "runtimeChapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "theoryLessonIds": [
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T02-principal-projection"
+      ],
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "programLectureIds": [
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E23",
+      "prerequisiteLogicalIds": [
+        "m_m102_t01"
+      ]
+    },
+    {
+      "logicalId": "m_m102_t03",
+      "title": "Explained variance và chọn số chiều k",
+      "physicalChapterIds": [
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t"
+      ],
+      "runtimeChapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "theoryLessonIds": [
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T03-explained-variance-k"
+      ],
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "programLectureIds": [
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E23",
+      "prerequisiteLogicalIds": [
+        "m_m102_t02"
+      ]
+    },
+    {
+      "logicalId": "m_m102_t04",
+      "title": "SVD của ma trận dữ liệu và quan hệ với PCA",
+      "physicalChapterIds": [
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t"
+      ],
+      "runtimeChapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "theoryLessonIds": [
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T04-svd-pca-relation"
+      ],
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "programLectureIds": [
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E23",
+      "prerequisiteLogicalIds": [
+        "m_m102_t03"
+      ]
+    },
+    {
+      "logicalId": "m_m102_t05",
+      "title": "Low-rank approximation và sai số tái tạo",
+      "physicalChapterIds": [
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t"
+      ],
+      "runtimeChapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "theoryLessonIds": [
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T05-low-rank-reconstruction"
+      ],
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "programLectureIds": [
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E23",
+      "prerequisiteLogicalIds": [
+        "m_m102_t04"
+      ]
+    },
+    {
+      "logicalId": "m_m102_t06",
+      "title": "Whitening, stability và preprocessing cho PCA/SVD",
+      "physicalChapterIds": [
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha"
+      ],
+      "runtimeChapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "theoryLessonIds": [
+        "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM102-T06-whitening-stability"
+      ],
+      "programLectureId": "MATH-PROG-L13-mathematical-statistics",
+      "programLectureIds": [
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E23",
+      "prerequisiteLogicalIds": [
+        "m_m102_t05"
+      ]
+    },
+    {
+      "logicalId": "m_m102_t07",
+      "title": "PCA/SVD trong dữ liệu cảm biến, ảnh và văn bản",
+      "physicalChapterIds": [
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo"
+      ],
+      "runtimeChapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "theoryLessonIds": [
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T07-pca-svd-applications"
+      ],
+      "programLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+      "programLectureIds": [
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E23",
+      "prerequisiteLogicalIds": [
+        "m_m102_t06"
+      ]
+    },
+    {
+      "logicalId": "m_m102_t08",
+      "title": "Mini-project PCA/SVD: pipeline, hình vẽ và báo cáo",
+      "physicalChapterIds": [
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo"
+      ],
+      "runtimeChapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "theoryLessonIds": [
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T08-pca-svd-mini-project"
+      ],
+      "programLectureId": "MATH-PROG-L16-numerical-methods-computing",
+      "programLectureIds": [
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E23",
+      "prerequisiteLogicalIds": [
+        "m_m102_t07"
+      ]
+    }
+  ],
+  "renderGate": {
+    "formulaBlockOnly": true,
+    "matrixBlockOnly": true,
+    "noRawLatex": true,
+    "noCodeStyleFormula": true,
+    "hideSearchMeta": true
+  },
+  "contentGate": {
+    "requiredLogicalLessons": 8,
+    "expected": {
+      "theorySlides": 160,
+      "formulas": 24,
+      "exercises": 64,
+      "applications": 16,
+      "simulations": 16,
+      "professorQA": 8,
+      "questions": 48,
+      "reviewPacks": 8
+    },
+    "requiredSlideRoles": [
+      "notation_formula",
+      "matrix_example",
+      "condition_gate",
+      "data_contract",
+      "worked_example",
+      "computational_check",
+      "data_leakage_gate",
+      "warning_counterexample",
+      "error_repair",
+      "exit_ticket"
+    ],
+    "completionRule": "PASS only when counts, routing, render integrity and HK1 runtime/browser regressions pass."
+  },
+  "constitutionalEvidence": {
+    "policyVersion": "1.1.0",
+    "blueprintLevel": "B4",
+    "qualityGate": "canonical-quality-gates",
+    "productionAuthority": "separate"
+  },
+  "verifiedAt": null,
+  "pr": null,
+  "gateResults": {}
+}
