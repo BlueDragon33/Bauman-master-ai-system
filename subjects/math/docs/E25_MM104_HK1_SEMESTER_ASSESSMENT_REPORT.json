@@ -1,0 +1,38 @@
+{
+  "recoveryId": "E25",
+  "scope": "HK1 · m_m104 final semester assessment gate",
+  "status": "IMPLEMENTED_PENDING_CI",
+  "branch": "feat/math-e25-hk1-semester-assessment-20260928",
+  "counts": {
+    "lessons": 8,
+    "theorySlides": 160,
+    "formulas": 24,
+    "exercises": 64,
+    "applications": 16,
+    "simulations": 16,
+    "professorQA": 8,
+    "questions": 48,
+    "reviewPacks": 8
+  },
+  "prerequisites": [
+    "E23 m_m101",
+    "E23 m_m102",
+    "E24 m_m103 PASS"
+  ],
+  "assessmentRules": [
+    "written calculation",
+    "oral defense",
+    "condition gate",
+    "critical leakage fail",
+    "error repair",
+    "application transfer"
+  ],
+  "gates": {
+    "jsonShape": "PASS_GENERATED",
+    "contentCounts": "PASS_GENERATED",
+    "developmentFastCI": "PENDING",
+    "universalConstitutionCompliance": "PENDING",
+    "assessmentLinkage": "PENDING_CI"
+  },
+  "next": "Final HK1 consolidation / merge-readiness gate after E25 PASS"
+}
