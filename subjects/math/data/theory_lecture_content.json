@@ -24330,6 +24330,5781 @@
           ]
         }
       ]
+    },
+    {
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T01-data-matrix-notation",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "lessonTitle": "m_m101 · §1.1 · Ma trận dữ liệu X: quan sát, đặc trưng và notation chuẩn",
+      "title": "m_m101 · §1.1 · Ma trận dữ liệu X: quan sát, đặc trưng và notation chuẩn",
+      "programLectureId": "MATH-PROG-L01-linear-algebra-basic",
+      "programLectureIds": [
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "roadmapRole": "m_m101_t01",
+      "baumanFocus": "HK1 core fast-batch E23 · Nền tảng phân tích dữ liệu đa chiều.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "legacyFrameworkChapterAlias": "MATH-HK1-MT-C14",
+        "logicalLessonId": "m_m101_t01",
+        "frameworkAnchor": "m_m101_t01",
+        "programLectureId": "MATH-PROG-L01-linear-algebra-basic",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "theory_framework_plus_e23_hk1_core_authoring"
+      },
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m101",
+        "data-matrix-notation"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_m101 · §1.1 · Ma trận dữ liệu X: quan sát, đặc trưng và notation chuẩn",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "HK1 context",
+              "body": "Nền tảng phân tích dữ liệu đa chiều: nội dung đi từ công thức tới numerical/data contract và khả năng kiểm chứng."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Hiểu, tính, kiểm và ứng dụng «Ma trận dữ liệu X: quan sát, đặc trưng và notation chuẩn» ở mức HK1."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài",
+              "items": [
+                "Viết notation/công thức đúng.",
+                "Nêu được condition gate.",
+                "Giải một ví dụ dữ liệu nhỏ.",
+                "Phát hiện bẫy numerical/data leakage.",
+                "Liên hệ được ứng dụng kỹ thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Notation",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Ký hiệu cần khóa",
+              "items": [
+                "shape/dimension",
+                "sample/feature axis",
+                "train/validation/test boundary",
+                "units/scale",
+                "fit-state/provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Data matrix",
+              "body": "X ∈ ℝ^(n×p)\nn observations × p features; convention phải được khóa."
+            },
+            {
+              "type": "formula",
+              "title": "Observation vector",
+              "body": "xᵢ ∈ ℝ^p\nHàng i là một quan sát nếu row=sample."
+            },
+            {
+              "type": "formula",
+              "title": "Feature mean",
+              "body": "μⱼ=(1/n)Σᵢxᵢⱼ\nMean theo cột j."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Matrix / shape view",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Structure",
+              "body": "X = [[x11,…,x1p], …, [xn1,…,xnp]]",
+              "meaning": "Đọc shape và meaning trước khi nhân/chuyển vị/chiếu."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Khóa row/column semantics, shape, dtype, unit, missing-value policy và sample identity trước mọi phép tính."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "shape đúng",
+                "assumption đúng",
+                "fit-state đúng split",
+                "numerical stability được kiểm"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Data contract",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Contract",
+              "items": [
+                "schema + units",
+                "sample identity",
+                "missing/outlier policy",
+                "split provenance",
+                "transform version"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài",
+              "body": "Telemetry 5000 timestamp × 12 cảm biến: viết shape, feature names, units và một row vector."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Viết phép tính kèm shape/condition và một bước sanity-check."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Diễn giải hình học",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Question",
+              "body": "Phép biến đổi làm thay đổi length, angle, variance, rank hoặc information geometry như thế nào?"
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Thuật toán",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Workflow",
+              "items": [
+                "khóa input contract",
+                "tính/fit trên đúng split",
+                "kiểm shape + condition",
+                "đánh giá numerical sanity",
+                "lưu output + provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Kiểm chứng số",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checks",
+              "items": [
+                "shape assertion",
+                "finite-value check",
+                "symmetry/orthogonality khi cần",
+                "relative error/tolerance",
+                "repeatability"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Cổng chống leakage",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Không được",
+              "items": [
+                "fit preprocessing/PCA/feature selection trên test",
+                "tuning bằng test result",
+                "trộn entity/time giữa split",
+                "mất provenance sau transform"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy sư phạm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Transpose X nhưng không đổi semantic convention khiến covariance/model chạy được nhưng sai trục."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Nếu sai",
+              "items": [
+                "xác định bước đầu tiên sai",
+                "quay lại data/shape contract",
+                "kiểm condition",
+                "làm bài biến thể nhỏ",
+                "ghi invariant/tolerance để tránh lặp"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Ứng dụng",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Kỹ thuật",
+              "items": [
+                "Thiết kế feature matrix cho telemetry điều khiển.",
+                "Kiểm tra schema của batch dữ liệu trước ML."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mô phỏng",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Controls/Readouts",
+              "items": [
+                "dimension/scale/noise",
+                "spectrum/metric/error",
+                "before-after transform",
+                "warning khi vi phạm split/condition"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Kết luận kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Việt",
+              "body": "Nêu kết quả định lượng + condition + limitation."
+            },
+            {
+              "type": "text",
+              "title": "Русский шаблон",
+              "body": "Сначала фиксируем данные и условия, затем вычисляем показатель и проверяем устойчивость результата."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Lab protocol",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Artifact",
+              "items": [
+                "input snapshot",
+                "config/seed",
+                "fit state",
+                "metrics/figures",
+                "short conclusion"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Ôn tập",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tự hỏi",
+              "items": [
+                "3 công thức lõi?",
+                "condition gate?",
+                "1 numerical/leakage trap?",
+                "1 application?",
+                "1 sanity-check?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Exit ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Pass khi",
+              "items": [
+                "formula đúng",
+                "shape đúng",
+                "condition đúng",
+                "example kiểm được",
+                "application hợp lý"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T02-centering-scaling-leakage",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "lessonTitle": "m_m101 · §1.2 · Centering, scaling và chuẩn hóa không gây data leakage",
+      "title": "m_m101 · §1.2 · Centering, scaling và chuẩn hóa không gây data leakage",
+      "programLectureId": "MATH-PROG-L13-mathematical-statistics",
+      "programLectureIds": [
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "roadmapRole": "m_m101_t02",
+      "baumanFocus": "HK1 core fast-batch E23 · Nền tảng phân tích dữ liệu đa chiều.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "legacyFrameworkChapterAlias": "MATH-HK1-MT-C14",
+        "logicalLessonId": "m_m101_t02",
+        "frameworkAnchor": "m_m101_t02",
+        "programLectureId": "MATH-PROG-L13-mathematical-statistics",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "theory_framework_plus_e23_hk1_core_authoring"
+      },
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m101",
+        "centering-scaling-leakage"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_m101 · §1.2 · Centering, scaling và chuẩn hóa không gây data leakage",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "HK1 context",
+              "body": "Nền tảng phân tích dữ liệu đa chiều: nội dung đi từ công thức tới numerical/data contract và khả năng kiểm chứng."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Hiểu, tính, kiểm và ứng dụng «Centering, scaling và chuẩn hóa không gây data leakage» ở mức HK1."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài",
+              "items": [
+                "Viết notation/công thức đúng.",
+                "Nêu được condition gate.",
+                "Giải một ví dụ dữ liệu nhỏ.",
+                "Phát hiện bẫy numerical/data leakage.",
+                "Liên hệ được ứng dụng kỹ thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Notation",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Ký hiệu cần khóa",
+              "items": [
+                "shape/dimension",
+                "sample/feature axis",
+                "train/validation/test boundary",
+                "units/scale",
+                "fit-state/provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Centering",
+              "body": "Xc = X − 1μᵀ\nμ phải fit từ train khi dùng trong ML."
+            },
+            {
+              "type": "formula",
+              "title": "Z-score",
+              "body": "z=(x−μ_train)/σ_train\nTrain statistics áp sang validation/test."
+            },
+            {
+              "type": "formula",
+              "title": "Min-max",
+              "body": "x′=(x−min_train)/(max_train−min_train)\nFit extrema trên train."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Matrix / shape view",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Structure",
+              "body": "Shape / axes must be stated before interpretation.",
+              "meaning": "Đọc shape và meaning trước khi nhân/chuyển vị/chiếu."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Split train/validation/test trước khi fit bất kỳ statistic preprocessing nào có học từ dữ liệu."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "shape đúng",
+                "assumption đúng",
+                "fit-state đúng split",
+                "numerical stability được kiểm"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Data contract",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Contract",
+              "items": [
+                "schema + units",
+                "sample identity",
+                "missing/outlier policy",
+                "split provenance",
+                "transform version"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài",
+              "body": "Train có μ=10, σ=2; test x=13. Tính z bằng train statistics và giải thích vì sao không dùng μ_test."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Viết phép tính kèm shape/condition và một bước sanity-check."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Diễn giải hình học",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Question",
+              "body": "Phép biến đổi làm thay đổi length, angle, variance, rank hoặc information geometry như thế nào?"
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Thuật toán",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Workflow",
+              "items": [
+                "khóa input contract",
+                "tính/fit trên đúng split",
+                "kiểm shape + condition",
+                "đánh giá numerical sanity",
+                "lưu output + provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Kiểm chứng số",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checks",
+              "items": [
+                "shape assertion",
+                "finite-value check",
+                "symmetry/orthogonality khi cần",
+                "relative error/tolerance",
+                "repeatability"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Cổng chống leakage",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Không được",
+              "items": [
+                "fit preprocessing/PCA/feature selection trên test",
+                "tuning bằng test result",
+                "trộn entity/time giữa split",
+                "mất provenance sau transform"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy sư phạm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Chuẩn hóa toàn bộ dataset rồi mới split gây leakage dù model không trực tiếp thấy nhãn test."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Nếu sai",
+              "items": [
+                "xác định bước đầu tiên sai",
+                "quay lại data/shape contract",
+                "kiểm condition",
+                "làm bài biến thể nhỏ",
+                "ghi invariant/tolerance để tránh lặp"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Ứng dụng",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Kỹ thuật",
+              "items": [
+                "Chuẩn hóa cảm biến khác đơn vị trước distance/PCA.",
+                "Xây preprocessing pipeline không rò rỉ dữ liệu."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mô phỏng",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Controls/Readouts",
+              "items": [
+                "dimension/scale/noise",
+                "spectrum/metric/error",
+                "before-after transform",
+                "warning khi vi phạm split/condition"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Kết luận kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Việt",
+              "body": "Nêu kết quả định lượng + condition + limitation."
+            },
+            {
+              "type": "text",
+              "title": "Русский шаблон",
+              "body": "Сначала фиксируем данные и условия, затем вычисляем показатель и проверяем устойчивость результата."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Lab protocol",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Artifact",
+              "items": [
+                "input snapshot",
+                "config/seed",
+                "fit state",
+                "metrics/figures",
+                "short conclusion"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Ôn tập",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tự hỏi",
+              "items": [
+                "3 công thức lõi?",
+                "condition gate?",
+                "1 numerical/leakage trap?",
+                "1 application?",
+                "1 sanity-check?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Exit ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Pass khi",
+              "items": [
+                "formula đúng",
+                "shape đúng",
+                "condition đúng",
+                "example kiểm được",
+                "application hợp lý"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T03-norm-distance-geometry",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "lessonTitle": "m_m101 · §1.3 · Norm, khoảng cách và hình học dữ liệu nhiều chiều",
+      "title": "m_m101 · §1.3 · Norm, khoảng cách và hình học dữ liệu nhiều chiều",
+      "programLectureId": "MATH-PROG-L09-topology-metric-spaces",
+      "programLectureIds": [
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "roadmapRole": "m_m101_t03",
+      "baumanFocus": "HK1 core fast-batch E23 · Nền tảng phân tích dữ liệu đa chiều.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "legacyFrameworkChapterAlias": "MATH-HK1-MT-C14",
+        "logicalLessonId": "m_m101_t03",
+        "frameworkAnchor": "m_m101_t03",
+        "programLectureId": "MATH-PROG-L09-topology-metric-spaces",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "theory_framework_plus_e23_hk1_core_authoring"
+      },
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m101",
+        "norm-distance-geometry"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_m101 · §1.3 · Norm, khoảng cách và hình học dữ liệu nhiều chiều",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "HK1 context",
+              "body": "Nền tảng phân tích dữ liệu đa chiều: nội dung đi từ công thức tới numerical/data contract và khả năng kiểm chứng."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Hiểu, tính, kiểm và ứng dụng «Norm, khoảng cách và hình học dữ liệu nhiều chiều» ở mức HK1."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài",
+              "items": [
+                "Viết notation/công thức đúng.",
+                "Nêu được condition gate.",
+                "Giải một ví dụ dữ liệu nhỏ.",
+                "Phát hiện bẫy numerical/data leakage.",
+                "Liên hệ được ứng dụng kỹ thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Notation",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Ký hiệu cần khóa",
+              "items": [
+                "shape/dimension",
+                "sample/feature axis",
+                "train/validation/test boundary",
+                "units/scale",
+                "fit-state/provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "L2 norm",
+              "body": "‖x‖₂=√Σⱼxⱼ²\nĐộ dài Euclid."
+            },
+            {
+              "type": "formula",
+              "title": "L1 distance",
+              "body": "d₁(x,y)=Σⱼ|xⱼ−yⱼ|\nKhoảng cách Manhattan."
+            },
+            {
+              "type": "formula",
+              "title": "Minkowski",
+              "body": "d_p(x,y)=(Σⱼ|xⱼ−yⱼ|^p)^(1/p)\np≥1 để là metric chuẩn."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Matrix / shape view",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Structure",
+              "body": "Shape / axes must be stated before interpretation.",
+              "meaning": "Đọc shape và meaning trước khi nhân/chuyển vị/chiếu."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Scale/units phải hợp lý và metric phải phù hợp semantics; dữ liệu nhiều chiều cần kiểm concentration."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "shape đúng",
+                "assumption đúng",
+                "fit-state đúng split",
+                "numerical stability được kiểm"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Data contract",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Contract",
+              "items": [
+                "schema + units",
+                "sample identity",
+                "missing/outlier policy",
+                "split provenance",
+                "transform version"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài",
+              "body": "x=(1,10), y=(4,14). Tính L1/L2; sau đó nhân feature thứ hai ×100 và quan sát ranking thay đổi."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Viết phép tính kèm shape/condition và một bước sanity-check."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Diễn giải hình học",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Question",
+              "body": "Phép biến đổi làm thay đổi length, angle, variance, rank hoặc information geometry như thế nào?"
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Thuật toán",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Workflow",
+              "items": [
+                "khóa input contract",
+                "tính/fit trên đúng split",
+                "kiểm shape + condition",
+                "đánh giá numerical sanity",
+                "lưu output + provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Kiểm chứng số",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checks",
+              "items": [
+                "shape assertion",
+                "finite-value check",
+                "symmetry/orthogonality khi cần",
+                "relative error/tolerance",
+                "repeatability"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Cổng chống leakage",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Không được",
+              "items": [
+                "fit preprocessing/PCA/feature selection trên test",
+                "tuning bằng test result",
+                "trộn entity/time giữa split",
+                "mất provenance sau transform"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy sư phạm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Dùng Euclidean distance trên feature lệch đơn vị làm một feature nuốt toàn bộ geometry."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Nếu sai",
+              "items": [
+                "xác định bước đầu tiên sai",
+                "quay lại data/shape contract",
+                "kiểm condition",
+                "làm bài biến thể nhỏ",
+                "ghi invariant/tolerance để tránh lặp"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Ứng dụng",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Kỹ thuật",
+              "items": [
+                "Nearest-neighbor trên vector cảm biến.",
+                "Chọn metric cho anomaly detection."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mô phỏng",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Controls/Readouts",
+              "items": [
+                "dimension/scale/noise",
+                "spectrum/metric/error",
+                "before-after transform",
+                "warning khi vi phạm split/condition"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Kết luận kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Việt",
+              "body": "Nêu kết quả định lượng + condition + limitation."
+            },
+            {
+              "type": "text",
+              "title": "Русский шаблон",
+              "body": "Сначала фиксируем данные и условия, затем вычисляем показатель и проверяем устойчивость результата."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Lab protocol",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Artifact",
+              "items": [
+                "input snapshot",
+                "config/seed",
+                "fit state",
+                "metrics/figures",
+                "short conclusion"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Ôn tập",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tự hỏi",
+              "items": [
+                "3 công thức lõi?",
+                "condition gate?",
+                "1 numerical/leakage trap?",
+                "1 application?",
+                "1 sanity-check?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Exit ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Pass khi",
+              "items": [
+                "formula đúng",
+                "shape đúng",
+                "condition đúng",
+                "example kiểm được",
+                "application hợp lý"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T04-cosine-gram-kernel",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "lessonTitle": "m_m101 · §1.4 · Cosine similarity, Gram matrix và kernel nhập môn",
+      "title": "m_m101 · §1.4 · Cosine similarity, Gram matrix và kernel nhập môn",
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "programLectureIds": [
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "roadmapRole": "m_m101_t04",
+      "baumanFocus": "HK1 core fast-batch E23 · Nền tảng phân tích dữ liệu đa chiều.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "legacyFrameworkChapterAlias": "MATH-HK1-MT-C14",
+        "logicalLessonId": "m_m101_t04",
+        "frameworkAnchor": "m_m101_t04",
+        "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "theory_framework_plus_e23_hk1_core_authoring"
+      },
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m101",
+        "cosine-gram-kernel"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_m101 · §1.4 · Cosine similarity, Gram matrix và kernel nhập môn",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "HK1 context",
+              "body": "Nền tảng phân tích dữ liệu đa chiều: nội dung đi từ công thức tới numerical/data contract và khả năng kiểm chứng."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Hiểu, tính, kiểm và ứng dụng «Cosine similarity, Gram matrix và kernel nhập môn» ở mức HK1."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài",
+              "items": [
+                "Viết notation/công thức đúng.",
+                "Nêu được condition gate.",
+                "Giải một ví dụ dữ liệu nhỏ.",
+                "Phát hiện bẫy numerical/data leakage.",
+                "Liên hệ được ứng dụng kỹ thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Notation",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Ký hiệu cần khóa",
+              "items": [
+                "shape/dimension",
+                "sample/feature axis",
+                "train/validation/test boundary",
+                "units/scale",
+                "fit-state/provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Cosine",
+              "body": "cos(x,y)=xᵀy/(‖x‖₂‖y‖₂)\nYêu cầu hai vector khác 0."
+            },
+            {
+              "type": "formula",
+              "title": "Gram matrix",
+              "body": "G=XXᵀ\nG_ij là inner product giữa hai sample theo row=sample."
+            },
+            {
+              "type": "formula",
+              "title": "Linear kernel",
+              "body": "k(x,y)=xᵀy\nKernel tuyến tính tương ứng inner product gốc."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Matrix / shape view",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Structure",
+              "body": "Shape / axes must be stated before interpretation.",
+              "meaning": "Đọc shape và meaning trước khi nhân/chuyển vị/chiếu."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Kiểm vector zero, orientation của X và mục tiêu so magnitude hay direction; Gram sample-space khác covariance feature-space."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "shape đúng",
+                "assumption đúng",
+                "fit-state đúng split",
+                "numerical stability được kiểm"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Data contract",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Contract",
+              "items": [
+                "schema + units",
+                "sample identity",
+                "missing/outlier policy",
+                "split provenance",
+                "transform version"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài",
+              "body": "Với X 3×2, xác định shape của XXᵀ và XᵀX rồi giải thích mỗi ma trận đang so sánh cái gì."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Viết phép tính kèm shape/condition và một bước sanity-check."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Diễn giải hình học",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Question",
+              "body": "Phép biến đổi làm thay đổi length, angle, variance, rank hoặc information geometry như thế nào?"
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Thuật toán",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Workflow",
+              "items": [
+                "khóa input contract",
+                "tính/fit trên đúng split",
+                "kiểm shape + condition",
+                "đánh giá numerical sanity",
+                "lưu output + provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Kiểm chứng số",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checks",
+              "items": [
+                "shape assertion",
+                "finite-value check",
+                "symmetry/orthogonality khi cần",
+                "relative error/tolerance",
+                "repeatability"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Cổng chống leakage",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Không được",
+              "items": [
+                "fit preprocessing/PCA/feature selection trên test",
+                "tuning bằng test result",
+                "trộn entity/time giữa split",
+                "mất provenance sau transform"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy sư phạm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Nhầm XXᵀ với XᵀX và gán cùng ý nghĩa cho hai ma trận."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Nếu sai",
+              "items": [
+                "xác định bước đầu tiên sai",
+                "quay lại data/shape contract",
+                "kiểm condition",
+                "làm bài biến thể nhỏ",
+                "ghi invariant/tolerance để tránh lặp"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Ứng dụng",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Kỹ thuật",
+              "items": [
+                "Similarity retrieval cho embedding.",
+                "Kernel/Gram inspection trước clustering."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mô phỏng",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Controls/Readouts",
+              "items": [
+                "dimension/scale/noise",
+                "spectrum/metric/error",
+                "before-after transform",
+                "warning khi vi phạm split/condition"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Kết luận kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Việt",
+              "body": "Nêu kết quả định lượng + condition + limitation."
+            },
+            {
+              "type": "text",
+              "title": "Русский шаблон",
+              "body": "Сначала фиксируем данные и условия, затем вычисляем показатель и проверяем устойчивость результата."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Lab protocol",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Artifact",
+              "items": [
+                "input snapshot",
+                "config/seed",
+                "fit state",
+                "metrics/figures",
+                "short conclusion"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Ôn tập",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tự hỏi",
+              "items": [
+                "3 công thức lõi?",
+                "condition gate?",
+                "1 numerical/leakage trap?",
+                "1 application?",
+                "1 sanity-check?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Exit ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Pass khi",
+              "items": [
+                "formula đúng",
+                "shape đúng",
+                "condition đúng",
+                "example kiểm được",
+                "application hợp lý"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T05-covariance-correlation-dependence",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "lessonTitle": "m_m101 · §1.5 · Covariance, correlation và cấu trúc phụ thuộc trong X",
+      "title": "m_m101 · §1.5 · Covariance, correlation và cấu trúc phụ thuộc trong X",
+      "programLectureId": "MATH-PROG-L13-mathematical-statistics",
+      "programLectureIds": [
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "roadmapRole": "m_m101_t05",
+      "baumanFocus": "HK1 core fast-batch E23 · Nền tảng phân tích dữ liệu đa chiều.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "legacyFrameworkChapterAlias": "MATH-HK1-MT-C14",
+        "logicalLessonId": "m_m101_t05",
+        "frameworkAnchor": "m_m101_t05",
+        "programLectureId": "MATH-PROG-L13-mathematical-statistics",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "theory_framework_plus_e23_hk1_core_authoring"
+      },
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m101",
+        "covariance-correlation-dependence"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_m101 · §1.5 · Covariance, correlation và cấu trúc phụ thuộc trong X",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "HK1 context",
+              "body": "Nền tảng phân tích dữ liệu đa chiều: nội dung đi từ công thức tới numerical/data contract và khả năng kiểm chứng."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Hiểu, tính, kiểm và ứng dụng «Covariance, correlation và cấu trúc phụ thuộc trong X» ở mức HK1."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài",
+              "items": [
+                "Viết notation/công thức đúng.",
+                "Nêu được condition gate.",
+                "Giải một ví dụ dữ liệu nhỏ.",
+                "Phát hiện bẫy numerical/data leakage.",
+                "Liên hệ được ứng dụng kỹ thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Notation",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Ký hiệu cần khóa",
+              "items": [
+                "shape/dimension",
+                "sample/feature axis",
+                "train/validation/test boundary",
+                "units/scale",
+                "fit-state/provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Sample covariance",
+              "body": "C=(1/(n−1))XcᵀXc\nC có shape p×p."
+            },
+            {
+              "type": "formula",
+              "title": "Covariance pair",
+              "body": "cov(x,y)=Σᵢ(xᵢ−x̄)(yᵢ−ȳ)/(n−1)\nCó đơn vị tích của hai feature."
+            },
+            {
+              "type": "formula",
+              "title": "Pearson correlation",
+              "body": "ρ_xy=cov(x,y)/(s_x s_y)\nVô thứ nguyên; cần s_x,s_y>0."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Matrix / shape view",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Structure",
+              "body": "Shape / axes must be stated before interpretation.",
+              "meaning": "Đọc shape và meaning trước khi nhân/chuyển vị/chiếu."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Center đúng, sample alignment đúng và hiểu Pearson chủ yếu đo quan hệ tuyến tính; không suy nhân quả từ correlation."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "shape đúng",
+                "assumption đúng",
+                "fit-state đúng split",
+                "numerical stability được kiểm"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Data contract",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Contract",
+              "items": [
+                "schema + units",
+                "sample identity",
+                "missing/outlier policy",
+                "split provenance",
+                "transform version"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài",
+              "body": "Tính covariance/correlation cho ba cặp điểm nhỏ và so ảnh hưởng khi đổi đơn vị từ m sang mm."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Viết phép tính kèm shape/condition và một bước sanity-check."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Diễn giải hình học",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Question",
+              "body": "Phép biến đổi làm thay đổi length, angle, variance, rank hoặc information geometry như thế nào?"
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Thuật toán",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Workflow",
+              "items": [
+                "khóa input contract",
+                "tính/fit trên đúng split",
+                "kiểm shape + condition",
+                "đánh giá numerical sanity",
+                "lưu output + provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Kiểm chứng số",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checks",
+              "items": [
+                "shape assertion",
+                "finite-value check",
+                "symmetry/orthogonality khi cần",
+                "relative error/tolerance",
+                "repeatability"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Cổng chống leakage",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Không được",
+              "items": [
+                "fit preprocessing/PCA/feature selection trên test",
+                "tuning bằng test result",
+                "trộn entity/time giữa split",
+                "mất provenance sau transform"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy sư phạm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "So trực tiếp magnitude covariance giữa các feature khác đơn vị hoặc đọc correlation cao là quan hệ nhân quả."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Nếu sai",
+              "items": [
+                "xác định bước đầu tiên sai",
+                "quay lại data/shape contract",
+                "kiểm condition",
+                "làm bài biến thể nhỏ",
+                "ghi invariant/tolerance để tránh lặp"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Ứng dụng",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Kỹ thuật",
+              "items": [
+                "Phát hiện feature dư thừa.",
+                "Chuẩn bị covariance matrix cho PCA."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mô phỏng",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Controls/Readouts",
+              "items": [
+                "dimension/scale/noise",
+                "spectrum/metric/error",
+                "before-after transform",
+                "warning khi vi phạm split/condition"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Kết luận kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Việt",
+              "body": "Nêu kết quả định lượng + condition + limitation."
+            },
+            {
+              "type": "text",
+              "title": "Русский шаблон",
+              "body": "Сначала фиксируем данные и условия, затем вычисляем показатель и проверяем устойчивость результата."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Lab protocol",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Artifact",
+              "items": [
+                "input snapshot",
+                "config/seed",
+                "fit state",
+                "metrics/figures",
+                "short conclusion"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Ôn tập",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tự hỏi",
+              "items": [
+                "3 công thức lõi?",
+                "condition gate?",
+                "1 numerical/leakage trap?",
+                "1 application?",
+                "1 sanity-check?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Exit ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Pass khi",
+              "items": [
+                "formula đúng",
+                "shape đúng",
+                "condition đúng",
+                "example kiểm được",
+                "application hợp lý"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T06-curse-dimensionality-feature-selection",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "lessonTitle": "m_m101 · §1.6 · Curse of dimensionality và lựa chọn đặc trưng",
+      "title": "m_m101 · §1.6 · Curse of dimensionality và lựa chọn đặc trưng",
+      "programLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+      "programLectureIds": [
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L09-topology-metric-spaces"
+      ],
+      "roadmapRole": "m_m101_t06",
+      "baumanFocus": "HK1 core fast-batch E23 · Nền tảng phân tích dữ liệu đa chiều.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "legacyFrameworkChapterAlias": "MATH-HK1-MT-C14",
+        "logicalLessonId": "m_m101_t06",
+        "frameworkAnchor": "m_m101_t06",
+        "programLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "theory_framework_plus_e23_hk1_core_authoring"
+      },
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m101",
+        "curse-dimensionality-feature-selection"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_m101 · §1.6 · Curse of dimensionality và lựa chọn đặc trưng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "HK1 context",
+              "body": "Nền tảng phân tích dữ liệu đa chiều: nội dung đi từ công thức tới numerical/data contract và khả năng kiểm chứng."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Hiểu, tính, kiểm và ứng dụng «Curse of dimensionality và lựa chọn đặc trưng» ở mức HK1."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài",
+              "items": [
+                "Viết notation/công thức đúng.",
+                "Nêu được condition gate.",
+                "Giải một ví dụ dữ liệu nhỏ.",
+                "Phát hiện bẫy numerical/data leakage.",
+                "Liên hệ được ứng dụng kỹ thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Notation",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Ký hiệu cần khóa",
+              "items": [
+                "shape/dimension",
+                "sample/feature axis",
+                "train/validation/test boundary",
+                "units/scale",
+                "fit-state/provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Relative contrast",
+              "body": "RC=(d_max−d_min)/d_min\nRC nhỏ dần có thể báo distance concentration."
+            },
+            {
+              "type": "formula",
+              "title": "Feature ratio",
+              "body": "r=p/n\np lớn so với n làm tăng variance và khó ước lượng."
+            },
+            {
+              "type": "formula",
+              "title": "Variance retention",
+              "body": "R_k=Σ_{j=1}^k v_j / Σ_{j=1}^p v_j\nMột heuristic giữ variance theo subset/component."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Matrix / shape view",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Structure",
+              "body": "Shape / axes must be stated before interpretation.",
+              "meaning": "Đọc shape và meaning trước khi nhân/chuyển vị/chiếu."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Feature selection phải fit trên train và đánh giá bằng validation; không chọn feature dựa trên test performance."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "shape đúng",
+                "assumption đúng",
+                "fit-state đúng split",
+                "numerical stability được kiểm"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Data contract",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Contract",
+              "items": [
+                "schema + units",
+                "sample identity",
+                "missing/outlier policy",
+                "split provenance",
+                "transform version"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài",
+              "body": "So n=100 với p=5 và p=500; thảo luận r=p/n, nguy cơ overfit và strategy giảm dimension."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Viết phép tính kèm shape/condition và một bước sanity-check."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Diễn giải hình học",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Question",
+              "body": "Phép biến đổi làm thay đổi length, angle, variance, rank hoặc information geometry như thế nào?"
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Thuật toán",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Workflow",
+              "items": [
+                "khóa input contract",
+                "tính/fit trên đúng split",
+                "kiểm shape + condition",
+                "đánh giá numerical sanity",
+                "lưu output + provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Kiểm chứng số",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checks",
+              "items": [
+                "shape assertion",
+                "finite-value check",
+                "symmetry/orthogonality khi cần",
+                "relative error/tolerance",
+                "repeatability"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Cổng chống leakage",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Không được",
+              "items": [
+                "fit preprocessing/PCA/feature selection trên test",
+                "tuning bằng test result",
+                "trộn entity/time giữa split",
+                "mất provenance sau transform"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy sư phạm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Giữ nhiều feature chỉ vì storage cho phép; trong high-dimension distance có thể mất khả năng phân biệt."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Nếu sai",
+              "items": [
+                "xác định bước đầu tiên sai",
+                "quay lại data/shape contract",
+                "kiểm condition",
+                "làm bài biến thể nhỏ",
+                "ghi invariant/tolerance để tránh lặp"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Ứng dụng",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Kỹ thuật",
+              "items": [
+                "Giảm feature cho telemetry nhiều kênh.",
+                "Chuẩn bị dữ liệu trước PCA/clustering."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mô phỏng",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Controls/Readouts",
+              "items": [
+                "dimension/scale/noise",
+                "spectrum/metric/error",
+                "before-after transform",
+                "warning khi vi phạm split/condition"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Kết luận kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Việt",
+              "body": "Nêu kết quả định lượng + condition + limitation."
+            },
+            {
+              "type": "text",
+              "title": "Русский шаблон",
+              "body": "Сначала фиксируем данные и условия, затем вычисляем показатель и проверяем устойчивость результата."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Lab protocol",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Artifact",
+              "items": [
+                "input snapshot",
+                "config/seed",
+                "fit state",
+                "metrics/figures",
+                "short conclusion"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Ôn tập",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tự hỏi",
+              "items": [
+                "3 công thức lõi?",
+                "condition gate?",
+                "1 numerical/leakage trap?",
+                "1 application?",
+                "1 sanity-check?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Exit ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Pass khi",
+              "items": [
+                "formula đúng",
+                "shape đúng",
+                "condition đúng",
+                "example kiểm được",
+                "application hợp lý"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T07-data-pipeline-split",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "lessonTitle": "m_m101 · §1.7 · Pipeline dữ liệu: raw → clean → feature → scale → split",
+      "title": "m_m101 · §1.7 · Pipeline dữ liệu: raw → clean → feature → scale → split",
+      "programLectureId": "MATH-PROG-L16-numerical-methods-computing",
+      "programLectureIds": [
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "roadmapRole": "m_m101_t07",
+      "baumanFocus": "HK1 core fast-batch E23 · Nền tảng phân tích dữ liệu đa chiều.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "legacyFrameworkChapterAlias": "MATH-HK1-MT-C14",
+        "logicalLessonId": "m_m101_t07",
+        "frameworkAnchor": "m_m101_t07",
+        "programLectureId": "MATH-PROG-L16-numerical-methods-computing",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "theory_framework_plus_e23_hk1_core_authoring"
+      },
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m101",
+        "data-pipeline-split"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_m101 · §1.7 · Pipeline dữ liệu: raw → clean → feature → scale → split",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "HK1 context",
+              "body": "Nền tảng phân tích dữ liệu đa chiều: nội dung đi từ công thức tới numerical/data contract và khả năng kiểm chứng."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Hiểu, tính, kiểm và ứng dụng «Pipeline dữ liệu: raw → clean → feature → scale → split» ở mức HK1."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài",
+              "items": [
+                "Viết notation/công thức đúng.",
+                "Nêu được condition gate.",
+                "Giải một ví dụ dữ liệu nhỏ.",
+                "Phát hiện bẫy numerical/data leakage.",
+                "Liên hệ được ứng dụng kỹ thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Notation",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Ký hiệu cần khóa",
+              "items": [
+                "shape/dimension",
+                "sample/feature axis",
+                "train/validation/test boundary",
+                "units/scale",
+                "fit-state/provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Fit transform",
+              "body": "θ=fit(X_train)\nMọi learned preprocessing parameter thuộc train."
+            },
+            {
+              "type": "formula",
+              "title": "Transform",
+              "body": "X′=transform(X;θ)\nDùng cùng θ cho validation/test."
+            },
+            {
+              "type": "formula",
+              "title": "Split partition",
+              "body": "D_train ∩ D_test = ∅\nVới time/group data còn cần chống overlap theo entity/time."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Matrix / shape view",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Structure",
+              "body": "Shape / axes must be stated before interpretation.",
+              "meaning": "Đọc shape và meaning trước khi nhân/chuyển vị/chiếu."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Pipeline phải version hóa schema, split rule, fit state, transform order và provenance; test không được tham gia fit/tuning."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "shape đúng",
+                "assumption đúng",
+                "fit-state đúng split",
+                "numerical stability được kiểm"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Data contract",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Contract",
+              "items": [
+                "schema + units",
+                "sample identity",
+                "missing/outlier policy",
+                "split provenance",
+                "transform version"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài",
+              "body": "Thiết kế pipeline cho sensor windows: raw → QC → window features → group split → fit scaler(train) → transform all."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Viết phép tính kèm shape/condition và một bước sanity-check."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Diễn giải hình học",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Question",
+              "body": "Phép biến đổi làm thay đổi length, angle, variance, rank hoặc information geometry như thế nào?"
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Thuật toán",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Workflow",
+              "items": [
+                "khóa input contract",
+                "tính/fit trên đúng split",
+                "kiểm shape + condition",
+                "đánh giá numerical sanity",
+                "lưu output + provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Kiểm chứng số",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checks",
+              "items": [
+                "shape assertion",
+                "finite-value check",
+                "symmetry/orthogonality khi cần",
+                "relative error/tolerance",
+                "repeatability"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Cổng chống leakage",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Không được",
+              "items": [
+                "fit preprocessing/PCA/feature selection trên test",
+                "tuning bằng test result",
+                "trộn entity/time giữa split",
+                "mất provenance sau transform"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy sư phạm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Split row ngẫu nhiên khi các row cùng người/thiết bị/thời đoạn gây leakage theo nhóm hoặc thời gian."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Nếu sai",
+              "items": [
+                "xác định bước đầu tiên sai",
+                "quay lại data/shape contract",
+                "kiểm condition",
+                "làm bài biến thể nhỏ",
+                "ghi invariant/tolerance để tránh lặp"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Ứng dụng",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Kỹ thuật",
+              "items": [
+                "Reproducible ML preprocessing.",
+                "Data contract cho luận văn/experiment."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mô phỏng",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Controls/Readouts",
+              "items": [
+                "dimension/scale/noise",
+                "spectrum/metric/error",
+                "before-after transform",
+                "warning khi vi phạm split/condition"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Kết luận kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Việt",
+              "body": "Nêu kết quả định lượng + condition + limitation."
+            },
+            {
+              "type": "text",
+              "title": "Русский шаблон",
+              "body": "Сначала фиксируем данные и условия, затем вычисляем показатель и проверяем устойчивость результата."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Lab protocol",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Artifact",
+              "items": [
+                "input snapshot",
+                "config/seed",
+                "fit state",
+                "metrics/figures",
+                "short conclusion"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Ôn tập",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tự hỏi",
+              "items": [
+                "3 công thức lõi?",
+                "condition gate?",
+                "1 numerical/leakage trap?",
+                "1 application?",
+                "1 sanity-check?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Exit ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Pass khi",
+              "items": [
+                "formula đúng",
+                "shape đúng",
+                "condition đúng",
+                "example kiểm được",
+                "application hợp lý"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T08-multidim-reporting",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "lessonTitle": "m_m101 · §1.8 · Báo cáo dữ liệu đa chiều: bảng, hình, nhận xét và kết luận",
+      "title": "m_m101 · §1.8 · Báo cáo dữ liệu đa chiều: bảng, hình, nhận xét và kết luận",
+      "programLectureId": "MATH-PROG-L16-numerical-methods-computing",
+      "programLectureIds": [
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "roadmapRole": "m_m101_t08",
+      "baumanFocus": "HK1 core fast-batch E23 · Nền tảng phân tích dữ liệu đa chiều.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m101",
+        "frameworkChapterId": "m_m101",
+        "legacyFrameworkChapterAlias": "MATH-HK1-MT-C14",
+        "logicalLessonId": "m_m101_t08",
+        "frameworkAnchor": "m_m101_t08",
+        "programLectureId": "MATH-PROG-L16-numerical-methods-computing",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "theory_framework_plus_e23_hk1_core_authoring"
+      },
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m101",
+        "multidim-reporting"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_m101 · §1.8 · Báo cáo dữ liệu đa chiều: bảng, hình, nhận xét và kết luận",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "HK1 context",
+              "body": "Nền tảng phân tích dữ liệu đa chiều: nội dung đi từ công thức tới numerical/data contract và khả năng kiểm chứng."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Hiểu, tính, kiểm và ứng dụng «Báo cáo dữ liệu đa chiều: bảng, hình, nhận xét và kết luận» ở mức HK1."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài",
+              "items": [
+                "Viết notation/công thức đúng.",
+                "Nêu được condition gate.",
+                "Giải một ví dụ dữ liệu nhỏ.",
+                "Phát hiện bẫy numerical/data leakage.",
+                "Liên hệ được ứng dụng kỹ thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Notation",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Ký hiệu cần khóa",
+              "items": [
+                "shape/dimension",
+                "sample/feature axis",
+                "train/validation/test boundary",
+                "units/scale",
+                "fit-state/provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Missing rate",
+              "body": "m_j=n_missing,j/n\nBáo theo feature và policy xử lý."
+            },
+            {
+              "type": "formula",
+              "title": "Standardized effect",
+              "body": "z=(x−μ)/σ\nDùng scale-free view khi phù hợp."
+            },
+            {
+              "type": "formula",
+              "title": "Correlation summary",
+              "body": "R=[ρ_jk]\nMa trận correlation cần label đầy đủ."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Matrix / shape view",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Structure",
+              "body": "Shape / axes must be stated before interpretation.",
+              "meaning": "Đọc shape và meaning trước khi nhân/chuyển vị/chiếu."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Mọi hình/bảng phải ghi sample count, units, preprocessing, split và statistic definition; nhận xét phải tách observation khỏi causal claim."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "shape đúng",
+                "assumption đúng",
+                "fit-state đúng split",
+                "numerical stability được kiểm"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Data contract",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Contract",
+              "items": [
+                "schema + units",
+                "sample identity",
+                "missing/outlier policy",
+                "split provenance",
+                "transform version"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài",
+              "body": "Tạo outline report 1 trang: data contract, missingness, summary table, correlation figure, 3 findings, 2 limitations."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Viết phép tính kèm shape/condition và một bước sanity-check."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Diễn giải hình học",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Question",
+              "body": "Phép biến đổi làm thay đổi length, angle, variance, rank hoặc information geometry như thế nào?"
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Thuật toán",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Workflow",
+              "items": [
+                "khóa input contract",
+                "tính/fit trên đúng split",
+                "kiểm shape + condition",
+                "đánh giá numerical sanity",
+                "lưu output + provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Kiểm chứng số",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checks",
+              "items": [
+                "shape assertion",
+                "finite-value check",
+                "symmetry/orthogonality khi cần",
+                "relative error/tolerance",
+                "repeatability"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Cổng chống leakage",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Không được",
+              "items": [
+                "fit preprocessing/PCA/feature selection trên test",
+                "tuning bằng test result",
+                "trộn entity/time giữa split",
+                "mất provenance sau transform"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy sư phạm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Vẽ heatmap đẹp nhưng thiếu labels, units, n và preprocessing làm kết luận không thể tái kiểm."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Nếu sai",
+              "items": [
+                "xác định bước đầu tiên sai",
+                "quay lại data/shape contract",
+                "kiểm condition",
+                "làm bài biến thể nhỏ",
+                "ghi invariant/tolerance để tránh lặp"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Ứng dụng",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Kỹ thuật",
+              "items": [
+                "Báo cáo exploratory data analysis.",
+                "Phần Data/Methods cho seminar HK1."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mô phỏng",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Controls/Readouts",
+              "items": [
+                "dimension/scale/noise",
+                "spectrum/metric/error",
+                "before-after transform",
+                "warning khi vi phạm split/condition"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Kết luận kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Việt",
+              "body": "Nêu kết quả định lượng + condition + limitation."
+            },
+            {
+              "type": "text",
+              "title": "Русский шаблон",
+              "body": "Сначала фиксируем данные и условия, затем вычисляем показатель и проверяем устойчивость результата."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Lab protocol",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Artifact",
+              "items": [
+                "input snapshot",
+                "config/seed",
+                "fit state",
+                "metrics/figures",
+                "short conclusion"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Ôn tập",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tự hỏi",
+              "items": [
+                "3 công thức lõi?",
+                "condition gate?",
+                "1 numerical/leakage trap?",
+                "1 application?",
+                "1 sanity-check?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Exit ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Pass khi",
+              "items": [
+                "formula đúng",
+                "shape đúng",
+                "condition đúng",
+                "example kiểm được",
+                "application hợp lý"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T01-covariance-eigen",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "lessonTitle": "m_m102 · §1.1 · Eigen decomposition của covariance matrix",
+      "title": "m_m102 · §1.1 · Eigen decomposition của covariance matrix",
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "programLectureIds": [
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "roadmapRole": "m_m102_t01",
+      "baumanFocus": "HK1 core fast-batch E23 · PCA, SVD và trực quan hóa không gian đặc trưng.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "legacyFrameworkChapterAlias": "MATH-HK1-LA-C15",
+        "logicalLessonId": "m_m102_t01",
+        "frameworkAnchor": "m_m102_t01",
+        "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "theory_framework_plus_e23_hk1_core_authoring"
+      },
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m102",
+        "covariance-eigen"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_m102 · §1.1 · Eigen decomposition của covariance matrix",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "HK1 context",
+              "body": "PCA, SVD và trực quan hóa không gian đặc trưng: nội dung đi từ công thức tới numerical/data contract và khả năng kiểm chứng."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Hiểu, tính, kiểm và ứng dụng «Eigen decomposition của covariance matrix» ở mức HK1."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài",
+              "items": [
+                "Viết notation/công thức đúng.",
+                "Nêu được condition gate.",
+                "Giải một ví dụ dữ liệu nhỏ.",
+                "Phát hiện bẫy numerical/data leakage.",
+                "Liên hệ được ứng dụng kỹ thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Notation",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Ký hiệu cần khóa",
+              "items": [
+                "shape/dimension",
+                "sample/feature axis",
+                "train/validation/test boundary",
+                "units/scale",
+                "fit-state/provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Covariance",
+              "body": "C=(1/(n−1))XcᵀXc\nC đối xứng bán xác định dương."
+            },
+            {
+              "type": "formula",
+              "title": "Eigen equation",
+              "body": "Cv=λv\nλ≥0 về lý thuyết với covariance exact."
+            },
+            {
+              "type": "formula",
+              "title": "Trace identity",
+              "body": "tr(C)=Σ_j λ_j\nTổng variance bằng tổng eigenvalues."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Matrix / shape view",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Structure",
+              "body": "Xc = U Σ Vᵀ",
+              "meaning": "Đọc shape và meaning trước khi nhân/chuyển vị/chiếu."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Center dữ liệu trước; dùng eigensolver cho ma trận đối xứng; eigenvalue âm nhỏ do roundoff phải được xử lý như lỗi số, không là variance thật."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "shape đúng",
+                "assumption đúng",
+                "fit-state đúng split",
+                "numerical stability được kiểm"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Data contract",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Contract",
+              "items": [
+                "schema + units",
+                "sample identity",
+                "missing/outlier policy",
+                "split provenance",
+                "transform version"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài",
+              "body": "Cho C=[[2,1],[1,2]], tìm eigenvalues/eigenvectors và giải thích hướng variance lớn/nhỏ."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Viết phép tính kèm shape/condition và một bước sanity-check."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Diễn giải hình học",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Question",
+              "body": "Phép biến đổi làm thay đổi length, angle, variance, rank hoặc information geometry như thế nào?"
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Thuật toán",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Workflow",
+              "items": [
+                "khóa input contract",
+                "tính/fit trên đúng split",
+                "kiểm shape + condition",
+                "đánh giá numerical sanity",
+                "lưu output + provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Kiểm chứng số",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checks",
+              "items": [
+                "shape assertion",
+                "finite-value check",
+                "symmetry/orthogonality khi cần",
+                "relative error/tolerance",
+                "repeatability"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Cổng chống leakage",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Không được",
+              "items": [
+                "fit preprocessing/PCA/feature selection trên test",
+                "tuning bằng test result",
+                "trộn entity/time giữa split",
+                "mất provenance sau transform"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy sư phạm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Dùng eigendecomposition trên covariance chưa center hoặc coi eigenvalue âm lớn là bình thường."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Nếu sai",
+              "items": [
+                "xác định bước đầu tiên sai",
+                "quay lại data/shape contract",
+                "kiểm condition",
+                "làm bài biến thể nhỏ",
+                "ghi invariant/tolerance để tránh lặp"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Ứng dụng",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Kỹ thuật",
+              "items": [
+                "Tìm principal directions của sensor features.",
+                "Kiểm covariance spectrum trước PCA."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mô phỏng",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Controls/Readouts",
+              "items": [
+                "dimension/scale/noise",
+                "spectrum/metric/error",
+                "before-after transform",
+                "warning khi vi phạm split/condition"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Kết luận kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Việt",
+              "body": "Nêu kết quả định lượng + condition + limitation."
+            },
+            {
+              "type": "text",
+              "title": "Русский шаблон",
+              "body": "Сначала фиксируем данные и условия, затем вычисляем показатель и проверяем устойчивость результата."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Lab protocol",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Artifact",
+              "items": [
+                "input snapshot",
+                "config/seed",
+                "fit state",
+                "metrics/figures",
+                "short conclusion"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Ôn tập",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tự hỏi",
+              "items": [
+                "3 công thức lõi?",
+                "condition gate?",
+                "1 numerical/leakage trap?",
+                "1 application?",
+                "1 sanity-check?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Exit ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Pass khi",
+              "items": [
+                "formula đúng",
+                "shape đúng",
+                "condition đúng",
+                "example kiểm được",
+                "application hợp lý"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T02-principal-projection",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "lessonTitle": "m_m102 · §1.2 · Projection lên principal components",
+      "title": "m_m102 · §1.2 · Projection lên principal components",
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "programLectureIds": [
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "roadmapRole": "m_m102_t02",
+      "baumanFocus": "HK1 core fast-batch E23 · PCA, SVD và trực quan hóa không gian đặc trưng.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "legacyFrameworkChapterAlias": "MATH-HK1-LA-C15",
+        "logicalLessonId": "m_m102_t02",
+        "frameworkAnchor": "m_m102_t02",
+        "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "theory_framework_plus_e23_hk1_core_authoring"
+      },
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m102",
+        "principal-projection"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_m102 · §1.2 · Projection lên principal components",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "HK1 context",
+              "body": "PCA, SVD và trực quan hóa không gian đặc trưng: nội dung đi từ công thức tới numerical/data contract và khả năng kiểm chứng."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Hiểu, tính, kiểm và ứng dụng «Projection lên principal components» ở mức HK1."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài",
+              "items": [
+                "Viết notation/công thức đúng.",
+                "Nêu được condition gate.",
+                "Giải một ví dụ dữ liệu nhỏ.",
+                "Phát hiện bẫy numerical/data leakage.",
+                "Liên hệ được ứng dụng kỹ thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Notation",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Ký hiệu cần khóa",
+              "items": [
+                "shape/dimension",
+                "sample/feature axis",
+                "train/validation/test boundary",
+                "units/scale",
+                "fit-state/provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Scores",
+              "body": "Z=Xc W_k\nW_k gồm k eigenvectors trực chuẩn."
+            },
+            {
+              "type": "formula",
+              "title": "Projection matrix",
+              "body": "P=W_k W_kᵀ\nP đối xứng và idempotent khi W_k trực chuẩn."
+            },
+            {
+              "type": "formula",
+              "title": "Reconstruction",
+              "body": "X̂=ZW_kᵀ+1μᵀ\nTrả dữ liệu về feature space sau projection."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Matrix / shape view",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Structure",
+              "body": "Xc = U Σ Vᵀ",
+              "meaning": "Đọc shape và meaning trước khi nhân/chuyển vị/chiếu."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Columns của W_k phải trực chuẩn và đúng thứ tự eigenvalue; center vector μ phải dùng nhất quán khi project/reconstruct."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "shape đúng",
+                "assumption đúng",
+                "fit-state đúng split",
+                "numerical stability được kiểm"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Data contract",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Contract",
+              "items": [
+                "schema + units",
+                "sample identity",
+                "missing/outlier policy",
+                "split provenance",
+                "transform version"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài",
+              "body": "Chiếu ba điểm 2D đã center lên eigenvector v1=(1,1)/√2 và reconstruct từ score 1D."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Viết phép tính kèm shape/condition và một bước sanity-check."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Diễn giải hình học",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Question",
+              "body": "Phép biến đổi làm thay đổi length, angle, variance, rank hoặc information geometry như thế nào?"
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Thuật toán",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Workflow",
+              "items": [
+                "khóa input contract",
+                "tính/fit trên đúng split",
+                "kiểm shape + condition",
+                "đánh giá numerical sanity",
+                "lưu output + provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Kiểm chứng số",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checks",
+              "items": [
+                "shape assertion",
+                "finite-value check",
+                "symmetry/orthogonality khi cần",
+                "relative error/tolerance",
+                "repeatability"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Cổng chống leakage",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Không được",
+              "items": [
+                "fit preprocessing/PCA/feature selection trên test",
+                "tuning bằng test result",
+                "trộn entity/time giữa split",
+                "mất provenance sau transform"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy sư phạm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Chiếu raw X bằng W_k nhưng reconstruct với mean khác hoặc không cộng mean lại."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Nếu sai",
+              "items": [
+                "xác định bước đầu tiên sai",
+                "quay lại data/shape contract",
+                "kiểm condition",
+                "làm bài biến thể nhỏ",
+                "ghi invariant/tolerance để tránh lặp"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Ứng dụng",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Kỹ thuật",
+              "items": [
+                "Trực quan hóa dữ liệu xuống 2D.",
+                "Nén feature space trước model."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mô phỏng",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Controls/Readouts",
+              "items": [
+                "dimension/scale/noise",
+                "spectrum/metric/error",
+                "before-after transform",
+                "warning khi vi phạm split/condition"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Kết luận kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Việt",
+              "body": "Nêu kết quả định lượng + condition + limitation."
+            },
+            {
+              "type": "text",
+              "title": "Русский шаблон",
+              "body": "Сначала фиксируем данные и условия, затем вычисляем показатель и проверяем устойчивость результата."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Lab protocol",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Artifact",
+              "items": [
+                "input snapshot",
+                "config/seed",
+                "fit state",
+                "metrics/figures",
+                "short conclusion"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Ôn tập",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tự hỏi",
+              "items": [
+                "3 công thức lõi?",
+                "condition gate?",
+                "1 numerical/leakage trap?",
+                "1 application?",
+                "1 sanity-check?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Exit ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Pass khi",
+              "items": [
+                "formula đúng",
+                "shape đúng",
+                "condition đúng",
+                "example kiểm được",
+                "application hợp lý"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T03-explained-variance-k",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "lessonTitle": "m_m102 · §1.3 · Explained variance và chọn số chiều k",
+      "title": "m_m102 · §1.3 · Explained variance và chọn số chiều k",
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "programLectureIds": [
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "roadmapRole": "m_m102_t03",
+      "baumanFocus": "HK1 core fast-batch E23 · PCA, SVD và trực quan hóa không gian đặc trưng.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "legacyFrameworkChapterAlias": "MATH-HK1-LA-C15",
+        "logicalLessonId": "m_m102_t03",
+        "frameworkAnchor": "m_m102_t03",
+        "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "theory_framework_plus_e23_hk1_core_authoring"
+      },
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m102",
+        "explained-variance-k"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_m102 · §1.3 · Explained variance và chọn số chiều k",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "HK1 context",
+              "body": "PCA, SVD và trực quan hóa không gian đặc trưng: nội dung đi từ công thức tới numerical/data contract và khả năng kiểm chứng."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Hiểu, tính, kiểm và ứng dụng «Explained variance và chọn số chiều k» ở mức HK1."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài",
+              "items": [
+                "Viết notation/công thức đúng.",
+                "Nêu được condition gate.",
+                "Giải một ví dụ dữ liệu nhỏ.",
+                "Phát hiện bẫy numerical/data leakage.",
+                "Liên hệ được ứng dụng kỹ thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Notation",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Ký hiệu cần khóa",
+              "items": [
+                "shape/dimension",
+                "sample/feature axis",
+                "train/validation/test boundary",
+                "units/scale",
+                "fit-state/provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Explained variance ratio",
+              "body": "EVR_j=λ_j/Σ_iλ_i\nTỷ lệ variance theo component j."
+            },
+            {
+              "type": "formula",
+              "title": "Cumulative EVR",
+              "body": "CEVR_k=Σ_{j=1}^k EVR_j\nDùng threshold nhưng không là tiêu chí duy nhất."
+            },
+            {
+              "type": "formula",
+              "title": "Residual variance",
+              "body": "1−CEVR_k\nPhần variance bỏ đi dưới giả định PCA variance objective."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Matrix / shape view",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Structure",
+              "body": "Xc = U Σ Vᵀ",
+              "meaning": "Đọc shape và meaning trước khi nhân/chuyển vị/chiếu."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Chọn k phải cân bằng variance, downstream performance, interpretability và stability; threshold 95% không phải luật phổ quát."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "shape đúng",
+                "assumption đúng",
+                "fit-state đúng split",
+                "numerical stability được kiểm"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Data contract",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Contract",
+              "items": [
+                "schema + units",
+                "sample identity",
+                "missing/outlier policy",
+                "split provenance",
+                "transform version"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài",
+              "body": "Eigenvalues [5,3,1,1]: tính EVR/CEVR và so k=2 vs k=3."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Viết phép tính kèm shape/condition và một bước sanity-check."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Diễn giải hình học",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Question",
+              "body": "Phép biến đổi làm thay đổi length, angle, variance, rank hoặc information geometry như thế nào?"
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Thuật toán",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Workflow",
+              "items": [
+                "khóa input contract",
+                "tính/fit trên đúng split",
+                "kiểm shape + condition",
+                "đánh giá numerical sanity",
+                "lưu output + provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Kiểm chứng số",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checks",
+              "items": [
+                "shape assertion",
+                "finite-value check",
+                "symmetry/orthogonality khi cần",
+                "relative error/tolerance",
+                "repeatability"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Cổng chống leakage",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Không được",
+              "items": [
+                "fit preprocessing/PCA/feature selection trên test",
+                "tuning bằng test result",
+                "trộn entity/time giữa split",
+                "mất provenance sau transform"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy sư phạm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Chọn k chỉ theo 95% explained variance mà không kiểm task performance hoặc cấu trúc noise."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Nếu sai",
+              "items": [
+                "xác định bước đầu tiên sai",
+                "quay lại data/shape contract",
+                "kiểm condition",
+                "làm bài biến thể nhỏ",
+                "ghi invariant/tolerance để tránh lặp"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Ứng dụng",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Kỹ thuật",
+              "items": [
+                "Chọn dimension cho visualization.",
+                "Tối ưu latency/memory trước classification."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mô phỏng",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Controls/Readouts",
+              "items": [
+                "dimension/scale/noise",
+                "spectrum/metric/error",
+                "before-after transform",
+                "warning khi vi phạm split/condition"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Kết luận kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Việt",
+              "body": "Nêu kết quả định lượng + condition + limitation."
+            },
+            {
+              "type": "text",
+              "title": "Русский шаблон",
+              "body": "Сначала фиксируем данные и условия, затем вычисляем показатель и проверяем устойчивость результата."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Lab protocol",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Artifact",
+              "items": [
+                "input snapshot",
+                "config/seed",
+                "fit state",
+                "metrics/figures",
+                "short conclusion"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Ôn tập",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tự hỏi",
+              "items": [
+                "3 công thức lõi?",
+                "condition gate?",
+                "1 numerical/leakage trap?",
+                "1 application?",
+                "1 sanity-check?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Exit ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Pass khi",
+              "items": [
+                "formula đúng",
+                "shape đúng",
+                "condition đúng",
+                "example kiểm được",
+                "application hợp lý"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T04-svd-pca-relation",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "lessonTitle": "m_m102 · §1.4 · SVD của ma trận dữ liệu và quan hệ với PCA",
+      "title": "m_m102 · §1.4 · SVD của ma trận dữ liệu và quan hệ với PCA",
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "programLectureIds": [
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "roadmapRole": "m_m102_t04",
+      "baumanFocus": "HK1 core fast-batch E23 · PCA, SVD và trực quan hóa không gian đặc trưng.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "legacyFrameworkChapterAlias": "MATH-HK1-LA-C15",
+        "logicalLessonId": "m_m102_t04",
+        "frameworkAnchor": "m_m102_t04",
+        "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "theory_framework_plus_e23_hk1_core_authoring"
+      },
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m102",
+        "svd-pca-relation"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_m102 · §1.4 · SVD của ma trận dữ liệu và quan hệ với PCA",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "HK1 context",
+              "body": "PCA, SVD và trực quan hóa không gian đặc trưng: nội dung đi từ công thức tới numerical/data contract và khả năng kiểm chứng."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Hiểu, tính, kiểm và ứng dụng «SVD của ma trận dữ liệu và quan hệ với PCA» ở mức HK1."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài",
+              "items": [
+                "Viết notation/công thức đúng.",
+                "Nêu được condition gate.",
+                "Giải một ví dụ dữ liệu nhỏ.",
+                "Phát hiện bẫy numerical/data leakage.",
+                "Liên hệ được ứng dụng kỹ thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Notation",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Ký hiệu cần khóa",
+              "items": [
+                "shape/dimension",
+                "sample/feature axis",
+                "train/validation/test boundary",
+                "units/scale",
+                "fit-state/provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "SVD",
+              "body": "Xc=UΣVᵀ\nU,V trực chuẩn theo không gian tương ứng."
+            },
+            {
+              "type": "formula",
+              "title": "PCA covariance link",
+              "body": "C=V(Σ²/(n−1))Vᵀ\nRight singular vectors là PCA directions của feature covariance."
+            },
+            {
+              "type": "formula",
+              "title": "Eigenvalue link",
+              "body": "λ_j=σ_j²/(n−1)\nVới Xc và sample covariance."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Matrix / shape view",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Structure",
+              "body": "Xc = U Σ Vᵀ",
+              "meaning": "Đọc shape và meaning trước khi nhân/chuyển vị/chiếu."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Dùng centered matrix; phân biệt full/economy SVD và dimensions của U,Σ,V; không tạo covariance nếu p rất lớn mà SVD trực tiếp phù hợp hơn."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "shape đúng",
+                "assumption đúng",
+                "fit-state đúng split",
+                "numerical stability được kiểm"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Data contract",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Contract",
+              "items": [
+                "schema + units",
+                "sample identity",
+                "missing/outlier policy",
+                "split provenance",
+                "transform version"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài",
+              "body": "Với Xc shape 100×5, ghi shapes economy SVD và xác định đâu là principal directions/features."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Viết phép tính kèm shape/condition và một bước sanity-check."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Diễn giải hình học",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Question",
+              "body": "Phép biến đổi làm thay đổi length, angle, variance, rank hoặc information geometry như thế nào?"
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Thuật toán",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Workflow",
+              "items": [
+                "khóa input contract",
+                "tính/fit trên đúng split",
+                "kiểm shape + condition",
+                "đánh giá numerical sanity",
+                "lưu output + provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Kiểm chứng số",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checks",
+              "items": [
+                "shape assertion",
+                "finite-value check",
+                "symmetry/orthogonality khi cần",
+                "relative error/tolerance",
+                "repeatability"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Cổng chống leakage",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Không được",
+              "items": [
+                "fit preprocessing/PCA/feature selection trên test",
+                "tuning bằng test result",
+                "trộn entity/time giữa split",
+                "mất provenance sau transform"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy sư phạm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Nhầm columns của U là feature principal axes; với row=sample, feature directions nằm trong V."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Nếu sai",
+              "items": [
+                "xác định bước đầu tiên sai",
+                "quay lại data/shape contract",
+                "kiểm condition",
+                "làm bài biến thể nhỏ",
+                "ghi invariant/tolerance để tránh lặp"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Ứng dụng",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Kỹ thuật",
+              "items": [
+                "PCA ổn định qua SVD.",
+                "Low-rank processing dữ liệu rectangular."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mô phỏng",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Controls/Readouts",
+              "items": [
+                "dimension/scale/noise",
+                "spectrum/metric/error",
+                "before-after transform",
+                "warning khi vi phạm split/condition"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Kết luận kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Việt",
+              "body": "Nêu kết quả định lượng + condition + limitation."
+            },
+            {
+              "type": "text",
+              "title": "Русский шаблон",
+              "body": "Сначала фиксируем данные и условия, затем вычисляем показатель и проверяем устойчивость результата."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Lab protocol",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Artifact",
+              "items": [
+                "input snapshot",
+                "config/seed",
+                "fit state",
+                "metrics/figures",
+                "short conclusion"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Ôn tập",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tự hỏi",
+              "items": [
+                "3 công thức lõi?",
+                "condition gate?",
+                "1 numerical/leakage trap?",
+                "1 application?",
+                "1 sanity-check?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Exit ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Pass khi",
+              "items": [
+                "formula đúng",
+                "shape đúng",
+                "condition đúng",
+                "example kiểm được",
+                "application hợp lý"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T05-low-rank-reconstruction",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "lessonTitle": "m_m102 · §1.5 · Low-rank approximation và sai số tái tạo",
+      "title": "m_m102 · §1.5 · Low-rank approximation và sai số tái tạo",
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "programLectureIds": [
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "roadmapRole": "m_m102_t05",
+      "baumanFocus": "HK1 core fast-batch E23 · PCA, SVD và trực quan hóa không gian đặc trưng.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "legacyFrameworkChapterAlias": "MATH-HK1-LA-C15",
+        "logicalLessonId": "m_m102_t05",
+        "frameworkAnchor": "m_m102_t05",
+        "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "theory_framework_plus_e23_hk1_core_authoring"
+      },
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m102",
+        "low-rank-reconstruction"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_m102 · §1.5 · Low-rank approximation và sai số tái tạo",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "HK1 context",
+              "body": "PCA, SVD và trực quan hóa không gian đặc trưng: nội dung đi từ công thức tới numerical/data contract và khả năng kiểm chứng."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Hiểu, tính, kiểm và ứng dụng «Low-rank approximation và sai số tái tạo» ở mức HK1."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài",
+              "items": [
+                "Viết notation/công thức đúng.",
+                "Nêu được condition gate.",
+                "Giải một ví dụ dữ liệu nhỏ.",
+                "Phát hiện bẫy numerical/data leakage.",
+                "Liên hệ được ứng dụng kỹ thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Notation",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Ký hiệu cần khóa",
+              "items": [
+                "shape/dimension",
+                "sample/feature axis",
+                "train/validation/test boundary",
+                "units/scale",
+                "fit-state/provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Rank-k SVD",
+              "body": "X_k=U_kΣ_kV_kᵀ\nBest rank-k approximation theo Frobenius/2-norm."
+            },
+            {
+              "type": "formula",
+              "title": "Frobenius error",
+              "body": "‖X−X_k‖_F²=Σ_{j>k}σ_j²\nTail singular energy."
+            },
+            {
+              "type": "formula",
+              "title": "Relative error",
+              "body": "e_rel=‖X−X_k‖_F/‖X‖_F\nSo compression quality giữa datasets."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Matrix / shape view",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Structure",
+              "body": "Xc = U Σ Vᵀ",
+              "meaning": "Đọc shape và meaning trước khi nhân/chuyển vị/chiếu."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Chọn k dựa task/quality budget; reconstruction error thấp không đảm bảo downstream semantics được giữ."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "shape đúng",
+                "assumption đúng",
+                "fit-state đúng split",
+                "numerical stability được kiểm"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Data contract",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Contract",
+              "items": [
+                "schema + units",
+                "sample identity",
+                "missing/outlier policy",
+                "split provenance",
+                "transform version"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài",
+              "body": "σ=[10,4,2,1]. Tính squared Frobenius error khi k=2 và tỷ lệ energy giữ lại."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Viết phép tính kèm shape/condition và một bước sanity-check."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Diễn giải hình học",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Question",
+              "body": "Phép biến đổi làm thay đổi length, angle, variance, rank hoặc information geometry như thế nào?"
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Thuật toán",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Workflow",
+              "items": [
+                "khóa input contract",
+                "tính/fit trên đúng split",
+                "kiểm shape + condition",
+                "đánh giá numerical sanity",
+                "lưu output + provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Kiểm chứng số",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checks",
+              "items": [
+                "shape assertion",
+                "finite-value check",
+                "symmetry/orthogonality khi cần",
+                "relative error/tolerance",
+                "repeatability"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Cổng chống leakage",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Không được",
+              "items": [
+                "fit preprocessing/PCA/feature selection trên test",
+                "tuning bằng test result",
+                "trộn entity/time giữa split",
+                "mất provenance sau transform"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy sư phạm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Coi low reconstruction error là bằng chứng mọi rare signal/anomaly đều được bảo toàn."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Nếu sai",
+              "items": [
+                "xác định bước đầu tiên sai",
+                "quay lại data/shape contract",
+                "kiểm condition",
+                "làm bài biến thể nhỏ",
+                "ghi invariant/tolerance để tránh lặp"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Ứng dụng",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Kỹ thuật",
+              "items": [
+                "Nén ảnh/sensor matrix.",
+                "Denoising qua low-rank approximation."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mô phỏng",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Controls/Readouts",
+              "items": [
+                "dimension/scale/noise",
+                "spectrum/metric/error",
+                "before-after transform",
+                "warning khi vi phạm split/condition"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Kết luận kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Việt",
+              "body": "Nêu kết quả định lượng + condition + limitation."
+            },
+            {
+              "type": "text",
+              "title": "Русский шаблон",
+              "body": "Сначала фиксируем данные и условия, затем вычисляем показатель и проверяем устойчивость результата."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Lab protocol",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Artifact",
+              "items": [
+                "input snapshot",
+                "config/seed",
+                "fit state",
+                "metrics/figures",
+                "short conclusion"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Ôn tập",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tự hỏi",
+              "items": [
+                "3 công thức lõi?",
+                "condition gate?",
+                "1 numerical/leakage trap?",
+                "1 application?",
+                "1 sanity-check?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Exit ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Pass khi",
+              "items": [
+                "formula đúng",
+                "shape đúng",
+                "condition đúng",
+                "example kiểm được",
+                "application hợp lý"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM102-T06-whitening-stability",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "lessonTitle": "m_m102 · §1.6 · Whitening, stability và preprocessing cho PCA/SVD",
+      "title": "m_m102 · §1.6 · Whitening, stability và preprocessing cho PCA/SVD",
+      "programLectureId": "MATH-PROG-L13-mathematical-statistics",
+      "programLectureIds": [
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "roadmapRole": "m_m102_t06",
+      "baumanFocus": "HK1 core fast-batch E23 · PCA, SVD và trực quan hóa không gian đặc trưng.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "legacyFrameworkChapterAlias": "MATH-HK1-LA-C15",
+        "logicalLessonId": "m_m102_t06",
+        "frameworkAnchor": "m_m102_t06",
+        "programLectureId": "MATH-PROG-L13-mathematical-statistics",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "theory_framework_plus_e23_hk1_core_authoring"
+      },
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m102",
+        "whitening-stability"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_m102 · §1.6 · Whitening, stability và preprocessing cho PCA/SVD",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "HK1 context",
+              "body": "PCA, SVD và trực quan hóa không gian đặc trưng: nội dung đi từ công thức tới numerical/data contract và khả năng kiểm chứng."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Hiểu, tính, kiểm và ứng dụng «Whitening, stability và preprocessing cho PCA/SVD» ở mức HK1."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài",
+              "items": [
+                "Viết notation/công thức đúng.",
+                "Nêu được condition gate.",
+                "Giải một ví dụ dữ liệu nhỏ.",
+                "Phát hiện bẫy numerical/data leakage.",
+                "Liên hệ được ứng dụng kỹ thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Notation",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Ký hiệu cần khóa",
+              "items": [
+                "shape/dimension",
+                "sample/feature axis",
+                "train/validation/test boundary",
+                "units/scale",
+                "fit-state/provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "PCA whitening",
+              "body": "Z=Xc V Λ^(−1/2)\nSau whitening covariance lý tưởng gần I."
+            },
+            {
+              "type": "formula",
+              "title": "Regularized whitening",
+              "body": "Λ_ε^(−1/2)=diag((λ_j+ε)^(−1/2))\nε giảm blow-up khi λ rất nhỏ."
+            },
+            {
+              "type": "formula",
+              "title": "Condition number",
+              "body": "κ=λ_max/λ_min\nLarge κ báo numerical sensitivity."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Matrix / shape view",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Structure",
+              "body": "Xc = U Σ Vᵀ",
+              "meaning": "Đọc shape và meaning trước khi nhân/chuyển vị/chiếu."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Center/scale nhất quán, xử lý eigenvalue nhỏ bằng threshold/regularization, fit whitening trên train và lưu transform state."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "shape đúng",
+                "assumption đúng",
+                "fit-state đúng split",
+                "numerical stability được kiểm"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Data contract",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Contract",
+              "items": [
+                "schema + units",
+                "sample identity",
+                "missing/outlier policy",
+                "split provenance",
+                "transform version"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài",
+              "body": "λ=[4,1,0.0001]. So scaling factors 1/√λ trước/sau ε=0.01."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Viết phép tính kèm shape/condition và một bước sanity-check."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Diễn giải hình học",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Question",
+              "body": "Phép biến đổi làm thay đổi length, angle, variance, rank hoặc information geometry như thế nào?"
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Thuật toán",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Workflow",
+              "items": [
+                "khóa input contract",
+                "tính/fit trên đúng split",
+                "kiểm shape + condition",
+                "đánh giá numerical sanity",
+                "lưu output + provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Kiểm chứng số",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checks",
+              "items": [
+                "shape assertion",
+                "finite-value check",
+                "symmetry/orthogonality khi cần",
+                "relative error/tolerance",
+                "repeatability"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Cổng chống leakage",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Không được",
+              "items": [
+                "fit preprocessing/PCA/feature selection trên test",
+                "tuning bằng test result",
+                "trộn entity/time giữa split",
+                "mất provenance sau transform"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy sư phạm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Whitening component có λ gần 0 làm noise bị khuếch đại cực mạnh."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Nếu sai",
+              "items": [
+                "xác định bước đầu tiên sai",
+                "quay lại data/shape contract",
+                "kiểm condition",
+                "làm bài biến thể nhỏ",
+                "ghi invariant/tolerance để tránh lặp"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Ứng dụng",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Kỹ thuật",
+              "items": [
+                "Decorrelate feature trước model phù hợp.",
+                "Phân tích numerical stability của PCA transform."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mô phỏng",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Controls/Readouts",
+              "items": [
+                "dimension/scale/noise",
+                "spectrum/metric/error",
+                "before-after transform",
+                "warning khi vi phạm split/condition"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Kết luận kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Việt",
+              "body": "Nêu kết quả định lượng + condition + limitation."
+            },
+            {
+              "type": "text",
+              "title": "Русский шаблон",
+              "body": "Сначала фиксируем данные и условия, затем вычисляем показатель и проверяем устойчивость результата."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Lab protocol",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Artifact",
+              "items": [
+                "input snapshot",
+                "config/seed",
+                "fit state",
+                "metrics/figures",
+                "short conclusion"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Ôn tập",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tự hỏi",
+              "items": [
+                "3 công thức lõi?",
+                "condition gate?",
+                "1 numerical/leakage trap?",
+                "1 application?",
+                "1 sanity-check?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Exit ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Pass khi",
+              "items": [
+                "formula đúng",
+                "shape đúng",
+                "condition đúng",
+                "example kiểm được",
+                "application hợp lý"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T07-pca-svd-applications",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "lessonTitle": "m_m102 · §1.7 · PCA/SVD trong dữ liệu cảm biến, ảnh và văn bản",
+      "title": "m_m102 · §1.7 · PCA/SVD trong dữ liệu cảm biến, ảnh và văn bản",
+      "programLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+      "programLectureIds": [
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "roadmapRole": "m_m102_t07",
+      "baumanFocus": "HK1 core fast-batch E23 · PCA, SVD và trực quan hóa không gian đặc trưng.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "legacyFrameworkChapterAlias": "MATH-HK1-LA-C15",
+        "logicalLessonId": "m_m102_t07",
+        "frameworkAnchor": "m_m102_t07",
+        "programLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "theory_framework_plus_e23_hk1_core_authoring"
+      },
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m102",
+        "pca-svd-applications"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_m102 · §1.7 · PCA/SVD trong dữ liệu cảm biến, ảnh và văn bản",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "HK1 context",
+              "body": "PCA, SVD và trực quan hóa không gian đặc trưng: nội dung đi từ công thức tới numerical/data contract và khả năng kiểm chứng."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Hiểu, tính, kiểm và ứng dụng «PCA/SVD trong dữ liệu cảm biến, ảnh và văn bản» ở mức HK1."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài",
+              "items": [
+                "Viết notation/công thức đúng.",
+                "Nêu được condition gate.",
+                "Giải một ví dụ dữ liệu nhỏ.",
+                "Phát hiện bẫy numerical/data leakage.",
+                "Liên hệ được ứng dụng kỹ thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Notation",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Ký hiệu cần khóa",
+              "items": [
+                "shape/dimension",
+                "sample/feature axis",
+                "train/validation/test boundary",
+                "units/scale",
+                "fit-state/provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Compression ratio",
+              "body": "CR=(np)/(k(n+p+1))\nXấp xỉ storage ratio cho rank-k factors."
+            },
+            {
+              "type": "formula",
+              "title": "Projection",
+              "body": "z=W_kᵀ(x−μ)\nEmbed một sample mới bằng transform đã fit."
+            },
+            {
+              "type": "formula",
+              "title": "Reconstruction error",
+              "body": "e(x)=‖x−x̂‖₂\nCó thể dùng như anomaly signal nhưng cần calibration."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Matrix / shape view",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Structure",
+              "body": "Xc = U Σ Vᵀ",
+              "meaning": "Đọc shape và meaning trước khi nhân/chuyển vị/chiếu."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Feature semantics/preprocessing khác nhau giữa sensor, image, text; sparse text thường cần truncated SVD thay vì center dense matrix."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "shape đúng",
+                "assumption đúng",
+                "fit-state đúng split",
+                "numerical stability được kiểm"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Data contract",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Contract",
+              "items": [
+                "schema + units",
+                "sample identity",
+                "missing/outlier policy",
+                "split provenance",
+                "transform version"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài",
+              "body": "So sensor 10000×20, image 1000×4096 và TF-IDF 5000×50000: chọn PCA/SVD strategy cho từng loại."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Viết phép tính kèm shape/condition và một bước sanity-check."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Diễn giải hình học",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Question",
+              "body": "Phép biến đổi làm thay đổi length, angle, variance, rank hoặc information geometry như thế nào?"
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Thuật toán",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Workflow",
+              "items": [
+                "khóa input contract",
+                "tính/fit trên đúng split",
+                "kiểm shape + condition",
+                "đánh giá numerical sanity",
+                "lưu output + provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Kiểm chứng số",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checks",
+              "items": [
+                "shape assertion",
+                "finite-value check",
+                "symmetry/orthogonality khi cần",
+                "relative error/tolerance",
+                "repeatability"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Cổng chống leakage",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Không được",
+              "items": [
+                "fit preprocessing/PCA/feature selection trên test",
+                "tuning bằng test result",
+                "trộn entity/time giữa split",
+                "mất provenance sau transform"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy sư phạm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Áp cùng pipeline PCA cho ảnh dense và TF-IDF sparse mà không xét memory/sparsity."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Nếu sai",
+              "items": [
+                "xác định bước đầu tiên sai",
+                "quay lại data/shape contract",
+                "kiểm condition",
+                "làm bài biến thể nhỏ",
+                "ghi invariant/tolerance để tránh lặp"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Ứng dụng",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Kỹ thuật",
+              "items": [
+                "Sensor compression/anomaly visualization.",
+                "Image/text latent representation."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mô phỏng",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Controls/Readouts",
+              "items": [
+                "dimension/scale/noise",
+                "spectrum/metric/error",
+                "before-after transform",
+                "warning khi vi phạm split/condition"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Kết luận kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Việt",
+              "body": "Nêu kết quả định lượng + condition + limitation."
+            },
+            {
+              "type": "text",
+              "title": "Русский шаблон",
+              "body": "Сначала фиксируем данные и условия, затем вычисляем показатель и проверяем устойчивость результата."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Lab protocol",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Artifact",
+              "items": [
+                "input snapshot",
+                "config/seed",
+                "fit state",
+                "metrics/figures",
+                "short conclusion"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Ôn tập",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tự hỏi",
+              "items": [
+                "3 công thức lõi?",
+                "condition gate?",
+                "1 numerical/leakage trap?",
+                "1 application?",
+                "1 sanity-check?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Exit ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Pass khi",
+              "items": [
+                "formula đúng",
+                "shape đúng",
+                "condition đúng",
+                "example kiểm được",
+                "application hợp lý"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T08-pca-svd-mini-project",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "lessonTitle": "m_m102 · §1.8 · Mini-project PCA/SVD: pipeline, hình vẽ và báo cáo",
+      "title": "m_m102 · §1.8 · Mini-project PCA/SVD: pipeline, hình vẽ và báo cáo",
+      "programLectureId": "MATH-PROG-L16-numerical-methods-computing",
+      "programLectureIds": [
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "roadmapRole": "m_m102_t08",
+      "baumanFocus": "HK1 core fast-batch E23 · PCA, SVD và trực quan hóa không gian đặc trưng.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m102",
+        "frameworkChapterId": "m_m102",
+        "legacyFrameworkChapterAlias": "MATH-HK1-LA-C15",
+        "logicalLessonId": "m_m102_t08",
+        "frameworkAnchor": "m_m102_t08",
+        "programLectureId": "MATH-PROG-L16-numerical-methods-computing",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "theory_framework_plus_e23_hk1_core_authoring"
+      },
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m102",
+        "pca-svd-mini-project"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_m102 · §1.8 · Mini-project PCA/SVD: pipeline, hình vẽ và báo cáo",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "HK1 context",
+              "body": "PCA, SVD và trực quan hóa không gian đặc trưng: nội dung đi từ công thức tới numerical/data contract và khả năng kiểm chứng."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Hiểu, tính, kiểm và ứng dụng «Mini-project PCA/SVD: pipeline, hình vẽ và báo cáo» ở mức HK1."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài",
+              "items": [
+                "Viết notation/công thức đúng.",
+                "Nêu được condition gate.",
+                "Giải một ví dụ dữ liệu nhỏ.",
+                "Phát hiện bẫy numerical/data leakage.",
+                "Liên hệ được ứng dụng kỹ thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Notation",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Ký hiệu cần khóa",
+              "items": [
+                "shape/dimension",
+                "sample/feature axis",
+                "train/validation/test boundary",
+                "units/scale",
+                "fit-state/provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Pipeline fit",
+              "body": "(μ,W_k)=fit_PCA(X_train)\nKhông fit PCA trên test."
+            },
+            {
+              "type": "formula",
+              "title": "Transform",
+              "body": "Z_test=(X_test−1μᵀ)W_k\nDùng transform train."
+            },
+            {
+              "type": "formula",
+              "title": "Quality tuple",
+              "body": "Q=(CEVR_k,e_recon,metric_downstream)\nBáo ít nhất variance, reconstruction và task metric."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Matrix / shape view",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Structure",
+              "body": "Xc = U Σ Vᵀ",
+              "meaning": "Đọc shape và meaning trước khi nhân/chuyển vị/chiếu."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Project phải khóa split, fit state, seed, k-selection rule, figure labels và artifact version; kết quả test chỉ dùng một lần cho final evaluation."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "shape đúng",
+                "assumption đúng",
+                "fit-state đúng split",
+                "numerical stability được kiểm"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Data contract",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Contract",
+              "items": [
+                "schema + units",
+                "sample identity",
+                "missing/outlier policy",
+                "split provenance",
+                "transform version"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài",
+              "body": "Thiết kế notebook: load→split→EDA(train)→scale(train)→PCA(train)→select k(validation)→final test→report."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Viết phép tính kèm shape/condition và một bước sanity-check."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Diễn giải hình học",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Question",
+              "body": "Phép biến đổi làm thay đổi length, angle, variance, rank hoặc information geometry như thế nào?"
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Thuật toán",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Workflow",
+              "items": [
+                "khóa input contract",
+                "tính/fit trên đúng split",
+                "kiểm shape + condition",
+                "đánh giá numerical sanity",
+                "lưu output + provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Kiểm chứng số",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checks",
+              "items": [
+                "shape assertion",
+                "finite-value check",
+                "symmetry/orthogonality khi cần",
+                "relative error/tolerance",
+                "repeatability"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Cổng chống leakage",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Không được",
+              "items": [
+                "fit preprocessing/PCA/feature selection trên test",
+                "tuning bằng test result",
+                "trộn entity/time giữa split",
+                "mất provenance sau transform"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy sư phạm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Chọn k sau khi xem test accuracy rồi báo test đó như đánh giá cuối cùng."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Nếu sai",
+              "items": [
+                "xác định bước đầu tiên sai",
+                "quay lại data/shape contract",
+                "kiểm condition",
+                "làm bài biến thể nhỏ",
+                "ghi invariant/tolerance để tránh lặp"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Ứng dụng",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Kỹ thuật",
+              "items": [
+                "Mini-project telemetry giảm chiều.",
+                "Mẫu Methods/Results cho báo cáo HK1."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mô phỏng",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Controls/Readouts",
+              "items": [
+                "dimension/scale/noise",
+                "spectrum/metric/error",
+                "before-after transform",
+                "warning khi vi phạm split/condition"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Kết luận kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Việt",
+              "body": "Nêu kết quả định lượng + condition + limitation."
+            },
+            {
+              "type": "text",
+              "title": "Русский шаблон",
+              "body": "Сначала фиксируем данные и условия, затем вычисляем показатель и проверяем устойчивость результата."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Lab protocol",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Artifact",
+              "items": [
+                "input snapshot",
+                "config/seed",
+                "fit state",
+                "metrics/figures",
+                "short conclusion"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Ôn tập",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tự hỏi",
+              "items": [
+                "3 công thức lõi?",
+                "condition gate?",
+                "1 numerical/leakage trap?",
+                "1 application?",
+                "1 sanity-check?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Exit ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Pass khi",
+              "items": [
+                "formula đúng",
+                "shape đúng",
+                "condition đúng",
+                "example kiểm được",
+                "application hợp lý"
+              ]
+            }
+          ]
+        }
+      ]
     }
   ],
   "updatedAt": "2026-09-28",
