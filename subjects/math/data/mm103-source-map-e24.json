@@ -9,7 +9,7 @@
   "architecture": "framework_chapter_over_existing_hk1_multidisciplinary_spine",
   "legacyFrameworkAlias": "MATH-HK1-CLUSTER-C16",
   "legacyAliasPolicy": "reference_only_not_runtime_physical_chapter",
-  "status": "IMPLEMENTED_PENDING_CI",
+  "status": "PASS",
   "correction": {
     "rule": "m_m103 là framework/logical HK1 chapter; không materialize legacy alias thành physical chapter.",
     "physicalSpineTruth": [
@@ -23,7 +23,7 @@
       "MATH-PROG-L14-stochastic-processes-time-series"
     ],
     "reason": "Keep time-series ownership isolated from HK1 similarity/clustering batch.",
-    "status": "PENDING_CI"
+    "status": "PASS"
   },
   "logicalLessons": [
     {
@@ -226,7 +226,12 @@
     "qualityGate": "canonical-quality-gates",
     "productionAuthority": "separate"
   },
-  "verifiedAt": null,
+  "verifiedAt": "2026-09-28",
   "pr": null,
-  "gateResults": {}
+  "gateResults": {
+    "jsonShape": "PASS",
+    "contentCounts": "PASS",
+    "developmentFastCI": "PASS",
+    "universalConstitutionCompliance": "PASS"
+  }
 }
