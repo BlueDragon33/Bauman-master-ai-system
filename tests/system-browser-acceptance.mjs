@@ -104,7 +104,7 @@ try{
   assert.equal(managedAccess.credentialStorePresent,false);
   assert.equal(managedAccess.managedScopeStored,EXPECT_PLATFORM_ACCESS);
   assert.equal(managedAccess.currentManagedBy,EXPECT_PLATFORM_ACCESS?'app-manager':null);
-  assert.equal(managedAccess.localAdminVisible,false);
+  assert.equal(managedAccess.localAdminVisible,!EXPECT_PLATFORM_ACCESS);
   assert.equal(managedAccess.localLogoutVisible,!EXPECT_PLATFORM_ACCESS);
   assert.equal(managedAccess.routeOwnership,false);
   assert.equal(managedAccess.academicWrites,false);
