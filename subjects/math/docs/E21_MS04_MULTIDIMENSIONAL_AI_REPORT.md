@@ -18,4 +18,4 @@ Formula chỉ ở formula block; matrix chỉ ở matrix block; không raw LaTeX
 8 bài · 160 slide · 24 formula · 64 exercise · 16 application · 16 simulation · 8 Q&A · 48 question · 8 review pack.
 
 ## Trạng thái
-**IMPLEMENTED · PENDING CI**
+**PASS · E21 + E20/E19/E18/E17 REGRESSION + FAST CI + CONSTITUTION**
