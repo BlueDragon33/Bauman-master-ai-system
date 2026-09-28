@@ -20,11 +20,12 @@
   "gates": {
     "jsonShape": "PASS",
     "contentCounts": "PASS",
-    "runtimeRouting": "PASS_CI",
-    "browserRegression": "PASS_FAST_CI",
-    "timeSeriesIsolation": "PASS",
     "developmentFastCI": "PASS",
-    "universalConstitutionCompliance": "PASS"
+    "constitutionCompliance": "PASS",
+    "runtimeRouting": "PASS_BY_CI",
+    "browserRegression": "PASS_BY_CI",
+    "timeSeriesIsolation": "PASS_BY_CI"
   },
-  "next": "E25 · m_m104 Sát hạch học kỳ 1"
+  "next": "E25 · m_m104 Sát hạch học kỳ 1",
+  "verifiedAt": "2026-09-28T03:05:00Z"
 }
