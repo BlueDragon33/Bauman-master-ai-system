@@ -7438,6 +7438,614 @@
         "warnings"
       ],
       "goal": "Báo cáo các chế độ vận hành, drift và nhóm mẫu cần kiểm tra thủ công."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t01",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T01-data-contract-diagnostics",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "data-contract-diagnostics"
+      ],
+      "sourceAnchors": [
+        "m_m104_t01",
+        "m_m104",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "simulationId": "E25-MM104-T01-S01",
+      "kind": "theory",
+      "title": "Mô phỏng kiểm định Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu",
+      "controls": [
+        "scale",
+        "noise",
+        "dimension",
+        "seed",
+        "model parameter"
+      ],
+      "readouts": [
+        "metric",
+        "error",
+        "stability",
+        "gate warnings"
+      ],
+      "goal": "Tìm vùng tham số làm kết luận thay đổi."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t01",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T01-data-contract-diagnostics",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "data-contract-diagnostics"
+      ],
+      "sourceAnchors": [
+        "m_m104_t01",
+        "m_m104",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "simulationId": "E25-MM104-T01-S02",
+      "kind": "application",
+      "title": "Mô phỏng ứng dụng sát hạch 1",
+      "controls": [
+        "scale",
+        "noise",
+        "dimension",
+        "seed",
+        "model parameter"
+      ],
+      "readouts": [
+        "metric",
+        "error",
+        "stability",
+        "gate warnings"
+      ],
+      "goal": "Audit một batch telemetry trước PCA/clustering."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t02",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-geometry-metric",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "multidim-geometry-metric"
+      ],
+      "sourceAnchors": [
+        "m_m104_t02",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "simulationId": "E25-MM104-T02-S01",
+      "kind": "theory",
+      "title": "Mô phỏng kiểm định Sát hạch 2 · Hình học nhiều chiều, norm và similarity",
+      "controls": [
+        "scale",
+        "noise",
+        "dimension",
+        "seed",
+        "model parameter"
+      ],
+      "readouts": [
+        "metric",
+        "error",
+        "stability",
+        "gate warnings"
+      ],
+      "goal": "Tìm vùng tham số làm kết luận thay đổi."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t02",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-geometry-metric",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "multidim-geometry-metric"
+      ],
+      "sourceAnchors": [
+        "m_m104_t02",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "simulationId": "E25-MM104-T02-S02",
+      "kind": "application",
+      "title": "Mô phỏng ứng dụng sát hạch 2",
+      "controls": [
+        "scale",
+        "noise",
+        "dimension",
+        "seed",
+        "model parameter"
+      ],
+      "readouts": [
+        "metric",
+        "error",
+        "stability",
+        "gate warnings"
+      ],
+      "goal": "Chọn metric cho nearest-neighbor trên trạng thái cảm biến."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t03",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-covariance-eigen-pca",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "covariance-eigen-pca"
+      ],
+      "sourceAnchors": [
+        "m_m104_t03",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "simulationId": "E25-MM104-T03-S01",
+      "kind": "theory",
+      "title": "Mô phỏng kiểm định Sát hạch 3 · Covariance, eigen và PCA",
+      "controls": [
+        "scale",
+        "noise",
+        "dimension",
+        "seed",
+        "model parameter"
+      ],
+      "readouts": [
+        "metric",
+        "error",
+        "stability",
+        "gate warnings"
+      ],
+      "goal": "Tìm vùng tham số làm kết luận thay đổi."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t03",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-covariance-eigen-pca",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "covariance-eigen-pca"
+      ],
+      "sourceAnchors": [
+        "m_m104_t03",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "simulationId": "E25-MM104-T03-S02",
+      "kind": "application",
+      "title": "Mô phỏng ứng dụng sát hạch 3",
+      "controls": [
+        "scale",
+        "noise",
+        "dimension",
+        "seed",
+        "model parameter"
+      ],
+      "readouts": [
+        "metric",
+        "error",
+        "stability",
+        "gate warnings"
+      ],
+      "goal": "Giảm chiều telemetry trước visualization/clustering."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t04",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-svd-low-rank",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "svd-low-rank"
+      ],
+      "sourceAnchors": [
+        "m_m104_t04",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "simulationId": "E25-MM104-T04-S01",
+      "kind": "theory",
+      "title": "Mô phỏng kiểm định Sát hạch 4 · SVD, low-rank và reconstruction error",
+      "controls": [
+        "scale",
+        "noise",
+        "dimension",
+        "seed",
+        "model parameter"
+      ],
+      "readouts": [
+        "metric",
+        "error",
+        "stability",
+        "gate warnings"
+      ],
+      "goal": "Tìm vùng tham số làm kết luận thay đổi."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t04",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-svd-low-rank",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "svd-low-rank"
+      ],
+      "sourceAnchors": [
+        "m_m104_t04",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "simulationId": "E25-MM104-T04-S02",
+      "kind": "application",
+      "title": "Mô phỏng ứng dụng sát hạch 4",
+      "controls": [
+        "scale",
+        "noise",
+        "dimension",
+        "seed",
+        "model parameter"
+      ],
+      "readouts": [
+        "metric",
+        "error",
+        "stability",
+        "gate warnings"
+      ],
+      "goal": "Nén dữ liệu/khử nhiễu trước downstream model."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t05",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-clustering-objective-validation",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "clustering-objective-validation"
+      ],
+      "sourceAnchors": [
+        "m_m104_t05",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "simulationId": "E25-MM104-T05-S01",
+      "kind": "theory",
+      "title": "Mô phỏng kiểm định Sát hạch 5 · K-means, số cụm và validation",
+      "controls": [
+        "scale",
+        "noise",
+        "dimension",
+        "seed",
+        "model parameter"
+      ],
+      "readouts": [
+        "metric",
+        "error",
+        "stability",
+        "gate warnings"
+      ],
+      "goal": "Tìm vùng tham số làm kết luận thay đổi."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t05",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-clustering-objective-validation",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "clustering-objective-validation"
+      ],
+      "sourceAnchors": [
+        "m_m104_t05",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "simulationId": "E25-MM104-T05-S02",
+      "kind": "application",
+      "title": "Mô phỏng ứng dụng sát hạch 5",
+      "controls": [
+        "scale",
+        "noise",
+        "dimension",
+        "seed",
+        "model parameter"
+      ],
+      "readouts": [
+        "metric",
+        "error",
+        "stability",
+        "gate warnings"
+      ],
+      "goal": "Phân nhóm chế độ vận hành."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t06",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-hierarchical-dbscan",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "hierarchical-dbscan"
+      ],
+      "sourceAnchors": [
+        "m_m104_t06",
+        "m_m104",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "simulationId": "E25-MM104-T06-S01",
+      "kind": "theory",
+      "title": "Mô phỏng kiểm định Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ",
+      "controls": [
+        "scale",
+        "noise",
+        "dimension",
+        "seed",
+        "model parameter"
+      ],
+      "readouts": [
+        "metric",
+        "error",
+        "stability",
+        "gate warnings"
+      ],
+      "goal": "Tìm vùng tham số làm kết luận thay đổi."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t06",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-hierarchical-dbscan",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "hierarchical-dbscan"
+      ],
+      "sourceAnchors": [
+        "m_m104_t06",
+        "m_m104",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "simulationId": "E25-MM104-T06-S02",
+      "kind": "application",
+      "title": "Mô phỏng ứng dụng sát hạch 6",
+      "controls": [
+        "scale",
+        "noise",
+        "dimension",
+        "seed",
+        "model parameter"
+      ],
+      "readouts": [
+        "metric",
+        "error",
+        "stability",
+        "gate warnings"
+      ],
+      "goal": "Tách vùng vận hành dày/thưa và điểm cần review."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t07",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-pipeline-reproducibility",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "pipeline-reproducibility"
+      ],
+      "sourceAnchors": [
+        "m_m104_t07",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "simulationId": "E25-MM104-T07-S01",
+      "kind": "theory",
+      "title": "Mô phỏng kiểm định Sát hạch 7 · Pipeline, provenance và reproducibility",
+      "controls": [
+        "scale",
+        "noise",
+        "dimension",
+        "seed",
+        "model parameter"
+      ],
+      "readouts": [
+        "metric",
+        "error",
+        "stability",
+        "gate warnings"
+      ],
+      "goal": "Tìm vùng tham số làm kết luận thay đổi."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t07",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-pipeline-reproducibility",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "pipeline-reproducibility"
+      ],
+      "sourceAnchors": [
+        "m_m104_t07",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "simulationId": "E25-MM104-T07-S02",
+      "kind": "application",
+      "title": "Mô phỏng ứng dụng sát hạch 7",
+      "controls": [
+        "scale",
+        "noise",
+        "dimension",
+        "seed",
+        "model parameter"
+      ],
+      "readouts": [
+        "metric",
+        "error",
+        "stability",
+        "gate warnings"
+      ],
+      "goal": "Tạo pipeline PCA→clustering có thể tái chạy."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t08",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-hk1-capstone-defense",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "hk1-capstone-defense"
+      ],
+      "sourceAnchors": [
+        "m_m104_t08",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "simulationId": "E25-MM104-T08-S01",
+      "kind": "theory",
+      "title": "Mô phỏng kiểm định Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận",
+      "controls": [
+        "scale",
+        "noise",
+        "dimension",
+        "seed",
+        "model parameter"
+      ],
+      "readouts": [
+        "metric",
+        "error",
+        "stability",
+        "gate warnings"
+      ],
+      "goal": "Tìm vùng tham số làm kết luận thay đổi."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t08",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-hk1-capstone-defense",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "hk1-capstone-defense"
+      ],
+      "sourceAnchors": [
+        "m_m104_t08",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "simulationId": "E25-MM104-T08-S02",
+      "kind": "application",
+      "title": "Mô phỏng ứng dụng sát hạch 8",
+      "controls": [
+        "scale",
+        "noise",
+        "dimension",
+        "seed",
+        "model parameter"
+      ],
+      "readouts": [
+        "metric",
+        "error",
+        "stability",
+        "gate warnings"
+      ],
+      "goal": "Bảo vệ mini-report dữ liệu nhiều chiều/PCA/clustering."
     }
   ],
   "importPolicy": {
