@@ -1,0 +1,2392 @@
+{
+  "schema": "bauman_math_content_bundle_v1",
+  "bundleId": "e25_mm104_hk1_semester_assessment_theory_bundle",
+  "frameworkChapterId": "m_m104",
+  "moduleId": "m_m104",
+  "records": [
+    {
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T01-readiness-diagnostic",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "lessonTitle": "m_m104 · §4.1 · Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering",
+      "title": "m_m104 · §4.1 · Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering",
+      "programLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+      "programLectureIds": [
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "roadmapRole": "m_m104_t01",
+      "baumanFocus": "HK1 final gate E25 · integrated written/oral assessment.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "legacyFrameworkChapterAlias": "MATH-HK1-GATE-C17",
+        "logicalLessonId": "m_m104_t01",
+        "frameworkAnchor": "m_m104_t01",
+        "programLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "assessment_framework_plus_e25_hk1_gate"
+      },
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "readiness-diagnostic"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering · section_open",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "section open",
+              "body": "Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering · learning_outcomes",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "learning outcomes",
+              "body": "Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering · notation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "notation",
+              "body": "Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering · notation_formula",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Pipeline invariant",
+              "body": "raw → clean → split → fit(train) → transform → model → evaluate\nKhông fit preprocessing trên test."
+            },
+            {
+              "type": "formula",
+              "title": "Readiness score",
+              "body": "R=(w₁F+w₂C+w₃A+w₄V)/Σw\nF=formula, C=condition, A=application, V=verification."
+            },
+            {
+              "type": "formula",
+              "title": "Error rate",
+              "body": "e=n_error/n_total\nTách theo miền để biết lỗ hổng."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering · matrix_example",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Assessment evidence matrix",
+              "body": "E = [[formula, condition, verification, application], …]",
+              "meaning": "Mỗi bài phải có đủ bốn cột bằng chứng."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering · condition_gate",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Chỉ PASS khi lỗi công thức, condition và data-leakage đều dưới ngưỡng; không bù lỗi nền bằng điểm ứng dụng."
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering · data_contract",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "data contract",
+              "body": "Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering · worked_example",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài",
+              "body": "Từ kết quả 4 miền, tính readiness và xác định miền bắt buộc ôn lại."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Trả lời có công thức, condition, kiểm chứng và kết luận."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering · geometry_interpretation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "geometry interpretation",
+              "body": "Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering · algorithm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "algorithm",
+              "body": "Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering · computational_check",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Evidence",
+              "items": [
+                "shape/finite",
+                "formula invariant",
+                "seed/config",
+                "reconstruction/distance/cluster sanity",
+                "provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering · data_leakage_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Critical fail",
+              "items": [
+                "fit/tune bằng test",
+                "mất split provenance",
+                "đảo sample/feature semantics",
+                "gán cluster thành ground-truth",
+                "không thể tái lập config"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering · warning_counterexample",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Critical trap",
+              "body": "Điểm tổng cao che một lỗ hổng nghiêm trọng ở data leakage hoặc dimension semantics."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering · error_repair",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "error repair",
+              "body": "Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering · application_link",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Transfer",
+              "body": "Dashboard readiness trước sát hạch HK1."
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering · simulation_plan",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "simulation plan",
+              "body": "Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering · technical_conclusion",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "technical conclusion",
+              "body": "Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering · lab_protocol",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "lab protocol",
+              "body": "Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering · review_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Pass checklist",
+              "items": [
+                "formula",
+                "condition",
+                "verification",
+                "oral explanation",
+                "application transfer",
+                "error repair"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Readiness diagnostic: dữ liệu đa chiều → PCA/SVD → clustering · exit_ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "PASS khi",
+              "items": [
+                "không critical leakage",
+                "4 miền evidence đạt ngưỡng",
+                "giải thích được sai ở đâu",
+                "artifact tái lập được"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-contract-exam",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "lessonTitle": "m_m104 · §4.2 · Sát hạch data matrix, scale, covariance và geometry",
+      "title": "m_m104 · §4.2 · Sát hạch data matrix, scale, covariance và geometry",
+      "programLectureId": "MATH-PROG-L01-linear-algebra-basic",
+      "programLectureIds": [
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "roadmapRole": "m_m104_t02",
+      "baumanFocus": "HK1 final gate E25 · integrated written/oral assessment.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "legacyFrameworkChapterAlias": "MATH-HK1-GATE-C17",
+        "logicalLessonId": "m_m104_t02",
+        "frameworkAnchor": "m_m104_t02",
+        "programLectureId": "MATH-PROG-L01-linear-algebra-basic",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "assessment_framework_plus_e25_hk1_gate"
+      },
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "multidim-contract-exam"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "Sát hạch data matrix, scale, covariance và geometry · section_open",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "section open",
+              "body": "Sát hạch data matrix, scale, covariance và geometry: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Sát hạch data matrix, scale, covariance và geometry · learning_outcomes",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "learning outcomes",
+              "body": "Sát hạch data matrix, scale, covariance và geometry: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Sát hạch data matrix, scale, covariance và geometry · notation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "notation",
+              "body": "Sát hạch data matrix, scale, covariance và geometry: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Sát hạch data matrix, scale, covariance và geometry · notation_formula",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Data matrix",
+              "body": "X ∈ ℝ^(n×p)\nn sample × p feature."
+            },
+            {
+              "type": "formula",
+              "title": "Covariance",
+              "body": "C=(1/(n−1))XcᵀXc\nFeature covariance p×p."
+            },
+            {
+              "type": "formula",
+              "title": "Cosine",
+              "body": "cos(x,y)=xᵀy/(‖x‖₂‖y‖₂)\nSo hướng, không so magnitude."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Sát hạch data matrix, scale, covariance và geometry · matrix_example",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Assessment evidence matrix",
+              "body": "E = [[formula, condition, verification, application], …]",
+              "meaning": "Mỗi bài phải có đủ bốn cột bằng chứng."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Sát hạch data matrix, scale, covariance và geometry · condition_gate",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Khóa orientation, units, centering/scaling và split provenance trước phép tính."
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Sát hạch data matrix, scale, covariance và geometry · data_contract",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "data contract",
+              "body": "Sát hạch data matrix, scale, covariance và geometry: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Sát hạch data matrix, scale, covariance và geometry · worked_example",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài",
+              "body": "Cho X 5×3, xác định shape covariance và giải thích tác động của rescale một feature."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Trả lời có công thức, condition, kiểm chứng và kết luận."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Sát hạch data matrix, scale, covariance và geometry · geometry_interpretation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "geometry interpretation",
+              "body": "Sát hạch data matrix, scale, covariance và geometry: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Sát hạch data matrix, scale, covariance và geometry · algorithm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "algorithm",
+              "body": "Sát hạch data matrix, scale, covariance và geometry: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Sát hạch data matrix, scale, covariance và geometry · computational_check",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Evidence",
+              "items": [
+                "shape/finite",
+                "formula invariant",
+                "seed/config",
+                "reconstruction/distance/cluster sanity",
+                "provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Sát hạch data matrix, scale, covariance và geometry · data_leakage_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Critical fail",
+              "items": [
+                "fit/tune bằng test",
+                "mất split provenance",
+                "đảo sample/feature semantics",
+                "gán cluster thành ground-truth",
+                "không thể tái lập config"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Sát hạch data matrix, scale, covariance và geometry · warning_counterexample",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Critical trap",
+              "body": "Tính đúng ma trận nhưng sai trục sample/feature hoặc dùng statistics của toàn bộ dataset."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sát hạch data matrix, scale, covariance và geometry · error_repair",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "error repair",
+              "body": "Sát hạch data matrix, scale, covariance và geometry: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Sát hạch data matrix, scale, covariance và geometry · application_link",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Transfer",
+              "body": "Kiểm tra feature contract cho telemetry."
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Sát hạch data matrix, scale, covariance và geometry · simulation_plan",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "simulation plan",
+              "body": "Sát hạch data matrix, scale, covariance và geometry: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Sát hạch data matrix, scale, covariance và geometry · technical_conclusion",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "technical conclusion",
+              "body": "Sát hạch data matrix, scale, covariance và geometry: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Sát hạch data matrix, scale, covariance và geometry · lab_protocol",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "lab protocol",
+              "body": "Sát hạch data matrix, scale, covariance và geometry: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Sát hạch data matrix, scale, covariance và geometry · review_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Pass checklist",
+              "items": [
+                "formula",
+                "condition",
+                "verification",
+                "oral explanation",
+                "application transfer",
+                "error repair"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Sát hạch data matrix, scale, covariance và geometry · exit_ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "PASS khi",
+              "items": [
+                "không critical leakage",
+                "4 miền evidence đạt ngưỡng",
+                "giải thích được sai ở đâu",
+                "artifact tái lập được"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-pca-svd-exam",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "lessonTitle": "m_m104 · §4.3 · Sát hạch PCA/SVD, explained variance và reconstruction",
+      "title": "m_m104 · §4.3 · Sát hạch PCA/SVD, explained variance và reconstruction",
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "programLectureIds": [
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "roadmapRole": "m_m104_t03",
+      "baumanFocus": "HK1 final gate E25 · integrated written/oral assessment.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "legacyFrameworkChapterAlias": "MATH-HK1-GATE-C17",
+        "logicalLessonId": "m_m104_t03",
+        "frameworkAnchor": "m_m104_t03",
+        "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "assessment_framework_plus_e25_hk1_gate"
+      },
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "pca-svd-exam"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "Sát hạch PCA/SVD, explained variance và reconstruction · section_open",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "section open",
+              "body": "Sát hạch PCA/SVD, explained variance và reconstruction: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Sát hạch PCA/SVD, explained variance và reconstruction · learning_outcomes",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "learning outcomes",
+              "body": "Sát hạch PCA/SVD, explained variance và reconstruction: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Sát hạch PCA/SVD, explained variance và reconstruction · notation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "notation",
+              "body": "Sát hạch PCA/SVD, explained variance và reconstruction: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Sát hạch PCA/SVD, explained variance và reconstruction · notation_formula",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "PCA projection",
+              "body": "Z=XcV_k\nChiếu dữ liệu đã center lên k principal directions."
+            },
+            {
+              "type": "formula",
+              "title": "SVD",
+              "body": "Xc=UΣVᵀ\nLiên hệ singular values với variance."
+            },
+            {
+              "type": "formula",
+              "title": "Reconstruction",
+              "body": "X̂_k=U_kΣ_kV_kᵀ\nLow-rank approximation."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Sát hạch PCA/SVD, explained variance và reconstruction · matrix_example",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Assessment evidence matrix",
+              "body": "E = [[formula, condition, verification, application], …]",
+              "meaning": "Mỗi bài phải có đủ bốn cột bằng chứng."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Sát hạch PCA/SVD, explained variance và reconstruction · condition_gate",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Center đúng; chọn k bằng explained variance + task utility; kiểm orthogonality, reconstruction error và train-fit provenance."
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Sát hạch PCA/SVD, explained variance và reconstruction · data_contract",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "data contract",
+              "body": "Sát hạch PCA/SVD, explained variance và reconstruction: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Sát hạch PCA/SVD, explained variance và reconstruction · worked_example",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài",
+              "body": "Từ singular values cho trước, tính tỷ lệ variance giữ lại khi k=2."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Trả lời có công thức, condition, kiểm chứng và kết luận."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Sát hạch PCA/SVD, explained variance và reconstruction · geometry_interpretation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "geometry interpretation",
+              "body": "Sát hạch PCA/SVD, explained variance và reconstruction: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Sát hạch PCA/SVD, explained variance và reconstruction · algorithm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "algorithm",
+              "body": "Sát hạch PCA/SVD, explained variance và reconstruction: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Sát hạch PCA/SVD, explained variance và reconstruction · computational_check",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Evidence",
+              "items": [
+                "shape/finite",
+                "formula invariant",
+                "seed/config",
+                "reconstruction/distance/cluster sanity",
+                "provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Sát hạch PCA/SVD, explained variance và reconstruction · data_leakage_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Critical fail",
+              "items": [
+                "fit/tune bằng test",
+                "mất split provenance",
+                "đảo sample/feature semantics",
+                "gán cluster thành ground-truth",
+                "không thể tái lập config"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Sát hạch PCA/SVD, explained variance và reconstruction · warning_counterexample",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Critical trap",
+              "body": "Coi PCA là feature selection nguyên bản hoặc kết luận giảm chiều không mất thông tin."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sát hạch PCA/SVD, explained variance và reconstruction · error_repair",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "error repair",
+              "body": "Sát hạch PCA/SVD, explained variance và reconstruction: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Sát hạch PCA/SVD, explained variance và reconstruction · application_link",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Transfer",
+              "body": "Giảm chiều telemetry/embedding trước clustering."
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Sát hạch PCA/SVD, explained variance và reconstruction · simulation_plan",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "simulation plan",
+              "body": "Sát hạch PCA/SVD, explained variance và reconstruction: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Sát hạch PCA/SVD, explained variance và reconstruction · technical_conclusion",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "technical conclusion",
+              "body": "Sát hạch PCA/SVD, explained variance và reconstruction: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Sát hạch PCA/SVD, explained variance và reconstruction · lab_protocol",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "lab protocol",
+              "body": "Sát hạch PCA/SVD, explained variance và reconstruction: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Sát hạch PCA/SVD, explained variance và reconstruction · review_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Pass checklist",
+              "items": [
+                "formula",
+                "condition",
+                "verification",
+                "oral explanation",
+                "application transfer",
+                "error repair"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Sát hạch PCA/SVD, explained variance và reconstruction · exit_ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "PASS khi",
+              "items": [
+                "không critical leakage",
+                "4 miền evidence đạt ngưỡng",
+                "giải thích được sai ở đâu",
+                "artifact tái lập được"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-similarity-exam",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "lessonTitle": "m_m104 · §4.4 · Sát hạch similarity, metric và nearest-neighbor geometry",
+      "title": "m_m104 · §4.4 · Sát hạch similarity, metric và nearest-neighbor geometry",
+      "programLectureId": "MATH-PROG-L09-topology-metric-spaces",
+      "programLectureIds": [
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "roadmapRole": "m_m104_t04",
+      "baumanFocus": "HK1 final gate E25 · integrated written/oral assessment.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "legacyFrameworkChapterAlias": "MATH-HK1-GATE-C17",
+        "logicalLessonId": "m_m104_t04",
+        "frameworkAnchor": "m_m104_t04",
+        "programLectureId": "MATH-PROG-L09-topology-metric-spaces",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "assessment_framework_plus_e25_hk1_gate"
+      },
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "similarity-exam"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "Sát hạch similarity, metric và nearest-neighbor geometry · section_open",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "section open",
+              "body": "Sát hạch similarity, metric và nearest-neighbor geometry: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Sát hạch similarity, metric và nearest-neighbor geometry · learning_outcomes",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "learning outcomes",
+              "body": "Sát hạch similarity, metric và nearest-neighbor geometry: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Sát hạch similarity, metric và nearest-neighbor geometry · notation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "notation",
+              "body": "Sát hạch similarity, metric và nearest-neighbor geometry: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Sát hạch similarity, metric và nearest-neighbor geometry · notation_formula",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "L2 distance",
+              "body": "d₂(x,y)=√Σⱼ(xⱼ−yⱼ)²\nNhạy với scale."
+            },
+            {
+              "type": "formula",
+              "title": "L1 distance",
+              "body": "d₁(x,y)=Σⱼ|xⱼ−yⱼ|\nManhattan."
+            },
+            {
+              "type": "formula",
+              "title": "Angular distance",
+              "body": "d_ang=arccos(cos(x,y))/π\nSo orientation."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Sát hạch similarity, metric và nearest-neighbor geometry · matrix_example",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Assessment evidence matrix",
+              "body": "E = [[formula, condition, verification, application], …]",
+              "meaning": "Mỗi bài phải có đủ bốn cột bằng chứng."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Sát hạch similarity, metric và nearest-neighbor geometry · condition_gate",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Metric phải phản ánh semantics; kiểm scale, zero vector, high-dimensional concentration và tie handling."
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Sát hạch similarity, metric và nearest-neighbor geometry · data_contract",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "data contract",
+              "body": "Sát hạch similarity, metric và nearest-neighbor geometry: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Sát hạch similarity, metric và nearest-neighbor geometry · worked_example",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài",
+              "body": "So ranking nearest neighbor theo Euclidean và cosine trên ba điểm."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Trả lời có công thức, condition, kiểm chứng và kết luận."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Sát hạch similarity, metric và nearest-neighbor geometry · geometry_interpretation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "geometry interpretation",
+              "body": "Sát hạch similarity, metric và nearest-neighbor geometry: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Sát hạch similarity, metric và nearest-neighbor geometry · algorithm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "algorithm",
+              "body": "Sát hạch similarity, metric và nearest-neighbor geometry: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Sát hạch similarity, metric và nearest-neighbor geometry · computational_check",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Evidence",
+              "items": [
+                "shape/finite",
+                "formula invariant",
+                "seed/config",
+                "reconstruction/distance/cluster sanity",
+                "provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Sát hạch similarity, metric và nearest-neighbor geometry · data_leakage_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Critical fail",
+              "items": [
+                "fit/tune bằng test",
+                "mất split provenance",
+                "đảo sample/feature semantics",
+                "gán cluster thành ground-truth",
+                "không thể tái lập config"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Sát hạch similarity, metric và nearest-neighbor geometry · warning_counterexample",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Critical trap",
+              "body": "Chọn metric theo thói quen thay vì mục tiêu vật lý/dữ liệu."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sát hạch similarity, metric và nearest-neighbor geometry · error_repair",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "error repair",
+              "body": "Sát hạch similarity, metric và nearest-neighbor geometry: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Sát hạch similarity, metric và nearest-neighbor geometry · application_link",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Transfer",
+              "body": "Retrieval trạng thái máy tương tự."
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Sát hạch similarity, metric và nearest-neighbor geometry · simulation_plan",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "simulation plan",
+              "body": "Sát hạch similarity, metric và nearest-neighbor geometry: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Sát hạch similarity, metric và nearest-neighbor geometry · technical_conclusion",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "technical conclusion",
+              "body": "Sát hạch similarity, metric và nearest-neighbor geometry: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Sát hạch similarity, metric và nearest-neighbor geometry · lab_protocol",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "lab protocol",
+              "body": "Sát hạch similarity, metric và nearest-neighbor geometry: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Sát hạch similarity, metric và nearest-neighbor geometry · review_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Pass checklist",
+              "items": [
+                "formula",
+                "condition",
+                "verification",
+                "oral explanation",
+                "application transfer",
+                "error repair"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Sát hạch similarity, metric và nearest-neighbor geometry · exit_ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "PASS khi",
+              "items": [
+                "không critical leakage",
+                "4 miền evidence đạt ngưỡng",
+                "giải thích được sai ở đâu",
+                "artifact tái lập được"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-kmeans-exam",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "lessonTitle": "m_m104 · §4.5 · Sát hạch K-means, k, inertia, silhouette và stability",
+      "title": "m_m104 · §4.5 · Sát hạch K-means, k, inertia, silhouette và stability",
+      "programLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+      "programLectureIds": [
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "roadmapRole": "m_m104_t05",
+      "baumanFocus": "HK1 final gate E25 · integrated written/oral assessment.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "legacyFrameworkChapterAlias": "MATH-HK1-GATE-C17",
+        "logicalLessonId": "m_m104_t05",
+        "frameworkAnchor": "m_m104_t05",
+        "programLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "assessment_framework_plus_e25_hk1_gate"
+      },
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "kmeans-exam"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "Sát hạch K-means, k, inertia, silhouette và stability · section_open",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "section open",
+              "body": "Sát hạch K-means, k, inertia, silhouette và stability: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Sát hạch K-means, k, inertia, silhouette và stability · learning_outcomes",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "learning outcomes",
+              "body": "Sát hạch K-means, k, inertia, silhouette và stability: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Sát hạch K-means, k, inertia, silhouette và stability · notation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "notation",
+              "body": "Sát hạch K-means, k, inertia, silhouette và stability: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Sát hạch K-means, k, inertia, silhouette và stability · notation_formula",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "K-means objective",
+              "body": "J=Σ_i ‖x_i−μ_{c_i}‖₂²\nWithin-cluster SSE."
+            },
+            {
+              "type": "formula",
+              "title": "Silhouette",
+              "body": "s(i)=(b(i)−a(i))/max(a(i),b(i))\n[-1,1]."
+            },
+            {
+              "type": "formula",
+              "title": "Cluster proportion",
+              "body": "p_k=n_k/n\nTheo dõi imbalance."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Sát hạch K-means, k, inertia, silhouette và stability · matrix_example",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Assessment evidence matrix",
+              "body": "E = [[formula, condition, verification, application], …]",
+              "meaning": "Mỗi bài phải có đủ bốn cột bằng chứng."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Sát hạch K-means, k, inertia, silhouette và stability · condition_gate",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Multi-seed, scale đúng, empty-cluster handling và chọn k bằng nhiều bằng chứng."
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Sát hạch K-means, k, inertia, silhouette và stability · data_contract",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "data contract",
+              "body": "Sát hạch K-means, k, inertia, silhouette và stability: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Sát hạch K-means, k, inertia, silhouette và stability · worked_example",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài",
+              "body": "So k=2,3,4 bằng inertia + silhouette + stability."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Trả lời có công thức, condition, kiểm chứng và kết luận."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Sát hạch K-means, k, inertia, silhouette và stability · geometry_interpretation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "geometry interpretation",
+              "body": "Sát hạch K-means, k, inertia, silhouette và stability: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Sát hạch K-means, k, inertia, silhouette và stability · algorithm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "algorithm",
+              "body": "Sát hạch K-means, k, inertia, silhouette và stability: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Sát hạch K-means, k, inertia, silhouette và stability · computational_check",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Evidence",
+              "items": [
+                "shape/finite",
+                "formula invariant",
+                "seed/config",
+                "reconstruction/distance/cluster sanity",
+                "provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Sát hạch K-means, k, inertia, silhouette và stability · data_leakage_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Critical fail",
+              "items": [
+                "fit/tune bằng test",
+                "mất split provenance",
+                "đảo sample/feature semantics",
+                "gán cluster thành ground-truth",
+                "không thể tái lập config"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Sát hạch K-means, k, inertia, silhouette và stability · warning_counterexample",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Critical trap",
+              "body": "Dùng một seed hoặc một metric để tuyên bố k tối ưu tuyệt đối."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sát hạch K-means, k, inertia, silhouette và stability · error_repair",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "error repair",
+              "body": "Sát hạch K-means, k, inertia, silhouette và stability: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Sát hạch K-means, k, inertia, silhouette và stability · application_link",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Transfer",
+              "body": "Phân nhóm chế độ vận hành."
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Sát hạch K-means, k, inertia, silhouette và stability · simulation_plan",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "simulation plan",
+              "body": "Sát hạch K-means, k, inertia, silhouette và stability: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Sát hạch K-means, k, inertia, silhouette và stability · technical_conclusion",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "technical conclusion",
+              "body": "Sát hạch K-means, k, inertia, silhouette và stability: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Sát hạch K-means, k, inertia, silhouette và stability · lab_protocol",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "lab protocol",
+              "body": "Sát hạch K-means, k, inertia, silhouette và stability: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Sát hạch K-means, k, inertia, silhouette và stability · review_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Pass checklist",
+              "items": [
+                "formula",
+                "condition",
+                "verification",
+                "oral explanation",
+                "application transfer",
+                "error repair"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Sát hạch K-means, k, inertia, silhouette và stability · exit_ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "PASS khi",
+              "items": [
+                "không critical leakage",
+                "4 miền evidence đạt ngưỡng",
+                "giải thích được sai ở đâu",
+                "artifact tái lập được"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-density-hierarchical-exam",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "lessonTitle": "m_m104 · §4.6 · Sát hạch hierarchical clustering và DBSCAN",
+      "title": "m_m104 · §4.6 · Sát hạch hierarchical clustering và DBSCAN",
+      "programLectureId": "MATH-PROG-L09-topology-metric-spaces",
+      "programLectureIds": [
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "roadmapRole": "m_m104_t06",
+      "baumanFocus": "HK1 final gate E25 · integrated written/oral assessment.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "legacyFrameworkChapterAlias": "MATH-HK1-GATE-C17",
+        "logicalLessonId": "m_m104_t06",
+        "frameworkAnchor": "m_m104_t06",
+        "programLectureId": "MATH-PROG-L09-topology-metric-spaces",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "assessment_framework_plus_e25_hk1_gate"
+      },
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "density-hierarchical-exam"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "Sát hạch hierarchical clustering và DBSCAN · section_open",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "section open",
+              "body": "Sát hạch hierarchical clustering và DBSCAN: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Sát hạch hierarchical clustering và DBSCAN · learning_outcomes",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "learning outcomes",
+              "body": "Sát hạch hierarchical clustering và DBSCAN: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Sát hạch hierarchical clustering và DBSCAN · notation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "notation",
+              "body": "Sát hạch hierarchical clustering và DBSCAN: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Sát hạch hierarchical clustering và DBSCAN · notation_formula",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Single linkage",
+              "body": "D(A,B)=min d(a,b)\nCó thể chaining."
+            },
+            {
+              "type": "formula",
+              "title": "Complete linkage",
+              "body": "D(A,B)=max d(a,b)\nƯu tiên cụm compact."
+            },
+            {
+              "type": "formula",
+              "title": "DBSCAN core",
+              "body": "|N_ε(x)|≥MinPts\nĐiểm core theo mật độ."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Sát hạch hierarchical clustering và DBSCAN · matrix_example",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Assessment evidence matrix",
+              "body": "E = [[formula, condition, verification, application], …]",
+              "meaning": "Mỗi bài phải có đủ bốn cột bằng chứng."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Sát hạch hierarchical clustering và DBSCAN · condition_gate",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Metric/linkage hoặc ε-MinPts phải phù hợp topology và density; noise không mặc định là anomaly."
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Sát hạch hierarchical clustering và DBSCAN · data_contract",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "data contract",
+              "body": "Sát hạch hierarchical clustering và DBSCAN: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Sát hạch hierarchical clustering và DBSCAN · worked_example",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài",
+              "body": "Cùng dataset, giải thích khi nào hierarchical và DBSCAN cho kết quả khác nhau."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Trả lời có công thức, condition, kiểm chứng và kết luận."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Sát hạch hierarchical clustering và DBSCAN · geometry_interpretation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "geometry interpretation",
+              "body": "Sát hạch hierarchical clustering và DBSCAN: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Sát hạch hierarchical clustering và DBSCAN · algorithm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "algorithm",
+              "body": "Sát hạch hierarchical clustering và DBSCAN: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Sát hạch hierarchical clustering và DBSCAN · computational_check",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Evidence",
+              "items": [
+                "shape/finite",
+                "formula invariant",
+                "seed/config",
+                "reconstruction/distance/cluster sanity",
+                "provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Sát hạch hierarchical clustering và DBSCAN · data_leakage_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Critical fail",
+              "items": [
+                "fit/tune bằng test",
+                "mất split provenance",
+                "đảo sample/feature semantics",
+                "gán cluster thành ground-truth",
+                "không thể tái lập config"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Sát hạch hierarchical clustering và DBSCAN · warning_counterexample",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Critical trap",
+              "body": "Cắt dendrogram tùy ý hoặc gán mọi DBSCAN noise thành lỗi."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sát hạch hierarchical clustering và DBSCAN · error_repair",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "error repair",
+              "body": "Sát hạch hierarchical clustering và DBSCAN: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Sát hạch hierarchical clustering và DBSCAN · application_link",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Transfer",
+              "body": "Khám phá cấu trúc trạng thái và vùng hiếm."
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Sát hạch hierarchical clustering và DBSCAN · simulation_plan",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "simulation plan",
+              "body": "Sát hạch hierarchical clustering và DBSCAN: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Sát hạch hierarchical clustering và DBSCAN · technical_conclusion",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "technical conclusion",
+              "body": "Sát hạch hierarchical clustering và DBSCAN: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Sát hạch hierarchical clustering và DBSCAN · lab_protocol",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "lab protocol",
+              "body": "Sát hạch hierarchical clustering và DBSCAN: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Sát hạch hierarchical clustering và DBSCAN · review_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Pass checklist",
+              "items": [
+                "formula",
+                "condition",
+                "verification",
+                "oral explanation",
+                "application transfer",
+                "error repair"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Sát hạch hierarchical clustering và DBSCAN · exit_ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "PASS khi",
+              "items": [
+                "không critical leakage",
+                "4 miền evidence đạt ngưỡng",
+                "giải thích được sai ở đâu",
+                "artifact tái lập được"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-integrated-case",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "lessonTitle": "m_m104 · §4.7 · Integrated case: telemetry → PCA → clustering → validation",
+      "title": "m_m104 · §4.7 · Integrated case: telemetry → PCA → clustering → validation",
+      "programLectureId": "MATH-PROG-L16-numerical-methods-computing",
+      "programLectureIds": [
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "roadmapRole": "m_m104_t07",
+      "baumanFocus": "HK1 final gate E25 · integrated written/oral assessment.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "legacyFrameworkChapterAlias": "MATH-HK1-GATE-C17",
+        "logicalLessonId": "m_m104_t07",
+        "frameworkAnchor": "m_m104_t07",
+        "programLectureId": "MATH-PROG-L16-numerical-methods-computing",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "assessment_framework_plus_e25_hk1_gate"
+      },
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "integrated-case"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "Integrated case: telemetry → PCA → clustering → validation · section_open",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "section open",
+              "body": "Integrated case: telemetry → PCA → clustering → validation: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Integrated case: telemetry → PCA → clustering → validation · learning_outcomes",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "learning outcomes",
+              "body": "Integrated case: telemetry → PCA → clustering → validation: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Integrated case: telemetry → PCA → clustering → validation · notation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "notation",
+              "body": "Integrated case: telemetry → PCA → clustering → validation: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Integrated case: telemetry → PCA → clustering → validation · notation_formula",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Transform contract",
+              "body": "θ=fit(X_train); X′=transform(X;θ)\nFit-state thuộc train."
+            },
+            {
+              "type": "formula",
+              "title": "Variance retention",
+              "body": "R_k=Σ_{j≤k}λ_j/Σ_jλ_j\nTheo dõi thông tin giữ lại."
+            },
+            {
+              "type": "formula",
+              "title": "Stability",
+              "body": "S=mean agreement(partition_r,partition_s)\nĐộ bền qua seed/resample."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Integrated case: telemetry → PCA → clustering → validation · matrix_example",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Assessment evidence matrix",
+              "body": "E = [[formula, condition, verification, application], …]",
+              "meaning": "Mỗi bài phải có đủ bốn cột bằng chứng."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Integrated case: telemetry → PCA → clustering → validation · condition_gate",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Phải có provenance đầy đủ từ input→transform→PCA→cluster→metric; mọi thông số tuning ghi rõ nguồn."
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Integrated case: telemetry → PCA → clustering → validation · data_contract",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "data contract",
+              "body": "Integrated case: telemetry → PCA → clustering → validation: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Integrated case: telemetry → PCA → clustering → validation · worked_example",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài",
+              "body": "Thiết kế pipeline cho 10 cảm biến, nêu split, scaling, PCA, clustering, metrics và artifact."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Trả lời có công thức, condition, kiểm chứng và kết luận."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Integrated case: telemetry → PCA → clustering → validation · geometry_interpretation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "geometry interpretation",
+              "body": "Integrated case: telemetry → PCA → clustering → validation: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Integrated case: telemetry → PCA → clustering → validation · algorithm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "algorithm",
+              "body": "Integrated case: telemetry → PCA → clustering → validation: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Integrated case: telemetry → PCA → clustering → validation · computational_check",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Evidence",
+              "items": [
+                "shape/finite",
+                "formula invariant",
+                "seed/config",
+                "reconstruction/distance/cluster sanity",
+                "provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Integrated case: telemetry → PCA → clustering → validation · data_leakage_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Critical fail",
+              "items": [
+                "fit/tune bằng test",
+                "mất split provenance",
+                "đảo sample/feature semantics",
+                "gán cluster thành ground-truth",
+                "không thể tái lập config"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Integrated case: telemetry → PCA → clustering → validation · warning_counterexample",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Critical trap",
+              "body": "Dùng test để chọn số PCA component hoặc cluster parameter rồi báo metric test như khách quan."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Integrated case: telemetry → PCA → clustering → validation · error_repair",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "error repair",
+              "body": "Integrated case: telemetry → PCA → clustering → validation: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Integrated case: telemetry → PCA → clustering → validation · application_link",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Transfer",
+              "body": "Case study hoàn chỉnh cho dữ liệu cảm biến."
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Integrated case: telemetry → PCA → clustering → validation · simulation_plan",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "simulation plan",
+              "body": "Integrated case: telemetry → PCA → clustering → validation: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Integrated case: telemetry → PCA → clustering → validation · technical_conclusion",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "technical conclusion",
+              "body": "Integrated case: telemetry → PCA → clustering → validation: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Integrated case: telemetry → PCA → clustering → validation · lab_protocol",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "lab protocol",
+              "body": "Integrated case: telemetry → PCA → clustering → validation: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Integrated case: telemetry → PCA → clustering → validation · review_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Pass checklist",
+              "items": [
+                "formula",
+                "condition",
+                "verification",
+                "oral explanation",
+                "application transfer",
+                "error repair"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Integrated case: telemetry → PCA → clustering → validation · exit_ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "PASS khi",
+              "items": [
+                "không critical leakage",
+                "4 miền evidence đạt ngưỡng",
+                "giải thích được sai ở đâu",
+                "artifact tái lập được"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-oral-written-gate",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "lessonTitle": "m_m104 · §4.8 · Final HK1 gate: written + oral defense + error repair",
+      "title": "m_m104 · §4.8 · Final HK1 gate: written + oral defense + error repair",
+      "programLectureId": "MATH-PROG-L16-numerical-methods-computing",
+      "programLectureIds": [
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "roadmapRole": "m_m104_t08",
+      "baumanFocus": "HK1 final gate E25 · integrated written/oral assessment.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m104",
+        "frameworkChapterId": "m_m104",
+        "legacyFrameworkChapterAlias": "MATH-HK1-GATE-C17",
+        "logicalLessonId": "m_m104_t08",
+        "frameworkAnchor": "m_m104_t08",
+        "programLectureId": "MATH-PROG-L16-numerical-methods-computing",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "assessment_framework_plus_e25_hk1_gate"
+      },
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "oral-written-gate"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "Final HK1 gate: written + oral defense + error repair · section_open",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "section open",
+              "body": "Final HK1 gate: written + oral defense + error repair: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Final HK1 gate: written + oral defense + error repair · learning_outcomes",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "learning outcomes",
+              "body": "Final HK1 gate: written + oral defense + error repair: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Final HK1 gate: written + oral defense + error repair · notation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "notation",
+              "body": "Final HK1 gate: written + oral defense + error repair: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Final HK1 gate: written + oral defense + error repair · notation_formula",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Gate score",
+              "body": "G=min(F,C,V,A)\nKhông cho điểm trung bình che miền fail."
+            },
+            {
+              "type": "formula",
+              "title": "Repair priority",
+              "body": "P=severity×frequency×transfer_risk\nƯu tiên lỗi nền có rủi ro lan truyền."
+            },
+            {
+              "type": "formula",
+              "title": "Pass condition",
+              "body": "PASS ⇔ G≥τ ∧ no critical leakage\nBắt buộc không có lỗi leakage nghiêm trọng."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Final HK1 gate: written + oral defense + error repair · matrix_example",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Assessment evidence matrix",
+              "body": "E = [[formula, condition, verification, application], …]",
+              "meaning": "Mỗi bài phải có đủ bốn cột bằng chứng."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Final HK1 gate: written + oral defense + error repair · condition_gate",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Sát hạch phải có written calculation, oral explanation, error repair và application transfer; critical leakage = FAIL."
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Final HK1 gate: written + oral defense + error repair · data_contract",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "data contract",
+              "body": "Final HK1 gate: written + oral defense + error repair: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Final HK1 gate: written + oral defense + error repair · worked_example",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài",
+              "body": "Một bài có đáp số đúng nhưng dùng test để fit scaler: xác định trạng thái PASS/FAIL và cách sửa."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Trả lời có công thức, condition, kiểm chứng và kết luận."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Final HK1 gate: written + oral defense + error repair · geometry_interpretation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "geometry interpretation",
+              "body": "Final HK1 gate: written + oral defense + error repair: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Final HK1 gate: written + oral defense + error repair · algorithm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "algorithm",
+              "body": "Final HK1 gate: written + oral defense + error repair: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Final HK1 gate: written + oral defense + error repair · computational_check",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Evidence",
+              "items": [
+                "shape/finite",
+                "formula invariant",
+                "seed/config",
+                "reconstruction/distance/cluster sanity",
+                "provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Final HK1 gate: written + oral defense + error repair · data_leakage_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Critical fail",
+              "items": [
+                "fit/tune bằng test",
+                "mất split provenance",
+                "đảo sample/feature semantics",
+                "gán cluster thành ground-truth",
+                "không thể tái lập config"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Final HK1 gate: written + oral defense + error repair · warning_counterexample",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Critical trap",
+              "body": "Chấm chỉ đáp số mà bỏ reasoning/condition/provenance."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Final HK1 gate: written + oral defense + error repair · error_repair",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "error repair",
+              "body": "Final HK1 gate: written + oral defense + error repair: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Final HK1 gate: written + oral defense + error repair · application_link",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Transfer",
+              "body": "Cổng mở khóa phần tiếp theo của lộ trình HK1."
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Final HK1 gate: written + oral defense + error repair · simulation_plan",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "simulation plan",
+              "body": "Final HK1 gate: written + oral defense + error repair: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Final HK1 gate: written + oral defense + error repair · technical_conclusion",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "technical conclusion",
+              "body": "Final HK1 gate: written + oral defense + error repair: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Final HK1 gate: written + oral defense + error repair · lab_protocol",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "lab protocol",
+              "body": "Final HK1 gate: written + oral defense + error repair: sát hạch reasoning, condition, verification và transfer; không chấm chỉ đáp số."
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Final HK1 gate: written + oral defense + error repair · review_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Pass checklist",
+              "items": [
+                "formula",
+                "condition",
+                "verification",
+                "oral explanation",
+                "application transfer",
+                "error repair"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Final HK1 gate: written + oral defense + error repair · exit_ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "PASS khi",
+              "items": [
+                "không critical leakage",
+                "4 miền evidence đạt ngưỡng",
+                "giải thích được sai ở đâu",
+                "artifact tái lập được"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
