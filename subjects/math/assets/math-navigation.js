@@ -49,15 +49,20 @@
   let roadmapCache=null;
   async function loadRoadmap(){
     if(roadmapCache) return roadmapCache;
-    const [curriculumRes,frameRes,contentRes]=await Promise.all([
+    const shared=global.BAUMAN_MATH_E240_THEORY_CONTENT_SOURCE?.getPayload?.()||global.DB?.theory_lecture_content||null;
+    const [curriculumRes,frameRes]=await Promise.all([
       fetch('data/curriculum.json'),
-      fetch('data/theory_lecture_frame.json'),
-      fetch('data/theory_lecture_content.json')
+      fetch('data/theory_lecture_frame.json')
     ]);
-    if(!curriculumRes.ok||!frameRes.ok||!contentRes.ok) throw new Error('Không tải được dữ liệu lộ trình.');
+    if(!curriculumRes.ok||!frameRes.ok) throw new Error('Không tải được dữ liệu lộ trình.');
     const curriculum=await curriculumRes.json();
     const frame=await frameRes.json();
-    const content=await contentRes.json();
+    let content=shared;
+    if(!content){
+      const contentRes=await fetch('data/theory_lecture_content.json');
+      if(!contentRes.ok) throw new Error('Không tải được học liệu lộ trình.');
+      content=await contentRes.json();
+    }
     const records=Array.isArray(content)?content:(content?.records||content?.lessons||content?.items||[]);
     roadmapCache={curriculum,frame,records};
     return roadmapCache;
