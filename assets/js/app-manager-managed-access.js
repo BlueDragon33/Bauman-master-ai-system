@@ -133,8 +133,8 @@ function selfCheck(){
     credentialStorePresent,
     managedScopeStored,
     currentManagedBy:typeof auth!=='undefined'?auth.current?.managedBy||null:null,
-    localAdminVisible:q('adminOpenBtn')?.hidden!==true,
-    localLogoutVisible:q('logoutBtn')?.hidden!==true,
+    localAdminVisible:Boolean(q('adminOpenBtn'))&&q('adminOpenBtn').hidden!==true&&!q('adminOpenBtn').classList.contains('hidden'),
+    localLogoutVisible:Boolean(q('logoutBtn'))&&q('logoutBtn').hidden!==true&&!q('logoutBtn').classList.contains('hidden'),
     routeOwnership:false,
     academicWrites:false
   };
