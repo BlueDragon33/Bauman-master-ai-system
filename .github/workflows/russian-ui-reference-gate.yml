@@ -2,6 +2,9 @@ name: Russian Reference UI Gate
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - "main"
 
 permissions:
   contents: read

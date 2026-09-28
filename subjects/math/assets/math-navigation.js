@@ -49,15 +49,20 @@
   let roadmapCache=null;
   async function loadRoadmap(){
     if(roadmapCache) return roadmapCache;
-    const [curriculumRes,frameRes,contentRes]=await Promise.all([
+    const shared=global.BAUMAN_MATH_E240_THEORY_CONTENT_SOURCE?.getPayload?.()||global.DB?.theory_lecture_content||null;
+    const [curriculumRes,frameRes]=await Promise.all([
       fetch('data/curriculum.json'),
-      fetch('data/theory_lecture_frame.json'),
-      fetch('data/theory_lecture_content.json')
+      fetch('data/theory_lecture_frame.json')
     ]);
-    if(!curriculumRes.ok||!frameRes.ok||!contentRes.ok) throw new Error('Không tải được dữ liệu lộ trình.');
+    if(!curriculumRes.ok||!frameRes.ok) throw new Error('Không tải được dữ liệu lộ trình.');
     const curriculum=await curriculumRes.json();
     const frame=await frameRes.json();
-    const content=await contentRes.json();
+    let content=shared;
+    if(!content){
+      const contentRes=await fetch('data/theory_lecture_content.json');
+      if(!contentRes.ok) throw new Error('Không tải được học liệu lộ trình.');
+      content=await contentRes.json();
+    }
     const records=Array.isArray(content)?content:(content?.records||content?.lessons||content?.items||[]);
     roadmapCache={curriculum,frame,records};
     return roadmapCache;
@@ -131,7 +136,7 @@
     document.body.classList.add('math-roadmap-active');
     const view=$('#view'); if(!view) return;
     setPageHeader('Lộ trình','Giai đoạn → Cụm kiến thức → Chương. Tiến độ chỉ dùng dữ liệu học đã ghi nhận.');
-    view.innerHTML='<section class="math-roadmap-loading">Đang đọc lộ trình Toán…</section>';
+    view.innerHTML='<section class="math-roadmap-shell math-roadmap-loading" aria-busy="true">Đang đọc lộ trình Toán…</section>';
     try{
       const data=await loadRoadmap();
       const fallback=$('#stageSelect')?.value||data.curriculum?.stages?.[0]?.id||'vn';

@@ -1,0 +1,19 @@
+name: Math E26 HK1 cumulative readiness gate
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'subjects/math/**'
+      - 'scripts/validate-math-e26-hk1-cumulative-readiness.mjs'
+      - '.github/workflows/math-e26-hk1-readiness.yml'
+permissions:
+  contents: read
+jobs:
+  hk1-cumulative-static:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '22.13.0'}
+      - name: Validate HK1 cumulative canonical readiness
+        run: node scripts/validate-math-e26-hk1-cumulative-readiness.mjs

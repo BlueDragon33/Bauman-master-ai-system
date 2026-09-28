@@ -78,6 +78,7 @@ const indexPath=path.join(output,'index.html');
 const sourceHtml=fs.readFileSync(indexPath,'utf8');
 if(sourceHtml.includes('bauman-platform-access'))throw new Error('Source runtime already contains a platform access marker.');
 if(!sourceHtml.includes('assets/js/platform/device-access-gate.js'))throw new Error('Device Gate v4 must remain loaded in the Site package.');
+if(!sourceHtml.includes('meta name="bauman-access-mode"'))throw new Error('Source runtime is missing bauman-access-mode metadata required for Site packaging.');
 for(const resource of ['assets/css/deep-study-journal-v1.css','assets/js/deep-study-journal-v1.js']){
   if(!sourceHtml.includes(resource))throw new Error(`Deep Study Journal package reference missing: ${resource}`);
 }
@@ -86,8 +87,10 @@ const metadata=[
   `  <meta name="bauman-deployment-channel" content="chatgpt-site">`,
   `  <meta name="bauman-build-revision" content="${revision}">`
 ].join('\n');
-const packagedHtml=sourceHtml.replace('</head>',`${metadata}\n</head>`);
-if(packagedHtml===sourceHtml)throw new Error('Unable to inject ChatGPT Site package metadata.');
+const managedHtml=sourceHtml.replace(/(<meta name="bauman-access-mode" content=")[^"]*(">)/,'$1managed$2');
+if(managedHtml===sourceHtml)throw new Error('Unable to switch ChatGPT Site package into managed access mode.');
+const packagedHtml=managedHtml.replace('</head>',`${metadata}\n</head>`);
+if(packagedHtml===managedHtml)throw new Error('Unable to inject ChatGPT Site package metadata.');
 fs.writeFileSync(indexPath,packagedHtml);
 
 console.log(JSON.stringify({

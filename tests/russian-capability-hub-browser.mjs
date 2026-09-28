@@ -4,6 +4,7 @@ import path from 'node:path';
 const {chromium}=await import(process.env.BAUMAN_PLAYWRIGHT_MODULE||'playwright');
 const BASE=process.env.BAUMAN_E2E_BASE_URL||'http://127.0.0.1:4173/';
 const OUT=process.env.BAUMAN_E2E_ARTIFACT_DIR||'artifacts/russian-capability-hub';
+const EXPECT_PLATFORM_ACCESS=process.env.BAUMAN_E2E_EXPECT_PLATFORM_ACCESS==='1';
 fs.mkdirSync(OUT,{recursive:true});
 
 async function mockControl(page){
@@ -33,13 +34,18 @@ try{
   page.on('pageerror',e=>errors.push(String(e?.stack||e)));
 
   await page.goto(BASE,{waitUntil:'domcontentloaded',timeout:30000});
-  await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='authorized',null,{timeout:30000});
+  const expectedDeviceState=EXPECT_PLATFORM_ACCESS?'authorized':'standalone';
+  await page.waitForFunction(expected=>document.documentElement.dataset.baumanDeviceAccess===expected,expectedDeviceState,{timeout:30000});
   await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'),null,{timeout:30000});
   await page.waitForFunction(()=>!!window.BAUMAN_HUB_SAFE?.selfCheck,null,{timeout:15000});
 
   const before=await page.evaluate(()=>Number(window.state?.progress?.russian||0));
-  await page.evaluate(()=>window.app?.openSubjectInPage?.('russian'));
-  await page.waitForFunction(()=>!!document.getElementById('subjectFrame'),null,{timeout:10000});
+  // The integration suite loads several Hub layers before this test. Wait for the
+  // canonical subject launcher itself, not only BAUMAN_HUB_SAFE, to avoid racing
+  // main.js initialization on slower runners.
+  await page.waitForFunction(()=>typeof window.app?.openSubjectInPage==='function',null,{timeout:30000});
+  await page.evaluate(()=>window.app.openSubjectInPage('russian'));
+  await page.waitForFunction(()=>!!document.getElementById('subjectFrame'),null,{timeout:30000});
   await page.waitForFunction(()=>window.state?.subjectCapabilities?.russian?.schema==='RUSSIAN_CAPABILITY_BRIDGE_V1',null,{timeout:30000});
 
   const snap=await page.evaluate(()=>window.state.subjectCapabilities.russian);

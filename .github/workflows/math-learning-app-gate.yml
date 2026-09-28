@@ -2,6 +2,12 @@ name: Math Learning App Gate
 
 on:
   workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - "subjects/math/**"
+      - "tests/math-*.mjs"
+      - ".github/workflows/math-learning-app-gate.yml"
 
 permissions:
   contents: read

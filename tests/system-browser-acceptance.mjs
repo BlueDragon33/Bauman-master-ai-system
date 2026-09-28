@@ -85,38 +85,40 @@ try{
   page.on('response',response=>{if(response.status()>=400)summary.httpErrors.push(`${response.status()} ${response.url()}`)});
 
   await page.goto(BASE,{waitUntil:'domcontentloaded',timeout:30000});
-  await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='authorized',null,{timeout:15000});
+  const expectedDeviceState=EXPECT_PLATFORM_ACCESS?'authorized':'standalone';
+  await page.waitForFunction(expected=>document.documentElement.dataset.baumanDeviceAccess===expected,expectedDeviceState,{timeout:15000});
   const accessBoundary=await page.evaluate(()=>window.BAUMAN_DEVICE_ACCESS_BOUNDARY);
   assert.deepEqual(accessBoundary,{
-    mode:EXPECT_PLATFORM_ACCESS?'chatgpt-site-owner-private':'bauman-control-v4',
+    mode:EXPECT_PLATFORM_ACCESS?'chatgpt-site-owner-private':'standalone-development',
     platformAuthorized:EXPECT_PLATFORM_ACCESS,
+    standaloneDevelopment:!EXPECT_PLATFORM_ACCESS,
     controlProtocol:'bauman-control-v4'
   });
   summary.accessBoundary=accessBoundary;
   await page.waitForFunction(()=>window.BAUMAN_APP_MANAGER_ACCESS?.selfCheck?.().ready===true,null,{timeout:15000});
   const managedAccess=await page.evaluate(()=>window.BAUMAN_APP_MANAGER_ACCESS.selfCheck());
-  assert.equal(managedAccess.mode,'app-manager');
+  assert.equal(managedAccess.mode,EXPECT_PLATFORM_ACCESS?'app-manager':'standalone');
   assert.equal(managedAccess.deviceAuthorized,true);
   assert.equal(managedAccess.localAuthBypassed,true);
   assert.equal(managedAccess.authScreenHidden,true);
   assert.equal(managedAccess.credentialStorePresent,false);
-  assert.equal(managedAccess.managedScopeStored,true);
-  assert.equal(managedAccess.currentManagedBy,'app-manager');
-  assert.equal(managedAccess.localAdminVisible,false);
-  assert.equal(managedAccess.localLogoutVisible,false);
+  assert.equal(managedAccess.managedScopeStored,EXPECT_PLATFORM_ACCESS);
+  assert.equal(managedAccess.currentManagedBy,EXPECT_PLATFORM_ACCESS?'app-manager':null);
+  assert.equal(managedAccess.localAdminVisible,!EXPECT_PLATFORM_ACCESS);
+  assert.equal(managedAccess.localLogoutVisible,!EXPECT_PLATFORM_ACCESS);
   assert.equal(managedAccess.routeOwnership,false);
   assert.equal(managedAccess.academicWrites,false);
   await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'));
 
   explicitReloadInProgress=true;
   await page.reload({waitUntil:'domcontentloaded'});
-  await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='authorized',null,{timeout:15000});
+  await page.waitForFunction(expected=>document.documentElement.dataset.baumanDeviceAccess===expected,expectedDeviceState,{timeout:15000});
   await page.waitForFunction(()=>window.BAUMAN_APP_MANAGER_ACCESS?.selfCheck?.().ready===true,null,{timeout:15000});
   const managedReload=await page.evaluate(()=>window.BAUMAN_APP_MANAGER_ACCESS.selfCheck());
   assert.equal(managedReload.credentialStorePresent,false);
-  assert.equal(managedReload.managedScopeStored,true);
+  assert.equal(managedReload.managedScopeStored,EXPECT_PLATFORM_ACCESS);
   assert.equal(managedReload.authScreenHidden,true);
-  assert.equal(managedReload.currentManagedBy,'app-manager');
+  assert.equal(managedReload.currentManagedBy,EXPECT_PLATFORM_ACCESS?'app-manager':null);
   await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'));
   explicitReloadInProgress=false;
 

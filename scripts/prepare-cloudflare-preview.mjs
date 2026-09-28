@@ -157,6 +157,9 @@ fs.cpSync(path.join(root, 'subjects'), path.join(runtimeDist, 'subjects'), { rec
 // Foundation is runtime infrastructure, not build-only source. Subject pages may reference it
 // directly, so every accepted runtime/package must carry the same versioned Foundation tree.
 fs.cpSync(path.join(root, 'foundation'), path.join(runtimeDist, 'foundation'), { recursive: true });
+// The root shell references shared platform UI directly. Keep these runtime assets
+// with every preview/package so managed and standalone builds render identically.
+fs.cpSync(path.join(root, 'platform', 'ui'), path.join(runtimeDist, 'platform', 'ui'), { recursive: true });
 
 for (const relativePath of [
   'subjects/russian/data/dialogue-bauman-az.json',

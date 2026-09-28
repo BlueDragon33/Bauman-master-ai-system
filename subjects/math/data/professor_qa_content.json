@@ -1363,6 +1363,777 @@
       "qaId": "E22-M_S05_T08-QA01",
       "question": "Vì sao điểm thi thử tăng chưa chắc nghĩa là đã sẵn sàng?",
       "answer": "Vì có thể do đề quen hoặc may mắn; cần theo dõi lỗi theo loại, thời gian, độ ổn định và khả năng trình bày bằng tiếng Nga."
+    },
+    {
+      "logicalModuleId": "m_m101",
+      "frameworkChapterId": "m_m101",
+      "logicalLessonId": "m_m101_t01",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T01-data-matrix-notation",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m101",
+        "data-matrix-notation"
+      ],
+      "sourceAnchors": [
+        "m_m101_t01",
+        "m_m101",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "qaId": "E23-MM101-T01-QA01",
+      "question": "Điểm dễ sai nhất khi dùng Ma trận dữ liệu X: quan sát, đặc trưng và notation chuẩn trong dữ liệu thật là gì?",
+      "answer": "Transpose X nhưng không đổi semantic convention khiến covariance/model chạy được nhưng sai trục. Cách phòng: Khóa row/column semantics, shape, dtype, unit, missing-value policy và sample identity trước mọi phép tính."
+    },
+    {
+      "logicalModuleId": "m_m101",
+      "frameworkChapterId": "m_m101",
+      "logicalLessonId": "m_m101_t02",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T02-centering-scaling-leakage",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m101",
+        "centering-scaling-leakage"
+      ],
+      "sourceAnchors": [
+        "m_m101_t02",
+        "m_m101",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "qaId": "E23-MM101-T02-QA01",
+      "question": "Điểm dễ sai nhất khi dùng Centering, scaling và chuẩn hóa không gây data leakage trong dữ liệu thật là gì?",
+      "answer": "Chuẩn hóa toàn bộ dataset rồi mới split gây leakage dù model không trực tiếp thấy nhãn test. Cách phòng: Split train/validation/test trước khi fit bất kỳ statistic preprocessing nào có học từ dữ liệu."
+    },
+    {
+      "logicalModuleId": "m_m101",
+      "frameworkChapterId": "m_m101",
+      "logicalLessonId": "m_m101_t03",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T03-norm-distance-geometry",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m101",
+        "norm-distance-geometry"
+      ],
+      "sourceAnchors": [
+        "m_m101_t03",
+        "m_m101",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "qaId": "E23-MM101-T03-QA01",
+      "question": "Điểm dễ sai nhất khi dùng Norm, khoảng cách và hình học dữ liệu nhiều chiều trong dữ liệu thật là gì?",
+      "answer": "Dùng Euclidean distance trên feature lệch đơn vị làm một feature nuốt toàn bộ geometry. Cách phòng: Scale/units phải hợp lý và metric phải phù hợp semantics; dữ liệu nhiều chiều cần kiểm concentration."
+    },
+    {
+      "logicalModuleId": "m_m101",
+      "frameworkChapterId": "m_m101",
+      "logicalLessonId": "m_m101_t04",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM101-T04-cosine-gram-kernel",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m101",
+        "cosine-gram-kernel"
+      ],
+      "sourceAnchors": [
+        "m_m101_t04",
+        "m_m101",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "qaId": "E23-MM101-T04-QA01",
+      "question": "Điểm dễ sai nhất khi dùng Cosine similarity, Gram matrix và kernel nhập môn trong dữ liệu thật là gì?",
+      "answer": "Nhầm XXᵀ với XᵀX và gán cùng ý nghĩa cho hai ma trận. Cách phòng: Kiểm vector zero, orientation của X và mục tiêu so magnitude hay direction; Gram sample-space khác covariance feature-space."
+    },
+    {
+      "logicalModuleId": "m_m101",
+      "frameworkChapterId": "m_m101",
+      "logicalLessonId": "m_m101_t05",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T05-covariance-correlation-dependence",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m101",
+        "covariance-correlation-dependence"
+      ],
+      "sourceAnchors": [
+        "m_m101_t05",
+        "m_m101",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "qaId": "E23-MM101-T05-QA01",
+      "question": "Điểm dễ sai nhất khi dùng Covariance, correlation và cấu trúc phụ thuộc trong X trong dữ liệu thật là gì?",
+      "answer": "So trực tiếp magnitude covariance giữa các feature khác đơn vị hoặc đọc correlation cao là quan hệ nhân quả. Cách phòng: Center đúng, sample alignment đúng và hiểu Pearson chủ yếu đo quan hệ tuyến tính; không suy nhân quả từ correlation."
+    },
+    {
+      "logicalModuleId": "m_m101",
+      "frameworkChapterId": "m_m101",
+      "logicalLessonId": "m_m101_t06",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM101-T06-curse-dimensionality-feature-selection",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m101",
+        "curse-dimensionality-feature-selection"
+      ],
+      "sourceAnchors": [
+        "m_m101_t06",
+        "m_m101",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L09-topology-metric-spaces"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "qaId": "E23-MM101-T06-QA01",
+      "question": "Điểm dễ sai nhất khi dùng Curse of dimensionality và lựa chọn đặc trưng trong dữ liệu thật là gì?",
+      "answer": "Giữ nhiều feature chỉ vì storage cho phép; trong high-dimension distance có thể mất khả năng phân biệt. Cách phòng: Feature selection phải fit trên train và đánh giá bằng validation; không chọn feature dựa trên test performance."
+    },
+    {
+      "logicalModuleId": "m_m101",
+      "frameworkChapterId": "m_m101",
+      "logicalLessonId": "m_m101_t07",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T07-data-pipeline-split",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m101",
+        "data-pipeline-split"
+      ],
+      "sourceAnchors": [
+        "m_m101_t07",
+        "m_m101",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "qaId": "E23-MM101-T07-QA01",
+      "question": "Điểm dễ sai nhất khi dùng Pipeline dữ liệu: raw → clean → feature → scale → split trong dữ liệu thật là gì?",
+      "answer": "Split row ngẫu nhiên khi các row cùng người/thiết bị/thời đoạn gây leakage theo nhóm hoặc thời gian. Cách phòng: Pipeline phải version hóa schema, split rule, fit state, transform order và provenance; test không được tham gia fit/tuning."
+    },
+    {
+      "logicalModuleId": "m_m101",
+      "frameworkChapterId": "m_m101",
+      "logicalLessonId": "m_m101_t08",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM101-T08-multidim-reporting",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m101",
+        "multidim-reporting"
+      ],
+      "sourceAnchors": [
+        "m_m101_t08",
+        "m_m101",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "qaId": "E23-MM101-T08-QA01",
+      "question": "Điểm dễ sai nhất khi dùng Báo cáo dữ liệu đa chiều: bảng, hình, nhận xét và kết luận trong dữ liệu thật là gì?",
+      "answer": "Vẽ heatmap đẹp nhưng thiếu labels, units, n và preprocessing làm kết luận không thể tái kiểm. Cách phòng: Mọi hình/bảng phải ghi sample count, units, preprocessing, split và statistic definition; nhận xét phải tách observation khỏi causal claim."
+    },
+    {
+      "logicalModuleId": "m_m102",
+      "frameworkChapterId": "m_m102",
+      "logicalLessonId": "m_m102_t01",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T01-covariance-eigen",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m102",
+        "covariance-eigen"
+      ],
+      "sourceAnchors": [
+        "m_m102_t01",
+        "m_m102",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "qaId": "E23-MM102-T01-QA01",
+      "question": "Điểm dễ sai nhất khi dùng Eigen decomposition của covariance matrix trong dữ liệu thật là gì?",
+      "answer": "Dùng eigendecomposition trên covariance chưa center hoặc coi eigenvalue âm lớn là bình thường. Cách phòng: Center dữ liệu trước; dùng eigensolver cho ma trận đối xứng; eigenvalue âm nhỏ do roundoff phải được xử lý như lỗi số, không là variance thật."
+    },
+    {
+      "logicalModuleId": "m_m102",
+      "frameworkChapterId": "m_m102",
+      "logicalLessonId": "m_m102_t02",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T02-principal-projection",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m102",
+        "principal-projection"
+      ],
+      "sourceAnchors": [
+        "m_m102_t02",
+        "m_m102",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "qaId": "E23-MM102-T02-QA01",
+      "question": "Điểm dễ sai nhất khi dùng Projection lên principal components trong dữ liệu thật là gì?",
+      "answer": "Chiếu raw X bằng W_k nhưng reconstruct với mean khác hoặc không cộng mean lại. Cách phòng: Columns của W_k phải trực chuẩn và đúng thứ tự eigenvalue; center vector μ phải dùng nhất quán khi project/reconstruct."
+    },
+    {
+      "logicalModuleId": "m_m102",
+      "frameworkChapterId": "m_m102",
+      "logicalLessonId": "m_m102_t03",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T03-explained-variance-k",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m102",
+        "explained-variance-k"
+      ],
+      "sourceAnchors": [
+        "m_m102_t03",
+        "m_m102",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "qaId": "E23-MM102-T03-QA01",
+      "question": "Điểm dễ sai nhất khi dùng Explained variance và chọn số chiều k trong dữ liệu thật là gì?",
+      "answer": "Chọn k chỉ theo 95% explained variance mà không kiểm task performance hoặc cấu trúc noise. Cách phòng: Chọn k phải cân bằng variance, downstream performance, interpretability và stability; threshold 95% không phải luật phổ quát."
+    },
+    {
+      "logicalModuleId": "m_m102",
+      "frameworkChapterId": "m_m102",
+      "logicalLessonId": "m_m102_t04",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T04-svd-pca-relation",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m102",
+        "svd-pca-relation"
+      ],
+      "sourceAnchors": [
+        "m_m102_t04",
+        "m_m102",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "qaId": "E23-MM102-T04-QA01",
+      "question": "Điểm dễ sai nhất khi dùng SVD của ma trận dữ liệu và quan hệ với PCA trong dữ liệu thật là gì?",
+      "answer": "Nhầm columns của U là feature principal axes; với row=sample, feature directions nằm trong V. Cách phòng: Dùng centered matrix; phân biệt full/economy SVD và dimensions của U,Σ,V; không tạo covariance nếu p rất lớn mà SVD trực tiếp phù hợp hơn."
+    },
+    {
+      "logicalModuleId": "m_m102",
+      "frameworkChapterId": "m_m102",
+      "logicalLessonId": "m_m102_t05",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E23-MM102-T05-low-rank-reconstruction",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m102",
+        "low-rank-reconstruction"
+      ],
+      "sourceAnchors": [
+        "m_m102_t05",
+        "m_m102",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "qaId": "E23-MM102-T05-QA01",
+      "question": "Điểm dễ sai nhất khi dùng Low-rank approximation và sai số tái tạo trong dữ liệu thật là gì?",
+      "answer": "Coi low reconstruction error là bằng chứng mọi rare signal/anomaly đều được bảo toàn. Cách phòng: Chọn k dựa task/quality budget; reconstruction error thấp không đảm bảo downstream semantics được giữ."
+    },
+    {
+      "logicalModuleId": "m_m102",
+      "frameworkChapterId": "m_m102",
+      "logicalLessonId": "m_m102_t06",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E23-MM102-T06-whitening-stability",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m102",
+        "whitening-stability"
+      ],
+      "sourceAnchors": [
+        "m_m102_t06",
+        "m_m102",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "qaId": "E23-MM102-T06-QA01",
+      "question": "Điểm dễ sai nhất khi dùng Whitening, stability và preprocessing cho PCA/SVD trong dữ liệu thật là gì?",
+      "answer": "Whitening component có λ gần 0 làm noise bị khuếch đại cực mạnh. Cách phòng: Center/scale nhất quán, xử lý eigenvalue nhỏ bằng threshold/regularization, fit whitening trên train và lưu transform state."
+    },
+    {
+      "logicalModuleId": "m_m102",
+      "frameworkChapterId": "m_m102",
+      "logicalLessonId": "m_m102_t07",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T07-pca-svd-applications",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m102",
+        "pca-svd-applications"
+      ],
+      "sourceAnchors": [
+        "m_m102_t07",
+        "m_m102",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "qaId": "E23-MM102-T07-QA01",
+      "question": "Điểm dễ sai nhất khi dùng PCA/SVD trong dữ liệu cảm biến, ảnh và văn bản trong dữ liệu thật là gì?",
+      "answer": "Áp cùng pipeline PCA cho ảnh dense và TF-IDF sparse mà không xét memory/sparsity. Cách phòng: Feature semantics/preprocessing khác nhau giữa sensor, image, text; sparse text thường cần truncated SVD thay vì center dense matrix."
+    },
+    {
+      "logicalModuleId": "m_m102",
+      "frameworkChapterId": "m_m102",
+      "logicalLessonId": "m_m102_t08",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E23-MM102-T08-pca-svd-mini-project",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "multidimensional data",
+        "m_m102",
+        "pca-svd-mini-project"
+      ],
+      "sourceAnchors": [
+        "m_m102_t08",
+        "m_m102",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E23_AUTHORED",
+      "qaId": "E23-MM102-T08-QA01",
+      "question": "Điểm dễ sai nhất khi dùng Mini-project PCA/SVD: pipeline, hình vẽ và báo cáo trong dữ liệu thật là gì?",
+      "answer": "Chọn k sau khi xem test accuracy rồi báo test đó như đánh giá cuối cùng. Cách phòng: Project phải khóa split, fit state, seed, k-selection rule, figure labels và artifact version; kết quả test chỉ dùng một lần cho final evaluation."
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t01",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E24-MM103-T01-metric-choice-scaling",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "metric-choice-scaling"
+      ],
+      "sourceAnchors": [
+        "m_m103_t01",
+        "m_m103",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "qaId": "E24-MM103-T01-QA01",
+      "question": "Vì sao Chọn metric, scale và geometry trước clustering cần condition gate trước khi kết luận?",
+      "answer": "Khóa scale, unit, missing-value policy và mục tiêu similarity trước khi chọn metric. Không đạt gate thì metric/cluster có thể chạy nhưng không có ý nghĩa kỹ thuật."
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t02",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E24-MM103-T02-cosine-angular-neighborhood",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "cosine-angular-neighborhood"
+      ],
+      "sourceAnchors": [
+        "m_m103_t02",
+        "m_m103",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "qaId": "E24-MM103-T02-QA01",
+      "question": "Vì sao Cosine, angular similarity và lân cận gần nhất cần condition gate trước khi kết luận?",
+      "answer": "Xác định rõ cần so direction hay magnitude; kiểm zero-vector và tie handling. Không đạt gate thì metric/cluster có thể chạy nhưng không có ý nghĩa kỹ thuật."
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t03",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E24-MM103-T03-knn-density-intuition",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "knn-density-intuition"
+      ],
+      "sourceAnchors": [
+        "m_m103_t03",
+        "m_m103",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "qaId": "E24-MM103-T03-QA01",
+      "question": "Vì sao KNN, local density và khoảng cách lân cận cần condition gate trước khi kết luận?",
+      "answer": "Chọn k theo độ dày dữ liệu, kích thước mẫu và độ nhiễu; không dùng một k cho mọi regime. Không đạt gate thì metric/cluster có thể chạy nhưng không có ý nghĩa kỹ thuật."
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t04",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E24-MM103-T04-kmeans-objective-lloyd",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "kmeans-objective-lloyd"
+      ],
+      "sourceAnchors": [
+        "m_m103_t04",
+        "m_m103",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "qaId": "E24-MM103-T04-QA01",
+      "question": "Vì sao K-means: objective, centroid và Lloyd iterations cần condition gate trước khi kết luận?",
+      "answer": "Dữ liệu phải được scale hợp lý; kiểm initialization, empty cluster và convergence tolerance. Không đạt gate thì metric/cluster có thể chạy nhưng không có ý nghĩa kỹ thuật."
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t05",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E24-MM103-T05-cluster-k-validation",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "cluster-k-validation"
+      ],
+      "sourceAnchors": [
+        "m_m103_t05",
+        "m_m103",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "qaId": "E24-MM103-T05-QA01",
+      "question": "Vì sao Chọn số cụm k: inertia, silhouette và stability cần condition gate trước khi kết luận?",
+      "answer": "Chọn k từ nhiều tín hiệu: geometry, silhouette, stability, interpretability và mục tiêu kỹ thuật. Không đạt gate thì metric/cluster có thể chạy nhưng không có ý nghĩa kỹ thuật."
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t06",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E24-MM103-T06-hierarchical-linkage",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "hierarchical-linkage"
+      ],
+      "sourceAnchors": [
+        "m_m103_t06",
+        "m_m103",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "qaId": "E24-MM103-T06-QA01",
+      "question": "Vì sao Hierarchical clustering, linkage và dendrogram cần condition gate trước khi kết luận?",
+      "answer": "Metric + linkage phải phù hợp topology dữ liệu; kiểm scaling và chi phí O(n²) khi n lớn. Không đạt gate thì metric/cluster có thể chạy nhưng không có ý nghĩa kỹ thuật."
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t07",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E24-MM103-T07-dbscan-density-outliers",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "dbscan-density-outliers"
+      ],
+      "sourceAnchors": [
+        "m_m103_t07",
+        "m_m103",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L09-topology-metric-spaces"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "qaId": "E24-MM103-T07-QA01",
+      "question": "Vì sao DBSCAN: density-connected clusters và outlier cần condition gate trước khi kết luận?",
+      "answer": "Tuning ε và MinPts phải dựa density/scale; kiểm cụm mật độ khác nhau và border points. Không đạt gate thì metric/cluster có thể chạy nhưng không có ý nghĩa kỹ thuật."
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t08",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E24-MM103-T08-clustering-mini-project",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "clustering-mini-project"
+      ],
+      "sourceAnchors": [
+        "m_m103_t08",
+        "m_m103",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "qaId": "E24-MM103-T08-QA01",
+      "question": "Vì sao Mini-project: clustering telemetry, đánh giá và báo cáo cần condition gate trước khi kết luận?",
+      "answer": "Pipeline phải giữ provenance: split/fit transform/seed/metric/k hoặc ε-MinPts và mapping cluster→diễn giải. Không đạt gate thì metric/cluster có thể chạy nhưng không có ý nghĩa kỹ thuật."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t01",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T01-data-contract-diagnostics",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "data-contract-diagnostics"
+      ],
+      "sourceAnchors": [
+        "m_m104_t01",
+        "m_m104",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "qaId": "E25-MM104-T01-QA01",
+      "question": "Nếu kết quả của Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu đẹp nhưng condition gate không đạt thì có được PASS không?",
+      "answer": "Không. Phải khóa schema, units, split provenance, missing/outlier policy và preprocessing fit-state. HK1 gate yêu cầu vừa đúng toán, vừa đúng data/assumption/provenance."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t02",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-geometry-metric",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "multidim-geometry-metric"
+      ],
+      "sourceAnchors": [
+        "m_m104_t02",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "qaId": "E25-MM104-T02-QA01",
+      "question": "Nếu kết quả của Sát hạch 2 · Hình học nhiều chiều, norm và similarity đẹp nhưng condition gate không đạt thì có được PASS không?",
+      "answer": "Không. Phải xác định sample/feature axis, metric semantics, scale và zero-vector handling. HK1 gate yêu cầu vừa đúng toán, vừa đúng data/assumption/provenance."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t03",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-covariance-eigen-pca",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "covariance-eigen-pca"
+      ],
+      "sourceAnchors": [
+        "m_m104_t03",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "qaId": "E25-MM104-T03-QA01",
+      "question": "Nếu kết quả của Sát hạch 3 · Covariance, eigen và PCA đẹp nhưng condition gate không đạt thì có được PASS không?",
+      "answer": "Không. Center đúng, scale phù hợp, covariance symmetric và eigenvalues không âm ngoài tolerance số. HK1 gate yêu cầu vừa đúng toán, vừa đúng data/assumption/provenance."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t04",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-svd-low-rank",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "svd-low-rank"
+      ],
+      "sourceAnchors": [
+        "m_m104_t04",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "qaId": "E25-MM104-T04-QA01",
+      "question": "Nếu kết quả của Sát hạch 4 · SVD, low-rank và reconstruction error đẹp nhưng condition gate không đạt thì có được PASS không?",
+      "answer": "Không. Kiểm orientation, rank, singular value ordering và tolerance; dữ liệu phải dùng đúng preprocessing contract. HK1 gate yêu cầu vừa đúng toán, vừa đúng data/assumption/provenance."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t05",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-clustering-objective-validation",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "clustering-objective-validation"
+      ],
+      "sourceAnchors": [
+        "m_m104_t05",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "qaId": "E25-MM104-T05-QA01",
+      "question": "Nếu kết quả của Sát hạch 5 · K-means, số cụm và validation đẹp nhưng condition gate không đạt thì có được PASS không?",
+      "answer": "Không. Scale + metric + multi-seed stability + interpretability phải được kiểm cùng nhau. HK1 gate yêu cầu vừa đúng toán, vừa đúng data/assumption/provenance."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t06",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-hierarchical-dbscan",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "hierarchical-dbscan"
+      ],
+      "sourceAnchors": [
+        "m_m104_t06",
+        "m_m104",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "qaId": "E25-MM104-T06-QA01",
+      "question": "Nếu kết quả của Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ đẹp nhưng condition gate không đạt thì có được PASS không?",
+      "answer": "Không. Metric/scale/linkage hoặc ε-MinPts phải phù hợp topology và density; noise không mặc định là anomaly. HK1 gate yêu cầu vừa đúng toán, vừa đúng data/assumption/provenance."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t07",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-pipeline-reproducibility",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "pipeline-reproducibility"
+      ],
+      "sourceAnchors": [
+        "m_m104_t07",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "qaId": "E25-MM104-T07-QA01",
+      "question": "Nếu kết quả của Sát hạch 7 · Pipeline, provenance và reproducibility đẹp nhưng condition gate không đạt thì có được PASS không?",
+      "answer": "Không. Mọi artifact phải lưu input snapshot, config, seed, transform version, metrics và conclusion. HK1 gate yêu cầu vừa đúng toán, vừa đúng data/assumption/provenance."
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t08",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-hk1-capstone-defense",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "hk1-capstone-defense"
+      ],
+      "sourceAnchors": [
+        "m_m104_t08",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "qaId": "E25-MM104-T08-QA01",
+      "question": "Nếu kết quả của Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận đẹp nhưng condition gate không đạt thì có được PASS không?",
+      "answer": "Không. Kết luận phải gắn với số liệu, assumptions, limitations và artifact có thể kiểm chứng. HK1 gate yêu cầu vừa đúng toán, vừa đúng data/assumption/provenance."
     }
   ],
   "importPolicy": {
@@ -1509,6 +2280,14 @@
         "e17Regression": "PASS",
         "universalConstitution": "PASS"
       }
+    },
+    "E24": {
+      "status": "MATERIALIZED_PENDING_CI",
+      "frameworkChapterId": "m_m103",
+      "logicalModuleId": "m_m103",
+      "records": 8,
+      "updatedAt": "2026-09-28",
+      "branch": "feat/math-e24-hk1-similarity-clustering-20260928"
     }
   }
 }

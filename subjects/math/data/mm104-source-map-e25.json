@@ -1,0 +1,247 @@
+{
+  "schema": "bauman_math_logical_module_source_map_v1",
+  "recoveryId": "E25",
+  "frameworkChapterId": "m_m104",
+  "logicalModuleId": "m_m104",
+  "moduleId": "m_m104",
+  "moduleTitle": "Sát hạch học kỳ 1: dữ liệu đa chiều, PCA/SVD và clustering",
+  "stageId": "hk1",
+  "architecture": "framework_chapter_over_existing_hk1_multidisciplinary_spine",
+  "legacyFrameworkAlias": "MATH-HK1-ASSESSMENT-C17",
+  "legacyAliasPolicy": "reference_only_not_runtime_physical_chapter",
+  "status": "IMPLEMENTED_PENDING_CI",
+  "correction": {
+    "rule": "m_m104 là framework/logical HK1 assessment chapter; không tạo physical chapter giả.",
+    "physicalSpineTruth": [
+      "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "MATH-HK1-C24-mo_hinh_trang_thai_va_mo"
+    ]
+  },
+  "runtimeIsolation": {
+    "forbiddenProgramLectureIds": [
+      "MATH-PROG-L14-stochastic-processes-time-series"
+    ],
+    "reason": "HK1 capstone must not absorb HK3 time-series ownership.",
+    "status": "PENDING_CI"
+  },
+  "logicalLessons": [
+    {
+      "logicalId": "m_m104_t01",
+      "title": "Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu",
+      "physicalChapterIds": [
+        "MATH-HK1-C21-entropy_thong_tin_va_pha"
+      ],
+      "runtimeChapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "theoryLessonIds": [
+        "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T01-data-contract-diagnostics"
+      ],
+      "programLectureId": "MATH-PROG-L13-mathematical-statistics",
+      "programLectureIds": [
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E25",
+      "prerequisiteLogicalIds": [
+        "m_m103_t08"
+      ]
+    },
+    {
+      "logicalId": "m_m104_t02",
+      "title": "Sát hạch 2 · Hình học nhiều chiều, norm và similarity",
+      "physicalChapterIds": [
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t"
+      ],
+      "runtimeChapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "theoryLessonIds": [
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-geometry-metric"
+      ],
+      "programLectureId": "MATH-PROG-L09-topology-metric-spaces",
+      "programLectureIds": [
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E25",
+      "prerequisiteLogicalIds": [
+        "m_m104_t01"
+      ]
+    },
+    {
+      "logicalId": "m_m104_t03",
+      "title": "Sát hạch 3 · Covariance, eigen và PCA",
+      "physicalChapterIds": [
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t"
+      ],
+      "runtimeChapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "theoryLessonIds": [
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-covariance-eigen-pca"
+      ],
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "programLectureIds": [
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E25",
+      "prerequisiteLogicalIds": [
+        "m_m104_t02"
+      ]
+    },
+    {
+      "logicalId": "m_m104_t04",
+      "title": "Sát hạch 4 · SVD, low-rank và reconstruction error",
+      "physicalChapterIds": [
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t"
+      ],
+      "runtimeChapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "theoryLessonIds": [
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-svd-low-rank"
+      ],
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "programLectureIds": [
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E25",
+      "prerequisiteLogicalIds": [
+        "m_m104_t03"
+      ]
+    },
+    {
+      "logicalId": "m_m104_t05",
+      "title": "Sát hạch 5 · K-means, số cụm và validation",
+      "physicalChapterIds": [
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo"
+      ],
+      "runtimeChapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "theoryLessonIds": [
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-clustering-objective-validation"
+      ],
+      "programLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+      "programLectureIds": [
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E25",
+      "prerequisiteLogicalIds": [
+        "m_m104_t04"
+      ]
+    },
+    {
+      "logicalId": "m_m104_t06",
+      "title": "Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ",
+      "physicalChapterIds": [
+        "MATH-HK1-C21-entropy_thong_tin_va_pha"
+      ],
+      "runtimeChapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "theoryLessonIds": [
+        "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-hierarchical-dbscan"
+      ],
+      "programLectureId": "MATH-PROG-L09-topology-metric-spaces",
+      "programLectureIds": [
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E25",
+      "prerequisiteLogicalIds": [
+        "m_m104_t05"
+      ]
+    },
+    {
+      "logicalId": "m_m104_t07",
+      "title": "Sát hạch 7 · Pipeline, provenance và reproducibility",
+      "physicalChapterIds": [
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo"
+      ],
+      "runtimeChapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "theoryLessonIds": [
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-pipeline-reproducibility"
+      ],
+      "programLectureId": "MATH-PROG-L16-numerical-methods-computing",
+      "programLectureIds": [
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E25",
+      "prerequisiteLogicalIds": [
+        "m_m104_t06"
+      ]
+    },
+    {
+      "logicalId": "m_m104_t08",
+      "title": "Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận",
+      "physicalChapterIds": [
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo"
+      ],
+      "runtimeChapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "theoryLessonIds": [
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-hk1-capstone-defense"
+      ],
+      "programLectureId": "MATH-PROG-L16-numerical-methods-computing",
+      "programLectureIds": [
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E25",
+      "prerequisiteLogicalIds": [
+        "m_m104_t07"
+      ]
+    }
+  ],
+  "renderGate": {
+    "formulaBlockOnly": true,
+    "matrixBlockOnly": true,
+    "noRawLatex": true,
+    "noCodeStyleFormula": true,
+    "hideSearchMeta": true
+  },
+  "contentGate": {
+    "requiredLogicalLessons": 8,
+    "expected": {
+      "theorySlides": 160,
+      "formulas": 24,
+      "exercises": 64,
+      "applications": 16,
+      "simulations": 16,
+      "professorQA": 8,
+      "questions": 48,
+      "reviewPacks": 8
+    },
+    "requiredSlideRoles": [
+      "notation_formula",
+      "matrix_example",
+      "condition_gate",
+      "data_contract",
+      "worked_example",
+      "computational_check",
+      "data_leakage_gate",
+      "warning_counterexample",
+      "error_repair",
+      "exit_ticket"
+    ],
+    "completionRule": "PASS only when counts, routing, render integrity, HK1 assessment traceability and browser regressions pass."
+  },
+  "assessmentGate": {
+    "prerequisiteModules": [
+      "m_m101",
+      "m_m102",
+      "m_m103"
+    ],
+    "passEvidence": [
+      "formula",
+      "worked problem",
+      "error repair",
+      "application artifact",
+      "oral defense"
+    ],
+    "noSingleScoreUnlock": true
+  },
+  "constitutionalEvidence": {
+    "policyVersion": "1.1.0",
+    "blueprintLevel": "B4",
+    "qualityGate": "canonical-quality-gates",
+    "productionAuthority": "separate"
+  },
+  "verifiedAt": null,
+  "pr": 152,
+  "gateResults": {}
+}

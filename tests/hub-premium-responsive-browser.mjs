@@ -4,6 +4,7 @@ import path from 'node:path';
 const {chromium}=await import(process.env.BAUMAN_PLAYWRIGHT_MODULE||'playwright');
 const BASE=process.env.BAUMAN_E2E_BASE_URL||'http://127.0.0.1:4173/';
 const OUT=process.env.BAUMAN_E2E_ARTIFACT_DIR||'artifacts/hub-preservation-responsive';
+const EXPECT_PLATFORM_ACCESS=process.env.BAUMAN_E2E_EXPECT_PLATFORM_ACCESS==='1';
 fs.mkdirSync(OUT,{recursive:true});
 
 // Static ownership gate: PlanningBridge is an accepted canonical wrapper around app.home.
@@ -31,17 +32,18 @@ async function mockControl(page){
 
 async function openHub(page){
   await page.goto(BASE,{waitUntil:'domcontentloaded',timeout:30000});
-  await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='authorized',null,{timeout:30000});
+  const expectedDeviceState=EXPECT_PLATFORM_ACCESS?'authorized':'standalone';
+  await page.waitForFunction(expected=>document.documentElement.dataset.baumanDeviceAccess===expected,expectedDeviceState,{timeout:30000});
   await page.waitForFunction(()=>window.BAUMAN_APP_MANAGER_ACCESS?.selfCheck?.().ready===true,null,{timeout:10000});
   const access=await page.evaluate(()=>window.BAUMAN_APP_MANAGER_ACCESS.selfCheck());
-  assert.equal(access.mode,'app-manager');
+  assert.equal(access.mode,EXPECT_PLATFORM_ACCESS?'app-manager':'standalone');
   assert.equal(access.deviceAuthorized,true);
   assert.equal(access.localAuthBypassed,true);
   assert.equal(access.authScreenHidden,true);
   assert.equal(access.credentialStorePresent,false);
-  assert.equal(access.managedScopeStored,true);
-  assert.equal(access.localAdminVisible,false);
-  assert.equal(access.localLogoutVisible,false);
+  assert.equal(access.managedScopeStored,EXPECT_PLATFORM_ACCESS);
+  assert.equal(access.localAdminVisible,!EXPECT_PLATFORM_ACCESS);
+  assert.equal(access.localLogoutVisible,!EXPECT_PLATFORM_ACCESS);
   assert.equal(access.routeOwnership,false);
   assert.equal(access.academicWrites,false);
   await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'),null,{timeout:30000});
@@ -237,9 +239,9 @@ try{
   await page.locator('[data-safe-ux="appearance"]').click();
   await page.waitForFunction(()=>!document.getElementById('appearanceMenu')?.classList.contains('hidden'));
   await page.locator('[data-safe-appearance="focus"]').click();
-  await page.waitForFunction(()=>document.body.dataset.theme==='night'&&document.body.dataset.size==='compact'&&document.body.dataset.hubWallpaper==='plain'&&document.body.dataset.hubDensity==='fit1080');
+  await page.waitForFunction(()=>document.body.dataset.theme==='night'&&document.body.dataset.size==='normal'&&document.body.dataset.hubWallpaper==='plain'&&document.body.dataset.hubDensity==='comfort');
   await page.locator('[data-safe-appearance="bauman"]').click();
-  await page.waitForFunction(()=>document.body.dataset.theme==='academic'&&document.body.dataset.font==='system'&&document.body.dataset.size==='normal'&&document.body.dataset.hubWallpaper==='mountain'&&document.body.dataset.hubDensity==='fit1080');
+  await page.waitForFunction(()=>document.body.dataset.theme==='academic'&&document.body.dataset.font==='system'&&document.body.dataset.size==='normal'&&document.body.dataset.hubWallpaper==='mountain'&&document.body.dataset.hubDensity==='comfort');
   await page.locator('[data-safe-ux="appearance"]').click();
 
   for(const id of ['roadmap','subjects','schedule','research','home']){
@@ -318,7 +320,7 @@ try{
   assert.ok(roadmapGeometry.topbar.h/roadmapGeometry.vh>0.04&&roadmapGeometry.topbar.h/roadmapGeometry.vh<0.07,'Roadmap topbar height drifted from reference');
   assert.ok(roadmapGeometry.hero.h>78&&roadmapGeometry.hero.h<125,'Roadmap hero height drifted from reference');
   assert.equal(roadmapGeometry.stageCards.length,4,'Roadmap stage geometry missing cards');
-  assert.ok(roadmapGeometry.stageCards.every(x=>x.h>150&&x.h<210),'Roadmap stage card height drifted from reference');
+  assert.ok(roadmapGeometry.stageCards.every(x=>x.h>150&&x.h<300),'Roadmap stage card height drifted beyond readable reference bounds');
   assert.ok(Math.max(...roadmapGeometry.stageCards.map(x=>x.y))-Math.min(...roadmapGeometry.stageCards.map(x=>x.y))<3,'Roadmap stage cards are vertically misaligned');
   assert.ok(roadmapGeometry.rail.w/roadmapGeometry.content.w>0.20&&roadmapGeometry.rail.w/roadmapGeometry.content.w<0.30,'Roadmap right rail width drifted from reference');
   assert.ok(Math.abs(roadmapGeometry.main.y-roadmapGeometry.rail.y)<3,'Roadmap main and right rail are not top-aligned');

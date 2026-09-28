@@ -107,14 +107,41 @@
     if(r.sourceAnchors&&r.sourceAnchors.programLectureId)ids.push(r.sourceAnchors.programLectureId);
     return ids.some(function(v){return S(v).indexOf(token)>=0;});
   }
-  function lessonOptions(){var p=path(), fr=currentFrame(), all=records(), ch=chapter(p.moduleId,p.courseId,p.chapterId), no=Number(ch&&ch.no||0), recs=[];
-    if(no)recs=all.filter(function(r){return programLectureMatches(r,no);});
+  function routeStageHint(){
+    var q='';
+    try{q=new URLSearchParams(location.search).get('stage')||'';}catch(_){}
+    q=S(q).toLowerCase();
+    if(q==='prep'||q==='preparatory'||q==='stankin')return 'prep';
+    if(q==='hk1'||q==='m1'||q==='bauman-hk1')return 'hk1';
+    if(q==='vn'||q==='prepare'||q==='vietnam')return 'vn';
+    return '';
+  }
+  function recordStageHint(r){
+    var id=S((r&&r.chapterId)||'');
+    if(id.indexOf('MATH-PREP-')===0)return 'prep';
+    if(id.indexOf('MATH-HK1-')===0)return 'hk1';
+    if(id.indexOf('MATH-VN-')===0)return 'vn';
+    return '';
+  }
+  function lessonOptions(){var p=path(), fr=currentFrame(), all=records(), ch=chapter(p.moduleId,p.courseId,p.chapterId), no=Number(ch&&ch.no||0), recs=[], stageHint=routeStageHint();
+    /* Program chapters are logical routes; physical chapters are renderer targets.
+       Prefer program anchors only inside the current stage so cross-stage sourceAnchors
+       cannot hijack the picker. This preserves PREP bridges while isolating HK1 overlays. */
+    if(no){
+      recs=all.filter(function(r){return programLectureMatches(r,no) && (!stageHint||recordStageHint(r)===stageHint);});
+    }
     if(!recs.length&&fr)recs=all.filter(function(r){return r.chapterId===(fr.chapterId||fr.id);});
-    if(!recs.length&&no){var token='-C'+String(no).padStart(2,'0')+'-';recs=all.filter(function(r){return S(r.chapterId).indexOf(token)>=0;});}
+    if(!recs.length&&no){var token='-C'+String(no).padStart(2,'0')+'-';recs=all.filter(function(r){return S(r.chapterId).indexOf(token)>=0 && (!stageHint||recordStageHint(r)===stageHint);});}
+    if(!recs.length&&no)recs=all.filter(function(r){return programLectureMatches(r,no);});
     if(recs.length){
-      var seen={};
-      return recs.filter(function(r){var id=S(r.lessonId||r.id);if(!id||seen[id])return false;seen[id]=true;return true;})
+      var seen={}, out=recs.filter(function(r){var id=S(r.lessonId||r.id);if(!id||seen[id])return false;seen[id]=true;return true;})
         .map(function(r){return {id:S(r.lessonId||r.id),label:cleanLessonTitle(r.title||r.lessonTitle||r.lessonId),sub:'Chọn bài trước, rồi chọn phân mục học tập.'};});
+      /* C01-C03 have canonical baseline lessons that remain valid learner entry points.
+         Keep them visible in addition to stage overlays; do not let a newer batch hide them. */
+      staticLessons(p.chapterId).forEach(function(x){
+        if(!seen[x.id]){seen[x.id]=true;out.push({id:x.id,label:x.label,sub:'Chọn bài trước, rồi chọn phân mục học tập.'});}
+      });
+      return out;
     }
     var stat=staticLessons(p.chapterId);if(stat.length)return stat.map(function(x){return {id:x.id,label:x.label,sub:'Chọn bài trước, rồi chọn phân mục học tập.'};});
     return [{id:p.chapterId+'-overview',label:'Bài '+(ch&&ch.no||'')+'.1 · Bài giảng tổng quan',sub:'Khung bài tạm cho chương này.'}];
