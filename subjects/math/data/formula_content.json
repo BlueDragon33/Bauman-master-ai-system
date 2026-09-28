@@ -2293,6 +2293,678 @@
       "title": "Gate logic",
       "formula": "assumption → theorem/operation → conclusion",
       "meaning": "Mỗi bước bảo vệ được bằng điều kiện hoặc định lý."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t01",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T01-events-sample-space",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "events-sample-space"
+      ],
+      "sourceAnchors": [
+        "m_s03_t01",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "formulaId": "E20-M_S03_T01-F01",
+      "title": "Tiên đề biên",
+      "formula": "0 ≤ P(A) ≤ 1",
+      "meaning": "Mọi xác suất hợp lệ nằm trong [0,1]."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t01",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T01-events-sample-space",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "events-sample-space"
+      ],
+      "sourceAnchors": [
+        "m_s03_t01",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "formulaId": "E20-M_S03_T01-F02",
+      "title": "Biến cố bù",
+      "formula": "P(Aᶜ)=1−P(A)",
+      "meaning": "Xác suất biến cố đối lập bằng một trừ xác suất biến cố."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t01",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T01-events-sample-space",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "events-sample-space"
+      ],
+      "sourceAnchors": [
+        "m_s03_t01",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "formulaId": "E20-M_S03_T01-F03",
+      "title": "Công thức cộng",
+      "formula": "P(A∪B)=P(A)+P(B)−P(A∩B)",
+      "meaning": "Tránh đếm trùng phần giao."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t02",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T02-conditional-bayes",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "conditional-bayes"
+      ],
+      "sourceAnchors": [
+        "m_s03_t02",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "formulaId": "E20-M_S03_T02-F01",
+      "title": "Conditional probability",
+      "formula": "P(A|B)=P(A∩B)/P(B), P(B)>0",
+      "meaning": "Xác suất A khi biết B."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t02",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T02-conditional-bayes",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "conditional-bayes"
+      ],
+      "sourceAnchors": [
+        "m_s03_t02",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "formulaId": "E20-M_S03_T02-F02",
+      "title": "Độc lập",
+      "formula": "A ⫫ B ⇔ P(A∩B)=P(A)P(B)",
+      "meaning": "Một tiêu chuẩn độc lập cho hai biến cố."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t02",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T02-conditional-bayes",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "conditional-bayes"
+      ],
+      "sourceAnchors": [
+        "m_s03_t02",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "formulaId": "E20-M_S03_T02-F03",
+      "title": "Bayes",
+      "formula": "P(Hᵢ|D)=P(D|Hᵢ)P(Hᵢ)/ΣⱼP(D|Hⱼ)P(Hⱼ)",
+      "meaning": "Cập nhật prior thành posterior sau khi quan sát dữ liệu D."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t03",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T03-random-variables-distributions",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "random-variables-distributions"
+      ],
+      "sourceAnchors": [
+        "m_s03_t03",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "formulaId": "E20-M_S03_T03-F01",
+      "title": "CDF",
+      "formula": "F_X(x)=P(X≤x)",
+      "meaning": "Hàm phân phối tích lũy, không giảm và tiến từ 0 đến 1."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t03",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T03-random-variables-distributions",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "random-variables-distributions"
+      ],
+      "sourceAnchors": [
+        "m_s03_t03",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "formulaId": "E20-M_S03_T03-F02",
+      "title": "PMF",
+      "formula": "p_X(x)=P(X=x), Σ_x p_X(x)=1",
+      "meaning": "Cho biến rời rạc."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t03",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T03-random-variables-distributions",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "random-variables-distributions"
+      ],
+      "sourceAnchors": [
+        "m_s03_t03",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "formulaId": "E20-M_S03_T03-F03",
+      "title": "PDF",
+      "formula": "P(a≤X≤b)=∫_a^b f_X(x)dx",
+      "meaning": "Với biến liên tục; f(x) là mật độ, không phải xác suất tại một điểm."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t04",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T04-moments-variance",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "moments-variance"
+      ],
+      "sourceAnchors": [
+        "m_s03_t04",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "formulaId": "E20-M_S03_T04-F01",
+      "title": "Kỳ vọng",
+      "formula": "E[X]=Σ x p(x)  hoặc  ∫x f(x)dx",
+      "meaning": "Trung bình lý thuyết của biến ngẫu nhiên."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t04",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T04-moments-variance",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "moments-variance"
+      ],
+      "sourceAnchors": [
+        "m_s03_t04",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "formulaId": "E20-M_S03_T04-F02",
+      "title": "Phương sai",
+      "formula": "Var(X)=E[(X−μ)²]=E[X²]−μ²",
+      "meaning": "Đo phân tán bình phương quanh kỳ vọng."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t04",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T04-moments-variance",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "moments-variance"
+      ],
+      "sourceAnchors": [
+        "m_s03_t04",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "formulaId": "E20-M_S03_T04-F03",
+      "title": "Độ lệch chuẩn",
+      "formula": "σ=√Var(X)",
+      "meaning": "Cùng đơn vị với X."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t05",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T05-named-distributions",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "named-distributions"
+      ],
+      "sourceAnchors": [
+        "m_s03_t05",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "formulaId": "E20-M_S03_T05-F01",
+      "title": "Binomial",
+      "formula": "P(X=k)=C(n,k)p^k(1−p)^{n−k}",
+      "meaning": "Số thành công trong n phép thử Bernoulli độc lập cùng p."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t05",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T05-named-distributions",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "named-distributions"
+      ],
+      "sourceAnchors": [
+        "m_s03_t05",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "formulaId": "E20-M_S03_T05-F02",
+      "title": "Poisson",
+      "formula": "P(X=k)=e^{−λ}λ^k/k!",
+      "meaning": "Mô hình count với rate λ trong khoảng quan sát."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t05",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E20-MS03-T05-named-distributions",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "named-distributions"
+      ],
+      "sourceAnchors": [
+        "m_s03_t05",
+        "m_s03",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "formulaId": "E20-M_S03_T05-F03",
+      "title": "Normal standardization",
+      "formula": "Z=(X−μ)/σ",
+      "meaning": "Nếu X~N(μ,σ²), thì Z~N(0,1)."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t06",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T06-sample-statistics-histogram",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "sample-statistics-histogram"
+      ],
+      "sourceAnchors": [
+        "m_s03_t06",
+        "m_s03",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "formulaId": "E20-M_S03_T06-F01",
+      "title": "Sample mean",
+      "formula": "x̄=(1/n)Σᵢxᵢ",
+      "meaning": "Ước lượng trung tâm mẫu."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t06",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T06-sample-statistics-histogram",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "sample-statistics-histogram"
+      ],
+      "sourceAnchors": [
+        "m_s03_t06",
+        "m_s03",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "formulaId": "E20-M_S03_T06-F02",
+      "title": "Unbiased sample variance",
+      "formula": "s²=(1/(n−1))Σᵢ(xᵢ−x̄)²",
+      "meaning": "Ước lượng không chệch của variance khi mẫu iid với moment hữu hạn phù hợp."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t06",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T06-sample-statistics-histogram",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "sample-statistics-histogram"
+      ],
+      "sourceAnchors": [
+        "m_s03_t06",
+        "m_s03",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "formulaId": "E20-M_S03_T06-F03",
+      "title": "Standard error mean",
+      "formula": "SE(x̄)=s/√n",
+      "meaning": "Ước lượng độ bất định của sample mean trong bối cảnh thích hợp."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t07",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T07-confidence-hypothesis-pvalue",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "confidence-hypothesis-pvalue"
+      ],
+      "sourceAnchors": [
+        "m_s03_t07",
+        "m_s03",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "formulaId": "E20-M_S03_T07-F01",
+      "title": "CI mean (xấp xỉ z)",
+      "formula": "x̄ ± z_{1−α/2}·SE",
+      "meaning": "Dạng cơ bản khi assumptions/approximation phù hợp."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t07",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T07-confidence-hypothesis-pvalue",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "confidence-hypothesis-pvalue"
+      ],
+      "sourceAnchors": [
+        "m_s03_t07",
+        "m_s03",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "formulaId": "E20-M_S03_T07-F02",
+      "title": "Quy tắc p-value",
+      "formula": "p ≤ α ⇒ reject H₀",
+      "meaning": "Quy tắc quyết định đã chọn trước; không đồng nghĩa H₀ chắc chắn sai."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t07",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T07-confidence-hypothesis-pvalue",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "confidence-hypothesis-pvalue"
+      ],
+      "sourceAnchors": [
+        "m_s03_t07",
+        "m_s03",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "formulaId": "E20-M_S03_T07-F03",
+      "title": "Type I error",
+      "formula": "P(reject H₀ | H₀ true)=α",
+      "meaning": "Trong test được hiệu chỉnh ở mức α."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t08",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T08-russian-probability-statistics-seminar",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "russian-probability-statistics-seminar"
+      ],
+      "sourceAnchors": [
+        "m_s03_t08",
+        "m_s03",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "formulaId": "E20-M_S03_T08-F01",
+      "title": "Seminar flow",
+      "formula": "model → assumptions → statistic → uncertainty → conclusion",
+      "meaning": "Không được bỏ qua assumptions và uncertainty."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t08",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T08-russian-probability-statistics-seminar",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "russian-probability-statistics-seminar"
+      ],
+      "sourceAnchors": [
+        "m_s03_t08",
+        "m_s03",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "formulaId": "E20-M_S03_T08-F02",
+      "title": "Probability check",
+      "formula": "0≤P≤1, Σp=1 / ∫f=1",
+      "meaning": "Sanity check cho mô hình xác suất."
+    },
+    {
+      "logicalModuleId": "m_s03",
+      "frameworkChapterId": "m_s03",
+      "logicalLessonId": "m_s03_t08",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E20-MS03-T08-russian-probability-statistics-seminar",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "probability",
+        "statistics",
+        "russian math",
+        "prep",
+        "seminar",
+        "russian-probability-statistics-seminar"
+      ],
+      "sourceAnchors": [
+        "m_s03_t08",
+        "m_s03",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E20_AUTHORED",
+      "formulaId": "E20-M_S03_T08-F03",
+      "title": "Inference check",
+      "formula": "effect size + interval + p-value",
+      "meaning": "Kết luận tốt không dựa vào p-value một mình."
     }
   ],
   "importPolicy": {
@@ -2342,7 +3014,7 @@
     ],
     "auditStatus": "DRAFT"
   },
-  "updatedAt": "2026-09-27",
+  "updatedAt": "2026-09-28",
   "emoji": "∑",
   "cleanArchitecturePolicy": {
     "contentMustNotStoreStageTree": true,
@@ -2402,6 +3074,14 @@
         "e17Regression": "PASS",
         "universalConstitution": "PASS"
       }
+    },
+    "E20": {
+      "status": "IMPLEMENTED_PENDING_CI",
+      "frameworkChapterId": "m_s03",
+      "logicalModuleId": "m_s03",
+      "lessons": 8,
+      "theorySlides": 160,
+      "updatedAt": "2026-09-28"
     }
   }
 }
