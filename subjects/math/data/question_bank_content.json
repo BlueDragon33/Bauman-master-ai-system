@@ -6160,6 +6160,1302 @@
       "question": "Hãy trình bày một đoạn vấn đáp tiếng Nga 30–90 giây, nêu uncertainty và sửa lỗi nếu bị phản biện.",
       "answer": "Giải thích «Seminar xác suất - thống kê Nga: đọc đề, giải bảng và bảo vệ kết luận» bằng tiếng Nga, bắt buộc nêu một assumption và một công thức. Сначала проверю структуру выборки и предпосылки. Затем оценю эффект и доверительный интервал. p-значение использую только как часть вывода, а не как единственный критерий.",
       "reviewPackId": "E20-M_S03_T08-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T01-data-matrix-features",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "data-matrix-features"
+      ],
+      "sourceAnchors": [
+        "m_s04_t01",
+        "m_s04",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T01-Q001",
+      "level": "easy",
+      "question": "Nêu shape/semantic contract của m_s04 · §1.1 · Ma trận dữ liệu, quan sát và vector đặc trưng.",
+      "answer": "Phải khai báo convention rows/columns, kiểu dữ liệu, đơn vị và missing-value policy trước mọi phép tính. Shape hợp lệ. | Đơn vị/scale rõ. | Train/test boundary chưa bị xâm phạm. | Semantic meaning của rows/columns được khóa.",
+      "reviewPackId": "E21-M_S04_T01-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T01-data-matrix-features",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "data-matrix-features"
+      ],
+      "sourceAnchors": [
+        "m_s04_t01",
+        "m_s04",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T01-Q002",
+      "level": "easy",
+      "question": "Nêu một công thức lõi và giải nghĩa.",
+      "answer": "Dùng formula block của bài, kèm điều kiện.",
+      "reviewPackId": "E21-M_S04_T01-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T01-data-matrix-features",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "data-matrix-features"
+      ],
+      "sourceAnchors": [
+        "m_s04_t01",
+        "m_s04",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T01-Q003",
+      "level": "medium",
+      "question": "Bẫy data/geometry quan trọng nhất là gì?",
+      "answer": "Nhầm hàng là feature và cột là sample làm sai toàn bộ covariance/PCA/model pipeline dù phép toán vẫn chạy.",
+      "reviewPackId": "E21-M_S04_T01-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T01-data-matrix-features",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "data-matrix-features"
+      ],
+      "sourceAnchors": [
+        "m_s04_t01",
+        "m_s04",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T01-Q004",
+      "level": "medium",
+      "question": "Vì sao provenance/split phải được khóa trước transform?",
+      "answer": "Để tránh leakage, tái lập đúng pipeline và không dùng thông tin tương lai/test.",
+      "reviewPackId": "E21-M_S04_T01-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T01-data-matrix-features",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "data-matrix-features"
+      ],
+      "sourceAnchors": [
+        "m_s04_t01",
+        "m_s04",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T01-Q005",
+      "level": "hard",
+      "question": "Nếu transpose X nhưng không đổi cách hiểu rows/features thì điều gì xảy ra?",
+      "answer": "Shape vẫn hợp lệ toán học nhưng semantic contract bị đảo; mọi statistic theo trục và model input có thể sai.",
+      "reviewPackId": "E21-M_S04_T01-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T01-data-matrix-features",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "data-matrix-features"
+      ],
+      "sourceAnchors": [
+        "m_s04_t01",
+        "m_s04",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T01-Q006",
+      "level": "hard",
+      "question": "Trả lời bằng tiếng Nga kỹ thuật và nêu một limitation.",
+      "answer": "Матрица данных X имеет n строк-наблюдений и p столбцов-признаков. Сначала фиксируем смысл и единицы каждого столбца.",
+      "reviewPackId": "E21-M_S04_T01-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t02",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E21-MS04-T02-scaling-units",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "scaling-units"
+      ],
+      "sourceAnchors": [
+        "m_s04_t02",
+        "m_s04",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T02-Q001",
+      "level": "easy",
+      "question": "Nêu shape/semantic contract của m_s04 · §1.2 · Chuẩn hóa, scale và dữ liệu lệch đơn vị.",
+      "answer": "Scaler parameters chỉ được học từ training split; feature có σ=0/range=0 cần policy riêng. Shape hợp lệ. | Đơn vị/scale rõ. | Train/test boundary chưa bị xâm phạm. | Semantic meaning của rows/columns được khóa.",
+      "reviewPackId": "E21-M_S04_T02-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t02",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E21-MS04-T02-scaling-units",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "scaling-units"
+      ],
+      "sourceAnchors": [
+        "m_s04_t02",
+        "m_s04",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T02-Q002",
+      "level": "easy",
+      "question": "Nêu một công thức lõi và giải nghĩa.",
+      "answer": "Dùng formula block của bài, kèm điều kiện.",
+      "reviewPackId": "E21-M_S04_T02-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t02",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E21-MS04-T02-scaling-units",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "scaling-units"
+      ],
+      "sourceAnchors": [
+        "m_s04_t02",
+        "m_s04",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T02-Q003",
+      "level": "medium",
+      "question": "Bẫy data/geometry quan trọng nhất là gì?",
+      "answer": "Scale toàn dataset trước khi split làm validation/test rò thông tin vào train.",
+      "reviewPackId": "E21-M_S04_T02-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t02",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E21-MS04-T02-scaling-units",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "scaling-units"
+      ],
+      "sourceAnchors": [
+        "m_s04_t02",
+        "m_s04",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T02-Q004",
+      "level": "medium",
+      "question": "Vì sao provenance/split phải được khóa trước transform?",
+      "answer": "Để tránh leakage, tái lập đúng pipeline và không dùng thông tin tương lai/test.",
+      "reviewPackId": "E21-M_S04_T02-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t02",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E21-MS04-T02-scaling-units",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "scaling-units"
+      ],
+      "sourceAnchors": [
+        "m_s04_t02",
+        "m_s04",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T02-Q005",
+      "level": "hard",
+      "question": "Tại sao tree model thường ít nhạy với scale hơn kNN?",
+      "answer": "Tree dùng threshold/order trên từng feature, còn kNN phụ thuộc trực tiếp metric giữa nhiều feature.",
+      "reviewPackId": "E21-M_S04_T02-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t02",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E21-MS04-T02-scaling-units",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "scaling-units"
+      ],
+      "sourceAnchors": [
+        "m_s04_t02",
+        "m_s04",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T02-Q006",
+      "level": "hard",
+      "question": "Trả lời bằng tiếng Nga kỹ thuật và nêu một limitation.",
+      "answer": "Параметры стандартизации оцениваем только по обучающей выборке, затем применяем без переобучения к validation и test.",
+      "reviewPackId": "E21-M_S04_T02-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T03-distance-metrics",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "distance-metrics"
+      ],
+      "sourceAnchors": [
+        "m_s04_t03",
+        "m_s04",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T03-Q001",
+      "level": "easy",
+      "question": "Nêu shape/semantic contract của m_s04 · §1.3 · Khoảng cách Euclid, Manhattan và Minkowski trong không gian nhiều chiều.",
+      "answer": "Phải scale/weight feature phù hợp và q≥1 nếu muốn Minkowski là metric chuẩn. Shape hợp lệ. | Đơn vị/scale rõ. | Train/test boundary chưa bị xâm phạm. | Semantic meaning của rows/columns được khóa.",
+      "reviewPackId": "E21-M_S04_T03-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T03-distance-metrics",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "distance-metrics"
+      ],
+      "sourceAnchors": [
+        "m_s04_t03",
+        "m_s04",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T03-Q002",
+      "level": "easy",
+      "question": "Nêu một công thức lõi và giải nghĩa.",
+      "answer": "Dùng formula block của bài, kèm điều kiện.",
+      "reviewPackId": "E21-M_S04_T03-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T03-distance-metrics",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "distance-metrics"
+      ],
+      "sourceAnchors": [
+        "m_s04_t03",
+        "m_s04",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T03-Q003",
+      "level": "medium",
+      "question": "Bẫy data/geometry quan trọng nhất là gì?",
+      "answer": "Trong high dimension, khoảng cách nearest/farthest có thể mất tương phản; không mặc định kNN geometry vẫn hữu ích.",
+      "reviewPackId": "E21-M_S04_T03-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T03-distance-metrics",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "distance-metrics"
+      ],
+      "sourceAnchors": [
+        "m_s04_t03",
+        "m_s04",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T03-Q004",
+      "level": "medium",
+      "question": "Vì sao provenance/split phải được khóa trước transform?",
+      "answer": "Để tránh leakage, tái lập đúng pipeline và không dùng thông tin tương lai/test.",
+      "reviewPackId": "E21-M_S04_T03-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T03-distance-metrics",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "distance-metrics"
+      ],
+      "sourceAnchors": [
+        "m_s04_t03",
+        "m_s04",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T03-Q005",
+      "level": "hard",
+      "question": "Minkowski q<1 có còn là metric không?",
+      "answer": "Không theo định nghĩa metric chuẩn vì triangle inequality có thể vi phạm.",
+      "reviewPackId": "E21-M_S04_T03-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T03-distance-metrics",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "distance-metrics"
+      ],
+      "sourceAnchors": [
+        "m_s04_t03",
+        "m_s04",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T03-Q006",
+      "level": "hard",
+      "question": "Trả lời bằng tiếng Nga kỹ thuật và nêu một limitation.",
+      "answer": "Перед вычислением расстояний проверяем масштаб признаков. Иначе одна единица измерения может доминировать в метрике.",
+      "reviewPackId": "E21-M_S04_T03-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t04",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T04-cosine-sparse",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "cosine-sparse"
+      ],
+      "sourceAnchors": [
+        "m_s04_t04",
+        "m_s04",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T04-Q001",
+      "level": "easy",
+      "question": "Nêu shape/semantic contract của m_s04 · §1.4 · Cosine similarity, góc giữa vector và dữ liệu thưa.",
+      "answer": "Không định nghĩa cosine với zero vector; sparse representation cần giữ index semantics nhất quán. Shape hợp lệ. | Đơn vị/scale rõ. | Train/test boundary chưa bị xâm phạm. | Semantic meaning của rows/columns được khóa.",
+      "reviewPackId": "E21-M_S04_T04-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t04",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T04-cosine-sparse",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "cosine-sparse"
+      ],
+      "sourceAnchors": [
+        "m_s04_t04",
+        "m_s04",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T04-Q002",
+      "level": "easy",
+      "question": "Nêu một công thức lõi và giải nghĩa.",
+      "answer": "Dùng formula block của bài, kèm điều kiện.",
+      "reviewPackId": "E21-M_S04_T04-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t04",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T04-cosine-sparse",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "cosine-sparse"
+      ],
+      "sourceAnchors": [
+        "m_s04_t04",
+        "m_s04",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T04-Q003",
+      "level": "medium",
+      "question": "Bẫy data/geometry quan trọng nhất là gì?",
+      "answer": "Cosine cao không có nghĩa giá trị tuyệt đối gần nhau; vector [1,2] và [100,200] có cosine 1.",
+      "reviewPackId": "E21-M_S04_T04-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t04",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T04-cosine-sparse",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "cosine-sparse"
+      ],
+      "sourceAnchors": [
+        "m_s04_t04",
+        "m_s04",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T04-Q004",
+      "level": "medium",
+      "question": "Vì sao provenance/split phải được khóa trước transform?",
+      "answer": "Để tránh leakage, tái lập đúng pipeline và không dùng thông tin tương lai/test.",
+      "reviewPackId": "E21-M_S04_T04-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t04",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T04-cosine-sparse",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "cosine-sparse"
+      ],
+      "sourceAnchors": [
+        "m_s04_t04",
+        "m_s04",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T04-Q005",
+      "level": "hard",
+      "question": "Hai vector cosine=1 có nhất thiết bằng nhau không?",
+      "answer": "Không. Chúng có thể là bội dương của nhau.",
+      "reviewPackId": "E21-M_S04_T04-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t04",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T04-cosine-sparse",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "cosine-sparse"
+      ],
+      "sourceAnchors": [
+        "m_s04_t04",
+        "m_s04",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T04-Q006",
+      "level": "hard",
+      "question": "Trả lời bằng tiếng Nga kỹ thuật và nêu một limitation.",
+      "answer": "Косинусное сходство сравнивает направление векторов, а не их абсолютную величину. Нулевой вектор требует отдельной обработки.",
+      "reviewPackId": "E21-M_S04_T04-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t05",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E21-MS04-T05-gram-kernel",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "gram-kernel"
+      ],
+      "sourceAnchors": [
+        "m_s04_t05",
+        "m_s04",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T05-Q001",
+      "level": "easy",
+      "question": "Nêu shape/semantic contract của m_s04 · §1.5 · Gram matrix, similarity matrix và kernel nhập môn.",
+      "answer": "Phải rõ orientation của X; kernel tùy ý không tự động hợp lệ cho kernel methods. Shape hợp lệ. | Đơn vị/scale rõ. | Train/test boundary chưa bị xâm phạm. | Semantic meaning của rows/columns được khóa.",
+      "reviewPackId": "E21-M_S04_T05-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t05",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E21-MS04-T05-gram-kernel",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "gram-kernel"
+      ],
+      "sourceAnchors": [
+        "m_s04_t05",
+        "m_s04",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T05-Q002",
+      "level": "easy",
+      "question": "Nêu một công thức lõi và giải nghĩa.",
+      "answer": "Dùng formula block của bài, kèm điều kiện.",
+      "reviewPackId": "E21-M_S04_T05-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t05",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E21-MS04-T05-gram-kernel",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "gram-kernel"
+      ],
+      "sourceAnchors": [
+        "m_s04_t05",
+        "m_s04",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T05-Q003",
+      "level": "medium",
+      "question": "Bẫy data/geometry quan trọng nhất là gì?",
+      "answer": "Similarity matrix đối xứng chưa đủ để là PSD kernel matrix.",
+      "reviewPackId": "E21-M_S04_T05-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t05",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E21-MS04-T05-gram-kernel",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "gram-kernel"
+      ],
+      "sourceAnchors": [
+        "m_s04_t05",
+        "m_s04",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T05-Q004",
+      "level": "medium",
+      "question": "Vì sao provenance/split phải được khóa trước transform?",
+      "answer": "Để tránh leakage, tái lập đúng pipeline và không dùng thông tin tương lai/test.",
+      "reviewPackId": "E21-M_S04_T05-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t05",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E21-MS04-T05-gram-kernel",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "gram-kernel"
+      ],
+      "sourceAnchors": [
+        "m_s04_t05",
+        "m_s04",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T05-Q005",
+      "level": "hard",
+      "question": "Mọi symmetric matrix có phải Gram matrix của vector thực không?",
+      "answer": "Chỉ khi nó PSD; symmetric indefinite matrix không thể là Gram matrix Euclidean chuẩn.",
+      "reviewPackId": "E21-M_S04_T05-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t05",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E21-MS04-T05-gram-kernel",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "gram-kernel"
+      ],
+      "sourceAnchors": [
+        "m_s04_t05",
+        "m_s04",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T05-Q006",
+      "level": "hard",
+      "question": "Trả lời bằng tiếng Nga kỹ thuật và nêu một limitation.",
+      "answer": "Матрица Грама строится из скалярных произведений. Для kernel-методов недостаточно одной симметрии — важна положительная полуопределённость.",
+      "reviewPackId": "E21-M_S04_T05-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t06",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E21-MS04-T06-pca-projection",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "pca-projection"
+      ],
+      "sourceAnchors": [
+        "m_s04_t06",
+        "m_s04",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T06-Q001",
+      "level": "easy",
+      "question": "Nêu shape/semantic contract của m_s04 · §1.6 · Giảm chiều nhập môn: PCA, projection và trực quan hóa 2D.",
+      "answer": "Fit centering/scaling/PCA chỉ trên train trong pipeline supervised; chọn k dựa mục tiêu/validation chứ không chỉ hình đẹp. Shape hợp lệ. | Đơn vị/scale rõ. | Train/test boundary chưa bị xâm phạm. | Semantic meaning của rows/columns được khóa.",
+      "reviewPackId": "E21-M_S04_T06-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t06",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E21-MS04-T06-pca-projection",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "pca-projection"
+      ],
+      "sourceAnchors": [
+        "m_s04_t06",
+        "m_s04",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T06-Q002",
+      "level": "easy",
+      "question": "Nêu một công thức lõi và giải nghĩa.",
+      "answer": "Dùng formula block của bài, kèm điều kiện.",
+      "reviewPackId": "E21-M_S04_T06-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t06",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E21-MS04-T06-pca-projection",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "pca-projection"
+      ],
+      "sourceAnchors": [
+        "m_s04_t06",
+        "m_s04",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T06-Q003",
+      "level": "medium",
+      "question": "Bẫy data/geometry quan trọng nhất là gì?",
+      "answer": "PCA 2D đẹp không chứng minh cluster thật hoặc causal structure; PCA tối ưu variance tuyến tính, không tối ưu classification.",
+      "reviewPackId": "E21-M_S04_T06-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t06",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E21-MS04-T06-pca-projection",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "pca-projection"
+      ],
+      "sourceAnchors": [
+        "m_s04_t06",
+        "m_s04",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T06-Q004",
+      "level": "medium",
+      "question": "Vì sao provenance/split phải được khóa trước transform?",
+      "answer": "Để tránh leakage, tái lập đúng pipeline và không dùng thông tin tương lai/test.",
+      "reviewPackId": "E21-M_S04_T06-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t06",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E21-MS04-T06-pca-projection",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "pca-projection"
+      ],
+      "sourceAnchors": [
+        "m_s04_t06",
+        "m_s04",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T06-Q005",
+      "level": "hard",
+      "question": "PCA có cần labels không?",
+      "answer": "PCA chuẩn là unsupervised; nó không dùng labels để chọn directions.",
+      "reviewPackId": "E21-M_S04_T06-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t06",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E21-MS04-T06-pca-projection",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "pca-projection"
+      ],
+      "sourceAnchors": [
+        "m_s04_t06",
+        "m_s04",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T06-Q006",
+      "level": "hard",
+      "question": "Trả lời bằng tiếng Nga kỹ thuật và nêu một limitation.",
+      "answer": "PCA проектирует центрированные данные на направления максимальной дисперсии. Число компонент выбираем по задаче, а не только по красивому графику.",
+      "reviewPackId": "E21-M_S04_T06-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t07",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E21-MS04-T07-feature-pipeline",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "feature-pipeline"
+      ],
+      "sourceAnchors": [
+        "m_s04_t07",
+        "m_s04",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T07-Q001",
+      "level": "easy",
+      "question": "Nêu shape/semantic contract của m_s04 · §1.7 · Pipeline dữ liệu đa chiều: từ dữ liệu thô đến feature matrix.",
+      "answer": "Mọi transform có fit state phải fit train; raw data immutable/provenance phải lưu để reproduce. Shape hợp lệ. | Đơn vị/scale rõ. | Train/test boundary chưa bị xâm phạm. | Semantic meaning của rows/columns được khóa.",
+      "reviewPackId": "E21-M_S04_T07-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t07",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E21-MS04-T07-feature-pipeline",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "feature-pipeline"
+      ],
+      "sourceAnchors": [
+        "m_s04_t07",
+        "m_s04",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T07-Q002",
+      "level": "easy",
+      "question": "Nêu một công thức lõi và giải nghĩa.",
+      "answer": "Dùng formula block của bài, kèm điều kiện.",
+      "reviewPackId": "E21-M_S04_T07-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t07",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E21-MS04-T07-feature-pipeline",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "feature-pipeline"
+      ],
+      "sourceAnchors": [
+        "m_s04_t07",
+        "m_s04",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T07-Q003",
+      "level": "medium",
+      "question": "Bẫy data/geometry quan trọng nhất là gì?",
+      "answer": "Impute/scale/select feature trên toàn dataset trước split tạo leakage ngay cả khi test labels không được dùng.",
+      "reviewPackId": "E21-M_S04_T07-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t07",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E21-MS04-T07-feature-pipeline",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "feature-pipeline"
+      ],
+      "sourceAnchors": [
+        "m_s04_t07",
+        "m_s04",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T07-Q004",
+      "level": "medium",
+      "question": "Vì sao provenance/split phải được khóa trước transform?",
+      "answer": "Để tránh leakage, tái lập đúng pipeline và không dùng thông tin tương lai/test.",
+      "reviewPackId": "E21-M_S04_T07-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t07",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E21-MS04-T07-feature-pipeline",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "feature-pipeline"
+      ],
+      "sourceAnchors": [
+        "m_s04_t07",
+        "m_s04",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T07-Q005",
+      "level": "hard",
+      "question": "Tại sao split by time có thể tốt hơn random split với telemetry?",
+      "answer": "Vì random split có thể trộn tương lai/quá khứ và tạo leakage khi dữ liệu có temporal dependence/drift.",
+      "reviewPackId": "E21-M_S04_T07-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t07",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E21-MS04-T07-feature-pipeline",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "feature-pipeline"
+      ],
+      "sourceAnchors": [
+        "m_s04_t07",
+        "m_s04",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T07-Q006",
+      "level": "hard",
+      "question": "Trả lời bằng tiếng Nga kỹ thuật và nêu một limitation.",
+      "answer": "Сначала фиксируем сырые данные и разделяем выборки. Все обучаемые преобразования fit только на train, затем применяем к остальным данным.",
+      "reviewPackId": "E21-M_S04_T07-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t08",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E21-MS04-T08-mini-project-report",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "mini-project-report"
+      ],
+      "sourceAnchors": [
+        "m_s04_t08",
+        "m_s04",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T08-Q001",
+      "level": "easy",
+      "question": "Nêu shape/semantic contract của m_s04 · §1.8 · Mini-project và báo cáo dữ liệu đa chiều bằng tiếng Nga kỹ thuật.",
+      "answer": "Phải freeze dataset/split/protocol trước so sánh; chart/table phải có đơn vị, sample count và nguồn. Shape hợp lệ. | Đơn vị/scale rõ. | Train/test boundary chưa bị xâm phạm. | Semantic meaning của rows/columns được khóa.",
+      "reviewPackId": "E21-M_S04_T08-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t08",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E21-MS04-T08-mini-project-report",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "mini-project-report"
+      ],
+      "sourceAnchors": [
+        "m_s04_t08",
+        "m_s04",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T08-Q002",
+      "level": "easy",
+      "question": "Nêu một công thức lõi và giải nghĩa.",
+      "answer": "Dùng formula block của bài, kèm điều kiện.",
+      "reviewPackId": "E21-M_S04_T08-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t08",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E21-MS04-T08-mini-project-report",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "mini-project-report"
+      ],
+      "sourceAnchors": [
+        "m_s04_t08",
+        "m_s04",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T08-Q003",
+      "level": "medium",
+      "question": "Bẫy data/geometry quan trọng nhất là gì?",
+      "answer": "Chọn lại preprocessing/hyperparameter sau khi nhìn test rồi báo test score như khách quan là test leakage.",
+      "reviewPackId": "E21-M_S04_T08-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t08",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E21-MS04-T08-mini-project-report",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "mini-project-report"
+      ],
+      "sourceAnchors": [
+        "m_s04_t08",
+        "m_s04",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T08-Q004",
+      "level": "medium",
+      "question": "Vì sao provenance/split phải được khóa trước transform?",
+      "answer": "Để tránh leakage, tái lập đúng pipeline và không dùng thông tin tương lai/test.",
+      "reviewPackId": "E21-M_S04_T08-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t08",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E21-MS04-T08-mini-project-report",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "mini-project-report"
+      ],
+      "sourceAnchors": [
+        "m_s04_t08",
+        "m_s04",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T08-Q005",
+      "level": "hard",
+      "question": "Một chart đẹp nhưng thiếu sample size/protocol có đủ làm evidence không?",
+      "answer": "Không. Visualization chỉ là evidence khi có context, data provenance và validation protocol.",
+      "reviewPackId": "E21-M_S04_T08-RP01"
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t08",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E21-MS04-T08-mini-project-report",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "mini-project-report"
+      ],
+      "sourceAnchors": [
+        "m_s04_t08",
+        "m_s04",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "questionId": "E21-M_S04_T08-Q006",
+      "level": "hard",
+      "question": "Trả lời bằng tiếng Nga kỹ thuật và nêu một limitation.",
+      "answer": "В отчёте сначала формулируем задачу и описываем данные, затем метод и протокол проверки. В выводе обязательно указываем ограничения.",
+      "reviewPackId": "E21-M_S04_T08-RP01"
     }
   ],
   "importPolicy": {
@@ -6288,6 +7584,27 @@
         "runtimeStatic": "PASS",
         "browser": "PASS",
         "developmentFastCI": "PASS",
+        "e19Regression": "PASS",
+        "e18Regression": "PASS",
+        "e17Regression": "PASS",
+        "universalConstitution": "PASS"
+      }
+    },
+    "E21": {
+      "status": "PASS_STATIC_BROWSER_CI",
+      "frameworkChapterId": "m_s04",
+      "logicalModuleId": "m_s04",
+      "lessons": 8,
+      "theorySlides": 160,
+      "updatedAt": "2026-09-28",
+      "verifiedAt": "2026-09-28",
+      "pr": 150,
+      "gateResults": {
+        "academic": "PASS",
+        "runtimeStatic": "PASS",
+        "browser": "PASS",
+        "developmentFastCI": "PASS",
+        "e20Regression": "PASS",
         "e19Regression": "PASS",
         "e18Regression": "PASS",
         "e17Regression": "PASS",

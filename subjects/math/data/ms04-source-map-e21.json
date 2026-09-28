@@ -1,0 +1,230 @@
+{
+  "schema": "bauman_math_logical_module_source_map_v1",
+  "recoveryId": "E21",
+  "frameworkChapterId": "m_s04",
+  "logicalModuleId": "m_s04",
+  "moduleId": "m_s04",
+  "moduleTitle": "Toán cho dữ liệu đa chiều trong hệ thống AI",
+  "stageId": "prep",
+  "architecture": "framework_chapter_over_existing_multidisciplinary_prep_spine",
+  "legacyFrameworkAlias": "MATH-PREP-MT-C12",
+  "legacyAliasPolicy": "reference_only_not_runtime_physical_chapter",
+  "status": "PASS_STATIC_BROWSER_CI",
+  "correction": {
+    "rule": "m_s04 là framework/logical chapter. MATH-PREP-MT-C12 là alias khung, không được materialize thành physical chapter. Nội dung neo vào C09/C10/C16/C18 theo bản chất đại số, thống kê và lab.",
+    "physicalSpineTruth": [
+      "C09: data matrix/vector/metrics.",
+      "C10: Gram/kernel/PCA.",
+      "C16: scaling/statistical preprocessing.",
+      "C18: reproducible feature pipeline and mini-project."
+    ]
+  },
+  "runtimeIsolation": {
+    "forbiddenProgramLectureIds": [
+      "MATH-PROG-L14-stochastic-processes-time-series"
+    ],
+    "reason": "Preserve E17 L14 exclusivity after E20 regression incident.",
+    "status": "PASS"
+  },
+  "commonProgramAnchors": [
+    "MATH-PROG-L17-ai-machine-learning-math-foundations"
+  ],
+  "logicalLessons": [
+    {
+      "logicalId": "m_s04_t01",
+      "title": "Ma trận dữ liệu, quan sát và vector đặc trưng",
+      "physicalChapterIds": [
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto"
+      ],
+      "runtimeChapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "theoryLessonIds": [
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T01-data-matrix-features"
+      ],
+      "programLectureId": "MATH-PROG-L01-linear-algebra-basic",
+      "aiBridgeProgramLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+      "coverage": "AUTHORED_MODERN_THEORY_E21",
+      "prerequisiteLogicalIds": []
+    },
+    {
+      "logicalId": "m_s04_t02",
+      "title": "Chuẩn hóa, scale và dữ liệu lệch đơn vị",
+      "physicalChapterIds": [
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_"
+      ],
+      "runtimeChapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "theoryLessonIds": [
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E21-MS04-T02-scaling-units"
+      ],
+      "programLectureId": "MATH-PROG-L13-mathematical-statistics",
+      "aiBridgeProgramLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+      "coverage": "AUTHORED_MODERN_THEORY_E21",
+      "prerequisiteLogicalIds": [
+        "m_s04_t01"
+      ]
+    },
+    {
+      "logicalId": "m_s04_t03",
+      "title": "Khoảng cách Euclid, Manhattan và Minkowski trong không gian nhiều chiều",
+      "physicalChapterIds": [
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto"
+      ],
+      "runtimeChapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "theoryLessonIds": [
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T03-distance-metrics"
+      ],
+      "programLectureId": "MATH-PROG-L01-linear-algebra-basic",
+      "aiBridgeProgramLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+      "coverage": "AUTHORED_MODERN_THEORY_E21",
+      "prerequisiteLogicalIds": [
+        "m_s04_t02"
+      ]
+    },
+    {
+      "logicalId": "m_s04_t04",
+      "title": "Cosine similarity, góc giữa vector và dữ liệu thưa",
+      "physicalChapterIds": [
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto"
+      ],
+      "runtimeChapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "theoryLessonIds": [
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T04-cosine-sparse"
+      ],
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "aiBridgeProgramLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+      "coverage": "AUTHORED_MODERN_THEORY_E21",
+      "prerequisiteLogicalIds": [
+        "m_s04_t03"
+      ]
+    },
+    {
+      "logicalId": "m_s04_t05",
+      "title": "Gram matrix, similarity matrix và kernel nhập môn",
+      "physicalChapterIds": [
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_"
+      ],
+      "runtimeChapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "theoryLessonIds": [
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E21-MS04-T05-gram-kernel"
+      ],
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "aiBridgeProgramLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+      "coverage": "AUTHORED_MODERN_THEORY_E21",
+      "prerequisiteLogicalIds": [
+        "m_s04_t04"
+      ]
+    },
+    {
+      "logicalId": "m_s04_t06",
+      "title": "Giảm chiều nhập môn: PCA, projection và trực quan hóa 2D",
+      "physicalChapterIds": [
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_"
+      ],
+      "runtimeChapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "theoryLessonIds": [
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E21-MS04-T06-pca-projection"
+      ],
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "aiBridgeProgramLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+      "coverage": "AUTHORED_MODERN_THEORY_E21",
+      "prerequisiteLogicalIds": [
+        "m_s04_t05"
+      ]
+    },
+    {
+      "logicalId": "m_s04_t07",
+      "title": "Pipeline dữ liệu đa chiều: từ dữ liệu thô đến feature matrix",
+      "physicalChapterIds": [
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie"
+      ],
+      "runtimeChapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "theoryLessonIds": [
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E21-MS04-T07-feature-pipeline"
+      ],
+      "programLectureId": "MATH-PROG-L16-numerical-methods-computing",
+      "aiBridgeProgramLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+      "coverage": "AUTHORED_MODERN_THEORY_E21",
+      "prerequisiteLogicalIds": [
+        "m_s04_t06"
+      ]
+    },
+    {
+      "logicalId": "m_s04_t08",
+      "title": "Mini-project và báo cáo dữ liệu đa chiều bằng tiếng Nga kỹ thuật",
+      "physicalChapterIds": [
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie"
+      ],
+      "runtimeChapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "theoryLessonIds": [
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E21-MS04-T08-mini-project-report"
+      ],
+      "programLectureId": "MATH-PROG-L16-numerical-methods-computing",
+      "aiBridgeProgramLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+      "coverage": "AUTHORED_MODERN_THEORY_E21",
+      "prerequisiteLogicalIds": [
+        "m_s04_t07"
+      ]
+    }
+  ],
+  "renderGate": {
+    "formulaBlockOnly": true,
+    "matrixBlockOnly": true,
+    "noRawLatex": true,
+    "noCodeStyleFormula": true,
+    "hideSearchMeta": true
+  },
+  "contentGate": {
+    "requiredLogicalLessons": 8,
+    "expected": {
+      "theorySlides": 160,
+      "formulas": 24,
+      "exercises": 64,
+      "applications": 16,
+      "simulations": 16,
+      "professorQA": 8,
+      "questions": 48,
+      "reviewPacks": 8
+    },
+    "requiredSlideRoles": [
+      "russian_term_bridge",
+      "notation_formula",
+      "matrix_example",
+      "condition_gate",
+      "data_leakage_gate",
+      "render_integrity",
+      "warning_counterexample",
+      "error_repair"
+    ],
+    "completionRule": "PASS only when content counts, render contract, physical mapping, L17 routing, L14 isolation, sidecar links and browser acceptance all pass."
+  },
+  "constitutionalEvidence": {
+    "policyId": "blueprint-os:universal-century-grade",
+    "policyVersion": "1.1.0",
+    "blueprintLevel": "B4",
+    "evidenceAuthority": "canonical-quality-gates",
+    "productionAuthority": "separate-explicit-release-gate"
+  },
+  "verifiedAt": "2026-09-28",
+  "pr": 150,
+  "gateResults": {
+    "academic": "PASS",
+    "runtimeStatic": "PASS",
+    "browser": "PASS",
+    "developmentFastCI": "PASS",
+    "e20Regression": "PASS",
+    "e19Regression": "PASS",
+    "e18Regression": "PASS",
+    "e17Regression": "PASS",
+    "universalConstitution": "PASS"
+  },
+  "renderGateEvidence": {
+    "status": "PASS",
+    "formulaBlockOnly": true,
+    "matrixBlockOnly": true,
+    "noRawLatex": true,
+    "noCodeStyleFormula": true,
+    "hideSearchMeta": true
+  }
+}

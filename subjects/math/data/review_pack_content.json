@@ -1819,6 +1819,398 @@
           "prompt": "Giải thích và sửa bẫy: Kết luận chỉ từ một con số p-value hoặc một histogram là không đủ; phải kiểm model, sampling, effect size và uncertainty."
         }
       ]
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T01-data-matrix-features",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "data-matrix-features"
+      ],
+      "sourceAnchors": [
+        "m_s04_t01",
+        "m_s04",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "reviewPackId": "E21-M_S04_T01-RP01",
+      "items": [
+        {
+          "type": "contract",
+          "prompt": "Viết shape, unit, row/column semantics."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và điều kiện."
+        },
+        {
+          "type": "matrix",
+          "prompt": "Đọc matrix example và giải thích shape."
+        },
+        {
+          "type": "leakage",
+          "prompt": "Nêu một leakage trap và cách phòng."
+        },
+        {
+          "type": "russian",
+          "prompt": "Trình bày kết luận bằng tiếng Nga kỹ thuật."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích và sửa bẫy: Nhầm hàng là feature và cột là sample làm sai toàn bộ covariance/PCA/model pipeline dù phép toán vẫn chạy."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t02",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E21-MS04-T02-scaling-units",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "scaling-units"
+      ],
+      "sourceAnchors": [
+        "m_s04_t02",
+        "m_s04",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "reviewPackId": "E21-M_S04_T02-RP01",
+      "items": [
+        {
+          "type": "contract",
+          "prompt": "Viết shape, unit, row/column semantics."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và điều kiện."
+        },
+        {
+          "type": "matrix",
+          "prompt": "Đọc matrix example và giải thích shape."
+        },
+        {
+          "type": "leakage",
+          "prompt": "Nêu một leakage trap và cách phòng."
+        },
+        {
+          "type": "russian",
+          "prompt": "Trình bày kết luận bằng tiếng Nga kỹ thuật."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích và sửa bẫy: Scale toàn dataset trước khi split làm validation/test rò thông tin vào train."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t03",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T03-distance-metrics",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "distance-metrics"
+      ],
+      "sourceAnchors": [
+        "m_s04_t03",
+        "m_s04",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "reviewPackId": "E21-M_S04_T03-RP01",
+      "items": [
+        {
+          "type": "contract",
+          "prompt": "Viết shape, unit, row/column semantics."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và điều kiện."
+        },
+        {
+          "type": "matrix",
+          "prompt": "Đọc matrix example và giải thích shape."
+        },
+        {
+          "type": "leakage",
+          "prompt": "Nêu một leakage trap và cách phòng."
+        },
+        {
+          "type": "russian",
+          "prompt": "Trình bày kết luận bằng tiếng Nga kỹ thuật."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích và sửa bẫy: Trong high dimension, khoảng cách nearest/farthest có thể mất tương phản; không mặc định kNN geometry vẫn hữu ích."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t04",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T04-cosine-sparse",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "cosine-sparse"
+      ],
+      "sourceAnchors": [
+        "m_s04_t04",
+        "m_s04",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "reviewPackId": "E21-M_S04_T04-RP01",
+      "items": [
+        {
+          "type": "contract",
+          "prompt": "Viết shape, unit, row/column semantics."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và điều kiện."
+        },
+        {
+          "type": "matrix",
+          "prompt": "Đọc matrix example và giải thích shape."
+        },
+        {
+          "type": "leakage",
+          "prompt": "Nêu một leakage trap và cách phòng."
+        },
+        {
+          "type": "russian",
+          "prompt": "Trình bày kết luận bằng tiếng Nga kỹ thuật."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích và sửa bẫy: Cosine cao không có nghĩa giá trị tuyệt đối gần nhau; vector [1,2] và [100,200] có cosine 1."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t05",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E21-MS04-T05-gram-kernel",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "gram-kernel"
+      ],
+      "sourceAnchors": [
+        "m_s04_t05",
+        "m_s04",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "reviewPackId": "E21-M_S04_T05-RP01",
+      "items": [
+        {
+          "type": "contract",
+          "prompt": "Viết shape, unit, row/column semantics."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và điều kiện."
+        },
+        {
+          "type": "matrix",
+          "prompt": "Đọc matrix example và giải thích shape."
+        },
+        {
+          "type": "leakage",
+          "prompt": "Nêu một leakage trap và cách phòng."
+        },
+        {
+          "type": "russian",
+          "prompt": "Trình bày kết luận bằng tiếng Nga kỹ thuật."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích và sửa bẫy: Similarity matrix đối xứng chưa đủ để là PSD kernel matrix."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t06",
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E21-MS04-T06-pca-projection",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "pca-projection"
+      ],
+      "sourceAnchors": [
+        "m_s04_t06",
+        "m_s04",
+        "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "reviewPackId": "E21-M_S04_T06-RP01",
+      "items": [
+        {
+          "type": "contract",
+          "prompt": "Viết shape, unit, row/column semantics."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và điều kiện."
+        },
+        {
+          "type": "matrix",
+          "prompt": "Đọc matrix example và giải thích shape."
+        },
+        {
+          "type": "leakage",
+          "prompt": "Nêu một leakage trap và cách phòng."
+        },
+        {
+          "type": "russian",
+          "prompt": "Trình bày kết luận bằng tiếng Nga kỹ thuật."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích và sửa bẫy: PCA 2D đẹp không chứng minh cluster thật hoặc causal structure; PCA tối ưu variance tuyến tính, không tối ưu classification."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t07",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E21-MS04-T07-feature-pipeline",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "feature-pipeline"
+      ],
+      "sourceAnchors": [
+        "m_s04_t07",
+        "m_s04",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "reviewPackId": "E21-M_S04_T07-RP01",
+      "items": [
+        {
+          "type": "contract",
+          "prompt": "Viết shape, unit, row/column semantics."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và điều kiện."
+        },
+        {
+          "type": "matrix",
+          "prompt": "Đọc matrix example và giải thích shape."
+        },
+        {
+          "type": "leakage",
+          "prompt": "Nêu một leakage trap và cách phòng."
+        },
+        {
+          "type": "russian",
+          "prompt": "Trình bày kết luận bằng tiếng Nga kỹ thuật."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích và sửa bẫy: Impute/scale/select feature trên toàn dataset trước split tạo leakage ngay cả khi test labels không được dùng."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_s04",
+      "frameworkChapterId": "m_s04",
+      "logicalLessonId": "m_s04_t08",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E21-MS04-T08-mini-project-report",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "mini-project-report"
+      ],
+      "sourceAnchors": [
+        "m_s04_t08",
+        "m_s04",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E21_AUTHORED",
+      "reviewPackId": "E21-M_S04_T08-RP01",
+      "items": [
+        {
+          "type": "contract",
+          "prompt": "Viết shape, unit, row/column semantics."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và điều kiện."
+        },
+        {
+          "type": "matrix",
+          "prompt": "Đọc matrix example và giải thích shape."
+        },
+        {
+          "type": "leakage",
+          "prompt": "Nêu một leakage trap và cách phòng."
+        },
+        {
+          "type": "russian",
+          "prompt": "Trình bày kết luận bằng tiếng Nga kỹ thuật."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Giải thích và sửa bẫy: Chọn lại preprocessing/hyperparameter sau khi nhìn test rồi báo test score như khách quan là test leakage."
+        }
+      ]
     }
   ],
   "importPolicy": {
@@ -1942,6 +2334,27 @@
         "runtimeStatic": "PASS",
         "browser": "PASS",
         "developmentFastCI": "PASS",
+        "e19Regression": "PASS",
+        "e18Regression": "PASS",
+        "e17Regression": "PASS",
+        "universalConstitution": "PASS"
+      }
+    },
+    "E21": {
+      "status": "PASS_STATIC_BROWSER_CI",
+      "frameworkChapterId": "m_s04",
+      "logicalModuleId": "m_s04",
+      "lessons": 8,
+      "theorySlides": 160,
+      "updatedAt": "2026-09-28",
+      "verifiedAt": "2026-09-28",
+      "pr": 150,
+      "gateResults": {
+        "academic": "PASS",
+        "runtimeStatic": "PASS",
+        "browser": "PASS",
+        "developmentFastCI": "PASS",
+        "e20Regression": "PASS",
         "e19Regression": "PASS",
         "e18Regression": "PASS",
         "e17Regression": "PASS",

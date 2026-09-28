@@ -1,0 +1,2923 @@
+{
+  "schema": "bauman_math_content_bundle_v1",
+  "bundleId": "e21_ms04_multidimensional_ai_theory_bundle",
+  "frameworkChapterId": "m_s04",
+  "moduleId": "m_s04",
+  "records": [
+    {
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T01-data-matrix-features",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "lessonTitle": "m_s04 · §1.1 · Ma trận dữ liệu, quan sát và vector đặc trưng",
+      "title": "m_s04 · §1.1 · Ma trận dữ liệu, quan sát và vector đặc trưng",
+      "programLectureId": "MATH-PROG-L01-linear-algebra-basic",
+      "programLectureIds": [
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "roadmapRole": "m_s04_t01",
+      "baumanFocus": "Multidimensional data mathematics bridge for AI, sensor pipelines, reproducible analysis and Russian technical reporting.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_s04",
+        "frameworkChapterId": "m_s04",
+        "legacyFrameworkChapterAlias": "MATH-PREP-MT-C12",
+        "logicalLessonId": "m_s04_t01",
+        "frameworkAnchor": "m_s04_t01",
+        "programLectureId": "MATH-PROG-L01-linear-algebra-basic",
+        "aiBridgeProgramLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e21_multidimensional_ai_authoring"
+      },
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "data-matrix-features"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_s04 · §1.1 · Ma trận dữ liệu, quan sát và vector đặc trưng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "Toán dữ liệu đa chiều cho AI: mỗi phép toán phải giữ đúng shape, unit, provenance và split contract."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Hiểu, tính, mô phỏng và trình bày «Ma trận dữ liệu, quan sát và vector đặc trưng» bằng tiếng Nga kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài",
+              "items": [
+                "Định nghĩa/ký hiệu đúng.",
+                "Tính/diễn giải được đại lượng lõi.",
+                "Nhận diện condition/data leakage gate.",
+                "Nói được kết luận kỹ thuật Nga ngắn gọn."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Thuật ngữ",
+              "items": [
+                "матри́ца да́нных — ma trận dữ liệu — data matrix",
+                "наблюде́ние — quan sát — observation",
+                "при́знак — đặc trưng — feature",
+                "ве́ктор призна́ков — vector đặc trưng — feature vector",
+                "стро́ка — hàng — row",
+                "столбе́ц — cột — column",
+                "разме́рность — số chiều — dimension",
+                "вы́борка — tập mẫu — sample"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Data matrix shape",
+              "body": "X ∈ ℝ^(n×p)\nn quan sát, p đặc trưng theo convention row=sample, column=feature."
+            },
+            {
+              "type": "formula",
+              "title": "Feature vector",
+              "body": "xᵢ = [xᵢ1,…,xᵢp]ᵀ\nVector đặc trưng của quan sát i."
+            },
+            {
+              "type": "formula",
+              "title": "Column mean",
+              "body": "μⱼ = (1/n) Σᵢ xᵢⱼ\nTrung bình của feature j trên n quan sát."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Ma trận / shape example",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Ví dụ X",
+              "body": "X = [[1.0, 20, 3.2], [0.8, 18, 3.0], [1.2, 25, 3.8]]",
+              "meaning": "3 observations × 3 features; cần khóa tên/đơn vị cột."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Phải khai báo convention rows/columns, kiểu dữ liệu, đơn vị và missing-value policy trước mọi phép tính."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Shape hợp lệ.",
+                "Đơn vị/scale rõ.",
+                "Train/test boundary chưa bị xâm phạm.",
+                "Semantic meaning của rows/columns được khóa."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ dữ liệu nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "Telemetry 1000 thời điểm × 6 kênh cảm biến → X có shape 1000×6 nếu mỗi hàng là một timestamp."
+            },
+            {
+              "type": "text",
+              "title": "Cách làm",
+              "body": "Viết shape/đơn vị trước, áp dụng công thức, sanity-check rồi diễn giải."
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Cổng chống data leakage",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Không được",
+              "items": [
+                "Fit preprocessing trên test/future.",
+                "Chọn feature/hyperparameter từ test result.",
+                "Trộn sample liên quan giữa train/test.",
+                "Ẩn provenance/split sau khi xử lý."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Diễn giải hình học / dữ liệu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ý nghĩa",
+              "body": "n quan sát, p đặc trưng theo convention row=sample, column=feature."
+            },
+            {
+              "type": "text",
+              "title": "Không chỉ tính số",
+              "body": "Hỏi đại lượng này thay đổi geometry, scale, information hoặc uncertainty của dữ liệu như thế nào."
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Quy trình tính/kiểm",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "4 bước",
+              "items": [
+                "Khóa data contract.",
+                "Tính transform/metric.",
+                "Kiểm shape/assumption.",
+                "Diễn giải + lưu provenance."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_response",
+          "title": "Mẫu trả lời tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ответ",
+              "body": "Матрица данных X имеет n строк-наблюдений и p столбцов-признаков. Сначала фиксируем смысл и единицы каждого столбца."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy sư phạm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Nhầm hàng là feature và cột là sample làm sai toàn bộ covariance/PCA/model pipeline dù phép toán vẫn chạy."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ AI/Bauman",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Feature matrix là giao diện chung giữa dữ liệu cảm biến, ML, PCA và regression."
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mô phỏng nên quan sát gì",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Controls/Readouts",
+              "items": [
+                "Thay đổi scale/dimension/parameter.",
+                "Quan sát metric/projection/similarity.",
+                "So trước–sau preprocessing.",
+                "Hiển thị warning khi vi phạm gate."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng giả thiết",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Trước kết luận",
+              "items": [
+                "Dữ liệu có đại diện không?",
+                "Feature semantics có ổn định không?",
+                "Transform có fit đúng split không?",
+                "Metric/model có phù hợp geometry không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "render_integrity",
+          "title": "Render integrity",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "UI contract",
+              "items": [
+                "Formula nằm trong formula block.",
+                "Matrix nằm trong matrix block.",
+                "Không raw LaTeX/code-style formula.",
+                "Không hiển thị search metadata trong nội dung học."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu",
+              "body": "Я нарушил контракт данных/размерности. Сначала исправляю shape, units или split, затем пересчитываю downstream-результаты."
+            }
+          ]
+        },
+        {
+          "role": "mini_drill",
+          "title": "Drill 5 phút",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "5 vòng",
+              "items": [
+                "Đọc 8 thuật ngữ Nga.",
+                "Viết 3 công thức.",
+                "Kiểm một shape/unit gate.",
+                "Nêu một leakage trap.",
+                "Trả lời 30–60 giây bằng tiếng Nga."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Câu hỏi giảng viên",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Q&A",
+              "items": [
+                {
+                  "q": "Nếu transpose X nhưng không đổi cách hiểu rows/features thì điều gì xảy ra?",
+                  "a": "Shape vẫn hợp lệ toán học nhưng semantic contract bị đảo; mọi statistic theo trục và model input có thể sai."
+                },
+                {
+                  "q": "Điều kiện quan trọng nhất?",
+                  "a": "Phải khai báo convention rows/columns, kiểu dữ liệu, đơn vị và missing-value policy trước mọi phép tính."
+                },
+                {
+                  "q": "Bẫy cần tránh?",
+                  "a": "Nhầm hàng là feature và cột là sample làm sai toàn bộ covariance/PCA/model pipeline dù phép toán vẫn chạy."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.1",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "n quan sát, p đặc trưng theo convention row=sample, column=feature.",
+                "Phải khai báo convention rows/columns, kiểu dữ liệu, đơn vị và missing-value policy trước mọi phép tính.",
+                "Nhầm hàng là feature và cột là sample làm sai toàn bộ covariance/PCA/model pipeline dù phép toán vẫn chạy.",
+                "Shape + unit + split + provenance là contract bắt buộc."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Exit ticket",
+              "body": "Nói một câu Nga chứa «матри́ца да́нных» và nêu một data gate của bài."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E21-MS04-T02-scaling-units",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "lessonTitle": "m_s04 · §1.2 · Chuẩn hóa, scale và dữ liệu lệch đơn vị",
+      "title": "m_s04 · §1.2 · Chuẩn hóa, scale và dữ liệu lệch đơn vị",
+      "programLectureId": "MATH-PROG-L13-mathematical-statistics",
+      "programLectureIds": [
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "roadmapRole": "m_s04_t02",
+      "baumanFocus": "Multidimensional data mathematics bridge for AI, sensor pipelines, reproducible analysis and Russian technical reporting.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_s04",
+        "frameworkChapterId": "m_s04",
+        "legacyFrameworkChapterAlias": "MATH-PREP-MT-C12",
+        "logicalLessonId": "m_s04_t02",
+        "frameworkAnchor": "m_s04_t02",
+        "programLectureId": "MATH-PROG-L13-mathematical-statistics",
+        "aiBridgeProgramLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e21_multidimensional_ai_authoring"
+      },
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "scaling-units"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_s04 · §1.2 · Chuẩn hóa, scale và dữ liệu lệch đơn vị",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "Toán dữ liệu đa chiều cho AI: mỗi phép toán phải giữ đúng shape, unit, provenance và split contract."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Hiểu, tính, mô phỏng và trình bày «Chuẩn hóa, scale và dữ liệu lệch đơn vị» bằng tiếng Nga kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài",
+              "items": [
+                "Định nghĩa/ký hiệu đúng.",
+                "Tính/diễn giải được đại lượng lõi.",
+                "Nhận diện condition/data leakage gate.",
+                "Nói được kết luận kỹ thuật Nga ngắn gọn."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Thuật ngữ",
+              "items": [
+                "масштаби́рование — scale — scaling",
+                "стандартиза́ция — chuẩn hóa z-score — standardization",
+                "нормализа́ция — normalization — normalization",
+                "сре́днее — trung bình — mean",
+                "среднеквадрати́ческое отклоне́ние — độ lệch chuẩn — standard deviation",
+                "едини́ца измере́ния — đơn vị đo — unit",
+                "уте́чка да́нных — rò rỉ dữ liệu — data leakage",
+                "обу́чающая вы́борка — tập train — training set"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Z-score",
+              "body": "z = (x−μ_train)/σ_train\nMean/std phải fit trên train rồi áp dụng sang validation/test."
+            },
+            {
+              "type": "formula",
+              "title": "Min-max",
+              "body": "x′ = (x−min_train)/(max_train−min_train)\nFit extrema trên train để tránh leakage."
+            },
+            {
+              "type": "formula",
+              "title": "Robust scaling",
+              "body": "x′ = (x−median_train)/IQR_train\nBền hơn trước outlier khi phù hợp."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Ma trận / shape example",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Lệch đơn vị",
+              "body": "[speed_km_h, voltage_V, temperature_C] = [60, 12.1, 35]",
+              "meaning": "Khoảng số khác nhau không đồng nghĩa feature quan trọng khác nhau."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Scaler parameters chỉ được học từ training split; feature có σ=0/range=0 cần policy riêng."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Shape hợp lệ.",
+                "Đơn vị/scale rõ.",
+                "Train/test boundary chưa bị xâm phạm.",
+                "Semantic meaning của rows/columns được khóa."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ dữ liệu nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "Train mean=10, std=2; test x=14 → z=2. Không được dùng mean/std tính từ cả train+test."
+            },
+            {
+              "type": "text",
+              "title": "Cách làm",
+              "body": "Viết shape/đơn vị trước, áp dụng công thức, sanity-check rồi diễn giải."
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Cổng chống data leakage",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Không được",
+              "items": [
+                "Fit preprocessing trên test/future.",
+                "Chọn feature/hyperparameter từ test result.",
+                "Trộn sample liên quan giữa train/test.",
+                "Ẩn provenance/split sau khi xử lý."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Diễn giải hình học / dữ liệu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ý nghĩa",
+              "body": "Mean/std phải fit trên train rồi áp dụng sang validation/test."
+            },
+            {
+              "type": "text",
+              "title": "Không chỉ tính số",
+              "body": "Hỏi đại lượng này thay đổi geometry, scale, information hoặc uncertainty của dữ liệu như thế nào."
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Quy trình tính/kiểm",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "4 bước",
+              "items": [
+                "Khóa data contract.",
+                "Tính transform/metric.",
+                "Kiểm shape/assumption.",
+                "Diễn giải + lưu provenance."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_response",
+          "title": "Mẫu trả lời tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ответ",
+              "body": "Параметры стандартизации оцениваем только по обучающей выборке, затем применяем без переобучения к validation и test."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy sư phạm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Scale toàn dataset trước khi split làm validation/test rò thông tin vào train."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ AI/Bauman",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Scaling ảnh hưởng mạnh đến kNN, SVM, PCA, gradient-based models và khoảng cách đa chiều."
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mô phỏng nên quan sát gì",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Controls/Readouts",
+              "items": [
+                "Thay đổi scale/dimension/parameter.",
+                "Quan sát metric/projection/similarity.",
+                "So trước–sau preprocessing.",
+                "Hiển thị warning khi vi phạm gate."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng giả thiết",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Trước kết luận",
+              "items": [
+                "Dữ liệu có đại diện không?",
+                "Feature semantics có ổn định không?",
+                "Transform có fit đúng split không?",
+                "Metric/model có phù hợp geometry không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "render_integrity",
+          "title": "Render integrity",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "UI contract",
+              "items": [
+                "Formula nằm trong formula block.",
+                "Matrix nằm trong matrix block.",
+                "Không raw LaTeX/code-style formula.",
+                "Không hiển thị search metadata trong nội dung học."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu",
+              "body": "Я нарушил контракт данных/размерности. Сначала исправляю shape, units или split, затем пересчитываю downstream-результаты."
+            }
+          ]
+        },
+        {
+          "role": "mini_drill",
+          "title": "Drill 5 phút",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "5 vòng",
+              "items": [
+                "Đọc 8 thuật ngữ Nga.",
+                "Viết 3 công thức.",
+                "Kiểm một shape/unit gate.",
+                "Nêu một leakage trap.",
+                "Trả lời 30–60 giây bằng tiếng Nga."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Câu hỏi giảng viên",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Q&A",
+              "items": [
+                {
+                  "q": "Tại sao tree model thường ít nhạy với scale hơn kNN?",
+                  "a": "Tree dùng threshold/order trên từng feature, còn kNN phụ thuộc trực tiếp metric giữa nhiều feature."
+                },
+                {
+                  "q": "Điều kiện quan trọng nhất?",
+                  "a": "Scaler parameters chỉ được học từ training split; feature có σ=0/range=0 cần policy riêng."
+                },
+                {
+                  "q": "Bẫy cần tránh?",
+                  "a": "Scale toàn dataset trước khi split làm validation/test rò thông tin vào train."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.2",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Mean/std phải fit trên train rồi áp dụng sang validation/test.",
+                "Scaler parameters chỉ được học từ training split; feature có σ=0/range=0 cần policy riêng.",
+                "Scale toàn dataset trước khi split làm validation/test rò thông tin vào train.",
+                "Shape + unit + split + provenance là contract bắt buộc."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Exit ticket",
+              "body": "Nói một câu Nga chứa «масштаби́рование» và nêu một data gate của bài."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T03-distance-metrics",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "lessonTitle": "m_s04 · §1.3 · Khoảng cách Euclid, Manhattan và Minkowski trong không gian nhiều chiều",
+      "title": "m_s04 · §1.3 · Khoảng cách Euclid, Manhattan và Minkowski trong không gian nhiều chiều",
+      "programLectureId": "MATH-PROG-L01-linear-algebra-basic",
+      "programLectureIds": [
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "roadmapRole": "m_s04_t03",
+      "baumanFocus": "Multidimensional data mathematics bridge for AI, sensor pipelines, reproducible analysis and Russian technical reporting.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_s04",
+        "frameworkChapterId": "m_s04",
+        "legacyFrameworkChapterAlias": "MATH-PREP-MT-C12",
+        "logicalLessonId": "m_s04_t03",
+        "frameworkAnchor": "m_s04_t03",
+        "programLectureId": "MATH-PROG-L01-linear-algebra-basic",
+        "aiBridgeProgramLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e21_multidimensional_ai_authoring"
+      },
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "distance-metrics"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_s04 · §1.3 · Khoảng cách Euclid, Manhattan và Minkowski trong không gian nhiều chiều",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "Toán dữ liệu đa chiều cho AI: mỗi phép toán phải giữ đúng shape, unit, provenance và split contract."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Hiểu, tính, mô phỏng và trình bày «Khoảng cách Euclid, Manhattan và Minkowski trong không gian nhiều chiều» bằng tiếng Nga kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài",
+              "items": [
+                "Định nghĩa/ký hiệu đúng.",
+                "Tính/diễn giải được đại lượng lõi.",
+                "Nhận diện condition/data leakage gate.",
+                "Nói được kết luận kỹ thuật Nga ngắn gọn."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Thuật ngữ",
+              "items": [
+                "расстоя́ние — khoảng cách — distance",
+                "евкли́дово расстоя́ние — khoảng cách Euclid — Euclidean distance",
+                "манхэ́ттенское расстоя́ние — khoảng cách Manhattan — Manhattan distance",
+                "метри́ка Минко́вского — metric Minkowski — Minkowski metric",
+                "но́рма — chuẩn — norm",
+                "ма́сштаб — thang đo — scale",
+                "сосе́д — láng giềng — neighbor",
+                "многоме́рное простра́нство — không gian đa chiều — high-dimensional space"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Euclidean",
+              "body": "d₂(x,y)=√Σⱼ(xⱼ−yⱼ)²\nL2 distance; nhạy scale và outlier."
+            },
+            {
+              "type": "formula",
+              "title": "Manhattan",
+              "body": "d₁(x,y)=Σⱼ|xⱼ−yⱼ|\nL1 distance; thường bền hơn với chênh lệch cục bộ."
+            },
+            {
+              "type": "formula",
+              "title": "Minkowski",
+              "body": "d_q(x,y)=(Σⱼ|xⱼ−yⱼ|^q)^(1/q)\nHọ metric q≥1, chứa L1/L2."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Ma trận / shape example",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Hai điểm",
+              "body": "x=[0,0,0], y=[1,2,2]",
+              "meaning": "d₂=3, d₁=5; cùng cặp điểm nhưng metric khác cho geometry khác."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Phải scale/weight feature phù hợp và q≥1 nếu muốn Minkowski là metric chuẩn."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Shape hợp lệ.",
+                "Đơn vị/scale rõ.",
+                "Train/test boundary chưa bị xâm phạm.",
+                "Semantic meaning của rows/columns được khóa."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ dữ liệu nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "Feature chiều cao cm và thu nhập triệu đồng: Euclid raw có thể bị một cột chi phối chỉ vì đơn vị."
+            },
+            {
+              "type": "text",
+              "title": "Cách làm",
+              "body": "Viết shape/đơn vị trước, áp dụng công thức, sanity-check rồi diễn giải."
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Cổng chống data leakage",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Không được",
+              "items": [
+                "Fit preprocessing trên test/future.",
+                "Chọn feature/hyperparameter từ test result.",
+                "Trộn sample liên quan giữa train/test.",
+                "Ẩn provenance/split sau khi xử lý."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Diễn giải hình học / dữ liệu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ý nghĩa",
+              "body": "L2 distance; nhạy scale và outlier."
+            },
+            {
+              "type": "text",
+              "title": "Không chỉ tính số",
+              "body": "Hỏi đại lượng này thay đổi geometry, scale, information hoặc uncertainty của dữ liệu như thế nào."
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Quy trình tính/kiểm",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "4 bước",
+              "items": [
+                "Khóa data contract.",
+                "Tính transform/metric.",
+                "Kiểm shape/assumption.",
+                "Diễn giải + lưu provenance."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_response",
+          "title": "Mẫu trả lời tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ответ",
+              "body": "Перед вычислением расстояний проверяем масштаб признаков. Иначе одна единица измерения может доминировать в метрике."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy sư phạm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Trong high dimension, khoảng cách nearest/farthest có thể mất tương phản; không mặc định kNN geometry vẫn hữu ích."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ AI/Bauman",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Metric quyết định neighbor search, clustering, anomaly detection và retrieval."
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mô phỏng nên quan sát gì",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Controls/Readouts",
+              "items": [
+                "Thay đổi scale/dimension/parameter.",
+                "Quan sát metric/projection/similarity.",
+                "So trước–sau preprocessing.",
+                "Hiển thị warning khi vi phạm gate."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng giả thiết",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Trước kết luận",
+              "items": [
+                "Dữ liệu có đại diện không?",
+                "Feature semantics có ổn định không?",
+                "Transform có fit đúng split không?",
+                "Metric/model có phù hợp geometry không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "render_integrity",
+          "title": "Render integrity",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "UI contract",
+              "items": [
+                "Formula nằm trong formula block.",
+                "Matrix nằm trong matrix block.",
+                "Không raw LaTeX/code-style formula.",
+                "Không hiển thị search metadata trong nội dung học."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu",
+              "body": "Я нарушил контракт данных/размерности. Сначала исправляю shape, units или split, затем пересчитываю downstream-результаты."
+            }
+          ]
+        },
+        {
+          "role": "mini_drill",
+          "title": "Drill 5 phút",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "5 vòng",
+              "items": [
+                "Đọc 8 thuật ngữ Nga.",
+                "Viết 3 công thức.",
+                "Kiểm một shape/unit gate.",
+                "Nêu một leakage trap.",
+                "Trả lời 30–60 giây bằng tiếng Nga."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Câu hỏi giảng viên",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Q&A",
+              "items": [
+                {
+                  "q": "Minkowski q<1 có còn là metric không?",
+                  "a": "Không theo định nghĩa metric chuẩn vì triangle inequality có thể vi phạm."
+                },
+                {
+                  "q": "Điều kiện quan trọng nhất?",
+                  "a": "Phải scale/weight feature phù hợp và q≥1 nếu muốn Minkowski là metric chuẩn."
+                },
+                {
+                  "q": "Bẫy cần tránh?",
+                  "a": "Trong high dimension, khoảng cách nearest/farthest có thể mất tương phản; không mặc định kNN geometry vẫn hữu ích."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.3",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "L2 distance; nhạy scale và outlier.",
+                "Phải scale/weight feature phù hợp và q≥1 nếu muốn Minkowski là metric chuẩn.",
+                "Trong high dimension, khoảng cách nearest/farthest có thể mất tương phản; không mặc định kNN geometry vẫn hữu ích.",
+                "Shape + unit + split + provenance là contract bắt buộc."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Exit ticket",
+              "body": "Nói một câu Nga chứa «расстоя́ние» và nêu một data gate của bài."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E21-MS04-T04-cosine-sparse",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "lessonTitle": "m_s04 · §1.4 · Cosine similarity, góc giữa vector và dữ liệu thưa",
+      "title": "m_s04 · §1.4 · Cosine similarity, góc giữa vector và dữ liệu thưa",
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "programLectureIds": [
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "roadmapRole": "m_s04_t04",
+      "baumanFocus": "Multidimensional data mathematics bridge for AI, sensor pipelines, reproducible analysis and Russian technical reporting.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_s04",
+        "frameworkChapterId": "m_s04",
+        "legacyFrameworkChapterAlias": "MATH-PREP-MT-C12",
+        "logicalLessonId": "m_s04_t04",
+        "frameworkAnchor": "m_s04_t04",
+        "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+        "aiBridgeProgramLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e21_multidimensional_ai_authoring"
+      },
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "cosine-sparse"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_s04 · §1.4 · Cosine similarity, góc giữa vector và dữ liệu thưa",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "Toán dữ liệu đa chiều cho AI: mỗi phép toán phải giữ đúng shape, unit, provenance và split contract."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Hiểu, tính, mô phỏng và trình bày «Cosine similarity, góc giữa vector và dữ liệu thưa» bằng tiếng Nga kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài",
+              "items": [
+                "Định nghĩa/ký hiệu đúng.",
+                "Tính/diễn giải được đại lượng lõi.",
+                "Nhận diện condition/data leakage gate.",
+                "Nói được kết luận kỹ thuật Nga ngắn gọn."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Thuật ngữ",
+              "items": [
+                "косину́сное схо́дство — độ tương tự cosine — cosine similarity",
+                "у́гол ме́жду ве́кторами — góc giữa vector — angle between vectors",
+                "скаля́рное произведе́ние — tích vô hướng — dot product",
+                "но́рма — chuẩn — norm",
+                "разре́женные да́нные — dữ liệu thưa — sparse data",
+                "нулево́й ве́ктор — vector zero — zero vector",
+                "направле́ние — hướng — direction",
+                "величина́ — độ lớn — magnitude"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Cosine similarity",
+              "body": "cos(x,y)=xᵀy/(||x||₂||y||₂)\nĐo alignment theo hướng, yêu cầu hai norm khác 0."
+            },
+            {
+              "type": "formula",
+              "title": "Cosine distance",
+              "body": "d_cos=1−cos(x,y)\nThước đo dissimilarity thường dùng; tính metric phụ thuộc định nghĩa/miền."
+            },
+            {
+              "type": "formula",
+              "title": "Normalized dot",
+              "body": "x̂=x/||x||₂, ŷ=y/||y||₂ ⇒ cos=x̂ᵀŷ\nSau L2 normalization, cosine là dot product."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Ma trận / shape example",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Sparse vectors",
+              "body": "x=[1,0,3,0], y=[2,0,6,0]",
+              "meaning": "Cosine=1 vì cùng hướng dù magnitude khác."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Không định nghĩa cosine với zero vector; sparse representation cần giữ index semantics nhất quán."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Shape hợp lệ.",
+                "Đơn vị/scale rõ.",
+                "Train/test boundary chưa bị xâm phạm.",
+                "Semantic meaning của rows/columns được khóa."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ dữ liệu nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "Text embedding/tf-idf thường ưu tiên hướng hơn magnitude, nhưng sensor amplitude có thể chứa thông tin nên cosine không luôn phù hợp."
+            },
+            {
+              "type": "text",
+              "title": "Cách làm",
+              "body": "Viết shape/đơn vị trước, áp dụng công thức, sanity-check rồi diễn giải."
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Cổng chống data leakage",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Không được",
+              "items": [
+                "Fit preprocessing trên test/future.",
+                "Chọn feature/hyperparameter từ test result.",
+                "Trộn sample liên quan giữa train/test.",
+                "Ẩn provenance/split sau khi xử lý."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Diễn giải hình học / dữ liệu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ý nghĩa",
+              "body": "Đo alignment theo hướng, yêu cầu hai norm khác 0."
+            },
+            {
+              "type": "text",
+              "title": "Không chỉ tính số",
+              "body": "Hỏi đại lượng này thay đổi geometry, scale, information hoặc uncertainty của dữ liệu như thế nào."
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Quy trình tính/kiểm",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "4 bước",
+              "items": [
+                "Khóa data contract.",
+                "Tính transform/metric.",
+                "Kiểm shape/assumption.",
+                "Diễn giải + lưu provenance."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_response",
+          "title": "Mẫu trả lời tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ответ",
+              "body": "Косинусное сходство сравнивает направление векторов, а не их абсолютную величину. Нулевой вектор требует отдельной обработки."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy sư phạm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Cosine cao không có nghĩa giá trị tuyệt đối gần nhau; vector [1,2] và [100,200] có cosine 1."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ AI/Bauman",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Cosine phổ biến trong embedding retrieval, NLP, recommendation và sparse feature vectors."
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mô phỏng nên quan sát gì",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Controls/Readouts",
+              "items": [
+                "Thay đổi scale/dimension/parameter.",
+                "Quan sát metric/projection/similarity.",
+                "So trước–sau preprocessing.",
+                "Hiển thị warning khi vi phạm gate."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng giả thiết",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Trước kết luận",
+              "items": [
+                "Dữ liệu có đại diện không?",
+                "Feature semantics có ổn định không?",
+                "Transform có fit đúng split không?",
+                "Metric/model có phù hợp geometry không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "render_integrity",
+          "title": "Render integrity",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "UI contract",
+              "items": [
+                "Formula nằm trong formula block.",
+                "Matrix nằm trong matrix block.",
+                "Không raw LaTeX/code-style formula.",
+                "Không hiển thị search metadata trong nội dung học."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu",
+              "body": "Я нарушил контракт данных/размерности. Сначала исправляю shape, units или split, затем пересчитываю downstream-результаты."
+            }
+          ]
+        },
+        {
+          "role": "mini_drill",
+          "title": "Drill 5 phút",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "5 vòng",
+              "items": [
+                "Đọc 8 thuật ngữ Nga.",
+                "Viết 3 công thức.",
+                "Kiểm một shape/unit gate.",
+                "Nêu một leakage trap.",
+                "Trả lời 30–60 giây bằng tiếng Nga."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Câu hỏi giảng viên",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Q&A",
+              "items": [
+                {
+                  "q": "Hai vector cosine=1 có nhất thiết bằng nhau không?",
+                  "a": "Không. Chúng có thể là bội dương của nhau."
+                },
+                {
+                  "q": "Điều kiện quan trọng nhất?",
+                  "a": "Không định nghĩa cosine với zero vector; sparse representation cần giữ index semantics nhất quán."
+                },
+                {
+                  "q": "Bẫy cần tránh?",
+                  "a": "Cosine cao không có nghĩa giá trị tuyệt đối gần nhau; vector [1,2] và [100,200] có cosine 1."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.4",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Đo alignment theo hướng, yêu cầu hai norm khác 0.",
+                "Không định nghĩa cosine với zero vector; sparse representation cần giữ index semantics nhất quán.",
+                "Cosine cao không có nghĩa giá trị tuyệt đối gần nhau; vector [1,2] và [100,200] có cosine 1.",
+                "Shape + unit + split + provenance là contract bắt buộc."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Exit ticket",
+              "body": "Nói một câu Nga chứa «косину́сное схо́дство» và nêu một data gate của bài."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E21-MS04-T05-gram-kernel",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "lessonTitle": "m_s04 · §1.5 · Gram matrix, similarity matrix và kernel nhập môn",
+      "title": "m_s04 · §1.5 · Gram matrix, similarity matrix và kernel nhập môn",
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "programLectureIds": [
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "roadmapRole": "m_s04_t05",
+      "baumanFocus": "Multidimensional data mathematics bridge for AI, sensor pipelines, reproducible analysis and Russian technical reporting.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_s04",
+        "frameworkChapterId": "m_s04",
+        "legacyFrameworkChapterAlias": "MATH-PREP-MT-C12",
+        "logicalLessonId": "m_s04_t05",
+        "frameworkAnchor": "m_s04_t05",
+        "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+        "aiBridgeProgramLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e21_multidimensional_ai_authoring"
+      },
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "gram-kernel"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_s04 · §1.5 · Gram matrix, similarity matrix và kernel nhập môn",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "Toán dữ liệu đa chiều cho AI: mỗi phép toán phải giữ đúng shape, unit, provenance và split contract."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Hiểu, tính, mô phỏng và trình bày «Gram matrix, similarity matrix và kernel nhập môn» bằng tiếng Nga kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài",
+              "items": [
+                "Định nghĩa/ký hiệu đúng.",
+                "Tính/diễn giải được đại lượng lõi.",
+                "Nhận diện condition/data leakage gate.",
+                "Nói được kết luận kỹ thuật Nga ngắn gọn."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Thuật ngữ",
+              "items": [
+                "ма́трица Гра́ма — ma trận Gram — Gram matrix",
+                "ма́трица схо́дства — ma trận tương tự — similarity matrix",
+                "я́дро — kernel — kernel",
+                "скаля́рное произведе́ние — tích vô hướng — inner product",
+                "положи́тельно полуопределённая ма́трица — ma trận nửa xác định dương — positive semidefinite matrix",
+                "симметри́чная ма́трица — ma trận đối xứng — symmetric matrix",
+                "фу́нкция ядра́ — hàm kernel — kernel function",
+                "простра́нство призна́ков — không gian đặc trưng — feature space"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Gram matrix",
+              "body": "G = XXᵀ\nNếu rows là observations, Gᵢⱼ=xᵢᵀxⱼ đo inner-product similarity giữa samples."
+            },
+            {
+              "type": "formula",
+              "title": "PSD property",
+              "body": "aᵀGa = ||Xᵀa||₂² ≥ 0\nGram matrix từ inner products luôn PSD."
+            },
+            {
+              "type": "formula",
+              "title": "Kernel matrix",
+              "body": "Kᵢⱼ = k(xᵢ,xⱼ)\nKernel hợp lệ thường cần symmetric PSD trên mọi finite sample."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Ma trận / shape example",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Gram nhỏ",
+              "body": "X=[[1,0],[1,1]] ⇒ G=[[1,1],[1,2]]",
+              "meaning": "G đối xứng và encode pairwise inner products."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Phải rõ orientation của X; kernel tùy ý không tự động hợp lệ cho kernel methods."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Shape hợp lệ.",
+                "Đơn vị/scale rõ.",
+                "Train/test boundary chưa bị xâm phạm.",
+                "Semantic meaning của rows/columns được khóa."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ dữ liệu nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "RBF kernel tạo similarity phi tuyến từ khoảng cách nhưng parameter bandwidth thay đổi geometry mạnh."
+            },
+            {
+              "type": "text",
+              "title": "Cách làm",
+              "body": "Viết shape/đơn vị trước, áp dụng công thức, sanity-check rồi diễn giải."
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Cổng chống data leakage",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Không được",
+              "items": [
+                "Fit preprocessing trên test/future.",
+                "Chọn feature/hyperparameter từ test result.",
+                "Trộn sample liên quan giữa train/test.",
+                "Ẩn provenance/split sau khi xử lý."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Diễn giải hình học / dữ liệu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ý nghĩa",
+              "body": "Nếu rows là observations, Gᵢⱼ=xᵢᵀxⱼ đo inner-product similarity giữa samples."
+            },
+            {
+              "type": "text",
+              "title": "Không chỉ tính số",
+              "body": "Hỏi đại lượng này thay đổi geometry, scale, information hoặc uncertainty của dữ liệu như thế nào."
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Quy trình tính/kiểm",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "4 bước",
+              "items": [
+                "Khóa data contract.",
+                "Tính transform/metric.",
+                "Kiểm shape/assumption.",
+                "Diễn giải + lưu provenance."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_response",
+          "title": "Mẫu trả lời tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ответ",
+              "body": "Матрица Грама строится из скалярных произведений. Для kernel-методов недостаточно одной симметрии — важна положительная полуопределённость."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy sư phạm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Similarity matrix đối xứng chưa đủ để là PSD kernel matrix."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ AI/Bauman",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Gram/kernel là cầu sang SVM, kernel PCA, Gaussian processes và similarity-based learning."
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mô phỏng nên quan sát gì",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Controls/Readouts",
+              "items": [
+                "Thay đổi scale/dimension/parameter.",
+                "Quan sát metric/projection/similarity.",
+                "So trước–sau preprocessing.",
+                "Hiển thị warning khi vi phạm gate."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng giả thiết",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Trước kết luận",
+              "items": [
+                "Dữ liệu có đại diện không?",
+                "Feature semantics có ổn định không?",
+                "Transform có fit đúng split không?",
+                "Metric/model có phù hợp geometry không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "render_integrity",
+          "title": "Render integrity",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "UI contract",
+              "items": [
+                "Formula nằm trong formula block.",
+                "Matrix nằm trong matrix block.",
+                "Không raw LaTeX/code-style formula.",
+                "Không hiển thị search metadata trong nội dung học."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu",
+              "body": "Я нарушил контракт данных/размерности. Сначала исправляю shape, units или split, затем пересчитываю downstream-результаты."
+            }
+          ]
+        },
+        {
+          "role": "mini_drill",
+          "title": "Drill 5 phút",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "5 vòng",
+              "items": [
+                "Đọc 8 thuật ngữ Nga.",
+                "Viết 3 công thức.",
+                "Kiểm một shape/unit gate.",
+                "Nêu một leakage trap.",
+                "Trả lời 30–60 giây bằng tiếng Nga."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Câu hỏi giảng viên",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Q&A",
+              "items": [
+                {
+                  "q": "Mọi symmetric matrix có phải Gram matrix của vector thực không?",
+                  "a": "Chỉ khi nó PSD; symmetric indefinite matrix không thể là Gram matrix Euclidean chuẩn."
+                },
+                {
+                  "q": "Điều kiện quan trọng nhất?",
+                  "a": "Phải rõ orientation của X; kernel tùy ý không tự động hợp lệ cho kernel methods."
+                },
+                {
+                  "q": "Bẫy cần tránh?",
+                  "a": "Similarity matrix đối xứng chưa đủ để là PSD kernel matrix."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.5",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Nếu rows là observations, Gᵢⱼ=xᵢᵀxⱼ đo inner-product similarity giữa samples.",
+                "Phải rõ orientation của X; kernel tùy ý không tự động hợp lệ cho kernel methods.",
+                "Similarity matrix đối xứng chưa đủ để là PSD kernel matrix.",
+                "Shape + unit + split + provenance là contract bắt buộc."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Exit ticket",
+              "body": "Nói một câu Nga chứa «ма́трица Гра́ма» và nêu một data gate của bài."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_-E21-MS04-T06-pca-projection",
+      "chapterId": "MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_",
+      "lessonTitle": "m_s04 · §1.6 · Giảm chiều nhập môn: PCA, projection và trực quan hóa 2D",
+      "title": "m_s04 · §1.6 · Giảm chiều nhập môn: PCA, projection và trực quan hóa 2D",
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "programLectureIds": [
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "roadmapRole": "m_s04_t06",
+      "baumanFocus": "Multidimensional data mathematics bridge for AI, sensor pipelines, reproducible analysis and Russian technical reporting.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_s04",
+        "frameworkChapterId": "m_s04",
+        "legacyFrameworkChapterAlias": "MATH-PREP-MT-C12",
+        "logicalLessonId": "m_s04_t06",
+        "frameworkAnchor": "m_s04_t06",
+        "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+        "aiBridgeProgramLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e21_multidimensional_ai_authoring"
+      },
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "pca-projection"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_s04 · §1.6 · Giảm chiều nhập môn: PCA, projection và trực quan hóa 2D",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "Toán dữ liệu đa chiều cho AI: mỗi phép toán phải giữ đúng shape, unit, provenance và split contract."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Hiểu, tính, mô phỏng và trình bày «Giảm chiều nhập môn: PCA, projection và trực quan hóa 2D» bằng tiếng Nga kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài",
+              "items": [
+                "Định nghĩa/ký hiệu đúng.",
+                "Tính/diễn giải được đại lượng lõi.",
+                "Nhận diện condition/data leakage gate.",
+                "Nói được kết luận kỹ thuật Nga ngắn gọn."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Thuật ngữ",
+              "items": [
+                "сниже́ние разме́рности — giảm chiều — dimensionality reduction",
+                "ме́тод гла́вных компоне́нт — PCA — principal component analysis",
+                "прое́кция — phép chiếu — projection",
+                "ковариацио́нная ма́трица — ma trận hiệp phương sai — covariance matrix",
+                "со́бственный ве́ктор — vector riêng — eigenvector",
+                "объяснённая диспе́рсия — phương sai giải thích — explained variance",
+                "центрирование — trung tâm hóa — centering",
+                "реконстру́кция — tái tạo — reconstruction"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Centering",
+              "body": "X_c = X − 1μᵀ\nPCA chuẩn bắt đầu từ dữ liệu centered."
+            },
+            {
+              "type": "formula",
+              "title": "Projection",
+              "body": "Z = X_c W_k\nW_k chứa k principal directions; Z là representation k chiều."
+            },
+            {
+              "type": "formula",
+              "title": "Explained variance ratio",
+              "body": "EVR_k = Σ_{i=1}^k λᵢ / Σ_i λᵢ\nTỷ lệ variance giữ lại bởi k component."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Ma trận / shape example",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Projection shape",
+              "body": "X_c: n×p, W_k: p×k, Z: n×k",
+              "meaning": "Dimension gate giúp tránh transpose/shape lỗi."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Fit centering/scaling/PCA chỉ trên train trong pipeline supervised; chọn k dựa mục tiêu/validation chứ không chỉ hình đẹp."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Shape hợp lệ.",
+                "Đơn vị/scale rõ.",
+                "Train/test boundary chưa bị xâm phạm.",
+                "Semantic meaning của rows/columns được khóa."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ dữ liệu nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "1000 samples × 20 features → k=2 để visualize; model downstream có thể cần k lớn hơn."
+            },
+            {
+              "type": "text",
+              "title": "Cách làm",
+              "body": "Viết shape/đơn vị trước, áp dụng công thức, sanity-check rồi diễn giải."
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Cổng chống data leakage",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Không được",
+              "items": [
+                "Fit preprocessing trên test/future.",
+                "Chọn feature/hyperparameter từ test result.",
+                "Trộn sample liên quan giữa train/test.",
+                "Ẩn provenance/split sau khi xử lý."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Diễn giải hình học / dữ liệu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ý nghĩa",
+              "body": "PCA chuẩn bắt đầu từ dữ liệu centered."
+            },
+            {
+              "type": "text",
+              "title": "Không chỉ tính số",
+              "body": "Hỏi đại lượng này thay đổi geometry, scale, information hoặc uncertainty của dữ liệu như thế nào."
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Quy trình tính/kiểm",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "4 bước",
+              "items": [
+                "Khóa data contract.",
+                "Tính transform/metric.",
+                "Kiểm shape/assumption.",
+                "Diễn giải + lưu provenance."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_response",
+          "title": "Mẫu trả lời tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ответ",
+              "body": "PCA проектирует центрированные данные на направления максимальной дисперсии. Число компонент выбираем по задаче, а не только по красивому графику."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy sư phạm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "PCA 2D đẹp không chứng minh cluster thật hoặc causal structure; PCA tối ưu variance tuyến tính, không tối ưu classification."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ AI/Bauman",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "PCA dùng giảm chiều sensor, visualization, preprocessing và noise compression."
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mô phỏng nên quan sát gì",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Controls/Readouts",
+              "items": [
+                "Thay đổi scale/dimension/parameter.",
+                "Quan sát metric/projection/similarity.",
+                "So trước–sau preprocessing.",
+                "Hiển thị warning khi vi phạm gate."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng giả thiết",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Trước kết luận",
+              "items": [
+                "Dữ liệu có đại diện không?",
+                "Feature semantics có ổn định không?",
+                "Transform có fit đúng split không?",
+                "Metric/model có phù hợp geometry không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "render_integrity",
+          "title": "Render integrity",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "UI contract",
+              "items": [
+                "Formula nằm trong formula block.",
+                "Matrix nằm trong matrix block.",
+                "Không raw LaTeX/code-style formula.",
+                "Không hiển thị search metadata trong nội dung học."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu",
+              "body": "Я нарушил контракт данных/размерности. Сначала исправляю shape, units или split, затем пересчитываю downstream-результаты."
+            }
+          ]
+        },
+        {
+          "role": "mini_drill",
+          "title": "Drill 5 phút",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "5 vòng",
+              "items": [
+                "Đọc 8 thuật ngữ Nga.",
+                "Viết 3 công thức.",
+                "Kiểm một shape/unit gate.",
+                "Nêu một leakage trap.",
+                "Trả lời 30–60 giây bằng tiếng Nga."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Câu hỏi giảng viên",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Q&A",
+              "items": [
+                {
+                  "q": "PCA có cần labels không?",
+                  "a": "PCA chuẩn là unsupervised; nó không dùng labels để chọn directions."
+                },
+                {
+                  "q": "Điều kiện quan trọng nhất?",
+                  "a": "Fit centering/scaling/PCA chỉ trên train trong pipeline supervised; chọn k dựa mục tiêu/validation chứ không chỉ hình đẹp."
+                },
+                {
+                  "q": "Bẫy cần tránh?",
+                  "a": "PCA 2D đẹp không chứng minh cluster thật hoặc causal structure; PCA tối ưu variance tuyến tính, không tối ưu classification."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.6",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "PCA chuẩn bắt đầu từ dữ liệu centered.",
+                "Fit centering/scaling/PCA chỉ trên train trong pipeline supervised; chọn k dựa mục tiêu/validation chứ không chỉ hình đẹp.",
+                "PCA 2D đẹp không chứng minh cluster thật hoặc causal structure; PCA tối ưu variance tuyến tính, không tối ưu classification.",
+                "Shape + unit + split + provenance là contract bắt buộc."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Exit ticket",
+              "body": "Nói một câu Nga chứa «сниже́ние разме́рности» và nêu một data gate của bài."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E21-MS04-T07-feature-pipeline",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "lessonTitle": "m_s04 · §1.7 · Pipeline dữ liệu đa chiều: từ dữ liệu thô đến feature matrix",
+      "title": "m_s04 · §1.7 · Pipeline dữ liệu đa chiều: từ dữ liệu thô đến feature matrix",
+      "programLectureId": "MATH-PROG-L16-numerical-methods-computing",
+      "programLectureIds": [
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "roadmapRole": "m_s04_t07",
+      "baumanFocus": "Multidimensional data mathematics bridge for AI, sensor pipelines, reproducible analysis and Russian technical reporting.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_s04",
+        "frameworkChapterId": "m_s04",
+        "legacyFrameworkChapterAlias": "MATH-PREP-MT-C12",
+        "logicalLessonId": "m_s04_t07",
+        "frameworkAnchor": "m_s04_t07",
+        "programLectureId": "MATH-PROG-L16-numerical-methods-computing",
+        "aiBridgeProgramLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e21_multidimensional_ai_authoring"
+      },
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "feature-pipeline"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_s04 · §1.7 · Pipeline dữ liệu đa chiều: từ dữ liệu thô đến feature matrix",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "Toán dữ liệu đa chiều cho AI: mỗi phép toán phải giữ đúng shape, unit, provenance và split contract."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Hiểu, tính, mô phỏng và trình bày «Pipeline dữ liệu đa chiều: từ dữ liệu thô đến feature matrix» bằng tiếng Nga kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài",
+              "items": [
+                "Định nghĩa/ký hiệu đúng.",
+                "Tính/diễn giải được đại lượng lõi.",
+                "Nhận diện condition/data leakage gate.",
+                "Nói được kết luận kỹ thuật Nga ngắn gọn."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Thuật ngữ",
+              "items": [
+                "сыры́е да́нные — dữ liệu thô — raw data",
+                "очи́стка да́нных — làm sạch dữ liệu — data cleaning",
+                "призна́ковая ма́трица — feature matrix — feature matrix",
+                "преобразова́ние призна́ков — biến đổi đặc trưng — feature transformation",
+                "разде́ление да́нных — chia dữ liệu — data split",
+                "конве́йер — pipeline — pipeline",
+                "воспроизводи́мость — khả năng tái lập — reproducibility",
+                "происхожде́ние да́нных — nguồn gốc dữ liệu — data provenance"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Pipeline order",
+              "body": "raw → clean → split → fit transforms(train) → transform(all) → model\nSplit trước các transform học parameter để chống leakage."
+            },
+            {
+              "type": "formula",
+              "title": "Feature matrix contract",
+              "body": "X_train ∈ ℝ^(n_train×p), X_test ∈ ℝ^(n_test×p)\nFeature schema/order phải giống giữa train/test."
+            },
+            {
+              "type": "formula",
+              "title": "Missing rate",
+              "body": "r_missing,j = N_missing,j / N\nTheo dõi missingness theo feature trước imputation."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Ma trận / shape example",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Schema contract",
+              "body": "columns=[imu_ax, imu_ay, battery_v, gps_speed]",
+              "meaning": "Tên, order, unit và dtype phải versioned."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Mọi transform có fit state phải fit train; raw data immutable/provenance phải lưu để reproduce."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Shape hợp lệ.",
+                "Đơn vị/scale rõ.",
+                "Train/test boundary chưa bị xâm phạm.",
+                "Semantic meaning của rows/columns được khóa."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ dữ liệu nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "Telemetry raw → align timestamps → clean → split by time → fit scaler/PCA trên train → transform test → model."
+            },
+            {
+              "type": "text",
+              "title": "Cách làm",
+              "body": "Viết shape/đơn vị trước, áp dụng công thức, sanity-check rồi diễn giải."
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Cổng chống data leakage",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Không được",
+              "items": [
+                "Fit preprocessing trên test/future.",
+                "Chọn feature/hyperparameter từ test result.",
+                "Trộn sample liên quan giữa train/test.",
+                "Ẩn provenance/split sau khi xử lý."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Diễn giải hình học / dữ liệu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ý nghĩa",
+              "body": "Split trước các transform học parameter để chống leakage."
+            },
+            {
+              "type": "text",
+              "title": "Không chỉ tính số",
+              "body": "Hỏi đại lượng này thay đổi geometry, scale, information hoặc uncertainty của dữ liệu như thế nào."
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Quy trình tính/kiểm",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "4 bước",
+              "items": [
+                "Khóa data contract.",
+                "Tính transform/metric.",
+                "Kiểm shape/assumption.",
+                "Diễn giải + lưu provenance."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_response",
+          "title": "Mẫu trả lời tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ответ",
+              "body": "Сначала фиксируем сырые данные и разделяем выборки. Все обучаемые преобразования fit только на train, затем применяем к остальным данным."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy sư phạm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Impute/scale/select feature trên toàn dataset trước split tạo leakage ngay cả khi test labels không được dùng."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ AI/Bauman",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Đây là contract thực tế cho ML sensor pipeline và luận văn có thể tái lập."
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mô phỏng nên quan sát gì",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Controls/Readouts",
+              "items": [
+                "Thay đổi scale/dimension/parameter.",
+                "Quan sát metric/projection/similarity.",
+                "So trước–sau preprocessing.",
+                "Hiển thị warning khi vi phạm gate."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng giả thiết",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Trước kết luận",
+              "items": [
+                "Dữ liệu có đại diện không?",
+                "Feature semantics có ổn định không?",
+                "Transform có fit đúng split không?",
+                "Metric/model có phù hợp geometry không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "render_integrity",
+          "title": "Render integrity",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "UI contract",
+              "items": [
+                "Formula nằm trong formula block.",
+                "Matrix nằm trong matrix block.",
+                "Không raw LaTeX/code-style formula.",
+                "Không hiển thị search metadata trong nội dung học."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu",
+              "body": "Я нарушил контракт данных/размерности. Сначала исправляю shape, units или split, затем пересчитываю downstream-результаты."
+            }
+          ]
+        },
+        {
+          "role": "mini_drill",
+          "title": "Drill 5 phút",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "5 vòng",
+              "items": [
+                "Đọc 8 thuật ngữ Nga.",
+                "Viết 3 công thức.",
+                "Kiểm một shape/unit gate.",
+                "Nêu một leakage trap.",
+                "Trả lời 30–60 giây bằng tiếng Nga."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Câu hỏi giảng viên",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Q&A",
+              "items": [
+                {
+                  "q": "Tại sao split by time có thể tốt hơn random split với telemetry?",
+                  "a": "Vì random split có thể trộn tương lai/quá khứ và tạo leakage khi dữ liệu có temporal dependence/drift."
+                },
+                {
+                  "q": "Điều kiện quan trọng nhất?",
+                  "a": "Mọi transform có fit state phải fit train; raw data immutable/provenance phải lưu để reproduce."
+                },
+                {
+                  "q": "Bẫy cần tránh?",
+                  "a": "Impute/scale/select feature trên toàn dataset trước split tạo leakage ngay cả khi test labels không được dùng."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.7",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Split trước các transform học parameter để chống leakage.",
+                "Mọi transform có fit state phải fit train; raw data immutable/provenance phải lưu để reproduce.",
+                "Impute/scale/select feature trên toàn dataset trước split tạo leakage ngay cả khi test labels không được dùng.",
+                "Shape + unit + split + provenance là contract bắt buộc."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Exit ticket",
+              "body": "Nói một câu Nga chứa «сыры́е да́нные» và nêu một data gate của bài."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E21-MS04-T08-mini-project-report",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "lessonTitle": "m_s04 · §1.8 · Mini-project và báo cáo dữ liệu đa chiều bằng tiếng Nga kỹ thuật",
+      "title": "m_s04 · §1.8 · Mini-project và báo cáo dữ liệu đa chiều bằng tiếng Nga kỹ thuật",
+      "programLectureId": "MATH-PROG-L16-numerical-methods-computing",
+      "programLectureIds": [
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "roadmapRole": "m_s04_t08",
+      "baumanFocus": "Multidimensional data mathematics bridge for AI, sensor pipelines, reproducible analysis and Russian technical reporting.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_s04",
+        "frameworkChapterId": "m_s04",
+        "legacyFrameworkChapterAlias": "MATH-PREP-MT-C12",
+        "logicalLessonId": "m_s04_t08",
+        "frameworkAnchor": "m_s04_t08",
+        "programLectureId": "MATH-PROG-L16-numerical-methods-computing",
+        "aiBridgeProgramLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e21_multidimensional_ai_authoring"
+      },
+      "tags": [
+        "multidimensional data",
+        "AI math",
+        "prep",
+        "russian technical",
+        "mini-project-report"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_s04 · §1.8 · Mini-project và báo cáo dữ liệu đa chiều bằng tiếng Nga kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "Toán dữ liệu đa chiều cho AI: mỗi phép toán phải giữ đúng shape, unit, provenance và split contract."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Hiểu, tính, mô phỏng và trình bày «Mini-project và báo cáo dữ liệu đa chiều bằng tiếng Nga kỹ thuật» bằng tiếng Nga kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài",
+              "items": [
+                "Định nghĩa/ký hiệu đúng.",
+                "Tính/diễn giải được đại lượng lõi.",
+                "Nhận diện condition/data leakage gate.",
+                "Nói được kết luận kỹ thuật Nga ngắn gọn."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Thuật ngữ",
+              "items": [
+                "ми́ни-прое́кт — mini-project — mini-project",
+                "поста́новка зада́чи — đặt bài toán — problem statement",
+                "описа́ние да́нных — mô tả dữ liệu — data description",
+                "ме́тод — phương pháp — method",
+                "результа́т — kết quả — result",
+                "ограниче́ние — giới hạn — limitation",
+                "воспроизводи́мый отчёт — báo cáo tái lập — reproducible report",
+                "техни́ческий вы́вод — kết luận kỹ thuật — technical conclusion"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Report contract",
+              "body": "Problem → Data → Method → Validation → Result → Limitation\nChuỗi tối thiểu để báo cáo kỹ thuật có thể kiểm tra."
+            },
+            {
+              "type": "formula",
+              "title": "Reproducibility",
+              "body": "result = f(data_version, code_version, parameters, seed)\nKết quả phải truy vết được về version và tham số."
+            },
+            {
+              "type": "formula",
+              "title": "Comparison delta",
+              "body": "Δmetric = metric_new − metric_baseline\nBáo cải tiến so với baseline cùng protocol."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Ma trận / shape example",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Mini-project table",
+              "body": "rows=samples; columns=features + split_id + provenance_id",
+              "meaning": "Giữ feature matrix tách khỏi metadata nhưng liên kết bằng sample ID."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Phải freeze dataset/split/protocol trước so sánh; chart/table phải có đơn vị, sample count và nguồn."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Shape hợp lệ.",
+                "Đơn vị/scale rõ.",
+                "Train/test boundary chưa bị xâm phạm.",
+                "Semantic meaning của rows/columns được khóa."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ dữ liệu nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "Mini-project: giảm 20→5 chiều bằng PCA, so baseline model với cùng split; báo EVR, metric, runtime và limitation."
+            },
+            {
+              "type": "text",
+              "title": "Cách làm",
+              "body": "Viết shape/đơn vị trước, áp dụng công thức, sanity-check rồi diễn giải."
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Cổng chống data leakage",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Không được",
+              "items": [
+                "Fit preprocessing trên test/future.",
+                "Chọn feature/hyperparameter từ test result.",
+                "Trộn sample liên quan giữa train/test.",
+                "Ẩn provenance/split sau khi xử lý."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Diễn giải hình học / dữ liệu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ý nghĩa",
+              "body": "Chuỗi tối thiểu để báo cáo kỹ thuật có thể kiểm tra."
+            },
+            {
+              "type": "text",
+              "title": "Không chỉ tính số",
+              "body": "Hỏi đại lượng này thay đổi geometry, scale, information hoặc uncertainty của dữ liệu như thế nào."
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Quy trình tính/kiểm",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "4 bước",
+              "items": [
+                "Khóa data contract.",
+                "Tính transform/metric.",
+                "Kiểm shape/assumption.",
+                "Diễn giải + lưu provenance."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_response",
+          "title": "Mẫu trả lời tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ответ",
+              "body": "В отчёте сначала формулируем задачу и описываем данные, затем метод и протокол проверки. В выводе обязательно указываем ограничения."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy sư phạm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Chọn lại preprocessing/hyperparameter sau khi nhìn test rồi báo test score như khách quan là test leakage."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Liên hệ AI/Bauman",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ứng dụng",
+              "body": "Đây là cầu trực tiếp sang NIR/luận văn: dữ liệu, phương pháp, kiểm chứng và kết luận kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mô phỏng nên quan sát gì",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Controls/Readouts",
+              "items": [
+                "Thay đổi scale/dimension/parameter.",
+                "Quan sát metric/projection/similarity.",
+                "So trước–sau preprocessing.",
+                "Hiển thị warning khi vi phạm gate."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Cổng giả thiết",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Trước kết luận",
+              "items": [
+                "Dữ liệu có đại diện không?",
+                "Feature semantics có ổn định không?",
+                "Transform có fit đúng split không?",
+                "Metric/model có phù hợp geometry không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "render_integrity",
+          "title": "Render integrity",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "UI contract",
+              "items": [
+                "Formula nằm trong formula block.",
+                "Matrix nằm trong matrix block.",
+                "Không raw LaTeX/code-style formula.",
+                "Không hiển thị search metadata trong nội dung học."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Mẫu",
+              "body": "Я нарушил контракт данных/размерности. Сначала исправляю shape, units или split, затем пересчитываю downstream-результаты."
+            }
+          ]
+        },
+        {
+          "role": "mini_drill",
+          "title": "Drill 5 phút",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "5 vòng",
+              "items": [
+                "Đọc 8 thuật ngữ Nga.",
+                "Viết 3 công thức.",
+                "Kiểm một shape/unit gate.",
+                "Nêu một leakage trap.",
+                "Trả lời 30–60 giây bằng tiếng Nga."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Câu hỏi giảng viên",
+          "blocks": [
+            {
+              "type": "qa-list",
+              "title": "Q&A",
+              "items": [
+                {
+                  "q": "Một chart đẹp nhưng thiếu sample size/protocol có đủ làm evidence không?",
+                  "a": "Không. Visualization chỉ là evidence khi có context, data provenance và validation protocol."
+                },
+                {
+                  "q": "Điều kiện quan trọng nhất?",
+                  "a": "Phải freeze dataset/split/protocol trước so sánh; chart/table phải có đơn vị, sample count và nguồn."
+                },
+                {
+                  "q": "Bẫy cần tránh?",
+                  "a": "Chọn lại preprocessing/hyperparameter sau khi nhìn test rồi báo test score như khách quan là test leakage."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "role": "summary",
+          "title": "Tóm tắt §1.8",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Phải nhớ",
+              "items": [
+                "Chuỗi tối thiểu để báo cáo kỹ thuật có thể kiểm tra.",
+                "Phải freeze dataset/split/protocol trước so sánh; chart/table phải có đơn vị, sample count và nguồn.",
+                "Chọn lại preprocessing/hyperparameter sau khi nhìn test rồi báo test score như khách quan là test leakage.",
+                "Shape + unit + split + provenance là contract bắt buộc."
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Exit ticket",
+              "body": "Nói một câu Nga chứa «ми́ни-прое́кт» và nêu một data gate của bài."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
