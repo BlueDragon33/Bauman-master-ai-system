@@ -1,0 +1,2360 @@
+{
+  "schema": "bauman_math_content_bundle_v1",
+  "bundleId": "e24_mm103_similarity_clustering_theory_bundle",
+  "frameworkChapterId": "m_m103",
+  "moduleId": "m_m103",
+  "records": [
+    {
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E24-MM103-T01-metric-choice-scaling",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "lessonTitle": "m_m103 · §3.1 · Chọn metric, scale và geometry trước clustering",
+      "title": "m_m103 · §3.1 · Chọn metric, scale và geometry trước clustering",
+      "programLectureId": "MATH-PROG-L09-topology-metric-spaces",
+      "programLectureIds": [
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "roadmapRole": "m_m103_t01",
+      "baumanFocus": "HK1 core E24 · Similarity, clustering và đánh giá cấu trúc cụm.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m103",
+        "frameworkChapterId": "m_m103",
+        "legacyFrameworkChapterAlias": "MATH-HK1-CLUSTER-C16",
+        "logicalLessonId": "m_m103_t01",
+        "frameworkAnchor": "m_m103_t01",
+        "programLectureId": "MATH-PROG-L09-topology-metric-spaces",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "theory_framework_plus_e24_hk1_cluster_authoring"
+      },
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "metric-choice-scaling"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "Chọn metric, scale và geometry trước clustering · section_open",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "section open",
+              "body": "Chọn metric, scale và geometry trước clustering: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chọn metric, scale và geometry trước clustering · learning_outcomes",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "learning outcomes",
+              "body": "Chọn metric, scale và geometry trước clustering: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Chọn metric, scale và geometry trước clustering · notation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "notation",
+              "body": "Chọn metric, scale và geometry trước clustering: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Chọn metric, scale và geometry trước clustering · notation_formula",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Euclidean distance",
+              "body": "d₂(x,y)=√Σⱼ(xⱼ−yⱼ)²\nNhạy với scale và đơn vị."
+            },
+            {
+              "type": "formula",
+              "title": "Manhattan distance",
+              "body": "d₁(x,y)=Σⱼ|xⱼ−yⱼ|\nHữu ích khi muốn giảm ảnh hưởng của sai lệch lớn."
+            },
+            {
+              "type": "formula",
+              "title": "Standardization",
+              "body": "zⱼ=(xⱼ−μⱼ,train)/σⱼ,train\nFit statistics chỉ trên train."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Chọn metric, scale và geometry trước clustering · matrix_example",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Geometry / cluster view",
+              "body": "X = [x₁; …; xₙ],  X ∈ ℝ^(n×p)",
+              "meaning": "Khóa sample axis, feature axis và scale trước distance/clustering."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Chọn metric, scale và geometry trước clustering · condition_gate",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Khóa scale, unit, missing-value policy và mục tiêu similarity trước khi chọn metric."
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Chọn metric, scale và geometry trước clustering · data_contract",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "data contract",
+              "body": "Chọn metric, scale và geometry trước clustering: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Chọn metric, scale và geometry trước clustering · worked_example",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài",
+              "body": "Ba feature có đơn vị rpm, °C và V: so khoảng cách trước/sau standardization."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Tính/giải thích kèm metric, scale, seed/parameter và sanity-check."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Chọn metric, scale và geometry trước clustering · geometry_interpretation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "geometry interpretation",
+              "body": "Chọn metric, scale và geometry trước clustering: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Chọn metric, scale và geometry trước clustering · algorithm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "algorithm",
+              "body": "Chọn metric, scale và geometry trước clustering: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Chọn metric, scale và geometry trước clustering · computational_check",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checks",
+              "items": [
+                "finite + shape",
+                "metric consistency",
+                "multi-seed stability",
+                "cluster size sanity",
+                "reproducible config"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Chọn metric, scale và geometry trước clustering · data_leakage_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Không được",
+              "items": [
+                "fit scaler/PCA trên test",
+                "tuning k/ε bằng test outcome",
+                "so model bằng seed khác nhưng không kiểm stability",
+                "gán cluster thành ground-truth"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Chọn metric, scale và geometry trước clustering · warning_counterexample",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Chạy clustering trực tiếp trên feature khác đơn vị khiến một trục chi phối toàn bộ khoảng cách."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Chọn metric, scale và geometry trước clustering · error_repair",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "error repair",
+              "body": "Chọn metric, scale và geometry trước clustering: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Chọn metric, scale và geometry trước clustering · application_link",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Ứng dụng",
+              "items": [
+                "Phân cụm trạng thái vận hành từ telemetry nhiều cảm biến.",
+                "Đối chiếu metric nội tại với diễn giải kỹ thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Chọn metric, scale và geometry trước clustering · simulation_plan",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "simulation plan",
+              "body": "Chọn metric, scale và geometry trước clustering: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Chọn metric, scale và geometry trước clustering · technical_conclusion",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "technical conclusion",
+              "body": "Chọn metric, scale và geometry trước clustering: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Chọn metric, scale và geometry trước clustering · lab_protocol",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "lab protocol",
+              "body": "Chọn metric, scale và geometry trước clustering: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Chọn metric, scale và geometry trước clustering · review_gate",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "review gate",
+              "body": "Chọn metric, scale và geometry trước clustering: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Chọn metric, scale và geometry trước clustering · exit_ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Pass khi",
+              "items": [
+                "formula đúng",
+                "metric/scale đúng",
+                "cluster config rõ",
+                "stability được kiểm",
+                "application diễn giải hợp lý"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E24-MM103-T02-cosine-angular-neighborhood",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "lessonTitle": "m_m103 · §3.2 · Cosine, angular similarity và lân cận gần nhất",
+      "title": "m_m103 · §3.2 · Cosine, angular similarity và lân cận gần nhất",
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "programLectureIds": [
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "roadmapRole": "m_m103_t02",
+      "baumanFocus": "HK1 core E24 · Similarity, clustering và đánh giá cấu trúc cụm.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m103",
+        "frameworkChapterId": "m_m103",
+        "legacyFrameworkChapterAlias": "MATH-HK1-CLUSTER-C16",
+        "logicalLessonId": "m_m103_t02",
+        "frameworkAnchor": "m_m103_t02",
+        "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "theory_framework_plus_e24_hk1_cluster_authoring"
+      },
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "cosine-angular-neighborhood"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "Cosine, angular similarity và lân cận gần nhất · section_open",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "section open",
+              "body": "Cosine, angular similarity và lân cận gần nhất: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Cosine, angular similarity và lân cận gần nhất · learning_outcomes",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "learning outcomes",
+              "body": "Cosine, angular similarity và lân cận gần nhất: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Cosine, angular similarity và lân cận gần nhất · notation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "notation",
+              "body": "Cosine, angular similarity và lân cận gần nhất: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Cosine, angular similarity và lân cận gần nhất · notation_formula",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Cosine similarity",
+              "body": "cos(x,y)=xᵀy/(‖x‖₂‖y‖₂)\nSo hướng; yêu cầu vector khác 0."
+            },
+            {
+              "type": "formula",
+              "title": "Angular distance",
+              "body": "d_ang(x,y)=arccos(cos(x,y))/π\nChuẩn hóa góc về [0,1]."
+            },
+            {
+              "type": "formula",
+              "title": "k-neighborhood",
+              "body": "N_k(x)={k điểm có d(x,·) nhỏ nhất}\nPhụ thuộc metric và scale."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Cosine, angular similarity và lân cận gần nhất · matrix_example",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Geometry / cluster view",
+              "body": "X = [x₁; …; xₙ],  X ∈ ℝ^(n×p)",
+              "meaning": "Khóa sample axis, feature axis và scale trước distance/clustering."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Cosine, angular similarity và lân cận gần nhất · condition_gate",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Xác định rõ cần so direction hay magnitude; kiểm zero-vector và tie handling."
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Cosine, angular similarity và lân cận gần nhất · data_contract",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "data contract",
+              "body": "Cosine, angular similarity và lân cận gần nhất: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Cosine, angular similarity và lân cận gần nhất · worked_example",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài",
+              "body": "So ba vector cùng hướng nhưng khác biên độ bằng cosine và Euclidean."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Tính/giải thích kèm metric, scale, seed/parameter và sanity-check."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Cosine, angular similarity và lân cận gần nhất · geometry_interpretation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "geometry interpretation",
+              "body": "Cosine, angular similarity và lân cận gần nhất: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Cosine, angular similarity và lân cận gần nhất · algorithm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "algorithm",
+              "body": "Cosine, angular similarity và lân cận gần nhất: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Cosine, angular similarity và lân cận gần nhất · computational_check",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checks",
+              "items": [
+                "finite + shape",
+                "metric consistency",
+                "multi-seed stability",
+                "cluster size sanity",
+                "reproducible config"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Cosine, angular similarity và lân cận gần nhất · data_leakage_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Không được",
+              "items": [
+                "fit scaler/PCA trên test",
+                "tuning k/ε bằng test outcome",
+                "so model bằng seed khác nhưng không kiểm stability",
+                "gán cluster thành ground-truth"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Cosine, angular similarity và lân cận gần nhất · warning_counterexample",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Dùng cosine khi magnitude mang ý nghĩa vật lý quan trọng rồi kết luận sai về độ gần."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Cosine, angular similarity và lân cận gần nhất · error_repair",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "error repair",
+              "body": "Cosine, angular similarity và lân cận gần nhất: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Cosine, angular similarity và lân cận gần nhất · application_link",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Ứng dụng",
+              "items": [
+                "So mẫu rung hoặc embedding trạng thái máy theo hướng đặc trưng.",
+                "Đối chiếu metric nội tại với diễn giải kỹ thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Cosine, angular similarity và lân cận gần nhất · simulation_plan",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "simulation plan",
+              "body": "Cosine, angular similarity và lân cận gần nhất: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Cosine, angular similarity và lân cận gần nhất · technical_conclusion",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "technical conclusion",
+              "body": "Cosine, angular similarity và lân cận gần nhất: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Cosine, angular similarity và lân cận gần nhất · lab_protocol",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "lab protocol",
+              "body": "Cosine, angular similarity và lân cận gần nhất: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Cosine, angular similarity và lân cận gần nhất · review_gate",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "review gate",
+              "body": "Cosine, angular similarity và lân cận gần nhất: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Cosine, angular similarity và lân cận gần nhất · exit_ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Pass khi",
+              "items": [
+                "formula đúng",
+                "metric/scale đúng",
+                "cluster config rõ",
+                "stability được kiểm",
+                "application diễn giải hợp lý"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E24-MM103-T03-knn-density-intuition",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "lessonTitle": "m_m103 · §3.3 · KNN, local density và khoảng cách lân cận",
+      "title": "m_m103 · §3.3 · KNN, local density và khoảng cách lân cận",
+      "programLectureId": "MATH-PROG-L09-topology-metric-spaces",
+      "programLectureIds": [
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "roadmapRole": "m_m103_t03",
+      "baumanFocus": "HK1 core E24 · Similarity, clustering và đánh giá cấu trúc cụm.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m103",
+        "frameworkChapterId": "m_m103",
+        "legacyFrameworkChapterAlias": "MATH-HK1-CLUSTER-C16",
+        "logicalLessonId": "m_m103_t03",
+        "frameworkAnchor": "m_m103_t03",
+        "programLectureId": "MATH-PROG-L09-topology-metric-spaces",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "theory_framework_plus_e24_hk1_cluster_authoring"
+      },
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "knn-density-intuition"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "KNN, local density và khoảng cách lân cận · section_open",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "section open",
+              "body": "KNN, local density và khoảng cách lân cận: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "KNN, local density và khoảng cách lân cận · learning_outcomes",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "learning outcomes",
+              "body": "KNN, local density và khoảng cách lân cận: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "KNN, local density và khoảng cách lân cận · notation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "notation",
+              "body": "KNN, local density và khoảng cách lân cận: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "KNN, local density và khoảng cách lân cận · notation_formula",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "k-distance",
+              "body": "d_k(x)=k-th smallest{d(x,xᵢ)}\nTóm tắt độ dày cục bộ quanh x."
+            },
+            {
+              "type": "formula",
+              "title": "Local density proxy",
+              "body": "ρ_k(x)=k/(V_p(d_k(x)))\nDensity proxy phụ thuộc chiều và metric."
+            },
+            {
+              "type": "formula",
+              "title": "Neighbor vote weight",
+              "body": "w_i=1/(d_i+ε)\nTránh chia 0 bằng ε nhỏ."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "KNN, local density và khoảng cách lân cận · matrix_example",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Geometry / cluster view",
+              "body": "X = [x₁; …; xₙ],  X ∈ ℝ^(n×p)",
+              "meaning": "Khóa sample axis, feature axis và scale trước distance/clustering."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "KNN, local density và khoảng cách lân cận · condition_gate",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Chọn k theo độ dày dữ liệu, kích thước mẫu và độ nhiễu; không dùng một k cho mọi regime."
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "KNN, local density và khoảng cách lân cận · data_contract",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "data contract",
+              "body": "KNN, local density và khoảng cách lân cận: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "KNN, local density và khoảng cách lân cận · worked_example",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài",
+              "body": "So k-distance của điểm nằm trong lõi cụm với điểm gần biên."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Tính/giải thích kèm metric, scale, seed/parameter và sanity-check."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "KNN, local density và khoảng cách lân cận · geometry_interpretation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "geometry interpretation",
+              "body": "KNN, local density và khoảng cách lân cận: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "KNN, local density và khoảng cách lân cận · algorithm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "algorithm",
+              "body": "KNN, local density và khoảng cách lân cận: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "KNN, local density và khoảng cách lân cận · computational_check",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checks",
+              "items": [
+                "finite + shape",
+                "metric consistency",
+                "multi-seed stability",
+                "cluster size sanity",
+                "reproducible config"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "KNN, local density và khoảng cách lân cận · data_leakage_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Không được",
+              "items": [
+                "fit scaler/PCA trên test",
+                "tuning k/ε bằng test outcome",
+                "so model bằng seed khác nhưng không kiểm stability",
+                "gán cluster thành ground-truth"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "KNN, local density và khoảng cách lân cận · warning_counterexample",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Tăng k tùy ý làm mất cụm nhỏ hoặc che vùng chuyển trạng thái."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "KNN, local density và khoảng cách lân cận · error_repair",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "error repair",
+              "body": "KNN, local density và khoảng cách lân cận: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "KNN, local density và khoảng cách lân cận · application_link",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Ứng dụng",
+              "items": [
+                "Tìm trạng thái tương tự và phát hiện vùng dữ liệu thưa.",
+                "Đối chiếu metric nội tại với diễn giải kỹ thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "KNN, local density và khoảng cách lân cận · simulation_plan",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "simulation plan",
+              "body": "KNN, local density và khoảng cách lân cận: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "KNN, local density và khoảng cách lân cận · technical_conclusion",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "technical conclusion",
+              "body": "KNN, local density và khoảng cách lân cận: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "KNN, local density và khoảng cách lân cận · lab_protocol",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "lab protocol",
+              "body": "KNN, local density và khoảng cách lân cận: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "KNN, local density và khoảng cách lân cận · review_gate",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "review gate",
+              "body": "KNN, local density và khoảng cách lân cận: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "KNN, local density và khoảng cách lân cận · exit_ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Pass khi",
+              "items": [
+                "formula đúng",
+                "metric/scale đúng",
+                "cluster config rõ",
+                "stability được kiểm",
+                "application diễn giải hợp lý"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E24-MM103-T04-kmeans-objective-lloyd",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "lessonTitle": "m_m103 · §3.4 · K-means: objective, centroid và Lloyd iterations",
+      "title": "m_m103 · §3.4 · K-means: objective, centroid và Lloyd iterations",
+      "programLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+      "programLectureIds": [
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "roadmapRole": "m_m103_t04",
+      "baumanFocus": "HK1 core E24 · Similarity, clustering và đánh giá cấu trúc cụm.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m103",
+        "frameworkChapterId": "m_m103",
+        "legacyFrameworkChapterAlias": "MATH-HK1-CLUSTER-C16",
+        "logicalLessonId": "m_m103_t04",
+        "frameworkAnchor": "m_m103_t04",
+        "programLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "theory_framework_plus_e24_hk1_cluster_authoring"
+      },
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "kmeans-objective-lloyd"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "K-means: objective, centroid và Lloyd iterations · section_open",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "section open",
+              "body": "K-means: objective, centroid và Lloyd iterations: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "K-means: objective, centroid và Lloyd iterations · learning_outcomes",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "learning outcomes",
+              "body": "K-means: objective, centroid và Lloyd iterations: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "K-means: objective, centroid và Lloyd iterations · notation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "notation",
+              "body": "K-means: objective, centroid và Lloyd iterations: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "K-means: objective, centroid và Lloyd iterations · notation_formula",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "K-means objective",
+              "body": "J=Σ_i ‖x_i−μ_{c_i}‖₂²\nTối thiểu hóa within-cluster SSE."
+            },
+            {
+              "type": "formula",
+              "title": "Centroid update",
+              "body": "μ_k=(1/n_k)Σ_{i:c_i=k}x_i\nMean của điểm thuộc cluster k."
+            },
+            {
+              "type": "formula",
+              "title": "Assignment",
+              "body": "c_i=argmin_k ‖x_i−μ_k‖₂²\nBước gán theo centroid gần nhất."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "K-means: objective, centroid và Lloyd iterations · matrix_example",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Geometry / cluster view",
+              "body": "X = [x₁; …; xₙ],  X ∈ ℝ^(n×p)",
+              "meaning": "Khóa sample axis, feature axis và scale trước distance/clustering."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "K-means: objective, centroid và Lloyd iterations · condition_gate",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Dữ liệu phải được scale hợp lý; kiểm initialization, empty cluster và convergence tolerance."
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "K-means: objective, centroid và Lloyd iterations · data_contract",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "data contract",
+              "body": "K-means: objective, centroid và Lloyd iterations: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "K-means: objective, centroid và Lloyd iterations · worked_example",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài",
+              "body": "Chạy hai initialization khác nhau trên cùng tập điểm và so inertia."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Tính/giải thích kèm metric, scale, seed/parameter và sanity-check."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "K-means: objective, centroid và Lloyd iterations · geometry_interpretation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "geometry interpretation",
+              "body": "K-means: objective, centroid và Lloyd iterations: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "K-means: objective, centroid và Lloyd iterations · algorithm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "algorithm",
+              "body": "K-means: objective, centroid và Lloyd iterations: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "K-means: objective, centroid và Lloyd iterations · computational_check",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checks",
+              "items": [
+                "finite + shape",
+                "metric consistency",
+                "multi-seed stability",
+                "cluster size sanity",
+                "reproducible config"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "K-means: objective, centroid và Lloyd iterations · data_leakage_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Không được",
+              "items": [
+                "fit scaler/PCA trên test",
+                "tuning k/ε bằng test outcome",
+                "so model bằng seed khác nhưng không kiểm stability",
+                "gán cluster thành ground-truth"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "K-means: objective, centroid và Lloyd iterations · warning_counterexample",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Đọc cluster ID như thứ tự tự nhiên hoặc tin một lần khởi tạo duy nhất."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "K-means: objective, centroid và Lloyd iterations · error_repair",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "error repair",
+              "body": "K-means: objective, centroid và Lloyd iterations: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "K-means: objective, centroid và Lloyd iterations · application_link",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Ứng dụng",
+              "items": [
+                "Phân nhóm chế độ vận hành của hệ thống từ feature đã chuẩn hóa.",
+                "Đối chiếu metric nội tại với diễn giải kỹ thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "K-means: objective, centroid và Lloyd iterations · simulation_plan",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "simulation plan",
+              "body": "K-means: objective, centroid và Lloyd iterations: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "K-means: objective, centroid và Lloyd iterations · technical_conclusion",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "technical conclusion",
+              "body": "K-means: objective, centroid và Lloyd iterations: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "K-means: objective, centroid và Lloyd iterations · lab_protocol",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "lab protocol",
+              "body": "K-means: objective, centroid và Lloyd iterations: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "K-means: objective, centroid và Lloyd iterations · review_gate",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "review gate",
+              "body": "K-means: objective, centroid và Lloyd iterations: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "K-means: objective, centroid và Lloyd iterations · exit_ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Pass khi",
+              "items": [
+                "formula đúng",
+                "metric/scale đúng",
+                "cluster config rõ",
+                "stability được kiểm",
+                "application diễn giải hợp lý"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E24-MM103-T05-cluster-k-validation",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "lessonTitle": "m_m103 · §3.5 · Chọn số cụm k: inertia, silhouette và stability",
+      "title": "m_m103 · §3.5 · Chọn số cụm k: inertia, silhouette và stability",
+      "programLectureId": "MATH-PROG-L13-mathematical-statistics",
+      "programLectureIds": [
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "roadmapRole": "m_m103_t05",
+      "baumanFocus": "HK1 core E24 · Similarity, clustering và đánh giá cấu trúc cụm.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m103",
+        "frameworkChapterId": "m_m103",
+        "legacyFrameworkChapterAlias": "MATH-HK1-CLUSTER-C16",
+        "logicalLessonId": "m_m103_t05",
+        "frameworkAnchor": "m_m103_t05",
+        "programLectureId": "MATH-PROG-L13-mathematical-statistics",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "theory_framework_plus_e24_hk1_cluster_authoring"
+      },
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "cluster-k-validation"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "Chọn số cụm k: inertia, silhouette và stability · section_open",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "section open",
+              "body": "Chọn số cụm k: inertia, silhouette và stability: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chọn số cụm k: inertia, silhouette và stability · learning_outcomes",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "learning outcomes",
+              "body": "Chọn số cụm k: inertia, silhouette và stability: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Chọn số cụm k: inertia, silhouette và stability · notation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "notation",
+              "body": "Chọn số cụm k: inertia, silhouette và stability: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Chọn số cụm k: inertia, silhouette và stability · notation_formula",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Inertia",
+              "body": "W_k=Σ_i ‖x_i−μ_{c_i}‖₂²\nLuôn giảm khi k tăng; không dùng riêng để chọn k."
+            },
+            {
+              "type": "formula",
+              "title": "Silhouette",
+              "body": "s(i)=(b(i)−a(i))/max(a(i),b(i))\nTrong [-1,1]."
+            },
+            {
+              "type": "formula",
+              "title": "Stability score",
+              "body": "S=mean agreement(partition_r,partition_s)\nĐánh giá độ bền theo resampling/seed."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Chọn số cụm k: inertia, silhouette và stability · matrix_example",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Geometry / cluster view",
+              "body": "X = [x₁; …; xₙ],  X ∈ ℝ^(n×p)",
+              "meaning": "Khóa sample axis, feature axis và scale trước distance/clustering."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Chọn số cụm k: inertia, silhouette và stability · condition_gate",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Chọn k từ nhiều tín hiệu: geometry, silhouette, stability, interpretability và mục tiêu kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Chọn số cụm k: inertia, silhouette và stability · data_contract",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "data contract",
+              "body": "Chọn số cụm k: inertia, silhouette và stability: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Chọn số cụm k: inertia, silhouette và stability · worked_example",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài",
+              "body": "So k=2..6 bằng inertia + silhouette + stability và giải thích trade-off."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Tính/giải thích kèm metric, scale, seed/parameter và sanity-check."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Chọn số cụm k: inertia, silhouette và stability · geometry_interpretation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "geometry interpretation",
+              "body": "Chọn số cụm k: inertia, silhouette và stability: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Chọn số cụm k: inertia, silhouette và stability · algorithm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "algorithm",
+              "body": "Chọn số cụm k: inertia, silhouette và stability: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Chọn số cụm k: inertia, silhouette và stability · computational_check",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checks",
+              "items": [
+                "finite + shape",
+                "metric consistency",
+                "multi-seed stability",
+                "cluster size sanity",
+                "reproducible config"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Chọn số cụm k: inertia, silhouette và stability · data_leakage_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Không được",
+              "items": [
+                "fit scaler/PCA trên test",
+                "tuning k/ε bằng test outcome",
+                "so model bằng seed khác nhưng không kiểm stability",
+                "gán cluster thành ground-truth"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Chọn số cụm k: inertia, silhouette và stability · warning_counterexample",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Chọn k chỉ vì elbow nhìn bằng mắt hoặc tối đa silhouette trên một sample duy nhất."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Chọn số cụm k: inertia, silhouette và stability · error_repair",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "error repair",
+              "body": "Chọn số cụm k: inertia, silhouette và stability: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Chọn số cụm k: inertia, silhouette và stability · application_link",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Ứng dụng",
+              "items": [
+                "Chọn số trạng thái vận hành có ý nghĩa kỹ thuật.",
+                "Đối chiếu metric nội tại với diễn giải kỹ thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Chọn số cụm k: inertia, silhouette và stability · simulation_plan",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "simulation plan",
+              "body": "Chọn số cụm k: inertia, silhouette và stability: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Chọn số cụm k: inertia, silhouette và stability · technical_conclusion",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "technical conclusion",
+              "body": "Chọn số cụm k: inertia, silhouette và stability: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Chọn số cụm k: inertia, silhouette và stability · lab_protocol",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "lab protocol",
+              "body": "Chọn số cụm k: inertia, silhouette và stability: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Chọn số cụm k: inertia, silhouette và stability · review_gate",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "review gate",
+              "body": "Chọn số cụm k: inertia, silhouette và stability: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Chọn số cụm k: inertia, silhouette và stability · exit_ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Pass khi",
+              "items": [
+                "formula đúng",
+                "metric/scale đúng",
+                "cluster config rõ",
+                "stability được kiểm",
+                "application diễn giải hợp lý"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E24-MM103-T06-hierarchical-linkage",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "lessonTitle": "m_m103 · §3.6 · Hierarchical clustering, linkage và dendrogram",
+      "title": "m_m103 · §3.6 · Hierarchical clustering, linkage và dendrogram",
+      "programLectureId": "MATH-PROG-L09-topology-metric-spaces",
+      "programLectureIds": [
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "roadmapRole": "m_m103_t06",
+      "baumanFocus": "HK1 core E24 · Similarity, clustering và đánh giá cấu trúc cụm.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m103",
+        "frameworkChapterId": "m_m103",
+        "legacyFrameworkChapterAlias": "MATH-HK1-CLUSTER-C16",
+        "logicalLessonId": "m_m103_t06",
+        "frameworkAnchor": "m_m103_t06",
+        "programLectureId": "MATH-PROG-L09-topology-metric-spaces",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "theory_framework_plus_e24_hk1_cluster_authoring"
+      },
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "hierarchical-linkage"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "Hierarchical clustering, linkage và dendrogram · section_open",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "section open",
+              "body": "Hierarchical clustering, linkage và dendrogram: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Hierarchical clustering, linkage và dendrogram · learning_outcomes",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "learning outcomes",
+              "body": "Hierarchical clustering, linkage và dendrogram: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Hierarchical clustering, linkage và dendrogram · notation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "notation",
+              "body": "Hierarchical clustering, linkage và dendrogram: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Hierarchical clustering, linkage và dendrogram · notation_formula",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Single linkage",
+              "body": "D(A,B)=min_{a∈A,b∈B} d(a,b)\nDễ chaining."
+            },
+            {
+              "type": "formula",
+              "title": "Complete linkage",
+              "body": "D(A,B)=max_{a∈A,b∈B} d(a,b)\nƯu tiên cụm compact."
+            },
+            {
+              "type": "formula",
+              "title": "Average linkage",
+              "body": "D(A,B)=mean_{a∈A,b∈B} d(a,b)\nThỏa hiệp giữa single/complete."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Hierarchical clustering, linkage và dendrogram · matrix_example",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Geometry / cluster view",
+              "body": "X = [x₁; …; xₙ],  X ∈ ℝ^(n×p)",
+              "meaning": "Khóa sample axis, feature axis và scale trước distance/clustering."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Hierarchical clustering, linkage và dendrogram · condition_gate",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Metric + linkage phải phù hợp topology dữ liệu; kiểm scaling và chi phí O(n²) khi n lớn."
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Hierarchical clustering, linkage và dendrogram · data_contract",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "data contract",
+              "body": "Hierarchical clustering, linkage và dendrogram: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Hierarchical clustering, linkage và dendrogram · worked_example",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài",
+              "body": "Cùng dữ liệu, so single vs complete linkage và mô tả chaining."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Tính/giải thích kèm metric, scale, seed/parameter và sanity-check."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Hierarchical clustering, linkage và dendrogram · geometry_interpretation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "geometry interpretation",
+              "body": "Hierarchical clustering, linkage và dendrogram: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Hierarchical clustering, linkage và dendrogram · algorithm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "algorithm",
+              "body": "Hierarchical clustering, linkage và dendrogram: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Hierarchical clustering, linkage và dendrogram · computational_check",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checks",
+              "items": [
+                "finite + shape",
+                "metric consistency",
+                "multi-seed stability",
+                "cluster size sanity",
+                "reproducible config"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Hierarchical clustering, linkage và dendrogram · data_leakage_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Không được",
+              "items": [
+                "fit scaler/PCA trên test",
+                "tuning k/ε bằng test outcome",
+                "so model bằng seed khác nhưng không kiểm stability",
+                "gán cluster thành ground-truth"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Hierarchical clustering, linkage và dendrogram · warning_counterexample",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Đọc chiều cao dendrogram như xác suất hoặc cắt cây mà không xét semantics."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Hierarchical clustering, linkage và dendrogram · error_repair",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "error repair",
+              "body": "Hierarchical clustering, linkage và dendrogram: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Hierarchical clustering, linkage và dendrogram · application_link",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Ứng dụng",
+              "items": [
+                "Khám phá cấu trúc phân cấp giữa các trạng thái thiết bị.",
+                "Đối chiếu metric nội tại với diễn giải kỹ thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Hierarchical clustering, linkage và dendrogram · simulation_plan",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "simulation plan",
+              "body": "Hierarchical clustering, linkage và dendrogram: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Hierarchical clustering, linkage và dendrogram · technical_conclusion",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "technical conclusion",
+              "body": "Hierarchical clustering, linkage và dendrogram: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Hierarchical clustering, linkage và dendrogram · lab_protocol",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "lab protocol",
+              "body": "Hierarchical clustering, linkage và dendrogram: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Hierarchical clustering, linkage và dendrogram · review_gate",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "review gate",
+              "body": "Hierarchical clustering, linkage và dendrogram: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Hierarchical clustering, linkage và dendrogram · exit_ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Pass khi",
+              "items": [
+                "formula đúng",
+                "metric/scale đúng",
+                "cluster config rõ",
+                "stability được kiểm",
+                "application diễn giải hợp lý"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E24-MM103-T07-dbscan-density-outliers",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "lessonTitle": "m_m103 · §3.7 · DBSCAN: density-connected clusters và outlier",
+      "title": "m_m103 · §3.7 · DBSCAN: density-connected clusters và outlier",
+      "programLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+      "programLectureIds": [
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L09-topology-metric-spaces"
+      ],
+      "roadmapRole": "m_m103_t07",
+      "baumanFocus": "HK1 core E24 · Similarity, clustering và đánh giá cấu trúc cụm.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m103",
+        "frameworkChapterId": "m_m103",
+        "legacyFrameworkChapterAlias": "MATH-HK1-CLUSTER-C16",
+        "logicalLessonId": "m_m103_t07",
+        "frameworkAnchor": "m_m103_t07",
+        "programLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "theory_framework_plus_e24_hk1_cluster_authoring"
+      },
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "dbscan-density-outliers"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "DBSCAN: density-connected clusters và outlier · section_open",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "section open",
+              "body": "DBSCAN: density-connected clusters và outlier: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "DBSCAN: density-connected clusters và outlier · learning_outcomes",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "learning outcomes",
+              "body": "DBSCAN: density-connected clusters và outlier: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "DBSCAN: density-connected clusters và outlier · notation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "notation",
+              "body": "DBSCAN: density-connected clusters và outlier: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "DBSCAN: density-connected clusters và outlier · notation_formula",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "ε-neighborhood",
+              "body": "N_ε(x)={y:d(x,y)≤ε}\nPhụ thuộc scale/metric."
+            },
+            {
+              "type": "formula",
+              "title": "Core condition",
+              "body": "|N_ε(x)|≥MinPts\nĐiểm lõi nếu đủ hàng xóm."
+            },
+            {
+              "type": "formula",
+              "title": "Noise label",
+              "body": "x∉ any density-reachable cluster\nNoise không đồng nghĩa lỗi dữ liệu."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "DBSCAN: density-connected clusters và outlier · matrix_example",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Geometry / cluster view",
+              "body": "X = [x₁; …; xₙ],  X ∈ ℝ^(n×p)",
+              "meaning": "Khóa sample axis, feature axis và scale trước distance/clustering."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "DBSCAN: density-connected clusters và outlier · condition_gate",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Tuning ε và MinPts phải dựa density/scale; kiểm cụm mật độ khác nhau và border points."
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "DBSCAN: density-connected clusters và outlier · data_contract",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "data contract",
+              "body": "DBSCAN: density-connected clusters và outlier: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "DBSCAN: density-connected clusters và outlier · worked_example",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài",
+              "body": "Dùng k-distance plot để đề xuất ε rồi kiểm thay đổi cluster count."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Tính/giải thích kèm metric, scale, seed/parameter và sanity-check."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "DBSCAN: density-connected clusters và outlier · geometry_interpretation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "geometry interpretation",
+              "body": "DBSCAN: density-connected clusters và outlier: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "DBSCAN: density-connected clusters và outlier · algorithm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "algorithm",
+              "body": "DBSCAN: density-connected clusters và outlier: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "DBSCAN: density-connected clusters và outlier · computational_check",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checks",
+              "items": [
+                "finite + shape",
+                "metric consistency",
+                "multi-seed stability",
+                "cluster size sanity",
+                "reproducible config"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "DBSCAN: density-connected clusters và outlier · data_leakage_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Không được",
+              "items": [
+                "fit scaler/PCA trên test",
+                "tuning k/ε bằng test outcome",
+                "so model bằng seed khác nhưng không kiểm stability",
+                "gán cluster thành ground-truth"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "DBSCAN: density-connected clusters và outlier · warning_counterexample",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Xem mọi noise point là bất thường hoặc ép DBSCAN cho dữ liệu density biến thiên mạnh."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "DBSCAN: density-connected clusters và outlier · error_repair",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "error repair",
+              "body": "DBSCAN: density-connected clusters và outlier: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "DBSCAN: density-connected clusters và outlier · application_link",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Ứng dụng",
+              "items": [
+                "Tách trạng thái hiếm và vùng vận hành chính trong telemetry.",
+                "Đối chiếu metric nội tại với diễn giải kỹ thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "DBSCAN: density-connected clusters và outlier · simulation_plan",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "simulation plan",
+              "body": "DBSCAN: density-connected clusters và outlier: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "DBSCAN: density-connected clusters và outlier · technical_conclusion",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "technical conclusion",
+              "body": "DBSCAN: density-connected clusters và outlier: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "DBSCAN: density-connected clusters và outlier · lab_protocol",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "lab protocol",
+              "body": "DBSCAN: density-connected clusters và outlier: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "DBSCAN: density-connected clusters và outlier · review_gate",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "review gate",
+              "body": "DBSCAN: density-connected clusters và outlier: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "DBSCAN: density-connected clusters và outlier · exit_ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Pass khi",
+              "items": [
+                "formula đúng",
+                "metric/scale đúng",
+                "cluster config rõ",
+                "stability được kiểm",
+                "application diễn giải hợp lý"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E24-MM103-T08-clustering-mini-project",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "lessonTitle": "m_m103 · §3.8 · Mini-project: clustering telemetry, đánh giá và báo cáo",
+      "title": "m_m103 · §3.8 · Mini-project: clustering telemetry, đánh giá và báo cáo",
+      "programLectureId": "MATH-PROG-L16-numerical-methods-computing",
+      "programLectureIds": [
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "roadmapRole": "m_m103_t08",
+      "baumanFocus": "HK1 core E24 · Similarity, clustering và đánh giá cấu trúc cụm.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_m103",
+        "frameworkChapterId": "m_m103",
+        "legacyFrameworkChapterAlias": "MATH-HK1-CLUSTER-C16",
+        "logicalLessonId": "m_m103_t08",
+        "frameworkAnchor": "m_m103_t08",
+        "programLectureId": "MATH-PROG-L16-numerical-methods-computing",
+        "physicalStageId": "hk1",
+        "provenancePolicy": "theory_framework_plus_e24_hk1_cluster_authoring"
+      },
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "clustering-mini-project"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "Mini-project: clustering telemetry, đánh giá và báo cáo · section_open",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "section open",
+              "body": "Mini-project: clustering telemetry, đánh giá và báo cáo: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Mini-project: clustering telemetry, đánh giá và báo cáo · learning_outcomes",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "learning outcomes",
+              "body": "Mini-project: clustering telemetry, đánh giá và báo cáo: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Mini-project: clustering telemetry, đánh giá và báo cáo · notation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "notation",
+              "body": "Mini-project: clustering telemetry, đánh giá và báo cáo: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Mini-project: clustering telemetry, đánh giá và báo cáo · notation_formula",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Cluster proportion",
+              "body": "p_k=n_k/n\nTheo dõi cluster imbalance."
+            },
+            {
+              "type": "formula",
+              "title": "Centroid drift",
+              "body": "Δ_k=‖μ_k^{new}−μ_k^{ref}‖₂\nĐo drift giữa hai batch."
+            },
+            {
+              "type": "formula",
+              "title": "Assignment confidence proxy",
+              "body": "q_i=(d_2−d_1)/(d_2+ε)\nKhoảng cách tương đối giữa centroid gần nhất và thứ hai."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Mini-project: clustering telemetry, đánh giá và báo cáo · matrix_example",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Geometry / cluster view",
+              "body": "X = [x₁; …; xₙ],  X ∈ ℝ^(n×p)",
+              "meaning": "Khóa sample axis, feature axis và scale trước distance/clustering."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Mini-project: clustering telemetry, đánh giá và báo cáo · condition_gate",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Pipeline phải giữ provenance: split/fit transform/seed/metric/k hoặc ε-MinPts và mapping cluster→diễn giải."
+            }
+          ]
+        },
+        {
+          "role": "data_contract",
+          "title": "Mini-project: clustering telemetry, đánh giá và báo cáo · data_contract",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "data contract",
+              "body": "Mini-project: clustering telemetry, đánh giá và báo cáo: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Mini-project: clustering telemetry, đánh giá và báo cáo · worked_example",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài",
+              "body": "Tạo báo cáo gồm preprocessing, model config, 2D projection, metrics và giới hạn diễn giải."
+            },
+            {
+              "type": "text",
+              "title": "Yêu cầu",
+              "body": "Tính/giải thích kèm metric, scale, seed/parameter và sanity-check."
+            }
+          ]
+        },
+        {
+          "role": "geometry_interpretation",
+          "title": "Mini-project: clustering telemetry, đánh giá và báo cáo · geometry_interpretation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "geometry interpretation",
+              "body": "Mini-project: clustering telemetry, đánh giá và báo cáo: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "algorithm",
+          "title": "Mini-project: clustering telemetry, đánh giá và báo cáo · algorithm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "algorithm",
+              "body": "Mini-project: clustering telemetry, đánh giá và báo cáo: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "computational_check",
+          "title": "Mini-project: clustering telemetry, đánh giá và báo cáo · computational_check",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Checks",
+              "items": [
+                "finite + shape",
+                "metric consistency",
+                "multi-seed stability",
+                "cluster size sanity",
+                "reproducible config"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "data_leakage_gate",
+          "title": "Mini-project: clustering telemetry, đánh giá và báo cáo · data_leakage_gate",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Không được",
+              "items": [
+                "fit scaler/PCA trên test",
+                "tuning k/ε bằng test outcome",
+                "so model bằng seed khác nhưng không kiểm stability",
+                "gán cluster thành ground-truth"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Mini-project: clustering telemetry, đánh giá và báo cáo · warning_counterexample",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Đặt tên cụm theo cảm tính rồi dùng như nhãn ground-truth."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Mini-project: clustering telemetry, đánh giá và báo cáo · error_repair",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "error repair",
+              "body": "Mini-project: clustering telemetry, đánh giá và báo cáo: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "application_link",
+          "title": "Mini-project: clustering telemetry, đánh giá và báo cáo · application_link",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Ứng dụng",
+              "items": [
+                "Báo cáo các chế độ vận hành, drift và nhóm mẫu cần kiểm tra thủ công.",
+                "Đối chiếu metric nội tại với diễn giải kỹ thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mini-project: clustering telemetry, đánh giá và báo cáo · simulation_plan",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "simulation plan",
+              "body": "Mini-project: clustering telemetry, đánh giá và báo cáo: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "technical_conclusion",
+          "title": "Mini-project: clustering telemetry, đánh giá và báo cáo · technical_conclusion",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "technical conclusion",
+              "body": "Mini-project: clustering telemetry, đánh giá và báo cáo: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "lab_protocol",
+          "title": "Mini-project: clustering telemetry, đánh giá và báo cáo · lab_protocol",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "lab protocol",
+              "body": "Mini-project: clustering telemetry, đánh giá và báo cáo: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "review_gate",
+          "title": "Mini-project: clustering telemetry, đánh giá và báo cáo · review_gate",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "review gate",
+              "body": "Mini-project: clustering telemetry, đánh giá và báo cáo: học theo contract metric/scale/assumption/provenance, có kiểm chứng số và diễn giải kỹ thuật."
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Mini-project: clustering telemetry, đánh giá và báo cáo · exit_ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Pass khi",
+              "items": [
+                "formula đúng",
+                "metric/scale đúng",
+                "cluster config rõ",
+                "stability được kiểm",
+                "application diễn giải hợp lý"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
