@@ -9,7 +9,7 @@
   "architecture": "framework_chapter_over_existing_multidisciplinary_prep_spine",
   "legacyFrameworkAlias": "MATH-PREP-MT-C12",
   "legacyAliasPolicy": "reference_only_not_runtime_physical_chapter",
-  "status": "IMPLEMENTED_PENDING_CI",
+  "status": "PASS_STATIC_BROWSER_CI",
   "correction": {
     "rule": "m_s04 là framework/logical chapter. MATH-PREP-MT-C12 là alias khung, không được materialize thành physical chapter. Nội dung neo vào C09/C10/C16/C18 theo bản chất đại số, thống kê và lab.",
     "physicalSpineTruth": [
@@ -23,7 +23,8 @@
     "forbiddenProgramLectureIds": [
       "MATH-PROG-L14-stochastic-processes-time-series"
     ],
-    "reason": "Preserve E17 L14 exclusivity after E20 regression incident."
+    "reason": "Preserve E17 L14 exclusivity after E20 regression incident.",
+    "status": "PASS"
   },
   "commonProgramAnchors": [
     "MATH-PROG-L17-ai-machine-learning-math-foundations"
@@ -205,17 +206,25 @@
     "evidenceAuthority": "canonical-quality-gates",
     "productionAuthority": "separate-explicit-release-gate"
   },
-  "verifiedAt": null,
-  "pr": null,
+  "verifiedAt": "2026-09-28",
+  "pr": 150,
   "gateResults": {
-    "academic": "PENDING",
-    "runtimeStatic": "PENDING",
-    "browser": "PENDING",
-    "developmentFastCI": "PENDING",
-    "e20Regression": "PENDING",
-    "e19Regression": "PENDING",
-    "e18Regression": "PENDING",
-    "e17Regression": "PENDING",
-    "universalConstitution": "PENDING"
+    "academic": "PASS",
+    "runtimeStatic": "PASS",
+    "browser": "PASS",
+    "developmentFastCI": "PASS",
+    "e20Regression": "PASS",
+    "e19Regression": "PASS",
+    "e18Regression": "PASS",
+    "e17Regression": "PASS",
+    "universalConstitution": "PASS"
+  },
+  "renderGateEvidence": {
+    "status": "PASS",
+    "formulaBlockOnly": true,
+    "matrixBlockOnly": true,
+    "noRawLatex": true,
+    "noCodeStyleFormula": true,
+    "hideSearchMeta": true
   }
 }
