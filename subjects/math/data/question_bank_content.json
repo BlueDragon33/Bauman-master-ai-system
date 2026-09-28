@@ -11314,6 +11314,1254 @@
       "question": "Nêu một application và check đi kèm.",
       "answer": "Mini-project telemetry giảm chiều. Check: shape/split/assumption/numerical stability.",
       "reviewPackId": "E23-MM102-T08-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t01",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E24-MM103-T01-metric-choice-scaling",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "metric-choice-scaling"
+      ],
+      "sourceAnchors": [
+        "m_m103_t01",
+        "m_m103",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T01-Q001",
+      "level": "easy",
+      "question": "Nêu mục tiêu của Chọn metric, scale và geometry trước clustering.",
+      "answer": "Phân cụm trạng thái vận hành từ telemetry nhiều cảm biến.",
+      "reviewPackId": "E24-MM103-T01-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t01",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E24-MM103-T01-metric-choice-scaling",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "metric-choice-scaling"
+      ],
+      "sourceAnchors": [
+        "m_m103_t01",
+        "m_m103",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T01-Q002",
+      "level": "easy",
+      "question": "Viết Euclidean distance.",
+      "answer": "d₂(x,y)=√Σⱼ(xⱼ−yⱼ)²",
+      "reviewPackId": "E24-MM103-T01-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t01",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E24-MM103-T01-metric-choice-scaling",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "metric-choice-scaling"
+      ],
+      "sourceAnchors": [
+        "m_m103_t01",
+        "m_m103",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T01-Q003",
+      "level": "medium",
+      "question": "Ý nghĩa của Manhattan distance?",
+      "answer": "Hữu ích khi muốn giảm ảnh hưởng của sai lệch lớn.",
+      "reviewPackId": "E24-MM103-T01-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t01",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E24-MM103-T01-metric-choice-scaling",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "metric-choice-scaling"
+      ],
+      "sourceAnchors": [
+        "m_m103_t01",
+        "m_m103",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T01-Q004",
+      "level": "medium",
+      "question": "Condition gate là gì?",
+      "answer": "Khóa scale, unit, missing-value policy và mục tiêu similarity trước khi chọn metric.",
+      "reviewPackId": "E24-MM103-T01-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t01",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E24-MM103-T01-metric-choice-scaling",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "metric-choice-scaling"
+      ],
+      "sourceAnchors": [
+        "m_m103_t01",
+        "m_m103",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T01-Q005",
+      "level": "medium",
+      "question": "Bẫy chính là gì?",
+      "answer": "Chạy clustering trực tiếp trên feature khác đơn vị khiến một trục chi phối toàn bộ khoảng cách.",
+      "reviewPackId": "E24-MM103-T01-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t01",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E24-MM103-T01-metric-choice-scaling",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "metric-choice-scaling"
+      ],
+      "sourceAnchors": [
+        "m_m103_t01",
+        "m_m103",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T01-Q006",
+      "level": "hard",
+      "question": "Nêu một application và check đi kèm.",
+      "answer": "Phân cụm trạng thái vận hành từ telemetry nhiều cảm biến. Check: metric/scale/seed/assumption/stability.",
+      "reviewPackId": "E24-MM103-T01-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t02",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E24-MM103-T02-cosine-angular-neighborhood",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "cosine-angular-neighborhood"
+      ],
+      "sourceAnchors": [
+        "m_m103_t02",
+        "m_m103",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T02-Q001",
+      "level": "easy",
+      "question": "Nêu mục tiêu của Cosine, angular similarity và lân cận gần nhất.",
+      "answer": "So mẫu rung hoặc embedding trạng thái máy theo hướng đặc trưng.",
+      "reviewPackId": "E24-MM103-T02-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t02",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E24-MM103-T02-cosine-angular-neighborhood",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "cosine-angular-neighborhood"
+      ],
+      "sourceAnchors": [
+        "m_m103_t02",
+        "m_m103",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T02-Q002",
+      "level": "easy",
+      "question": "Viết Cosine similarity.",
+      "answer": "cos(x,y)=xᵀy/(‖x‖₂‖y‖₂)",
+      "reviewPackId": "E24-MM103-T02-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t02",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E24-MM103-T02-cosine-angular-neighborhood",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "cosine-angular-neighborhood"
+      ],
+      "sourceAnchors": [
+        "m_m103_t02",
+        "m_m103",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T02-Q003",
+      "level": "medium",
+      "question": "Ý nghĩa của Angular distance?",
+      "answer": "Chuẩn hóa góc về [0,1].",
+      "reviewPackId": "E24-MM103-T02-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t02",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E24-MM103-T02-cosine-angular-neighborhood",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "cosine-angular-neighborhood"
+      ],
+      "sourceAnchors": [
+        "m_m103_t02",
+        "m_m103",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T02-Q004",
+      "level": "medium",
+      "question": "Condition gate là gì?",
+      "answer": "Xác định rõ cần so direction hay magnitude; kiểm zero-vector và tie handling.",
+      "reviewPackId": "E24-MM103-T02-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t02",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E24-MM103-T02-cosine-angular-neighborhood",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "cosine-angular-neighborhood"
+      ],
+      "sourceAnchors": [
+        "m_m103_t02",
+        "m_m103",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T02-Q005",
+      "level": "medium",
+      "question": "Bẫy chính là gì?",
+      "answer": "Dùng cosine khi magnitude mang ý nghĩa vật lý quan trọng rồi kết luận sai về độ gần.",
+      "reviewPackId": "E24-MM103-T02-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t02",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E24-MM103-T02-cosine-angular-neighborhood",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "cosine-angular-neighborhood"
+      ],
+      "sourceAnchors": [
+        "m_m103_t02",
+        "m_m103",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T02-Q006",
+      "level": "hard",
+      "question": "Nêu một application và check đi kèm.",
+      "answer": "So mẫu rung hoặc embedding trạng thái máy theo hướng đặc trưng. Check: metric/scale/seed/assumption/stability.",
+      "reviewPackId": "E24-MM103-T02-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t03",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E24-MM103-T03-knn-density-intuition",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "knn-density-intuition"
+      ],
+      "sourceAnchors": [
+        "m_m103_t03",
+        "m_m103",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T03-Q001",
+      "level": "easy",
+      "question": "Nêu mục tiêu của KNN, local density và khoảng cách lân cận.",
+      "answer": "Tìm trạng thái tương tự và phát hiện vùng dữ liệu thưa.",
+      "reviewPackId": "E24-MM103-T03-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t03",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E24-MM103-T03-knn-density-intuition",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "knn-density-intuition"
+      ],
+      "sourceAnchors": [
+        "m_m103_t03",
+        "m_m103",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T03-Q002",
+      "level": "easy",
+      "question": "Viết k-distance.",
+      "answer": "d_k(x)=k-th smallest{d(x,xᵢ)}",
+      "reviewPackId": "E24-MM103-T03-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t03",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E24-MM103-T03-knn-density-intuition",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "knn-density-intuition"
+      ],
+      "sourceAnchors": [
+        "m_m103_t03",
+        "m_m103",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T03-Q003",
+      "level": "medium",
+      "question": "Ý nghĩa của Local density proxy?",
+      "answer": "Density proxy phụ thuộc chiều và metric.",
+      "reviewPackId": "E24-MM103-T03-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t03",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E24-MM103-T03-knn-density-intuition",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "knn-density-intuition"
+      ],
+      "sourceAnchors": [
+        "m_m103_t03",
+        "m_m103",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T03-Q004",
+      "level": "medium",
+      "question": "Condition gate là gì?",
+      "answer": "Chọn k theo độ dày dữ liệu, kích thước mẫu và độ nhiễu; không dùng một k cho mọi regime.",
+      "reviewPackId": "E24-MM103-T03-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t03",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E24-MM103-T03-knn-density-intuition",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "knn-density-intuition"
+      ],
+      "sourceAnchors": [
+        "m_m103_t03",
+        "m_m103",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T03-Q005",
+      "level": "medium",
+      "question": "Bẫy chính là gì?",
+      "answer": "Tăng k tùy ý làm mất cụm nhỏ hoặc che vùng chuyển trạng thái.",
+      "reviewPackId": "E24-MM103-T03-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t03",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E24-MM103-T03-knn-density-intuition",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "knn-density-intuition"
+      ],
+      "sourceAnchors": [
+        "m_m103_t03",
+        "m_m103",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T03-Q006",
+      "level": "hard",
+      "question": "Nêu một application và check đi kèm.",
+      "answer": "Tìm trạng thái tương tự và phát hiện vùng dữ liệu thưa. Check: metric/scale/seed/assumption/stability.",
+      "reviewPackId": "E24-MM103-T03-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t04",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E24-MM103-T04-kmeans-objective-lloyd",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "kmeans-objective-lloyd"
+      ],
+      "sourceAnchors": [
+        "m_m103_t04",
+        "m_m103",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T04-Q001",
+      "level": "easy",
+      "question": "Nêu mục tiêu của K-means: objective, centroid và Lloyd iterations.",
+      "answer": "Phân nhóm chế độ vận hành của hệ thống từ feature đã chuẩn hóa.",
+      "reviewPackId": "E24-MM103-T04-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t04",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E24-MM103-T04-kmeans-objective-lloyd",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "kmeans-objective-lloyd"
+      ],
+      "sourceAnchors": [
+        "m_m103_t04",
+        "m_m103",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T04-Q002",
+      "level": "easy",
+      "question": "Viết K-means objective.",
+      "answer": "J=Σ_i ‖x_i−μ_{c_i}‖₂²",
+      "reviewPackId": "E24-MM103-T04-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t04",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E24-MM103-T04-kmeans-objective-lloyd",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "kmeans-objective-lloyd"
+      ],
+      "sourceAnchors": [
+        "m_m103_t04",
+        "m_m103",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T04-Q003",
+      "level": "medium",
+      "question": "Ý nghĩa của Centroid update?",
+      "answer": "Mean của điểm thuộc cluster k.",
+      "reviewPackId": "E24-MM103-T04-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t04",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E24-MM103-T04-kmeans-objective-lloyd",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "kmeans-objective-lloyd"
+      ],
+      "sourceAnchors": [
+        "m_m103_t04",
+        "m_m103",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T04-Q004",
+      "level": "medium",
+      "question": "Condition gate là gì?",
+      "answer": "Dữ liệu phải được scale hợp lý; kiểm initialization, empty cluster và convergence tolerance.",
+      "reviewPackId": "E24-MM103-T04-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t04",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E24-MM103-T04-kmeans-objective-lloyd",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "kmeans-objective-lloyd"
+      ],
+      "sourceAnchors": [
+        "m_m103_t04",
+        "m_m103",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T04-Q005",
+      "level": "medium",
+      "question": "Bẫy chính là gì?",
+      "answer": "Đọc cluster ID như thứ tự tự nhiên hoặc tin một lần khởi tạo duy nhất.",
+      "reviewPackId": "E24-MM103-T04-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t04",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E24-MM103-T04-kmeans-objective-lloyd",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "kmeans-objective-lloyd"
+      ],
+      "sourceAnchors": [
+        "m_m103_t04",
+        "m_m103",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T04-Q006",
+      "level": "hard",
+      "question": "Nêu một application và check đi kèm.",
+      "answer": "Phân nhóm chế độ vận hành của hệ thống từ feature đã chuẩn hóa. Check: metric/scale/seed/assumption/stability.",
+      "reviewPackId": "E24-MM103-T04-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t05",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E24-MM103-T05-cluster-k-validation",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "cluster-k-validation"
+      ],
+      "sourceAnchors": [
+        "m_m103_t05",
+        "m_m103",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T05-Q001",
+      "level": "easy",
+      "question": "Nêu mục tiêu của Chọn số cụm k: inertia, silhouette và stability.",
+      "answer": "Chọn số trạng thái vận hành có ý nghĩa kỹ thuật.",
+      "reviewPackId": "E24-MM103-T05-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t05",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E24-MM103-T05-cluster-k-validation",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "cluster-k-validation"
+      ],
+      "sourceAnchors": [
+        "m_m103_t05",
+        "m_m103",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T05-Q002",
+      "level": "easy",
+      "question": "Viết Inertia.",
+      "answer": "W_k=Σ_i ‖x_i−μ_{c_i}‖₂²",
+      "reviewPackId": "E24-MM103-T05-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t05",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E24-MM103-T05-cluster-k-validation",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "cluster-k-validation"
+      ],
+      "sourceAnchors": [
+        "m_m103_t05",
+        "m_m103",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T05-Q003",
+      "level": "medium",
+      "question": "Ý nghĩa của Silhouette?",
+      "answer": "Trong [-1,1].",
+      "reviewPackId": "E24-MM103-T05-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t05",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E24-MM103-T05-cluster-k-validation",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "cluster-k-validation"
+      ],
+      "sourceAnchors": [
+        "m_m103_t05",
+        "m_m103",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T05-Q004",
+      "level": "medium",
+      "question": "Condition gate là gì?",
+      "answer": "Chọn k từ nhiều tín hiệu: geometry, silhouette, stability, interpretability và mục tiêu kỹ thuật.",
+      "reviewPackId": "E24-MM103-T05-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t05",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E24-MM103-T05-cluster-k-validation",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "cluster-k-validation"
+      ],
+      "sourceAnchors": [
+        "m_m103_t05",
+        "m_m103",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T05-Q005",
+      "level": "medium",
+      "question": "Bẫy chính là gì?",
+      "answer": "Chọn k chỉ vì elbow nhìn bằng mắt hoặc tối đa silhouette trên một sample duy nhất.",
+      "reviewPackId": "E24-MM103-T05-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t05",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E24-MM103-T05-cluster-k-validation",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "cluster-k-validation"
+      ],
+      "sourceAnchors": [
+        "m_m103_t05",
+        "m_m103",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T05-Q006",
+      "level": "hard",
+      "question": "Nêu một application và check đi kèm.",
+      "answer": "Chọn số trạng thái vận hành có ý nghĩa kỹ thuật. Check: metric/scale/seed/assumption/stability.",
+      "reviewPackId": "E24-MM103-T05-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t06",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E24-MM103-T06-hierarchical-linkage",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "hierarchical-linkage"
+      ],
+      "sourceAnchors": [
+        "m_m103_t06",
+        "m_m103",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T06-Q001",
+      "level": "easy",
+      "question": "Nêu mục tiêu của Hierarchical clustering, linkage và dendrogram.",
+      "answer": "Khám phá cấu trúc phân cấp giữa các trạng thái thiết bị.",
+      "reviewPackId": "E24-MM103-T06-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t06",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E24-MM103-T06-hierarchical-linkage",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "hierarchical-linkage"
+      ],
+      "sourceAnchors": [
+        "m_m103_t06",
+        "m_m103",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T06-Q002",
+      "level": "easy",
+      "question": "Viết Single linkage.",
+      "answer": "D(A,B)=min_{a∈A,b∈B} d(a,b)",
+      "reviewPackId": "E24-MM103-T06-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t06",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E24-MM103-T06-hierarchical-linkage",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "hierarchical-linkage"
+      ],
+      "sourceAnchors": [
+        "m_m103_t06",
+        "m_m103",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T06-Q003",
+      "level": "medium",
+      "question": "Ý nghĩa của Complete linkage?",
+      "answer": "Ưu tiên cụm compact.",
+      "reviewPackId": "E24-MM103-T06-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t06",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E24-MM103-T06-hierarchical-linkage",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "hierarchical-linkage"
+      ],
+      "sourceAnchors": [
+        "m_m103_t06",
+        "m_m103",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T06-Q004",
+      "level": "medium",
+      "question": "Condition gate là gì?",
+      "answer": "Metric + linkage phải phù hợp topology dữ liệu; kiểm scaling và chi phí O(n²) khi n lớn.",
+      "reviewPackId": "E24-MM103-T06-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t06",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E24-MM103-T06-hierarchical-linkage",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "hierarchical-linkage"
+      ],
+      "sourceAnchors": [
+        "m_m103_t06",
+        "m_m103",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T06-Q005",
+      "level": "medium",
+      "question": "Bẫy chính là gì?",
+      "answer": "Đọc chiều cao dendrogram như xác suất hoặc cắt cây mà không xét semantics.",
+      "reviewPackId": "E24-MM103-T06-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t06",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E24-MM103-T06-hierarchical-linkage",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "hierarchical-linkage"
+      ],
+      "sourceAnchors": [
+        "m_m103_t06",
+        "m_m103",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T06-Q006",
+      "level": "hard",
+      "question": "Nêu một application và check đi kèm.",
+      "answer": "Khám phá cấu trúc phân cấp giữa các trạng thái thiết bị. Check: metric/scale/seed/assumption/stability.",
+      "reviewPackId": "E24-MM103-T06-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t07",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E24-MM103-T07-dbscan-density-outliers",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "dbscan-density-outliers"
+      ],
+      "sourceAnchors": [
+        "m_m103_t07",
+        "m_m103",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L09-topology-metric-spaces"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T07-Q001",
+      "level": "easy",
+      "question": "Nêu mục tiêu của DBSCAN: density-connected clusters và outlier.",
+      "answer": "Tách trạng thái hiếm và vùng vận hành chính trong telemetry.",
+      "reviewPackId": "E24-MM103-T07-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t07",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E24-MM103-T07-dbscan-density-outliers",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "dbscan-density-outliers"
+      ],
+      "sourceAnchors": [
+        "m_m103_t07",
+        "m_m103",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L09-topology-metric-spaces"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T07-Q002",
+      "level": "easy",
+      "question": "Viết ε-neighborhood.",
+      "answer": "N_ε(x)={y:d(x,y)≤ε}",
+      "reviewPackId": "E24-MM103-T07-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t07",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E24-MM103-T07-dbscan-density-outliers",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "dbscan-density-outliers"
+      ],
+      "sourceAnchors": [
+        "m_m103_t07",
+        "m_m103",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L09-topology-metric-spaces"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T07-Q003",
+      "level": "medium",
+      "question": "Ý nghĩa của Core condition?",
+      "answer": "Điểm lõi nếu đủ hàng xóm.",
+      "reviewPackId": "E24-MM103-T07-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t07",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E24-MM103-T07-dbscan-density-outliers",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "dbscan-density-outliers"
+      ],
+      "sourceAnchors": [
+        "m_m103_t07",
+        "m_m103",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L09-topology-metric-spaces"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T07-Q004",
+      "level": "medium",
+      "question": "Condition gate là gì?",
+      "answer": "Tuning ε và MinPts phải dựa density/scale; kiểm cụm mật độ khác nhau và border points.",
+      "reviewPackId": "E24-MM103-T07-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t07",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E24-MM103-T07-dbscan-density-outliers",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "dbscan-density-outliers"
+      ],
+      "sourceAnchors": [
+        "m_m103_t07",
+        "m_m103",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L09-topology-metric-spaces"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T07-Q005",
+      "level": "medium",
+      "question": "Bẫy chính là gì?",
+      "answer": "Xem mọi noise point là bất thường hoặc ép DBSCAN cho dữ liệu density biến thiên mạnh.",
+      "reviewPackId": "E24-MM103-T07-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t07",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E24-MM103-T07-dbscan-density-outliers",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "dbscan-density-outliers"
+      ],
+      "sourceAnchors": [
+        "m_m103_t07",
+        "m_m103",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L09-topology-metric-spaces"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T07-Q006",
+      "level": "hard",
+      "question": "Nêu một application và check đi kèm.",
+      "answer": "Tách trạng thái hiếm và vùng vận hành chính trong telemetry. Check: metric/scale/seed/assumption/stability.",
+      "reviewPackId": "E24-MM103-T07-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t08",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E24-MM103-T08-clustering-mini-project",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "clustering-mini-project"
+      ],
+      "sourceAnchors": [
+        "m_m103_t08",
+        "m_m103",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T08-Q001",
+      "level": "easy",
+      "question": "Nêu mục tiêu của Mini-project: clustering telemetry, đánh giá và báo cáo.",
+      "answer": "Báo cáo các chế độ vận hành, drift và nhóm mẫu cần kiểm tra thủ công.",
+      "reviewPackId": "E24-MM103-T08-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t08",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E24-MM103-T08-clustering-mini-project",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "clustering-mini-project"
+      ],
+      "sourceAnchors": [
+        "m_m103_t08",
+        "m_m103",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T08-Q002",
+      "level": "easy",
+      "question": "Viết Cluster proportion.",
+      "answer": "p_k=n_k/n",
+      "reviewPackId": "E24-MM103-T08-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t08",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E24-MM103-T08-clustering-mini-project",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "clustering-mini-project"
+      ],
+      "sourceAnchors": [
+        "m_m103_t08",
+        "m_m103",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T08-Q003",
+      "level": "medium",
+      "question": "Ý nghĩa của Centroid drift?",
+      "answer": "Đo drift giữa hai batch.",
+      "reviewPackId": "E24-MM103-T08-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t08",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E24-MM103-T08-clustering-mini-project",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "clustering-mini-project"
+      ],
+      "sourceAnchors": [
+        "m_m103_t08",
+        "m_m103",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T08-Q004",
+      "level": "medium",
+      "question": "Condition gate là gì?",
+      "answer": "Pipeline phải giữ provenance: split/fit transform/seed/metric/k hoặc ε-MinPts và mapping cluster→diễn giải.",
+      "reviewPackId": "E24-MM103-T08-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t08",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E24-MM103-T08-clustering-mini-project",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "clustering-mini-project"
+      ],
+      "sourceAnchors": [
+        "m_m103_t08",
+        "m_m103",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T08-Q005",
+      "level": "medium",
+      "question": "Bẫy chính là gì?",
+      "answer": "Đặt tên cụm theo cảm tính rồi dùng như nhãn ground-truth.",
+      "reviewPackId": "E24-MM103-T08-RP01"
+    },
+    {
+      "logicalModuleId": "m_m103",
+      "frameworkChapterId": "m_m103",
+      "logicalLessonId": "m_m103_t08",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E24-MM103-T08-clustering-mini-project",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "similarity clustering",
+        "m_m103",
+        "clustering-mini-project"
+      ],
+      "sourceAnchors": [
+        "m_m103_t08",
+        "m_m103",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E24_AUTHORED",
+      "questionId": "E24-MM103-T08-Q006",
+      "level": "hard",
+      "question": "Nêu một application và check đi kèm.",
+      "answer": "Báo cáo các chế độ vận hành, drift và nhóm mẫu cần kiểm tra thủ công. Check: metric/scale/seed/assumption/stability.",
+      "reviewPackId": "E24-MM103-T08-RP01"
     }
   ],
   "importPolicy": {
@@ -11468,6 +12716,14 @@
         "e17Regression": "PASS",
         "universalConstitution": "PASS"
       }
+    },
+    "E24": {
+      "status": "MATERIALIZED_PENDING_CI",
+      "frameworkChapterId": "m_m103",
+      "logicalModuleId": "m_m103",
+      "records": 48,
+      "updatedAt": "2026-09-28",
+      "branch": "feat/math-e24-hk1-similarity-clustering-20260928"
     }
   }
 }
