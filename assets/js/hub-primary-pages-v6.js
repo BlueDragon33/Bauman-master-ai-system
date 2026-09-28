@@ -23,7 +23,7 @@
   }
 
   function decorateSubjects(){
-    const host=q('#page-subjects .canva-subjects-page');
+    const host=q('#page-subjects .subjects-page')||q('#page-subjects .canva-subjects-page');
     if(!host)return false;
     const s=S();
     const current=s.subjects?.[s.subject]||Object.values(s.subjects||{})[0]||{};
@@ -48,7 +48,7 @@
   }
 
   function decorateSchedule(){
-    const host=q('#page-schedule .schedule-page');
+    const host=q('#page-schedule .schedule-ref-page')||q('#page-schedule .schedule-page');
     if(!host)return false;
     const s=S(),sc=s.schedule||{};
     const result=A()?.scheduleProgress?.()||{filled:0,total:0,pct:0};
@@ -69,7 +69,7 @@
   }
 
   function decorateResearch(){
-    const host=q('#page-research .canva-research-page');
+    const host=q('#page-research .thesis-page')||q('#page-research .canva-research-page');
     if(!host)return false;
     const checks=qa('input[type="checkbox"]',host);
     const done=checks.filter(x=>x.checked).length;
