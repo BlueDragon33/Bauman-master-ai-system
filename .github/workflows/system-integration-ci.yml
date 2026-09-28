@@ -301,36 +301,43 @@ jobs:
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-hub-responsive
+          BAUMAN_E2E_EXPECT_PLATFORM_ACCESS: "1"
         run: node tests/hub-premium-responsive-browser.mjs
       - name: Run packaged Russian capability Hub acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-russian-capability-hub
+          BAUMAN_E2E_EXPECT_PLATFORM_ACCESS: "1"
         run: node tests/russian-capability-hub-browser.mjs
       - name: Run packaged Russian capability deep-link acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-russian-capability-deeplink
+          BAUMAN_E2E_EXPECT_PLATFORM_ACCESS: "1"
         run: node tests/russian-capability-deeplink-browser.mjs
       - name: Run packaged Russian capability route receipt acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-russian-capability-route-receipt
+          BAUMAN_E2E_EXPECT_PLATFORM_ACCESS: "1"
         run: node tests/russian-capability-route-receipt-browser.mjs
       - name: Run packaged Russian capability-aware continue acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-russian-capability-continue
+          BAUMAN_E2E_EXPECT_PLATFORM_ACCESS: "1"
         run: node tests/russian-capability-continue-browser.mjs
       - name: Run packaged subject progress contract acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-subject-progress-contract
+          BAUMAN_E2E_EXPECT_PLATFORM_ACCESS: "1"
         run: node tests/subject-progress-contract-browser.mjs
       - name: Run packaged Deep Study Journal browser acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-deep-study-journal
+          BAUMAN_E2E_EXPECT_PLATFORM_ACCESS: "1"
         run: node tests/deep-study-journal-browser.mjs
       - name: Run packaged Russian true-offline shell acceptance
         env:
