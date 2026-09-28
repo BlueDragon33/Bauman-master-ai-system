@@ -17,6 +17,7 @@ const fixtureRoot=path.join(tmp,'runtime');
 const russianRoot=path.join(fixtureRoot,'subjects','russian');
 const sharedRoot=path.join(fixtureRoot,'subjects','shared');
 const foundationRoot=path.join(fixtureRoot,'foundation','domain-model');
+const platformUiRoot=path.join(fixtureRoot,'platform','ui');
 const authorityDir=path.join(russianRoot,'assets','handwriting-authority','offline-e2e');
 
 function digest(buffer){return crypto.createHash('sha256').update(buffer).digest('hex');}
@@ -46,6 +47,8 @@ fs.mkdirSync(path.dirname(sharedRoot),{recursive:true});
 fs.cpSync(path.join(SOURCE_ROOT,'subjects','shared'),sharedRoot,{recursive:true});
 fs.mkdirSync(path.dirname(foundationRoot),{recursive:true});
 fs.cpSync(path.join(SOURCE_ROOT,'foundation','domain-model'),foundationRoot,{recursive:true});
+fs.mkdirSync(path.dirname(platformUiRoot),{recursive:true});
+fs.cpSync(path.join(SOURCE_ROOT,'platform','ui'),platformUiRoot,{recursive:true});
 fs.mkdirSync(authorityDir,{recursive:true});
 
 const handwriting=JSON.parse(fs.readFileSync(path.join(russianRoot,'data','handwriting.json'),'utf8'));
