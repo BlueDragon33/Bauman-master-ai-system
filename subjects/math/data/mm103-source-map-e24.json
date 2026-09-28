@@ -1,0 +1,232 @@
+{
+  "schema": "bauman_math_logical_module_source_map_v1",
+  "recoveryId": "E24",
+  "frameworkChapterId": "m_m103",
+  "logicalModuleId": "m_m103",
+  "moduleId": "m_m103",
+  "moduleTitle": "Similarity, clustering và đánh giá cấu trúc cụm",
+  "stageId": "hk1",
+  "architecture": "framework_chapter_over_existing_hk1_multidisciplinary_spine",
+  "legacyFrameworkAlias": "MATH-HK1-CLUSTER-C16",
+  "legacyAliasPolicy": "reference_only_not_runtime_physical_chapter",
+  "status": "IMPLEMENTED_PENDING_CI",
+  "correction": {
+    "rule": "m_m103 là framework/logical HK1 chapter; không materialize legacy alias thành physical chapter.",
+    "physicalSpineTruth": [
+      "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "MATH-HK1-C24-mo_hinh_trang_thai_va_mo"
+    ]
+  },
+  "runtimeIsolation": {
+    "forbiddenProgramLectureIds": [
+      "MATH-PROG-L14-stochastic-processes-time-series"
+    ],
+    "reason": "Keep time-series ownership isolated from HK1 similarity/clustering batch.",
+    "status": "PENDING_CI"
+  },
+  "logicalLessons": [
+    {
+      "logicalId": "m_m103_t01",
+      "title": "Chọn metric, scale và geometry trước clustering",
+      "physicalChapterIds": [
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t"
+      ],
+      "runtimeChapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "theoryLessonIds": [
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E24-MM103-T01-metric-choice-scaling"
+      ],
+      "programLectureId": "MATH-PROG-L09-topology-metric-spaces",
+      "programLectureIds": [
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E24",
+      "prerequisiteLogicalIds": [
+        "m_m102_t08"
+      ]
+    },
+    {
+      "logicalId": "m_m103_t02",
+      "title": "Cosine, angular similarity và lân cận gần nhất",
+      "physicalChapterIds": [
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t"
+      ],
+      "runtimeChapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "theoryLessonIds": [
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E24-MM103-T02-cosine-angular-neighborhood"
+      ],
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "programLectureIds": [
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E24",
+      "prerequisiteLogicalIds": [
+        "m_m103_t01"
+      ]
+    },
+    {
+      "logicalId": "m_m103_t03",
+      "title": "KNN, local density và khoảng cách lân cận",
+      "physicalChapterIds": [
+        "MATH-HK1-C21-entropy_thong_tin_va_pha"
+      ],
+      "runtimeChapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "theoryLessonIds": [
+        "MATH-HK1-C21-entropy_thong_tin_va_pha-E24-MM103-T03-knn-density-intuition"
+      ],
+      "programLectureId": "MATH-PROG-L09-topology-metric-spaces",
+      "programLectureIds": [
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E24",
+      "prerequisiteLogicalIds": [
+        "m_m103_t02"
+      ]
+    },
+    {
+      "logicalId": "m_m103_t04",
+      "title": "K-means: objective, centroid và Lloyd iterations",
+      "physicalChapterIds": [
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo"
+      ],
+      "runtimeChapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "theoryLessonIds": [
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E24-MM103-T04-kmeans-objective-lloyd"
+      ],
+      "programLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+      "programLectureIds": [
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E24",
+      "prerequisiteLogicalIds": [
+        "m_m103_t03"
+      ]
+    },
+    {
+      "logicalId": "m_m103_t05",
+      "title": "Chọn số cụm k: inertia, silhouette và stability",
+      "physicalChapterIds": [
+        "MATH-HK1-C21-entropy_thong_tin_va_pha"
+      ],
+      "runtimeChapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "theoryLessonIds": [
+        "MATH-HK1-C21-entropy_thong_tin_va_pha-E24-MM103-T05-cluster-k-validation"
+      ],
+      "programLectureId": "MATH-PROG-L13-mathematical-statistics",
+      "programLectureIds": [
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E24",
+      "prerequisiteLogicalIds": [
+        "m_m103_t04"
+      ]
+    },
+    {
+      "logicalId": "m_m103_t06",
+      "title": "Hierarchical clustering, linkage và dendrogram",
+      "physicalChapterIds": [
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t"
+      ],
+      "runtimeChapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "theoryLessonIds": [
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E24-MM103-T06-hierarchical-linkage"
+      ],
+      "programLectureId": "MATH-PROG-L09-topology-metric-spaces",
+      "programLectureIds": [
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E24",
+      "prerequisiteLogicalIds": [
+        "m_m103_t05"
+      ]
+    },
+    {
+      "logicalId": "m_m103_t07",
+      "title": "DBSCAN: density-connected clusters và outlier",
+      "physicalChapterIds": [
+        "MATH-HK1-C21-entropy_thong_tin_va_pha"
+      ],
+      "runtimeChapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "theoryLessonIds": [
+        "MATH-HK1-C21-entropy_thong_tin_va_pha-E24-MM103-T07-dbscan-density-outliers"
+      ],
+      "programLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+      "programLectureIds": [
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L09-topology-metric-spaces"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E24",
+      "prerequisiteLogicalIds": [
+        "m_m103_t06"
+      ]
+    },
+    {
+      "logicalId": "m_m103_t08",
+      "title": "Mini-project: clustering telemetry, đánh giá và báo cáo",
+      "physicalChapterIds": [
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo"
+      ],
+      "runtimeChapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "theoryLessonIds": [
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E24-MM103-T08-clustering-mini-project"
+      ],
+      "programLectureId": "MATH-PROG-L16-numerical-methods-computing",
+      "programLectureIds": [
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "coverage": "AUTHORED_MODERN_THEORY_E24",
+      "prerequisiteLogicalIds": [
+        "m_m103_t07"
+      ]
+    }
+  ],
+  "renderGate": {
+    "formulaBlockOnly": true,
+    "matrixBlockOnly": true,
+    "noRawLatex": true,
+    "noCodeStyleFormula": true,
+    "hideSearchMeta": true
+  },
+  "contentGate": {
+    "requiredLogicalLessons": 8,
+    "expected": {
+      "theorySlides": 160,
+      "formulas": 24,
+      "exercises": 64,
+      "applications": 16,
+      "simulations": 16,
+      "professorQA": 8,
+      "questions": 48,
+      "reviewPacks": 8
+    },
+    "requiredSlideRoles": [
+      "notation_formula",
+      "matrix_example",
+      "condition_gate",
+      "data_contract",
+      "worked_example",
+      "computational_check",
+      "data_leakage_gate",
+      "warning_counterexample",
+      "error_repair",
+      "exit_ticket"
+    ],
+    "completionRule": "PASS only when counts, routing, render integrity and HK1 runtime/browser regressions pass."
+  },
+  "constitutionalEvidence": {
+    "policyVersion": "1.1.0",
+    "blueprintLevel": "B4",
+    "qualityGate": "canonical-quality-gates",
+    "productionAuthority": "separate"
+  },
+  "verifiedAt": null,
+  "pr": null,
+  "gateResults": {}
+}
