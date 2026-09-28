@@ -13,7 +13,7 @@ const formula=read("subjects/math/assets/math-formula-library.js");if(!formula.i
 const rows=(json("subjects/math/data/theory_lecture_content.json").records||[]).filter(r=>r?.sourceAnchors?.logicalModuleId==="m_s03");
 if(rows.length!==8)fail("runtime expected 8 m_s03 lessons");
 for(const r of rows){
- if(!r.programLectureIds?.includes("MATH-PROG-L12-probability-random-variables")||!r.programLectureIds?.includes("MATH-PROG-L13-mathematical-statistics"))fail("not addressable from both L12/L13: "+r.lessonId);
+ if(!r.programLectureIds?.includes("MATH-PROG-L12-probability-random-variables")||!r.programLectureIds?.includes("MATH-PROG-L13-mathematical-statistics"))fail("not addressable from both L12/L13: "+r.lessonId);\n if(r.programLectureIds?.includes("MATH-PROG-L14-stochastic-processes-time-series"))fail("E20 leaked into E17/L14 route: "+r.lessonId);
  if(!/^MATH-PREP-C(15|16)-/.test(r.chapterId||""))fail("unexpected physical chapter: "+r.chapterId);
  if(r.chapterId==="MATH-PREP-PS-C11")fail("legacy alias leaked into runtime");
 }
