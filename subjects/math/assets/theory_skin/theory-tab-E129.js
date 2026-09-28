@@ -570,8 +570,17 @@
   function openTheoryVault(){
     var st=state(); st.view='storage'; st.storageDomain='theory'; st.storageFile=CONTRACT.storageRoute.defaultContentFile; st.storageFrameFile=CONTRACT.storageRoute.defaultFrameFile; st.storageContentFile=CONTRACT.storageRoute.defaultContentFile; st.storageLegacyFile=CONTRACT.storageRoute.legacyFile; save(); renderStorage(); return st;
   }
+  function externalPrimaryRouteOwnsView(){
+    return !!(document.body && (
+      document.body.classList.contains('math-roadmap-active') ||
+      document.body.classList.contains('math-chapter-overview-active')
+    ));
+  }
   function render(){
     applyAdapterMetadata(); buildHostNav(); suppressLegacyImporter();
+    // The learner navigation owns #view while Roadmap/Chapter Overview is active.
+    // Deferred E129 startup renders must fail closed instead of stealing the route.
+    if(externalPrimaryRouteOwnsView()) return false;
     if(state().view==='storage' && state().storageDomain==='theory') return renderStorage();
     if(isE169ActivityState()) return renderE169Activity();
     if(shouldRenderE129()) return renderTheory();
