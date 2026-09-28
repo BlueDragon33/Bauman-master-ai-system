@@ -3589,6 +3589,654 @@
       "title": "Comparison delta",
       "formula": "Δmetric = metric_new − metric_baseline",
       "meaning": "Báo cải tiến so với baseline cùng protocol."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E22-MS05-T01-linear-algebra-synthesis",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "linear-algebra-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t01",
+        "m_s05",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "formulaId": "E22-M_S05_T01-F01",
+      "title": "Hệ tuyến tính",
+      "formula": "Ax = b",
+      "meaning": "Khóa kích thước A, x, b trước khi biến đổi."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E22-MS05-T01-linear-algebra-synthesis",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "linear-algebra-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t01",
+        "m_s05",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "formulaId": "E22-M_S05_T01-F02",
+      "title": "Điều kiện nghiệm duy nhất",
+      "formula": "rank(A)=rank([A|b])=n",
+      "meaning": "Với n ẩn; cần diễn giải đúng điều kiện hạng."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E22-MS05-T01-linear-algebra-synthesis",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "linear-algebra-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t01",
+        "m_s05",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "formulaId": "E22-M_S05_T01-F03",
+      "title": "Chiếu trực giao",
+      "formula": "p = (uᵀv / uᵀu)u",
+      "meaning": "Dùng khi ôn projection và trực giao; u ≠ 0."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t02",
+      "lessonId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_-E22-MS05-T02-calculus-optimization-synthesis",
+      "chapterId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "calculus-optimization-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t02",
+        "m_s05",
+        "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L04-single-variable-analysis",
+        "MATH-PROG-L05-multivariable-analysis-differential-geometry"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "formulaId": "E22-M_S05_T02-F01",
+      "title": "Điểm tới hạn",
+      "formula": "∇f(x*) = 0",
+      "meaning": "Điều kiện cần cho cực trị trong miền trong khi f khả vi."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t02",
+      "lessonId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_-E22-MS05-T02-calculus-optimization-synthesis",
+      "chapterId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "calculus-optimization-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t02",
+        "m_s05",
+        "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L04-single-variable-analysis",
+        "MATH-PROG-L05-multivariable-analysis-differential-geometry"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "formulaId": "E22-M_S05_T02-F02",
+      "title": "Đạo hàm một biến",
+      "formula": "f′(x*) = 0",
+      "meaning": "Điểm ứng viên; phải kiểm tra miền và loại cực trị."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t02",
+      "lessonId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_-E22-MS05-T02-calculus-optimization-synthesis",
+      "chapterId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "calculus-optimization-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t02",
+        "m_s05",
+        "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L04-single-variable-analysis",
+        "MATH-PROG-L05-multivariable-analysis-differential-geometry"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "formulaId": "E22-M_S05_T02-F03",
+      "title": "Lagrange",
+      "formula": "∇f = λ∇g",
+      "meaning": "Cho ràng buộc g(x)=0 với điều kiện chính quy phù hợp."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t03",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E22-MS05-T03-probability-bayes-synthesis",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "probability-bayes-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t03",
+        "m_s05",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "formulaId": "E22-M_S05_T03-F01",
+      "title": "Xác suất có điều kiện",
+      "formula": "P(A|B)=P(A∩B)/P(B)",
+      "meaning": "Yêu cầu P(B)>0."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t03",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E22-MS05-T03-probability-bayes-synthesis",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "probability-bayes-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t03",
+        "m_s05",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "formulaId": "E22-M_S05_T03-F02",
+      "title": "Độc lập",
+      "formula": "P(A∩B)=P(A)P(B)",
+      "meaning": "Không được đồng nhất độc lập với xung khắc."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t03",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E22-MS05-T03-probability-bayes-synthesis",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "probability-bayes-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t03",
+        "m_s05",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "formulaId": "E22-M_S05_T03-F03",
+      "title": "Bayes",
+      "formula": "P(Hᵢ|E)=P(E|Hᵢ)P(Hᵢ)/ΣⱼP(E|Hⱼ)P(Hⱼ)",
+      "meaning": "Mẫu số là xác suất bằng chứng theo phân hoạch giả thuyết."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t04",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E22-MS05-T04-random-variable-distribution-synthesis",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "random-variable-distribution-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t04",
+        "m_s05",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "formulaId": "E22-M_S05_T04-F01",
+      "title": "Kỳ vọng rời rạc",
+      "formula": "E[X]=Σ x·P(X=x)",
+      "meaning": "Tổng trên mọi giá trị có xác suất dương."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t04",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E22-MS05-T04-random-variable-distribution-synthesis",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "random-variable-distribution-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t04",
+        "m_s05",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "formulaId": "E22-M_S05_T04-F02",
+      "title": "Phương sai",
+      "formula": "Var(X)=E[X²]−(E[X])²",
+      "meaning": "Không âm; đơn vị bình phương."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t04",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E22-MS05-T04-random-variable-distribution-synthesis",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "random-variable-distribution-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t04",
+        "m_s05",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "formulaId": "E22-M_S05_T04-F03",
+      "title": "Chuẩn hóa chuẩn",
+      "formula": "Z=(X−μ)/σ",
+      "meaning": "Yêu cầu σ>0; Z vô thứ nguyên."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t05",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E22-MS05-T05-statistics-inference-synthesis",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "statistics-inference-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t05",
+        "m_s05",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "formulaId": "E22-M_S05_T05-F01",
+      "title": "Trung bình mẫu",
+      "formula": "x̄=(1/n)Σxᵢ",
+      "meaning": "Ước lượng vị trí trung tâm từ mẫu."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t05",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E22-MS05-T05-statistics-inference-synthesis",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "statistics-inference-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t05",
+        "m_s05",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "formulaId": "E22-M_S05_T05-F02",
+      "title": "CI mean, σ biết",
+      "formula": "x̄ ± z_(1−α/2)·σ/√n",
+      "meaning": "Yêu cầu giả thiết phù hợp hoặc n đủ lớn."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t05",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E22-MS05-T05-statistics-inference-synthesis",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "statistics-inference-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t05",
+        "m_s05",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "formulaId": "E22-M_S05_T05-F03",
+      "title": "Z statistic",
+      "formula": "z=(x̄−μ₀)/(σ/√n)",
+      "meaning": "So theo H₀; không diễn giải p-value là P(H₀ đúng)."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t06",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E22-MS05-T06-russian-mixed-problem-recognition",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "russian-mixed-problem-recognition"
+      ],
+      "sourceAnchors": [
+        "m_s05_t06",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "formulaId": "E22-M_S05_T06-F01",
+      "title": "Dấu hiệu đại số",
+      "formula": "Ax=b",
+      "meaning": "Có ma trận/hệ tuyến tính → kiểm linear algebra."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t06",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E22-MS05-T06-russian-mixed-problem-recognition",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "russian-mixed-problem-recognition"
+      ],
+      "sourceAnchors": [
+        "m_s05_t06",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "formulaId": "E22-M_S05_T06-F02",
+      "title": "Dấu hiệu tối ưu",
+      "formula": "∇f=0",
+      "meaning": "Có максимум/минимум/экстремум → kiểm calculus/optimization."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t06",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E22-MS05-T06-russian-mixed-problem-recognition",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "russian-mixed-problem-recognition"
+      ],
+      "sourceAnchors": [
+        "m_s05_t06",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "formulaId": "E22-M_S05_T06-F03",
+      "title": "Dấu hiệu xác suất",
+      "formula": "P(A|B)",
+      "meaning": "Có вероятность/событие/условие → kiểm probability/statistics."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t07",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E22-MS05-T07-exam-solution-presentation",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "exam-solution-presentation"
+      ],
+      "sourceAnchors": [
+        "m_s05_t07",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "formulaId": "E22-M_S05_T07-F01",
+      "title": "Kiểm đại số",
+      "formula": "Ax−b=0",
+      "meaning": "Sau nghiệm hệ, thế ngược là bước kiểm độc lập."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t07",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E22-MS05-T07-exam-solution-presentation",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "exam-solution-presentation"
+      ],
+      "sourceAnchors": [
+        "m_s05_t07",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "formulaId": "E22-M_S05_T07-F02",
+      "title": "Kiểm cực trị",
+      "formula": "f′(x*)=0",
+      "meaning": "Ghi điều kiện cần trước khi phân loại điểm."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t07",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E22-MS05-T07-exam-solution-presentation",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "exam-solution-presentation"
+      ],
+      "sourceAnchors": [
+        "m_s05_t07",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "formulaId": "E22-M_S05_T07-F03",
+      "title": "Quy tắc quyết định kiểm định",
+      "formula": "p<α ⇒ отклонить H₀",
+      "meaning": "Chỉ dùng sau khi giả thiết và test statistic hợp lệ."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t08",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E22-MS05-T08-mock-exam-error-map",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "mock-exam-error-map"
+      ],
+      "sourceAnchors": [
+        "m_s05_t08",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "formulaId": "E22-M_S05_T08-F01",
+      "title": "Điểm có trọng số",
+      "formula": "S=Σ wᵢsᵢ",
+      "meaning": "Σwᵢ=1; tách kiến thức, trình bày, kiểm tra."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t08",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E22-MS05-T08-mock-exam-error-map",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "mock-exam-error-map"
+      ],
+      "sourceAnchors": [
+        "m_s05_t08",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "formulaId": "E22-M_S05_T08-F02",
+      "title": "Tỷ lệ lỗi theo nhóm",
+      "formula": "r_k = e_k / n_k",
+      "meaning": "Theo dõi loại lỗi k thay vì chỉ tổng điểm."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t08",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E22-MS05-T08-mock-exam-error-map",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "mock-exam-error-map"
+      ],
+      "sourceAnchors": [
+        "m_s05_t08",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "formulaId": "E22-M_S05_T08-F03",
+      "title": "Ngân sách thời gian",
+      "formula": "T=Σ tᵢ + T_check",
+      "meaning": "Luôn chừa block thời gian cuối để kiểm đáp án và ký hiệu."
     }
   ],
   "importPolicy": {

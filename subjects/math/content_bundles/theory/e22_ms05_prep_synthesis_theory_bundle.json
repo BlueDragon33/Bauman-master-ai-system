@@ -1,0 +1,3048 @@
+{
+  "schema": "bauman_math_content_bundle_v1",
+  "bundleId": "e22_ms05_prep_synthesis_theory_bundle",
+  "frameworkChapterId": "m_s05",
+  "moduleId": "m_s05",
+  "records": [
+    {
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E22-MS05-T01-linear-algebra-synthesis",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "lessonTitle": "m_s05 · §2.1 · Bài tổng hợp đại số tuyến tính: vector, ma trận và hệ phương trình",
+      "title": "m_s05 · §2.1 · Bài tổng hợp đại số tuyến tính: vector, ma trận và hệ phương trình",
+      "programLectureId": "MATH-PROG-L01-linear-algebra-basic",
+      "programLectureIds": [
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "roadmapRole": "m_s05_t01",
+      "baumanFocus": "Preparatory synthesis gate before HK1: algebra, calculus/optimization, probability/statistics, Russian technical reading, exam presentation and error-map remediation.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_s05",
+        "frameworkChapterId": "m_s05",
+        "legacyFrameworkChapterAlias": "MATH-PREP-PS-C13",
+        "logicalLessonId": "m_s05_t01",
+        "frameworkAnchor": "m_s05_t01",
+        "programLectureId": "MATH-PROG-L01-linear-algebra-basic",
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e22_prep_synthesis_authoring"
+      },
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "linear-algebra-synthesis"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_s05 · §2.1 · Bài tổng hợp đại số tuyến tính: vector, ma trận và hệ phương trình",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "E22 là cổng tổng hợp cuối giai đoạn dự bị: ưu tiên nhận dạng đúng dạng bài, lời giải kiểm chứng được và diễn đạt Nga kỹ thuật."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Giải và bảo vệ «Bài tổng hợp đại số tuyến tính: vector, ma trận và hệ phương trình» trong điều kiện kiểm tra/seminar trước HK1."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài",
+              "items": [
+                "Nhận dạng đúng dạng bài trước khi tính.",
+                "Viết đúng công thức và điều kiện áp dụng.",
+                "Giải một ví dụ nhỏ có bước kiểm.",
+                "Trình bày kết luận Nga kỹ thuật ngắn gọn.",
+                "Gắn lỗi sai vào bản đồ lỗi cá nhân."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Thuật ngữ",
+              "items": [
+                "ве́ктор — vector — vector",
+                "матри́ца — ma trận — matrix",
+                "систе́ма уравне́ний — hệ phương trình — system of equations",
+                "ра́нг — hạng — rank",
+                "определи́тель — định thức — determinant",
+                "лине́йная незави́симость — độc lập tuyến tính — linear independence",
+                "реше́ние — nghiệm/lời giải — solution",
+                "прове́рка — kiểm tra — verification"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "task_recognition",
+          "title": "Nhận dạng dạng bài",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cổng nhận dạng",
+              "body": "Nhận dạng dạng bài → ghi shape → chọn Gauss/rank/projection → tính → thế ngược → kết luận bằng câu hoàn chỉnh."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Không tính trước khi biết",
+              "items": [
+                "động từ nhiệm vụ",
+                "đại lượng/đối tượng toán",
+                "điều kiện/giả thiết",
+                "loại kết luận cần trả"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Hệ tuyến tính",
+              "body": "Ax = b\nKhóa kích thước A, x, b trước khi biến đổi."
+            },
+            {
+              "type": "formula",
+              "title": "Điều kiện nghiệm duy nhất",
+              "body": "rank(A)=rank([A|b])=n\nVới n ẩn; cần diễn giải đúng điều kiện hạng."
+            },
+            {
+              "type": "formula",
+              "title": "Chiếu trực giao",
+              "body": "p = (uᵀv / uᵀu)u\nDùng khi ôn projection và trực giao; u ≠ 0."
+            }
+          ]
+        },
+        {
+          "role": "matrix_example",
+          "title": "Ma trận / cấu trúc mẫu",
+          "blocks": [
+            {
+              "type": "matrix",
+              "title": "Ma trận mở rộng mẫu",
+              "body": "[A|b] = [[1,2|5],[2,5|12]]",
+              "meaning": "Giữ rõ phần hệ số và vế phải khi khử Gauss."
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Xác định đúng kích thước, rank và mục tiêu bài toán trước khi chọn phép biến đổi; mọi nghiệm phải được thế ngược để kiểm."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Miền/đối tượng xác định rõ.",
+                "Giả thiết của công thức được kiểm.",
+                "Ký hiệu và đơn vị nhất quán.",
+                "Có bước sanity-check hoặc thế ngược."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Đề",
+              "body": "Cho A=[[1,2],[2,5]], b=[5,12]. Lập ma trận mở rộng, khử Gauss, tìm x và thế ngược."
+            },
+            {
+              "type": "text",
+              "title": "Định hướng",
+              "body": "Nhận dạng dạng bài → ghi shape → chọn Gauss/rank/projection → tính → thế ngược → kết luận bằng câu hoàn chỉnh."
+            }
+          ]
+        },
+        {
+          "role": "worked_solution",
+          "title": "Khung lời giải",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Trình tự",
+              "items": [
+                "1. Viết Дано và mục tiêu.",
+                "2. Chọn miền toán/phương pháp.",
+                "3. Ghi công thức + điều kiện.",
+                "4. Tính có kiểm soát.",
+                "5. Kiểm kết quả.",
+                "6. Viết Ответ."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_problem_reading",
+          "title": "Đọc đề Nga",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tín hiệu cần bắt",
+              "items": [
+                "ве́ктор — vector — vector",
+                "матри́ца — ma trận — matrix",
+                "систе́ма уравне́ний — hệ phương trình — system of equations",
+                "ра́нг — hạng — rank"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Quy tắc",
+              "body": "Dịch cấu trúc toán trước, không dịch từng từ rời rạc rồi đoán công thức."
+            }
+          ]
+        },
+        {
+          "role": "solution_strategy",
+          "title": "Chiến lược kiểm tra",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Method",
+              "body": "Nhận dạng dạng bài → ghi shape → chọn Gauss/rank/projection → tính → thế ngược → kết luận bằng câu hoàn chỉnh."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Điểm dừng bắt buộc",
+              "items": [
+                "sau nhận dạng",
+                "sau chọn công thức",
+                "sau phép tính chính",
+                "trước kết luận"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_response",
+          "title": "Mẫu trả lời tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ответ",
+              "body": "Сначала определим размеры матрицы и проверим ранг. После преобразований получаем решение и подстановкой проверяем его."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy sư phạm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Tính đúng phép khử Gauss nhưng quên kiểm tra hạng hoặc diễn giải số nghiệm."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi có hệ thống",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Nếu sai",
+              "items": [
+                "Gắn mã lỗi: READ / MODEL / FORMULA / CALC / CONDITION / RUS / CHECK.",
+                "Xác định bước đầu tiên sai, không chỉ sửa con số cuối.",
+                "Làm lại một bài biến thể ngắn.",
+                "Ghi câu Nga/công thức đúng vào review pack."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "cross_topic_transfer",
+          "title": "Liên kết sang HK1",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Transfer",
+              "items": [
+                "Hiệu chỉnh tham số mô hình tuyến tính từ hai phép đo.",
+                "Kiểm tra tính khả giải của hệ ràng buộc trong bài điều khiển."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mô phỏng nên quan sát gì",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Controls/Readouts",
+              "items": [
+                "đổi dữ kiện hoặc tham số",
+                "hiện bước nhận dạng/phương pháp",
+                "so đáp án trước–sau kiểm",
+                "hiện mã lỗi khi chọn sai điều kiện"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "self_check",
+          "title": "Tự kiểm nhanh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "4 câu",
+              "items": [
+                "Tôi có biết bài thuộc miền nào không?",
+                "Tôi có nói được điều kiện của công thức không?",
+                "Tôi có bước kiểm độc lập không?",
+                "Tôi có thể nói kết luận bằng tiếng Nga không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "oral_defense",
+          "title": "Vấn đáp",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Câu hỏi giảng viên",
+              "body": "Vì sao nghiệm số đúng chưa đủ nếu không kiểm tra rank?"
+            },
+            {
+              "type": "text",
+              "title": "Ý trả lời",
+              "body": "Vì rank quyết định cấu trúc tập nghiệm; một phép tính riêng lẻ không thay thế điều kiện tồn tại/duy nhất."
+            }
+          ]
+        },
+        {
+          "role": "exam_rubric",
+          "title": "Rubric kiểm tra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Chấm theo 5 trục",
+              "items": [
+                "Nhận dạng đúng dạng bài.",
+                "Công thức/điều kiện đúng.",
+                "Biến đổi/tính toán kiểm chứng được.",
+                "Kết luận khớp câu hỏi.",
+                "Tiếng Nga/ký hiệu đủ rõ để bảo vệ."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Exit ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Trước khi qua bài",
+              "items": [
+                "Viết 3 thuật ngữ Nga trọng tâm.",
+                "Viết 1 công thức và điều kiện.",
+                "Nêu 1 bẫy dễ mắc.",
+                "Nói 1 câu Ответ.",
+                "Gắn readiness: green / amber / red."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_-E22-MS05-T02-calculus-optimization-synthesis",
+      "chapterId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+      "lessonTitle": "m_s05 · §2.2 · Bài tổng hợp giải tích và tối ưu nhập môn",
+      "title": "m_s05 · §2.2 · Bài tổng hợp giải tích và tối ưu nhập môn",
+      "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization",
+      "programLectureIds": [
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L04-single-variable-analysis",
+        "MATH-PROG-L05-multivariable-analysis-differential-geometry"
+      ],
+      "roadmapRole": "m_s05_t02",
+      "baumanFocus": "Preparatory synthesis gate before HK1: algebra, calculus/optimization, probability/statistics, Russian technical reading, exam presentation and error-map remediation.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_s05",
+        "frameworkChapterId": "m_s05",
+        "legacyFrameworkChapterAlias": "MATH-PREP-PS-C13",
+        "logicalLessonId": "m_s05_t02",
+        "frameworkAnchor": "m_s05_t02",
+        "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization",
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e22_prep_synthesis_authoring"
+      },
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "calculus-optimization-synthesis"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_s05 · §2.2 · Bài tổng hợp giải tích và tối ưu nhập môn",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "E22 là cổng tổng hợp cuối giai đoạn dự bị: ưu tiên nhận dạng đúng dạng bài, lời giải kiểm chứng được và diễn đạt Nga kỹ thuật."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Giải và bảo vệ «Bài tổng hợp giải tích và tối ưu nhập môn» trong điều kiện kiểm tra/seminar trước HK1."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài",
+              "items": [
+                "Nhận dạng đúng dạng bài trước khi tính.",
+                "Viết đúng công thức và điều kiện áp dụng.",
+                "Giải một ví dụ nhỏ có bước kiểm.",
+                "Trình bày kết luận Nga kỹ thuật ngắn gọn.",
+                "Gắn lỗi sai vào bản đồ lỗi cá nhân."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Thuật ngữ",
+              "items": [
+                "произво́дная — đạo hàm — derivative",
+                "градие́нт — gradient — gradient",
+                "экстре́мум — cực trị — extremum",
+                "критическая то́чка — điểm tới hạn — critical point",
+                "ограниче́ние — ràng buộc — constraint",
+                "мно́житель Лагра́нжа — nhân tử Lagrange — Lagrange multiplier",
+                "Ге́ссиан — Hessian — Hessian",
+                "ми́нимум — cực tiểu — minimum"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "task_recognition",
+          "title": "Nhận dạng dạng bài",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cổng nhận dạng",
+              "body": "Xác định miền → đạo hàm/gradient → tìm điểm ứng viên → kiểm loại cực trị → so biên nếu có → viết kết luận."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Không tính trước khi biết",
+              "items": [
+                "động từ nhiệm vụ",
+                "đại lượng/đối tượng toán",
+                "điều kiện/giả thiết",
+                "loại kết luận cần trả"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Điểm tới hạn",
+              "body": "∇f(x*) = 0\nĐiều kiện cần cho cực trị trong miền trong khi f khả vi."
+            },
+            {
+              "type": "formula",
+              "title": "Đạo hàm một biến",
+              "body": "f′(x*) = 0\nĐiểm ứng viên; phải kiểm tra miền và loại cực trị."
+            },
+            {
+              "type": "formula",
+              "title": "Lagrange",
+              "body": "∇f = λ∇g\nCho ràng buộc g(x)=0 với điều kiện chính quy phù hợp."
+            }
+          ]
+        },
+        {
+          "role": "structure_map",
+          "title": "Bản đồ cấu trúc",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Bản đồ nhận dạng",
+              "items": [
+                "Đối tượng toán đang hỏi gì?",
+                "Dữ kiện và điều kiện nào khóa phương pháp?",
+                "Cần tính, chứng minh, ước lượng hay kết luận?",
+                "Kết quả phải được kiểm theo tiêu chí nào?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Phân biệt bài một biến, nhiều biến và có ràng buộc; kiểm tra miền xác định, điểm biên và điều kiện chính quy trước khi kết luận."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Miền/đối tượng xác định rõ.",
+                "Giả thiết của công thức được kiểm.",
+                "Ký hiệu và đơn vị nhất quán.",
+                "Có bước sanity-check hoặc thế ngược."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Đề",
+              "body": "Tối thiểu f(x,y)=(x−1)²+(y−2)². Tính gradient, giải ∇f=0 và xác nhận bằng Hessian dương xác định."
+            },
+            {
+              "type": "text",
+              "title": "Định hướng",
+              "body": "Xác định miền → đạo hàm/gradient → tìm điểm ứng viên → kiểm loại cực trị → so biên nếu có → viết kết luận."
+            }
+          ]
+        },
+        {
+          "role": "worked_solution",
+          "title": "Khung lời giải",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Trình tự",
+              "items": [
+                "1. Viết Дано và mục tiêu.",
+                "2. Chọn miền toán/phương pháp.",
+                "3. Ghi công thức + điều kiện.",
+                "4. Tính có kiểm soát.",
+                "5. Kiểm kết quả.",
+                "6. Viết Ответ."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_problem_reading",
+          "title": "Đọc đề Nga",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tín hiệu cần bắt",
+              "items": [
+                "произво́дная — đạo hàm — derivative",
+                "градие́нт — gradient — gradient",
+                "экстре́мум — cực trị — extremum",
+                "критическая то́чка — điểm tới hạn — critical point"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Quy tắc",
+              "body": "Dịch cấu trúc toán trước, không dịch từng từ rời rạc rồi đoán công thức."
+            }
+          ]
+        },
+        {
+          "role": "solution_strategy",
+          "title": "Chiến lược kiểm tra",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Method",
+              "body": "Xác định miền → đạo hàm/gradient → tìm điểm ứng viên → kiểm loại cực trị → so biên nếu có → viết kết luận."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Điểm dừng bắt buộc",
+              "items": [
+                "sau nhận dạng",
+                "sau chọn công thức",
+                "sau phép tính chính",
+                "trước kết luận"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_response",
+          "title": "Mẫu trả lời tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ответ",
+              "body": "Находим критические точки из условия градиента, затем проверяем тип экстремума и ограничения задачи."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy sư phạm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Giải ∇f=0 rồi kết luận ngay cực tiểu mà không kiểm Hessian, biên hoặc giá trị so sánh."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi có hệ thống",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Nếu sai",
+              "items": [
+                "Gắn mã lỗi: READ / MODEL / FORMULA / CALC / CONDITION / RUS / CHECK.",
+                "Xác định bước đầu tiên sai, không chỉ sửa con số cuối.",
+                "Làm lại một bài biến thể ngắn.",
+                "Ghi câu Nga/công thức đúng vào review pack."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "cross_topic_transfer",
+          "title": "Liên kết sang HK1",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Transfer",
+              "items": [
+                "Tối ưu tham số mô hình để giảm sai số bình phương.",
+                "Tìm điểm vận hành cực tiểu năng lượng với một ràng buộc kỹ thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mô phỏng nên quan sát gì",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Controls/Readouts",
+              "items": [
+                "đổi dữ kiện hoặc tham số",
+                "hiện bước nhận dạng/phương pháp",
+                "so đáp án trước–sau kiểm",
+                "hiện mã lỗi khi chọn sai điều kiện"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "self_check",
+          "title": "Tự kiểm nhanh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "4 câu",
+              "items": [
+                "Tôi có biết bài thuộc miền nào không?",
+                "Tôi có nói được điều kiện của công thức không?",
+                "Tôi có bước kiểm độc lập không?",
+                "Tôi có thể nói kết luận bằng tiếng Nga không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "oral_defense",
+          "title": "Vấn đáp",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Câu hỏi giảng viên",
+              "body": "Tại sao ∇f=0 không tự động có nghĩa là cực tiểu?"
+            },
+            {
+              "type": "text",
+              "title": "Ý trả lời",
+              "body": "Vì điểm dừng có thể là cực đại hoặc yên ngựa; phải dùng Hessian, dấu đạo hàm hoặc so sánh phù hợp."
+            }
+          ]
+        },
+        {
+          "role": "exam_rubric",
+          "title": "Rubric kiểm tra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Chấm theo 5 trục",
+              "items": [
+                "Nhận dạng đúng dạng bài.",
+                "Công thức/điều kiện đúng.",
+                "Biến đổi/tính toán kiểm chứng được.",
+                "Kết luận khớp câu hỏi.",
+                "Tiếng Nga/ký hiệu đủ rõ để bảo vệ."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Exit ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Trước khi qua bài",
+              "items": [
+                "Viết 3 thuật ngữ Nga trọng tâm.",
+                "Viết 1 công thức và điều kiện.",
+                "Nêu 1 bẫy dễ mắc.",
+                "Nói 1 câu Ответ.",
+                "Gắn readiness: green / amber / red."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E22-MS05-T03-probability-bayes-synthesis",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "lessonTitle": "m_s05 · §2.3 · Bài tổng hợp xác suất: biến cố, độc lập và Bayes",
+      "title": "m_s05 · §2.3 · Bài tổng hợp xác suất: biến cố, độc lập và Bayes",
+      "programLectureId": "MATH-PROG-L12-probability-random-variables",
+      "programLectureIds": [
+        "MATH-PROG-L12-probability-random-variables"
+      ],
+      "roadmapRole": "m_s05_t03",
+      "baumanFocus": "Preparatory synthesis gate before HK1: algebra, calculus/optimization, probability/statistics, Russian technical reading, exam presentation and error-map remediation.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_s05",
+        "frameworkChapterId": "m_s05",
+        "legacyFrameworkChapterAlias": "MATH-PREP-PS-C13",
+        "logicalLessonId": "m_s05_t03",
+        "frameworkAnchor": "m_s05_t03",
+        "programLectureId": "MATH-PROG-L12-probability-random-variables",
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e22_prep_synthesis_authoring"
+      },
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "probability-bayes-synthesis"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_s05 · §2.3 · Bài tổng hợp xác suất: biến cố, độc lập và Bayes",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "E22 là cổng tổng hợp cuối giai đoạn dự bị: ưu tiên nhận dạng đúng dạng bài, lời giải kiểm chứng được và diễn đạt Nga kỹ thuật."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Giải và bảo vệ «Bài tổng hợp xác suất: biến cố, độc lập và Bayes» trong điều kiện kiểm tra/seminar trước HK1."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài",
+              "items": [
+                "Nhận dạng đúng dạng bài trước khi tính.",
+                "Viết đúng công thức và điều kiện áp dụng.",
+                "Giải một ví dụ nhỏ có bước kiểm.",
+                "Trình bày kết luận Nga kỹ thuật ngắn gọn.",
+                "Gắn lỗi sai vào bản đồ lỗi cá nhân."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Thuật ngữ",
+              "items": [
+                "собы́тие — biến cố — event",
+                "усло́вная вероя́тность — xác suất có điều kiện — conditional probability",
+                "незави́симость — độc lập — independence",
+                "совме́стные собы́тия — biến cố đồng thời — joint events",
+                "по́лная вероя́тность — xác suất toàn phần — total probability",
+                "фо́рмула Ба́йеса — công thức Bayes — Bayes formula",
+                "априо́рная вероя́тность — xác suất tiên nghiệm — prior",
+                "апостерио́рная вероя́тность — xác suất hậu nghiệm — posterior"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "task_recognition",
+          "title": "Nhận dạng dạng bài",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cổng nhận dạng",
+              "body": "Đặt biến cố → ghi prior/likelihood → kiểm phân hoạch → tính evidence → áp dụng Bayes → sanity-check kết quả trong [0,1]."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Không tính trước khi biết",
+              "items": [
+                "động từ nhiệm vụ",
+                "đại lượng/đối tượng toán",
+                "điều kiện/giả thiết",
+                "loại kết luận cần trả"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Xác suất có điều kiện",
+              "body": "P(A|B)=P(A∩B)/P(B)\nYêu cầu P(B)>0."
+            },
+            {
+              "type": "formula",
+              "title": "Độc lập",
+              "body": "P(A∩B)=P(A)P(B)\nKhông được đồng nhất độc lập với xung khắc."
+            },
+            {
+              "type": "formula",
+              "title": "Bayes",
+              "body": "P(Hᵢ|E)=P(E|Hᵢ)P(Hᵢ)/ΣⱼP(E|Hⱼ)P(Hⱼ)\nMẫu số là xác suất bằng chứng theo phân hoạch giả thuyết."
+            }
+          ]
+        },
+        {
+          "role": "structure_map",
+          "title": "Bản đồ cấu trúc",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Bản đồ nhận dạng",
+              "items": [
+                "Đối tượng toán đang hỏi gì?",
+                "Dữ kiện và điều kiện nào khóa phương pháp?",
+                "Cần tính, chứng minh, ước lượng hay kết luận?",
+                "Kết quả phải được kiểm theo tiêu chí nào?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Vẽ hoặc mô tả rõ không gian mẫu, điều kiện đang biết và phân hoạch giả thuyết; kiểm P(B)>0 và tổng xác suất bằng 1."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Miền/đối tượng xác định rõ.",
+                "Giả thiết của công thức được kiểm.",
+                "Ký hiệu và đơn vị nhất quán.",
+                "Có bước sanity-check hoặc thế ngược."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Đề",
+              "body": "Một cảm biến báo lỗi với độ nhạy 0,95; tỷ lệ lỗi thật 0,02; báo giả 0,05. Tính P(lỗi thật | báo lỗi) bằng Bayes."
+            },
+            {
+              "type": "text",
+              "title": "Định hướng",
+              "body": "Đặt biến cố → ghi prior/likelihood → kiểm phân hoạch → tính evidence → áp dụng Bayes → sanity-check kết quả trong [0,1]."
+            }
+          ]
+        },
+        {
+          "role": "worked_solution",
+          "title": "Khung lời giải",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Trình tự",
+              "items": [
+                "1. Viết Дано và mục tiêu.",
+                "2. Chọn miền toán/phương pháp.",
+                "3. Ghi công thức + điều kiện.",
+                "4. Tính có kiểm soát.",
+                "5. Kiểm kết quả.",
+                "6. Viết Ответ."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_problem_reading",
+          "title": "Đọc đề Nga",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tín hiệu cần bắt",
+              "items": [
+                "собы́тие — biến cố — event",
+                "усло́вная вероя́тность — xác suất có điều kiện — conditional probability",
+                "незави́симость — độc lập — independence",
+                "совме́стные собы́тия — biến cố đồng thời — joint events"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Quy tắc",
+              "body": "Dịch cấu trúc toán trước, không dịch từng từ rời rạc rồi đoán công thức."
+            }
+          ]
+        },
+        {
+          "role": "solution_strategy",
+          "title": "Chiến lược kiểm tra",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Method",
+              "body": "Đặt biến cố → ghi prior/likelihood → kiểm phân hoạch → tính evidence → áp dụng Bayes → sanity-check kết quả trong [0,1]."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Điểm dừng bắt buộc",
+              "items": [
+                "sau nhận dạng",
+                "sau chọn công thức",
+                "sau phép tính chính",
+                "trước kết luận"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_response",
+          "title": "Mẫu trả lời tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ответ",
+              "body": "Сначала зададим события и априорные вероятности. Затем найдём полную вероятность наблюдения и применим формулу Байеса."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy sư phạm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Nhầm P(A|B) với P(B|A), hoặc coi hai biến cố xung khắc là độc lập."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi có hệ thống",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Nếu sai",
+              "items": [
+                "Gắn mã lỗi: READ / MODEL / FORMULA / CALC / CONDITION / RUS / CHECK.",
+                "Xác định bước đầu tiên sai, không chỉ sửa con số cuối.",
+                "Làm lại một bài biến thể ngắn.",
+                "Ghi câu Nga/công thức đúng vào review pack."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "cross_topic_transfer",
+          "title": "Liên kết sang HK1",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Transfer",
+              "items": [
+                "Chẩn đoán lỗi cảm biến từ cảnh báo có false positive.",
+                "Cập nhật xác suất nguyên nhân sự cố khi có bằng chứng mới."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mô phỏng nên quan sát gì",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Controls/Readouts",
+              "items": [
+                "đổi dữ kiện hoặc tham số",
+                "hiện bước nhận dạng/phương pháp",
+                "so đáp án trước–sau kiểm",
+                "hiện mã lỗi khi chọn sai điều kiện"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "self_check",
+          "title": "Tự kiểm nhanh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "4 câu",
+              "items": [
+                "Tôi có biết bài thuộc miền nào không?",
+                "Tôi có nói được điều kiện của công thức không?",
+                "Tôi có bước kiểm độc lập không?",
+                "Tôi có thể nói kết luận bằng tiếng Nga không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "oral_defense",
+          "title": "Vấn đáp",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Câu hỏi giảng viên",
+              "body": "Vì sao base rate nhỏ có thể làm posterior thấp dù độ nhạy cao?"
+            },
+            {
+              "type": "text",
+              "title": "Ý trả lời",
+              "body": "Vì posterior phụ thuộc đồng thời likelihood và prior; khi lỗi hiếm, số false positive có thể chiếm tỷ trọng lớn."
+            }
+          ]
+        },
+        {
+          "role": "exam_rubric",
+          "title": "Rubric kiểm tra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Chấm theo 5 trục",
+              "items": [
+                "Nhận dạng đúng dạng bài.",
+                "Công thức/điều kiện đúng.",
+                "Biến đổi/tính toán kiểm chứng được.",
+                "Kết luận khớp câu hỏi.",
+                "Tiếng Nga/ký hiệu đủ rõ để bảo vệ."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Exit ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Trước khi qua bài",
+              "items": [
+                "Viết 3 thuật ngữ Nga trọng tâm.",
+                "Viết 1 công thức và điều kiện.",
+                "Nêu 1 bẫy dễ mắc.",
+                "Nói 1 câu Ответ.",
+                "Gắn readiness: green / amber / red."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E22-MS05-T04-random-variable-distribution-synthesis",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "lessonTitle": "m_s05 · §2.4 · Biến ngẫu nhiên, kỳ vọng, phương sai và phân phối thường gặp",
+      "title": "m_s05 · §2.4 · Biến ngẫu nhiên, kỳ vọng, phương sai và phân phối thường gặp",
+      "programLectureId": "MATH-PROG-L12-probability-random-variables",
+      "programLectureIds": [
+        "MATH-PROG-L12-probability-random-variables"
+      ],
+      "roadmapRole": "m_s05_t04",
+      "baumanFocus": "Preparatory synthesis gate before HK1: algebra, calculus/optimization, probability/statistics, Russian technical reading, exam presentation and error-map remediation.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_s05",
+        "frameworkChapterId": "m_s05",
+        "legacyFrameworkChapterAlias": "MATH-PREP-PS-C13",
+        "logicalLessonId": "m_s05_t04",
+        "frameworkAnchor": "m_s05_t04",
+        "programLectureId": "MATH-PROG-L12-probability-random-variables",
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e22_prep_synthesis_authoring"
+      },
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "random-variable-distribution-synthesis"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_s05 · §2.4 · Biến ngẫu nhiên, kỳ vọng, phương sai và phân phối thường gặp",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "E22 là cổng tổng hợp cuối giai đoạn dự bị: ưu tiên nhận dạng đúng dạng bài, lời giải kiểm chứng được và diễn đạt Nga kỹ thuật."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Giải và bảo vệ «Biến ngẫu nhiên, kỳ vọng, phương sai và phân phối thường gặp» trong điều kiện kiểm tra/seminar trước HK1."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài",
+              "items": [
+                "Nhận dạng đúng dạng bài trước khi tính.",
+                "Viết đúng công thức và điều kiện áp dụng.",
+                "Giải một ví dụ nhỏ có bước kiểm.",
+                "Trình bày kết luận Nga kỹ thuật ngắn gọn.",
+                "Gắn lỗi sai vào bản đồ lỗi cá nhân."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Thuật ngữ",
+              "items": [
+                "случа́йная величина́ — biến ngẫu nhiên — random variable",
+                "математи́ческое ожида́ние — kỳ vọng — expectation",
+                "диспе́рсия — phương sai — variance",
+                "сре́днее квадрати́ческое отклоне́ние — độ lệch chuẩn — standard deviation",
+                "распределе́ние — phân phối — distribution",
+                "Берну́лли — Bernoulli — Bernoulli",
+                "Пуассо́н — Poisson — Poisson",
+                "норма́льное распределе́ние — phân phối chuẩn — normal distribution"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "task_recognition",
+          "title": "Nhận dạng dạng bài",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cổng nhận dạng",
+              "body": "Xác định distribution/support → kiểm tham số → tính moment → kiểm đơn vị/range → diễn giải theo ngữ cảnh."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Không tính trước khi biết",
+              "items": [
+                "động từ nhiệm vụ",
+                "đại lượng/đối tượng toán",
+                "điều kiện/giả thiết",
+                "loại kết luận cần trả"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Kỳ vọng rời rạc",
+              "body": "E[X]=Σ x·P(X=x)\nTổng trên mọi giá trị có xác suất dương."
+            },
+            {
+              "type": "formula",
+              "title": "Phương sai",
+              "body": "Var(X)=E[X²]−(E[X])²\nKhông âm; đơn vị bình phương."
+            },
+            {
+              "type": "formula",
+              "title": "Chuẩn hóa chuẩn",
+              "body": "Z=(X−μ)/σ\nYêu cầu σ>0; Z vô thứ nguyên."
+            }
+          ]
+        },
+        {
+          "role": "structure_map",
+          "title": "Bản đồ cấu trúc",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Bản đồ nhận dạng",
+              "items": [
+                "Đối tượng toán đang hỏi gì?",
+                "Dữ kiện và điều kiện nào khóa phương pháp?",
+                "Cần tính, chứng minh, ước lượng hay kết luận?",
+                "Kết quả phải được kiểm theo tiêu chí nào?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Nhận dạng loại biến, support và tham số phân phối; kiểm tổng xác suất hoặc tích phân bằng 1 và đơn vị của mean/variance."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Miền/đối tượng xác định rõ.",
+                "Giả thiết của công thức được kiểm.",
+                "Ký hiệu và đơn vị nhất quán.",
+                "Có bước sanity-check hoặc thế ngược."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Đề",
+              "body": "X~Bernoulli(p=0,2). Tính E[X], Var(X), σ và diễn giải nếu X biểu thị một lần thiết bị lỗi."
+            },
+            {
+              "type": "text",
+              "title": "Định hướng",
+              "body": "Xác định distribution/support → kiểm tham số → tính moment → kiểm đơn vị/range → diễn giải theo ngữ cảnh."
+            }
+          ]
+        },
+        {
+          "role": "worked_solution",
+          "title": "Khung lời giải",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Trình tự",
+              "items": [
+                "1. Viết Дано và mục tiêu.",
+                "2. Chọn miền toán/phương pháp.",
+                "3. Ghi công thức + điều kiện.",
+                "4. Tính có kiểm soát.",
+                "5. Kiểm kết quả.",
+                "6. Viết Ответ."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_problem_reading",
+          "title": "Đọc đề Nga",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tín hiệu cần bắt",
+              "items": [
+                "случа́йная величина́ — biến ngẫu nhiên — random variable",
+                "математи́ческое ожида́ние — kỳ vọng — expectation",
+                "диспе́рсия — phương sai — variance",
+                "сре́днее квадрати́ческое отклоне́ние — độ lệch chuẩn — standard deviation"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Quy tắc",
+              "body": "Dịch cấu trúc toán trước, không dịch từng từ rời rạc rồi đoán công thức."
+            }
+          ]
+        },
+        {
+          "role": "solution_strategy",
+          "title": "Chiến lược kiểm tra",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Method",
+              "body": "Xác định distribution/support → kiểm tham số → tính moment → kiểm đơn vị/range → diễn giải theo ngữ cảnh."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Điểm dừng bắt buộc",
+              "items": [
+                "sau nhận dạng",
+                "sau chọn công thức",
+                "sau phép tính chính",
+                "trước kết luận"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_response",
+          "title": "Mẫu trả lời tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ответ",
+              "body": "Определяем распределение и его параметры, затем вычисляем математическое ожидание и дисперсию и интерпретируем результат."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy sư phạm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Dùng phương sai như độ lệch chuẩn hoặc quên bình phương đơn vị; áp phân phối chỉ vì tên bài quen."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi có hệ thống",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Nếu sai",
+              "items": [
+                "Gắn mã lỗi: READ / MODEL / FORMULA / CALC / CONDITION / RUS / CHECK.",
+                "Xác định bước đầu tiên sai, không chỉ sửa con số cuối.",
+                "Làm lại một bài biến thể ngắn.",
+                "Ghi câu Nga/công thức đúng vào review pack."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "cross_topic_transfer",
+          "title": "Liên kết sang HK1",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Transfer",
+              "items": [
+                "Mô hình số lỗi trong một chu kỳ vận hành.",
+                "Đánh giá mức phân tán của sai số đo quanh giá trị trung bình."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mô phỏng nên quan sát gì",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Controls/Readouts",
+              "items": [
+                "đổi dữ kiện hoặc tham số",
+                "hiện bước nhận dạng/phương pháp",
+                "so đáp án trước–sau kiểm",
+                "hiện mã lỗi khi chọn sai điều kiện"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "self_check",
+          "title": "Tự kiểm nhanh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "4 câu",
+              "items": [
+                "Tôi có biết bài thuộc miền nào không?",
+                "Tôi có nói được điều kiện của công thức không?",
+                "Tôi có bước kiểm độc lập không?",
+                "Tôi có thể nói kết luận bằng tiếng Nga không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "oral_defense",
+          "title": "Vấn đáp",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Câu hỏi giảng viên",
+              "body": "Vì sao hai biến có cùng kỳ vọng vẫn có thể rất khác nhau?"
+            },
+            {
+              "type": "text",
+              "title": "Ý trả lời",
+              "body": "Vì kỳ vọng chỉ mô tả vị trí trung tâm; phương sai, đuôi và hình dạng phân phối có thể khác mạnh."
+            }
+          ]
+        },
+        {
+          "role": "exam_rubric",
+          "title": "Rubric kiểm tra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Chấm theo 5 trục",
+              "items": [
+                "Nhận dạng đúng dạng bài.",
+                "Công thức/điều kiện đúng.",
+                "Biến đổi/tính toán kiểm chứng được.",
+                "Kết luận khớp câu hỏi.",
+                "Tiếng Nga/ký hiệu đủ rõ để bảo vệ."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Exit ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Trước khi qua bài",
+              "items": [
+                "Viết 3 thuật ngữ Nga trọng tâm.",
+                "Viết 1 công thức và điều kiện.",
+                "Nêu 1 bẫy dễ mắc.",
+                "Nói 1 câu Ответ.",
+                "Gắn readiness: green / amber / red."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E22-MS05-T05-statistics-inference-synthesis",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "lessonTitle": "m_s05 · §2.5 · Thống kê mẫu, khoảng tin cậy và kiểm định giả thuyết nhập môn",
+      "title": "m_s05 · §2.5 · Thống kê mẫu, khoảng tin cậy và kiểm định giả thuyết nhập môn",
+      "programLectureId": "MATH-PROG-L13-mathematical-statistics",
+      "programLectureIds": [
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "roadmapRole": "m_s05_t05",
+      "baumanFocus": "Preparatory synthesis gate before HK1: algebra, calculus/optimization, probability/statistics, Russian technical reading, exam presentation and error-map remediation.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_s05",
+        "frameworkChapterId": "m_s05",
+        "legacyFrameworkChapterAlias": "MATH-PREP-PS-C13",
+        "logicalLessonId": "m_s05_t05",
+        "frameworkAnchor": "m_s05_t05",
+        "programLectureId": "MATH-PROG-L13-mathematical-statistics",
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e22_prep_synthesis_authoring"
+      },
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "statistics-inference-synthesis"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_s05 · §2.5 · Thống kê mẫu, khoảng tin cậy và kiểm định giả thuyết nhập môn",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "E22 là cổng tổng hợp cuối giai đoạn dự bị: ưu tiên nhận dạng đúng dạng bài, lời giải kiểm chứng được và diễn đạt Nga kỹ thuật."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Giải và bảo vệ «Thống kê mẫu, khoảng tin cậy và kiểm định giả thuyết nhập môn» trong điều kiện kiểm tra/seminar trước HK1."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài",
+              "items": [
+                "Nhận dạng đúng dạng bài trước khi tính.",
+                "Viết đúng công thức và điều kiện áp dụng.",
+                "Giải một ví dụ nhỏ có bước kiểm.",
+                "Trình bày kết luận Nga kỹ thuật ngắn gọn.",
+                "Gắn lỗi sai vào bản đồ lỗi cá nhân."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Thuật ngữ",
+              "items": [
+                "вы́борка — mẫu — sample",
+                "вы́борочное сре́днее — trung bình mẫu — sample mean",
+                "оце́нка — ước lượng — estimate",
+                "дове́рительный интерва́л — khoảng tin cậy — confidence interval",
+                "нулева́я гипо́теза — giả thuyết không — null hypothesis",
+                "уро́вень значи́мости — mức ý nghĩa — significance level",
+                "p-значе́ние — p-value — p-value",
+                "стати́стический вы́вод — suy luận thống kê — statistical inference"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "task_recognition",
+          "title": "Nhận dạng dạng bài",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cổng nhận dạng",
+              "body": "Nêu H₀/H₁ → kiểm giả thiết → chọn statistic → tính p/CI → quyết định theo α → diễn giải thực tế."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Không tính trước khi biết",
+              "items": [
+                "động từ nhiệm vụ",
+                "đại lượng/đối tượng toán",
+                "điều kiện/giả thiết",
+                "loại kết luận cần trả"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Trung bình mẫu",
+              "body": "x̄=(1/n)Σxᵢ\nƯớc lượng vị trí trung tâm từ mẫu."
+            },
+            {
+              "type": "formula",
+              "title": "CI mean, σ biết",
+              "body": "x̄ ± z_(1−α/2)·σ/√n\nYêu cầu giả thiết phù hợp hoặc n đủ lớn."
+            },
+            {
+              "type": "formula",
+              "title": "Z statistic",
+              "body": "z=(x̄−μ₀)/(σ/√n)\nSo theo H₀; không diễn giải p-value là P(H₀ đúng)."
+            }
+          ]
+        },
+        {
+          "role": "structure_map",
+          "title": "Bản đồ cấu trúc",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Bản đồ nhận dạng",
+              "items": [
+                "Đối tượng toán đang hỏi gì?",
+                "Dữ kiện và điều kiện nào khóa phương pháp?",
+                "Cần tính, chứng minh, ước lượng hay kết luận?",
+                "Kết quả phải được kiểm theo tiêu chí nào?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Khóa population, sample, tham số cần suy luận, giả thiết độc lập/phân phối và α trước khi tính; tách statistical significance khỏi practical significance."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Miền/đối tượng xác định rõ.",
+                "Giả thiết của công thức được kiểm.",
+                "Ký hiệu và đơn vị nhất quán.",
+                "Có bước sanity-check hoặc thế ngược."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Đề",
+              "body": "n=100, x̄=10,2, σ=2, α=0,05. Tính CI 95% cho μ và diễn giải đúng theo thủ tục lấy mẫu."
+            },
+            {
+              "type": "text",
+              "title": "Định hướng",
+              "body": "Nêu H₀/H₁ → kiểm giả thiết → chọn statistic → tính p/CI → quyết định theo α → diễn giải thực tế."
+            }
+          ]
+        },
+        {
+          "role": "worked_solution",
+          "title": "Khung lời giải",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Trình tự",
+              "items": [
+                "1. Viết Дано và mục tiêu.",
+                "2. Chọn miền toán/phương pháp.",
+                "3. Ghi công thức + điều kiện.",
+                "4. Tính có kiểm soát.",
+                "5. Kiểm kết quả.",
+                "6. Viết Ответ."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_problem_reading",
+          "title": "Đọc đề Nga",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tín hiệu cần bắt",
+              "items": [
+                "вы́борка — mẫu — sample",
+                "вы́борочное сре́днее — trung bình mẫu — sample mean",
+                "оце́нка — ước lượng — estimate",
+                "дове́рительный интерва́л — khoảng tin cậy — confidence interval"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Quy tắc",
+              "body": "Dịch cấu trúc toán trước, không dịch từng từ rời rạc rồi đoán công thức."
+            }
+          ]
+        },
+        {
+          "role": "solution_strategy",
+          "title": "Chiến lược kiểm tra",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Method",
+              "body": "Nêu H₀/H₁ → kiểm giả thiết → chọn statistic → tính p/CI → quyết định theo α → diễn giải thực tế."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Điểm dừng bắt buộc",
+              "items": [
+                "sau nhận dạng",
+                "sau chọn công thức",
+                "sau phép tính chính",
+                "trước kết luận"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_response",
+          "title": "Mẫu trả lời tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ответ",
+              "body": "Формулируем нулевую и альтернативную гипотезы, выбираем уровень значимости и после проверки предпосылок делаем статистический вывод."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy sư phạm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Đọc p-value là xác suất H₀ đúng hoặc coi CI 95% nghĩa là tham số có xác suất 95% nằm trong khoảng đã tính."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi có hệ thống",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Nếu sai",
+              "items": [
+                "Gắn mã lỗi: READ / MODEL / FORMULA / CALC / CONDITION / RUS / CHECK.",
+                "Xác định bước đầu tiên sai, không chỉ sửa con số cuối.",
+                "Làm lại một bài biến thể ngắn.",
+                "Ghi câu Nga/công thức đúng vào review pack."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "cross_topic_transfer",
+          "title": "Liên kết sang HK1",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Transfer",
+              "items": [
+                "Kiểm tra mean sai số cảm biến có lệch khỏi 0 hay không.",
+                "Ước lượng khoảng cho thời gian xử lý trung bình của thuật toán."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mô phỏng nên quan sát gì",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Controls/Readouts",
+              "items": [
+                "đổi dữ kiện hoặc tham số",
+                "hiện bước nhận dạng/phương pháp",
+                "so đáp án trước–sau kiểm",
+                "hiện mã lỗi khi chọn sai điều kiện"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "self_check",
+          "title": "Tự kiểm nhanh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "4 câu",
+              "items": [
+                "Tôi có biết bài thuộc miền nào không?",
+                "Tôi có nói được điều kiện của công thức không?",
+                "Tôi có bước kiểm độc lập không?",
+                "Tôi có thể nói kết luận bằng tiếng Nga không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "oral_defense",
+          "title": "Vấn đáp",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Câu hỏi giảng viên",
+              "body": "Vì sao p-value nhỏ không cho biết hiệu ứng lớn?"
+            },
+            {
+              "type": "text",
+              "title": "Ý trả lời",
+              "body": "Vì p-value phụ thuộc cả effect size, noise và cỡ mẫu; phải xem thêm ước lượng và khoảng tin cậy."
+            }
+          ]
+        },
+        {
+          "role": "exam_rubric",
+          "title": "Rubric kiểm tra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Chấm theo 5 trục",
+              "items": [
+                "Nhận dạng đúng dạng bài.",
+                "Công thức/điều kiện đúng.",
+                "Biến đổi/tính toán kiểm chứng được.",
+                "Kết luận khớp câu hỏi.",
+                "Tiếng Nga/ký hiệu đủ rõ để bảo vệ."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Exit ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Trước khi qua bài",
+              "items": [
+                "Viết 3 thuật ngữ Nga trọng tâm.",
+                "Viết 1 công thức và điều kiện.",
+                "Nêu 1 bẫy dễ mắc.",
+                "Nói 1 câu Ответ.",
+                "Gắn readiness: green / amber / red."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E22-MS05-T06-russian-mixed-problem-recognition",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "lessonTitle": "m_s05 · §2.6 · Đọc đề tiếng Nga hỗn hợp và nhận dạng dạng bài",
+      "title": "m_s05 · §2.6 · Đọc đề tiếng Nga hỗn hợp và nhận dạng dạng bài",
+      "programLectureId": "MATH-PROG-L10-logic-set-theory-boolean",
+      "programLectureIds": [
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "roadmapRole": "m_s05_t06",
+      "baumanFocus": "Preparatory synthesis gate before HK1: algebra, calculus/optimization, probability/statistics, Russian technical reading, exam presentation and error-map remediation.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_s05",
+        "frameworkChapterId": "m_s05",
+        "legacyFrameworkChapterAlias": "MATH-PREP-PS-C13",
+        "logicalLessonId": "m_s05_t06",
+        "frameworkAnchor": "m_s05_t06",
+        "programLectureId": "MATH-PROG-L10-logic-set-theory-boolean",
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e22_prep_synthesis_authoring"
+      },
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "russian-mixed-problem-recognition"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_s05 · §2.6 · Đọc đề tiếng Nga hỗn hợp và nhận dạng dạng bài",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "E22 là cổng tổng hợp cuối giai đoạn dự bị: ưu tiên nhận dạng đúng dạng bài, lời giải kiểm chứng được và diễn đạt Nga kỹ thuật."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Giải và bảo vệ «Đọc đề tiếng Nga hỗn hợp và nhận dạng dạng bài» trong điều kiện kiểm tra/seminar trước HK1."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài",
+              "items": [
+                "Nhận dạng đúng dạng bài trước khi tính.",
+                "Viết đúng công thức và điều kiện áp dụng.",
+                "Giải một ví dụ nhỏ có bước kiểm.",
+                "Trình bày kết luận Nga kỹ thuật ngắn gọn.",
+                "Gắn lỗi sai vào bản đồ lỗi cá nhân."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Thuật ngữ",
+              "items": [
+                "да́но — đã cho — given",
+                "найти́ — tìm — find",
+                "вы́числить — tính — calculate",
+                "доказа́ть — chứng minh — prove",
+                "реши́ть — giải — solve",
+                "оценить — ước lượng — estimate",
+                "при усло́вии — với điều kiện — subject to/given",
+                "сде́лать вы́вод — kết luận — draw a conclusion"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "task_recognition",
+          "title": "Nhận dạng dạng bài",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cổng nhận dạng",
+              "body": "Gạch động từ → khoanh đại lượng → đánh dấu điều kiện → phân loại miền toán → chọn công thức → viết một câu paraphrase tiếng Việt/Nga."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Không tính trước khi biết",
+              "items": [
+                "động từ nhiệm vụ",
+                "đại lượng/đối tượng toán",
+                "điều kiện/giả thiết",
+                "loại kết luận cần trả"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Dấu hiệu đại số",
+              "body": "Ax=b\nCó ma trận/hệ tuyến tính → kiểm linear algebra."
+            },
+            {
+              "type": "formula",
+              "title": "Dấu hiệu tối ưu",
+              "body": "∇f=0\nCó максимум/минимум/экстремум → kiểm calculus/optimization."
+            },
+            {
+              "type": "formula",
+              "title": "Dấu hiệu xác suất",
+              "body": "P(A|B)\nCó вероятность/событие/условие → kiểm probability/statistics."
+            }
+          ]
+        },
+        {
+          "role": "structure_map",
+          "title": "Bản đồ cấu trúc",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Bản đồ nhận dạng",
+              "items": [
+                "Đối tượng toán đang hỏi gì?",
+                "Dữ kiện và điều kiện nào khóa phương pháp?",
+                "Cần tính, chứng minh, ước lượng hay kết luận?",
+                "Kết quả phải được kiểm theo tiêu chí nào?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Không tính ngay. Trước hết đánh dấu động từ nhiệm vụ, đối tượng toán, dữ kiện, điều kiện và loại kết luận được yêu cầu."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Miền/đối tượng xác định rõ.",
+                "Giả thiết của công thức được kiểm.",
+                "Ký hiệu và đơn vị nhất quán.",
+                "Có bước sanity-check hoặc thế ngược."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Đề",
+              "body": "Đề: «При условии B найти вероятность события A». Từ khóa при условии + вероятность → xác suất có điều kiện, không phải P(A) thường."
+            },
+            {
+              "type": "text",
+              "title": "Định hướng",
+              "body": "Gạch động từ → khoanh đại lượng → đánh dấu điều kiện → phân loại miền toán → chọn công thức → viết một câu paraphrase tiếng Việt/Nga."
+            }
+          ]
+        },
+        {
+          "role": "worked_solution",
+          "title": "Khung lời giải",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Trình tự",
+              "items": [
+                "1. Viết Дано và mục tiêu.",
+                "2. Chọn miền toán/phương pháp.",
+                "3. Ghi công thức + điều kiện.",
+                "4. Tính có kiểm soát.",
+                "5. Kiểm kết quả.",
+                "6. Viết Ответ."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_problem_reading",
+          "title": "Đọc đề Nga",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tín hiệu cần bắt",
+              "items": [
+                "да́но — đã cho — given",
+                "найти́ — tìm — find",
+                "вы́числить — tính — calculate",
+                "доказа́ть — chứng minh — prove"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Quy tắc",
+              "body": "Dịch cấu trúc toán trước, không dịch từng từ rời rạc rồi đoán công thức."
+            }
+          ]
+        },
+        {
+          "role": "solution_strategy",
+          "title": "Chiến lược kiểm tra",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Method",
+              "body": "Gạch động từ → khoanh đại lượng → đánh dấu điều kiện → phân loại miền toán → chọn công thức → viết một câu paraphrase tiếng Việt/Nga."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Điểm dừng bắt buộc",
+              "items": [
+                "sau nhận dạng",
+                "sau chọn công thức",
+                "sau phép tính chính",
+                "trước kết luận"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_response",
+          "title": "Mẫu trả lời tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ответ",
+              "body": "Сначала определим, что дано и что требуется найти. По ключевым словам и математическим объектам выбираем тип задачи и метод решения."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy sư phạm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Thấy một từ quen rồi chọn công thức ngay, bỏ qua động từ 'доказать', 'оценить' hoặc điều kiện kèm theo."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi có hệ thống",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Nếu sai",
+              "items": [
+                "Gắn mã lỗi: READ / MODEL / FORMULA / CALC / CONDITION / RUS / CHECK.",
+                "Xác định bước đầu tiên sai, không chỉ sửa con số cuối.",
+                "Làm lại một bài biến thể ngắn.",
+                "Ghi câu Nga/công thức đúng vào review pack."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "cross_topic_transfer",
+          "title": "Liên kết sang HK1",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Transfer",
+              "items": [
+                "Phân luồng nhanh đề thi dự bị để tránh dùng nhầm công thức.",
+                "Tạo checklist đọc đề cho seminar và vấn đáp kỹ thuật."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mô phỏng nên quan sát gì",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Controls/Readouts",
+              "items": [
+                "đổi dữ kiện hoặc tham số",
+                "hiện bước nhận dạng/phương pháp",
+                "so đáp án trước–sau kiểm",
+                "hiện mã lỗi khi chọn sai điều kiện"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "self_check",
+          "title": "Tự kiểm nhanh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "4 câu",
+              "items": [
+                "Tôi có biết bài thuộc miền nào không?",
+                "Tôi có nói được điều kiện của công thức không?",
+                "Tôi có bước kiểm độc lập không?",
+                "Tôi có thể nói kết luận bằng tiếng Nga không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "oral_defense",
+          "title": "Vấn đáp",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Câu hỏi giảng viên",
+              "body": "Từ khóa có đủ để phân loại bài không?"
+            },
+            {
+              "type": "text",
+              "title": "Ý trả lời",
+              "body": "Không. Từ khóa chỉ là tín hiệu; phải kết hợp đối tượng toán, điều kiện và yêu cầu đầu ra của đề."
+            }
+          ]
+        },
+        {
+          "role": "exam_rubric",
+          "title": "Rubric kiểm tra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Chấm theo 5 trục",
+              "items": [
+                "Nhận dạng đúng dạng bài.",
+                "Công thức/điều kiện đúng.",
+                "Biến đổi/tính toán kiểm chứng được.",
+                "Kết luận khớp câu hỏi.",
+                "Tiếng Nga/ký hiệu đủ rõ để bảo vệ."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Exit ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Trước khi qua bài",
+              "items": [
+                "Viết 3 thuật ngữ Nga trọng tâm.",
+                "Viết 1 công thức và điều kiện.",
+                "Nêu 1 bẫy dễ mắc.",
+                "Nói 1 câu Ответ.",
+                "Gắn readiness: green / amber / red."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E22-MS05-T07-exam-solution-presentation",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "lessonTitle": "m_s05 · §2.7 · Phương pháp trình bày lời giải kiểm tra dự bị",
+      "title": "m_s05 · §2.7 · Phương pháp trình bày lời giải kiểm tra dự bị",
+      "programLectureId": "MATH-PROG-L10-logic-set-theory-boolean",
+      "programLectureIds": [
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "roadmapRole": "m_s05_t07",
+      "baumanFocus": "Preparatory synthesis gate before HK1: algebra, calculus/optimization, probability/statistics, Russian technical reading, exam presentation and error-map remediation.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_s05",
+        "frameworkChapterId": "m_s05",
+        "legacyFrameworkChapterAlias": "MATH-PREP-PS-C13",
+        "logicalLessonId": "m_s05_t07",
+        "frameworkAnchor": "m_s05_t07",
+        "programLectureId": "MATH-PROG-L10-logic-set-theory-boolean",
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e22_prep_synthesis_authoring"
+      },
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "exam-solution-presentation"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_s05 · §2.7 · Phương pháp trình bày lời giải kiểm tra dự bị",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "E22 là cổng tổng hợp cuối giai đoạn dự bị: ưu tiên nhận dạng đúng dạng bài, lời giải kiểm chứng được và diễn đạt Nga kỹ thuật."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Giải và bảo vệ «Phương pháp trình bày lời giải kiểm tra dự bị» trong điều kiện kiểm tra/seminar trước HK1."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài",
+              "items": [
+                "Nhận dạng đúng dạng bài trước khi tính.",
+                "Viết đúng công thức và điều kiện áp dụng.",
+                "Giải một ví dụ nhỏ có bước kiểm.",
+                "Trình bày kết luận Nga kỹ thuật ngắn gọn.",
+                "Gắn lỗi sai vào bản đồ lỗi cá nhân."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Thuật ngữ",
+              "items": [
+                "реше́ние — lời giải — solution",
+                "обоснова́ние — lập luận/biện minh — justification",
+                "шаг реше́ния — bước giải — solution step",
+                "прове́рка — kiểm tra — check",
+                "сле́довательно — do đó — therefore",
+                "так как — vì — because",
+                "усло́вие — điều kiện — condition",
+                "отве́т — đáp án/kết luận — answer"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "task_recognition",
+          "title": "Nhận dạng dạng bài",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cổng nhận dạng",
+              "body": "Дано → Найти → Метод → Вычисления → Проверка → Ответ. Mỗi bước chỉ chứa thông tin cần thiết và có thể kiểm."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Không tính trước khi biết",
+              "items": [
+                "động từ nhiệm vụ",
+                "đại lượng/đối tượng toán",
+                "điều kiện/giả thiết",
+                "loại kết luận cần trả"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Kiểm đại số",
+              "body": "Ax−b=0\nSau nghiệm hệ, thế ngược là bước kiểm độc lập."
+            },
+            {
+              "type": "formula",
+              "title": "Kiểm cực trị",
+              "body": "f′(x*)=0\nGhi điều kiện cần trước khi phân loại điểm."
+            },
+            {
+              "type": "formula",
+              "title": "Quy tắc quyết định kiểm định",
+              "body": "p<α ⇒ отклонить H₀\nChỉ dùng sau khi giả thiết và test statistic hợp lệ."
+            }
+          ]
+        },
+        {
+          "role": "structure_map",
+          "title": "Bản đồ cấu trúc",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Bản đồ nhận dạng",
+              "items": [
+                "Đối tượng toán đang hỏi gì?",
+                "Dữ kiện và điều kiện nào khóa phương pháp?",
+                "Cần tính, chứng minh, ước lượng hay kết luận?",
+                "Kết quả phải được kiểm theo tiêu chí nào?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Lời giải phải có Dано/điều kiện, phương pháp, biến đổi có lý do, kiểm tra và Ответ; ký hiệu nhất quán từ đầu đến cuối."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Miền/đối tượng xác định rõ.",
+                "Giả thiết của công thức được kiểm.",
+                "Ký hiệu và đơn vị nhất quán.",
+                "Có bước sanity-check hoặc thế ngược."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Đề",
+              "body": "Với một hệ 2×2: ghi Дано, lập [A|b], biến đổi hàng, nêu nghiệm, thế lại Ax=b, kết thúc «Ответ: …»."
+            },
+            {
+              "type": "text",
+              "title": "Định hướng",
+              "body": "Дано → Найти → Метод → Вычисления → Проверка → Ответ. Mỗi bước chỉ chứa thông tin cần thiết và có thể kiểm."
+            }
+          ]
+        },
+        {
+          "role": "worked_solution",
+          "title": "Khung lời giải",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Trình tự",
+              "items": [
+                "1. Viết Дано và mục tiêu.",
+                "2. Chọn miền toán/phương pháp.",
+                "3. Ghi công thức + điều kiện.",
+                "4. Tính có kiểm soát.",
+                "5. Kiểm kết quả.",
+                "6. Viết Ответ."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_problem_reading",
+          "title": "Đọc đề Nga",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tín hiệu cần bắt",
+              "items": [
+                "реше́ние — lời giải — solution",
+                "обоснова́ние — lập luận/biện minh — justification",
+                "шаг реше́ния — bước giải — solution step",
+                "прове́рка — kiểm tra — check"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Quy tắc",
+              "body": "Dịch cấu trúc toán trước, không dịch từng từ rời rạc rồi đoán công thức."
+            }
+          ]
+        },
+        {
+          "role": "solution_strategy",
+          "title": "Chiến lược kiểm tra",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Method",
+              "body": "Дано → Найти → Метод → Вычисления → Проверка → Ответ. Mỗi bước chỉ chứa thông tin cần thiết và có thể kiểm."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Điểm dừng bắt buộc",
+              "items": [
+                "sau nhận dạng",
+                "sau chọn công thức",
+                "sau phép tính chính",
+                "trước kết luận"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_response",
+          "title": "Mẫu trả lời tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ответ",
+              "body": "Запишем данные и цель задачи, укажем метод, выполним вычисления, проверим результат и сформулируем ответ."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy sư phạm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Chỉ ghi chuỗi phép biến đổi không có câu giải thích, điều kiện áp dụng hoặc kết luận cuối."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi có hệ thống",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Nếu sai",
+              "items": [
+                "Gắn mã lỗi: READ / MODEL / FORMULA / CALC / CONDITION / RUS / CHECK.",
+                "Xác định bước đầu tiên sai, không chỉ sửa con số cuối.",
+                "Làm lại một bài biến thể ngắn.",
+                "Ghi câu Nga/công thức đúng vào review pack."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "cross_topic_transfer",
+          "title": "Liên kết sang HK1",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Transfer",
+              "items": [
+                "Chuẩn hóa bài tự luận để giảng viên theo được logic dù tiếng Nga chưa nhanh.",
+                "Tự chấm lời giải theo rubric cấu trúc thay vì chỉ nhìn đáp số."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mô phỏng nên quan sát gì",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Controls/Readouts",
+              "items": [
+                "đổi dữ kiện hoặc tham số",
+                "hiện bước nhận dạng/phương pháp",
+                "so đáp án trước–sau kiểm",
+                "hiện mã lỗi khi chọn sai điều kiện"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "self_check",
+          "title": "Tự kiểm nhanh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "4 câu",
+              "items": [
+                "Tôi có biết bài thuộc miền nào không?",
+                "Tôi có nói được điều kiện của công thức không?",
+                "Tôi có bước kiểm độc lập không?",
+                "Tôi có thể nói kết luận bằng tiếng Nga không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "oral_defense",
+          "title": "Vấn đáp",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Câu hỏi giảng viên",
+              "body": "Một lời giải ngắn có thể vẫn đầy đủ không?"
+            },
+            {
+              "type": "text",
+              "title": "Ý trả lời",
+              "body": "Có, nếu giữ đủ giả thiết, bước logic chủ chốt, kiểm tra và kết luận; độ dài không thay thế tính kiểm chứng."
+            }
+          ]
+        },
+        {
+          "role": "exam_rubric",
+          "title": "Rubric kiểm tra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Chấm theo 5 trục",
+              "items": [
+                "Nhận dạng đúng dạng bài.",
+                "Công thức/điều kiện đúng.",
+                "Biến đổi/tính toán kiểm chứng được.",
+                "Kết luận khớp câu hỏi.",
+                "Tiếng Nga/ký hiệu đủ rõ để bảo vệ."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Exit ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Trước khi qua bài",
+              "items": [
+                "Viết 3 thuật ngữ Nga trọng tâm.",
+                "Viết 1 công thức và điều kiện.",
+                "Nêu 1 bẫy dễ mắc.",
+                "Nói 1 câu Ответ.",
+                "Gắn readiness: green / amber / red."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E22-MS05-T08-mock-exam-error-map",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "lessonTitle": "m_s05 · §2.8 · Bản đồ lỗi cá nhân và bài thi mô phỏng trước khi sang HK1",
+      "title": "m_s05 · §2.8 · Bản đồ lỗi cá nhân và bài thi mô phỏng trước khi sang HK1",
+      "programLectureId": "MATH-PROG-L01-linear-algebra-basic",
+      "programLectureIds": [
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "roadmapRole": "m_s05_t08",
+      "baumanFocus": "Preparatory synthesis gate before HK1: algebra, calculus/optimization, probability/statistics, Russian technical reading, exam presentation and error-map remediation.",
+      "sourceAnchors": {
+        "logicalModuleId": "m_s05",
+        "frameworkChapterId": "m_s05",
+        "legacyFrameworkChapterAlias": "MATH-PREP-PS-C13",
+        "logicalLessonId": "m_s05_t08",
+        "frameworkAnchor": "m_s05_t08",
+        "programLectureId": "MATH-PROG-L01-linear-algebra-basic",
+        "physicalStageId": "prep",
+        "provenancePolicy": "theory_framework_plus_e22_prep_synthesis_authoring"
+      },
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "mock-exam-error-map"
+      ],
+      "renderContract": {
+        "formulaBlockOnly": true,
+        "matrixBlockOnly": true,
+        "noRawLatex": true,
+        "noCodeStyleFormula": true,
+        "hideSearchMeta": true
+      },
+      "slides": [
+        {
+          "role": "section_open",
+          "title": "m_s05 · §2.8 · Bản đồ lỗi cá nhân và bài thi mô phỏng trước khi sang HK1",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bối cảnh",
+              "body": "E22 là cổng tổng hợp cuối giai đoạn dự bị: ưu tiên nhận dạng đúng dạng bài, lời giải kiểm chứng được và diễn đạt Nga kỹ thuật."
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Giải và bảo vệ «Bản đồ lỗi cá nhân và bài thi mô phỏng trước khi sang HK1» trong điều kiện kiểm tra/seminar trước HK1."
+            }
+          ]
+        },
+        {
+          "role": "learning_outcomes",
+          "title": "Chuẩn đầu ra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Sau bài",
+              "items": [
+                "Nhận dạng đúng dạng bài trước khi tính.",
+                "Viết đúng công thức và điều kiện áp dụng.",
+                "Giải một ví dụ nhỏ có bước kiểm.",
+                "Trình bày kết luận Nga kỹ thuật ngắn gọn.",
+                "Gắn lỗi sai vào bản đồ lỗi cá nhân."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_term_bridge",
+          "title": "Nga – Việt – Anh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Thuật ngữ",
+              "items": [
+                "пробный экза́мен — thi thử — mock exam",
+                "оши́бка — lỗi — error",
+                "карта оши́бок — bản đồ lỗi — error map",
+                "вре́мя — thời gian — time",
+                "прове́рка — kiểm tra — checking",
+                "критерий — tiêu chí — criterion",
+                "результа́т — kết quả — result",
+                "повторе́ние — ôn tập — review"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "task_recognition",
+          "title": "Nhận dạng dạng bài",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cổng nhận dạng",
+              "body": "Thi đúng giờ → chấm theo rubric → gắn mã lỗi → tính tỷ lệ lỗi → chọn 2 lỗi ưu tiên → luyện lại → thi vòng ngắn xác nhận."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Không tính trước khi biết",
+              "items": [
+                "động từ nhiệm vụ",
+                "đại lượng/đối tượng toán",
+                "điều kiện/giả thiết",
+                "loại kết luận cần trả"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "notation_formula",
+          "title": "Công thức lõi",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Điểm có trọng số",
+              "body": "S=Σ wᵢsᵢ\nΣwᵢ=1; tách kiến thức, trình bày, kiểm tra."
+            },
+            {
+              "type": "formula",
+              "title": "Tỷ lệ lỗi theo nhóm",
+              "body": "r_k = e_k / n_k\nTheo dõi loại lỗi k thay vì chỉ tổng điểm."
+            },
+            {
+              "type": "formula",
+              "title": "Ngân sách thời gian",
+              "body": "T=Σ tᵢ + T_check\nLuôn chừa block thời gian cuối để kiểm đáp án và ký hiệu."
+            }
+          ]
+        },
+        {
+          "role": "structure_map",
+          "title": "Bản đồ cấu trúc",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Bản đồ nhận dạng",
+              "items": [
+                "Đối tượng toán đang hỏi gì?",
+                "Dữ kiện và điều kiện nào khóa phương pháp?",
+                "Cần tính, chứng minh, ước lượng hay kết luận?",
+                "Kết quả phải được kiểm theo tiêu chí nào?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "condition_gate",
+          "title": "Điều kiện áp dụng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Gate",
+              "body": "Thi mô phỏng phải dùng cùng cấu trúc thời gian, ngôn ngữ và rubric dự kiến; sau thi phân loại lỗi theo nguyên nhân chứ không chỉ ghi câu sai."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Checklist",
+              "items": [
+                "Miền/đối tượng xác định rõ.",
+                "Giả thiết của công thức được kiểm.",
+                "Ký hiệu và đơn vị nhất quán.",
+                "Có bước sanity-check hoặc thế ngược."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "worked_example",
+          "title": "Ví dụ nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Đề",
+              "body": "Sau 20 câu: 4 lỗi đọc đề, 2 lỗi công thức, 1 lỗi tính toán. Ưu tiên can thiệp đọc đề trước vì tần suất và ảnh hưởng lan rộng lớn nhất."
+            },
+            {
+              "type": "text",
+              "title": "Định hướng",
+              "body": "Thi đúng giờ → chấm theo rubric → gắn mã lỗi → tính tỷ lệ lỗi → chọn 2 lỗi ưu tiên → luyện lại → thi vòng ngắn xác nhận."
+            }
+          ]
+        },
+        {
+          "role": "worked_solution",
+          "title": "Khung lời giải",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Trình tự",
+              "items": [
+                "1. Viết Дано và mục tiêu.",
+                "2. Chọn miền toán/phương pháp.",
+                "3. Ghi công thức + điều kiện.",
+                "4. Tính có kiểm soát.",
+                "5. Kiểm kết quả.",
+                "6. Viết Ответ."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_problem_reading",
+          "title": "Đọc đề Nga",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Tín hiệu cần bắt",
+              "items": [
+                "пробный экза́мен — thi thử — mock exam",
+                "оши́бка — lỗi — error",
+                "карта оши́бок — bản đồ lỗi — error map",
+                "вре́мя — thời gian — time"
+              ]
+            },
+            {
+              "type": "text",
+              "title": "Quy tắc",
+              "body": "Dịch cấu trúc toán trước, không dịch từng từ rời rạc rồi đoán công thức."
+            }
+          ]
+        },
+        {
+          "role": "solution_strategy",
+          "title": "Chiến lược kiểm tra",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Method",
+              "body": "Thi đúng giờ → chấm theo rubric → gắn mã lỗi → tính tỷ lệ lỗi → chọn 2 lỗi ưu tiên → luyện lại → thi vòng ngắn xác nhận."
+            },
+            {
+              "type": "bullet-list",
+              "title": "Điểm dừng bắt buộc",
+              "items": [
+                "sau nhận dạng",
+                "sau chọn công thức",
+                "sau phép tính chính",
+                "trước kết luận"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "russian_response",
+          "title": "Mẫu trả lời tiếng Nga",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ответ",
+              "body": "После пробного экзамена классифицируем ошибки по причинам, выбираем приоритетные пробелы и повторно проверяем их коротким тестом."
+            }
+          ]
+        },
+        {
+          "role": "warning_counterexample",
+          "title": "Bẫy sư phạm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cảnh báo",
+              "body": "Ôn lại toàn bộ như nhau sau mỗi bài thi thử, không ưu tiên lỗi lặp lại và không đo tốc độ đọc đề tiếng Nga."
+            }
+          ]
+        },
+        {
+          "role": "error_repair",
+          "title": "Sửa lỗi có hệ thống",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Nếu sai",
+              "items": [
+                "Gắn mã lỗi: READ / MODEL / FORMULA / CALC / CONDITION / RUS / CHECK.",
+                "Xác định bước đầu tiên sai, không chỉ sửa con số cuối.",
+                "Làm lại một bài biến thể ngắn.",
+                "Ghi câu Nga/công thức đúng vào review pack."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "cross_topic_transfer",
+          "title": "Liên kết sang HK1",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Transfer",
+              "items": [
+                "Tạo dashboard readiness trước HK1 với error-rate theo miền.",
+                "Lập vòng ôn tập cá nhân hóa dựa trên lỗi lặp lại và thời gian làm bài."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "simulation_plan",
+          "title": "Mô phỏng nên quan sát gì",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Controls/Readouts",
+              "items": [
+                "đổi dữ kiện hoặc tham số",
+                "hiện bước nhận dạng/phương pháp",
+                "so đáp án trước–sau kiểm",
+                "hiện mã lỗi khi chọn sai điều kiện"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "self_check",
+          "title": "Tự kiểm nhanh",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "4 câu",
+              "items": [
+                "Tôi có biết bài thuộc miền nào không?",
+                "Tôi có nói được điều kiện của công thức không?",
+                "Tôi có bước kiểm độc lập không?",
+                "Tôi có thể nói kết luận bằng tiếng Nga không?"
+              ]
+            }
+          ]
+        },
+        {
+          "role": "oral_defense",
+          "title": "Vấn đáp",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Câu hỏi giảng viên",
+              "body": "Vì sao điểm thi thử tăng chưa chắc nghĩa là đã sẵn sàng?"
+            },
+            {
+              "type": "text",
+              "title": "Ý trả lời",
+              "body": "Vì có thể do đề quen hoặc may mắn; cần theo dõi lỗi theo loại, thời gian, độ ổn định và khả năng trình bày bằng tiếng Nga."
+            }
+          ]
+        },
+        {
+          "role": "exam_rubric",
+          "title": "Rubric kiểm tra",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Chấm theo 5 trục",
+              "items": [
+                "Nhận dạng đúng dạng bài.",
+                "Công thức/điều kiện đúng.",
+                "Biến đổi/tính toán kiểm chứng được.",
+                "Kết luận khớp câu hỏi.",
+                "Tiếng Nga/ký hiệu đủ rõ để bảo vệ."
+              ]
+            }
+          ]
+        },
+        {
+          "role": "exit_ticket",
+          "title": "Exit ticket",
+          "blocks": [
+            {
+              "type": "bullet-list",
+              "title": "Trước khi qua bài",
+              "items": [
+                "Viết 3 thuật ngữ Nga trọng tâm.",
+                "Viết 1 công thức và điều kiện.",
+                "Nêu 1 bẫy dễ mắc.",
+                "Nói 1 câu Ответ.",
+                "Gắn readiness: green / amber / red."
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

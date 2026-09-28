@@ -2211,6 +2211,406 @@
           "prompt": "Giải thích và sửa bẫy: Chọn lại preprocessing/hyperparameter sau khi nhìn test rồi báo test score như khách quan là test leakage."
         }
       ]
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E22-MS05-T01-linear-algebra-synthesis",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "linear-algebra-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t01",
+        "m_s05",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "reviewPackId": "E22-M_S05_T01-RP01",
+      "items": [
+        {
+          "type": "recognition",
+          "prompt": "Nhận dạng dạng bài từ một đề Nga ngắn."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và điều kiện."
+        },
+        {
+          "type": "worked_problem",
+          "prompt": "Giải 1 bài nhỏ theo 6 bước Дано→Ответ."
+        },
+        {
+          "type": "trap",
+          "prompt": "Giải thích và sửa bẫy: Tính đúng phép khử Gauss nhưng quên kiểm tra hạng hoặc diễn giải số nghiệm."
+        },
+        {
+          "type": "russian",
+          "prompt": "Trình bày kết luận 2–3 câu bằng tiếng Nga kỹ thuật."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Gắn mã lỗi READ/MODEL/FORMULA/CALC/CONDITION/RUS/CHECK và kế hoạch sửa."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t02",
+      "lessonId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_-E22-MS05-T02-calculus-optimization-synthesis",
+      "chapterId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "calculus-optimization-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t02",
+        "m_s05",
+        "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L04-single-variable-analysis",
+        "MATH-PROG-L05-multivariable-analysis-differential-geometry"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "reviewPackId": "E22-M_S05_T02-RP01",
+      "items": [
+        {
+          "type": "recognition",
+          "prompt": "Nhận dạng dạng bài từ một đề Nga ngắn."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và điều kiện."
+        },
+        {
+          "type": "worked_problem",
+          "prompt": "Giải 1 bài nhỏ theo 6 bước Дано→Ответ."
+        },
+        {
+          "type": "trap",
+          "prompt": "Giải thích và sửa bẫy: Giải ∇f=0 rồi kết luận ngay cực tiểu mà không kiểm Hessian, biên hoặc giá trị so sánh."
+        },
+        {
+          "type": "russian",
+          "prompt": "Trình bày kết luận 2–3 câu bằng tiếng Nga kỹ thuật."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Gắn mã lỗi READ/MODEL/FORMULA/CALC/CONDITION/RUS/CHECK và kế hoạch sửa."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t03",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E22-MS05-T03-probability-bayes-synthesis",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "probability-bayes-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t03",
+        "m_s05",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "reviewPackId": "E22-M_S05_T03-RP01",
+      "items": [
+        {
+          "type": "recognition",
+          "prompt": "Nhận dạng dạng bài từ một đề Nga ngắn."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và điều kiện."
+        },
+        {
+          "type": "worked_problem",
+          "prompt": "Giải 1 bài nhỏ theo 6 bước Дано→Ответ."
+        },
+        {
+          "type": "trap",
+          "prompt": "Giải thích và sửa bẫy: Nhầm P(A|B) với P(B|A), hoặc coi hai biến cố xung khắc là độc lập."
+        },
+        {
+          "type": "russian",
+          "prompt": "Trình bày kết luận 2–3 câu bằng tiếng Nga kỹ thuật."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Gắn mã lỗi READ/MODEL/FORMULA/CALC/CONDITION/RUS/CHECK và kế hoạch sửa."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t04",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E22-MS05-T04-random-variable-distribution-synthesis",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "random-variable-distribution-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t04",
+        "m_s05",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "reviewPackId": "E22-M_S05_T04-RP01",
+      "items": [
+        {
+          "type": "recognition",
+          "prompt": "Nhận dạng dạng bài từ một đề Nga ngắn."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và điều kiện."
+        },
+        {
+          "type": "worked_problem",
+          "prompt": "Giải 1 bài nhỏ theo 6 bước Дано→Ответ."
+        },
+        {
+          "type": "trap",
+          "prompt": "Giải thích và sửa bẫy: Dùng phương sai như độ lệch chuẩn hoặc quên bình phương đơn vị; áp phân phối chỉ vì tên bài quen."
+        },
+        {
+          "type": "russian",
+          "prompt": "Trình bày kết luận 2–3 câu bằng tiếng Nga kỹ thuật."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Gắn mã lỗi READ/MODEL/FORMULA/CALC/CONDITION/RUS/CHECK và kế hoạch sửa."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t05",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E22-MS05-T05-statistics-inference-synthesis",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "statistics-inference-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t05",
+        "m_s05",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "reviewPackId": "E22-M_S05_T05-RP01",
+      "items": [
+        {
+          "type": "recognition",
+          "prompt": "Nhận dạng dạng bài từ một đề Nga ngắn."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và điều kiện."
+        },
+        {
+          "type": "worked_problem",
+          "prompt": "Giải 1 bài nhỏ theo 6 bước Дано→Ответ."
+        },
+        {
+          "type": "trap",
+          "prompt": "Giải thích và sửa bẫy: Đọc p-value là xác suất H₀ đúng hoặc coi CI 95% nghĩa là tham số có xác suất 95% nằm trong khoảng đã tính."
+        },
+        {
+          "type": "russian",
+          "prompt": "Trình bày kết luận 2–3 câu bằng tiếng Nga kỹ thuật."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Gắn mã lỗi READ/MODEL/FORMULA/CALC/CONDITION/RUS/CHECK và kế hoạch sửa."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t06",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E22-MS05-T06-russian-mixed-problem-recognition",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "russian-mixed-problem-recognition"
+      ],
+      "sourceAnchors": [
+        "m_s05_t06",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "reviewPackId": "E22-M_S05_T06-RP01",
+      "items": [
+        {
+          "type": "recognition",
+          "prompt": "Nhận dạng dạng bài từ một đề Nga ngắn."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và điều kiện."
+        },
+        {
+          "type": "worked_problem",
+          "prompt": "Giải 1 bài nhỏ theo 6 bước Дано→Ответ."
+        },
+        {
+          "type": "trap",
+          "prompt": "Giải thích và sửa bẫy: Thấy một từ quen rồi chọn công thức ngay, bỏ qua động từ 'доказать', 'оценить' hoặc điều kiện kèm theo."
+        },
+        {
+          "type": "russian",
+          "prompt": "Trình bày kết luận 2–3 câu bằng tiếng Nga kỹ thuật."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Gắn mã lỗi READ/MODEL/FORMULA/CALC/CONDITION/RUS/CHECK và kế hoạch sửa."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t07",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E22-MS05-T07-exam-solution-presentation",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "exam-solution-presentation"
+      ],
+      "sourceAnchors": [
+        "m_s05_t07",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "reviewPackId": "E22-M_S05_T07-RP01",
+      "items": [
+        {
+          "type": "recognition",
+          "prompt": "Nhận dạng dạng bài từ một đề Nga ngắn."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và điều kiện."
+        },
+        {
+          "type": "worked_problem",
+          "prompt": "Giải 1 bài nhỏ theo 6 bước Дано→Ответ."
+        },
+        {
+          "type": "trap",
+          "prompt": "Giải thích và sửa bẫy: Chỉ ghi chuỗi phép biến đổi không có câu giải thích, điều kiện áp dụng hoặc kết luận cuối."
+        },
+        {
+          "type": "russian",
+          "prompt": "Trình bày kết luận 2–3 câu bằng tiếng Nga kỹ thuật."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Gắn mã lỗi READ/MODEL/FORMULA/CALC/CONDITION/RUS/CHECK và kế hoạch sửa."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t08",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E22-MS05-T08-mock-exam-error-map",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "mock-exam-error-map"
+      ],
+      "sourceAnchors": [
+        "m_s05_t08",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "reviewPackId": "E22-M_S05_T08-RP01",
+      "items": [
+        {
+          "type": "recognition",
+          "prompt": "Nhận dạng dạng bài từ một đề Nga ngắn."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và điều kiện."
+        },
+        {
+          "type": "worked_problem",
+          "prompt": "Giải 1 bài nhỏ theo 6 bước Дано→Ответ."
+        },
+        {
+          "type": "trap",
+          "prompt": "Giải thích và sửa bẫy: Ôn lại toàn bộ như nhau sau mỗi bài thi thử, không ưu tiên lỗi lặp lại và không đo tốc độ đọc đề tiếng Nga."
+        },
+        {
+          "type": "russian",
+          "prompt": "Trình bày kết luận 2–3 câu bằng tiếng Nga kỹ thuật."
+        },
+        {
+          "type": "error_review",
+          "prompt": "Gắn mã lỗi READ/MODEL/FORMULA/CALC/CONDITION/RUS/CHECK và kế hoạch sửa."
+        }
+      ]
     }
   ],
   "importPolicy": {

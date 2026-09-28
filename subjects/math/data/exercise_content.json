@@ -9554,6 +9554,1734 @@
       "level": "hard",
       "prompt": "Nếu contract dữ liệu sai, sửa downstream như thế nào?",
       "solution": "Sửa nguồn/shape/unit/split trước, invalidate các artifact downstream và tính lại có provenance."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E22-MS05-T01-linear-algebra-synthesis",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "linear-algebra-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t01",
+        "m_s05",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T01-E01",
+      "level": "easy",
+      "prompt": "Nhận dạng miền toán và dữ kiện chính của «Bài tổng hợp đại số tuyến tính: vector, ma trận và hệ phương trình».",
+      "solution": "Nhận dạng dạng bài → ghi shape → chọn Gauss/rank/projection → tính → thế ngược → kết luận bằng câu hoàn chỉnh."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E22-MS05-T01-linear-algebra-synthesis",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "linear-algebra-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t01",
+        "m_s05",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T01-E02",
+      "level": "easy",
+      "prompt": "Viết công thức «Hệ tuyến tính» và nêu điều kiện.",
+      "solution": "Ax = b. Khóa kích thước A, x, b trước khi biến đổi."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E22-MS05-T01-linear-algebra-synthesis",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "linear-algebra-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t01",
+        "m_s05",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T01-E03",
+      "level": "medium",
+      "prompt": "Viết công thức «Điều kiện nghiệm duy nhất» và giải thích ý nghĩa.",
+      "solution": "rank(A)=rank([A|b])=n. Với n ẩn; cần diễn giải đúng điều kiện hạng."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E22-MS05-T01-linear-algebra-synthesis",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "linear-algebra-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t01",
+        "m_s05",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T01-E04",
+      "level": "medium",
+      "prompt": "Giải theo khung: Cho A=[[1,2],[2,5]], b=[5,12]. Lập ma trận mở rộng, khử Gauss, tìm x và thế ngược.",
+      "solution": "Dùng quy trình: Nhận dạng dạng bài → ghi shape → chọn Gauss/rank/projection → tính → thế ngược → kết luận bằng câu hoàn chỉnh."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E22-MS05-T01-linear-algebra-synthesis",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "linear-algebra-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t01",
+        "m_s05",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T01-E05",
+      "level": "medium",
+      "prompt": "Nêu cổng điều kiện phải kiểm trước khi kết luận.",
+      "solution": "Xác định đúng kích thước, rank và mục tiêu bài toán trước khi chọn phép biến đổi; mọi nghiệm phải được thế ngược để kiểm."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E22-MS05-T01-linear-algebra-synthesis",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "linear-algebra-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t01",
+        "m_s05",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T01-E06",
+      "level": "hard",
+      "prompt": "Sửa lỗi: Tính đúng phép khử Gauss nhưng quên kiểm tra hạng hoặc diễn giải số nghiệm.",
+      "solution": "Xác định bước sai đầu tiên; quay lại condition gate và thực hiện bước kiểm độc lập."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E22-MS05-T01-linear-algebra-synthesis",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "linear-algebra-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t01",
+        "m_s05",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T01-E07",
+      "level": "medium",
+      "prompt": "Viết 2–3 câu tiếng Nga trình bày kết luận.",
+      "solution": "Сначала определим размеры матрицы и проверим ранг. После преобразований получаем решение и подстановкой проверяем его."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E22-MS05-T01-linear-algebra-synthesis",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "linear-algebra-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t01",
+        "m_s05",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T01-E08",
+      "level": "hard",
+      "prompt": "Nêu một tình huống kỹ thuật chuyển giao sang HK1.",
+      "solution": "Hiệu chỉnh tham số mô hình tuyến tính từ hai phép đo."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t02",
+      "lessonId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_-E22-MS05-T02-calculus-optimization-synthesis",
+      "chapterId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "calculus-optimization-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t02",
+        "m_s05",
+        "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L04-single-variable-analysis",
+        "MATH-PROG-L05-multivariable-analysis-differential-geometry"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T02-E01",
+      "level": "easy",
+      "prompt": "Nhận dạng miền toán và dữ kiện chính của «Bài tổng hợp giải tích và tối ưu nhập môn».",
+      "solution": "Xác định miền → đạo hàm/gradient → tìm điểm ứng viên → kiểm loại cực trị → so biên nếu có → viết kết luận."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t02",
+      "lessonId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_-E22-MS05-T02-calculus-optimization-synthesis",
+      "chapterId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "calculus-optimization-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t02",
+        "m_s05",
+        "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L04-single-variable-analysis",
+        "MATH-PROG-L05-multivariable-analysis-differential-geometry"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T02-E02",
+      "level": "easy",
+      "prompt": "Viết công thức «Điểm tới hạn» và nêu điều kiện.",
+      "solution": "∇f(x*) = 0. Điều kiện cần cho cực trị trong miền trong khi f khả vi."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t02",
+      "lessonId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_-E22-MS05-T02-calculus-optimization-synthesis",
+      "chapterId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "calculus-optimization-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t02",
+        "m_s05",
+        "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L04-single-variable-analysis",
+        "MATH-PROG-L05-multivariable-analysis-differential-geometry"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T02-E03",
+      "level": "medium",
+      "prompt": "Viết công thức «Đạo hàm một biến» và giải thích ý nghĩa.",
+      "solution": "f′(x*) = 0. Điểm ứng viên; phải kiểm tra miền và loại cực trị."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t02",
+      "lessonId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_-E22-MS05-T02-calculus-optimization-synthesis",
+      "chapterId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "calculus-optimization-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t02",
+        "m_s05",
+        "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L04-single-variable-analysis",
+        "MATH-PROG-L05-multivariable-analysis-differential-geometry"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T02-E04",
+      "level": "medium",
+      "prompt": "Giải theo khung: Tối thiểu f(x,y)=(x−1)²+(y−2)². Tính gradient, giải ∇f=0 và xác nhận bằng Hessian dương xác định.",
+      "solution": "Dùng quy trình: Xác định miền → đạo hàm/gradient → tìm điểm ứng viên → kiểm loại cực trị → so biên nếu có → viết kết luận."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t02",
+      "lessonId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_-E22-MS05-T02-calculus-optimization-synthesis",
+      "chapterId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "calculus-optimization-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t02",
+        "m_s05",
+        "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L04-single-variable-analysis",
+        "MATH-PROG-L05-multivariable-analysis-differential-geometry"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T02-E05",
+      "level": "medium",
+      "prompt": "Nêu cổng điều kiện phải kiểm trước khi kết luận.",
+      "solution": "Phân biệt bài một biến, nhiều biến và có ràng buộc; kiểm tra miền xác định, điểm biên và điều kiện chính quy trước khi kết luận."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t02",
+      "lessonId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_-E22-MS05-T02-calculus-optimization-synthesis",
+      "chapterId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "calculus-optimization-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t02",
+        "m_s05",
+        "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L04-single-variable-analysis",
+        "MATH-PROG-L05-multivariable-analysis-differential-geometry"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T02-E06",
+      "level": "hard",
+      "prompt": "Sửa lỗi: Giải ∇f=0 rồi kết luận ngay cực tiểu mà không kiểm Hessian, biên hoặc giá trị so sánh.",
+      "solution": "Xác định bước sai đầu tiên; quay lại condition gate và thực hiện bước kiểm độc lập."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t02",
+      "lessonId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_-E22-MS05-T02-calculus-optimization-synthesis",
+      "chapterId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "calculus-optimization-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t02",
+        "m_s05",
+        "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L04-single-variable-analysis",
+        "MATH-PROG-L05-multivariable-analysis-differential-geometry"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T02-E07",
+      "level": "medium",
+      "prompt": "Viết 2–3 câu tiếng Nga trình bày kết luận.",
+      "solution": "Находим критические точки из условия градиента, затем проверяем тип экстремума и ограничения задачи."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t02",
+      "lessonId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_-E22-MS05-T02-calculus-optimization-synthesis",
+      "chapterId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "calculus-optimization-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t02",
+        "m_s05",
+        "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L04-single-variable-analysis",
+        "MATH-PROG-L05-multivariable-analysis-differential-geometry"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T02-E08",
+      "level": "hard",
+      "prompt": "Nêu một tình huống kỹ thuật chuyển giao sang HK1.",
+      "solution": "Tối ưu tham số mô hình để giảm sai số bình phương."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t03",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E22-MS05-T03-probability-bayes-synthesis",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "probability-bayes-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t03",
+        "m_s05",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T03-E01",
+      "level": "easy",
+      "prompt": "Nhận dạng miền toán và dữ kiện chính của «Bài tổng hợp xác suất: biến cố, độc lập và Bayes».",
+      "solution": "Đặt biến cố → ghi prior/likelihood → kiểm phân hoạch → tính evidence → áp dụng Bayes → sanity-check kết quả trong [0,1]."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t03",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E22-MS05-T03-probability-bayes-synthesis",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "probability-bayes-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t03",
+        "m_s05",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T03-E02",
+      "level": "easy",
+      "prompt": "Viết công thức «Xác suất có điều kiện» và nêu điều kiện.",
+      "solution": "P(A|B)=P(A∩B)/P(B). Yêu cầu P(B)>0."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t03",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E22-MS05-T03-probability-bayes-synthesis",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "probability-bayes-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t03",
+        "m_s05",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T03-E03",
+      "level": "medium",
+      "prompt": "Viết công thức «Độc lập» và giải thích ý nghĩa.",
+      "solution": "P(A∩B)=P(A)P(B). Không được đồng nhất độc lập với xung khắc."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t03",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E22-MS05-T03-probability-bayes-synthesis",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "probability-bayes-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t03",
+        "m_s05",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T03-E04",
+      "level": "medium",
+      "prompt": "Giải theo khung: Một cảm biến báo lỗi với độ nhạy 0,95; tỷ lệ lỗi thật 0,02; báo giả 0,05. Tính P(lỗi thật | báo lỗi) bằng Bayes.",
+      "solution": "Dùng quy trình: Đặt biến cố → ghi prior/likelihood → kiểm phân hoạch → tính evidence → áp dụng Bayes → sanity-check kết quả trong [0,1]."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t03",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E22-MS05-T03-probability-bayes-synthesis",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "probability-bayes-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t03",
+        "m_s05",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T03-E05",
+      "level": "medium",
+      "prompt": "Nêu cổng điều kiện phải kiểm trước khi kết luận.",
+      "solution": "Vẽ hoặc mô tả rõ không gian mẫu, điều kiện đang biết và phân hoạch giả thuyết; kiểm P(B)>0 và tổng xác suất bằng 1."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t03",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E22-MS05-T03-probability-bayes-synthesis",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "probability-bayes-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t03",
+        "m_s05",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T03-E06",
+      "level": "hard",
+      "prompt": "Sửa lỗi: Nhầm P(A|B) với P(B|A), hoặc coi hai biến cố xung khắc là độc lập.",
+      "solution": "Xác định bước sai đầu tiên; quay lại condition gate và thực hiện bước kiểm độc lập."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t03",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E22-MS05-T03-probability-bayes-synthesis",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "probability-bayes-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t03",
+        "m_s05",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T03-E07",
+      "level": "medium",
+      "prompt": "Viết 2–3 câu tiếng Nga trình bày kết luận.",
+      "solution": "Сначала зададим события и априорные вероятности. Затем найдём полную вероятность наблюдения и применим формулу Байеса."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t03",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E22-MS05-T03-probability-bayes-synthesis",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "probability-bayes-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t03",
+        "m_s05",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T03-E08",
+      "level": "hard",
+      "prompt": "Nêu một tình huống kỹ thuật chuyển giao sang HK1.",
+      "solution": "Chẩn đoán lỗi cảm biến từ cảnh báo có false positive."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t04",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E22-MS05-T04-random-variable-distribution-synthesis",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "random-variable-distribution-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t04",
+        "m_s05",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T04-E01",
+      "level": "easy",
+      "prompt": "Nhận dạng miền toán và dữ kiện chính của «Biến ngẫu nhiên, kỳ vọng, phương sai và phân phối thường gặp».",
+      "solution": "Xác định distribution/support → kiểm tham số → tính moment → kiểm đơn vị/range → diễn giải theo ngữ cảnh."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t04",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E22-MS05-T04-random-variable-distribution-synthesis",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "random-variable-distribution-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t04",
+        "m_s05",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T04-E02",
+      "level": "easy",
+      "prompt": "Viết công thức «Kỳ vọng rời rạc» và nêu điều kiện.",
+      "solution": "E[X]=Σ x·P(X=x). Tổng trên mọi giá trị có xác suất dương."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t04",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E22-MS05-T04-random-variable-distribution-synthesis",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "random-variable-distribution-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t04",
+        "m_s05",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T04-E03",
+      "level": "medium",
+      "prompt": "Viết công thức «Phương sai» và giải thích ý nghĩa.",
+      "solution": "Var(X)=E[X²]−(E[X])². Không âm; đơn vị bình phương."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t04",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E22-MS05-T04-random-variable-distribution-synthesis",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "random-variable-distribution-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t04",
+        "m_s05",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T04-E04",
+      "level": "medium",
+      "prompt": "Giải theo khung: X~Bernoulli(p=0,2). Tính E[X], Var(X), σ và diễn giải nếu X biểu thị một lần thiết bị lỗi.",
+      "solution": "Dùng quy trình: Xác định distribution/support → kiểm tham số → tính moment → kiểm đơn vị/range → diễn giải theo ngữ cảnh."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t04",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E22-MS05-T04-random-variable-distribution-synthesis",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "random-variable-distribution-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t04",
+        "m_s05",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T04-E05",
+      "level": "medium",
+      "prompt": "Nêu cổng điều kiện phải kiểm trước khi kết luận.",
+      "solution": "Nhận dạng loại biến, support và tham số phân phối; kiểm tổng xác suất hoặc tích phân bằng 1 và đơn vị của mean/variance."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t04",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E22-MS05-T04-random-variable-distribution-synthesis",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "random-variable-distribution-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t04",
+        "m_s05",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T04-E06",
+      "level": "hard",
+      "prompt": "Sửa lỗi: Dùng phương sai như độ lệch chuẩn hoặc quên bình phương đơn vị; áp phân phối chỉ vì tên bài quen.",
+      "solution": "Xác định bước sai đầu tiên; quay lại condition gate và thực hiện bước kiểm độc lập."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t04",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E22-MS05-T04-random-variable-distribution-synthesis",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "random-variable-distribution-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t04",
+        "m_s05",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T04-E07",
+      "level": "medium",
+      "prompt": "Viết 2–3 câu tiếng Nga trình bày kết luận.",
+      "solution": "Определяем распределение и его параметры, затем вычисляем математическое ожидание и дисперсию и интерпретируем результат."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t04",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E22-MS05-T04-random-variable-distribution-synthesis",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "random-variable-distribution-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t04",
+        "m_s05",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T04-E08",
+      "level": "hard",
+      "prompt": "Nêu một tình huống kỹ thuật chuyển giao sang HK1.",
+      "solution": "Mô hình số lỗi trong một chu kỳ vận hành."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t05",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E22-MS05-T05-statistics-inference-synthesis",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "statistics-inference-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t05",
+        "m_s05",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T05-E01",
+      "level": "easy",
+      "prompt": "Nhận dạng miền toán và dữ kiện chính của «Thống kê mẫu, khoảng tin cậy và kiểm định giả thuyết nhập môn».",
+      "solution": "Nêu H₀/H₁ → kiểm giả thiết → chọn statistic → tính p/CI → quyết định theo α → diễn giải thực tế."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t05",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E22-MS05-T05-statistics-inference-synthesis",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "statistics-inference-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t05",
+        "m_s05",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T05-E02",
+      "level": "easy",
+      "prompt": "Viết công thức «Trung bình mẫu» và nêu điều kiện.",
+      "solution": "x̄=(1/n)Σxᵢ. Ước lượng vị trí trung tâm từ mẫu."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t05",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E22-MS05-T05-statistics-inference-synthesis",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "statistics-inference-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t05",
+        "m_s05",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T05-E03",
+      "level": "medium",
+      "prompt": "Viết công thức «CI mean, σ biết» và giải thích ý nghĩa.",
+      "solution": "x̄ ± z_(1−α/2)·σ/√n. Yêu cầu giả thiết phù hợp hoặc n đủ lớn."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t05",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E22-MS05-T05-statistics-inference-synthesis",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "statistics-inference-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t05",
+        "m_s05",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T05-E04",
+      "level": "medium",
+      "prompt": "Giải theo khung: n=100, x̄=10,2, σ=2, α=0,05. Tính CI 95% cho μ và diễn giải đúng theo thủ tục lấy mẫu.",
+      "solution": "Dùng quy trình: Nêu H₀/H₁ → kiểm giả thiết → chọn statistic → tính p/CI → quyết định theo α → diễn giải thực tế."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t05",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E22-MS05-T05-statistics-inference-synthesis",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "statistics-inference-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t05",
+        "m_s05",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T05-E05",
+      "level": "medium",
+      "prompt": "Nêu cổng điều kiện phải kiểm trước khi kết luận.",
+      "solution": "Khóa population, sample, tham số cần suy luận, giả thiết độc lập/phân phối và α trước khi tính; tách statistical significance khỏi practical significance."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t05",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E22-MS05-T05-statistics-inference-synthesis",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "statistics-inference-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t05",
+        "m_s05",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T05-E06",
+      "level": "hard",
+      "prompt": "Sửa lỗi: Đọc p-value là xác suất H₀ đúng hoặc coi CI 95% nghĩa là tham số có xác suất 95% nằm trong khoảng đã tính.",
+      "solution": "Xác định bước sai đầu tiên; quay lại condition gate và thực hiện bước kiểm độc lập."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t05",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E22-MS05-T05-statistics-inference-synthesis",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "statistics-inference-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t05",
+        "m_s05",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T05-E07",
+      "level": "medium",
+      "prompt": "Viết 2–3 câu tiếng Nga trình bày kết luận.",
+      "solution": "Формулируем нулевую и альтернативную гипотезы, выбираем уровень значимости и после проверки предпосылок делаем статистический вывод."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t05",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E22-MS05-T05-statistics-inference-synthesis",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "statistics-inference-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t05",
+        "m_s05",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T05-E08",
+      "level": "hard",
+      "prompt": "Nêu một tình huống kỹ thuật chuyển giao sang HK1.",
+      "solution": "Kiểm tra mean sai số cảm biến có lệch khỏi 0 hay không."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t06",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E22-MS05-T06-russian-mixed-problem-recognition",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "russian-mixed-problem-recognition"
+      ],
+      "sourceAnchors": [
+        "m_s05_t06",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T06-E01",
+      "level": "easy",
+      "prompt": "Nhận dạng miền toán và dữ kiện chính của «Đọc đề tiếng Nga hỗn hợp và nhận dạng dạng bài».",
+      "solution": "Gạch động từ → khoanh đại lượng → đánh dấu điều kiện → phân loại miền toán → chọn công thức → viết một câu paraphrase tiếng Việt/Nga."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t06",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E22-MS05-T06-russian-mixed-problem-recognition",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "russian-mixed-problem-recognition"
+      ],
+      "sourceAnchors": [
+        "m_s05_t06",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T06-E02",
+      "level": "easy",
+      "prompt": "Viết công thức «Dấu hiệu đại số» và nêu điều kiện.",
+      "solution": "Ax=b. Có ma trận/hệ tuyến tính → kiểm linear algebra."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t06",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E22-MS05-T06-russian-mixed-problem-recognition",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "russian-mixed-problem-recognition"
+      ],
+      "sourceAnchors": [
+        "m_s05_t06",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T06-E03",
+      "level": "medium",
+      "prompt": "Viết công thức «Dấu hiệu tối ưu» và giải thích ý nghĩa.",
+      "solution": "∇f=0. Có максимум/минимум/экстремум → kiểm calculus/optimization."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t06",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E22-MS05-T06-russian-mixed-problem-recognition",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "russian-mixed-problem-recognition"
+      ],
+      "sourceAnchors": [
+        "m_s05_t06",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T06-E04",
+      "level": "medium",
+      "prompt": "Giải theo khung: Đề: «При условии B найти вероятность события A». Từ khóa при условии + вероятность → xác suất có điều kiện, không phải P(A) thường.",
+      "solution": "Dùng quy trình: Gạch động từ → khoanh đại lượng → đánh dấu điều kiện → phân loại miền toán → chọn công thức → viết một câu paraphrase tiếng Việt/Nga."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t06",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E22-MS05-T06-russian-mixed-problem-recognition",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "russian-mixed-problem-recognition"
+      ],
+      "sourceAnchors": [
+        "m_s05_t06",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T06-E05",
+      "level": "medium",
+      "prompt": "Nêu cổng điều kiện phải kiểm trước khi kết luận.",
+      "solution": "Không tính ngay. Trước hết đánh dấu động từ nhiệm vụ, đối tượng toán, dữ kiện, điều kiện và loại kết luận được yêu cầu."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t06",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E22-MS05-T06-russian-mixed-problem-recognition",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "russian-mixed-problem-recognition"
+      ],
+      "sourceAnchors": [
+        "m_s05_t06",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T06-E06",
+      "level": "hard",
+      "prompt": "Sửa lỗi: Thấy một từ quen rồi chọn công thức ngay, bỏ qua động từ 'доказать', 'оценить' hoặc điều kiện kèm theo.",
+      "solution": "Xác định bước sai đầu tiên; quay lại condition gate và thực hiện bước kiểm độc lập."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t06",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E22-MS05-T06-russian-mixed-problem-recognition",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "russian-mixed-problem-recognition"
+      ],
+      "sourceAnchors": [
+        "m_s05_t06",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T06-E07",
+      "level": "medium",
+      "prompt": "Viết 2–3 câu tiếng Nga trình bày kết luận.",
+      "solution": "Сначала определим, что дано и что требуется найти. По ключевым словам и математическим объектам выбираем тип задачи и метод решения."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t06",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E22-MS05-T06-russian-mixed-problem-recognition",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "russian-mixed-problem-recognition"
+      ],
+      "sourceAnchors": [
+        "m_s05_t06",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T06-E08",
+      "level": "hard",
+      "prompt": "Nêu một tình huống kỹ thuật chuyển giao sang HK1.",
+      "solution": "Phân luồng nhanh đề thi dự bị để tránh dùng nhầm công thức."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t07",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E22-MS05-T07-exam-solution-presentation",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "exam-solution-presentation"
+      ],
+      "sourceAnchors": [
+        "m_s05_t07",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T07-E01",
+      "level": "easy",
+      "prompt": "Nhận dạng miền toán và dữ kiện chính của «Phương pháp trình bày lời giải kiểm tra dự bị».",
+      "solution": "Дано → Найти → Метод → Вычисления → Проверка → Ответ. Mỗi bước chỉ chứa thông tin cần thiết và có thể kiểm."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t07",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E22-MS05-T07-exam-solution-presentation",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "exam-solution-presentation"
+      ],
+      "sourceAnchors": [
+        "m_s05_t07",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T07-E02",
+      "level": "easy",
+      "prompt": "Viết công thức «Kiểm đại số» và nêu điều kiện.",
+      "solution": "Ax−b=0. Sau nghiệm hệ, thế ngược là bước kiểm độc lập."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t07",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E22-MS05-T07-exam-solution-presentation",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "exam-solution-presentation"
+      ],
+      "sourceAnchors": [
+        "m_s05_t07",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T07-E03",
+      "level": "medium",
+      "prompt": "Viết công thức «Kiểm cực trị» và giải thích ý nghĩa.",
+      "solution": "f′(x*)=0. Ghi điều kiện cần trước khi phân loại điểm."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t07",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E22-MS05-T07-exam-solution-presentation",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "exam-solution-presentation"
+      ],
+      "sourceAnchors": [
+        "m_s05_t07",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T07-E04",
+      "level": "medium",
+      "prompt": "Giải theo khung: Với một hệ 2×2: ghi Дано, lập [A|b], biến đổi hàng, nêu nghiệm, thế lại Ax=b, kết thúc «Ответ: …».",
+      "solution": "Dùng quy trình: Дано → Найти → Метод → Вычисления → Проверка → Ответ. Mỗi bước chỉ chứa thông tin cần thiết và có thể kiểm."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t07",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E22-MS05-T07-exam-solution-presentation",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "exam-solution-presentation"
+      ],
+      "sourceAnchors": [
+        "m_s05_t07",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T07-E05",
+      "level": "medium",
+      "prompt": "Nêu cổng điều kiện phải kiểm trước khi kết luận.",
+      "solution": "Lời giải phải có Dано/điều kiện, phương pháp, biến đổi có lý do, kiểm tra và Ответ; ký hiệu nhất quán từ đầu đến cuối."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t07",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E22-MS05-T07-exam-solution-presentation",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "exam-solution-presentation"
+      ],
+      "sourceAnchors": [
+        "m_s05_t07",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T07-E06",
+      "level": "hard",
+      "prompt": "Sửa lỗi: Chỉ ghi chuỗi phép biến đổi không có câu giải thích, điều kiện áp dụng hoặc kết luận cuối.",
+      "solution": "Xác định bước sai đầu tiên; quay lại condition gate và thực hiện bước kiểm độc lập."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t07",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E22-MS05-T07-exam-solution-presentation",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "exam-solution-presentation"
+      ],
+      "sourceAnchors": [
+        "m_s05_t07",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T07-E07",
+      "level": "medium",
+      "prompt": "Viết 2–3 câu tiếng Nga trình bày kết luận.",
+      "solution": "Запишем данные и цель задачи, укажем метод, выполним вычисления, проверим результат и сформулируем ответ."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t07",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E22-MS05-T07-exam-solution-presentation",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "exam-solution-presentation"
+      ],
+      "sourceAnchors": [
+        "m_s05_t07",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T07-E08",
+      "level": "hard",
+      "prompt": "Nêu một tình huống kỹ thuật chuyển giao sang HK1.",
+      "solution": "Chuẩn hóa bài tự luận để giảng viên theo được logic dù tiếng Nga chưa nhanh."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t08",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E22-MS05-T08-mock-exam-error-map",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "mock-exam-error-map"
+      ],
+      "sourceAnchors": [
+        "m_s05_t08",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T08-E01",
+      "level": "easy",
+      "prompt": "Nhận dạng miền toán và dữ kiện chính của «Bản đồ lỗi cá nhân và bài thi mô phỏng trước khi sang HK1».",
+      "solution": "Thi đúng giờ → chấm theo rubric → gắn mã lỗi → tính tỷ lệ lỗi → chọn 2 lỗi ưu tiên → luyện lại → thi vòng ngắn xác nhận."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t08",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E22-MS05-T08-mock-exam-error-map",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "mock-exam-error-map"
+      ],
+      "sourceAnchors": [
+        "m_s05_t08",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T08-E02",
+      "level": "easy",
+      "prompt": "Viết công thức «Điểm có trọng số» và nêu điều kiện.",
+      "solution": "S=Σ wᵢsᵢ. Σwᵢ=1; tách kiến thức, trình bày, kiểm tra."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t08",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E22-MS05-T08-mock-exam-error-map",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "mock-exam-error-map"
+      ],
+      "sourceAnchors": [
+        "m_s05_t08",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T08-E03",
+      "level": "medium",
+      "prompt": "Viết công thức «Tỷ lệ lỗi theo nhóm» và giải thích ý nghĩa.",
+      "solution": "r_k = e_k / n_k. Theo dõi loại lỗi k thay vì chỉ tổng điểm."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t08",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E22-MS05-T08-mock-exam-error-map",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "mock-exam-error-map"
+      ],
+      "sourceAnchors": [
+        "m_s05_t08",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T08-E04",
+      "level": "medium",
+      "prompt": "Giải theo khung: Sau 20 câu: 4 lỗi đọc đề, 2 lỗi công thức, 1 lỗi tính toán. Ưu tiên can thiệp đọc đề trước vì tần suất và ảnh hưởng lan rộng lớn nhất.",
+      "solution": "Dùng quy trình: Thi đúng giờ → chấm theo rubric → gắn mã lỗi → tính tỷ lệ lỗi → chọn 2 lỗi ưu tiên → luyện lại → thi vòng ngắn xác nhận."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t08",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E22-MS05-T08-mock-exam-error-map",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "mock-exam-error-map"
+      ],
+      "sourceAnchors": [
+        "m_s05_t08",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T08-E05",
+      "level": "medium",
+      "prompt": "Nêu cổng điều kiện phải kiểm trước khi kết luận.",
+      "solution": "Thi mô phỏng phải dùng cùng cấu trúc thời gian, ngôn ngữ và rubric dự kiến; sau thi phân loại lỗi theo nguyên nhân chứ không chỉ ghi câu sai."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t08",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E22-MS05-T08-mock-exam-error-map",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "mock-exam-error-map"
+      ],
+      "sourceAnchors": [
+        "m_s05_t08",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T08-E06",
+      "level": "hard",
+      "prompt": "Sửa lỗi: Ôn lại toàn bộ như nhau sau mỗi bài thi thử, không ưu tiên lỗi lặp lại và không đo tốc độ đọc đề tiếng Nga.",
+      "solution": "Xác định bước sai đầu tiên; quay lại condition gate và thực hiện bước kiểm độc lập."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t08",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E22-MS05-T08-mock-exam-error-map",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "mock-exam-error-map"
+      ],
+      "sourceAnchors": [
+        "m_s05_t08",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T08-E07",
+      "level": "medium",
+      "prompt": "Viết 2–3 câu tiếng Nga trình bày kết luận.",
+      "solution": "После пробного экзамена классифицируем ошибки по причинам, выбираем приоритетные пробелы и повторно проверяем их коротким тестом."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t08",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E22-MS05-T08-mock-exam-error-map",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "mock-exam-error-map"
+      ],
+      "sourceAnchors": [
+        "m_s05_t08",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "exerciseId": "E22-M_S05_T08-E08",
+      "level": "hard",
+      "prompt": "Nêu một tình huống kỹ thuật chuyển giao sang HK1.",
+      "solution": "Tạo dashboard readiness trước HK1 với error-rate theo miền."
     }
   ],
   "importPolicy": {

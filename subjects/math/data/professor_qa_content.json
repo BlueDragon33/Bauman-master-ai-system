@@ -1155,6 +1155,214 @@
       "qaId": "E21-M_S04_T08-QA01",
       "question": "Một chart đẹp nhưng thiếu sample size/protocol có đủ làm evidence không?",
       "answer": "Không. Visualization chỉ là evidence khi có context, data provenance và validation protocol."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t01",
+      "lessonId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto-E22-MS05-T01-linear-algebra-synthesis",
+      "chapterId": "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "linear-algebra-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t01",
+        "m_s05",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "qaId": "E22-M_S05_T01-QA01",
+      "question": "Vì sao nghiệm số đúng chưa đủ nếu không kiểm tra rank?",
+      "answer": "Vì rank quyết định cấu trúc tập nghiệm; một phép tính riêng lẻ không thay thế điều kiện tồn tại/duy nhất."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t02",
+      "lessonId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_-E22-MS05-T02-calculus-optimization-synthesis",
+      "chapterId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "calculus-optimization-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t02",
+        "m_s05",
+        "MATH-PREP-C11-giai_tich_i_gioi_han_lie",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L04-single-variable-analysis",
+        "MATH-PROG-L05-multivariable-analysis-differential-geometry"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "qaId": "E22-M_S05_T02-QA01",
+      "question": "Tại sao ∇f=0 không tự động có nghĩa là cực tiểu?",
+      "answer": "Vì điểm dừng có thể là cực đại hoặc yên ngựa; phải dùng Hessian, dấu đạo hàm hoặc so sánh phù hợp."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t03",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E22-MS05-T03-probability-bayes-synthesis",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "probability-bayes-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t03",
+        "m_s05",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "qaId": "E22-M_S05_T03-QA01",
+      "question": "Vì sao base rate nhỏ có thể làm posterior thấp dù độ nhạy cao?",
+      "answer": "Vì posterior phụ thuộc đồng thời likelihood và prior; khi lỗi hiếm, số false positive có thể chiếm tỷ trọng lớn."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t04",
+      "lessonId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo-E22-MS05-T04-random-variable-distribution-synthesis",
+      "chapterId": "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "random-variable-distribution-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t04",
+        "m_s05",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PROG-L12-probability-random-variables"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "qaId": "E22-M_S05_T04-QA01",
+      "question": "Vì sao hai biến có cùng kỳ vọng vẫn có thể rất khác nhau?",
+      "answer": "Vì kỳ vọng chỉ mô tả vị trí trung tâm; phương sai, đuôi và hình dạng phân phối có thể khác mạnh."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t05",
+      "lessonId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_-E22-MS05-T05-statistics-inference-synthesis",
+      "chapterId": "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "statistics-inference-synthesis"
+      ],
+      "sourceAnchors": [
+        "m_s05_t05",
+        "m_s05",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "qaId": "E22-M_S05_T05-QA01",
+      "question": "Vì sao p-value nhỏ không cho biết hiệu ứng lớn?",
+      "answer": "Vì p-value phụ thuộc cả effect size, noise và cỡ mẫu; phải xem thêm ước lượng và khoảng tin cậy."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t06",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E22-MS05-T06-russian-mixed-problem-recognition",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "russian-mixed-problem-recognition"
+      ],
+      "sourceAnchors": [
+        "m_s05_t06",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "qaId": "E22-M_S05_T06-QA01",
+      "question": "Từ khóa có đủ để phân loại bài không?",
+      "answer": "Không. Từ khóa chỉ là tín hiệu; phải kết hợp đối tượng toán, điều kiện và yêu cầu đầu ra của đề."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t07",
+      "lessonId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n-E22-MS05-T07-exam-solution-presentation",
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "exam-solution-presentation"
+      ],
+      "sourceAnchors": [
+        "m_s05_t07",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+        "MATH-PROG-L10-logic-set-theory-boolean"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "qaId": "E22-M_S05_T07-QA01",
+      "question": "Một lời giải ngắn có thể vẫn đầy đủ không?",
+      "answer": "Có, nếu giữ đủ giả thiết, bước logic chủ chốt, kiểm tra và kết luận; độ dài không thay thế tính kiểm chứng."
+    },
+    {
+      "logicalModuleId": "m_s05",
+      "frameworkChapterId": "m_s05",
+      "logicalLessonId": "m_s05_t08",
+      "lessonId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie-E22-MS05-T08-mock-exam-error-map",
+      "chapterId": "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+      "tags": [
+        "prep synthesis",
+        "russian technical",
+        "pre-HK1 gate",
+        "mock-exam-error-map"
+      ],
+      "sourceAnchors": [
+        "m_s05_t08",
+        "m_s05",
+        "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+        "MATH-PREP-C09-ai_so_tuyen_tinh_i_vecto",
+        "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+        "MATH-PREP-C15-xac_suat_phan_phoi_ky_vo",
+        "MATH-PREP-C16-thong_ke_uoc_luong_kiem_",
+        "MATH-PREP-C18-lab_mo_hinh_toan_tin_hie",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L10-logic-set-theory-boolean",
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E22_AUTHORED",
+      "qaId": "E22-M_S05_T08-QA01",
+      "question": "Vì sao điểm thi thử tăng chưa chắc nghĩa là đã sẵn sàng?",
+      "answer": "Vì có thể do đề quen hoặc may mắn; cần theo dõi lỗi theo loại, thời gian, độ ổn định và khả năng trình bày bằng tiếng Nga."
     }
   ],
   "importPolicy": {
