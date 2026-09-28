@@ -40,8 +40,12 @@ try{
   await page.waitForFunction(()=>!!window.BAUMAN_HUB_SAFE?.selfCheck,null,{timeout:15000});
 
   const before=await page.evaluate(()=>Number(window.state?.progress?.russian||0));
-  await page.evaluate(()=>window.app?.openSubjectInPage?.('russian'));
-  await page.waitForFunction(()=>!!document.getElementById('subjectFrame'),null,{timeout:10000});
+  // The integration suite loads several Hub layers before this test. Wait for the
+  // canonical subject launcher itself, not only BAUMAN_HUB_SAFE, to avoid racing
+  // main.js initialization on slower runners.
+  await page.waitForFunction(()=>typeof window.app?.openSubjectInPage==='function',null,{timeout:30000});
+  await page.evaluate(()=>window.app.openSubjectInPage('russian'));
+  await page.waitForFunction(()=>!!document.getElementById('subjectFrame'),null,{timeout:30000});
   await page.waitForFunction(()=>window.state?.subjectCapabilities?.russian?.schema==='RUSSIAN_CAPABILITY_BRIDGE_V1',null,{timeout:30000});
 
   const snap=await page.evaluate(()=>window.state.subjectCapabilities.russian);
