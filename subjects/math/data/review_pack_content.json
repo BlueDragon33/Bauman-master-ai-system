@@ -3934,6 +3934,566 @@
           "prompt": "Ghi scale/metric/seed/k hoặc ε-MinPts/provenance cần lưu."
         }
       ]
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t01",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T01-data-contract-diagnostics",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "data-contract-diagnostics"
+      ],
+      "sourceAnchors": [
+        "m_m104_t01",
+        "m_m104",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "reviewPackId": "E25-MM104-T01-RP01",
+      "title": "Sát hạch Sát hạch 1 · Data contract, scale và chẩn đoán dữ liệu",
+      "formulaIds": [
+        "E25-MM104-T01-F01",
+        "E25-MM104-T01-F02",
+        "E25-MM104-T01-F03"
+      ],
+      "questionIds": [
+        "E25-MM104-T01-Q001",
+        "E25-MM104-T01-Q002",
+        "E25-MM104-T01-Q003",
+        "E25-MM104-T01-Q004",
+        "E25-MM104-T01-Q005",
+        "E25-MM104-T01-Q006"
+      ],
+      "masteryChecklist": [
+        "formula đúng",
+        "assumption đúng",
+        "bài tính đúng",
+        "sửa được lỗi",
+        "artifact tái lập được",
+        "bảo vệ được limitation"
+      ],
+      "items": [
+        {
+          "type": "notation",
+          "prompt": "Khóa data/shape/notation và điều kiện áp dụng trước khi giải."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và nêu assumption tương ứng."
+        },
+        {
+          "type": "worked_example",
+          "prompt": "Giải một bài tổng hợp HK1 và có sanity-check."
+        },
+        {
+          "type": "error_repair",
+          "prompt": "Tìm bước sai đầu tiên và sửa theo invariant."
+        },
+        {
+          "type": "application",
+          "prompt": "Liên hệ dữ liệu đa chiều, PCA/SVD hoặc clustering với telemetry."
+        },
+        {
+          "type": "defense",
+          "prompt": "Nêu limitation và bảo vệ lựa chọn metric/mô hình."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t02",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T02-multidim-geometry-metric",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "multidim-geometry-metric"
+      ],
+      "sourceAnchors": [
+        "m_m104_t02",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "reviewPackId": "E25-MM104-T02-RP01",
+      "title": "Sát hạch Sát hạch 2 · Hình học nhiều chiều, norm và similarity",
+      "formulaIds": [
+        "E25-MM104-T02-F01",
+        "E25-MM104-T02-F02",
+        "E25-MM104-T02-F03"
+      ],
+      "questionIds": [
+        "E25-MM104-T02-Q001",
+        "E25-MM104-T02-Q002",
+        "E25-MM104-T02-Q003",
+        "E25-MM104-T02-Q004",
+        "E25-MM104-T02-Q005",
+        "E25-MM104-T02-Q006"
+      ],
+      "masteryChecklist": [
+        "formula đúng",
+        "assumption đúng",
+        "bài tính đúng",
+        "sửa được lỗi",
+        "artifact tái lập được",
+        "bảo vệ được limitation"
+      ],
+      "items": [
+        {
+          "type": "notation",
+          "prompt": "Khóa data/shape/notation và điều kiện áp dụng trước khi giải."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và nêu assumption tương ứng."
+        },
+        {
+          "type": "worked_example",
+          "prompt": "Giải một bài tổng hợp HK1 và có sanity-check."
+        },
+        {
+          "type": "error_repair",
+          "prompt": "Tìm bước sai đầu tiên và sửa theo invariant."
+        },
+        {
+          "type": "application",
+          "prompt": "Liên hệ dữ liệu đa chiều, PCA/SVD hoặc clustering với telemetry."
+        },
+        {
+          "type": "defense",
+          "prompt": "Nêu limitation và bảo vệ lựa chọn metric/mô hình."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t03",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T03-covariance-eigen-pca",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "covariance-eigen-pca"
+      ],
+      "sourceAnchors": [
+        "m_m104_t03",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "reviewPackId": "E25-MM104-T03-RP01",
+      "title": "Sát hạch Sát hạch 3 · Covariance, eigen và PCA",
+      "formulaIds": [
+        "E25-MM104-T03-F01",
+        "E25-MM104-T03-F02",
+        "E25-MM104-T03-F03"
+      ],
+      "questionIds": [
+        "E25-MM104-T03-Q001",
+        "E25-MM104-T03-Q002",
+        "E25-MM104-T03-Q003",
+        "E25-MM104-T03-Q004",
+        "E25-MM104-T03-Q005",
+        "E25-MM104-T03-Q006"
+      ],
+      "masteryChecklist": [
+        "formula đúng",
+        "assumption đúng",
+        "bài tính đúng",
+        "sửa được lỗi",
+        "artifact tái lập được",
+        "bảo vệ được limitation"
+      ],
+      "items": [
+        {
+          "type": "notation",
+          "prompt": "Khóa data/shape/notation và điều kiện áp dụng trước khi giải."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và nêu assumption tương ứng."
+        },
+        {
+          "type": "worked_example",
+          "prompt": "Giải một bài tổng hợp HK1 và có sanity-check."
+        },
+        {
+          "type": "error_repair",
+          "prompt": "Tìm bước sai đầu tiên và sửa theo invariant."
+        },
+        {
+          "type": "application",
+          "prompt": "Liên hệ dữ liệu đa chiều, PCA/SVD hoặc clustering với telemetry."
+        },
+        {
+          "type": "defense",
+          "prompt": "Nêu limitation và bảo vệ lựa chọn metric/mô hình."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t04",
+      "lessonId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t-E25-MM104-T04-svd-low-rank",
+      "chapterId": "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "svd-low-rank"
+      ],
+      "sourceAnchors": [
+        "m_m104_t04",
+        "m_m104",
+        "MATH-HK1-C19-ai_so_tuyen_tinh_so_va_t",
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L16-numerical-methods-computing"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "reviewPackId": "E25-MM104-T04-RP01",
+      "title": "Sát hạch Sát hạch 4 · SVD, low-rank và reconstruction error",
+      "formulaIds": [
+        "E25-MM104-T04-F01",
+        "E25-MM104-T04-F02",
+        "E25-MM104-T04-F03"
+      ],
+      "questionIds": [
+        "E25-MM104-T04-Q001",
+        "E25-MM104-T04-Q002",
+        "E25-MM104-T04-Q003",
+        "E25-MM104-T04-Q004",
+        "E25-MM104-T04-Q005",
+        "E25-MM104-T04-Q006"
+      ],
+      "masteryChecklist": [
+        "formula đúng",
+        "assumption đúng",
+        "bài tính đúng",
+        "sửa được lỗi",
+        "artifact tái lập được",
+        "bảo vệ được limitation"
+      ],
+      "items": [
+        {
+          "type": "notation",
+          "prompt": "Khóa data/shape/notation và điều kiện áp dụng trước khi giải."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và nêu assumption tương ứng."
+        },
+        {
+          "type": "worked_example",
+          "prompt": "Giải một bài tổng hợp HK1 và có sanity-check."
+        },
+        {
+          "type": "error_repair",
+          "prompt": "Tìm bước sai đầu tiên và sửa theo invariant."
+        },
+        {
+          "type": "application",
+          "prompt": "Liên hệ dữ liệu đa chiều, PCA/SVD hoặc clustering với telemetry."
+        },
+        {
+          "type": "defense",
+          "prompt": "Nêu limitation và bảo vệ lựa chọn metric/mô hình."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t05",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T05-clustering-objective-validation",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "clustering-objective-validation"
+      ],
+      "sourceAnchors": [
+        "m_m104_t05",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L13-mathematical-statistics"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "reviewPackId": "E25-MM104-T05-RP01",
+      "title": "Sát hạch Sát hạch 5 · K-means, số cụm và validation",
+      "formulaIds": [
+        "E25-MM104-T05-F01",
+        "E25-MM104-T05-F02",
+        "E25-MM104-T05-F03"
+      ],
+      "questionIds": [
+        "E25-MM104-T05-Q001",
+        "E25-MM104-T05-Q002",
+        "E25-MM104-T05-Q003",
+        "E25-MM104-T05-Q004",
+        "E25-MM104-T05-Q005",
+        "E25-MM104-T05-Q006"
+      ],
+      "masteryChecklist": [
+        "formula đúng",
+        "assumption đúng",
+        "bài tính đúng",
+        "sửa được lỗi",
+        "artifact tái lập được",
+        "bảo vệ được limitation"
+      ],
+      "items": [
+        {
+          "type": "notation",
+          "prompt": "Khóa data/shape/notation và điều kiện áp dụng trước khi giải."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và nêu assumption tương ứng."
+        },
+        {
+          "type": "worked_example",
+          "prompt": "Giải một bài tổng hợp HK1 và có sanity-check."
+        },
+        {
+          "type": "error_repair",
+          "prompt": "Tìm bước sai đầu tiên và sửa theo invariant."
+        },
+        {
+          "type": "application",
+          "prompt": "Liên hệ dữ liệu đa chiều, PCA/SVD hoặc clustering với telemetry."
+        },
+        {
+          "type": "defense",
+          "prompt": "Nêu limitation và bảo vệ lựa chọn metric/mô hình."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t06",
+      "lessonId": "MATH-HK1-C21-entropy_thong_tin_va_pha-E25-MM104-T06-hierarchical-dbscan",
+      "chapterId": "MATH-HK1-C21-entropy_thong_tin_va_pha",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "hierarchical-dbscan"
+      ],
+      "sourceAnchors": [
+        "m_m104_t06",
+        "m_m104",
+        "MATH-HK1-C21-entropy_thong_tin_va_pha",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "reviewPackId": "E25-MM104-T06-RP01",
+      "title": "Sát hạch Sát hạch 6 · Hierarchical, DBSCAN và cấu trúc mật độ",
+      "formulaIds": [
+        "E25-MM104-T06-F01",
+        "E25-MM104-T06-F02",
+        "E25-MM104-T06-F03"
+      ],
+      "questionIds": [
+        "E25-MM104-T06-Q001",
+        "E25-MM104-T06-Q002",
+        "E25-MM104-T06-Q003",
+        "E25-MM104-T06-Q004",
+        "E25-MM104-T06-Q005",
+        "E25-MM104-T06-Q006"
+      ],
+      "masteryChecklist": [
+        "formula đúng",
+        "assumption đúng",
+        "bài tính đúng",
+        "sửa được lỗi",
+        "artifact tái lập được",
+        "bảo vệ được limitation"
+      ],
+      "items": [
+        {
+          "type": "notation",
+          "prompt": "Khóa data/shape/notation và điều kiện áp dụng trước khi giải."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và nêu assumption tương ứng."
+        },
+        {
+          "type": "worked_example",
+          "prompt": "Giải một bài tổng hợp HK1 và có sanity-check."
+        },
+        {
+          "type": "error_repair",
+          "prompt": "Tìm bước sai đầu tiên và sửa theo invariant."
+        },
+        {
+          "type": "application",
+          "prompt": "Liên hệ dữ liệu đa chiều, PCA/SVD hoặc clustering với telemetry."
+        },
+        {
+          "type": "defense",
+          "prompt": "Nêu limitation và bảo vệ lựa chọn metric/mô hình."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t07",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T07-pipeline-reproducibility",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "pipeline-reproducibility"
+      ],
+      "sourceAnchors": [
+        "m_m104_t07",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "reviewPackId": "E25-MM104-T07-RP01",
+      "title": "Sát hạch Sát hạch 7 · Pipeline, provenance và reproducibility",
+      "formulaIds": [
+        "E25-MM104-T07-F01",
+        "E25-MM104-T07-F02",
+        "E25-MM104-T07-F03"
+      ],
+      "questionIds": [
+        "E25-MM104-T07-Q001",
+        "E25-MM104-T07-Q002",
+        "E25-MM104-T07-Q003",
+        "E25-MM104-T07-Q004",
+        "E25-MM104-T07-Q005",
+        "E25-MM104-T07-Q006"
+      ],
+      "masteryChecklist": [
+        "formula đúng",
+        "assumption đúng",
+        "bài tính đúng",
+        "sửa được lỗi",
+        "artifact tái lập được",
+        "bảo vệ được limitation"
+      ],
+      "items": [
+        {
+          "type": "notation",
+          "prompt": "Khóa data/shape/notation và điều kiện áp dụng trước khi giải."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và nêu assumption tương ứng."
+        },
+        {
+          "type": "worked_example",
+          "prompt": "Giải một bài tổng hợp HK1 và có sanity-check."
+        },
+        {
+          "type": "error_repair",
+          "prompt": "Tìm bước sai đầu tiên và sửa theo invariant."
+        },
+        {
+          "type": "application",
+          "prompt": "Liên hệ dữ liệu đa chiều, PCA/SVD hoặc clustering với telemetry."
+        },
+        {
+          "type": "defense",
+          "prompt": "Nêu limitation và bảo vệ lựa chọn metric/mô hình."
+        }
+      ]
+    },
+    {
+      "logicalModuleId": "m_m104",
+      "frameworkChapterId": "m_m104",
+      "logicalLessonId": "m_m104_t08",
+      "lessonId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo-E25-MM104-T08-hk1-capstone-defense",
+      "chapterId": "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+      "tags": [
+        "HK1",
+        "semester assessment",
+        "m_m104",
+        "hk1-capstone-defense"
+      ],
+      "sourceAnchors": [
+        "m_m104_t08",
+        "m_m104",
+        "MATH-HK1-C24-mo_hinh_trang_thai_va_mo",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "auditStatus": "E25_AUTHORED",
+      "reviewPackId": "E25-MM104-T08-RP01",
+      "title": "Sát hạch Sát hạch 8 · Capstone HK1: phân tích, báo cáo và bảo vệ kết luận",
+      "formulaIds": [
+        "E25-MM104-T08-F01",
+        "E25-MM104-T08-F02",
+        "E25-MM104-T08-F03"
+      ],
+      "questionIds": [
+        "E25-MM104-T08-Q001",
+        "E25-MM104-T08-Q002",
+        "E25-MM104-T08-Q003",
+        "E25-MM104-T08-Q004",
+        "E25-MM104-T08-Q005",
+        "E25-MM104-T08-Q006"
+      ],
+      "masteryChecklist": [
+        "formula đúng",
+        "assumption đúng",
+        "bài tính đúng",
+        "sửa được lỗi",
+        "artifact tái lập được",
+        "bảo vệ được limitation"
+      ],
+      "items": [
+        {
+          "type": "notation",
+          "prompt": "Khóa data/shape/notation và điều kiện áp dụng trước khi giải."
+        },
+        {
+          "type": "formula",
+          "prompt": "Viết 3 công thức lõi và nêu assumption tương ứng."
+        },
+        {
+          "type": "worked_example",
+          "prompt": "Giải một bài tổng hợp HK1 và có sanity-check."
+        },
+        {
+          "type": "error_repair",
+          "prompt": "Tìm bước sai đầu tiên và sửa theo invariant."
+        },
+        {
+          "type": "application",
+          "prompt": "Liên hệ dữ liệu đa chiều, PCA/SVD hoặc clustering với telemetry."
+        },
+        {
+          "type": "defense",
+          "prompt": "Nêu limitation và bảo vệ lựa chọn metric/mô hình."
+        }
+      ]
     }
   ],
   "importPolicy": {
