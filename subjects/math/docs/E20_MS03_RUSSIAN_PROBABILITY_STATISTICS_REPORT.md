@@ -23,6 +23,6 @@ Nga–Việt–Anh, trọng âm, formula safety, assumption gate, statistical lo
 Academic static + runtime static + Chromium + E19/E18/E17 regression + Fast CI + Universal Constitution.
 
 ## Trạng thái
-**IMPLEMENTED · PENDING CI**
+**PASS · E20 + E19/E18/E17 REGRESSION + FAST CI + CONSTITUTION**
 
-Không merge khi chưa có canonical evidence PASS. Production/release tuân thủ separate explicit release gate.
+Canonical evidence đã PASS trên PR #149. Regression incident L14 đã được sửa và khóa bằng gate; production/release tiếp tục tuân thủ separate explicit release gate.
