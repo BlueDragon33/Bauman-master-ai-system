@@ -28,7 +28,8 @@ const roles=["russian_term_bridge","pronunciation_drill","assumption_gate","stat
 for(const r of rows){
  if(r?.sourceAnchors?.frameworkChapterId!=="m_s03")fail("missing m_s03 framework anchor: "+r.lessonId);
  if(r?.sourceAnchors?.legacyFrameworkChapterAlias!=="MATH-PREP-PS-C11")fail("missing legacy alias evidence: "+r.lessonId);
- if(!r.programLectureIds?.includes("MATH-PROG-L12-probability-random-variables")||!r.programLectureIds?.includes("MATH-PROG-L13-mathematical-statistics"))fail("lesson not addressable from both L12/L13: "+r.lessonId);\n if(r.programLectureIds?.includes("MATH-PROG-L14-stochastic-processes-time-series"))fail("E20 must not leak into E17/L14 runtime route: "+r.lessonId);
+ if(!r.programLectureIds?.includes("MATH-PROG-L12-probability-random-variables")||!r.programLectureIds?.includes("MATH-PROG-L13-mathematical-statistics"))fail("lesson not addressable from both L12/L13: "+r.lessonId);
+ if(r.programLectureIds?.includes("MATH-PROG-L14-stochastic-processes-time-series"))fail("E20 must not leak into E17/L14 runtime route: "+r.lessonId);
  for(const role of roles)if(!(r.slides||[]).some(s=>s.role===role))fail("missing "+role+": "+r.lessonId);
  if(!/[А-Яа-яЁё]/.test(JSON.stringify(r)))fail("no Cyrillic content: "+r.lessonId);
 }
