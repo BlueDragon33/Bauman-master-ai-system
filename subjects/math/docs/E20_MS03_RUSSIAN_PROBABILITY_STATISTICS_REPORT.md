@@ -11,7 +11,7 @@
 Framework `m_s03` có legacy alias `MATH-PREP-PS-C11`, nhưng physical spine hiện hành không có chapter này. E20 không materialize alias đó:
 - PREP-C15: probability / random variables / moments / distributions.
 - PREP-C16: sample statistics / confidence / hypothesis testing.
-- program bridge: L12 + L13 cho cả 8 bài.
+- program bridge: L12 + L13 cho cả 8 bài. L14 không được dùng làm runtime anchor để giữ vùng chuỗi thời gian E17 độc lập.
 
 ## Khối lượng
 8 bài · 160 slide · 24 công thức · 64 bài tập · 16 ứng dụng · 16 mô phỏng · 8 Q&A · 48 câu kiểm tra · 8 review pack.
