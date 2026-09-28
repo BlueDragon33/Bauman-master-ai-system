@@ -2,6 +2,14 @@ name: Whole System Integration Gate
 
 on:
   workflow_dispatch:
+  pull_request:
+    branches: [main]
+    paths:
+      - "subjects/math/**"
+      - "tests/math-*.mjs"
+      - "scripts/prepare-chatgpt-site.mjs"
+      - "scripts/prepare-cloudflare-preview.mjs"
+      - ".github/workflows/system-integration-ci.yml"
 
 permissions:
   contents: read
