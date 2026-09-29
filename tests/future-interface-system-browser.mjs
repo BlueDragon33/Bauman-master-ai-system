@@ -207,7 +207,8 @@ try{
       if(width<=820){
         assert.equal(d.sidebarVisible,false,`${label}: compact layout still shows desktop sidebar`);
         assert.equal(d.dockVisible,true,`${label}: compact dock missing`);
-        assert.ok(d.dockWidth<=d.viewport-8&&d.dockWidth>=d.viewport-30,`${label}: dock is not a floating inset control ${JSON.stringify(d)}`);
+        const expectedDock=Math.min(d.viewport-16,780);
+        assert.ok(Math.abs(d.dockWidth-expectedDock)<=4,`${label}: dock is not the intended floating inset width ${JSON.stringify(d)}`);
       }else{
         assert.equal(d.sidebarVisible,true,`${label}: landscape iPad should retain compact sidebar`);
         assert.equal(d.dockVisible,false,`${label}: landscape iPad should not show phone dock`);
