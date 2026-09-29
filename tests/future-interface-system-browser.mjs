@@ -93,7 +93,9 @@ try{
         mobileVisible:visible(mobile),
         activeVisible:visible(active),
         shellWidth:shell?.getBoundingClientRect().width||0,
-        viewport:document.documentElement.clientWidth
+        viewport:document.documentElement.clientWidth,
+        topbarBottom:document.querySelector('#appRoot .topbar')?.getBoundingClientRect().bottom||0,
+        heroTop:document.querySelector('#page-home .hub-safe-hero')?.getBoundingClientRect().top||0
       };
     });
     if(compactNavigation[width].appVisible){
@@ -102,6 +104,9 @@ try{
       assert.equal(compactNavigation[width].sidebarVisible,false,`Legacy Hub sidebar duplicates UI-E5 compact nav at ${width}px`);
       assert.equal(compactNavigation[width].mobileVisible,true,`UI-E5 compact navigation missing at ${width}px`);
       assert.ok(compactNavigation[width].shellWidth>=compactNavigation[width].viewport-4,`UI-E5 shell does not fill compact viewport at ${width}px`);
+      if(compactNavigation[width].heroTop>0){
+        assert.ok(compactNavigation[width].heroTop>=compactNavigation[width].topbarBottom-1,`UI-E5 compact topbar overlaps the home hero at ${width}px`);
+      }
     }
   }
 
