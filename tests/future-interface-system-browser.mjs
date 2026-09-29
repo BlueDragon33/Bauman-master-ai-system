@@ -208,7 +208,13 @@ try{
       let topControlCollisions=0;
       for(let i=0;i<topControls.length;i++)for(let j=i+1;j<topControls.length;j++)if(intersects(topControls[i],topControls[j]))topControlCollisions++;
       const ratio=(a,b)=>{
-        const rgb=v=>{const m=v.match(/rgba?\\(([^)]+)\\)/i);return m?m[1].split(',').slice(0,3).map(x=>parseFloat(x)/255):[0,0,0]};
+        const rgb=v=>{
+          const canvas=document.createElement('canvas');canvas.width=1;canvas.height=1;
+          const ctx=canvas.getContext('2d',{willReadFrequently:true});
+          ctx.clearRect(0,0,1,1);ctx.fillStyle=v;ctx.fillRect(0,0,1,1);
+          const d=ctx.getImageData(0,0,1,1).data;
+          return [d[0]/255,d[1]/255,d[2]/255];
+        };
         const lum=v=>rgb(v).map(x=>x<=.04045?x/12.92:((x+.055)/1.055)**2.4).reduce((n,x,i)=>n+x*[.2126,.7152,.0722][i],0);
         const [x,y]=[lum(a),lum(b)];return (Math.max(x,y)+.05)/(Math.min(x,y)+.05);
       };
