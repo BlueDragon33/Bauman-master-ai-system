@@ -1,0 +1,290 @@
+/* BAUMAN FUTURE INTERFACE SYSTEM · UI-E9
+   Contrast Constitution enforcement layer.
+   Loaded last by bauman-ui.css so legacy presentation cannot lower the
+   semantic contrast hierarchy. Presentation only: no route/data ownership. */
+
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"]{
+  background-color:var(--bui-hub-canvas)!important;
+  color:var(--bui-hub-text-primary)!important;
+}
+
+/* Content always outranks decoration. */
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] :where(
+  .page,.topbar,.sidebar,.appearance-menu,.profile-menu,.hub-safe-dashboard,
+  .hub-v6-page,.canva-roadmap-page,.canva-subjects-page,.schedule-page,.canva-research-page
+){
+  color:var(--bui-hub-text-primary);
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] :where(
+  h1,h2,h3,h4,h5,h6,strong,b,.section-title
+){
+  color:var(--bui-hub-text-primary);
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] :where(
+  p,.body-text,.card-text,.description
+){
+  color:var(--bui-hub-text-secondary);
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] :where(
+  small,.meta,.caption,.helper,.hub-safe-muted
+){
+  color:var(--bui-hub-text-muted);
+  opacity:1;
+}
+
+/* Shell separation. */
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] .sidebar{
+  background:linear-gradient(180deg,var(--bui-hub-canvas),var(--bui-hub-surface-1))!important;
+  border-right-color:var(--bui-hub-border-subtle)!important;
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] .topbar{
+  background:color-mix(in srgb,var(--bui-hub-canvas) 96%,transparent)!important;
+  border-bottom-color:var(--bui-hub-border-subtle)!important;
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] .main{
+  color:var(--bui-hub-text-primary)!important;
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #nav>button{
+  color:var(--bui-hub-text-secondary)!important;
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #nav>button i{
+  color:var(--bui-hub-text-muted)!important;
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #nav>button:hover,
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #nav>button.active{
+  color:var(--bui-hub-text-primary)!important;
+  border-color:var(--bui-hub-border-strong)!important;
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #nav>button:hover i,
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #nav>button.active i{
+  color:var(--bui-hub-text-primary)!important;
+}
+
+/* Search / forms: placeholder must still be readable. */
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] :where(
+  .hub-safe-search,input,select,textarea,.field,.input
+){
+  background-color:var(--bui-hub-control);
+  color:var(--bui-hub-text-primary);
+  border-color:var(--bui-hub-border-strong);
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] .hub-safe-search{
+  background:var(--bui-hub-control)!important;
+  border-color:var(--bui-hub-border-strong)!important;
+  color:var(--bui-hub-text-secondary)!important;
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] :where(input,textarea)::placeholder{
+  color:var(--bui-hub-placeholder)!important;
+  opacity:1!important;
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] .hub-safe-search input{
+  color:var(--bui-hub-text-primary)!important;
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] .hub-safe-search-icon{
+  color:var(--bui-hub-text-secondary)!important;
+}
+
+/* Cards have a visible surface ladder instead of blending into the canvas. */
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] :where(
+  .hub-safe-card,.panel,.card,.bui-card,.roadmap-detail,.subject-detail,
+  .research-card,.calendar-wrap,.schedule-head,.subject-stage-toolbar
+){
+  background-color:var(--bui-hub-surface-1)!important;
+  border-color:var(--bui-hub-border-subtle)!important;
+  box-shadow:var(--bui-hub-shadow);
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] :where(
+  .hub-safe-suggestions button,.hub-safe-schedule-row div,.hub-safe-lesson,
+  .course,.slot-card,.research-check-item,.timeline-row,.current-stage-note,
+  .route-subject-summary>div
+){
+  background-color:var(--bui-hub-surface-2)!important;
+  border-color:var(--bui-hub-border-subtle)!important;
+  color:var(--bui-hub-text-secondary)!important;
+}
+
+/* Media-backed surfaces get a real scrim. */
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #page-home .hub-safe-hero{
+  background-color:var(--bui-hub-surface-1)!important;
+  border-color:var(--bui-hub-border-strong)!important;
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #page-home .hub-safe-hero::after{
+  background:
+    linear-gradient(
+      90deg,
+      var(--bui-hub-scrim) 0%,
+      color-mix(in srgb,var(--bui-hub-scrim) 88%,transparent) 54%,
+      color-mix(in srgb,var(--bui-hub-scrim) 58%,transparent) 100%
+    )!important;
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #page-home .hub-safe-hero-copy{
+  isolation:isolate;
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #page-home .hub-safe-hero h1{
+  color:var(--bui-hub-text-primary)!important;
+  text-shadow:0 2px 14px color-mix(in srgb,var(--bui-hub-canvas) 78%,transparent);
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #page-home .hub-safe-hero p,
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #page-home .hub-safe-quote{
+  color:var(--bui-hub-accent-gold)!important;
+  opacity:1!important;
+  text-shadow:0 2px 12px color-mix(in srgb,var(--bui-hub-canvas) 72%,transparent);
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] :where(.side-note,.hub-safe-motivation){
+  color:var(--bui-hub-text-primary)!important;
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] :where(.side-note,.hub-safe-motivation) :where(b,blockquote){
+  color:var(--bui-hub-accent-gold)!important;
+  text-shadow:0 2px 12px color-mix(in srgb,var(--bui-hub-canvas) 76%,transparent);
+}
+
+/* Primary and secondary controls stay visually distinct and readable. */
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] :where(
+  .hub-safe-gold,.btn.primary,.bui-button--primary
+){
+  background:var(--bui-hub-action-bg)!important;
+  color:var(--bui-hub-action-text)!important;
+  border-color:color-mix(in srgb,var(--bui-hub-action-bg) 72%,var(--bui-hub-border-strong))!important;
+  text-shadow:none!important;
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] :where(
+  .hub-safe-outline,.btn:not(.primary),.bui-button--secondary,.bui-button--ghost
+){
+  color:var(--bui-hub-text-primary);
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] .hub-safe-outline{
+  background:var(--bui-hub-surface-1)!important;
+  border-color:var(--bui-hub-border-strong)!important;
+  color:var(--bui-hub-text-primary)!important;
+}
+
+/* Home subject cards: accent remains decoration; text remains semantic. */
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #page-home .hub-safe-subject{
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(in srgb,var(--subject-accent,var(--bui-hub-accent-blue)) 15%,var(--bui-hub-surface-2)),
+      var(--bui-hub-surface-1)
+    )!important;
+  border-color:color-mix(in srgb,var(--subject-accent,var(--bui-hub-accent-blue)) 52%,var(--bui-hub-border-strong))!important;
+  color:var(--bui-hub-text-primary)!important;
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #page-home .hub-safe-subject b{
+  color:var(--bui-hub-text-primary)!important;
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #page-home .hub-safe-subject small{
+  color:var(--bui-hub-text-muted)!important;
+  opacity:1!important;
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #page-home .hub-safe-progress-track{
+  background:var(--bui-hub-surface-3)!important;
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #page-home .hub-safe-progress em{
+  color:var(--bui-hub-text-secondary)!important;
+}
+
+/* Continue / progress / assistant / schedule copy. */
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #page-home :where(
+  .hub-safe-continue-title span,.hub-safe-ring-label,.hub-safe-breadcrumb,
+  .hub-safe-stats,.hub-safe-bar,.hub-safe-date,.hub-safe-schedule-row time
+){
+  color:var(--bui-hub-text-muted)!important;
+  opacity:1!important;
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #page-home :where(
+  .hub-safe-lesson,.hub-safe-ach,.hub-safe-assistant-intro p,
+  .hub-safe-suggestions button,.hub-safe-schedule-row div
+){
+  color:var(--bui-hub-text-secondary)!important;
+  opacity:1!important;
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #page-home .hub-safe-assistant-intro{
+  border-bottom-color:var(--bui-hub-border-subtle)!important;
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #page-home .hub-safe-suggestions button{
+  border-color:var(--bui-hub-border-strong)!important;
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #page-home .hub-safe-ai-input{
+  background:var(--bui-hub-control)!important;
+  border-color:var(--bui-hub-border-strong)!important;
+  color:var(--bui-hub-placeholder)!important;
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #page-home .hub-safe-link{
+  color:var(--bui-hub-accent-blue)!important;
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #page-home .hub-safe-empty{
+  color:var(--bui-hub-text-muted)!important;
+  border-color:var(--bui-hub-border-strong)!important;
+}
+
+/* Unified V6 primary pages inherit the same hierarchy. */
+html[data-bauman-ui="future-v1"] body[data-hub-primary-pages="v6"] .hub-v6-hero,
+html[data-bauman-ui="future-v1"] body[data-hub-primary-pages="v6"] :where(
+  #page-subjects .subject-stage-toolbar,
+  #page-subjects .subject-list,
+  #page-subjects .subject-detail,
+  #page-schedule .schedule-head,
+  #page-schedule .schedule-control-line,
+  #page-schedule .calendar-wrap,
+  #page-research .canva-research-hero,
+  #page-research .research-card
+){
+  background:var(--bui-hub-surface-1)!important;
+  border-color:var(--bui-hub-border-subtle)!important;
+  color:var(--bui-hub-text-primary)!important;
+}
+html[data-bauman-ui="future-v1"] body[data-hub-primary-pages="v6"] :where(
+  .hub-v6-hero p,
+  #page-subjects .subject-stage-toolbar p,
+  #page-subjects .subject-card small,
+  #page-subjects .subject-head p,
+  #page-schedule .schedule-head p,
+  #page-research .canva-research-hero p,
+  #page-research .research-card-head small
+){
+  color:var(--bui-hub-text-muted)!important;
+  opacity:1!important;
+}
+html[data-bauman-ui="future-v1"] body[data-hub-primary-pages="v6"] :where(
+  .hub-v6-kpi,
+  #page-subjects .route-subject-summary>div,
+  #page-subjects .current-stage-note,
+  #page-subjects .subject-course-list .course,
+  #page-schedule .calendar th,
+  #page-schedule .calendar .time-cell,
+  #page-schedule .slot-card,
+  #page-research .research-check-item,
+  #page-research .timeline-row
+){
+  background:var(--bui-hub-surface-2)!important;
+  border-color:var(--bui-hub-border-subtle)!important;
+}
+html[data-bauman-ui="future-v1"] body[data-hub-primary-pages="v6"] :where(
+  #page-schedule .slot-card small,
+  #page-schedule .slot-card em,
+  #page-schedule .slot-card span
+){
+  color:var(--bui-hub-text-muted)!important;
+  opacity:1!important;
+}
+
+/* Compact navigation must be a distinct foreground plane. */
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] .bui-mobile-nav:not([hidden]){
+  background:color-mix(in srgb,var(--bui-hub-surface-1) 96%,transparent)!important;
+  border-color:var(--bui-hub-border-strong)!important;
+  box-shadow:0 12px 34px color-mix(in srgb,var(--bui-hub-canvas) 58%,transparent)!important;
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] .bui-mobile-nav [data-page]{
+  color:var(--bui-hub-text-secondary)!important;
+  border-color:var(--bui-hub-border-subtle)!important;
+}
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] .bui-mobile-nav [data-page][aria-current="page"]{
+  color:var(--bui-hub-text-primary)!important;
+  background:var(--bui-hub-surface-2)!important;
+  border-color:var(--bui-hub-border-strong)!important;
+}
+
+/* Disabled controls are the only deliberate low-emphasis exception. */
+html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] :where(button,.btn,input,select,textarea):not(:disabled){
+  opacity:1;
+}
