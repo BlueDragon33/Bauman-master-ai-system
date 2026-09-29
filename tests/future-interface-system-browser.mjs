@@ -85,8 +85,9 @@ try{
     await page.waitForFunction(()=>window.BAUMAN_UI?.selfCheck?.().ready===true);
     await page.waitForFunction(()=>{
       const app=document.getElementById('appRoot');
-      return !app||app.classList.contains('hidden')||window.BAUMAN_UI?.selfCheck?.().dashboardReady===true;
+      return !!app&&!app.classList.contains('hidden');
     },null,{timeout:10000});
+    await page.waitForFunction(()=>window.BAUMAN_UI?.selfCheck?.().dashboardReady===true,null,{timeout:10000});
     await page.waitForTimeout(180);
     compactNavigation[width]=await page.evaluate(()=> {
       const visible=el=>{
@@ -162,8 +163,9 @@ try{
     await page.waitForFunction(()=>window.BAUMAN_UI?.selfCheck?.().ready===true);
     await page.waitForFunction(()=>{
       const app=document.getElementById('appRoot');
-      return !app||app.classList.contains('hidden')||window.BAUMAN_UI?.selfCheck?.().dashboardReady===true;
+      return !!app&&!app.classList.contains('hidden');
     },null,{timeout:10000});
+    await page.waitForFunction(()=>window.BAUMAN_UI?.selfCheck?.().dashboardReady===true,null,{timeout:10000});
     await page.waitForTimeout(180);
     deviceProfiles[label]=await page.evaluate(()=> {
       const visible=el=>{
