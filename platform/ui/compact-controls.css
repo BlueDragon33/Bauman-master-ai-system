@@ -123,6 +123,20 @@ html[data-bauman-ui="future-v1"] :where(
   }
 }
 
+/* iPad mini landscape keeps a slightly larger touch target than compact
+   laptops while preserving the two-row E7 topbar architecture. */
+@media (min-width:821px) and (max-width:1100px){
+  html[data-bauman-ui="future-v1"]{
+    --bui-control-height:42px;
+    --bui-control-padding-inline:12px;
+  }
+  html[data-bauman-ui="future-v1"] body:has(#appRoot:not(.hidden)) #appRoot>.shell>.topbar .top-actions :where(.btn,.hub-safe-icon-btn,#profileBtn){
+    min-height:42px!important;
+    height:42px;
+    align-self:center;
+  }
+}
+
 /* iPad mini portrait. One stable action row is easier to scan than controls
    jumping between lines; overflow, if ever needed, stays inside that row. */
 @media (min-width:481px) and (max-width:820px){
