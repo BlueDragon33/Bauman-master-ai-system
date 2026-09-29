@@ -57,6 +57,35 @@
     visibility:visible!important;
   }
 
+  html[data-bauman-ui="future-v1"] body:has(#appRoot:not(.hidden)) #appRoot>.shell>.topbar{
+    height:auto!important;
+    min-height:116px!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr)!important;
+    align-content:center!important;
+    gap:8px!important;
+    padding:8px 10px!important;
+  }
+  html[data-bauman-ui="future-v1"] body:has(#appRoot:not(.hidden)) #appRoot>.shell>.topbar .top-title{
+    display:none!important;
+  }
+  html[data-bauman-ui="future-v1"] body:has(#appRoot:not(.hidden)) #appRoot>.shell>.topbar .hub-safe-search{
+    grid-row:1!important;
+    width:100%!important;
+    max-width:none!important;
+    min-width:0!important;
+    margin:0!important;
+  }
+  html[data-bauman-ui="future-v1"] body:has(#appRoot:not(.hidden)) #appRoot>.shell>.topbar .top-actions{
+    grid-row:2!important;
+    width:100%!important;
+    margin:0!important;
+    justify-content:flex-end!important;
+  }
+  html[data-bauman-ui="future-v1"] body:has(#appRoot:not(.hidden)) #appRoot>.shell>.topbar .appearance-wrap{
+    margin-right:auto!important;
+  }
+
   html[data-bauman-ui="future-v1"] body:not(:has(#appRoot)) :where(.app){
     display:block;
   }
