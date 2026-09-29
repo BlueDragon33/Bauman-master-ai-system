@@ -207,6 +207,13 @@ try{
       const intersects=(a,b)=>Math.min(a.right,b.right)-Math.max(a.left,b.left)>1&&Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top)>1;
       let topControlCollisions=0;
       for(let i=0;i<topControls.length;i++)for(let j=i+1;j<topControls.length;j++)if(intersects(topControls[i],topControls[j]))topControlCollisions++;
+      const ratio=(a,b)=>{
+        const rgb=v=>{const m=v.match(/rgba?\\(([^)]+)\\)/i);return m?m[1].split(',').slice(0,3).map(x=>parseFloat(x)/255):[0,0,0]};
+        const lum=v=>rgb(v).map(x=>x<=.04045?x/12.92:((x+.055)/1.055)**2.4).reduce((n,x,i)=>n+x*[.2126,.7152,.0722][i],0);
+        const [x,y]=[lum(a),lum(b)];return (Math.max(x,y)+.05)/(Math.min(x,y)+.05);
+      };
+      const dockButton=document.querySelector('[data-bui-mobile-nav] button');
+      const dockStyle=dockButton?getComputedStyle(dockButton):null;
       return{
         runtime:window.BAUMAN_UI?.selfCheck?.(),
         appActive:!!app&&!app.classList.contains('hidden'),
@@ -217,6 +224,7 @@ try{
         topbarBottom:topbar?.bottom||0,
         topbarHeight:topbar?.height||0,
         dockWidth:dock?.width||0,
+        dockButtonContrast:dockStyle?ratio(dockStyle.color,dockStyle.backgroundColor):0,
         viewport:document.documentElement.clientWidth,
         quoteVisible:visible(document.querySelector('#page-home .hub-safe-quote')),
         artVisible:visible(document.querySelector('#page-home .hub-safe-art')),
@@ -252,6 +260,7 @@ try{
         assert.ok(Math.abs(d.dockWidth-expectedDock)<=4,`${label}: dock is not the intended floating inset width ${JSON.stringify(d)}`);
         assert.ok(d.mainBottom<=d.dockTop+2,`${label}: fixed dock overlaps the scrollable content viewport ${JSON.stringify(d)}`);
         assert.ok(['auto','scroll'].includes(d.mainOverflowY),`${label}: compact main must own vertical scrolling above the dock ${JSON.stringify(d)}`);
+        assert.ok(d.dockButtonContrast>=4.5,`${label}: compact navigation text contrast below 4.5:1 ${JSON.stringify(d)}`);
       }else{
         assert.equal(d.sidebarVisible,true,`${label}: landscape iPad should retain compact sidebar`);
         assert.equal(d.dockVisible,false,`${label}: landscape iPad should not show phone dock`);
