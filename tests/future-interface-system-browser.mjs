@@ -83,6 +83,10 @@ try{
     await page.setViewportSize({width,height:844});
     await page.goto(new URL('index.html',BASE).href,{waitUntil:'domcontentloaded'});
     await page.waitForFunction(()=>window.BAUMAN_UI?.selfCheck?.().ready===true);
+    await page.waitForFunction(()=>{
+      const app=document.getElementById('appRoot');
+      return !app||app.classList.contains('hidden')||window.BAUMAN_UI?.selfCheck?.().dashboardReady===true;
+    },null,{timeout:10000});
     await page.waitForTimeout(180);
     compactNavigation[width]=await page.evaluate(()=> {
       const visible=el=>{
