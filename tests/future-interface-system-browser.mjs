@@ -68,6 +68,43 @@ try{
     mobile[name]=await inspect(page,name,url,{width:390,height:844});
   }
 
+  // UI-E5 compact navigation must replace, not duplicate, the legacy Hub sidebar.
+  const compactNavigation={};
+  for(const width of [768,390]){
+    await page.setViewportSize({width,height:844});
+    await page.goto(new URL('index.html',BASE).href,{waitUntil:'domcontentloaded'});
+    await page.waitForFunction(()=>window.BAUMAN_UI?.selfCheck?.().ready===true);
+    await page.waitForTimeout(180);
+    compactNavigation[width]=await page.evaluate(()=> {
+      const visible=el=>{
+        if(!el)return false;
+        const s=getComputedStyle(el),r=el.getBoundingClientRect();
+        return s.display!=='none'&&s.visibility!=='hidden'&&r.width>1&&r.height>1;
+      };
+      const app=document.querySelector('#appRoot');
+      const shell=document.querySelector('#appRoot>.shell');
+      const sidebar=document.querySelector('#appRoot>.sidebar');
+      const mobile=document.querySelector('[data-bui-mobile-nav]');
+      const active=document.querySelector('#appRoot .page.active');
+      return{
+        appVisible:visible(app),
+        shellVisible:visible(shell),
+        sidebarVisible:visible(sidebar),
+        mobileVisible:visible(mobile),
+        activeVisible:visible(active),
+        shellWidth:shell?.getBoundingClientRect().width||0,
+        viewport:document.documentElement.clientWidth
+      };
+    });
+    if(compactNavigation[width].appVisible){
+      assert.equal(compactNavigation[width].shellVisible,true,`UI-E5 compact shell hidden at ${width}px`);
+      assert.equal(compactNavigation[width].activeVisible,true,`UI-E5 active content hidden at ${width}px`);
+      assert.equal(compactNavigation[width].sidebarVisible,false,`Legacy Hub sidebar duplicates UI-E5 compact nav at ${width}px`);
+      assert.equal(compactNavigation[width].mobileVisible,true,`UI-E5 compact navigation missing at ${width}px`);
+      assert.ok(compactNavigation[width].shellWidth>=compactNavigation[width].viewport-4,`UI-E5 shell does not fill compact viewport at ${width}px`);
+    }
+  }
+
   // Token-driven dark mode must materially change surface without automatic inversion.
   await page.goto(new URL('index.html',BASE).href,{waitUntil:'domcontentloaded'});
   await page.evaluate(()=>document.body.dataset.uiTheme='dark');
