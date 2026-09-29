@@ -156,6 +156,10 @@ try{
     await page.setViewportSize({width,height});
     await page.goto(new URL('index.html',BASE).href,{waitUntil:'domcontentloaded'});
     await page.waitForFunction(()=>window.BAUMAN_UI?.selfCheck?.().ready===true);
+    await page.waitForFunction(()=>{
+      const app=document.getElementById('appRoot');
+      return !app||app.classList.contains('hidden')||window.BAUMAN_UI?.selfCheck?.().dashboardReady===true;
+    },null,{timeout:10000});
     await page.waitForTimeout(180);
     deviceProfiles[label]=await page.evaluate(()=> {
       const visible=el=>{
@@ -185,6 +189,9 @@ try{
         artVisible:visible(document.querySelector('#page-home .hub-safe-art')),
         subjectMin:subjectCards.length?Math.min(...subjectCards):0,
         ctaMin:ctas.length?Math.min(...ctas):0,
+        ringBottom:rect('#page-home .hub-safe-ring-block')?.bottom||0,
+        continueBodyTop:rect('#page-home .hub-safe-continue-body')?.top||0,
+        dockLabels:Array.from(document.querySelectorAll('[data-bui-mobile-nav] [data-page] span')).map(x=>x.textContent?.trim()||''),
         overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth
       };
     });
@@ -208,6 +215,8 @@ try{
         assert.ok(d.topbarHeight<=104,`${label}: topbar is too tall ${JSON.stringify(d)}`);
         assert.ok(d.subjectMin>=150,`${label}: subject cards are too compressed ${JSON.stringify(d)}`);
         assert.ok(d.ctaMin>=250,`${label}: hero CTA is too narrow/readability-poor ${JSON.stringify(d)}`);
+        assert.ok(d.continueBodyTop>=d.ringBottom-2,`${label}: Continue progress overlaps lesson content ${JSON.stringify(d)}`);
+        assert.deepEqual(d.dockLabels,['Trang chủ','Lộ trình','Môn học','Lịch học','Luận văn'],`${label}: compact dock labels drifted`);
       }else if(width<=820){
         assert.ok(d.heroHeight<=240,`${label}: tablet portrait hero is too tall ${JSON.stringify(d)}`);
         assert.ok(d.subjectMin>=150,`${label}: tablet subject cards are too compressed ${JSON.stringify(d)}`);
