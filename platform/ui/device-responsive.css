@@ -170,20 +170,48 @@
    decorative artwork yields space to controls and text. */
 @media (max-width:480px){
   html[data-bauman-ui="future-v1"] body:has(#appRoot:not(.hidden)) #appRoot>.shell>.topbar{
-    min-height:98px!important;
-    gap:6px!important;
-    padding:7px 8px!important;
+    min-height:92px!important;
+    gap:4px!important;
+    padding:5px 8px!important;
   }
   html[data-bauman-ui="future-v1"] body:has(#appRoot:not(.hidden)) #appRoot>.shell>.topbar .hub-safe-search{
-    height:44px!important;
-    border-radius:16px!important;
+    height:40px!important;
+    border-radius:15px!important;
   }
   html[data-bauman-ui="future-v1"] body:has(#appRoot:not(.hidden)) #appRoot>.shell>.topbar .hub-safe-search kbd{
     display:none!important;
   }
   html[data-bauman-ui="future-v1"] body:has(#appRoot:not(.hidden)) #appRoot>.shell>.topbar .top-actions{
-    min-height:42px!important;
-    gap:4px!important;
+    min-height:38px!important;
+    gap:3px!important;
+  }
+  html[data-bauman-ui="future-v1"] body:has(#appRoot:not(.hidden)) #appRoot>.shell>.topbar #appearanceBtn,
+  html[data-bauman-ui="future-v1"] body:has(#appRoot:not(.hidden)) #appRoot>.shell>.topbar .appearance-trigger{
+    min-height:38px!important;
+    height:38px!important;
+    padding:0 11px!important;
+    border-radius:11px!important;
+    font-size:13px!important;
+  }
+  html[data-bauman-ui="future-v1"] body:has(#appRoot:not(.hidden)) #appRoot>.shell>.topbar .hub-safe-icon-btn{
+    width:36px!important;
+    height:36px!important;
+    margin:0 2px!important;
+  }
+  html[data-bauman-ui="future-v1"] body:has(#appRoot:not(.hidden)) #appRoot>.shell>.topbar #profileBtn{
+    width:44px!important;
+    min-width:44px!important;
+    height:38px!important;
+    grid-template-columns:34px!important;
+    padding:2px!important;
+  }
+  html[data-bauman-ui="future-v1"] body:has(#appRoot:not(.hidden)) #appRoot>.shell>.topbar #userAvatar{
+    width:34px!important;
+    height:34px!important;
+  }
+  html[data-bauman-ui="future-v1"] body:has(#appRoot:not(.hidden)) #appRoot>.shell>.topbar .profile-wrap{
+    padding-left:4px!important;
+    margin-right:0!important;
   }
   html[data-bauman-ui="future-v1"] body:has(#appRoot:not(.hidden)) .main{
     padding:14px 10px 96px!important;
