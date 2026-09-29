@@ -194,10 +194,14 @@ try{
       const subjectCards=Array.from(document.querySelectorAll('#page-home .bui-dashboard__subject-card')).map(el=>el.getBoundingClientRect().width);
       const ctas=Array.from(document.querySelectorAll('#page-home .hub-safe-hero-actions .btn')).map(el=>el.getBoundingClientRect().width);
       const topActions=document.querySelector('#appRoot>.shell>.topbar .top-actions');
+      const main=document.querySelector('#appRoot>.shell>.main');
       const topControls=Array.from(topActions?.querySelectorAll('.btn,.hub-safe-icon-btn,#profileBtn')||[])
         .filter(visible)
         .map(el=>el.getBoundingClientRect());
       const centers=topControls.map(r=>r.top+r.height/2);
+      const intersects=(a,b)=>Math.min(a.right,b.right)-Math.max(a.left,b.left)>1&&Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top)>1;
+      let topControlCollisions=0;
+      for(let i=0;i<topControls.length;i++)for(let j=i+1;j<topControls.length;j++)if(intersects(topControls[i],topControls[j]))topControlCollisions++;
       return{
         runtime:window.BAUMAN_UI?.selfCheck?.(),
         appActive:!!app&&!app.classList.contains('hidden'),
@@ -215,7 +219,11 @@ try{
         ctaMin:ctas.length?Math.min(...ctas):0,
         topControlMinHeight:topControls.length?Math.min(...topControls.map(r=>r.height)):0,
         topControlCenterSpread:centers.length?Math.max(...centers)-Math.min(...centers):0,
+        topControlCollisions,
         topActionOverflow:topActions?Math.max(0,topActions.scrollWidth-topActions.clientWidth):0,
+        mainBottom:main?.getBoundingClientRect().bottom||0,
+        mainOverflowY:main?getComputedStyle(main).overflowY:'',
+        dockTop:dock?.top||0,
         ringBottom:rect('#page-home .hub-safe-ring-block')?.bottom||0,
         continueBodyTop:rect('#page-home .hub-safe-continue-body')?.top||0,
         dockLabels:Array.from(document.querySelectorAll('[data-bui-mobile-nav] [data-page] span')).map(x=>x.textContent?.trim()||''),
@@ -228,6 +236,7 @@ try{
     if(d.appActive){
       assert.ok(d.heroTop>=d.topbarBottom-4,`${label}: topbar overlaps Home ${JSON.stringify(d)}`);
       assert.ok(d.topControlCenterSpread<=5,`${label}: topbar buttons are vertically misaligned ${JSON.stringify(d)}`);
+      assert.equal(d.topControlCollisions,0,`${label}: topbar controls overlap each other ${JSON.stringify(d)}`);
       assert.ok(d.topActionOverflow<=4,`${label}: topbar action row overflows horizontally ${JSON.stringify(d)}`);
       if(width<=820)assert.ok(d.topControlMinHeight>=43.5,`${label}: compact topbar controls are below the 44px touch contract ${JSON.stringify(d)}`);
       else if(width<=1100)assert.ok(d.topControlMinHeight>=41.5,`${label}: iPad landscape controls are below the 42px contract ${JSON.stringify(d)}`);
@@ -236,6 +245,8 @@ try{
         assert.equal(d.dockVisible,true,`${label}: compact dock missing`);
         const expectedDock=Math.min(d.viewport-16,780);
         assert.ok(Math.abs(d.dockWidth-expectedDock)<=4,`${label}: dock is not the intended floating inset width ${JSON.stringify(d)}`);
+        assert.ok(d.mainBottom<=d.dockTop+2,`${label}: fixed dock overlaps the scrollable content viewport ${JSON.stringify(d)}`);
+        assert.ok(['auto','scroll'].includes(d.mainOverflowY),`${label}: compact main must own vertical scrolling above the dock ${JSON.stringify(d)}`);
       }else{
         assert.equal(d.sidebarVisible,true,`${label}: landscape iPad should retain compact sidebar`);
         assert.equal(d.dockVisible,false,`${label}: landscape iPad should not show phone dock`);
