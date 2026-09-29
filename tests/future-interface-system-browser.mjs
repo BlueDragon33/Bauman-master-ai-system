@@ -53,13 +53,22 @@ try{
   const desktop={};
   for(const [name,url] of targets) desktop[name]=await inspect(page,name,url,{width:1440,height:1000});
 
-  // Global shell screenshots required by the design prompt.
-  for(const width of [1920,1440,768,390]){
-    await page.setViewportSize({width,height:width>=1000?1080:844});
+  // Global shell screenshots: desktop + explicit iPad/iPhone profiles.
+  const visualProfiles=[
+    ['1920',1920,1080],
+    ['1440',1440,1000],
+    ['1024',1024,768],
+    ['820',820,1180],
+    ['768',768,1024],
+    ['430',430,932],
+    ['390',390,844]
+  ];
+  for(const [label,width,height] of visualProfiles){
+    await page.setViewportSize({width,height});
     await page.goto(new URL('index.html',BASE).href,{waitUntil:'domcontentloaded'});
     await page.waitForFunction(()=>window.BAUMAN_UI?.selfCheck?.().ready===true);
     await page.waitForTimeout(180);
-    await page.screenshot({path:path.join(OUT,`hub-${width}.png`),fullPage:false});
+    await page.screenshot({path:path.join(OUT,`hub-${label}.png`),fullPage:false});
   }
 
   // Mobile architecture smoke across representative module families.
@@ -135,6 +144,79 @@ try{
     assert.equal(dashboardE6.runtime?.routeOwnership,false,'UI-E6 must not own routing');
   }
 
+  // UI-E7 iPad/iPhone layout acceptance.
+  const deviceProfiles={};
+  for(const [label,width,height,expected] of [
+    ['ipad-landscape',1024,768,'tablet-landscape'],
+    ['ipad-portrait-820',820,1180,'tablet-portrait'],
+    ['ipad-portrait-768',768,1024,'tablet-portrait'],
+    ['iphone-430',430,932,'phone'],
+    ['iphone-390',390,844,'phone']
+  ]){
+    await page.setViewportSize({width,height});
+    await page.goto(new URL('index.html',BASE).href,{waitUntil:'domcontentloaded'});
+    await page.waitForFunction(()=>window.BAUMAN_UI?.selfCheck?.().ready===true);
+    await page.waitForTimeout(180);
+    deviceProfiles[label]=await page.evaluate(()=> {
+      const visible=el=>{
+        if(!el)return false;
+        const s=getComputedStyle(el),r=el.getBoundingClientRect();
+        return s.display!=='none'&&s.visibility!=='hidden'&&r.width>1&&r.height>1;
+      };
+      const rect=sel=>document.querySelector(sel)?.getBoundingClientRect()||null;
+      const app=document.getElementById('appRoot');
+      const hero=rect('#page-home .bui-dashboard__hero');
+      const topbar=rect('#appRoot>.shell>.topbar');
+      const dock=rect('[data-bui-mobile-nav]');
+      const subjectCards=Array.from(document.querySelectorAll('#page-home .bui-dashboard__subject-card')).map(el=>el.getBoundingClientRect().width);
+      const ctas=Array.from(document.querySelectorAll('#page-home .hub-safe-hero-actions .btn')).map(el=>el.getBoundingClientRect().width);
+      return{
+        runtime:window.BAUMAN_UI?.selfCheck?.(),
+        appActive:!!app&&!app.classList.contains('hidden'),
+        sidebarVisible:visible(document.querySelector('#appRoot>.sidebar')),
+        dockVisible:visible(document.querySelector('[data-bui-mobile-nav]')),
+        heroHeight:hero?.height||0,
+        heroTop:hero?.top||0,
+        topbarBottom:topbar?.bottom||0,
+        topbarHeight:topbar?.height||0,
+        dockWidth:dock?.width||0,
+        viewport:document.documentElement.clientWidth,
+        quoteVisible:visible(document.querySelector('#page-home .hub-safe-quote')),
+        artVisible:visible(document.querySelector('#page-home .hub-safe-art')),
+        subjectMin:subjectCards.length?Math.min(...subjectCards):0,
+        ctaMin:ctas.length?Math.min(...ctas):0,
+        overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth
+      };
+    });
+    const d=deviceProfiles[label];
+    assert.equal(d.runtime?.deviceProfile,expected,`${label}: viewport profile mismatch ${JSON.stringify(d)}`);
+    assert.ok(d.overflow<=4,`${label}: horizontal overflow ${JSON.stringify(d)}`);
+    if(d.appActive){
+      assert.ok(d.heroTop>=d.topbarBottom-4,`${label}: topbar overlaps Home ${JSON.stringify(d)}`);
+      if(width<=820){
+        assert.equal(d.sidebarVisible,false,`${label}: compact layout still shows desktop sidebar`);
+        assert.equal(d.dockVisible,true,`${label}: compact dock missing`);
+        assert.ok(d.dockWidth<=d.viewport-8&&d.dockWidth>=d.viewport-30,`${label}: dock is not a floating inset control ${JSON.stringify(d)}`);
+      }else{
+        assert.equal(d.sidebarVisible,true,`${label}: landscape iPad should retain compact sidebar`);
+        assert.equal(d.dockVisible,false,`${label}: landscape iPad should not show phone dock`);
+      }
+      if(width<=480){
+        assert.equal(d.quoteVisible,false,`${label}: decorative quote should be removed on iPhone`);
+        assert.equal(d.artVisible,false,`${label}: decorative Continue artwork should be removed on iPhone`);
+        assert.ok(d.heroHeight<=330,`${label}: hero still behaves like desktop ${JSON.stringify(d)}`);
+        assert.ok(d.topbarHeight<=104,`${label}: topbar is too tall ${JSON.stringify(d)}`);
+        assert.ok(d.subjectMin>=150,`${label}: subject cards are too compressed ${JSON.stringify(d)}`);
+        assert.ok(d.ctaMin>=250,`${label}: hero CTA is too narrow/readability-poor ${JSON.stringify(d)}`);
+      }else if(width<=820){
+        assert.ok(d.heroHeight<=240,`${label}: tablet portrait hero is too tall ${JSON.stringify(d)}`);
+        assert.ok(d.subjectMin>=150,`${label}: tablet subject cards are too compressed ${JSON.stringify(d)}`);
+      }else{
+        assert.ok(d.heroHeight<=240,`${label}: tablet landscape hero is too tall ${JSON.stringify(d)}`);
+      }
+    }
+  }
+
   // Token-driven dark mode must materially change surface without automatic inversion.
   await page.goto(new URL('index.html',BASE).href,{waitUntil:'domcontentloaded'});
   await page.evaluate(()=>document.body.dataset.uiTheme='dark');
@@ -163,7 +245,7 @@ try{
   assert.ok(navigation.navLabel.length>0,'Primary navigation requires an accessible label');
   assert.equal(navigation.skip,true,'UI-E5 skip-navigation link missing');
 
-  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({desktop,mobile,dark,runtime,pageErrors},null,2));
+  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({desktop,mobile,deviceProfiles,dark,runtime,pageErrors},null,2));
   console.log('BAUMAN_FUTURE_INTERFACE_SYSTEM_BROWSER_PASS');
 }finally{
   await browser?.close();
