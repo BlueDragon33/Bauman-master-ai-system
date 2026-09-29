@@ -37,3 +37,13 @@ The existing Future Interface static/browser CI now checks:
 - mobile safe-area styling is present.
 
 Screenshot review remains required before merge.
+
+
+## Visual-regression correction
+
+The first screenshot review exposed two defects that logic-only acceptance did not catch:
+
+- 768 px compact-tablet view retained the legacy sidebar while the content shell collapsed visually;
+- 390 px phone view showed both the legacy navigation presentation and the new UI-E5 navigation.
+
+UI-E5 now uses one compact navigation presentation at <=820 px, hides only the legacy sidebar presentation, keeps the canonical source buttons in the DOM for delegated routing, and explicitly keeps the shell/current page visible and full-width. Browser acceptance now fails if either duplicate navigation or blank compact content returns.
