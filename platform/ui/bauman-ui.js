@@ -23,6 +23,13 @@
     schedule:'◷',
     research:'✦'
   };
+  const COMPACT_LABEL={
+    home:'Trang chủ',
+    roadmap:'Lộ trình',
+    subjects:'Môn học',
+    schedule:'Lịch học',
+    research:'Luận văn'
+  };
   let navObserver=null;
   let appObserver=null;
 
@@ -91,7 +98,8 @@
       const button=document.createElement('button');
       button.type='button';
       button.dataset.page=source.dataset.page||'';
-      const label=(source.querySelector('span')?.textContent||source.textContent||source.dataset.page||'').trim();
+      const fullLabel=(source.querySelector('span')?.textContent||source.textContent||source.dataset.page||'').trim();
+      const label=COMPACT_LABEL[source.dataset.page]||fullLabel;
       const icon=PAGE_ICON[source.dataset.page]||'•';
       button.innerHTML='<i aria-hidden="true">'+icon+'</i><span></span>';
       button.querySelector('span').textContent=label;
@@ -141,13 +149,21 @@
     return true;
   }
 
+  function syncDeviceProfile(){
+    const width=window.innerWidth||document.documentElement.clientWidth||1440;
+    root.dataset.baumanDeviceProfile=width<=480?'phone':width<=820?'tablet-portrait':width<=1100?'tablet-landscape':'desktop';
+    return root.dataset.baumanDeviceProfile;
+  }
+
   function initNavigation(){
     ensureSkipLink();
     installPrimaryNavigation();
   }
 
   const boot=()=>{
+    syncDeviceProfile();
     initNavigation();
+    window.addEventListener('resize',syncDeviceProfile,{passive:true});
     root.dataset.baumanUiReady='true';
   };
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});
@@ -190,6 +206,7 @@
         navigationReady:root.dataset.baumanNavigation==='e5'||!parts,
         mobileNavReady:!parts||!!mobileNav(),
         dashboardReady:!document.getElementById('appRoot')||!!document.querySelector('[data-bui-dashboard="e6"]')||document.getElementById('appRoot')?.classList.contains('hidden'),
+        deviceProfile:root.dataset.baumanDeviceProfile||'desktop',
         primaryPage:root.dataset.baumanPrimaryPage||null,
         routeOwnership:false
       };

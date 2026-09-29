@@ -28,6 +28,7 @@ const components=fs.readFileSync('platform/ui/components.css','utf8');
 const layouts=fs.readFileSync('platform/ui/layouts.css','utf8');
 const responsive=fs.readFileSync('platform/ui/responsive.css','utf8');
 const dashboard=fs.readFileSync('platform/ui/dashboard.css','utf8');
+const device=fs.readFileSync('platform/ui/device-responsive.css','utf8');
 const runtime=fs.readFileSync('platform/ui/bauman-ui.js','utf8');
 
 for(const marker of [
@@ -56,8 +57,14 @@ assert.ok(dashboard.includes('.bui-dashboard__layout'),'UI-E6 dashboard structur
 assert.ok(dashboard.includes('@container bui-dashboard'),'UI-E6 dashboard container architecture missing');
 assert.ok(fs.readFileSync('assets/js/hub-safe-shell.js','utf8').includes('data-bui-dashboard="e6"'),'UI-E6 dashboard semantic marker missing');
 assert.ok(runtime.includes('dashboardReady'),'UI-E6 dashboard readiness signal missing');
+assert.ok(device.includes('min-width:821px')&&device.includes('max-width:1100px'),'UI-E7 tablet-landscape profile missing');
+assert.ok(device.includes('min-width:481px')&&device.includes('max-width:820px'),'UI-E7 tablet-portrait profile missing');
+assert.ok(device.includes('max-width:480px'),'UI-E7 phone profile missing');
+assert.ok(device.includes('safe-area-inset-bottom'),'UI-E7 iPhone safe-area protection missing');
+assert.ok(runtime.includes('COMPACT_LABEL'),'UI-E7 compact navigation labels missing');
+assert.ok(runtime.includes('baumanDeviceProfile'),'UI-E7 device profile runtime missing');
 
-for(const file of ['platform/ui/foundations.css','platform/ui/components.css','platform/ui/layouts.css','platform/ui/responsive.css','platform/ui/dashboard.css']){
+for(const file of ['platform/ui/foundations.css','platform/ui/components.css','platform/ui/layouts.css','platform/ui/responsive.css','platform/ui/dashboard.css','platform/ui/device-responsive.css']){
   const c=fs.readFileSync(file,'utf8');
   const hex=[...c.matchAll(/#[0-9a-fA-F]{3,8}/g)].map(x=>x[0]);
   assert.equal(hex.length,0,file+' must consume semantic tokens instead of hard-coded colors: '+hex.join(','));
