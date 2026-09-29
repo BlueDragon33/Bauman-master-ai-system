@@ -38,3 +38,14 @@ Current legacy pages are supported by a compatibility layer, but new work should
 ## Long-term ownership
 
 The UI package owns visual primitives, shared layout contracts, and cross-project accessibility behavior. It does not own routing, domain data, or subject-specific learning logic.
+
+
+## UI-E5 navigation contract
+
+- The shared kernel may mirror the application's existing primary navigation, but it never owns routing.
+- Active routes expose `aria-current="page"`.
+- Desktop sidebar navigation supports Arrow Up/Down plus Home/End keyboard movement.
+- Mobile Hub navigation mirrors the five canonical routes: Trang chủ, Lộ trình, Môn học, Lịch học, НИР & Luận văn.
+- The mobile mirror delegates activation back to the canonical route button; it does not duplicate page-state logic.
+- Authentication remains authoritative: the mobile navigation stays hidden while `#appRoot` is hidden.
+- A skip-navigation link is injected progressively for keyboard users.

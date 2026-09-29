@@ -68,6 +68,48 @@ try{
     mobile[name]=await inspect(page,name,url,{width:390,height:844});
   }
 
+  // UI-E5 compact navigation must replace, not duplicate, the legacy Hub sidebar.
+  const compactNavigation={};
+  for(const width of [768,390]){
+    await page.setViewportSize({width,height:844});
+    await page.goto(new URL('index.html',BASE).href,{waitUntil:'domcontentloaded'});
+    await page.waitForFunction(()=>window.BAUMAN_UI?.selfCheck?.().ready===true);
+    await page.waitForTimeout(180);
+    compactNavigation[width]=await page.evaluate(()=> {
+      const visible=el=>{
+        if(!el)return false;
+        const s=getComputedStyle(el),r=el.getBoundingClientRect();
+        return s.display!=='none'&&s.visibility!=='hidden'&&r.width>1&&r.height>1;
+      };
+      const app=document.querySelector('#appRoot');
+      const shell=document.querySelector('#appRoot>.shell');
+      const sidebar=document.querySelector('#appRoot>.sidebar');
+      const mobile=document.querySelector('[data-bui-mobile-nav]');
+      const active=document.querySelector('#appRoot .page.active');
+      return{
+        appVisible:visible(app),
+        shellVisible:visible(shell),
+        sidebarVisible:visible(sidebar),
+        mobileVisible:visible(mobile),
+        activeVisible:visible(active),
+        shellWidth:shell?.getBoundingClientRect().width||0,
+        viewport:document.documentElement.clientWidth,
+        topbarBottom:document.querySelector('#appRoot .topbar')?.getBoundingClientRect().bottom||0,
+        heroTop:document.querySelector('#page-home .hub-safe-hero')?.getBoundingClientRect().top||0
+      };
+    });
+    if(compactNavigation[width].appVisible){
+      assert.equal(compactNavigation[width].shellVisible,true,`UI-E5 compact shell hidden at ${width}px`);
+      assert.equal(compactNavigation[width].activeVisible,true,`UI-E5 active content hidden at ${width}px`);
+      assert.equal(compactNavigation[width].sidebarVisible,false,`Legacy Hub sidebar duplicates UI-E5 compact nav at ${width}px`);
+      assert.equal(compactNavigation[width].mobileVisible,true,`UI-E5 compact navigation missing at ${width}px`);
+      assert.ok(compactNavigation[width].shellWidth>=compactNavigation[width].viewport-4,`UI-E5 shell does not fill compact viewport at ${width}px`);
+      if(compactNavigation[width].heroTop>0){
+        assert.ok(compactNavigation[width].heroTop>=compactNavigation[width].topbarBottom-4,`UI-E5 compact topbar materially overlaps the home hero at ${width}px: ${JSON.stringify(compactNavigation[width])}`);
+      }
+    }
+  }
+
   // Token-driven dark mode must materially change surface without automatic inversion.
   await page.goto(new URL('index.html',BASE).href,{waitUntil:'domcontentloaded'});
   await page.evaluate(()=>document.body.dataset.uiTheme='dark');
@@ -82,6 +124,19 @@ try{
   const runtime=await page.evaluate(()=>window.BAUMAN_UI.selfCheck());
   assert.equal(runtime.inputMode,'keyboard','Keyboard modality was not detected');
   assert.equal(runtime.reducedMotion,true,'Reduced-motion preference was not propagated');
+
+  // UI-E5 navigation is progressive enhancement: it mirrors route state but never owns routing.
+  const navigation=await page.evaluate(()=>({
+    check:window.BAUMAN_UI.selfCheck(),
+    mobileCount:document.querySelectorAll('[data-bui-mobile-nav] [data-page]').length,
+    navLabel:document.querySelector('#nav')?.getAttribute('aria-label')||'',
+    skip:!!document.querySelector('[data-bui-skip]')
+  }));
+  assert.equal(navigation.check.routeOwnership,false,'UI-E5 must not own application routing');
+  assert.equal(navigation.check.navigationReady,true,'UI-E5 navigation did not initialize');
+  assert.equal(navigation.mobileCount,5,'UI-E5 mobile navigation must mirror the five primary Hub routes');
+  assert.ok(navigation.navLabel.length>0,'Primary navigation requires an accessible label');
+  assert.equal(navigation.skip,true,'UI-E5 skip-navigation link missing');
 
   fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({desktop,mobile,dark,runtime,pageErrors},null,2));
   console.log('BAUMAN_FUTURE_INTERFACE_SYSTEM_BROWSER_PASS');
