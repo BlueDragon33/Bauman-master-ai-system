@@ -57,11 +57,15 @@ try{
   const visualProfiles=[
     ['1920',1920,1080],
     ['1440',1440,1000],
+    ['1366',1366,768],
     ['1024',1024,768],
     ['820',820,1180],
     ['768',768,1024],
+    ['744',744,1133],
     ['430',430,932],
-    ['390',390,844]
+    ['393',393,852],
+    ['390',390,844],
+    ['375',375,812]
   ];
   for(const [label,width,height] of visualProfiles){
     await page.setViewportSize({width,height});
@@ -152,11 +156,15 @@ try{
   // UI-E7 iPad/iPhone layout acceptance.
   const deviceProfiles={};
   for(const [label,width,height,expected] of [
+    ['asus-compact',1366,768,'desktop'],
     ['ipad-landscape',1024,768,'tablet-landscape'],
     ['ipad-portrait-820',820,1180,'tablet-portrait'],
     ['ipad-portrait-768',768,1024,'tablet-portrait'],
+    ['ipad-portrait-744',744,1133,'tablet-portrait'],
     ['iphone-430',430,932,'phone'],
-    ['iphone-390',390,844,'phone']
+    ['iphone-393',393,852,'phone'],
+    ['iphone-390',390,844,'phone'],
+    ['iphone-375',375,812,'phone']
   ]){
     await page.setViewportSize({width,height});
     await page.goto(new URL('index.html',BASE).href,{waitUntil:'domcontentloaded'});
@@ -180,6 +188,11 @@ try{
       const dock=rect('[data-bui-mobile-nav]');
       const subjectCards=Array.from(document.querySelectorAll('#page-home .bui-dashboard__subject-card')).map(el=>el.getBoundingClientRect().width);
       const ctas=Array.from(document.querySelectorAll('#page-home .hub-safe-hero-actions .btn')).map(el=>el.getBoundingClientRect().width);
+      const topActions=document.querySelector('#appRoot>.shell>.topbar .top-actions');
+      const topControls=Array.from(topActions?.querySelectorAll('.btn,.hub-safe-icon-btn,#profileBtn')||[])
+        .filter(visible)
+        .map(el=>el.getBoundingClientRect());
+      const centers=topControls.map(r=>r.top+r.height/2);
       return{
         runtime:window.BAUMAN_UI?.selfCheck?.(),
         appActive:!!app&&!app.classList.contains('hidden'),
@@ -195,6 +208,9 @@ try{
         artVisible:visible(document.querySelector('#page-home .hub-safe-art')),
         subjectMin:subjectCards.length?Math.min(...subjectCards):0,
         ctaMin:ctas.length?Math.min(...ctas):0,
+        topControlMinHeight:topControls.length?Math.min(...topControls.map(r=>r.height)):0,
+        topControlCenterSpread:centers.length?Math.max(...centers)-Math.min(...centers):0,
+        topActionOverflow:topActions?Math.max(0,topActions.scrollWidth-topActions.clientWidth):0,
         ringBottom:rect('#page-home .hub-safe-ring-block')?.bottom||0,
         continueBodyTop:rect('#page-home .hub-safe-continue-body')?.top||0,
         dockLabels:Array.from(document.querySelectorAll('[data-bui-mobile-nav] [data-page] span')).map(x=>x.textContent?.trim()||''),
@@ -206,6 +222,9 @@ try{
     assert.ok(d.overflow<=4,`${label}: horizontal overflow ${JSON.stringify(d)}`);
     if(d.appActive){
       assert.ok(d.heroTop>=d.topbarBottom-4,`${label}: topbar overlaps Home ${JSON.stringify(d)}`);
+      assert.ok(d.topControlCenterSpread<=5,`${label}: topbar buttons are vertically misaligned ${JSON.stringify(d)}`);
+      assert.ok(d.topActionOverflow<=4,`${label}: topbar action row overflows horizontally ${JSON.stringify(d)}`);
+      if(width<=820)assert.ok(d.topControlMinHeight>=43.5,`${label}: compact topbar controls are below the 44px touch contract ${JSON.stringify(d)}`);
       if(width<=820){
         assert.equal(d.sidebarVisible,false,`${label}: compact layout still shows desktop sidebar`);
         assert.equal(d.dockVisible,true,`${label}: compact dock missing`);
