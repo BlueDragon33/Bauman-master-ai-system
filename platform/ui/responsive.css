@@ -21,8 +21,42 @@
 @media(max-width:1023px){
   html[data-bauman-ui="future-v1"] .bui-grid{grid-template-columns:repeat(8,minmax(0,1fr))}
 }
-@media(max-width:767px){
+@media(max-width:820px){
   html[data-bauman-ui="future-v1"] .bui-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+
+  /* UI-E5 owns the compact navigation presentation, but still delegates
+     route activation to the canonical hidden Hub navigation. */
+  html[data-bauman-ui="future-v1"] body:has(#appRoot:not(.hidden)) #appRoot,
+  html[data-bauman-ui="future-v1"] body:has(#appRoot:not(.hidden)) #appRoot.collapsed{
+    display:block!important;
+    grid-template-columns:1fr!important;
+    width:100%!important;
+    max-width:100%!important;
+  }
+  html[data-bauman-ui="future-v1"] body:has(#appRoot:not(.hidden)) #appRoot>.sidebar{
+    display:none!important;
+  }
+  html[data-bauman-ui="future-v1"] body:has(#appRoot:not(.hidden)) #appRoot>.shell{
+    display:block!important;
+    visibility:visible!important;
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+  }
+  html[data-bauman-ui="future-v1"] body:has(#appRoot:not(.hidden)) #appRoot>.shell>.topbar{
+    visibility:visible!important;
+  }
+  html[data-bauman-ui="future-v1"] body:has(#appRoot:not(.hidden)) #appRoot .main{
+    display:block!important;
+    visibility:visible!important;
+    width:100%!important;
+    min-width:0!important;
+  }
+  html[data-bauman-ui="future-v1"] body:has(#appRoot:not(.hidden)) #appRoot .page.active{
+    display:block!important;
+    visibility:visible!important;
+  }
+
   html[data-bauman-ui="future-v1"] body:not(:has(#appRoot)) :where(.app){
     display:block;
   }
