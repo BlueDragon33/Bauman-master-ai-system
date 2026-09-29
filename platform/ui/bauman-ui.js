@@ -189,6 +189,7 @@
         reducedMotion:root.dataset.reducedMotion==='true',
         navigationReady:root.dataset.baumanNavigation==='e5'||!parts,
         mobileNavReady:!parts||!!mobileNav(),
+        dashboardReady:!document.getElementById('appRoot')||!!document.querySelector('[data-bui-dashboard="e6"]')||document.getElementById('appRoot')?.classList.contains('hidden'),
         primaryPage:root.dataset.baumanPrimaryPage||null,
         routeOwnership:false
       };
