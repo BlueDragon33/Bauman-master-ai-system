@@ -269,14 +269,61 @@ try{
     }
   }
 
-  // Token-driven dark mode must materially change surface without automatic inversion.
+  // UI-E9 contrast constitution: semantic text must remain decisively readable
+  // against the canonical surface scale in both themes.
   await page.goto(new URL('index.html',BASE).href,{waitUntil:'domcontentloaded'});
-  await page.evaluate(()=>document.body.dataset.uiTheme='dark');
-  const dark=await page.evaluate(()=>({
-    bg:getComputedStyle(document.body).backgroundColor,
-    canvas:getComputedStyle(document.documentElement).getPropertyValue('--bui-surface-canvas').trim()
-  }));
-  assert.equal(dark.canvas,'#0d1118','Dark token scale did not activate');
+  const contrastAudit=await page.evaluate(()=> {
+    const root=document.documentElement,body=document.body;
+    const ratio=(a,b)=>{
+      const parse=v=>{
+        const s=v.trim();
+        if(/^#[0-9a-f]{6}$/i.test(s))return [1,3,5].map(i=>parseInt(s.slice(i,i+2),16)/255);
+        const m=s.match(/rgba?\\(([^)]+)\\)/i);
+        if(m)return m[1].split(',').slice(0,3).map(x=>parseFloat(x)/255);
+        const probe=document.createElement('span');
+        probe.style.color=s;document.body.appendChild(probe);
+        const resolved=getComputedStyle(probe).color;probe.remove();
+        const rm=resolved.match(/rgba?\\(([^)]+)\\)/i);
+        return rm?rm[1].split(',').slice(0,3).map(x=>parseFloat(x)/255):[0,0,0];
+      };
+      const lum=v=>parse(v).map(x=>x<=.04045?x/12.92:((x+.055)/1.055)**2.4)
+        .reduce((n,x,i)=>n+x*[.2126,.7152,.0722][i],0);
+      const [x,y]=[lum(a),lum(b)];
+      return (Math.max(x,y)+.05)/(Math.min(x,y)+.05);
+    };
+    const read=()=>{
+      const cs=getComputedStyle(root);
+      const get=n=>cs.getPropertyValue(n).trim();
+      const surface=get('--bui-surface-primary');
+      return{
+        canvas:get('--bui-surface-canvas'),
+        surface,
+        primary:ratio(get('--bui-text-primary'),surface),
+        secondary:ratio(get('--bui-text-secondary'),surface),
+        tertiary:ratio(get('--bui-text-tertiary'),surface),
+        placeholder:ratio(get('--bui-text-placeholder'),get('--bui-surface-secondary')),
+        strongBoundary:ratio(get('--bui-border-strong'),surface)
+      };
+    };
+    const priorTheme=body.getAttribute('data-theme');
+    const priorUi=body.getAttribute('data-ui-theme');
+    body.removeAttribute('data-theme');
+    body.removeAttribute('data-ui-theme');
+    const light=read();
+    body.dataset.uiTheme='dark';
+    const dark=read();
+    if(priorTheme===null)body.removeAttribute('data-theme');else body.setAttribute('data-theme',priorTheme);
+    if(priorUi===null)body.removeAttribute('data-ui-theme');else body.setAttribute('data-ui-theme',priorUi);
+    return{light,dark};
+  });
+  for(const [theme,audit] of Object.entries(contrastAudit)){
+    assert.ok(audit.primary>=7,`UI-E9 ${theme}: primary text contrast below 7:1 ${JSON.stringify(audit)}`);
+    assert.ok(audit.secondary>=4.5,`UI-E9 ${theme}: secondary text contrast below 4.5:1 ${JSON.stringify(audit)}`);
+    assert.ok(audit.tertiary>=4.5,`UI-E9 ${theme}: tertiary text contrast below 4.5:1 ${JSON.stringify(audit)}`);
+    assert.ok(audit.placeholder>=4.5,`UI-E9 ${theme}: placeholder contrast below 4.5:1 ${JSON.stringify(audit)}`);
+    assert.ok(audit.strongBoundary>=3,`UI-E9 ${theme}: strong control boundary contrast below 3:1 ${JSON.stringify(audit)}`);
+  }
+  const dark={canvas:contrastAudit.dark.canvas,contrast:contrastAudit.dark};
 
   // Keyboard modality and reduced motion are global behaviors.
   await page.keyboard.press('Tab');
@@ -297,7 +344,7 @@ try{
   assert.ok(navigation.navLabel.length>0,'Primary navigation requires an accessible label');
   assert.equal(navigation.skip,true,'UI-E5 skip-navigation link missing');
 
-  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({desktop,mobile,deviceProfiles,dark,runtime,pageErrors},null,2));
+  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({desktop,mobile,deviceProfiles,dark,contrastAudit,runtime,pageErrors},null,2));
   console.log('BAUMAN_FUTURE_INTERFACE_SYSTEM_BROWSER_PASS');
 }finally{
   await browser?.close();
