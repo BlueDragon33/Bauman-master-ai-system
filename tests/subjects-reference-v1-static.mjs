@@ -30,5 +30,9 @@ assert.ok(js.includes("title:'Lập trình Python'"),'reference Python course mi
 assert.ok(js.includes("title:'Xác suất thống kê'"),'reference probability course missing');
 assert.ok(js.includes("title:'Cơ sở dữ liệu'"),'reference database course missing');
 assert.ok(js.includes("title:'Nghe - Nói'"),'reference speaking course missing');
+assert.ok(js.includes("TEACHER_KEY='bauman_subjects_reference_teacher_overrides_v1'"),'persistent lecturer override store missing');
+assert.ok(js.includes('function editTeacher(key)'),'editable lecturer action missing');
+assert.ok(js.includes('function teacherFor(c)'),'lecturer override resolver missing');
+assert.ok(js.includes('Sửa giảng viên'),'lecturer edit control missing from course menu');
 assert.ok(!js.includes('canva-subjects-page'),'subjects renderer must bypass V6 legacy subjects decorator');
 console.log('SUBJECTS_REFERENCE_V1_STATIC_PASS');

@@ -34,6 +34,9 @@ const contrast=fs.readFileSync('platform/ui/contrast-system.css','utf8');
 const contrastConstitution=fs.readFileSync('docs/UI_CONTRAST_CONSTITUTION.md','utf8');
 const kernel=fs.readFileSync('platform/ui/bauman-ui.css','utf8');
 const runtime=fs.readFileSync('platform/ui/bauman-ui.js','utf8');
+const mainRuntime=fs.readFileSync('assets/js/main.js','utf8');
+const roadmapRuntime=fs.readFileSync('assets/js/hub-roadmap-comprehensive-v2.js','utf8');
+const canonicalData=fs.readFileSync('assets/js/data.js','utf8');
 
 for(const marker of [
   '--bui-surface-canvas','--bui-surface-primary','--bui-space-4','--bui-radius-md',
@@ -77,6 +80,11 @@ assert.ok(compact.includes('min-width:481px')&&compact.includes('max-width:820px
 assert.ok(compact.includes('max-width:480px'),'UI-E8 iPhone control contract missing');
 assert.ok(compact.includes('safe-area-inset-bottom'),'UI-E8 safe-area control protection missing');
 assert.ok(compact.includes('white-space:nowrap'),'UI-E8 button labels must be protected from accidental wrapping');
+assert.ok(canonicalData.includes("period:'01/10/2026 – 30/11/2026'"),'GĐ1 canonical period must be 01/10/2026–30/11/2026');
+assert.ok(canonicalData.includes("period:'01/12/2026 – 07/2027'"),'GĐ2 canonical start must be 01/12/2026 while preserving its existing end');
+assert.ok(mainRuntime.includes("prepare:['2026-10-01','2026-11-30']"),'GĐ1 scheduler bounds drifted from roadmap dates');
+assert.ok(mainRuntime.includes("preparatory:['2026-12-01','2027-07-04']"),'GĐ2 scheduler start drifted from revised roadmap date');
+assert.ok(roadmapRuntime.includes('hub-rm-stage-period'),'Roadmap does not surface stage periods');
 assert.ok(kernel.includes('./contrast-system.css'),'UI-E9 contrast system is not loaded after responsive layers');
 for(const marker of ['--bui-text-placeholder','--bui-text-on-accent','--bui-text-on-media','--bui-media-scrim-strong']) assert.ok(tokens.includes(marker),'UI-E9 contrast token missing: '+marker);
 for(const marker of ['Content must visually dominate its background','Normal text: target contrast ratio **>= 4.5:1**','manual visual review']) assert.ok(contrastConstitution.includes(marker),'UI-E9 contrast constitution missing rule: '+marker);

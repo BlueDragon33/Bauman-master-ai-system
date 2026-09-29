@@ -54,6 +54,19 @@
     const ids=subjectsForPhase(phase);
     return avg(ids.map(subjectProgress));
   }
+  function phasePeriod(phase){
+    const semesterIds=(phase.source||[]).filter(id=>/^m\d$/.test(id));
+    if(semesterIds.length){
+      const rows=semesterIds.map(id=>(D().semesters||[]).find(x=>x.id===id)).filter(Boolean);
+      if(rows.length){
+        const first=String(rows[0].period||'').split(' – ')[0]||'';
+        const last=String(rows[rows.length-1].period||'').split(' – ').slice(-1)[0]||'';
+        return first&&last?first+' – '+last:String(rows[0].period||'');
+      }
+    }
+    const stage=(D().stages||[]).find(x=>(phase.source||[]).includes(x.id));
+    return String(stage?.period||'');
+  }
   function overall(){
     const ids=Object.keys(S().subjects||{});
     return avg(ids.map(subjectProgress));
@@ -78,7 +91,7 @@
       return '<article class="hub-rm-stage-card '+p.tone+' '+(current?'current':'')+'" data-rm-stage="'+p.id+'">'+
         '<div class="hub-rm-stage-top">'+
           '<span class="hub-rm-stage-num">'+p.n+'</span>'+
-          '<div><h3>'+esc(p.title)+'</h3><p>'+esc(p.subtitle)+'</p></div>'+
+          '<div><h3>'+esc(p.title)+'</h3><p>'+esc(p.subtitle)+'</p><span class="hub-rm-stage-period">'+esc(phasePeriod(p))+'</span></div>'+
           (current?'<span class="hub-rm-stage-check">✓</span>':'')+
         '</div>'+
         '<div class="hub-rm-stage-progress"><i><u style="width:'+pct+'%"></u></i><b>'+pct+'%</b></div>'+
@@ -160,7 +173,7 @@
         '<div class="hub-rm-side-head"><h3>Giai đoạn hiện tại</h3><button data-rm-action="current">Xem lộ trình →</button></div>'+
         '<div class="hub-rm-current">'+
           '<span class="hub-rm-current-icon '+current.tone+'">'+current.n+'</span>'+
-          '<div><b>'+esc(current.title)+'</b><small>'+esc(current.subtitle)+'</small><span class="hub-rm-doing">Đang thực hiện</span><div class="hub-rm-mini-progress"><i><u style="width:'+cp+'%"></u></i><b>'+cp+'%</b><em>'+courseCount+' học phần</em></div></div>'+
+          '<div><b>'+esc(current.title)+'</b><small>'+esc(current.subtitle)+(phasePeriod(current)?' · '+esc(phasePeriod(current)):'')+'</small><span class="hub-rm-doing">Đang thực hiện</span><div class="hub-rm-mini-progress"><i><u style="width:'+cp+'%"></u></i><b>'+cp+'%</b><em>'+courseCount+' học phần</em></div></div>'+
         '</div>'+
       '</article>'+
       '<article class="hub-rm-side-card">'+

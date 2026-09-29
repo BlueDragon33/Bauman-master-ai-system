@@ -97,6 +97,20 @@ try{
   const aiMath=await page.locator('#page-subjects .subjects-page__ai-list>button').nth(2).getAttribute('class');
   assert.ok(aiMath?.includes('is-done'),'AI suggestion checkbox interaction failed');
 
+  // Lecturer names are user-editable, stored outside canonical course identity,
+  // and must survive a Subjects rerender.
+  await page.evaluate(()=>{
+    window.prompt=()=> 'PGS. TS. Nguyễn Văn A';
+    window.BAUMAN_SUBJECTS_REF.editTeacher('russian');
+  });
+  const editedTeacher=await page.textContent('#page-subjects [data-course-key="russian"] .subjects-page__course-name small');
+  assert.equal(editedTeacher,'GV: PGS. TS. Nguyễn Văn A','Edited lecturer name was not rendered');
+  const teacherStore=await page.evaluate(()=>JSON.parse(localStorage.getItem('bauman_subjects_reference_teacher_overrides_v1')||'{}'));
+  assert.equal(teacherStore.russian,'GV: PGS. TS. Nguyễn Văn A','Edited lecturer name was not persisted');
+  await page.evaluate(()=>window.BAUMAN_SUBJECTS_REF.render());
+  const persistedTeacher=await page.textContent('#page-subjects [data-course-key="russian"] .subjects-page__course-name small');
+  assert.equal(persistedTeacher,'GV: PGS. TS. Nguyễn Văn A','Lecturer override did not survive rerender');
+
   await page.evaluate(()=>window.BAUMAN_SUBJECTS_REF.shiftCalendar(1));
   const calendarTitle=await page.textContent('#page-subjects .subjects-page__calendar .subjects-page__panel-head>b');
   assert.ok(calendarTitle?.includes('4, 2025'),'Calendar next-month interaction failed');

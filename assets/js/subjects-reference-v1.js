@@ -8,6 +8,7 @@ var RELEASE='SUBJECTS_REFERENCE_V1_2026_09_26';
 var UI_KEY='bauman_subjects_reference_ui_v1';
 var NOTES_KEY='bauman_subjects_reference_notes_v1';
 var CUSTOM_KEY='bauman_subjects_reference_custom_v1';
+var TEACHER_KEY='bauman_subjects_reference_teacher_overrides_v1';
 
 var COURSE_REF=[
   {key:'russian',subjectId:'russian',title:'Tiếng Nga',teacher:'GV: TS. Trần Thị Mai',icon:'Я',tone:'blue',progressTone:'green',status:'study',statusLabel:'Đang học',fallbackProgress:70,sessions:'14/20 buổi',next:'Thứ 5, 13/03, 09:00 – 10:30'},
@@ -60,6 +61,17 @@ function readNotes(){try{var v=JSON.parse(localStorage.getItem(NOTES_KEY)||'null
 function writeNotes(v){try{localStorage.setItem(NOTES_KEY,JSON.stringify(v.slice(0,16)))}catch(e){}}
 function readCustom(){try{var v=JSON.parse(localStorage.getItem(CUSTOM_KEY)||'[]');return Array.isArray(v)?v.slice(0,4):[]}catch(e){return []}}
 function writeCustom(v){try{localStorage.setItem(CUSTOM_KEY,JSON.stringify(v.slice(0,4)))}catch(e){}}
+function readTeacherOverrides(){try{var v=JSON.parse(localStorage.getItem(TEACHER_KEY)||'{}');return v&&typeof v==='object'&&!Array.isArray(v)?v:{}}catch(e){return {}}}
+function writeTeacherOverrides(v){try{localStorage.setItem(TEACHER_KEY,JSON.stringify(v&&typeof v==='object'?v:{}))}catch(e){}}
+function teacherFor(c){var v=readTeacherOverrides(),name=v[c.key];return String(name||c.teacher||'GV: Chưa cập nhật')}
+function editTeacher(key){
+  var c=courseRows().find(function(x){return x.key===key});if(!c)return;
+  var current=teacherFor(c).replace(/^GV:\s*/i,''),value=window.prompt('Tên giảng viên (để trống để khôi phục tên mặc định):',current);
+  if(value===null)return;
+  var rows=readTeacherOverrides(),clean=String(value).trim().slice(0,90);
+  if(!clean)delete rows[key];else rows[key]=/^GV:\s*/i.test(clean)?clean:'GV: '+clean;
+  writeTeacherOverrides(rows);ui.menu='';render();toastSafe(clean?'Đã cập nhật tên giảng viên.':'Đã khôi phục tên giảng viên mặc định.');
+}
 function subjectProgress(id,fallback){var s=stateRef();var raw=s&&s.progress?s.progress[id]:0;return raw>0?clamp(Math.round(raw),0,100):fallback}
 function courseProgress(c){return subjectProgress(c.subjectId,c.fallbackProgress)}
 function stageSubjectCount(){var s=stateRef(),a=appRef();try{if(a&&typeof a.filteredSubjectsForStage==='function')return a.filteredSubjectsForStage(s&&s.subjectStage||'prepare').length}catch(e){}return 5}
@@ -151,8 +163,8 @@ function listHeader(){
 function courseCard(c){
   var p=courseProgress(c),next=nextSessionFor(c.subjectId,c.next),menu=ui.menu===c.key;
   return '<article class="subjects-page__course-card" data-course-key="'+safe(c.key)+'">'+
-    '<div class="subjects-page__course-top">'+iconMarkup(c)+'<div class="subjects-page__course-name"><b>'+safe(c.title)+'</b><small>'+safe(c.teacher)+'</small></div><span class="subjects-page__status '+statusClass(c)+'">'+safe(c.statusLabel)+'</span><button type="button" class="subjects-page__kebab" onclick="BAUMAN_SUBJECTS_REF.toggleMenu(\''+safe(c.key)+'\')">⋮</button>'+
-    '<div class="subjects-page__course-menu '+(menu?'is-open':'')+'"><button onclick="BAUMAN_SUBJECTS_REF.selectCourse(\''+safe(c.key)+'\')">Mở môn</button><button onclick="BAUMAN_SUBJECTS_REF.openEditor(\''+safe(c.subjectId)+'\')">Dữ liệu môn</button>'+(c.custom?'<button class="is-danger" onclick="BAUMAN_SUBJECTS_REF.removeCustom(\''+safe(c.key)+'\')">Xóa khỏi danh sách</button>':'')+'</div></div>'+
+    '<div class="subjects-page__course-top">'+iconMarkup(c)+'<div class="subjects-page__course-name"><b>'+safe(c.title)+'</b><small title="Tên giảng viên có thể thay đổi">'+safe(teacherFor(c))+'</small></div><span class="subjects-page__status '+statusClass(c)+'">'+safe(c.statusLabel)+'</span><button type="button" class="subjects-page__kebab" onclick="BAUMAN_SUBJECTS_REF.toggleMenu(\''+safe(c.key)+'\')">⋮</button>'+
+    '<div class="subjects-page__course-menu '+(menu?'is-open':'')+'"><button onclick="BAUMAN_SUBJECTS_REF.selectCourse(\''+safe(c.key)+'\')">Mở môn</button><button onclick="BAUMAN_SUBJECTS_REF.editTeacher(\''+safe(c.key)+'\')">✎ Sửa giảng viên</button><button onclick="BAUMAN_SUBJECTS_REF.openEditor(\''+safe(c.subjectId)+'\')">Dữ liệu môn</button>'+(c.custom?'<button class="is-danger" onclick="BAUMAN_SUBJECTS_REF.removeCustom(\''+safe(c.key)+'\')">Xóa khỏi danh sách</button>':'')+'</div></div>'+
     '<div class="subjects-page__course-progress"><span><i class="is-'+safe(c.progressTone)+'" style="--value:'+p+'%"></i></span><b>'+p+'%</b></div>'+
     '<div class="subjects-page__course-meta"><span><i>▤</i>'+safe(c.sessions)+'</span><span><i>▣</i><small>Buổi tiếp theo</small><b>'+safe(next)+'</b></span></div>'+
     '<div class="subjects-page__course-actions"><button class="is-primary" onclick="BAUMAN_SUBJECTS_REF.openSubject(\''+safe(c.subjectId)+'\',\'study\')">▶ Vào môn</button><button onclick="BAUMAN_SUBJECTS_REF.openSubject(\''+safe(c.subjectId)+'\',\'docs\')">▧ Tài liệu</button><button onclick="BAUMAN_SUBJECTS_REF.openSubject(\''+safe(c.subjectId)+'\',\'tasks\')">◫ Bài tập</button></div>'+
@@ -220,7 +232,7 @@ window.BAUMAN_SUBJECTS_REF={
   release:RELEASE,patch:patch,render:render,selfCheck:selfCheck,
   toggleTab:toggleTab,toggleFilter:toggleFilter,toggleMenu:toggleMenu,filterCourse:filterCourse,clearFilter:clearFilter,setSemester:setSemester,
   openSubject:openSubject,openEditor:openEditor,selectCourse:selectCourse,openDeadline:openDeadline,toggleAI:toggleAI,shiftCalendar:shiftCalendar,
-  toggleNote:toggleNote,addNote:addNote,removeCustom:removeCustom,openAddCourse:openAddCourse,closeAddCourse:closeAddCourse,submitAddCourse:submitAddCourse,scrollCourses:scrollCourses
+  toggleNote:toggleNote,addNote:addNote,removeCustom:removeCustom,editTeacher:editTeacher,teacherFor:teacherFor,openAddCourse:openAddCourse,closeAddCourse:closeAddCourse,submitAddCourse:submitAddCourse,scrollCourses:scrollCourses
 };
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',patch,{once:true});else patch();
 })();
