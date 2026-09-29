@@ -81,7 +81,7 @@ try{
   await page.keyboard.press('Tab');
   const runtime=await page.evaluate(()=>window.BAUMAN_UI.selfCheck());
   assert.equal(runtime.inputMode,'keyboard','Keyboard modality was not detected');
-  assert.equal(runtime.reducedMotion,true,'Reduced-motion preference was not propagated');
+  assert.equal(runtime.reducedMotion,true,'Reduced-motion preference was not propagated');\n\n  // UI-E5 navigation is progressive enhancement: it mirrors route state but never owns routing.\n  const navigation=await page.evaluate(()=>({\n    check:window.BAUMAN_UI.selfCheck(),\n    mobileCount:document.querySelectorAll('[data-bui-mobile-nav] [data-page]').length,\n    navLabel:document.querySelector('#nav')?.getAttribute('aria-label')||'',\n    skip:!!document.querySelector('[data-bui-skip]')\n  }));\n  assert.equal(navigation.check.routeOwnership,false,'UI-E5 must not own application routing');\n  assert.equal(navigation.check.navigationReady,true,'UI-E5 navigation did not initialize');\n  assert.equal(navigation.mobileCount,5,'UI-E5 mobile navigation must mirror the five primary Hub routes');\n  assert.ok(navigation.navLabel.length>0,'Primary navigation requires an accessible label');\n  assert.equal(navigation.skip,true,'UI-E5 skip-navigation link missing');
 
   fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({desktop,mobile,dark,runtime,pageErrors},null,2));
   console.log('BAUMAN_FUTURE_INTERFACE_SYSTEM_BROWSER_PASS');
