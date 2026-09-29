@@ -1,7 +1,7 @@
 window.BAUMAN_DATA={
  stages:[
-  {id:'prepare',group:'g1',name:'GĐ1 · Tự chuẩn bị tại Việt Nam',period:'06/2026 – 10/2026',load:'26–32 giờ/tuần',goal:'Lấy tiếng Nga nghe-nói làm lõi; toán, Python/SQL, AI nhập môn và đề tài chỉ là nền tự chuẩn bị trước khi vào dự bị.',color:'blue'},
-  {id:'preparatory',group:'g2',name:'GĐ2 · Dự bị tiếng Nga và khoa học nền tại Nga',period:'11/2026 – 07/2027',load:'Theo lịch dự bị + 8–12 giờ tự học kỹ thuật/tuần',goal:'Qua dự bị bằng tiếng Nga vững; các nội dung kỹ thuật chỉ chuyển sang thuật ngữ Nga và duy trì nhịp, không lấn át tiếng Nga.',color:'green'},
+  {id:'prepare',group:'g1',name:'GĐ1 · Tự chuẩn bị tại Việt Nam',period:'01/10/2026 – 30/11/2026',load:'26–32 giờ/tuần',goal:'Lấy tiếng Nga nghe-nói làm lõi; toán, Python/SQL, AI nhập môn và đề tài chỉ là nền tự chuẩn bị trước khi vào dự bị.',color:'blue'},
+  {id:'preparatory',group:'g2',name:'GĐ2 · Dự bị tiếng Nga và khoa học nền tại Nga',period:'01/12/2026 – 07/2027',load:'Theo lịch dự bị + 8–12 giờ tự học kỹ thuật/tuần',goal:'Qua dự bị bằng tiếng Nga vững; các nội dung kỹ thuật chỉ chuyển sang thuật ngữ Nga và duy trì nhịp, không lấn át tiếng Nga.',color:'green'},
   {id:'bauman',group:'g3',name:'GĐ3 · Thạc sĩ Bauman ИУ-5',period:'09/2027 – 06/2029',load:'Theo lịch trường + 18–24 giờ tự học/tuần',goal:'Học các học phần trong учебный план, triển khai НИР từ sớm, hoàn thiện ВКР theo hướng UGV là trục chính, USV là mở rộng.' ,color:'purple'}
  ],
  semesters:[
