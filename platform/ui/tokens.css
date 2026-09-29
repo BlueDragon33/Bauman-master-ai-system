@@ -25,9 +25,17 @@
 
   /* typography */
   --bui-text-primary:#172033;
-  --bui-text-secondary:#56647a;
-  --bui-text-tertiary:#78869a;
+  --bui-text-secondary:#4f5f75;
+  --bui-text-tertiary:#66758a;
   --bui-text-inverse:#ffffff;
+  --bui-text-placeholder:#66758a;
+  --bui-text-on-accent:#101827;
+  --bui-text-on-media:#ffffff;
+  --bui-text-on-media-secondary:#f7d77b;
+  --bui-media-scrim-strong:rgba(4,10,18,.92);
+  --bui-media-scrim:rgba(4,10,18,.76);
+  --bui-media-scrim-soft:rgba(4,10,18,.54);
+  --bui-text-shadow-media:0 2px 14px rgba(0,0,0,.42);
   --bui-font-sans:Inter,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   --bui-font-mono:"JetBrains Mono","SFMono-Regular",Consolas,monospace;
   --bui-type-display:clamp(2rem,2.6vw,3rem);
@@ -61,7 +69,7 @@
 
   /* border */
   --bui-border-subtle:#e4eaf2;
-  --bui-border-strong:#cbd6e4;
+  --bui-border-strong:#718096;
 
   /* elevation */
   --bui-shadow-base:none;
@@ -90,19 +98,31 @@
 }
 
 html[data-bauman-ui="future-v1"]:has(body[data-theme="night"]),
+html[data-bauman-ui="future-v1"]:has(body[data-theme="academic"]),
+html[data-bauman-ui="future-v1"]:has(body[data-theme="mint"]),
 html[data-bauman-ui="future-v1"]:has(body[data-ui-theme="dark"]),
 body[data-theme="night"],
+body[data-theme="academic"],
+body[data-theme="mint"],
 body[data-ui-theme="dark"]{
-  --bui-surface-canvas:#0d1118;
-  --bui-surface-primary:#121821;
-  --bui-surface-secondary:#171e29;
-  --bui-surface-elevated:#1a2230;
-  --bui-surface-overlay:rgba(18,24,33,.96);
-  --bui-text-primary:#edf2f8;
-  --bui-text-secondary:#b5c0cf;
-  --bui-text-tertiary:#8795a9;
-  --bui-border-subtle:#263244;
-  --bui-border-strong:#354258;
+  --bui-surface-canvas:#07101a;
+  --bui-surface-primary:#0d1a28;
+  --bui-surface-secondary:#13263a;
+  --bui-surface-elevated:#172d43;
+  --bui-surface-overlay:rgba(13,26,40,.97);
+  --bui-text-primary:#f7fbff;
+  --bui-text-secondary:#d4dfeb;
+  --bui-text-tertiary:#a9bbcf;
+  --bui-text-placeholder:#a9bbcf;
+  --bui-text-on-accent:#101827;
+  --bui-text-on-media:#ffffff;
+  --bui-text-on-media-secondary:#f7d77b;
+  --bui-media-scrim-strong:rgba(3,8,14,.94);
+  --bui-media-scrim:rgba(3,8,14,.80);
+  --bui-media-scrim-soft:rgba(3,8,14,.60);
+  --bui-text-shadow-media:0 2px 16px rgba(0,0,0,.58);
+  --bui-border-subtle:#2d4760;
+  --bui-border-strong:#52708d;
   --bui-color-primary-soft:#172c52;
   --bui-color-success-soft:#102b1d;
   --bui-color-warning-soft:#332511;
