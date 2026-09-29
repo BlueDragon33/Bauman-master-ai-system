@@ -27,6 +27,7 @@ const foundation=fs.readFileSync('platform/ui/foundations.css','utf8');
 const components=fs.readFileSync('platform/ui/components.css','utf8');
 const layouts=fs.readFileSync('platform/ui/layouts.css','utf8');
 const responsive=fs.readFileSync('platform/ui/responsive.css','utf8');
+const dashboard=fs.readFileSync('platform/ui/dashboard.css','utf8');
 const runtime=fs.readFileSync('platform/ui/bauman-ui.js','utf8');
 
 for(const marker of [
@@ -51,8 +52,12 @@ assert.ok(runtime.includes('bui-mobile-nav'),'UI-E5 mobile navigation mirror mis
 assert.ok(responsive.includes('.bui-mobile-nav'),'UI-E5 mobile navigation presentation missing');
 assert.ok(responsive.includes('safe-area-inset-bottom'),'UI-E5 mobile safe-area handling missing');
 assert.ok(runtime.includes('BAUMAN_UI'),'Shared UI runtime API missing');
+assert.ok(dashboard.includes('.bui-dashboard__layout'),'UI-E6 dashboard structural layout missing');
+assert.ok(dashboard.includes('@container bui-dashboard'),'UI-E6 dashboard container architecture missing');
+assert.ok(fs.readFileSync('assets/js/hub-safe-shell.js','utf8').includes('data-bui-dashboard="e6"'),'UI-E6 dashboard semantic marker missing');
+assert.ok(runtime.includes('dashboardReady'),'UI-E6 dashboard readiness signal missing');
 
-for(const file of ['platform/ui/foundations.css','platform/ui/components.css','platform/ui/layouts.css','platform/ui/responsive.css']){
+for(const file of ['platform/ui/foundations.css','platform/ui/components.css','platform/ui/layouts.css','platform/ui/responsive.css','platform/ui/dashboard.css']){
   const c=fs.readFileSync(file,'utf8');
   const hex=[...c.matchAll(/#[0-9a-fA-F]{3,8}/g)].map(x=>x[0]);
   assert.equal(hex.length,0,file+' must consume semantic tokens instead of hard-coded colors: '+hex.join(','));
