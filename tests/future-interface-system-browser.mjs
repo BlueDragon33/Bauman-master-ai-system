@@ -122,10 +122,11 @@ try{
       regions:root?Array.from(root.querySelectorAll('[data-bui-region]')).map(x=>x.dataset.buiRegion):[],
       panels:root?Array.from(root.querySelectorAll('[data-bui-panel]')).map(x=>x.dataset.buiPanel):[],
       subjectCards:root?.querySelectorAll('.bui-dashboard__subject-card').length||0,
-      runtime:window.BAUMAN_UI?.selfCheck?.()
+      runtime:window.BAUMAN_UI?.selfCheck?.(),
+      appActive:!!document.getElementById('appRoot')&&!document.getElementById('appRoot').classList.contains('hidden')
     };
   });
-  if(document.getElementById('appRoot')&&!document.getElementById('appRoot').classList.contains('hidden')){
+  if(dashboardE6.appActive){
     assert.equal(dashboardE6.visible,true,'UI-E6 dashboard is not visible on an active Hub');
     for(const region of ['hero','subjects','continue','progress','rail'])assert.ok(dashboardE6.regions.includes(region),'UI-E6 region missing: '+region);
     for(const panel of ['assistant','schedule','motivation'])assert.ok(dashboardE6.panels.includes(panel),'UI-E6 rail panel missing: '+panel);
