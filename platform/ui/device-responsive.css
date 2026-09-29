@@ -5,6 +5,32 @@
 /* iPad landscape / compact laptop: keep the sidebar, but make the Home
    composition feel intentional instead of a compressed desktop canvas. */
 @media (min-width:821px) and (max-width:1100px){
+  html[data-bauman-ui="future-v1"] body:has(#appRoot:not(.hidden)) #appRoot>.shell>.topbar{
+    height:auto!important;
+    min-height:104px!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr)!important;
+    align-content:center!important;
+    gap:7px!important;
+    padding:8px 12px!important;
+  }
+  html[data-bauman-ui="future-v1"] body:has(#appRoot:not(.hidden)) #appRoot>.shell>.topbar .hub-safe-search{
+    grid-row:1!important;
+    width:100%!important;
+    max-width:none!important;
+    min-width:0!important;
+    height:44px!important;
+    margin:0!important;
+  }
+  html[data-bauman-ui="future-v1"] body:has(#appRoot:not(.hidden)) #appRoot>.shell>.topbar .top-actions{
+    grid-row:2!important;
+    width:100%!important;
+    margin:0!important;
+    justify-content:flex-end!important;
+  }
+  html[data-bauman-ui="future-v1"] body:has(#appRoot:not(.hidden)) #appRoot>.shell>.topbar .appearance-wrap{
+    margin-right:auto!important;
+  }
   html[data-bauman-ui="future-v1"] body:has(#appRoot:not(.hidden)) .main{
     padding:12px 14px 22px!important;
   }
@@ -160,7 +186,7 @@
     gap:4px!important;
   }
   html[data-bauman-ui="future-v1"] body:has(#appRoot:not(.hidden)) .main{
-    padding:8px 10px 96px!important;
+    padding:14px 10px 96px!important;
   }
 
   html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #page-home .bui-dashboard{
@@ -244,6 +270,10 @@
   html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #page-home .hub-safe-stats{
     grid-column:1!important;
   }
+  html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #page-home .hub-safe-continue-title{grid-row:1!important}
+  html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #page-home .hub-safe-ring-block{grid-row:2!important}
+  html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #page-home .hub-safe-continue-body{grid-row:3!important}
+  html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #page-home .hub-safe-stats{grid-row:4!important}
   html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #page-home .hub-safe-ring-block{
     display:flex!important;
     align-items:center!important;
