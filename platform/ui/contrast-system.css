@@ -118,6 +118,17 @@ html[data-bauman-ui="future-v1"] :where(.bui-mobile-nav,.topbar,.sidebar){
   html[data-bauman-ui="future-v1"] body:has(#appRoot) .bui-mobile-nav button{
     color:var(--bui-text-primary)!important;
   }
+  html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #appRoot .bui-mobile-nav button{
+    background:var(--bui-surface-primary)!important;
+    color:var(--bui-text-primary)!important;
+    border-color:var(--bui-border-strong)!important;
+    box-shadow:none!important;
+  }
+  html[data-bauman-ui="future-v1"] body[data-hub-reference-v5="1"] #appRoot .bui-mobile-nav button[aria-current="page"]{
+    background:var(--bui-surface-elevated)!important;
+    border-color:var(--bui-color-primary)!important;
+    color:var(--bui-text-primary)!important;
+  }
 }
 
 /* Narrow phones need stronger media protection because copy fills the hero. */
