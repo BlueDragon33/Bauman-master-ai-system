@@ -49,3 +49,12 @@ The UI package owns visual primitives, shared layout contracts, and cross-projec
 - The mobile mirror delegates activation back to the canonical route button; it does not duplicate page-state logic.
 - Authentication remains authoritative: the mobile navigation stays hidden while `#appRoot` is hidden.
 - A skip-navigation link is injected progressively for keyboard users.
+
+
+## UI-E6 dashboard contract
+
+- `dashboard.css` owns shared dashboard structure, focus affordances and container-responsive behavior.
+- The existing Hub runtime continues to own dashboard data and actions.
+- The E6 dashboard exposes stable semantic regions through `data-bui-region` and stable utility panels through `data-bui-panel`.
+- Legacy `hub-safe-*` classes remain compatibility hooks during migration; new dashboard work should target `.bui-dashboard*`.
+- UI-E6 does not create a second Home route, duplicate academic state or replace the existing search/scheduler/AI handlers.
