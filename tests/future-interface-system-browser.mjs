@@ -158,6 +158,64 @@ try{
     assert.equal(dashboardE6.runtime?.routeOwnership,false,'UI-E6 must not own routing');
   }
 
+  // UI-E9 contrast constitution: verify high-risk rendered copy consumes the
+  // semantic hierarchy in every supported Hub appearance theme.
+  const contrastContract={};
+  await page.setViewportSize({width:1366,height:768});
+  await page.goto(new URL('index.html',BASE).href,{waitUntil:'domcontentloaded'});
+  await page.waitForFunction(()=>window.BAUMAN_UI?.selfCheck?.().ready===true);
+  await page.waitForFunction(()=>{
+    const app=document.getElementById('appRoot');
+    return !!app&&!app.classList.contains('hidden');
+  },null,{timeout:10000});
+  await page.waitForSelector('#page-home .hub-safe-hero h1',{state:'visible',timeout:10000});
+  for(const theme of ['academic','night','mint','paper']){
+    await page.evaluate(t=>document.body.dataset.theme=t,theme);
+    await page.waitForTimeout(50);
+    contrastContract[theme]=await page.evaluate(()=>{
+      const root=getComputedStyle(document.body);
+      const token=name=>root.getPropertyValue(name).trim();
+      const normalize=value=>{
+        const probe=document.createElement('span');
+        probe.style.color=value;
+        probe.style.position='fixed';
+        probe.style.visibility='hidden';
+        document.body.appendChild(probe);
+        const out=getComputedStyle(probe).color;
+        probe.remove();
+        return out;
+      };
+      const color=sel=>getComputedStyle(document.querySelector(sel)).color;
+      const pseudoColor=(sel,pseudo)=>getComputedStyle(document.querySelector(sel),pseudo).color;
+      return{
+        primary:normalize(token('--bui-hub-text-primary')),
+        secondary:normalize(token('--bui-hub-text-secondary')),
+        muted:normalize(token('--bui-hub-text-muted')),
+        placeholder:normalize(token('--bui-hub-placeholder')),
+        accent:normalize(token('--bui-hub-accent-gold')),
+        heroTitle:color('#page-home .hub-safe-hero h1'),
+        heroCopy:color('#page-home .hub-safe-hero p'),
+        searchText:color('.hub-safe-search input'),
+        searchPlaceholder:pseudoColor('.hub-safe-search input','::placeholder'),
+        subjectMeta:color('#page-home .hub-safe-subject small'),
+        assistantCopy:color('#page-home .hub-safe-assistant-intro p'),
+        suggestion:color('#page-home .hub-safe-suggestions button'),
+        aiInput:color('#page-home .hub-safe-ai-input'),
+        scheduleDate:color('#page-home .hub-safe-date')
+      };
+    });
+    const x=contrastContract[theme];
+    assert.equal(x.heroTitle,x.primary,theme+': hero title drifted from primary contrast token');
+    assert.equal(x.heroCopy,x.accent,theme+': hero support copy drifted from accent contrast token');
+    assert.equal(x.searchText,x.primary,theme+': search text drifted from primary contrast token');
+    assert.equal(x.searchPlaceholder,x.placeholder,theme+': search placeholder drifted from readable placeholder token');
+    assert.equal(x.subjectMeta,x.muted,theme+': subject metadata drifted from muted contrast token');
+    assert.equal(x.assistantCopy,x.secondary,theme+': assistant body copy drifted from secondary contrast token');
+    assert.equal(x.suggestion,x.secondary,theme+': suggestion copy drifted from secondary contrast token');
+    assert.equal(x.aiInput,x.placeholder,theme+': AI input hint drifted from readable placeholder token');
+    assert.equal(x.scheduleDate,x.muted,theme+': schedule date drifted from muted contrast token');
+  }
+  await page.evaluate(()=>document.body.dataset.theme='academic');
   // UI-E7 iPad/iPhone layout acceptance.
   const deviceProfiles={};
   for(const [label,width,height,expected] of [
@@ -297,7 +355,7 @@ try{
   assert.ok(navigation.navLabel.length>0,'Primary navigation requires an accessible label');
   assert.equal(navigation.skip,true,'UI-E5 skip-navigation link missing');
 
-  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({desktop,mobile,deviceProfiles,dark,runtime,pageErrors},null,2));
+  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({desktop,mobile,contrastContract,deviceProfiles,dark,runtime,pageErrors},null,2));
   console.log('BAUMAN_FUTURE_INTERFACE_SYSTEM_BROWSER_PASS');
 }finally{
   await browser?.close();
