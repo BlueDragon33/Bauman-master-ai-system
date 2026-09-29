@@ -137,6 +137,11 @@ try{
   await page.setViewportSize({width:1440,height:1000});
   await page.goto(new URL('index.html',BASE).href,{waitUntil:'domcontentloaded'});
   await page.waitForFunction(()=>window.BAUMAN_UI?.selfCheck?.().ready===true);
+  await page.waitForFunction(()=>{
+    const app=document.getElementById('appRoot');
+    return !!app&&!app.classList.contains('hidden');
+  },null,{timeout:10000});
+  await page.waitForSelector('#page-home [data-bui-dashboard="e6"]',{state:'visible',timeout:10000});
   await page.waitForTimeout(180);
   const dashboardE6=await page.evaluate(()=> {
     const root=document.querySelector('[data-bui-dashboard="e6"]');
