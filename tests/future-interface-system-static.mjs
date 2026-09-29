@@ -29,6 +29,8 @@ const layouts=fs.readFileSync('platform/ui/layouts.css','utf8');
 const responsive=fs.readFileSync('platform/ui/responsive.css','utf8');
 const dashboard=fs.readFileSync('platform/ui/dashboard.css','utf8');
 const device=fs.readFileSync('platform/ui/device-responsive.css','utf8');
+const compact=fs.readFileSync('platform/ui/compact-controls.css','utf8');
+const kernel=fs.readFileSync('platform/ui/bauman-ui.css','utf8');
 const runtime=fs.readFileSync('platform/ui/bauman-ui.js','utf8');
 
 for(const marker of [
@@ -63,8 +65,18 @@ assert.ok(device.includes('max-width:480px'),'UI-E7 phone profile missing');
 assert.ok(device.includes('safe-area-inset-bottom'),'UI-E7 iPhone safe-area protection missing');
 assert.ok(runtime.includes('COMPACT_LABEL'),'UI-E7 compact navigation labels missing');
 assert.ok(runtime.includes('baumanDeviceProfile'),'UI-E7 device profile runtime missing');
+assert.ok(kernel.includes('./compact-controls.css'),'UI-E8 compact control layer is not loaded by the shared kernel');
+for(const marker of [
+  '.bui-button--primary','.bui-button--secondary','.bui-button--ghost',
+  '.bui-button--icon','.bui-button--compact','.bui-button--danger','.bui-button-group'
+]) assert.ok(compact.includes(marker),'UI-E8 button primitive missing: '+marker);
+assert.ok(compact.includes('max-width:1440px'),'UI-E8 compact laptop/ASUS breakpoint missing');
+assert.ok(compact.includes('min-width:481px')&&compact.includes('max-width:820px'),'UI-E8 iPad mini portrait control contract missing');
+assert.ok(compact.includes('max-width:480px'),'UI-E8 iPhone control contract missing');
+assert.ok(compact.includes('safe-area-inset-bottom'),'UI-E8 safe-area control protection missing');
+assert.ok(compact.includes('white-space:nowrap'),'UI-E8 button labels must be protected from accidental wrapping');
 
-for(const file of ['platform/ui/foundations.css','platform/ui/components.css','platform/ui/layouts.css','platform/ui/responsive.css','platform/ui/dashboard.css','platform/ui/device-responsive.css']){
+for(const file of ['platform/ui/foundations.css','platform/ui/components.css','platform/ui/layouts.css','platform/ui/responsive.css','platform/ui/dashboard.css','platform/ui/device-responsive.css','platform/ui/compact-controls.css']){
   const c=fs.readFileSync(file,'utf8');
   const hex=[...c.matchAll(/#[0-9a-fA-F]{3,8}/g)].map(x=>x[0]);
   assert.equal(hex.length,0,file+' must consume semantic tokens instead of hard-coded colors: '+hex.join(','));
