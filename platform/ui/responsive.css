@@ -48,7 +48,7 @@
     position:fixed;
     inset-inline:0;
     inset-block-end:0;
-    z-index:var(--bui-z-popover);
+    z-index:var(--bui-z-sticky);
     display:grid;
     grid-template-columns:repeat(5,minmax(0,1fr));
     gap:2px;
