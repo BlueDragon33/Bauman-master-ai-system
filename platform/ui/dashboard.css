@@ -1,0 +1,79 @@
+/* BAUMAN FUTURE INTERFACE SYSTEM · Dashboard E6
+   Structural ownership only. Domain state, routes and dashboard data remain owned
+   by the existing Hub runtime. Legacy hub-safe classes stay as compatibility hooks. */
+
+html[data-bauman-ui="future-v1"] .bui-dashboard{
+  container-type:inline-size;
+  container-name:bui-dashboard;
+  isolation:isolate;
+  min-width:0;
+}
+html[data-bauman-ui="future-v1"] .bui-dashboard__layout{
+  min-width:0;
+}
+html[data-bauman-ui="future-v1"] .bui-dashboard__main,
+html[data-bauman-ui="future-v1"] .bui-dashboard__rail,
+html[data-bauman-ui="future-v1"] .bui-dashboard__progress-grid{
+  min-width:0;
+}
+html[data-bauman-ui="future-v1"] .bui-dashboard__hero{
+  position:relative;
+  min-width:0;
+}
+html[data-bauman-ui="future-v1"] .bui-dashboard__subjects{
+  min-width:0;
+}
+html[data-bauman-ui="future-v1"] .bui-dashboard__subject-card{
+  min-width:0;
+  min-height:var(--bui-touch);
+  outline-offset:3px;
+}
+html[data-bauman-ui="future-v1"] .bui-dashboard__continue,
+html[data-bauman-ui="future-v1"] .bui-dashboard__panel{
+  min-width:0;
+}
+html[data-bauman-ui="future-v1"] .bui-dashboard :where(
+  .bui-dashboard__subject-card,
+  [data-safe-action],
+  [data-safe-ask]
+):focus-visible{
+  outline:3px solid color-mix(in srgb,var(--bui-color-primary) 62%,transparent);
+  outline-offset:3px;
+}
+html[data-bauman-ui="future-v1"] .bui-dashboard [data-bui-region]{
+  scroll-margin-top:calc(var(--bui-space-12) + var(--bui-space-8));
+}
+
+@container bui-dashboard (max-width:1100px){
+  html[data-bauman-ui="future-v1"] .bui-dashboard__layout{
+    grid-template-columns:minmax(0,1fr);
+  }
+  html[data-bauman-ui="future-v1"] .bui-dashboard__rail{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  html[data-bauman-ui="future-v1"] .bui-dashboard__rail [data-bui-panel="motivation"]{
+    grid-column:1/-1;
+  }
+}
+@container bui-dashboard (max-width:720px){
+  html[data-bauman-ui="future-v1"] .bui-dashboard__rail,
+  html[data-bauman-ui="future-v1"] .bui-dashboard__progress-grid{
+    grid-template-columns:minmax(0,1fr);
+  }
+  html[data-bauman-ui="future-v1"] .bui-dashboard__subjects{
+    display:flex;
+    overflow-x:auto;
+    overscroll-behavior-inline:contain;
+    scroll-snap-type:x proximity;
+    scrollbar-width:thin;
+  }
+  html[data-bauman-ui="future-v1"] .bui-dashboard__subject-card{
+    flex:0 0 min(72cqi,176px);
+    scroll-snap-align:start;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  html[data-bauman-ui="future-v1"] .bui-dashboard{
+    scroll-behavior:auto;
+  }
+}
