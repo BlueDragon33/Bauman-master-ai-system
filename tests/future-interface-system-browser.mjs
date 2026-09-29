@@ -71,6 +71,11 @@ try{
     await page.setViewportSize({width,height});
     await page.goto(new URL('index.html',BASE).href,{waitUntil:'domcontentloaded'});
     await page.waitForFunction(()=>window.BAUMAN_UI?.selfCheck?.().ready===true);
+    await page.waitForFunction(()=>{
+      const app=document.getElementById('appRoot');
+      return !!app&&!app.classList.contains('hidden');
+    },null,{timeout:10000});
+    await page.waitForSelector('#page-home [data-bui-dashboard="e6"] .bui-dashboard__hero',{state:'visible',timeout:10000});
     await page.waitForTimeout(180);
     await page.screenshot({path:path.join(OUT,`hub-${label}.png`),fullPage:false});
   }
