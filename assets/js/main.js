@@ -53,7 +53,7 @@ function getCurrentUser(){try{return JSON.parse(localStorage.getItem(CURRENT_USE
 function setCurrentUser(user){localStorage.setItem(CURRENT_USER_KEY,JSON.stringify(user))}
 function defaultState(){
   const pathMap={russian:'subjects/russian/index.html',math:'subjects/math/index.html',programming:'subjects/programming/index.html',ai:'subjects/ai/index.html',systems:'subjects/systems/index.html',signal:'subjects/signal/index.html',research:'subjects/research/index.html',foundation:'subjects/foundation/index.html'}; const editorMap={russian:'subjects/russian/editor.html',math:'subjects/math/editor.html',programming:'subjects/programming/editor.html',ai:'subjects/ai/editor.html',systems:'subjects/systems/editor.html',signal:'subjects/signal/editor.html',research:'subjects/research/editor.html',foundation:'subjects/foundation/editor.html'}; const subjects=Object.fromEntries(DATA.subjects.map(s=>[s.id,{...s,mainPath:pathMap[s.id]||'',editorPath:editorMap[s.id]||'',priority:['russian','math','programming','ai'].includes(s.id)?'q1':(['systems','signal','research'].includes(s.id)?'q2':'q4')}]))
-  return {page:'home',homePanel:'matrix',roadmapStage:'prepare',subject:'russian',subjectStage:'prepare',schedule:{view:'main',weekStart:'2026-06-08',edit:false,entries:{},timezone:'utc7',autoStage:'prepare',autoFrom:'2026-06-08',autoTo:'2026-10-31',targetQuestions:FINAL_TARGET_QUESTIONS,targetScore:DEFAULT_TARGET_SCORE},progress:{},deepStudyJournal:{version:1,entries:[]},subjectReports:{},subjectCapabilities:{},subjectRouteReceipts:{},reviewQueue:[],activeTask:null,activity:[],theme:'academic',font:'system',fontSize:'normal',lastStudy:{subjectId:'russian',path:'subjects/russian/index.html'},researchTopic:'ugv',researchChecks:{},researchFiles:{},searchFocusCourseId:'',subjects};
+  return {page:'home',homePanel:'matrix',roadmapStage:'prepare',subject:'russian',subjectStage:'prepare',schedule:{view:'main',weekStart:'2026-09-28',edit:false,entries:{},timezone:'utc7',autoStage:'prepare',autoFrom:'2026-10-01',autoTo:'2026-11-30',targetQuestions:FINAL_TARGET_QUESTIONS,targetScore:DEFAULT_TARGET_SCORE},progress:{},deepStudyJournal:{version:1,entries:[]},subjectReports:{},subjectCapabilities:{},subjectRouteReceipts:{},reviewQueue:[],activeTask:null,activity:[],theme:'academic',font:'system',fontSize:'normal',lastStudy:{subjectId:'russian',path:'subjects/russian/index.html'},researchTopic:'ugv',researchChecks:{},researchFiles:{},searchFocusCourseId:'',subjects};
 }
 function normalizeState(raw){
   const base=defaultState(); const src=raw&&typeof raw==='object'?raw:{}; const out={...base,...src};
@@ -69,7 +69,7 @@ function normalizeState(raw){
     out.subjects[id].editorPath=saved.editorPath || base.subjects[id].editorPath;
     out.subjects[id].priority=saved.priority||base.subjects[id].priority;
   }
-  out.schedule={...base.schedule,...(src.schedule||{})}; out.schedule.entries={...(src.schedule?.entries||{})}; if(!['utc7','utc3'].includes(out.schedule.timezone))out.schedule.timezone='utc7'; if(!['prepare','preparatory','bauman','m1','m2','m3','m4'].includes(out.schedule.autoStage))out.schedule.autoStage='prepare'; if(!out.schedule.autoFrom)out.schedule.autoFrom='2026-06-08'; if(!out.schedule.autoTo)out.schedule.autoTo='2026-10-31'; out.schedule.targetQuestions=Number(out.schedule.targetQuestions)||FINAL_TARGET_QUESTIONS; out.schedule.targetScore=Number(out.schedule.targetScore)||DEFAULT_TARGET_SCORE;
+  out.schedule={...base.schedule,...(src.schedule||{})}; out.schedule.entries={...(src.schedule?.entries||{})}; if(!['utc7','utc3'].includes(out.schedule.timezone))out.schedule.timezone='utc7'; if(!['prepare','preparatory','bauman','m1','m2','m3','m4'].includes(out.schedule.autoStage))out.schedule.autoStage='prepare'; if(!out.schedule.autoFrom)out.schedule.autoFrom='2026-10-01'; if(!out.schedule.autoTo)out.schedule.autoTo='2026-11-30'; out.schedule.targetQuestions=Number(out.schedule.targetQuestions)||FINAL_TARGET_QUESTIONS; out.schedule.targetScore=Number(out.schedule.targetScore)||DEFAULT_TARGET_SCORE;
   out.subjectReports = (src.subjectReports && typeof src.subjectReports==='object') ? src.subjectReports : {};
   out.subjectCapabilities = (src.subjectCapabilities && typeof src.subjectCapabilities==='object') ? src.subjectCapabilities : {};
   out.subjectRouteReceipts = (src.subjectRouteReceipts && typeof src.subjectRouteReceipts==='object') ? src.subjectRouteReceipts : {};
@@ -197,7 +197,7 @@ const app={
     return [from,to];
   },
   defaultStageBounds(stage){
-    const map={prepare:['2026-06-08','2026-10-31'],preparatory:['2026-11-02','2027-07-04'],bauman:['2027-09-06','2029-06-30'],m1:['2027-09-06','2028-01-31'],m2:['2028-02-01','2028-06-30'],m3:['2028-09-04','2029-01-31'],m4:['2029-02-01','2029-06-30']};
+    const map={prepare:['2026-10-01','2026-11-30'],preparatory:['2026-12-01','2027-07-04'],bauman:['2027-09-06','2029-06-30'],m1:['2027-09-06','2028-01-31'],m2:['2028-02-01','2028-06-30'],m3:['2028-09-04','2029-01-31'],m4:['2029-02-01','2029-06-30']};
     return map[stage]||map.prepare;
   },
   isNoStudyDate(dateStr){
