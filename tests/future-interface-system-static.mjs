@@ -44,7 +44,12 @@ assert.ok(components.includes('.bui-skeleton'),'Loading skeleton primitive missi
 assert.ok(layouts.includes('grid-template-columns:repeat(12'),'12-column desktop grid missing');
 assert.ok(responsive.includes('repeat(8'),'8-column tablet grid missing');
 assert.ok(responsive.includes('repeat(4'),'4-column mobile grid missing');
-assert.ok(runtime.includes('routeOwnership:false'),'Shared runtime must not own application routing');\nassert.ok(runtime.includes('installPrimaryNavigation'),'UI-E5 primary navigation architecture missing');\nassert.ok(runtime.includes("setAttribute('aria-current','page')"),'UI-E5 active-route accessibility state missing');\nassert.ok(runtime.includes('bui-mobile-nav'),'UI-E5 mobile navigation mirror missing');\nassert.ok(responsive.includes('.bui-mobile-nav'),'UI-E5 mobile navigation presentation missing');\nassert.ok(responsive.includes('safe-area-inset-bottom'),'UI-E5 mobile safe-area handling missing');
+assert.ok(runtime.includes('routeOwnership:false'),'Shared runtime must not own application routing');
+assert.ok(runtime.includes('installPrimaryNavigation'),'UI-E5 primary navigation architecture missing');
+assert.ok(runtime.includes("setAttribute('aria-current','page')"),'UI-E5 active-route accessibility state missing');
+assert.ok(runtime.includes('bui-mobile-nav'),'UI-E5 mobile navigation mirror missing');
+assert.ok(responsive.includes('.bui-mobile-nav'),'UI-E5 mobile navigation presentation missing');
+assert.ok(responsive.includes('safe-area-inset-bottom'),'UI-E5 mobile safe-area handling missing');
 assert.ok(runtime.includes('BAUMAN_UI'),'Shared UI runtime API missing');
 
 for(const file of ['platform/ui/foundations.css','platform/ui/components.css','platform/ui/layouts.css','platform/ui/responsive.css']){
