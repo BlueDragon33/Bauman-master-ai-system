@@ -98,8 +98,12 @@
 }
 
 html[data-bauman-ui="future-v1"]:has(body[data-theme="night"]),
+html[data-bauman-ui="future-v1"]:has(body[data-theme="academic"]),
+html[data-bauman-ui="future-v1"]:has(body[data-theme="mint"]),
 html[data-bauman-ui="future-v1"]:has(body[data-ui-theme="dark"]),
 body[data-theme="night"],
+body[data-theme="academic"],
+body[data-theme="mint"],
 body[data-ui-theme="dark"]{
   --bui-surface-canvas:#07101a;
   --bui-surface-primary:#0d1a28;
