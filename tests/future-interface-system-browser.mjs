@@ -225,6 +225,7 @@ try{
       assert.ok(d.topControlCenterSpread<=5,`${label}: topbar buttons are vertically misaligned ${JSON.stringify(d)}`);
       assert.ok(d.topActionOverflow<=4,`${label}: topbar action row overflows horizontally ${JSON.stringify(d)}`);
       if(width<=820)assert.ok(d.topControlMinHeight>=43.5,`${label}: compact topbar controls are below the 44px touch contract ${JSON.stringify(d)}`);
+      else if(width<=1100)assert.ok(d.topControlMinHeight>=41.5,`${label}: iPad landscape controls are below the 42px contract ${JSON.stringify(d)}`);
       if(width<=820){
         assert.equal(d.sidebarVisible,false,`${label}: compact layout still shows desktop sidebar`);
         assert.equal(d.dockVisible,true,`${label}: compact dock missing`);
@@ -246,7 +247,7 @@ try{
       }else if(width<=820){
         assert.ok(d.heroHeight<=240,`${label}: tablet portrait hero is too tall ${JSON.stringify(d)}`);
         assert.ok(d.subjectMin>=150,`${label}: tablet subject cards are too compressed ${JSON.stringify(d)}`);
-      }else{
+      }else if(width<=1100){
         assert.ok(d.heroHeight<=240,`${label}: tablet landscape hero is too tall ${JSON.stringify(d)}`);
       }
     }
