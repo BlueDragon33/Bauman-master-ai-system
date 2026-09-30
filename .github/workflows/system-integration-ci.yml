@@ -113,6 +113,153 @@ jobs:
           node --check tests/subject-progress-contract-browser.mjs
           node --check tests/deep-study-journal-browser.mjs
 
+  russian-p1-browser-acceptance:
+    needs: validate-system-integration
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - name: Install Playwright Chromium for Russian P1
+        run: |
+          printf '{"private":true,"type":"module"}\n' > package.json
+          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+          node --check tests/russian-p1-forensic-browser.mjs
+      - name: Start Russian P1 source runtime
+        run: |
+          python3 -m http.server 4175 --bind 127.0.0.1 > /tmp/russian-p1-source-http.log 2>&1 &
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4175/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/russian-p1-source-http.log
+          exit 1
+      - name: Run Russian P1 11-viewport forensic audit
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-p1-forensic-source
+        run: node tests/russian-p1-forensic-browser.mjs
+      - name: Run Russian Future UI route acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-p1-future-ui-source
+        run: node tests/russian-future-ui-browser.mjs
+      - name: Run Russian handwriting acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-p1-handwriting-source
+        run: node tests/russian-handwriting-recognition-browser.mjs
+      - name: Run Russian capability Hub acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-p1-capability-hub-source
+        run: node tests/russian-capability-hub-browser.mjs
+      - name: Run Russian capability deep-link acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-p1-deeplink-source
+        run: node tests/russian-capability-deeplink-browser.mjs
+      - name: Run Russian capability route-receipt acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-p1-route-receipt-source
+        run: node tests/russian-capability-route-receipt-browser.mjs
+      - name: Run Russian capability-aware continue acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-p1-continue-source
+        run: node tests/russian-capability-continue-browser.mjs
+      - name: Run Russian true-offline shell acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-p1-offline-source
+        run: node tests/russian-offline-shell-browser.mjs
+      - name: Run Russian handwriting listen-write acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-p1-listen-write-source
+        run: node tests/russian-handwriting-listen-write-browser.mjs
+      - name: Materialize Russian P1 packaged runtime
+        env:
+          BAUMAN_CONTROL_PREVIEW_D1_DATABASE_ID: 11111111-1111-4111-8111-111111111111
+          BAUMAN_CONTROL_PRODUCTION_D1_DATABASE_ID: 22222222-2222-4222-8222-222222222222
+          APPLICATION_MANAGEMENT_PREVIEW_ORIGIN: https://application-management-preview.example.com
+          BAUMAN_CONTROL_PREVIEW_ORIGIN: https://bauman-control-preview.example.com
+          BAUMAN_RUNTIME_PREVIEW_ORIGIN: https://bauman-runtime-preview.example.com
+        run: |
+          node scripts/prepare-cloudflare-preview.mjs
+          node scripts/prepare-chatgpt-site.mjs
+      - name: Start Russian P1 packaged runtime
+        run: |
+          node scripts/serve-local-runtime.mjs --root dist --port 4176 > /tmp/russian-p1-package-http.log 2>&1 &
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4176/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/russian-p1-package-http.log
+          exit 1
+      - name: Run packaged Russian P1 11-viewport forensic audit
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-p1-forensic-package
+        run: node tests/russian-p1-forensic-browser.mjs
+      - name: Run packaged Russian Future UI acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-p1-future-ui-package
+        run: node tests/russian-future-ui-browser.mjs
+      - name: Run packaged Russian handwriting acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-p1-handwriting-package
+        run: node tests/russian-handwriting-recognition-browser.mjs
+      - name: Run packaged Russian deep-link acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-p1-deeplink-package
+          BAUMAN_E2E_EXPECT_PLATFORM_ACCESS: "1"
+        run: node tests/russian-capability-deeplink-browser.mjs
+      - name: Run packaged Russian route-receipt acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-p1-route-receipt-package
+          BAUMAN_E2E_EXPECT_PLATFORM_ACCESS: "1"
+        run: node tests/russian-capability-route-receipt-browser.mjs
+      - name: Run packaged Russian true-offline shell acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-p1-offline-package
+        run: node tests/russian-offline-shell-browser.mjs
+      - name: Upload Russian P1 browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: russian-p1-browser-${{ github.run_id }}
+          path: |
+            artifacts/russian-p1-forensic-source
+            artifacts/russian-p1-future-ui-source
+            artifacts/russian-p1-handwriting-source
+            artifacts/russian-p1-capability-hub-source
+            artifacts/russian-p1-deeplink-source
+            artifacts/russian-p1-route-receipt-source
+            artifacts/russian-p1-continue-source
+            artifacts/russian-p1-offline-source
+            artifacts/russian-p1-listen-write-source
+            artifacts/russian-p1-forensic-package
+            artifacts/russian-p1-future-ui-package
+            artifacts/russian-p1-handwriting-package
+            artifacts/russian-p1-deeplink-package
+            artifacts/russian-p1-route-receipt-package
+            artifacts/russian-p1-offline-package
+      - name: Show Russian P1 server logs on failure
+        if: failure()
+        run: |
+          cat /tmp/russian-p1-source-http.log || true
+          cat /tmp/russian-p1-package-http.log || true
+
   browser-system-acceptance:
     needs: validate-system-integration
     runs-on: ubuntu-24.04
