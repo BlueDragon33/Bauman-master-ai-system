@@ -41,6 +41,8 @@ jobs:
         run: node subjects/russian/scripts/validate-p6-speech-interaction.mjs
       - name: Test Russian P6 speech interaction runtime
         run: node subjects/russian/scripts/test-p6-speech-interaction-runtime.mjs
+      - name: Validate Russian P7 linguistic authority
+        run: node subjects/russian/scripts/validate-p7-linguistic-authority.mjs
       - name: Validate Russian reference UI contracts
         run: node subjects/russian/scripts/validate-reference-ui.mjs
       - name: Validate Russian lesson learning flow
