@@ -1,0 +1,105 @@
+{
+  "schema": "RUSSIAN_AUTHORING_GOVERNANCE_V1",
+  "phase": "P12",
+  "goldenRule": "ONE FACT · ONE OWNER · MANY USES",
+  "canonicalOwnerRegistry": "subjects/russian/docs/p3/RUSSIAN_CONTENT_OWNER_REGISTRY.json",
+  "provenanceRegistry": "subjects/russian/data/provenance.json",
+  "reviewService": {
+    "owner": "control-service",
+    "storageMode": "METADATA_ONLY",
+    "statuses": [
+      "pending",
+      "approved",
+      "rejected",
+      "published"
+    ],
+    "storesLearningContent": false,
+    "publishedMeaning": "REVIEW_METADATA_PUBLISHED_NOT_CANONICAL_CONTENT_WRITE"
+  },
+  "lifecycle": {
+    "candidateStates": [
+      "DRAFT",
+      "VALIDATED",
+      "REVIEW_REQUESTED",
+      "APPROVED",
+      "CANONICAL_PATCHED",
+      "PUBLISHED",
+      "REJECTED"
+    ],
+    "generatedCandidateInitialState": "DRAFT",
+    "promotionOrder": [
+      "DRAFT",
+      "VALIDATED",
+      "REVIEW_REQUESTED",
+      "APPROVED",
+      "CANONICAL_PATCHED",
+      "PUBLISHED"
+    ],
+    "noStateSkipping": true,
+    "canonicalWriteRequires": [
+      "APPROVED",
+      "VERIFIED_PROVENANCE",
+      "CANONICAL_OWNER_PATH",
+      "REVIEWED_DIFF"
+    ],
+    "publishedRequiresCanonicalPatch": true
+  },
+  "permissions": {
+    "candidateMayWriteCanonical": false,
+    "bulkImportMayWriteCanonical": false,
+    "generatedContentMayWriteCanonical": false,
+    "reviewServiceMayWriteCanonical": false,
+    "repoPatchMayWriteCanonical": true
+  },
+  "authorableResponsibilities": [
+    "curriculum",
+    "lesson-content",
+    "vocab",
+    "grammar",
+    "practice-exercise",
+    "assessment",
+    "basic-speaking",
+    "dialogue",
+    "deep-speaking",
+    "writing",
+    "handwriting",
+    "media"
+  ],
+  "derivedResponsibilities": [
+    "grammar-learning-path",
+    "knowledge-index",
+    "speaking-link-index",
+    "review-queues",
+    "recommendation-caches",
+    "route-manifests",
+    "dashboard-aggregations"
+  ],
+  "validation": {
+    "requireCanonicalResponsibility": true,
+    "requireCanonicalOwnerPath": true,
+    "requireCanonicalId": true,
+    "requireRevision": true,
+    "requireContentHash": true,
+    "requireSourceRefsForCanonicalPromotion": true,
+    "requireReviewerForApproval": true,
+    "requireRollbackNote": true,
+    "requireDiffSummary": true
+  },
+  "bulk": {
+    "mode": "STAGING_ONLY",
+    "maxBatchItems": 500,
+    "atomicCanonicalOverwrite": false,
+    "eachItemValidatedIndependently": true,
+    "exportIncludes": [
+      "candidateId",
+      "responsibility",
+      "canonicalOwner",
+      "canonicalId",
+      "revision",
+      "state",
+      "contentHash",
+      "sourceRefs",
+      "diffSummary"
+    ]
+  }
+}
