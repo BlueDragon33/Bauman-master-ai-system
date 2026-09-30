@@ -102,8 +102,16 @@
   function buildPlan(options={}){
     const mode=clean(options.mode||state.mode)||'normal';
     const maxItems=Math.max(4,Math.min(20,Number(options.maxItems)||(mode==='intensive'?12:8)));
-    const base=[...activeOverrides(),...dueLearning(),...dueVocab(),...weaknessTasks(),...continueTask()];
-    const tasks=dedupe([...base,...balanceTasks(base)]).sort((a,b)=>b.priority-a.priority||a.id.localeCompare(b.id));
+    // Category caps prevent one large backlog from crowding out remediation,
+    // current-path continuity, or productive-skill balance.
+    const overrides=activeOverrides().slice(0,2);
+    const due=dueLearning().slice(0,3);
+    const vocab=dueVocab().slice(0,2);
+    const weaknesses=weaknessTasks().slice(0,2);
+    const continuing=continueTask().slice(0,1);
+    const base=dedupe([...overrides,...due,...vocab,...weaknesses,...continuing]);
+    const balanced=balanceTasks(base);
+    const tasks=dedupe([...base,...balanced]).sort((a,b)=>b.priority-a.priority||a.id.localeCompare(b.id));
     return {
       schema:SCHEMA,algorithmVersion:state.algorithmVersion,mode,maxItems,
       stage:clean(readCore().stage)||'vn',
