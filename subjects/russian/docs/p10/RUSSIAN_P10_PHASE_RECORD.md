@@ -18,5 +18,18 @@
 16. **PR/merge rule:** merge only after P10 validator + existing AI runtime + foundation/browser/package regressions PASS.
 17. **Production effect:** none; P17 only.
 
-- **State:** IN_PROGRESS
+- **State:** PASS
 - **Change class:** E — policy/guardrail architecture, no destructive migration.
+
+
+## Exit evidence
+- `RUSSIAN_P10_AI_MENTOR_GUARDRAIL_GATE=PASS`.
+- Existing `RUSSIAN_AI_RUNTIME_GATE=PASS`; canonical learner state remains read-only to AI.
+- P4 mastery, P5 planner/SRS, P6 speech/audio, P7 linguistic truth, and P8/P9 academic/research ownership boundaries remain intact.
+- Russian Reference UI, Fast CI, Constitution and static integration: PASS.
+- Russian source + packaged browser acceptance: PASS.
+- Whole-system source + packaged browser acceptance: PASS.
+- Generated practice is explicitly ephemeral and routes to P12 review before any canonical promotion.
+- Production effect remains none; P17 retains publish authority.
+
+**P10 STATE: PASS**
