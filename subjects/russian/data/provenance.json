@@ -1,0 +1,108 @@
+{
+  "schema": "RUSSIAN_PROVENANCE_REGISTRY_V1",
+  "phase": "P7",
+  "policy": "FAIL_CLOSED",
+  "authorityLevels": [
+    "VERIFIED",
+    "SOURCE_ASSERTED",
+    "PARTIAL",
+    "UNVERIFIED",
+    "REJECTED"
+  ],
+  "promotionRule": "Only VERIFIED may be treated as canonical linguistic authority. Generated content starts UNVERIFIED and requires source evidence plus review.",
+  "datasets": [
+    {
+      "id": "vocab",
+      "owner": "subjects/russian/data/vocab.json",
+      "status": "UNVERIFIED",
+      "confidence": "LOW_FOR_STRESS_AND_MORPHOLOGY",
+      "knownGaps": [
+        "explicit stress authority",
+        "part of speech",
+        "forms/inflections",
+        "case government/aspect/collocation provenance"
+      ],
+      "sourceEvidence": [
+        "subjects/russian/docs/p1/RUSSIAN_CONTENT_STANDARD_GAP_REPORT.md"
+      ]
+    },
+    {
+      "id": "grammar",
+      "owner": "subjects/russian/data/grammar.json",
+      "status": "PARTIAL",
+      "confidence": "SOURCE_ASSERTED_NOT_P7_VERIFIED",
+      "knownGaps": [
+        "item-level provenance",
+        "register/naturalness review"
+      ],
+      "sourceEvidence": [
+        "subjects/russian/docs/p3/RUSSIAN_CONTENT_OWNER_REGISTRY.json"
+      ]
+    },
+    {
+      "id": "speaking",
+      "owner": "subjects/russian/data/speaking.json",
+      "status": "PARTIAL",
+      "confidence": "SOURCE_ASSERTED_NOT_P7_VERIFIED",
+      "knownGaps": [
+        "item-level naturalness/register provenance"
+      ],
+      "sourceEvidence": [
+        "subjects/russian/docs/p6/RUSSIAN_P6_PHASE_RECORD.md"
+      ]
+    },
+    {
+      "id": "dialogue",
+      "owner": "subjects/russian/data/dialogue-bauman-az.json",
+      "status": "PARTIAL",
+      "confidence": "SOURCE_ASSERTED_NOT_P7_VERIFIED",
+      "knownGaps": [
+        "item-level naturalness/register provenance"
+      ],
+      "lazy": true
+    },
+    {
+      "id": "deep-speaking",
+      "owner": "subjects/russian/data/deep-speaking-bauman.json",
+      "status": "PARTIAL",
+      "confidence": "SOURCE_ASSERTED_NOT_P7_VERIFIED",
+      "knownGaps": [
+        "technical terminology provenance",
+        "academic register review"
+      ],
+      "lazy": true
+    },
+    {
+      "id": "writing",
+      "owner": "subjects/russian/data/writing.json",
+      "status": "PARTIAL",
+      "confidence": "SOURCE_ASSERTED_NOT_P7_VERIFIED",
+      "knownGaps": [
+        "academic register/provenance review"
+      ]
+    },
+    {
+      "id": "generated-content",
+      "owner": null,
+      "status": "UNVERIFIED",
+      "confidence": "NONE_UNTIL_REVIEW",
+      "rule": "AI/generated candidates never become canonical without source references and reviewer approval"
+    }
+  ],
+  "requiredVerificationFields": [
+    "claimType",
+    "canonicalValue",
+    "sourceRefs",
+    "reviewer",
+    "reviewedAt",
+    "confidence"
+  ],
+  "immutableFoundationBoundaries": [
+    "mastery",
+    "srs",
+    "adaptive-planner",
+    "audio-runtime",
+    "recording",
+    "speech-recognition"
+  ]
+}
