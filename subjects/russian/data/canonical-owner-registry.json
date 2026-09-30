@@ -1,0 +1,279 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentRevision": "2026-09-30-ru02",
+  "kind": "RUSSIAN_CANONICAL_OWNER_REGISTRY",
+  "module": "RU02",
+  "goldenRule": "ONE FACT · ONE OWNER · MANY USES",
+  "rules": [
+    "Every canonical entity type has exactly one declared owner.",
+    "PLANNED_UNMATERIALIZED means the owner path is reserved but no fact may be fabricated merely to make the file exist.",
+    "Compatibility sources may be read during migration but never override the canonical owner.",
+    "AssessmentItem content ownership is separate from attempt/evidence/mastery state ownership.",
+    "Handwriting-specific media are specialized resources; MediaAsset registry truth remains with the declared MediaAsset owner until RU05/RU08 explicitly migrates it."
+  ],
+  "owners": [
+    {
+      "entityType": "Stage",
+      "canonicalOwner": "subjects/russian/data/canonical-model.json#stages",
+      "materialization": "MATERIALIZED",
+      "authorityModule": "RU02",
+      "compatibilitySources": [
+        "subjects/russian/data/curriculum.json#stages"
+      ]
+    },
+    {
+      "entityType": "MacroModule",
+      "canonicalOwner": "subjects/russian/data/canonical-model.json#macroModules",
+      "materialization": "MATERIALIZED",
+      "authorityModule": "RU02",
+      "compatibilitySources": [
+        "subjects/russian/data/lessons.json#R01-R26"
+      ]
+    },
+    {
+      "entityType": "Unit",
+      "canonicalOwner": "subjects/russian/data/canonical-model.json#units",
+      "materialization": "MATERIALIZED",
+      "authorityModule": "RU02",
+      "compatibilitySources": [
+        "subjects/russian/docs/p2/RUSSIAN_R01_R26_TARGET_CURRICULUM.json"
+      ]
+    },
+    {
+      "entityType": "MicroLesson",
+      "canonicalOwner": "subjects/russian/data/canonical-model.json#microLessons",
+      "materialization": "MATERIALIZED",
+      "authorityModule": "RU02",
+      "compatibilitySources": [
+        "subjects/russian/docs/p2/RUSSIAN_R01_R26_TARGET_CURRICULUM.json"
+      ]
+    },
+    {
+      "entityType": "Competency",
+      "canonicalOwner": "subjects/russian/data/canonical-model.json#competencies",
+      "materialization": "MATERIALIZED",
+      "authorityModule": "RU02",
+      "compatibilitySources": []
+    },
+    {
+      "entityType": "LinguisticFunction",
+      "canonicalOwner": "subjects/russian/data/linguistic-functions.json",
+      "materialization": "PLANNED_UNMATERIALIZED",
+      "authorityModule": "RU03",
+      "compatibilitySources": [
+        "subjects/russian/data/academic-functions.json"
+      ]
+    },
+    {
+      "entityType": "PhoneticConcept",
+      "canonicalOwner": "subjects/russian/data/phonetics.json",
+      "materialization": "PLANNED_UNMATERIALIZED",
+      "authorityModule": "RU03",
+      "compatibilitySources": [
+        "subjects/russian/data/lessons.json",
+        "subjects/russian/data/handwriting.json"
+      ]
+    },
+    {
+      "entityType": "GrammarConcept",
+      "canonicalOwner": "subjects/russian/data/grammar.json",
+      "materialization": "MATERIALIZED",
+      "authorityModule": "RU03",
+      "compatibilitySources": [
+        "subjects/russian/data/grammar-path.json"
+      ]
+    },
+    {
+      "entityType": "LexicalEntry",
+      "canonicalOwner": "subjects/russian/data/vocab.json",
+      "materialization": "MATERIALIZED",
+      "authorityModule": "RU03",
+      "compatibilitySources": []
+    },
+    {
+      "entityType": "PhraseCollocation",
+      "canonicalOwner": "subjects/russian/data/phrases.json",
+      "materialization": "PLANNED_UNMATERIALIZED",
+      "authorityModule": "RU03",
+      "compatibilitySources": [
+        "subjects/russian/data/vocab.json"
+      ]
+    },
+    {
+      "entityType": "ListeningItem",
+      "canonicalOwner": "subjects/russian/data/listening.json",
+      "materialization": "PLANNED_UNMATERIALIZED",
+      "authorityModule": "RU05",
+      "compatibilitySources": [
+        "subjects/russian/data/speaking.json",
+        "subjects/russian/data/videos.json",
+        "subjects/russian/data/listen-write-lessons.json"
+      ]
+    },
+    {
+      "entityType": "SpeakingItem",
+      "canonicalOwner": "subjects/russian/data/speaking.json",
+      "materialization": "MATERIALIZED",
+      "authorityModule": "RU05",
+      "compatibilitySources": []
+    },
+    {
+      "entityType": "DialogueScenario",
+      "canonicalOwner": "subjects/russian/data/dialogue-bauman-az.json",
+      "materialization": "MATERIALIZED",
+      "authorityModule": "RU05",
+      "compatibilitySources": [
+        "subjects/russian/data/scenario-registry.json"
+      ]
+    },
+    {
+      "entityType": "DeepSpeakingTask",
+      "canonicalOwner": "subjects/russian/data/deep-speaking-bauman.json",
+      "materialization": "MATERIALIZED",
+      "authorityModule": "RU05",
+      "compatibilitySources": []
+    },
+    {
+      "entityType": "ReadingText",
+      "canonicalOwner": "subjects/russian/data/reading.json",
+      "materialization": "MATERIALIZED",
+      "authorityModule": "RU06",
+      "compatibilitySources": []
+    },
+    {
+      "entityType": "WritingTask",
+      "canonicalOwner": "subjects/russian/data/writing.json",
+      "materialization": "MATERIALIZED",
+      "authorityModule": "RU06",
+      "compatibilitySources": []
+    },
+    {
+      "entityType": "TechnicalConcept",
+      "canonicalOwner": "subjects/russian/data/technical-concepts.json",
+      "materialization": "MATERIALIZED",
+      "authorityModule": "RU06",
+      "compatibilitySources": []
+    },
+    {
+      "entityType": "AcademicFunction",
+      "canonicalOwner": "subjects/russian/data/academic-functions.json",
+      "materialization": "MATERIALIZED",
+      "authorityModule": "RU06",
+      "compatibilitySources": []
+    },
+    {
+      "entityType": "Exercise",
+      "canonicalOwner": "subjects/russian/data/exercises.json",
+      "materialization": "MATERIALIZED",
+      "authorityModule": "RU04",
+      "compatibilitySources": []
+    },
+    {
+      "entityType": "AssessmentItem",
+      "canonicalOwner": "subjects/russian/data/tests.json",
+      "materialization": "MATERIALIZED",
+      "authorityModule": "RU04",
+      "compatibilitySources": [
+        "subjects/russian/assets/assessment-mastery.js"
+      ]
+    },
+    {
+      "entityType": "PerformanceTask",
+      "canonicalOwner": "subjects/russian/data/performance-tasks.json",
+      "materialization": "MATERIALIZED",
+      "authorityModule": "RU06",
+      "compatibilitySources": [
+        "subjects/russian/assets/assessment-mastery.js"
+      ]
+    },
+    {
+      "entityType": "ErrorPattern",
+      "canonicalOwner": "subjects/russian/data/error-patterns.json",
+      "materialization": "PLANNED_UNMATERIALIZED",
+      "authorityModule": "RU03_RU04",
+      "compatibilitySources": []
+    },
+    {
+      "entityType": "RemediationPath",
+      "canonicalOwner": "subjects/russian/data/remediation-paths.json",
+      "materialization": "PLANNED_UNMATERIALIZED",
+      "authorityModule": "RU04",
+      "compatibilitySources": []
+    },
+    {
+      "entityType": "MediaAsset",
+      "canonicalOwner": "subjects/russian/data/videos.json",
+      "materialization": "MATERIALIZED",
+      "authorityModule": "RU05_RU06",
+      "compatibilitySources": [
+        "subjects/russian/data/handwriting.json",
+        "subjects/russian/data/handwriting-listen-write.json"
+      ]
+    },
+    {
+      "entityType": "ProvenanceRecord",
+      "canonicalOwner": "subjects/russian/data/provenance.json",
+      "materialization": "MATERIALIZED",
+      "authorityModule": "RU03",
+      "compatibilitySources": []
+    }
+  ],
+  "derived": [
+    {
+      "id": "knowledge-index",
+      "owner": "subjects/russian/data/knowledge-index.json",
+      "classification": "DERIVED_REGENERABLE"
+    },
+    {
+      "id": "speaking-link-index",
+      "owner": "subjects/russian/data/speaking-link-index.json",
+      "classification": "DERIVED_REGENERABLE"
+    },
+    {
+      "id": "grammar-path",
+      "owner": "subjects/russian/data/grammar-path.json",
+      "classification": "DERIVED_OR_GUIDANCE"
+    },
+    {
+      "id": "search-index",
+      "owner": null,
+      "classification": "DERIVED_REGENERABLE"
+    },
+    {
+      "id": "review-queue",
+      "owner": "subjects/russian/assets/learning-state.js",
+      "classification": "DERIVED_STATE"
+    },
+    {
+      "id": "recommendation-plan",
+      "owner": "subjects/russian/assets/adaptive-planner.js",
+      "classification": "DERIVED_STATE"
+    },
+    {
+      "id": "route-manifest",
+      "owner": "subjects/russian/subject-manifest.json",
+      "classification": "INTEGRATION_DERIVED"
+    },
+    {
+      "id": "dashboard-aggregation",
+      "owner": null,
+      "classification": "DERIVED_PRESENTATION"
+    }
+  ],
+  "stateOwners": {
+    "assessmentAttemptEvidenceMastery": "subjects/russian/assets/assessment-mastery.js",
+    "adaptivePlanner": "subjects/russian/assets/adaptive-planner.js",
+    "learningResumeReview": [
+      "subjects/russian/assets/learning-state.js",
+      "subjects/russian/assets/learning-flow.js"
+    ],
+    "vocabularySrs": "subjects/russian/assets/vocab-srs.js",
+    "speakingPractice": "subjects/russian/assets/speaking-coach.js",
+    "speechSignalAdapter": "subjects/russian/assets/speech-interaction-engine.js"
+  },
+  "supersedesForCurrentExecution": [
+    "subjects/russian/docs/p3/RUSSIAN_CONTENT_OWNER_REGISTRY.json",
+    "subjects/russian/docs/p3/RUSSIAN_CANONICAL_OWNER_TOPOLOGY.json"
+  ],
+  "note": "P3 remains historical schema/migration evidence. This registry resolves current materialization after P7-P11 without deleting P3 artifacts."
+}
