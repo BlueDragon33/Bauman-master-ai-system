@@ -1,6 +1,6 @@
 # Russian P4 Evidence Index
 
-Phase state: **IN_PROGRESS**
+Phase state: **PASS**
 
 | Evidence | Status | Supports |
 |---|---|---|
@@ -18,10 +18,10 @@ Phase state: **IN_PROGRESS**
 | assessment alignment matrix | created | current recognition-heavy bank disposition |
 | first-attempt integrity report | created | baseline + correction |
 | assessment migration plan | created | additive/idempotent/rollback-safe migration |
-| static P4 validator | pending | contract/code invariants |
-| P4 browser acceptance | pending | first-attempt/idempotency/recovery/render safety |
-| source/package parity | pending | packaged runtime evidence |
-| full Russian regression | pending | compatibility evidence |
+| static P4 validator | PASS | contract/code invariants |
+| P4 browser acceptance | PASS · source | first-attempt/idempotency/recovery/render safety |
+| source/package parity | PASS · packaged runtime | packaged runtime evidence |
+| full Russian regression | PASS · whole-system + Russian acceptance | compatibility evidence |
 
 ## Current factual bank audit
 
@@ -34,3 +34,16 @@ Current bank:
 - all question types are `multiple_choice`.
 
 This supports preserving the bank while explicitly limiting its role as recognition-heavy evidence rather than total mastery authority.
+
+## Exit evidence
+
+Validated runtime head: `3d0bca33babae6054b187b3c3a6b9a0585685083`.
+
+GitHub Actions evidence:
+- run `36695286628`: Russian P4 source acceptance PASS, packaged P4 acceptance PASS, Russian regression PASS, whole-system browser PASS;
+- Fast CI PASS;
+- Russian Reference UI PASS;
+- Future Interface PASS;
+- Constitution compliance PASS.
+
+The external Cloudflare branch-build check is not P4 production authority and does not replace P17 production verification.
