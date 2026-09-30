@@ -6,14 +6,14 @@ const {chromium}=await import(process.env.BAUMAN_PLAYWRIGHT_MODULE||'playwright'
 const BASE=process.env.BAUMAN_E2E_BASE_URL||'http://127.0.0.1:4173/';
 const OUT=process.env.BAUMAN_E2E_ARTIFACT_DIR||'artifacts/russian-p4-assessment-mastery';
 fs.mkdirSync(OUT,{recursive:true});
-const URL=new URL('subjects/russian/index.html',BASE).href;
+const PAGE_URL=new globalThis.URL('subjects/russian/index.html',BASE).href;
 let browser;
 
 async function open(context){
   const page=await context.newPage();
   const errors=[];
   page.on('pageerror',e=>errors.push(String(e?.stack||e)));
-  await page.goto(URL,{waitUntil:'domcontentloaded',timeout:30000});
+  await page.goto(PAGE_URL,{waitUntil:'domcontentloaded',timeout:30000});
   await page.waitForSelector('body.ru-future-ui',{timeout:15000});
   await page.waitForFunction(()=>!!window.RussianAssessmentMastery,{timeout:15000});
   await page.waitForTimeout(400);
