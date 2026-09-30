@@ -1,0 +1,38 @@
+{
+  "schema": "RUSSIAN_DAILY_PLANNER_CONTRACT_V1",
+  "owner": "subjects/russian/assets/adaptive-planner.js",
+  "inputs": [
+    "RussianAssessmentMastery.exportState",
+    "RussianLearningState.dueReviews",
+    "RussianVocabSrs.dueCards",
+    "RussianLearningState.resume",
+    "manualOverrides"
+  ],
+  "output": {
+    "schema": "RUSSIAN_ADAPTIVE_PLANNER_V1",
+    "fields": [
+      "algorithmVersion",
+      "mode",
+      "stage",
+      "generatedFrom",
+      "tasks"
+    ],
+    "taskFields": [
+      "id",
+      "label",
+      "skill",
+      "reason",
+      "reasonLabel",
+      "route",
+      "priority",
+      "source"
+    ]
+  },
+  "invariants": [
+    "deterministic-default",
+    "deduplicate-by-id",
+    "read-only-master-y",
+    "max-items-bounded",
+    "manual-browse-preserved"
+  ]
+}
