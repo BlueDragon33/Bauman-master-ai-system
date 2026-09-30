@@ -18,5 +18,18 @@
 16. **PR/merge rule:** merge only after P9 validator + foundation + browser/package regressions PASS.
 17. **Production effect:** none; P17 only.
 
-- **State:** IN_PROGRESS
+- **State:** PASS
 - **Change class:** C/E — additive canonical task architecture, no destructive migration.
+
+
+## Exit evidence
+- `RUSSIAN_P9_READING_WRITING_RESEARCH_GATE=PASS`: 12 ReadingText tasks, 10 PerformanceTask contracts.
+- P3 owner topology preserved for ReadingText and PerformanceTask.
+- P4 remains the only official assessment/mastery owner.
+- P7/P8 authority and technical concept ownership preserved.
+- Russian Reference UI, Fast CI, Constitution and static integration: PASS.
+- Russian source + packaged browser acceptance: PASS.
+- Whole-system source + packaged browser acceptance: PASS.
+- Recurring Cloudflare branch build failure is recorded as a P17 deployment-integration limitation; P9 makes no production claim.
+
+**P9 STATE: PASS**
