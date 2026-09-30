@@ -42,3 +42,12 @@ The P1 browser suite verified 11 representative viewports, source + packaged run
 
 ## Production effect
 **UNCHANGED.** P1 remains audit/tooling-only and does not authorize production publish.
+
+
+## P1 exit record
+- Head SHA validated: `1252f7c46694cb40466ff0d483ccad92439cde7b`.
+- Russian P1 browser acceptance: PASS (source + packaged runtime, 11 viewports).
+- Whole-system browser acceptance: PASS after repairing a data-dependent Schedule test harness null-element probe; no production behavior changed.
+- Constitution, Russian Reference UI, Fast CI, and static system integration: PASS.
+- External Cloudflare branch build check reported failure; P1 is audit-only with Production=UNCHANGED, so this is recorded as a non-P1 production integration limitation and is not used as P1 runtime evidence.
+- Unresolved risks P1-R001..R007 remain assigned to their declared owner phases; none invalidates the forensic audit exit contract.
