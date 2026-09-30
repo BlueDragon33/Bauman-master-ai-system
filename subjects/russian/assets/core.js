@@ -14,7 +14,7 @@ const NAV=A.nav||[['overview','🧭','Tổng quan'],['learning','🎓','Học t�
 const PRIMARY_NAV=A.primaryNav||NAV;
 const LEARN_TABS=A.learningTabs||[['theory','📘','Lý thuyết'],['exercises','📝','Bài tập'],['practice','🎙️','Nghe/Nói'],['review','🔁','Ôn tập'],['exam','🧪','Kiểm tra']];
 const DEFAULT={stage:'vn',view:'overview',learnTab:'theory',lessonId:'',slide:0,lessonQuery:'',conceptQuery:'',exerciseLevel:'all',exerciseIndex:0,testLevel:'easy',testIndex:0,testAnswer:null,reviewLevel:'easy',reviewFilter:'all',reviewLesson:'all',reviewMiniLesson:false,reviewIndex:0,reviewPage:0,reviewAnswer:null,reviewProgress:{done:{},flagged:{},wrong:{}},examLevel:'easy',examCycle:'auto',examPaperLevel:'easy',examPaperType:'standard',examIndex:0,examPage:0,examAnswer:null,examProgress:{answers:{},marked:{},submitted:false,submittedAt:null,result:null,wrong:{},paperResults:{},attemptIds:{}},examHistory:[],remedialPlan:{active:false,cards:[],completed:{},createdAt:null,lastExamAt:null,lastScore:null},dialogueId:'',dialogueGroup:'all',dialogueDifficulty:'all',dialogueQuery:'',dialogueLineIndex:0,dialogueRole:'all',dialogueHideVi:true,dialogueShowTranscript:false,dialoguePeople:'2',dialogueMinutes:'10',dialogueMode:'shadow_roleplay',dialogueScenario:'classroom',practiceDialogueId:'',practiceGroup:'all',practiceDifficulty:'all',practiceQuery:'',practiceLineIndex:0,practiceRole:'all',practiceHideVi:true,practiceShowTranscript:false,practiceSpeechResults:{},dialogueSpeechResults:{},deepSpeakingId:'',deepSpeakingMode:'overview',deepSpeakingStep:0,deepSpeakingProgress:{done:{},weak:{},attempts:{},lastMode:{}},optionalDataLoading:{},optionalDataError:{},speechResults:{},speechRecording:false,speechAutoNext:false,mediaCat:'all',mediaQuery:'',mediaView:'list',mediaId:'',vocabQuery:'',vocabTopic:'all',vocabStatus:'all',vocabFocusKey:'',vocabIndex:0,vocabPage:0,vocabFlipped:false,grammarLevel:'all',grammarTrack:'all',grammarQuery:'',grammarIndex:0,mindmapId:'roadmap-map',mindmapNode:'',mindmapFontScale:14,mindmapDrag:{},mindmapLayoutVersion:'v13_32_clean',writingMode:'handwriting',handwritingIndex:0,handwritingQuery:'',handwritingStep:0,handwritingPractice:'trace',handwritingShowGuide:true,handwritingShowLines:true,handwritingExerciseIndex:0,handwritingExerciseInput:'',handwritingExerciseChoice:'',handwritingExerciseAttempted:false,handwritingExerciseReveal:false,handwritingExerciseResult:null,handwritingSessionMode:'learn',handwritingListenWriteProgress:{byLetter:{}},lessonListenWrite:{lessonId:'',itemIndex:0,drillIndex:0,mode:'',input:'',choice:'',attempted:false,result:null},writingIndex:0,writingQuery:'',writingDraft:'',storageFile:'curriculum',storageGroup:'all',storageText:'',storagePreviewLimit:0,storagePreviewAutoCollapsedV1322:false,storageQuery:'',storageTreeOpen:{},aiDraft:'',aiOutput:'',interfaceTheme:'clean',interfaceDensity:'normal',hostTask:null,planningBundle:null,routeEdit:false,routeManual:null,routeFocus:'today',testSession:{answered:0,correct:0,targetQuestions:100,targetScore:80,seen:{}},recentAccess:[],stageGate:null,examGateSource:null,stageTransitions:[],lastStageTransition:null};
-let DB={},state={...DEFAULT},canvas=null,ctx=null,drawing=false,strokes=[],currentStroke=null,penColor='#111827',penSize=6,speechRecognizer=null;
+let DB={},state={...DEFAULT},canvas=null,ctx=null,drawing=false,strokes=[],currentStroke=null,penColor='#111827',penSize=6;
 let modalReturnFocus=null;
 const stateRecoveryBlocks={};
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
@@ -1629,7 +1629,7 @@ function renderPractice(){
      <div class="v1294-current-body"><label>Câu ${turns.length?idx+1:0}/${turns.length||0} · ${esc(cueText)}</label><div class="russian-line">${currentRu}</div>${currentVi?`<p>${esc(currentVi)}</p>`:''}${showTranscript&&hints.length?`<div class="speech-hints">${hints.map(x=>`<span>${esc(x)}</span>`).join('')}</div>`:''}</div>
      <button class="btn green speech-ok-corner" data-act="mark-line-ok">✓ Đã nói ổn</button>
    </article>
-   <div class="v1294-speech-actions"><button class="btn" data-act="prev-line">← Câu trước</button><button class="btn green" data-act="speak-line">🔊 Nghe mẫu</button><button class="btn" data-act="speak-line-slow">🐢 Nghe chậm</button><button class="btn primary speech-record-primary" data-act="record-line">🎙️ Ghi âm / Bắt đầu nói</button><button class="btn primary" data-act="next-line">Câu tiếp →</button></div>
+   <div class="v1294-speech-actions"><button class="btn" data-act="prev-line">← Câu trước</button><button class="btn green" data-act="speak-line">🔊 Nghe mẫu</button><button class="btn" data-act="speak-line-slow">🐢 Nghe chậm</button><button class="btn primary speech-record-primary" data-act="record-line">🎙️ Nhận giọng nói</button><button class="btn primary" data-act="next-line">Câu tiếp →</button></div>
    <div class="v1294-feedback-line"><b>${result?(result.manual?'Tự xác nhận: đã nói ổn':`Độ khớp transcript: ${result.score}% · không phải điểm phát âm`):'Gợi ý luyện'}</b><span>${result?esc(speechFeedback(result.score)):'Nghe mẫu 1 lượt, đọc câu thành tiếng, nhại chậm, sau đó tự nói không nhìn chữ.'}</span></div>
    <details class="v1294-speech-map"><summary>🧭 Bản đồ câu nói <span>${turns.length?idx+1:0}/${turns.length||0}</span></summary><div class="v1294-speech-map-grid">${turns.length?turns.map(roleLine).join(''):'<div class="note">Chưa có câu nói trong hội thoại đúng bài này.</div>'}</div></details>
  </section>`
@@ -1763,21 +1763,29 @@ function normalizeRuSpeech(v){return str(v).toLowerCase().replace(/ё/g,'е').re
 function editDistance(a,b){a=normalizeRuSpeech(a);b=normalizeRuSpeech(b); const m=a.length,n=b.length; if(!m&&!n)return 0; const dp=Array.from({length:m+1},(_,i)=>[i]); for(let j=1;j<=n;j++)dp[0][j]=j; for(let i=1;i<=m;i++){for(let j=1;j<=n;j++){dp[i][j]=Math.min(dp[i-1][j]+1,dp[i][j-1]+1,dp[i-1][j-1]+(a[i-1]===b[j-1]?0:1));}} return dp[m][n]}
 function speechSimilarity(said,target){const a=normalizeRuSpeech(said), b=normalizeRuSpeech(target); if(!a||!b)return 0; const charScore=1-(editDistance(a,b)/Math.max(a.length,b.length,1)); const at=new Set(a.split(' ').filter(Boolean)), bt=b.split(' ').filter(Boolean); const hit=bt.filter(x=>at.has(x)).length; const tokenScore=bt.length?hit/bt.length:0; return Math.max(0,Math.min(1,charScore*.55+tokenScore*.45));}
 function speakingResultFor(d,i){return activeSpeechResults()?.[dialogueLineKey(d,i)]||null}
-function speechSupport(){return !!(window.SpeechRecognition||window.webkitSpeechRecognition)}
+function speechSupport(){return window.RussianSpeechRecognitionAdapter?.support?.()==='SUPPORTED'}
 function speechFeedback(score){if(score>=86)return 'Rất tốt: nhịp và từ khóa đã khá sát mẫu.'; if(score>=70)return 'Ổn: nói lại một lượt chậm hơn để chắc trọng âm.'; if(score>=45)return 'Chưa vững: nghe chậm, tách từng cụm rồi nhại lại.'; return 'Cần luyện lại: nghe mẫu 2 lần, nói từng nửa câu trước.'}
 function lineTokenHints(text){return normalizeRuSpeech(text).split(' ').filter(Boolean).slice(0,7)}
 function startLineRecording(){
- const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+ const adapter=window.RussianSpeechRecognitionAdapter;
  const d=currentDialogue(), turns=dialogueTurns(d), idx=Math.min(activeLineIndex(),Math.max(0,turns.length-1));
  const target=dialogueText(turns[idx]||{}); if(!target){toast('Chưa có câu để luyện');return}
- if(!SR){toast('Trình duyệt chưa hỗ trợ nhận diện giọng nói. Hãy dùng Chrome/Edge trên Live Server.');return}
- try{if(speechRecognizer)speechRecognizer.stop()}catch(_){ }
- const rec=new SR(); speechRecognizer=rec; rec.lang='ru-RU'; rec.interimResults=false; rec.maxAlternatives=1; rec.continuous=false;
- state.speechRecording=true; save(); render(); toast('Đang nghe tiếng Nga của bạn...');
- rec.onresult=ev=>{const transcript=ev.results?.[0]?.[0]?.transcript||''; const score=Math.round(speechSimilarity(transcript,target)*100); const store=activeSpeechResults(); store[dialogueLineKey(d,idx)]={score,transcript,target,at:Date.now(),ok:score>=70}; state.speechRecording=false; save(); render(); toast(score>=70?'Đạt câu này, có thể qua câu tiếp':'Chưa đạt, luyện lại câu này'); if(score>=70&&state.speechAutoNext)setTimeout(()=>moveDialogueLine(1),520)};
- rec.onerror=()=>{state.speechRecording=false; save(); render(); toast('Không nghe rõ. Kiểm tra micro rồi thử lại')};
- rec.onend=()=>{if(state.speechRecording){state.speechRecording=false; save(); render();}}
- try{rec.start()}catch(_){state.speechRecording=false; save(); render(); toast('Micro chưa sẵn sàng')}
+ if(!adapter||adapter.support?.()!=='SUPPORTED'){toast('Thiết bị chưa hỗ trợ nhận diện giọng nói. Bạn vẫn có thể nghe, nói, tự xác nhận hoặc dùng ghi âm cục bộ.');return}
+ state.speechRecording=true; save(); render(); toast('Đang nhận dạng tiếng Nga. Transcript chỉ là tín hiệu hỗ trợ...');
+ const result=adapter.start({
+  lang:'ru-RU',timeoutMs:30000,
+  onResult:({transcript,rawConfidence})=>{
+   const score=Math.round(speechSimilarity(transcript,target)*100), store=activeSpeechResults();
+   const key=dialogueLineKey(d,idx);
+   store[key]={score,transcript,target,at:Date.now(),ok:false,signalOnly:true,signalType:'asr_transcript_similarity',confidence:'LIMITED',providerConfidence:rawConfidence??null};
+   window.RussianAssessmentMastery?.recordEvidence?.({competencyId:'speaking:'+key,skill:'speaking',evidenceType:'asr_transcript_signal',result:{transcriptSimilarity:score,providerConfidence:rawConfidence??null},authoritative:false});
+   state.speechRecording=false; save(); render(); toast('Đã có transcript hỗ trợ. Hãy tự nghe lại/đối chiếu; ASR không tự xác nhận đạt.');
+  },
+  onUnsupported:()=>{state.speechRecording=false;save();render();toast('Nhận diện giọng nói không khả dụng. Dùng tự đánh giá hoặc ghi âm cục bộ để tiếp tục.');},
+  onError:({support})=>{state.speechRecording=false;save();render();toast(support==='PERMISSION_BLOCKED'?'Micro/nhận dạng bị từ chối. Bạn vẫn có thể tiếp tục bằng nghe + tự đánh giá.':'Không nhận dạng được giọng nói. Hãy thử lại hoặc dùng fallback.');},
+  onEnd:()=>{if(state.speechRecording){state.speechRecording=false;save();render();}}
+ });
+ if(!result?.started){state.speechRecording=false;save();render();}
 }
 
 function vocabVisualCategoryRu(tags){
@@ -2262,7 +2270,7 @@ function renderDialogue(){
        <button class="btn green speech-ok-corner" data-act="mark-line-ok">✓ Tôi nói ổn</button>
      </article>
      <div class="v1294-speech-actions dialogue-nine-actions"><button class="btn" data-act="prev-line">← Câu trước</button><button class="btn green" data-act="speak-line">🔊 Câu mẫu</button><button class="btn" data-act="speak-line-slow">🐢 Chậm</button><button class="btn blue" data-act="speak-dialogue">Nghe cả đoạn</button><button class="btn" data-act="record-line">🎙️ Đối đáp</button><button class="btn" data-act="next-role-line">Câu của tôi →</button><button class="btn primary" data-act="next-line">Câu tiếp →</button></div>
-     <div class="v1294-feedback-line dialogue-nine-feedback"><b>${result?`Điểm nói: ${result.score}%`:'Gợi ý đối đáp'}</b><span>${result?esc(speechFeedback(result.score)):'Nghe câu mẫu, nói lại chậm, sau đó tự đối đáp theo vai. Tab Nghe/Nói vẫn giữ bộ cơ bản; tab này dùng Bauman A-Z.'}</span></div>
+     <div class="v1294-feedback-line dialogue-nine-feedback"><b>${result?`Độ khớp transcript: ${result.score}% · không phải điểm phát âm`:'Gợi ý đối đáp'}</b><span>${result?esc(speechFeedback(result.score)):'Nghe câu mẫu, nói lại chậm, sau đó tự đối đáp theo vai. Tab Nghe/Nói vẫn giữ bộ cơ bản; tab này dùng Bauman A-Z.'}</span></div>
      <details class="v1294-speech-map dialogue-nine-map"><summary>🧭 Bản đồ câu đối thoại <span>${turns.length?idx+1:0}/${turns.length||0}</span></summary><div class="v1294-speech-map-grid">${turns.length?turns.map(roleLine).join(''):'<div class="note">Chưa có câu hội thoại.</div>'}</div></details>
      <details class="dialogue-picker compact-picker dialogue-nine-picker"><summary>Đổi tình huống luyện nói <span>${list.length}/${all.length}</span></summary><div class="dialogue-picker-body"><div class="dialogue-picker-tools"><select class="input" data-input="dialogueGroup"><option value="all">Tất cả nhóm</option>${groups.map(g=>`<option value="${esc(g)}" ${state.dialogueGroup===g?'selected':''}>${esc(g)}</option>`).join('')}</select><select class="input" data-input="dialogueDifficulty"><option value="all">Tất cả mức</option>${diffs.map(g=>`<option value="${esc(g)}" ${state.dialogueDifficulty===g?'selected':''}>${esc(g)}</option>`).join('')}</select><input class="input" data-input="dialogueQuery" value="${esc(state.dialogueQuery)}" placeholder="Tìm tình huống..."></div><div class="dialogue-picker-list">${list.slice(0,120).map(d=>`<button class="item-card ${active===d?'active':''}" data-dialogue="${esc(d.id||d.title)}"><b>${esc(A.dialogueTitle?.(d)||d.title||'Hội thoại')}</b><small>${esc((A.dialogueGroup?.(d)||d.group||'')+' · '+(A.dialogueDifficulty?.(d)||d.difficulty||d.level||''))}</small></button>`).join('')||'<div class="note">Chưa có hội thoại.</div>'}</div></div></details>
    </section>
@@ -3431,16 +3439,12 @@ function speakVocabItem(v,slow=false){
  const fallback=()=>speak(term,slow?.62:.85);
  if(!sourceAudio)return fallback();
  try{
-  const player=new Audio(sourceAudio);
-  player.playbackRate=slow?.75:1;
-  player.addEventListener('error',fallback,{once:true});
-  const play=player.play();
-  if(play?.catch)play.catch(fallback);
-  return true;
+  const result=window.RussianAudioEngine?.playSource?.(sourceAudio,{rate:slow?.75:1,sourceType:'RECORDED_PEDAGOGICAL',onError:fallback});
+  return !!result?.started;
  }catch(_){return fallback()}
 }
-function speak(text,rate=.85,callbacks={}){ if(!text||!('speechSynthesis' in window))return false; const u=new SpeechSynthesisUtterance(text); u.lang=A.speech?.lang||'ru-RU'; u.rate=rate; if(callbacks.onstart)u.onstart=callbacks.onstart; if(callbacks.onend)u.onend=callbacks.onend; if(callbacks.onerror)u.onerror=callbacks.onerror; speechSynthesis.cancel(); speechSynthesis.speak(u); return true; }
-function handwritingSpeechAvailable(){return typeof window!=='undefined'&&'speechSynthesis' in window&&typeof SpeechSynthesisUtterance!=='undefined'}
+function speak(text,rate=.85,callbacks={}){return !!window.RussianAudioEngine?.speak?.(text,{lang:A.speech?.lang||'ru-RU',rate,onStart:callbacks.onstart,onEnd:callbacks.onend,onError:callbacks.onerror})?.started}
+function handwritingSpeechAvailable(){return window.RussianAudioEngine?.support?.().tts===true}
 function handwritingAudioEntry(item){return handwritingListenWriteFor(item)}
 function handwritingAudioTarget(item,kind='name',exampleIndex=0){
  const audio=handwritingAudioEntry(item);
