@@ -1,0 +1,185 @@
+{
+  "schemaVersion": "1.0.0",
+  "phase": "P3",
+  "rule": "Exactly one target canonical owner per entity type; derived outputs may consume IDs but never become fact owners.",
+  "runtimeMigrationApplied": false,
+  "targetOwners": [
+    {
+      "entityType": "Stage",
+      "targetOwner": "subjects/russian/data/curriculum.json",
+      "status": "CURRENT_CANONICAL"
+    },
+    {
+      "entityType": "MacroModule",
+      "targetOwner": "subjects/russian/data/curriculum.json",
+      "status": "CURRENT_CANONICAL"
+    },
+    {
+      "entityType": "Unit",
+      "targetOwner": "subjects/russian/data/lessons.json",
+      "status": "MIGRATE_IN_PLACE"
+    },
+    {
+      "entityType": "MicroLesson",
+      "targetOwner": "subjects/russian/data/lessons.json",
+      "status": "MIGRATE_IN_PLACE"
+    },
+    {
+      "entityType": "Competency",
+      "targetOwner": "subjects/russian/data/competencies.json",
+      "status": "PLANNED_CANONICAL"
+    },
+    {
+      "entityType": "LinguisticFunction",
+      "targetOwner": "subjects/russian/data/linguistic-functions.json",
+      "status": "PLANNED_CANONICAL"
+    },
+    {
+      "entityType": "PhoneticConcept",
+      "targetOwner": "subjects/russian/data/phonetics.json",
+      "status": "PLANNED_CANONICAL"
+    },
+    {
+      "entityType": "GrammarConcept",
+      "targetOwner": "subjects/russian/data/grammar.json",
+      "status": "MIGRATE_IN_PLACE"
+    },
+    {
+      "entityType": "LexicalEntry",
+      "targetOwner": "subjects/russian/data/vocab.json",
+      "status": "MIGRATE_IN_PLACE"
+    },
+    {
+      "entityType": "PhraseCollocation",
+      "targetOwner": "subjects/russian/data/phrases.json",
+      "status": "PLANNED_CANONICAL"
+    },
+    {
+      "entityType": "ListeningItem",
+      "targetOwner": "subjects/russian/data/listening.json",
+      "status": "PLANNED_CANONICAL"
+    },
+    {
+      "entityType": "SpeakingItem",
+      "targetOwner": "subjects/russian/data/speaking.json",
+      "status": "CURRENT_CANONICAL"
+    },
+    {
+      "entityType": "DialogueScenario",
+      "targetOwner": "subjects/russian/data/dialogue-bauman-az.json",
+      "status": "CURRENT_CANONICAL"
+    },
+    {
+      "entityType": "DeepSpeakingTask",
+      "targetOwner": "subjects/russian/data/deep-speaking-bauman.json",
+      "status": "CURRENT_CANONICAL"
+    },
+    {
+      "entityType": "ReadingText",
+      "targetOwner": "subjects/russian/data/reading.json",
+      "status": "PLANNED_CANONICAL"
+    },
+    {
+      "entityType": "WritingTask",
+      "targetOwner": "subjects/russian/data/writing.json",
+      "status": "CURRENT_CANONICAL"
+    },
+    {
+      "entityType": "TechnicalConcept",
+      "targetOwner": "subjects/russian/data/technical-concepts.json",
+      "status": "PLANNED_CANONICAL"
+    },
+    {
+      "entityType": "AcademicFunction",
+      "targetOwner": "subjects/russian/data/academic-functions.json",
+      "status": "PLANNED_CANONICAL"
+    },
+    {
+      "entityType": "Exercise",
+      "targetOwner": "subjects/russian/data/exercises.json",
+      "status": "CURRENT_CANONICAL"
+    },
+    {
+      "entityType": "AssessmentItem",
+      "targetOwner": "subjects/russian/data/tests.json",
+      "status": "CURRENT_CANONICAL_UNTIL_P4"
+    },
+    {
+      "entityType": "PerformanceTask",
+      "targetOwner": "subjects/russian/data/performance-tasks.json",
+      "status": "PLANNED_CANONICAL"
+    },
+    {
+      "entityType": "ErrorPattern",
+      "targetOwner": "subjects/russian/data/error-patterns.json",
+      "status": "PLANNED_CANONICAL"
+    },
+    {
+      "entityType": "RemediationPath",
+      "targetOwner": "subjects/russian/data/remediation-paths.json",
+      "status": "PLANNED_CANONICAL"
+    },
+    {
+      "entityType": "MediaAsset",
+      "targetOwner": "subjects/russian/data/videos.json",
+      "status": "CURRENT_PRIMARY_WITH_SPECIALIZED_HANDWRITING_MEDIA"
+    },
+    {
+      "entityType": "ProvenanceRecord",
+      "targetOwner": "subjects/russian/data/provenance.json",
+      "status": "PLANNED_CANONICAL"
+    }
+  ],
+  "derivedOwners": [
+    {
+      "output": "knowledge-index",
+      "path": "subjects/russian/data/knowledge-index.json",
+      "classification": "DERIVED",
+      "sourceIdsFrom": [
+        "curriculum",
+        "lessons",
+        "grammar",
+        "vocab"
+      ]
+    },
+    {
+      "output": "speaking-link-index",
+      "path": "subjects/russian/data/speaking-link-index.json",
+      "classification": "DERIVED",
+      "sourceIdsFrom": [
+        "speaking",
+        "dialogue-bauman-az",
+        "deep-speaking-bauman"
+      ]
+    },
+    {
+      "output": "search-index",
+      "path": null,
+      "classification": "DERIVED",
+      "rule": "build from canonical IDs"
+    },
+    {
+      "output": "review-queue",
+      "path": null,
+      "classification": "DERIVED_STATE",
+      "ownerPhase": "P4/P5"
+    },
+    {
+      "output": "recommendation-cache",
+      "path": null,
+      "classification": "DERIVED_STATE",
+      "ownerPhase": "P5"
+    },
+    {
+      "output": "route-manifest",
+      "path": "subjects/russian/subject-manifest.json",
+      "classification": "INTEGRATION_DERIVED"
+    },
+    {
+      "output": "dashboard-aggregation",
+      "path": null,
+      "classification": "DERIVED_PRESENTATION"
+    }
+  ],
+  "invariant": "A planned canonical file may remain absent until verified content exists; absence must not be filled with fabricated linguistic facts."
+}

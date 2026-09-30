@@ -1,0 +1,228 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentRevision": "2026-09-30-p3",
+  "phase": "P3",
+  "goldenRule": "ONE FACT · ONE OWNER · MANY USES",
+  "status": "DESIGN_AUTHORITY",
+  "runtimeMigrationApplied": false,
+  "owners": [
+    {
+      "responsibility": "curriculum",
+      "canonicalOwner": "subjects/russian/data/curriculum.json",
+      "entityTypes": [
+        "Stage",
+        "MacroModule"
+      ],
+      "evidence": "subject-manifest + P1 data map",
+      "disposition": "PRESERVE_AND_MIGRATE"
+    },
+    {
+      "responsibility": "lesson-content",
+      "canonicalOwner": "subjects/russian/data/lessons.json",
+      "entityTypes": [
+        "Unit",
+        "MicroLesson"
+      ],
+      "evidence": "P1/P2 stable R01-R26 lesson identity",
+      "disposition": "PRESERVE_AND_NORMALIZE"
+    },
+    {
+      "responsibility": "vocab",
+      "canonicalOwner": "subjects/russian/data/vocab.json",
+      "entityTypes": [
+        "LexicalEntry",
+        "PhraseCollocation"
+      ],
+      "evidence": "subject-manifest dataFiles[id=vocab]",
+      "disposition": "PRESERVE_AND_ENRICH_NO_FABRICATION"
+    },
+    {
+      "responsibility": "grammar",
+      "canonicalOwner": "subjects/russian/data/grammar.json",
+      "entityTypes": [
+        "GrammarConcept"
+      ],
+      "evidence": "subject-manifest dataFiles[id=grammar]",
+      "disposition": "PRESERVE_AND_NORMALIZE"
+    },
+    {
+      "responsibility": "grammar-learning-path",
+      "canonicalOwner": "subjects/russian/data/grammar-path.json",
+      "entityTypes": [],
+      "classification": "DERIVED_OR_GUIDANCE",
+      "evidence": "P1 inventory + P3 one-owner rule",
+      "disposition": "DERIVE_FROM_GRAMMAR_AND_CURRICULUM_WHERE_POSSIBLE"
+    },
+    {
+      "responsibility": "practice-exercise",
+      "canonicalOwner": "subjects/russian/data/exercises.json",
+      "entityTypes": [
+        "Exercise"
+      ],
+      "evidence": "subject-manifest dataFiles[id=exercises]",
+      "disposition": "PRESERVE_AND_LINK"
+    },
+    {
+      "responsibility": "assessment",
+      "canonicalOwner": "subjects/russian/data/tests.json",
+      "entityTypes": [
+        "AssessmentItem"
+      ],
+      "evidence": "subject-manifest dataFiles[id=tests]",
+      "disposition": "PRESERVE_UNTIL_P4_SCORING_MIGRATION"
+    },
+    {
+      "responsibility": "basic-speaking",
+      "canonicalOwner": "subjects/russian/data/speaking.json",
+      "entityTypes": [
+        "SpeakingItem",
+        "ListeningItem"
+      ],
+      "evidence": "Master Prompt P3.10 + subject-manifest",
+      "disposition": "PRESERVE"
+    },
+    {
+      "responsibility": "dialogue",
+      "canonicalOwner": "subjects/russian/data/dialogue-bauman-az.json",
+      "entityTypes": [
+        "DialogueScenario"
+      ],
+      "evidence": "Master Prompt P3.11",
+      "disposition": "PRESERVE_LAZY"
+    },
+    {
+      "responsibility": "deep-speaking",
+      "canonicalOwner": "subjects/russian/data/deep-speaking-bauman.json",
+      "entityTypes": [
+        "DeepSpeakingTask"
+      ],
+      "evidence": "Master Prompt P3.12",
+      "disposition": "PRESERVE_LAZY"
+    },
+    {
+      "responsibility": "writing",
+      "canonicalOwner": "subjects/russian/data/writing.json",
+      "entityTypes": [
+        "WritingTask"
+      ],
+      "evidence": "subject-manifest dataFiles[id=writing]",
+      "disposition": "PRESERVE_AND_LINK"
+    },
+    {
+      "responsibility": "handwriting",
+      "canonicalOwner": "subjects/russian/data/handwriting.json",
+      "entityTypes": [
+        "MediaAsset"
+      ],
+      "evidence": "subject-manifest dataFiles[id=handwriting]",
+      "disposition": "PRESERVE_SPECIALIZED_AUTHORITY"
+    },
+    {
+      "responsibility": "media",
+      "canonicalOwner": "subjects/russian/data/videos.json",
+      "entityTypes": [
+        "MediaAsset"
+      ],
+      "evidence": "subject-manifest dataFiles[id=videos]",
+      "disposition": "PRESERVE"
+    },
+    {
+      "responsibility": "knowledge-index",
+      "canonicalOwner": "subjects/russian/data/knowledge-index.json",
+      "entityTypes": [],
+      "classification": "DERIVED",
+      "evidence": "Master Prompt P3.19",
+      "disposition": "MUST_BE_REGENERABLE"
+    },
+    {
+      "responsibility": "speaking-link-index",
+      "canonicalOwner": "subjects/russian/data/speaking-link-index.json",
+      "entityTypes": [],
+      "classification": "DERIVED",
+      "evidence": "Master Prompt P3 canonical/derived policy",
+      "disposition": "MUST_BE_REGENERABLE"
+    },
+    {
+      "responsibility": "review-queues",
+      "canonicalOwner": null,
+      "entityTypes": [],
+      "classification": "DERIVED_STATE_VIEW",
+      "disposition": "P4/P5_OWNER_REQUIRED"
+    },
+    {
+      "responsibility": "recommendation-caches",
+      "canonicalOwner": null,
+      "entityTypes": [],
+      "classification": "DERIVED_STATE_VIEW",
+      "disposition": "P5_OWNER_REQUIRED"
+    },
+    {
+      "responsibility": "route-manifests",
+      "canonicalOwner": "subjects/russian/subject-manifest.json",
+      "entityTypes": [],
+      "classification": "DERIVED_OR_INTEGRATION_MANIFEST",
+      "disposition": "DO_NOT_DUPLICATE_CONTENT_FACTS"
+    },
+    {
+      "responsibility": "dashboard-aggregations",
+      "canonicalOwner": null,
+      "entityTypes": [],
+      "classification": "DERIVED_PRESENTATION",
+      "disposition": "NO_CANONICAL_CONTENT_AUTHORITY"
+    }
+  ],
+  "unresolvedEntityOwners": [
+    {
+      "entityType": "Competency",
+      "status": "TARGET_OWNER_FILE_NOT_YET_MATERIALIZED",
+      "requiredBefore": "runtime P3 migration"
+    },
+    {
+      "entityType": "LinguisticFunction",
+      "status": "TARGET_OWNER_FILE_NOT_YET_MATERIALIZED",
+      "requiredBefore": "runtime P3 migration"
+    },
+    {
+      "entityType": "PhoneticConcept",
+      "status": "TARGET_OWNER_FILE_NOT_YET_MATERIALIZED",
+      "requiredBefore": "runtime P3 migration"
+    },
+    {
+      "entityType": "TechnicalConcept",
+      "status": "TARGET_OWNER_FILE_NOT_YET_MATERIALIZED",
+      "requiredBefore": "runtime P3 migration"
+    },
+    {
+      "entityType": "AcademicFunction",
+      "status": "TARGET_OWNER_FILE_NOT_YET_MATERIALIZED",
+      "requiredBefore": "runtime P3 migration"
+    },
+    {
+      "entityType": "ErrorPattern",
+      "status": "TARGET_OWNER_FILE_NOT_YET_MATERIALIZED",
+      "requiredBefore": "runtime P3 migration"
+    },
+    {
+      "entityType": "RemediationPath",
+      "status": "TARGET_OWNER_FILE_NOT_YET_MATERIALIZED",
+      "requiredBefore": "runtime P3 migration"
+    },
+    {
+      "entityType": "ProvenanceRecord",
+      "status": "TARGET_OWNER_FILE_NOT_YET_MATERIALIZED",
+      "requiredBefore": "runtime P3 migration"
+    }
+  ],
+  "derivedPolicy": {
+    "rule": "Derived outputs must be regenerable and must reference canonical IDs rather than duplicate linguistic facts.",
+    "derived": [
+      "knowledge-index",
+      "speaking-link-index",
+      "search indexes",
+      "review queues",
+      "recommendation caches",
+      "route manifests",
+      "dashboard aggregations"
+    ]
+  }
+}

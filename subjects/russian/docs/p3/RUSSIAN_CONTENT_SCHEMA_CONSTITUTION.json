@@ -1,0 +1,556 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentRevision": "2026-09-30-p3",
+  "phase": "P3",
+  "goldenRule": "ONE FACT · ONE OWNER · MANY USES",
+  "identity": {
+    "rules": [
+      "stable",
+      "machine-readable",
+      "no version in ID",
+      "no UI dependency",
+      "no date unless identity truly depends on date",
+      "immutable once learner state references ID"
+    ],
+    "namespaces": [
+      "MOD-",
+      "UNIT-",
+      "ML-",
+      "COMP-",
+      "PHON-",
+      "GRAM-",
+      "LEX-",
+      "PHRASE-",
+      "LST-",
+      "SPK-",
+      "DLG-",
+      "DSP-",
+      "READ-",
+      "WRITE-",
+      "TECH-",
+      "ACAD-",
+      "EX-",
+      "ASM-",
+      "PERF-",
+      "ERR-",
+      "REM-",
+      "MEDIA-"
+    ],
+    "legacyCurriculumCompatibility": "R01-R26 remain stable legacy macro-module identities during migration"
+  },
+  "versioning": {
+    "schemaVersion": "technical data shape version",
+    "contentRevision": "content change revision",
+    "learnerUiExposure": false
+  },
+  "canonicalEntityTypes": [
+    "Stage",
+    "MacroModule",
+    "Unit",
+    "MicroLesson",
+    "Competency",
+    "LinguisticFunction",
+    "PhoneticConcept",
+    "GrammarConcept",
+    "LexicalEntry",
+    "PhraseCollocation",
+    "ListeningItem",
+    "SpeakingItem",
+    "DialogueScenario",
+    "DeepSpeakingTask",
+    "ReadingText",
+    "WritingTask",
+    "TechnicalConcept",
+    "AcademicFunction",
+    "Exercise",
+    "AssessmentItem",
+    "PerformanceTask",
+    "ErrorPattern",
+    "RemediationPath",
+    "MediaAsset",
+    "ProvenanceRecord"
+  ],
+  "derivedOnly": [
+    "search-index",
+    "knowledge-index",
+    "speaking-link-index",
+    "review-queue",
+    "recommendation-cache",
+    "route-manifest",
+    "dashboard-aggregation"
+  ],
+  "entitySchemas": {
+    "Stage": {
+      "required": [
+        "id",
+        "title",
+        "sequence",
+        "goals",
+        "entryCompetencies",
+        "exitCompetencies",
+        "moduleIds",
+        "performanceGate"
+      ]
+    },
+    "MacroModule": {
+      "required": [
+        "id",
+        "legacyId",
+        "stageId",
+        "targetLevels",
+        "purpose",
+        "competencies",
+        "prerequisites",
+        "unitIds",
+        "diagnostics",
+        "exitPerformanceTasks",
+        "reviewConcepts"
+      ]
+    },
+    "Unit": {
+      "required": [
+        "id",
+        "moduleId",
+        "title",
+        "purpose",
+        "objectives",
+        "prerequisites",
+        "competencies",
+        "grammarIds",
+        "lexicalIds",
+        "phraseIds",
+        "phoneticIds",
+        "functionIds",
+        "microLessonIds",
+        "performanceTasks",
+        "remediationIds"
+      ]
+    },
+    "MicroLesson": {
+      "required": [
+        "id",
+        "unitId",
+        "title",
+        "objective",
+        "estimatedMinutes",
+        "prerequisites",
+        "inputRefs",
+        "examples",
+        "activities",
+        "retrieval",
+        "production",
+        "assessment",
+        "remediation",
+        "masteryEvidence"
+      ],
+      "embeddingRule": "reference canonical IDs; do not embed full canonical objects"
+    },
+    "Competency": {
+      "required": [
+        "id",
+        "skill",
+        "description",
+        "requires"
+      ],
+      "skillEnum": [
+        "phonetics",
+        "listening",
+        "speaking",
+        "reading",
+        "writing",
+        "grammar-recognition",
+        "grammar-production",
+        "vocabulary-recognition",
+        "vocabulary-production",
+        "interaction",
+        "academic",
+        "technical",
+        "research"
+      ],
+      "graphRule": "requires must be acyclic"
+    },
+    "LinguisticFunction": {
+      "required": [
+        "id",
+        "name",
+        "description",
+        "examples",
+        "provenance"
+      ]
+    },
+    "PhoneticConcept": {
+      "required": [
+        "id",
+        "level",
+        "description",
+        "contrasts",
+        "lexicalExampleIds",
+        "listeningIds",
+        "speakingIds",
+        "errorPatternIds"
+      ],
+      "stressFirstClass": true
+    },
+    "GrammarConcept": {
+      "required": [
+        "id",
+        "form",
+        "function",
+        "examples",
+        "provenance"
+      ],
+      "governmentShape": [
+        "headLexicalId",
+        "pattern",
+        "case",
+        "meaning"
+      ],
+      "formFunctionSeparated": true
+    },
+    "LexicalEntry": {
+      "required": [
+        "id",
+        "lemma",
+        "senses",
+        "provenance"
+      ],
+      "optional": [
+        "stressDisplay",
+        "pos",
+        "level",
+        "frequency",
+        "domains",
+        "activePassiveStatus",
+        "morphology",
+        "government",
+        "aspect",
+        "collocationIds",
+        "wordFamilyIds",
+        "confusables",
+        "examples",
+        "lessonLinks"
+      ],
+      "rules": [
+        "do not fake morphology",
+        "polysemy uses senses rather than meaningless duplicate lemmas"
+      ]
+    },
+    "PhraseCollocation": {
+      "required": [
+        "id",
+        "text",
+        "meaning",
+        "lexicalIds",
+        "provenance"
+      ],
+      "optional": [
+        "government",
+        "register",
+        "domains",
+        "examples"
+      ]
+    },
+    "ListeningItem": {
+      "required": [
+        "id",
+        "level",
+        "difficulty",
+        "audio",
+        "transcript",
+        "speakerMetadata",
+        "conceptIds",
+        "vocabularyIds",
+        "tasks",
+        "revealPolicy",
+        "provenance"
+      ],
+      "rule": "exam transcript not auto-visible"
+    },
+    "SpeakingItem": {
+      "required": [
+        "id",
+        "mode",
+        "prompt",
+        "evaluationConfig",
+        "provenance"
+      ],
+      "modeEnum": [
+        "repeat",
+        "shadow",
+        "answer",
+        "roleplay"
+      ],
+      "rule": "evaluation config describes signals; no fake precision"
+    },
+    "DialogueScenario": {
+      "required": [
+        "id",
+        "scenario",
+        "level",
+        "stage",
+        "roles",
+        "languageFunctionIds",
+        "grammarIds",
+        "lexicalIds",
+        "turns",
+        "variations",
+        "repairStrategies",
+        "deepSpeakingLinks"
+      ],
+      "variationTypes": [
+        "paraphrase",
+        "faster",
+        "unexpected",
+        "problem",
+        "repair",
+        "role reversal"
+      ]
+    },
+    "DeepSpeakingTask": {
+      "required": [
+        "id",
+        "taskType",
+        "prepTime",
+        "targetDuration",
+        "competencies",
+        "conceptIds",
+        "lexicalSupport",
+        "rubric",
+        "followUpQuestions",
+        "remediation"
+      ],
+      "taskTypes": [
+        "monologue",
+        "explanation",
+        "comparison",
+        "problem-solution",
+        "technical-description",
+        "research-summary",
+        "argument",
+        "defense-question",
+        "pressure-Q&A"
+      ]
+    },
+    "ReadingText": {
+      "required": [
+        "id",
+        "textType",
+        "content",
+        "tasks",
+        "provenance"
+      ],
+      "textTypes": [
+        "sign",
+        "form",
+        "message",
+        "notice",
+        "email",
+        "article",
+        "textbook",
+        "technical instruction",
+        "documentation",
+        "abstract",
+        "paper fragment"
+      ]
+    },
+    "WritingTask": {
+      "required": [
+        "id",
+        "purpose",
+        "audience",
+        "register",
+        "requiredFunctions",
+        "recommendedVocabulary",
+        "rubric",
+        "modelPolicy",
+        "remediation"
+      ]
+    },
+    "TechnicalConcept": {
+      "required": [
+        "id",
+        "term",
+        "lexicalIds",
+        "phraseIds",
+        "exampleIds",
+        "speakingIds",
+        "readingIds",
+        "assessmentIds",
+        "provenance"
+      ]
+    },
+    "AcademicFunction": {
+      "required": [
+        "id",
+        "function",
+        "description",
+        "examples",
+        "tasks",
+        "provenance"
+      ],
+      "rule": "discourse ability, not phrasebook entry"
+    },
+    "Exercise": {
+      "required": [
+        "id",
+        "practiceMode",
+        "objectiveIds",
+        "conceptIds",
+        "prompt",
+        "responseSchema",
+        "feedback",
+        "hintPolicy",
+        "remediation"
+      ]
+    },
+    "AssessmentItem": {
+      "required": [
+        "id",
+        "assessmentType",
+        "objectiveIds",
+        "competencyIds",
+        "conceptIds",
+        "skill",
+        "difficulty",
+        "scoringPolicy",
+        "revealPolicy",
+        "firstAttemptPreservation"
+      ],
+      "assessmentTypes": [
+        "diagnostic",
+        "checkpoint",
+        "exam"
+      ],
+      "rule": "non-diagnostic assessment maps to a taught objective/competency"
+    },
+    "PerformanceTask": {
+      "required": [
+        "id",
+        "scenario",
+        "competencyIds",
+        "inputs",
+        "deliverables",
+        "rubric",
+        "requiredEvidence",
+        "remediation"
+      ]
+    },
+    "ErrorPattern": {
+      "required": [
+        "id",
+        "category",
+        "level",
+        "learnerProfile",
+        "wrongExample",
+        "correctExample",
+        "explanation",
+        "vietnameseInterferenceReason",
+        "conceptIds",
+        "repairTask",
+        "productionCheck",
+        "severity"
+      ],
+      "severityEnum": [
+        "communication-blocking",
+        "meaning-changing",
+        "high-frequency",
+        "accuracy",
+        "register"
+      ]
+    },
+    "RemediationPath": {
+      "required": [
+        "id",
+        "triggerRefs",
+        "prerequisiteCheck",
+        "repairActivity",
+        "retrieval",
+        "newExample",
+        "production",
+        "exitCheck"
+      ]
+    },
+    "MediaAsset": {
+      "required": [
+        "id",
+        "mediaType",
+        "source",
+        "provenance"
+      ],
+      "optional": [
+        "offlineMapping",
+        "transcript",
+        "speakerMetadata",
+        "license"
+      ]
+    },
+    "ProvenanceRecord": {
+      "required": [
+        "id",
+        "sourceType",
+        "sourceRef",
+        "reviewStatus"
+      ],
+      "sourceTypeEnum": [
+        "AUTHORITATIVE",
+        "CURATED",
+        "GENERATED",
+        "DERIVED",
+        "LEGACY",
+        "UNKNOWN"
+      ],
+      "rule": "GENERATED does not become CURATED merely because JSON validates"
+    }
+  },
+  "graph": {
+    "nodeIdentity": "canonical IDs",
+    "relations": [
+      "requires",
+      "teaches",
+      "uses",
+      "reviews",
+      "tests",
+      "contrasts",
+      "extends",
+      "remediates",
+      "contains",
+      "belongs-to",
+      "derived-from"
+    ],
+    "validatorFlags": [
+      "dangling-node",
+      "unknown-relation",
+      "requires-cycle",
+      "assessment-without-teaching",
+      "lesson-without-competency"
+    ]
+  },
+  "searchIndexPolicy": {
+    "classification": "DERIVED",
+    "resolves": [
+      "lemma",
+      "stressless form",
+      "ё/е normalization where appropriate",
+      "inflected forms if supported",
+      "Vietnamese",
+      "Russian definition",
+      "domain",
+      "tags"
+    ],
+    "result": "canonical ID"
+  },
+  "packaging": {
+    "packs": [
+      "core",
+      "foundation",
+      "survival",
+      "prep",
+      "university",
+      "technical",
+      "research",
+      "dialogue",
+      "deep-speaking"
+    ],
+    "rule": "pack is not owner; large datasets lazy-load where possible; derived outputs use reproducible build pipeline"
+  }
+}
