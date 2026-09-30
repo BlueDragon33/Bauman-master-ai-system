@@ -40,7 +40,7 @@
   function playLocalRecording(){
     const rec=recordingEngine()?.getLastRecording?.();
     if(!rec?.url){setNotice('Chưa có bản ghi cục bộ để nghe lại.');return}
-    try{const a=new Audio(rec.url);a.play()?.catch?.(()=>setNotice('Không phát lại được bản ghi.'));}catch(_){setNotice('Không phát lại được bản ghi.');}
+    const played=window.RussianAudioEngine?.playSource?.(rec.url,{sourceType:'GENERATED',onError:()=>setNotice('Không phát lại được bản ghi.')});if(!played?.started)setNotice('Không phát lại được bản ghi.');
   }
   function clearLocalRecording(){recordingEngine()?.clear?.();setNotice('Đã xóa bản ghi cục bộ tạm thời.');scheduleRender();}
 
