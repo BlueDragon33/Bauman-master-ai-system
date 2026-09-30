@@ -1008,6 +1008,22 @@
       "sourceRefs": [
         "GOST R 50779.22-2005"
       ]
+    },
+    {
+      "id": "TC-AI-012",
+      "domain": "ai_ml",
+      "ru": "точность",
+      "en": "accuracy",
+      "vi": "độ chính xác",
+      "targets": [
+        "R15",
+        "R16"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "repo:R16",
+        "P2.9 AI/ML target"
+      ]
     }
   ],
   "contentRevision": "2026-09-30-p8-deep"
