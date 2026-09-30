@@ -18,5 +18,16 @@
 16. **PR/merge rule:** merge only after P7 validator and foundation regressions PASS.
 17. **Production effect:** none; P17 remains production authority.
 
-- **State:** IN_PROGRESS
+- **State:** PASS
 - **Change class:** C/E — additive provenance schema + validation architecture, no destructive migration.
+
+
+## Exit evidence
+- `RUSSIAN_P7_LINGUISTIC_AUTHORITY_GATE=PASS`.
+- Vocabulary preserved: 8,000 rows; no false `VERIFIED` claims.
+- Stress/POS/forms gaps remain explicitly unverified rather than inferred.
+- Russian reference UI, fast CI, constitution, static integration, Russian P1 browser regression and whole-system browser acceptance: PASS.
+- Foundation ownership invariants preserved; no mastery/SRS/planner/audio/UI ownership changes.
+- Production behavior/deploy authority unchanged; P17 remains owner.
+
+**P7 STATE: PASS**
