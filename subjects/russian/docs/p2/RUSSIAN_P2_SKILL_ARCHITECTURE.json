@@ -1,0 +1,410 @@
+{
+  "schema": "RUSSIAN_P2_SKILL_ARCHITECTURE_V1",
+  "phase": "P2",
+  "status": "DESIGN_AUTHORITY",
+  "runtimeCanonical": false,
+  "phonetics": {
+    "progression": [
+      "Cyrillic recognition",
+      "Sound-letter mapping",
+      "Hard/soft consonants",
+      "Voiced/unvoiced",
+      "Final devoicing",
+      "Assimilation",
+      "Word stress",
+      "Unstressed vowel reduction",
+      "Difficult consonants",
+      "Consonant clusters",
+      "Phrase stress",
+      "Intonation",
+      "Connected speech",
+      "Lecture-speed recognition"
+    ],
+    "vietnameseLearnerErrors": [
+      "ы / и",
+      "ш / щ",
+      "ж / з",
+      "ц / ч",
+      "х",
+      "р",
+      "hard/soft consonants",
+      "stress",
+      "unstressed о",
+      "devoicing",
+      "consonant clusters",
+      "Vietnamese tonal interference"
+    ],
+    "loop": [
+      "HEAR",
+      "DISTINGUISH",
+      "REPEAT",
+      "RECORD",
+      "COMPARE",
+      "WORD",
+      "SENTENCE",
+      "DIALOGUE"
+    ]
+  },
+  "vocabulary": {
+    "principle": "WORD + GOVERNMENT + COLLOCATION",
+    "requiredWhenAppropriate": [
+      "lemma",
+      "stress",
+      "POS",
+      "gender",
+      "animacy",
+      "plural",
+      "irregular forms",
+      "aspect",
+      "aspect pair",
+      "government",
+      "case pattern",
+      "senses",
+      "Vietnamese meaning",
+      "simplified Russian meaning",
+      "domain",
+      "level",
+      "frequency band",
+      "collocations",
+      "word family",
+      "synonyms",
+      "antonyms",
+      "confusables",
+      "basic example",
+      "academic example",
+      "technical example",
+      "lesson links",
+      "speaking links",
+      "dialogue links",
+      "review tags",
+      "provenance"
+    ],
+    "depth": [
+      "L0 Seen",
+      "L1 Recognized",
+      "L2 Meaning recalled",
+      "L3 Form recalled",
+      "L4 Used in phrase",
+      "L5 Used in sentence",
+      "L6 Used in conversation",
+      "L7 Used in academic/technical context"
+    ],
+    "noFabrication": true
+  },
+  "grammar": {
+    "dependencyTopics": [
+      "gender",
+      "number",
+      "agreement",
+      "pronouns",
+      "present/past/future",
+      "reflexive verbs",
+      "imperative",
+      "six cases",
+      "preposition + case government",
+      "numerals",
+      "quantity",
+      "modal language",
+      "impersonal constructions",
+      "negation",
+      "aspect",
+      "verbs of motion",
+      "prefixed motion verbs",
+      "comparison",
+      "complex clauses",
+      "condition",
+      "cause",
+      "result",
+      "purpose",
+      "concession",
+      "participles when appropriate",
+      "passive",
+      "word order",
+      "information structure",
+      "academic nominalisation"
+    ],
+    "caseFunctions": {
+      "nominative": [
+        "naming",
+        "subject"
+      ],
+      "genitive": [
+        "possession",
+        "absence",
+        "quantity",
+        "origin/relation"
+      ],
+      "dative": [
+        "recipient",
+        "experiencer",
+        "age",
+        "need/state"
+      ],
+      "accusative": [
+        "direct object",
+        "destination"
+      ],
+      "instrumental": [
+        "instrument",
+        "role",
+        "accompaniment",
+        "predicate complement"
+      ],
+      "prepositional": [
+        "location",
+        "topic"
+      ]
+    },
+    "learningLoop": [
+      "MEANING",
+      "FORM",
+      "PREPOSITION/GOVERNMENT",
+      "AGREEMENT",
+      "CONTRAST",
+      "LISTENING",
+      "TRANSFORMATION",
+      "SPEAKING",
+      "FREE PRODUCTION"
+    ],
+    "aspectSemantics": [
+      "process",
+      "repetition",
+      "general fact",
+      "completion",
+      "result",
+      "single event",
+      "sequence",
+      "attempted/interrupted action"
+    ],
+    "motionCore": [
+      "идти / ходить",
+      "ехать / ездить",
+      "нести / носить",
+      "вести / водить",
+      "везти / возить"
+    ],
+    "motionPrefixes": [
+      "при-",
+      "у-",
+      "в-",
+      "вы-",
+      "под-",
+      "от-",
+      "пере-",
+      "про-",
+      "до-",
+      "за-"
+    ]
+  },
+  "listening": {
+    "ladder": [
+      "L0 phoneme",
+      "L1 isolated word",
+      "L2 controlled sentence",
+      "L3 slow dialogue",
+      "L4 normal conversation",
+      "L5 public announcement",
+      "L6 classroom instruction",
+      "L7 technical explanation",
+      "L8 lecture",
+      "L9 seminar",
+      "L10 defense Q&A"
+    ],
+    "tasks": [
+      "gist",
+      "detail",
+      "keyword",
+      "sequence",
+      "intent",
+      "role",
+      "number/date",
+      "instruction following",
+      "dictation",
+      "cloze",
+      "note taking",
+      "summary",
+      "technical extraction"
+    ],
+    "oneSpeedTtsForbidden": true
+  },
+  "speaking": {
+    "progression": [
+      "LISTEN",
+      "REPEAT",
+      "SHADOW",
+      "COMPLETE",
+      "SUBSTITUTE",
+      "ANSWER",
+      "ROLE PLAY",
+      "REFORMULATE",
+      "PARAPHRASE",
+      "MONOLOGUE",
+      "TECHNICAL EXPLANATION",
+      "PRESSURE Q&A"
+    ],
+    "owners": {
+      "basic": "speaking.json",
+      "contextualDialogue": "dialogue-bauman-az.json",
+      "advancedProductive": "deep-speaking-bauman.json",
+      "bridgeIndex": "speaking-link-index.json"
+    },
+    "speechRecognitionRole": "signal-only-not-mastery-authority"
+  },
+  "reading": {
+    "ladder": [
+      "sign",
+      "form",
+      "message",
+      "timetable",
+      "notice",
+      "email",
+      "article",
+      "textbook",
+      "technical instruction",
+      "documentation",
+      "abstract",
+      "paper fragment",
+      "research material"
+    ],
+    "tasks": [
+      "locate",
+      "infer",
+      "classify",
+      "summarize",
+      "extract",
+      "outline",
+      "compare",
+      "explain",
+      "reconstruct"
+    ]
+  },
+  "writing": {
+    "ladder": [
+      "handwriting",
+      "word",
+      "sentence",
+      "message",
+      "form",
+      "email",
+      "paragraph",
+      "summary",
+      "lab note",
+      "technical explanation",
+      "report",
+      "abstract",
+      "НИР fragment",
+      "ВКР fragment"
+    ],
+    "handwritingNotWrittenProduction": true
+  },
+  "academicFunctions": [
+    "DEFINE",
+    "CLASSIFY",
+    "DESCRIBE",
+    "COMPARE",
+    "CONTRAST",
+    "EXPLAIN",
+    "JUSTIFY",
+    "CAUSE",
+    "EFFECT",
+    "EVIDENCE",
+    "EXAMPLE",
+    "ASSUMPTION",
+    "METHOD",
+    "RESULT",
+    "INTERPRETATION",
+    "LIMITATION",
+    "CONCLUSION",
+    "COUNTERARGUMENT"
+  ],
+  "technicalDomains": {
+    "mathematics": [
+      "equation",
+      "variable",
+      "function",
+      "derivative",
+      "integral",
+      "vector",
+      "matrix",
+      "probability",
+      "optimization"
+    ],
+    "computerScience": [
+      "algorithm",
+      "data structure",
+      "complexity",
+      "process",
+      "memory",
+      "OS",
+      "network",
+      "database",
+      "query",
+      "API"
+    ],
+    "aiMl": [
+      "dataset",
+      "feature",
+      "model",
+      "training",
+      "validation",
+      "loss",
+      "accuracy",
+      "inference",
+      "neural network"
+    ],
+    "controlAutomation": [
+      "control object",
+      "feedback",
+      "controller",
+      "PID",
+      "signal",
+      "sensor",
+      "actuator",
+      "stability",
+      "transfer function",
+      "state"
+    ],
+    "statistics": [
+      "sample",
+      "population",
+      "distribution",
+      "mean",
+      "variance",
+      "hypothesis",
+      "confidence"
+    ]
+  },
+  "technicalConceptLinkChain": [
+    "term",
+    "stress",
+    "morphology",
+    "collocation",
+    "government",
+    "definition",
+    "simple explanation",
+    "technical example",
+    "lecturer-style sentence",
+    "oral response",
+    "written response"
+  ],
+  "researchFunctions": [
+    "topic",
+    "problem",
+    "relevance",
+    "objective",
+    "research tasks",
+    "method",
+    "data",
+    "model/algorithm",
+    "experiment",
+    "results",
+    "figure/table description",
+    "limitations",
+    "contribution",
+    "conclusion",
+    "answer questions",
+    "defend choice",
+    "acknowledge uncertainty",
+    "propose future work"
+  ]
+}
