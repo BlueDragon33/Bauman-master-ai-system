@@ -18,5 +18,19 @@
 16. **PR/merge rule:** merge only after P11 validator + existing P6 gates + Russian/full-system browser/package regressions PASS.
 17. **Production effect:** none; P17 only.
 
-- **State:** IN_PROGRESS
+- **State:** PASS
 - **Change class:** C/E — additive scenario orchestration and validation; no destructive migration.
+
+## Exit evidence
+- Implementation head `6c98ffe67a4b795a7bd17f1dab9e5d1160027f38` passed `RUSSIAN_P11_SCENARIO_SIMULATION_GATE`.
+- 7 required scenario families are present across 5 lifecycle stages with 10 validated canonical speaking-context references.
+- P6 remains the only dialogue/audio/recording/recognition runtime owner; no second speech engine was introduced.
+- P4 mastery and P5 SRS/planner authority remain read-only from P11.
+- Russian Reference UI, Fast CI, Constitution and static integration: PASS.
+- Russian source + packaged browser acceptance: PASS.
+- Whole-system source + packaged browser acceptance: PASS.
+- Production effect remains none; P17 retains publish authority.
+
+The final evidence-only commit must pass the same CI before merge.
+
+**P11 STATE: PASS**
