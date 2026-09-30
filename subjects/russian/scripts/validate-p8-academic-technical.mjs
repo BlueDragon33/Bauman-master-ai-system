@@ -35,6 +35,18 @@ for(const row of technical.concepts){
   assert(Array.isArray(row.targets)&&row.targets.length,'Missing R11-R21 target: '+row.id);
   row.targets.forEach(t=>{assert(/^R(1[1-9]|20|21)$/.test(t),'P8 target outside R11-R21: '+t);targets.add(t)});
 }
+const targetLexemes=[
+  ['equation',['equation']],['variable',['variable']],['function',['function']],['derivative',['derivative']],['integral',['integral']],['vector',['vector']],['matrix',['matrix']],['probability',['probability']],['optimization',['optimization']],
+  ['algorithm',['algorithm']],['data structure',['data structure']],['complexity',['complexity']],['process',['process']],['memory',['memory']],['operating system',['operating system','real-time operating system']],['network',['computer network','backbone network']],['database',['database']],['query',['query']],['API',['application programming interface (API)']],
+  ['dataset',['dataset']],['feature',['feature']],['model',['model']],['training',['model training','training sample']],['validation',['model validation']],['loss',['loss function']],['accuracy',['accuracy']],['inference',['model inference']],['neural network',['neural network']],
+  ['control object',['control object / plant']],['feedback',['feedback']],['controller',['controller']],['PID',['PID controller']],['signal',['signal']],['sensor',['sensor']],['actuator',['actuator']],['stability',['system stability']],['transfer function',['transfer function']],['state',['system state']],
+  ['sample',['sample']],['population',['population']],['distribution',['probability distribution']],['mean',['mean','expected value']],['variance',['variance']],['hypothesis',['statistical hypothesis']],['confidence',['confidence interval']]
+];
+const english=technical.concepts.map(x=>String(x.en||'').toLowerCase());
+for(const [label,aliases] of targetLexemes){
+  assert(aliases.some(a=>english.some(v=>v===a.toLowerCase()||v.includes(a.toLowerCase()))),'Missing P2.9 technical target: '+label);
+}
+
 for(const row of academic.functions){
   assert(row.id&&Array.isArray(row.patterns)&&row.patterns.length,'Malformed academic function');
   assert(/[А-Яа-яЁё]/.test(row.ruLabel),'Academic function needs Russian label: '+row.id);
