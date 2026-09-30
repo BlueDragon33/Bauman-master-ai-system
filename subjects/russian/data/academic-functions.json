@@ -1,0 +1,193 @@
+{
+  "schema": "RUSSIAN_ACADEMIC_FUNCTIONS_V1",
+  "phase": "P8",
+  "canonicalOwner": "subjects/russian/data/academic-functions.json",
+  "sourcePolicy": "Functions are derived from existing R11-R21 learning targets; they do not replace lesson content.",
+  "functions": [
+    {
+      "id": "AF-DEFINE",
+      "ruLabel": "дать определение",
+      "vi": "đưa ra định nghĩa",
+      "patterns": [
+        "Под ... понимается ...",
+        "... определяется как ..."
+      ],
+      "targets": [
+        "R12"
+      ]
+    },
+    {
+      "id": "AF-EXAMPLE",
+      "ruLabel": "привести пример",
+      "vi": "nêu ví dụ",
+      "patterns": [
+        "Рассмотрим пример ...",
+        "Например, ..."
+      ],
+      "targets": [
+        "R12"
+      ]
+    },
+    {
+      "id": "AF-CONDITION",
+      "ruLabel": "указать условие",
+      "vi": "nêu điều kiện",
+      "patterns": [
+        "При условии ...",
+        "Если ..., то ..."
+      ],
+      "targets": [
+        "R12",
+        "R14"
+      ]
+    },
+    {
+      "id": "AF-PROBLEM",
+      "ruLabel": "поставить задачу",
+      "vi": "phát biểu bài toán",
+      "patterns": [
+        "Цель задачи состоит в ...",
+        "Даны входные данные ..."
+      ],
+      "targets": [
+        "R14"
+      ]
+    },
+    {
+      "id": "AF-ALGORITHM",
+      "ruLabel": "описать алгоритм",
+      "vi": "mô tả thuật toán",
+      "patterns": [
+        "Алгоритм состоит из следующих шагов ...",
+        "На первом этапе ..."
+      ],
+      "targets": [
+        "R14",
+        "R17"
+      ]
+    },
+    {
+      "id": "AF-DATA",
+      "ruLabel": "описать данные",
+      "vi": "mô tả dữ liệu",
+      "patterns": [
+        "Таблица содержит ...",
+        "График показывает ..."
+      ],
+      "targets": [
+        "R16"
+      ]
+    },
+    {
+      "id": "AF-TREND",
+      "ruLabel": "описать изменение",
+      "vi": "mô tả xu hướng",
+      "patterns": [
+        "Значение увеличивается ...",
+        "Значение снижается ..."
+      ],
+      "targets": [
+        "R16"
+      ]
+    },
+    {
+      "id": "AF-RESULT",
+      "ruLabel": "сообщить результат",
+      "vi": "báo cáo kết quả",
+      "patterns": [
+        "Полученные результаты показывают ...",
+        "В результате эксперимента ..."
+      ],
+      "targets": [
+        "R16",
+        "R17"
+      ]
+    },
+    {
+      "id": "AF-CONCLUDE",
+      "ruLabel": "сформулировать вывод",
+      "vi": "rút ra kết luận",
+      "patterns": [
+        "Таким образом, ...",
+        "Можно сделать вывод, что ..."
+      ],
+      "targets": [
+        "R12",
+        "R17",
+        "R21"
+      ]
+    },
+    {
+      "id": "AF-CITE",
+      "ruLabel": "сослаться на источник",
+      "vi": "dẫn nguồn",
+      "patterns": [
+        "Согласно ...",
+        "В работе показано, что ..."
+      ],
+      "targets": [
+        "R20"
+      ]
+    },
+    {
+      "id": "AF-GAP",
+      "ruLabel": "обозначить ограничение",
+      "vi": "nêu hạn chế/khoảng trống",
+      "patterns": [
+        "Однако ...",
+        "... недостаточно изучено"
+      ],
+      "targets": [
+        "R20"
+      ]
+    },
+    {
+      "id": "AF-CLARIFY",
+      "ruLabel": "уточнить",
+      "vi": "xin làm rõ",
+      "patterns": [
+        "Позвольте уточнить ...",
+        "Правильно ли я понимаю, что ...?"
+      ],
+      "targets": [
+        "R21"
+      ]
+    },
+    {
+      "id": "AF-DISAGREE",
+      "ruLabel": "вежливо возразить",
+      "vi": "phản biện lịch sự",
+      "patterns": [
+        "Я согласен частично, однако ...",
+        "С другой стороны, ..."
+      ],
+      "targets": [
+        "R21"
+      ]
+    },
+    {
+      "id": "AF-EMAIL",
+      "ruLabel": "написать академическое письмо",
+      "vi": "viết email học thuật",
+      "patterns": [
+        "Обращаюсь по поводу ...",
+        "Заранее благодарю за ответ."
+      ],
+      "targets": [
+        "R18"
+      ]
+    },
+    {
+      "id": "AF-RESEARCH",
+      "ruLabel": "сформулировать исследование",
+      "vi": "trình bày nghiên cứu",
+      "patterns": [
+        "Цель исследования ...",
+        "Для достижения цели необходимо ..."
+      ],
+      "targets": [
+        "R19"
+      ]
+    }
+  ]
+}

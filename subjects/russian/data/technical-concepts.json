@@ -1,0 +1,1030 @@
+{
+  "schema": "RUSSIAN_TECHNICAL_CONCEPTS_V1",
+  "phase": "P8",
+  "canonicalOwner": "subjects/russian/data/technical-concepts.json",
+  "authorityPolicy": "P7_FAIL_CLOSED",
+  "sourceNote": "Repository lesson references are internal curriculum evidence. External GOST references are terminology authority; definitions below are short learning glosses, not reproduced standard text.",
+  "concepts": [
+    {
+      "id": "TC-MATH-001",
+      "domain": "mathematics",
+      "ru": "функция",
+      "en": "function",
+      "vi": "hàm số",
+      "targets": [
+        "R14"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "repo:R14"
+      ]
+    },
+    {
+      "id": "TC-MATH-002",
+      "domain": "mathematics",
+      "ru": "вектор",
+      "en": "vector",
+      "vi": "vectơ",
+      "targets": [
+        "R14"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "repo:R05",
+        "repo:R14"
+      ]
+    },
+    {
+      "id": "TC-MATH-003",
+      "domain": "mathematics",
+      "ru": "матрица",
+      "en": "matrix",
+      "vi": "ma trận",
+      "targets": [
+        "R14"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "repo:R05",
+        "repo:R14"
+      ]
+    },
+    {
+      "id": "TC-MATH-004",
+      "domain": "mathematics",
+      "ru": "ограничение",
+      "en": "constraint",
+      "vi": "ràng buộc",
+      "targets": [
+        "R14"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "repo:R14"
+      ]
+    },
+    {
+      "id": "TC-CS-001",
+      "domain": "cs",
+      "ru": "алгоритм",
+      "en": "algorithm",
+      "vi": "thuật toán",
+      "targets": [
+        "R14",
+        "R17"
+      ],
+      "authorityStatus": "VERIFIED",
+      "sourceRefs": [
+        "GOST 33707-2016 §4.39",
+        "repo:R14",
+        "repo:R17"
+      ]
+    },
+    {
+      "id": "TC-CS-002",
+      "domain": "cs",
+      "ru": "входные данные",
+      "en": "input data",
+      "vi": "dữ liệu đầu vào",
+      "targets": [
+        "R14"
+      ],
+      "authorityStatus": "VERIFIED",
+      "sourceRefs": [
+        "GOST 33707-2016 §4.198",
+        "repo:R14"
+      ]
+    },
+    {
+      "id": "TC-CS-003",
+      "domain": "cs",
+      "ru": "обработка данных",
+      "en": "data processing",
+      "vi": "xử lý dữ liệu",
+      "targets": [
+        "R17"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "repo:R17"
+      ]
+    },
+    {
+      "id": "TC-CS-004",
+      "domain": "cs",
+      "ru": "вычислительная сеть",
+      "en": "computer network",
+      "vi": "mạng máy tính",
+      "targets": [
+        "R14",
+        "R17"
+      ],
+      "authorityStatus": "VERIFIED",
+      "sourceRefs": [
+        "GOST 33707-2016 §4.223"
+      ]
+    },
+    {
+      "id": "TC-AI-001",
+      "domain": "ai_ml",
+      "ru": "машинное обучение",
+      "en": "machine learning",
+      "vi": "học máy",
+      "targets": [
+        "R15"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "repo:R15"
+      ]
+    },
+    {
+      "id": "TC-AI-002",
+      "domain": "ai_ml",
+      "ru": "обучающая выборка",
+      "en": "training sample",
+      "vi": "tập huấn luyện",
+      "targets": [
+        "R15"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "repo:R15"
+      ]
+    },
+    {
+      "id": "TC-AI-003",
+      "domain": "ai_ml",
+      "ru": "признак",
+      "en": "feature",
+      "vi": "đặc trưng",
+      "targets": [
+        "R15",
+        "R17"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "repo:R15",
+        "repo:R17"
+      ]
+    },
+    {
+      "id": "TC-AI-004",
+      "domain": "ai_ml",
+      "ru": "функция потерь",
+      "en": "loss function",
+      "vi": "hàm mất mát",
+      "targets": [
+        "R15"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "repo:R15"
+      ]
+    },
+    {
+      "id": "TC-AI-005",
+      "domain": "ai_ml",
+      "ru": "переобучение",
+      "en": "overfitting",
+      "vi": "quá khớp",
+      "targets": [
+        "R15"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "repo:R15"
+      ]
+    },
+    {
+      "id": "TC-DB-001",
+      "domain": "database",
+      "ru": "база данных",
+      "en": "database",
+      "vi": "cơ sở dữ liệu",
+      "targets": [
+        "R14",
+        "R17"
+      ],
+      "authorityStatus": "VERIFIED",
+      "sourceRefs": [
+        "GOST R 53622-2009 §3.3",
+        "GOST 33707-2016 §4.77"
+      ]
+    },
+    {
+      "id": "TC-DB-002",
+      "domain": "database",
+      "ru": "система управления базами данных",
+      "en": "database management system",
+      "vi": "hệ quản trị cơ sở dữ liệu",
+      "targets": [
+        "R14",
+        "R17"
+      ],
+      "authorityStatus": "VERIFIED",
+      "sourceRefs": [
+        "GOST R 53622-2009 §3.10"
+      ]
+    },
+    {
+      "id": "TC-DB-003",
+      "domain": "database",
+      "ru": "схема данных",
+      "en": "data schema",
+      "vi": "lược đồ dữ liệu",
+      "targets": [
+        "R14",
+        "R17"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "GOST 33707-2016 §4.77",
+        "GOST 33707-2016 §4.162"
+      ]
+    },
+    {
+      "id": "TC-DB-004",
+      "domain": "database",
+      "ru": "внутренняя схема",
+      "en": "internal schema",
+      "vi": "lược đồ trong",
+      "targets": [
+        "R17"
+      ],
+      "authorityStatus": "VERIFIED",
+      "sourceRefs": [
+        "GOST 33707-2016 §4.162"
+      ]
+    },
+    {
+      "id": "TC-NET-001",
+      "domain": "networks_os",
+      "ru": "вычислительная сеть",
+      "en": "computer network",
+      "vi": "mạng máy tính",
+      "targets": [
+        "R14",
+        "R17"
+      ],
+      "authorityStatus": "VERIFIED",
+      "sourceRefs": [
+        "GOST 33707-2016 §4.223"
+      ]
+    },
+    {
+      "id": "TC-NET-002",
+      "domain": "networks_os",
+      "ru": "базовая сеть",
+      "en": "backbone network",
+      "vi": "mạng trục",
+      "targets": [
+        "R17"
+      ],
+      "authorityStatus": "VERIFIED",
+      "sourceRefs": [
+        "GOST 33707-2016 §4.80"
+      ]
+    },
+    {
+      "id": "TC-OS-001",
+      "domain": "networks_os",
+      "ru": "операционная система реального времени",
+      "en": "real-time operating system",
+      "vi": "hệ điều hành thời gian thực",
+      "targets": [
+        "R14",
+        "R17"
+      ],
+      "authorityStatus": "VERIFIED",
+      "sourceRefs": [
+        "GOST R 55060-2012 §85"
+      ]
+    },
+    {
+      "id": "TC-OS-002",
+      "domain": "networks_os",
+      "ru": "диспетчер",
+      "en": "dispatcher",
+      "vi": "bộ điều phối",
+      "targets": [
+        "R17"
+      ],
+      "authorityStatus": "VERIFIED",
+      "sourceRefs": [
+        "GOST 33707-2016 §4.304"
+      ]
+    },
+    {
+      "id": "TC-CTRL-001",
+      "domain": "control_automation",
+      "ru": "система управления",
+      "en": "control system",
+      "vi": "hệ thống điều khiển",
+      "targets": [
+        "R14",
+        "R17"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "GOST R 55060-2012",
+        "P8 domain source"
+      ]
+    },
+    {
+      "id": "TC-CTRL-002",
+      "domain": "control_automation",
+      "ru": "автоматическое управление",
+      "en": "automatic control",
+      "vi": "điều khiển tự động",
+      "targets": [
+        "R14",
+        "R17"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "GOST R 55060-2012",
+        "P8 domain source"
+      ]
+    },
+    {
+      "id": "TC-CTRL-003",
+      "domain": "control_automation",
+      "ru": "сопряжение процесса",
+      "en": "process interfacing",
+      "vi": "giao tiếp quá trình",
+      "targets": [
+        "R17"
+      ],
+      "authorityStatus": "VERIFIED",
+      "sourceRefs": [
+        "GOST R 55060-2012 §86"
+      ]
+    },
+    {
+      "id": "TC-STAT-001",
+      "domain": "statistics",
+      "ru": "вероятность",
+      "en": "probability",
+      "vi": "xác suất",
+      "targets": [
+        "R16",
+        "R17"
+      ],
+      "authorityStatus": "VERIFIED",
+      "sourceRefs": [
+        "GOST R 50779.10-2000 §1.1"
+      ]
+    },
+    {
+      "id": "TC-STAT-002",
+      "domain": "statistics",
+      "ru": "случайная величина",
+      "en": "random variable",
+      "vi": "biến ngẫu nhiên",
+      "targets": [
+        "R16"
+      ],
+      "authorityStatus": "VERIFIED",
+      "sourceRefs": [
+        "GOST R 50779.10-2000 §1.2"
+      ]
+    },
+    {
+      "id": "TC-STAT-003",
+      "domain": "statistics",
+      "ru": "математическое ожидание",
+      "en": "expected value",
+      "vi": "kỳ vọng",
+      "targets": [
+        "R16"
+      ],
+      "authorityStatus": "VERIFIED",
+      "sourceRefs": [
+        "GOST R 50779.10-2000 §1.18"
+      ]
+    },
+    {
+      "id": "TC-STAT-004",
+      "domain": "statistics",
+      "ru": "дисперсия",
+      "en": "variance",
+      "vi": "phương sai",
+      "targets": [
+        "R16"
+      ],
+      "authorityStatus": "VERIFIED",
+      "sourceRefs": [
+        "GOST R 50779.10-2000 §1.22"
+      ]
+    },
+    {
+      "id": "TC-STAT-005",
+      "domain": "statistics",
+      "ru": "стандартное отклонение",
+      "en": "standard deviation",
+      "vi": "độ lệch chuẩn",
+      "targets": [
+        "R16"
+      ],
+      "authorityStatus": "VERIFIED",
+      "sourceRefs": [
+        "GOST R 50779.10-2000 §1.23"
+      ]
+    },
+    {
+      "id": "TC-STAT-006",
+      "domain": "statistics",
+      "ru": "выборка",
+      "en": "sample",
+      "vi": "mẫu",
+      "targets": [
+        "R16",
+        "R17"
+      ],
+      "authorityStatus": "VERIFIED",
+      "sourceRefs": [
+        "GOST R ISO 16269-4-2017 §2.1"
+      ]
+    },
+    {
+      "id": "TC-EXP-001",
+      "domain": "experiment_report",
+      "ru": "эксперимент",
+      "en": "experiment",
+      "vi": "thí nghiệm",
+      "targets": [
+        "R17"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "repo:R17"
+      ]
+    },
+    {
+      "id": "TC-EXP-002",
+      "domain": "experiment_report",
+      "ru": "полученные результаты",
+      "en": "obtained results",
+      "vi": "kết quả thu được",
+      "targets": [
+        "R16",
+        "R17"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "repo:R16",
+        "repo:R17"
+      ]
+    },
+    {
+      "id": "TC-EXP-003",
+      "domain": "experiment_report",
+      "ru": "точность",
+      "en": "accuracy / precision by context",
+      "vi": "độ chính xác",
+      "targets": [
+        "R14",
+        "R16"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "repo:R14",
+        "repo:R16"
+      ]
+    },
+    {
+      "id": "TC-EXP-004",
+      "domain": "experiment_report",
+      "ru": "ошибка",
+      "en": "error",
+      "vi": "sai số / lỗi",
+      "targets": [
+        "R16",
+        "R17"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "repo:R16",
+        "repo:R17"
+      ]
+    },
+    {
+      "id": "TC-MATH-005",
+      "domain": "mathematics",
+      "ru": "уравнение",
+      "en": "equation",
+      "vi": "phương trình",
+      "targets": [
+        "R14"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "repo:R05",
+        "P2.9 mathematics target"
+      ]
+    },
+    {
+      "id": "TC-MATH-006",
+      "domain": "mathematics",
+      "ru": "переменная",
+      "en": "variable",
+      "vi": "biến",
+      "targets": [
+        "R14"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "P2.9 mathematics target"
+      ]
+    },
+    {
+      "id": "TC-MATH-007",
+      "domain": "mathematics",
+      "ru": "производная",
+      "en": "derivative",
+      "vi": "đạo hàm",
+      "targets": [
+        "R14"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "Большая российская энциклопедия: «Производная»"
+      ]
+    },
+    {
+      "id": "TC-MATH-008",
+      "domain": "mathematics",
+      "ru": "интеграл",
+      "en": "integral",
+      "vi": "tích phân",
+      "targets": [
+        "R14"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "Большая российская энциклопедия: материалы по интегральному исчислению"
+      ]
+    },
+    {
+      "id": "TC-MATH-009",
+      "domain": "mathematics",
+      "ru": "оптимизация",
+      "en": "optimization",
+      "vi": "tối ưu hóa",
+      "targets": [
+        "R14"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "Большая российская энциклопедия: «Оптимизация»"
+      ]
+    },
+    {
+      "id": "TC-CS-005",
+      "domain": "cs",
+      "ru": "структура данных",
+      "en": "data structure",
+      "vi": "cấu trúc dữ liệu",
+      "targets": [
+        "R14",
+        "R17"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "Издательство МГТУ им. Н.Э. Баумана: «Структуры данных в C++»"
+      ]
+    },
+    {
+      "id": "TC-CS-006",
+      "domain": "cs",
+      "ru": "сложность алгоритма",
+      "en": "algorithm complexity",
+      "vi": "độ phức tạp thuật toán",
+      "targets": [
+        "R14"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "P2.9 computer science target",
+        "BMSTU data-structures curriculum context"
+      ]
+    },
+    {
+      "id": "TC-CS-007",
+      "domain": "cs",
+      "ru": "процесс",
+      "en": "process",
+      "vi": "tiến trình/quá trình",
+      "targets": [
+        "R14",
+        "R17"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "GOST R 55060-2012 process-control terminology"
+      ]
+    },
+    {
+      "id": "TC-CS-008",
+      "domain": "cs",
+      "ru": "память",
+      "en": "memory",
+      "vi": "bộ nhớ",
+      "targets": [
+        "R14"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "GOST 33707-2016 IT vocabulary"
+      ]
+    },
+    {
+      "id": "TC-CS-009",
+      "domain": "cs",
+      "ru": "операционная система",
+      "en": "operating system",
+      "vi": "hệ điều hành",
+      "targets": [
+        "R14",
+        "R17"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "GOST R 53622-2009 system programs",
+        "PNST 794-2022 abbreviations"
+      ]
+    },
+    {
+      "id": "TC-CS-010",
+      "domain": "cs",
+      "ru": "запрос",
+      "en": "query",
+      "vi": "truy vấn",
+      "targets": [
+        "R14",
+        "R17"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "database domain; GOST 33707-2016 retrieval/database terminology"
+      ]
+    },
+    {
+      "id": "TC-CS-011",
+      "domain": "cs",
+      "ru": "интерфейс прикладного программирования",
+      "en": "application programming interface (API)",
+      "vi": "giao diện lập trình ứng dụng",
+      "targets": [
+        "R14",
+        "R17"
+      ],
+      "authorityStatus": "VERIFIED",
+      "sourceRefs": [
+        "GOST R 55060-2012 §187",
+        "PNST 794-2022 API abbreviation"
+      ]
+    },
+    {
+      "id": "TC-AI-006",
+      "domain": "ai_ml",
+      "ru": "набор данных",
+      "en": "dataset",
+      "vi": "tập dữ liệu",
+      "targets": [
+        "R15",
+        "R17"
+      ],
+      "authorityStatus": "VERIFIED",
+      "sourceRefs": [
+        "GOST R 71688-2024"
+      ]
+    },
+    {
+      "id": "TC-AI-007",
+      "domain": "ai_ml",
+      "ru": "модель",
+      "en": "model",
+      "vi": "mô hình",
+      "targets": [
+        "R15"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "repo:R15",
+        "GOST R 57700.23-2020 computer models"
+      ]
+    },
+    {
+      "id": "TC-AI-008",
+      "domain": "ai_ml",
+      "ru": "обучение модели",
+      "en": "model training",
+      "vi": "huấn luyện mô hình",
+      "targets": [
+        "R15",
+        "R17"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "repo:R15",
+        "Russian AI terminology standard project index"
+      ]
+    },
+    {
+      "id": "TC-AI-009",
+      "domain": "ai_ml",
+      "ru": "валидация модели",
+      "en": "model validation",
+      "vi": "xác thực mô hình",
+      "targets": [
+        "R15",
+        "R17"
+      ],
+      "authorityStatus": "VERIFIED",
+      "sourceRefs": [
+        "GOST R 57700.23-2020",
+        "GOST R 71688-2024"
+      ]
+    },
+    {
+      "id": "TC-AI-010",
+      "domain": "ai_ml",
+      "ru": "нейронная сеть",
+      "en": "neural network",
+      "vi": "mạng nơ-ron",
+      "targets": [
+        "R15"
+      ],
+      "authorityStatus": "VERIFIED",
+      "sourceRefs": [
+        "Издательство МГТУ им. Н.Э. Баумана: «Нейросетевое моделирование производственных процессов...»",
+        "GOST R 52633.6-2012 §3.14"
+      ]
+    },
+    {
+      "id": "TC-AI-011",
+      "domain": "ai_ml",
+      "ru": "вывод модели",
+      "en": "model inference",
+      "vi": "suy luận mô hình",
+      "targets": [
+        "R15",
+        "R17"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "P2.9 AI/ML target"
+      ]
+    },
+    {
+      "id": "TC-CTRL-004",
+      "domain": "control_automation",
+      "ru": "объект управления",
+      "en": "control object / plant",
+      "vi": "đối tượng điều khiển",
+      "targets": [
+        "R14",
+        "R17"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "Вестник МГТУ им. Н.Э. Баумана: control-system transfer-function article"
+      ]
+    },
+    {
+      "id": "TC-CTRL-005",
+      "domain": "control_automation",
+      "ru": "обратная связь",
+      "en": "feedback",
+      "vi": "phản hồi",
+      "targets": [
+        "R14",
+        "R17"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "GOST R 55060-2012 control-system context",
+        "P2.9 control target"
+      ]
+    },
+    {
+      "id": "TC-CTRL-006",
+      "domain": "control_automation",
+      "ru": "регулятор",
+      "en": "controller",
+      "vi": "bộ điều khiển",
+      "targets": [
+        "R14",
+        "R17"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "Издательство МГТУ им. Н.Э. Баумана: «Автоматическое управление в технических системах»"
+      ]
+    },
+    {
+      "id": "TC-CTRL-007",
+      "domain": "control_automation",
+      "ru": "ПИД-регулятор",
+      "en": "PID controller",
+      "vi": "bộ điều khiển PID",
+      "targets": [
+        "R14",
+        "R17"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "Библиотека МГТУ им. Н.Э. Баумана: robust control article 2024",
+        "BMSTU e-learning TAU materials"
+      ]
+    },
+    {
+      "id": "TC-CTRL-008",
+      "domain": "control_automation",
+      "ru": "сигнал",
+      "en": "signal",
+      "vi": "tín hiệu",
+      "targets": [
+        "R14",
+        "R17"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "BMSTU control-system teaching materials"
+      ]
+    },
+    {
+      "id": "TC-CTRL-009",
+      "domain": "control_automation",
+      "ru": "датчик",
+      "en": "sensor",
+      "vi": "cảm biến",
+      "targets": [
+        "R14",
+        "R17"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "PNST 794-2022 edge-computing examples",
+        "BMSTU navigation/control lab manual"
+      ]
+    },
+    {
+      "id": "TC-CTRL-010",
+      "domain": "control_automation",
+      "ru": "исполнительное устройство",
+      "en": "actuator",
+      "vi": "cơ cấu chấp hành",
+      "targets": [
+        "R14",
+        "R17"
+      ],
+      "authorityStatus": "VERIFIED",
+      "sourceRefs": [
+        "PNST 794-2022 §3.7 context",
+        "GOST R 55060-2012 application-domain note"
+      ]
+    },
+    {
+      "id": "TC-CTRL-011",
+      "domain": "control_automation",
+      "ru": "устойчивость системы",
+      "en": "system stability",
+      "vi": "độ ổn định hệ thống",
+      "targets": [
+        "R14",
+        "R17"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "Издательство МГТУ им. Н.Э. Баумана: «Автоматическое управление в технических системах»"
+      ]
+    },
+    {
+      "id": "TC-CTRL-012",
+      "domain": "control_automation",
+      "ru": "передаточная функция",
+      "en": "transfer function",
+      "vi": "hàm truyền",
+      "targets": [
+        "R14",
+        "R17"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "Издательство МГТУ им. Н.Э. Баумана: «Автоматическое управление в технических системах»",
+        "Вестник МГТУ им. Н.Э. Баумана 2015 control article"
+      ]
+    },
+    {
+      "id": "TC-CTRL-013",
+      "domain": "control_automation",
+      "ru": "состояние системы",
+      "en": "system state",
+      "vi": "trạng thái hệ thống",
+      "targets": [
+        "R14",
+        "R17"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "P2.9 control target",
+        "BMSTU modern control curriculum context"
+      ]
+    },
+    {
+      "id": "TC-STAT-007",
+      "domain": "statistics",
+      "ru": "генеральная совокупность",
+      "en": "population",
+      "vi": "tổng thể",
+      "targets": [
+        "R16"
+      ],
+      "authorityStatus": "VERIFIED",
+      "sourceRefs": [
+        "GOST R ISO 16269-4-2017 §2.1 context",
+        "GOST R 50779.10-2000"
+      ]
+    },
+    {
+      "id": "TC-STAT-008",
+      "domain": "statistics",
+      "ru": "распределение вероятностей",
+      "en": "probability distribution",
+      "vi": "phân phối xác suất",
+      "targets": [
+        "R16"
+      ],
+      "authorityStatus": "VERIFIED",
+      "sourceRefs": [
+        "GOST R 50779.10-2000 §1.3"
+      ]
+    },
+    {
+      "id": "TC-STAT-009",
+      "domain": "statistics",
+      "ru": "среднее значение",
+      "en": "mean",
+      "vi": "giá trị trung bình",
+      "targets": [
+        "R16"
+      ],
+      "authorityStatus": "VERIFIED",
+      "sourceRefs": [
+        "GOST R 50779.10-2000",
+        "GOST R ISO 12491-2011"
+      ]
+    },
+    {
+      "id": "TC-STAT-010",
+      "domain": "statistics",
+      "ru": "статистическая гипотеза",
+      "en": "statistical hypothesis",
+      "vi": "giả thuyết thống kê",
+      "targets": [
+        "R16",
+        "R17"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "P2.9 statistics target",
+        "GOST R 50779 series context"
+      ]
+    },
+    {
+      "id": "TC-STAT-011",
+      "domain": "statistics",
+      "ru": "доверительный интервал",
+      "en": "confidence interval",
+      "vi": "khoảng tin cậy",
+      "targets": [
+        "R16",
+        "R17"
+      ],
+      "authorityStatus": "VERIFIED",
+      "sourceRefs": [
+        "GOST R 50779.22-2005"
+      ]
+    },
+    {
+      "id": "TC-AI-012",
+      "domain": "ai_ml",
+      "ru": "точность",
+      "en": "accuracy",
+      "vi": "độ chính xác",
+      "targets": [
+        "R15",
+        "R16"
+      ],
+      "authorityStatus": "SOURCE_ASSERTED",
+      "sourceRefs": [
+        "repo:R16",
+        "P2.9 AI/ML target"
+      ]
+    }
+  ],
+  "contentRevision": "2026-09-30-p8-deep"
+}
