@@ -1,0 +1,78 @@
+{
+  "schema": "RUSSIAN_AI_MENTOR_POLICY_V1",
+  "phase": "P10",
+  "authority": {
+    "canonicalTruthOwner": "P7",
+    "assessmentMasteryOwner": "P4",
+    "plannerSrsOwner": "P5",
+    "speechAudioOwner": "P6",
+    "academicTechnicalOwners": [
+      "P8",
+      "P9"
+    ],
+    "aiRole": "NON_AUTHORITATIVE_COACH"
+  },
+  "permissions": {
+    "readCanonicalContext": true,
+    "explain": true,
+    "suggest": true,
+    "askSocraticQuestions": true,
+    "generateTemporaryPractice": true,
+    "generateCanonicalContent": false,
+    "writeMastery": false,
+    "writeAttemptHistory": false,
+    "writeSrs": false,
+    "writePlanner": false,
+    "unlockStage": false,
+    "silentlyPersistGeneratedPractice": false
+  },
+  "generatedPractice": {
+    "lifecycle": "EPHEMERAL_UNTIL_REVIEWED",
+    "requiredLabels": [
+      "generated",
+      "non-canonical"
+    ],
+    "mayReferenceCanonicalIds": true,
+    "mayInventSourceCitations": false,
+    "promotionPath": "P12_REVIEW_WORKFLOW"
+  },
+  "sourceBoundary": {
+    "canonicalClaimsRequire": [
+      "canonical-id-or-approved-source-ref"
+    ],
+    "ifUncertain": "STATE_UNCERTAINTY_AND_REQUEST_SOURCE",
+    "noFabricatedCitations": true,
+    "noImplicitAuthorityFromModelOutput": true
+  },
+  "coachingModes": [
+    "explain",
+    "hint",
+    "socratic",
+    "worked-example",
+    "contrastive-feedback",
+    "retrieval-prompt",
+    "role-prep",
+    "research-questioning"
+  ],
+  "forbiddenModes": [
+    "auto-grade-official",
+    "auto-master",
+    "auto-unlock",
+    "silent-state-write",
+    "canonical-content-overwrite"
+  ],
+  "languagePolicy": {
+    "supported": [
+      "vi",
+      "ru",
+      "en",
+      "vi-ru",
+      "en-ru",
+      "vi-en"
+    ],
+    "defaultExplanation": "vi",
+    "targetLanguagePriority": "ru",
+    "preserveTechnicalTerms": true,
+    "doNotTranslateWhenTaskTestsRecognition": true
+  }
+}
