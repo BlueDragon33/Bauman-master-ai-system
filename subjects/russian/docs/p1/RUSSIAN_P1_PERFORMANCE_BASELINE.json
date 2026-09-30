@@ -1,0 +1,38 @@
+{
+  "schema": "RUSSIAN_P1_PERFORMANCE_BASELINE_V1",
+  "status": "VALIDATING_BROWSER",
+  "baseSha": "0ed6a1739f8e5010d05f5dc71f4558cf238bb87c",
+  "static": {
+    "russianFiles": 305,
+    "coreCssBytes": 735573,
+    "coreJsBytes": 404508,
+    "requiredDataBytes": 28743053,
+    "optionalLargeDataBytes": 63591688,
+    "largestOptional": [
+      {
+        "id": "dialogue-bauman-az",
+        "bytes": 35049608
+      },
+      {
+        "id": "deep-speaking-bauman",
+        "bytes": 28156378
+      },
+      {
+        "id": "speaking-link-index",
+        "bytes": 385702
+      }
+    ],
+    "currentOfflinePolicy": "required core on user initiated full cache; optional large network-only/fallback; package chunks large dialogue/deep-speaking"
+  },
+  "runtime": {
+    "status": "PENDING_P1_BROWSER_ARTIFACT",
+    "metrics": [
+      "request count",
+      "DOM width/overflow",
+      "console/page errors",
+      "route/browser evidence",
+      "cache names",
+      "storage names"
+    ]
+  }
+}
