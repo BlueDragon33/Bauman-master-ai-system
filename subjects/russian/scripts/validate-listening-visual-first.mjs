@@ -34,7 +34,7 @@ const checks=[
   ['Vietnamese help is hidden by default in speaking sessions', core.includes('practiceHideVi:true') && core.includes('dialogueHideVi:true')],
   ['Video exposes a primary start-listening action', core.includes('data-act="media-start-listening"') && core.includes('▶ Bắt đầu nghe')],
   ['Video listening plan stays a compact four-step guide', core.includes('aria-label="4 bước luyện nghe"') && coreCss.includes('grid-template-columns:repeat(4,minmax(0,1fr))')],
-  ['Speaking exposes one-click normal/slow listen plus recording', core.includes('data-act="speak-line"') && core.includes('data-act="speak-line-slow"') && speakingCoach.includes('data-ru-speaking="record-local"') && speakingCoach.includes('Ghi âm cục bộ')],
+  ['Speaking exposes one-click normal/slow listen plus recording', core.includes('data-act="speak-line"') && core.includes('data-act="speak-line-slow"') && speakingCoach.includes("'record-local'") && speakingCoach.includes("a==='record-local'") && speakingCoach.includes('Ghi âm cục bộ')],
   ['listening-first placeholder replaces eager transcript', core.includes('Nghe câu mẫu trước · mở transcript khi thật sự cần')],
   ['AI vocab helper does not expose English equivalent', !core.includes('English equivalent:')],
   ['legacy direct flip label removed', !core.includes('Lật nghĩa')],
