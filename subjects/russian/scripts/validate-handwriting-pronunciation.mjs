@@ -9,6 +9,7 @@ const handwriting=read('subjects/russian/data/handwriting.json');
 const adapter=fs.readFileSync('subjects/russian/assets/subject-adapter.js','utf8');
 const core=fs.readFileSync('subjects/russian/assets/core.js','utf8');
 const css=fs.readFileSync('subjects/russian/assets/core.css','utf8');
+const speechEngine=fs.readFileSync('subjects/russian/assets/speech-interaction-engine.js','utf8');
 
 assert.equal(data.length,33,'RHW2 pronunciation dataset must cover all 33 letters');
 assert.equal(new Set(data.map(x=>x.id)).size,33,'Duplicate RHW2 item id');
@@ -70,9 +71,10 @@ for(const token of [
 
 assert(adapter.includes("path:'data/handwriting-listen-write.json'"),'Adapter does not register RHW2 dataset');
 assert(adapter.includes('plannedCount:33'),'Adapter planned count must be 33');
-assert(core.includes("u.lang=A.speech?.lang||'ru-RU'"),'Russian TTS locale fallback missing');
+assert(core.includes("window.RussianAudioEngine?.speak?.(text,{lang:A.speech?.lang||'ru-RU'"),'Core must pass Russian locale to canonical audio engine');
+assert(speechEngine.includes("u.lang=clean(options.lang)||'ru-RU'"),'Russian TTS locale fallback missing');
 assert(core.includes("slow?.62:.85"),'Normal/slow playback rate binding missing');
-assert(core.includes("speechSynthesis.cancel()"),'Rapid playback must cancel prior utterance');
+assert(speechEngine.includes('window.speechSynthesis.cancel();window.speechSynthesis.speak(u)'),'Rapid playback must cancel prior utterance in canonical audio engine');
 assert(core.includes("Bạn vẫn có thể tiếp tục luyện viết"),'Speech-unavailable writing fallback missing');
 assert(core.includes("data-hand-audio"),'Playing-state marker missing');
 assert(css.includes('.hand-listen-write-card'),'RHW2 audio UI styles missing');

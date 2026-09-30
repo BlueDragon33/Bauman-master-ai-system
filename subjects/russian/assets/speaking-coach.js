@@ -24,6 +24,26 @@
   let renderQueued=false;
   let notice='';
   let lastContextKey='';
+  function recordingEngine(){return window.RussianRecordingEngine}
+  async function startLocalRecording(){
+    const engine=recordingEngine();
+    if(!engine){setNotice('Recorder chưa sẵn sàng. Bạn vẫn có thể luyện nghe, nói và tự đánh giá.');return}
+    const out=await engine.start({
+      maxDurationMs:90000,
+      onStop:recording=>{setNotice(recording?.size?'Đã ghi cục bộ. Nghe lại để tự so sánh; bản ghi không tự tạo mastery.':'Bản ghi trống; hãy thử lại hoặc dùng fallback tự đánh giá.');scheduleRender();},
+      onError:error=>{setNotice(error?.name==='NotAllowedError'?'Quyền micro bị từ chối. Luyện nói vẫn tiếp tục bằng tự đánh giá/ASR khi khả dụng.':'Không thể ghi âm lúc này. Luyện nói vẫn tiếp tục bằng fallback.');},
+      onStatus:()=>scheduleRender()
+    });
+    if(out?.started)setNotice('Đang ghi âm cục bộ. Không upload và không tính điểm tự động.');
+  }
+  function stopLocalRecording(){if(!recordingEngine()?.stop?.())setNotice('Không có phiên ghi âm đang chạy.');}
+  function playLocalRecording(){
+    const rec=recordingEngine()?.getLastRecording?.();
+    if(!rec?.url){setNotice('Chưa có bản ghi cục bộ để nghe lại.');return}
+    const played=window.RussianAudioEngine?.playSource?.(rec.url,{sourceType:'GENERATED',onError:()=>setNotice('Không phát lại được bản ghi.')});if(!played?.started)setNotice('Không phát lại được bản ghi.');
+  }
+  function clearLocalRecording(){recordingEngine()?.clear?.();setNotice('Đã xóa bản ghi cục bộ tạm thời.');scheduleRender();}
+
   function write(){state.schema=SCHEMA;state.updatedAt=now();try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}catch(e){console.warn('Russian speaking coach save failed',e)};scheduleRender();}
   function scheduleRender(){if(renderQueued)return;renderQueued=true;requestAnimationFrame(()=>{renderQueued=false;render();});}
   function context(){
@@ -162,7 +182,7 @@
   }
   function render(){
     const c=context(), view=document.getElementById('view');if(!view)return;
-    if(!c.active||!c.lessonId||!c.dialogueId){document.getElementById('ruSpeakingCoach')?.remove();view.classList.remove('ru-speaking-memory-mode');lastContextKey='';return;}
+    if(!c.active||!c.lessonId||!c.dialogueId){document.getElementById('ruSpeakingCoach')?.remove();view.classList.remove('ru-speaking-memory-mode');window.RussianRecordingEngine?.cancel?.();lastContextKey='';return;}
     const currentKey=keyOf(c);if(lastContextKey&&lastContextKey!==currentKey){abandonIfNeeded(currentKey);view.classList.remove('ru-speaking-memory-mode');}
     lastContextKey=currentKey;
     const row=syncSpeechEvidence(c)||lineState(c), active=activeSession(), memory=active?.key===currentKey&&active.mode==='memory';
@@ -170,12 +190,14 @@
     const listening=stepCard('01','Listening ladder','Nghe tốc độ thường trước, sau đó nghe chậm khi cần bắt âm và nhịp.',`<button type="button" data-ru-speaking="listen">Nghe thường</button><button type="button" data-ru-speaking="listen-slow">Nghe chậm</button>`);
     const shadow=stepCard('02','Shadowing','Nghe rồi nhại sát câu mẫu. Lượt shadow chỉ được ghi khi bạn thực sự dùng nút ghi/nói của runtime.',`<button type="button" data-ru-speaking="shadow">Bắt đầu shadowing</button>`);
     const memoryStep=stepCard('03','Nói không nhìn','Ẩn chữ Nga trong vùng luyện tập, sau đó nói lại bằng trí nhớ. Không dùng độ khớp transcript để tự xác nhận đúng.',`<button type="button" data-ru-speaking="memory">${memory?'Đang ẩn câu mẫu':'Nói không nhìn'}</button>${memory?'<button type="button" data-ru-speaking="reveal">Hiện câu mẫu</button>':''}`);
-    const role=stepCard('04','Role-play','Chuyển từ câu đơn sang hội thoại. Runtime chỉ ghi nhận việc đã luyện, không tự nâng mastery.',`<button type="button" data-ru-speaking="roleplay">Luyện cả hội thoại</button>`);
+    const recStatus=recordingEngine()?.status?.()||{};
+    const hasRecording=!!recordingEngine()?.getLastRecording?.()?.url;
+    const role=stepCard('04','Role-play + tự nghe lại','Chuyển từ câu đơn sang hội thoại. Có thể ghi âm cục bộ để tự so sánh; bản ghi và ASR không tự nâng mastery.',`<button type="button" data-ru-speaking="roleplay">Luyện cả hội thoại</button><button type="button" data-ru-speaking="${recStatus.active?'record-stop':'record-local'}">${recStatus.active?'⏹ Dừng ghi':'⏺ Ghi âm cục bộ'}</button>${hasRecording?'<button type="button" data-ru-speaking="record-play">▶ Nghe lại</button><button type="button" data-ru-speaking="record-clear">Xóa bản ghi</button>':''}`);
     panel.innerHTML=`<header><div><span>NGHE · NHẠI · NÓI · HỘI THOẠI</span><h3>${esc(c.lessonId)} · ${esc(c.dialogueId)} · câu ${c.lineIndex+1}</h3><p>Coach dùng đúng câu runtime đang mở. SpeechRecognition chỉ cho biết máy nhận ra gì; đánh giá trọng âm/phát âm vẫn cần dữ liệu lexicon và xác nhận của bạn.</p></div>${stats(row)}</header>${diagnosticHtml(row)}<div class="ru-speaking-grid">${listening}${shadow}${memoryStep}${role}</div>${notice?`<div class="ru-speaking-notice">${esc(notice)}</div>`:''}`;
   }
   document.addEventListener('click',event=>{
     const coach=event.target.closest?.('[data-ru-speaking]');
-    if(coach){event.preventDefault();event.stopPropagation();const a=coach.dataset.ruSpeaking;if(a==='listen')startListening(false);else if(a==='listen-slow')startListening(true);else if(a==='shadow')startShadow();else if(a==='memory')startMemory();else if(a==='reveal')revealSource();else if(a==='roleplay')startRoleplay();else if(a==='flag')flagPronunciation();else if(a==='flag-stress')flagStress();else if(a==='resolved')confirmRepaired();return;}
+    if(coach){event.preventDefault();event.stopPropagation();const a=coach.dataset.ruSpeaking;if(a==='listen')startListening(false);else if(a==='listen-slow')startListening(true);else if(a==='shadow')startShadow();else if(a==='memory')startMemory();else if(a==='reveal')revealSource();else if(a==='roleplay')startRoleplay();else if(a==='record-local')startLocalRecording();else if(a==='record-stop')stopLocalRecording();else if(a==='record-play')playLocalRecording();else if(a==='record-clear')clearLocalRecording();else if(a==='flag')flagPronunciation();else if(a==='flag-stress')flagStress();else if(a==='resolved')confirmRepaired();return;}
     const act=event.target.closest?.('[data-act]')?.dataset.act||'';const c=context();if(!c.active)return;
     if(act==='speak-line'){bump('listens',{lastListenAt:now()});}
     else if(act==='speak-line-slow'){bump('slowListens',{lastListenAt:now()});}

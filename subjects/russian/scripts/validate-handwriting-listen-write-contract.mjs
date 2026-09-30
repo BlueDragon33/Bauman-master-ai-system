@@ -7,6 +7,7 @@ const schema=readJson('subjects/russian/data/handwriting-listen-write-item.schem
 const rules=readJson('subjects/russian/data/handwriting-listen-write-rules.json');
 const handwriting=readJson('subjects/russian/data/handwriting.json');
 const core=fs.readFileSync('subjects/russian/assets/core.js','utf8');
+const speechEngine=fs.readFileSync('subjects/russian/assets/speech-interaction-engine.js','utf8');
 
 assert.equal(contract.schema,'RUSSIAN_HANDWRITING_LISTEN_WRITE_CONTRACT_V1');
 assert.equal(contract.version,'1.0.0-rhw1');
@@ -62,8 +63,9 @@ for(const token of ['handwriting-listen-write-contract.json','handwriting-listen
 }
 // Existing speech primitive must remain available for RHW2 reuse.
 assert(/function speak\(text,rate=\.85(?:,callbacks=\{\})?\)/.test(core), 'Existing Russian speech helper missing or incompatibly changed');
-assert(core.includes("new SpeechSynthesisUtterance(text)"), 'SpeechSynthesis primitive missing');
-assert(core.includes("u.lang=A.speech?.lang||'ru-RU'"), 'Russian speech locale fallback missing');
+assert(core.includes("window.RussianAudioEngine?.speak?.(text,{lang:A.speech?.lang||'ru-RU'"), 'Core speech helper must delegate to canonical RussianAudioEngine');
+assert(speechEngine.includes('new window.SpeechSynthesisUtterance(value)'), 'Canonical SpeechSynthesis primitive missing');
+assert(speechEngine.includes("u.lang=clean(options.lang)||'ru-RU'"), 'Canonical Russian speech locale fallback missing');
 
 console.log('RUSSIAN_RHW1_LISTEN_WRITE_CONTRACT=PASS');
 console.log(JSON.stringify({alphabet:alphabet.length,handwritingItems:handwriting.length,exerciseKinds:expectedKinds.length,contractFilesRuntimeWired:false,specialSigns:['Ъ','Ь'],contextualVowels:['Е','Ё','Ю','Я']},null,2));
