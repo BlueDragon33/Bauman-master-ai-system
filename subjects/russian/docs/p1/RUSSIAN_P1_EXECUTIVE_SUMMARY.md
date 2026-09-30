@@ -51,3 +51,14 @@ The P1 browser suite verified 11 representative viewports, source + packaged run
 - Constitution, Russian Reference UI, Fast CI, and static system integration: PASS.
 - External Cloudflare branch build check reported failure; P1 is audit-only with Production=UNCHANGED, so this is recorded as a non-P1 production integration limitation and is not used as P1 runtime evidence.
 - Unresolved risks P1-R001..R007 remain assigned to their declared owner phases; none invalidates the forensic audit exit contract.
+
+
+## P1 exit gate
+- Runtime/browser evidence: PASS.
+- Russian source + packaged forensic matrix: PASS.
+- Whole-system browser acceptance: PASS after hardening the Schedule typography probe against empty event data.
+- Russian Reference UI / Fast CI / Constitution / static integration: PASS.
+- No production behavior change introduced by P1.
+- External Cloudflare branch build failure is recorded as a deployment-integration limitation outside P1 audit scope; P17 retains production authority.
+
+**P1 STATE: PASS**
