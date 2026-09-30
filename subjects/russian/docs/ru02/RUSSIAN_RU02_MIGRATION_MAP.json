@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentRevision": "2026-09-30-ru02",
+  "kind": "RUSSIAN_RU02_MIGRATION_MAP",
+  "module": "RU02",
+  "policy": {
+    "strategy": "INCREMENTAL_STRANGLER",
+    "idempotent": true,
+    "destructiveResetForbidden": true,
+    "learnerStatePreserved": true,
+    "runtimeConsumerSwitchInRU02": false,
+    "rollback": "Delete RU02 additive canonical files and validator/workflow step; existing runtime continues unchanged."
+  },
+  "migrations": [
+    {
+      "id": "RU02-M01",
+      "from": "subjects/russian/data/curriculum.json#stages",
+      "to": "subjects/russian/data/canonical-model.json#stages",
+      "identity": "PRESERVE stage IDs",
+      "action": "STRUCTURAL_NORMALIZATION",
+      "runtimeSwitch": false
+    },
+    {
+      "id": "RU02-M02",
+      "from": "subjects/russian/data/curriculum.json#modules",
+      "to": "compatibility:StageBundle",
+      "identity": "PRESERVE current ids for compatibility only",
+      "action": "RECLASSIFY_COMPATIBILITY_PROJECTION",
+      "runtimeSwitch": false,
+      "note": "Current curriculum.modules are six stage bundles, not R01-R26 macro-module authority."
+    },
+    {
+      "id": "RU02-M03",
+      "from": "subjects/russian/data/lessons.json#R01-R26",
+      "to": "subjects/russian/data/canonical-model.json#macroModules",
+      "identity": "PRESERVE R01-R26",
+      "action": "SEPARATE_STRUCTURE_FROM_LEGACY_PRESENTATION",
+      "runtimeSwitch": false
+    },
+    {
+      "id": "RU02-M04",
+      "from": "P2 target unit/micro identities",
+      "to": "subjects/russian/data/canonical-model.json#units/microLessons",
+      "identity": "PRESERVE Rxx-Uxx and Rxx-Uxx-Mxx",
+      "action": "MATERIALIZE_STRUCTURAL_IDS",
+      "runtimeSwitch": false
+    },
+    {
+      "id": "RU02-M05",
+      "from": "P3 planned owner statuses",
+      "to": "subjects/russian/data/canonical-owner-registry.json",
+      "identity": "entity types unchanged",
+      "action": "RECONCILE_P7_P11_MATERIALIZATION",
+      "runtimeSwitch": false
+    },
+    {
+      "id": "RU02-M06",
+      "from": "legacy embedded lesson truth",
+      "to": "declared canonical content owners",
+      "identity": "R01-R26 presentation retained",
+      "action": "MARK_LEGACY_NON_AUTHORITATIVE_AND_MIGRATE_BY_REFERENCE_LATER",
+      "runtimeSwitch": false
+    },
+    {
+      "id": "RU02-M07",
+      "from": "unmaterialized Competency owner",
+      "to": "subjects/russian/data/canonical-model.json#competencies",
+      "identity": "new stable COMP-RU-* ids",
+      "action": "MATERIALIZE_COMPETENCY_DAG",
+      "runtimeSwitch": false
+    }
+  ],
+  "aliases": {
+    "R01-R26": "unchanged",
+    "stageIds": [
+      "vn",
+      "prep",
+      "hk1",
+      "hk2",
+      "hk3",
+      "hk4"
+    ],
+    "legacyCurriculumModuleInterpretation": "StageBundle compatibility projection"
+  },
+  "downstream": {
+    "RU03": "May validate/materialize linguistic owners; must not alter RU02 stable structural IDs without migration.",
+    "RU04": "Must bind assessment/evidence/remediation to RU02 competency IDs while preserving P4 state truth.",
+    "RU08": "May switch runtime consumers only after compatibility, migration, browser and regression acceptance."
+  }
+}
