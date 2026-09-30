@@ -18,7 +18,7 @@ assert.doesNotMatch(planner,/recordAssessmentAttempt\s*\(/,'Planner must not own
 assert.doesNotMatch(planner,/Math\.random\s*\(/,'Planner must remain deterministic by default');
 assert.ok(index.indexOf('assets/assessment-mastery.js') < index.indexOf('assets/adaptive-planner.js'),'P4 mastery must load before P5 planner');
 assert.ok(index.indexOf('assets/adaptive-planner.js') < index.indexOf('assets/learning-state.js'),'Planner must load before Today renderer');
-assert.match(sw,/russian-app-shell-v\\d+-[a-z0-9-]+/,'Offline shell cache must remain versioned; later phases may advance the cache version');
+assert.match(sw,/russian-app-shell-v\d+-[a-z0-9-]+/,'Offline shell cache must remain versioned; later phases may advance the cache version');
 assert.match(sw,/\.\/assets\/adaptive-planner\.js/);
 
 const required=[
