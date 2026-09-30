@@ -33,6 +33,10 @@ jobs:
         run: node subjects/russian/scripts/validate-p3-content-schema.mjs
       - name: Validate Russian P4 assessment mastery
         run: node subjects/russian/scripts/validate-p4-assessment-mastery.mjs
+      - name: Validate Russian P5 adaptive planner contract
+        run: node subjects/russian/scripts/validate-p5-adaptive-planner.mjs
+      - name: Test Russian P5 adaptive planner runtime
+        run: node subjects/russian/scripts/test-p5-adaptive-planner-runtime.mjs
       - name: Validate Russian reference UI contracts
         run: node subjects/russian/scripts/validate-reference-ui.mjs
       - name: Validate Russian lesson learning flow
@@ -109,6 +113,7 @@ jobs:
           node --check subjects/russian/assets/speaking-coach.js
           node --check subjects/russian/assets/academic-language.js
           node --check subjects/russian/assets/ai-mentor-guard.js
+          node --check subjects/russian/assets/adaptive-planner.js
           node --check subjects/russian/assets/runtime-optimizer.js
           node --check subjects/russian/sw.js
       - name: Audit Russian learning datasets
@@ -161,6 +166,7 @@ jobs:
           test -f subjects/russian/assets/academic-language.js
           test -f subjects/russian/assets/academic-language.css
           test -f subjects/russian/assets/ai-mentor-guard.js
+          test -f subjects/russian/assets/adaptive-planner.js
           test -f subjects/russian/assets/runtime-optimizer.js
           test -f subjects/russian/assets/runtime-optimizer.css
           test -f subjects/russian/manifest.webmanifest

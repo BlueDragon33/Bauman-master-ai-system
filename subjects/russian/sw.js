@@ -1,5 +1,5 @@
 'use strict';
-const CACHE='russian-app-shell-v6-assessment-mastery';
+const CACHE='russian-app-shell-v7-adaptive-planner';
 const DATA_CACHE='russian-learning-data-v1';
 const SHELL=[
   './','./index.html','./manifest.webmanifest','../shared/host-bridge.js',
@@ -8,7 +8,7 @@ const SHELL=[
   '../../platform/ui/tokens.css','../../platform/ui/foundations.css','../../platform/ui/components.css','../../platform/ui/layouts.css','../../platform/ui/responsive.css','../../platform/ui/bauman-ui.css','../../platform/ui/bauman-ui.css?v=1','../../platform/ui/bauman-ui.js','../../platform/ui/bauman-ui.js?v=1',
   './assets/core.css','./assets/russian.css','./assets/russian-future-ui.css',
   './assets/learning-state.css','./assets/content-contract.css','./assets/learning-flow.css','./assets/vocab-srs.css','./assets/speaking-coach.css','./assets/academic-language.css','./assets/capability-progression.css','./assets/runtime-optimizer.css',
-  './assets/subject-adapter.js','./assets/ui-cleanup-contract.js','./assets/content-contract.js','./assets/planning-bridge.js','./assets/russian-optional-data-loader.js','./assets/listen-write-factory.js','./assets/core.js','./assets/learning-state.js','./assets/learning-flow.js','./assets/handwriting-glyph-authority.js','./assets/handwriting-recognition.js','./assets/vocab-srs.js','./assets/speaking-coach.js','./assets/academic-language.js','./assets/capability-progression.js','./assets/ai-mentor-guard.js','./assets/assessment-mastery.js','./assets/runtime-optimizer.js','./assets/russian-future-ui.js'
+  './assets/subject-adapter.js','./assets/ui-cleanup-contract.js','./assets/content-contract.js','./assets/planning-bridge.js','./assets/russian-optional-data-loader.js','./assets/listen-write-factory.js','./assets/core.js','./assets/learning-state.js','./assets/learning-flow.js','./assets/handwriting-glyph-authority.js','./assets/handwriting-recognition.js','./assets/vocab-srs.js','./assets/speaking-coach.js','./assets/academic-language.js','./assets/capability-progression.js','./assets/ai-mentor-guard.js','./assets/assessment-mastery.js','./assets/adaptive-planner.js','./assets/runtime-optimizer.js','./assets/russian-future-ui.js'
 ];
 const OPTIONAL_LARGE=new Set(['dialogue-bauman-az.json','deep-speaking-bauman.json','speaking-link-index.json']);
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting()));});

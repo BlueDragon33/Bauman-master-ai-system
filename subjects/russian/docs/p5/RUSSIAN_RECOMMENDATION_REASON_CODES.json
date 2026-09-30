@@ -1,0 +1,29 @@
+{
+  "schema": "RUSSIAN_RECOMMENDATION_REASON_CODES_V1",
+  "codes": {
+    "due_review": {
+      "priorityBand": 1000,
+      "meaning": "Cross-skill review is due from prior evidence."
+    },
+    "vocabulary_due": {
+      "priorityBand": 950,
+      "meaning": "Vocabulary card is due under its own SRS."
+    },
+    "weakness_repair": {
+      "priorityBand": 900,
+      "meaning": "P4 evidence identifies a weakness requiring repair."
+    },
+    "continue_path": {
+      "priorityBand": 500,
+      "meaning": "Continue the current canonical learning path."
+    },
+    "skill_balance": {
+      "priorityBand": 300,
+      "meaning": "Protect productive/listening skills from starvation."
+    },
+    "manual_override": {
+      "priorityBand": 1100,
+      "meaning": "Explicit temporary teacher/learner priority."
+    }
+  }
+}
