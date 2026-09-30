@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "1.0.0",
+  "stateSchema": "RUSSIAN_ATTEMPT_STATE_V1",
+  "owner": "subjects/russian/assets/assessment-mastery.js",
+  "required": [
+    "attemptId",
+    "assessmentId",
+    "contentRevision",
+    "mode",
+    "timestamp",
+    "responses",
+    "evaluation",
+    "firstAttempt"
+  ],
+  "invariants": [
+    "attemptId immutable",
+    "first submitted attempt never overwritten",
+    "retry uses new attemptId",
+    "practice/exam mode metadata never silently mixed",
+    "double submit with same attemptId is idempotent",
+    "feedbackShown tracked separately"
+  ],
+  "responseFields": [
+    "itemId",
+    "response",
+    "evaluation",
+    "skill",
+    "lessonId",
+    "topic",
+    "firstAttempt"
+  ],
+  "optionalPrivacySafe": [
+    "stage",
+    "cycle",
+    "paperType"
+  ],
+  "forbiddenDefaultCollection": [
+    "personally identifying device fingerprint",
+    "unneeded browser metadata"
+  ]
+}
