@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "1.0.0",
+  "stateSchema": "RUSSIAN_REMEDIATION_STATE_V1",
+  "lifecycle": [
+    "detected",
+    "active",
+    "repairing",
+    "rechecked",
+    "resolved",
+    "recurring"
+  ],
+  "errorTaxonomy": [
+    "phonetic",
+    "stress",
+    "morphology",
+    "case",
+    "agreement",
+    "aspect",
+    "motion",
+    "word-order",
+    "preposition",
+    "government",
+    "vocabulary",
+    "collocation",
+    "listening",
+    "comprehension",
+    "register",
+    "technical-concept",
+    "task-misunderstanding"
+  ],
+  "loop": [
+    "FAILURE",
+    "CLASSIFY ERROR",
+    "CHECK PREREQUISITE",
+    "EXPLAIN/CONTRAST",
+    "CONTROLLED REPAIR",
+    "RETRIEVE",
+    "NEW EXAMPLE",
+    "PRODUCE",
+    "EXIT CHECK"
+  ],
+  "fields": [
+    "weaknessId",
+    "sourceAttemptId",
+    "errorCategory",
+    "rootCause",
+    "prerequisiteIds",
+    "status",
+    "repairActivityIds",
+    "recheckEvidenceId",
+    "createdAt",
+    "updatedAt"
+  ],
+  "rules": [
+    "opening remediation never clears weakness",
+    "resolution requires exit evidence",
+    "repeated failure changes representation/difficulty or repairs prerequisite",
+    "do not repeat same item endlessly"
+  ]
+}

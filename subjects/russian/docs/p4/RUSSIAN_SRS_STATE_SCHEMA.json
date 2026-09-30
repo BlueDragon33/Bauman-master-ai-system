@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "1.0.0",
+  "stateSchema": "RUSSIAN_SRS_STATE_V1",
+  "owners": {
+    "generalReviewQueue": "subjects/russian/assets/learning-state.js",
+    "vocabularySchedule": "subjects/russian/assets/vocab-srs.js"
+  },
+  "scopeRule": "Owners are non-overlapping: learning-state owns cross-skill remediation/due routing; vocab-srs owns per-vocabulary-card schedule.",
+  "itemIdentity": "stable canonical content/concept ID, never display text",
+  "fields": [
+    "itemId",
+    "scope",
+    "dueAt",
+    "scheduledAt",
+    "lastResult",
+    "attempts",
+    "reason",
+    "activePassiveClass",
+    "contentRevision",
+    "lastEvidenceAt"
+  ],
+  "activePassive": {
+    "activeCore": "productive retrieval",
+    "academicTechnicalActive": "phrase/collocation/context production",
+    "passive": "recognition may be sufficient",
+    "reference": "no compulsory SRS unless activated"
+  },
+  "signals": [
+    "correctness",
+    "response latency when meaningful",
+    "hint usage",
+    "confidence",
+    "repeated failure",
+    "production vs recognition",
+    "delayed success"
+  ],
+  "invariants": [
+    "due dates deterministic enough to test",
+    "rename does not reset history",
+    "no accidental mass reset",
+    "migration support",
+    "priority debuggable"
+  ]
+}

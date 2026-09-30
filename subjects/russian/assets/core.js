@@ -13,23 +13,35 @@ const PACKAGE_ROOT=A.packageRoot||'subjects/russian/';
 const NAV=A.nav||[['overview','🧭','Tổng quan'],['learning','🎓','Học tập'],['dialogue','💬','Đối thoại'],['writing','✍️','Viết'],['media','🎬','Video/Audio'],['vocab','🗂️','Từ vựng'],['grammar','🧩','Ngữ pháp'],['mindmap','🧠','Mind map'],['storage','🗄️','Lưu trữ']];
 const PRIMARY_NAV=A.primaryNav||NAV;
 const LEARN_TABS=A.learningTabs||[['theory','📘','Lý thuyết'],['exercises','📝','Bài tập'],['practice','🎙️','Nghe/Nói'],['review','🔁','Ôn tập'],['exam','🧪','Kiểm tra']];
-const DEFAULT={stage:'vn',view:'overview',learnTab:'theory',lessonId:'',slide:0,lessonQuery:'',conceptQuery:'',exerciseLevel:'all',exerciseIndex:0,testLevel:'easy',testIndex:0,testAnswer:null,reviewLevel:'easy',reviewFilter:'all',reviewLesson:'all',reviewMiniLesson:false,reviewIndex:0,reviewPage:0,reviewAnswer:null,reviewProgress:{done:{},flagged:{},wrong:{}},examLevel:'easy',examCycle:'auto',examPaperLevel:'easy',examPaperType:'standard',examIndex:0,examPage:0,examAnswer:null,examProgress:{answers:{},marked:{},submitted:false,submittedAt:null,result:null,wrong:{},paperResults:{}},examHistory:[],remedialPlan:{active:false,cards:[],completed:{},createdAt:null,lastExamAt:null,lastScore:null},dialogueId:'',dialogueGroup:'all',dialogueDifficulty:'all',dialogueQuery:'',dialogueLineIndex:0,dialogueRole:'all',dialogueHideVi:true,dialogueShowTranscript:false,dialoguePeople:'2',dialogueMinutes:'10',dialogueMode:'shadow_roleplay',dialogueScenario:'classroom',practiceDialogueId:'',practiceGroup:'all',practiceDifficulty:'all',practiceQuery:'',practiceLineIndex:0,practiceRole:'all',practiceHideVi:true,practiceShowTranscript:false,practiceSpeechResults:{},dialogueSpeechResults:{},deepSpeakingId:'',deepSpeakingMode:'overview',deepSpeakingStep:0,deepSpeakingProgress:{done:{},weak:{},attempts:{},lastMode:{}},optionalDataLoading:{},optionalDataError:{},speechResults:{},speechRecording:false,speechAutoNext:false,mediaCat:'all',mediaQuery:'',mediaView:'list',mediaId:'',vocabQuery:'',vocabTopic:'all',vocabStatus:'all',vocabFocusKey:'',vocabIndex:0,vocabPage:0,vocabFlipped:false,grammarLevel:'all',grammarTrack:'all',grammarQuery:'',grammarIndex:0,mindmapId:'roadmap-map',mindmapNode:'',mindmapFontScale:14,mindmapDrag:{},mindmapLayoutVersion:'v13_32_clean',writingMode:'handwriting',handwritingIndex:0,handwritingQuery:'',handwritingStep:0,handwritingPractice:'trace',handwritingShowGuide:true,handwritingShowLines:true,handwritingExerciseIndex:0,handwritingExerciseInput:'',handwritingExerciseChoice:'',handwritingExerciseAttempted:false,handwritingExerciseReveal:false,handwritingExerciseResult:null,handwritingSessionMode:'learn',handwritingListenWriteProgress:{byLetter:{}},lessonListenWrite:{lessonId:'',itemIndex:0,drillIndex:0,mode:'',input:'',choice:'',attempted:false,result:null},writingIndex:0,writingQuery:'',writingDraft:'',storageFile:'curriculum',storageGroup:'all',storageText:'',storagePreviewLimit:0,storagePreviewAutoCollapsedV1322:false,storageQuery:'',storageTreeOpen:{},aiDraft:'',aiOutput:'',interfaceTheme:'clean',interfaceDensity:'normal',hostTask:null,planningBundle:null,routeEdit:false,routeManual:null,routeFocus:'today',testSession:{answered:0,correct:0,targetQuestions:100,targetScore:80,seen:{}},recentAccess:[],stageGate:null,examGateSource:null,stageTransitions:[],lastStageTransition:null};
+const DEFAULT={stage:'vn',view:'overview',learnTab:'theory',lessonId:'',slide:0,lessonQuery:'',conceptQuery:'',exerciseLevel:'all',exerciseIndex:0,testLevel:'easy',testIndex:0,testAnswer:null,reviewLevel:'easy',reviewFilter:'all',reviewLesson:'all',reviewMiniLesson:false,reviewIndex:0,reviewPage:0,reviewAnswer:null,reviewProgress:{done:{},flagged:{},wrong:{}},examLevel:'easy',examCycle:'auto',examPaperLevel:'easy',examPaperType:'standard',examIndex:0,examPage:0,examAnswer:null,examProgress:{answers:{},marked:{},submitted:false,submittedAt:null,result:null,wrong:{},paperResults:{},attemptIds:{}},examHistory:[],remedialPlan:{active:false,cards:[],completed:{},createdAt:null,lastExamAt:null,lastScore:null},dialogueId:'',dialogueGroup:'all',dialogueDifficulty:'all',dialogueQuery:'',dialogueLineIndex:0,dialogueRole:'all',dialogueHideVi:true,dialogueShowTranscript:false,dialoguePeople:'2',dialogueMinutes:'10',dialogueMode:'shadow_roleplay',dialogueScenario:'classroom',practiceDialogueId:'',practiceGroup:'all',practiceDifficulty:'all',practiceQuery:'',practiceLineIndex:0,practiceRole:'all',practiceHideVi:true,practiceShowTranscript:false,practiceSpeechResults:{},dialogueSpeechResults:{},deepSpeakingId:'',deepSpeakingMode:'overview',deepSpeakingStep:0,deepSpeakingProgress:{done:{},weak:{},attempts:{},lastMode:{}},optionalDataLoading:{},optionalDataError:{},speechResults:{},speechRecording:false,speechAutoNext:false,mediaCat:'all',mediaQuery:'',mediaView:'list',mediaId:'',vocabQuery:'',vocabTopic:'all',vocabStatus:'all',vocabFocusKey:'',vocabIndex:0,vocabPage:0,vocabFlipped:false,grammarLevel:'all',grammarTrack:'all',grammarQuery:'',grammarIndex:0,mindmapId:'roadmap-map',mindmapNode:'',mindmapFontScale:14,mindmapDrag:{},mindmapLayoutVersion:'v13_32_clean',writingMode:'handwriting',handwritingIndex:0,handwritingQuery:'',handwritingStep:0,handwritingPractice:'trace',handwritingShowGuide:true,handwritingShowLines:true,handwritingExerciseIndex:0,handwritingExerciseInput:'',handwritingExerciseChoice:'',handwritingExerciseAttempted:false,handwritingExerciseReveal:false,handwritingExerciseResult:null,handwritingSessionMode:'learn',handwritingListenWriteProgress:{byLetter:{}},lessonListenWrite:{lessonId:'',itemIndex:0,drillIndex:0,mode:'',input:'',choice:'',attempted:false,result:null},writingIndex:0,writingQuery:'',writingDraft:'',storageFile:'curriculum',storageGroup:'all',storageText:'',storagePreviewLimit:0,storagePreviewAutoCollapsedV1322:false,storageQuery:'',storageTreeOpen:{},aiDraft:'',aiOutput:'',interfaceTheme:'clean',interfaceDensity:'normal',hostTask:null,planningBundle:null,routeEdit:false,routeManual:null,routeFocus:'today',testSession:{answered:0,correct:0,targetQuestions:100,targetScore:80,seen:{}},recentAccess:[],stageGate:null,examGateSource:null,stageTransitions:[],lastStageTransition:null};
 let DB={},state={...DEFAULT},canvas=null,ctx=null,drawing=false,strokes=[],currentStroke=null,penColor='#111827',penSize=6,speechRecognizer=null;
 let modalReturnFocus=null;
+const stateRecoveryBlocks={};
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
 const arr=v=>Array.isArray(v)?v:[], str=v=>String(v??''), esc=v=>str(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])), lower=v=>str(v).toLowerCase();
 const uniq=a=>Array.from(new Set(arr(a).filter(Boolean))); const key=A.storageKey||'bauman_russian_v11_clean_skeleton';
 function safeParseJson(raw,fallback){try{return raw?JSON.parse(raw):fallback}catch(_){return fallback}}
+function markStorageRecovery(keyName,raw,reason,error=''){
+ const meta={key:keyName,reason,length:String(raw||'').length,detectedAt:new Date().toISOString(),error:String(error||'')};
+ stateRecoveryBlocks[keyName]=meta;
+ try{localStorage.setItem(keyName+'_recovery_meta',JSON.stringify(meta))}catch(_){}
+ return meta;
+}
 function safeLocalJson(keyName,fallback={},maxChars=3500000){
  try{
   const raw=localStorage.getItem(keyName);
   if(!raw)return fallback;
   if(raw.length>maxChars){
-   console.warn('LocalStorage payload quá lớn, bỏ qua để tránh treo giao diện',keyName,raw.length);
-   localStorage.removeItem(keyName);
+   console.warn('LocalStorage payload quá lớn; giữ nguyên dữ liệu gốc và chặn ghi đè',keyName,raw.length);
+   markStorageRecovery(keyName,raw,'oversize');
    return fallback;
   }
-  return safeParseJson(raw,fallback);
+  try{return JSON.parse(raw)}
+  catch(e){
+   console.warn('LocalStorage JSON lỗi; giữ nguyên dữ liệu gốc và chặn ghi đè',keyName,e);
+   markStorageRecovery(keyName,raw,'malformed-json',e?.message||e);
+   return fallback;
+  }
  }catch(e){console.warn('Không đọc được localStorage',keyName,e);return fallback;}
 }
 function cleanDbOverlay(overlay){
@@ -39,9 +51,25 @@ function cleanDbOverlay(overlay){
 }
 function byId(list,id){return arr(list).find(x=>(x?.id||x?.title)===id)}
 function call(name,fallback,...args){return typeof A[name]==='function'?A[name](...args):fallback}
-function save(){try{localStorage.setItem(key,JSON.stringify(state)); const s=$('#saveState'); if(s)s.textContent='Đã đồng bộ'}catch(e){}}
-function loadState(){const stored=safeLocalJson(key,{},1600000); state={...DEFAULT,...stored,testSession:{...DEFAULT.testSession,...(stored.testSession||{})},speechResults:{...(stored.speechResults||{})},practiceSpeechResults:{...(stored.practiceSpeechResults||{})},dialogueSpeechResults:{...(stored.dialogueSpeechResults||{})},deepSpeakingProgress:{done:{},weak:{},attempts:{},lastMode:{},...(stored.deepSpeakingProgress||{})},optionalDataLoading:{},optionalDataError:{...(stored.optionalDataError||{})},reviewProgress:{done:{},flagged:{},wrong:{},...(stored.reviewProgress||{})},examProgress:{answers:{},marked:{},submitted:false,submittedAt:null,result:null,wrong:{},paperResults:{},...(stored.examProgress||{})},examHistory:arr(stored.examHistory).slice(0,20),remedialPlan:{active:false,cards:[],completed:{},createdAt:null,lastExamAt:null,lastScore:null,...(stored.remedialPlan||{})},recentAccess:arr(stored.recentAccess)}; sanitize()}
-function sanitize(){const views=NAV.map(x=>x[0]); const tabs=LEARN_TABS.map(x=>x[0]); if(!views.includes(state.view))state.view='overview'; if(!tabs.includes(state.learnTab))state.learnTab='theory'; ['vocabIndex','vocabPage','grammarIndex','slide','exerciseIndex','testIndex','reviewIndex','reviewPage','examIndex','examPage','dialogueLineIndex','practiceLineIndex','deepSpeakingStep','handwritingIndex','handwritingStep','writingIndex'].forEach(k=>state[k]=Math.max(0,Number(state[k])||0)); if(state.learnTab==='tests')state.learnTab='review'; state.reviewProgress={done:{},flagged:{},wrong:{},...(state.reviewProgress||{})}; state.examProgress={answers:{},marked:{},submitted:false,submittedAt:null,result:null,wrong:{},paperResults:{},...(state.examProgress||{})}; if(!EXAM_PAPER_ORDER.includes(state.examPaperType))state.examPaperType=EXAM_PAPER_ORDER.includes(state.examPaperLevel)?state.examPaperLevel:'standard'; state.examPaperLevel=state.examPaperType; state.examCycle='auto'; state.examHistory=arr(state.examHistory).slice(0,20); state.remedialPlan={active:false,cards:[],completed:{},createdAt:null,lastExamAt:null,lastScore:null,...(state.remedialPlan||{})}; normalizeRemedialPlan(); state.testSession={...DEFAULT.testSession,...(state.testSession||{})}; state.speechResults={...(state.speechResults||{})}; state.practiceSpeechResults={...(state.practiceSpeechResults||{}),...(state.speechResults||{})}; state.dialogueSpeechResults={...(state.dialogueSpeechResults||{})}; state.deepSpeakingProgress={done:{},weak:{},attempts:{},lastMode:{},...(state.deepSpeakingProgress||{})}; state.optionalDataLoading={}; state.optionalDataError={...(state.optionalDataError||{})}; state.speechRecording=false; state.recentAccess=arr(state.recentAccess).slice(0,6); if(!state.storagePreviewAutoCollapsedV1322){state.storagePreviewLimit=0;state.storagePreviewAutoCollapsedV1322=true;} state.mindmapFontScale=normalizeMindFontSize(state.mindmapFontScale); state.mindmapDrag=state.mindmapDrag&&typeof state.mindmapDrag==='object'?state.mindmapDrag:{}; if(state.mindmapLayoutVersion!=='v13_32_clean'){state.mindmapDrag={};state.mindmapLayoutVersion='v13_32_clean';} state.stageGate=state.stageGate&&typeof state.stageGate==='object'?state.stageGate:null; state.examGateSource=state.examGateSource&&typeof state.examGateSource==='object'?state.examGateSource:null; state.stageTransitions=arr(state.stageTransitions).filter(x=>x&&x.schema==='RUSSIAN_STAGE_TRANSITION_V1').slice(-30); state.lastStageTransition=state.stageTransitions[state.stageTransitions.length-1]||null;}
+function save(){
+ if(stateRecoveryBlocks[key]){
+  console.warn('Russian core state write blocked until explicit recovery decision',stateRecoveryBlocks[key]);
+  const s=$('#saveState'); if(s)s.textContent='Dữ liệu cần phục hồi';
+  return false;
+ }
+ try{localStorage.setItem(key,JSON.stringify(state)); const s=$('#saveState'); if(s)s.textContent='Đã đồng bộ'; return true}catch(e){return false}
+}
+window.RussianCoreStateRecovery={
+ status:(keyName=key)=>stateRecoveryBlocks[keyName]||null,
+ exportRaw:(keyName=key)=>localStorage.getItem(keyName),
+ allowExplicitReplacement:(keyName=key)=>{
+  delete stateRecoveryBlocks[keyName];
+  try{localStorage.removeItem(keyName+'_recovery_meta')}catch(_){}
+  return true;
+ }
+};
+function loadState(){const stored=safeLocalJson(key,{},1600000); state={...DEFAULT,...stored,testSession:{...DEFAULT.testSession,...(stored.testSession||{})},speechResults:{...(stored.speechResults||{})},practiceSpeechResults:{...(stored.practiceSpeechResults||{})},dialogueSpeechResults:{...(stored.dialogueSpeechResults||{})},deepSpeakingProgress:{done:{},weak:{},attempts:{},lastMode:{},...(stored.deepSpeakingProgress||{})},optionalDataLoading:{},optionalDataError:{...(stored.optionalDataError||{})},reviewProgress:{done:{},flagged:{},wrong:{},...(stored.reviewProgress||{})},examProgress:{answers:{},marked:{},submitted:false,submittedAt:null,result:null,wrong:{},paperResults:{},attemptIds:{},...(stored.examProgress||{})},examHistory:arr(stored.examHistory).slice(0,20),remedialPlan:{active:false,cards:[],completed:{},createdAt:null,lastExamAt:null,lastScore:null,...(stored.remedialPlan||{})},recentAccess:arr(stored.recentAccess)}; sanitize()}
+function sanitize(){const views=NAV.map(x=>x[0]); const tabs=LEARN_TABS.map(x=>x[0]); if(!views.includes(state.view))state.view='overview'; if(!tabs.includes(state.learnTab))state.learnTab='theory'; ['vocabIndex','vocabPage','grammarIndex','slide','exerciseIndex','testIndex','reviewIndex','reviewPage','examIndex','examPage','dialogueLineIndex','practiceLineIndex','deepSpeakingStep','handwritingIndex','handwritingStep','writingIndex'].forEach(k=>state[k]=Math.max(0,Number(state[k])||0)); if(state.learnTab==='tests')state.learnTab='review'; state.reviewProgress={done:{},flagged:{},wrong:{},...(state.reviewProgress||{})}; state.examProgress={answers:{},marked:{},submitted:false,submittedAt:null,result:null,wrong:{},paperResults:{},attemptIds:{},...(state.examProgress||{})}; state.examProgress.attemptIds={...(state.examProgress.attemptIds||{})}; if(!EXAM_PAPER_ORDER.includes(state.examPaperType))state.examPaperType=EXAM_PAPER_ORDER.includes(state.examPaperLevel)?state.examPaperLevel:'standard'; state.examPaperLevel=state.examPaperType; state.examCycle='auto'; state.examHistory=arr(state.examHistory).slice(0,20); state.remedialPlan={active:false,cards:[],completed:{},createdAt:null,lastExamAt:null,lastScore:null,...(state.remedialPlan||{})}; normalizeRemedialPlan(); state.testSession={...DEFAULT.testSession,...(state.testSession||{})}; state.speechResults={...(state.speechResults||{})}; state.practiceSpeechResults={...(state.practiceSpeechResults||{}),...(state.speechResults||{})}; state.dialogueSpeechResults={...(state.dialogueSpeechResults||{})}; state.deepSpeakingProgress={done:{},weak:{},attempts:{},lastMode:{},...(state.deepSpeakingProgress||{})}; state.optionalDataLoading={}; state.optionalDataError={...(state.optionalDataError||{})}; state.speechRecording=false; state.recentAccess=arr(state.recentAccess).slice(0,6); if(!state.storagePreviewAutoCollapsedV1322){state.storagePreviewLimit=0;state.storagePreviewAutoCollapsedV1322=true;} state.mindmapFontScale=normalizeMindFontSize(state.mindmapFontScale); state.mindmapDrag=state.mindmapDrag&&typeof state.mindmapDrag==='object'?state.mindmapDrag:{}; if(state.mindmapLayoutVersion!=='v13_32_clean'){state.mindmapDrag={};state.mindmapLayoutVersion='v13_32_clean';} state.stageGate=state.stageGate&&typeof state.stageGate==='object'?state.stageGate:null; state.examGateSource=state.examGateSource&&typeof state.examGateSource==='object'?state.examGateSource:null; state.stageTransitions=arr(state.stageTransitions).filter(x=>x&&x.schema==='RUSSIAN_STAGE_TRANSITION_V1').slice(-30); state.lastStageTransition=state.stageTransitions[state.stageTransitions.length-1]||null;}
 async function loadData(){
  const overlay=cleanDbOverlay(safeLocalJson(key+'_db',{},3500000));
  for(const f of DATA_FILES){
@@ -61,7 +89,11 @@ function ensureDeferredCoreData(name){
  return false;
 }
 function dbForLocalStorage(){const out={}; Object.keys(DB||{}).forEach(k=>{if(!OPTIONAL_DATA_FILES.includes(k))out[k]=DB[k]}); return out;}
-function saveDB(){try{localStorage.setItem(key+'_db',JSON.stringify(dbForLocalStorage()));}catch(e){toast('Trình duyệt không cho lưu DB lớn')}}
+function saveDB(){
+ const dbKey=key+'_db';
+ if(stateRecoveryBlocks[dbKey]){toast('Dữ liệu chỉnh sửa cần phục hồi; hệ thống không ghi đè tự động');return false;}
+ try{localStorage.setItem(dbKey,JSON.stringify(dbForLocalStorage()));return true}catch(e){toast('Trình duyệt không cho lưu DB lớn');return false}
+}
 function isOptionalFile(name){return OPTIONAL_DATA_FILES.includes(name)}
 function optionalSourcePath(name){return A.dataSourceMeta?.[name]?.path||`${DATA_ROOT}${name}.json`}
 async function loadOptionalData(name,quiet=false){
@@ -580,10 +612,11 @@ function resetExamProgress(level=null){
   const qs=getExamQuestions(key);
   qs.forEach((q,i)=>{const id=examQuestionId(q,i,key); delete state.examProgress.answers[id]; delete state.examProgress.marked[id]; delete state.examProgress.wrong[id];});
   if(state.examProgress.paperResults)delete state.examProgress.paperResults[key];
+  if(state.examProgress.attemptIds)delete state.examProgress.attemptIds[key];
   state.examIndex=0;state.examPage=0;state.examProgress.submitted=false;state.examProgress.result=null;state.examProgress.submittedAt=null;return;
  }
  state.examIndex=0;state.examPage=0;state.examPaperType='standard';state.examPaperLevel='standard';
- state.examProgress={answers:{},marked:{},submitted:false,submittedAt:null,result:null,wrong:{},paperResults:{}};
+ state.examProgress={answers:{},marked:{},submitted:false,submittedAt:null,result:null,wrong:{},paperResults:{},attemptIds:{}};
 }
 
 
@@ -815,14 +848,36 @@ function resetReviewProgress(){
  state.reviewAnswer=null; state.reviewIndex=0; state.reviewPage=0; state.reviewFilter='all'; state.reviewLesson='all';
  save(); render(); toast('Đã Reset toàn bộ tiến độ ôn tập');
 }
+function canonicalExamAttemptId(level){
+ state.examProgress.attemptIds=state.examProgress.attemptIds||{};
+ if(state.examProgress.attemptIds[level])return state.examProgress.attemptIds[level];
+ const assessmentId=`exam:${currentStageId()}:${level}`;
+ const id=window.RussianAssessmentMastery?.newAttemptId?.(assessmentId)||`ATT-${assessmentId}-${Date.now()}`;
+ state.examProgress.attemptIds[level]=id;
+ return id;
+}
 function submitExamNow(){
- const level=activeExamLevel(); const qs=getExamQuestions(level); const sum={...examProgressSummary(qs,level),diagnosis:examLearningPriority(qs,level)};
+ const level=activeExamLevel(); const qs=getExamQuestions(level); const existing=examPaperResult(level);
+ if(existing){openModal(renderExamResultModal(existing),'exam-result');toast('Đề này đã nộp. Reset đề để tạo một retry riêng mà không xóa first attempt.');return}
+ const sum={...examProgressSummary(qs,level),diagnosis:examLearningPriority(qs,level)};
  if(sum.answered<sum.total){toast(`Còn ${sum.total-sum.answered} câu chưa trả lời trong đề ${examLevelLabel(level)}`); return}
- state.examProgress.paperResults=state.examProgress.paperResults||{}; state.examProgress.paperResults[level]=sum; state.examProgress.submitted=true; state.examProgress.submittedAt=Date.now(); state.examProgress.result=sum; state.examProgress.wrong={};
+ const attemptId=canonicalExamAttemptId(level);
+ const assessmentId=`exam:${currentStageId()}:${level}`;
+ const responses=arr(qs).map((q,i)=>{
+  const itemId=examQuestionId(q,i,level);
+  const answer=state.examProgress.answers?.[itemId];
+  return {itemId,response:answer,evaluation:{correct:Number(answer)===Number(answerIndex(q)),correctAnswer:answerIndex(q)},skill:q?.skill||'',lessonId:q?.lessonId||'',topic:q?.topic||''};
+ });
+ const recorded=window.RussianAssessmentMastery?.recordAssessmentAttempt?.({
+  attemptId,assessmentId,contentRevision:String(DB.tests?.version||DB.tests?.contract||''),
+  mode:'exam',stage:currentStageId(),cycle:examCycleSummary(),paperType:level,
+  responses,evaluation:{...sum},feedbackShown:false
+ });
+ state.examProgress.paperResults=state.examProgress.paperResults||{}; state.examProgress.paperResults[level]={...sum,attemptId,firstAttempt:recorded?.attempt?.firstAttempt??null}; state.examProgress.submitted=true; state.examProgress.submittedAt=Date.now(); state.examProgress.result=state.examProgress.paperResults[level]; state.examProgress.wrong={};
  arr(sum.wrong).forEach(w=>{state.examProgress.wrong[w.id]={at:Date.now(),index:w.index,answer:w.answer,correct:w.correct,level:w.level,lessonId:w.lessonId,skill:w.skill,topic:w.topic};});
- state.examHistory=[{at:Date.now(),...sum,cycle:examCycleSummary()},...arr(state.examHistory)].slice(0,20);
- if(sum.passed)registerGateExamPass(level,sum); else createRemedialPlan(sum);
- save(); render(); openModal(renderExamResultModal(sum),'exam-result'); const complete=gatePartComplete();
+ state.examHistory=[{at:Date.now(),attemptId,...sum,cycle:examCycleSummary()},...arr(state.examHistory)].slice(0,20);
+ if(sum.passed)registerGateExamPass(level,{...sum,attemptId}); else createRemedialPlan({...sum,attemptId});
+ save(); render(); openModal(renderExamResultModal(state.examProgress.paperResults[level]),'exam-result'); const complete=gatePartComplete();
  toast(sum.passed?(complete?'Đạt đủ cổng phần này, có thể mở khóa bước tiếp theo':'Đạt đề này, tiếp tục đề còn lại trong phần'):'Chưa đạt đề này, đã tạo lịch phụ đạo');
 }
 function runConfirmedAction(action){
@@ -1575,7 +1630,7 @@ function renderPractice(){
      <button class="btn green speech-ok-corner" data-act="mark-line-ok">✓ Đã nói ổn</button>
    </article>
    <div class="v1294-speech-actions"><button class="btn" data-act="prev-line">← Câu trước</button><button class="btn green" data-act="speak-line">🔊 Nghe mẫu</button><button class="btn" data-act="speak-line-slow">🐢 Nghe chậm</button><button class="btn primary speech-record-primary" data-act="record-line">🎙️ Ghi âm / Bắt đầu nói</button><button class="btn primary" data-act="next-line">Câu tiếp →</button></div>
-   <div class="v1294-feedback-line"><b>${result?`Điểm nhại: ${result.score}%`:'Gợi ý luyện'}</b><span>${result?esc(speechFeedback(result.score)):'Nghe mẫu 1 lượt, đọc câu thành tiếng, nhại chậm, sau đó tự nói không nhìn chữ.'}</span></div>
+   <div class="v1294-feedback-line"><b>${result?(result.manual?'Tự xác nhận: đã nói ổn':`Độ khớp transcript: ${result.score}% · không phải điểm phát âm`):'Gợi ý luyện'}</b><span>${result?esc(speechFeedback(result.score)):'Nghe mẫu 1 lượt, đọc câu thành tiếng, nhại chậm, sau đó tự nói không nhìn chữ.'}</span></div>
    <details class="v1294-speech-map"><summary>🧭 Bản đồ câu nói <span>${turns.length?idx+1:0}/${turns.length||0}</span></summary><div class="v1294-speech-map-grid">${turns.length?turns.map(roleLine).join(''):'<div class="note">Chưa có câu nói trong hội thoại đúng bài này.</div>'}</div></details>
  </section>`
 }
@@ -3904,7 +3959,7 @@ function handleClick(e){
  if(act==='speak-line-slow'){const d=currentDialogue(); const line=dialogueTurns(d)[activeLineIndex()]||{}; speak(line.ru||line.text||line.text_ru||line,.62)}
  if(act==='speak-dialogue'){speak(speakDialogue(currentDialogue()),.82)}
  if(act==='record-line')startLineRecording();
- if(act==='mark-line-ok'){const d=currentDialogue(), idx=activeLineIndex(), line=dialogueTurns(d)[idx]||{}; const store=activeSpeechResults(); store[dialogueLineKey(d,idx)]={score:100,transcript:dialogueText(line),target:dialogueText(line),at:Date.now(),ok:true,manual:true}; save(); render(); if(state.speechAutoNext)setTimeout(()=>moveDialogueLine(1),420);}
+ if(act==='mark-line-ok'){const d=currentDialogue(), idx=activeLineIndex(), line=dialogueTurns(d)[idx]||{}; const store=activeSpeechResults(); store[dialogueLineKey(d,idx)]={score:null,transcript:'',target:dialogueText(line),at:Date.now(),ok:true,manual:true,selfConfirmed:true,signalType:'self-confirmation'}; save(); render(); if(state.speechAutoNext)setTimeout(()=>moveDialogueLine(1),420);}
  if(act==='retry-line'){const d=currentDialogue(), idx=activeLineIndex(); const store=activeSpeechResults(); if(store)delete store[dialogueLineKey(d,idx)]; save(); render();}
  if(act==='toggle-auto-next'){state.speechAutoNext=!state.speechAutoNext;save();render();}
  if(act==='role-all'){setActiveRole('all');save();render()}

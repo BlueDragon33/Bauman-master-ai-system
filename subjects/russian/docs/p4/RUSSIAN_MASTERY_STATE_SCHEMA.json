@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "1.0.0",
+  "stateSchema": "RUSSIAN_MASTERY_STATE_V1",
+  "owner": "subjects/russian/assets/assessment-mastery.js",
+  "dimensions": [
+    "phonetics",
+    "listening",
+    "speaking",
+    "reading",
+    "writing",
+    "vocabulary-recognition",
+    "vocabulary-production",
+    "grammar-recognition",
+    "grammar-production",
+    "interaction",
+    "academic",
+    "technical",
+    "research"
+  ],
+  "semanticDepth": [
+    "M0-not-exposed",
+    "M1-recognized",
+    "M2-recalled",
+    "M3-controlled-production",
+    "M4-contextual-production",
+    "M5-transfer",
+    "M6-retained-after-delay"
+  ],
+  "canonicalFields": [
+    "competencyId",
+    "skill",
+    "lastEvidenceId",
+    "lastEvidenceAt",
+    "evidenceCount"
+  ],
+  "rules": [
+    "mastery changes only from evidence",
+    "presentation cannot write mastery",
+    "AI Mentor cannot write official mastery",
+    "activity/completion is not mastery",
+    "recognition is not production",
+    "formal CEFR/TRKI claims are not inferred from app quiz scores"
+  ]
+}

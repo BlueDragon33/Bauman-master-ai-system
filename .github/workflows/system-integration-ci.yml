@@ -87,6 +87,8 @@ jobs:
           node --check subjects/signal/assets/signal.js
           node --check subjects/systems/assets/systems.js
           node --check subjects/russian/assets/core.js
+          node --check subjects/russian/assets/assessment-mastery.js
+          node --check tests/russian-p4-assessment-mastery-browser.mjs
           node --check subjects/russian/assets/russian-future-ui.js
           node --check tests/russian-future-ui-browser.mjs
           node --check subjects/russian/assets/listen-write-factory.js
@@ -142,6 +144,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-p1-forensic-source
         run: node tests/russian-p1-forensic-browser.mjs
+      - name: Run Russian P4 assessment mastery acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-p4-assessment-source
+        run: node tests/russian-p4-assessment-mastery-browser.mjs
       - name: Run Russian Future UI route acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
@@ -206,6 +213,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-p1-forensic-package
         run: node tests/russian-p1-forensic-browser.mjs
+      - name: Run packaged Russian P4 assessment mastery acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-p4-assessment-package
+        run: node tests/russian-p4-assessment-mastery-browser.mjs
       - name: Run packaged Russian Future UI acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
@@ -240,6 +252,7 @@ jobs:
           name: russian-p1-browser-${{ github.run_id }}
           path: |
             artifacts/russian-p1-forensic-source
+            artifacts/russian-p4-assessment-source
             artifacts/russian-p1-future-ui-source
             artifacts/russian-p1-handwriting-source
             artifacts/russian-p1-capability-hub-source
@@ -249,6 +262,7 @@ jobs:
             artifacts/russian-p1-offline-source
             artifacts/russian-p1-listen-write-source
             artifacts/russian-p1-forensic-package
+            artifacts/russian-p4-assessment-package
             artifacts/russian-p1-future-ui-package
             artifacts/russian-p1-handwriting-package
             artifacts/russian-p1-deeplink-package
