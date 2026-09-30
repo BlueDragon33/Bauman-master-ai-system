@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Russian P5 Personalization State",
+  "type": "object",
+  "required": [
+    "schema",
+    "algorithmVersion",
+    "mode",
+    "manualOverrides"
+  ],
+  "properties": {
+    "schema": {
+      "const": "RUSSIAN_ADAPTIVE_PLANNER_V1"
+    },
+    "algorithmVersion": {
+      "type": "string"
+    },
+    "mode": {
+      "enum": [
+        "normal",
+        "intensive"
+      ]
+    },
+    "manualOverrides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "route",
+          "reason"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "route": {
+            "type": "object"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "expiresAt": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "updatedAt": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": true
+}
