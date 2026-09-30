@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentRevision": "2026-09-30-ru02",
+  "kind": "RUSSIAN_RU02_SCHEMA_REGISTRY",
+  "module": "RU02",
+  "goldenRule": "Schema shape and owner path are separate concerns: P3 entity semantics are retained; RU02 resolves current structural owners/materialization.",
+  "entitySchemaAuthority": "subjects/russian/docs/p3/RUSSIAN_CONTENT_SCHEMA_CONSTITUTION.json#entitySchemas",
+  "structuralSchemaAuthority": "subjects/russian/data/canonical-model.json",
+  "ownerAuthority": "subjects/russian/data/canonical-owner-registry.json",
+  "graphAuthority": "subjects/russian/docs/ru02/RUSSIAN_RU02_CONTENT_GRAPH.json",
+  "schemaVersionPolicy": {
+    "schemaVersion": "technical shape compatibility",
+    "contentRevision": "content/structure revision",
+    "idVersioningForbidden": true,
+    "migrationRequiredForBreakingChange": true
+  },
+  "compatibility": {
+    "p3SchemaSemantics": "RETAINED",
+    "p3OwnerMaterializationStatuses": "SUPERSEDED_BY_RU02_CURRENT_REALITY",
+    "runtimeConsumers": "UNCHANGED_IN_RU02"
+  },
+  "validationResponsibilities": {
+    "RU02": [
+      "stable identity",
+      "curriculum containment",
+      "competency DAG",
+      "owner uniqueness",
+      "migration/backward compatibility"
+    ],
+    "RU03": [
+      "linguistic truth",
+      "provenance",
+      "phonetic/grammar/lexical authority",
+      "error correctness"
+    ],
+    "RU04": [
+      "assessment/evidence/mastery/remediation bindings"
+    ],
+    "RU05": [
+      "listening/speaking/dialogue/deep-speaking runtime bindings"
+    ],
+    "RU06": [
+      "academic/technical/research production bindings"
+    ]
+  },
+  "noFabricationRule": "A reserved owner path may remain absent. File existence is never a reason to invent linguistic facts."
+}

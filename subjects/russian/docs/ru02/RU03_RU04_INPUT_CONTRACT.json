@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RU03_RU04_INPUT_CONTRACT",
+  "state": "READY",
+  "baselineSha": "9bfd57210e6d5c4593fe5dc116f12f513f99f5f6",
+  "canonicalModel": "subjects/russian/data/canonical-model.json",
+  "ownerRegistry": "subjects/russian/data/canonical-owner-registry.json",
+  "contentGraph": "subjects/russian/docs/ru02/RUSSIAN_RU02_CONTENT_GRAPH.json",
+  "migrationMap": "subjects/russian/docs/ru02/RUSSIAN_RU02_MIGRATION_MAP.json",
+  "invariantIds": {
+    "macroModules": "R01-R26",
+    "competencies": [
+      "COMP-RU-PHON",
+      "COMP-RU-VOCAB-REC",
+      "COMP-RU-GRAM-REC",
+      "COMP-RU-LISTEN",
+      "COMP-RU-SPEAK",
+      "COMP-RU-READ",
+      "COMP-RU-VOCAB-PROD",
+      "COMP-RU-GRAM-PROD",
+      "COMP-RU-WRITE",
+      "COMP-RU-INTERACTION",
+      "COMP-RU-ACADEMIC",
+      "COMP-RU-TECHNICAL",
+      "COMP-RU-RESEARCH"
+    ]
+  },
+  "RU03": {
+    "mission": "Prove linguistic truth and provenance inside RU02 owner boundaries.",
+    "mustReview": [
+      "vocab stress/morphology/POS/government",
+      "grammar form/function/government",
+      "phonetic concepts",
+      "phrase/collocation authority",
+      "linguistic functions",
+      "error-pattern correctness",
+      "provenance status"
+    ],
+    "mayMaterialize": [
+      "subjects/russian/data/linguistic-functions.json",
+      "subjects/russian/data/phonetics.json",
+      "subjects/russian/data/phrases.json",
+      "subjects/russian/data/error-patterns.json"
+    ],
+    "forbidden": [
+      "change R01-R26 identity",
+      "change competency DAG without migration",
+      "fabricate fields to satisfy schema",
+      "write learner mastery"
+    ]
+  },
+  "RU04": {
+    "mission": "Bind assessment, evidence, mastery, spaced retrieval and remediation to RU02 competencies without redefining linguistic truth.",
+    "authoritativeStateOwner": "subjects/russian/assets/assessment-mastery.js",
+    "inputs": [
+      "subjects/russian/data/tests.json",
+      "subjects/russian/data/exercises.json",
+      "subjects/russian/data/performance-tasks.json",
+      "subjects/russian/assets/vocab-srs.js",
+      "subjects/russian/assets/adaptive-planner.js"
+    ],
+    "mayMaterialize": [
+      "subjects/russian/data/remediation-paths.json"
+    ],
+    "requiredBindings": [
+      "AssessmentItem -> Competency",
+      "Evidence -> Competency",
+      "ErrorPattern -> RemediationPath -> exit evidence"
+    ],
+    "forbidden": [
+      "page-open/click/time mastery",
+      "ASR-as-mastery",
+      "silent learner-state reset",
+      "duplicate mastery writer"
+    ]
+  },
+  "sharedTruth": [
+    "exposure != progress != performance != mastery",
+    "stable IDs immutable once referenced",
+    "generated content is not authoritative merely because it validates"
+  ]
+}
