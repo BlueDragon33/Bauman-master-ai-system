@@ -1,0 +1,258 @@
+{
+  "schema": "RUSSIAN_READING_TEXTS_V1",
+  "phase": "P9",
+  "canonicalOwner": "subjects/russian/data/reading.json",
+  "authorityPolicy": "REFERENCES_ONLY_NO_NEW_LINGUISTIC_TRUTH",
+  "tasks": [
+    {
+      "id": "RD-R11-001",
+      "targets": [
+        "R11"
+      ],
+      "level": "B1",
+      "genre": "lecture-note",
+      "operations": [
+        "locate",
+        "outline",
+        "reconstruct"
+      ],
+      "academicFunctions": [
+        "AF-CLARIFY"
+      ],
+      "technicalConcepts": [],
+      "output": "notes+60s-reconstruction"
+    },
+    {
+      "id": "RD-R12-001",
+      "targets": [
+        "R12"
+      ],
+      "level": "B1",
+      "genre": "textbook-fragment",
+      "operations": [
+        "define",
+        "classify",
+        "summarize"
+      ],
+      "academicFunctions": [
+        "AF-DEFINE",
+        "AF-EXAMPLE",
+        "AF-CONCLUDE"
+      ],
+      "technicalConcepts": [
+        "TC-MATH-001",
+        "TC-MATH-002"
+      ],
+      "output": "definition-map+summary"
+    },
+    {
+      "id": "RD-R14-001",
+      "targets": [
+        "R14"
+      ],
+      "level": "B1+",
+      "genre": "technical-instruction",
+      "operations": [
+        "extract",
+        "sequence",
+        "explain"
+      ],
+      "academicFunctions": [
+        "AF-PROBLEM",
+        "AF-ALGORITHM",
+        "AF-CONDITION"
+      ],
+      "technicalConcepts": [
+        "TC-CS-001",
+        "TC-CS-002",
+        "TC-DB-001"
+      ],
+      "output": "algorithm-outline"
+    },
+    {
+      "id": "RD-R15-001",
+      "targets": [
+        "R15"
+      ],
+      "level": "B1+",
+      "genre": "technical-article",
+      "operations": [
+        "locate",
+        "compare",
+        "infer"
+      ],
+      "academicFunctions": [
+        "AF-DEFINE",
+        "AF-RESULT"
+      ],
+      "technicalConcepts": [
+        "TC-AI-001",
+        "TC-AI-002",
+        "TC-AI-003"
+      ],
+      "output": "comparison-notes"
+    },
+    {
+      "id": "RD-R16-001",
+      "targets": [
+        "R16"
+      ],
+      "level": "B1+",
+      "genre": "figure-table",
+      "operations": [
+        "extract",
+        "classify",
+        "summarize"
+      ],
+      "academicFunctions": [
+        "AF-DATA",
+        "AF-TREND",
+        "AF-RESULT"
+      ],
+      "technicalConcepts": [],
+      "output": "figure-table-summary"
+    },
+    {
+      "id": "RD-R17-001",
+      "targets": [
+        "R17"
+      ],
+      "level": "B1+",
+      "genre": "lab-report-fragment",
+      "operations": [
+        "outline",
+        "compare",
+        "explain"
+      ],
+      "academicFunctions": [
+        "AF-ALGORITHM",
+        "AF-RESULT",
+        "AF-CONCLUDE"
+      ],
+      "technicalConcepts": [
+        "TC-CS-003",
+        "TC-DB-002"
+      ],
+      "output": "method-result-map"
+    },
+    {
+      "id": "RD-R18-001",
+      "targets": [
+        "R18"
+      ],
+      "level": "B1+",
+      "genre": "academic-email",
+      "operations": [
+        "locate",
+        "infer",
+        "reformulate"
+      ],
+      "academicFunctions": [
+        "AF-EMAIL",
+        "AF-CLARIFY"
+      ],
+      "technicalConcepts": [],
+      "output": "reply-plan"
+    },
+    {
+      "id": "RD-R19-001",
+      "targets": [
+        "R19"
+      ],
+      "level": "B2",
+      "genre": "research-abstract",
+      "operations": [
+        "extract",
+        "outline",
+        "summarize"
+      ],
+      "academicFunctions": [
+        "AF-RESEARCH",
+        "AF-RESULT",
+        "AF-CONCLUDE"
+      ],
+      "technicalConcepts": [],
+      "output": "IMRaD-lite-map"
+    },
+    {
+      "id": "RD-R20-001",
+      "targets": [
+        "R20"
+      ],
+      "level": "B2",
+      "genre": "paper-fragment",
+      "operations": [
+        "compare",
+        "evaluate",
+        "synthesize"
+      ],
+      "academicFunctions": [
+        "AF-CITE",
+        "AF-GAP",
+        "AF-CONCLUDE"
+      ],
+      "technicalConcepts": [],
+      "output": "source-gap-matrix"
+    },
+    {
+      "id": "RD-R21-001",
+      "targets": [
+        "R21"
+      ],
+      "level": "B2",
+      "genre": "seminar-argument",
+      "operations": [
+        "infer",
+        "compare",
+        "reconstruct"
+      ],
+      "academicFunctions": [
+        "AF-DISAGREE",
+        "AF-CLARIFY",
+        "AF-CONCLUDE"
+      ],
+      "technicalConcepts": [],
+      "output": "argument-counterargument-map"
+    },
+    {
+      "id": "RD-R23-001",
+      "targets": [
+        "R23"
+      ],
+      "level": "B2",
+      "genre": "vkr-source",
+      "operations": [
+        "extract",
+        "synthesize",
+        "outline"
+      ],
+      "academicFunctions": [
+        "AF-CITE",
+        "AF-RESEARCH",
+        "AF-GAP"
+      ],
+      "technicalConcepts": [],
+      "output": "vkr-literature-note"
+    },
+    {
+      "id": "RD-R25-001",
+      "targets": [
+        "R25"
+      ],
+      "level": "B2",
+      "genre": "defense-material",
+      "operations": [
+        "locate",
+        "summarize",
+        "transfer"
+      ],
+      "academicFunctions": [
+        "AF-RESULT",
+        "AF-CONCLUDE",
+        "AF-CLARIFY"
+      ],
+      "technicalConcepts": [],
+      "output": "defense-evidence-cards"
+    }
+  ]
+}
