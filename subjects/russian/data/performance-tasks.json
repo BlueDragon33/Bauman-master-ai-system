@@ -1,0 +1,150 @@
+{
+  "schema": "RUSSIAN_PERFORMANCE_TASKS_V1",
+  "phase": "P9",
+  "canonicalOwner": "subjects/russian/data/performance-tasks.json",
+  "assessmentOwner": "P4",
+  "rule": "P9 defines productive task contracts; P4 alone owns official scoring/mastery.",
+  "tasks": [
+    {
+      "id": "PT-R11-NOTE-RECON",
+      "targets": [
+        "R11"
+      ],
+      "mode": "note-to-oral",
+      "input": "mini-lecture-or-text",
+      "output": "notes + 1-2 minute reconstruction",
+      "evidenceTypes": [
+        "notes",
+        "oral-recording"
+      ],
+      "rubricRef": "P4-speaking-writing"
+    },
+    {
+      "id": "PT-R16-FIGURE",
+      "targets": [
+        "R16"
+      ],
+      "mode": "figure-table-description",
+      "input": "figure-or-table",
+      "output": "structured description + interpretation",
+      "evidenceTypes": [
+        "written-response",
+        "oral-response"
+      ],
+      "rubricRef": "P4-writing"
+    },
+    {
+      "id": "PT-R17-LAB",
+      "targets": [
+        "R17"
+      ],
+      "mode": "lab-report",
+      "input": "experiment-record",
+      "output": "method + result + error + conclusion",
+      "evidenceTypes": [
+        "written-report"
+      ],
+      "rubricRef": "P4-writing"
+    },
+    {
+      "id": "PT-R18-EMAIL",
+      "targets": [
+        "R18"
+      ],
+      "mode": "academic-email",
+      "input": "teacher-or-lab-scenario",
+      "output": "purpose + request + context + closing",
+      "evidenceTypes": [
+        "written-email"
+      ],
+      "rubricRef": "P4-writing"
+    },
+    {
+      "id": "PT-R19-NIR-PITCH",
+      "targets": [
+        "R19"
+      ],
+      "mode": "nir-proposal",
+      "input": "research-topic",
+      "output": "problem + relevance + objective + tasks + method",
+      "evidenceTypes": [
+        "written-outline",
+        "oral-pitch"
+      ],
+      "rubricRef": "P4-research"
+    },
+    {
+      "id": "PT-R20-LIT",
+      "targets": [
+        "R20"
+      ],
+      "mode": "literature-synthesis",
+      "input": "multiple-source-notes",
+      "output": "compare + cite + gap + synthesis",
+      "evidenceTypes": [
+        "source-matrix",
+        "summary"
+      ],
+      "rubricRef": "P4-research"
+    },
+    {
+      "id": "PT-R21-QA",
+      "targets": [
+        "R21"
+      ],
+      "mode": "seminar-defense",
+      "input": "claim + challenge",
+      "output": "answer + evidence + limitation + clarification",
+      "evidenceTypes": [
+        "oral-recording"
+      ],
+      "rubricRef": "P4-speaking-research"
+    },
+    {
+      "id": "PT-R22-NIR",
+      "targets": [
+        "R22"
+      ],
+      "mode": "nir-mini-defense",
+      "input": "nir-package",
+      "output": "3-5 minute presentation + unscripted Q&A",
+      "evidenceTypes": [
+        "slides",
+        "oral-recording",
+        "qa-log"
+      ],
+      "rubricRef": "P4-research"
+    },
+    {
+      "id": "PT-R23-VKR-SECTION",
+      "targets": [
+        "R23",
+        "R24"
+      ],
+      "mode": "vkr-section",
+      "input": "research-evidence",
+      "output": "objective + method + result + interpretation + limitation",
+      "evidenceTypes": [
+        "written-section"
+      ],
+      "rubricRef": "P4-research"
+    },
+    {
+      "id": "PT-R25-DEFENSE",
+      "targets": [
+        "R25",
+        "R26"
+      ],
+      "mode": "vkr-defense",
+      "input": "final-capstone",
+      "output": "presentation + figures/tables + defense Q&A + uncertainty handling",
+      "evidenceTypes": [
+        "slides",
+        "oral-recording",
+        "qa-log",
+        "written-summary"
+      ],
+      "rubricRef": "P4-research"
+    }
+  ]
+}
