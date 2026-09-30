@@ -1,0 +1,127 @@
+{
+  "schemaVersion": "1.0",
+  "kind": "RU02_INPUT_CONTRACT",
+  "state": "PASS",
+  "baselineSha": "1c722fd7dd7525e960f2d8bb0fb36312705448be",
+  "priorForensicValidatedSha": "1252f7c46694cb40466ff0d483ccad92439cde7b",
+  "preservedStableScope": {
+    "lessonRange": "R01-R26",
+    "routes": [
+      "overview",
+      "learning",
+      "dialogue",
+      "writing",
+      "media",
+      "vocab",
+      "grammar",
+      "mindmap",
+      "storage"
+    ],
+    "datasets": [
+      "curriculum",
+      "lessons",
+      "grammar",
+      "grammar-path",
+      "vocab",
+      "speaking",
+      "dialogue-bauman-az",
+      "deep-speaking-bauman",
+      "speaking-link-index",
+      "writing",
+      "handwriting",
+      "exercises",
+      "tests",
+      "videos",
+      "mindmap",
+      "knowledge-index",
+      "simulations",
+      "reading",
+      "performance-tasks",
+      "technical-concepts",
+      "academic-functions",
+      "provenance",
+      "scenario-registry",
+      "ai-mentor-policy"
+    ]
+  },
+  "actualOwners": {
+    "attemptEvidenceMastery": "subjects/russian/assets/assessment-mastery.js",
+    "adaptivePlanner": "subjects/russian/assets/adaptive-planner.js",
+    "learningState": [
+      "subjects/russian/assets/learning-state.js",
+      "subjects/russian/assets/learning-flow.js"
+    ],
+    "vocabSrs": "subjects/russian/assets/vocab-srs.js",
+    "speechAdapter": "subjects/russian/assets/speech-interaction-engine.js",
+    "speakingWorkflow": "subjects/russian/assets/speaking-coach.js",
+    "handwriting": [
+      "subjects/russian/assets/handwriting-glyph-authority.js",
+      "subjects/russian/assets/handwriting-recognition.js"
+    ],
+    "linguisticAuthority": [
+      "subjects/russian/data/provenance.json",
+      "subjects/russian/docs/p7/RUSSIAN_LINGUISTIC_AUTHORITY_CONSTITUTION.md"
+    ],
+    "academicTechnical": [
+      "subjects/russian/data/technical-concepts.json",
+      "subjects/russian/data/academic-functions.json"
+    ],
+    "researchProduction": [
+      "subjects/russian/data/reading.json",
+      "subjects/russian/data/performance-tasks.json",
+      "subjects/russian/data/writing.json"
+    ],
+    "aiMentor": [
+      "subjects/russian/assets/ai-mentor-guard.js",
+      "subjects/russian/data/ai-mentor-policy.json"
+    ],
+    "scenarioComposition": [
+      "subjects/russian/data/scenario-registry.json",
+      "subjects/russian/assets/core.js"
+    ],
+    "sharedShell": "shared Bauman/foundation runtime",
+    "compatibilityOrchestration": "subjects/russian/assets/core.js"
+  },
+  "legacyAliasesAndCompatibility": [
+    "P0-P17 documents are migration evidence, not active execution topology",
+    "core.js remains compatibility/orchestration touchpoint and must not be bulk-deleted",
+    "existing learner-state storage keys must remain backward compatible until explicit RU08 migration acceptance"
+  ],
+  "stateConstraints": [
+    "exposure != progress != performance != mastery",
+    "no render/open/click-only mastery mutation",
+    "ASR is a signal, never pronunciation/mastery authority",
+    "AI mentor cannot write canonical mastery or silently promote generated content",
+    "scenario composition cannot write mastery/SRS/planner authority",
+    "malformed authoritative state must fail closed or recover explicitly; no silent destructive reset",
+    "no destructive learner-state migration in RU02"
+  ],
+  "runtimeBoundaries": [
+    "one speech adapter owner",
+    "P4 assessment/mastery owner remains exclusive",
+    "P5 adaptive planner consumes evidence read-only",
+    "vocab SRS remains separate from general mastery",
+    "large dialogue/deep-speaking/vocab data must remain package/lazy-load aware",
+    "shared Bauman shell/platform capabilities must not be forked for Russian"
+  ],
+  "unresolvedUnknowns": [
+    "exact final decomposition of remaining core.js compatibility/orchestration responsibilities",
+    "whether all legacy content identifiers can be normalized without adapters",
+    "final schema migration/retirement timing for old learner-state projections",
+    "RU08 final authoring/editor integration and legacy retirement boundaries"
+  ],
+  "ru02SafeNormalization": [
+    "curriculum topology and competency/prerequisite semantics",
+    "canonical Russian content entity semantics",
+    "stable IDs and cross-entity relations",
+    "content-as-data/manifest contracts that preserve current runtime compatibility"
+  ],
+  "ru02Forbidden": [
+    "UI redesign",
+    "mastery/SRS semantic rewrite",
+    "speech engine replacement",
+    "destructive state migration",
+    "bulk legacy deletion",
+    "production publish"
+  ]
+}
