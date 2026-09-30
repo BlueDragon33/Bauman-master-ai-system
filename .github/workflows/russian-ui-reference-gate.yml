@@ -27,6 +27,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22.13.0"
+      - name: Validate Russian P2 curriculum contract
+        run: node subjects/russian/scripts/validate-p2-curriculum-contract.mjs
       - name: Validate Russian reference UI contracts
         run: node subjects/russian/scripts/validate-reference-ui.mjs
       - name: Validate Russian lesson learning flow
