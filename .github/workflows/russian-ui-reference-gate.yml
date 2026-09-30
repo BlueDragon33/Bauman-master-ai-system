@@ -45,6 +45,8 @@ jobs:
         run: node subjects/russian/scripts/validate-p7-linguistic-authority.mjs
       - name: Validate Russian P8 academic technical coverage
         run: node subjects/russian/scripts/validate-p8-academic-technical.mjs
+      - name: Validate Russian P9 reading writing research production
+        run: node subjects/russian/scripts/validate-p9-reading-writing-research.mjs
       - name: Validate Russian reference UI contracts
         run: node subjects/russian/scripts/validate-reference-ui.mjs
       - name: Validate Russian lesson learning flow
