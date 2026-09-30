@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "1.0.0",
+  "phase": "P3",
+  "nodeRule": "Every graph node is a canonical stable ID.",
+  "relations": {
+    "requires": {
+      "acyclic": true
+    },
+    "teaches": {},
+    "uses": {},
+    "reviews": {},
+    "tests": {},
+    "contrasts": {},
+    "extends": {},
+    "remediates": {},
+    "contains": {},
+    "belongs-to": {},
+    "derived-from": {}
+  },
+  "validation": {
+    "reject": [
+      "dangling-node",
+      "unknown-relation",
+      "requires-cycle",
+      "assessment-without-teaching",
+      "lesson-without-competency"
+    ],
+    "warnings": [
+      "derived-output-without-generation-source",
+      "legacy-alias-without-target",
+      "generated-provenance-promoted-without-review"
+    ]
+  },
+  "derivedIndexPolicy": {
+    "knowledgeIndex": "DERIVED",
+    "speakingLinkIndex": "DERIVED",
+    "searchIndex": "DERIVED",
+    "reviewQueue": "DERIVED",
+    "recommendationCache": "DERIVED",
+    "routeManifest": "DERIVED_OR_INTEGRATION",
+    "dashboardAggregation": "DERIVED"
+  },
+  "search": {
+    "inputs": [
+      "lemma",
+      "stressless form",
+      "ё/е normalization where appropriate",
+      "inflected forms if supported",
+      "Vietnamese",
+      "Russian definition",
+      "domain",
+      "tags"
+    ],
+    "output": "canonical ID",
+    "rule": "Search indexes never become canonical linguistic fact owners."
+  }
+}
