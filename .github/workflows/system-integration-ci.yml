@@ -6,6 +6,9 @@ on:
     branches: [main]
     paths:
       - "subjects/math/**"
+      - "subjects/russian/**"
+      - "subjects/shared/**"
+      - "foundation/domain-model/**"
       - "tests/math-*.mjs"
       - "scripts/prepare-chatgpt-site.mjs"
       - "scripts/prepare-cloudflare-preview.mjs"
