@@ -35,10 +35,16 @@ assert(JSON.stringify(target.modules.map(x=>x.id)) === JSON.stringify(moduleIds)
 assert(JSON.stringify(lessons.map(x=>x.id)) === JSON.stringify(moduleIds), 'Legacy lessons R01-R26 compatibility identity drift');
 
 const stageIds = new Set(model.stages.map(x=>x.id));
-const unitIds = new Set(model.units.map(x=>x.id));
-const microIds = new Set(model.microLessons.map(x=>x.id));
-assert(uniq([...unitIds]), 'RU02 duplicate unit ID');
-assert(uniq([...microIds]), 'RU02 duplicate micro-lesson ID');
+const unitIdList = model.units.map(x=>x.id);
+const microIdList = model.microLessons.map(x=>x.id);
+const unitIds = new Set(unitIdList);
+const microIds = new Set(microIdList);
+assert(uniq(unitIdList), 'RU02 duplicate unit ID');
+assert(uniq(microIdList), 'RU02 duplicate micro-lesson ID');
+const targetUnitIds = target.modules.flatMap(m=>m.units||[]).map(x=>x.id);
+const targetMicroIds = target.modules.flatMap(m=>m.units||[]).flatMap(u=>u.microLessons||[]).map(x=>x.id);
+assert(JSON.stringify(unitIdList) === JSON.stringify(targetUnitIds), 'RU02 Unit identity/order drift from P2 target');
+assert(JSON.stringify(microIdList) === JSON.stringify(targetMicroIds), 'RU02 Micro-Lesson identity/order drift from P2 target');
 for (const m of model.macroModules) {
   assert(stageIds.has(m.stageId), 'Unknown stage for '+m.id);
   assert(Array.isArray(m.unitIds) && m.unitIds.length > 0, 'Module without units: '+m.id);
