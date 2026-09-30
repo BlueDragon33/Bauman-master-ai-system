@@ -43,11 +43,22 @@ try{
   assert.match(await page.locator('#subjectSubtitle').innerText(),/Nghe.*Nói.*Đọc.*Viết/);
   assert.equal(await page.locator('.ru-right-rail').count(),0,'Fixed right rail must be absent from the canonical learning shell');
 
-  // Prime one explicit presentation pass and let any already-queued RAF work settle.
-  // The measured pass below must still produce zero DOM/class mutations.
+  // Prime one explicit presentation pass, then wait for the app/package runtime to reach
+  // an actual DOM-quiet window. Packaged startup can deliver legitimate queued mutations
+  // later than two RAFs; those must not be misattributed to the measured upgrade pass.
   await page.evaluate(async()=>{
     window.RUSSIAN_FUTURE_UI.upgrade();
     await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+    const root=document.querySelector('.ru-app-shell');
+    await new Promise(resolve=>{
+      let quietTimer=null;
+      const finish=()=>{if(quietTimer)clearTimeout(quietTimer);observer.disconnect();resolve();};
+      const arm=()=>{if(quietTimer)clearTimeout(quietTimer);quietTimer=setTimeout(finish,200);};
+      const observer=new MutationObserver(arm);
+      observer.observe(root,{subtree:true,childList:true,attributes:true,attributeFilter:['class']});
+      arm();
+      setTimeout(finish,3000);
+    });
   });
 
   const idleMutationCount=await page.evaluate(async()=>{
