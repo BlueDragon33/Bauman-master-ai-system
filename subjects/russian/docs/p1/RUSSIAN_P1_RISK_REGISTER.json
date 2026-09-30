@@ -1,0 +1,108 @@
+{
+  "schema": "RUSSIAN_P1_RISK_REGISTER_V1",
+  "baseSha": "0ed6a1739f8e5010d05f5dc71f4558cf238bb87c",
+  "risks": [
+    {
+      "id": "P1-R001",
+      "title": "Oversize learner state deleted without backup",
+      "severity": "BLOCKER",
+      "probability": "LOW_TO_MEDIUM",
+      "impact": "learner data loss",
+      "affectedLayer": "State/Persistence",
+      "evidence": [
+        "subjects/russian/assets/core.js:23-33",
+        "subjects/russian/assets/core.js:43"
+      ],
+      "mitigation": "preserve raw backup; recover/migrate; never destructive fallback",
+      "mustFixBefore": "P4 state/schema migration / P14 hardening",
+      "ownerCandidate": "canonical learner state"
+    },
+    {
+      "id": "P1-R002",
+      "title": "ASR transcript similarity presented as speaking score/pass signal",
+      "severity": "CRITICAL",
+      "probability": "HIGH",
+      "impact": "misleading speaking evidence and task completion",
+      "affectedLayer": "Speaking/Assessment",
+      "evidence": [
+        "subjects/russian/assets/core.js:1709-1722",
+        "subjects/russian/assets/core.js:3907",
+        "subjects/russian/data/simulations.json:9-33"
+      ],
+      "mitigation": "P6 adapter signal only; P4 owns official evaluation; rename/remove fake precision",
+      "mustFixBefore": "P4/P6 PASS",
+      "ownerCandidate": "speaking evidence + assessment"
+    },
+    {
+      "id": "P1-R003",
+      "title": "Vocabulary lacks canonical stress authority",
+      "severity": "HIGH",
+      "probability": "CERTAIN",
+      "impact": "pronunciation/lexical learning quality",
+      "affectedLayer": "Content",
+      "evidence": [
+        "Russian Reference UI Gate content-contract audit: 0/8000 explicit stress; 7670 multi-vowel unstressed"
+      ],
+      "mitigation": "curated stress authority with provenance and validation",
+      "mustFixBefore": "P2/P3 lexical authority exit",
+      "ownerCandidate": "lexical content"
+    },
+    {
+      "id": "P1-R004",
+      "title": "Legacy CSS cascade ownership ambiguity",
+      "severity": "HIGH",
+      "probability": "HIGH",
+      "impact": "visual regressions and brittle responsive behavior",
+      "affectedLayer": "Presentation",
+      "evidence": [
+        "RUSSIAN_CSS_FORENSIC.json"
+      ],
+      "mitigation": "computed-style evidence then ownership migration; no bulk delete",
+      "mustFixBefore": "P13 / legacy retirement",
+      "ownerCandidate": "presentation"
+    },
+    {
+      "id": "P1-R005",
+      "title": "core.js broad multi-responsibility ownership",
+      "severity": "HIGH",
+      "probability": "CERTAIN",
+      "impact": "duplicate owner / regression coupling",
+      "affectedLayer": "Architecture",
+      "evidence": [
+        "RUSSIAN_DOM_OWNERSHIP_MAP.md",
+        "RUSSIAN_ENGINE_OWNERSHIP_MATRIX.md"
+      ],
+      "mitigation": "facades/adapters and owner migration by phase",
+      "mustFixBefore": "P16",
+      "ownerCandidate": "domain runtime"
+    },
+    {
+      "id": "P1-R006",
+      "title": "Russian changes previously missed whole-system browser trigger",
+      "severity": "HIGH",
+      "probability": "RESOLVED_IN_AUDIT_TOOLING",
+      "impact": "false-confidence CI",
+      "affectedLayer": "Testing",
+      "evidence": [
+        ".github/workflows/system-integration-ci.yml before P1 branch"
+      ],
+      "mitigation": "audit branch adds Russian/shared/foundation path triggers",
+      "mustFixBefore": "P1 exit",
+      "ownerCandidate": "CI"
+    },
+    {
+      "id": "P1-R007",
+      "title": "Large optional datasets create direct/package parity risk",
+      "severity": "MEDIUM",
+      "probability": "HIGH",
+      "impact": "package-only data loading defects",
+      "affectedLayer": "Data/Offline",
+      "evidence": [
+        "dialogue 35MB; deep-speaking 28MB; preview workflow chunk checks"
+      ],
+      "mitigation": "test source + packaged runtime separately",
+      "mustFixBefore": "P14/P15",
+      "ownerCandidate": "optional data loader/package"
+    }
+  ]
+}
