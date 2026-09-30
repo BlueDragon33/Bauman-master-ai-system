@@ -25,3 +25,10 @@ Historical reports do not override current runtime. Unknowns discovered by P1 ar
 
 ## P1 exit statement
 All ten P1 quality-gate conditions are evidenced. No unresolved blocker/critical remains **inside P1 audit/tooling scope**. Risks that require product/state changes remain open with explicit owner phases and therefore do not authorize premature fixes in P1.
+
+## Exit validation
+P1 exit status: **PASS** at `1252f7c46694cb40466ff0d483ccad92439cde7b`.
+
+Relevant CI: Constitution PASS; Russian Reference UI PASS; Fast CI PASS; static System Integration PASS; Russian P1 Browser Acceptance PASS; Whole System Browser Acceptance PASS.
+
+Cloudflare's automatic branch build check failed independently of the P1 audit contract. P1 does not publish production and therefore records this as an external deployment limitation for P17/P14 follow-up rather than treating it as Russian forensic runtime evidence.
