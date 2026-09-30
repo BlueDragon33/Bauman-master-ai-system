@@ -269,6 +269,16 @@
       </div>
     </article>`).join('');
   }
+  function plannerRows(){
+    const plan=window.RussianAdaptivePlanner?.buildPlan?.({maxItems:6});
+    const tasks=Array.isArray(plan?.tasks)?plan.tasks:[];
+    if(!tasks.length)return '';
+    const rows=tasks.slice(0,6).map(item=>`<article class="ru-review-row">
+      <div><b>${esc(item.label||'Nhiệm vụ đề xuất')}</b><span>${esc(item.reasonLabel||item.reason||'')}</span></div>
+      <div class="ru-review-row-actions"><button type="button" data-route='${routeAttr(item.route||{view:'overview'})}'>Mở</button></div>
+    </article>`).join('');
+    return `<section class="ru-review-queue-preview" data-ru-adaptive-plan><header><div><span>KẾ HOẠCH THÍCH NGHI</span><b>${tasks.length} nhiệm vụ ưu tiên</b></div><small>Mỗi đề xuất có lý do; mở nhiệm vụ không tự tạo mastery.</small></header>${rows}</section>`;
+  }
   function renderToday(){
     const view=document.getElementById('view');if(!view)return;
     const core=readCore();
@@ -285,7 +295,7 @@
         <button class="ru-today-action" data-route='{"view":"vocab"}'><b>Từ vựng</b><span>Học trong ngữ cảnh</span></button>
         ${resume?'<button class="ru-today-action" data-ru-review-mark="current"><b>Đánh dấu</b><span>Cần ôn lại phần này</span></button>':''}
       </div>
-      <section class="ru-review-queue-preview"><header><div><span>REVIEW QUEUE</span><b>${due.length?`${due.length} mục đến hạn`:'Đã xử lý hết mục đến hạn'}</b></div><small>Lý do ôn được lấy từ thao tác thật; sửa đúng sẽ tự rời hàng đợi.</small></header>${reviewRows(due)}</section>`;
+      <section class="ru-review-queue-preview"><header><div><span>REVIEW QUEUE</span><b>${due.length?`${due.length} mục đến hạn`:'Đã xử lý hết mục đến hạn'}</b></div><small>Lý do ôn được lấy từ thao tác thật; sửa đúng sẽ tự rời hàng đợi.</small></header>${reviewRows(due)}</section>${plannerRows()}`;
   }
   function scheduleRenderToday(){clearTimeout(renderTimer);renderTimer=setTimeout(renderToday,0);}
   function explicitRoute(target){
