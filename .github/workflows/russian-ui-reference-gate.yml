@@ -109,6 +109,8 @@ jobs:
         run: node subjects/russian/scripts/validate-ai-runtime.mjs
       - name: Validate Russian P11 scenario simulation layer
         run: node subjects/russian/scripts/validate-p11-scenario-simulation.mjs
+      - name: Validate Russian P12 authoring governance
+        run: node subjects/russian/scripts/validate-p12-authoring-governance.mjs
       - name: Validate Russian promotion candidate
         run: node subjects/russian/scripts/validate-promotion-candidate.mjs
       - name: Parse Russian runtime JavaScript
