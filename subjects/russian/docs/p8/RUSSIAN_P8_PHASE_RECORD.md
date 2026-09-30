@@ -18,5 +18,16 @@
 16. **PR/merge rule:** merge only after P8 validator + foundation + browser/package regressions PASS.
 17. **Production effect:** none; P17 remains production authority.
 
-- **State:** IN_PROGRESS
+- **State:** PASS
 - **Change class:** C/E — additive canonical content and validation architecture.
+
+## Exit evidence
+- P8 academic/technical validator: PASS.
+- Full P2.9 minimum technical matrix enforced, not merely domain presence.
+- P7 authority labels preserved: normative GOST-backed terms may be VERIFIED; other authoritative learning sources remain SOURCE_ASSERTED.
+- Russian Reference UI / Fast CI / Constitution / static integration: PASS.
+- Russian source + packaged browser regressions: PASS.
+- No learner-state, mastery, SRS, planner, audio, speech or UI ownership change.
+- Cloudflare branch deployment check remains outside P8 product scope; production authority remains P17.
+
+**P8 STATE: PASS**
