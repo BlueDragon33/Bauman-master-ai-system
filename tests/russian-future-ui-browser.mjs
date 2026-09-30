@@ -225,7 +225,10 @@ try{
       assert.equal(await page.locator('[data-act="toggle-vi"]').isDisabled(),false,'Translation control may unlock only after transcript reveal');
       assert.equal(await page.locator('.speech-content-board p').count(),0,'Vietnamese meaning must remain hidden when transcript is first revealed');
       for(const action of ['speak-line','speak-line-slow','record-line'])assert.equal(await page.locator('[data-act="'+action+'"]').count()>0,true,'Speaking primary action missing: '+action);
-      assert.match(await page.locator('[data-act="record-line"]').first().innerText(),/Bắt đầu nói|Ghi âm/,'Speaking must expose recording as an explicit primary action');
+      assert.match(await page.locator('[data-act="record-line"]').first().innerText(),/Nhận giọng nói|Transcript|ASR/i,'Speaking ASR action must be labeled as recognition/transcript, not local recording');
+      await page.waitForSelector('[data-ru-speaking="record-local"],[data-ru-speaking="record-stop"]',{state:'visible',timeout:10000});
+      const recorderLabel=await page.locator('[data-ru-speaking="record-local"],[data-ru-speaking="record-stop"]').first().innerText();
+      assert.match(recorderLabel,/Ghi âm|Dừng ghi/,'Speaking Coach must expose local recording as a distinct explicit action');
       await page.locator('[data-act="toggle-transcript"]').click();
       await page.waitForSelector('.transcript-listen-first',{state:'visible',timeout:10000});
     }
