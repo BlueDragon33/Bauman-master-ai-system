@@ -1,0 +1,287 @@
+{
+  "schema": "RUSSIAN_SCENARIO_REGISTRY_V1",
+  "phase": "P11",
+  "engine": {
+    "dialogueRuntimeOwner": "P6",
+    "speechRecognitionOwner": "P6",
+    "recordingOwner": "P6",
+    "masteryOwner": "P4",
+    "plannerOwner": "P5",
+    "linguisticTruthOwner": "P7",
+    "aiCoachOwner": "P10",
+    "duplicateSpeechEngineAllowed": false
+  },
+  "statePolicy": {
+    "scenarioSession": "TRANSIENT_PRACTICE_STATE",
+    "writesMastery": false,
+    "writesSrs": false,
+    "writesPlanner": false,
+    "officialAssessment": false,
+    "completionMeaning": "PRACTICE_COMPLETION_ONLY"
+  },
+  "progression": {
+    "requiredScenarioFamilies": [
+      "real-life",
+      "administration",
+      "classroom",
+      "lab",
+      "seminar",
+      "research",
+      "defense"
+    ],
+    "requireUnexpectedTurn": true,
+    "requireRepairPath": true,
+    "requireBranching": true
+  },
+  "scenarios": [
+    {
+      "id": "P11-LIFE-ROOMMATE",
+      "family": "real-life",
+      "stage": "vn",
+      "titleVi": "Làm quen với bạn cùng phòng",
+      "titleRu": "Знакомство с соседом по комнате",
+      "contextRef": "vn|G01|G01_C03",
+      "goal": "introduce-self-and-establish-basic-roommate-coordination",
+      "roles": [
+        "learner",
+        "roommate"
+      ],
+      "startNode": "intro",
+      "nodes": {
+        "intro": {
+          "contextRef": "vn|G01|G01_C03",
+          "next": [
+            "clarify"
+          ]
+        },
+        "clarify": {
+          "unexpectedTurn": "roommate-speaks-too-fast",
+          "repairPath": [
+            "ask-repeat",
+            "ask-slower"
+          ],
+          "next": [
+            "close"
+          ]
+        },
+        "close": {
+          "completion": "practice"
+        }
+      }
+    },
+    {
+      "id": "P11-ADMIN-RECEPTION",
+      "family": "administration",
+      "stage": "vn",
+      "titleVi": "Hỏi quầy tiếp nhận",
+      "titleRu": "Спросить о стойке регистрации",
+      "contextRef": "vn|G63|AZ_VN_0016",
+      "goal": "locate-registration-desk-and-repair-missing-information",
+      "roles": [
+        "learner",
+        "security"
+      ],
+      "startNode": "ask",
+      "nodes": {
+        "ask": {
+          "contextRef": "vn|G63|AZ_VN_0016",
+          "next": [
+            "document-turn"
+          ]
+        },
+        "document-turn": {
+          "unexpectedTurn": "security-asks-for-document",
+          "repairPath": [
+            "state-missing-document",
+            "ask-where-to-go"
+          ],
+          "next": [
+            "close"
+          ]
+        },
+        "close": {
+          "completion": "practice"
+        }
+      }
+    },
+    {
+      "id": "P11-CLASS-PDF",
+      "family": "classroom",
+      "stage": "vn",
+      "titleVi": "Xin tài liệu khi giảng viên nói nhanh",
+      "titleRu": "Попросить материал, когда преподаватель говорит быстро",
+      "contextRef": "vn|G03|LEVEL1_C0009",
+      "goal": "request-learning-material-and-clarify-fast-instruction",
+      "roles": [
+        "learner",
+        "teacher"
+      ],
+      "startNode": "request",
+      "nodes": {
+        "request": {
+          "contextRef": "vn|G03|LEVEL1_C0009",
+          "next": [
+            "clarify"
+          ]
+        },
+        "clarify": {
+          "unexpectedTurn": "teacher-gives-fast-follow-up",
+          "repairPath": [
+            "ask-repeat",
+            "confirm-file"
+          ],
+          "next": [
+            "close"
+          ]
+        },
+        "close": {
+          "completion": "practice"
+        }
+      }
+    },
+    {
+      "id": "P11-LAB-TASK",
+      "family": "lab",
+      "stage": "prep",
+      "titleVi": "Nhận nhiệm vụ lab và xử lý máy không chạy",
+      "titleRu": "Получить задание и решить проблему с компьютером",
+      "contextRef": "prep|L2G04|L2G04_C01",
+      "goal": "understand-lab-task-and-report-blocker",
+      "roles": [
+        "learner",
+        "lab-instructor"
+      ],
+      "startNode": "task",
+      "nodes": {
+        "task": {
+          "contextRef": "prep|L2G04|L2G04_C01",
+          "next": [
+            "failure"
+          ]
+        },
+        "failure": {
+          "contextRef": "prep|L2G04|L2G04_C02",
+          "unexpectedTurn": "lab-computer-does-not-run",
+          "repairPath": [
+            "describe-symptom",
+            "ask-next-step"
+          ],
+          "next": [
+            "close"
+          ]
+        },
+        "close": {
+          "completion": "practice"
+        }
+      }
+    },
+    {
+      "id": "P11-SEMINAR-FIRST",
+      "family": "seminar",
+      "stage": "hk1",
+      "titleVi": "Tham gia seminar đầu tiên",
+      "titleRu": "Участвовать в первом семинаре",
+      "contextRef": "hk1|G68|AZ_HK1_0035",
+      "goal": "enter-seminar-discussion-and-handle-follow-up",
+      "roles": [
+        "learner",
+        "seminar-moderator",
+        "peer"
+      ],
+      "startNode": "entry",
+      "nodes": {
+        "entry": {
+          "contextRef": "hk1|G68|AZ_HK1_0035",
+          "next": [
+            "follow-up"
+          ]
+        },
+        "follow-up": {
+          "unexpectedTurn": "peer-asks-for-example",
+          "repairPath": [
+            "ask-clarification",
+            "give-short-example"
+          ],
+          "next": [
+            "close"
+          ]
+        },
+        "close": {
+          "completion": "practice"
+        }
+      }
+    },
+    {
+      "id": "P11-RESEARCH-NIR",
+      "family": "research",
+      "stage": "hk3",
+      "titleVi": "Xin góp ý mục tiêu nghiên cứu",
+      "titleRu": "Попросить отзыв о цели исследования",
+      "contextRef": "hk3|G79|AZ_HK3_0077",
+      "goal": "state-research-objective-and-negotiate-feedback",
+      "roles": [
+        "learner",
+        "supervisor"
+      ],
+      "startNode": "objective",
+      "nodes": {
+        "objective": {
+          "contextRef": "hk3|G79|AZ_HK3_0077",
+          "next": [
+            "challenge"
+          ]
+        },
+        "challenge": {
+          "unexpectedTurn": "supervisor-challenges-scope",
+          "repairPath": [
+            "restate-scope",
+            "ask-priority"
+          ],
+          "next": [
+            "close"
+          ]
+        },
+        "close": {
+          "completion": "practice"
+        }
+      }
+    },
+    {
+      "id": "P11-DEFENSE-COMMISSION",
+      "family": "defense",
+      "stage": "hk4",
+      "titleVi": "Mở đầu bảo vệ và trả lời câu hỏi hội đồng",
+      "titleRu": "Начать защиту и ответить комиссии",
+      "contextRef": "hk4|G81|AZ_HK4_0085",
+      "goal": "open-defense-and-handle-unexpected-commission-question",
+      "roles": [
+        "learner",
+        "commission"
+      ],
+      "startNode": "opening",
+      "nodes": {
+        "opening": {
+          "contextRef": "hk4|G81|AZ_HK4_0085",
+          "next": [
+            "question"
+          ]
+        },
+        "question": {
+          "contextRef": "hk4|L4_G16|L4_G16_C07",
+          "unexpectedTurn": "commission-asks-about-baseline",
+          "repairPath": [
+            "clarify-question",
+            "answer-with-limitation"
+          ],
+          "next": [
+            "close"
+          ]
+        },
+        "close": {
+          "contextRef": "hk4|L4_G18|L4_G18_C07",
+          "completion": "practice"
+        }
+      }
+    }
+  ]
+}
