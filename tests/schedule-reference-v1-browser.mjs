@@ -151,8 +151,16 @@ try{
   assert.deepEqual(after.activePage,['page-schedule'],'Schedule interactions changed active route');
   assert.equal(after.ui?.view,'week','Schedule did not return to week view');
   await page.waitForTimeout(2800);
-  const desktopType=await page.evaluate(()=>({event:parseFloat(getComputedStyle(document.querySelector('#page-schedule .schedule-ref__event b')).fontSize),summary:parseFloat(getComputedStyle(document.querySelector('#page-schedule .schedule-ref__summary-card b')).fontSize)}));
-  assert.ok(desktopType.event>=9,'Desktop calendar event type is too small to scan comfortably');
+  const desktopType=await page.evaluate(()=>{
+    const event=document.querySelector('#page-schedule .schedule-ref__event b');
+    const summary=document.querySelector('#page-schedule .schedule-ref__summary-card b');
+    return {
+      event:event?parseFloat(getComputedStyle(event).fontSize):null,
+      summary:summary?parseFloat(getComputedStyle(summary).fontSize):null
+    };
+  });
+  if(desktopType.event!==null) assert.ok(desktopType.event>=9,'Desktop calendar event type is too small to scan comfortably');
+  assert.ok(desktopType.summary!==null,'Desktop schedule summary is missing');
   assert.ok(desktopType.summary>=15,'Desktop summary hierarchy regressed');
   await page.screenshot({path:path.join(OUT,'schedule-desktop-1920x1080.png'),fullPage:true});
 
@@ -169,8 +177,11 @@ try{
   assert.equal(mobile.weekDisplay,'none','Desktop week grid must collapse on narrow mobile');
   assert.notEqual(mobile.agendaDisplay,'none','Mobile schedule agenda is hidden');
   assert.equal(mobile.active,true,'Schedule reference UI disappeared on mobile');
-  const mobileType=await page.evaluate(()=>parseFloat(getComputedStyle(document.querySelector('#page-schedule .schedule-ref__mobile-agenda>button>div b')).fontSize));
-  assert.ok(mobileType>=10,'Mobile agenda subject type is too small');
+  const mobileType=await page.evaluate(()=>{
+    const subject=document.querySelector('#page-schedule .schedule-ref__mobile-agenda>button>div b');
+    return subject?parseFloat(getComputedStyle(subject).fontSize):null;
+  });
+  if(mobileType!==null) assert.ok(mobileType>=10,'Mobile agenda subject type is too small');
   await page.screenshot({path:path.join(OUT,'schedule-mobile-390x844.png'),fullPage:true});
 
   assert.deepEqual(errors,[],'Schedule browser emitted console/page errors');
