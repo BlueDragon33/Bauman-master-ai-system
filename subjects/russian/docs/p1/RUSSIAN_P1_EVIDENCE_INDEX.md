@@ -32,3 +32,12 @@ P1 exit status: **PASS** at `1252f7c46694cb40466ff0d483ccad92439cde7b`.
 Relevant CI: Constitution PASS; Russian Reference UI PASS; Fast CI PASS; static System Integration PASS; Russian P1 Browser Acceptance PASS; Whole System Browser Acceptance PASS.
 
 Cloudflare's automatic branch build check failed independently of the P1 audit contract. P1 does not publish production and therefore records this as an external deployment limitation for P17/P14 follow-up rather than treating it as Russian forensic runtime evidence.
+
+## Final P1 validation
+- `russian-p1-browser-acceptance`: PASS.
+- `browser-system-acceptance`: PASS.
+- `russian-reference-ui`: PASS.
+- `fast-check`: PASS.
+- `constitution / constitution`: PASS.
+- `validate-system-integration`: PASS.
+- Cloudflare branch build check: FAIL outside P1 audit scope; production remains unchanged and P17 owns deployment verification.
