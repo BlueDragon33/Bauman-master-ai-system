@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentRevision": "2026-09-30-ru02",
+  "kind": "RUSSIAN_CONTENT_GRAPH",
+  "module": "RU02",
+  "canonicalNodeSources": {
+    "curriculum": "subjects/russian/data/canonical-model.json",
+    "owners": "subjects/russian/data/canonical-owner-registry.json"
+  },
+  "allowedRelations": [
+    "requires",
+    "teaches",
+    "uses",
+    "reviews",
+    "tests",
+    "contrasts",
+    "extends",
+    "remediates",
+    "contains",
+    "belongs-to",
+    "derived-from"
+  ],
+  "materializedLayers": [
+    "Stage contains MacroModule",
+    "MacroModule contains Unit",
+    "Unit contains MicroLesson",
+    "MacroModule teaches Competency",
+    "Competency requires Competency"
+  ],
+  "generatedEdgePolicy": "Containment and competency edges are deterministically generated from canonical-model.json; do not hand-copy them into lessons.",
+  "validations": [
+    "no dangling node",
+    "no unknown relation",
+    "requires graph acyclic",
+    "every MacroModule teaches at least one Competency",
+    "every Competency is taught by at least one MacroModule",
+    "every Unit belongs to one MacroModule",
+    "every MicroLesson belongs to one Unit",
+    "assessment-to-competency binding must be completed by RU04 before it may become mastery evidence",
+    "derived outputs may reference canonical IDs but cannot own linguistic facts"
+  ],
+  "crossDomainBindings": [
+    {
+      "from": "AssessmentItem",
+      "to": "Competency",
+      "relation": "tests",
+      "ownerModule": "RU04",
+      "state": "HANDOFF_REQUIRED"
+    },
+    {
+      "from": "ErrorPattern",
+      "to": "GrammarConcept|PhoneticConcept|LexicalEntry",
+      "relation": "remediates",
+      "ownerModule": "RU03_RU04",
+      "state": "HANDOFF_REQUIRED"
+    },
+    {
+      "from": "ListeningItem|SpeakingItem|DialogueScenario|DeepSpeakingTask",
+      "to": "Competency",
+      "relation": "uses",
+      "ownerModule": "RU05",
+      "state": "HANDOFF_REQUIRED"
+    },
+    {
+      "from": "ReadingText|WritingTask|TechnicalConcept|AcademicFunction|PerformanceTask",
+      "to": "Competency",
+      "relation": "uses",
+      "ownerModule": "RU06",
+      "state": "HANDOFF_REQUIRED"
+    }
+  ]
+}
