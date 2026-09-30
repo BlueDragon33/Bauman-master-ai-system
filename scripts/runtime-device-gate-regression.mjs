@@ -36,7 +36,12 @@ assert.doesNotMatch(html, /bauman-platform-access/, "Source runtime must not tru
 
 assert.match(config, /protocol:\s*'bauman-control-v4'/);
 assert.match(config, /local \? 'http:\/\/127\.0\.0\.1:3003'/);
-assert.match(config, /deviceAccess:\s*true/);
+assert.match(config, /bauman-access-mode/);
+assert.match(config, /accessMode\s*=\s*[\s\S]*===\s*'managed'[\s\S]*\?\s*'managed'[\s\S]*:\s*'standalone'/);
+assert.match(config, /deviceAccess:\s*accessMode\s*===\s*'managed'/);
+assert.match(config, /deviceAccessControl:\s*accessMode\s*===\s*'managed'/);
+assert.match(config, /standaloneDevelopment:\s*accessMode\s*===\s*'standalone'/);
+assert.doesNotMatch(config, /deviceAccess:\s*true/, 'Device access must be mode-bound, not hard-coded on for standalone development');
 assert.match(config, /offlineGraceMs:\s*86400000/);
 assert.doesNotMatch(config, /workers\.dev/);
 assert.doesNotMatch(config, /chatgpt\.site/);
