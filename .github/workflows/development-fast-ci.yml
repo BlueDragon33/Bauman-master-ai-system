@@ -46,6 +46,9 @@ jobs:
             fi
           done
 
+      - name: Runtime device gate regression
+        run: node scripts/runtime-device-gate-regression.mjs
+
       - name: Subjects reference static
         run: node tests/subjects-reference-v1-static.mjs
 
