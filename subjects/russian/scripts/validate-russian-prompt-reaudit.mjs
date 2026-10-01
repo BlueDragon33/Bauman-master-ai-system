@@ -34,6 +34,8 @@ has(scenario,'RUSSIAN_RU05_SCENARIO_RUNTIME_V1');
 has(scenario,'bauman_russian_scenario_registry_v1');
 has(scenario,"authoritative:false");
 has(scenario,'offlineFallback');
+has(scenario,'lazyOnCapabilityUse:true');
+no(scenario,"DOMContentLoaded',()=>{loadRegistry()", 'RU05 registry must not eager-load at Russian startup');
 has(index,'assets/scenario-runtime.js');
 has(index,'assets/scenario-runtime.css');
 
@@ -41,6 +43,8 @@ for(const name of ['technical-concepts','academic-functions','reading','performa
 has(production,'learner-production-snapshot');
 has(production,'novel-transfer');
 has(production,'authoritative:false');
+has(production,'lazyOnCapabilityUse:true');
+no(production,"DOMContentLoaded',()=>{loadData()", 'RU06 canonical production datasets must not eager-load at Russian startup');
 has(index,'assets/academic-production.js');
 has(index,'assets/academic-production.css');
 
