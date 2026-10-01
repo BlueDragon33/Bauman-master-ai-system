@@ -12,7 +12,7 @@
   const esc=v=>clean(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
   const now=()=>new Date().toISOString();
   const words=v=>clean(v)?clean(v).split(/\s+/).filter(Boolean).length:0;
-  let datasets=null,loadError=null,blocked=false,queued=false;
+  let datasets=null,loadError=null,blocked=false,queued=false,loadingPromise=null;
 
   function empty(){return {schema:SCHEMA,activeTaskId:'',work:{},updatedAt:null};}
   function loadState(){
@@ -42,19 +42,24 @@
   }
   function cacheData(value){try{localStorage.setItem(DATA_CACHE_KEY,JSON.stringify(value));}catch(_){}}
   async function loadData(){
-    try{
-      const names=['technical-concepts','academic-functions','reading','performance-tasks','provenance'];
-      const values=await Promise.all(names.map(name=>fetch('data/'+name+'.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error(name+':HTTP '+r.status);return r.json();})));
-      datasets={technical:values[0],academic:values[1],reading:values[2],performance:values[3],provenance:values[4]};
-      if(!taskList().length)throw new Error('performance-task-empty');
-      loadError=null;cacheData(datasets);
-    }catch(error){
-      loadError=String(error?.message||error);
-      const cached=parse(localStorage.getItem(DATA_CACHE_KEY),null);
-      if(cached&&arr(cached?.performance?.tasks).length)datasets=cached;else datasets=null;
-    }
-    if(!state.activeTaskId&&taskList()[0])state.activeTaskId=taskList()[0].id;
-    schedule();return datasets;
+    if(datasets)return datasets;
+    if(loadingPromise)return loadingPromise;
+    loadingPromise=(async()=>{
+      try{
+        const names=['technical-concepts','academic-functions','reading','performance-tasks','provenance'];
+        const values=await Promise.all(names.map(name=>fetch('data/'+name+'.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error(name+':HTTP '+r.status);return r.json();})));
+        datasets={technical:values[0],academic:values[1],reading:values[2],performance:values[3],provenance:values[4]};
+        if(!taskList().length)throw new Error('performance-task-empty');
+        loadError=null;cacheData(datasets);
+      }catch(error){
+        loadError=String(error?.message||error);
+        const cached=parse(localStorage.getItem(DATA_CACHE_KEY),null);
+        if(cached&&arr(cached?.performance?.tasks).length)datasets=cached;else datasets=null;
+      }
+      if(!state.activeTaskId&&taskList()[0])state.activeTaskId=taskList()[0].id;
+      schedule();return datasets;
+    })();
+    try{return await loadingPromise;}finally{loadingPromise=null;}
   }
 
   function updateField(field,value){
@@ -73,7 +78,7 @@
     const t=task();if(!t)return null;const row=work(t.id);
     const item={label:clean(label),at:now()};row.selfChecks.push(item);row.selfChecks=row.selfChecks.slice(-20);row.updatedAt=item.at;save();schedule();return item;
   }
-  function status(){return {schema:SCHEMA,ready:Boolean(datasets),offlineFallback:Boolean(datasets)&&Boolean(loadError),loadError,blocked,activeTaskId:state.activeTaskId,taskCount:taskList().length,trust:{technical:datasetTrust('technical-concepts'),academicFunctions:datasetTrust('academic-functions'),reading:datasetTrust('reading'),performanceTasks:datasetTrust('performance-tasks')},state:JSON.parse(JSON.stringify(state))};}
+  function status(){return {schema:SCHEMA,ready:Boolean(datasets),loading:Boolean(loadingPromise),lazyOnCapabilityUse:true,offlineFallback:Boolean(datasets)&&Boolean(loadError),loadError,blocked,activeTaskId:state.activeTaskId,taskCount:taskList().length,trust:{technical:datasetTrust('technical-concepts'),academicFunctions:datasetTrust('academic-functions'),reading:datasetTrust('reading'),performanceTasks:datasetTrust('performance-tasks')},state:JSON.parse(JSON.stringify(state))};}
   function schedule(){if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;render();});}
 
   function render(){
@@ -82,8 +87,9 @@
     const active=c.view==='writing'&&c.writingMode==='academic';
     if(!active){panel?.remove();return;}
     if(!datasets){
+      if(!loadingPromise)loadData();
       if(!panel){panel=document.createElement('section');panel.id='ruAcademicProduction';panel.className='ru-production-studio';view.prepend(panel);}
-      panel.innerHTML='<header><span>RU06 · ACADEMIC / TECHNICAL / RESEARCH</span><h3>Production workspace</h3></header><p>'+(loadError?'Không tải được canonical RU06 data: '+esc(loadError):'Đang tải canonical RU06 data...')+'</p>';return;
+      panel.innerHTML='<header><span>RU06 · ACADEMIC / TECHNICAL / RESEARCH</span><h3>Production workspace</h3></header><p>'+(loadError?'Không tải được canonical RU06 data: '+esc(loadError):'Đang tải canonical RU06 data theo nhu cầu...')+'</p>';return;
     }
     const t=task();if(!t)return;
     const row=work(t.id),reads=readingFor(t),conceptCandidates=conceptCandidatesFor(t),concepts=conceptsFor(t),functions=functionsFor(t);
@@ -123,6 +129,6 @@
     if(check){event.preventDefault();selfCheck(check);return;}
     setTimeout(schedule,0);
   },true);
-  document.addEventListener('DOMContentLoaded',()=>{loadData();schedule();});
+  document.addEventListener('DOMContentLoaded',()=>{schedule();});
   window.RussianAcademicProduction={schema:SCHEMA,loadData,status,listTasks:()=>JSON.parse(JSON.stringify(taskList())),select:id=>{if(taskList().some(t=>t.id===id)){state.activeTaskId=id;save();schedule();return true}return false},snapshot,selfCheck};
 })();
