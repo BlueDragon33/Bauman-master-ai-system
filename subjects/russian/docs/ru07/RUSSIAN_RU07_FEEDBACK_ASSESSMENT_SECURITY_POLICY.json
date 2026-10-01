@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_RU07_FEEDBACK_ASSESSMENT_SECURITY_POLICY",
+  "correctionClasses": [
+    "incorrect",
+    "unusual-but-valid",
+    "register-mismatch",
+    "accepted-variant",
+    "uncertain-context-dependent"
+  ],
+  "hintLadder": [
+    "H1-function-goal",
+    "H2-concept-pattern",
+    "H3-next-step-chunk",
+    "H4-partial-model-parallel-example",
+    "H5-full-explanation-when-allowed"
+  ],
+  "preserveDuringWriting": [
+    "claim-strength",
+    "negation",
+    "condition",
+    "numeric-value",
+    "formula",
+    "code",
+    "citation",
+    "technical-meaning"
+  ],
+  "assessmentLeakageBlocked": [
+    "direct-answer",
+    "translation-answer",
+    "rephrased-answer",
+    "hidden-acrostic-hint",
+    "previous-turn-answer-context"
+  ],
+  "promptInjectionSources": [
+    "documents",
+    "html-markdown",
+    "code-comments",
+    "metadata",
+    "retrieved-snippets",
+    "conversation-summaries"
+  ],
+  "toolPolicy": [
+    "least-privilege",
+    "validate-args",
+    "validate-returned-ids",
+    "learner-source-text-is-data-not-instruction"
+  ],
+  "privacy": [
+    "minimize-provider-data",
+    "no-secret-logging",
+    "conversation-summary-not-canonical-truth"
+  ]
+}
