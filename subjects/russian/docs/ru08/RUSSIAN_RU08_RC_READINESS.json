@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
   "kind": "RUSSIAN_RU08_RC_READINESS",
-  "state": "CANDIDATE",
+  "state": "READY_FOR_MERGE",
   "runtimeSourceBase": "main@f6aa11215dfcf24e2d646f7c9737733e66c642c8",
   "artifactIdentity": "Russian subject package materialized from exact accepted Git SHA",
   "contentSnapshot": "subjects/russian/subject-manifest.json + canonical datasets referenced by RU02 owner registry",
@@ -28,5 +28,13 @@
     "offline reload",
     "protected data/device gate"
   ],
-  "releaseAnnex": "GLOBAL_CONSTITUTIONS/C3_RELEASE_ANNEX_PRODUCTION.md"
+  "releaseAnnex": "GLOBAL_CONSTITUTIONS/C3_RELEASE_ANNEX_PRODUCTION.md",
+  "acceptanceEvidence": {
+    "russianReferenceUiGate": "PASS on d80cee27a0c1c617e78d47e20b58d4a6d64dfc42",
+    "wholeSystemIntegrationRun": 36875196038,
+    "wholeSystemIntegration": "PASS",
+    "constitution": "PASS",
+    "fastCi": "PASS"
+  },
+  "rcIdentityRule": "After merge, the merge SHA is the exact RC source identity; release must not target latest/main ambiguously."
 }
