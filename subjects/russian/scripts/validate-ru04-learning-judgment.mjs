@@ -25,4 +25,9 @@ for(const s of ['listening','speaking','writing','technical','research']) assert
 for(const x of ['audio-playback','watch-time','page-open','AI-duration','ASR-similarity-alone']) assert(evidence.nonAuthoritativeSignals.includes(x));
 assert(planner.forbiddenRecomputeTriggers.includes('render'));
 assert.equal(planner.intensiveModeRule.includes('never rewrite mastery'),true);
+const coreRuntime=fs.readFileSync('subjects/russian/assets/core.js','utf8');
+assert(coreRuntime.includes('authoritativeGateRecords'),'RU04 stage gates must count authority-eligible evidence only');
+assert(coreRuntime.includes('authorityEligible:true'),'RU04 official gate records must carry authority metadata');
+assert(coreRuntime.includes('diagnostic-unverified'),'RU04 must separate diagnostic scoring from official assessment');
+assert(fs.existsSync('tests/russian-ru03-assessment-authority-browser.mjs'),'RU04 truth-first gate browser regression missing');
 console.log(JSON.stringify({ok:true,masteryOwner:contract.authorities.mastery,plannerOwner:contract.authorities.reviewOrchestration,evidenceTypes:evidence.authoritativeEvidenceTypes.length}));
