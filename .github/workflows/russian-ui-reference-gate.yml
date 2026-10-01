@@ -53,6 +53,8 @@ jobs:
         run: node subjects/russian/scripts/validate-p8-academic-technical.mjs
       - name: Validate Russian P9 reading writing research production
         run: node subjects/russian/scripts/validate-p9-reading-writing-research.mjs
+      - name: Validate Russian RU06 academic production
+        run: node subjects/russian/scripts/validate-ru06-academic-production.mjs
       - name: Validate Russian P10 AI mentor guardrails
         run: node subjects/russian/scripts/validate-p10-ai-mentor-guardrails.mjs
       - name: Validate Russian reference UI contracts

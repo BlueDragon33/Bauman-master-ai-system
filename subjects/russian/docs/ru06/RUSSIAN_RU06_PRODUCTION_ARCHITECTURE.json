@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_RU06_PRODUCTION_ARCHITECTURE",
+  "state": "PASS",
+  "owners": {
+    "terminology": "RU03 + subjects/russian/data/technical-concepts.json",
+    "academicFunctions": "subjects/russian/data/academic-functions.json",
+    "reading": "subjects/russian/data/reading.json",
+    "writing": "subjects/russian/data/writing.json",
+    "performanceTasks": "subjects/russian/data/performance-tasks.json",
+    "oralRuntime": "RU05",
+    "evidenceJudgment": "RU04"
+  },
+  "progression": [
+    "university-comprehension",
+    "technical-explanation",
+    "source-based-writing",
+    "research-communication",
+    "presentation",
+    "defense",
+    "novel-technical-transfer"
+  ],
+  "conceptLanguageChain": [
+    "concept",
+    "term",
+    "morphology-government",
+    "collocation",
+    "definition",
+    "explanation",
+    "representation",
+    "reading-listening",
+    "question",
+    "oral-response",
+    "written-response",
+    "transfer"
+  ],
+  "readingOperations": [
+    "locate",
+    "infer",
+    "classify",
+    "extract",
+    "outline",
+    "compare",
+    "summarize",
+    "explain",
+    "synthesize"
+  ],
+  "writingProgression": [
+    "sentence-message-form-email",
+    "paragraph",
+    "summary",
+    "technical-explanation",
+    "lab-note-report",
+    "abstract",
+    "NIR-section",
+    "VKR-section"
+  ],
+  "technicalRepresentations": [
+    "equation",
+    "variable",
+    "function",
+    "algorithm",
+    "code",
+    "table",
+    "figure",
+    "graph",
+    "architecture",
+    "experiment",
+    "metric",
+    "error-limitation"
+  ],
+  "researchFunctions": [
+    "topic-problem",
+    "relevance",
+    "objective-tasks",
+    "research-question-hypothesis",
+    "method",
+    "data-model-algorithm",
+    "experiment",
+    "results",
+    "discussion",
+    "limitations",
+    "contribution",
+    "conclusion",
+    "future-work",
+    "defense-QA"
+  ]
+}
