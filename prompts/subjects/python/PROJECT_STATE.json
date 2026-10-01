@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "python",
+  "constitution": "prompts/CONSTITUTION.md",
+  "constitutionLibrary": "prompts/constitution/",
+  "masterPrompt": "prompts/subjects/python/PYTHON_MASTER_PROMPT.md",
+  "router": "prompts/subjects/python/PYTHON_CONSTITUTION_ROUTER.json",
+  "sourceArchive": "prompt-archives/python-pack.zip",
+  "promptArchitectureStatus": "COMPLETE",
+  "repositoryExecutionStatus": "NOT_STARTED_OR_NEEDS_RECONCILIATION",
+  "activeModule": "PYTHON01",
+  "lastCompletedModule": null,
+  "validatedSha": null,
+  "evidence": [],
+  "blockers": [],
+  "nextAction": "Run PYTHON01 against current repository reality before canonical implementation work."
+}
