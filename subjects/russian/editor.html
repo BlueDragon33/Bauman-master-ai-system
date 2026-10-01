@@ -1,1 +1,83 @@
-<!doctype html><html data-bauman-ui="future-v1"><head><meta charset="utf-8"><title>Russian Editor</title><link rel="stylesheet" href="../../platform/ui/bauman-ui.css?v=1"></head><body><p>Mở <a href="index.html">index.html</a> để quản lý dữ liệu môn Tiếng Nga.</p><script src="../../platform/ui/bauman-ui.js?v=1"></script></body></html>
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Russian Authoring Studio · Bauman</title>
+<link rel="stylesheet" href="../../platform/ui/bauman-ui.css?v=1">
+<link rel="stylesheet" href="assets/authoring-studio.css">
+</head>
+<body>
+<main class="authoring-shell">
+  <header class="authoring-head">
+    <div>
+      <span class="badge">RU08 · STRUCTURED AUTHORING · ONE FACT · ONE OWNER · MANY USES</span>
+      <h1>Russian Authoring Studio</h1>
+      <p>Tạo candidate có cấu trúc, resolve canonical owner, validate semantic metadata, preview/hash, chuẩn bị metadata-only review và gắn bằng chứng repository/release. Studio không ghi thẳng canonical content và không giả lập publish.</p>
+    </div>
+    <div class="authoring-policy"><b>Boundary</b><br>Raw JSON không phải giao diện mặc định. Canonical write chỉ qua reviewed repository patch.</div>
+  </header>
+
+  <section id="authoringLifecycle" class="authoring-lifecycle" aria-label="Authoring lifecycle"></section>
+
+  <div class="authoring-layout">
+    <section class="authoring-card">
+      <div class="authoring-actions">
+        <button data-authoring-action="new">Candidate mới</button>
+        <label class="authoring-import">Import candidate <input id="candidateImport" type="file" accept="application/json,.json"></label>
+      </div>
+      <form id="authoringForm" class="authoring-grid" onsubmit="return false">
+        <label>Candidate ID<input id="candidateId" placeholder="ru-candidate-..."></label>
+        <label>Responsibility<select id="responsibility"></select></label>
+        <label>Canonical ID<input id="canonicalId" placeholder="TC-CS-NEW / Rxx / stable-id"></label>
+        <label>Revision<input id="revision" placeholder="2026-10-01-r1"></label>
+        <label class="wide">Source / provenance refs<textarea id="sourceRefs" placeholder="Một nguồn mỗi dòng. Không để generated content tự trở thành authority."></textarea></label>
+        <label class="wide content">Nội dung / learning fact<textarea id="contentText" placeholder="Nội dung candidate cần review..."></textarea></label>
+
+        <label>Stress metadata<input id="stress" placeholder="ví dụ: алгори́тм"></label>
+        <label>Ё/Е policy<input id="yoPolicy" placeholder="preserve-ё / accepted-е-variant..."></label>
+        <label>Morphology<input id="morphology" placeholder="lemma / paradigm / case..."></label>
+        <label>Government<input id="government" placeholder="управление / preposition + case..."></label>
+        <label class="wide">Accepted variants<textarea id="acceptedVariants" placeholder="Một variant mỗi dòng"></textarea></label>
+        <label>Audio ref<input id="audioRef" placeholder="asset/source id"></label>
+        <label>Transcript<input id="transcript" placeholder="Transcript khớp audio"></label>
+        <label class="wide">Technical terminology<input id="technicalTerminology" placeholder="domain + source authority + term mapping"></label>
+        <label class="wide">Assessment alignment<input id="assessmentAlignment" placeholder="competency/item intent + answer-key authority"></label>
+        <label class="wide">Research/source lineage<input id="researchLineage" placeholder="source → notes → claim/draft/output"></label>
+        <label class="wide">Diff summary<textarea id="diffSummary" placeholder="Nội dung thay đổi và consumer chịu ảnh hưởng"></textarea></label>
+        <label class="wide">Rollback note<textarea id="rollbackNote" placeholder="Cách quay lại revision trước mà không viết lại learner history"></textarea></label>
+
+        <label>Reviewer approval receipt<input id="reviewReceipt" placeholder="review-id / signed receipt"></label>
+        <label>Canonical patch SHA<input id="patchSha" placeholder="Git SHA sau reviewed patch"></label>
+        <label>Published/release SHA<input id="publishSha" placeholder="Exact release SHA"></label>
+      </form>
+      <div class="authoring-actions">
+        <button class="primary" data-authoring-action="validate">1 · Validate</button>
+        <button data-authoring-action="preview">2 · Preview + hash</button>
+        <button data-authoring-action="review">3 · Prepare review</button>
+        <button data-authoring-action="approve">4 · Record approval</button>
+        <button data-authoring-action="patch">5 · Attach canonical patch</button>
+        <button data-authoring-action="publish">6 · Attach published SHA</button>
+        <button data-authoring-action="export-review">Export review envelope</button>
+        <button data-authoring-action="export">Export candidate</button>
+        <button class="danger" data-authoring-action="rollback">Create rollback plan</button>
+      </div>
+    </section>
+
+    <aside class="authoring-card">
+      <h2>Validation & evidence</h2>
+      <div id="authoringStatus"></div>
+      <div class="authoring-boundary">
+        <b>Không có direct publish.</b>
+        <p>Review service lưu metadata. Approved candidate phải thành reviewed repository patch; production vẫn đi qua exact-RC Release Annex.</p>
+      </div>
+      <h3>Metadata-only review handoff</h3>
+      <pre id="authoringHandoff" class="authoring-handoff"></pre>
+      <p><a href="index.html">← Mở learner runtime</a></p>
+    </aside>
+  </div>
+</main>
+<script src="assets/authoring-studio.js"></script>
+<script src="../../platform/ui/bauman-ui.js?v=1"></script>
+</body>
+</html>
