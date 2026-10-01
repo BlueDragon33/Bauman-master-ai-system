@@ -181,3 +181,22 @@ When changing it:
 - update registry/state if ownership or execution order changes.
 
 Subject prompts may specialize domain semantics, but may not create a second platform kernel, second design system, second QA philosophy, second release authority, or second global mastery philosophy.
+
+
+---
+
+# DETAILED CANONICAL CONSTITUTION LIBRARY
+
+This umbrella Constitution defines the shared authority model and non-negotiable invariants.
+
+Detailed clause-level sources are canonical under:
+
+- `prompts/constitution/C1_EXTENSIBLE_PLATFORM_ARCHITECTURE.md`
+- `prompts/constitution/C2_FUTURE_PROFESSIONAL_UI_UX.md`
+- `prompts/constitution/C3_PROFESSIONAL_QA_AUTO_FIX.md`
+- `prompts/constitution/C4_REAL_LEARNING_OUTCOME_SYSTEM.md`
+- `prompts/constitution/C3_RELEASE_ANNEX_SHARED.md`
+
+Subject routers may load only the exact clauses they need from those files. Subject directories must not maintain divergent Constitution copies.
+
+This shared Constitution and its detailed library apply equally to ordinary ChatGPT chat, ChatGPT Work, and Codex.
