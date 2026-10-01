@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_RU08_FAILURE_MATRIX",
+  "failures": [
+    [
+      "invalid-linguistic-content",
+      "RU03 fail closed / issue queue"
+    ],
+    [
+      "broken-audio",
+      "RU05 deterministic fallback"
+    ],
+    [
+      "mic-denied",
+      "RU05 permission fallback"
+    ],
+    [
+      "stt-wrong-unavailable",
+      "signal-only; no mastery authority"
+    ],
+    [
+      "malformed-learner-state",
+      "recovery/fail-closed; no silent mastery reset"
+    ],
+    [
+      "duplicate-submit",
+      "RU04 idempotent attempt/evidence semantics"
+    ],
+    [
+      "offline-reload",
+      "service worker + true-offline browser acceptance"
+    ],
+    [
+      "content-revision",
+      "RU08 revision lifecycle + compatibility"
+    ],
+    [
+      "huge-vocab-backlog",
+      "RU04 planner/backlog policy"
+    ],
+    [
+      "dialogue-graph-defect",
+      "RU05 scenario graph validator"
+    ],
+    [
+      "ai-unavailable",
+      "RU07 deterministic fallback"
+    ],
+    [
+      "ai-prompt-injection",
+      "RU07 tool/document boundary"
+    ],
+    [
+      "long-formula-technical-text",
+      "RU06 representation integrity"
+    ],
+    [
+      "mobile-overflow",
+      "C2/Russian 11-viewport and packaged browser gates"
+    ],
+    [
+      "screen-reader-keyboard",
+      "C2 modal/focus/ARIA + browser acceptance"
+    ],
+    [
+      "plugin-resource-failure",
+      "shared platform fail-closed capability boundary"
+    ],
+    [
+      "old-client-package-compatibility",
+      "package/source parity + legacy bridge retained"
+    ]
+  ]
+}
