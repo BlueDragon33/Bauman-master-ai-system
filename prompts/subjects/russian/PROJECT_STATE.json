@@ -5,7 +5,7 @@
   "constitutionLibrary": "prompts/constitution/",
   "masterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
   "router": "prompts/subjects/russian/RUSSIAN_CONSTITUTION_ROUTER.json",
-  "sourceArchive": "prompt-archives/russian-pack.zip",
+  "sourceArchive": "prompt-archives/russian-full-pack.zip",
   "promptArchitectureStatus": "COMPLETE",
   "repositoryExecutionStatus": "NOT_STARTED_OR_NEEDS_RECONCILIATION",
   "activeModule": "RU01",
@@ -14,5 +14,5 @@
   "evidence": [],
   "blockers": [],
   "nextAction": "Run RU01 against current repository reality before canonical implementation work.",
-  "legacyReadablePath": "prompts/subjects/russian/legacy/"
+  "archiveMode": "historical-recovery-only"
 }

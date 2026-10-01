@@ -3,7 +3,7 @@
   "subject": "russian",
   "canonicalRoot": "prompts/subjects/russian/",
   "sharedConstitution": "prompts/constitution/",
-  "archivePackage": "prompt-archives/russian-pack.zip",
+  "archivePackage": "prompt-archives/russian-full-pack.zip",
   "files": [
     {
       "path": "EXECUTION_CHEAT_SHEET.md",
@@ -79,76 +79,7 @@
       "path": "SOURCE_STATUS.md",
       "sha256": "a8466dedca0be4a4a913576ce19d1d64f3dccfd89ebaab761012bbf6e8d3d587",
       "bytes": 843
-    },
-    {
-      "path": "legacy/00_ARCHIVE_NOTICE.md",
-      "sha256": "20a8592c21ab951a32e8a60c3fca9df8b6b949ecd0c2c29e9e1dcb3aeb0ab733",
-      "bytes": 389
-    },
-    {
-      "path": "legacy/P10_AI_MENTOR_PEDAGOGY_GUARDRAILS.md",
-      "sha256": "70608b565e2c4d27e1539a5e72e35b3e3d8cf5d9ba05111684e87e40338dd9cb",
-      "bytes": 81356
-    },
-    {
-      "path": "legacy/P11_SCENARIO_SIMULATION_DIALOGUE.md",
-      "sha256": "39bb66a51dd69b9e338a2111b73ba39fac9f63d9df27241ece8c944231f6cee4",
-      "bytes": 67082
-    },
-    {
-      "path": "legacy/P12_AUTHORING_CONTENT_GOVERNANCE_EDITOR.md",
-      "sha256": "2d181b3e61633c3b08be4c328090bc8bf7f5945ba289965ff7d39daca31fca79",
-      "bytes": 61944
-    },
-    {
-      "path": "legacy/P13_UX_ACCESSIBILITY_RESPONSIVE_IA.md",
-      "sha256": "02919ba1ef3960879b67732029fcac15334a7b796751a98f681f105ad60cf4de",
-      "bytes": 52108
-    },
-    {
-      "path": "legacy/P14_OFFLINE_PACKAGING_PERFORMANCE_MIGRATION_SECURITY.md",
-      "sha256": "87ea726804742f99bf9690c053717a6fef4e669eed3c392e87d1c85753e2ce82",
-      "bytes": 60951
-    },
-    {
-      "path": "legacy/P15_FULL_SYSTEM_QA_REGRESSION_ACCEPTANCE.md",
-      "sha256": "3974b997613b3cd400adfcf6ed16e43391bfbde06b47486b9d19aa88aa7674df",
-      "bytes": 49887
-    },
-    {
-      "path": "legacy/P16_LEGACY_RETIREMENT_TECHNICAL_DEBT_RC_FREEZE.md",
-      "sha256": "7448fa180173b864ca270b3fdda78b4adeb373cf0765d5cb06702f696fb95162",
-      "bytes": 52562
-    },
-    {
-      "path": "legacy/P17_PRODUCTION_PUBLISH_VERIFY_OBSERVE_ROLLBACK.md",
-      "sha256": "52c7c74bdc5c4ffc39271a022cd83e1b21254e2afaee2cba90e5f54ad8b7f0c0",
-      "bytes": 66807
-    },
-    {
-      "path": "legacy/P1_P17_FINAL_ARCHITECTURE_STATUS.md",
-      "sha256": "293047c054341801784d307159b4a1dc9d3d1b372742fe338e3e09a3c6091f47",
-      "bytes": 1482
-    },
-    {
-      "path": "legacy/P7_LINGUISTIC_AUTHORITY_CONTENT_VALIDATION.md",
-      "sha256": "3640ce527bfc4837120d1064ba4742f2d367e7d01af5d7dbc833859011a2df21",
-      "bytes": 56447
-    },
-    {
-      "path": "legacy/P8_ACADEMIC_TECHNICAL_RUSSIAN.md",
-      "sha256": "ef3d650c675fecdd9016eacbebd30269e420cc015d4af30c4df2207ae823658f",
-      "bytes": 69713
-    },
-    {
-      "path": "legacy/P9_READING_WRITING_NIR_VKR.md",
-      "sha256": "d7f7736b4d5cb34de87f6a7dd942091992a6c623a326dcddc47fe2e3dc78c8f7",
-      "bytes": 75629
-    },
-    {
-      "path": "legacy/RUSSIAN_MASTER_PROMPT_P0_P6_SOURCE.md",
-      "sha256": "48defb6f3b5a4fe2d4a4b6fd05416491adb1423072521e449cfcd58f65fe2cba",
-      "bytes": 145741
     }
-  ]
+  ],
+  "note": "Canonical active prompt files are readable under prompts/subjects/russian/. Historical P0–P17 sources stay in the full ZIP archive and are not part of normal chat execution."
 }

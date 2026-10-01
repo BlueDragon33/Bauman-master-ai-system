@@ -289,7 +289,7 @@ Default load order:
 6. diff since last validated SHA;
 7. only impacted files/tests.
 
-Use `legacy/` only for unresolved detail.
+Use `prompt-archives/russian-full-pack.zip` only as historical recovery material when active RU00–RU08 files are insufficient.
 
 Never rescan all archived P0–P17 prompts by default.
 

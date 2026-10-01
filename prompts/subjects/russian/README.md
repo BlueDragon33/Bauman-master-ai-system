@@ -5,7 +5,7 @@ This directory replaces the **P0–P17 execution topology** for Russian with a s
 
 It does **not** throw away the work in P0–P17.
 
-The old prompt bodies are preserved under `legacy/` as detailed reference material and migration evidence. They are no longer the default execution sequence.
+The old P0–P17 prompt bodies are preserved in `prompt-archives/russian-full-pack.zip` as historical source material and migration evidence. They are not part of the normal execution sequence.
 
 ---
 
@@ -87,7 +87,7 @@ For each task load only:
 2. the active `RUxx` prompt;
 3. exact constitution sections named by that prompt;
 4. current status/evidence/diff;
-5. detailed legacy source sections only when a missing edge case requires them.
+5. the historical archive only when a missing edge case genuinely requires it.
 
 Never load all four constitutions + all nine Russian prompts + all source archive files by default.
 
@@ -103,16 +103,9 @@ The router in `RUSSIAN_CONSTITUTION_ROUTER.json` identifies the relevant clauses
 
 # 6. SOURCE ARCHIVE
 
-`legacy/` contains the former P0–P17 prompts.
+`prompt-archives/russian-full-pack.zip` contains the former P0–P17 source prompts.
 
-Use it for:
-
-- clause recovery;
-- historical detail;
-- migration verification;
-- edge-case lookup.
-
-Do not treat it as a second active execution architecture.
+Normal Chat/Work/Codex execution does not load this archive. Use it only for historical recovery, migration verification, or a genuinely missing edge case. Do not treat it as a second active execution architecture.
 
 ---
 

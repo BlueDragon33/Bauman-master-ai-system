@@ -26,7 +26,7 @@ It does not mean the repository has executed RU01–RU08 or that production is p
 
 The former P0–P17 execution sequence is superseded as the default prompt topology.
 
-Its source material remains preserved under `SOURCE_ARCHIVE/`.
+Its source material remains preserved in `prompt-archives/russian-full-pack.zip`.
 
 ## Next operational step
 
