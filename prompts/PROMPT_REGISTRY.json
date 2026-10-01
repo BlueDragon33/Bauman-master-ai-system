@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.0.1",
+  "schemaVersion": "2.0.0",
   "project": "BlueDragon33/Bauman-master-ai-system",
   "canonicalPromptRoot": "prompts",
   "constitution": "prompts/CONSTITUTION.md",
@@ -12,7 +12,11 @@
       "implementationScope": "subjects/russian/",
       "masterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
       "state": "prompts/subjects/russian/PROJECT_STATE.json",
-      "status": "IMPORTED_CANONICAL"
+      "status": "IMPORTED_CANONICAL",
+      "readme": "prompts/subjects/russian/README.md",
+      "router": "prompts/subjects/russian/RUSSIAN_CONSTITUTION_ROUTER.json",
+      "archivePackage": "prompt-archives/russian-pack.zip",
+      "fullRecoveryArchive": "prompt-archives/russian-full-pack.zip"
     },
     {
       "id": "curriculum-2026",
@@ -24,7 +28,12 @@
     {
       "id": "math",
       "implementationScope": "subjects/math/",
-      "status": "PENDING_IMPORT_EXISTING_AUTHORITY"
+      "status": "IMPORTED_CANONICAL",
+      "readme": "prompts/subjects/math/README.md",
+      "masterPrompt": "prompts/subjects/math/MATH_MASTER_PROMPT.md",
+      "router": "prompts/subjects/math/MATH_CONSTITUTION_ROUTER.json",
+      "state": "prompts/subjects/math/PROJECT_STATE.json",
+      "archivePackage": "prompt-archives/math.zip"
     },
     {
       "id": "ai",
@@ -55,11 +64,35 @@
       "id": "systems",
       "implementationScope": "subjects/systems/",
       "status": "PENDING_IMPORT_EXISTING_AUTHORITY"
+    },
+    {
+      "id": "python",
+      "implementationScope": "subjects/python/ or actual programming scope resolved by PYTHON01",
+      "readme": "prompts/subjects/python/README.md",
+      "masterPrompt": "prompts/subjects/python/PYTHON_MASTER_PROMPT.md",
+      "router": "prompts/subjects/python/PYTHON_CONSTITUTION_ROUTER.json",
+      "state": "prompts/subjects/python/PROJECT_STATE.json",
+      "archivePackage": "prompt-archives/python-pack.zip",
+      "status": "IMPORTED_CANONICAL"
+    },
+    {
+      "id": "algorithms",
+      "implementationScope": "subjects/algorithms/ or actual scope resolved by ALG01",
+      "readme": "prompts/subjects/algorithms/README.md",
+      "masterPrompt": "prompts/subjects/algorithms/ALG_MASTER_PROMPT.md",
+      "router": "prompts/subjects/algorithms/ALG_CONSTITUTION_ROUTER.json",
+      "state": "prompts/subjects/algorithms/PROJECT_STATE.json",
+      "archivePackage": "prompt-archives/algorithms-pack.zip",
+      "status": "IMPORTED_CANONICAL"
     }
   ],
   "prohibition": [
     "Do not fabricate a Master Prompt merely to fill the registry.",
     "Do not create version-suffixed competing Master Prompt files.",
-    "Do not let a subject/domain redefine global Constitution authority."
-  ]
+    "Do not let a subject/domain redefine global Constitution authority.",
+    "Do not treat archived ZIP packages as higher execution authority than canonical readable prompt files.",
+    "Do not make prompt execution Codex-only; ordinary ChatGPT chat and Work use the same canonical prompt state."
+  ],
+  "chatEntry": "prompts/CHAT_ENTRY.md",
+  "constitutionLibrary": "prompts/constitution/"
 }
