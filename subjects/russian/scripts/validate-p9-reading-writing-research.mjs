@@ -16,7 +16,7 @@ for(const t of reading.tasks){
 }
 for(const t of perf.tasks){
  if(!t.targets?.length||!t.output||!t.evidenceTypes?.length) throw new Error('Weak performance task '+t.id);
- if(!String(t.rubricRef||'').startsWith('P4')) throw new Error('P4 assessment authority missing '+t.id);
+ if(perf.phase==='RU06'){ if(!String(t.rubricRef||'').startsWith('RU04')) throw new Error('RU04 assessment authority missing '+t.id); } else if(!String(t.rubricRef||'').startsWith('P4')) throw new Error('Historical P4 assessment authority missing '+t.id);
 }
 const targetOwners=new Map(topo.targetOwners.map(x=>[x.entityType,x.targetOwner]));
 if(targetOwners.get('ReadingText')!==reading.canonicalOwner) throw new Error('P3 ReadingText topology broken');
@@ -25,5 +25,5 @@ const perfTargets=new Set(perf.tasks.flatMap(x=>x.targets));
 for(const r of ['R19','R20','R21','R22','R23','R24','R25','R26']) if(!perfTargets.has(r)) throw new Error('Research/defense coverage missing '+r);
 const readTargets=new Set(reading.tasks.flatMap(x=>x.targets));
 for(const r of ['R11','R12','R14','R15','R16','R17','R18','R19','R20','R21','R23','R25']) if(!readTargets.has(r)) throw new Error('Reading progression coverage missing '+r);
-if(perf.assessmentOwner!=='P4') throw new Error('P9 must not own assessment');
+if(perf.phase==='RU06'){ if(perf.assessmentOwner!=='RU04') throw new Error('RU06 must delegate assessment to RU04'); } else if(perf.assessmentOwner!=='P4') throw new Error('Historical P9 must delegate assessment to P4');
 console.log('RUSSIAN_P9_READING_WRITING_RESEARCH_GATE=PASS',JSON.stringify({readingTasks:reading.tasks.length,performanceTasks:perf.tasks.length,readingTargets:[...readTargets].length,performanceTargets:[...perfTargets].length}));
