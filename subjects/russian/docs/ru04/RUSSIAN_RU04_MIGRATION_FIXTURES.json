@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_RU04_MIGRATION_FIXTURES",
+  "cases": [
+    {
+      "id": "legacy-vocab-card-preserved",
+      "legacy": {
+        "schema": "RUSSIAN_VOCAB_SRS_V1",
+        "cards": {
+          "vocab:1": {
+            "reviewCount": 3,
+            "successStreak": 2,
+            "lapses": 1,
+            "dueAt": "2026-10-02T00:00:00.000Z"
+          }
+        }
+      },
+      "expected": "state-preserved-no-reset"
+    },
+    {
+      "id": "legacy-general-review-preserved",
+      "legacy": {
+        "schema": "RUSSIAN_LEARNING_STATE_V2",
+        "reviewQueue": {
+          "R08:review": {
+            "id": "R08:review",
+            "attempts": 2,
+            "dueAt": "2026-10-02T00:00:00.000Z"
+          }
+        }
+      },
+      "expected": "queue-preserved-no-reset"
+    },
+    {
+      "id": "planner-cache-corrupt",
+      "legacy": {
+        "recommendationCache": "malformed"
+      },
+      "expected": "fallback-plan-without-mastery-reset"
+    }
+  ],
+  "invariant": "Migration/adoption of canonical scheduler changes future timing policy only; it never rewrites historical attempts, mastery evidence or existing due dates merely because the runtime loaded."
+}
