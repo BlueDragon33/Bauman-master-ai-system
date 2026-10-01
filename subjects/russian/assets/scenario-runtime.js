@@ -117,7 +117,14 @@
     else if(b.hasAttribute('data-scenario-repair'))repair(b.dataset.scenarioRepair);
     else reset();
   });
-  new MutationObserver(renderSoon).observe(document.documentElement,{subtree:true,childList:true});
+  function observeView(){
+    const view=document.getElementById('view');if(!view)return;
+    new MutationObserver(records=>{
+      const meaningful=records.some(r=>[...r.addedNodes,...r.removedNodes].some(n=>!(n.nodeType===1&&n.matches?.('[data-ru-scenario-runtime]'))));
+      if(meaningful)renderSoon();
+    }).observe(view,{subtree:true,childList:true});
+  }
   window.RussianScenarioRuntime=Object.freeze({schema:SCHEMA,load,start,advance,repair,reset,snapshot,validateRegistry,storageKey:KEY});
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',load,{once:true});else load();
+  const boot=()=>{observeView();load()};
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 })();
