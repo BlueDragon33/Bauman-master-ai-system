@@ -8,14 +8,16 @@ RU04 consolidates the former P4 assessment/mastery and P5 adaptive/SRS work into
 
 ## Preserved runtime owners
 - official attempt/evidence/mastery: `assessment-mastery.js`;
+- canonical review timing policy: `review-scheduler.js`;
 - one Today/recommendation orchestrator: `adaptive-planner.js`;
-- cross-skill review state provider: `learning-state.js`;
-- vocabulary-card schedule provider: `vocab-srs.js`.
+- cross-skill review queue/history provider: `learning-state.js`;
+- vocabulary-card state provider: `vocab-srs.js`.
 
-The two review providers remain intentionally non-overlapping. They do not compete for mastery authority and are merged by the canonical planner rather than exposed as two Today owners.
+The providers remain intentionally non-overlapping state owners. Review timing is now delegated to one canonical scheduler policy; the planner merges due work into one Today plan without gaining mastery authority.
 
 ## RU04 additions
 - explicit RU05/RU06/RU07 evidence interface;
+- canonical multi-semantic review scheduler with backward-compatible vocabulary gaps;
 - stable-plan recompute triggers;
 - support-fading semantics;
 - active/passive/reference vocabulary policy;
