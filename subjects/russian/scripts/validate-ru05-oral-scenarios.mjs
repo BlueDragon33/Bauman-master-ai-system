@@ -30,3 +30,11 @@ for(const s of reg.scenarios||[]){
 for(const f of ['language-failure','stt-failure','network-failure','engine-failure','world-task-failure']) assert(ev.separatesFailures.includes(f));
 assert(sm.repairStrategies.includes('clarify'));
 console.log(JSON.stringify({ok:true,scenarios:ids.size,datasetRoles:Object.keys(oral.datasetRoles).length}));
+
+const index=fs.readFileSync('subjects/russian/index.html','utf8');
+const scenarioRuntime=fs.readFileSync('subjects/russian/assets/scenario-runtime.js','utf8');
+assert.match(index,/assets\/scenario-runtime\.js/,'RU05 scenario runtime is not loaded');
+assert.match(scenarioRuntime,/PRACTICE_ONLY/,'scenario runtime must remain practice-only');
+assert.match(scenarioRuntime,/writesMastery:false/,'scenario runtime must not write mastery');
+assert.equal(reg.phase,'RU05','scenario registry still points to legacy phase');
+assert.equal(reg.runtime?.authorityWrites,false,'scenario registry runtime authority boundary missing');
