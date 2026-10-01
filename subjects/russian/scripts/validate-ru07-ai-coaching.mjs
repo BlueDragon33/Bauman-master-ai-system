@@ -1,0 +1,17 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+const j=p=>JSON.parse(fs.readFileSync(p,'utf8'));
+const base=j('subjects/russian/data/ai-mentor-policy.json');
+const modes=j('subjects/russian/docs/ru07/RUSSIAN_RU07_AI_MODE_PERMISSION_MATRIX.json');
+const ctx=j('subjects/russian/docs/ru07/RUSSIAN_RU07_CONTEXT_GROUNDING_CONTRACT.json');
+const sec=j('subjects/russian/docs/ru07/RUSSIAN_RU07_FEEDBACK_ASSESSMENT_SECURITY_POLICY.json');
+const fb=j('subjects/russian/docs/ru07/RUSSIAN_RU07_FALLBACK_POLICY.json');
+const fx=j('subjects/russian/docs/ru07/RUSSIAN_RU07_GOLDEN_AI_FIXTURES.json');
+for(const k of ['writeMastery','writeAttemptHistory','writeSrs','writePlanner','unlockStage','generateCanonicalContent']) assert.equal(base.permissions[k],false,'base AI permission unsafe '+k);
+for(const x of ['write-mastery','write-official-score','overwrite-canonical-content','fabricate-citation','fabricate-result']) assert(modes.forbidden.includes(x));
+for(const x of ['assessment-submit','source-rubric-revision','scenario-run-change']) assert(ctx.staleResponseQuarantine.includes(x));
+for(const x of ['direct-answer','translation-answer','previous-turn-answer-context']) assert(sec.assessmentLeakageBlocked.includes(x));
+assert(sec.promptInjectionSources.includes('retrieved-snippets'));
+assert(fb.providerFailure.includes('deterministic-practice'));
+for(const id of ['fake-citation','assessment-leakage','prompt-injection-document','stale-response','provider-failure']) assert(fx.fixtures.some(x=>x.id===id));
+console.log(JSON.stringify({ok:true,modes:Object.keys(modes.modes).length,fixtures:fx.fixtures.length}));
