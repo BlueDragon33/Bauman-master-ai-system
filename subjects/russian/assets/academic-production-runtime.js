@@ -47,7 +47,7 @@
   }
   function render(){
     const view=document.getElementById('view');if(!view)return;
-    const writing=view.querySelector('.writing-shell,.writing-layout,.writing-main,[data-writing-root],.writing-workspace')||((document.getElementById('pageTitle')?.textContent||'').toLowerCase().includes('viết')?view:null);
+    const writing=view.querySelector('.writing-studio,.writing-shell,.writing-layout,.writing-main,[data-writing-root],.writing-workspace')||((document.getElementById('pageTitle')?.textContent||'').toLowerCase().includes('viết')?view:null);
     const old=view.querySelector('[data-ru06-production-runtime]');
     if(!writing){old?.remove();return}
     old?.remove();
