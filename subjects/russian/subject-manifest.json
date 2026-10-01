@@ -1,9 +1,9 @@
 {
   "id": "russian",
-  "title": "Tiếng Nga Bauman · Standard Final V13.42",
+  "title": "Tiếng Nga Bauman · Constitution-Routed RU08",
   "entry": "subjects/russian/index.html",
   "editor": "subjects/russian/editor.html",
-  "schema": "SUBJECT_MODULE_V1",
+  "schema": "SUBJECT_MODULE_V2",
   "core": {
     "name": "Bauman Universal Learning Core",
     "version": "V13.41 Presentation Overlay Fix",
@@ -43,9 +43,16 @@
     "writing",
     "dialogue-bauman-az",
     "deep-speaking-bauman",
-    "speaking-link-index"
+    "speaking-link-index",
+    "provenance",
+    "technical-concepts",
+    "academic-functions",
+    "reading",
+    "performance-tasks",
+    "scenario-registry",
+    "ai-mentor-policy"
   ],
-  "release": "V13.42 · Full module · Presentation overlay fix + clean slide renderer",
+  "release": "RU08 RC integration candidate",
   "focus": "Bản chuẩn cuối của module Tiếng Nga: giữ nội dung gốc, giữ vá trình chiếu, ẩn metadata/từ khóa/bài liên quan khỏi vùng slide, giữ metadata cho tìm kiếm/lọc.",
   "bridge": {
     "protocol": "BAUMAN_PLANNING_BRIDGE_V3_ROUTE_CARDS",
@@ -73,7 +80,7 @@
     "weekendPolicy": "Main sends only week-end signal; subject decides review or unlocked assessment.",
     "standaloneFallback": "If window.parent is same window, module runs with local data only."
   },
-  "version": "Russian Survival Master V13.42 · Standard Final Render Clean",
+  "version": "Russian RU08 · Canonical Subject Package",
   "coreVersion": "SubjectCore V12.94 Honest Frame Repair",
   "bridgeProtocol": "BAUMAN_PLANNING_BRIDGE_V3_ROUTE_CARDS",
   "name": "Tiếng Nga Bauman · RussianPack R4",
@@ -84,7 +91,7 @@
     "overviewSubtitle": "Tổng quan gọn, không khoảng trống chết: mục tiêu, luồng học, hành động nhanh và tiếp tục học ăn khớp.",
     "learningSubtitle": "Học tập ổn định: Nghe/Nói và Đối thoại tinh gọn; nút nói ổn hòa trong bảng nội dung, chữ canh đều và không tách dòng thô."
   },
-  "updated": "2026-06-13",
+  "updated": "2026-10-01",
   "package": "A1 Russian Bauman StandardFinal RenderClean V13.42",
   "paths": {
     "assets": "assets/",
@@ -251,6 +258,69 @@
       "plannedCount": 1058,
       "description": "Cầu nối từ hội thoại Bauman A-Z sang unit Deep Speaking",
       "lazy": true
+    },
+    {
+      "id": "provenance",
+      "label": "Ngữ nguyên & thẩm quyền",
+      "path": "data/provenance.json",
+      "required": true,
+      "group": "Thẩm quyền ngôn ngữ",
+      "source": "local-core",
+      "description": "Ngữ nguyên & thẩm quyền"
+    },
+    {
+      "id": "technical-concepts",
+      "label": "Thuật ngữ kỹ thuật",
+      "path": "data/technical-concepts.json",
+      "required": true,
+      "group": "Học thuật & kỹ thuật",
+      "source": "local-core",
+      "description": "Thuật ngữ kỹ thuật"
+    },
+    {
+      "id": "academic-functions",
+      "label": "Chức năng học thuật",
+      "path": "data/academic-functions.json",
+      "required": true,
+      "group": "Học thuật & kỹ thuật",
+      "source": "local-core",
+      "description": "Chức năng học thuật"
+    },
+    {
+      "id": "reading",
+      "label": "Đọc học thuật",
+      "path": "data/reading.json",
+      "required": true,
+      "group": "Học thuật & nghiên cứu",
+      "source": "local-core",
+      "description": "Đọc học thuật"
+    },
+    {
+      "id": "performance-tasks",
+      "label": "Nhiệm vụ hiệu năng",
+      "path": "data/performance-tasks.json",
+      "required": true,
+      "group": "Học thuật & nghiên cứu",
+      "source": "local-core",
+      "description": "Nhiệm vụ hiệu năng"
+    },
+    {
+      "id": "scenario-registry",
+      "label": "Kịch bản tương tác",
+      "path": "data/scenario-registry.json",
+      "required": true,
+      "group": "Đối thoại & mô phỏng",
+      "source": "local-core",
+      "description": "Kịch bản tương tác"
+    },
+    {
+      "id": "ai-mentor-policy",
+      "label": "Chính sách AI mentor",
+      "path": "data/ai-mentor-policy.json",
+      "required": true,
+      "group": "AI",
+      "source": "local-core",
+      "description": "Chính sách AI mentor"
     }
   ],
   "externalDataFiles": [
@@ -319,7 +389,15 @@
     "dialogueBaumanAZ": true,
     "deepSpeaking": true,
     "speakingLinkIndex": true,
-    "lazyDataLoading": true
+    "lazyDataLoading": true,
+    "canonicalReviewScheduler": true,
+    "assessmentMasteryAuthority": true,
+    "linguisticProvenance": true,
+    "scenarioRegistry": true,
+    "academicTechnicalResearch": true,
+    "aiMentorBounded": true,
+    "authoringGovernance": true,
+    "contentReviewMetadataOnly": true
   },
   "routeMapping": {
     "mainSubjectId": "russian",
@@ -407,5 +485,69 @@
       }
     ]
   },
-  "metadataPolicy": "metadata kept for search/filter; hidden from lesson/presentation slide body"
+  "metadataPolicy": "metadata kept for search/filter; hidden from lesson/presentation slide body",
+  "architecture": {
+    "executionModel": "RU00→RU01→RU02→RU03/RU04→RU05→RU06→RU07→RU08",
+    "canonicalModel": "subjects/russian/docs/ru02/RUSSIAN_RU02_CURRICULUM_CANONICAL_MODEL.json",
+    "canonicalOwnerRegistry": "subjects/russian/docs/ru02/RUSSIAN_RU02_CANONICAL_OWNER_REGISTRY.json",
+    "linguisticAuthority": "subjects/russian/data/provenance.json",
+    "learningJudgment": "subjects/russian/docs/ru04/RUSSIAN_RU04_LEARNING_JUDGMENT_CONTRACT.json",
+    "oralInteraction": "subjects/russian/docs/ru05/RUSSIAN_RU05_ORAL_INTERACTION_CONTRACT.json",
+    "academicProduction": "subjects/russian/docs/ru06/RUSSIAN_RU06_PRODUCTION_ARCHITECTURE.json",
+    "aiCoaching": "subjects/russian/docs/ru07/RUSSIAN_RU07_AI_MODE_PERMISSION_MATRIX.json",
+    "authoringGovernance": "subjects/russian/data/authoring-governance.json"
+  },
+  "requiredCapabilities": [
+    "shared-app-shell",
+    "content-data-loader",
+    "device-gate",
+    "offline-shell",
+    "assessment-mastery",
+    "review-scheduler",
+    "adaptive-planner",
+    "audio-playback",
+    "recording",
+    "speech-recognition",
+    "dialogue-scenario",
+    "handwriting",
+    "vocabulary-srs",
+    "academic-production",
+    "ai-coaching-optional",
+    "content-review-metadata"
+  ],
+  "authoring": {
+    "lifecycle": [
+      "draft",
+      "review",
+      "approved",
+      "canonical-patched",
+      "published",
+      "superseded",
+      "archived"
+    ],
+    "candidateSchema": "data/authoring-candidate.schema.json",
+    "governance": "data/authoring-governance.json",
+    "ordinaryAuthorMode": "schema-aware-fields-not-raw-json-by-default",
+    "canonicalWrite": "reviewed-repository-patch-only",
+    "controlReviewStorage": "metadata-only"
+  },
+  "offlinePolicy": {
+    "coreShell": "required",
+    "planner": "offline-capable",
+    "ai": "optional",
+    "largeDatasets": [
+      "dialogue-bauman-az",
+      "deep-speaking-bauman",
+      "speaking-link-index"
+    ],
+    "lazyLoadLargeDatasets": true,
+    "assessmentStateDurable": true
+  },
+  "compatibility": {
+    "migration": "strangler/incremental",
+    "preserveStableIds": true,
+    "preserveLearnerState": true,
+    "legacyBridge": "retain until replacement + regression proof",
+    "destructiveMigration": false
+  }
 }
