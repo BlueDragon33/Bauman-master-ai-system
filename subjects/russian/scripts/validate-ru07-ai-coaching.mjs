@@ -15,3 +15,11 @@ assert(sec.promptInjectionSources.includes('retrieved-snippets'));
 assert(fb.providerFailure.includes('deterministic-practice'));
 for(const id of ['fake-citation','assessment-leakage','prompt-injection-document','stale-response','provider-failure']) assert(fx.fixtures.some(x=>x.id===id));
 console.log(JSON.stringify({ok:true,modes:Object.keys(modes.modes).length,fixtures:fx.fixtures.length}));
+
+assert.equal(base.phase,'RU07','AI policy must use active RU topology');
+assert.equal(base.authority.canonicalTruthOwner,'RU03');
+assert.equal(base.authority.assessmentMasteryOwner,'RU04');
+assert.equal(base.authority.speechAudioOwner,'RU05');
+assert.equal(base.authority.academicTechnicalOwner,'RU06');
+assert.equal(base.authority.authoringPromotionOwner,'RU08');
+assert.equal(base.runtimeReality.activeMode,'DETERMINISTIC_LOCAL_FALLBACK','runtime truth must not imply an unconfigured provider');
