@@ -1,18 +1,13 @@
 {
-  "schemaVersion": "2.0.0",
-  "executionRule": "ONE_ACTIVE_SUBJECT_AT_A_TIME_UNLESS_EXPLICIT_CROSS_SUBJECT_TASK",
-  "sharedConstitution": "prompts/CONSTITUTION.md",
+  "schemaVersion": "1.0.0",
+  "executionRule": "ONE_SUBJECT_AT_A_TIME",
+  "sharedConstitution": "prompts/constitution/",
   "subjects": [
     {
       "id": "russian",
       "label": "Russian",
       "archive": "prompt-archives/russian-pack.zip",
-      "recoveryArchive": "prompt-archives/russian-full-pack.zip",
       "canonicalRoot": "prompts/subjects/russian/",
-      "readme": "prompts/subjects/russian/README.md",
-      "masterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
-      "router": "prompts/subjects/russian/RUSSIAN_CONSTITUTION_ROUTER.json",
-      "state": "prompts/subjects/russian/PROJECT_STATE.json",
       "status": "CANONICAL_EXTRACTED"
     },
     {
@@ -20,10 +15,6 @@
       "label": "Mathematics",
       "archive": "prompt-archives/math.zip",
       "canonicalRoot": "prompts/subjects/math/",
-      "readme": "prompts/subjects/math/README.md",
-      "masterPrompt": "prompts/subjects/math/MATH_MASTER_PROMPT.md",
-      "router": "prompts/subjects/math/MATH_CONSTITUTION_ROUTER.json",
-      "state": "prompts/subjects/math/PROJECT_STATE.json",
       "status": "CANONICAL_EXTRACTED"
     },
     {
@@ -31,10 +22,6 @@
       "label": "Python",
       "archive": "prompt-archives/python-pack.zip",
       "canonicalRoot": "prompts/subjects/python/",
-      "readme": "prompts/subjects/python/README.md",
-      "masterPrompt": "prompts/subjects/python/PYTHON_MASTER_PROMPT.md",
-      "router": "prompts/subjects/python/PYTHON_CONSTITUTION_ROUTER.json",
-      "state": "prompts/subjects/python/PROJECT_STATE.json",
       "status": "CANONICAL_EXTRACTED"
     },
     {
@@ -42,13 +29,7 @@
       "label": "Algorithms & Data Structures",
       "archive": "prompt-archives/algorithms-pack.zip",
       "canonicalRoot": "prompts/subjects/algorithms/",
-      "readme": "prompts/subjects/algorithms/README.md",
-      "masterPrompt": "prompts/subjects/algorithms/ALG_MASTER_PROMPT.md",
-      "router": "prompts/subjects/algorithms/ALG_CONSTITUTION_ROUTER.json",
-      "state": "prompts/subjects/algorithms/PROJECT_STATE.json",
       "status": "CANONICAL_EXTRACTED"
     }
-  ],
-  "chatEntry": "prompts/CHAT_ENTRY.md",
-  "constitutionLibrary": "prompts/constitution/"
+  ]
 }
