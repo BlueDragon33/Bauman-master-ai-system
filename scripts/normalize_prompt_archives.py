@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import base64
 import hashlib
 import json
 import shutil
@@ -12,6 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 ARCHIVES = ROOT / "prompt-archives"
 SUBJECTS = ROOT / "prompts" / "subjects"
 BOOTSTRAP = ARCHIVES / "_remaining-subject-sources.zip"
+BOOTSTRAP_PART_GLOB = "_remaining-subject-sources.b64.part*"
 
 PACKAGES = {
     "russian-pack.zip": {"slug":"russian","normalize":False,"prefix":"RU","label":"Russian","sourceRoot":"RUSSIAN_PROMPT_SYSTEM"},
@@ -169,10 +171,19 @@ def deterministic_zip(src_dir: Path, out: Path):
             zf.writestr(info,p.read_bytes())
 
 def bootstrap_import(results: dict):
-    if not BOOTSTRAP.exists(): return
+    parts=sorted(ARCHIVES.glob(BOOTSTRAP_PART_GLOB))
+    bootstrap_path=BOOTSTRAP
+    temp_bootstrap=None
+    if not bootstrap_path.exists() and parts:
+        temp_bootstrap=Path(tempfile.mkstemp(suffix=".zip")[1])
+        payload="".join(p.read_text(encoding="ascii").strip() for p in parts)
+        temp_bootstrap.write_bytes(base64.b64decode(payload))
+        bootstrap_path=temp_bootstrap
+    if not bootstrap_path.exists():
+        return
     with tempfile.TemporaryDirectory() as td:
         tmp=Path(td)
-        with zipfile.ZipFile(BOOTSTRAP) as zf: zf.extractall(tmp)
+        with zipfile.ZipFile(bootstrap_path) as zf: zf.extractall(tmp)
         for archive_name,meta in PACKAGES.items():
             if not meta["normalize"]: continue
             src=tmp/meta["sourceRoot"]
@@ -180,7 +191,12 @@ def bootstrap_import(results: dict):
                 raise RuntimeError(f"bootstrap missing {meta['sourceRoot']}")
             results[archive_name]=normalize_source_dir(src,archive_name,meta)
             deterministic_zip(SUBJECTS/meta["slug"],ARCHIVES/archive_name)
-    BOOTSTRAP.unlink()
+    if BOOTSTRAP.exists():
+        BOOTSTRAP.unlink()
+    for part in parts:
+        part.unlink()
+    if temp_bootstrap and temp_bootstrap.exists():
+        temp_bootstrap.unlink()
 
 def normalize_individual_archives(results: dict):
     for archive_name,meta in PACKAGES.items():
