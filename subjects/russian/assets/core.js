@@ -279,7 +279,8 @@ function partRequirementRows(part=gatePart(),totalParts=gateTotalParts()){
  return EXAM_PAPER_ORDER.map(type=>({type,label:examPaperLabel(type),need:Number(req[type]||0),done:gateExamCount(type,part)})).filter(x=>x.need>0);
 }
 function gateRecords(part=gatePart()){const g=gateState(); return arr(g.completedExamPapers?.[gateKey(part)]);}
-function gateExamCount(type,part=gatePart()){return gateRecords(part).filter(x=>x.type===type&&x.passed).length}
+function authoritativeGateRecords(part=gatePart()){return gateRecords(part).filter(x=>x&&x.authorityEligible===true);}
+function gateExamCount(type,part=gatePart()){return authoritativeGateRecords(part).filter(x=>x.type===type&&x.passed).length}
 function gateNeedFor(type,part=gatePart()){return Number(partRequirements(part,gateTotalParts())[type]||0)}
 function gateTypeComplete(type,part=gatePart()){return gateExamCount(type,part)>=gateNeedFor(type,part)}
 function gateNextNeededType(part=gatePart()){
@@ -358,11 +359,13 @@ function stageReadinessNextTarget(part=gatePart()){
  if(unlock.allowed)return {kind:'unlock',label:'Đủ điều kiện mở khóa',unlock};
  return {kind:'blocked',label:unlock.blockers?.[0]||'Cần bổ sung bằng chứng',unlock};
 }
-function registerGateExamPass(type,sum){
+function registerGateExamPass(type,sum,authority){
+ if(!authority?.officialEligible)return false;
  const g=gateState(); const keyName=gateKey();
  g.completedExamPapers[keyName]=arr(g.completedExamPapers[keyName]);
- g.completedExamPapers[keyName].push({type,passed:true,score10:Number(sum?.score10||0),correct:Number(sum?.correct||0),total:Number(sum?.total||0),at:Date.now(),stage:g.currentStage,part:g.currentPart});
+ g.completedExamPapers[keyName].push({type,passed:true,authorityEligible:true,authoritySchema:authority.schema||'RUSSIAN_ASSESSMENT_AUTHORITY_V1',authorityReason:authority.reason||'',datasetStatus:authority.datasetStatus||'UNKNOWN',score10:Number(sum?.score10||0),correct:Number(sum?.correct||0),total:Number(sum?.total||0),at:Date.now(),stage:g.currentStage,part:g.currentPart});
  g.lastExamSource=state.examGateSource||null;
+ return true;
 }
 function currentPartLessonIds(part=gatePart(),stageId=currentStageId()){
  const lessons=call('getLessons',[],DB).filter(l=>(stageOf(l)||stageId)===stageId);
@@ -856,29 +859,36 @@ function canonicalExamAttemptId(level){
  state.examProgress.attemptIds[level]=id;
  return id;
 }
+function assessmentAuthority(qs){
+ try{return window.RussianAssessmentAuthority?.evaluateOfficialAssessment?.({questions:arr(qs)})||{schema:'RUSSIAN_ASSESSMENT_AUTHORITY_V1',officialEligible:false,reason:'authority-provider-unavailable',datasetStatus:'UNKNOWN',totalItems:arr(qs).length,verifiedItems:0};}
+ catch(error){return {schema:'RUSSIAN_ASSESSMENT_AUTHORITY_V1',officialEligible:false,reason:'authority-check-failed',datasetStatus:'UNKNOWN',error:String(error?.message||error),totalItems:arr(qs).length,verifiedItems:0};}
+}
 function submitExamNow(){
  const level=activeExamLevel(); const qs=getExamQuestions(level); const existing=examPaperResult(level);
  if(existing){openModal(renderExamResultModal(existing),'exam-result');toast('Đề này đã nộp. Reset đề để tạo một retry riêng mà không xóa first attempt.');return}
  const sum={...examProgressSummary(qs,level),diagnosis:examLearningPriority(qs,level)};
  if(sum.answered<sum.total){toast(`Còn ${sum.total-sum.answered} câu chưa trả lời trong đề ${examLevelLabel(level)}`); return}
+ const authority=assessmentAuthority(qs);
  const attemptId=canonicalExamAttemptId(level);
  const assessmentId=`exam:${currentStageId()}:${level}`;
  const responses=arr(qs).map((q,i)=>{
   const itemId=examQuestionId(q,i,level);
   const answer=state.examProgress.answers?.[itemId];
-  return {itemId,response:answer,evaluation:{correct:Number(answer)===Number(answerIndex(q)),correctAnswer:answerIndex(q)},skill:q?.skill||'',lessonId:q?.lessonId||'',topic:q?.topic||''};
+  return {itemId,response:answer,evaluation:{correct:Number(answer)===Number(answerIndex(q)),correctAnswer:answerIndex(q),authorityEligible:authority.officialEligible},skill:q?.skill||'',lessonId:q?.lessonId||'',topic:q?.topic||''};
  });
  const recorded=window.RussianAssessmentMastery?.recordAssessmentAttempt?.({
   attemptId,assessmentId,contentRevision:String(DB.tests?.version||DB.tests?.contract||''),
-  mode:'exam',stage:currentStageId(),cycle:examCycleSummary(),paperType:level,
-  responses,evaluation:{...sum},feedbackShown:false
+  mode:authority.officialEligible?'exam':'diagnostic-unverified',stage:currentStageId(),cycle:examCycleSummary(),paperType:level,
+  responses,evaluation:{...sum,officialEligible:authority.officialEligible,authorityReason:authority.reason,datasetStatus:authority.datasetStatus},feedbackShown:false
  });
- state.examProgress.paperResults=state.examProgress.paperResults||{}; state.examProgress.paperResults[level]={...sum,attemptId,firstAttempt:recorded?.attempt?.firstAttempt??null}; state.examProgress.submitted=true; state.examProgress.submittedAt=Date.now(); state.examProgress.result=state.examProgress.paperResults[level]; state.examProgress.wrong={};
+ state.examProgress.paperResults=state.examProgress.paperResults||{};
+ state.examProgress.paperResults[level]={...sum,attemptId,firstAttempt:recorded?.attempt?.firstAttempt??null,officialEligible:authority.officialEligible,authorityReason:authority.reason,datasetStatus:authority.datasetStatus,verifiedItems:Number(authority.verifiedItems||0),authorityItems:Number(authority.totalItems||qs.length)};
+ state.examProgress.submitted=true; state.examProgress.submittedAt=Date.now(); state.examProgress.result=state.examProgress.paperResults[level]; state.examProgress.wrong={};
  arr(sum.wrong).forEach(w=>{state.examProgress.wrong[w.id]={at:Date.now(),index:w.index,answer:w.answer,correct:w.correct,level:w.level,lessonId:w.lessonId,skill:w.skill,topic:w.topic};});
- state.examHistory=[{at:Date.now(),attemptId,...sum,cycle:examCycleSummary()},...arr(state.examHistory)].slice(0,20);
- if(sum.passed)registerGateExamPass(level,{...sum,attemptId}); else createRemedialPlan({...sum,attemptId});
+ state.examHistory=[{at:Date.now(),attemptId,...sum,officialEligible:authority.officialEligible,authorityReason:authority.reason,datasetStatus:authority.datasetStatus,cycle:examCycleSummary()},...arr(state.examHistory)].slice(0,20);
+ if(sum.passed&&authority.officialEligible)registerGateExamPass(level,{...sum,attemptId},authority); else if(!sum.passed)createRemedialPlan({...sum,attemptId});
  save(); render(); openModal(renderExamResultModal(state.examProgress.paperResults[level]),'exam-result'); const complete=gatePartComplete();
- toast(sum.passed?(complete?'Đạt đủ cổng phần này, có thể mở khóa bước tiếp theo':'Đạt đề này, tiếp tục đề còn lại trong phần'):'Chưa đạt đề này, đã tạo lịch phụ đạo');
+ toast(!authority.officialEligible?'Đề đã chấm ở chế độ chẩn đoán vì answer-key authority chưa VERIFIED; kết quả không mở khóa stage.':(sum.passed?(complete?'Đạt đủ cổng phần này, có thể mở khóa bước tiếp theo':'Đạt đề này, tiếp tục đề còn lại trong phần'):'Chưa đạt đề này, đã tạo lịch phụ đạo'));
 }
 function runConfirmedAction(action){
  if(action==='submit-exam-do'){submitExamNow(); return;}
@@ -2039,7 +2049,8 @@ function renderExamResultPanel(sum){
  const wrongPreview=arr(r.wrong).slice(0,6).map(w=>`<li><b>Câu ${w.index+1}</b><span>${esc(clip(questionTitle(w.question,w.index),90))}</span></li>`).join('')||'<li><span>Không có câu sai.</span></li>';
  const strongText=priority.strong.length?priority.strong.map(x=>`${x.label} ${x.score}%`).join(' · '):'Chưa có kỹ năng đạt từ 80%';
  const weakText=priority.weak.length?priority.weak.map(x=>`${x.label} ${x.score}%`).join(' · '):'Chưa có kỹ năng dưới 80%';
- return `${renderGateProgressPanel()}${status}<aside class="exam-result-inline ${r.passed?'passed':'failed'}"><div><span class="chip">KẾT QUẢ · ${esc(examLevelLabel(level))} · ${r.passed?'ĐẠT':'CHƯA ĐẠT'}</span><h3>${Number(r.score10||0).toFixed(1)}/10</h3><p>${r.correct}/${r.total} câu đúng · ${r.wrongCount} câu sai/chưa trả lời. Trạng thái phần: ${gatePartComplete()?'đủ điều kiện mở khóa':'còn đề bắt buộc'}.</p><div class="exam-learning-diagnosis"><span><b>Mạnh:</b> ${esc(strongText)}</span><span><b>Cần củng cố:</b> ${esc(weakText)}</span><span><b>Ưu tiên tiếp:</b> ${esc(priority.guidance)}</span></div></div><div class="exam-score-meter"><b>${Math.round((Number(r.score10)||0)*10)}%</b><span>Điều kiện mỗi đề: 80%</span></div><div class="mini-score-bars">${bd.levels.slice(0,4).map(row=>`<span><b>${esc(row.label)}</b><i>${row.score10.toFixed(1)}/10</i></span>`).join('')}</div><ul class="wrong-preview">${wrongPreview}</ul><div class="lesson-tools"><button class="btn ${r.passed?'green':'primary'}" data-act="open-exam-result">Xem popup kết quả</button>${r.passed?`<button class="btn soft" data-act="next-gate-paper">Lượt kế tiếp</button>`:`<button class="btn warn" data-act="create-remedial-review">Ôn tập lại</button>`}<button class="btn soft" data-act="reset-exam-paper">${r.passed?'Làm lại đề này':'Làm lại đề rớt'}</button></div></aside>`;
+ const official=r.officialEligible===true; const authorityNote=official?'Kết quả đủ authority để xét cổng.':`CHẨN ĐOÁN · ${r.datasetStatus||'UNKNOWN'} · answer-key authority chưa VERIFIED, không mở khóa.`;
+ return `${renderGateProgressPanel()}${status}<aside class="exam-result-inline ${official&&r.passed?'passed':'failed'}"><div><span class="chip">KẾT QUẢ · ${esc(examLevelLabel(level))} · ${official?(r.passed?'ĐẠT':'CHƯA ĐẠT'):'CHẨN ĐOÁN'}</span><h3>${Number(r.score10||0).toFixed(1)}/10</h3><p>${r.correct}/${r.total} câu đúng · ${r.wrongCount} câu sai/chưa trả lời. ${esc(authorityNote)} Trạng thái phần: ${gatePartComplete()?'đủ điều kiện mở khóa':'còn đề bắt buộc'}.</p><div class="exam-learning-diagnosis"><span><b>Mạnh:</b> ${esc(strongText)}</span><span><b>Cần củng cố:</b> ${esc(weakText)}</span><span><b>Ưu tiên tiếp:</b> ${esc(priority.guidance)}</span></div></div><div class="exam-score-meter"><b>${Math.round((Number(r.score10)||0)*10)}%</b><span>Điều kiện mỗi đề: 80%</span></div><div class="mini-score-bars">${bd.levels.slice(0,4).map(row=>`<span><b>${esc(row.label)}</b><i>${row.score10.toFixed(1)}/10</i></span>`).join('')}</div><ul class="wrong-preview">${wrongPreview}</ul><div class="lesson-tools"><button class="btn ${r.passed?'green':'primary'}" data-act="open-exam-result">Xem popup kết quả</button>${r.passed?`<button class="btn soft" data-act="next-gate-paper">Lượt kế tiếp</button>`:`<button class="btn warn" data-act="create-remedial-review">Ôn tập lại</button>`}<button class="btn soft" data-act="reset-exam-paper">${r.passed?'Làm lại đề này':'Làm lại đề rớt'}</button></div></aside>`;
 }
 function renderExamResultModal(sum){
  const level=sum?.level||activeExamLevel();
@@ -2048,9 +2059,10 @@ function renderExamResultModal(sum){
  const bd=examBreakdown(getExamQuestions(level),level);
  const priority=examLearningPriority(getExamQuestions(level),level);
  const wrongs=arr(result.wrong);
+ const official=result.officialEligible===true; const authorityNote=official?'Kết quả đủ authority để xét cổng.':`Chế độ chẩn đoán: assessment bank ${result.datasetStatus||'UNKNOWN'}; answer key chưa đủ VERIFIED authority nên không được dùng để mở khóa.`;
  const wrongList=wrongs.length?wrongs.slice(0,120).map(w=>`<article class="wrong-card"><b>Câu ${w.index+1}</b><p>${esc(questionTitle(w.question,w.index))}</p><small>Đã chọn: ${esc(examAnswerText(w.question,w.answer))}</small><small>Đúng: ${esc(examAnswerText(w.question,w.correct))}</small>${w.question?.explanation?`<em>${esc(w.question.explanation)}</em>`:''}</article>`).join(''):'<div class="note">Không có câu sai trong đề này.</div>';
  const cycleRows=cycle.rows.map(row=>{const r=row.result; const cls=r?(r.passed?'passed':'failed'):'pending'; return `<article class="paper-status ${cls}"><b>${esc(row.label)}</b><i>${r?`${Number(r.score10||0).toFixed(1)}/10 · ${r.passed?'Đạt':'Chưa đạt'}`:'Chưa nộp'}</i></article>`}).join('');
- return `<div class="exam-result-modal v1220-result-modal"><div class="result-hero ${result.passed?'passed':'failed'}"><div><span class="chip">${esc(examLevelLabel(level))} · ${result.passed?'ĐẠT':'CHƯA ĐẠT'}</span><h2>${Number(result.score10||0).toFixed(1)}/10</h2><p>${result.correct}/${result.total} câu đúng · ${result.wrongCount} câu sai/chưa trả lời. Mỗi lượt kiểm tra cần đạt từ 8.0/10.</p></div><div class="result-ring"><b>${Math.round((Number(result.score10)||0)*10)}%</b><span>điểm đề</span></div></div><section class="result-section"><h3>Trạng thái các đề trong mốc</h3><div class="paper-status-list">${cycleRows}</div></section><section class="result-section"><h3>Phổ điểm theo mức/kỹ năng</h3><div class="score-grid">${bd.levels.map(scoreBar).join('')}${bd.skills.slice(0,8).map(scoreBar).join('')}</div></section><section class="result-section exam-learning-priority"><h3>Chẩn đoán & ưu tiên học tiếp</h3><div class="exam-priority-grid"><article><b>Kỹ năng tốt</b><p>${esc(priority.strong.length?priority.strong.map(x=>`${x.label} · ${x.score}%`).join(' · '):'Chưa có kỹ năng đạt từ 80%.')}</p></article><article><b>Kỹ năng yếu</b><p>${esc(priority.weak.length?priority.weak.map(x=>`${x.label} · ${x.score}%`).join(' · '):'Chưa có kỹ năng dưới 80%.')}</p></article><article><b>Ưu tiên tiếp theo</b><p>${esc(priority.guidance)}</p></article></div></section><section class="result-section"><h3>Câu sai cần xử lý</h3><div class="wrong-list">${wrongList}</div></section>${renderGateProgressPanel()}<div class="modal-actions"><button class="btn" data-act="modal-close">Đóng</button>${result.passed?`<button class="btn soft" data-act="next-gate-paper">Lượt kế tiếp</button>`:`<button class="btn primary" data-act="create-remedial-review">Ôn tập lại và tạo phụ đạo</button>`}<button class="btn soft" data-act="reset-exam-paper">Làm lại đề hiện tại</button></div></div>`;
+ return `<div class="exam-result-modal v1220-result-modal"><div class="result-hero ${official&&result.passed?'passed':'failed'}"><div><span class="chip">${esc(examLevelLabel(level))} · ${official?(result.passed?'ĐẠT':'CHƯA ĐẠT'):'CHẨN ĐOÁN'}</span><h2>${Number(result.score10||0).toFixed(1)}/10</h2><p>${result.correct}/${result.total} câu đúng · ${result.wrongCount} câu sai/chưa trả lời. ${esc(authorityNote)}</p></div><div class="result-ring"><b>${Math.round((Number(result.score10)||0)*10)}%</b><span>điểm đề</span></div></div><section class="result-section"><h3>Trạng thái các đề trong mốc</h3><div class="paper-status-list">${cycleRows}</div></section><section class="result-section"><h3>Phổ điểm theo mức/kỹ năng</h3><div class="score-grid">${bd.levels.map(scoreBar).join('')}${bd.skills.slice(0,8).map(scoreBar).join('')}</div></section><section class="result-section exam-learning-priority"><h3>Chẩn đoán & ưu tiên học tiếp</h3><div class="exam-priority-grid"><article><b>Kỹ năng tốt</b><p>${esc(priority.strong.length?priority.strong.map(x=>`${x.label} · ${x.score}%`).join(' · '):'Chưa có kỹ năng đạt từ 80%.')}</p></article><article><b>Kỹ năng yếu</b><p>${esc(priority.weak.length?priority.weak.map(x=>`${x.label} · ${x.score}%`).join(' · '):'Chưa có kỹ năng dưới 80%.')}</p></article><article><b>Ưu tiên tiếp theo</b><p>${esc(priority.guidance)}</p></article></div></section><section class="result-section"><h3>Câu sai cần xử lý</h3><div class="wrong-list">${wrongList}</div></section>${renderGateProgressPanel()}<div class="modal-actions"><button class="btn" data-act="modal-close">Đóng</button>${result.passed?`<button class="btn soft" data-act="next-gate-paper">Lượt kế tiếp</button>`:`<button class="btn primary" data-act="create-remedial-review">Ôn tập lại và tạo phụ đạo</button>`}<button class="btn soft" data-act="reset-exam-paper">Làm lại đề hiện tại</button></div></div>`;
 }
 
 function reviewMeta(q){return [['Bài', (q?.lessonId||'')+' · '+(q?.lessonTitle||q?.chapter||'')],['Kỹ năng', q?.skill||''],['Chủ điểm', q?.topic||''],['Mức', q?.levelTitle||q?.difficulty||state.reviewLevel]].filter(x=>str(x[1]).trim())}
