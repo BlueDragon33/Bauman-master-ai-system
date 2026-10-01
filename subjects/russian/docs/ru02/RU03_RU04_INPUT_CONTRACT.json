@@ -1,0 +1,23 @@
+{
+  "schemaVersion":"1.0.0",
+  "kind":"RU03_RU04_INPUT_CONTRACT",
+  "state":"PASS",
+  "baselineSha":"9bfd57210e6d5c4593fe5dc116f12f513f99f5f6",
+  "preserve":{
+    "macroIds":"R01-R26",
+    "unitCount":243,
+    "microLessonCount":729,
+    "speakingDatasets":["speaking.json","dialogue-bauman-az.json","deep-speaking-bauman.json","speaking-link-index.json"]
+  },
+  "ru03":{
+    "owns":"linguistic truth and provenance validation",
+    "mustValidate":["stress","phonetics","morphology","government","aspect","motion verbs","lexical senses","collocation","register","naturalness","translation fidelity","terminology","provenance"],
+    "mustNot":"change mastery or learner state"
+  },
+  "ru04":{
+    "owns":"Russian evidence mapping, attempt semantics, SRS specialization, stage gates, remediation and adaptive skill balance",
+    "mustPreserve":"exposure != progress != performance != mastery",
+    "mustNot":"treat page open/watch/click/AI duration as independent mastery evidence"
+  },
+  "sharedConstraints":["stable IDs immutable once referenced","no destructive migration","derived outputs reference canonical IDs","legacy runtime compatibility retained until replacement is proven"]
+}
