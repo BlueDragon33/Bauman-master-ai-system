@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RU05_RU06_RU07_TRUTH_CONTRACT",
+  "state": "PASS",
+  "consumers": [
+    "RU05",
+    "RU06",
+    "RU07"
+  ],
+  "rules": [
+    "consume canonical IDs; do not create a second linguistic authority",
+    "UNVERIFIED/CONTEXT_DEPENDENT/DISPUTED content cannot silently become authoritative answer keys",
+    "accepted variants must remain explicit",
+    "generated content begins non-authoritative",
+    "technical terminology uses item/domain sourceRefs from the canonical terminology owner",
+    "AI/TTS/ASR/learner mastery never prove linguistic correctness"
+  ]
+}

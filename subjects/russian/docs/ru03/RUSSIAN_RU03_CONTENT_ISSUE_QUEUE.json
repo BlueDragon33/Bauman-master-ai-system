@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_RU03_CONTENT_ISSUE_QUEUE",
+  "state": "OPEN_NONCRITICAL",
+  "rules": {
+    "critical": "contradictory or unsupported active answer key / terminology presented as authoritative",
+    "autoFix": "only deterministic meaning-preserving repairs"
+  },
+  "issues": [
+    {
+      "id": "RU03-Q001",
+      "severity": "HIGH",
+      "owner": "academic-functions.json",
+      "status": "OPEN",
+      "reason": "academic patterns are curriculum-derived and lack item-level external/curated authority",
+      "disposition": "UNVERIFIED until reviewed; do not auto-promote"
+    },
+    {
+      "id": "RU03-Q002",
+      "severity": "HIGH",
+      "owner": "tests.json",
+      "status": "OPEN",
+      "reason": "large assessment bank requires item/source-bound answer-key authority; bulk semantic auto-fix forbidden",
+      "disposition": "validate incrementally with golden fixtures and source-backed review"
+    },
+    {
+      "id": "RU03-Q003",
+      "severity": "MEDIUM",
+      "owner": "vocab.json",
+      "status": "OPEN",
+      "reason": "stress/morphology/government gaps remain intentionally unverified",
+      "disposition": "preserve blanks/unknowns rather than infer"
+    },
+    {
+      "id": "RU03-Q004",
+      "severity": "MEDIUM",
+      "owner": "dialogue/deep-speaking",
+      "status": "OPEN",
+      "reason": "naturalness/register/technical terminology review remains item-bound",
+      "disposition": "retain PARTIAL status until curated"
+    }
+  ],
+  "blockers": [],
+  "note": "Open review debt is not a claim of correctness. RU03 passes because authority is fail-closed and no unresolved item is allowed to masquerade as VERIFIED."
+}

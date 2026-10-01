@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_RU03_GOLDEN_LINGUISTIC_FIXTURES",
+  "fixtures": [
+    {
+      "id": "generated-no-source",
+      "input": {
+        "origin": "GENERATED",
+        "value": "candidate"
+      },
+      "expected": "UNVERIFIED"
+    },
+    {
+      "id": "verified-missing-reviewer",
+      "input": {
+        "status": "VERIFIED",
+        "sourceRefs": [
+          "source:x"
+        ]
+      },
+      "expected": "REJECT"
+    },
+    {
+      "id": "verified-source-review",
+      "input": {
+        "status": "VERIFIED",
+        "sourceRefs": [
+          "source:x"
+        ],
+        "reviewer": "reviewer",
+        "reviewedAt": "2026-10-01"
+      },
+      "expected": "ACCEPT"
+    },
+    {
+      "id": "accepted-variants",
+      "input": {
+        "variants": [
+          "variant-a",
+          "variant-b"
+        ],
+        "status": "VERIFIED_WITH_VARIANTS"
+      },
+      "expected": "PRESERVE_VARIANTS"
+    },
+    {
+      "id": "sense-dependent",
+      "input": {
+        "senses": [
+          "sense-a",
+          "sense-b"
+        ],
+        "status": "CONTEXT_DEPENDENT"
+      },
+      "expected": "DO_NOT_COLLAPSE"
+    },
+    {
+      "id": "derived-index-conflict",
+      "input": {
+        "owner": "derived-index",
+        "canonicalConflict": true
+      },
+      "expected": "FIX_CANONICAL_OWNER_THEN_REGENERATE"
+    }
+  ]
+}

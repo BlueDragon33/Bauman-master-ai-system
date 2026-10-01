@@ -45,6 +45,8 @@ jobs:
         run: node subjects/russian/scripts/test-p6-speech-interaction-runtime.mjs
       - name: Validate Russian P7 linguistic authority
         run: node subjects/russian/scripts/validate-p7-linguistic-authority.mjs
+      - name: Validate Russian RU03 linguistic authority
+        run: node subjects/russian/scripts/validate-ru03-linguistic-authority.mjs
       - name: Validate Russian P8 academic technical coverage
         run: node subjects/russian/scripts/validate-p8-academic-technical.mjs
       - name: Validate Russian P9 reading writing research production
