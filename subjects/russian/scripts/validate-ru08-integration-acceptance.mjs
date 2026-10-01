@@ -44,9 +44,12 @@ for(const type of gov.plannedEntityTypes){
  const o=ownerMap.get(type); assert(o,'planned type missing from RU02 owners: '+type);
 }
 
-for(const id of ['technical-concepts','academic-functions','reading','performance-tasks','provenance','scenario-registry','ai-mentor-policy','authoring-governance']){
- assert((manifest.dataFiles||[]).some(x=>x.id===id),'manifest missing RU08 registration: '+id);
-}
+const registered=new Map(manifest.architecture?.registeredCanonicalOwners?.owners||[]);
+for(const [type,path] of [
+ ['TechnicalConcept','data/technical-concepts.json'],['AcademicFunction','data/academic-functions.json'],['ReadingText','data/reading.json'],
+ ['PerformanceTask','data/performance-tasks.json'],['ProvenanceRecord','data/provenance.json'],['ScenarioComposition','data/scenario-registry.json'],
+ ['AiMentorPolicy','data/ai-mentor-policy.json'],['AuthoringGovernance','data/authoring-governance.json']
+]) assert.equal(registered.get(type),path,'manifest architecture missing RU08 owner registration: '+type);
 for(const id of ['dialogue-bauman-az','deep-speaking-bauman','speaking-link-index']){
  const row=(manifest.dataFiles||[]).find(x=>x.id===id); assert.equal(row?.lazy,true,'large dataset lost lazy flag: '+id);
  assert(!sw.includes(`'./data/${id}.json'`)&&!sw.includes(`"./data/${id}.json"`),'large dataset precached: '+id);
