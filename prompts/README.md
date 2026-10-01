@@ -29,14 +29,15 @@ When a Master Prompt evolves, patch the stable file and preserve a changelog/mig
 
 ## Token-efficient continuation
 
-For a new ChatGPT/Codex session, load only:
+For a new ordinary ChatGPT chat, ChatGPT Work session, or Codex session, load only:
 
-1. `prompts/CONSTITUTION.md`;
-2. `prompts/PROMPT_REGISTRY.json`;
-3. the active domain Master Prompt;
-4. that domain's PROJECT_STATE;
-5. diff since the last validated SHA;
-6. only impacted source/tests/evidence.
+1. `prompts/CHAT_ENTRY.md`;
+2. `prompts/CONSTITUTION.md`;
+3. `prompts/PROMPT_REGISTRY.json`;
+4. the active subject `README.md` + Master Prompt;
+5. that subject's `PROJECT_STATE.json`;
+6. only the C1–C4 clauses named by its router;
+7. repository diff/tests/evidence only when repository execution is actually requested.
 
 Do not rescan the entire repository unless the state, SHA, owner map, or architecture is stale/invalid.
 
@@ -46,10 +47,22 @@ Do not rescan the entire repository unless the state, SHA, owner map, or archite
 - `prompts/subjects/<subject>/` = durable instructions/governance for that subject.
 - Prompts must not be mixed into runtime content.
 
-## Current migration
+## Channel-neutral use
 
-Russian is the first subject imported into this canonical prompt tree because a stable RU00 Master Orchestrator already exists.
+The prompt tree is not Codex-only.
 
-The curriculum-2026 package is retained and routed here while its legacy internal C1–C4 labels are normalized to the shared Constitution.
+- **Ordinary ChatGPT chat:** planning, review, explanation, drafting, comparison, prompt evolution and handoff.
+- **ChatGPT Work:** larger multi-step workflows across files/apps.
+- **Codex:** repository implementation, tests and engineering execution.
 
-Other subject prompts are imported only from their existing authoritative sources; do not fabricate a new Master Prompt merely to fill the directory.
+All three modes use the same Constitution, Master Prompt, router and PROJECT_STATE. A chat must not claim repository execution unless tools actually performed it.
+
+## Current normalized subjects
+
+- Russian — RU00–RU08 canonical active prompt system.
+- Math — MATH00–MATH06 canonical active prompt system.
+- Python — PYTHON00–PYTHON06 canonical active prompt system.
+- Algorithms & Data Structures — ALG00–ALG06 canonical active prompt system.
+- Curriculum 2026 — canonical shell-building prompt system.
+
+Original/backup ZIP packages remain under `prompt-archives/` for provenance and recovery. They are not simultaneous execution authority.
