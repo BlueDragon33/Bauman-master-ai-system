@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_RU07_CONTEXT_GROUNDING_CONTRACT",
+  "minimumContext": [
+    "active-task",
+    "canonical-content-ids",
+    "RU03-trust-metadata",
+    "task-relevant-learner-evidence",
+    "support-state",
+    "source-refs",
+    "RU05-scenario-state-if-needed"
+  ],
+  "forbiddenDefaultContext": [
+    "whole-dataset-dump",
+    "full-learner-history",
+    "secrets",
+    "unneeded-device-metadata"
+  ],
+  "grounding": {
+    "authoritativeLookingFeedback": "retrieve canonical/source context when available",
+    "absentOrConflicted": "state uncertainty or restrict to coaching",
+    "currentInstitutionalRules": "never invent"
+  },
+  "staleResponseQuarantine": [
+    "route-change",
+    "task-change",
+    "logout-user-switch",
+    "assessment-submit",
+    "source-rubric-revision",
+    "scenario-run-change"
+  ],
+  "invariant": "late/canceled response cannot mutate newer task state"
+}
