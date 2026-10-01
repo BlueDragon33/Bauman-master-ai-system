@@ -8,7 +8,7 @@
   const esc=v=>clean(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
   const parse=(v,f)=>{try{return v?JSON.parse(v):f}catch(_){return f}};
   const now=()=>new Date().toISOString();
-  let owners=[],governance=null,provenance=null,current=null,notice='';
+  let owners=[],governance=null,provenance=null,candidateSchema=null,current=null,notice='';
 
   function state(){return parse(localStorage.getItem(STORAGE_KEY),{candidates:{},activeId:''});}
   function writeState(s){localStorage.setItem(STORAGE_KEY,JSON.stringify(s));}
@@ -25,8 +25,8 @@
   }
   function ownerFor(responsibility){return owners.find(row=>row[0]===responsibility)||null;}
   function formValue(id){return clean(document.getElementById(id)?.value);}
-  function sourceRefs(){return formValue('sourceRefs').split(/\n|,/).map(clean).filter(Boolean);}
-  function variants(){return formValue('acceptedVariants').split(/\n/).map(clean).filter(Boolean);}
+  function sourceRefs(){return [...new Set(formValue('sourceRefs').split(/\n|,/).map(clean).filter(Boolean))];}
+  function variants(){return [...new Set(formValue('acceptedVariants').split(/\n/).map(clean).filter(Boolean))];}
   function candidateFromForm(){
     const responsibility=formValue('responsibility'),owner=ownerFor(responsibility);
     const payload={
@@ -64,6 +64,12 @@
   }
   function validate(c){
     const errors=[],warnings=[],owner=ownerFor(c.responsibility);
+    if(candidateSchema){
+      for(const key of arr(candidateSchema.required))if(c[key]===undefined||c[key]===null||c[key]==='')errors.push('schema-required:'+key);
+      const states=arr(candidateSchema?.properties?.state?.enum);if(states.length&&!states.includes(c.state))errors.push('schema-state:'+c.state);
+      const max=Number(candidateSchema?.properties?.diffSummary?.maxLength||0);if(max&&clean(c.diffSummary).length>max)errors.push('diff summary exceeds schema maxLength '+max);
+      if(candidateSchema?.properties?.sourceRefs?.uniqueItems&&new Set(arr(c.sourceRefs)).size!==arr(c.sourceRefs).length)errors.push('sourceRefs must be unique');
+    }
     if(!c.candidateId)errors.push('candidateId is required');
     if(!owner)errors.push('Responsibility has no canonical owner');
     if(owner&&/PLANNED/.test(owner[2]))errors.push('Canonical owner is planned but not materialized');
@@ -146,12 +152,14 @@
     }
   }
   async function bootstrap(){
-    const [ownersRes,govRes,provRes]=await Promise.all([
+    const [ownersRes,govRes,provRes,schemaRes]=await Promise.all([
       fetch('docs/ru02/RUSSIAN_RU02_CANONICAL_OWNER_REGISTRY.json',{cache:'no-store'}).then(r=>r.json()),
       fetch('data/authoring-governance.json',{cache:'no-store'}).then(r=>r.json()),
-      fetch('data/provenance.json',{cache:'no-store'}).then(r=>r.json())
+      fetch('data/provenance.json',{cache:'no-store'}).then(r=>r.json()),
+      fetch('data/authoring-candidate.schema.json',{cache:'no-store'}).then(r=>r.json())
     ]);
-    owners=arr(ownersRes.owners);governance=govRes;provenance=provRes;
+    owners=arr(ownersRes.owners);governance=govRes;provenance=provRes;candidateSchema=schemaRes;
+    if(candidateSchema?.$id!==SCHEMA)throw new Error('Authoring candidate schema identity mismatch');
     const select=document.getElementById('responsibility');
     const allowed=new Set(arr(governance.authorableEntityTypes));
     select.innerHTML=owners.filter(row=>allowed.has(row[0])).map(row=>'<option value="'+esc(row[0])+'">'+esc(row[0]+' · '+row[1]+' · '+row[2])+'</option>').join('');
@@ -179,5 +187,5 @@
     const reader=new FileReader();reader.onload=()=>{try{const c=JSON.parse(String(reader.result||''));if(c.schema!==SCHEMA)throw new Error('Sai candidate schema');current=c;persist(c);populateForm(c);setNotice('Đã import candidate; hãy validate lại trước review.');}catch(error){setNotice('Import lỗi: '+String(error?.message||error));}};reader.readAsText(input.files[0]);
   });
   document.addEventListener('DOMContentLoaded',()=>bootstrap().catch(error=>setNotice('Bootstrap lỗi: '+String(error?.message||error))));
-  window.RussianAuthoringStudio={schema:SCHEMA,validate,reviewEnvelope,rollbackPlan,getCurrent:()=>JSON.parse(JSON.stringify(current||active()||null)),governance:()=>JSON.parse(JSON.stringify(governance||null)),provenance:()=>JSON.parse(JSON.stringify(provenance||null))};
+  window.RussianAuthoringStudio={schema:SCHEMA,validate,reviewEnvelope,rollbackPlan,getCurrent:()=>JSON.parse(JSON.stringify(current||active()||null)),governance:()=>JSON.parse(JSON.stringify(governance||null)),provenance:()=>JSON.parse(JSON.stringify(provenance||null)),candidateSchema:()=>JSON.parse(JSON.stringify(candidateSchema||null))};
 })();
