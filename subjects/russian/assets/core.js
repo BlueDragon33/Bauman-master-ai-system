@@ -3918,7 +3918,7 @@ function handleClick(e){
  if('handSession' in b.dataset){state.handwritingSessionMode=['learn','practice','dictation','review'].includes(b.dataset.handSession)?b.dataset.handSession:'learn';resetHandwritingExerciseResponse(true);save();render();return}
  const act=b.dataset.act; if(!act)return;
  if(act==='confirm-cancel'){closeModal(); return;}
- if(act==='ai-run'){state.aiDraft=$('#aiPrompt')?.value||''; state.aiOutput=aiGenerate('custom',state.aiDraft); save(); openModal(renderAiMentor(),'ai')}
+ if(act==='ai-run'){const prompt=$('#aiPrompt')?.value||''; state.aiDraft=prompt; save(); const runtime=window.RussianAICoachingRuntime; if(runtime?.ask){state.aiOutput='<h4>AI Mentor</h4><p>Đang xử lý theo guardrail RU07...</p>';openModal(renderAiMentor(),'ai');runtime.ask({mode:'custom',prompt,officialAssessment:state.view==='learning'&&state.learnTab==='exam',protectedSource:state.view==='writing'?state.writingDraft:''}).then(result=>{if(result?.status==='STALE_QUARANTINED')return;const label=result?.status==='OK'?'Phản hồi AI đã kiểm guardrail':result?.status==='BLOCKED_ASSESSMENT'?'Assessment boundary':'Fallback an toàn';state.aiOutput=`<h4>${esc(label)}</h4><p>${esc(result?.text||'Không có phản hồi.')}</p><small>${esc(result?.status||'FALLBACK')} · không ghi mastery/official score</small>`;save();if(state.modalType==='ai')openModal(renderAiMentor(),'ai');}).catch(()=>{});}else{state.aiOutput=aiGenerate('custom',prompt);save();openModal(renderAiMentor(),'ai')}return}
  if(act==='ai-clear'){state.aiDraft='';state.aiOutput='';save();openModal(renderAiMentor(),'ai')}
  if(act==='dialogue-setup'){openModal(renderDialogueSetupModal(),'dialogue-setup'); return}
  if(act==='dialogue-setup-apply'){applyDialogueSetup(); return}
