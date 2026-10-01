@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_RU08_ACCEPTANCE_MATRIX",
+  "journeys": [
+    {
+      "id": "beginner",
+      "path": [
+        "enter-russian",
+        "understand-next-action",
+        "learn",
+        "practice",
+        "review",
+        "return-later"
+      ]
+    },
+    {
+      "id": "survival",
+      "path": [
+        "listen-speak",
+        "repair",
+        "complete-real-world-scenario"
+      ]
+    },
+    {
+      "id": "university",
+      "path": [
+        "read-listen-assignment",
+        "clarify",
+        "complete-learning-task"
+      ]
+    },
+    {
+      "id": "technical",
+      "path": [
+        "read-technical-representation",
+        "explain-concept",
+        "solve-communication-task",
+        "produce-report"
+      ]
+    },
+    {
+      "id": "research",
+      "path": [
+        "source-reading",
+        "notes",
+        "writing",
+        "presentation",
+        "QA-defense"
+      ]
+    },
+    {
+      "id": "admin-author",
+      "path": [
+        "create-candidate",
+        "map-canonical-owner",
+        "validate",
+        "preview",
+        "review",
+        "repository-patch",
+        "publish-metadata",
+        "rollback-capable"
+      ]
+    }
+  ],
+  "mustPass": [
+    "source-runtime",
+    "packaged-runtime",
+    "offline-core",
+    "responsive",
+    "keyboard-accessibility",
+    "authoring-governance",
+    "migration-compatibility"
+  ]
+}
