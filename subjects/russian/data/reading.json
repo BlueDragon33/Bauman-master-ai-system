@@ -1,6 +1,6 @@
 {
   "schema": "RUSSIAN_READING_TEXTS_V1",
-  "phase": "P9",
+  "phase": "RU06",
   "canonicalOwner": "subjects/russian/data/reading.json",
   "authorityPolicy": "REFERENCES_ONLY_NO_NEW_LINGUISTIC_TRUTH",
   "tasks": [
@@ -254,5 +254,7 @@
       "technicalConcepts": [],
       "output": "defense-evidence-cards"
     }
-  ]
+  ],
+  "activeOwner": "RU06",
+  "legacyPhaseNote": "P8/P9 labels are source-history only; active production owner is RU06."
 }
