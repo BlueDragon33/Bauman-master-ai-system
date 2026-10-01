@@ -13,6 +13,8 @@ try{
  const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(String(e?.stack||e)));
  await page.goto(PAGE_URL,{waitUntil:'domcontentloaded',timeout:30000});
  await page.waitForFunction(()=>!!window.RussianAuthoringStudio?.governance?.(),{timeout:15000});
+ const declaredSchema=await page.evaluate(()=>window.RussianAuthoringStudio.candidateSchema());
+ assert.equal(declaredSchema.$id,'RUSSIAN_AUTHORING_CANDIDATE_V1','authoring UI must load the declared candidate schema');
  assert(await page.locator('#responsibility option').count()>5,'structured responsibility options missing');
  assert.equal(await page.locator('textarea').filter({hasText:'raw JSON'}).count(),0);
 
