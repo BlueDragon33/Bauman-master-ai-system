@@ -11,6 +11,7 @@ const index=fs.readFileSync('subjects/russian/index.html','utf8');
 const editor=fs.readFileSync('subjects/russian/editor.html','utf8');
 const scenarioRuntime=fs.readFileSync('subjects/russian/assets/scenario-runtime.js','utf8');
 const authorRuntime=fs.readFileSync('subjects/russian/assets/authoring-adapter.js','utf8');
+const academicRuntime=fs.readFileSync('subjects/russian/assets/academic-production-runtime.js','utf8');
 
 assert.equal(ai.phase,'RU07');
 assert.equal(ai.authority.canonicalTruthOwner,'RU03');
@@ -37,9 +38,12 @@ assert.equal(gov.recoveredP12Responsibilities.migrationDryRunRequired,true);
 assert.equal(gov.bulk.partialCanonicalCommit,false);
 
 assert.match(index,/assets\/scenario-runtime\.js/);
+assert.match(index,/assets\/academic-production-runtime\.js/);
 assert.match(index,/assets\/scenario-runtime\.css/);
 assert.match(scenarioRuntime,/PRACTICE_ONLY/);
 assert.match(scenarioRuntime,/writesMastery:false/);
+assert.match(academicRuntime,/writesMastery:false/);
+assert.match(academicRuntime,/unverifiedIsPracticeOnly:true/);
 assert.match(editor,/data-russian-authoring/);
 assert.match(editor,/Raw JSON không phải giao diện mặc định/);
 assert.match(authorRuntime,/payloadIncluded:false/);
