@@ -1,11 +1,11 @@
 {
   "schemaVersion": "1.0.0",
   "kind": "RUSSIAN_RU08_RC_READINESS",
-  "state": "READY_FOR_MERGE",
-  "runtimeSourceBase": "main@f6aa11215dfcf24e2d646f7c9737733e66c642c8",
-  "artifactIdentity": "Russian subject package materialized from exact accepted Git SHA",
+  "state": "CANDIDATE",
+  "runtimeSourceBase": "main@7697a3f05362c111fb481ebd6043738c12dbcb8c",
+  "artifactIdentity": "Pending exact-head re-audit SHA; previous production remains 7697a3f05362c111fb481ebd6043738c12dbcb8c until new release passes.",
   "contentSnapshot": "subjects/russian/subject-manifest.json + canonical datasets referenced by RU02 owner registry",
-  "schemaMigrationIdentity": "RU08 authoring additive; no destructive learner-state migration",
+  "schemaMigrationIdentity": "Re-audit is additive/fail-closed; historical learner evidence preserved; legacy exam passes without authority metadata no longer count toward official stage gates.",
   "requiredConfig": [
     "shared Bauman shell",
     "Device Gate",
@@ -13,11 +13,12 @@
     "optional AI provider"
   ],
   "warnings": [
-    "open RU03 linguistic review debt remains non-authoritative",
-    "AI is optional",
+    "assessment-bank/tests.json remains PARTIAL and is diagnostic-only until verified answer-key authority exists",
+    "legacy unofficial gate records are preserved but excluded from official gate counts",
+    "AI is optional and provider output is non-authoritative",
     "large dialogue/deep-speaking datasets remain lazy"
   ],
-  "rollbackTarget": "f6aa11215dfcf24e2d646f7c9737733e66c642c8",
+  "rollbackTarget": "7697a3f05362c111fb481ebd6043738c12dbcb8c",
   "productionSmoke": [
     "open Russian",
     "resume/Today plan",
@@ -30,11 +31,12 @@
   ],
   "releaseAnnex": "GLOBAL_CONSTITUTIONS/C3_RELEASE_ANNEX_PRODUCTION.md",
   "acceptanceEvidence": {
-    "russianReferenceUiGate": "PASS on d80cee27a0c1c617e78d47e20b58d4a6d64dfc42",
-    "wholeSystemIntegrationRun": 36875196038,
-    "wholeSystemIntegration": "PASS",
-    "constitution": "PASS",
-    "fastCi": "PASS"
+    "fullPromptReaudit": "PENDING",
+    "russianReferenceUiGate": "PENDING",
+    "wholeSystemIntegration": "PENDING",
+    "constitution": "PENDING",
+    "fastCi": "PENDING",
+    "exactHeadBrowserPackage": "PENDING"
   },
-  "rcIdentityRule": "After merge, the merge SHA is the exact RC source identity; release must not target latest/main ambiguously."
+  "rcIdentityRule": "After PR acceptance and merge, the merge SHA becomes the exact RC. Preview and production must target that exact SHA; never latest/main ambiguously."
 }
