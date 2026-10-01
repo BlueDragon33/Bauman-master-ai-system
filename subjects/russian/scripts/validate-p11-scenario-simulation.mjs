@@ -4,9 +4,19 @@ const need=(v,msg)=>{if(!v)throw new Error(msg)};
 const registry=j('subjects/russian/data/scenario-registry.json');
 const links=j('subjects/russian/data/speaking-link-index.json');
 need(registry.schema==='RUSSIAN_SCENARIO_REGISTRY_V1','scenario registry schema');
-need(registry.engine.dialogueRuntimeOwner==='P6','P6 must own dialogue runtime');
-need(registry.engine.speechRecognitionOwner==='P6','P6 must own speech recognition');
-need(registry.engine.recordingOwner==='P6','P6 must own recording');
+if(registry.phase==='RU05'){
+  need(registry.engine.dialogueRuntimeOwner==='RU05','RU05 must own dialogue runtime');
+  need(registry.engine.speechRecognitionOwner==='RU05','RU05 must own speech recognition');
+  need(registry.engine.recordingOwner==='RU05','RU05 must own recording');
+  need(registry.engine.masteryOwner==='RU04','RU04 must own mastery');
+  need(registry.engine.plannerOwner==='RU04','RU04 must own planning/review truth');
+  need(registry.engine.linguisticTruthOwner==='RU03','RU03 must own linguistic truth');
+  need(registry.engine.aiCoachOwner==='RU07','RU07 must own AI coaching');
+}else{
+  need(registry.engine.dialogueRuntimeOwner==='P6','Historical P11 snapshot must use P6 dialogue runtime');
+  need(registry.engine.speechRecognitionOwner==='P6','Historical P11 snapshot must use P6 speech recognition');
+  need(registry.engine.recordingOwner==='P6','Historical P11 snapshot must use P6 recording');
+}
 need(registry.engine.duplicateSpeechEngineAllowed===false,'duplicate speech engine forbidden');
 for(const k of ['writesMastery','writesSrs','writesPlanner','officialAssessment']) need(registry.statePolicy[k]===false,'forbidden scenario authority: '+k);
 const required=new Set(registry.progression.requiredScenarioFamilies||[]);
