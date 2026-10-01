@@ -1,0 +1,276 @@
+{
+  "schemaVersion": "1.0",
+  "purpose": "Load only the active Russian prompt plus relevant global constitution sections.",
+  "globalConstitutions": {
+    "C1": "../../constitution/C1_EXTENSIBLE_PLATFORM_ARCHITECTURE.md",
+    "C2": "../../constitution/C2_FUTURE_PROFESSIONAL_UI_UX.md",
+    "C3": "../../constitution/C3_PROFESSIONAL_QA_AUTO_FIX.md",
+    "C4": "../../constitution/C4_REAL_LEARNING_OUTCOME_SYSTEM.md",
+    "C3_RELEASE": "../../constitution/C3_RELEASE_ANNEX_SHARED.md"
+  },
+  "modules": {
+    "RU01": {
+      "prompt": "RU01_FORENSIC_BASELINE.md",
+      "load": {
+        "C1": [
+          "PLATFORM KERNEL",
+          "CONTENT-AS-DATA",
+          "BACKWARD COMPATIBILITY",
+          "MIGRATION STRATEGY"
+        ],
+        "C2": [
+          "APP SHELL",
+          "RESPONSIVE STRATEGY",
+          "ACCESSIBILITY",
+          "UX ACCEPTANCE"
+        ],
+        "C3": [
+          "STARTING RULE",
+          "TEST SCOPE MODEL",
+          "DATA PERSISTENCE TEST",
+          "STATE CONSISTENCY TEST",
+          "REGRESSION ZONES",
+          "TEST EVIDENCE"
+        ],
+        "C4": [
+          "FOUR CONCEPTS",
+          "EVIDENCE TRUTHFULNESS",
+          "AUTHORITY SEPARATION"
+        ]
+      }
+    },
+    "RU02": {
+      "prompt": "RU02_CURRICULUM_CANONICAL_MODEL.md",
+      "load": {
+        "C1": [
+          "CONTENT-AS-DATA",
+          "SUBJECT FACTORY",
+          "LESSON FACTORY",
+          "SCHEMA VERSIONING",
+          "BACKWARD COMPATIBILITY"
+        ],
+        "C3": [
+          "SCHEMA TEST",
+          "BACKWARD COMPATIBILITY TEST",
+          "MIGRATION TEST"
+        ],
+        "C4": [
+          "ACADEMIC STRUCTURE",
+          "DUAL STRUCTURE",
+          "COMPETENCY GRAPH",
+          "PREREQUISITE GRAPH",
+          "LEARNING CONTRACT",
+          "CONTENT PROVENANCE",
+          "SCHEMA VERSIONING"
+        ]
+      }
+    },
+    "RU03": {
+      "prompt": "RU03_LINGUISTIC_AUTHORITY_CONTENT_VALIDATION.md",
+      "load": {
+        "C1": [
+          "CONTENT REGISTRY",
+          "AUTOMATED VALIDATION",
+          "SCHEMA VERSIONING"
+        ],
+        "C3": [
+          "CONTENT QUALITY TEST",
+          "ROOT CAUSE RULE",
+          "AUTO-FIX LOOP",
+          "TEST MUST SURVIVE FIX"
+        ],
+        "C4": [
+          "CONTENT PROVENANCE",
+          "CONTENT AUTHORITY LEVEL",
+          "CONTENT VERSIONING",
+          "CONTENT QUALITY GATE",
+          "QUESTION BANK"
+        ]
+      }
+    },
+    "RU04": {
+      "prompt": "RU04_ASSESSMENT_MASTERY_ADAPTIVE.md",
+      "load": {
+        "C1": [
+          "STORAGE ABSTRACTION",
+          "EVENT BUS",
+          "BACKWARD COMPATIBILITY"
+        ],
+        "C2": [
+          "PROGRESS",
+          "ERROR STATE",
+          "CONTEXTUAL UI",
+          "ACCESSIBILITY"
+        ],
+        "C3": [
+          "DATA PERSISTENCE TEST",
+          "STATE CONSISTENCY TEST",
+          "CONCURRENCY TEST",
+          "IDEMPOTENCY TEST",
+          "ASSESSMENT TEST"
+        ],
+        "C4": [
+          "EVIDENCE MODEL",
+          "EVIDENCE TRUTHFULNESS",
+          "MASTERY ENGINE",
+          "SPACED RETRIEVAL",
+          "ERROR NOTEBOOK",
+          "ADAPTIVE LEARNING BOUNDARY",
+          "PERSONALIZATION"
+        ]
+      }
+    },
+    "RU05": {
+      "prompt": "RU05_LISTENING_SPEAKING_DIALOGUE_SCENARIO.md",
+      "load": {
+        "C1": [
+          "EXTENSION / ADD-ON ENGINE",
+          "CAPABILITY REGISTRY",
+          "OFFLINE FIRST",
+          "SECURITY"
+        ],
+        "C2": [
+          "RESOURCE VIEWER",
+          "INTERACTION DESIGN",
+          "MOBILE",
+          "ACCESSIBILITY",
+          "ERROR STATE"
+        ],
+        "C3": [
+          "RESOURCE TEST",
+          "PLUGIN TEST",
+          "OFFLINE TEST",
+          "RESPONSIVE TEST",
+          "TOUCH TEST",
+          "FAILURE INJECTION"
+        ],
+        "C4": [
+          "SPEAKING EVIDENCE",
+          "ASSESSMENT ARCHITECTURE",
+          "TRANSFER TASK",
+          "ORAL DEFENSE",
+          "EVIDENCE PROVIDER CONTRACT"
+        ]
+      }
+    },
+    "RU06": {
+      "prompt": "RU06_ACADEMIC_TECHNICAL_RESEARCH_PRODUCTION.md",
+      "load": {
+        "C1": [
+          "CONTENT-AS-DATA",
+          "UNIVERSAL RESOURCE ADAPTER",
+          "SEARCH"
+        ],
+        "C2": [
+          "LESSON EXPERIENCE",
+          "LEARNING FOCUS MODE",
+          "RESOURCE VIEWER",
+          "AI RESPONSE UI"
+        ],
+        "C3": [
+          "CONTENT QUALITY TEST",
+          "LEARNING EXPERIENCE TEST",
+          "REPORT TEST",
+          "PRINT TEST"
+        ],
+        "C4": [
+          "LEARNING EXPERIENCE MODEL",
+          "ASSESSMENT ARCHITECTURE",
+          "TRANSFER TASK",
+          "ORAL DEFENSE",
+          "PROJECT-BASED LEARNING",
+          "REAL OUTPUT",
+          "RESEARCH LEARNING"
+        ]
+      }
+    },
+    "RU07": {
+      "prompt": "RU07_AI_MENTOR_RUSSIAN_COACHING.md",
+      "load": {
+        "C1": [
+          "AI LAYER",
+          "EXTENSION SDK",
+          "SECURITY"
+        ],
+        "C2": [
+          "AI UI",
+          "AI RESPONSE UI",
+          "CONTEXTUAL UI"
+        ],
+        "C3": [
+          "AI FEATURE TEST",
+          "AI UX TEST",
+          "API FAILURE INJECTION",
+          "SECURITY BASIC TEST",
+          "OBSERVABILITY QA"
+        ],
+        "C4": [
+          "AI ROLE",
+          "AI CONTENT GENERATION",
+          "AI CURRICULUM ASSISTANT",
+          "AI FEEDBACK SAFETY",
+          "AUTHORITY SEPARATION"
+        ]
+      }
+    },
+    "RU08": {
+      "prompt": "RU08_AUTHORING_INTEGRATION_ACCEPTANCE.md",
+      "load": {
+        "C1": [
+          "SUBJECT FACTORY",
+          "LESSON FACTORY",
+          "IMPORT CENTER",
+          "NO-CODE ADMIN AUTHORING",
+          "CONTENT LIFECYCLE",
+          "PLUGIN LIFECYCLE",
+          "OFFLINE FIRST",
+          "SECURITY",
+          "MIGRATION STRATEGY",
+          "MERGE RULE",
+          "DEPLOYMENT RULE"
+        ],
+        "C2": [
+          "APP SHELL",
+          "DESIGN SYSTEM PACKAGE",
+          "COMPONENT CONTRACT",
+          "LAYOUT CONTRACT",
+          "SLOT SYSTEM",
+          "ACCESSIBILITY",
+          "RESPONSIVE STRATEGY",
+          "VISUAL REGRESSION",
+          "UX ACCEPTANCE"
+        ],
+        "C3": [
+          "USER JOURNEY MATRIX",
+          "CROSS-FEATURE TEST",
+          "REGRESSION ZONES",
+          "RELEASE CANDIDATE TEST",
+          "PREVIEW RELEASE TEST",
+          "PRODUCTION SAFETY",
+          "DEFINITION OF DONE"
+        ],
+        "C4": [
+          "SUBJECT FACTORY ACADEMIC CONTRACT",
+          "LESSON FACTORY ACADEMIC CONTRACT",
+          "CONTENT AUTHOR UX",
+          "ACADEMIC REGRESSION",
+          "FOUR-CONSTITUTION RULE"
+        ]
+      }
+    },
+    "RELEASE": {
+      "prompt": "../../constitution/C3_RELEASE_ANNEX_SHARED.md",
+      "load": {
+        "C3_RELEASE": [
+          "ENTRY GATE",
+          "PREFLIGHT",
+          "PRODUCTION VERIFICATION",
+          "OBSERVATION",
+          "ROLLBACK",
+          "CLOSURE"
+        ]
+      }
+    }
+  },
+  "masterPrompt": "RUSSIAN_MASTER_PROMPT.md"
+}

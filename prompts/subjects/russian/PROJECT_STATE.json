@@ -1,20 +1,18 @@
 {
   "schemaVersion": "1.0.0",
-  "domain": "russian",
-  "implementationScope": "subjects/russian/",
-  "masterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
+  "subject": "russian",
   "constitution": "prompts/CONSTITUTION.md",
-  "status": "IMPORTED_NEEDS_REPO_RECONCILIATION",
-  "activeModule": null,
-  "lastValidatedSha": null,
-  "currentBranch": "work/curriculum-prompt-system-v1",
-  "currentHeadSha": "6450ebb09cf6e403bf9b5d632044d8534027e322",
+  "constitutionLibrary": "prompts/constitution/",
+  "masterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
+  "router": "prompts/subjects/russian/RUSSIAN_CONSTITUTION_ROUTER.json",
+  "sourceArchive": "prompt-archives/russian-pack.zip",
+  "promptArchitectureStatus": "COMPLETE",
+  "repositoryExecutionStatus": "NOT_STARTED_OR_NEEDS_RECONCILIATION",
+  "activeModule": "RU01",
+  "lastCompletedModule": null,
+  "validatedSha": null,
   "evidence": [],
   "blockers": [],
-  "notes": [
-    "RU00 source imported from the user's existing canonical Russian Master Prompt.",
-    "Do not infer current RU01-RU08 completion state from chat history; reconcile against repository evidence before execution.",
-    "Russian Master Prompt inherits shared C1 Architecture, C2 UI/UX, C3 QA, C4 Real Learning."
-  ],
-  "nextAction": "Reconcile RU00 owner/module state against current subjects/russian evidence without full repository rescan."
+  "nextAction": "Run RU01 against current repository reality before canonical implementation work.",
+  "legacyReadablePath": "prompts/subjects/russian/legacy/"
 }
