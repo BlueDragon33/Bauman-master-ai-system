@@ -287,6 +287,7 @@ function gateNextNeededType(part=gatePart()){
  return EXAM_PAPER_ORDER.find(type=>gateExamCount(type,part)<gateNeedFor(type,part))||null;
 }
 function gatePartComplete(part=gatePart()){return !gateNextNeededType(part)}
+window.RussianOfficialGateAudit={schema:'RUSSIAN_OFFICIAL_GATE_AUDIT_V1',records:(part=gatePart())=>JSON.parse(JSON.stringify(gateRecords(part))),authoritativeRecords:(part=gatePart())=>JSON.parse(JSON.stringify(authoritativeGateRecords(part))),count:(type,part=gatePart())=>gateExamCount(type,part)};
 function strictPartLessonIds(part=gatePart(),stageId=currentStageId()){
  const lessons=call('getLessons',[],DB).filter(l=>(stageOf(l)||stageId)===stageId);
  const total=stagePartCount(stageId),chunk=Math.max(1,Math.ceil(lessons.length/total));
