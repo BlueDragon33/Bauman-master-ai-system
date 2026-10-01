@@ -8,12 +8,20 @@ const PAGE_URL=new URL('subjects/russian/index.html',BASE).href;
 let browser;
 
 async function prepare(page){
+  const dataRequests=[];
+  page.on('request',r=>{if(/\/subjects\/russian\/data\/(technical-concepts|academic-functions|reading|performance-tasks)\.json/.test(r.url()))dataRequests.push(r.url());});
   await page.goto(PAGE_URL,{waitUntil:'domcontentloaded',timeout:30000});
-  await page.waitForFunction(()=>window.RussianAcademicProduction?.status?.().ready===true,{timeout:15000});
+  await page.waitForFunction(()=>!!window.RussianAcademicProduction,{timeout:15000});
+  await page.waitForTimeout(250);
+  const initial=await page.evaluate(()=>window.RussianAcademicProduction.status());
+  assert.equal(initial.ready,false,'RU06 data must not load on Russian startup');
+  assert.equal(initial.lazyOnCapabilityUse,true,'RU06 runtime must declare lazy-on-capability-use behavior');
+  assert.equal(dataRequests.length,0,'RU06 canonical production datasets fetched before academic-writing use');
   await page.evaluate(()=>{const k=window.SUBJECT_ADAPTER.storageKey;const s=JSON.parse(localStorage.getItem(k)||'{}');s.view='writing';s.writingMode='academic';localStorage.setItem(k,JSON.stringify(s));});
   await page.reload({waitUntil:'domcontentloaded'});
   await page.waitForSelector('#ruAcademicProduction',{timeout:15000});
   await page.waitForFunction(()=>window.RussianAcademicProduction?.status?.().ready===true,{timeout:15000});
+  assert(dataRequests.length>=4,'academic-writing activation must load canonical RU06 datasets');
 }
 try{
   browser=await chromium.launch({headless:true,...(process.env.BAUMAN_CHROME_PATH?{executablePath:process.env.BAUMAN_CHROME_PATH}:{})});
