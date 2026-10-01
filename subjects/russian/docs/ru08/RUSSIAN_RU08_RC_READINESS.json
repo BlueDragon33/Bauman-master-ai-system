@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
   "kind": "RUSSIAN_RU08_RC_READINESS",
-  "state": "CANDIDATE_PENDING_GATES",
+  "state": "RU08_PASS_READY_FOR_EXACT_MAIN_RELEASE",
   "exactRevisionRule": "release must use the exact merged RU08 main SHA; preview and production must report that same revision",
   "contentSnapshot": [
     "RU02",
@@ -34,5 +34,14 @@
     "linguistic review debt remains explicitly UNVERIFIED/PARTIAL where sources are insufficient",
     "AI/STT remain optional and non-authoritative"
   ],
-  "exactShaInjectedAtRelease": true
+  "exactShaInjectedAtRelease": true,
+  "validatedHead": "fda8ea54507ca49f33fcf43450fa10a744b3a35d",
+  "evidenceRuns": {
+    "constitution": 36812607590,
+    "fastCI": 36812607085,
+    "russianReference": 36812607096,
+    "futureInterface": 36812607069,
+    "wholeSystem": 36812607076
+  },
+  "releaseInstruction": "After final RU08 merge, use the exact merge SHA as immutable RC. Deploy that same SHA to preview, verify revision/readiness, then promote the same SHA to production."
 }
