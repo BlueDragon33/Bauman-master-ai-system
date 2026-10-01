@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_RU04_LEARNING_JUDGMENT_CONTRACT",
+  "state": "PASS",
+  "baselineSha": "259690eb462007ebc16c46989184b7cb3ffe754e",
+  "authorities": {
+    "mastery": "subjects/russian/assets/assessment-mastery.js",
+    "reviewOrchestration": "subjects/russian/assets/adaptive-planner.js",
+    "reviewProviders": [
+      "subjects/russian/assets/learning-state.js",
+      "subjects/russian/assets/vocab-srs.js"
+    ],
+    "generalReviewState": "subjects/russian/assets/learning-state.js",
+    "vocabCardSchedule": "subjects/russian/assets/vocab-srs.js"
+  },
+  "invariants": [
+    "exposure != progress != performance != mastery",
+    "retry appends and never overwrites first official attempt",
+    "practice and assessment histories retain explicit mode",
+    "planner changes path, never truth",
+    "AI cannot write official mastery/score or unlock a stage",
+    "playback/watch/click/route-open/AI-duration are not independent mastery evidence",
+    "review providers are non-overlapping and are merged only by the canonical planner"
+  ],
+  "masteryDimensions": [
+    "phonetics",
+    "listening",
+    "speaking",
+    "reading",
+    "writing",
+    "vocabulary-recognition",
+    "vocabulary-production",
+    "grammar-recognition",
+    "grammar-production",
+    "interaction",
+    "academic",
+    "technical",
+    "research"
+  ],
+  "supportFading": [
+    "full-bilingual",
+    "reduced-support",
+    "russian-hints",
+    "keywords",
+    "independent-production"
+  ],
+  "intensiveModes": [
+    "pre-departure-survival",
+    "arrival",
+    "exam",
+    "seminar",
+    "NIR",
+    "VKR-defense"
+  ],
+  "fallback": "canonical sequence + due review when adaptive recommendation logic is unavailable"
+}
