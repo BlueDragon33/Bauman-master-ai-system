@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_RU05_SCENARIO_STATE_MACHINE",
+  "sessionStates": [
+    "intro",
+    "active",
+    "response",
+    "consequence-or-repair",
+    "success",
+    "partial",
+    "fail-recoverable",
+    "debrief"
+  ],
+  "statePartitions": [
+    "scenario-definition",
+    "run-session",
+    "turn",
+    "world-state",
+    "learner-response",
+    "evidence"
+  ],
+  "successRule": "goal/outcome based; never exact-phrase-only",
+  "repairStrategies": [
+    "ask-repeat",
+    "ask-slower",
+    "clarify",
+    "confirm",
+    "rephrase",
+    "self-correct",
+    "spell-or-write-critical-item"
+  ],
+  "pressureLadder": [
+    "predictable",
+    "variation",
+    "ambiguity",
+    "interruption",
+    "misunderstanding",
+    "challenge-follow-up",
+    "time-pressure-defense"
+  ],
+  "invariant": "refresh/render must not create progress",
+  "aiBoundary": "AI may vary NPC wording only inside declared world facts and action envelope; deterministic fallback required"
+}

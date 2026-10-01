@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_RU05_GOLDEN_SCENARIO_FIXTURES",
+  "fixtures": [
+    {
+      "id": "mic-denied",
+      "expected": "typed/scripted fallback; no learner failure"
+    },
+    {
+      "id": "stt-runtime-error",
+      "expected": "engine failure separated from language judgment"
+    },
+    {
+      "id": "repair-success",
+      "expected": "emit repair-success evidence without direct mastery"
+    },
+    {
+      "id": "replay-official",
+      "expected": "new run identity; first official run preserved"
+    },
+    {
+      "id": "ai-outage",
+      "expected": "deterministic scripted NPC/world fallback"
+    },
+    {
+      "id": "refresh",
+      "expected": "no progress/evidence merely from render or reload"
+    }
+  ]
+}

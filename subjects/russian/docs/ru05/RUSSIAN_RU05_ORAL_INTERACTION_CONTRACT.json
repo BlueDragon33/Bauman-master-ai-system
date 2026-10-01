@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_RU05_ORAL_INTERACTION_CONTRACT",
+  "state": "PASS",
+  "owners": {
+    "speechAdapter": "subjects/russian/assets/speech-interaction-engine.js",
+    "speakingWorkflow": "subjects/russian/assets/speaking-coach.js",
+    "scenarioRegistry": "subjects/russian/data/scenario-registry.json",
+    "learningJudgment": "RU04",
+    "linguisticTruth": "RU03",
+    "aiDynamicTurns": "RU07"
+  },
+  "datasetRoles": {
+    "basic": "subjects/russian/data/speaking.json",
+    "contextualDialogue": "subjects/russian/data/dialogue-bauman-az.json",
+    "deepPressure": "subjects/russian/data/deep-speaking-bauman.json",
+    "bridge": "subjects/russian/data/speaking-link-index.json",
+    "scenarios": "subjects/russian/data/scenario-registry.json"
+  },
+  "recording": {
+    "lifecycle": [
+      "unknown",
+      "requesting",
+      "granted",
+      "denied",
+      "unavailable",
+      "error",
+      "recording",
+      "stopped",
+      "canceled"
+    ],
+    "uploadDefault": false,
+    "persistence": "transient-local",
+    "cleanup": [
+      "route-exit",
+      "pagehide",
+      "cancel",
+      "interruption"
+    ]
+  },
+  "stt": {
+    "role": "noisy signal only",
+    "cannotProve": [
+      "pronunciation",
+      "stress",
+      "intonation",
+      "naturalness",
+      "mastery"
+    ],
+    "failureMeaning": "engine failure != learner failure"
+  },
+  "transcriptStates": [
+    "hidden",
+    "after-attempt",
+    "after-submit",
+    "always",
+    "accessibility-accommodation"
+  ],
+  "replay": "new run/attempt identity where official history applies",
+  "offlineFallback": [
+    "text-response",
+    "scripted-dialogue",
+    "manual-confirmation",
+    "self-comparison",
+    "canonical-audio-if-cached"
+  ],
+  "masteryWrite": false
+}
