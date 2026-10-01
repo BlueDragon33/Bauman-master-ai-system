@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_RU08_RC_READINESS",
+  "state": "CANDIDATE_PENDING_CI",
+  "prerequisites": {
+    "RU02": "PASS",
+    "RU03": "PASS",
+    "RU04": "PASS_REVALIDATED_CANONICAL_SCHEDULER",
+    "RU05": "PASS",
+    "RU06": "PASS",
+    "RU07": "PASS"
+  },
+  "requiredGates": [
+    "Universal Constitution Compliance",
+    "Development Fast CI",
+    "Russian Reference UI Gate",
+    "Whole System Integration Gate"
+  ],
+  "architecture": {
+    "noRussianPlatformFork": true,
+    "sharedShell": true,
+    "sharedContentReview": true,
+    "sharedRelease": true
+  },
+  "rollback": {
+    "code": "f6aa11215dfcf24e2d646f7c9737733e66c642c8",
+    "content": "existing canonical dataset revisions; no destructive migration in RU08"
+  },
+  "productionAuthority": "GLOBAL_CONSTITUTIONS/C3_RELEASE_ANNEX_PRODUCTION.md",
+  "note": "RU08 may declare RC_READY only after PR head and merged-main evidence pass. It never claims production live.",
+  "baselineSha": "f6aa11215dfcf24e2d646f7c9737733e66c642c8"
+}
