@@ -1,13 +1,13 @@
 # SHARED PROMPT EXECUTION PROTOCOL
 
-Use this protocol for every durable Bauman prompt.
+Use this protocol for every durable Bauman prompt in ordinary ChatGPT chat, ChatGPT Work, or Codex.
 
 ## Start
 1. Read `prompts/CONSTITUTION.md`.
 2. Read `prompts/PROMPT_REGISTRY.json`.
 3. Load only the active Master Prompt + state.
-4. Resolve current branch/HEAD.
-5. Compare against last validated SHA.
+4. If repository execution is requested, resolve current branch/HEAD and compare against last validated SHA.
+5. If the task is discussion/planning only, do not invent repository state or claim repository execution.
 6. Identify impacted canonical owners and Constitution pillars.
 
 ## Work loop
@@ -36,6 +36,6 @@ Follow C3 and its Release Annex.
 
 ## Handoff
 A new session should be able to continue from:
-`Constitution + Registry + active Master Prompt + state + diff`.
+`Chat Entry + Constitution + Registry + active subject README/Master Prompt + state + routed clauses + diff when repository work is requested`.
 
 Chat history is supplementary, not authoritative project state.
