@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_RU08_SUBJECT_PACKAGE_CONTRACT",
+  "subjectId": "russian",
+  "manifest": "subjects/russian/subject-manifest.json",
+  "requiredOwners": [
+    "RU02",
+    "RU03",
+    "RU04",
+    "RU05",
+    "RU06",
+    "RU07"
+  ],
+  "sharedPlatform": [
+    "app-shell",
+    "router",
+    "device-gate",
+    "offline-framework",
+    "design-system",
+    "content-review",
+    "release-protocol"
+  ],
+  "russianCapabilities": [
+    "assessment-mastery",
+    "review-scheduler",
+    "adaptive-planner",
+    "speech-interaction",
+    "scenario-runtime",
+    "handwriting",
+    "vocab-srs",
+    "academic-production",
+    "ai-coaching-optional"
+  ],
+  "noPlatformFork": [
+    "router",
+    "auth",
+    "storage-abstraction",
+    "search",
+    "offline-framework",
+    "design-system",
+    "generic-importer",
+    "generic-plugin-runtime",
+    "release-mechanism"
+  ],
+  "compatibility": {
+    "strategy": "strangler",
+    "stableIds": true,
+    "learnerStatePreserved": true,
+    "destructiveMigration": false
+  }
+}

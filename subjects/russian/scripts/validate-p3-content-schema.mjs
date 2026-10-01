@@ -12,6 +12,9 @@ const topology=readJson('subjects/russian/docs/p3/RUSSIAN_CANONICAL_OWNER_TOPOLO
 const graph=readJson('subjects/russian/docs/p3/RUSSIAN_CONTENT_GRAPH_CONTRACT.json');
 const p2=readJson('subjects/russian/docs/p2/RUSSIAN_R01_R26_TARGET_CURRICULUM.json');
 const manifest=readJson('subjects/russian/subject-manifest.json');
+const ru02Owners=fs.existsSync(path.join(ROOT,'subjects/russian/docs/ru02/RUSSIAN_RU02_CANONICAL_OWNER_REGISTRY.json'))
+  ? readJson('subjects/russian/docs/ru02/RUSSIAN_RU02_CANONICAL_OWNER_REGISTRY.json')
+  : null;
 const currentLessons=readJson('subjects/russian/data/lessons.json');
 const contentContract=read('subjects/russian/assets/content-contract.js');
 
@@ -89,9 +92,12 @@ assert.match(contentContract,/never infer stress from Latin transliteration/);
 assert.match(contentContract,/Content metadata must not modify canonical learning mastery/);
 
 const runtimeDataIds=new Set([...(manifest.data||[]),...(manifest.dataFiles||[]).map(x=>x.id)]);
+const ru02ByType=new Map((ru02Owners?.owners||[]).map(x=>[x[0],{path:x[1],status:x[2]}]));
 for(const planned of topology.targetOwners.filter(x=>x.status==='PLANNED_CANONICAL')){
   const basename=path.basename(planned.targetOwner,'.json');
-  assert.ok(!runtimeDataIds.has(basename),`Planned owner leaked into runtime manifest before verified content exists: ${basename}`);
+  const current=ru02ByType.get(planned.entityType);
+  const materialized=current?.path===planned.targetOwner && current?.status!=='PLANNED' && fs.existsSync(path.join(ROOT,planned.targetOwner));
+  if(!materialized) assert.ok(!runtimeDataIds.has(basename),`Planned owner leaked into runtime manifest before verified content exists: ${basename}`);
 }
 
 console.log(JSON.stringify({

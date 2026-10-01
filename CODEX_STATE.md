@@ -1,5 +1,67 @@
 # CODEX_STATE
 
+Current task: `PROMPT_CONTROL_CENTER_V1_BOOTSTRAP`
+
+Status: IN_PROGRESS
+
+Branch: `work/curriculum-prompt-system-v1`
+Base branch: `main`
+Main sync status: branch_only
+
+Files changed:
+- prompts/README.md
+- prompts/CONSTITUTION.md
+- prompts/EXECUTION_PROTOCOL.md
+- prompts/PROMPT_REGISTRY.json
+- prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md
+- prompts/subjects/russian/PROJECT_STATE.json
+- prompts/curriculum-2026/README.md
+- prompts/curriculum-2026/BAUMAN_MASTER_CURRICULUM_PROMPT_SYSTEM_V1.zip
+- governance/curriculum-2026/RUN_FROM_REPO.md
+- CODEX_STATE.md
+
+What changed:
+- Established one dedicated canonical `prompts/` tree.
+- Added one shared prompt Constitution inheriting repository Blueprint OS authority.
+- Normalized shared pillar order to C1 Architecture, C2 UI/UX, C3 QA, C4 Real Learning.
+- Imported the existing canonical Russian RU00 Master Prompt without creating a second Russian prompt authority.
+- Registered current subject scopes; non-imported domains remain explicitly pending rather than fabricated.
+- Routed the curriculum-2026 package through the shared Constitution.
+- Reconciled this work branch with current main `7697a3f05362c111fb481ebd6043738c12dbcb8c`.
+
+Verification:
+- prompts/CONSTITUTION.md fetch: PASS
+- prompts/PROMPT_REGISTRY.json fetch: PASS
+- Russian Master Prompt fetch: PASS
+- branch prompt commit ancestry/content diff: PASS
+- runtime/product code changed: NO
+
+Main sync / pull instruction:
+- Prompt Control Center exists only on `work/curriculum-prompt-system-v1`.
+- `main` does not yet contain this prompt-governance bootstrap.
+- Do not tell the user to pull main for this work until it is verified/merged.
+
+Next recommended task:
+- Import the existing authoritative Math prompt source into `prompts/subjects/math/` after resolving its current single-source prompt; then migrate remaining durable subject prompts one by one without inventing placeholders.
+
+Next actor:
+- ChatGPT
+
+Codex required:
+- no
+- Reason: this stage is repository documentation/prompt-governance authoring only; no runtime or UI behavior changed.
+
+ChatGPT can do:
+- import existing authoritative prompt sources;
+- maintain the registry/state;
+- prepare migration/handoff;
+- avoid runtime edits.
+
+Codex prompt file:
+- none
+
+---
+
 Current task: `BAUMAN_CURRENT_MAIN_POST_RELEASE_RECONCILIATION_AND_DEPLOY_PROPAGATION_FX`
 
 Status: `ROADMAP_V2_COMPLETE · RUSSIAN_LISTEN_WRITE_PROMOTED · ACADEMIC_PHASE2_A1_A6_PROMOTED · DEVICE_CONTRACT_V6_PROMOTED · CONTENT_REVIEW_V1_PROMOTED · DEEP_STUDY_JOURNAL_V1_PROMOTED · DSJ_PACKAGED_READINESS_FX_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_1_PROMOTED · RUSSIAN_FUTURE_REFERENCE_UI_PROMOTED · RUSSIAN_FUTURE_UI_IDEMPOTENCE_FX_PROMOTED · RUSSIAN_FUTURE_UI_PACKAGE_READINESS_FX_PROMOTED · RUSSIAN_VOCAB_VISUAL_IMMERSION_V1_PROMOTED · PRODUCTION_PUBLISH_GATE_V1_PROMOTED · RUSSIAN_UX_REFACTOR_PASS_1_10_PROMOTED · PROFESSIONAL_UX_REPORTING_QA_PROMOTED · PROFESSIONAL_REPORTING_UX_ROUND2_PROMOTED · PROFESSIONAL_UX_REPORTING_QA_ROUND3_PROMOTED · CLOUDFLARE_PREVIEW_EXACT_REVISION_FX_PROMOTED · PREVIEW_PROTECTED_DATASET_SMOKE_FX_PROMOTED · APPLICATION_MANAGEMENT_CHATGPT_SITE_CONTROL_PLANE_FX_PROMOTED · QA_UX_REPORTING_PROFESSIONAL_FX_PROMOTED · E16R_MP07_RECOVERY_PROMOTED · POST_RELEASE_DEPLOY_PROPAGATION_FX_ACTIVE · CURRENT_MAIN_CLEAN`
