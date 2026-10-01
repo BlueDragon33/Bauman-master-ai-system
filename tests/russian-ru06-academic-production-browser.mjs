@@ -23,6 +23,12 @@ try{
 
   const tasks=await page.evaluate(()=>window.RussianAcademicProduction.listTasks());
   for(const id of ['PT-R17-LAB','PT-R19-NIR-PITCH','PT-R21-QA','PT-R22-NIR'])assert(tasks.some(x=>x.id===id),'missing productive task '+id);
+  const trust=await page.evaluate(()=>window.RussianAcademicProduction.status().trust);
+  assert.equal(trust.academicFunctions.status,'UNVERIFIED','RU06 must read actual RU03 provenance for academic functions');
+  assert.equal(trust.technical.status,'PARTIAL','RU06 must read actual RU03 provenance for technical concepts');
+  const initialText=await page.locator('#ruAcademicProduction').innerText();
+  assert(initialText.includes('Tạm ẩn mẫu tiếng Nga'),'UNVERIFIED academic function patterns must fail closed');
+  assert(initialText.includes('chỉ hiển thị item VERIFIED'),'technical suggestions must expose authority filter');
 
   await page.evaluate(()=>window.RussianAcademicProduction.select('PT-R17-LAB'));
   await page.waitForFunction(()=>document.querySelector('[data-ru-production-task]')?.value==='PT-R17-LAB');
