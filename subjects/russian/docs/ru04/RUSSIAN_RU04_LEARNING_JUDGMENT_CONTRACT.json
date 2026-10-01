@@ -11,7 +11,8 @@
       "subjects/russian/assets/vocab-srs.js"
     ],
     "generalReviewState": "subjects/russian/assets/learning-state.js",
-    "vocabCardSchedule": "subjects/russian/assets/vocab-srs.js"
+    "reviewScheduler": "subjects/russian/assets/review-scheduler.js",
+    "vocabCardState": "subjects/russian/assets/vocab-srs.js"
   },
   "invariants": [
     "exposure != progress != performance != mastery",
@@ -20,7 +21,7 @@
     "planner changes path, never truth",
     "AI cannot write official mastery/score or unlock a stage",
     "playback/watch/click/route-open/AI-duration are not independent mastery evidence",
-    "review providers are non-overlapping and are merged only by the canonical planner"
+    "one canonical scheduler computes review timing while domain providers retain non-overlapping state"
   ],
   "masteryDimensions": [
     "phonetics",
