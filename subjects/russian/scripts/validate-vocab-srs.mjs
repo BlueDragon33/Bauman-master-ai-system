@@ -7,12 +7,15 @@ const fail=m=>{throw new Error(m)};
 const must=(cond,m)=>{if(!cond)fail(m)};
 const index=read('index.html');
 const js=read('assets/vocab-srs.js');
+const scheduler=read('assets/review-scheduler.js');
 const css=read('assets/vocab-srs.css');
 const learningState=read('assets/learning-state.js');
 const audit=read('scripts/audit-vocab-srs.mjs');
 
 must(index.includes('assets/vocab-srs.css'),'Missing vocab SRS CSS');
 must(index.includes('assets/vocab-srs.js'),'Missing vocab SRS runtime');
+must(index.includes('assets/review-scheduler.js'),'Missing canonical review scheduler');
+must(index.indexOf('assets/review-scheduler.js')<index.indexOf('assets/vocab-srs.js'),'Canonical scheduler must load before vocab state provider');
 must(index.indexOf('assets/learning-state.js')<index.indexOf('assets/vocab-srs.js'),'Vocab SRS must load after canonical learning state');
 must(index.indexOf('assets/content-contract.js')<index.indexOf('assets/vocab-srs.js'),'Vocab SRS must load after content contract');
 new Function(js);
@@ -20,9 +23,7 @@ new Function(js);
 for(const token of [
   "RUSSIAN_VOCAB_SRS_V1",
   "planningPolicy?.reviewGaps",
-  "srs_forgot",
-  "srs_unsure",
-  "srs_scheduled_recall",
+  "RussianReviewScheduler?.schedule",
   "source:'vocab.example'",
   "source:'user_sentence'",
   "vocabulary_seed_ru",
@@ -43,6 +44,8 @@ for(const token of [
   "data-ru-vocab-check",
   "data-ru-vocab-play-slow"
 ]) must(js.includes(token),`Missing vocab SRS contract token: ${token}`);
+
+for(const token of ["RUSSIAN_REVIEW_SCHEDULER_V1","srs_forgot","srs_unsure","srs_scheduled_recall","vocabulary-active","integrated-performance"]) must(scheduler.includes(token),`Missing canonical review scheduler token: ${token}`);
 
 must(!/status\s*:\s*['\"]mastered['\"]/.test(js),'Vocab SRS must never synthesize mastered state');
 must(!/status\s*:\s*['\"]completed['\"]/.test(js),'Vocab SRS must never synthesize completed state');
