@@ -10,7 +10,8 @@ let browser;
 async function prepare(page){
   await page.goto(PAGE_URL,{waitUntil:'domcontentloaded',timeout:30000});
   await page.waitForFunction(()=>window.RussianAcademicProduction?.status?.().ready===true,{timeout:15000});
-  await page.evaluate(()=>{const k=window.SUBJECT_ADAPTER.storageKey;const s=JSON.parse(localStorage.getItem(k)||'{}');s.view='writing';s.writingMode='academic';localStorage.setItem(k,JSON.stringify(s));location.reload();});
+  await page.evaluate(()=>{const k=window.SUBJECT_ADAPTER.storageKey;const s=JSON.parse(localStorage.getItem(k)||'{}');s.view='writing';s.writingMode='academic';localStorage.setItem(k,JSON.stringify(s));});
+  await page.reload({waitUntil:'domcontentloaded'});
   await page.waitForSelector('#ruAcademicProduction',{timeout:15000});
   await page.waitForFunction(()=>window.RussianAcademicProduction?.status?.().ready===true,{timeout:15000});
 }
