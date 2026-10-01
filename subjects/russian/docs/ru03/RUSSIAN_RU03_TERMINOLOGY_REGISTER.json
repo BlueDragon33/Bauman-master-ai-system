@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_RU03_TERMINOLOGY_REGISTER",
+  "canonicalOwner": "subjects/russian/data/technical-concepts.json",
+  "domains": [
+    "mathematics",
+    "cs",
+    "database",
+    "ai_ml",
+    "networks_os",
+    "control_automation",
+    "signals_measurement",
+    "probability_statistics",
+    "optimization",
+    "simulation_experiment",
+    "research_methods"
+  ],
+  "rule": "This register references the canonical terminology owner; it does not duplicate term facts.",
+  "authority": "Item authorityStatus + sourceRefs in technical-concepts.json",
+  "conflictPolicy": "same normalized term with incompatible domain meaning must be sense/domain-separated or DISPUTED; derived consumers do not resolve conflicts themselves"
+}
