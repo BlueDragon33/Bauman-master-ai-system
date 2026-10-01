@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_RU08_PERFORMANCE_SECURITY_CONTRACT",
+  "learnerStartup": {
+    "authoringEditorLoaded": false,
+    "largeDataEagerLoadForbidden": [
+      "vocab full corpus",
+      "tests full bank",
+      "dialogue-bauman-az",
+      "deep-speaking-bauman"
+    ],
+    "rule": "RU08 authoring assets must not be referenced by learner index/service-worker shell"
+  },
+  "offline": {
+    "required": "existing source + packaged true-offline acceptance",
+    "aiOptional": true,
+    "largeDialoguePolicy": "lazy/chunked/network fallback"
+  },
+  "security": {
+    "candidateBrowserCanonicalWrite": false,
+    "contentReviewMetadataOnly": true,
+    "untrustedInputs": [
+      "imported JSON/content",
+      "external media/url",
+      "AI/document input",
+      "HTML/micro-app"
+    ],
+    "newEditorSinks": "textContent only for candidate preview"
+  },
+  "compatibility": {
+    "strategy": "strangler",
+    "massRewrite": false,
+    "learnerStateReset": false
+  }
+}

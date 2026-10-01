@@ -1,0 +1,93 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_RU08_ACCEPTANCE_MATRIX",
+  "journeys": [
+    {
+      "id": "beginner",
+      "path": [
+        "enter-russian",
+        "understand-next-action",
+        "learn",
+        "practice",
+        "review",
+        "return-later"
+      ],
+      "evidence": [
+        "whole-system-browser",
+        "russian-p1-browser",
+        "adaptive-planner"
+      ]
+    },
+    {
+      "id": "survival",
+      "path": [
+        "listen-speak",
+        "repair",
+        "real-world-scenario"
+      ],
+      "evidence": [
+        "RU05",
+        "speech-runtime",
+        "scenario-fallback"
+      ]
+    },
+    {
+      "id": "university",
+      "path": [
+        "read-listen-assignment",
+        "clarify",
+        "complete-task"
+      ],
+      "evidence": [
+        "RU05",
+        "RU06",
+        "academic-language"
+      ]
+    },
+    {
+      "id": "technical",
+      "path": [
+        "read-formula-technical-text",
+        "explain-concept",
+        "communication-task",
+        "report"
+      ],
+      "evidence": [
+        "RU06",
+        "representation-integrity"
+      ]
+    },
+    {
+      "id": "research",
+      "path": [
+        "source-reading",
+        "notes",
+        "writing",
+        "presentation",
+        "defense-qa"
+      ],
+      "evidence": [
+        "RU06",
+        "RU07"
+      ]
+    },
+    {
+      "id": "admin-author",
+      "path": [
+        "create-or-import-candidate",
+        "resolve-owner",
+        "validate",
+        "preview",
+        "review",
+        "canonical-patch",
+        "publish",
+        "rollback"
+      ],
+      "evidence": [
+        "RU08-authoring-validator",
+        "content-review-metadata-only"
+      ]
+    }
+  ],
+  "gate": "All journeys must have an owner and executable/reusable evidence path; RU08 does not fake production publication."
+}

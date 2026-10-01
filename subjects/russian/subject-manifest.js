@@ -84,7 +84,7 @@ window.SUBJECT_MANIFEST = {
     "overviewSubtitle": "Tổng quan gọn, không khoảng trống chết: mục tiêu, luồng học, hành động nhanh và tiếp tục học ăn khớp.",
     "learningSubtitle": "Học tập ổn định: Nghe/Nói và Đối thoại tinh gọn; nút nói ổn hòa trong bảng nội dung, chữ canh đều và không tách dòng thô."
   },
-  "updated": "2026-06-13",
+  "updated": "2026-10-01",
   "package": "A1 Russian Bauman StandardFinal RenderClean V13.42",
   "paths": {
     "assets": "assets/",
@@ -348,7 +348,8 @@ window.SUBJECT_MANIFEST = {
     "checked": "2026-06-07",
     "requiredDataFilesChecked": true,
     "runtimePathScan": "no parent-folder dependency in runtime html/js/css core files",
-    "learningIntegrity": "locked theory/exercises/practice by active lessonId; speaking.json mapped to lessonId; source answers only for exercises"
+    "learningIntegrity": "locked theory/exercises/practice by active lessonId; speaking.json mapped to lessonId; source answers only for exercises",
+    "ru08": "RC readiness requires RU02–RU07 current + Russian Reference UI + Whole System source/package acceptance"
   },
   "notes": "Dedicated vertical scroll for Exercise/Speaking tabs and richer exercise answer guidance.",
   "storagePlan": {
@@ -407,5 +408,87 @@ window.SUBJECT_MANIFEST = {
       }
     ]
   },
-  "metadataPolicy": "metadata kept for search/filter; hidden from lesson/presentation slide body"
+  "metadataPolicy": "metadata kept for search/filter; hidden from lesson/presentation slide body",
+  "architecture": {
+    "promptSystem": "RU00→RU01→RU02→RU03/RU04→RU05→RU06→RU07→RU08",
+    "canonicalModel": "docs/ru02/RUSSIAN_RU02_CURRICULUM_CANONICAL_MODEL.json",
+    "canonicalOwners": "docs/ru02/RUSSIAN_RU02_CANONICAL_OWNER_REGISTRY.json",
+    "linguisticAuthority": "data/provenance.json",
+    "learningJudgment": "docs/ru04/RUSSIAN_RU04_LEARNING_JUDGMENT_CONTRACT.json",
+    "oralScenario": "docs/ru05/RUSSIAN_RU05_ORAL_INTERACTION_CONTRACT.json",
+    "academicProduction": "docs/ru06/RUSSIAN_RU06_PRODUCTION_ARCHITECTURE.json",
+    "aiCoaching": "docs/ru07/RUSSIAN_RU07_AI_MODE_PERMISSION_MATRIX.json",
+    "authoring": "data/authoring-governance.json",
+    "noPlatformFork": true,
+    "sharedOwners": [
+      "app-shell",
+      "auth",
+      "storage-abstraction",
+      "offline-framework",
+      "design-system",
+      "content-review",
+      "release"
+    ],
+    "registeredCanonicalOwners": {
+      "runtimeManifestPolicy": "non-runtime architecture metadata; do not imply eager/runtime canonical loading",
+      "owners": [
+        [
+          "TechnicalConcept",
+          "data/technical-concepts.json"
+        ],
+        [
+          "AcademicFunction",
+          "data/academic-functions.json"
+        ],
+        [
+          "ReadingText",
+          "data/reading.json"
+        ],
+        [
+          "PerformanceTask",
+          "data/performance-tasks.json"
+        ],
+        [
+          "ProvenanceRecord",
+          "data/provenance.json"
+        ],
+        [
+          "ScenarioComposition",
+          "data/scenario-registry.json"
+        ],
+        [
+          "AiMentorPolicy",
+          "data/ai-mentor-policy.json"
+        ],
+        [
+          "AuthoringGovernance",
+          "data/authoring-governance.json"
+        ]
+      ]
+    }
+  },
+  "authoring": {
+    "entry": "subjects/russian/editor.html",
+    "rawJsonDefault": false,
+    "canonicalBrowserWrite": false,
+    "lifecycle": "DRAFT→VALIDATED→REVIEW_REQUESTED→APPROVED→CANONICAL_PATCHED→PUBLISHED→SUPERSEDED/ARCHIVED",
+    "reviewStorage": "shared control-service metadata-only",
+    "canonicalPromotion": "reviewed repository patch + affected gates + shared release"
+  },
+  "offlinePolicy": {
+    "shell": "service-worker shared/package parity",
+    "largeDatasets": [
+      "dialogue-bauman-az",
+      "deep-speaking-bauman",
+      "speaking-link-index"
+    ],
+    "largeDatasetPolicy": "lazy/network-or-chunked fallback; never eager startup precache",
+    "ai": "optional; deterministic non-AI fallback required"
+  },
+  "compatibility": {
+    "strategy": "strangler",
+    "legacyIds": "R01-R26 preserved",
+    "learnerState": "no destructive migration in RU08",
+    "oldPackage": "compatibility bridges retained until regression evidence allows retirement"
+  }
 };
