@@ -1,0 +1,38 @@
+name: Normalize prompt archives
+
+on:
+  push:
+    branches:
+      - work/curriculum-prompt-system-v1
+    paths:
+      - 'prompt-archives/*.zip'
+      - 'scripts/normalize_prompt_archives.py'
+      - '.github/workflows/normalize-prompt-archives.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  normalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/curriculum-prompt-system-v1
+          fetch-depth: 0
+
+      - name: Normalize subject prompt systems
+        run: python scripts/normalize_prompt_archives.py
+
+      - name: Commit canonical prompt trees
+        shell: bash
+        run: |
+          if git diff --quiet -- prompt-archives/README.md prompts/subjects; then
+            echo "No normalization changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add prompt-archives/README.md prompts/subjects
+          git commit -m "Normalize subject prompt archives [skip prompt-normalize]"
+          git push origin HEAD:work/curriculum-prompt-system-v1
