@@ -2,6 +2,8 @@
 
 State: **CANDIDATE — PASS only after CI + integration acceptance**
 
+Baseline: `main@f6aa11215dfcf24e2d646f7c9737733e66c642c8` (RU04 canonical-scheduler revalidation + RU05–RU07 selective revalidation PASS).
+
 RU08 consumes current RU02–RU07 owners and is the final Russian-specific integration module.
 
 ## Scope
