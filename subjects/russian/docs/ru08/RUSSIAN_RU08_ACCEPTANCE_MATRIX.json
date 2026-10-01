@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.0.0",
+  "schemaVersion": "1.1.0",
   "kind": "RUSSIAN_RU08_ACCEPTANCE_MATRIX",
   "journeys": {
     "beginner": [
@@ -62,5 +62,93 @@
     "keyboard-screen-reader",
     "plugin-resource-failure",
     "old-package-compatibility"
-  ]
+  ],
+  "executableEvidence": {
+    "journeys": {
+      "beginner": [
+        "tests/russian-future-ui-browser.mjs",
+        "tests/russian-offline-shell-browser.mjs"
+      ],
+      "survival": [
+        "tests/russian-ru05-scenario-browser.mjs"
+      ],
+      "university": [
+        "tests/russian-ru05-scenario-browser.mjs",
+        "tests/russian-ru07-ai-boundary-browser.mjs"
+      ],
+      "technical": [
+        "tests/russian-ru05-scenario-browser.mjs",
+        "subjects/russian/scripts/validate-ru06-academic-production.mjs"
+      ],
+      "research": [
+        "tests/russian-ru05-scenario-browser.mjs",
+        "subjects/russian/scripts/validate-ru06-academic-production.mjs",
+        "tests/russian-ru07-ai-boundary-browser.mjs"
+      ],
+      "author": [
+        "tests/russian-ru08-authoring-browser.mjs",
+        "subjects/russian/scripts/validate-ru08-integration-acceptance.mjs"
+      ]
+    },
+    "failures": {
+      "invalid-linguistic-content": [
+        "subjects/russian/scripts/validate-ru03-linguistic-authority.mjs",
+        "tests/russian-ru08-authoring-browser.mjs"
+      ],
+      "broken-audio": [
+        "subjects/russian/scripts/test-p6-speech-interaction-runtime.mjs"
+      ],
+      "mic-denied": [
+        "subjects/russian/scripts/test-p6-speech-interaction-runtime.mjs"
+      ],
+      "stt-unavailable": [
+        "subjects/russian/scripts/test-p6-speech-interaction-runtime.mjs"
+      ],
+      "malformed-state": [
+        "tests/russian-p4-assessment-mastery-browser.mjs"
+      ],
+      "duplicate-submit": [
+        "tests/russian-p4-assessment-mastery-browser.mjs"
+      ],
+      "offline-reload": [
+        "tests/russian-offline-shell-browser.mjs",
+        "tests/russian-ru05-scenario-browser.mjs"
+      ],
+      "content-revision": [
+        "tests/russian-ru08-authoring-browser.mjs"
+      ],
+      "huge-vocab-backlog": [
+        "subjects/russian/scripts/test-p5-adaptive-planner-runtime.mjs"
+      ],
+      "dialogue-graph-defect": [
+        "subjects/russian/scripts/validate-ru05-oral-scenarios.mjs"
+      ],
+      "ai-unavailable": [
+        "tests/russian-ru07-ai-boundary-browser.mjs"
+      ],
+      "prompt-injection": [
+        "tests/russian-ru07-ai-boundary-browser.mjs"
+      ],
+      "long-technical-text": [
+        "subjects/russian/scripts/validate-ru06-academic-production.mjs"
+      ],
+      "mobile-overflow": [
+        "tests/russian-p1-forensic-browser.mjs",
+        "tests/russian-ru05-scenario-browser.mjs",
+        "tests/russian-ru08-authoring-browser.mjs"
+      ],
+      "keyboard-screen-reader": [
+        "tests/russian-future-ui-browser.mjs",
+        "tests/russian-ru05-scenario-browser.mjs",
+        "tests/russian-ru08-authoring-browser.mjs"
+      ],
+      "plugin-resource-failure": [
+        "tests/russian-ru07-ai-boundary-browser.mjs"
+      ],
+      "old-package-compatibility": [
+        "tests/russian-p1-forensic-browser.mjs",
+        "tests/russian-offline-shell-browser.mjs"
+      ]
+    }
+  }
 }
