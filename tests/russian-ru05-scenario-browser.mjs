@@ -52,8 +52,9 @@ try{
 
  await page.evaluate(()=>{
    const key=window.SUBJECT_ADAPTER.storageKey;
-   const s=JSON.parse(localStorage.getItem(key)||'{}');s.view='dialogue';s.stage='hk3';localStorage.setItem(key,JSON.stringify(s));location.reload();
+   const s=JSON.parse(localStorage.getItem(key)||'{}');s.view='dialogue';s.stage='hk3';localStorage.setItem(key,JSON.stringify(s));
  });
+ await page.reload({waitUntil:'domcontentloaded'});
  await page.waitForSelector('#ruScenarioRuntime',{timeout:15000});
  await page.screenshot({path:OUT+'/research-scenario.png',fullPage:true});
  assert.deepEqual(errors,[],'Page errors: '+errors.join('\n'));
@@ -61,7 +62,8 @@ try{
 
  const mobile=await browser.newContext({viewport:{width:390,height:844}});
  const opened=await open(mobile);const m=opened.page;
- await m.evaluate(()=>{const key=window.SUBJECT_ADAPTER.storageKey;const s=JSON.parse(localStorage.getItem(key)||'{}');s.view='dialogue';s.stage='vn';localStorage.setItem(key,JSON.stringify(s));location.reload();});
+ await m.evaluate(()=>{const key=window.SUBJECT_ADAPTER.storageKey;const s=JSON.parse(localStorage.getItem(key)||'{}');s.view='dialogue';s.stage='vn';localStorage.setItem(key,JSON.stringify(s));});
+ await m.reload({waitUntil:'domcontentloaded'});
  await m.waitForSelector('#ruScenarioRuntime',{timeout:15000});
  const overflow=await m.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth);
  assert(overflow<=2,'scenario mobile layout overflows by '+overflow+'px');
