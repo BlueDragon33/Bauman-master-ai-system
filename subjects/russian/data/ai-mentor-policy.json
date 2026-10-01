@@ -1,15 +1,13 @@
 {
   "schema": "RUSSIAN_AI_MENTOR_POLICY_V1",
-  "phase": "P10",
+  "phase": "RU07",
   "authority": {
-    "canonicalTruthOwner": "P7",
-    "assessmentMasteryOwner": "P4",
-    "plannerSrsOwner": "P5",
-    "speechAudioOwner": "P6",
-    "academicTechnicalOwners": [
-      "P8",
-      "P9"
-    ],
+    "canonicalTruthOwner": "RU03",
+    "assessmentMasteryOwner": "RU04",
+    "plannerSrsOwner": "RU04",
+    "speechAudioOwner": "RU05",
+    "academicTechnicalOwner": "RU06",
+    "authoringPromotionOwner": "RU08",
     "aiRole": "NON_AUTHORITATIVE_COACH"
   },
   "permissions": {
@@ -34,7 +32,7 @@
     ],
     "mayReferenceCanonicalIds": true,
     "mayInventSourceCitations": false,
-    "promotionPath": "P12_REVIEW_WORKFLOW"
+    "promotionPath": "RU08_REVIEWED_REPOSITORY_PATCH"
   },
   "sourceBoundary": {
     "canonicalClaimsRequire": [
@@ -74,5 +72,12 @@
     "targetLanguagePriority": "ru",
     "preserveTechnicalTerms": true,
     "doNotTranslateWhenTaskTestsRecognition": true
+  },
+  "runtimeReality": {
+    "activeMode": "DETERMINISTIC_LOCAL_FALLBACK",
+    "providerRequired": false,
+    "providerHookStatus": "NOT_CONFIGURED",
+    "claim": "The current learner-facing mentor is a deterministic local coaching fallback. No external-model behavior is claimed until a provider adapter is configured and passes RU07 executable security tests.",
+    "stateBoundary": "may persist non-authoritative UI draft/output only; may not write mastery, official attempts, SRS, planner, stage unlocks or canonical content"
   }
 }
