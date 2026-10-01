@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_RU08_RELEASE_HANDOFF",
+  "sourcePolicy": "Release annex must bind to the exact merged main SHA chosen for deployment; this file describes required identity fields and smoke scope, not a self-referential fixed SHA.",
+  "subject": "russian",
+  "contentSnapshot": [
+    "subjects/russian/data/curriculum.json",
+    "subjects/russian/data/lessons.json",
+    "subjects/russian/data/grammar.json",
+    "subjects/russian/data/vocab.json",
+    "subjects/russian/data/speaking.json",
+    "subjects/russian/data/dialogue-bauman-az.json",
+    "subjects/russian/data/deep-speaking-bauman.json",
+    "subjects/russian/data/writing.json",
+    "subjects/russian/data/reading.json",
+    "subjects/russian/data/technical-concepts.json",
+    "subjects/russian/data/academic-functions.json",
+    "subjects/russian/data/performance-tasks.json",
+    "subjects/russian/data/provenance.json"
+  ],
+  "schemaMigrationIdentity": "RU02 canonical model + RU03 authority + RU04 judgment; RU08 adds no destructive learner-state migration",
+  "requiredCapabilities": [
+    "shared-app-shell",
+    "subject-bridge",
+    "device-gate",
+    "offline-package",
+    "speech-adapter",
+    "handwriting",
+    "scenario-runtime",
+    "adaptive-planner",
+    "ai-coach-optional"
+  ],
+  "knownWarnings": [
+    "legacy core.js remains compatibility/orchestration surface",
+    "large vocab/tests/dialogue datasets require lazy/package-aware loading",
+    "open RU03 linguistic review debt remains explicitly non-authoritative"
+  ],
+  "rollbackTarget": "main parent immediately before RU08 merge, plus existing content snapshots",
+  "productionSmoke": [
+    "open Russian from Hub",
+    "resume learner state",
+    "complete representative learning/review",
+    "survival audio/scenario fallback",
+    "technical/research production surface",
+    "offline reload",
+    "admin/content-review metadata-only boundary"
+  ]
+}
