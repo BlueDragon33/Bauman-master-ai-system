@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0.0",
+  "executionRule": "ONE_SUBJECT_AT_A_TIME",
+  "sharedConstitution": "prompts/constitution/",
+  "subjects": [
+    {
+      "id": "russian",
+      "label": "Russian",
+      "archive": "prompt-archives/russian-pack.zip",
+      "canonicalRoot": "prompts/subjects/russian/",
+      "status": "CANONICAL_EXTRACTED"
+    },
+    {
+      "id": "math",
+      "label": "Mathematics",
+      "archive": "prompt-archives/math.zip",
+      "canonicalRoot": "prompts/subjects/math/",
+      "status": "CANONICAL_EXTRACTED"
+    },
+    {
+      "id": "python",
+      "label": "Python",
+      "archive": "prompt-archives/python-pack.zip",
+      "canonicalRoot": "prompts/subjects/python/",
+      "status": "CANONICAL_EXTRACTED"
+    },
+    {
+      "id": "algorithms",
+      "label": "Algorithms & Data Structures",
+      "archive": "prompt-archives/algorithms-pack.zip",
+      "canonicalRoot": "prompts/subjects/algorithms/",
+      "status": "CANONICAL_EXTRACTED"
+    }
+  ]
+}
