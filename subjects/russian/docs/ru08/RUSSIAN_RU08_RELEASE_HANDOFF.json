@@ -18,7 +18,7 @@
     "subjects/russian/data/performance-tasks.json",
     "subjects/russian/data/provenance.json"
   ],
-  "schemaMigrationIdentity": "RU02 canonical model + RU03 authority + RU04 judgment; RU08 adds no destructive learner-state migration",
+  "schemaMigrationIdentity": "RU02 canonical model + RU03 authority + RU04 canonical review scheduler/judgment; RU08 adds no destructive learner-state migration",
   "requiredCapabilities": [
     "shared-app-shell",
     "subject-bridge",
@@ -35,7 +35,7 @@
     "large vocab/tests/dialogue datasets require lazy/package-aware loading",
     "open RU03 linguistic review debt remains explicitly non-authoritative"
   ],
-  "rollbackTarget": "main parent immediately before RU08 merge, plus existing content snapshots",
+  "rollbackTarget": "f6aa11215dfcf24e2d646f7c9737733e66c642c8",
   "productionSmoke": [
     "open Russian from Hub",
     "resume learner state",
