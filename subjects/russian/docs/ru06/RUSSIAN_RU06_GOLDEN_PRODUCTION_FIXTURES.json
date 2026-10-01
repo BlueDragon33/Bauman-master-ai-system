@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_RU06_GOLDEN_PRODUCTION_FIXTURES",
+  "fixtures": [
+    {
+      "id": "formula-preservation",
+      "input": "correct Russian around x=3.14 and f(x)=x^2",
+      "expected": "numeric/formula tokens unchanged"
+    },
+    {
+      "id": "fake-citation",
+      "input": "draft lacks source",
+      "expected": "do not invent citation"
+    },
+    {
+      "id": "source-vs-learner-claim",
+      "expected": "labels remain distinct"
+    },
+    {
+      "id": "defense-uncertainty",
+      "expected": "allow insufficient-data/limitation response"
+    },
+    {
+      "id": "official-submission-revision",
+      "expected": "new revision; old snapshot preserved"
+    },
+    {
+      "id": "handwriting-vs-writing",
+      "expected": "handwriting evidence does not equal academic writing production"
+    }
+  ]
+}
