@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "algorithms",
+  "constitution": "prompts/CONSTITUTION.md",
+  "constitutionLibrary": "prompts/constitution/",
+  "masterPrompt": "prompts/subjects/algorithms/ALG_MASTER_PROMPT.md",
+  "router": "prompts/subjects/algorithms/ALG_CONSTITUTION_ROUTER.json",
+  "sourceArchive": "prompt-archives/algorithms-pack.zip",
+  "promptArchitectureStatus": "COMPLETE",
+  "repositoryExecutionStatus": "NOT_STARTED_OR_NEEDS_RECONCILIATION",
+  "activeModule": "ALG01",
+  "lastCompletedModule": null,
+  "validatedSha": null,
+  "evidence": [],
+  "blockers": [],
+  "nextAction": "Run ALG01 against current repository reality before canonical implementation work."
+}

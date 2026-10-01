@@ -1,0 +1,78 @@
+{
+  "subject": "algorithms-data-structures",
+  "principle": "Load only relevant constitution clauses for the active subject owner.",
+  "global_constitutions": {
+    "C1": "../../constitution/C1_EXTENSIBLE_PLATFORM_ARCHITECTURE.md",
+    "C2": "../../constitution/C2_FUTURE_PROFESSIONAL_UI_UX.md",
+    "C3": "../../constitution/C3_PROFESSIONAL_QA_AUTO_FIX.md",
+    "C4": "../../constitution/C4_REAL_LEARNING_OUTCOME_SYSTEM.md",
+    "release_annex": "../../constitution/C3_RELEASE_ANNEX_SHARED.md"
+  },
+  "routes": {
+    "ALG01": {
+      "load": [
+        "C1: current architecture/ownership",
+        "C2: current UX audit",
+        "C3: current QA evidence",
+        "C4: current competency/evidence model"
+      ],
+      "avoid": [
+        "future redesign clauses unless needed to classify violations"
+      ]
+    },
+    "ALG02": {
+      "load": [
+        "C1: content-as-data/stable IDs/owner rules",
+        "C4: outcomes/competency/prerequisite/evidence",
+        "C3: schema validation expectations"
+      ],
+      "avoid": [
+        "full UI constitution"
+      ]
+    },
+    "ALG03": {
+      "load": [
+        "C4: assessment/evidence/mastery/remediation",
+        "C3: test-of-tests/regression",
+        "C1: canonical ownership"
+      ],
+      "avoid": [
+        "generic release mechanics"
+      ]
+    },
+    "ALG04": {
+      "load": [
+        "C1: capability/provider/adapter architecture",
+        "C2: visualization interaction/accessibility",
+        "C3: runtime/security/failure testing",
+        "C4: tutoring/evidence boundaries"
+      ],
+      "avoid": [
+        "unrelated authoring/release sections"
+      ]
+    },
+    "ALG05": {
+      "load": [
+        "C1: Subject Factory/manifest/block registry",
+        "C2: design system/responsive/accessibility",
+        "C4: learner journey/evidence display",
+        "C3: UX/browser regression"
+      ],
+      "avoid": [
+        "deep production release"
+      ]
+    },
+    "ALG06": {
+      "load": [
+        "C3: QA/root-cause/regression/RC rules",
+        "C4: learning acceptance",
+        "C1: legacy/owner/integration checks",
+        "C2: final UX/accessibility gates",
+        "release_annex: smoke handoff only"
+      ],
+      "avoid": [
+        "full reread of all previous prompt files unless impact requires"
+      ]
+    }
+  }
+}
