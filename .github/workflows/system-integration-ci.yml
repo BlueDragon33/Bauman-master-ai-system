@@ -92,6 +92,7 @@ jobs:
           node --check subjects/russian/assets/russian-future-ui.js
           node --check tests/russian-future-ui-browser.mjs
           node --check tests/russian-ru05-scenario-browser.mjs
+          node --check tests/russian-ru06-production-browser.mjs
           node --check tests/russian-ru07-ai-boundary-browser.mjs
           node --check tests/russian-ru08-authoring-browser.mjs
           node --check subjects/russian/assets/listen-write-factory.js
@@ -161,6 +162,10 @@ jobs:
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
         run: node tests/russian-ru05-scenario-browser.mjs
+      - name: Run Russian RU06 production transfer acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+        run: node tests/russian-ru06-production-browser.mjs
       - name: Run Russian RU07 AI boundary acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
@@ -242,6 +247,10 @@ jobs:
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
         run: node tests/russian-ru05-scenario-browser.mjs
+      - name: Run packaged Russian RU06 production transfer acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
+        run: node tests/russian-ru06-production-browser.mjs
       - name: Run packaged Russian RU07 AI boundary acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
