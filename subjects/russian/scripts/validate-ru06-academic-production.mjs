@@ -18,3 +18,10 @@ for(const x of ['source-fact','interpretation','learner-claim','generated-sugges
 for(const x of ['presentation','defense','novel-technical-transfer']) assert(arch.progression.includes(x));
 assert.deepEqual(map.stages.flatMap(x=>x.targets),Array.from({length:16},(_,i)=>'R'+String(i+11).padStart(2,'0')));
 console.log(JSON.stringify({ok:true,technicalConcepts:tech.concepts.length,academicFunctions:af.functions.length,readingTasks:rd.tasks.length,performanceTasks:pt.tasks.length}));
+
+const index=fs.readFileSync('subjects/russian/index.html','utf8');
+const runtime=fs.readFileSync('subjects/russian/assets/academic-production-runtime.js','utf8');
+assert.match(index,/assets\/academic-production-runtime\.js/,'RU06 production runtime is not loaded');
+assert.match(runtime,/PRACTICE_ONLY/,'RU06 production draft must remain practice-only');
+assert.match(runtime,/writesMastery:false/,'RU06 production runtime must not write mastery');
+assert.ok(fs.existsSync('tests/russian-ru06-production-browser.mjs'),'RU06 browser evidence missing');
