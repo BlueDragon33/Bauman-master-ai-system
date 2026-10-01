@@ -35,17 +35,18 @@
   function download(name,value){
     const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(value,null,2)],{type:'application/json'}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),0);
   }
+  const field=(form,name)=>form.elements.namedItem(name);
   async function fromForm(form){
-    const payload={title:clean(form.title.value),ru:clean(form.ru.value),vi:clean(form.vi.value),notes:clean(form.notes.value)};
+    const payload={title:clean(field(form,'title')?.value),ru:clean(field(form,'ru')?.value),vi:clean(field(form,'vi')?.value),notes:clean(field(form,'notes')?.value)};
     Object.keys(payload).forEach(k=>{if(!payload[k])delete payload[k]});
-    const d={schema:'RUSSIAN_AUTHORING_CANDIDATE_V1',candidateId:clean(form.candidateId.value)||('RU08-'+Date.now()),entityType:form.entityType.value,canonicalId:clean(form.canonicalId.value),revision:clean(form.revision.value),state:'DRAFT',payload,sourceRefs:parseRefs(form.sourceRefs.value),rollbackNote:clean(form.rollbackNote.value),diffSummary:clean(form.diffSummary.value),generated:form.generated.checked,confidence:form.confidence.value};
+    const d={schema:'RUSSIAN_AUTHORING_CANDIDATE_V1',candidateId:clean(field(form,'candidateId')?.value)||('RU08-'+Date.now()),entityType:clean(field(form,'entityType')?.value),canonicalId:clean(field(form,'canonicalId')?.value),revision:clean(field(form,'revision')?.value),state:'DRAFT',payload,sourceRefs:parseRefs(field(form,'sourceRefs')?.value),rollbackNote:clean(field(form,'rollbackNote')?.value),diffSummary:clean(field(form,'diffSummary')?.value),generated:!!field(form,'generated')?.checked,confidence:clean(field(form,'confidence')?.value)};
     d.contentHash=await hash(payload);return d;
   }
   function fill(form,d){
     if(!d)return;
-    for(const k of ['candidateId','entityType','canonicalId','revision','rollbackNote','diffSummary','confidence'])if(form[k]&&d[k]!=null)form[k].value=d[k];
-    form.sourceRefs.value=(d.sourceRefs||[]).join('\n');form.generated.checked=!!d.generated;
-    form.title.value=d.payload?.title||'';form.ru.value=d.payload?.ru||'';form.vi.value=d.payload?.vi||'';form.notes.value=d.payload?.notes||'';
+    for(const k of ['candidateId','entityType','canonicalId','revision','rollbackNote','diffSummary','confidence']){const el=field(form,k);if(el&&d[k]!=null)el.value=d[k]}
+    field(form,'sourceRefs').value=(d.sourceRefs||[]).join('\n');field(form,'generated').checked=!!d.generated;
+    field(form,'title').value=d.payload?.title||'';field(form,'ru').value=d.payload?.ru||'';field(form,'vi').value=d.payload?.vi||'';field(form,'notes').value=d.payload?.notes||'';
   }
   function renderResult(el,d,v){
     el.dataset.validation=v.ok?'pass':'fail';
