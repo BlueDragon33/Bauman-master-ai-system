@@ -1,1 +1,37 @@
-<!doctype html><html data-bauman-ui="future-v1"><head><meta charset="utf-8"><title>Russian Editor</title><link rel="stylesheet" href="../../platform/ui/bauman-ui.css?v=1"></head><body><p>Mở <a href="index.html">index.html</a> để quản lý dữ liệu môn Tiếng Nga.</p><script src="../../platform/ui/bauman-ui.js?v=1"></script></body></html>
+<!doctype html>
+<html data-bauman-ui="future-v1" lang="vi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Russian Authoring · RU08</title>
+<link rel="stylesheet" href="../../platform/ui/bauman-ui.css?v=1">
+<style>
+body{margin:0;background:#f5f7fb;color:#142033;font-family:Inter,"Segoe UI",Arial,sans-serif}.author-shell{max-width:1180px;margin:auto;padding:24px}.author-head,.author-card{background:#fff;border:1px solid #dbe3ef;border-radius:18px;padding:18px;margin-bottom:16px}.author-head h1{margin:5px 0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:grid;gap:6px}.field.full{grid-column:1/-1}.field label{font-weight:800}.input,.textarea,select{width:100%;box-sizing:border-box;border:1px solid #cfd9e8;border-radius:12px;padding:10px;background:#fff;color:inherit}.textarea{min-height:100px;resize:vertical}.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}.result{display:grid;gap:5px}.result[data-validation="pass"]{border-left:4px solid currentColor;padding-left:12px}.preview{white-space:pre-wrap;overflow:auto;max-height:360px;background:#0d1726;color:#edf4ff;border-radius:12px;padding:12px}details{margin-top:14px}.notice{font-size:.92rem}.split{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:760px){.grid,.split{grid-template-columns:1fr}.field.full{grid-column:auto}.author-shell{padding:12px}.actions button{width:100%}}
+</style>
+</head>
+<body>
+<main class="author-shell" data-russian-authoring>
+<section class="author-head"><span>RU08 · STRUCTURED AUTHORING</span><h1>Biên tập nội dung Tiếng Nga</h1><p>Form có cấu trúc là mặc định. Mọi thay đổi ở đây chỉ tạo <b>candidate</b>; không ghi trực tiếp canonical content, mastery, SRS hay planner.</p><p class="notice">Luồng: DRAFT → VALIDATED → REVIEW_REQUESTED → APPROVED → CANONICAL_PATCHED → PUBLISHED. Approval metadata không đồng nghĩa canonical write.</p><a href="index.html">← Về môn học</a></section>
+<form class="author-card" autocomplete="off">
+<div class="grid">
+<div class="field"><label for="authorEntityType">Loại nội dung</label><select id="authorEntityType" name="entityType" required><option value="">Chọn loại…</option></select></div>
+<div class="field"><label for="authorCandidateId">Candidate ID</label><input id="authorCandidateId" class="input" name="candidateId" placeholder="RU08-..."></div>
+<div class="field"><label for="authorCanonicalId">Canonical ID</label><input id="authorCanonicalId" class="input" name="canonicalId" required placeholder="ví dụ: vocab:..."></div>
+<div class="field"><label for="authorRevision">Revision mới</label><input id="authorRevision" class="input" name="revision" required placeholder="r2 / 2026-10-01-..."></div>
+<div class="field"><label for="authorBaseSha">Exact base SHA</label><input id="authorBaseSha" class="input" name="baseSha" placeholder="commit SHA dùng để chống blind overwrite"></div><div class="field"><label for="authorTitle">Tiêu đề / nhãn</label><input id="authorTitle" class="input" name="title"></div>
+<div class="field"><label for="authorRu">Nội dung tiếng Nga</label><textarea id="authorRu" class="textarea" name="ru" lang="ru"></textarea></div>
+<div class="field"><label for="authorVi">Nghĩa / ghi chú tiếng Việt</label><textarea id="authorVi" class="textarea" name="vi"></textarea></div>
+<div class="field full"><label for="authorNotes">Ghi chú cấu trúc</label><textarea id="authorNotes" class="textarea" name="notes"></textarea></div>
+<div class="field full"><label for="authorSources">Source refs (mỗi dòng một nguồn)</label><textarea id="authorSources" class="textarea" name="sourceRefs" placeholder="https://...&#10;source:..."></textarea></div>
+<div class="field"><label for="authorRollback">Rollback note</label><textarea id="authorRollback" class="textarea" name="rollbackNote" required placeholder="Cách quay lại revision trước"></textarea></div>
+<div class="field"><label for="authorDiff">Diff summary</label><textarea id="authorDiff" class="textarea" name="diffSummary" required placeholder="Nội dung thay đổi và tác động"></textarea></div>
+<div class="field"><label for="authorConfidence">Độ tin cậy</label><select id="authorConfidence" name="confidence"><option>UNVERIFIED</option><option>PARTIAL</option><option>VERIFIED</option></select></div>
+<div class="field"><label><input type="checkbox" name="generated"> Candidate có nội dung generated/AI</label><small>Generated phải VERIFIED trước canonical patch.</small></div>
+<div class="field full"><label for="authorImport">Import staging JSON</label><input id="authorImport" type="file" data-authoring-import accept=".json,application/json"><small>Tối đa 500 item; chỉ phân tích/staging, không overwrite canonical.</small></div>
+</div>
+<div class="actions"><button type="button" data-authoring-validate>Validate candidate</button><button type="button" data-authoring-export>Xuất candidate</button><button type="button" data-authoring-envelope>Xuất review envelope</button><button type="button" data-authoring-clear>Xóa draft local</button></div>
+</form>
+<section class="split"><article class="author-card"><h2>Validation & promotion boundary</h2><div class="result" data-authoring-result aria-live="polite">Chưa validate.</div><h3>Preview / impact packet</h3><pre class="preview" data-authoring-preview></pre></article><article class="author-card"><h2>Advanced</h2><p>Raw JSON không phải giao diện mặc định; chỉ dùng để kiểm tra kỹ thuật.</p><details><summary>Xem candidate JSON</summary><pre class="preview" data-authoring-raw></pre></details><p><b>Conflict policy:</b> fail closed; review dùng expectedStatus và canonical patch phải khóa vào exact base SHA. Không blind overwrite.</p></article></section>
+</main>
+<script src="assets/authoring-adapter.js"></script>
+<script src="../../platform/ui/bauman-ui.js?v=1"></script>
+</body></html>

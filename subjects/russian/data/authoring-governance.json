@@ -14,7 +14,9 @@
       "published"
     ],
     "storesLearningContent": false,
-    "publishedMeaning": "REVIEW_METADATA_PUBLISHED_NOT_CANONICAL_CONTENT_WRITE"
+    "publishedMeaning": "REVIEW_METADATA_PUBLISHED_NOT_CANONICAL_CONTENT_WRITE",
+    "optimisticConcurrency": "expectedStatus",
+    "auditLog": true
   },
   "lifecycle": {
     "candidateStates": [
@@ -50,13 +52,18 @@
     "bulkImportMayWriteCanonical": false,
     "generatedContentMayWriteCanonical": false,
     "reviewServiceMayWriteCanonical": false,
-    "repoPatchMayWriteCanonical": true
+    "repoPatchMayWriteCanonical": true,
+    "selfApprovalAllowed": false
   },
   "ordinaryAuthoring": {
     "defaultSurface": "schema-aware-form",
     "rawJsonDefault": false,
     "advancedRawJsonAllowed": true,
-    "validationBeforeReview": true
+    "validationBeforeReview": true,
+    "runtimeSurface": "subjects/russian/editor.html",
+    "runtimeAdapter": "subjects/russian/assets/authoring-adapter.js",
+    "draftRecovery": "local-only",
+    "canonicalWrite": false
   },
   "authorableEntityTypes": [
     "Stage",
@@ -104,6 +111,43 @@
     "mode": "STAGING_ONLY",
     "maxBatchItems": 500,
     "atomicCanonicalOverwrite": false,
-    "eachItemValidatedIndependently": true
+    "eachItemValidatedIndependently": true,
+    "schemaDetection": true,
+    "mappingReport": true,
+    "roundTripValidation": true,
+    "partialCanonicalCommit": false
+  },
+  "recoveredP12Responsibilities": {
+    "sourceArchive": "SOURCE_ARCHIVE/P07_P17/RUSSIAN_P12_AUTHORING_CONTENT_GOVERNANCE_PROMPT.md",
+    "recoveredAt": "2026-10-01",
+    "noCodeFirst": true,
+    "rolesAndLeastPrivilege": true,
+    "selfApprovalForbidden": true,
+    "immutableAuditTrail": true,
+    "revisionAndDiffRequired": true,
+    "semanticDiffRequiredForPromotion": true,
+    "impactAnalysisRequiredForPromotion": true,
+    "optimisticConcurrency": "review service expectedStatus + exact repository base SHA",
+    "conflictPolicy": "fail closed; never blind overwrite; reconcile and create a new revision",
+    "autosaveAndDraftRecovery": true,
+    "structuredFieldHelp": true,
+    "previewModes": [
+      "learner",
+      "mobile",
+      "offline-fallback"
+    ],
+    "bulkImport": "staging-only",
+    "importSchemaDetection": true,
+    "importMappingReport": true,
+    "roundTripValidation": true,
+    "generatedCandidates": "non-canonical until VERIFIED + reviewed",
+    "validationResults": [
+      "PASS",
+      "FAIL",
+      "WARN",
+      "WAIVED"
+    ],
+    "waiverRequiresReasonActorTimestamp": true,
+    "migrationDryRunRequired": true
   }
 }

@@ -1,14 +1,14 @@
 {
   "schema": "RUSSIAN_SCENARIO_REGISTRY_V1",
-  "phase": "P11",
+  "phase": "RU05",
   "engine": {
-    "dialogueRuntimeOwner": "P6",
-    "speechRecognitionOwner": "P6",
-    "recordingOwner": "P6",
-    "masteryOwner": "P4",
-    "plannerOwner": "P5",
-    "linguisticTruthOwner": "P7",
-    "aiCoachOwner": "P10",
+    "dialogueRuntimeOwner": "RU05",
+    "speechRecognitionOwner": "RU05",
+    "recordingOwner": "RU05",
+    "masteryOwner": "RU04",
+    "plannerOwner": "RU04",
+    "linguisticTruthOwner": "RU03",
+    "aiCoachOwner": "RU07",
     "duplicateSpeechEngineAllowed": false
   },
   "statePolicy": {
@@ -283,5 +283,12 @@
         }
       }
     }
-  ]
+  ],
+  "runtime": {
+    "adapter": "subjects/russian/assets/scenario-runtime.js",
+    "sessionStorage": "bauman_russian_scenario_session_v1",
+    "persistence": "transient-practice-resume-only",
+    "authorityWrites": false,
+    "browserEvidence": "tests/russian-ru05-scenario-browser.mjs"
+  }
 }

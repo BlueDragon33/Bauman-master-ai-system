@@ -52,7 +52,7 @@
     "scenario-registry",
     "ai-mentor-policy"
   ],
-  "release": "RU08 RC integration candidate",
+  "release": "RU08 · prompt-system re-audit candidate",
   "focus": "Bản chuẩn cuối của module Tiếng Nga: giữ nội dung gốc, giữ vá trình chiếu, ẩn metadata/từ khóa/bài liên quan khỏi vùng slide, giữ metadata cho tìm kiếm/lọc.",
   "bridge": {
     "protocol": "BAUMAN_PLANNING_BRIDGE_V3_ROUTE_CARDS",
@@ -397,7 +397,9 @@
     "academicTechnicalResearch": true,
     "aiMentorBounded": true,
     "authoringGovernance": true,
-    "contentReviewMetadataOnly": true
+    "contentReviewMetadataOnly": true,
+    "scenarioRuntime": true,
+    "structuredAuthoring": true
   },
   "routeMapping": {
     "mainSubjectId": "russian",
@@ -423,10 +425,11 @@
   "qa": {
     "mainPathMap": "subjects/russian/index.html",
     "mainEditorMap": "subjects/russian/editor.html",
-    "checked": "2026-06-07",
+    "checked": "2026-10-01",
     "requiredDataFilesChecked": true,
     "runtimePathScan": "no parent-folder dependency in runtime html/js/css core files",
-    "learningIntegrity": "locked theory/exercises/practice by active lessonId; speaking.json mapped to lessonId; source answers only for exercises"
+    "learningIntegrity": "locked theory/exercises/practice by active lessonId; speaking.json mapped to lessonId; source answers only for exercises",
+    "promptSystemAudit": "RUSSIAN_PROMPT_SYSTEM full re-audit; executable scenario/authoring/AI-boundary evidence required"
   },
   "notes": "Dedicated vertical scroll for Exercise/Speaking tabs and richer exercise answer guidance.",
   "storagePlan": {
@@ -495,7 +498,9 @@
     "oralInteraction": "subjects/russian/docs/ru05/RUSSIAN_RU05_ORAL_INTERACTION_CONTRACT.json",
     "academicProduction": "subjects/russian/docs/ru06/RUSSIAN_RU06_PRODUCTION_ARCHITECTURE.json",
     "aiCoaching": "subjects/russian/docs/ru07/RUSSIAN_RU07_AI_MODE_PERMISSION_MATRIX.json",
-    "authoringGovernance": "subjects/russian/data/authoring-governance.json"
+    "authoringGovernance": "subjects/russian/data/authoring-governance.json",
+    "scenarioRuntime": "subjects/russian/assets/scenario-runtime.js",
+    "authoringRuntime": "subjects/russian/assets/authoring-adapter.js"
   },
   "requiredCapabilities": [
     "shared-app-shell",
@@ -514,7 +519,9 @@
     "academic-production",
     "ai-coaching-optional",
     "content-review-metadata",
-    "speech-interaction"
+    "speech-interaction",
+    "scenario-runtime",
+    "structured-authoring"
   ],
   "authoring": {
     "lifecycle": [

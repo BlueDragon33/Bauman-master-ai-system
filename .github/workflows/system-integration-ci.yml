@@ -91,6 +91,10 @@ jobs:
           node --check tests/russian-p4-assessment-mastery-browser.mjs
           node --check subjects/russian/assets/russian-future-ui.js
           node --check tests/russian-future-ui-browser.mjs
+          node --check tests/russian-ru05-scenario-browser.mjs
+          node --check tests/russian-ru06-production-browser.mjs
+          node --check tests/russian-ru07-ai-boundary-browser.mjs
+          node --check tests/russian-ru08-authoring-browser.mjs
           node --check subjects/russian/assets/listen-write-factory.js
           node --check subjects/russian/assets/ai-mentor-guard.js
           node --check subjects/programming/assets/core.js
@@ -154,6 +158,22 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-p1-future-ui-source
         run: node tests/russian-future-ui-browser.mjs
+      - name: Run Russian RU05 scenario runtime acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+        run: node tests/russian-ru05-scenario-browser.mjs
+      - name: Run Russian RU06 production transfer acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+        run: node tests/russian-ru06-production-browser.mjs
+      - name: Run Russian RU07 AI boundary acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+        run: node tests/russian-ru07-ai-boundary-browser.mjs
+      - name: Run Russian RU08 structured authoring acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+        run: node tests/russian-ru08-authoring-browser.mjs
       - name: Run Russian handwriting acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
@@ -223,6 +243,22 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-p1-future-ui-package
         run: node tests/russian-future-ui-browser.mjs
+      - name: Run packaged Russian RU05 scenario runtime acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
+        run: node tests/russian-ru05-scenario-browser.mjs
+      - name: Run packaged Russian RU06 production transfer acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
+        run: node tests/russian-ru06-production-browser.mjs
+      - name: Run packaged Russian RU07 AI boundary acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
+        run: node tests/russian-ru07-ai-boundary-browser.mjs
+      - name: Run packaged Russian RU08 structured authoring acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
+        run: node tests/russian-ru08-authoring-browser.mjs
       - name: Run packaged Russian handwriting acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/

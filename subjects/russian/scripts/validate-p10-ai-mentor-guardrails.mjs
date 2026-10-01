@@ -10,7 +10,12 @@ for(const k of ['writeMastery','writeAttemptHistory','writeSrs','writePlanner','
 need(policy.permissions.readCanonicalContext===true,'AI must be allowed read-only context');
 need(policy.permissions.generateTemporaryPractice===true,'Temporary practice support missing');
 need(policy.generatedPractice.lifecycle==='EPHEMERAL_UNTIL_REVIEWED','Generated practice must be ephemeral');
-need(policy.generatedPractice.promotionPath==='P12_REVIEW_WORKFLOW','Generated canonical promotion must route to P12');
+if(policy.phase==='RU07'){
+  need(policy.generatedPractice.promotionPath==='RU08_REVIEWED_REPOSITORY_PATCH','Active RU07 policy must route generated promotion to RU08');
+  need(policy.authority.authoringPromotionOwner==='RU08','Active RU07 authoring promotion owner must be RU08');
+}else{
+  need(policy.generatedPractice.promotionPath==='P12_REVIEW_WORKFLOW','Historical P10 snapshot must route generated promotion to P12');
+}
 need(policy.sourceBoundary.noFabricatedCitations===true,'Fabricated citations must be forbidden');
 need(policy.sourceBoundary.noImplicitAuthorityFromModelOutput===true,'Model output must not become authority');
 need(policy.languagePolicy.supported.includes('ru')&&policy.languagePolicy.supported.includes('vi-ru'),'Language policy incomplete');
