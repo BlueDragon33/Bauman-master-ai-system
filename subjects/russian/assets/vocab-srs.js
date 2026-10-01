@@ -33,7 +33,6 @@
   function currentMeta(){return {key:keyFor(),sourceId:sourceIdNow(),sourceIndex:sourceIndexNow(),stageIndex:stageIndexNow(),stage:stageNow(),term:termNow()};}
   function termNow(){const host=cardHost();return clean(host?.dataset.vocabTerm)||clean(document.querySelector('.v1310-vocab-top h3,.vocab-card-panel .term')?.textContent)||`Thẻ ${stageIndexNow()+1}`;}
   const routeFor=(index,card={})=>({view:'vocab',vocabStage:clean(card.stage)||stageNow(),vocabKey:clean(card.sourceId)||'',vocabQuery:'',vocabIndex:clean(card.sourceId)?0:(Number(index)||0),vocabPage:clean(card.sourceId)?0:Math.floor((Number(index)||0)/20)});
-  function plusDays(days){const d=new Date();d.setDate(d.getDate()+Number(days||0));return d.toISOString();}
   function dueCards(){const t=Date.now();return Object.values(state.cards).filter(x=>!x?.migratedTo&&x?.dueAt&&Date.parse(x.dueAt)<=t).sort((a,b)=>Date.parse(a.dueAt)-Date.parse(b.dueAt));}
   function scheduledCards(){const t=Date.now();return Object.values(state.cards).filter(x=>!x?.migratedTo&&x?.dueAt&&Date.parse(x.dueAt)>t).sort((a,b)=>Date.parse(a.dueAt)-Date.parse(b.dueAt));}
   function sourceKeyForItem(item,index=0){const id=clean(item?.id||item?.source_id);return id?`vocab-id:${id}`:`vocab-source:${Math.max(0,Number(index)||0)}`;}
@@ -156,14 +155,16 @@
     if(!['forgot','unsure','recalled'].includes(kind))return;
     const meta=currentMeta(),index=meta.stageIndex,key=meta.key,prev=stableCard(meta),at=now(),term=meta.term;
     if(!prev.exposedAt){setNotice('Thẻ này chưa được học. Hãy bắt đầu từ Khám phá trước khi đưa vào SRS.');return;}
-    let successStreak=Number(prev.successStreak||0), lapses=Number(prev.lapses||0), dueAt=at, reason='srs_forgot', gapDays=0;
-    if(kind==='forgot'){
-      successStreak=0;lapses+=1;dueAt=at;reason='srs_forgot';
-    }else if(kind==='unsure'){
-      successStreak=0;gapDays=GAPS[0]||1;dueAt=plusDays(gapDays);reason='srs_unsure';
-    }else{
-      successStreak+=1;gapDays=GAPS[Math.min(Math.max(0,successStreak-1),GAPS.length-1)]||1;dueAt=plusDays(gapDays);reason='srs_scheduled_recall';
-    }
+    const decision=window.RussianReviewScheduler?.schedule?.({
+      kind:'vocabulary-active',
+      result:kind,
+      successStreak:Number(prev.successStreak||0),
+      lapses:Number(prev.lapses||0),
+      gaps:GAPS,
+      nowMs:Date.parse(at)
+    })||null;
+    if(!decision){setNotice('Không thể tính lịch ôn. Hãy thử lại; dữ liệu mastery không bị thay đổi.');return;}
+    const successStreak=decision.nextSuccessStreak, lapses=decision.nextLapses, dueAt=decision.dueAt, reason=decision.reason, gapDays=decision.gapDays;
     const ratings={forgot:Number(prev.ratings?.forgot||0),unsure:Number(prev.ratings?.unsure||0),recalled:Number(prev.ratings?.recalled||0)};ratings[kind]++;
     state.cards[key]={...prev,key,index,stageIndex:meta.stageIndex,sourceIndex:meta.sourceIndex,sourceId:meta.sourceId,term,firstReviewedAt:prev.firstReviewedAt||at,lastReviewedAt:at,lastRating:kind,ratings,reviewCount:Number(prev.reviewCount||0)+1,successStreak,lapses,gapDays,dueAt,reason,stage:meta.stage};
     write();
