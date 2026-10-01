@@ -92,6 +92,7 @@ jobs:
           node --check tests/russian-ru03-assessment-authority-browser.mjs
           node --check tests/russian-ru05-scenario-browser.mjs
           node --check tests/russian-ru06-academic-production-browser.mjs
+          node --check tests/russian-ru07-ai-guard-browser.mjs
           node --check tests/russian-ru08-authoring-browser.mjs
           node --check subjects/russian/assets/russian-future-ui.js
           node --check tests/russian-future-ui-browser.mjs
@@ -168,6 +169,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-ru06-production-source
         run: node tests/russian-ru06-academic-production-browser.mjs
+      - name: Run Russian RU07 AI guard acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-ru07-ai-source
+        run: node tests/russian-ru07-ai-guard-browser.mjs
       - name: Run Russian RU08 authoring acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
@@ -257,6 +263,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-ru06-production-package
         run: node tests/russian-ru06-academic-production-browser.mjs
+      - name: Run packaged Russian RU07 AI guard acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-ru07-ai-package
+        run: node tests/russian-ru07-ai-guard-browser.mjs
       - name: Run packaged Russian RU08 authoring acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
@@ -300,6 +311,7 @@ jobs:
             artifacts/russian-ru03-authority-source
             artifacts/russian-ru05-scenario-source
             artifacts/russian-ru06-production-source
+            artifacts/russian-ru07-ai-source
             artifacts/russian-ru08-authoring-source
             artifacts/russian-p1-future-ui-source
             artifacts/russian-p1-handwriting-source
@@ -314,6 +326,7 @@ jobs:
             artifacts/russian-ru03-authority-package
             artifacts/russian-ru05-scenario-package
             artifacts/russian-ru06-production-package
+            artifacts/russian-ru07-ai-package
             artifacts/russian-ru08-authoring-package
             artifacts/russian-p1-future-ui-package
             artifacts/russian-p1-handwriting-package
