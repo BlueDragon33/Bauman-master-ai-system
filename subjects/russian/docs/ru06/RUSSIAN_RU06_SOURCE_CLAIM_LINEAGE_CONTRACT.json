@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_RU06_SOURCE_CLAIM_LINEAGE_CONTRACT",
+  "chain": [
+    "source-identity-version",
+    "extracted-claim",
+    "learner-note",
+    "paraphrase-or-synthesis",
+    "draft-section",
+    "submission-snapshot",
+    "feedback-provenance",
+    "revision-intent"
+  ],
+  "claimTypes": [
+    "source-fact",
+    "interpretation",
+    "learner-claim",
+    "generated-suggestion"
+  ],
+  "invariants": [
+    "no fabricated sources or citations",
+    "official submission snapshot is immutable",
+    "meaning-changing revision creates a new revision",
+    "AI-generated suggestion never becomes source fact",
+    "citation/figure/table provenance remains traceable",
+    "correction/retraction effects are recorded rather than silently rewriting history"
+  ]
+}
