@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_RU04_PLANNER_SUPPORT_POLICY",
+  "todayOwner": "subjects/russian/assets/adaptive-planner.js",
+  "recomputeTriggers": [
+    "new-authoritative-evidence",
+    "due-review-boundary-change",
+    "manual-override-change",
+    "intensive-mode-change",
+    "stage-change"
+  ],
+  "forbiddenRecomputeTriggers": [
+    "render",
+    "route-repaint",
+    "scroll",
+    "audio-play",
+    "AI-response-arrival-without-evidence"
+  ],
+  "dedupeKey": "canonical task/content identity",
+  "skillStarvationProtection": [
+    "listening",
+    "speaking",
+    "writing",
+    "technical",
+    "research"
+  ],
+  "vocabularyClasses": [
+    "active-core",
+    "academic-technical-active",
+    "passive",
+    "reference"
+  ],
+  "recognitionProductionPolicy": {
+    "recognitionStrongProductionWeak": "prioritize recall/production/transfer",
+    "recognitionWeak": "return to input/noticing/controlled practice before free production"
+  },
+  "supportFading": {
+    "sequence": [
+      "full-bilingual",
+      "reduced-support",
+      "russian-hints",
+      "keywords",
+      "independent-production"
+    ],
+    "rollback": "support may increase after evidence of difficulty",
+    "masteryRule": "hinted success is not equivalent to unaided success"
+  },
+  "intensiveModeRule": "temporary scheduling pressure only; never rewrite mastery/curriculum/SRS history"
+}
