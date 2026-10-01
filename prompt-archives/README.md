@@ -7,7 +7,7 @@ Shared authority remains:
 1. `.blueprint/constitution-adoption.json`
 2. `prompts/CONSTITUTION.md`
 3. canonical subject `README.md` + Master Prompt + `PROJECT_STATE.json`
-4. ZIP archive as immutable-ish source snapshot / recovery input
+4. ZIP archive as source snapshot / recovery package
 
 ## Execution rule
 
@@ -17,7 +17,7 @@ Execute one subject at a time:
 
 `README → PROJECT_STATE / SOURCE_STATUS → active module → router → PASS gate → next module`
 
-The normalization job extracts subject prompt systems into `prompts/subjects/<slug>/` and removes duplicated per-ZIP Constitution copies from canonical execution.
+The normalization pipeline extracts/repackages subject systems into `prompts/subjects/<slug>/` and removes duplicated per-ZIP Constitution copies from canonical execution.
 
 ## Packages
 
