@@ -29,4 +29,10 @@ for(const s of reg.scenarios||[]){
 }
 for(const f of ['language-failure','stt-failure','network-failure','engine-failure','world-task-failure']) assert(ev.separatesFailures.includes(f));
 assert(sm.repairStrategies.includes('clarify'));
+const runtime=fs.readFileSync('subjects/russian/assets/scenario-runtime.js','utf8');
+const index=fs.readFileSync('subjects/russian/index.html','utf8');
+for(const token of ['RUSSIAN_RU05_SCENARIO_RUNTIME_V1','loadRegistry','validateRegistry','offlineFallback','authoritative:false','repair(','advance(','resume(']) assert(runtime.includes(token),'RU05 runtime missing '+token);
+assert(index.includes('assets/scenario-runtime.js'),'RU05 scenario runtime not loaded by learner UI');
+assert(index.includes('assets/scenario-runtime.css'),'RU05 scenario UI style not loaded');
+assert(fs.existsSync('tests/russian-ru05-scenario-browser.mjs'),'RU05 browser scenario acceptance missing');
 console.log(JSON.stringify({ok:true,scenarios:ids.size,datasetRoles:Object.keys(oral.datasetRoles).length}));
