@@ -1,1 +1,32 @@
-<!doctype html><html data-bauman-ui="future-v1"><head><meta charset="utf-8"><title>Russian Editor</title><link rel="stylesheet" href="../../platform/ui/bauman-ui.css?v=1"></head><body><p>Mở <a href="index.html">index.html</a> để quản lý dữ liệu môn Tiếng Nga.</p><script src="../../platform/ui/bauman-ui.js?v=1"></script></body></html>
+<!doctype html>
+<html lang="vi" data-bauman-ui="future-v1">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Russian Authoring</title>
+<link rel="stylesheet" href="../../platform/ui/bauman-ui.css?v=1">
+<style>
+body{margin:0;padding:24px;max-width:980px;margin-inline:auto} main{display:grid;gap:18px}.ru8-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.ru8-field{display:grid;gap:6px}.ru8-field.wide{grid-column:1/-1}textarea{min-height:120px}pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:420px;overflow:auto}.ru8-note{opacity:.78}@media(max-width:720px){.ru8-grid{grid-template-columns:1fr}.ru8-field.wide{grid-column:auto}}
+</style>
+</head>
+<body>
+<main>
+<header><h1>Biên soạn Tiếng Nga</h1><p class="ru8-note">Tạo đề xuất có cấu trúc. Công cụ này không ghi trực tiếp vào dữ liệu chuẩn và không thay thế quy trình review/publish.</p></header>
+<form id="authoringForm" class="ru8-grid">
+<label class="ru8-field"><span>Loại nội dung</span><select id="entityType" required></select></label>
+<label class="ru8-field"><span>Mã nội dung chuẩn</span><input id="canonicalId" required placeholder="VD: TC-CTRL-001"></label>
+<label class="ru8-field"><span>Mã đề xuất</span><input id="candidateId" required placeholder="RU8-CAND-001"></label>
+<label class="ru8-field"><span>Revision</span><input id="revision" required placeholder="r1"></label>
+<label class="ru8-field wide"><span>Nội dung đề xuất</span><textarea id="proposal" required placeholder="Viết nội dung đề xuất ở dạng đọc được, không cần sửa raw JSON."></textarea></label>
+<label class="ru8-field wide"><span>Nguồn / provenance (mỗi dòng một nguồn)</span><textarea id="sourceRefs" placeholder="GOST..., giáo trình..., corpus..., repo:..."></textarea></label>
+<label class="ru8-field wide"><span>Tóm tắt thay đổi</span><textarea id="diffSummary" required></textarea></label>
+<label class="ru8-field wide"><span>Kế hoạch rollback</span><textarea id="rollbackNote" required></textarea></label>
+<label class="ru8-field"><span><input type="checkbox" id="generated"> Nội dung có AI hỗ trợ</span></label>
+<div class="ru8-field"><button type="submit">Kiểm tra & xem trước</button></div>
+</form>
+<p id="status" role="status" aria-live="polite"></p>
+<section><h2>Candidate preview</h2><pre id="preview" tabindex="0"></pre></section>
+<p><a href="index.html">← Quay lại môn Tiếng Nga</a></p>
+</main>
+<script src="../../platform/ui/bauman-ui.js?v=1"></script>
+<script src="./assets/authoring-editor.js"></script>
+</body></html>
