@@ -183,6 +183,12 @@ def bootstrap_import(results: dict):
     if BOOTSTRAP_TAR.exists():
         bootstrap_path=BOOTSTRAP_TAR
         archive_kind="tar.xz"
+    elif BOOTSTRAP_TAR_B64.exists():
+        temp_bootstrap=Path(tempfile.mkstemp(suffix=".tar.xz")[1])
+        payload="".join(BOOTSTRAP_TAR_B64.read_text(encoding="ascii").split())
+        temp_bootstrap.write_bytes(base64.b64decode(payload))
+        bootstrap_path=temp_bootstrap
+        archive_kind="tar.xz"
     elif BOOTSTRAP.exists():
         bootstrap_path=BOOTSTRAP
         archive_kind="zip"
@@ -220,7 +226,7 @@ def bootstrap_import(results: dict):
             results[archive_name]=normalize_source_dir(src,archive_name,meta)
             deterministic_zip(SUBJECTS/meta["slug"],ARCHIVES/archive_name)
 
-    for source in (BOOTSTRAP, BOOTSTRAP_TAR):
+    for source in (BOOTSTRAP, BOOTSTRAP_TAR, BOOTSTRAP_TAR_B64):
         if source.exists():
             source.unlink()
     for part in zip_parts + tar_parts:
