@@ -1,6 +1,6 @@
 # Russian RU08 Phase Record
 
-State: **VALIDATING**
+State: **PASS**
 
 Baseline: `main@f6aa11215dfcf24e2d646f7c9737733e66c642c8`.
 
@@ -22,3 +22,11 @@ RU08 integrates the already-PASS RU02–RU07 owners into one subject package and
 - no production claim in RU08.
 
 PASS requires RU08 validator + Russian Reference UI Gate + Whole System source/package browser acceptance + no blocker/critical in scope.
+
+## Final pre-merge evidence
+- Universal Constitution Compliance: PASS.
+- Development Fast CI: PASS.
+- Russian Reference UI Gate: PASS on head `d80cee27a0c1c617e78d47e20b58d4a6d64dfc42` after stale P3 validator reconciliation.
+- Whole System Integration Gate run `36875196038`: PASS, including source + packaged Russian browser acceptance and packaged ChatGPT Site acceptance.
+
+**RU08 STATE: PASS — immutable RC handoff may now be formed from the final merge SHA.**
