@@ -251,78 +251,6 @@
       "plannedCount": 1058,
       "description": "Cầu nối từ hội thoại Bauman A-Z sang unit Deep Speaking",
       "lazy": true
-    },
-    {
-      "id": "technical-concepts",
-      "label": "Thuật ngữ kỹ thuật",
-      "path": "data/technical-concepts.json",
-      "required": false,
-      "group": "Học thuật & kỹ thuật",
-      "source": "local-governance",
-      "description": "RU08 registered canonical/governance capability metadata"
-    },
-    {
-      "id": "academic-functions",
-      "label": "Chức năng học thuật",
-      "path": "data/academic-functions.json",
-      "required": false,
-      "group": "Học thuật & kỹ thuật",
-      "source": "local-governance",
-      "description": "RU08 registered canonical/governance capability metadata"
-    },
-    {
-      "id": "reading",
-      "label": "Đọc học thuật",
-      "path": "data/reading.json",
-      "required": false,
-      "group": "Học thuật & nghiên cứu",
-      "source": "local-governance",
-      "description": "RU08 registered canonical/governance capability metadata"
-    },
-    {
-      "id": "performance-tasks",
-      "label": "Nhiệm vụ thực hành",
-      "path": "data/performance-tasks.json",
-      "required": false,
-      "group": "Đánh giá năng lực",
-      "source": "local-governance",
-      "description": "RU08 registered canonical/governance capability metadata"
-    },
-    {
-      "id": "provenance",
-      "label": "Nguồn & độ tin cậy",
-      "path": "data/provenance.json",
-      "required": false,
-      "group": "Quản trị nội dung",
-      "source": "local-governance",
-      "description": "RU08 registered canonical/governance capability metadata"
-    },
-    {
-      "id": "scenario-registry",
-      "label": "Kịch bản tình huống",
-      "path": "data/scenario-registry.json",
-      "required": false,
-      "group": "Đối thoại & tình huống",
-      "source": "local-governance",
-      "description": "RU08 registered canonical/governance capability metadata"
-    },
-    {
-      "id": "ai-mentor-policy",
-      "label": "Chính sách AI coach",
-      "path": "data/ai-mentor-policy.json",
-      "required": false,
-      "group": "AI hỗ trợ",
-      "source": "local-governance",
-      "description": "RU08 registered canonical/governance capability metadata"
-    },
-    {
-      "id": "authoring-governance",
-      "label": "Quản trị biên soạn",
-      "path": "data/authoring-governance.json",
-      "required": false,
-      "group": "Quản trị nội dung",
-      "source": "local-governance",
-      "description": "RU08 registered canonical/governance capability metadata"
     }
   ],
   "externalDataFiles": [
@@ -500,7 +428,44 @@
       "design-system",
       "content-review",
       "release"
-    ]
+    ],
+    "registeredCanonicalOwners": {
+      "runtimeManifestPolicy": "non-runtime architecture metadata; do not imply eager/runtime canonical loading",
+      "owners": [
+        [
+          "TechnicalConcept",
+          "data/technical-concepts.json"
+        ],
+        [
+          "AcademicFunction",
+          "data/academic-functions.json"
+        ],
+        [
+          "ReadingText",
+          "data/reading.json"
+        ],
+        [
+          "PerformanceTask",
+          "data/performance-tasks.json"
+        ],
+        [
+          "ProvenanceRecord",
+          "data/provenance.json"
+        ],
+        [
+          "ScenarioComposition",
+          "data/scenario-registry.json"
+        ],
+        [
+          "AiMentorPolicy",
+          "data/ai-mentor-policy.json"
+        ],
+        [
+          "AuthoringGovernance",
+          "data/authoring-governance.json"
+        ]
+      ]
+    }
   },
   "authoring": {
     "entry": "subjects/russian/editor.html",
