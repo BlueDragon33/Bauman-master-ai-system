@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "RUSSIAN_RU08_AUTHORING_CANDIDATE_V1",
+  "title": "Russian RU08 Authoring Candidate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "candidateId",
+    "entityType",
+    "canonicalId",
+    "revision",
+    "state",
+    "proposal",
+    "sourceRefs",
+    "rollbackNote",
+    "diffSummary"
+  ],
+  "properties": {
+    "schema": {
+      "const": "RUSSIAN_RU08_AUTHORING_CANDIDATE_V1"
+    },
+    "candidateId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9._:-]{3,160}$"
+    },
+    "entityType": {
+      "type": "string",
+      "minLength": 1
+    },
+    "canonicalId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "revision": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "state": {
+      "enum": [
+        "DRAFT",
+        "VALIDATED",
+        "REVIEW_REQUESTED",
+        "APPROVED",
+        "CANONICAL_PATCHED",
+        "PUBLISHED",
+        "SUPERSEDED",
+        "ARCHIVED",
+        "REJECTED"
+      ]
+    },
+    "generated": {
+      "type": "boolean"
+    },
+    "proposal": {
+      "type": [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean"
+      ]
+    },
+    "sourceRefs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "reviewer": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "reviewedAt": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "linguisticStatus": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "VERIFIED",
+        "VERIFIED_WITH_VARIANTS",
+        "CONTEXT_DEPENDENT",
+        "DISPUTED",
+        "UNVERIFIED",
+        "INCORRECT",
+        null
+      ]
+    },
+    "rollbackNote": {
+      "type": "string",
+      "minLength": 1
+    },
+    "diffSummary": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1200
+    },
+    "previousContentHash": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "contentHash": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "canonicalPatched": {
+      "type": "boolean"
+    }
+  }
+}
