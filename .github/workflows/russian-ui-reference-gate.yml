@@ -37,6 +37,8 @@ jobs:
         run: node subjects/russian/scripts/validate-p4-assessment-mastery.mjs
       - name: Validate Russian P5 adaptive planner contract
         run: node subjects/russian/scripts/validate-p5-adaptive-planner.mjs
+      - name: Validate Russian RU04 learning judgment
+        run: node subjects/russian/scripts/validate-ru04-learning-judgment.mjs
       - name: Test Russian P5 adaptive planner runtime
         run: node subjects/russian/scripts/test-p5-adaptive-planner-runtime.mjs
       - name: Validate Russian P6 speech interaction constitution
