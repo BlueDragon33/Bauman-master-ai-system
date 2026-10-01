@@ -11,6 +11,7 @@
   function recordsOf(source){
     if(!source||typeof source!=='object')return [];
     if(Array.isArray(source.records))return source.records;
+    if(Array.isArray(source.datasets))return source.datasets;
     if(Array.isArray(source.sources))return source.sources;
     return [];
   }
@@ -24,7 +25,7 @@
   }
 
   function sourceRefsOf(value){
-    const refs=value?.sourceRefs||value?.sources||value?.provenance?.sourceRefs||value?.provenance?.sources||[];
+    const refs=value?.sourceRefs||value?.sourceEvidence||value?.sources||value?.provenance?.sourceRefs||value?.provenance?.sourceEvidence||value?.provenance?.sources||[];
     return arr(refs).map(clean).filter(Boolean);
   }
 
