@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "1.0.0",
+  "project": "BlueDragon33/Bauman-master-ai-system",
+  "canonicalPromptRoot": "prompts",
+  "constitution": "prompts/CONSTITUTION.md",
+  "repositoryAuthority": ".blueprint/constitution-adoption.json",
+  "executionProtocol": "prompts/EXECUTION_PROTOCOL.md",
+  "rule": "ONE_PROJECT_ONE_SHARED_CONSTITUTION_ONE_MASTER_PROMPT_PER_DOMAIN_CONTINUOUS_EVOLUTION",
+  "domains": [
+    {
+      "id": "russian",
+      "implementationScope": "subjects/russian/",
+      "masterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
+      "state": "prompts/subjects/russian/PROJECT_STATE.json",
+      "status": "IMPORTED_CANONICAL"
+    },
+    {
+      "id": "curriculum-2026",
+      "implementationScope": "hub/curriculum projections + subject shells",
+      "masterPromptPackage": "prompts/curriculum-2026/BAUMAN_MASTER_CURRICULUM_PROMPT_SYSTEM_V1.zip",
+      "status": "MIGRATING_TO_SHARED_CONSTITUTION",
+      "note": "Package is usable, but shared prompts/CONSTITUTION.md is authoritative if legacy internal C1-C4 numbering differs."
+    },
+    {
+      "id": "math",
+      "implementationScope": "subjects/math/",
+      "status": "PENDING_IMPORT_EXISTING_AUTHORITY"
+    },
+    {
+      "id": "ai",
+      "implementationScope": "subjects/ai/",
+      "status": "PENDING_IMPORT_EXISTING_AUTHORITY"
+    },
+    {
+      "id": "foundation",
+      "implementationScope": "subjects/foundation/",
+      "status": "PENDING_IMPORT_EXISTING_AUTHORITY"
+    },
+    {
+      "id": "programming",
+      "implementationScope": "subjects/programming/",
+      "status": "PENDING_IMPORT_EXISTING_AUTHORITY"
+    },
+    {
+      "id": "research",
+      "implementationScope": "subjects/research/",
+      "status": "PENDING_IMPORT_EXISTING_AUTHORITY"
+    },
+    {
+      "id": "signal",
+      "implementationScope": "subjects/signal/",
+      "status": "PENDING_IMPORT_EXISTING_AUTHORITY"
+    },
+    {
+      "id": "systems",
+      "implementationScope": "subjects/systems/",
+      "status": "PENDING_IMPORT_EXISTING_AUTHORITY"
+    }
+  ],
+  "prohibition": [
+    "Do not fabricate a Master Prompt for a domain only to fill the registry.",
+    "Do not create version-suffixed competing Master Prompt files.",
+    "Do not let a subject prompt redefine global Constitution authority."
+  ]
+}
