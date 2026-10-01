@@ -123,6 +123,8 @@ jobs:
         run: node subjects/russian/scripts/validate-ru05-oral-scenarios.mjs
       - name: Validate Russian promotion candidate
         run: node subjects/russian/scripts/validate-promotion-candidate.mjs
+      - name: Validate Russian RU08 integration and RC readiness
+        run: node subjects/russian/scripts/validate-ru08-integration-rc.mjs
       - name: Parse Russian runtime JavaScript
         run: |
           node --check subjects/russian/assets/core.js
