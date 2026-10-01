@@ -242,7 +242,6 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-p4-assessment-package
         run: node tests/russian-p4-assessment-mastery-browser.mjs
-      - name: Run packaged Russian Future UI acceptance        run: node tests/russian-p4-assessment-mastery-browser.mjs
       - name: Run packaged Russian RU03/RU04 assessment authority acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
