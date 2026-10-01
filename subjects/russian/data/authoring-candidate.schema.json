@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "RUSSIAN_AUTHORING_CANDIDATE_V1",
+  "type": "object",
+  "required": [
+    "schema",
+    "candidateId",
+    "responsibility",
+    "canonicalId",
+    "revision",
+    "state",
+    "payload",
+    "rollbackNote",
+    "diffSummary"
+  ],
+  "properties": {
+    "schema": {
+      "const": "RUSSIAN_AUTHORING_CANDIDATE_V1"
+    },
+    "candidateId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "responsibility": {
+      "type": "string",
+      "minLength": 1
+    },
+    "canonicalId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revision": {
+      "type": "string",
+      "minLength": 1
+    },
+    "state": {
+      "enum": [
+        "DRAFT",
+        "VALIDATED",
+        "REVIEW_REQUESTED",
+        "APPROVED",
+        "CANONICAL_PATCHED",
+        "PUBLISHED",
+        "REJECTED",
+        "SUPERSEDED",
+        "ARCHIVED"
+      ]
+    },
+    "payload": {},
+    "generated": {
+      "type": "boolean"
+    },
+    "sourceRefs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "reviewer": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "reviewedAt": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "confidence": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "rollbackNote": {
+      "type": "string",
+      "minLength": 1
+    },
+    "diffSummary": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "previousContentHash": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "contentHash": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "canonicalPatched": {
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": true
+}

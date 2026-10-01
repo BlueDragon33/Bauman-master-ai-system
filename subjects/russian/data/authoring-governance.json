@@ -1,0 +1,109 @@
+{
+  "schema": "RUSSIAN_RU08_AUTHORING_GOVERNANCE_V1",
+  "phase": "RU08",
+  "goldenRule": "ONE FACT · ONE OWNER · MANY USES",
+  "canonicalOwnerRegistry": "subjects/russian/docs/ru02/RUSSIAN_RU02_CANONICAL_OWNER_REGISTRY.json",
+  "provenanceRegistry": "subjects/russian/data/provenance.json",
+  "reviewService": {
+    "owner": "control-service",
+    "storageMode": "METADATA_ONLY",
+    "statuses": [
+      "pending",
+      "approved",
+      "rejected",
+      "published"
+    ],
+    "storesLearningContent": false,
+    "publishedMeaning": "REVIEW_METADATA_PUBLISHED_NOT_CANONICAL_CONTENT_WRITE"
+  },
+  "lifecycle": {
+    "candidateStates": [
+      "DRAFT",
+      "VALIDATED",
+      "REVIEW_REQUESTED",
+      "APPROVED",
+      "CANONICAL_PATCHED",
+      "PUBLISHED",
+      "REJECTED",
+      "SUPERSEDED",
+      "ARCHIVED"
+    ],
+    "promotionOrder": [
+      "DRAFT",
+      "VALIDATED",
+      "REVIEW_REQUESTED",
+      "APPROVED",
+      "CANONICAL_PATCHED",
+      "PUBLISHED"
+    ],
+    "noStateSkipping": true,
+    "canonicalWriteRequires": [
+      "APPROVED",
+      "VERIFIED_PROVENANCE",
+      "CANONICAL_OWNER_PATH",
+      "REVIEWED_DIFF"
+    ],
+    "publishedRequiresCanonicalPatch": true
+  },
+  "permissions": {
+    "candidateMayWriteCanonical": false,
+    "bulkImportMayWriteCanonical": false,
+    "generatedContentMayWriteCanonical": false,
+    "reviewServiceMayWriteCanonical": false,
+    "repoPatchMayWriteCanonical": true
+  },
+  "ordinaryAuthoring": {
+    "defaultSurface": "schema-aware-form",
+    "rawJsonDefault": false,
+    "advancedRawJsonAllowed": true,
+    "validationBeforeReview": true
+  },
+  "authorableEntityTypes": [
+    "Stage",
+    "MacroModule",
+    "Unit",
+    "MicroLesson",
+    "GrammarConcept",
+    "LexicalEntry",
+    "SpeakingItem",
+    "DialogueScenario",
+    "DeepSpeakingTask",
+    "ReadingText",
+    "WritingTask",
+    "TechnicalConcept",
+    "AcademicFunction",
+    "Exercise",
+    "AssessmentItem",
+    "PerformanceTask",
+    "MediaAsset",
+    "ProvenanceRecord"
+  ],
+  "derivedOutputs": [
+    "knowledge-index",
+    "speaking-link-index",
+    "search-index",
+    "review-queue",
+    "recommendation-cache",
+    "route-manifest",
+    "dashboard-aggregation"
+  ],
+  "russianValidation": [
+    "stress",
+    "yo-e-policy",
+    "morphology",
+    "government",
+    "accepted-variants",
+    "audio-transcript-pairing",
+    "dialogue-role-turns",
+    "provenance",
+    "technical-terminology",
+    "assessment-alignment",
+    "research-source-lineage"
+  ],
+  "bulk": {
+    "mode": "STAGING_ONLY",
+    "maxBatchItems": 500,
+    "atomicCanonicalOverwrite": false,
+    "eachItemValidatedIndependently": true
+  }
+}
