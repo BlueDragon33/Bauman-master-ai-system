@@ -5,7 +5,7 @@
   "prerequisites": {
     "RU02": "PASS",
     "RU03": "PASS",
-    "RU04": "PASS",
+    "RU04": "PASS_REVALIDATED_CANONICAL_SCHEDULER",
     "RU05": "PASS",
     "RU06": "PASS",
     "RU07": "PASS"
@@ -23,9 +23,10 @@
     "sharedRelease": true
   },
   "rollback": {
-    "code": "pre-RU08 main",
+    "code": "f6aa11215dfcf24e2d646f7c9737733e66c642c8",
     "content": "existing canonical dataset revisions; no destructive migration in RU08"
   },
   "productionAuthority": "GLOBAL_CONSTITUTIONS/C3_RELEASE_ANNEX_PRODUCTION.md",
-  "note": "RU08 may declare RC_READY only after PR head and merged-main evidence pass. It never claims production live."
+  "note": "RU08 may declare RC_READY only after PR head and merged-main evidence pass. It never claims production live.",
+  "baselineSha": "f6aa11215dfcf24e2d646f7c9737733e66c642c8"
 }
