@@ -1,22 +1,13 @@
 # Curriculum 2026 Prompt System
 
-Canonical prompt authority for this area is now:
+No ZIP is required.
 
+Read in order:
 1. `prompts/CONSTITUTION.md`
-2. this curriculum package
-3. package state/evidence
+2. `prompts/curriculum-2026/CURRICULUM_MASTER_PROMPT.md`
+3. `prompts/curriculum-2026/source/curriculum_official_snapshot.json`
+4. `prompts/curriculum-2026/PROMPT_SEQUENCE.json`
+5. `prompts/curriculum-2026/PROJECT_STATE.json`
 
-Package:
-`prompts/curriculum-2026/BAUMAN_MASTER_CURRICULUM_PROMPT_SYSTEM_V1.zip`
-
-Compatibility copy remains under `governance/curriculum-2026/` for the already-started Codex workflow.
-
-Important normalization:
-the shared Constitution uses the authoritative four-pillar order:
-
-- C1 Extensible Platform Architecture
-- C2 Future Professional UI/UX
-- C3 Professional QA + Auto-Fix
-- C4 Real Learning & Outcome System
-
-If the legacy package text contains a different C2/C3/C4 numbering, route by the shared names above. Do not create a second Constitution.
+Run P01 → P17 continuously. P18 is future-only.
+Do not invent subject content, timetable, progress, teachers or deadlines.

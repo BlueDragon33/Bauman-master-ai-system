@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.0.0",
+  "schemaVersion": "1.0.1",
   "project": "BlueDragon33/Bauman-master-ai-system",
   "canonicalPromptRoot": "prompts",
   "constitution": "prompts/CONSTITUTION.md",
@@ -17,9 +17,9 @@
     {
       "id": "curriculum-2026",
       "implementationScope": "hub/curriculum projections + subject shells",
-      "masterPromptPackage": "prompts/curriculum-2026/BAUMAN_MASTER_CURRICULUM_PROMPT_SYSTEM_V1.zip",
-      "status": "MIGRATING_TO_SHARED_CONSTITUTION",
-      "note": "Package is usable, but shared prompts/CONSTITUTION.md is authoritative if legacy internal C1-C4 numbering differs."
+      "masterPrompt": "prompts/curriculum-2026/CURRICULUM_MASTER_PROMPT.md",
+      "state": "prompts/curriculum-2026/PROJECT_STATE.json",
+      "status": "EXTRACTED_CANONICAL"
     },
     {
       "id": "math",
@@ -58,8 +58,8 @@
     }
   ],
   "prohibition": [
-    "Do not fabricate a Master Prompt for a domain only to fill the registry.",
+    "Do not fabricate a Master Prompt merely to fill the registry.",
     "Do not create version-suffixed competing Master Prompt files.",
-    "Do not let a subject prompt redefine global Constitution authority."
+    "Do not let a subject/domain redefine global Constitution authority."
   ]
 }
