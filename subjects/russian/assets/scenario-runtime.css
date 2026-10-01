@@ -1,0 +1,10 @@
+.ru-scenario-runtime{margin:0 0 18px;padding:var(--bui-space-5);border:1px solid var(--bui-border-subtle);border-radius:var(--bui-radius-lg);background:var(--bui-surface-primary);color:var(--bui-text-primary);display:grid;gap:var(--bui-space-3)}
+.ru-scenario-runtime header{display:flex;justify-content:space-between;gap:18px;align-items:flex-start}
+.ru-scenario-runtime header span{font-size:12px;font-weight:800;letter-spacing:.08em}.ru-scenario-runtime header h3{margin:4px 0}.ru-scenario-runtime header p{margin:0;color:var(--bui-text-secondary);max-width:780px}
+.ru-scenario-offline{padding:6px 10px;border-radius:var(--bui-radius-full);background:var(--bui-color-warning-soft);color:var(--bui-color-warning)}
+.ru-scenario-controls{display:flex;justify-content:space-between;gap:var(--bui-space-3);align-items:end;flex-wrap:wrap}
+.ru-scenario-controls label{display:grid;gap:6px;min-width:min(100%,440px);font-weight:700}.ru-scenario-controls select{min-height:40px;border:1px solid var(--bui-border-strong);border-radius:var(--bui-radius-sm);padding:0 10px;background:var(--bui-surface-primary);color:var(--bui-text-primary)}
+.ru-scenario-controls>div,.ru-scenario-actions{display:flex;gap:var(--bui-space-2);flex-wrap:wrap}
+.ru-scenario-state{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.ru-scenario-state article,.ru-scenario-turn{padding:var(--bui-space-3);border:1px solid var(--bui-border-subtle);border-radius:var(--bui-radius-md);display:grid;gap:4px;background:var(--bui-surface-secondary)}
+.ru-scenario-state span,.ru-scenario-turn span,.ru-scenario-runtime small{overflow-wrap:anywhere;color:var(--bui-text-secondary)}
+@media(max-width:760px){.ru-scenario-runtime{padding:var(--bui-space-4)}.ru-scenario-runtime header{display:grid}.ru-scenario-state{grid-template-columns:1fr}.ru-scenario-controls{align-items:stretch}.ru-scenario-controls>div{width:100%}.ru-scenario-controls .btn{flex:1}}

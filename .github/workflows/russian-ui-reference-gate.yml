@@ -63,6 +63,8 @@ jobs:
         run: node subjects/russian/scripts/validate-ru07-ai-coaching.mjs
       - name: Validate Russian RU08 integration and acceptance
         run: node subjects/russian/scripts/validate-ru08-integration-acceptance.mjs
+      - name: Validate Russian full prompt re-audit boundaries
+        run: node subjects/russian/scripts/validate-russian-prompt-reaudit.mjs
       - name: Validate Russian reference UI contracts
         run: node subjects/russian/scripts/validate-reference-ui.mjs
       - name: Validate Russian lesson learning flow
@@ -143,6 +145,11 @@ jobs:
           node --check subjects/russian/assets/speaking-coach.js
           node --check subjects/russian/assets/academic-language.js
           node --check subjects/russian/assets/ai-mentor-guard.js
+          node --check subjects/russian/assets/ai-coaching-runtime.js
+          node --check subjects/russian/assets/assessment-authority.js
+          node --check subjects/russian/assets/scenario-runtime.js
+          node --check subjects/russian/assets/academic-production.js
+          node --check subjects/russian/assets/authoring-studio.js
           node --check subjects/russian/assets/speech-interaction-engine.js
           node --check subjects/russian/assets/adaptive-planner.js
           node --check subjects/russian/assets/review-scheduler.js
@@ -198,6 +205,14 @@ jobs:
           test -f subjects/russian/assets/academic-language.js
           test -f subjects/russian/assets/academic-language.css
           test -f subjects/russian/assets/ai-mentor-guard.js
+          test -f subjects/russian/assets/ai-coaching-runtime.js
+          test -f subjects/russian/assets/assessment-authority.js
+          test -f subjects/russian/assets/scenario-runtime.js
+          test -f subjects/russian/assets/scenario-runtime.css
+          test -f subjects/russian/assets/academic-production.js
+          test -f subjects/russian/assets/academic-production.css
+          test -f subjects/russian/assets/authoring-studio.js
+          test -f subjects/russian/assets/authoring-studio.css
           test -f subjects/russian/assets/speech-interaction-engine.js
           test -f subjects/russian/assets/adaptive-planner.js
           test -f subjects/russian/assets/runtime-optimizer.js

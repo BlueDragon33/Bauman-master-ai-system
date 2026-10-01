@@ -12,8 +12,8 @@ window.SUBJECT_MANIFEST = {
     "adapter": "assets/subject-adapter.js",
     "theme": "assets/russian.css",
     "package": "Russian Bauman Survival Master V13.41 Presentation Overlay Fix",
-    "coreJsSha256": "3e53dccbf9695acb2604c7425021a46f0374321363d9a0e1bd5476041eb70970",
-    "rendererClean": "related concepts and keywords hidden in theory/presentation view"
+    "rendererClean": "related concepts and keywords hidden in theory/presentation view",
+    "coreJsIdentityPolicy": "Exact release SHA owns runtime identity; do not retain stale per-file digest in manifest."
   },
   "tabs": [
     "overview",
@@ -52,7 +52,7 @@ window.SUBJECT_MANIFEST = {
     "scenario-registry",
     "ai-mentor-policy"
   ],
-  "release": "RU08 RC integration candidate",
+  "release": "RU08 full-prompt re-audit candidate · NOT RELEASED",
   "focus": "Bản chuẩn cuối của module Tiếng Nga: giữ nội dung gốc, giữ vá trình chiếu, ẩn metadata/từ khóa/bài liên quan khỏi vùng slide, giữ metadata cho tìm kiếm/lọc.",
   "bridge": {
     "protocol": "BAUMAN_PLANNING_BRIDGE_V3_ROUTE_CARDS",
@@ -80,7 +80,7 @@ window.SUBJECT_MANIFEST = {
     "weekendPolicy": "Main sends only week-end signal; subject decides review or unlocked assessment.",
     "standaloneFallback": "If window.parent is same window, module runs with local data only."
   },
-  "version": "Russian RU08 · Canonical Subject Package",
+  "version": "Russian RU08 · Full Prompt Re-Audit Candidate",
   "coreVersion": "SubjectCore V12.94 Honest Frame Repair",
   "bridgeProtocol": "BAUMAN_PLANNING_BRIDGE_V3_ROUTE_CARDS",
   "name": "Tiếng Nga Bauman · RussianPack R4",
@@ -397,7 +397,12 @@ window.SUBJECT_MANIFEST = {
     "academicTechnicalResearch": true,
     "aiMentorBounded": true,
     "authoringGovernance": true,
-    "contentReviewMetadataOnly": true
+    "contentReviewMetadataOnly": true,
+    "truthFirstAssessmentAuthority": true,
+    "executableScenarioRuntime": true,
+    "executableAcademicProduction": true,
+    "guardedAiRuntime": true,
+    "structuredAuthoringStudio": true
   },
   "routeMapping": {
     "mainSubjectId": "russian",
@@ -423,10 +428,11 @@ window.SUBJECT_MANIFEST = {
   "qa": {
     "mainPathMap": "subjects/russian/index.html",
     "mainEditorMap": "subjects/russian/editor.html",
-    "checked": "2026-06-07",
+    "checked": "2026-10-01",
     "requiredDataFilesChecked": true,
     "runtimePathScan": "no parent-folder dependency in runtime html/js/css core files",
-    "learningIntegrity": "locked theory/exercises/practice by active lessonId; speaking.json mapped to lessonId; source answers only for exercises"
+    "learningIntegrity": "locked theory/exercises/practice by active lessonId; speaking.json mapped to lessonId; source answers only for exercises",
+    "fullPromptReaudit": "pending exact-head CI/browser/package acceptance"
   },
   "notes": "Dedicated vertical scroll for Exercise/Speaking tabs and richer exercise answer guidance.",
   "storagePlan": {
@@ -495,7 +501,12 @@ window.SUBJECT_MANIFEST = {
     "oralInteraction": "subjects/russian/docs/ru05/RUSSIAN_RU05_ORAL_INTERACTION_CONTRACT.json",
     "academicProduction": "subjects/russian/docs/ru06/RUSSIAN_RU06_PRODUCTION_ARCHITECTURE.json",
     "aiCoaching": "subjects/russian/docs/ru07/RUSSIAN_RU07_AI_MODE_PERMISSION_MATRIX.json",
-    "authoringGovernance": "subjects/russian/data/authoring-governance.json"
+    "authoringGovernance": "subjects/russian/data/authoring-governance.json",
+    "assessmentAuthorityRuntime": "subjects/russian/assets/assessment-authority.js",
+    "scenarioRuntime": "subjects/russian/assets/scenario-runtime.js",
+    "academicProductionRuntime": "subjects/russian/assets/academic-production.js",
+    "aiCoachingRuntime": "subjects/russian/assets/ai-coaching-runtime.js",
+    "authoringStudio": "subjects/russian/editor.html"
   },
   "requiredCapabilities": [
     "shared-app-shell",

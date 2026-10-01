@@ -14,4 +14,9 @@ for(const x of ['direct-answer','translation-answer','previous-turn-answer-conte
 assert(sec.promptInjectionSources.includes('retrieved-snippets'));
 assert(fb.providerFailure.includes('deterministic-practice'));
 for(const id of ['fake-citation','assessment-leakage','prompt-injection-document','stale-response','provider-failure']) assert(fx.fixtures.some(x=>x.id===id));
+const runtime=fs.readFileSync('subjects/russian/assets/ai-coaching-runtime.js','utf8');
+const index=fs.readFileSync('subjects/russian/index.html','utf8');
+for(const token of ['RUSSIAN_RU07_AI_COACHING_RUNTIME_V1','BLOCKED_ASSESSMENT','STALE_QUARANTINED','REJECTED_CITATION','REJECTED_TOOL_USE','REJECTED_PROTECTED_TOKEN_DRIFT','toolsAllowed:[]']) assert(runtime.includes(token),'RU07 runtime missing '+token);
+assert(index.includes('assets/ai-coaching-runtime.js'),'RU07 guarded AI runtime not loaded');
+assert(fs.existsSync('tests/russian-ru07-ai-guard-browser.mjs'),'RU07 AI browser regression missing');
 console.log(JSON.stringify({ok:true,modes:Object.keys(modes.modes).length,fixtures:fx.fixtures.length}));

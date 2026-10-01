@@ -62,4 +62,12 @@ for(const phase of ['ru02','ru03','ru04','ru05','ru06','ru07']){
  assert(fs.existsSync(p),'missing '+p);
  assert.match(fs.readFileSync(p,'utf8'),/State:\s*\*\*PASS\*\*|RU0[2-7] STATE:\s*PASS/i,'upstream not PASS: '+phase);
 }
+const editor=fs.readFileSync('subjects/russian/editor.html','utf8');
+const authoringRuntime=fs.readFileSync('subjects/russian/assets/authoring-studio.js','utf8');
+assert.match(editor,/Russian Authoring Studio/,'RU08 editor must be a real authoring surface');
+for(const field of ['id="responsibility"','id="sourceRefs"','id="assessmentAlignment"','id="researchLineage"','Canonical patch SHA','Published\/release SHA']) assert(editor.includes(field),'RU08 structured authoring missing '+field);
+assert(editor.includes('Raw JSON không phải giao diện mặc định'),'RU08 ordinary author boundary missing');
+assert(!editor.includes('id="rawJson"'),'RU08 must not default ordinary authors to raw JSON');
+for(const token of ['RUSSIAN_AUTHORING_CANDIDATE_V1','metadataOnly:true','State skipping is forbidden','canonicalPatchSha','publishedSha','create-reviewed-repository-revert']) assert(authoringRuntime.includes(token),'RU08 authoring runtime missing '+token);
+assert(fs.existsSync('tests/russian-ru08-authoring-browser.mjs'),'RU08 authoring browser journey missing');
 console.log(JSON.stringify({ok:true,subject:manifest.id,dataFiles:manifest.dataFiles.length,capabilities:manifest.requiredCapabilities.length,authorable:governance.authorableEntityTypes.length,failures:acceptance.failureMatrix.length}));

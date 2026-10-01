@@ -31,7 +31,7 @@ assert.match(coach,/không tự tạo mastery/);
 const enginePos=index.indexOf('assets/speech-interaction-engine.js');
 const corePos=index.indexOf('assets/core.js');
 assert.ok(enginePos>=0&&enginePos<corePos,'P6 interaction engine must load before core');
-assert.match(sw,/russian-app-shell-v8-speech-interaction/);
+assert.match(sw,/russian-app-shell-v\d+-[a-z0-9-]+/,'P6 requires a versioned Russian app-shell cache, not one historical cache name');
 assert.match(sw,/\.\/assets\/speech-interaction-engine\.js/);
 
 const required=[

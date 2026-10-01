@@ -89,6 +89,11 @@ jobs:
           node --check subjects/russian/assets/core.js
           node --check subjects/russian/assets/assessment-mastery.js
           node --check tests/russian-p4-assessment-mastery-browser.mjs
+          node --check tests/russian-ru03-assessment-authority-browser.mjs
+          node --check tests/russian-ru05-scenario-browser.mjs
+          node --check tests/russian-ru06-academic-production-browser.mjs
+          node --check tests/russian-ru07-ai-guard-browser.mjs
+          node --check tests/russian-ru08-authoring-browser.mjs
           node --check subjects/russian/assets/russian-future-ui.js
           node --check tests/russian-future-ui-browser.mjs
           node --check subjects/russian/assets/listen-write-factory.js
@@ -149,6 +154,31 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-p4-assessment-source
         run: node tests/russian-p4-assessment-mastery-browser.mjs
+      - name: Run Russian RU03/RU04 assessment authority acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-ru03-authority-source
+        run: node tests/russian-ru03-assessment-authority-browser.mjs
+      - name: Run Russian RU05 scenario acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-ru05-scenario-source
+        run: node tests/russian-ru05-scenario-browser.mjs
+      - name: Run Russian RU06 academic production acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-ru06-production-source
+        run: node tests/russian-ru06-academic-production-browser.mjs
+      - name: Run Russian RU07 AI guard acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-ru07-ai-source
+        run: node tests/russian-ru07-ai-guard-browser.mjs
+      - name: Run Russian RU08 authoring acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-ru08-authoring-source
+        run: node tests/russian-ru08-authoring-browser.mjs
       - name: Run Russian Future UI route acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
@@ -218,6 +248,31 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-p4-assessment-package
         run: node tests/russian-p4-assessment-mastery-browser.mjs
+      - name: Run packaged Russian RU03/RU04 assessment authority acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-ru03-authority-package
+        run: node tests/russian-ru03-assessment-authority-browser.mjs
+      - name: Run packaged Russian RU05 scenario acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-ru05-scenario-package
+        run: node tests/russian-ru05-scenario-browser.mjs
+      - name: Run packaged Russian RU06 academic production acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-ru06-production-package
+        run: node tests/russian-ru06-academic-production-browser.mjs
+      - name: Run packaged Russian RU07 AI guard acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-ru07-ai-package
+        run: node tests/russian-ru07-ai-guard-browser.mjs
+      - name: Run packaged Russian RU08 authoring acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-ru08-authoring-package
+        run: node tests/russian-ru08-authoring-browser.mjs
       - name: Run packaged Russian Future UI acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
@@ -253,6 +308,11 @@ jobs:
           path: |
             artifacts/russian-p1-forensic-source
             artifacts/russian-p4-assessment-source
+            artifacts/russian-ru03-authority-source
+            artifacts/russian-ru05-scenario-source
+            artifacts/russian-ru06-production-source
+            artifacts/russian-ru07-ai-source
+            artifacts/russian-ru08-authoring-source
             artifacts/russian-p1-future-ui-source
             artifacts/russian-p1-handwriting-source
             artifacts/russian-p1-capability-hub-source
@@ -263,6 +323,11 @@ jobs:
             artifacts/russian-p1-listen-write-source
             artifacts/russian-p1-forensic-package
             artifacts/russian-p4-assessment-package
+            artifacts/russian-ru03-authority-package
+            artifacts/russian-ru05-scenario-package
+            artifacts/russian-ru06-production-package
+            artifacts/russian-ru07-ai-package
+            artifacts/russian-ru08-authoring-package
             artifacts/russian-p1-future-ui-package
             artifacts/russian-p1-handwriting-package
             artifacts/russian-p1-deeplink-package
