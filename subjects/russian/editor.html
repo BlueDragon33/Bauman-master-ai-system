@@ -13,24 +13,24 @@ body{margin:0;background:#f5f7fb;color:#142033;font-family:Inter,"Segoe UI",Aria
 <section class="author-head"><span>RU08 · STRUCTURED AUTHORING</span><h1>Biên tập nội dung Tiếng Nga</h1><p>Form có cấu trúc là mặc định. Mọi thay đổi ở đây chỉ tạo <b>candidate</b>; không ghi trực tiếp canonical content, mastery, SRS hay planner.</p><p class="notice">Luồng: DRAFT → VALIDATED → REVIEW_REQUESTED → APPROVED → CANONICAL_PATCHED → PUBLISHED. Approval metadata không đồng nghĩa canonical write.</p><a href="index.html">← Về môn học</a></section>
 <form class="author-card" autocomplete="off">
 <div class="grid">
-<div class="field"><label>Loại nội dung</label><select name="entityType" required><option value="">Chọn loại…</option></select></div>
-<div class="field"><label>Candidate ID</label><input class="input" name="candidateId" placeholder="RU08-..."></div>
-<div class="field"><label>Canonical ID</label><input class="input" name="canonicalId" required placeholder="ví dụ: vocab:..."></div>
-<div class="field"><label>Revision mới</label><input class="input" name="revision" required placeholder="r2 / 2026-10-01-..."></div>
-<div class="field full"><label>Tiêu đề / nhãn</label><input class="input" name="title"></div>
-<div class="field"><label>Nội dung tiếng Nga</label><textarea class="textarea" name="ru" lang="ru"></textarea></div>
-<div class="field"><label>Nghĩa / ghi chú tiếng Việt</label><textarea class="textarea" name="vi"></textarea></div>
-<div class="field full"><label>Ghi chú cấu trúc</label><textarea class="textarea" name="notes"></textarea></div>
-<div class="field full"><label>Source refs (mỗi dòng một nguồn)</label><textarea class="textarea" name="sourceRefs" placeholder="https://...&#10;source:..."></textarea></div>
-<div class="field"><label>Rollback note</label><textarea class="textarea" name="rollbackNote" required placeholder="Cách quay lại revision trước"></textarea></div>
-<div class="field"><label>Diff summary</label><textarea class="textarea" name="diffSummary" required placeholder="Nội dung thay đổi và tác động"></textarea></div>
-<div class="field"><label>Độ tin cậy</label><select name="confidence"><option>UNVERIFIED</option><option>PARTIAL</option><option>VERIFIED</option></select></div>
+<div class="field"><label for="authorEntityType">Loại nội dung</label><select id="authorEntityType" name="entityType" required><option value="">Chọn loại…</option></select></div>
+<div class="field"><label for="authorCandidateId">Candidate ID</label><input id="authorCandidateId" class="input" name="candidateId" placeholder="RU08-..."></div>
+<div class="field"><label for="authorCanonicalId">Canonical ID</label><input id="authorCanonicalId" class="input" name="canonicalId" required placeholder="ví dụ: vocab:..."></div>
+<div class="field"><label for="authorRevision">Revision mới</label><input id="authorRevision" class="input" name="revision" required placeholder="r2 / 2026-10-01-..."></div>
+<div class="field"><label for="authorBaseSha">Exact base SHA</label><input id="authorBaseSha" class="input" name="baseSha" placeholder="commit SHA dùng để chống blind overwrite"></div><div class="field"><label for="authorTitle">Tiêu đề / nhãn</label><input id="authorTitle" class="input" name="title"></div>
+<div class="field"><label for="authorRu">Nội dung tiếng Nga</label><textarea id="authorRu" class="textarea" name="ru" lang="ru"></textarea></div>
+<div class="field"><label for="authorVi">Nghĩa / ghi chú tiếng Việt</label><textarea id="authorVi" class="textarea" name="vi"></textarea></div>
+<div class="field full"><label for="authorNotes">Ghi chú cấu trúc</label><textarea id="authorNotes" class="textarea" name="notes"></textarea></div>
+<div class="field full"><label for="authorSources">Source refs (mỗi dòng một nguồn)</label><textarea id="authorSources" class="textarea" name="sourceRefs" placeholder="https://...&#10;source:..."></textarea></div>
+<div class="field"><label for="authorRollback">Rollback note</label><textarea id="authorRollback" class="textarea" name="rollbackNote" required placeholder="Cách quay lại revision trước"></textarea></div>
+<div class="field"><label for="authorDiff">Diff summary</label><textarea id="authorDiff" class="textarea" name="diffSummary" required placeholder="Nội dung thay đổi và tác động"></textarea></div>
+<div class="field"><label for="authorConfidence">Độ tin cậy</label><select id="authorConfidence" name="confidence"><option>UNVERIFIED</option><option>PARTIAL</option><option>VERIFIED</option></select></div>
 <div class="field"><label><input type="checkbox" name="generated"> Candidate có nội dung generated/AI</label><small>Generated phải VERIFIED trước canonical patch.</small></div>
-<div class="field full"><label>Import staging JSON</label><input type="file" data-authoring-import accept=".json,application/json"><small>Tối đa 500 item; chỉ phân tích/staging, không overwrite canonical.</small></div>
+<div class="field full"><label for="authorImport">Import staging JSON</label><input id="authorImport" type="file" data-authoring-import accept=".json,application/json"><small>Tối đa 500 item; chỉ phân tích/staging, không overwrite canonical.</small></div>
 </div>
 <div class="actions"><button type="button" data-authoring-validate>Validate candidate</button><button type="button" data-authoring-export>Xuất candidate</button><button type="button" data-authoring-envelope>Xuất review envelope</button><button type="button" data-authoring-clear>Xóa draft local</button></div>
 </form>
-<section class="split"><article class="author-card"><h2>Validation & promotion boundary</h2><div class="result" data-authoring-result>Chưa validate.</div><h3>Preview / impact packet</h3><pre class="preview" data-authoring-preview></pre></article><article class="author-card"><h2>Advanced</h2><p>Raw JSON không phải giao diện mặc định; chỉ dùng để kiểm tra kỹ thuật.</p><details><summary>Xem candidate JSON</summary><pre class="preview" data-authoring-raw></pre></details><p><b>Conflict policy:</b> fail closed; review dùng expectedStatus và canonical patch phải khóa vào exact base SHA. Không blind overwrite.</p></article></section>
+<section class="split"><article class="author-card"><h2>Validation & promotion boundary</h2><div class="result" data-authoring-result aria-live="polite">Chưa validate.</div><h3>Preview / impact packet</h3><pre class="preview" data-authoring-preview></pre></article><article class="author-card"><h2>Advanced</h2><p>Raw JSON không phải giao diện mặc định; chỉ dùng để kiểm tra kỹ thuật.</p><details><summary>Xem candidate JSON</summary><pre class="preview" data-authoring-raw></pre></details><p><b>Conflict policy:</b> fail closed; review dùng expectedStatus và canonical patch phải khóa vào exact base SHA. Không blind overwrite.</p></article></section>
 </main>
 <script src="assets/authoring-adapter.js"></script>
 <script src="../../platform/ui/bauman-ui.js?v=1"></script>
