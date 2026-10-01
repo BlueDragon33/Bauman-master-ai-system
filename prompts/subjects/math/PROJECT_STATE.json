@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "math",
+  "constitution": "prompts/CONSTITUTION.md",
+  "constitutionLibrary": "prompts/constitution/",
+  "masterPrompt": "prompts/subjects/math/MATH_MASTER_PROMPT.md",
+  "router": "prompts/subjects/math/MATH_CONSTITUTION_ROUTER.json",
+  "sourceArchive": "prompt-archives/math.zip",
+  "promptArchitectureStatus": "COMPLETE",
+  "repositoryExecutionStatus": "NOT_STARTED_OR_NEEDS_RECONCILIATION",
+  "activeModule": "MATH01",
+  "lastCompletedModule": null,
+  "validatedSha": null,
+  "evidence": [],
+  "blockers": [],
+  "nextAction": "Run MATH01 against current repository reality before canonical implementation work."
+}
