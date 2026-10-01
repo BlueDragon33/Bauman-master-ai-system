@@ -27,18 +27,25 @@
   function taskList(){return arr(datasets?.performance?.tasks);}
   function task(){return taskList().find(x=>x.id===state.activeTaskId)||taskList()[0]||null;}
   const intersects=(a,b)=>arr(a).some(x=>arr(b).includes(x));
+  function datasetTrust(id){
+    const row=arr(datasets?.provenance?.datasets).find(x=>clean(x.id)===clean(id));
+    return {id,status:clean(row?.status||'UNKNOWN').toUpperCase(),confidence:clean(row?.confidence||''),rule:clean(row?.rule||'')};
+  }
+  const verifiedStatus=v=>['VERIFIED','VERIFIED_WITH_VARIANTS'].includes(clean(v).toUpperCase());
   function readingFor(t){return arr(datasets?.reading?.tasks).filter(x=>intersects(x.targets,t?.targets));}
-  function conceptsFor(t){return arr(datasets?.technical?.concepts).filter(x=>intersects(x.targets,t?.targets)).slice(0,12);}
+  function conceptCandidatesFor(t){return arr(datasets?.technical?.concepts).filter(x=>intersects(x.targets,t?.targets)).slice(0,24);}
+  function conceptsFor(t){return conceptCandidatesFor(t).filter(x=>verifiedStatus(x.authorityStatus)).slice(0,12);}
   function functionsFor(t){
+    if(!verifiedStatus(datasetTrust('academic-functions').status))return [];
     const ids=new Set(readingFor(t).flatMap(x=>arr(x.academicFunctions)));
     return arr(datasets?.academic?.functions).filter(x=>ids.has(x.id)).slice(0,10);
   }
   function cacheData(value){try{localStorage.setItem(DATA_CACHE_KEY,JSON.stringify(value));}catch(_){}}
   async function loadData(){
     try{
-      const names=['technical-concepts','academic-functions','reading','performance-tasks'];
+      const names=['technical-concepts','academic-functions','reading','performance-tasks','provenance'];
       const values=await Promise.all(names.map(name=>fetch('data/'+name+'.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error(name+':HTTP '+r.status);return r.json();})));
-      datasets={technical:values[0],academic:values[1],reading:values[2],performance:values[3]};
+      datasets={technical:values[0],academic:values[1],reading:values[2],performance:values[3],provenance:values[4]};
       if(!taskList().length)throw new Error('performance-task-empty');
       loadError=null;cacheData(datasets);
     }catch(error){
@@ -66,7 +73,7 @@
     const t=task();if(!t)return null;const row=work(t.id);
     const item={label:clean(label),at:now()};row.selfChecks.push(item);row.selfChecks=row.selfChecks.slice(-20);row.updatedAt=item.at;save();schedule();return item;
   }
-  function status(){return {schema:SCHEMA,ready:Boolean(datasets),offlineFallback:Boolean(datasets)&&Boolean(loadError),loadError,blocked,activeTaskId:state.activeTaskId,taskCount:taskList().length,state:JSON.parse(JSON.stringify(state))};}
+  function status(){return {schema:SCHEMA,ready:Boolean(datasets),offlineFallback:Boolean(datasets)&&Boolean(loadError),loadError,blocked,activeTaskId:state.activeTaskId,taskCount:taskList().length,trust:{technical:datasetTrust('technical-concepts'),academicFunctions:datasetTrust('academic-functions'),reading:datasetTrust('reading'),performanceTasks:datasetTrust('performance-tasks')},state:JSON.parse(JSON.stringify(state))};}
   function schedule(){if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;render();});}
 
   function render(){
@@ -79,16 +86,20 @@
       panel.innerHTML='<header><span>RU06 · ACADEMIC / TECHNICAL / RESEARCH</span><h3>Production workspace</h3></header><p>'+(loadError?'Không tải được canonical RU06 data: '+esc(loadError):'Đang tải canonical RU06 data...')+'</p>';return;
     }
     const t=task();if(!t)return;
-    const row=work(t.id),reads=readingFor(t),concepts=conceptsFor(t),functions=functionsFor(t);
+    const row=work(t.id),reads=readingFor(t),conceptCandidates=conceptCandidatesFor(t),concepts=conceptsFor(t),functions=functionsFor(t);
+    const technicalTrust=datasetTrust('technical-concepts'),academicTrust=datasetTrust('academic-functions');
     if(!panel){panel=document.createElement('section');panel.id='ruAcademicProduction';panel.className='ru-production-studio';view.prepend(panel);}
     const options=taskList().map(x=>'<option value="'+esc(x.id)+'" '+(x.id===t.id?'selected':'')+'>'+esc(x.id+' · '+x.mode)+'</option>').join('');
-    const conceptHtml=concepts.map(x=>'<span title="'+esc(arr(x.sourceRefs).join(' · '))+'"><b>'+esc(x.ru)+'</b> · '+esc(x.vi)+' <i>'+esc(x.authorityStatus||'UNKNOWN')+'</i></span>').join('')||'<span>Không có thuật ngữ gắn trực tiếp.</span>';
-    const functionHtml=functions.map(x=>'<span><b>'+esc(x.ruLabel)+'</b> · '+esc(arr(x.patterns).slice(0,2).join(' / '))+'</span>').join('')||'<span>Không có function gắn trực tiếp.</span>';
+    const withheldConcepts=Math.max(0,conceptCandidates.length-concepts.length);
+    const conceptHtml=concepts.map(x=>'<span title="'+esc(arr(x.sourceRefs).join(' · '))+'"><b>'+esc(x.ru)+'</b> · '+esc(x.vi)+' <i>VERIFIED</i></span>').join('')||'<span>Không có thuật ngữ VERIFIED gắn trực tiếp.</span>';
+    const functionHtml=verifiedStatus(academicTrust.status)
+      ?(functions.map(x=>'<span><b>'+esc(x.ruLabel)+'</b> · '+esc(arr(x.patterns).slice(0,2).join(' / '))+'</span>').join('')||'<span>Không có function gắn trực tiếp.</span>')
+      :'<span><b>Tạm ẩn mẫu tiếng Nga.</b> academic-functions đang '+esc(academicTrust.status)+' theo RU03, nên pattern không được trình bày như canonical linguistic truth.</span>';
     const readingHtml=reads.map(x=>'<article><b>'+esc(x.id+' · '+x.genre)+'</b><span>'+esc(arr(x.operations).join(' → '))+'</span><small>Đầu ra: '+esc(x.output)+'</small></article>').join('')||'<article><span>Chưa có reading task trực tiếp.</span></article>';
     const offline=loadError?'<span class="ru-production-offline">Canonical data từ cache offline</span>':'';
     panel.innerHTML='<header><div><span>RU06 · CONCEPT → SOURCE → PRODUCTION → TRANSFER</span><h3>'+esc(t.id+' · '+t.mode)+'</h3><p>Đầu ra: '+esc(t.output)+' · Evidence contract: '+esc(arr(t.evidenceTypes).join(', '))+'</p></div>'+offline+'</header>'+
       '<div class="ru-production-selector"><label>Nhiệm vụ<select data-ru-production-task>'+options+'</select></label><span>Targets: '+esc(arr(t.targets).join(' · '))+'</span></div>'+
-      '<div class="ru-production-reference"><section><h4>Reading/source operation</h4>'+readingHtml+'</section><section><h4>Technical terms</h4><div class="ru-production-chips">'+conceptHtml+'</div></section><section><h4>Academic functions</h4><div class="ru-production-chips">'+functionHtml+'</div></section></div>'+
+      '<div class="ru-production-reference"><section><h4>Reading/source operation</h4>'+readingHtml+'</section><section><h4>Technical terms</h4><small>Dataset '+esc(technicalTrust.status)+' · chỉ hiển thị item VERIFIED · '+String(withheldConcepts)+' item chưa đủ authority đang được giữ lại.</small><div class="ru-production-chips">'+conceptHtml+'</div></section><section><h4>Academic functions</h4><small>Dataset '+esc(academicTrust.status)+' · fail-closed theo RU03.</small><div class="ru-production-chips">'+functionHtml+'</div></section></div>'+
       '<div class="ru-production-work"><label>1. Source notes / evidence refs<textarea data-ru-production-field="sourceNotes" placeholder="Ghi nguồn, dữ kiện, điều kiện, giới hạn...">'+esc(row.sourceNotes)+'</textarea></label>'+
       '<label>2. Draft / technical explanation<textarea data-ru-production-field="draft" placeholder="Tự viết bằng tiếng Nga; hệ thống không tự thay claim, số liệu, công thức hay citation.">'+esc(row.draft)+'</textarea></label>'+
       '<label>3. Presentation / oral outline<textarea data-ru-production-field="presentation" placeholder="Dàn ý trình bày, seminar, НИР hoặc ВКР...">'+esc(row.presentation)+'</textarea></label>'+
