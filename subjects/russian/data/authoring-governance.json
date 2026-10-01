@@ -1,0 +1,101 @@
+{
+  "schema": "RUSSIAN_AUTHORING_GOVERNANCE_V2",
+  "activeOwner": "RU08",
+  "goldenRule": "ONE FACT · ONE OWNER · MANY USES",
+  "provenanceRegistry": "subjects/russian/data/provenance.json",
+  "reviewService": {
+    "owner": "control-service",
+    "storageMode": "METADATA_ONLY",
+    "storesLearningContent": false,
+    "statuses": [
+      "pending",
+      "approved",
+      "rejected",
+      "published"
+    ],
+    "publishedMeaning": "review metadata published; canonical repository truth requires repo patch/merge"
+  },
+  "lifecycle": {
+    "candidateStates": [
+      "DRAFT",
+      "VALIDATED",
+      "REVIEW_REQUESTED",
+      "APPROVED",
+      "CANONICAL_PATCHED",
+      "PUBLISHED",
+      "REJECTED",
+      "SUPERSEDED",
+      "ARCHIVED"
+    ],
+    "promotionOrder": [
+      "DRAFT",
+      "VALIDATED",
+      "REVIEW_REQUESTED",
+      "APPROVED",
+      "CANONICAL_PATCHED",
+      "PUBLISHED"
+    ],
+    "noStateSkipping": true,
+    "publishedRequiresCanonicalPatch": true
+  },
+  "canonicalWrites": {
+    "candidate": false,
+    "bulkImport": false,
+    "generatedContent": false,
+    "reviewService": false,
+    "repositoryPatch": true
+  },
+  "responsibilities": {
+    "curriculum": "subjects/russian/data/curriculum.json",
+    "lesson-content": "subjects/russian/data/lessons.json",
+    "vocab": "subjects/russian/data/vocab.json",
+    "grammar": "subjects/russian/data/grammar.json",
+    "practice-exercise": "subjects/russian/data/exercises.json",
+    "assessment": "subjects/russian/data/tests.json",
+    "basic-speaking": "subjects/russian/data/speaking.json",
+    "dialogue": "subjects/russian/data/dialogue-bauman-az.json",
+    "deep-speaking": "subjects/russian/data/deep-speaking-bauman.json",
+    "writing": "subjects/russian/data/writing.json",
+    "handwriting": "subjects/russian/data/handwriting.json",
+    "media": "subjects/russian/data/videos.json",
+    "technical-concept": "subjects/russian/data/technical-concepts.json",
+    "academic-function": "subjects/russian/data/academic-functions.json",
+    "reading": "subjects/russian/data/reading.json",
+    "performance-task": "subjects/russian/data/performance-tasks.json",
+    "scenario": "subjects/russian/data/scenario-registry.json",
+    "provenance": "subjects/russian/data/provenance.json"
+  },
+  "derivedResponsibilities": [
+    "grammar-learning-path",
+    "knowledge-index",
+    "speaking-link-index",
+    "review-queues",
+    "recommendation-caches",
+    "route-manifests",
+    "dashboard-aggregations"
+  ],
+  "domainValidation": [
+    "stress",
+    "yo-e-policy",
+    "morphology-government",
+    "accepted-variants",
+    "audio-transcript-pairing",
+    "dialogue-roles-turns",
+    "speaking-deep-speaking-contracts",
+    "source-provenance",
+    "technical-terminology",
+    "assessment-alignment",
+    "research-source-lineage"
+  ],
+  "bulk": {
+    "mode": "STAGING_ONLY",
+    "maxBatchItems": 500,
+    "atomicCanonicalOverwrite": false,
+    "eachItemValidatedIndependently": true
+  },
+  "migration": {
+    "strategy": "strangler-incremental",
+    "deleteLegacyOnlyAfterReplacementRegressionProof": true,
+    "noSilentLearnerStateReset": true
+  }
+}
