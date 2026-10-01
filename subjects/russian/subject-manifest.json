@@ -84,7 +84,7 @@
     "overviewSubtitle": "Tổng quan gọn, không khoảng trống chết: mục tiêu, luồng học, hành động nhanh và tiếp tục học ăn khớp.",
     "learningSubtitle": "Học tập ổn định: Nghe/Nói và Đối thoại tinh gọn; nút nói ổn hòa trong bảng nội dung, chữ canh đều và không tách dòng thô."
   },
-  "updated": "2026-06-13",
+  "updated": "2026-10-01",
   "package": "A1 Russian Bauman StandardFinal RenderClean V13.42",
   "paths": {
     "assets": "assets/",
@@ -251,6 +251,78 @@
       "plannedCount": 1058,
       "description": "Cầu nối từ hội thoại Bauman A-Z sang unit Deep Speaking",
       "lazy": true
+    },
+    {
+      "id": "technical-concepts",
+      "label": "Thuật ngữ kỹ thuật",
+      "path": "data/technical-concepts.json",
+      "required": false,
+      "group": "Học thuật & kỹ thuật",
+      "source": "local-governance",
+      "description": "RU08 registered canonical/governance capability metadata"
+    },
+    {
+      "id": "academic-functions",
+      "label": "Chức năng học thuật",
+      "path": "data/academic-functions.json",
+      "required": false,
+      "group": "Học thuật & kỹ thuật",
+      "source": "local-governance",
+      "description": "RU08 registered canonical/governance capability metadata"
+    },
+    {
+      "id": "reading",
+      "label": "Đọc học thuật",
+      "path": "data/reading.json",
+      "required": false,
+      "group": "Học thuật & nghiên cứu",
+      "source": "local-governance",
+      "description": "RU08 registered canonical/governance capability metadata"
+    },
+    {
+      "id": "performance-tasks",
+      "label": "Nhiệm vụ thực hành",
+      "path": "data/performance-tasks.json",
+      "required": false,
+      "group": "Đánh giá năng lực",
+      "source": "local-governance",
+      "description": "RU08 registered canonical/governance capability metadata"
+    },
+    {
+      "id": "provenance",
+      "label": "Nguồn & độ tin cậy",
+      "path": "data/provenance.json",
+      "required": false,
+      "group": "Quản trị nội dung",
+      "source": "local-governance",
+      "description": "RU08 registered canonical/governance capability metadata"
+    },
+    {
+      "id": "scenario-registry",
+      "label": "Kịch bản tình huống",
+      "path": "data/scenario-registry.json",
+      "required": false,
+      "group": "Đối thoại & tình huống",
+      "source": "local-governance",
+      "description": "RU08 registered canonical/governance capability metadata"
+    },
+    {
+      "id": "ai-mentor-policy",
+      "label": "Chính sách AI coach",
+      "path": "data/ai-mentor-policy.json",
+      "required": false,
+      "group": "AI hỗ trợ",
+      "source": "local-governance",
+      "description": "RU08 registered canonical/governance capability metadata"
+    },
+    {
+      "id": "authoring-governance",
+      "label": "Quản trị biên soạn",
+      "path": "data/authoring-governance.json",
+      "required": false,
+      "group": "Quản trị nội dung",
+      "source": "local-governance",
+      "description": "RU08 registered canonical/governance capability metadata"
     }
   ],
   "externalDataFiles": [
@@ -348,7 +420,8 @@
     "checked": "2026-06-07",
     "requiredDataFilesChecked": true,
     "runtimePathScan": "no parent-folder dependency in runtime html/js/css core files",
-    "learningIntegrity": "locked theory/exercises/practice by active lessonId; speaking.json mapped to lessonId; source answers only for exercises"
+    "learningIntegrity": "locked theory/exercises/practice by active lessonId; speaking.json mapped to lessonId; source answers only for exercises",
+    "ru08": "RC readiness requires RU02–RU07 current + Russian Reference UI + Whole System source/package acceptance"
   },
   "notes": "Dedicated vertical scroll for Exercise/Speaking tabs and richer exercise answer guidance.",
   "storagePlan": {
@@ -407,5 +480,50 @@
       }
     ]
   },
-  "metadataPolicy": "metadata kept for search/filter; hidden from lesson/presentation slide body"
+  "metadataPolicy": "metadata kept for search/filter; hidden from lesson/presentation slide body",
+  "architecture": {
+    "promptSystem": "RU00→RU01→RU02→RU03/RU04→RU05→RU06→RU07→RU08",
+    "canonicalModel": "docs/ru02/RUSSIAN_RU02_CURRICULUM_CANONICAL_MODEL.json",
+    "canonicalOwners": "docs/ru02/RUSSIAN_RU02_CANONICAL_OWNER_REGISTRY.json",
+    "linguisticAuthority": "data/provenance.json",
+    "learningJudgment": "docs/ru04/RUSSIAN_RU04_LEARNING_JUDGMENT_CONTRACT.json",
+    "oralScenario": "docs/ru05/RUSSIAN_RU05_ORAL_INTERACTION_CONTRACT.json",
+    "academicProduction": "docs/ru06/RUSSIAN_RU06_PRODUCTION_ARCHITECTURE.json",
+    "aiCoaching": "docs/ru07/RUSSIAN_RU07_AI_MODE_PERMISSION_MATRIX.json",
+    "authoring": "data/authoring-governance.json",
+    "noPlatformFork": true,
+    "sharedOwners": [
+      "app-shell",
+      "auth",
+      "storage-abstraction",
+      "offline-framework",
+      "design-system",
+      "content-review",
+      "release"
+    ]
+  },
+  "authoring": {
+    "entry": "subjects/russian/editor.html",
+    "rawJsonDefault": false,
+    "canonicalBrowserWrite": false,
+    "lifecycle": "DRAFT→VALIDATED→REVIEW_REQUESTED→APPROVED→CANONICAL_PATCHED→PUBLISHED→SUPERSEDED/ARCHIVED",
+    "reviewStorage": "shared control-service metadata-only",
+    "canonicalPromotion": "reviewed repository patch + affected gates + shared release"
+  },
+  "offlinePolicy": {
+    "shell": "service-worker shared/package parity",
+    "largeDatasets": [
+      "dialogue-bauman-az",
+      "deep-speaking-bauman",
+      "speaking-link-index"
+    ],
+    "largeDatasetPolicy": "lazy/network-or-chunked fallback; never eager startup precache",
+    "ai": "optional; deterministic non-AI fallback required"
+  },
+  "compatibility": {
+    "strategy": "strangler",
+    "legacyIds": "R01-R26 preserved",
+    "learnerState": "no destructive migration in RU08",
+    "oldPackage": "compatibility bridges retained until regression evidence allows retirement"
+  }
 }
