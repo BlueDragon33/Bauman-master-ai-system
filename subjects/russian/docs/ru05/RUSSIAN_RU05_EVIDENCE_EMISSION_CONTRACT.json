@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_RU05_EVIDENCE_EMISSION_CONTRACT",
+  "consumer": "RU04",
+  "emits": [
+    "task-goal-completed",
+    "clarification-used",
+    "target-function-produced",
+    "repair-success",
+    "critical-misunderstanding",
+    "support-level",
+    "typed-or-spoken-response-reference",
+    "stt-signal"
+  ],
+  "separatesFailures": [
+    "language-failure",
+    "stt-failure",
+    "network-failure",
+    "engine-failure",
+    "world-task-failure"
+  ],
+  "rules": [
+    "no direct mastery write",
+    "ASR confidence remains non-authoritative",
+    "practice completion != mastery",
+    "official replay preserves first run identity"
+  ]
+}
