@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_RU04_EVIDENCE_INTERFACE",
+  "producerModules": [
+    "RU05",
+    "RU06",
+    "RU07"
+  ],
+  "eventFields": [
+    "eventId",
+    "attemptId",
+    "sourceModule",
+    "taskId",
+    "competencyId",
+    "skill",
+    "mode",
+    "contentRevision",
+    "occurredAt",
+    "evidenceType",
+    "result",
+    "supportLevel",
+    "signals",
+    "provenance"
+  ],
+  "authoritativeEvidenceTypes": [
+    "retrieval",
+    "form-production",
+    "listening-response",
+    "spoken-response",
+    "writing",
+    "dialogue-performance",
+    "performance-task",
+    "delayed-successful-review"
+  ],
+  "nonAuthoritativeSignals": [
+    "audio-playback",
+    "watch-time",
+    "page-open",
+    "route-open",
+    "click-count",
+    "AI-duration",
+    "ASR-similarity-alone"
+  ],
+  "rules": [
+    "RU05/RU06/RU07 emit observable evidence/signals only",
+    "RU04 interprets evidence under mastery policy",
+    "engine/network/STT failure is not learner failure",
+    "hinted success is distinct from unaided success",
+    "official first attempt identity is immutable"
+  ]
+}
