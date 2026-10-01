@@ -17,7 +17,7 @@ const authoring=read(root+'/assets/authoring-studio.js');
 const sw=read(root+'/sw.js');
 const provenance=json(root+'/data/provenance.json');
 
-const assessment=(provenance.records||[]).find(x=>x.id==='assessment-bank');
+const assessment=(provenance.datasets||provenance.records||[]).find(x=>x.id==='assessment-bank');
 assert(assessment,'assessment-bank provenance missing');
 assert.notEqual(String(assessment.validationStatus||assessment.status).toUpperCase(),'VERIFIED','audit must not silently promote current tests.json');
 has(authority,'unverified-answer-key-authority');
