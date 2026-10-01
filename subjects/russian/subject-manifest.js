@@ -513,7 +513,8 @@ window.SUBJECT_MANIFEST = {
     "vocabulary-srs",
     "academic-production",
     "ai-coaching-optional",
-    "content-review-metadata"
+    "content-review-metadata",
+    "speech-interaction"
   ],
   "authoring": {
     "lifecycle": [
