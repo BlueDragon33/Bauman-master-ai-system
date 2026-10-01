@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_RU06_PERFORMANCE_MAP",
+  "stages": [
+    {
+      "stage": "HK1",
+      "targets": [
+        "R11",
+        "R12",
+        "R13",
+        "R14"
+      ],
+      "outcomes": [
+        "lecture notes/reconstruction",
+        "definition/classification",
+        "technical instruction",
+        "algorithm/system explanation"
+      ]
+    },
+    {
+      "stage": "HK2",
+      "targets": [
+        "R15",
+        "R16",
+        "R17",
+        "R18"
+      ],
+      "outcomes": [
+        "AI/data/technical reading",
+        "figure/table description",
+        "lab report",
+        "academic email"
+      ]
+    },
+    {
+      "stage": "HK3/NIR",
+      "targets": [
+        "R19",
+        "R20",
+        "R21",
+        "R22"
+      ],
+      "outcomes": [
+        "research proposal",
+        "literature synthesis",
+        "seminar argument",
+        "NIR mini-defense"
+      ]
+    },
+    {
+      "stage": "HK4/VKR",
+      "targets": [
+        "R23",
+        "R24",
+        "R25",
+        "R26"
+      ],
+      "outcomes": [
+        "VKR source/section",
+        "revision",
+        "defense evidence",
+        "presentation/Q&A/uncertainty"
+      ]
+    }
+  ],
+  "evidenceConsumer": "RU04",
+  "oralProvider": "RU05",
+  "truthProvider": "RU03"
+}
