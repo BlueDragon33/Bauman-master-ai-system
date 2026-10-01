@@ -1,5 +1,5 @@
 'use strict';
-const CACHE='russian-app-shell-v9-ru04-review-scheduler';
+const CACHE='russian-app-shell-v8-speech-interaction';
 const DATA_CACHE='russian-learning-data-v1';
 const SHELL=[
   './','./index.html','./manifest.webmanifest','../shared/host-bridge.js',
