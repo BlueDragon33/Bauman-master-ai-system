@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_RU08_RC_READINESS",
+  "state": "RU08_PASS_READY_FOR_EXACT_MAIN_RELEASE",
+  "exactRevisionRule": "release must use the exact merged RU08 main SHA; preview and production must report that same revision",
+  "contentSnapshot": [
+    "RU02",
+    "RU03",
+    "RU04",
+    "RU05",
+    "RU06",
+    "RU07",
+    "RU08"
+  ],
+  "configCapabilities": [
+    "Device Gate",
+    "Content Review metadata-only",
+    "Russian package/offline",
+    "shared Bauman UI",
+    "optional AI",
+    "optional STT/recording"
+  ],
+  "rollback": "previous production revision recorded by shared production release workflow",
+  "productionSmoke": [
+    "Hub opens Russian",
+    "Russian learning route loads",
+    "review/mastery state readable",
+    "offline shell policy intact",
+    "authoring editor loads",
+    "protected data remains fail-closed",
+    "deployment revision equals accepted main SHA"
+  ],
+  "warnings": [
+    "linguistic review debt remains explicitly UNVERIFIED/PARTIAL where sources are insufficient",
+    "AI/STT remain optional and non-authoritative"
+  ],
+  "exactShaInjectedAtRelease": true,
+  "validatedHead": "fda8ea54507ca49f33fcf43450fa10a744b3a35d",
+  "evidenceRuns": {
+    "constitution": 36812607590,
+    "fastCI": 36812607085,
+    "russianReference": 36812607096,
+    "futureInterface": 36812607069,
+    "wholeSystem": 36812607076
+  },
+  "releaseInstruction": "After final RU08 merge, use the exact merge SHA as immutable RC. Deploy that same SHA to preview, verify revision/readiness, then promote the same SHA to production."
+}

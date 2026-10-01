@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_RU08_FAILURE_MATRIX",
+  "cases": [
+    "invalid-linguistic-content",
+    "broken-audio",
+    "mic-denied",
+    "stt-wrong-unavailable",
+    "malformed-learner-state",
+    "duplicate-submit",
+    "offline-reload",
+    "content-revision",
+    "huge-vocab-backlog",
+    "dialogue-graph-defect",
+    "ai-unavailable",
+    "ai-prompt-injection",
+    "long-formula-technical-text",
+    "mobile-overflow",
+    "screen-reader-keyboard",
+    "plugin-resource-failure",
+    "old-client-package-compatibility"
+  ],
+  "rule": "fail closed where truth/state/security are affected; provide bounded fallback where the learning task can continue safely"
+}

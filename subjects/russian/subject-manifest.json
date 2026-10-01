@@ -407,5 +407,59 @@
       }
     ]
   },
-  "metadataPolicy": "metadata kept for search/filter; hidden from lesson/presentation slide body"
+  "metadataPolicy": "metadata kept for search/filter; hidden from lesson/presentation slide body",
+  "ru08": {
+    "promptSystem": "RU00-RU08",
+    "rcReadinessOwner": "RU08",
+    "canonicalContracts": {
+      "curriculum": "subjects/russian/docs/ru02/RUSSIAN_RU02_CURRICULUM_CANONICAL_MODEL.json",
+      "linguisticTruth": "subjects/russian/data/provenance.json",
+      "learningJudgment": "subjects/russian/docs/ru04/RUSSIAN_RU04_LEARNING_JUDGMENT_CONTRACT.json",
+      "oralInteraction": "subjects/russian/docs/ru05/RUSSIAN_RU05_ORAL_INTERACTION_CONTRACT.json",
+      "academicProduction": "subjects/russian/docs/ru06/RUSSIAN_RU06_PRODUCTION_ARCHITECTURE.json",
+      "aiCoaching": "subjects/russian/docs/ru07/RUSSIAN_RU07_AI_MODE_PERMISSION_MATRIX.json",
+      "authoring": "subjects/russian/data/authoring-governance.json"
+    },
+    "requiredCapabilities": [
+      "audio-playback",
+      "recording-optional",
+      "speech-recognition-optional",
+      "handwriting",
+      "dialogue-scenario",
+      "vocabulary-review",
+      "academic-writing",
+      "ai-coaching-optional"
+    ],
+    "packaging": {
+      "largeDatasetsLazy": [
+        "dialogue-bauman-az",
+        "deep-speaking-bauman",
+        "speaking-link-index"
+      ],
+      "aiOptional": true,
+      "offlineCoreRequired": true,
+      "protectedLearnerDataFailClosed": true
+    },
+    "compatibility": {
+      "stableMacroIds": "R01-R26",
+      "legacyRuntimeBridge": true,
+      "migrationStrategy": "strangler-incremental",
+      "destructiveMigration": false
+    },
+    "authoring": {
+      "editor": "subjects/russian/editor.html",
+      "lifecycle": [
+        "DRAFT",
+        "VALIDATED",
+        "REVIEW_REQUESTED",
+        "APPROVED",
+        "CANONICAL_PATCHED",
+        "PUBLISHED",
+        "SUPERSEDED",
+        "ARCHIVED"
+      ],
+      "controlReviewStorage": "METADATA_ONLY",
+      "canonicalWrite": "repository-patch-plus-validation"
+    }
+  }
 }
