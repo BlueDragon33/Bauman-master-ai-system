@@ -15,8 +15,9 @@ try{
     });
     await page.goto(new URL('subjects/russian/index.html',BASE).href,{waitUntil:'domcontentloaded'});
     await page.waitForSelector('body.ru-future-ui');
-    const dialogue=page.locator('[data-view="dialogue"],button[data-view="dialogue"]').first();
-    await dialogue.click();
+    const practice=page.locator('#nav button[data-view="learning"][data-learn="practice"]').first();
+    await practice.waitFor({state:'visible'});
+    await practice.click();
     await page.waitForSelector('[data-ru-scenario-runtime]');
     const api=await page.evaluate(()=>window.RussianScenarioRuntime?.snapshot?.());
     assert.equal(api?.registry?.phase,'RU05');assert.equal(api.policy.writesMastery,false);
