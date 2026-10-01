@@ -65,7 +65,7 @@ try{
  const body=await page.locator('body').innerText();
  assert(body.includes('Raw JSON không phải giao diện mặc định'),'ordinary author boundary must be explicit');
  assert(body.includes('không ghi thẳng canonical content'),'direct canonical write must be explicitly forbidden');
- assert(body.includes('Studio không tự sửa repo'),'canonical patch must be external reviewed repository action');
+ assert(body.includes('Canonical write chỉ qua reviewed repository patch'),'canonical patch boundary must be static and explicit');
  await page.screenshot({path:OUT+'/authoring-journey.png',fullPage:true});
  assert.deepEqual(errors,[],'Authoring page errors: '+errors.join('\n'));
  await context.close();
