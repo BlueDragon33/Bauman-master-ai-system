@@ -25,7 +25,9 @@ const authorityRuntime=fs.readFileSync('subjects/russian/assets/assessment-autho
 const learnerCore=fs.readFileSync('subjects/russian/assets/core.js','utf8');
 const learnerIndex=fs.readFileSync('subjects/russian/index.html','utf8');
 for(const token of ['RUSSIAN_ASSESSMENT_AUTHORITY_V1','missing-verified-answer-key-authority','provenance-unavailable']) assert(authorityRuntime.includes(token),'RU03 assessment fail-closed runtime missing '+token);
-assert(learnerCore.includes("mode:authority.officialEligible?'exam':'diagnostic-unverified'"),'RU03/RU04 exam must fail closed when answer-key authority is not verified');
+assert(learnerCore.includes("mode:'practice-unscored-unverified'"),'RU03/RU04 exam must fail closed when answer-key authority is not verified');
+assert(learnerCore.includes('UNVERIFIED_ANSWER_KEY_NOT_EVALUATED'),'RU03 must not derive correct/incorrect from unverified keys');
+assert(learnerCore.includes('KHÔNG CHẤM ĐIỂM'),'learner UI must not present unverified answer keys as scores');
 assert(learnerCore.includes('authoritativeGateRecords'),'legacy unverified gate passes must not count as official evidence');
 assert(learnerCore.includes('state.reviewProgress.diagnostic'),'unverified answer keys must remain diagnostic in review');
 assert(learnerIndex.includes('assets/assessment-authority.js'),'assessment authority runtime must load before learner judgment');
