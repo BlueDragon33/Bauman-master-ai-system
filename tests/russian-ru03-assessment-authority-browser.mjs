@@ -26,7 +26,7 @@ try{
     return {current,verified,itemOverride,status:api.status()};
   });
   assert.equal(authority.current.officialEligible,false,'current PARTIAL assessment bank must fail closed');
-  assert.notEqual(authority.current.datasetStatus,'VERIFIED','current bank must not be silently promoted');
+  assert.equal(authority.current.datasetStatus,'PARTIAL','current assessment bank provenance must be read from the real registry and remain PARTIAL');
   assert.equal(authority.verified.officialEligible,true,'explicit reviewed VERIFIED fixture should be eligible');
   assert.equal(authority.itemOverride.officialEligible,false,'explicit UNVERIFIED item must override dataset authority');
 
