@@ -78,12 +78,14 @@
       ],
       "technical": [
         "tests/russian-ru05-scenario-browser.mjs",
-        "subjects/russian/scripts/validate-ru06-academic-production.mjs"
+        "subjects/russian/scripts/validate-ru06-academic-production.mjs",
+        "tests/russian-ru06-production-browser.mjs"
       ],
       "research": [
         "tests/russian-ru05-scenario-browser.mjs",
         "subjects/russian/scripts/validate-ru06-academic-production.mjs",
-        "tests/russian-ru07-ai-boundary-browser.mjs"
+        "tests/russian-ru07-ai-boundary-browser.mjs",
+        "tests/russian-ru06-production-browser.mjs"
       ],
       "author": [
         "tests/russian-ru08-authoring-browser.mjs",
@@ -130,7 +132,8 @@
         "tests/russian-ru07-ai-boundary-browser.mjs"
       ],
       "long-technical-text": [
-        "subjects/russian/scripts/validate-ru06-academic-production.mjs"
+        "subjects/russian/scripts/validate-ru06-academic-production.mjs",
+        "tests/russian-ru06-production-browser.mjs"
       ],
       "mobile-overflow": [
         "tests/russian-p1-forensic-browser.mjs",
