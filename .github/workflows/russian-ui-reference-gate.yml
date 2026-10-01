@@ -63,6 +63,8 @@ jobs:
         run: node subjects/russian/scripts/validate-ru07-ai-coaching.mjs
       - name: Validate Russian RU08 integration and acceptance
         run: node subjects/russian/scripts/validate-ru08-integration-acceptance.mjs
+      - name: Validate Russian prompt-system re-audit
+        run: node subjects/russian/scripts/validate-russian-prompt-reaudit.mjs
       - name: Validate Russian reference UI contracts
         run: node subjects/russian/scripts/validate-reference-ui.mjs
       - name: Validate Russian lesson learning flow
@@ -141,6 +143,8 @@ jobs:
           node --check subjects/russian/assets/planning-bridge.js
           node --check subjects/russian/assets/vocab-srs.js
           node --check subjects/russian/assets/speaking-coach.js
+          node --check subjects/russian/assets/scenario-runtime.js
+          node --check subjects/russian/assets/authoring-adapter.js
           node --check subjects/russian/assets/academic-language.js
           node --check subjects/russian/assets/ai-mentor-guard.js
           node --check subjects/russian/assets/speech-interaction-engine.js
