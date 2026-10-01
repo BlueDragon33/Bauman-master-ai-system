@@ -1,29 +1,30 @@
-body{margin:0;background:var(--bauman-bg,#f4f7fb);color:var(--bauman-text,#142033);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-.authoring-shell{max-width:1440px;margin:0 auto;padding:24px;display:grid;gap:18px}
-.authoring-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;padding:20px;border-radius:18px;background:#07162a;color:#fff}
-.authoring-head h1{margin:4px 0 6px}.authoring-head p{margin:0;max-width:860px;color:#cbd5e1}
-.authoring-head .badge{font-size:12px;font-weight:800;letter-spacing:.08em}
-.authoring-policy{padding:10px 12px;border-radius:12px;background:#10233e;max-width:360px}
-.authoring-lifecycle{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
-.authoring-lifecycle span{padding:10px;border-radius:10px;background:#e8eef6;text-align:center;font-size:12px;font-weight:800;overflow-wrap:anywhere}
-.authoring-lifecycle span.done{background:#dff6e8}.authoring-lifecycle span.active{outline:2px solid #2563eb;background:#dbeafe}
-.authoring-layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(340px,.7fr);gap:18px}
-.authoring-card{background:#fff;border:1px solid #d8e0ea;border-radius:18px;padding:18px}
+body{margin:0;background:var(--bui-surface-canvas);color:var(--bui-text-primary);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.authoring-shell{max-width:1440px;margin:0 auto;padding:var(--bui-space-6);display:grid;gap:var(--bui-space-5)}
+.authoring-head{display:flex;justify-content:space-between;gap:var(--bui-space-5);align-items:flex-start;padding:var(--bui-space-5);border:1px solid var(--bui-border-subtle);border-radius:var(--bui-radius-lg);background:var(--bui-surface-primary);box-shadow:var(--bui-shadow-raised)}
+.authoring-head h1{margin:var(--bui-space-1) 0 var(--bui-space-2)}.authoring-head p{margin:0;max-width:860px;color:var(--bui-text-secondary)}
+.authoring-head .badge{font-size:12px;font-weight:800;letter-spacing:.08em;color:var(--bui-color-info)}
+.authoring-policy{padding:var(--bui-space-3);border-radius:var(--bui-radius-md);background:var(--bui-color-info-soft);max-width:360px;color:var(--bui-text-primary)}
+.authoring-lifecycle{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:var(--bui-space-2)}
+.authoring-lifecycle span{padding:10px;border-radius:var(--bui-radius-sm);background:var(--bui-surface-secondary);border:1px solid var(--bui-border-subtle);text-align:center;font-size:12px;font-weight:800;overflow-wrap:anywhere}
+.authoring-lifecycle span.done{background:var(--bui-color-success-soft)}.authoring-lifecycle span.active{outline:2px solid var(--bui-color-info);background:var(--bui-color-info-soft)}
+.authoring-layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(340px,.7fr);gap:var(--bui-space-5)}
+.authoring-card{background:var(--bui-surface-primary);border:1px solid var(--bui-border-subtle);border-radius:var(--bui-radius-lg);padding:var(--bui-space-5);box-shadow:var(--bui-shadow-base)}
 .authoring-card h2,.authoring-card h3{margin-top:0}
-.authoring-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.authoring-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--bui-space-3)}
 .authoring-grid .wide{grid-column:1/-1}
-.authoring-grid label{display:grid;gap:6px;font-weight:700}
-.authoring-grid input,.authoring-grid select,.authoring-grid textarea{width:100%;box-sizing:border-box;border:1px solid #cbd5e1;border-radius:10px;padding:9px 10px;font:inherit;background:#fff;color:inherit}
+.authoring-grid label{display:grid;gap:6px;font-weight:700;color:var(--bui-text-primary)}
+.authoring-grid input,.authoring-grid select,.authoring-grid textarea{width:100%;box-sizing:border-box;border:1px solid var(--bui-border-strong);border-radius:var(--bui-radius-sm);padding:9px 10px;font:inherit;background:var(--bui-surface-primary);color:var(--bui-text-primary)}
+.authoring-grid input::placeholder,.authoring-grid textarea::placeholder{color:var(--bui-text-placeholder)}
 .authoring-grid textarea{min-height:92px;resize:vertical}.authoring-grid .content textarea{min-height:150px}
-.authoring-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.authoring-actions button,.authoring-import{border:1px solid #cbd5e1;background:#fff;border-radius:10px;padding:9px 12px;font-weight:800;cursor:pointer}
-.authoring-actions .primary{background:#0f4c81;color:#fff;border-color:#0f4c81}
-.authoring-actions .danger{border-color:#c2410c;color:#9a3412}
-.authoring-import{display:inline-flex;align-items:center;gap:8px}.authoring-import input{max-width:220px}
-.authoring-candidate-card{display:grid;gap:10px}.authoring-state{display:inline-block;padding:5px 8px;background:#e8eef6;border-radius:999px;font-size:12px;font-weight:900}
-.authoring-candidate-card dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:0}.authoring-candidate-card dl div{padding:9px;border-radius:10px;background:#f6f8fb;overflow-wrap:anywhere}.authoring-candidate-card dt{font-size:11px;font-weight:800}.authoring-candidate-card dd{margin:3px 0 0;font-size:12px}
-.authoring-errors{color:#b91c1c}.authoring-warnings{color:#92400e}.authoring-notice{padding:10px;border-radius:10px;background:#eff6ff}
-.authoring-handoff{white-space:pre-wrap;overflow:auto;max-height:360px;background:#07162a;color:#dbeafe;border-radius:12px;padding:12px;font:12px/1.45 ui-monospace,SFMono-Regular,Menlo,monospace}
-.authoring-boundary{padding:12px;border-left:4px solid #2563eb;background:#eff6ff;border-radius:10px}
+.authoring-actions{display:flex;gap:var(--bui-space-2);flex-wrap:wrap;margin-top:var(--bui-space-4)}
+.authoring-actions button,.authoring-import{border:1px solid var(--bui-border-strong);background:var(--bui-surface-primary);color:var(--bui-text-primary);border-radius:var(--bui-radius-sm);padding:9px 12px;font-weight:800;cursor:pointer}
+.authoring-actions .primary{background:var(--bui-color-info-soft);color:var(--bui-text-primary);border-color:var(--bui-color-info)}
+.authoring-actions .danger{border-color:var(--bui-color-danger);color:var(--bui-color-danger);background:var(--bui-color-danger-soft)}
+.authoring-import{display:inline-flex;align-items:center;gap:var(--bui-space-2)}.authoring-import input{max-width:220px}
+.authoring-candidate-card{display:grid;gap:10px}.authoring-state{display:inline-block;padding:5px 8px;background:var(--bui-surface-secondary);border-radius:var(--bui-radius-full);font-size:12px;font-weight:900}
+.authoring-candidate-card dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--bui-space-2);margin:0}.authoring-candidate-card dl div{padding:9px;border-radius:var(--bui-radius-sm);background:var(--bui-surface-secondary);overflow-wrap:anywhere}.authoring-candidate-card dt{font-size:11px;font-weight:800}.authoring-candidate-card dd{margin:3px 0 0;font-size:12px}
+.authoring-errors{color:var(--bui-color-danger)}.authoring-warnings{color:var(--bui-color-warning)}.authoring-notice{padding:10px;border-radius:var(--bui-radius-sm);background:var(--bui-color-info-soft)}
+.authoring-handoff{white-space:pre-wrap;overflow:auto;max-height:360px;background:var(--bui-surface-secondary);color:var(--bui-text-primary);border:1px solid var(--bui-border-subtle);border-radius:var(--bui-radius-md);padding:var(--bui-space-3);font:12px/1.45 ui-monospace,SFMono-Regular,Menlo,monospace}
+.authoring-boundary{padding:var(--bui-space-3);border-left:4px solid var(--bui-color-info);background:var(--bui-color-info-soft);border-radius:var(--bui-radius-sm)}
 @media(max-width:980px){.authoring-layout{grid-template-columns:1fr}.authoring-lifecycle{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:680px){.authoring-shell{padding:12px}.authoring-head{display:grid}.authoring-grid{grid-template-columns:1fr}.authoring-grid .wide{grid-column:auto}.authoring-lifecycle{grid-template-columns:repeat(2,minmax(0,1fr))}.authoring-actions button{flex:1 1 145px}}
+@media(max-width:680px){.authoring-shell{padding:var(--bui-space-3)}.authoring-head{display:grid}.authoring-grid{grid-template-columns:1fr}.authoring-grid .wide{grid-column:auto}.authoring-lifecycle{grid-template-columns:repeat(2,minmax(0,1fr))}.authoring-actions button{flex:1 1 145px}}
