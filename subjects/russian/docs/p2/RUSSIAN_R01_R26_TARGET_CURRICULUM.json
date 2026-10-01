@@ -1,0 +1,5608 @@
+{
+  "schema": "RUSSIAN_P2_TARGET_CURRICULUM_V1",
+  "phase": "P2",
+  "status": "DESIGN_AUTHORITY",
+  "runtimeCanonical": false,
+  "identityModel": {
+    "macroModule": "R01–R26",
+    "unit": "Rxx-Uxx",
+    "microLesson": "Rxx-Uxx-Mxx",
+    "versionInIdentity": false
+  },
+  "missionCycle": [
+    "exposure",
+    "understanding",
+    "retrieval",
+    "controlled production",
+    "free production",
+    "transfer",
+    "real-world performance"
+  ],
+  "targetJourney": [
+    "Pre-A0",
+    "A0 Survival",
+    "A1 Functional",
+    "A2 Independent",
+    "B1 University",
+    "B1+/B2 Academic",
+    "Technical Russian",
+    "Research Russian",
+    "НИР",
+    "ВКР",
+    "Defense Q&A"
+  ],
+  "curriculumLayers": {
+    "chronological": [
+      "vn",
+      "prep",
+      "hk1",
+      "hk2",
+      "hk3",
+      "hk4"
+    ],
+    "linguistic": [
+      "Pre-A0",
+      "A0",
+      "A1",
+      "A2",
+      "B1",
+      "B1+",
+      "B2/B2+ functional target"
+    ],
+    "skills": [
+      "phonetics",
+      "listening",
+      "speaking",
+      "reading",
+      "writing",
+      "vocabulary",
+      "grammar",
+      "interaction",
+      "academic",
+      "technical",
+      "research"
+    ],
+    "functionalDomains": [
+      "survival",
+      "dorm",
+      "transport",
+      "administration",
+      "classroom",
+      "university",
+      "mathematics",
+      "CS",
+      "database",
+      "AI/ML",
+      "control/automation",
+      "statistics",
+      "research",
+      "НИР",
+      "ВКР"
+    ]
+  },
+  "stages": [
+    {
+      "id": "vn",
+      "title": "Việt Nam / foundation",
+      "modules": [
+        "R01",
+        "R02",
+        "R03",
+        "R04",
+        "R05",
+        "R06"
+      ],
+      "gate": {
+        "id": "foundation-survival-chain",
+        "performance": "airport → transport → dorm → administration → daily life"
+      }
+    },
+    {
+      "id": "prep",
+      "title": "Dự bị",
+      "modules": [
+        "R07",
+        "R08",
+        "R09",
+        "R10"
+      ],
+      "gate": {
+        "id": "prep-academic-task",
+        "performance": "nghe instruction + đọc task + hỏi clarification + giải thích cách làm"
+      }
+    },
+    {
+      "id": "hk1",
+      "title": "HK1",
+      "modules": [
+        "R11",
+        "R12",
+        "R13",
+        "R14"
+      ],
+      "gate": {
+        "id": "hk1-lecture-reconstruction",
+        "performance": "mini lecture → notes → 1–2 minute reconstruction"
+      }
+    },
+    {
+      "id": "hk2",
+      "title": "HK2",
+      "modules": [
+        "R15",
+        "R16",
+        "R17",
+        "R18"
+      ],
+      "gate": {
+        "id": "hk2-technical-mini-report",
+        "performance": "technical mini-report"
+      }
+    },
+    {
+      "id": "hk3",
+      "title": "HK3 / НИР",
+      "modules": [
+        "R19",
+        "R20",
+        "R21",
+        "R22"
+      ],
+      "gate": {
+        "id": "hk3-nir-presentation-qa",
+        "performance": "3–5 minute НИР presentation + unscripted Q&A"
+      }
+    },
+    {
+      "id": "hk4",
+      "title": "HK4 / ВКР",
+      "modules": [
+        "R23",
+        "R24",
+        "R25",
+        "R26"
+      ],
+      "gate": {
+        "id": "hk4-final-capstone",
+        "performance": "new technical scenario → read → listen → note → explain → present → defend"
+      }
+    }
+  ],
+  "modules": [
+    {
+      "id": "R01",
+      "stage": "vn",
+      "title": "Cyrillic · Sound · Stress",
+      "legacyIdentity": "R01",
+      "identityPolicy": "PRESERVE",
+      "units": [
+        {
+          "id": "R01-U01",
+          "title": "alphabet decoding",
+          "microLessons": [
+            {
+              "id": "R01-U01-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu alphabet decoding trong ngữ cảnh của R01."
+            },
+            {
+              "id": "R01-U01-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát alphabet decoding trong ngữ cảnh của R01."
+            },
+            {
+              "id": "R01-U01-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển alphabet decoding sang nhiệm vụ thực tế phù hợp với R01."
+            }
+          ]
+        },
+        {
+          "id": "R01-U02",
+          "title": "print/handwriting recognition",
+          "microLessons": [
+            {
+              "id": "R01-U02-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu print/handwriting recognition trong ngữ cảnh của R01."
+            },
+            {
+              "id": "R01-U02-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát print/handwriting recognition trong ngữ cảnh của R01."
+            },
+            {
+              "id": "R01-U02-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển print/handwriting recognition sang nhiệm vụ thực tế phù hợp với R01."
+            }
+          ]
+        },
+        {
+          "id": "R01-U03",
+          "title": "sound map",
+          "microLessons": [
+            {
+              "id": "R01-U03-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu sound map trong ngữ cảnh của R01."
+            },
+            {
+              "id": "R01-U03-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát sound map trong ngữ cảnh của R01."
+            },
+            {
+              "id": "R01-U03-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển sound map sang nhiệm vụ thực tế phù hợp với R01."
+            }
+          ]
+        },
+        {
+          "id": "R01-U04",
+          "title": "hard/soft",
+          "microLessons": [
+            {
+              "id": "R01-U04-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu hard/soft trong ngữ cảnh của R01."
+            },
+            {
+              "id": "R01-U04-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát hard/soft trong ngữ cảnh của R01."
+            },
+            {
+              "id": "R01-U04-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển hard/soft sang nhiệm vụ thực tế phù hợp với R01."
+            }
+          ]
+        },
+        {
+          "id": "R01-U05",
+          "title": "voiced/unvoiced",
+          "microLessons": [
+            {
+              "id": "R01-U05-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu voiced/unvoiced trong ngữ cảnh của R01."
+            },
+            {
+              "id": "R01-U05-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát voiced/unvoiced trong ngữ cảnh của R01."
+            },
+            {
+              "id": "R01-U05-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển voiced/unvoiced sang nhiệm vụ thực tế phù hợp với R01."
+            }
+          ]
+        },
+        {
+          "id": "R01-U06",
+          "title": "stress",
+          "microLessons": [
+            {
+              "id": "R01-U06-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu stress trong ngữ cảnh của R01."
+            },
+            {
+              "id": "R01-U06-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát stress trong ngữ cảnh của R01."
+            },
+            {
+              "id": "R01-U06-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển stress sang nhiệm vụ thực tế phù hợp với R01."
+            }
+          ]
+        },
+        {
+          "id": "R01-U07",
+          "title": "vowel reduction",
+          "microLessons": [
+            {
+              "id": "R01-U07-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu vowel reduction trong ngữ cảnh của R01."
+            },
+            {
+              "id": "R01-U07-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát vowel reduction trong ngữ cảnh của R01."
+            },
+            {
+              "id": "R01-U07-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển vowel reduction sang nhiệm vụ thực tế phù hợp với R01."
+            }
+          ]
+        },
+        {
+          "id": "R01-U08",
+          "title": "rhythm",
+          "microLessons": [
+            {
+              "id": "R01-U08-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu rhythm trong ngữ cảnh của R01."
+            },
+            {
+              "id": "R01-U08-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát rhythm trong ngữ cảnh của R01."
+            },
+            {
+              "id": "R01-U08-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển rhythm sang nhiệm vụ thực tế phù hợp với R01."
+            }
+          ]
+        }
+      ],
+      "exitGate": {
+        "type": "module",
+        "performance": "đọc chậm từ mới + nhại audio"
+      },
+      "stageGate": null
+    },
+    {
+      "id": "R02",
+      "stage": "vn",
+      "title": "First Russian Sentences",
+      "legacyIdentity": "R02",
+      "identityPolicy": "PRESERVE",
+      "units": [
+        {
+          "id": "R02-U01",
+          "title": "Это...",
+          "microLessons": [
+            {
+              "id": "R02-U01-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu Это... trong ngữ cảnh của R02."
+            },
+            {
+              "id": "R02-U01-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát Это... trong ngữ cảnh của R02."
+            },
+            {
+              "id": "R02-U01-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển Это... sang nhiệm vụ thực tế phù hợp với R02."
+            }
+          ]
+        },
+        {
+          "id": "R02-U02",
+          "title": "Я...",
+          "microLessons": [
+            {
+              "id": "R02-U02-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu Я... trong ngữ cảnh của R02."
+            },
+            {
+              "id": "R02-U02-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát Я... trong ngữ cảnh của R02."
+            },
+            {
+              "id": "R02-U02-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển Я... sang nhiệm vụ thực tế phù hợp với R02."
+            }
+          ]
+        },
+        {
+          "id": "R02-U03",
+          "title": "Кто?/Что?",
+          "microLessons": [
+            {
+              "id": "R02-U03-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu Кто?/Что? trong ngữ cảnh của R02."
+            },
+            {
+              "id": "R02-U03-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát Кто?/Что? trong ngữ cảnh của R02."
+            },
+            {
+              "id": "R02-U03-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển Кто?/Что? sang nhiệm vụ thực tế phù hợp với R02."
+            }
+          ]
+        },
+        {
+          "id": "R02-U04",
+          "title": "Где?",
+          "microLessons": [
+            {
+              "id": "R02-U04-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu Где? trong ngữ cảnh của R02."
+            },
+            {
+              "id": "R02-U04-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát Где? trong ngữ cảnh của R02."
+            },
+            {
+              "id": "R02-U04-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển Где? sang nhiệm vụ thực tế phù hợp với R02."
+            }
+          ]
+        },
+        {
+          "id": "R02-U05",
+          "title": "Мне нужно...",
+          "microLessons": [
+            {
+              "id": "R02-U05-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu Мне нужно... trong ngữ cảnh của R02."
+            },
+            {
+              "id": "R02-U05-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát Мне нужно... trong ngữ cảnh của R02."
+            },
+            {
+              "id": "R02-U05-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển Мне нужно... sang nhiệm vụ thực tế phù hợp với R02."
+            }
+          ]
+        },
+        {
+          "id": "R02-U06",
+          "title": "Можно...?",
+          "microLessons": [
+            {
+              "id": "R02-U06-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu Можно...? trong ngữ cảnh của R02."
+            },
+            {
+              "id": "R02-U06-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát Можно...? trong ngữ cảnh của R02."
+            },
+            {
+              "id": "R02-U06-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển Можно...? sang nhiệm vụ thực tế phù hợp với R02."
+            }
+          ]
+        },
+        {
+          "id": "R02-U07",
+          "title": "repair language",
+          "microLessons": [
+            {
+              "id": "R02-U07-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu repair language trong ngữ cảnh của R02."
+            },
+            {
+              "id": "R02-U07-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát repair language trong ngữ cảnh của R02."
+            },
+            {
+              "id": "R02-U07-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển repair language sang nhiệm vụ thực tế phù hợp với R02."
+            }
+          ]
+        },
+        {
+          "id": "R02-U08",
+          "title": "politeness / вы",
+          "microLessons": [
+            {
+              "id": "R02-U08-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu politeness / вы trong ngữ cảnh của R02."
+            },
+            {
+              "id": "R02-U08-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát politeness / вы trong ngữ cảnh của R02."
+            },
+            {
+              "id": "R02-U08-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển politeness / вы sang nhiệm vụ thực tế phù hợp với R02."
+            }
+          ]
+        }
+      ],
+      "exitGate": {
+        "type": "module",
+        "performance": "giới thiệu + xin nhắc lại + hỏi thông tin"
+      },
+      "stageGate": null
+    },
+    {
+      "id": "R03",
+      "stage": "vn",
+      "title": "Numbers · Time · Date · Money",
+      "legacyIdentity": "R03",
+      "identityPolicy": "PRESERVE",
+      "units": [
+        {
+          "id": "R03-U01",
+          "title": "numbers",
+          "microLessons": [
+            {
+              "id": "R03-U01-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu numbers trong ngữ cảnh của R03."
+            },
+            {
+              "id": "R03-U01-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát numbers trong ngữ cảnh của R03."
+            },
+            {
+              "id": "R03-U01-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển numbers sang nhiệm vụ thực tế phù hợp với R03."
+            }
+          ]
+        },
+        {
+          "id": "R03-U02",
+          "title": "phone",
+          "microLessons": [
+            {
+              "id": "R03-U02-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu phone trong ngữ cảnh của R03."
+            },
+            {
+              "id": "R03-U02-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát phone trong ngữ cảnh của R03."
+            },
+            {
+              "id": "R03-U02-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển phone sang nhiệm vụ thực tế phù hợp với R03."
+            }
+          ]
+        },
+        {
+          "id": "R03-U03",
+          "title": "money",
+          "microLessons": [
+            {
+              "id": "R03-U03-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu money trong ngữ cảnh của R03."
+            },
+            {
+              "id": "R03-U03-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát money trong ngữ cảnh của R03."
+            },
+            {
+              "id": "R03-U03-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển money sang nhiệm vụ thực tế phù hợp với R03."
+            }
+          ]
+        },
+        {
+          "id": "R03-U04",
+          "title": "clock",
+          "microLessons": [
+            {
+              "id": "R03-U04-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu clock trong ngữ cảnh của R03."
+            },
+            {
+              "id": "R03-U04-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát clock trong ngữ cảnh của R03."
+            },
+            {
+              "id": "R03-U04-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển clock sang nhiệm vụ thực tế phù hợp với R03."
+            }
+          ]
+        },
+        {
+          "id": "R03-U05",
+          "title": "dates",
+          "microLessons": [
+            {
+              "id": "R03-U05-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu dates trong ngữ cảnh của R03."
+            },
+            {
+              "id": "R03-U05-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát dates trong ngữ cảnh của R03."
+            },
+            {
+              "id": "R03-U05-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển dates sang nhiệm vụ thực tế phù hợp với R03."
+            }
+          ]
+        },
+        {
+          "id": "R03-U06",
+          "title": "years",
+          "microLessons": [
+            {
+              "id": "R03-U06-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu years trong ngữ cảnh của R03."
+            },
+            {
+              "id": "R03-U06-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát years trong ngữ cảnh của R03."
+            },
+            {
+              "id": "R03-U06-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển years sang nhiệm vụ thực tế phù hợp với R03."
+            }
+          ]
+        },
+        {
+          "id": "R03-U07",
+          "title": "room/floor",
+          "microLessons": [
+            {
+              "id": "R03-U07-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu room/floor trong ngữ cảnh của R03."
+            },
+            {
+              "id": "R03-U07-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát room/floor trong ngữ cảnh của R03."
+            },
+            {
+              "id": "R03-U07-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển room/floor sang nhiệm vụ thực tế phù hợp với R03."
+            }
+          ]
+        },
+        {
+          "id": "R03-U08",
+          "title": "measurements",
+          "microLessons": [
+            {
+              "id": "R03-U08-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu measurements trong ngữ cảnh của R03."
+            },
+            {
+              "id": "R03-U08-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát measurements trong ngữ cảnh của R03."
+            },
+            {
+              "id": "R03-U08-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển measurements sang nhiệm vụ thực tế phù hợp với R03."
+            }
+          ]
+        }
+      ],
+      "exitGate": {
+        "type": "module",
+        "performance": "xử lý số/thời gian/giá/phòng trong hội thoại"
+      },
+      "stageGate": null
+    },
+    {
+      "id": "R04",
+      "stage": "vn",
+      "title": "Navigation · Transport",
+      "legacyIdentity": "R04",
+      "identityPolicy": "PRESERVE",
+      "units": [
+        {
+          "id": "R04-U01",
+          "title": "directions",
+          "microLessons": [
+            {
+              "id": "R04-U01-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu directions trong ngữ cảnh của R04."
+            },
+            {
+              "id": "R04-U01-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát directions trong ngữ cảnh của R04."
+            },
+            {
+              "id": "R04-U01-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển directions sang nhiệm vụ thực tế phù hợp với R04."
+            }
+          ]
+        },
+        {
+          "id": "R04-U02",
+          "title": "metro",
+          "microLessons": [
+            {
+              "id": "R04-U02-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu metro trong ngữ cảnh của R04."
+            },
+            {
+              "id": "R04-U02-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát metro trong ngữ cảnh của R04."
+            },
+            {
+              "id": "R04-U02-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển metro sang nhiệm vụ thực tế phù hợp với R04."
+            }
+          ]
+        },
+        {
+          "id": "R04-U03",
+          "title": "bus/tram",
+          "microLessons": [
+            {
+              "id": "R04-U03-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu bus/tram trong ngữ cảnh của R04."
+            },
+            {
+              "id": "R04-U03-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát bus/tram trong ngữ cảnh của R04."
+            },
+            {
+              "id": "R04-U03-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển bus/tram sang nhiệm vụ thực tế phù hợp với R04."
+            }
+          ]
+        },
+        {
+          "id": "R04-U04",
+          "title": "taxi",
+          "microLessons": [
+            {
+              "id": "R04-U04-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu taxi trong ngữ cảnh của R04."
+            },
+            {
+              "id": "R04-U04-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát taxi trong ngữ cảnh của R04."
+            },
+            {
+              "id": "R04-U04-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển taxi sang nhiệm vụ thực tế phù hợp với R04."
+            }
+          ]
+        },
+        {
+          "id": "R04-U05",
+          "title": "где/куда",
+          "microLessons": [
+            {
+              "id": "R04-U05-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu где/куда trong ngữ cảnh của R04."
+            },
+            {
+              "id": "R04-U05-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát где/куда trong ngữ cảnh của R04."
+            },
+            {
+              "id": "R04-U05-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển где/куда sang nhiệm vụ thực tế phù hợp với R04."
+            }
+          ]
+        },
+        {
+          "id": "R04-U06",
+          "title": "идти/ехать",
+          "microLessons": [
+            {
+              "id": "R04-U06-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu идти/ехать trong ngữ cảnh của R04."
+            },
+            {
+              "id": "R04-U06-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát идти/ехать trong ngữ cảnh của R04."
+            },
+            {
+              "id": "R04-U06-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển идти/ехать sang nhiệm vụ thực tế phù hợp với R04."
+            }
+          ]
+        },
+        {
+          "id": "R04-U07",
+          "title": "announcements",
+          "microLessons": [
+            {
+              "id": "R04-U07-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu announcements trong ngữ cảnh của R04."
+            },
+            {
+              "id": "R04-U07-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát announcements trong ngữ cảnh của R04."
+            },
+            {
+              "id": "R04-U07-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển announcements sang nhiệm vụ thực tế phù hợp với R04."
+            }
+          ]
+        },
+        {
+          "id": "R04-U08",
+          "title": "wrong direction/problem",
+          "microLessons": [
+            {
+              "id": "R04-U08-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu wrong direction/problem trong ngữ cảnh của R04."
+            },
+            {
+              "id": "R04-U08-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát wrong direction/problem trong ngữ cảnh của R04."
+            },
+            {
+              "id": "R04-U08-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển wrong direction/problem sang nhiệm vụ thực tế phù hợp với R04."
+            }
+          ]
+        }
+      ],
+      "exitGate": {
+        "type": "module",
+        "performance": "đi từ điểm A đến ký túc xá/campus"
+      },
+      "stageGate": null
+    },
+    {
+      "id": "R05",
+      "stage": "vn",
+      "title": "Daily Life",
+      "legacyIdentity": "R05",
+      "identityPolicy": "PRESERVE",
+      "units": [
+        {
+          "id": "R05-U01",
+          "title": "food",
+          "microLessons": [
+            {
+              "id": "R05-U01-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu food trong ngữ cảnh của R05."
+            },
+            {
+              "id": "R05-U01-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát food trong ngữ cảnh của R05."
+            },
+            {
+              "id": "R05-U01-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển food sang nhiệm vụ thực tế phù hợp với R05."
+            }
+          ]
+        },
+        {
+          "id": "R05-U02",
+          "title": "cafeteria",
+          "microLessons": [
+            {
+              "id": "R05-U02-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu cafeteria trong ngữ cảnh của R05."
+            },
+            {
+              "id": "R05-U02-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát cafeteria trong ngữ cảnh của R05."
+            },
+            {
+              "id": "R05-U02-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển cafeteria sang nhiệm vụ thực tế phù hợp với R05."
+            }
+          ]
+        },
+        {
+          "id": "R05-U03",
+          "title": "supermarket",
+          "microLessons": [
+            {
+              "id": "R05-U03-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu supermarket trong ngữ cảnh của R05."
+            },
+            {
+              "id": "R05-U03-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát supermarket trong ngữ cảnh của R05."
+            },
+            {
+              "id": "R05-U03-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển supermarket sang nhiệm vụ thực tế phù hợp với R05."
+            }
+          ]
+        },
+        {
+          "id": "R05-U04",
+          "title": "dorm",
+          "microLessons": [
+            {
+              "id": "R05-U04-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu dorm trong ngữ cảnh của R05."
+            },
+            {
+              "id": "R05-U04-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát dorm trong ngữ cảnh của R05."
+            },
+            {
+              "id": "R05-U04-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển dorm sang nhiệm vụ thực tế phù hợp với R05."
+            }
+          ]
+        },
+        {
+          "id": "R05-U05",
+          "title": "SIM",
+          "microLessons": [
+            {
+              "id": "R05-U05-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu SIM trong ngữ cảnh của R05."
+            },
+            {
+              "id": "R05-U05-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát SIM trong ngữ cảnh của R05."
+            },
+            {
+              "id": "R05-U05-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển SIM sang nhiệm vụ thực tế phù hợp với R05."
+            }
+          ]
+        },
+        {
+          "id": "R05-U06",
+          "title": "bank",
+          "microLessons": [
+            {
+              "id": "R05-U06-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu bank trong ngữ cảnh của R05."
+            },
+            {
+              "id": "R05-U06-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát bank trong ngữ cảnh của R05."
+            },
+            {
+              "id": "R05-U06-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển bank sang nhiệm vụ thực tế phù hợp với R05."
+            }
+          ]
+        },
+        {
+          "id": "R05-U07",
+          "title": "pharmacy",
+          "microLessons": [
+            {
+              "id": "R05-U07-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu pharmacy trong ngữ cảnh của R05."
+            },
+            {
+              "id": "R05-U07-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát pharmacy trong ngữ cảnh của R05."
+            },
+            {
+              "id": "R05-U07-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển pharmacy sang nhiệm vụ thực tế phù hợp với R05."
+            }
+          ]
+        },
+        {
+          "id": "R05-U08",
+          "title": "basic medical",
+          "microLessons": [
+            {
+              "id": "R05-U08-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu basic medical trong ngữ cảnh của R05."
+            },
+            {
+              "id": "R05-U08-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát basic medical trong ngữ cảnh của R05."
+            },
+            {
+              "id": "R05-U08-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển basic medical sang nhiệm vụ thực tế phù hợp với R05."
+            }
+          ]
+        },
+        {
+          "id": "R05-U09",
+          "title": "everyday problems",
+          "microLessons": [
+            {
+              "id": "R05-U09-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu everyday problems trong ngữ cảnh của R05."
+            },
+            {
+              "id": "R05-U09-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát everyday problems trong ngữ cảnh của R05."
+            },
+            {
+              "id": "R05-U09-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển everyday problems sang nhiệm vụ thực tế phù hợp với R05."
+            }
+          ]
+        }
+      ],
+      "exitGate": null,
+      "stageGate": "foundation-survival-chain"
+    },
+    {
+      "id": "R06",
+      "stage": "vn",
+      "title": "Documents · Administration",
+      "legacyIdentity": "R06",
+      "identityPolicy": "PRESERVE",
+      "units": [
+        {
+          "id": "R06-U01",
+          "title": "passport",
+          "microLessons": [
+            {
+              "id": "R06-U01-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu passport trong ngữ cảnh của R06."
+            },
+            {
+              "id": "R06-U01-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát passport trong ngữ cảnh của R06."
+            },
+            {
+              "id": "R06-U01-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển passport sang nhiệm vụ thực tế phù hợp với R06."
+            }
+          ]
+        },
+        {
+          "id": "R06-U02",
+          "title": "visa",
+          "microLessons": [
+            {
+              "id": "R06-U02-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu visa trong ngữ cảnh của R06."
+            },
+            {
+              "id": "R06-U02-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát visa trong ngữ cảnh của R06."
+            },
+            {
+              "id": "R06-U02-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển visa sang nhiệm vụ thực tế phù hợp với R06."
+            }
+          ]
+        },
+        {
+          "id": "R06-U03",
+          "title": "migration",
+          "microLessons": [
+            {
+              "id": "R06-U03-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu migration trong ngữ cảnh của R06."
+            },
+            {
+              "id": "R06-U03-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát migration trong ngữ cảnh của R06."
+            },
+            {
+              "id": "R06-U03-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển migration sang nhiệm vụ thực tế phù hợp với R06."
+            }
+          ]
+        },
+        {
+          "id": "R06-U04",
+          "title": "registration",
+          "microLessons": [
+            {
+              "id": "R06-U04-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu registration trong ngữ cảnh của R06."
+            },
+            {
+              "id": "R06-U04-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát registration trong ngữ cảnh của R06."
+            },
+            {
+              "id": "R06-U04-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển registration sang nhiệm vụ thực tế phù hợp với R06."
+            }
+          ]
+        },
+        {
+          "id": "R06-U05",
+          "title": "forms",
+          "microLessons": [
+            {
+              "id": "R06-U05-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu forms trong ngữ cảnh của R06."
+            },
+            {
+              "id": "R06-U05-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát forms trong ngữ cảnh của R06."
+            },
+            {
+              "id": "R06-U05-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển forms sang nhiệm vụ thực tế phù hợp với R06."
+            }
+          ]
+        },
+        {
+          "id": "R06-U06",
+          "title": "international office",
+          "microLessons": [
+            {
+              "id": "R06-U06-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu international office trong ngữ cảnh của R06."
+            },
+            {
+              "id": "R06-U06-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát international office trong ngữ cảnh của R06."
+            },
+            {
+              "id": "R06-U06-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển international office sang nhiệm vụ thực tế phù hợp với R06."
+            }
+          ]
+        },
+        {
+          "id": "R06-U07",
+          "title": "missing document",
+          "microLessons": [
+            {
+              "id": "R06-U07-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu missing document trong ngữ cảnh của R06."
+            },
+            {
+              "id": "R06-U07-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát missing document trong ngữ cảnh của R06."
+            },
+            {
+              "id": "R06-U07-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển missing document sang nhiệm vụ thực tế phù hợp với R06."
+            }
+          ]
+        },
+        {
+          "id": "R06-U08",
+          "title": "emergency",
+          "microLessons": [
+            {
+              "id": "R06-U08-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu emergency trong ngữ cảnh của R06."
+            },
+            {
+              "id": "R06-U08-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát emergency trong ngữ cảnh của R06."
+            },
+            {
+              "id": "R06-U08-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển emergency sang nhiệm vụ thực tế phù hợp với R06."
+            }
+          ]
+        },
+        {
+          "id": "R06-U09",
+          "title": "integrated survival simulation",
+          "microLessons": [
+            {
+              "id": "R06-U09-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu integrated survival simulation trong ngữ cảnh của R06."
+            },
+            {
+              "id": "R06-U09-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát integrated survival simulation trong ngữ cảnh của R06."
+            },
+            {
+              "id": "R06-U09-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển integrated survival simulation sang nhiệm vụ thực tế phù hợp với R06."
+            }
+          ]
+        }
+      ],
+      "exitGate": null,
+      "stageGate": "foundation-survival-chain"
+    },
+    {
+      "id": "R07",
+      "stage": "prep",
+      "title": "Classroom Russian",
+      "legacyIdentity": "R07",
+      "identityPolicy": "PRESERVE",
+      "units": [
+        {
+          "id": "R07-U01",
+          "title": "objects",
+          "microLessons": [
+            {
+              "id": "R07-U01-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu objects trong ngữ cảnh của R07."
+            },
+            {
+              "id": "R07-U01-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát objects trong ngữ cảnh của R07."
+            },
+            {
+              "id": "R07-U01-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển objects sang nhiệm vụ thực tế phù hợp với R07."
+            }
+          ]
+        },
+        {
+          "id": "R07-U02",
+          "title": "commands",
+          "microLessons": [
+            {
+              "id": "R07-U02-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu commands trong ngữ cảnh của R07."
+            },
+            {
+              "id": "R07-U02-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát commands trong ngữ cảnh của R07."
+            },
+            {
+              "id": "R07-U02-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển commands sang nhiệm vụ thực tế phù hợp với R07."
+            }
+          ]
+        },
+        {
+          "id": "R07-U03",
+          "title": "read/write/listen",
+          "microLessons": [
+            {
+              "id": "R07-U03-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu read/write/listen trong ngữ cảnh của R07."
+            },
+            {
+              "id": "R07-U03-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát read/write/listen trong ngữ cảnh của R07."
+            },
+            {
+              "id": "R07-U03-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển read/write/listen sang nhiệm vụ thực tế phù hợp với R07."
+            }
+          ]
+        },
+        {
+          "id": "R07-U04",
+          "title": "ask question",
+          "microLessons": [
+            {
+              "id": "R07-U04-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu ask question trong ngữ cảnh của R07."
+            },
+            {
+              "id": "R07-U04-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát ask question trong ngữ cảnh của R07."
+            },
+            {
+              "id": "R07-U04-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển ask question sang nhiệm vụ thực tế phù hợp với R07."
+            }
+          ]
+        },
+        {
+          "id": "R07-U05",
+          "title": "repeat/slow",
+          "microLessons": [
+            {
+              "id": "R07-U05-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu repeat/slow trong ngữ cảnh của R07."
+            },
+            {
+              "id": "R07-U05-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát repeat/slow trong ngữ cảnh của R07."
+            },
+            {
+              "id": "R07-U05-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển repeat/slow sang nhiệm vụ thực tế phù hợp với R07."
+            }
+          ]
+        },
+        {
+          "id": "R07-U06",
+          "title": "homework",
+          "microLessons": [
+            {
+              "id": "R07-U06-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu homework trong ngữ cảnh của R07."
+            },
+            {
+              "id": "R07-U06-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát homework trong ngữ cảnh của R07."
+            },
+            {
+              "id": "R07-U06-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển homework sang nhiệm vụ thực tế phù hợp với R07."
+            }
+          ]
+        },
+        {
+          "id": "R07-U07",
+          "title": "deadlines",
+          "microLessons": [
+            {
+              "id": "R07-U07-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu deadlines trong ngữ cảnh của R07."
+            },
+            {
+              "id": "R07-U07-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát deadlines trong ngữ cảnh của R07."
+            },
+            {
+              "id": "R07-U07-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển deadlines sang nhiệm vụ thực tế phù hợp với R07."
+            }
+          ]
+        },
+        {
+          "id": "R07-U08",
+          "title": "correctness language",
+          "microLessons": [
+            {
+              "id": "R07-U08-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu correctness language trong ngữ cảnh của R07."
+            },
+            {
+              "id": "R07-U08-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát correctness language trong ngữ cảnh của R07."
+            },
+            {
+              "id": "R07-U08-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển correctness language sang nhiệm vụ thực tế phù hợp với R07."
+            }
+          ]
+        }
+      ],
+      "exitGate": null,
+      "stageGate": "prep-academic-task"
+    },
+    {
+      "id": "R08",
+      "stage": "prep",
+      "title": "Cases for Real University Life",
+      "legacyIdentity": "R08",
+      "identityPolicy": "PRESERVE",
+      "units": [
+        {
+          "id": "R08-U01",
+          "title": "nominative",
+          "microLessons": [
+            {
+              "id": "R08-U01-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu nominative trong ngữ cảnh của R08."
+            },
+            {
+              "id": "R08-U01-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát nominative trong ngữ cảnh của R08."
+            },
+            {
+              "id": "R08-U01-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển nominative sang nhiệm vụ thực tế phù hợp với R08."
+            }
+          ]
+        },
+        {
+          "id": "R08-U02",
+          "title": "prepositional",
+          "microLessons": [
+            {
+              "id": "R08-U02-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu prepositional trong ngữ cảnh của R08."
+            },
+            {
+              "id": "R08-U02-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát prepositional trong ngữ cảnh của R08."
+            },
+            {
+              "id": "R08-U02-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển prepositional sang nhiệm vụ thực tế phù hợp với R08."
+            }
+          ]
+        },
+        {
+          "id": "R08-U03",
+          "title": "accusative",
+          "microLessons": [
+            {
+              "id": "R08-U03-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu accusative trong ngữ cảnh của R08."
+            },
+            {
+              "id": "R08-U03-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát accusative trong ngữ cảnh của R08."
+            },
+            {
+              "id": "R08-U03-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển accusative sang nhiệm vụ thực tế phù hợp với R08."
+            }
+          ]
+        },
+        {
+          "id": "R08-U04",
+          "title": "genitive",
+          "microLessons": [
+            {
+              "id": "R08-U04-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu genitive trong ngữ cảnh của R08."
+            },
+            {
+              "id": "R08-U04-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát genitive trong ngữ cảnh của R08."
+            },
+            {
+              "id": "R08-U04-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển genitive sang nhiệm vụ thực tế phù hợp với R08."
+            }
+          ]
+        },
+        {
+          "id": "R08-U05",
+          "title": "dative",
+          "microLessons": [
+            {
+              "id": "R08-U05-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu dative trong ngữ cảnh của R08."
+            },
+            {
+              "id": "R08-U05-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát dative trong ngữ cảnh của R08."
+            },
+            {
+              "id": "R08-U05-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển dative sang nhiệm vụ thực tế phù hợp với R08."
+            }
+          ]
+        },
+        {
+          "id": "R08-U06",
+          "title": "instrumental",
+          "microLessons": [
+            {
+              "id": "R08-U06-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu instrumental trong ngữ cảnh của R08."
+            },
+            {
+              "id": "R08-U06-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát instrumental trong ngữ cảnh của R08."
+            },
+            {
+              "id": "R08-U06-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển instrumental sang nhiệm vụ thực tế phù hợp với R08."
+            }
+          ]
+        },
+        {
+          "id": "R08-U07",
+          "title": "contrasts",
+          "microLessons": [
+            {
+              "id": "R08-U07-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu contrasts trong ngữ cảnh của R08."
+            },
+            {
+              "id": "R08-U07-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát contrasts trong ngữ cảnh của R08."
+            },
+            {
+              "id": "R08-U07-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển contrasts sang nhiệm vụ thực tế phù hợp với R08."
+            }
+          ]
+        },
+        {
+          "id": "R08-U08",
+          "title": "adjective agreement",
+          "microLessons": [
+            {
+              "id": "R08-U08-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu adjective agreement trong ngữ cảnh của R08."
+            },
+            {
+              "id": "R08-U08-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát adjective agreement trong ngữ cảnh của R08."
+            },
+            {
+              "id": "R08-U08-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển adjective agreement sang nhiệm vụ thực tế phù hợp với R08."
+            }
+          ]
+        },
+        {
+          "id": "R08-U09",
+          "title": "pronouns",
+          "microLessons": [
+            {
+              "id": "R08-U09-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu pronouns trong ngữ cảnh của R08."
+            },
+            {
+              "id": "R08-U09-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát pronouns trong ngữ cảnh của R08."
+            },
+            {
+              "id": "R08-U09-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển pronouns sang nhiệm vụ thực tế phù hợp với R08."
+            }
+          ]
+        }
+      ],
+      "exitGate": null,
+      "stageGate": "prep-academic-task"
+    },
+    {
+      "id": "R09",
+      "stage": "prep",
+      "title": "Verbs · Time · Aspect · Motion",
+      "legacyIdentity": "R09",
+      "identityPolicy": "PRESERVE",
+      "units": [
+        {
+          "id": "R09-U01",
+          "title": "present",
+          "microLessons": [
+            {
+              "id": "R09-U01-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu present trong ngữ cảnh của R09."
+            },
+            {
+              "id": "R09-U01-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát present trong ngữ cảnh của R09."
+            },
+            {
+              "id": "R09-U01-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển present sang nhiệm vụ thực tế phù hợp với R09."
+            }
+          ]
+        },
+        {
+          "id": "R09-U02",
+          "title": "past",
+          "microLessons": [
+            {
+              "id": "R09-U02-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu past trong ngữ cảnh của R09."
+            },
+            {
+              "id": "R09-U02-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát past trong ngữ cảnh của R09."
+            },
+            {
+              "id": "R09-U02-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển past sang nhiệm vụ thực tế phù hợp với R09."
+            }
+          ]
+        },
+        {
+          "id": "R09-U03",
+          "title": "future",
+          "microLessons": [
+            {
+              "id": "R09-U03-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu future trong ngữ cảnh của R09."
+            },
+            {
+              "id": "R09-U03-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát future trong ngữ cảnh của R09."
+            },
+            {
+              "id": "R09-U03-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển future sang nhiệm vụ thực tế phù hợp với R09."
+            }
+          ]
+        },
+        {
+          "id": "R09-U04",
+          "title": "aspect",
+          "microLessons": [
+            {
+              "id": "R09-U04-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu aspect trong ngữ cảnh của R09."
+            },
+            {
+              "id": "R09-U04-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát aspect trong ngữ cảnh của R09."
+            },
+            {
+              "id": "R09-U04-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển aspect sang nhiệm vụ thực tế phù hợp với R09."
+            }
+          ]
+        },
+        {
+          "id": "R09-U05",
+          "title": "process/result",
+          "microLessons": [
+            {
+              "id": "R09-U05-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu process/result trong ngữ cảnh của R09."
+            },
+            {
+              "id": "R09-U05-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát process/result trong ngữ cảnh của R09."
+            },
+            {
+              "id": "R09-U05-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển process/result sang nhiệm vụ thực tế phù hợp với R09."
+            }
+          ]
+        },
+        {
+          "id": "R09-U06",
+          "title": "repetition/completion",
+          "microLessons": [
+            {
+              "id": "R09-U06-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu repetition/completion trong ngữ cảnh của R09."
+            },
+            {
+              "id": "R09-U06-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát repetition/completion trong ngữ cảnh của R09."
+            },
+            {
+              "id": "R09-U06-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển repetition/completion sang nhiệm vụ thực tế phù hợp với R09."
+            }
+          ]
+        },
+        {
+          "id": "R09-U07",
+          "title": "идти/ходить",
+          "microLessons": [
+            {
+              "id": "R09-U07-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu идти/ходить trong ngữ cảnh của R09."
+            },
+            {
+              "id": "R09-U07-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát идти/ходить trong ngữ cảnh của R09."
+            },
+            {
+              "id": "R09-U07-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển идти/ходить sang nhiệm vụ thực tế phù hợp với R09."
+            }
+          ]
+        },
+        {
+          "id": "R09-U08",
+          "title": "ехать/ездить",
+          "microLessons": [
+            {
+              "id": "R09-U08-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu ехать/ездить trong ngữ cảnh của R09."
+            },
+            {
+              "id": "R09-U08-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát ехать/ездить trong ngữ cảnh của R09."
+            },
+            {
+              "id": "R09-U08-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển ехать/ездить sang nhiệm vụ thực tế phù hợp với R09."
+            }
+          ]
+        },
+        {
+          "id": "R09-U09",
+          "title": "motion prefixes",
+          "microLessons": [
+            {
+              "id": "R09-U09-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu motion prefixes trong ngữ cảnh của R09."
+            },
+            {
+              "id": "R09-U09-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát motion prefixes trong ngữ cảnh của R09."
+            },
+            {
+              "id": "R09-U09-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển motion prefixes sang nhiệm vụ thực tế phù hợp với R09."
+            }
+          ]
+        }
+      ],
+      "exitGate": null,
+      "stageGate": "prep-academic-task"
+    },
+    {
+      "id": "R10",
+      "stage": "prep",
+      "title": "Preparatory Academic Bridge",
+      "legacyIdentity": "R10",
+      "identityPolicy": "PRESERVE",
+      "units": [
+        {
+          "id": "R10-U01",
+          "title": "math foundation",
+          "microLessons": [
+            {
+              "id": "R10-U01-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu math foundation trong ngữ cảnh của R10."
+            },
+            {
+              "id": "R10-U01-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát math foundation trong ngữ cảnh của R10."
+            },
+            {
+              "id": "R10-U01-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển math foundation sang nhiệm vụ thực tế phù hợp với R10."
+            }
+          ]
+        },
+        {
+          "id": "R10-U02",
+          "title": "CS foundation",
+          "microLessons": [
+            {
+              "id": "R10-U02-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu CS foundation trong ngữ cảnh của R10."
+            },
+            {
+              "id": "R10-U02-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát CS foundation trong ngữ cảnh của R10."
+            },
+            {
+              "id": "R10-U02-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển CS foundation sang nhiệm vụ thực tế phù hợp với R10."
+            }
+          ]
+        },
+        {
+          "id": "R10-U03",
+          "title": "task statements",
+          "microLessons": [
+            {
+              "id": "R10-U03-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu task statements trong ngữ cảnh của R10."
+            },
+            {
+              "id": "R10-U03-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát task statements trong ngữ cảnh của R10."
+            },
+            {
+              "id": "R10-U03-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển task statements sang nhiệm vụ thực tế phù hợp với R10."
+            }
+          ]
+        },
+        {
+          "id": "R10-U04",
+          "title": "explanation steps",
+          "microLessons": [
+            {
+              "id": "R10-U04-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu explanation steps trong ngữ cảnh của R10."
+            },
+            {
+              "id": "R10-U04-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát explanation steps trong ngữ cảnh của R10."
+            },
+            {
+              "id": "R10-U04-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển explanation steps sang nhiệm vụ thực tế phù hợp với R10."
+            }
+          ]
+        },
+        {
+          "id": "R10-U05",
+          "title": "definitions",
+          "microLessons": [
+            {
+              "id": "R10-U05-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu definitions trong ngữ cảnh của R10."
+            },
+            {
+              "id": "R10-U05-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát definitions trong ngữ cảnh của R10."
+            },
+            {
+              "id": "R10-U05-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển definitions sang nhiệm vụ thực tế phù hợp với R10."
+            }
+          ]
+        },
+        {
+          "id": "R10-U06",
+          "title": "short writing",
+          "microLessons": [
+            {
+              "id": "R10-U06-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu short writing trong ngữ cảnh của R10."
+            },
+            {
+              "id": "R10-U06-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát short writing trong ngữ cảnh của R10."
+            },
+            {
+              "id": "R10-U06-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển short writing sang nhiệm vụ thực tế phù hợp với R10."
+            }
+          ]
+        },
+        {
+          "id": "R10-U07",
+          "title": "teacher explanation",
+          "microLessons": [
+            {
+              "id": "R10-U07-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu teacher explanation trong ngữ cảnh của R10."
+            },
+            {
+              "id": "R10-U07-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát teacher explanation trong ngữ cảnh của R10."
+            },
+            {
+              "id": "R10-U07-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển teacher explanation sang nhiệm vụ thực tế phù hợp với R10."
+            }
+          ]
+        },
+        {
+          "id": "R10-U08",
+          "title": "note taking",
+          "microLessons": [
+            {
+              "id": "R10-U08-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu note taking trong ngữ cảnh của R10."
+            },
+            {
+              "id": "R10-U08-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát note taking trong ngữ cảnh của R10."
+            },
+            {
+              "id": "R10-U08-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển note taking sang nhiệm vụ thực tế phù hợp với R10."
+            }
+          ]
+        },
+        {
+          "id": "R10-U09",
+          "title": "prep assessment",
+          "microLessons": [
+            {
+              "id": "R10-U09-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu prep assessment trong ngữ cảnh của R10."
+            },
+            {
+              "id": "R10-U09-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát prep assessment trong ngữ cảnh của R10."
+            },
+            {
+              "id": "R10-U09-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển prep assessment sang nhiệm vụ thực tế phù hợp với R10."
+            }
+          ]
+        }
+      ],
+      "exitGate": null,
+      "stageGate": "prep-academic-task"
+    },
+    {
+      "id": "R11",
+      "stage": "hk1",
+      "title": "University Academic Operations",
+      "legacyIdentity": "R11",
+      "identityPolicy": "PRESERVE",
+      "units": [
+        {
+          "id": "R11-U01",
+          "title": "syllabus",
+          "microLessons": [
+            {
+              "id": "R11-U01-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu syllabus trong ngữ cảnh của R11."
+            },
+            {
+              "id": "R11-U01-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát syllabus trong ngữ cảnh của R11."
+            },
+            {
+              "id": "R11-U01-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển syllabus sang nhiệm vụ thực tế phù hợp với R11."
+            }
+          ]
+        },
+        {
+          "id": "R11-U02",
+          "title": "schedule",
+          "microLessons": [
+            {
+              "id": "R11-U02-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu schedule trong ngữ cảnh của R11."
+            },
+            {
+              "id": "R11-U02-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát schedule trong ngữ cảnh của R11."
+            },
+            {
+              "id": "R11-U02-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển schedule sang nhiệm vụ thực tế phù hợp với R11."
+            }
+          ]
+        },
+        {
+          "id": "R11-U03",
+          "title": "assignment",
+          "microLessons": [
+            {
+              "id": "R11-U03-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu assignment trong ngữ cảnh của R11."
+            },
+            {
+              "id": "R11-U03-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát assignment trong ngữ cảnh của R11."
+            },
+            {
+              "id": "R11-U03-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển assignment sang nhiệm vụ thực tế phù hợp với R11."
+            }
+          ]
+        },
+        {
+          "id": "R11-U04",
+          "title": "requirements",
+          "microLessons": [
+            {
+              "id": "R11-U04-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu requirements trong ngữ cảnh của R11."
+            },
+            {
+              "id": "R11-U04-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát requirements trong ngữ cảnh của R11."
+            },
+            {
+              "id": "R11-U04-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển requirements sang nhiệm vụ thực tế phù hợp với R11."
+            }
+          ]
+        },
+        {
+          "id": "R11-U05",
+          "title": "deadline",
+          "microLessons": [
+            {
+              "id": "R11-U05-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu deadline trong ngữ cảnh của R11."
+            },
+            {
+              "id": "R11-U05-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát deadline trong ngữ cảnh của R11."
+            },
+            {
+              "id": "R11-U05-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển deadline sang nhiệm vụ thực tế phù hợp với R11."
+            }
+          ]
+        },
+        {
+          "id": "R11-U06",
+          "title": "lecturer communication",
+          "microLessons": [
+            {
+              "id": "R11-U06-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu lecturer communication trong ngữ cảnh của R11."
+            },
+            {
+              "id": "R11-U06-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát lecturer communication trong ngữ cảnh của R11."
+            },
+            {
+              "id": "R11-U06-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển lecturer communication sang nhiệm vụ thực tế phù hợp với R11."
+            }
+          ]
+        },
+        {
+          "id": "R11-U07",
+          "title": "email",
+          "microLessons": [
+            {
+              "id": "R11-U07-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu email trong ngữ cảnh của R11."
+            },
+            {
+              "id": "R11-U07-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát email trong ngữ cảnh của R11."
+            },
+            {
+              "id": "R11-U07-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển email sang nhiệm vụ thực tế phù hợp với R11."
+            }
+          ]
+        },
+        {
+          "id": "R11-U08",
+          "title": "group work",
+          "microLessons": [
+            {
+              "id": "R11-U08-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu group work trong ngữ cảnh của R11."
+            },
+            {
+              "id": "R11-U08-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát group work trong ngữ cảnh của R11."
+            },
+            {
+              "id": "R11-U08-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển group work sang nhiệm vụ thực tế phù hợp với R11."
+            }
+          ]
+        },
+        {
+          "id": "R11-U09",
+          "title": "progress update",
+          "microLessons": [
+            {
+              "id": "R11-U09-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu progress update trong ngữ cảnh của R11."
+            },
+            {
+              "id": "R11-U09-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát progress update trong ngữ cảnh của R11."
+            },
+            {
+              "id": "R11-U09-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển progress update sang nhiệm vụ thực tế phù hợp với R11."
+            }
+          ]
+        }
+      ],
+      "exitGate": null,
+      "stageGate": "hk1-lecture-reconstruction"
+    },
+    {
+      "id": "R12",
+      "stage": "hk1",
+      "title": "Mathematical & Formal Russian",
+      "legacyIdentity": "R12",
+      "identityPolicy": "PRESERVE",
+      "units": [
+        {
+          "id": "R12-U01",
+          "title": "equation",
+          "microLessons": [
+            {
+              "id": "R12-U01-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu equation trong ngữ cảnh của R12."
+            },
+            {
+              "id": "R12-U01-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát equation trong ngữ cảnh của R12."
+            },
+            {
+              "id": "R12-U01-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển equation sang nhiệm vụ thực tế phù hợp với R12."
+            }
+          ]
+        },
+        {
+          "id": "R12-U02",
+          "title": "variable",
+          "microLessons": [
+            {
+              "id": "R12-U02-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu variable trong ngữ cảnh của R12."
+            },
+            {
+              "id": "R12-U02-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát variable trong ngữ cảnh của R12."
+            },
+            {
+              "id": "R12-U02-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển variable sang nhiệm vụ thực tế phù hợp với R12."
+            }
+          ]
+        },
+        {
+          "id": "R12-U03",
+          "title": "function",
+          "microLessons": [
+            {
+              "id": "R12-U03-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu function trong ngữ cảnh của R12."
+            },
+            {
+              "id": "R12-U03-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát function trong ngữ cảnh của R12."
+            },
+            {
+              "id": "R12-U03-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển function sang nhiệm vụ thực tế phù hợp với R12."
+            }
+          ]
+        },
+        {
+          "id": "R12-U04",
+          "title": "vectors",
+          "microLessons": [
+            {
+              "id": "R12-U04-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu vectors trong ngữ cảnh của R12."
+            },
+            {
+              "id": "R12-U04-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát vectors trong ngữ cảnh của R12."
+            },
+            {
+              "id": "R12-U04-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển vectors sang nhiệm vụ thực tế phù hợp với R12."
+            }
+          ]
+        },
+        {
+          "id": "R12-U05",
+          "title": "matrices",
+          "microLessons": [
+            {
+              "id": "R12-U05-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu matrices trong ngữ cảnh của R12."
+            },
+            {
+              "id": "R12-U05-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát matrices trong ngữ cảnh của R12."
+            },
+            {
+              "id": "R12-U05-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển matrices sang nhiệm vụ thực tế phù hợp với R12."
+            }
+          ]
+        },
+        {
+          "id": "R12-U06",
+          "title": "probability",
+          "microLessons": [
+            {
+              "id": "R12-U06-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu probability trong ngữ cảnh của R12."
+            },
+            {
+              "id": "R12-U06-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát probability trong ngữ cảnh của R12."
+            },
+            {
+              "id": "R12-U06-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển probability sang nhiệm vụ thực tế phù hợp với R12."
+            }
+          ]
+        },
+        {
+          "id": "R12-U07",
+          "title": "derivative/integral",
+          "microLessons": [
+            {
+              "id": "R12-U07-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu derivative/integral trong ngữ cảnh của R12."
+            },
+            {
+              "id": "R12-U07-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát derivative/integral trong ngữ cảnh của R12."
+            },
+            {
+              "id": "R12-U07-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển derivative/integral sang nhiệm vụ thực tế phù hợp với R12."
+            }
+          ]
+        },
+        {
+          "id": "R12-U08",
+          "title": "conditions",
+          "microLessons": [
+            {
+              "id": "R12-U08-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu conditions trong ngữ cảnh của R12."
+            },
+            {
+              "id": "R12-U08-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát conditions trong ngữ cảnh của R12."
+            },
+            {
+              "id": "R12-U08-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển conditions sang nhiệm vụ thực tế phù hợp với R12."
+            }
+          ]
+        },
+        {
+          "id": "R12-U09",
+          "title": "formula reading",
+          "microLessons": [
+            {
+              "id": "R12-U09-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu formula reading trong ngữ cảnh của R12."
+            },
+            {
+              "id": "R12-U09-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát formula reading trong ngữ cảnh của R12."
+            },
+            {
+              "id": "R12-U09-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển formula reading sang nhiệm vụ thực tế phù hợp với R12."
+            }
+          ]
+        }
+      ],
+      "exitGate": null,
+      "stageGate": "hk1-lecture-reconstruction"
+    },
+    {
+      "id": "R13",
+      "stage": "hk1",
+      "title": "Technical Problem Solving",
+      "legacyIdentity": "R13",
+      "identityPolicy": "PRESERVE",
+      "units": [
+        {
+          "id": "R13-U01",
+          "title": "problem",
+          "microLessons": [
+            {
+              "id": "R13-U01-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu problem trong ngữ cảnh của R13."
+            },
+            {
+              "id": "R13-U01-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát problem trong ngữ cảnh của R13."
+            },
+            {
+              "id": "R13-U01-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển problem sang nhiệm vụ thực tế phù hợp với R13."
+            }
+          ]
+        },
+        {
+          "id": "R13-U02",
+          "title": "input",
+          "microLessons": [
+            {
+              "id": "R13-U02-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu input trong ngữ cảnh của R13."
+            },
+            {
+              "id": "R13-U02-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát input trong ngữ cảnh của R13."
+            },
+            {
+              "id": "R13-U02-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển input sang nhiệm vụ thực tế phù hợp với R13."
+            }
+          ]
+        },
+        {
+          "id": "R13-U03",
+          "title": "output",
+          "microLessons": [
+            {
+              "id": "R13-U03-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu output trong ngữ cảnh của R13."
+            },
+            {
+              "id": "R13-U03-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát output trong ngữ cảnh của R13."
+            },
+            {
+              "id": "R13-U03-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển output sang nhiệm vụ thực tế phù hợp với R13."
+            }
+          ]
+        },
+        {
+          "id": "R13-U04",
+          "title": "requirement",
+          "microLessons": [
+            {
+              "id": "R13-U04-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu requirement trong ngữ cảnh của R13."
+            },
+            {
+              "id": "R13-U04-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát requirement trong ngữ cảnh của R13."
+            },
+            {
+              "id": "R13-U04-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển requirement sang nhiệm vụ thực tế phù hợp với R13."
+            }
+          ]
+        },
+        {
+          "id": "R13-U05",
+          "title": "procedure",
+          "microLessons": [
+            {
+              "id": "R13-U05-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu procedure trong ngữ cảnh của R13."
+            },
+            {
+              "id": "R13-U05-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát procedure trong ngữ cảnh của R13."
+            },
+            {
+              "id": "R13-U05-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển procedure sang nhiệm vụ thực tế phù hợp với R13."
+            }
+          ]
+        },
+        {
+          "id": "R13-U06",
+          "title": "error",
+          "microLessons": [
+            {
+              "id": "R13-U06-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu error trong ngữ cảnh của R13."
+            },
+            {
+              "id": "R13-U06-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát error trong ngữ cảnh của R13."
+            },
+            {
+              "id": "R13-U06-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển error sang nhiệm vụ thực tế phù hợp với R13."
+            }
+          ]
+        },
+        {
+          "id": "R13-U07",
+          "title": "solution",
+          "microLessons": [
+            {
+              "id": "R13-U07-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu solution trong ngữ cảnh của R13."
+            },
+            {
+              "id": "R13-U07-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát solution trong ngữ cảnh của R13."
+            },
+            {
+              "id": "R13-U07-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển solution sang nhiệm vụ thực tế phù hợp với R13."
+            }
+          ]
+        },
+        {
+          "id": "R13-U08",
+          "title": "compare",
+          "microLessons": [
+            {
+              "id": "R13-U08-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu compare trong ngữ cảnh của R13."
+            },
+            {
+              "id": "R13-U08-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát compare trong ngữ cảnh của R13."
+            },
+            {
+              "id": "R13-U08-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển compare sang nhiệm vụ thực tế phù hợp với R13."
+            }
+          ]
+        },
+        {
+          "id": "R13-U09",
+          "title": "justify",
+          "microLessons": [
+            {
+              "id": "R13-U09-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu justify trong ngữ cảnh của R13."
+            },
+            {
+              "id": "R13-U09-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát justify trong ngữ cảnh của R13."
+            },
+            {
+              "id": "R13-U09-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển justify sang nhiệm vụ thực tế phù hợp với R13."
+            }
+          ]
+        }
+      ],
+      "exitGate": null,
+      "stageGate": "hk1-lecture-reconstruction"
+    },
+    {
+      "id": "R14",
+      "stage": "hk1",
+      "title": "Lecture Survival & Note-Taking",
+      "legacyIdentity": "R14",
+      "identityPolicy": "PRESERVE",
+      "units": [
+        {
+          "id": "R14-U01",
+          "title": "markers",
+          "microLessons": [
+            {
+              "id": "R14-U01-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu markers trong ngữ cảnh của R14."
+            },
+            {
+              "id": "R14-U01-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát markers trong ngữ cảnh của R14."
+            },
+            {
+              "id": "R14-U01-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển markers sang nhiệm vụ thực tế phù hợp với R14."
+            }
+          ]
+        },
+        {
+          "id": "R14-U02",
+          "title": "definitions",
+          "microLessons": [
+            {
+              "id": "R14-U02-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu definitions trong ngữ cảnh của R14."
+            },
+            {
+              "id": "R14-U02-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát definitions trong ngữ cảnh của R14."
+            },
+            {
+              "id": "R14-U02-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển definitions sang nhiệm vụ thực tế phù hợp với R14."
+            }
+          ]
+        },
+        {
+          "id": "R14-U03",
+          "title": "examples",
+          "microLessons": [
+            {
+              "id": "R14-U03-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu examples trong ngữ cảnh của R14."
+            },
+            {
+              "id": "R14-U03-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát examples trong ngữ cảnh của R14."
+            },
+            {
+              "id": "R14-U03-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển examples sang nhiệm vụ thực tế phù hợp với R14."
+            }
+          ]
+        },
+        {
+          "id": "R14-U04",
+          "title": "attention",
+          "microLessons": [
+            {
+              "id": "R14-U04-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu attention trong ngữ cảnh của R14."
+            },
+            {
+              "id": "R14-U04-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát attention trong ngữ cảnh của R14."
+            },
+            {
+              "id": "R14-U04-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển attention sang nhiệm vụ thực tế phù hợp với R14."
+            }
+          ]
+        },
+        {
+          "id": "R14-U05",
+          "title": "enumeration",
+          "microLessons": [
+            {
+              "id": "R14-U05-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu enumeration trong ngữ cảnh của R14."
+            },
+            {
+              "id": "R14-U05-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát enumeration trong ngữ cảnh của R14."
+            },
+            {
+              "id": "R14-U05-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển enumeration sang nhiệm vụ thực tế phù hợp với R14."
+            }
+          ]
+        },
+        {
+          "id": "R14-U06",
+          "title": "cause/result",
+          "microLessons": [
+            {
+              "id": "R14-U06-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu cause/result trong ngữ cảnh của R14."
+            },
+            {
+              "id": "R14-U06-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát cause/result trong ngữ cảnh của R14."
+            },
+            {
+              "id": "R14-U06-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển cause/result sang nhiệm vụ thực tế phù hợp với R14."
+            }
+          ]
+        },
+        {
+          "id": "R14-U07",
+          "title": "notes",
+          "microLessons": [
+            {
+              "id": "R14-U07-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu notes trong ngữ cảnh của R14."
+            },
+            {
+              "id": "R14-U07-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát notes trong ngữ cảnh của R14."
+            },
+            {
+              "id": "R14-U07-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển notes sang nhiệm vụ thực tế phù hợp với R14."
+            }
+          ]
+        },
+        {
+          "id": "R14-U08",
+          "title": "reconstruction",
+          "microLessons": [
+            {
+              "id": "R14-U08-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu reconstruction trong ngữ cảnh của R14."
+            },
+            {
+              "id": "R14-U08-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát reconstruction trong ngữ cảnh của R14."
+            },
+            {
+              "id": "R14-U08-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển reconstruction sang nhiệm vụ thực tế phù hợp với R14."
+            }
+          ]
+        },
+        {
+          "id": "R14-U09",
+          "title": "post-lecture clarification",
+          "microLessons": [
+            {
+              "id": "R14-U09-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu post-lecture clarification trong ngữ cảnh của R14."
+            },
+            {
+              "id": "R14-U09-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát post-lecture clarification trong ngữ cảnh của R14."
+            },
+            {
+              "id": "R14-U09-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển post-lecture clarification sang nhiệm vụ thực tế phù hợp với R14."
+            }
+          ]
+        },
+        {
+          "id": "R14-U10",
+          "title": "mini technical presentation",
+          "microLessons": [
+            {
+              "id": "R14-U10-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu mini technical presentation trong ngữ cảnh của R14."
+            },
+            {
+              "id": "R14-U10-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát mini technical presentation trong ngữ cảnh của R14."
+            },
+            {
+              "id": "R14-U10-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển mini technical presentation sang nhiệm vụ thực tế phù hợp với R14."
+            }
+          ]
+        }
+      ],
+      "exitGate": null,
+      "stageGate": "hk1-lecture-reconstruction"
+    },
+    {
+      "id": "R15",
+      "stage": "hk2",
+      "title": "Computer Science / Software Russian",
+      "legacyIdentity": "R15",
+      "identityPolicy": "PRESERVE",
+      "units": [
+        {
+          "id": "R15-U01",
+          "title": "algorithms",
+          "microLessons": [
+            {
+              "id": "R15-U01-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu algorithms trong ngữ cảnh của R15."
+            },
+            {
+              "id": "R15-U01-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát algorithms trong ngữ cảnh của R15."
+            },
+            {
+              "id": "R15-U01-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển algorithms sang nhiệm vụ thực tế phù hợp với R15."
+            }
+          ]
+        },
+        {
+          "id": "R15-U02",
+          "title": "data structures",
+          "microLessons": [
+            {
+              "id": "R15-U02-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu data structures trong ngữ cảnh của R15."
+            },
+            {
+              "id": "R15-U02-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát data structures trong ngữ cảnh của R15."
+            },
+            {
+              "id": "R15-U02-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển data structures sang nhiệm vụ thực tế phù hợp với R15."
+            }
+          ]
+        },
+        {
+          "id": "R15-U03",
+          "title": "variables/types",
+          "microLessons": [
+            {
+              "id": "R15-U03-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu variables/types trong ngữ cảnh của R15."
+            },
+            {
+              "id": "R15-U03-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát variables/types trong ngữ cảnh của R15."
+            },
+            {
+              "id": "R15-U03-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển variables/types sang nhiệm vụ thực tế phù hợp với R15."
+            }
+          ]
+        },
+        {
+          "id": "R15-U04",
+          "title": "functions",
+          "microLessons": [
+            {
+              "id": "R15-U04-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu functions trong ngữ cảnh của R15."
+            },
+            {
+              "id": "R15-U04-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát functions trong ngữ cảnh của R15."
+            },
+            {
+              "id": "R15-U04-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển functions sang nhiệm vụ thực tế phù hợp với R15."
+            }
+          ]
+        },
+        {
+          "id": "R15-U05",
+          "title": "class/object",
+          "microLessons": [
+            {
+              "id": "R15-U05-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu class/object trong ngữ cảnh của R15."
+            },
+            {
+              "id": "R15-U05-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát class/object trong ngữ cảnh của R15."
+            },
+            {
+              "id": "R15-U05-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển class/object sang nhiệm vụ thực tế phù hợp với R15."
+            }
+          ]
+        },
+        {
+          "id": "R15-U06",
+          "title": "process/thread",
+          "microLessons": [
+            {
+              "id": "R15-U06-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu process/thread trong ngữ cảnh của R15."
+            },
+            {
+              "id": "R15-U06-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát process/thread trong ngữ cảnh của R15."
+            },
+            {
+              "id": "R15-U06-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển process/thread sang nhiệm vụ thực tế phù hợp với R15."
+            }
+          ]
+        },
+        {
+          "id": "R15-U07",
+          "title": "memory/files",
+          "microLessons": [
+            {
+              "id": "R15-U07-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu memory/files trong ngữ cảnh của R15."
+            },
+            {
+              "id": "R15-U07-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát memory/files trong ngữ cảnh của R15."
+            },
+            {
+              "id": "R15-U07-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển memory/files sang nhiệm vụ thực tế phù hợp với R15."
+            }
+          ]
+        },
+        {
+          "id": "R15-U08",
+          "title": "network/API",
+          "microLessons": [
+            {
+              "id": "R15-U08-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu network/API trong ngữ cảnh của R15."
+            },
+            {
+              "id": "R15-U08-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát network/API trong ngữ cảnh của R15."
+            },
+            {
+              "id": "R15-U08-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển network/API sang nhiệm vụ thực tế phù hợp với R15."
+            }
+          ]
+        },
+        {
+          "id": "R15-U09",
+          "title": "debugging",
+          "microLessons": [
+            {
+              "id": "R15-U09-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu debugging trong ngữ cảnh của R15."
+            },
+            {
+              "id": "R15-U09-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát debugging trong ngữ cảnh của R15."
+            },
+            {
+              "id": "R15-U09-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển debugging sang nhiệm vụ thực tế phù hợp với R15."
+            }
+          ]
+        }
+      ],
+      "exitGate": null,
+      "stageGate": "hk2-technical-mini-report"
+    },
+    {
+      "id": "R16",
+      "stage": "hk2",
+      "title": "Database · Data · AI",
+      "legacyIdentity": "R16",
+      "identityPolicy": "PRESERVE",
+      "units": [
+        {
+          "id": "R16-U01",
+          "title": "database",
+          "microLessons": [
+            {
+              "id": "R16-U01-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu database trong ngữ cảnh của R16."
+            },
+            {
+              "id": "R16-U01-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát database trong ngữ cảnh của R16."
+            },
+            {
+              "id": "R16-U01-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển database sang nhiệm vụ thực tế phù hợp với R16."
+            }
+          ]
+        },
+        {
+          "id": "R16-U02",
+          "title": "table",
+          "microLessons": [
+            {
+              "id": "R16-U02-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu table trong ngữ cảnh của R16."
+            },
+            {
+              "id": "R16-U02-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát table trong ngữ cảnh của R16."
+            },
+            {
+              "id": "R16-U02-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển table sang nhiệm vụ thực tế phù hợp với R16."
+            }
+          ]
+        },
+        {
+          "id": "R16-U03",
+          "title": "record",
+          "microLessons": [
+            {
+              "id": "R16-U03-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu record trong ngữ cảnh của R16."
+            },
+            {
+              "id": "R16-U03-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát record trong ngữ cảnh của R16."
+            },
+            {
+              "id": "R16-U03-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển record sang nhiệm vụ thực tế phù hợp với R16."
+            }
+          ]
+        },
+        {
+          "id": "R16-U04",
+          "title": "key",
+          "microLessons": [
+            {
+              "id": "R16-U04-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu key trong ngữ cảnh của R16."
+            },
+            {
+              "id": "R16-U04-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát key trong ngữ cảnh của R16."
+            },
+            {
+              "id": "R16-U04-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển key sang nhiệm vụ thực tế phù hợp với R16."
+            }
+          ]
+        },
+        {
+          "id": "R16-U05",
+          "title": "relation",
+          "microLessons": [
+            {
+              "id": "R16-U05-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu relation trong ngữ cảnh của R16."
+            },
+            {
+              "id": "R16-U05-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát relation trong ngữ cảnh của R16."
+            },
+            {
+              "id": "R16-U05-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển relation sang nhiệm vụ thực tế phù hợp với R16."
+            }
+          ]
+        },
+        {
+          "id": "R16-U06",
+          "title": "query",
+          "microLessons": [
+            {
+              "id": "R16-U06-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu query trong ngữ cảnh của R16."
+            },
+            {
+              "id": "R16-U06-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát query trong ngữ cảnh của R16."
+            },
+            {
+              "id": "R16-U06-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển query sang nhiệm vụ thực tế phù hợp với R16."
+            }
+          ]
+        },
+        {
+          "id": "R16-U07",
+          "title": "dataset",
+          "microLessons": [
+            {
+              "id": "R16-U07-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu dataset trong ngữ cảnh của R16."
+            },
+            {
+              "id": "R16-U07-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát dataset trong ngữ cảnh của R16."
+            },
+            {
+              "id": "R16-U07-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển dataset sang nhiệm vụ thực tế phù hợp với R16."
+            }
+          ]
+        },
+        {
+          "id": "R16-U08",
+          "title": "feature",
+          "microLessons": [
+            {
+              "id": "R16-U08-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu feature trong ngữ cảnh của R16."
+            },
+            {
+              "id": "R16-U08-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát feature trong ngữ cảnh của R16."
+            },
+            {
+              "id": "R16-U08-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển feature sang nhiệm vụ thực tế phù hợp với R16."
+            }
+          ]
+        },
+        {
+          "id": "R16-U09",
+          "title": "model",
+          "microLessons": [
+            {
+              "id": "R16-U09-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu model trong ngữ cảnh của R16."
+            },
+            {
+              "id": "R16-U09-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát model trong ngữ cảnh của R16."
+            },
+            {
+              "id": "R16-U09-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển model sang nhiệm vụ thực tế phù hợp với R16."
+            }
+          ]
+        },
+        {
+          "id": "R16-U10",
+          "title": "training",
+          "microLessons": [
+            {
+              "id": "R16-U10-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu training trong ngữ cảnh của R16."
+            },
+            {
+              "id": "R16-U10-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát training trong ngữ cảnh của R16."
+            },
+            {
+              "id": "R16-U10-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển training sang nhiệm vụ thực tế phù hợp với R16."
+            }
+          ]
+        },
+        {
+          "id": "R16-U11",
+          "title": "validation",
+          "microLessons": [
+            {
+              "id": "R16-U11-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu validation trong ngữ cảnh của R16."
+            },
+            {
+              "id": "R16-U11-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát validation trong ngữ cảnh của R16."
+            },
+            {
+              "id": "R16-U11-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển validation sang nhiệm vụ thực tế phù hợp với R16."
+            }
+          ]
+        },
+        {
+          "id": "R16-U12",
+          "title": "evaluation",
+          "microLessons": [
+            {
+              "id": "R16-U12-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu evaluation trong ngữ cảnh của R16."
+            },
+            {
+              "id": "R16-U12-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát evaluation trong ngữ cảnh của R16."
+            },
+            {
+              "id": "R16-U12-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển evaluation sang nhiệm vụ thực tế phù hợp với R16."
+            }
+          ]
+        }
+      ],
+      "exitGate": null,
+      "stageGate": "hk2-technical-mini-report"
+    },
+    {
+      "id": "R17",
+      "stage": "hk2",
+      "title": "Control · Automation · Systems",
+      "legacyIdentity": "R17",
+      "identityPolicy": "PRESERVE",
+      "units": [
+        {
+          "id": "R17-U01",
+          "title": "system",
+          "microLessons": [
+            {
+              "id": "R17-U01-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu system trong ngữ cảnh của R17."
+            },
+            {
+              "id": "R17-U01-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát system trong ngữ cảnh của R17."
+            },
+            {
+              "id": "R17-U01-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển system sang nhiệm vụ thực tế phù hợp với R17."
+            }
+          ]
+        },
+        {
+          "id": "R17-U02",
+          "title": "input/output",
+          "microLessons": [
+            {
+              "id": "R17-U02-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu input/output trong ngữ cảnh của R17."
+            },
+            {
+              "id": "R17-U02-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát input/output trong ngữ cảnh của R17."
+            },
+            {
+              "id": "R17-U02-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển input/output sang nhiệm vụ thực tế phù hợp với R17."
+            }
+          ]
+        },
+        {
+          "id": "R17-U03",
+          "title": "signal",
+          "microLessons": [
+            {
+              "id": "R17-U03-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu signal trong ngữ cảnh của R17."
+            },
+            {
+              "id": "R17-U03-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát signal trong ngữ cảnh của R17."
+            },
+            {
+              "id": "R17-U03-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển signal sang nhiệm vụ thực tế phù hợp với R17."
+            }
+          ]
+        },
+        {
+          "id": "R17-U04",
+          "title": "sensor",
+          "microLessons": [
+            {
+              "id": "R17-U04-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu sensor trong ngữ cảnh của R17."
+            },
+            {
+              "id": "R17-U04-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát sensor trong ngữ cảnh của R17."
+            },
+            {
+              "id": "R17-U04-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển sensor sang nhiệm vụ thực tế phù hợp với R17."
+            }
+          ]
+        },
+        {
+          "id": "R17-U05",
+          "title": "actuator",
+          "microLessons": [
+            {
+              "id": "R17-U05-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu actuator trong ngữ cảnh của R17."
+            },
+            {
+              "id": "R17-U05-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát actuator trong ngữ cảnh của R17."
+            },
+            {
+              "id": "R17-U05-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển actuator sang nhiệm vụ thực tế phù hợp với R17."
+            }
+          ]
+        },
+        {
+          "id": "R17-U06",
+          "title": "feedback",
+          "microLessons": [
+            {
+              "id": "R17-U06-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu feedback trong ngữ cảnh của R17."
+            },
+            {
+              "id": "R17-U06-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát feedback trong ngữ cảnh của R17."
+            },
+            {
+              "id": "R17-U06-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển feedback sang nhiệm vụ thực tế phù hợp với R17."
+            }
+          ]
+        },
+        {
+          "id": "R17-U07",
+          "title": "controller",
+          "microLessons": [
+            {
+              "id": "R17-U07-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu controller trong ngữ cảnh của R17."
+            },
+            {
+              "id": "R17-U07-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát controller trong ngữ cảnh của R17."
+            },
+            {
+              "id": "R17-U07-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển controller sang nhiệm vụ thực tế phù hợp với R17."
+            }
+          ]
+        },
+        {
+          "id": "R17-U08",
+          "title": "PID",
+          "microLessons": [
+            {
+              "id": "R17-U08-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu PID trong ngữ cảnh của R17."
+            },
+            {
+              "id": "R17-U08-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát PID trong ngữ cảnh của R17."
+            },
+            {
+              "id": "R17-U08-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển PID sang nhiệm vụ thực tế phù hợp với R17."
+            }
+          ]
+        },
+        {
+          "id": "R17-U09",
+          "title": "stability",
+          "microLessons": [
+            {
+              "id": "R17-U09-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu stability trong ngữ cảnh của R17."
+            },
+            {
+              "id": "R17-U09-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát stability trong ngữ cảnh của R17."
+            },
+            {
+              "id": "R17-U09-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển stability sang nhiệm vụ thực tế phù hợp với R17."
+            }
+          ]
+        },
+        {
+          "id": "R17-U10",
+          "title": "state/model",
+          "microLessons": [
+            {
+              "id": "R17-U10-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu state/model trong ngữ cảnh của R17."
+            },
+            {
+              "id": "R17-U10-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát state/model trong ngữ cảnh của R17."
+            },
+            {
+              "id": "R17-U10-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển state/model sang nhiệm vụ thực tế phù hợp với R17."
+            }
+          ]
+        }
+      ],
+      "exitGate": null,
+      "stageGate": "hk2-technical-mini-report"
+    },
+    {
+      "id": "R18",
+      "stage": "hk2",
+      "title": "Experiment · Data · Report",
+      "legacyIdentity": "R18",
+      "identityPolicy": "PRESERVE",
+      "units": [
+        {
+          "id": "R18-U01",
+          "title": "objective",
+          "microLessons": [
+            {
+              "id": "R18-U01-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu objective trong ngữ cảnh của R18."
+            },
+            {
+              "id": "R18-U01-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát objective trong ngữ cảnh của R18."
+            },
+            {
+              "id": "R18-U01-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển objective sang nhiệm vụ thực tế phù hợp với R18."
+            }
+          ]
+        },
+        {
+          "id": "R18-U02",
+          "title": "setup",
+          "microLessons": [
+            {
+              "id": "R18-U02-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu setup trong ngữ cảnh của R18."
+            },
+            {
+              "id": "R18-U02-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát setup trong ngữ cảnh của R18."
+            },
+            {
+              "id": "R18-U02-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển setup sang nhiệm vụ thực tế phù hợp với R18."
+            }
+          ]
+        },
+        {
+          "id": "R18-U03",
+          "title": "procedure",
+          "microLessons": [
+            {
+              "id": "R18-U03-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu procedure trong ngữ cảnh của R18."
+            },
+            {
+              "id": "R18-U03-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát procedure trong ngữ cảnh của R18."
+            },
+            {
+              "id": "R18-U03-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển procedure sang nhiệm vụ thực tế phù hợp với R18."
+            }
+          ]
+        },
+        {
+          "id": "R18-U04",
+          "title": "measurement",
+          "microLessons": [
+            {
+              "id": "R18-U04-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu measurement trong ngữ cảnh của R18."
+            },
+            {
+              "id": "R18-U04-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát measurement trong ngữ cảnh của R18."
+            },
+            {
+              "id": "R18-U04-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển measurement sang nhiệm vụ thực tế phù hợp với R18."
+            }
+          ]
+        },
+        {
+          "id": "R18-U05",
+          "title": "data",
+          "microLessons": [
+            {
+              "id": "R18-U05-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu data trong ngữ cảnh của R18."
+            },
+            {
+              "id": "R18-U05-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát data trong ngữ cảnh của R18."
+            },
+            {
+              "id": "R18-U05-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển data sang nhiệm vụ thực tế phù hợp với R18."
+            }
+          ]
+        },
+        {
+          "id": "R18-U06",
+          "title": "graph",
+          "microLessons": [
+            {
+              "id": "R18-U06-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu graph trong ngữ cảnh của R18."
+            },
+            {
+              "id": "R18-U06-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát graph trong ngữ cảnh của R18."
+            },
+            {
+              "id": "R18-U06-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển graph sang nhiệm vụ thực tế phù hợp với R18."
+            }
+          ]
+        },
+        {
+          "id": "R18-U07",
+          "title": "trend",
+          "microLessons": [
+            {
+              "id": "R18-U07-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu trend trong ngữ cảnh của R18."
+            },
+            {
+              "id": "R18-U07-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát trend trong ngữ cảnh của R18."
+            },
+            {
+              "id": "R18-U07-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển trend sang nhiệm vụ thực tế phù hợp với R18."
+            }
+          ]
+        },
+        {
+          "id": "R18-U08",
+          "title": "error",
+          "microLessons": [
+            {
+              "id": "R18-U08-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu error trong ngữ cảnh của R18."
+            },
+            {
+              "id": "R18-U08-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát error trong ngữ cảnh của R18."
+            },
+            {
+              "id": "R18-U08-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển error sang nhiệm vụ thực tế phù hợp với R18."
+            }
+          ]
+        },
+        {
+          "id": "R18-U09",
+          "title": "expected vs actual",
+          "microLessons": [
+            {
+              "id": "R18-U09-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu expected vs actual trong ngữ cảnh của R18."
+            },
+            {
+              "id": "R18-U09-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát expected vs actual trong ngữ cảnh của R18."
+            },
+            {
+              "id": "R18-U09-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển expected vs actual sang nhiệm vụ thực tế phù hợp với R18."
+            }
+          ]
+        },
+        {
+          "id": "R18-U10",
+          "title": "result",
+          "microLessons": [
+            {
+              "id": "R18-U10-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu result trong ngữ cảnh của R18."
+            },
+            {
+              "id": "R18-U10-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát result trong ngữ cảnh của R18."
+            },
+            {
+              "id": "R18-U10-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển result sang nhiệm vụ thực tế phù hợp với R18."
+            }
+          ]
+        },
+        {
+          "id": "R18-U11",
+          "title": "conclusion",
+          "microLessons": [
+            {
+              "id": "R18-U11-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu conclusion trong ngữ cảnh của R18."
+            },
+            {
+              "id": "R18-U11-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát conclusion trong ngữ cảnh của R18."
+            },
+            {
+              "id": "R18-U11-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển conclusion sang nhiệm vụ thực tế phù hợp với R18."
+            }
+          ]
+        }
+      ],
+      "exitGate": null,
+      "stageGate": "hk2-technical-mini-report"
+    },
+    {
+      "id": "R19",
+      "stage": "hk3",
+      "title": "Research Language Foundation",
+      "legacyIdentity": "R19",
+      "identityPolicy": "PRESERVE",
+      "units": [
+        {
+          "id": "R19-U01",
+          "title": "topic",
+          "microLessons": [
+            {
+              "id": "R19-U01-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu topic trong ngữ cảnh của R19."
+            },
+            {
+              "id": "R19-U01-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát topic trong ngữ cảnh của R19."
+            },
+            {
+              "id": "R19-U01-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển topic sang nhiệm vụ thực tế phù hợp với R19."
+            }
+          ]
+        },
+        {
+          "id": "R19-U02",
+          "title": "problem",
+          "microLessons": [
+            {
+              "id": "R19-U02-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu problem trong ngữ cảnh của R19."
+            },
+            {
+              "id": "R19-U02-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát problem trong ngữ cảnh của R19."
+            },
+            {
+              "id": "R19-U02-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển problem sang nhiệm vụ thực tế phù hợp với R19."
+            }
+          ]
+        },
+        {
+          "id": "R19-U03",
+          "title": "relevance",
+          "microLessons": [
+            {
+              "id": "R19-U03-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu relevance trong ngữ cảnh của R19."
+            },
+            {
+              "id": "R19-U03-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát relevance trong ngữ cảnh của R19."
+            },
+            {
+              "id": "R19-U03-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển relevance sang nhiệm vụ thực tế phù hợp với R19."
+            }
+          ]
+        },
+        {
+          "id": "R19-U04",
+          "title": "objective",
+          "microLessons": [
+            {
+              "id": "R19-U04-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu objective trong ngữ cảnh của R19."
+            },
+            {
+              "id": "R19-U04-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát objective trong ngữ cảnh của R19."
+            },
+            {
+              "id": "R19-U04-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển objective sang nhiệm vụ thực tế phù hợp với R19."
+            }
+          ]
+        },
+        {
+          "id": "R19-U05",
+          "title": "research tasks",
+          "microLessons": [
+            {
+              "id": "R19-U05-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu research tasks trong ngữ cảnh của R19."
+            },
+            {
+              "id": "R19-U05-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát research tasks trong ngữ cảnh của R19."
+            },
+            {
+              "id": "R19-U05-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển research tasks sang nhiệm vụ thực tế phù hợp với R19."
+            }
+          ]
+        },
+        {
+          "id": "R19-U06",
+          "title": "research question",
+          "microLessons": [
+            {
+              "id": "R19-U06-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu research question trong ngữ cảnh của R19."
+            },
+            {
+              "id": "R19-U06-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát research question trong ngữ cảnh của R19."
+            },
+            {
+              "id": "R19-U06-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển research question sang nhiệm vụ thực tế phù hợp với R19."
+            }
+          ]
+        },
+        {
+          "id": "R19-U07",
+          "title": "hypothesis",
+          "microLessons": [
+            {
+              "id": "R19-U07-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu hypothesis trong ngữ cảnh của R19."
+            },
+            {
+              "id": "R19-U07-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát hypothesis trong ngữ cảnh của R19."
+            },
+            {
+              "id": "R19-U07-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển hypothesis sang nhiệm vụ thực tế phù hợp với R19."
+            }
+          ]
+        }
+      ],
+      "exitGate": null,
+      "stageGate": "hk3-nir-presentation-qa"
+    },
+    {
+      "id": "R20",
+      "stage": "hk3",
+      "title": "Literature · Methods · Evidence",
+      "legacyIdentity": "R20",
+      "identityPolicy": "PRESERVE",
+      "units": [
+        {
+          "id": "R20-U01",
+          "title": "abstract",
+          "microLessons": [
+            {
+              "id": "R20-U01-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu abstract trong ngữ cảnh của R20."
+            },
+            {
+              "id": "R20-U01-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát abstract trong ngữ cảnh của R20."
+            },
+            {
+              "id": "R20-U01-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển abstract sang nhiệm vụ thực tế phù hợp với R20."
+            }
+          ]
+        },
+        {
+          "id": "R20-U02",
+          "title": "contribution",
+          "microLessons": [
+            {
+              "id": "R20-U02-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu contribution trong ngữ cảnh của R20."
+            },
+            {
+              "id": "R20-U02-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát contribution trong ngữ cảnh của R20."
+            },
+            {
+              "id": "R20-U02-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển contribution sang nhiệm vụ thực tế phù hợp với R20."
+            }
+          ]
+        },
+        {
+          "id": "R20-U03",
+          "title": "compare papers",
+          "microLessons": [
+            {
+              "id": "R20-U03-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu compare papers trong ngữ cảnh của R20."
+            },
+            {
+              "id": "R20-U03-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát compare papers trong ngữ cảnh của R20."
+            },
+            {
+              "id": "R20-U03-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển compare papers sang nhiệm vụ thực tế phù hợp với R20."
+            }
+          ]
+        },
+        {
+          "id": "R20-U04",
+          "title": "sources",
+          "microLessons": [
+            {
+              "id": "R20-U04-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu sources trong ngữ cảnh của R20."
+            },
+            {
+              "id": "R20-U04-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát sources trong ngữ cảnh của R20."
+            },
+            {
+              "id": "R20-U04-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển sources sang nhiệm vụ thực tế phù hợp với R20."
+            }
+          ]
+        },
+        {
+          "id": "R20-U05",
+          "title": "method",
+          "microLessons": [
+            {
+              "id": "R20-U05-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu method trong ngữ cảnh của R20."
+            },
+            {
+              "id": "R20-U05-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát method trong ngữ cảnh của R20."
+            },
+            {
+              "id": "R20-U05-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển method sang nhiệm vụ thực tế phù hợp với R20."
+            }
+          ]
+        },
+        {
+          "id": "R20-U06",
+          "title": "dataset",
+          "microLessons": [
+            {
+              "id": "R20-U06-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu dataset trong ngữ cảnh của R20."
+            },
+            {
+              "id": "R20-U06-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát dataset trong ngữ cảnh của R20."
+            },
+            {
+              "id": "R20-U06-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển dataset sang nhiệm vụ thực tế phù hợp với R20."
+            }
+          ]
+        },
+        {
+          "id": "R20-U07",
+          "title": "experimental design",
+          "microLessons": [
+            {
+              "id": "R20-U07-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu experimental design trong ngữ cảnh của R20."
+            },
+            {
+              "id": "R20-U07-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát experimental design trong ngữ cảnh của R20."
+            },
+            {
+              "id": "R20-U07-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển experimental design sang nhiệm vụ thực tế phù hợp với R20."
+            }
+          ]
+        },
+        {
+          "id": "R20-U08",
+          "title": "evidence",
+          "microLessons": [
+            {
+              "id": "R20-U08-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu evidence trong ngữ cảnh của R20."
+            },
+            {
+              "id": "R20-U08-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát evidence trong ngữ cảnh của R20."
+            },
+            {
+              "id": "R20-U08-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển evidence sang nhiệm vụ thực tế phù hợp với R20."
+            }
+          ]
+        },
+        {
+          "id": "R20-U09",
+          "title": "limitations",
+          "microLessons": [
+            {
+              "id": "R20-U09-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu limitations trong ngữ cảnh của R20."
+            },
+            {
+              "id": "R20-U09-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát limitations trong ngữ cảnh của R20."
+            },
+            {
+              "id": "R20-U09-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển limitations sang nhiệm vụ thực tế phù hợp với R20."
+            }
+          ]
+        }
+      ],
+      "exitGate": null,
+      "stageGate": "hk3-nir-presentation-qa"
+    },
+    {
+      "id": "R21",
+      "stage": "hk3",
+      "title": "Seminar · Argumentation · Critique",
+      "legacyIdentity": "R21",
+      "identityPolicy": "PRESERVE",
+      "units": [
+        {
+          "id": "R21-U01",
+          "title": "position",
+          "microLessons": [
+            {
+              "id": "R21-U01-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu position trong ngữ cảnh của R21."
+            },
+            {
+              "id": "R21-U01-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát position trong ngữ cảnh của R21."
+            },
+            {
+              "id": "R21-U01-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển position sang nhiệm vụ thực tế phù hợp với R21."
+            }
+          ]
+        },
+        {
+          "id": "R21-U02",
+          "title": "reason",
+          "microLessons": [
+            {
+              "id": "R21-U02-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu reason trong ngữ cảnh của R21."
+            },
+            {
+              "id": "R21-U02-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát reason trong ngữ cảnh của R21."
+            },
+            {
+              "id": "R21-U02-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển reason sang nhiệm vụ thực tế phù hợp với R21."
+            }
+          ]
+        },
+        {
+          "id": "R21-U03",
+          "title": "evidence",
+          "microLessons": [
+            {
+              "id": "R21-U03-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu evidence trong ngữ cảnh của R21."
+            },
+            {
+              "id": "R21-U03-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát evidence trong ngữ cảnh của R21."
+            },
+            {
+              "id": "R21-U03-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển evidence sang nhiệm vụ thực tế phù hợp với R21."
+            }
+          ]
+        },
+        {
+          "id": "R21-U04",
+          "title": "agree/disagree",
+          "microLessons": [
+            {
+              "id": "R21-U04-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu agree/disagree trong ngữ cảnh của R21."
+            },
+            {
+              "id": "R21-U04-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát agree/disagree trong ngữ cảnh của R21."
+            },
+            {
+              "id": "R21-U04-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển agree/disagree sang nhiệm vụ thực tế phù hợp với R21."
+            }
+          ]
+        },
+        {
+          "id": "R21-U05",
+          "title": "clarification",
+          "microLessons": [
+            {
+              "id": "R21-U05-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu clarification trong ngữ cảnh của R21."
+            },
+            {
+              "id": "R21-U05-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát clarification trong ngữ cảnh của R21."
+            },
+            {
+              "id": "R21-U05-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển clarification sang nhiệm vụ thực tế phù hợp với R21."
+            }
+          ]
+        },
+        {
+          "id": "R21-U06",
+          "title": "challenge",
+          "microLessons": [
+            {
+              "id": "R21-U06-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu challenge trong ngữ cảnh của R21."
+            },
+            {
+              "id": "R21-U06-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát challenge trong ngữ cảnh của R21."
+            },
+            {
+              "id": "R21-U06-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển challenge sang nhiệm vụ thực tế phù hợp với R21."
+            }
+          ]
+        },
+        {
+          "id": "R21-U07",
+          "title": "counterargument",
+          "microLessons": [
+            {
+              "id": "R21-U07-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu counterargument trong ngữ cảnh của R21."
+            },
+            {
+              "id": "R21-U07-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát counterargument trong ngữ cảnh của R21."
+            },
+            {
+              "id": "R21-U07-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển counterargument sang nhiệm vụ thực tế phù hợp với R21."
+            }
+          ]
+        },
+        {
+          "id": "R21-U08",
+          "title": "defend",
+          "microLessons": [
+            {
+              "id": "R21-U08-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu defend trong ngữ cảnh của R21."
+            },
+            {
+              "id": "R21-U08-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát defend trong ngữ cảnh của R21."
+            },
+            {
+              "id": "R21-U08-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển defend sang nhiệm vụ thực tế phù hợp với R21."
+            }
+          ]
+        },
+        {
+          "id": "R21-U09",
+          "title": "admit limitation",
+          "microLessons": [
+            {
+              "id": "R21-U09-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu admit limitation trong ngữ cảnh của R21."
+            },
+            {
+              "id": "R21-U09-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát admit limitation trong ngữ cảnh của R21."
+            },
+            {
+              "id": "R21-U09-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển admit limitation sang nhiệm vụ thực tế phù hợp với R21."
+            }
+          ]
+        }
+      ],
+      "exitGate": null,
+      "stageGate": "hk3-nir-presentation-qa"
+    },
+    {
+      "id": "R22",
+      "stage": "hk3",
+      "title": "НИР Production",
+      "legacyIdentity": "R22",
+      "identityPolicy": "PRESERVE",
+      "units": [
+        {
+          "id": "R22-U01",
+          "title": "structure",
+          "microLessons": [
+            {
+              "id": "R22-U01-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu structure trong ngữ cảnh của R22."
+            },
+            {
+              "id": "R22-U01-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát structure trong ngữ cảnh của R22."
+            },
+            {
+              "id": "R22-U01-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển structure sang nhiệm vụ thực tế phù hợp với R22."
+            }
+          ]
+        },
+        {
+          "id": "R22-U02",
+          "title": "introduction",
+          "microLessons": [
+            {
+              "id": "R22-U02-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu introduction trong ngữ cảnh của R22."
+            },
+            {
+              "id": "R22-U02-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát introduction trong ngữ cảnh của R22."
+            },
+            {
+              "id": "R22-U02-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển introduction sang nhiệm vụ thực tế phù hợp với R22."
+            }
+          ]
+        },
+        {
+          "id": "R22-U03",
+          "title": "objectives/tasks",
+          "microLessons": [
+            {
+              "id": "R22-U03-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu objectives/tasks trong ngữ cảnh của R22."
+            },
+            {
+              "id": "R22-U03-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát objectives/tasks trong ngữ cảnh của R22."
+            },
+            {
+              "id": "R22-U03-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển objectives/tasks sang nhiệm vụ thực tế phù hợp với R22."
+            }
+          ]
+        },
+        {
+          "id": "R22-U04",
+          "title": "method",
+          "microLessons": [
+            {
+              "id": "R22-U04-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu method trong ngữ cảnh của R22."
+            },
+            {
+              "id": "R22-U04-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát method trong ngữ cảnh của R22."
+            },
+            {
+              "id": "R22-U04-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển method sang nhiệm vụ thực tế phù hợp với R22."
+            }
+          ]
+        },
+        {
+          "id": "R22-U05",
+          "title": "data",
+          "microLessons": [
+            {
+              "id": "R22-U05-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu data trong ngữ cảnh của R22."
+            },
+            {
+              "id": "R22-U05-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát data trong ngữ cảnh của R22."
+            },
+            {
+              "id": "R22-U05-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển data sang nhiệm vụ thực tế phù hợp với R22."
+            }
+          ]
+        },
+        {
+          "id": "R22-U06",
+          "title": "experiment",
+          "microLessons": [
+            {
+              "id": "R22-U06-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu experiment trong ngữ cảnh của R22."
+            },
+            {
+              "id": "R22-U06-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát experiment trong ngữ cảnh của R22."
+            },
+            {
+              "id": "R22-U06-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển experiment sang nhiệm vụ thực tế phù hợp với R22."
+            }
+          ]
+        },
+        {
+          "id": "R22-U07",
+          "title": "result",
+          "microLessons": [
+            {
+              "id": "R22-U07-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu result trong ngữ cảnh của R22."
+            },
+            {
+              "id": "R22-U07-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát result trong ngữ cảnh của R22."
+            },
+            {
+              "id": "R22-U07-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển result sang nhiệm vụ thực tế phù hợp với R22."
+            }
+          ]
+        },
+        {
+          "id": "R22-U08",
+          "title": "discussion",
+          "microLessons": [
+            {
+              "id": "R22-U08-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu discussion trong ngữ cảnh của R22."
+            },
+            {
+              "id": "R22-U08-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát discussion trong ngữ cảnh của R22."
+            },
+            {
+              "id": "R22-U08-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển discussion sang nhiệm vụ thực tế phù hợp với R22."
+            }
+          ]
+        },
+        {
+          "id": "R22-U09",
+          "title": "limitation",
+          "microLessons": [
+            {
+              "id": "R22-U09-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu limitation trong ngữ cảnh của R22."
+            },
+            {
+              "id": "R22-U09-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát limitation trong ngữ cảnh của R22."
+            },
+            {
+              "id": "R22-U09-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển limitation sang nhiệm vụ thực tế phù hợp với R22."
+            }
+          ]
+        },
+        {
+          "id": "R22-U10",
+          "title": "conclusion",
+          "microLessons": [
+            {
+              "id": "R22-U10-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu conclusion trong ngữ cảnh của R22."
+            },
+            {
+              "id": "R22-U10-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát conclusion trong ngữ cảnh của R22."
+            },
+            {
+              "id": "R22-U10-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển conclusion sang nhiệm vụ thực tế phù hợp với R22."
+            }
+          ]
+        },
+        {
+          "id": "R22-U11",
+          "title": "oral report",
+          "microLessons": [
+            {
+              "id": "R22-U11-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu oral report trong ngữ cảnh của R22."
+            },
+            {
+              "id": "R22-U11-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát oral report trong ngữ cảnh của R22."
+            },
+            {
+              "id": "R22-U11-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển oral report sang nhiệm vụ thực tế phù hợp với R22."
+            }
+          ]
+        },
+        {
+          "id": "R22-U12",
+          "title": "Q&A",
+          "microLessons": [
+            {
+              "id": "R22-U12-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu Q&A trong ngữ cảnh của R22."
+            },
+            {
+              "id": "R22-U12-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát Q&A trong ngữ cảnh của R22."
+            },
+            {
+              "id": "R22-U12-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển Q&A sang nhiệm vụ thực tế phù hợp với R22."
+            }
+          ]
+        }
+      ],
+      "exitGate": null,
+      "stageGate": "hk3-nir-presentation-qa"
+    },
+    {
+      "id": "R23",
+      "stage": "hk4",
+      "title": "ВКР Academic Writing",
+      "legacyIdentity": "R23",
+      "identityPolicy": "PRESERVE",
+      "units": [
+        {
+          "id": "R23-U01",
+          "title": "structure",
+          "microLessons": [
+            {
+              "id": "R23-U01-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu structure trong ngữ cảnh của R23."
+            },
+            {
+              "id": "R23-U01-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát structure trong ngữ cảnh của R23."
+            },
+            {
+              "id": "R23-U01-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển structure sang nhiệm vụ thực tế phù hợp với R23."
+            }
+          ]
+        },
+        {
+          "id": "R23-U02",
+          "title": "introduction",
+          "microLessons": [
+            {
+              "id": "R23-U02-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu introduction trong ngữ cảnh của R23."
+            },
+            {
+              "id": "R23-U02-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát introduction trong ngữ cảnh của R23."
+            },
+            {
+              "id": "R23-U02-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển introduction sang nhiệm vụ thực tế phù hợp với R23."
+            }
+          ]
+        },
+        {
+          "id": "R23-U03",
+          "title": "problem",
+          "microLessons": [
+            {
+              "id": "R23-U03-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu problem trong ngữ cảnh của R23."
+            },
+            {
+              "id": "R23-U03-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát problem trong ngữ cảnh của R23."
+            },
+            {
+              "id": "R23-U03-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển problem sang nhiệm vụ thực tế phù hợp với R23."
+            }
+          ]
+        },
+        {
+          "id": "R23-U04",
+          "title": "methodology",
+          "microLessons": [
+            {
+              "id": "R23-U04-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu methodology trong ngữ cảnh của R23."
+            },
+            {
+              "id": "R23-U04-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát methodology trong ngữ cảnh của R23."
+            },
+            {
+              "id": "R23-U04-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển methodology sang nhiệm vụ thực tế phù hợp với R23."
+            }
+          ]
+        },
+        {
+          "id": "R23-U05",
+          "title": "system/model",
+          "microLessons": [
+            {
+              "id": "R23-U05-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu system/model trong ngữ cảnh của R23."
+            },
+            {
+              "id": "R23-U05-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát system/model trong ngữ cảnh của R23."
+            },
+            {
+              "id": "R23-U05-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển system/model sang nhiệm vụ thực tế phù hợp với R23."
+            }
+          ]
+        },
+        {
+          "id": "R23-U06",
+          "title": "experiment",
+          "microLessons": [
+            {
+              "id": "R23-U06-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu experiment trong ngữ cảnh của R23."
+            },
+            {
+              "id": "R23-U06-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát experiment trong ngữ cảnh của R23."
+            },
+            {
+              "id": "R23-U06-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển experiment sang nhiệm vụ thực tế phù hợp với R23."
+            }
+          ]
+        },
+        {
+          "id": "R23-U07",
+          "title": "results",
+          "microLessons": [
+            {
+              "id": "R23-U07-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu results trong ngữ cảnh của R23."
+            },
+            {
+              "id": "R23-U07-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát results trong ngữ cảnh của R23."
+            },
+            {
+              "id": "R23-U07-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển results sang nhiệm vụ thực tế phù hợp với R23."
+            }
+          ]
+        },
+        {
+          "id": "R23-U08",
+          "title": "discussion",
+          "microLessons": [
+            {
+              "id": "R23-U08-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu discussion trong ngữ cảnh của R23."
+            },
+            {
+              "id": "R23-U08-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát discussion trong ngữ cảnh của R23."
+            },
+            {
+              "id": "R23-U08-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển discussion sang nhiệm vụ thực tế phù hợp với R23."
+            }
+          ]
+        },
+        {
+          "id": "R23-U09",
+          "title": "limitations",
+          "microLessons": [
+            {
+              "id": "R23-U09-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu limitations trong ngữ cảnh của R23."
+            },
+            {
+              "id": "R23-U09-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát limitations trong ngữ cảnh của R23."
+            },
+            {
+              "id": "R23-U09-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển limitations sang nhiệm vụ thực tế phù hợp với R23."
+            }
+          ]
+        },
+        {
+          "id": "R23-U10",
+          "title": "conclusion",
+          "microLessons": [
+            {
+              "id": "R23-U10-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu conclusion trong ngữ cảnh của R23."
+            },
+            {
+              "id": "R23-U10-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát conclusion trong ngữ cảnh của R23."
+            },
+            {
+              "id": "R23-U10-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển conclusion sang nhiệm vụ thực tế phù hợp với R23."
+            }
+          ]
+        },
+        {
+          "id": "R23-U11",
+          "title": "abstract",
+          "microLessons": [
+            {
+              "id": "R23-U11-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu abstract trong ngữ cảnh của R23."
+            },
+            {
+              "id": "R23-U11-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát abstract trong ngữ cảnh của R23."
+            },
+            {
+              "id": "R23-U11-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển abstract sang nhiệm vụ thực tế phù hợp với R23."
+            }
+          ]
+        }
+      ],
+      "exitGate": null,
+      "stageGate": "hk4-final-capstone"
+    },
+    {
+      "id": "R24",
+      "stage": "hk4",
+      "title": "Figures · Tables · Slides",
+      "legacyIdentity": "R24",
+      "identityPolicy": "PRESERVE",
+      "units": [
+        {
+          "id": "R24-U01",
+          "title": "tables",
+          "microLessons": [
+            {
+              "id": "R24-U01-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu tables trong ngữ cảnh của R24."
+            },
+            {
+              "id": "R24-U01-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát tables trong ngữ cảnh của R24."
+            },
+            {
+              "id": "R24-U01-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển tables sang nhiệm vụ thực tế phù hợp với R24."
+            }
+          ]
+        },
+        {
+          "id": "R24-U02",
+          "title": "graphs",
+          "microLessons": [
+            {
+              "id": "R24-U02-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu graphs trong ngữ cảnh của R24."
+            },
+            {
+              "id": "R24-U02-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát graphs trong ngữ cảnh của R24."
+            },
+            {
+              "id": "R24-U02-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển graphs sang nhiệm vụ thực tế phù hợp với R24."
+            }
+          ]
+        },
+        {
+          "id": "R24-U03",
+          "title": "trends",
+          "microLessons": [
+            {
+              "id": "R24-U03-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu trends trong ngữ cảnh của R24."
+            },
+            {
+              "id": "R24-U03-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát trends trong ngữ cảnh của R24."
+            },
+            {
+              "id": "R24-U03-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển trends sang nhiệm vụ thực tế phù hợp với R24."
+            }
+          ]
+        },
+        {
+          "id": "R24-U04",
+          "title": "maxima/minima",
+          "microLessons": [
+            {
+              "id": "R24-U04-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu maxima/minima trong ngữ cảnh của R24."
+            },
+            {
+              "id": "R24-U04-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát maxima/minima trong ngữ cảnh của R24."
+            },
+            {
+              "id": "R24-U04-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển maxima/minima sang nhiệm vụ thực tế phù hợp với R24."
+            }
+          ]
+        },
+        {
+          "id": "R24-U05",
+          "title": "comparison",
+          "microLessons": [
+            {
+              "id": "R24-U05-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu comparison trong ngữ cảnh của R24."
+            },
+            {
+              "id": "R24-U05-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát comparison trong ngữ cảnh của R24."
+            },
+            {
+              "id": "R24-U05-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển comparison sang nhiệm vụ thực tế phù hợp với R24."
+            }
+          ]
+        },
+        {
+          "id": "R24-U06",
+          "title": "architecture diagram",
+          "microLessons": [
+            {
+              "id": "R24-U06-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu architecture diagram trong ngữ cảnh của R24."
+            },
+            {
+              "id": "R24-U06-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát architecture diagram trong ngữ cảnh của R24."
+            },
+            {
+              "id": "R24-U06-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển architecture diagram sang nhiệm vụ thực tế phù hợp với R24."
+            }
+          ]
+        },
+        {
+          "id": "R24-U07",
+          "title": "algorithm diagram",
+          "microLessons": [
+            {
+              "id": "R24-U07-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu algorithm diagram trong ngữ cảnh của R24."
+            },
+            {
+              "id": "R24-U07-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát algorithm diagram trong ngữ cảnh của R24."
+            },
+            {
+              "id": "R24-U07-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển algorithm diagram sang nhiệm vụ thực tế phù hợp với R24."
+            }
+          ]
+        },
+        {
+          "id": "R24-U08",
+          "title": "slide transitions",
+          "microLessons": [
+            {
+              "id": "R24-U08-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu slide transitions trong ngữ cảnh của R24."
+            },
+            {
+              "id": "R24-U08-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát slide transitions trong ngữ cảnh của R24."
+            },
+            {
+              "id": "R24-U08-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển slide transitions sang nhiệm vụ thực tế phù hợp với R24."
+            }
+          ]
+        },
+        {
+          "id": "R24-U09",
+          "title": "presentation signposting",
+          "microLessons": [
+            {
+              "id": "R24-U09-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu presentation signposting trong ngữ cảnh của R24."
+            },
+            {
+              "id": "R24-U09-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát presentation signposting trong ngữ cảnh của R24."
+            },
+            {
+              "id": "R24-U09-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển presentation signposting sang nhiệm vụ thực tế phù hợp với R24."
+            }
+          ]
+        }
+      ],
+      "exitGate": null,
+      "stageGate": "hk4-final-capstone"
+    },
+    {
+      "id": "R25",
+      "stage": "hk4",
+      "title": "Defense Q&A",
+      "legacyIdentity": "R25",
+      "identityPolicy": "PRESERVE",
+      "units": [
+        {
+          "id": "R25-U01",
+          "title": "direct answers",
+          "microLessons": [
+            {
+              "id": "R25-U01-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu direct answers trong ngữ cảnh của R25."
+            },
+            {
+              "id": "R25-U01-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát direct answers trong ngữ cảnh của R25."
+            },
+            {
+              "id": "R25-U01-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển direct answers sang nhiệm vụ thực tế phù hợp với R25."
+            }
+          ]
+        },
+        {
+          "id": "R25-U02",
+          "title": "clarify question",
+          "microLessons": [
+            {
+              "id": "R25-U02-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu clarify question trong ngữ cảnh của R25."
+            },
+            {
+              "id": "R25-U02-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát clarify question trong ngữ cảnh của R25."
+            },
+            {
+              "id": "R25-U02-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển clarify question sang nhiệm vụ thực tế phù hợp với R25."
+            }
+          ]
+        },
+        {
+          "id": "R25-U03",
+          "title": "ask repetition",
+          "microLessons": [
+            {
+              "id": "R25-U03-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu ask repetition trong ngữ cảnh của R25."
+            },
+            {
+              "id": "R25-U03-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát ask repetition trong ngữ cảnh của R25."
+            },
+            {
+              "id": "R25-U03-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển ask repetition sang nhiệm vụ thực tế phù hợp với R25."
+            }
+          ]
+        },
+        {
+          "id": "R25-U04",
+          "title": "justify method",
+          "microLessons": [
+            {
+              "id": "R25-U04-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu justify method trong ngữ cảnh của R25."
+            },
+            {
+              "id": "R25-U04-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát justify method trong ngữ cảnh của R25."
+            },
+            {
+              "id": "R25-U04-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển justify method sang nhiệm vụ thực tế phù hợp với R25."
+            }
+          ]
+        },
+        {
+          "id": "R25-U05",
+          "title": "explain choice",
+          "microLessons": [
+            {
+              "id": "R25-U05-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu explain choice trong ngữ cảnh của R25."
+            },
+            {
+              "id": "R25-U05-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát explain choice trong ngữ cảnh của R25."
+            },
+            {
+              "id": "R25-U05-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển explain choice sang nhiệm vụ thực tế phù hợp với R25."
+            }
+          ]
+        },
+        {
+          "id": "R25-U06",
+          "title": "limitation",
+          "microLessons": [
+            {
+              "id": "R25-U06-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu limitation trong ngữ cảnh của R25."
+            },
+            {
+              "id": "R25-U06-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát limitation trong ngữ cảnh của R25."
+            },
+            {
+              "id": "R25-U06-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển limitation sang nhiệm vụ thực tế phù hợp với R25."
+            }
+          ]
+        },
+        {
+          "id": "R25-U07",
+          "title": "criticism",
+          "microLessons": [
+            {
+              "id": "R25-U07-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu criticism trong ngữ cảnh của R25."
+            },
+            {
+              "id": "R25-U07-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát criticism trong ngữ cảnh của R25."
+            },
+            {
+              "id": "R25-U07-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển criticism sang nhiệm vụ thực tế phù hợp với R25."
+            }
+          ]
+        },
+        {
+          "id": "R25-U08",
+          "title": "unknown answer",
+          "microLessons": [
+            {
+              "id": "R25-U08-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu unknown answer trong ngữ cảnh của R25."
+            },
+            {
+              "id": "R25-U08-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát unknown answer trong ngữ cảnh của R25."
+            },
+            {
+              "id": "R25-U08-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển unknown answer sang nhiệm vụ thực tế phù hợp với R25."
+            }
+          ]
+        },
+        {
+          "id": "R25-U09",
+          "title": "insufficient data",
+          "microLessons": [
+            {
+              "id": "R25-U09-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu insufficient data trong ngữ cảnh của R25."
+            },
+            {
+              "id": "R25-U09-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát insufficient data trong ngữ cảnh của R25."
+            },
+            {
+              "id": "R25-U09-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển insufficient data sang nhiệm vụ thực tế phù hợp với R25."
+            }
+          ]
+        },
+        {
+          "id": "R25-U10",
+          "title": "future work",
+          "microLessons": [
+            {
+              "id": "R25-U10-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu future work trong ngữ cảnh của R25."
+            },
+            {
+              "id": "R25-U10-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát future work trong ngữ cảnh của R25."
+            },
+            {
+              "id": "R25-U10-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển future work sang nhiệm vụ thực tế phù hợp với R25."
+            }
+          ]
+        },
+        {
+          "id": "R25-U11",
+          "title": "unexpected questions",
+          "microLessons": [
+            {
+              "id": "R25-U11-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu unexpected questions trong ngữ cảnh của R25."
+            },
+            {
+              "id": "R25-U11-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát unexpected questions trong ngữ cảnh của R25."
+            },
+            {
+              "id": "R25-U11-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển unexpected questions sang nhiệm vụ thực tế phù hợp với R25."
+            }
+          ]
+        }
+      ],
+      "exitGate": null,
+      "stageGate": "hk4-final-capstone"
+    },
+    {
+      "id": "R26",
+      "stage": "hk4",
+      "title": "Final Bauman Russian Capstone",
+      "legacyIdentity": "R26",
+      "identityPolicy": "PRESERVE",
+      "units": [
+        {
+          "id": "R26-U01",
+          "title": "survival regression",
+          "microLessons": [
+            {
+              "id": "R26-U01-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu survival regression trong ngữ cảnh của R26."
+            },
+            {
+              "id": "R26-U01-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát survival regression trong ngữ cảnh của R26."
+            },
+            {
+              "id": "R26-U01-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển survival regression sang nhiệm vụ thực tế phù hợp với R26."
+            }
+          ]
+        },
+        {
+          "id": "R26-U02",
+          "title": "classroom regression",
+          "microLessons": [
+            {
+              "id": "R26-U02-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu classroom regression trong ngữ cảnh của R26."
+            },
+            {
+              "id": "R26-U02-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát classroom regression trong ngữ cảnh của R26."
+            },
+            {
+              "id": "R26-U02-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển classroom regression sang nhiệm vụ thực tế phù hợp với R26."
+            }
+          ]
+        },
+        {
+          "id": "R26-U03",
+          "title": "technical reading",
+          "microLessons": [
+            {
+              "id": "R26-U03-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu technical reading trong ngữ cảnh của R26."
+            },
+            {
+              "id": "R26-U03-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát technical reading trong ngữ cảnh của R26."
+            },
+            {
+              "id": "R26-U03-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển technical reading sang nhiệm vụ thực tế phù hợp với R26."
+            }
+          ]
+        },
+        {
+          "id": "R26-U04",
+          "title": "lecture listening",
+          "microLessons": [
+            {
+              "id": "R26-U04-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu lecture listening trong ngữ cảnh của R26."
+            },
+            {
+              "id": "R26-U04-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát lecture listening trong ngữ cảnh của R26."
+            },
+            {
+              "id": "R26-U04-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển lecture listening sang nhiệm vụ thực tế phù hợp với R26."
+            }
+          ]
+        },
+        {
+          "id": "R26-U05",
+          "title": "technical explanation",
+          "microLessons": [
+            {
+              "id": "R26-U05-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu technical explanation trong ngữ cảnh của R26."
+            },
+            {
+              "id": "R26-U05-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát technical explanation trong ngữ cảnh của R26."
+            },
+            {
+              "id": "R26-U05-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển technical explanation sang nhiệm vụ thực tế phù hợp với R26."
+            }
+          ]
+        },
+        {
+          "id": "R26-U06",
+          "title": "academic writing",
+          "microLessons": [
+            {
+              "id": "R26-U06-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu academic writing trong ngữ cảnh của R26."
+            },
+            {
+              "id": "R26-U06-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát academic writing trong ngữ cảnh của R26."
+            },
+            {
+              "id": "R26-U06-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển academic writing sang nhiệm vụ thực tế phù hợp với R26."
+            }
+          ]
+        },
+        {
+          "id": "R26-U07",
+          "title": "research presentation",
+          "microLessons": [
+            {
+              "id": "R26-U07-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu research presentation trong ngữ cảnh của R26."
+            },
+            {
+              "id": "R26-U07-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát research presentation trong ngữ cảnh của R26."
+            },
+            {
+              "id": "R26-U07-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển research presentation sang nhiệm vụ thực tế phù hợp với R26."
+            }
+          ]
+        },
+        {
+          "id": "R26-U08",
+          "title": "defense",
+          "microLessons": [
+            {
+              "id": "R26-U08-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu defense trong ngữ cảnh của R26."
+            },
+            {
+              "id": "R26-U08-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát defense trong ngữ cảnh của R26."
+            },
+            {
+              "id": "R26-U08-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển defense sang nhiệm vụ thực tế phù hợp với R26."
+            }
+          ]
+        },
+        {
+          "id": "R26-U09",
+          "title": "unexpected Q&A",
+          "microLessons": [
+            {
+              "id": "R26-U09-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu unexpected Q&A trong ngữ cảnh của R26."
+            },
+            {
+              "id": "R26-U09-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát unexpected Q&A trong ngữ cảnh của R26."
+            },
+            {
+              "id": "R26-U09-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển unexpected Q&A sang nhiệm vụ thực tế phù hợp với R26."
+            }
+          ]
+        },
+        {
+          "id": "R26-U10",
+          "title": "remediation",
+          "microLessons": [
+            {
+              "id": "R26-U10-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu remediation trong ngữ cảnh của R26."
+            },
+            {
+              "id": "R26-U10-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát remediation trong ngữ cảnh của R26."
+            },
+            {
+              "id": "R26-U10-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển remediation sang nhiệm vụ thực tế phù hợp với R26."
+            }
+          ]
+        },
+        {
+          "id": "R26-U11",
+          "title": "reassessment",
+          "microLessons": [
+            {
+              "id": "R26-U11-M01",
+              "phase": "exposure-understanding",
+              "objective": "Nhận diện và hiểu reassessment trong ngữ cảnh của R26."
+            },
+            {
+              "id": "R26-U11-M02",
+              "phase": "retrieval-controlled-production",
+              "objective": "Gọi lại và dùng có kiểm soát reassessment trong ngữ cảnh của R26."
+            },
+            {
+              "id": "R26-U11-M03",
+              "phase": "transfer-real-world-performance",
+              "objective": "Chuyển reassessment sang nhiệm vụ thực tế phù hợp với R26."
+            }
+          ]
+        }
+      ],
+      "exitGate": null,
+      "stageGate": "hk4-final-capstone"
+    }
+  ],
+  "spiral": {
+    "speaking": [
+      "sentence",
+      "dialogue",
+      "explanation",
+      "presentation",
+      "research",
+      "defense"
+    ],
+    "listening": [
+      "sound",
+      "sentence",
+      "announcement",
+      "classroom",
+      "technical explanation",
+      "lecture",
+      "seminar",
+      "defense"
+    ],
+    "writing": [
+      "letters",
+      "sentences",
+      "forms",
+      "emails",
+      "notes",
+      "reports",
+      "НИР",
+      "ВКР"
+    ],
+    "rules": [
+      "phonetics does not end at R01",
+      "grammar does not end at R08"
+    ]
+  }
+}
