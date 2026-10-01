@@ -1,1 +1,89 @@
-<!doctype html><html data-bauman-ui="future-v1"><head><meta charset="utf-8"><title>Russian Editor</title><link rel="stylesheet" href="../../platform/ui/bauman-ui.css?v=1"></head><body><p>Mở <a href="index.html">index.html</a> để quản lý dữ liệu môn Tiếng Nga.</p><script src="../../platform/ui/bauman-ui.js?v=1"></script></body></html>
+<!doctype html>
+<html data-bauman-ui="future-v1" lang="vi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Russian Authoring · Bauman</title>
+<link rel="stylesheet" href="../../platform/ui/bauman-ui.css?v=1">
+<style>
+body{margin:0;background:#f4f7fb;color:#13243a;font-family:Inter,"Segoe UI",Arial,sans-serif}
+.ru-author{max-width:1180px;margin:auto;padding:24px}.ru-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:16px}
+.ru-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(320px,.95fr);gap:16px}.ru-card{background:#fff;border:1px solid #dce5f0;border-radius:18px;padding:18px;box-shadow:0 6px 22px rgba(25,50,80,.05)}
+.ru-form{display:grid;grid-template-columns:1fr 1fr;gap:12px}.wide{grid-column:1/-1}label{display:grid;gap:6px;font-size:13px;font-weight:700}
+input,select,textarea{width:100%;box-sizing:border-box;border:1px solid #cbd8e8;border-radius:11px;padding:10px 11px;background:#fff;color:inherit;font:inherit}
+textarea{min-height:88px;resize:vertical}.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}button,a.btn{border:1px solid #c8d5e5;border-radius:11px;padding:10px 13px;background:#fff;color:#153250;font-weight:750;text-decoration:none;cursor:pointer}
+button.primary{background:#1d4ed8;color:#fff;border-color:#1d4ed8}.note{font-size:13px;line-height:1.5;color:#52657c}.status{margin-top:10px;padding:10px 12px;border-radius:10px;background:#f1f5f9;font-size:13px}
+pre{white-space:pre-wrap;word-break:break-word;max-height:520px;overflow:auto;background:#0f172a;color:#e2e8f0;padding:14px;border-radius:12px;font-size:12px}
+details{margin-top:12px}.badge{display:inline-block;padding:4px 8px;border-radius:999px;background:#e8f0ff;color:#214e9b;font-size:12px;font-weight:800}
+@media(max-width:850px){.ru-grid{grid-template-columns:1fr}.ru-form{grid-template-columns:1fr}.wide{grid-column:auto}.ru-head{display:block}}
+</style>
+</head>
+<body>
+<main class="ru-author" data-ru08-authoring>
+  <header class="ru-head">
+    <div><span class="badge">RU08 · staged authoring</span><h1>Biên tập nội dung Tiếng Nga</h1><p class="note">Tạo <b>candidate</b> có cấu trúc để review. Trang này không ghi trực tiếp vào canonical content và không bỏ qua provenance/reviewer.</p></div>
+    <a class="btn" href="index.html">Mở môn học</a>
+  </header>
+  <div class="ru-grid">
+    <section class="ru-card">
+      <h2>Candidate mới</h2>
+      <div class="ru-form">
+        <label>Loại nội dung<select id="responsibility">
+          <option value="lesson-content">Bài học</option><option value="vocab">Từ vựng</option><option value="grammar">Ngữ pháp</option>
+          <option value="practice-exercise">Bài tập</option><option value="assessment">Đánh giá</option><option value="basic-speaking">Nghe/Nói</option>
+          <option value="dialogue">Đối thoại</option><option value="deep-speaking">Deep Speaking</option><option value="writing">Viết</option>
+          <option value="technical-concept">Thuật ngữ kỹ thuật</option><option value="academic-function">Chức năng học thuật</option>
+          <option value="reading">Đọc</option><option value="performance-task">Performance task</option><option value="scenario">Scenario</option>
+        </select></label>
+        <label>Canonical ID<input id="canonicalId" placeholder="VD: LEX-... / R12-U..." autocomplete="off"></label>
+        <label>Revision<input id="revision" placeholder="VD: 2026-10-01-r1" autocomplete="off"></label>
+        <label>Tiêu đề / thuật ngữ<input id="titleField" placeholder="Nội dung chính" autocomplete="off"></label>
+        <label class="wide">Nội dung đề xuất<textarea id="bodyField" placeholder="Viết nội dung đề xuất ở dạng văn bản có cấu trúc, không cần sửa file JSON gốc."></textarea></label>
+        <label class="wide">Nguồn / provenance<textarea id="sourceRefs" placeholder="Mỗi nguồn một dòng; bắt buộc trước khi promote canonical."></textarea></label>
+        <label class="wide">Tóm tắt thay đổi<textarea id="diffSummary" placeholder="Điểm nào thay đổi và vì sao?"></textarea></label>
+        <label class="wide">Kế hoạch rollback<textarea id="rollbackNote" placeholder="Cách phục hồi revision trước nếu có lỗi."></textarea></label>
+        <label><span>Generated candidate?</span><select id="generated"><option value="false">Không</option><option value="true">Có — cần VERIFIED trước promotion</option></select></label>
+      </div>
+      <details>
+        <summary>Chế độ nâng cao: payload JSON bổ sung</summary>
+        <p class="note">Không bắt buộc. Dùng khi schema chuyên biệt cần trường ngoài tiêu đề/nội dung.</p>
+        <textarea id="advancedPayload" placeholder='{"tags":["..."]}'></textarea>
+      </details>
+      <div class="actions"><button class="primary" id="buildBtn">Validate & tạo candidate</button><button id="downloadBtn" disabled>Tải candidate</button><button id="copyReviewBtn" disabled>Copy review metadata</button></div>
+      <div id="authorStatus" class="status" role="status" aria-live="polite">Chưa tạo candidate.</div>
+    </section>
+    <section class="ru-card">
+      <h2>Preview</h2>
+      <p class="note">Lifecycle: DRAFT → VALIDATED → REVIEW_REQUESTED → APPROVED → CANONICAL_PATCHED → PUBLISHED. Content Review chỉ giữ metadata/hash; canonical truth chỉ đổi qua repository patch + CI.</p>
+      <pre id="preview">{}</pre>
+    </section>
+  </div>
+</main>
+<script>
+const OWNER={
+ "lesson-content":"data/lessons.json","vocab":"data/vocab.json","grammar":"data/grammar.json","practice-exercise":"data/exercises.json",
+ "assessment":"data/tests.json","basic-speaking":"data/speaking.json","dialogue":"data/dialogue-bauman-az.json","deep-speaking":"data/deep-speaking-bauman.json",
+ "writing":"data/writing.json","technical-concept":"data/technical-concepts.json","academic-function":"data/academic-functions.json","reading":"data/reading.json",
+ "performance-task":"data/performance-tasks.json","scenario":"data/scenario-registry.json"
+};
+const $=id=>document.getElementById(id); let last=null,lastReview=null;
+const stable=v=>Array.isArray(v)?'['+v.map(stable).join(',')+']':v&&typeof v==='object'?'{'+Object.keys(v).sort().map(k=>JSON.stringify(k)+':'+stable(v[k])).join(',')+'}':JSON.stringify(v);
+async function sha256(v){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(stable(v)));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}
+function lines(v){return String(v||'').split(/\r?\n/).map(x=>x.trim()).filter(Boolean)}
+function uuid(){return crypto.randomUUID?crypto.randomUUID():'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{const r=Math.random()*16|0,v=c==='x'?r:(r&3|8);return v.toString(16)})}
+async function build(){
+ const responsibility=$('responsibility').value,canonicalId=$('canonicalId').value.trim(),revision=$('revision').value.trim(),diffSummary=$('diffSummary').value.trim(),rollbackNote=$('rollbackNote').value.trim();
+ if(!canonicalId||!revision||!diffSummary||!rollbackNote){$('authorStatus').textContent='Thiếu Canonical ID, revision, tóm tắt thay đổi hoặc rollback.';return}
+ let extra={};const adv=$('advancedPayload').value.trim();if(adv){try{extra=JSON.parse(adv)}catch(e){$('authorStatus').textContent='Payload nâng cao chưa phải JSON hợp lệ.';return}}
+ const payload={title:$('titleField').value.trim(),content:$('bodyField').value.trim(),...extra};
+ const candidate={schema:'RUSSIAN_AUTHORING_CANDIDATE_V2',candidateId:'RU08-'+uuid(),responsibility,canonicalId,revision,state:'VALIDATED',generated:$('generated').value==='true',payload,sourceRefs:lines($('sourceRefs').value),rollbackNote,diffSummary,canonicalPatched:false};
+ candidate.contentHash=await sha256(payload);
+ last=candidate;lastReview={reviewId:uuid(),subjectId:'russian',resourceType:responsibility,resourceId:canonicalId,revision,contentHash:candidate.contentHash,sourcePath:'subjects/russian/'+OWNER[responsibility],summary:diffSummary,metadataOnly:true,candidateId:candidate.candidateId};
+ $('preview').textContent=JSON.stringify({candidate,reviewEnvelope:lastReview},null,2);$('downloadBtn').disabled=false;$('copyReviewBtn').disabled=false;
+ $('authorStatus').textContent=candidate.sourceRefs.length?'Candidate VALIDATED. Có source refs; bước tiếp theo là Content Review.':'Candidate VALIDATED nhưng chưa có source refs; không được promote canonical.';
+}
+$('buildBtn').addEventListener('click',build);
+$('downloadBtn').addEventListener('click',()=>{if(!last)return;const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(last,null,2)],{type:'application/json'}));a.download=last.candidateId+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),0)});
+$('copyReviewBtn').addEventListener('click',async()=>{if(!lastReview)return;await navigator.clipboard?.writeText(JSON.stringify(lastReview,null,2));$('authorStatus').textContent='Đã copy metadata Content Review. Canonical content chưa bị thay đổi.'});
+</script>
+<script src="../../platform/ui/bauman-ui.js?v=1"></script>
+</body></html>
