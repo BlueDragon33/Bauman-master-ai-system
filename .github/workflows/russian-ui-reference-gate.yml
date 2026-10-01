@@ -31,6 +31,8 @@ jobs:
         run: node subjects/russian/scripts/validate-p2-curriculum-contract.mjs
       - name: Validate Russian P3 content schema
         run: node subjects/russian/scripts/validate-p3-content-schema.mjs
+      - name: Validate Russian RU02 canonical model
+        run: node subjects/russian/scripts/validate-ru02-canonical-model.mjs
       - name: Validate Russian P4 assessment mastery
         run: node subjects/russian/scripts/validate-p4-assessment-mastery.mjs
       - name: Validate Russian P5 adaptive planner contract
