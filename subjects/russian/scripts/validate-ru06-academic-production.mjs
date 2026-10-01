@@ -17,4 +17,10 @@ for(const x of ['numbers','equations','code-identifiers','experimental-results']
 for(const x of ['source-fact','interpretation','learner-claim','generated-suggestion']) assert(lineage.claimTypes.includes(x));
 for(const x of ['presentation','defense','novel-technical-transfer']) assert(arch.progression.includes(x));
 assert.deepEqual(map.stages.flatMap(x=>x.targets),Array.from({length:16},(_,i)=>'R'+String(i+11).padStart(2,'0')));
+const runtime=fs.readFileSync('subjects/russian/assets/academic-production.js','utf8');
+const index=fs.readFileSync('subjects/russian/index.html','utf8');
+for(const token of ['RUSSIAN_RU06_ACADEMIC_PRODUCTION_V1','technical-concepts','academic-functions','reading','performance-tasks','learner-production-snapshot','novel-transfer','authoritative:false']) assert(runtime.includes(token),'RU06 runtime missing '+token);
+assert(index.includes('assets/academic-production.js'),'RU06 production runtime not loaded');
+assert(index.includes('assets/academic-production.css'),'RU06 production UI style not loaded');
+assert(fs.existsSync('tests/russian-ru06-academic-production-browser.mjs'),'RU06 browser production acceptance missing');
 console.log(JSON.stringify({ok:true,technicalConcepts:tech.concepts.length,academicFunctions:af.functions.length,readingTasks:rd.tasks.length,performanceTasks:pt.tasks.length}));
