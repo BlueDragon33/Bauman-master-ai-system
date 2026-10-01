@@ -7,6 +7,7 @@ on:
     paths:
       - 'prompt-archives/*.zip'
       - 'prompt-archives/_remaining-subject-sources.b64.part*'
+      - 'prompt-archives/_remaining-subject-sources.tar.xz.b64.part*'
       - 'scripts/normalize_prompt_archives.py'
       - '.github/workflows/normalize-prompt-archives.yml'
 
