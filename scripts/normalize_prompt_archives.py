@@ -6,6 +6,7 @@ import hashlib
 import json
 import shutil
 import tempfile
+import tarfile
 import zipfile
 from pathlib import Path
 
@@ -13,7 +14,9 @@ ROOT = Path(__file__).resolve().parents[1]
 ARCHIVES = ROOT / "prompt-archives"
 SUBJECTS = ROOT / "prompts" / "subjects"
 BOOTSTRAP = ARCHIVES / "_remaining-subject-sources.zip"
+BOOTSTRAP_TAR = ARCHIVES / "_remaining-subject-sources.tar.xz"
 BOOTSTRAP_PART_GLOB = "_remaining-subject-sources.b64.part*"
+BOOTSTRAP_TAR_PART_GLOB = "_remaining-subject-sources.tar.xz.b64.part*"
 
 PACKAGES = {
     "russian-pack.zip": {"slug":"russian","normalize":False,"prefix":"RU","label":"Russian","sourceRoot":"RUSSIAN_PROMPT_SYSTEM"},
@@ -171,29 +174,56 @@ def deterministic_zip(src_dir: Path, out: Path):
             zf.writestr(info,p.read_bytes())
 
 def bootstrap_import(results: dict):
-    parts=sorted(ARCHIVES.glob(BOOTSTRAP_PART_GLOB))
-    bootstrap_path=BOOTSTRAP
+    zip_parts=sorted(ARCHIVES.glob(BOOTSTRAP_PART_GLOB))
+    tar_parts=sorted(ARCHIVES.glob(BOOTSTRAP_TAR_PART_GLOB))
+    bootstrap_path=None
+    archive_kind=None
     temp_bootstrap=None
-    if not bootstrap_path.exists() and parts:
-        temp_bootstrap=Path(tempfile.mkstemp(suffix=".zip")[1])
-        payload="".join(p.read_text(encoding="ascii").strip() for p in parts)
+
+    if BOOTSTRAP_TAR.exists():
+        bootstrap_path=BOOTSTRAP_TAR
+        archive_kind="tar.xz"
+    elif BOOTSTRAP.exists():
+        bootstrap_path=BOOTSTRAP
+        archive_kind="zip"
+    elif tar_parts:
+        temp_bootstrap=Path(tempfile.mkstemp(suffix=".tar.xz")[1])
+        payload="".join(p.read_text(encoding="ascii").strip() for p in tar_parts)
         temp_bootstrap.write_bytes(base64.b64decode(payload))
         bootstrap_path=temp_bootstrap
-    if not bootstrap_path.exists():
+        archive_kind="tar.xz"
+    elif zip_parts:
+        temp_bootstrap=Path(tempfile.mkstemp(suffix=".zip")[1])
+        payload="".join(p.read_text(encoding="ascii").strip() for p in zip_parts)
+        temp_bootstrap.write_bytes(base64.b64decode(payload))
+        bootstrap_path=temp_bootstrap
+        archive_kind="zip"
+
+    if bootstrap_path is None:
         return
+
     with tempfile.TemporaryDirectory() as td:
         tmp=Path(td)
-        with zipfile.ZipFile(bootstrap_path) as zf: zf.extractall(tmp)
+        if archive_kind=="tar.xz":
+            with tarfile.open(bootstrap_path,"r:xz") as tf:
+                tf.extractall(tmp)
+        else:
+            with zipfile.ZipFile(bootstrap_path) as zf:
+                zf.extractall(tmp)
+
         for archive_name,meta in PACKAGES.items():
-            if not meta["normalize"]: continue
+            if not meta["normalize"]:
+                continue
             src=tmp/meta["sourceRoot"]
             if not src.exists():
                 raise RuntimeError(f"bootstrap missing {meta['sourceRoot']}")
             results[archive_name]=normalize_source_dir(src,archive_name,meta)
             deterministic_zip(SUBJECTS/meta["slug"],ARCHIVES/archive_name)
-    if BOOTSTRAP.exists():
-        BOOTSTRAP.unlink()
-    for part in parts:
+
+    for source in (BOOTSTRAP, BOOTSTRAP_TAR):
+        if source.exists():
+            source.unlink()
+    for part in zip_parts + tar_parts:
         part.unlink()
     if temp_bootstrap and temp_bootstrap.exists():
         temp_bootstrap.unlink()
