@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_RU06_REPRESENTATION_INTEGRITY_POLICY",
+  "protected": [
+    "numbers",
+    "units",
+    "equations",
+    "variables",
+    "formula-structure",
+    "code-identifiers",
+    "code-literals",
+    "table-values",
+    "figure-labels",
+    "experimental-results"
+  ],
+  "correctionRule": "language correction may improve Russian expression but must preserve technical/numeric/code meaning unless the learner explicitly changes the underlying claim",
+  "uncertaintyRule": "defense practice rewards explicit uncertainty/insufficient-data responses over fabricated certainty",
+  "aiBoundary": "RU07 may suggest wording/structure but cannot fabricate citations, results, measurements or silently replace learner authorship"
+}
