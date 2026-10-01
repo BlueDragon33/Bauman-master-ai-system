@@ -63,3 +63,17 @@ for(const phase of ['ru02','ru03','ru04','ru05','ru06','ru07']){
  assert.match(fs.readFileSync(p,'utf8'),/State:\s*\*\*PASS\*\*|RU0[2-7] STATE:\s*PASS/i,'upstream not PASS: '+phase);
 }
 console.log(JSON.stringify({ok:true,subject:manifest.id,dataFiles:manifest.dataFiles.length,capabilities:manifest.requiredCapabilities.length,authorable:governance.authorableEntityTypes.length,failures:acceptance.failureMatrix.length}));
+
+const editor=fs.readFileSync('subjects/russian/editor.html','utf8');
+assert.match(editor,/data-russian-authoring/,'structured authoring UI missing');
+assert.match(editor,/Raw JSON không phải giao diện mặc định/,'raw JSON must not be default author mode');
+for(const k of Object.keys(acceptance.journeys)){
+ const ev=acceptance.executableEvidence?.journeys?.[k];
+ assert(Array.isArray(ev)&&ev.length,'journey lacks executable evidence: '+k);
+ for(const p of ev)assert(fs.existsSync(p),'missing journey evidence file '+p);
+}
+for(const f of acceptance.failureMatrix){
+ const ev=acceptance.executableEvidence?.failures?.[f];
+ assert(Array.isArray(ev)&&ev.length,'failure lacks executable evidence: '+f);
+ for(const p of ev)assert(fs.existsSync(p),'missing failure evidence file '+p);
+}
