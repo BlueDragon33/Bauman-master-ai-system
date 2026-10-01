@@ -57,6 +57,8 @@ jobs:
         run: node subjects/russian/scripts/validate-ru06-academic-production.mjs
       - name: Validate Russian P10 AI mentor guardrails
         run: node subjects/russian/scripts/validate-p10-ai-mentor-guardrails.mjs
+      - name: Validate Russian RU07 AI coaching
+        run: node subjects/russian/scripts/validate-ru07-ai-coaching.mjs
       - name: Validate Russian reference UI contracts
         run: node subjects/russian/scripts/validate-reference-ui.mjs
       - name: Validate Russian lesson learning flow
