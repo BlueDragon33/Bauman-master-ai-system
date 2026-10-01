@@ -21,7 +21,9 @@ const assessment=(provenance.datasets||provenance.records||[]).find(x=>x.id==='a
 assert(assessment,'assessment-bank provenance missing');
 assert.notEqual(String(assessment.validationStatus||assessment.status).toUpperCase(),'VERIFIED','audit must not silently promote current tests.json');
 has(authority,'unverified-answer-key-authority');
-has(core,"mode:authority.officialEligible?'exam':'diagnostic-unverified'");
+has(core,"mode:'practice-unscored-unverified'");
+has(core,'UNVERIFIED_ANSWER_KEY_NOT_EVALUATED');
+has(core,'KHÔNG CHẤM ĐIỂM');
 has(core,'authoritativeGateRecords');
 has(core,'x&&x.authorityEligible===true');
 has(core,'answer key chưa VERIFIED');
