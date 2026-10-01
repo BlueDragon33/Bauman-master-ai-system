@@ -11,7 +11,7 @@
   const arr=v=>Array.isArray(v)?v:[];
   const esc=v=>clean(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
   const now=()=>new Date().toISOString();
-  let registry=null,loadError=null,blocked=false,queued=false;
+  let registry=null,loadError=null,blocked=false,queued=false,loadingPromise=null;
 
   function empty(){return {schema:SCHEMA,activeScenarioId:'',runs:{},updatedAt:null};}
   function loadState(){
@@ -75,24 +75,29 @@
   }
 
   async function loadRegistry(){
-    let value=null;
-    try{
-      const res=await fetch('data/scenario-registry.json',{cache:'no-store'});
-      if(!res.ok)throw new Error('HTTP '+res.status);
-      value=await res.json();
-      const valid=validateRegistry(value);
-      if(!valid.ok)throw new Error('invalid-registry '+valid.errors.join(','));
-      registry=value;loadError=null;
-      try{localStorage.setItem(REGISTRY_CACHE_KEY,JSON.stringify(value));}catch(_){}
-    }catch(error){
-      loadError=String(error?.message||error);
-      const cached=parse(localStorage.getItem(REGISTRY_CACHE_KEY),null);
-      const valid=validateRegistry(cached);
-      if(valid.ok){registry=cached;loadError='offline-cache:'+loadError;}else registry=null;
-    }
-    if(!state.activeScenarioId&&scenarios()[0])state.activeScenarioId=scenarios()[0].id;
-    schedule();
-    return registry;
+    if(registry)return registry;
+    if(loadingPromise)return loadingPromise;
+    loadingPromise=(async()=>{
+      let value=null;
+      try{
+        const res=await fetch('data/scenario-registry.json',{cache:'no-store'});
+        if(!res.ok)throw new Error('HTTP '+res.status);
+        value=await res.json();
+        const valid=validateRegistry(value);
+        if(!valid.ok)throw new Error('invalid-registry '+valid.errors.join(','));
+        registry=value;loadError=null;
+        try{localStorage.setItem(REGISTRY_CACHE_KEY,JSON.stringify(value));}catch(_){}
+      }catch(error){
+        loadError=String(error?.message||error);
+        const cached=parse(localStorage.getItem(REGISTRY_CACHE_KEY),null);
+        const valid=validateRegistry(cached);
+        if(valid.ok){registry=cached;loadError='offline-cache:'+loadError;}else registry=null;
+      }
+      if(!state.activeScenarioId&&scenarios()[0])state.activeScenarioId=scenarios()[0].id;
+      schedule();
+      return registry;
+    })();
+    try{return await loadingPromise;}finally{loadingPromise=null;}
   }
 
   function newRun(s){
@@ -138,7 +143,7 @@
   }
   function status(){
     const valid=validateRegistry();
-    return {schema:SCHEMA,ready:Boolean(registry),offlineFallback:Boolean(registry)&&Boolean(loadError),loadError,blocked,registry:valid,state:JSON.parse(JSON.stringify(state))};
+    return {schema:SCHEMA,ready:Boolean(registry),loading:Boolean(loadingPromise),lazyOnCapabilityUse:true,offlineFallback:Boolean(registry)&&Boolean(loadError),loadError,blocked,registry:valid,state:JSON.parse(JSON.stringify(state))};
   }
 
   function schedule(){if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;render();});}
@@ -148,8 +153,9 @@
     let panel=document.getElementById('ruScenarioRuntime');
     if(c.view!=='dialogue'){panel?.remove();return;}
     if(!registry){
+      if(!loadingPromise)loadRegistry();
       if(!panel){panel=document.createElement('section');panel.id='ruScenarioRuntime';panel.className='ru-scenario-runtime';view.prepend(panel);}
-      panel.innerHTML='<header><span>RU05 · SCENARIO ENGINE</span><h3>Kịch bản tương tác</h3></header><p>'+(loadError?'Không tải được registry: '+esc(loadError):'Đang tải scenario registry...')+'</p>';
+      panel.innerHTML='<header><span>RU05 · SCENARIO ENGINE</span><h3>Kịch bản tương tác</h3></header><p>'+(loadError?'Không tải được registry: '+esc(loadError):'Đang tải scenario registry theo nhu cầu...')+'</p>';
       return;
     }
     const stage=clean(c.stage)||'vn';
@@ -185,7 +191,7 @@
     if(rep){event.preventDefault();repair(rep);return;}
     setTimeout(schedule,0);
   },true);
-  document.addEventListener('DOMContentLoaded',()=>{loadRegistry();schedule();});
+  document.addEventListener('DOMContentLoaded',()=>{schedule();});
   window.addEventListener('russian:route-received',schedule);
   window.RussianScenarioRuntime={schema:SCHEMA,loadRegistry,status,validateRegistry,list:()=>JSON.parse(JSON.stringify(scenarios())),start,resume,repair,advance,reset,activeRun:()=>JSON.parse(JSON.stringify(activeRun()||null))};
 })();
