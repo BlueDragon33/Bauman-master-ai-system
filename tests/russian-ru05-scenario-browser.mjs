@@ -37,6 +37,11 @@ try{
     await page.reload({waitUntil:'domcontentloaded'});await page.waitForSelector('[data-ru-scenario-runtime]');
     const resumed=await page.evaluate(()=>window.RussianScenarioRuntime.snapshot().session);
     assert.equal(resumed.scenarioId,saved.scenarioId,'scenario session did not resume');
+    await context.setOffline(true);
+    await page.evaluate(()=>window.RussianScenarioRuntime.load());
+    const offline=await page.evaluate(()=>window.RussianScenarioRuntime.snapshot());
+    assert.equal(offline.loadSource,'cache','scenario registry did not fall back to cached data offline');
+    await context.setOffline(false);
     const writes=await page.evaluate(()=>window.__SCENARIO_WRITES);
     assert.deepEqual(writes.filter(k=>/mastery|assessment.*attempt|vocab.*srs|adaptive.*planner/i.test(k)),[],'scenario wrote authoritative state');
     const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth);assert(overflow<=4,'horizontal overflow '+overflow);
