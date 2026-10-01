@@ -87,6 +87,41 @@
       "status": "UNVERIFIED",
       "confidence": "NONE_UNTIL_REVIEW",
       "rule": "AI/generated candidates never become canonical without source references and reviewer approval"
+    },
+    {
+      "id": "technical-concepts",
+      "owner": "subjects/russian/data/technical-concepts.json",
+      "status": "PARTIAL",
+      "confidence": "RU03_FAIL_CLOSED",
+      "rule": "Mixed VERIFIED and SOURCE_ASSERTED terminology; item-level sourceRefs are authoritative evidence where external references exist."
+    },
+    {
+      "id": "academic-functions",
+      "owner": "subjects/russian/data/academic-functions.json",
+      "status": "UNVERIFIED",
+      "confidence": "RU03_FAIL_CLOSED",
+      "rule": "Internal curriculum derivation is not external linguistic authority; patterns require curated/source review before canonical authority."
+    },
+    {
+      "id": "reading",
+      "owner": "subjects/russian/data/reading.json",
+      "status": "UNVERIFIED",
+      "confidence": "RU03_FAIL_CLOSED",
+      "rule": "Task architecture is present; linguistic text/source authority must remain item-bound."
+    },
+    {
+      "id": "performance-tasks",
+      "owner": "subjects/russian/data/performance-tasks.json",
+      "status": "UNVERIFIED",
+      "confidence": "RU03_FAIL_CLOSED",
+      "rule": "Performance-task design does not itself validate Russian wording."
+    },
+    {
+      "id": "assessment-bank",
+      "owner": "subjects/russian/data/tests.json",
+      "status": "PARTIAL",
+      "confidence": "RU03_FAIL_CLOSED",
+      "rule": "Large assessment bank is preserved; answer-key authority must remain item/source-bound and generated keys may not auto-promote."
     }
   ],
   "requiredVerificationFields": [
@@ -104,5 +139,36 @@
     "audio-runtime",
     "recording",
     "speech-recognition"
-  ]
+  ],
+  "contentRevision": "2026-10-01-ru03",
+  "ru03": {
+    "validationResults": [
+      "VERIFIED",
+      "VERIFIED_WITH_VARIANTS",
+      "CONTEXT_DEPENDENT",
+      "DISPUTED",
+      "UNVERIFIED",
+      "INCORRECT"
+    ],
+    "trustClasses": [
+      "AUTHORITATIVE",
+      "CURATED",
+      "CORPUS_SOURCE_SUPPORTED",
+      "GENERATED_MACHINE_SUGGESTED",
+      "LEGACY_UNVERIFIED",
+      "UNKNOWN"
+    ],
+    "variantRule": "Accepted variants must be represented explicitly; do not collapse genuine variants into one artificial answer.",
+    "senseRule": "Validation attaches to the semantic owner/sense when government, register, technical meaning or translation differs by sense.",
+    "generatedRule": "Generated content remains non-authoritative until source/provenance and human review requirements are satisfied.",
+    "revisionImpact": [
+      "lessons",
+      "examples",
+      "assessment",
+      "evidence-interpretation",
+      "audio-transcript",
+      "search-indexes",
+      "learner-facing-references"
+    ]
+  }
 }
