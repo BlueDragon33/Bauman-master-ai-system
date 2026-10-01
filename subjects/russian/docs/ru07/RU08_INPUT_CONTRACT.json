@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RU08_INPUT_CONTRACT",
+  "state": "PASS",
+  "aiOwner": "subjects/russian/assets/ai-mentor-guard.js + subjects/russian/data/ai-mentor-policy.json + RU07 overlays",
+  "mustValidateAtRU08": [
+    "mode permissions",
+    "grounding",
+    "generated-content lifecycle",
+    "assessment isolation",
+    "prompt-injection/tool boundary",
+    "offline/provider fallback",
+    "stale response quarantine",
+    "writing/research integrity"
+  ],
+  "canonicalPromotion": "RU08 shared authoring/review lifecycle; legacy P12 label is compatibility history only"
+}

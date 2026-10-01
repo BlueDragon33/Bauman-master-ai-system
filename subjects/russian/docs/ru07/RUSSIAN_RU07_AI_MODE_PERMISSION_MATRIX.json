@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_RU07_AI_MODE_PERMISSION_MATRIX",
+  "state": "PASS",
+  "owners": {
+    "truth": "RU03",
+    "learningJudgment": "RU04",
+    "interaction": "RU05",
+    "academicProduction": "RU06",
+    "authoringPromotion": "RU08"
+  },
+  "modes": {
+    "explainer": [
+      "read-canonical",
+      "explain",
+      "state-uncertainty"
+    ],
+    "tutor": [
+      "read-canonical",
+      "hint",
+      "socratic",
+      "temporary-practice"
+    ],
+    "conversationPartner": [
+      "read-scenario",
+      "temporary-roleplay",
+      "emit-signal-only"
+    ],
+    "pronunciationCoach": [
+      "read-RU05-signals",
+      "coaching-only"
+    ],
+    "writingCoach": [
+      "comment",
+      "targeted-correction",
+      "revision-suggestion",
+      "minimal-edit"
+    ],
+    "technicalPartner": [
+      "read-validated-technical-context",
+      "question",
+      "rehearse"
+    ],
+    "researchRehearsal": [
+      "read-source-lineage",
+      "question",
+      "challenge",
+      "rehearse-defense"
+    ],
+    "errorRemediator": [
+      "read-RU04-weakness",
+      "hint",
+      "temporary-practice"
+    ],
+    "authoringAssistant": [
+      "draft-candidate",
+      "mark-generated",
+      "route-to-RU08-review"
+    ]
+  },
+  "forbidden": [
+    "write-mastery",
+    "write-official-score",
+    "write-attempt-history",
+    "write-SRS",
+    "write-planner",
+    "unlock-stage",
+    "overwrite-canonical-content",
+    "fabricate-citation",
+    "fabricate-result",
+    "silent-learner-authorship-replacement"
+  ]
+}
