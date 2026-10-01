@@ -7,8 +7,17 @@ const planner=j('subjects/russian/docs/ru04/RUSSIAN_RU04_PLANNER_SUPPORT_POLICY.
 const attempts=j('subjects/russian/docs/p4/RUSSIAN_ATTEMPT_STATE_SCHEMA.json');
 const mastery=j('subjects/russian/docs/p4/RUSSIAN_MASTERY_STATE_SCHEMA.json');
 const srs=j('subjects/russian/docs/p4/RUSSIAN_SRS_STATE_SCHEMA.json');
+const ruSrs=j('subjects/russian/docs/ru04/RUSSIAN_RU04_SRS_SPECIALIZATION.json');
+const scheduler=fs.readFileSync('subjects/russian/assets/review-scheduler.js','utf8');
+const vocab=fs.readFileSync('subjects/russian/assets/vocab-srs.js','utf8');
+const index=fs.readFileSync('subjects/russian/index.html','utf8');
 assert.equal(contract.authorities.mastery,'subjects/russian/assets/assessment-mastery.js');
 assert.equal(contract.authorities.reviewOrchestration,'subjects/russian/assets/adaptive-planner.js');
+assert.equal(contract.authorities.reviewScheduler,'subjects/russian/assets/review-scheduler.js');
+assert.equal(ruSrs.canonicalScheduler,'subjects/russian/assets/review-scheduler.js');
+assert.match(scheduler,/RUSSIAN_REVIEW_SCHEDULER_V1/);
+assert.match(vocab,/RussianReviewScheduler\?\.schedule/);
+assert.ok(index.indexOf('assets/review-scheduler.js') < index.indexOf('assets/vocab-srs.js'),'scheduler must load before vocab provider');
 assert(attempts.invariants.some(x=>/first submitted attempt never overwritten/i.test(x)));
 assert(mastery.rules.some(x=>/activity\/completion is not mastery/i.test(x)));
 assert.equal(srs.activePassive.reference,'no compulsory SRS unless activated');
