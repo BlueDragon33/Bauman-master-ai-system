@@ -45,7 +45,8 @@ assert(workflow.includes('tests/russian-ru08-journeys-browser.mjs'),'production 
 assert(workflow.includes('tests/russian-ru08-author-browser.mjs'),'production author journey smoke missing');
 assert(workflow.includes('tests/russian-offline-shell-browser.mjs'),'production offline browser smoke missing');
 assert(workflow.includes('BAUMAN_PRODUCTION_SMOKE_DEVICE_SESSION'),'isolated production smoke session is required');
-assert(workflow.includes('RUSSIAN_PRODUCTION_ISOLATED_WRITE_PROBE.json'),'isolated production write-probe evidence missing');
+assert(helper.includes('RUSSIAN_PRODUCTION_ISOLATED_WRITE_PROBE.json'),'isolated production write-probe evidence missing');
+assert(helper.includes('anonymousProtectedStatus')&&helper.includes('authenticatedProtectedStatus'),'production protected-data smoke must prove anonymous fail-closed and authenticated access');
 assert(helper.includes('configFingerprint'),'release helper must verify live production config fingerprint');
 assert.match(runtimeWorker,/microphone=\(self\)/,'production runtime must permit same-origin microphone for Russian speaking');
 assert.doesNotMatch(runtimeWorker,/microphone=\(\)/,'production runtime must not globally disable microphone');
