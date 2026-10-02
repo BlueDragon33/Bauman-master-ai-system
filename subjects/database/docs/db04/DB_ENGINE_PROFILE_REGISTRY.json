@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "database",
+  "policy": "Only verified/configured profiles may execute learner SQL. Candidate profiles are not runtime claims.",
+  "profiles": [
+    {
+      "id": "db.engine.portable-sql-contract",
+      "kind": "semantic-profile",
+      "status": "contract-only",
+      "executable": false,
+      "version": null,
+      "dialect": "portable teaching subset",
+      "purpose": "Cross-engine task semantics only; never presented as a physical DB engine."
+    },
+    {
+      "id": "db.engine.local-sandbox-candidate",
+      "kind": "candidate-provider",
+      "status": "implementation-pending",
+      "executable": false,
+      "version": null,
+      "dialect": null,
+      "requirements": [
+        "ephemeral or resettable local learner database",
+        "no platform/control database access",
+        "offline-capable when feasible",
+        "deterministic fixtures",
+        "bounded resources"
+      ]
+    },
+    {
+      "id": "db.engine.server-sandbox-candidate",
+      "kind": "candidate-provider",
+      "status": "implementation-pending",
+      "executable": false,
+      "version": null,
+      "dialect": null,
+      "requirements": [
+        "dedicated learner-only database/service",
+        "short-lived scoped credentials or server-side isolation",
+        "never reuse control-service D1",
+        "per-session reset/isolation",
+        "strict time/row/resource limits"
+      ]
+    }
+  ],
+  "forbiddenBindings": [
+    "control-service preview D1",
+    "control-service production D1",
+    "bauman-control-preview-db",
+    "bauman-control-db"
+  ]
+}
