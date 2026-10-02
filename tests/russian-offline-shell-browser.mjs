@@ -59,6 +59,22 @@ try{
   assert.equal(cached.dataName,'russian-learning-data-v1');
   assert.ok(cached.dataUrls.some(x=>x.endsWith('/subjects/russian/data/handwriting-listen-write.json')),'offline data cache missing handwriting-listen-write.json');
   for(const suffix of [
+    '/subjects/russian/assets/scenario-runtime.js',
+    '/subjects/russian/assets/scenario-runtime.css',
+    '/subjects/russian/assets/production-workbench.js',
+    '/subjects/russian/assets/production-workbench.css',
+    '/subjects/russian/editor.html',
+    '/subjects/russian/assets/authoring-workbench.js',
+    '/subjects/russian/assets/authoring-workbench.css',
+    '/subjects/russian/data/scenario-registry.json',
+    '/subjects/russian/data/technical-concepts.json',
+    '/subjects/russian/data/academic-functions.json',
+    '/subjects/russian/data/reading.json',
+    '/subjects/russian/data/performance-tasks.json',
+    '/subjects/russian/data/authoring-governance.json',
+    '/subjects/russian/docs/ru02/RUSSIAN_RU02_CANONICAL_OWNER_REGISTRY.json'
+  ])assert.ok(cached.urls.some(x=>x.endsWith(suffix)),`offline shell missing ${suffix}`);
+  for(const suffix of [
     '/foundation/domain-model/canonical-identity-runtime.js',
     '/foundation/domain-model/identity-overlay-store.js',
     '/foundation/domain-model/legacy-snapshot-extractor.js',
@@ -73,7 +89,7 @@ try{
   errors.length=0;
   await context.setOffline(true);
   await page.reload({waitUntil:'domcontentloaded',timeout:30000});
-  await page.waitForFunction(()=>!!window.RussianRuntimeOptimizer&&!!window.RussianCapabilityProgression,null,{timeout:20000});
+  await page.waitForFunction(()=>!!window.RussianRuntimeOptimizer&&!!window.RussianCapabilityProgression&&!!window.RussianScenarioRuntime&&!!window.RussianProductionWorkbench,null,{timeout:20000});\n  await page.waitForFunction(()=>window.RussianScenarioRuntime.registry()?.scenarios?.length>=7,null,{timeout:15000});
   await page.waitForFunction(()=>window.BAUMAN_FOUNDATION_IDENTITY_REPORT!==undefined,null,{timeout:15000});
   const offline=await page.evaluate(()=>({
     online:navigator.onLine,
@@ -81,14 +97,14 @@ try{
     identityBootstrap:!!window.BaumanFoundationIdentityBootstrap,
     identityReport:window.BAUMAN_FOUNDATION_IDENTITY_REPORT,
     capability:window.RussianCapabilityProgression?.currentBand?.()?.id||'',
-    appShell:!!document.querySelector('.ru-app-shell')
+    appShell:!!document.querySelector('.ru-app-shell'),\n    scenarioCount:window.RussianScenarioRuntime?.registry?.()?.scenarios?.length||0,\n    productionSchema:window.RussianProductionWorkbench?.schema||''
   }));
   assert.equal(offline.online,false);
   assert.equal(offline.identityRuntime,true);
   assert.equal(offline.identityBootstrap,true);
   assert.notEqual(offline.identityReport?.status,'unavailable','Foundation identity registry/runtime must remain available offline');
   assert.ok(/^R[0-4]$/.test(offline.capability));
-  assert.equal(offline.appShell,true);
+  assert.equal(offline.appShell,true);\n  assert.ok(offline.scenarioCount>=7,'RU05 scenario registry must remain available offline');\n  assert.equal(offline.productionSchema,'RUSSIAN_RU06_PRODUCTION_WORKBENCH_V1','RU06 production workbench must remain available offline');
   assert.deepEqual(errors,[],'offline Russian reload emitted console/page errors');
 
   await page.screenshot({path:path.join(OUT,'russian-offline-reload.png'),fullPage:true});
