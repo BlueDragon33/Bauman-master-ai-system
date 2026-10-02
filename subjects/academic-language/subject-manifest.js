@@ -1,0 +1,1 @@
+window.SUBJECT_CONFIG={"id":"academic-language","title":"Иностранный язык · Academic Foreign Language","short":"Academic Language","icon":"文","tagline":"Ngoại ngữ học thuật HK1–HK2 · không giả định ngôn ngữ cụ thể","formulaLabel":"Glossary / Reading / Listening / Presentation"};
