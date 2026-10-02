@@ -20,7 +20,7 @@ assert.equal(state.activeModule,'DB04');
 assert.equal(state.status,'DB04_IMPLEMENTATION_PENDING');
 assert(!state.completedModules.includes('DB04'));
 
-for(const needle of ['fail closed','control-service','hidden','timeout'])
+for(const needle of ['fail-closed','control-service','hidden','timeout'])
   assert((security+'\n'+sandbox).toLowerCase().includes(needle),'missing DB04 security contract signal: '+needle);
 
 for(const needle of ['TASK-DB04-001','Status: READY','DB04','control-service D1'])
