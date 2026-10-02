@@ -4,7 +4,7 @@
   "constitution": "prompts/CONSTITUTION.md",
   "releaseAnnex": "prompts/constitution/C3_RELEASE_ANNEX_SHARED.md",
   "masterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
-  "status": "RU08_PASS",
+  "status": "RU08_VALIDATING",
   "activeModule": "RU08",
   "sequence": [
     "RU01",
@@ -23,8 +23,7 @@
     "RU04",
     "RU05",
     "RU06",
-    "RU07",
-    "RU08"
+    "RU07"
   ],
   "needsRevalidation": [],
   "auditBaselineSha": "2b0b540edc381c4ea6268e080b0444d0c78b7277",
@@ -41,7 +40,10 @@
     "subjects/russian/docs/ru08/RUSSIAN_RU08_RC_READINESS.json",
     "subjects/russian/docs/ru08/RUSSIAN_PROMPT_SYSTEM_FULL_COMPLIANCE_AUDIT_20261002.md"
   ],
-  "pendingGates": [],
+  "pendingGates": [
+    "Future Interface System CI",
+    "Whole System Integration Gate"
+  ],
   "blockers": [],
-  "nextAction": "Revalidate this RU08 PASS / READY_FOR_MERGE transition on the exact current PR head. If all required gates remain green, merge that exact head. Production remains a separate C3 Release Annex execution and must not be called STABLE until closure evidence is emitted."
+  "nextAction": "Revalidate the Future Interface hydration-race correction and all RU08 exact-head gates. Mark RU08 PASS / READY_FOR_MERGE only after the exact current head is green."
 }
