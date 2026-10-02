@@ -1,0 +1,876 @@
+[
+  {
+    "id": "ent_m201_l1",
+    "stage": "m2",
+    "moduleId": "ent_m201",
+    "title": "Problem framing: từ ý tưởng đến vấn đề",
+    "description": "Bài học Problem framing: từ ý tưởng đến vấn đề trong học phần Основы предпринимательства.",
+    "kind": "lý thuyết",
+    "keyPoints": [
+      "Problem statement cần chỉ ra ai gặp vấn đề, vấn đề gì, tác động ra sao và bằng chứng nào đang có.",
+      "User không nhất thiết là người trả tiền; cần tách user, buyer, operator, beneficiary.",
+      "Assumption phải được ghi rõ để tránh biến suy đoán thành dữ liệu."
+    ],
+    "tasks": [
+      "Viết problem statement theo who → problem → impact → evidence.",
+      "Đánh dấu fact/assumption trong một case công nghệ."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK2",
+      "moduleTitle": "Problem framing: từ ý tưởng đến vấn đề",
+      "estimatedMinutes": 45,
+      "sourceBasis": "Study-plan course: Основы предпринимательства. Nội dung trong module là học liệu hỗ trợ, không phải syllabus chính thức chi tiết của giảng viên.",
+      "objectives": [
+        "Problem statement cần chỉ ra ai gặp vấn đề, vấn đề gì, tác động ra sao và bằng chứng nào đang có.",
+        "User không nhất thiết là người trả tiền; cần tách user, buyer, operator, beneficiary.",
+        "Assumption phải được ghi rõ để tránh biến suy đoán thành dữ liệu."
+      ],
+      "prerequisites": [
+        "Đã đọc mục tiêu module.",
+        "Có file/sổ để lưu artifact.",
+        "Dùng một case công nghệ xuyên suốt để tránh ví dụ rời rạc."
+      ],
+      "whyItMatters": "Giúp chuyển tư duy kỹ thuật sang tư duy vấn đề–giá trị–kiểm chứng, đủ dùng cho học phần hỗ trợ và trình bày project.",
+      "coreTheory": [
+        "Problem statement cần chỉ ra ai gặp vấn đề, vấn đề gì, tác động ra sao và bằng chứng nào đang có.",
+        "User không nhất thiết là người trả tiền; cần tách user, buyer, operator, beneficiary.",
+        "Assumption phải được ghi rõ để tránh biến suy đoán thành dữ liệu."
+      ],
+      "coreFormulas": [
+        "problem → evidence → value → model → experiment",
+        "assumption → test → metric → learning"
+      ],
+      "workedExample": {
+        "context": "Case minh họa: một giải pháp robot/AI hỗ trợ vận hành.",
+        "steps": [
+          "Viết problem statement theo who → problem → impact → evidence.",
+          "Đánh dấu fact/assumption trong một case công nghệ."
+        ],
+        "answer": "Kết quả tốt phải phân biệt dữ liệu đã biết với giả định, có metric và bước kiểm chứng tiếp theo."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Tóm tắt khái niệm bằng 5 gạch đầu dòng.",
+          "expected": "Không lẫn feature với value."
+        },
+        {
+          "level": "Trung bình",
+          "task": "Áp dụng cho một case công nghệ.",
+          "expected": "Có artifact 1 trang hoặc bảng."
+        },
+        {
+          "level": "Khá",
+          "task": "Phản biện 3 giả định quan trọng nhất.",
+          "expected": "Có bằng chứng hoặc kế hoạch kiểm chứng."
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng/Thực hành mô phỏng.",
+      "commonMistakes": [
+        "Khẳng định giả định như sự thật.",
+        "Nói nhiều về công nghệ nhưng thiếu người dùng và metric.",
+        "Không ghi tiêu chí pass/fail trước khi thử nghiệm."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Điểm nào đang là fact và điểm nào chỉ là assumption?",
+          "a": "Fact có bằng chứng; assumption cần test."
+        },
+        {
+          "q": "Đầu ra có đo được không?",
+          "a": "Nên có metric hoặc tiêu chí quan sát cụ thể."
+        }
+      ],
+      "masteryCriteria": [
+        "Giải thích được khái niệm bằng lời của mình.",
+        "Áp dụng vào case cụ thể.",
+        "Tạo artifact có thể xem lại.",
+        "Đạt quiz ≥ 8/10 hoặc ôn lỗi sai."
+      ],
+      "rubric": [
+        {
+          "criterion": "Hiểu khái niệm",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Áp dụng",
+          "weight": 0.35
+        },
+        {
+          "criterion": "Bằng chứng",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Trình bày",
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  {
+    "id": "ent_m201_l2",
+    "stage": "m2",
+    "moduleId": "ent_m201",
+    "title": "Stakeholder và discovery",
+    "description": "Bài học Stakeholder và discovery trong học phần Основы предпринимательства.",
+    "kind": "thực hành",
+    "keyPoints": [
+      "Stakeholder map giúp thấy người ảnh hưởng, người dùng, người quyết định và người vận hành.",
+      "Câu hỏi discovery nên hỏi hành vi/thực tế thay vì dẫn dắt người trả lời.",
+      "Bằng chứng mạnh hơn khi có nhiều nguồn và ví dụ cụ thể."
+    ],
+    "tasks": [
+      "Lập stakeholder map.",
+      "Viết 8 câu hỏi discovery không dẫn dắt."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK2",
+      "moduleTitle": "Stakeholder và discovery",
+      "estimatedMinutes": 45,
+      "sourceBasis": "Study-plan course: Основы предпринимательства. Nội dung trong module là học liệu hỗ trợ, không phải syllabus chính thức chi tiết của giảng viên.",
+      "objectives": [
+        "Stakeholder map giúp thấy người ảnh hưởng, người dùng, người quyết định và người vận hành.",
+        "Câu hỏi discovery nên hỏi hành vi/thực tế thay vì dẫn dắt người trả lời.",
+        "Bằng chứng mạnh hơn khi có nhiều nguồn và ví dụ cụ thể."
+      ],
+      "prerequisites": [
+        "Đã đọc mục tiêu module.",
+        "Có file/sổ để lưu artifact.",
+        "Dùng một case công nghệ xuyên suốt để tránh ví dụ rời rạc."
+      ],
+      "whyItMatters": "Giúp chuyển tư duy kỹ thuật sang tư duy vấn đề–giá trị–kiểm chứng, đủ dùng cho học phần hỗ trợ và trình bày project.",
+      "coreTheory": [
+        "Stakeholder map giúp thấy người ảnh hưởng, người dùng, người quyết định và người vận hành.",
+        "Câu hỏi discovery nên hỏi hành vi/thực tế thay vì dẫn dắt người trả lời.",
+        "Bằng chứng mạnh hơn khi có nhiều nguồn và ví dụ cụ thể."
+      ],
+      "coreFormulas": [
+        "problem → evidence → value → model → experiment",
+        "assumption → test → metric → learning"
+      ],
+      "workedExample": {
+        "context": "Case minh họa: một giải pháp robot/AI hỗ trợ vận hành.",
+        "steps": [
+          "Lập stakeholder map.",
+          "Viết 8 câu hỏi discovery không dẫn dắt."
+        ],
+        "answer": "Kết quả tốt phải phân biệt dữ liệu đã biết với giả định, có metric và bước kiểm chứng tiếp theo."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Tóm tắt khái niệm bằng 5 gạch đầu dòng.",
+          "expected": "Không lẫn feature với value."
+        },
+        {
+          "level": "Trung bình",
+          "task": "Áp dụng cho một case công nghệ.",
+          "expected": "Có artifact 1 trang hoặc bảng."
+        },
+        {
+          "level": "Khá",
+          "task": "Phản biện 3 giả định quan trọng nhất.",
+          "expected": "Có bằng chứng hoặc kế hoạch kiểm chứng."
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng/Thực hành mô phỏng.",
+      "commonMistakes": [
+        "Khẳng định giả định như sự thật.",
+        "Nói nhiều về công nghệ nhưng thiếu người dùng và metric.",
+        "Không ghi tiêu chí pass/fail trước khi thử nghiệm."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Điểm nào đang là fact và điểm nào chỉ là assumption?",
+          "a": "Fact có bằng chứng; assumption cần test."
+        },
+        {
+          "q": "Đầu ra có đo được không?",
+          "a": "Nên có metric hoặc tiêu chí quan sát cụ thể."
+        }
+      ],
+      "masteryCriteria": [
+        "Giải thích được khái niệm bằng lời của mình.",
+        "Áp dụng vào case cụ thể.",
+        "Tạo artifact có thể xem lại.",
+        "Đạt quiz ≥ 8/10 hoặc ôn lỗi sai."
+      ],
+      "rubric": [
+        {
+          "criterion": "Hiểu khái niệm",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Áp dụng",
+          "weight": 0.35
+        },
+        {
+          "criterion": "Bằng chứng",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Trình bày",
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  {
+    "id": "ent_m202_l1",
+    "stage": "m2",
+    "moduleId": "ent_m202",
+    "title": "Jobs, pains, gains và value proposition",
+    "description": "Bài học Jobs, pains, gains và value proposition trong học phần Основы предпринимательства.",
+    "kind": "lý thuyết",
+    "keyPoints": [
+      "Jobs mô tả việc người dùng cần hoàn thành.",
+      "Pain/gain phải đủ cụ thể để kết nối với giải pháp.",
+      "Value proposition mô tả kết quả có giá trị, không chỉ danh sách feature."
+    ],
+    "tasks": [
+      "Viết 3 jobs, 3 pains, 3 gains.",
+      "Chuyển 5 feature thành lợi ích đo được."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK2",
+      "moduleTitle": "Jobs, pains, gains và value proposition",
+      "estimatedMinutes": 45,
+      "sourceBasis": "Study-plan course: Основы предпринимательства. Nội dung trong module là học liệu hỗ trợ, không phải syllabus chính thức chi tiết của giảng viên.",
+      "objectives": [
+        "Jobs mô tả việc người dùng cần hoàn thành.",
+        "Pain/gain phải đủ cụ thể để kết nối với giải pháp.",
+        "Value proposition mô tả kết quả có giá trị, không chỉ danh sách feature."
+      ],
+      "prerequisites": [
+        "Đã đọc mục tiêu module.",
+        "Có file/sổ để lưu artifact.",
+        "Dùng một case công nghệ xuyên suốt để tránh ví dụ rời rạc."
+      ],
+      "whyItMatters": "Giúp chuyển tư duy kỹ thuật sang tư duy vấn đề–giá trị–kiểm chứng, đủ dùng cho học phần hỗ trợ và trình bày project.",
+      "coreTheory": [
+        "Jobs mô tả việc người dùng cần hoàn thành.",
+        "Pain/gain phải đủ cụ thể để kết nối với giải pháp.",
+        "Value proposition mô tả kết quả có giá trị, không chỉ danh sách feature."
+      ],
+      "coreFormulas": [
+        "problem → evidence → value → model → experiment",
+        "assumption → test → metric → learning"
+      ],
+      "workedExample": {
+        "context": "Case minh họa: một giải pháp robot/AI hỗ trợ vận hành.",
+        "steps": [
+          "Viết 3 jobs, 3 pains, 3 gains.",
+          "Chuyển 5 feature thành lợi ích đo được."
+        ],
+        "answer": "Kết quả tốt phải phân biệt dữ liệu đã biết với giả định, có metric và bước kiểm chứng tiếp theo."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Tóm tắt khái niệm bằng 5 gạch đầu dòng.",
+          "expected": "Không lẫn feature với value."
+        },
+        {
+          "level": "Trung bình",
+          "task": "Áp dụng cho một case công nghệ.",
+          "expected": "Có artifact 1 trang hoặc bảng."
+        },
+        {
+          "level": "Khá",
+          "task": "Phản biện 3 giả định quan trọng nhất.",
+          "expected": "Có bằng chứng hoặc kế hoạch kiểm chứng."
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng/Thực hành mô phỏng.",
+      "commonMistakes": [
+        "Khẳng định giả định như sự thật.",
+        "Nói nhiều về công nghệ nhưng thiếu người dùng và metric.",
+        "Không ghi tiêu chí pass/fail trước khi thử nghiệm."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Điểm nào đang là fact và điểm nào chỉ là assumption?",
+          "a": "Fact có bằng chứng; assumption cần test."
+        },
+        {
+          "q": "Đầu ra có đo được không?",
+          "a": "Nên có metric hoặc tiêu chí quan sát cụ thể."
+        }
+      ],
+      "masteryCriteria": [
+        "Giải thích được khái niệm bằng lời của mình.",
+        "Áp dụng vào case cụ thể.",
+        "Tạo artifact có thể xem lại.",
+        "Đạt quiz ≥ 8/10 hoặc ôn lỗi sai."
+      ],
+      "rubric": [
+        {
+          "criterion": "Hiểu khái niệm",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Áp dụng",
+          "weight": 0.35
+        },
+        {
+          "criterion": "Bằng chứng",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Trình bày",
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  {
+    "id": "ent_m202_l2",
+    "stage": "m2",
+    "moduleId": "ent_m202",
+    "title": "Giả thuyết giá trị và metric kiểm chứng",
+    "description": "Bài học Giả thuyết giá trị và metric kiểm chứng trong học phần Основы предпринимательства.",
+    "kind": "thực hành",
+    "keyPoints": [
+      "Giả thuyết tốt có dạng nếu… thì… đo bằng….",
+      "Metric phải phản ánh hành vi/kết quả chứ không chỉ lượt xem.",
+      "Cần xác định trước ngưỡng pass/fail."
+    ],
+    "tasks": [
+      "Viết 3 giả thuyết giá trị.",
+      "Đặt metric và threshold cho từng giả thuyết."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK2",
+      "moduleTitle": "Giả thuyết giá trị và metric kiểm chứng",
+      "estimatedMinutes": 45,
+      "sourceBasis": "Study-plan course: Основы предпринимательства. Nội dung trong module là học liệu hỗ trợ, không phải syllabus chính thức chi tiết của giảng viên.",
+      "objectives": [
+        "Giả thuyết tốt có dạng nếu… thì… đo bằng….",
+        "Metric phải phản ánh hành vi/kết quả chứ không chỉ lượt xem.",
+        "Cần xác định trước ngưỡng pass/fail."
+      ],
+      "prerequisites": [
+        "Đã đọc mục tiêu module.",
+        "Có file/sổ để lưu artifact.",
+        "Dùng một case công nghệ xuyên suốt để tránh ví dụ rời rạc."
+      ],
+      "whyItMatters": "Giúp chuyển tư duy kỹ thuật sang tư duy vấn đề–giá trị–kiểm chứng, đủ dùng cho học phần hỗ trợ và trình bày project.",
+      "coreTheory": [
+        "Giả thuyết tốt có dạng nếu… thì… đo bằng….",
+        "Metric phải phản ánh hành vi/kết quả chứ không chỉ lượt xem.",
+        "Cần xác định trước ngưỡng pass/fail."
+      ],
+      "coreFormulas": [
+        "problem → evidence → value → model → experiment",
+        "assumption → test → metric → learning"
+      ],
+      "workedExample": {
+        "context": "Case minh họa: một giải pháp robot/AI hỗ trợ vận hành.",
+        "steps": [
+          "Viết 3 giả thuyết giá trị.",
+          "Đặt metric và threshold cho từng giả thuyết."
+        ],
+        "answer": "Kết quả tốt phải phân biệt dữ liệu đã biết với giả định, có metric và bước kiểm chứng tiếp theo."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Tóm tắt khái niệm bằng 5 gạch đầu dòng.",
+          "expected": "Không lẫn feature với value."
+        },
+        {
+          "level": "Trung bình",
+          "task": "Áp dụng cho một case công nghệ.",
+          "expected": "Có artifact 1 trang hoặc bảng."
+        },
+        {
+          "level": "Khá",
+          "task": "Phản biện 3 giả định quan trọng nhất.",
+          "expected": "Có bằng chứng hoặc kế hoạch kiểm chứng."
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng/Thực hành mô phỏng.",
+      "commonMistakes": [
+        "Khẳng định giả định như sự thật.",
+        "Nói nhiều về công nghệ nhưng thiếu người dùng và metric.",
+        "Không ghi tiêu chí pass/fail trước khi thử nghiệm."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Điểm nào đang là fact và điểm nào chỉ là assumption?",
+          "a": "Fact có bằng chứng; assumption cần test."
+        },
+        {
+          "q": "Đầu ra có đo được không?",
+          "a": "Nên có metric hoặc tiêu chí quan sát cụ thể."
+        }
+      ],
+      "masteryCriteria": [
+        "Giải thích được khái niệm bằng lời của mình.",
+        "Áp dụng vào case cụ thể.",
+        "Tạo artifact có thể xem lại.",
+        "Đạt quiz ≥ 8/10 hoặc ôn lỗi sai."
+      ],
+      "rubric": [
+        {
+          "criterion": "Hiểu khái niệm",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Áp dụng",
+          "weight": 0.35
+        },
+        {
+          "criterion": "Bằng chứng",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Trình bày",
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  {
+    "id": "ent_m203_l1",
+    "stage": "m2",
+    "moduleId": "ent_m203",
+    "title": "Business Model Canvas cho project công nghệ",
+    "description": "Bài học Business Model Canvas cho project công nghệ trong học phần Основы предпринимательства.",
+    "kind": "lý thuyết",
+    "keyPoints": [
+      "BMC nối value proposition với customer segments, channels, resources, activities, partners, costs và revenues.",
+      "BMC là bản giả định có cấu trúc, không phải bằng chứng đã đúng.",
+      "Project kỹ thuật cần nhìn cả vận hành, bảo trì và tích hợp."
+    ],
+    "tasks": [
+      "Điền BMC 9 khối cho case.",
+      "Khoanh 3 khối có rủi ro giả định cao nhất."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK2",
+      "moduleTitle": "Business Model Canvas cho project công nghệ",
+      "estimatedMinutes": 45,
+      "sourceBasis": "Study-plan course: Основы предпринимательства. Nội dung trong module là học liệu hỗ trợ, không phải syllabus chính thức chi tiết của giảng viên.",
+      "objectives": [
+        "BMC nối value proposition với customer segments, channels, resources, activities, partners, costs và revenues.",
+        "BMC là bản giả định có cấu trúc, không phải bằng chứng đã đúng.",
+        "Project kỹ thuật cần nhìn cả vận hành, bảo trì và tích hợp."
+      ],
+      "prerequisites": [
+        "Đã đọc mục tiêu module.",
+        "Có file/sổ để lưu artifact.",
+        "Dùng một case công nghệ xuyên suốt để tránh ví dụ rời rạc."
+      ],
+      "whyItMatters": "Giúp chuyển tư duy kỹ thuật sang tư duy vấn đề–giá trị–kiểm chứng, đủ dùng cho học phần hỗ trợ và trình bày project.",
+      "coreTheory": [
+        "BMC nối value proposition với customer segments, channels, resources, activities, partners, costs và revenues.",
+        "BMC là bản giả định có cấu trúc, không phải bằng chứng đã đúng.",
+        "Project kỹ thuật cần nhìn cả vận hành, bảo trì và tích hợp."
+      ],
+      "coreFormulas": [
+        "problem → evidence → value → model → experiment",
+        "assumption → test → metric → learning"
+      ],
+      "workedExample": {
+        "context": "Case minh họa: một giải pháp robot/AI hỗ trợ vận hành.",
+        "steps": [
+          "Điền BMC 9 khối cho case.",
+          "Khoanh 3 khối có rủi ro giả định cao nhất."
+        ],
+        "answer": "Kết quả tốt phải phân biệt dữ liệu đã biết với giả định, có metric và bước kiểm chứng tiếp theo."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Tóm tắt khái niệm bằng 5 gạch đầu dòng.",
+          "expected": "Không lẫn feature với value."
+        },
+        {
+          "level": "Trung bình",
+          "task": "Áp dụng cho một case công nghệ.",
+          "expected": "Có artifact 1 trang hoặc bảng."
+        },
+        {
+          "level": "Khá",
+          "task": "Phản biện 3 giả định quan trọng nhất.",
+          "expected": "Có bằng chứng hoặc kế hoạch kiểm chứng."
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng/Thực hành mô phỏng.",
+      "commonMistakes": [
+        "Khẳng định giả định như sự thật.",
+        "Nói nhiều về công nghệ nhưng thiếu người dùng và metric.",
+        "Không ghi tiêu chí pass/fail trước khi thử nghiệm."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Điểm nào đang là fact và điểm nào chỉ là assumption?",
+          "a": "Fact có bằng chứng; assumption cần test."
+        },
+        {
+          "q": "Đầu ra có đo được không?",
+          "a": "Nên có metric hoặc tiêu chí quan sát cụ thể."
+        }
+      ],
+      "masteryCriteria": [
+        "Giải thích được khái niệm bằng lời của mình.",
+        "Áp dụng vào case cụ thể.",
+        "Tạo artifact có thể xem lại.",
+        "Đạt quiz ≥ 8/10 hoặc ôn lỗi sai."
+      ],
+      "rubric": [
+        {
+          "criterion": "Hiểu khái niệm",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Áp dụng",
+          "weight": 0.35
+        },
+        {
+          "criterion": "Bằng chứng",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Trình bày",
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  {
+    "id": "ent_m203_l2",
+    "stage": "m2",
+    "moduleId": "ent_m203",
+    "title": "Chi phí, contribution margin và break-even",
+    "description": "Bài học Chi phí, contribution margin và break-even trong học phần Основы предпринимательства.",
+    "kind": "thực hành",
+    "keyPoints": [
+      "Tách fixed cost và variable cost.",
+      "Contribution margin = price - variable cost per unit ở mô hình đơn giản.",
+      "Break-even cần được đọc như bài toán giả định, không phải dự báo chắc chắn."
+    ],
+    "tasks": [
+      "Lập bảng fixed/variable cost.",
+      "Tính contribution margin và break-even cho ví dụ đơn giản."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK2",
+      "moduleTitle": "Chi phí, contribution margin và break-even",
+      "estimatedMinutes": 45,
+      "sourceBasis": "Study-plan course: Основы предпринимательства. Nội dung trong module là học liệu hỗ trợ, không phải syllabus chính thức chi tiết của giảng viên.",
+      "objectives": [
+        "Tách fixed cost và variable cost.",
+        "Contribution margin = price - variable cost per unit ở mô hình đơn giản.",
+        "Break-even cần được đọc như bài toán giả định, không phải dự báo chắc chắn."
+      ],
+      "prerequisites": [
+        "Đã đọc mục tiêu module.",
+        "Có file/sổ để lưu artifact.",
+        "Dùng một case công nghệ xuyên suốt để tránh ví dụ rời rạc."
+      ],
+      "whyItMatters": "Giúp chuyển tư duy kỹ thuật sang tư duy vấn đề–giá trị–kiểm chứng, đủ dùng cho học phần hỗ trợ và trình bày project.",
+      "coreTheory": [
+        "Tách fixed cost và variable cost.",
+        "Contribution margin = price - variable cost per unit ở mô hình đơn giản.",
+        "Break-even cần được đọc như bài toán giả định, không phải dự báo chắc chắn."
+      ],
+      "coreFormulas": [
+        "problem → evidence → value → model → experiment",
+        "assumption → test → metric → learning"
+      ],
+      "workedExample": {
+        "context": "Case minh họa: một giải pháp robot/AI hỗ trợ vận hành.",
+        "steps": [
+          "Lập bảng fixed/variable cost.",
+          "Tính contribution margin và break-even cho ví dụ đơn giản."
+        ],
+        "answer": "Kết quả tốt phải phân biệt dữ liệu đã biết với giả định, có metric và bước kiểm chứng tiếp theo."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Tóm tắt khái niệm bằng 5 gạch đầu dòng.",
+          "expected": "Không lẫn feature với value."
+        },
+        {
+          "level": "Trung bình",
+          "task": "Áp dụng cho một case công nghệ.",
+          "expected": "Có artifact 1 trang hoặc bảng."
+        },
+        {
+          "level": "Khá",
+          "task": "Phản biện 3 giả định quan trọng nhất.",
+          "expected": "Có bằng chứng hoặc kế hoạch kiểm chứng."
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng/Thực hành mô phỏng.",
+      "commonMistakes": [
+        "Khẳng định giả định như sự thật.",
+        "Nói nhiều về công nghệ nhưng thiếu người dùng và metric.",
+        "Không ghi tiêu chí pass/fail trước khi thử nghiệm."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Điểm nào đang là fact và điểm nào chỉ là assumption?",
+          "a": "Fact có bằng chứng; assumption cần test."
+        },
+        {
+          "q": "Đầu ra có đo được không?",
+          "a": "Nên có metric hoặc tiêu chí quan sát cụ thể."
+        }
+      ],
+      "masteryCriteria": [
+        "Giải thích được khái niệm bằng lời của mình.",
+        "Áp dụng vào case cụ thể.",
+        "Tạo artifact có thể xem lại.",
+        "Đạt quiz ≥ 8/10 hoặc ôn lỗi sai."
+      ],
+      "rubric": [
+        {
+          "criterion": "Hiểu khái niệm",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Áp dụng",
+          "weight": 0.35
+        },
+        {
+          "criterion": "Bằng chứng",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Trình bày",
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  {
+    "id": "ent_m204_l1",
+    "stage": "m2",
+    "moduleId": "ent_m204",
+    "title": "MVP và validation experiment",
+    "description": "Bài học MVP và validation experiment trong học phần Основы предпринимательства.",
+    "kind": "lý thuyết",
+    "keyPoints": [
+      "MVP là phương tiện học nhanh về giả định rủi ro, không nhất thiết là sản phẩm hoàn chỉnh.",
+      "Một experiment cần giả thuyết, thao tác, metric, sample và tiêu chí pass/fail.",
+      "Kết quả âm vẫn hữu ích nếu làm giảm bất định."
+    ],
+    "tasks": [
+      "Chọn giả định rủi ro nhất.",
+      "Thiết kế experiment có metric và threshold."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK2",
+      "moduleTitle": "MVP và validation experiment",
+      "estimatedMinutes": 45,
+      "sourceBasis": "Study-plan course: Основы предпринимательства. Nội dung trong module là học liệu hỗ trợ, không phải syllabus chính thức chi tiết của giảng viên.",
+      "objectives": [
+        "MVP là phương tiện học nhanh về giả định rủi ro, không nhất thiết là sản phẩm hoàn chỉnh.",
+        "Một experiment cần giả thuyết, thao tác, metric, sample và tiêu chí pass/fail.",
+        "Kết quả âm vẫn hữu ích nếu làm giảm bất định."
+      ],
+      "prerequisites": [
+        "Đã đọc mục tiêu module.",
+        "Có file/sổ để lưu artifact.",
+        "Dùng một case công nghệ xuyên suốt để tránh ví dụ rời rạc."
+      ],
+      "whyItMatters": "Giúp chuyển tư duy kỹ thuật sang tư duy vấn đề–giá trị–kiểm chứng, đủ dùng cho học phần hỗ trợ và trình bày project.",
+      "coreTheory": [
+        "MVP là phương tiện học nhanh về giả định rủi ro, không nhất thiết là sản phẩm hoàn chỉnh.",
+        "Một experiment cần giả thuyết, thao tác, metric, sample và tiêu chí pass/fail.",
+        "Kết quả âm vẫn hữu ích nếu làm giảm bất định."
+      ],
+      "coreFormulas": [
+        "problem → evidence → value → model → experiment",
+        "assumption → test → metric → learning"
+      ],
+      "workedExample": {
+        "context": "Case minh họa: một giải pháp robot/AI hỗ trợ vận hành.",
+        "steps": [
+          "Chọn giả định rủi ro nhất.",
+          "Thiết kế experiment có metric và threshold."
+        ],
+        "answer": "Kết quả tốt phải phân biệt dữ liệu đã biết với giả định, có metric và bước kiểm chứng tiếp theo."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Tóm tắt khái niệm bằng 5 gạch đầu dòng.",
+          "expected": "Không lẫn feature với value."
+        },
+        {
+          "level": "Trung bình",
+          "task": "Áp dụng cho một case công nghệ.",
+          "expected": "Có artifact 1 trang hoặc bảng."
+        },
+        {
+          "level": "Khá",
+          "task": "Phản biện 3 giả định quan trọng nhất.",
+          "expected": "Có bằng chứng hoặc kế hoạch kiểm chứng."
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng/Thực hành mô phỏng.",
+      "commonMistakes": [
+        "Khẳng định giả định như sự thật.",
+        "Nói nhiều về công nghệ nhưng thiếu người dùng và metric.",
+        "Không ghi tiêu chí pass/fail trước khi thử nghiệm."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Điểm nào đang là fact và điểm nào chỉ là assumption?",
+          "a": "Fact có bằng chứng; assumption cần test."
+        },
+        {
+          "q": "Đầu ra có đo được không?",
+          "a": "Nên có metric hoặc tiêu chí quan sát cụ thể."
+        }
+      ],
+      "masteryCriteria": [
+        "Giải thích được khái niệm bằng lời của mình.",
+        "Áp dụng vào case cụ thể.",
+        "Tạo artifact có thể xem lại.",
+        "Đạt quiz ≥ 8/10 hoặc ôn lỗi sai."
+      ],
+      "rubric": [
+        {
+          "criterion": "Hiểu khái niệm",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Áp dụng",
+          "weight": 0.35
+        },
+        {
+          "criterion": "Bằng chứng",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Trình bày",
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  {
+    "id": "ent_m204_l2",
+    "stage": "m2",
+    "moduleId": "ent_m204",
+    "title": "Pitch dự án công nghệ 3 phút",
+    "description": "Bài học Pitch dự án công nghệ 3 phút trong học phần Основы предпринимательства.",
+    "kind": "thực hành",
+    "keyPoints": [
+      "Pitch ngắn nên đi theo problem → evidence → solution/value → model → traction/test → ask/next step.",
+      "Slide hỗ trợ câu chuyện, không phải tài liệu đọc.",
+      "Câu hỏi phản biện thường tập trung vào bằng chứng, chi phí, rủi ro và khả năng triển khai."
+    ],
+    "tasks": [
+      "Làm pitch 5 slide.",
+      "Tự ghi âm 3 phút và cắt phần thừa.",
+      "Chuẩn bị 5 câu hỏi phản biện."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK2",
+      "moduleTitle": "Pitch dự án công nghệ 3 phút",
+      "estimatedMinutes": 45,
+      "sourceBasis": "Study-plan course: Основы предпринимательства. Nội dung trong module là học liệu hỗ trợ, không phải syllabus chính thức chi tiết của giảng viên.",
+      "objectives": [
+        "Pitch ngắn nên đi theo problem → evidence → solution/value → model → traction/test → ask/next step.",
+        "Slide hỗ trợ câu chuyện, không phải tài liệu đọc.",
+        "Câu hỏi phản biện thường tập trung vào bằng chứng, chi phí, rủi ro và khả năng triển khai."
+      ],
+      "prerequisites": [
+        "Đã đọc mục tiêu module.",
+        "Có file/sổ để lưu artifact.",
+        "Dùng một case công nghệ xuyên suốt để tránh ví dụ rời rạc."
+      ],
+      "whyItMatters": "Giúp chuyển tư duy kỹ thuật sang tư duy vấn đề–giá trị–kiểm chứng, đủ dùng cho học phần hỗ trợ và trình bày project.",
+      "coreTheory": [
+        "Pitch ngắn nên đi theo problem → evidence → solution/value → model → traction/test → ask/next step.",
+        "Slide hỗ trợ câu chuyện, không phải tài liệu đọc.",
+        "Câu hỏi phản biện thường tập trung vào bằng chứng, chi phí, rủi ro và khả năng triển khai."
+      ],
+      "coreFormulas": [
+        "problem → evidence → value → model → experiment",
+        "assumption → test → metric → learning"
+      ],
+      "workedExample": {
+        "context": "Case minh họa: một giải pháp robot/AI hỗ trợ vận hành.",
+        "steps": [
+          "Làm pitch 5 slide.",
+          "Tự ghi âm 3 phút và cắt phần thừa.",
+          "Chuẩn bị 5 câu hỏi phản biện."
+        ],
+        "answer": "Kết quả tốt phải phân biệt dữ liệu đã biết với giả định, có metric và bước kiểm chứng tiếp theo."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Tóm tắt khái niệm bằng 5 gạch đầu dòng.",
+          "expected": "Không lẫn feature với value."
+        },
+        {
+          "level": "Trung bình",
+          "task": "Áp dụng cho một case công nghệ.",
+          "expected": "Có artifact 1 trang hoặc bảng."
+        },
+        {
+          "level": "Khá",
+          "task": "Phản biện 3 giả định quan trọng nhất.",
+          "expected": "Có bằng chứng hoặc kế hoạch kiểm chứng."
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng/Thực hành mô phỏng.",
+      "commonMistakes": [
+        "Khẳng định giả định như sự thật.",
+        "Nói nhiều về công nghệ nhưng thiếu người dùng và metric.",
+        "Không ghi tiêu chí pass/fail trước khi thử nghiệm."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Điểm nào đang là fact và điểm nào chỉ là assumption?",
+          "a": "Fact có bằng chứng; assumption cần test."
+        },
+        {
+          "q": "Đầu ra có đo được không?",
+          "a": "Nên có metric hoặc tiêu chí quan sát cụ thể."
+        }
+      ],
+      "masteryCriteria": [
+        "Giải thích được khái niệm bằng lời của mình.",
+        "Áp dụng vào case cụ thể.",
+        "Tạo artifact có thể xem lại.",
+        "Đạt quiz ≥ 8/10 hoặc ôn lỗi sai."
+      ],
+      "rubric": [
+        {
+          "criterion": "Hiểu khái niệm",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Áp dụng",
+          "weight": 0.35
+        },
+        {
+          "criterion": "Bằng chứng",
+          "weight": 0.2
+        },
+        {
+          "criterion": "Trình bày",
+          "weight": 0.15
+        }
+      ]
+    }
+  }
+]
