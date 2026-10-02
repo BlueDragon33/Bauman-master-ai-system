@@ -9,6 +9,11 @@ let browser;
 try{
  browser=await chromium.launch({headless:true,...(process.env.BAUMAN_CHROME_PATH?{executablePath:process.env.BAUMAN_CHROME_PATH}:{})});
  const context=await browser.newContext({viewport:{width:1280,height:900}});
+ const smokeSession=String(process.env.BAUMAN_E2E_DEVICE_SESSION||'').trim();
+ if(smokeSession){
+   const baseUrl=new URL(BASE);
+   await context.addCookies([{name:'__Host-bauman_session',value:smokeSession,url:baseUrl.origin+'/',httpOnly:true,secure:baseUrl.protocol==='https:',sameSite:'Strict'}]);
+ }
  const page=await context.newPage();const errors=[];
  page.on('pageerror',e=>errors.push(String(e?.stack||e)));
  await page.goto(new URL('subjects/russian/index.html',BASE).href,{waitUntil:'domcontentloaded',timeout:30000});
