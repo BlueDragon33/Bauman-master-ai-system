@@ -1,0 +1,66 @@
+[
+  {
+    "id": "erg_f1",
+    "group": "task",
+    "name": "Task success rate",
+    "formula": "Success rate = successful tasks / attempted tasks × 100%",
+    "meaning": "Tỷ lệ task đạt mục tiêu theo tiêu chí định trước.",
+    "example": "18/20 task thành công → 90%."
+  },
+  {
+    "id": "erg_f2",
+    "group": "task",
+    "name": "Mean task time",
+    "formula": "Mean time = Σ task times / n",
+    "meaning": "Thời gian trung bình cho cùng một task trong cùng điều kiện.",
+    "example": "5 phiên: 42, 39, 45, 40, 44 s → 42 s."
+  },
+  {
+    "id": "erg_f3",
+    "group": "error",
+    "name": "Error rate",
+    "formula": "Error rate = observed errors / error opportunities",
+    "meaning": "Chuẩn hóa lỗi theo số cơ hội xảy ra lỗi.",
+    "example": "6 lỗi / 60 cơ hội → 0.10."
+  },
+  {
+    "id": "erg_f4",
+    "group": "compare",
+    "name": "Relative improvement",
+    "formula": "Improvement = (baseline − new) / baseline × 100%",
+    "meaning": "Dùng khi metric càng thấp càng tốt như task time/error.",
+    "example": "50 s → 40 s: cải thiện 20%."
+  },
+  {
+    "id": "erg_f5",
+    "group": "display",
+    "name": "Information priority",
+    "formula": "priority = consequence × urgency × actionability",
+    "meaning": "Heuristic nội bộ để sắp xếp thông tin; không phải công thức tiêu chuẩn chính thức.",
+    "example": "Alarm nguy hiểm, khẩn và có hành động rõ được ưu tiên cao."
+  },
+  {
+    "id": "erg_f6",
+    "group": "alarm",
+    "name": "Alarm contract",
+    "formula": "condition → priority → message → required action → acknowledgement → recovery",
+    "meaning": "Checklist để tránh alarm chỉ báo lỗi mà không hỗ trợ xử lý.",
+    "example": "Sensor lost → critical → identify sensor → switch fallback → acknowledge → restore."
+  },
+  {
+    "id": "erg_f7",
+    "group": "analysis",
+    "name": "Finding traceability",
+    "formula": "task → evidence → risk → recommendation → verification metric",
+    "meaning": "Khung nối finding với redesign và kiểm chứng.",
+    "example": "Task chậm → log time → delayed response → hierarchy redesign → task time."
+  },
+  {
+    "id": "erg_f8",
+    "group": "experiment",
+    "name": "Pilot comparison",
+    "formula": "same task + controlled context + A/B order + metric log + limitations",
+    "meaning": "Checklist mini-test so sánh hai giao diện.",
+    "example": "A/B dashboard với cùng scenario và log time/error."
+  }
+]

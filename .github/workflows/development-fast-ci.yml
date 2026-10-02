@@ -55,6 +55,9 @@ jobs:
       - name: Entrepreneurship subject static
         run: node tests/entrepreneurship-subject-static.mjs
 
+      - name: Ergonomics subject static
+        run: node tests/ergonomics-subject-static.mjs
+
       - name: Thesis reference static
         run: node tests/thesis-reference-v1-static.mjs
 
