@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0.0",
+  "packetId": null,
+  "revision": 0,
+  "status": "DRAFT",
+  "userIntent": "",
+  "objective": "",
+  "targetArea": "",
+  "baselineSha": null,
+  "allowedPaths": [],
+  "forbiddenPaths": [
+    "prompts/subjects/**",
+    "subject-app private runtime/database/content/assessment/mastery internals"
+  ],
+  "requiredContracts": [],
+  "acceptanceCriteria": [],
+  "testPlan": [],
+  "releasePolicy": "NO_RELEASE_UNLESS_EXPLICITLY_AUTHORIZED",
+  "rollbackNotes": null,
+  "externalBlockers": []
+}

@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Bauman Hub Codex Execution Result",
+  "type": "object",
+  "required": [
+    "packetId",
+    "revision",
+    "status",
+    "beforeSha",
+    "afterSha",
+    "changedPaths",
+    "tests",
+    "acceptance",
+    "boundaryCompliance"
+  ],
+  "properties": {
+    "packetId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "status": {
+      "enum": [
+        "EMPTY",
+        "IN_CODEX",
+        "CODEX_DONE",
+        "BLOCKED"
+      ]
+    },
+    "beforeSha": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "afterSha": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "changedPaths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tests": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "acceptance": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "apiCompatibility": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "boundaryCompliance": {
+      "type": "object"
+    },
+    "defectsFixed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "releaseState": {
+      "type": "string"
+    },
+    "nextAction": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Bauman Hub Chat to Codex Work Packet",
+  "type": "object",
+  "required": [
+    "packetId",
+    "revision",
+    "status",
+    "userIntent",
+    "objective",
+    "targetArea",
+    "allowedPaths",
+    "forbiddenPaths",
+    "acceptanceCriteria",
+    "testPlan",
+    "releasePolicy"
+  ],
+  "properties": {
+    "packetId": {
+      "type": "string"
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "status": {
+      "enum": [
+        "DRAFT",
+        "READY_FOR_CODEX",
+        "IN_CODEX",
+        "CODEX_DONE",
+        "CHAT_REVIEW",
+        "ACCEPTED",
+        "REVISE",
+        "BLOCKED"
+      ]
+    },
+    "userIntent": {
+      "type": "string"
+    },
+    "objective": {
+      "type": "string"
+    },
+    "targetArea": {
+      "type": "string"
+    },
+    "baselineSha": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "allowedPaths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbiddenPaths": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "requiredContracts": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "acceptanceCriteria": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "testPlan": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "releasePolicy": {
+      "type": "string"
+    },
+    "rollbackNotes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "externalBlockers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.3.0",
+  "schemaVersion": "2.0.0",
   "project": "BlueDragon33/Bauman-master-ai-system",
   "canonicalPromptRoot": "prompts",
   "constitution": "prompts/CONSTITUTION.md",
@@ -7,6 +7,19 @@
   "executionProtocol": "prompts/EXECUTION_PROTOCOL.md",
   "rule": "ONE_PROJECT_ONE_SHARED_CONSTITUTION_ONE_MASTER_PROMPT_PER_DOMAIN_CONTINUOUS_EVOLUTION",
   "domains": [
+    {
+      "id": "hub",
+      "label": "Bauman Hub",
+      "implementationScope": "Hub shell, overview, subject catalog, roadmap, schedule/calendar, research/thesis summaries, documents/notes/search, settings, PWA/offline, cross-app integration surfaces",
+      "chatStart": "prompts/hub/chat/CHAT_START.md",
+      "chatMasterPrompt": "prompts/hub/chat/HUB_CHAT_MASTER_PROMPT.md",
+      "codexStart": "prompts/hub/codex/CODEX_START.md",
+      "codexMasterPrompt": "prompts/hub/codex/HUB_CODEX_MASTER_PROMPT.md",
+      "sharedState": "prompts/hub/HUB_SHARED_STATE.json",
+      "apiBoundary": "prompts/hub/api/HUB_SUBAPP_API_BOUNDARY.md",
+      "status": "CANONICAL_DUAL_PLANE",
+      "subjectAppBoundary": "API_CONTRACT_ONLY"
+    },
     {
       "id": "russian",
       "implementationScope": "subjects/russian/",
@@ -261,8 +274,21 @@
     "Do not create version-suffixed competing Master Prompt files.",
     "Do not let a subject/domain redefine global Constitution authority.",
     "Do not treat archived ZIP packages as higher execution authority than canonical readable prompt files.",
-    "Do not make prompt execution Codex-only; ordinary ChatGPT chat and Work use the same canonical prompt state."
+    "Do not make prompt execution Codex-only; ordinary ChatGPT chat and Work use the same canonical prompt state.",
+    "Bauman Hub Chat/Codex prompts must not load subject Master Prompts for Hub work.",
+    "Bauman Hub must not read/write subject-app databases, internal state, lesson content, assessment engines, or private implementation files.",
+    "Cross-app integration is contract/API-only and default-deny for unregistered capabilities."
   ],
   "chatEntry": "prompts/CHAT_ENTRY.md",
-  "constitutionLibrary": "prompts/constitution/"
+  "constitutionLibrary": "prompts/constitution/",
+  "hubControlPlane": {
+    "scope": "BAUMAN_HUB_ONLY",
+    "chatPrompt": "prompts/hub/chat/HUB_CHAT_MASTER_PROMPT.md",
+    "codexPrompt": "prompts/hub/codex/HUB_CODEX_MASTER_PROMPT.md",
+    "sharedState": "prompts/hub/HUB_SHARED_STATE.json",
+    "workPacket": "prompts/hub/bridge/CURRENT_WORK_PACKET.json",
+    "executionResult": "prompts/hub/bridge/CURRENT_EXECUTION_RESULT.json",
+    "apiBoundary": "prompts/hub/api/HUB_SUBAPP_API_BOUNDARY.md",
+    "rule": "Hub integrates with subject apps only through registered versioned API/contract boundaries; Hub prompts must not load or modify subject-app internals."
+  }
 }

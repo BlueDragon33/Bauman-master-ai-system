@@ -1,36 +1,24 @@
-# CHATGPT NORMAL CHAT ENTRY — BAUMAN PROMPT SYSTEM
+# CHATGPT NORMAL CHAT ENTRY — BAUMAN
 
-The prompt repository is not Codex-only. It is the durable operating context for ordinary ChatGPT chats, ChatGPT Work, and Codex.
-
-## New chat rule
-
-Do not ask the user to re-upload a prompt ZIP when canonical prompt files already exist in the repository.
-
-Read in this order:
+## If the task is about BAUMAN HUB
+Use the dedicated Hub normal-chat plane:
 
 1. `prompts/CONSTITUTION.md`
-2. `prompts/PROMPT_REGISTRY.json`
-3. `prompts/constitution/README.md`
-4. active subject `README.md`
-5. active subject Master Prompt
-6. active subject `PROJECT_STATE.json`
-7. active module prompt
-8. only the constitution clauses named by the subject router
-9. current diff/evidence only if repository execution is requested
+2. `prompts/hub/chat/CHAT_START.md`
+3. `prompts/hub/chat/HUB_CHAT_MASTER_PROMPT.md`
+4. `prompts/hub/HUB_SHARED_STATE.json`
+5. current Hub work packet/result if relevant
 
-## Modes
+For Hub work, **do not load `prompts/subjects/**`**.
+Subject apps are external bounded systems and Hub communicates with them only via versioned API/contracts.
 
-### Ordinary Chat
-Use for planning, reviewing, explaining, drafting, comparing, prompt evolution and state handoff. Do not claim code/repo execution unless tools actually performed it.
+## If the task is about a SUBJECT APP ITSELF
+That is a separate workflow. Use the corresponding `prompts/subjects/<subject>/...` system.
 
-### Work
-Use for larger multi-step research/file/app workflows. The same Constitution and subject state remain authoritative.
+Do not mix the two scopes in one execution stream.
 
-### Codex
-Use for repository implementation/testing. The same Constitution and subject state remain authoritative.
+## Codex
+Codex has its own Hub execution plane at:
+`prompts/hub/codex/CODEX_START.md`
 
-No mode is allowed to create a second Constitution or a competing Master Prompt.
-
-## Token rule
-
-Never load every subject and every Constitution file by default. Load the active subject + routed clauses + current state first; broaden only when evidence requires it.
+The normal-chat and Codex planes connect only through the Hub shared state and bridge packet/result files.

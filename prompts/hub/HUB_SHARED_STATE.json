@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.0.0",
+  "scope": "BAUMAN_HUB_ONLY",
+  "chatPlane": "prompts/hub/chat/HUB_CHAT_MASTER_PROMPT.md",
+  "codexPlane": "prompts/hub/codex/HUB_CODEX_MASTER_PROMPT.md",
+  "bridgeProtocol": "prompts/hub/bridge/HANDOFF_PROTOCOL.md",
+  "apiBoundary": "prompts/hub/api/HUB_SUBAPP_API_BOUNDARY.md",
+  "currentBranch": "work/curriculum-prompt-system-v1",
+  "currentHeadSha": "9376b829576b3ab363c2f8155caa04db9af2ba73",
+  "lastChatReviewSha": null,
+  "lastCodexValidatedSha": null,
+  "activeWorkPacketId": null,
+  "activeWorkPacketRevision": 0,
+  "lifecycleStatus": "IDLE",
+  "lastAcceptedPacketId": null,
+  "blockers": [],
+  "notes": [
+    "Hub work does not load prompts/subjects/**.",
+    "Subject apps are external bounded systems; integration is versioned API/contract only.",
+    "Curriculum-2026 may be loaded only for Hub curriculum/semester/roadmap/schedule projection work."
+  ]
+}

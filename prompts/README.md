@@ -66,3 +66,15 @@ All three modes use the same Constitution, Master Prompt, router and PROJECT_STA
 - Curriculum 2026 — canonical shell-building prompt system.
 
 Original/backup ZIP packages remain under `prompt-archives/` for provenance and recovery. They are not simultaneous execution authority.
+
+
+## Bauman Hub dual-plane rule
+
+Bauman Hub has a dedicated two-plane prompt system under `prompts/hub/`:
+
+- ordinary ChatGPT box: `prompts/hub/chat/`
+- Codex: `prompts/hub/codex/`
+
+They share state/handoff contracts but are not the same prompt.
+
+**Hub-only boundary:** these two prompt sets do not perform deep subject-app work. Subject applications are consumed only through registered API/contracts, launch descriptors and normalized summary models. The subject prompt systems under `prompts/subjects/` are separate workflows.
