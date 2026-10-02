@@ -1,0 +1,27 @@
+name: Database DB03 semantic assessment contract
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "subjects/database/docs/db02/**"
+      - "subjects/database/docs/db03/**"
+      - "prompts/subjects/database/**"
+      - "tests/database-db03-contract.mjs"
+      - ".github/workflows/database-db03-contract.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  db03-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - name: Validate DB03 semantic assessment contracts
+        run: node tests/database-db03-contract.mjs

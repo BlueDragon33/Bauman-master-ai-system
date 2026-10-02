@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "developer-public-discriminating-fixture-catalog",
+  "hidden": false,
+  "note": "Public canary descriptors only. Hidden grading payloads are protected runtime assets, never learner/AI-tutor content.",
+  "fixtures": [
+    {
+      "id": "db.fx.unmatched-parent",
+      "purpose": "Parent with no child distinguishes inner/outer/anti behavior."
+    },
+    {
+      "id": "db.fx.multi-child",
+      "purpose": "Multiple children expose duplicate/cardinality errors."
+    },
+    {
+      "id": "db.fx.empty-child",
+      "purpose": "Zero-match behavior with empty child relation."
+    },
+    {
+      "id": "db.fx.nullable-column",
+      "purpose": "COUNT(expr), IS NULL and three-valued logic."
+    },
+    {
+      "id": "db.fx.null-foreign-key",
+      "purpose": "NOT IN plus NULL behavior."
+    },
+    {
+      "id": "db.fx.null-measure",
+      "purpose": "Aggregate behavior over NULL measure values."
+    },
+    {
+      "id": "db.fx.boundary-100",
+      "purpose": "Distinguish >100 from >=100."
+    },
+    {
+      "id": "db.fx.duplicates",
+      "purpose": "Make DISTINCT/bag semantics observable."
+    },
+    {
+      "id": "db.fx.tie-order",
+      "purpose": "Expose missing or underspecified order semantics."
+    }
+  ]
+}

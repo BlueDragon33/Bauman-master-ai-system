@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "database",
+  "owner": "DB03",
+  "errors": [
+    {
+      "code": "MODEL_ERROR",
+      "description": "Data model/relation choice does not represent the requirement."
+    },
+    {
+      "code": "KEY_CONSTRAINT_ERROR",
+      "description": "Key or integrity constraint semantics are incorrect."
+    },
+    {
+      "code": "JOIN_ERROR",
+      "description": "Join type/predicate is semantically incorrect."
+    },
+    {
+      "code": "CARDINALITY_ERROR",
+      "description": "Expected multiplicity/cardinality is misunderstood."
+    },
+    {
+      "code": "NULL_ERROR",
+      "description": "NULL or three-valued logic is handled incorrectly."
+    },
+    {
+      "code": "DUPLICATE_ERROR",
+      "description": "Bag/set/DISTINCT semantics are incorrect."
+    },
+    {
+      "code": "ORDER_ERROR",
+      "description": "Incidental row order is treated as contractual or required order is wrong."
+    },
+    {
+      "code": "AGGREGATION_ERROR",
+      "description": "GROUP BY/HAVING/aggregate semantics are incorrect."
+    },
+    {
+      "code": "SUBQUERY_SCOPE_ERROR",
+      "description": "Subquery correlation/scope/IN/EXISTS semantics are incorrect."
+    },
+    {
+      "code": "NORMALIZATION_ERROR",
+      "description": "FD/key/normal-form/decomposition reasoning is incorrect."
+    },
+    {
+      "code": "TRANSACTION_ERROR",
+      "description": "Transaction boundaries, atomicity or schedule reasoning are incorrect."
+    },
+    {
+      "code": "ISOLATION_ERROR",
+      "description": "Isolation phenomenon/context is classified incorrectly."
+    },
+    {
+      "code": "INDEX_SELECTION_ERROR",
+      "description": "Index recommendation ignores workload/selectivity/write cost/order."
+    },
+    {
+      "code": "PLAN_INTERPRETATION_ERROR",
+      "description": "Planner estimate/cost/access path is interpreted incorrectly."
+    },
+    {
+      "code": "DIALECT_ERROR",
+      "description": "Engine-specific syntax/behavior is used outside the declared profile."
+    },
+    {
+      "code": "SECURITY_ERROR",
+      "description": "Solution violates learner database isolation/safety boundaries."
+    }
+  ]
+}
