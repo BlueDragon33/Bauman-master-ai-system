@@ -6,7 +6,9 @@ import vm from 'node:vm';
 import {fileURLToPath} from 'node:url';
 
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-const SUBJECTS=['ai','entrepreneurship','ergonomics','foundation','math','mivar','programming','research','russian','signal','systems'];
+const CONTROL_CONTRACT=JSON.parse(fs.readFileSync(path.join(ROOT,'control/application-management.contract.json'),'utf8'));
+const SUBJECTS=[...new Set((CONTROL_CONTRACT.subclients||[]).map(item=>String(item.id||'').trim()).filter(Boolean))];
+assert.ok(SUBJECTS.length,'Application-management contract must declare canonical subclients');
 const SIMPLE_SUBJECTS=['ai','foundation','research','signal','systems'];
 const failures=[];
 const checks=[];
