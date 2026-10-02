@@ -53,21 +53,28 @@
     "survival": [
       "subjects/russian/scripts/test-p6-speech-interaction-runtime.mjs",
       "subjects/russian/scripts/validate-speaking-coach.mjs",
-      "subjects/russian/scripts/validate-ru05-oral-scenarios.mjs"
+      "subjects/russian/scripts/validate-ru05-oral-scenarios.mjs",
+      "tests/russian-scenario-journey-browser.mjs"
     ],
     "university": [
       "subjects/russian/scripts/validate-academic-language.mjs",
-      "subjects/russian/scripts/validate-ru06-academic-production.mjs"
+      "subjects/russian/scripts/validate-ru06-academic-production.mjs",
+      "tests/russian-academic-production-journey-browser.mjs"
     ],
     "technical": [
       "subjects/russian/scripts/validate-p8-academic-technical.mjs",
       "subjects/russian/scripts/validate-ru06-academic-production.mjs",
-      "subjects/russian/docs/ru06/RUSSIAN_RU06_GOLDEN_PRODUCTION_FIXTURES.json"
+      "subjects/russian/docs/ru06/RUSSIAN_RU06_GOLDEN_PRODUCTION_FIXTURES.json",
+      "tests/russian-scenario-journey-browser.mjs",
+      "tests/russian-academic-production-journey-browser.mjs"
     ],
     "research": [
       "subjects/russian/scripts/validate-p9-reading-writing-research.mjs",
       "subjects/russian/scripts/validate-ru06-academic-production.mjs",
-      "subjects/russian/docs/ru06/RUSSIAN_RU06_SOURCE_CLAIM_LINEAGE_CONTRACT.json"
+      "subjects/russian/docs/ru06/RUSSIAN_RU06_SOURCE_CLAIM_LINEAGE_CONTRACT.json",
+      "tests/russian-scenario-journey-browser.mjs",
+      "tests/russian-academic-production-journey-browser.mjs",
+      "tests/russian-ai-grounding-browser.mjs"
     ],
     "author": [
       "tests/russian-authoring-journey-browser.mjs",
@@ -114,7 +121,8 @@
       "control-service/tests/contract.test.mjs"
     ],
     "offline-reload": [
-      "tests/russian-offline-shell-browser.mjs"
+      "tests/russian-offline-shell-browser.mjs",
+      "tests/russian-scenario-journey-browser.mjs"
     ],
     "content-revision": [
       "subjects/russian/docs/ru03/RUSSIAN_RU03_VALIDATION_POLICY.md"
@@ -129,20 +137,26 @@
       "subjects/russian/scripts/validate-ai-runtime.mjs"
     ],
     "prompt-injection": [
-      "subjects/russian/scripts/validate-ru07-ai-coaching.mjs"
+      "subjects/russian/scripts/validate-ru07-ai-coaching.mjs",
+      "tests/russian-ai-grounding-browser.mjs"
     ],
     "long-technical-text": [
-      "subjects/russian/scripts/validate-ru06-academic-production.mjs"
+      "subjects/russian/scripts/validate-ru06-academic-production.mjs",
+      "tests/russian-academic-production-journey-browser.mjs"
     ],
     "mobile-overflow": [
-      "tests/russian-p1-forensic-browser.mjs"
+      "tests/russian-p1-forensic-browser.mjs",
+      "tests/russian-scenario-journey-browser.mjs",
+      "tests/russian-academic-production-journey-browser.mjs"
     ],
     "keyboard-screen-reader": [
       "tests/russian-authoring-journey-browser.mjs",
-      "tests/russian-p1-forensic-browser.mjs"
+      "tests/russian-p1-forensic-browser.mjs",
+      "tests/russian-scenario-journey-browser.mjs"
     ],
     "plugin-resource-failure": [
-      "subjects/russian/scripts/validate-ai-runtime.mjs"
+      "subjects/russian/scripts/validate-ai-runtime.mjs",
+      "tests/russian-ai-grounding-browser.mjs"
     ],
     "old-package-compatibility": [
       "tests/russian-offline-shell-browser.mjs",
