@@ -128,7 +128,12 @@ def normalize_source_dir(src: Path, archive_name: str, meta: dict) -> dict:
     if not readme_src.exists() or not master:
         raise RuntimeError(f"{src}: missing README or Master Prompt")
 
+    preserved_state = {}
     if dest.exists():
+        for durable_name in ("PROJECT_STATE.json", "SOURCE_STATUS.md", "STATUS.md"):
+            durable_path = dest / durable_name
+            if durable_path.exists():
+                preserved_state[durable_name] = durable_path.read_text(encoding="utf-8")
         shutil.rmtree(dest)
     dest.mkdir(parents=True)
 
@@ -154,7 +159,12 @@ Prompt architecture source was imported from the staged subject source package.
 - Repository execution: NOT_STARTED_OR_NEEDS_RECONCILIATION
 - Next action: run {prefix}01 against current repository reality.
 """
-    (dest/"SOURCE_STATUS.md").write_text(source_status,encoding="utf-8")
+    if "SOURCE_STATUS.md" in preserved_state:
+        (dest/"SOURCE_STATUS.md").write_text(preserved_state["SOURCE_STATUS.md"],encoding="utf-8")
+    else:
+        (dest/"SOURCE_STATUS.md").write_text(source_status,encoding="utf-8")
+    if "STATUS.md" in preserved_state:
+        (dest/"STATUS.md").write_text(preserved_state["STATUS.md"],encoding="utf-8")
     (dest/"CHAT_START.md").write_text(CHAT_START_TEMPLATE.format(label=meta["label"]),encoding="utf-8")
 
     sequence=[f"{prefix}0{i}" for i in range(1,7)]
@@ -223,7 +233,10 @@ Prompt architecture source was imported from the staged subject source package.
       "blockers":[],
       "nextAction":f"Run {prefix}01 against current repository reality before canonical implementation work."
     }
-    (dest/"PROJECT_STATE.json").write_text(json.dumps(state,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+    if "PROJECT_STATE.json" in preserved_state:
+        (dest/"PROJECT_STATE.json").write_text(preserved_state["PROJECT_STATE.json"],encoding="utf-8")
+    else:
+        (dest/"PROJECT_STATE.json").write_text(json.dumps(state,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 
     manifest_files=[]
     for p in sorted(dest.iterdir()):
