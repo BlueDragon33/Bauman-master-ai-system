@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "source": {
+    "repository": "BlueDragon33/Application-Management",
+    "path": "app/tools/study-plan/study-plan-data.ts",
+    "note": "Snapshot of the current 33 curriculum-entry IDs used by the manifest-driven Bauman study-plan tool. Update intentionally if the App Manager curriculum model changes."
+  },
+  "expectedCourseIds": [
+    "foreign-1",
+    "methodology",
+    "analytical-models",
+    "multivariate",
+    "oop",
+    "db-optimization",
+    "software-1",
+    "nir-1",
+    "foreign-2",
+    "entrepreneurship",
+    "ml",
+    "reliability",
+    "postrelational",
+    "neural",
+    "software-2",
+    "project-practice",
+    "operations-practice",
+    "pedagogy-1",
+    "nir-2",
+    "time-series",
+    "business-ai",
+    "is-management",
+    "nir-data",
+    "ergonomics",
+    "elective-1",
+    "pedagogy-2",
+    "nir-3",
+    "mivar",
+    "lifecycle",
+    "elective-2",
+    "prediploma",
+    "nir-4",
+    "thesis"
+  ],
+  "semesterGroups": {
+    "1": [
+      "foreign-1",
+      "methodology",
+      "analytical-models",
+      "multivariate",
+      "oop",
+      "db-optimization",
+      "software-1",
+      "nir-1"
+    ],
+    "2": [
+      "foreign-2",
+      "entrepreneurship",
+      "ml",
+      "reliability",
+      "postrelational",
+      "neural",
+      "software-2",
+      "project-practice",
+      "operations-practice",
+      "pedagogy-1",
+      "nir-2"
+    ],
+    "3": [
+      "time-series",
+      "business-ai",
+      "is-management",
+      "nir-data",
+      "ergonomics",
+      "elective-1",
+      "pedagogy-2",
+      "nir-3"
+    ],
+    "4": [
+      "mivar",
+      "lifecycle",
+      "elective-2",
+      "prediploma",
+      "nir-4",
+      "thesis"
+    ]
+  },
+  "policy": {
+    "requireExactlyOnce": true,
+    "allowUnknownExtraIds": false,
+    "requireRelation": "related",
+    "requireStudyPlanVersion": 1
+  }
+}
