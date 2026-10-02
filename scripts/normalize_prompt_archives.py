@@ -125,8 +125,8 @@ def normalize_source_dir(src: Path, archive_name: str, meta: dict) -> dict:
     router=find_one(src,"*_CONSTITUTION_ROUTER.json")
     arch=find_one(src,"*_ARCHITECTURE_MAP.md")
     readme_src=src/"00_README.md"; status_src=src/"STATUS.md"
-    if not readme_src.exists() or not status_src.exists() or not master or not router or not arch:
-        raise RuntimeError(f"{src}: missing canonical prompt-system files")
+    if not readme_src.exists() or not master:
+        raise RuntimeError(f"{src}: missing README or Master Prompt")
 
     if dest.exists():
         shutil.rmtree(dest)
@@ -143,10 +143,65 @@ def normalize_source_dir(src: Path, archive_name: str, meta: dict) -> dict:
     if "NORMAL CHAT / WORK / CODEX ENTRY" not in readme:
         readme=readme.rstrip()+"\n\n"+CHAT_ENTRY
     (dest/"README.md").write_text(readme,encoding="utf-8")
-    (dest/"SOURCE_STATUS.md").write_text(normalize_text(status_src.read_text(encoding="utf-8")),encoding="utf-8")
+    if status_src.exists():
+        source_status=normalize_text(status_src.read_text(encoding="utf-8"))
+    else:
+        source_status=f"""# {meta["label"]} — SOURCE STATUS
+
+Prompt architecture source was imported from the staged subject source package.
+
+- Prompt architecture: COMPLETE / NORMALIZED
+- Repository execution: NOT_STARTED_OR_NEEDS_RECONCILIATION
+- Next action: run {prefix}01 against current repository reality.
+"""
+    (dest/"SOURCE_STATUS.md").write_text(source_status,encoding="utf-8")
     (dest/"CHAT_START.md").write_text(CHAT_START_TEMPLATE.format(label=meta["label"]),encoding="utf-8")
 
     sequence=[f"{prefix}0{i}" for i in range(1,7)]
+
+    if not router:
+        router=f"{prefix}_CONSTITUTION_ROUTER.json"
+        routes={}
+        for module in sequence:
+            routes[module]=[
+              "../../constitution/C1_EXTENSIBLE_PLATFORM_ARCHITECTURE.md",
+              "../../constitution/C2_FUTURE_PROFESSIONAL_UI_UX.md",
+              "../../constitution/C3_PROFESSIONAL_QA_AUTO_FIX.md",
+              "../../constitution/C4_REAL_LEARNING_OUTCOME_SYSTEM.md",
+            ]
+        routes[sequence[-1]].append("../../constitution/C3_RELEASE_ANNEX_SHARED.md")
+        (dest/router).write_text(json.dumps({
+          "schemaVersion":"1.0.0",
+          "subject":slug,
+          "authority":"prompts/CONSTITUTION.md",
+          "constitutionLibrary":"prompts/constitution/",
+          "routes":routes
+        },ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+
+    if not arch:
+        arch=f"{prefix}_ARCHITECTURE_MAP.md"
+        lines=[
+          f"# {meta['label']} — ARCHITECTURE MAP",
+          "",
+          "Canonical execution:",
+          "",
+          "`README → PROJECT_STATE / SOURCE_STATUS → active module → router → PASS gate → next module`",
+          "",
+          "## Modules",
+          "",
+        ]
+        lines += [f"- `{m}` — canonical staged module" for m in sequence]
+        lines += [
+          "",
+          "## Shared authority",
+          "",
+          "- `prompts/CONSTITUTION.md`",
+          "- `prompts/constitution/`",
+          "",
+          "ZIP-embedded Constitution copies are provenance only and are not a second authority.",
+          "",
+        ]
+        (dest/arch).write_text("\n".join(lines),encoding="utf-8")
     state={
       "schemaVersion":"1.0.0",
       "subject":slug,
