@@ -20,8 +20,11 @@ for(const sub of contract.subclients??[]){
   assert.ok(mainJs.includes("'"+sub.id+"':'"+runtime+"/index.html'")||mainJs.includes(sub.id+":'"+runtime+"/index.html'"),sub.id+': missing from main pathMap');
 
   if(manifest.editor){
-    assert.ok(fs.existsSync(path.join(runtime,manifest.editor)),sub.id+': declared editor missing');
-    assert.ok(mainJs.includes("'"+sub.id+"':'"+runtime+"/"+manifest.editor+"'")||mainJs.includes(sub.id+":'"+runtime+"/"+manifest.editor+"'"),sub.id+': editor missing from main editorMap');
+    const editorPath=String(manifest.editor).includes('/')
+      ? String(manifest.editor).replace(/^\\/+/, '')
+      : path.join(runtime,String(manifest.editor)).replaceAll('\\\\','/');
+    assert.ok(fs.existsSync(editorPath),sub.id+': declared editor missing at '+editorPath);
+    assert.ok(mainJs.includes("'"+sub.id+"':'"+editorPath+"'")||mainJs.includes(sub.id+":'"+editorPath+"'"),sub.id+': editor missing from main editorMap');
   }
 
   if(Array.isArray(manifest.data)&&manifest.data.length){
