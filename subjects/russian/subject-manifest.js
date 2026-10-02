@@ -52,7 +52,7 @@ window.SUBJECT_MANIFEST = {
     "scenario-registry",
     "ai-mentor-policy"
   ],
-  "release": "RU08 RC integration candidate",
+  "release": "RU08.1 topology-reconciled RC",
   "focus": "Bản chuẩn cuối của module Tiếng Nga: giữ nội dung gốc, giữ vá trình chiếu, ẩn metadata/từ khóa/bài liên quan khỏi vùng slide, giữ metadata cho tìm kiếm/lọc.",
   "bridge": {
     "protocol": "BAUMAN_PLANNING_BRIDGE_V3_ROUTE_CARDS",
@@ -80,7 +80,7 @@ window.SUBJECT_MANIFEST = {
     "weekendPolicy": "Main sends only week-end signal; subject decides review or unlocked assessment.",
     "standaloneFallback": "If window.parent is same window, module runs with local data only."
   },
-  "version": "Russian RU08 · Canonical Subject Package",
+  "version": "Russian RU08.1 · Topology-Reconciled Canonical Subject Package",
   "coreVersion": "SubjectCore V12.94 Honest Frame Repair",
   "bridgeProtocol": "BAUMAN_PLANNING_BRIDGE_V3_ROUTE_CARDS",
   "name": "Tiếng Nga Bauman · RussianPack R4",
@@ -91,7 +91,7 @@ window.SUBJECT_MANIFEST = {
     "overviewSubtitle": "Tổng quan gọn, không khoảng trống chết: mục tiêu, luồng học, hành động nhanh và tiếp tục học ăn khớp.",
     "learningSubtitle": "Học tập ổn định: Nghe/Nói và Đối thoại tinh gọn; nút nói ổn hòa trong bảng nội dung, chữ canh đều và không tách dòng thô."
   },
-  "updated": "2026-10-01",
+  "updated": "2026-10-02",
   "package": "A1 Russian Bauman StandardFinal RenderClean V13.42",
   "paths": {
     "assets": "assets/",
