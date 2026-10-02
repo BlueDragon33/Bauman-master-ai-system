@@ -67,6 +67,9 @@ jobs:
       - name: Study-plan runtime integration static
         run: node tests/study-plan-runtime-integration-static.mjs
 
+      - name: Control subclient contract alignment
+        run: node tests/control-subclient-contract-alignment-static.mjs
+
       - name: Thesis reference static
         run: node tests/thesis-reference-v1-static.mjs
 

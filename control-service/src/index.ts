@@ -40,8 +40,15 @@ const SUBCLIENTS = [
   { id: "signal", name: "Tín hiệu", kind: "module", sourcePath: "subjects/signal", state: "module", controlState: "pending" },
   { id: "systems", name: "Hệ thống", kind: "module", sourcePath: "subjects/systems", state: "module", controlState: "pending" },
   { id: "foundation", name: "Nền tảng", kind: "module", sourcePath: "subjects/foundation", state: "module", controlState: "pending" },
+  { id: "entrepreneurship", name: "Cơ sở khởi nghiệp", kind: "module", sourcePath: "subjects/entrepreneurship", state: "module", controlState: "pending" },
+  { id: "ergonomics", name: "Công thái học · HMI", kind: "module", sourcePath: "subjects/ergonomics", state: "module", controlState: "pending" },
+  { id: "mivar", name: "Mivar Logical AI", kind: "module", sourcePath: "subjects/mivar", state: "module", controlState: "pending" },
   { id: "research", name: "Nghiên cứu", kind: "module", sourcePath: "subjects/research", state: "module", controlState: "pending" },
   { id: "russian", name: "Tiếng Nga", kind: "module", sourcePath: "subjects/russian", state: "module", controlState: "pending" },
+  { id: "foreign-language", name: "Ngoại ngữ học thuật", kind: "module", sourcePath: "subjects/foreign-language", state: "module", controlState: "pending" },
+  { id: "security-elective", name: "Tự chọn 1", kind: "module", sourcePath: "subjects/security-elective", state: "module", controlState: "pending" },
+  { id: "specialization-elective", name: "Tự chọn 2", kind: "module", sourcePath: "subjects/specialization-elective", state: "module", controlState: "pending" },
+  { id: "practice-workflow", name: "Workflow thực tập", kind: "workflow", sourcePath: "subjects/practice-workflow", state: "workflow", controlState: "pending" },
 ] as const;
 
 function base64Url(bytes: Uint8Array) {
