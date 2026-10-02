@@ -6,6 +6,7 @@ const coverage = JSON.parse(fs.readFileSync('control/study-plan-coverage.json','
 const contract = JSON.parse(fs.readFileSync('control/application-management.contract.json','utf8'));
 
 const mappings = [];
+const routableModules = [];
 for (const subclient of contract.subclients ?? []) {
   const manifestPath = path.join('subjects', subclient.id, 'subject-manifest.json');
   if (!fs.existsSync(manifestPath)) continue;
@@ -15,8 +16,27 @@ for (const subclient of contract.subclients ?? []) {
   if (studyPlan.version !== coverage.policy.requireStudyPlanVersion) continue;
   if (studyPlan.relation !== coverage.policy.requireRelation) continue;
   if (!Array.isArray(studyPlan.courseIds)) continue;
+
+  assert.equal(manifest.id, subclient.id, `Study-plan manifest id mismatch: ${manifestPath}`);
+  assert.ok(typeof studyPlan.labelVi === 'string' && studyPlan.labelVi.trim(), `Missing Vietnamese study-plan label: ${manifestPath}`);
+  assert.ok(typeof studyPlan.labelEn === 'string' && studyPlan.labelEn.trim(), `Missing English study-plan label: ${manifestPath}`);
+  assert.ok(
+    typeof studyPlan.runtimePath === 'string' && /^subjects\/[a-z0-9][a-z0-9-]*\/?$/i.test(studyPlan.runtimePath),
+    `Invalid study-plan runtimePath: ${manifestPath}`,
+  );
+
+  const runtimePath = studyPlan.runtimePath.replace(/\/+$/, '');
+  const expectedRuntimePath = subclient.sourcePath || `subjects/${subclient.id}`;
+  assert.equal(runtimePath, expectedRuntimePath, `runtimePath/sourcePath mismatch for ${subclient.id}`);
+  assert.ok(fs.statSync(runtimePath, { throwIfNoEntry: false })?.isDirectory(), `Runtime directory missing: ${runtimePath}`);
+  assert.ok(fs.statSync(path.join(runtimePath, 'index.html'), { throwIfNoEntry: false })?.isFile(), `Runtime entry missing: ${runtimePath}/index.html`);
+
+  const uniqueCourseIds = new Set(studyPlan.courseIds);
+  assert.equal(uniqueCourseIds.size, studyPlan.courseIds.length, `Duplicate courseIds inside ${manifestPath}`);
+  routableModules.push({ subjectId: subclient.id, runtimePath, courseIds: [...uniqueCourseIds] });
+
   for (const courseId of studyPlan.courseIds) {
-    mappings.push({courseId, subjectId: subclient.id, manifestPath});
+    mappings.push({courseId, subjectId: subclient.id, manifestPath, runtimePath});
   }
 }
 
@@ -62,5 +82,7 @@ console.log(JSON.stringify({
   covered:[...expected].filter(id => byCourse.has(id)).length,
   total:expected.size,
   modules:new Set(mappings.map(m=>m.subjectId)).size,
+  routableModules:routableModules.length,
+  routableMappings:mappings.length,
   bySemester
 },null,2));
