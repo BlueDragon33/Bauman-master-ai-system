@@ -1,0 +1,35 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+const workflow=fs.readFileSync('.github/workflows/deploy-bauman-production.yml','utf8');
+const helper=fs.readFileSync('scripts/russian-release-annex-evidence.mjs','utf8');
+for(const marker of [
+ 'Verify exact preview revision before production',
+ 'Materialize immutable Russian release preflight evidence',
+ 'Export Bauman production D1 backup before migration',
+ 'Apply migrations to Bauman production D1',
+ 'Verify Russian production identity, security, offline contract and content drift',
+ 'Run Russian production offline browser verification',
+ 'Observe exact Russian production revision',
+ 'Close Russian Release Annex state machine',
+ 'Upload Russian release closure evidence'
+])assert(workflow.includes(marker),'production workflow missing annex gate: '+marker);
+for(const evidence of [
+ 'RUSSIAN_RC_MANIFEST.json',
+ 'RUSSIAN_PRODUCTION_TARGET_RECORD.json',
+ 'RUSSIAN_BACKUP_DECISION_RESULT.json',
+ 'RUSSIAN_MIGRATION_RESULT.json',
+ 'RUSSIAN_PRODUCTION_SMOKE_REPORT.md',
+ 'RUSSIAN_PRODUCTION_OFFLINE_PWA_VERIFY.md',
+ 'RUSSIAN_PRODUCTION_SECURITY_HEADERS_VERIFY.md',
+ 'RUSSIAN_PRODUCTION_BUILD_CONTENT_DRIFT_CHECK.md',
+ 'RUSSIAN_PRODUCTION_OBSERVATION_REPORT.md',
+ 'RUSSIAN_PRODUCTION_INCIDENT_REGISTER.json',
+ 'RUSSIAN_FINAL_PRODUCTION_STATE_RECORD.json',
+ 'RUSSIAN_P17_EVIDENCE_INDEX.md',
+ 'RUSSIAN_RELEASE_CLOSURE_REPORT.md'
+])assert(helper.includes(evidence),'release helper missing evidence output: '+evidence);
+assert(helper.includes("state:'STABLE'"),'STABLE final state missing');
+assert(helper.includes('OBSERVATION_PASS'),'observation gate missing');
+assert(workflow.indexOf('Close Russian Release Annex state machine')<workflow.indexOf('Production deployment summary'),'summary must occur only after closure');
+assert(!/Bauman production deployment completed\./.test(workflow),'workflow must not declare completion immediately after deploy/smoke');
+console.log(JSON.stringify({ok:true,annexGates:9,evidenceOutputs:13}));
