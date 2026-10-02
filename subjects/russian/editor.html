@@ -1,1 +1,48 @@
-<!doctype html><html data-bauman-ui="future-v1"><head><meta charset="utf-8"><title>Russian Editor</title><link rel="stylesheet" href="../../platform/ui/bauman-ui.css?v=1"></head><body><p>Mở <a href="index.html">index.html</a> để quản lý dữ liệu môn Tiếng Nga.</p><script src="../../platform/ui/bauman-ui.js?v=1"></script></body></html>
+<!doctype html>
+<html data-bauman-ui="future-v1" lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Russian Authoring Workbench</title>
+<link rel="stylesheet" href="../../platform/ui/bauman-ui.css?v=1">
+<link rel="stylesheet" href="assets/authoring-workbench.css">
+</head>
+<body class="ru-authoring-page">
+<main class="ru-authoring-shell">
+<header class="ru-authoring-hero">
+  <div><span>RU08 · AUTHORING GOVERNANCE</span><h1>Russian Authoring Workbench</h1><p>Tạo candidate theo canonical owner → validate → preview → review envelope. Browser không được ghi trực tiếp vào canonical datasets.</p></div>
+  <a href="index.html">← Quay lại môn Tiếng Nga</a>
+</header>
+<section class="ru-authoring-grid">
+<form id="ruAuthoringForm" class="ru-authoring-form" novalidate>
+  <fieldset><legend>1 · Định danh candidate</legend>
+    <label>Entity type<select id="ruResponsibility" required></select></label>
+    <label>Canonical ID<input id="ruCanonicalId" required placeholder="TC-... / RD-... / ..."></label>
+    <label>Revision<input id="ruRevision" required value="r1"></label>
+    <label>Candidate ID<input id="ruCandidateId" required></label>
+  </fieldset>
+  <fieldset><legend>2 · Nội dung theo schema</legend><div id="ruPayloadFields" class="ru-payload-fields"></div></fieldset>
+  <fieldset><legend>3 · Provenance & rollback</legend>
+    <label>Source refs<textarea id="ruSourceRefs" rows="3" placeholder="Một nguồn mỗi dòng" required></textarea></label>
+    <label>Diff summary<textarea id="ruDiffSummary" rows="3" required></textarea></label>
+    <label>Rollback note<textarea id="ruRollbackNote" rows="3" required></textarea></label>
+  </fieldset>
+  <div class="ru-authoring-actions">
+    <button type="button" id="ruValidateCandidate">Validate candidate</button>
+    <button type="button" id="ruPreviewCandidate">Preview</button>
+    <button type="button" id="ruReviewEnvelope">Tạo review envelope</button>
+  </div>
+</form>
+<aside class="ru-authoring-side">
+  <section><h2>Canonical owner</h2><code id="ruCanonicalOwner">Đang tải…</code></section>
+  <section><h2>Lifecycle</h2><ol><li>DRAFT</li><li>VALIDATED</li><li>REVIEW_REQUESTED</li><li>APPROVED</li><li>CANONICAL_PATCHED</li><li>PUBLISHED</li></ol><p>Editor này chỉ tạo candidate/review metadata. APPROVED → canonical patch → publish phải đi qua review + repository governance.</p></section>
+  <section id="ruValidationResult" aria-live="polite"><h2>Validation</h2><p>Chưa validate.</p></section>
+  <details id="ruAdvancedJson"><summary>Advanced · candidate JSON (read-only)</summary><pre id="ruCandidateJson"></pre></details>
+</aside>
+</section>
+<section id="ruCandidatePreview" class="ru-candidate-preview" hidden></section>
+</main>
+<script src="../../platform/ui/bauman-ui.js?v=1"></script>
+<script src="assets/authoring-workbench.js"></script>
+</body>
+</html>
