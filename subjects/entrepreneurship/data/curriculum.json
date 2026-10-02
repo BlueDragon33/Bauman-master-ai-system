@@ -1,0 +1,365 @@
+{
+  "id": "entrepreneurship",
+  "title": "Основы предпринимательства · Cơ sở khởi nghiệp",
+  "target": "Học đủ để hiểu một ý tưởng công nghệ dưới góc độ vấn đề, người dùng, giá trị, nguồn lực, chi phí và cách trình bày dự án.",
+  "outcomes": [
+    "Xác định vấn đề và nhóm người dùng/stakeholder chính.",
+    "Viết được value proposition ngắn, kiểm chứng được.",
+    "Mô tả mô hình kinh doanh ở mức cơ bản và các giả định quan trọng.",
+    "Lập bảng chi phí/doanh thu đơn giản và trình bày pitch dự án công nghệ."
+  ],
+  "principles": [
+    "Không bắt đầu từ giải pháp; bắt đầu từ vấn đề và bằng chứng.",
+    "Mọi giả định về người dùng, chi phí và giá trị đều phải có cách kiểm chứng.",
+    "Ưu tiên ví dụ kỹ thuật/AI/robotics để liên hệ với hướng học chính."
+  ],
+  "stages": [
+    {
+      "id": "m2",
+      "short": "HK2",
+      "title": "Bauman HK2",
+      "period": "Học kỳ 2",
+      "target": "Hoàn thành học phần Основы предпринимательства ở mức hỗ trợ: hiểu tư duy sản phẩm, mô hình kinh doanh và pitch cho dự án công nghệ.",
+      "outcomes": [
+        "Có Problem Brief 1 trang.",
+        "Có Value Proposition Canvas ngắn.",
+        "Có Business Model Canvas bản nháp.",
+        "Có pitch 3 phút và bảng giả định cần kiểm chứng."
+      ],
+      "focusBlocks": [
+        "Problem & Customer",
+        "Value Proposition",
+        "Business Model & Unit Economics",
+        "Pitch & Validation"
+      ],
+      "weeklyRhythm": [
+        "Buổi 1: đọc khái niệm và ví dụ.",
+        "Buổi 2: làm canvas/bảng tính.",
+        "Buổi 3: kiểm chứng giả định hoặc phản biện case.",
+        "Cuối tuần: cập nhật artifact và tự kiểm tra."
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "ent_m201",
+      "stage": "m2",
+      "week": "E1",
+      "title": "Vấn đề, người dùng và stakeholder",
+      "goal": "Phân biệt nhu cầu thật với ý tưởng giải pháp; mô tả người dùng và stakeholder.",
+      "hours": 3,
+      "level": "Cơ bản",
+      "lessons": [
+        "ent_m201_l1",
+        "ent_m201_l2"
+      ],
+      "outputs": [
+        "Problem Brief 1 trang.",
+        "Danh sách stakeholder và giả định cần kiểm chứng."
+      ],
+      "phaseObjective": "Chuyển một ý tưởng kỹ thuật thành bài toán người dùng có thể kiểm chứng.",
+      "whyImportant": [
+        "Giúp tránh xây sản phẩm chỉ vì công nghệ thú vị.",
+        "Là đầu vào cho value proposition và mô hình kinh doanh."
+      ],
+      "prerequisites": [
+        "Có một ví dụ dự án công nghệ hoặc AI để dùng xuyên suốt.",
+        "Biết phân biệt fact, assumption và opinion."
+      ],
+      "conceptMap": [
+        "problem",
+        "customer/user",
+        "stakeholder",
+        "pain/gain",
+        "evidence"
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Problem framing",
+          "time": "45–60 phút",
+          "work": "Viết vấn đề theo cấu trúc who → problem → impact → evidence.",
+          "evidence": "Problem Brief."
+        },
+        {
+          "session": "Ca 2 · Stakeholder map",
+          "time": "45–60 phút",
+          "work": "Lập stakeholder map và 5 giả định cần kiểm chứng.",
+          "evidence": "Bảng stakeholder + assumption."
+        }
+      ],
+      "practicePlan": [
+        "Viết lại một ý tưởng UGV/AI thành problem statement.",
+        "Phân biệt user, buyer, operator và beneficiary."
+      ],
+      "simulationPlan": [
+        "Mô phỏng phỏng vấn discovery ngắn.",
+        "Đánh giá độ mạnh của bằng chứng."
+      ],
+      "assessmentPlan": {
+        "unlock": "Dễ mở mặc định; mức sau mở khi mức trước ≥ 8/10.",
+        "rubric": [
+          "Vấn đề rõ",
+          "User rõ",
+          "Có bằng chứng",
+          "Không nhảy thẳng vào giải pháp"
+        ],
+        "pass": "Hoàn thành 2 bài học và đạt kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Hỗ trợ cách giải thích giá trị ứng dụng của project kỹ thuật/AI.",
+        "Không thay thế môn chuyên ngành hoặc НИР."
+      ],
+      "completionCriteria": [
+        "Có problem statement.",
+        "Có stakeholder map.",
+        "Có ít nhất 3 giả định cần kiểm chứng.",
+        "Điểm kiểm tra ≥ 8/10."
+      ],
+      "risks": [
+        "Mô tả giải pháp thay vì vấn đề.",
+        "Gọi mọi người là khách hàng mà không phân vai."
+      ],
+      "nextStep": "Chuyển sang Value Proposition."
+    },
+    {
+      "id": "ent_m202",
+      "stage": "m2",
+      "week": "E2",
+      "title": "Value Proposition và kiểm chứng giá trị",
+      "goal": "Nối pain/gain của người dùng với lợi ích của giải pháp.",
+      "hours": 3,
+      "level": "Cơ bản",
+      "lessons": [
+        "ent_m202_l1",
+        "ent_m202_l2"
+      ],
+      "outputs": [
+        "Value Proposition Canvas rút gọn.",
+        "3 giả thuyết giá trị có cách kiểm chứng."
+      ],
+      "phaseObjective": "Diễn đạt giá trị của giải pháp bằng kết quả người dùng nhận được, không chỉ bằng tính năng.",
+      "whyImportant": [
+        "Giúp trình bày dự án kỹ thuật dễ hiểu với người ngoài chuyên môn.",
+        "Tạo tiêu chí để kiểm tra xem giải pháp có đáng làm."
+      ],
+      "prerequisites": [
+        "Đã có Problem Brief và stakeholder map."
+      ],
+      "conceptMap": [
+        "jobs",
+        "pains",
+        "gains",
+        "value proposition",
+        "testable hypothesis"
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Jobs/Pains/Gains",
+          "time": "45–60 phút",
+          "work": "Mô tả 3 jobs, 3 pains, 3 gains.",
+          "evidence": "Canvas rút gọn."
+        },
+        {
+          "session": "Ca 2 · Hypothesis",
+          "time": "45–60 phút",
+          "work": "Viết giả thuyết: nếu… thì… đo bằng…",
+          "evidence": "3 giả thuyết đo được."
+        }
+      ],
+      "practicePlan": [
+        "Chuyển 5 tính năng kỹ thuật thành lợi ích người dùng.",
+        "Viết metric để kiểm chứng từng lợi ích."
+      ],
+      "simulationPlan": [
+        "So sánh hai value proposition cho cùng một giải pháp.",
+        "Chọn thông điệp dựa trên bằng chứng."
+      ],
+      "assessmentPlan": {
+        "unlock": "Dễ mở mặc định; mức sau mở khi mức trước ≥ 8/10.",
+        "rubric": [
+          "Jobs đúng",
+          "Pain/gain cụ thể",
+          "Giá trị đo được",
+          "Có cách kiểm chứng"
+        ],
+        "pass": "Hoàn thành 2 bài học và đạt kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Hữu ích khi viết phần motivation/impact của project.",
+        "Không biến luận văn thành bài marketing."
+      ],
+      "completionCriteria": [
+        "Canvas hoàn chỉnh.",
+        "3 giả thuyết có metric.",
+        "Giải thích value proposition trong 60 giây.",
+        "Điểm ≥ 8/10."
+      ],
+      "risks": [
+        "Dùng từ chung chung như 'tốt hơn' mà không đo được.",
+        "Nhầm feature với value."
+      ],
+      "nextStep": "Chuyển sang Business Model."
+    },
+    {
+      "id": "ent_m203",
+      "stage": "m2",
+      "week": "E3",
+      "title": "Business Model, chi phí và unit economics cơ bản",
+      "goal": "Hiểu ai trả tiền, nguồn lực nào cần có và logic chi phí/doanh thu đơn giản.",
+      "hours": 3,
+      "level": "Trung bình",
+      "lessons": [
+        "ent_m203_l1",
+        "ent_m203_l2"
+      ],
+      "outputs": [
+        "Business Model Canvas nháp.",
+        "Bảng unit economics đơn giản."
+      ],
+      "phaseObjective": "Biến value proposition thành mô hình vận hành có nguồn lực, đối tác, chi phí và nguồn thu hợp lý.",
+      "whyImportant": [
+        "Buộc dự án nhìn vào ràng buộc triển khai thực tế.",
+        "Giúp so sánh phương án kỹ thuật không chỉ bằng độ chính xác."
+      ],
+      "prerequisites": [
+        "Đã có value proposition và nhóm người dùng."
+      ],
+      "conceptMap": [
+        "channels",
+        "relationships",
+        "resources",
+        "activities",
+        "partners",
+        "cost",
+        "revenue"
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · BMC",
+          "time": "60 phút",
+          "work": "Điền 9 khối BMC ở mức nháp.",
+          "evidence": "BMC v1."
+        },
+        {
+          "session": "Ca 2 · Economics",
+          "time": "60 phút",
+          "work": "Lập bảng giá, biến phí, định phí và contribution margin.",
+          "evidence": "Bảng tính 1 trang."
+        }
+      ],
+      "practicePlan": [
+        "So sánh mua linh kiện rẻ hơn nhưng bảo trì cao với phương án đắt hơn nhưng ổn định.",
+        "Tính break-even ở mức minh họa."
+      ],
+      "simulationPlan": [
+        "Thay đổi giá bán/chi phí/số người dùng và quan sát break-even.",
+        "Xác định biến nhạy nhất."
+      ],
+      "assessmentPlan": {
+        "unlock": "Dễ mở mặc định; mức sau mở khi mức trước ≥ 8/10.",
+        "rubric": [
+          "BMC logic",
+          "Chi phí không bỏ sót lớn",
+          "Giả định rõ",
+          "Tính toán nhất quán"
+        ],
+        "pass": "Có BMC + bảng tính + điểm ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Hỗ trợ giải thích trade-off kỹ thuật–chi phí.",
+        "Không phải mô hình tài chính chuyên nghiệp."
+      ],
+      "completionCriteria": [
+        "BMC v1.",
+        "Có fixed/variable cost.",
+        "Có contribution margin.",
+        "Nêu được 3 giả định rủi ro."
+      ],
+      "risks": [
+        "Dùng doanh thu tưởng tượng như dữ liệu thật.",
+        "Quên chi phí vận hành/bảo trì."
+      ],
+      "nextStep": "Chuyển sang Validation & Pitch."
+    },
+    {
+      "id": "ent_m204",
+      "stage": "m2",
+      "week": "E4",
+      "title": "Validation, MVP và pitch dự án công nghệ",
+      "goal": "Thiết kế thử nghiệm nhỏ và trình bày dự án ngắn, có bằng chứng.",
+      "hours": 3,
+      "level": "Trung bình",
+      "lessons": [
+        "ent_m204_l1",
+        "ent_m204_l2"
+      ],
+      "outputs": [
+        "Validation Plan.",
+        "Pitch 3 phút / 5 slide."
+      ],
+      "phaseObjective": "Kết thúc học phần bằng một câu chuyện problem → evidence → value → model → next experiment.",
+      "whyImportant": [
+        "Rèn cách bảo vệ ý tưởng trước người nghe không cùng chuyên môn.",
+        "Giúp ra quyết định tiếp tục, đổi hướng hay dừng một giả định."
+      ],
+      "prerequisites": [
+        "Có problem, value proposition và BMC."
+      ],
+      "conceptMap": [
+        "MVP",
+        "experiment",
+        "metric",
+        "learning",
+        "pitch",
+        "next step"
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Validation",
+          "time": "60 phút",
+          "work": "Chọn giả định rủi ro nhất và thiết kế test nhỏ.",
+          "evidence": "Validation Plan."
+        },
+        {
+          "session": "Ca 2 · Pitch",
+          "time": "60 phút",
+          "work": "Làm pitch 5 slide và tự ghi âm 3 phút.",
+          "evidence": "Slide + video/ghi chú phản biện."
+        }
+      ],
+      "practicePlan": [
+        "Viết tiêu chí pass/fail trước khi chạy test.",
+        "Rút pitch còn 60 giây mà không mất logic."
+      ],
+      "simulationPlan": [
+        "Pitch trước stakeholder giả lập.",
+        "Nhận phản biện về bằng chứng, chi phí và rủi ro."
+      ],
+      "assessmentPlan": {
+        "unlock": "Dễ mở mặc định; mức sau mở khi mức trước ≥ 8/10.",
+        "rubric": [
+          "Logic problem→value",
+          "Có evidence",
+          "Có model",
+          "Có next experiment"
+        ],
+        "pass": "Validation Plan + pitch + điểm ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Rèn trình bày project, seminar và bảo vệ ý tưởng.",
+        "Không thay thế yêu cầu trình bày chính thức của môn/giảng viên."
+      ],
+      "completionCriteria": [
+        "Có validation plan.",
+        "Có pitch 5 slide.",
+        "Nêu được metric và tiêu chí pass/fail.",
+        "Điểm ≥ 8/10."
+      ],
+      "risks": [
+        "Pitch dài về công nghệ nhưng không nói vấn đề.",
+        "Test không có tiêu chí pass/fail."
+      ],
+      "nextStep": "Dùng artifact làm hồ sơ hỗ trợ học phần và project."
+    }
+  ]
+}
