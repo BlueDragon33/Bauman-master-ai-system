@@ -6,19 +6,18 @@ Repository execution: **IN_PROGRESS**
 
 - DB01 — PASS
 - DB02 — PASS · DATABASE ACADEMIC FOUNDATION LOCKED
-- DB03 — **PASS · DATABASE REASONING & ASSESSMENT CONTRACT LOCKED**
-- DB04 — ACTIVE / READY
-- DB05 — NOT_STARTED
+- DB03 — PASS · DATABASE REASONING & ASSESSMENT CONTRACT LOCKED
+- DB04 — **ACTIVE · CONTRACTS PREPARED · IMPLEMENTATION PENDING**
+- DB05 — BLOCKED BY DB04
 - DB06 — NOT_STARTED
 
-DB03 contract base SHA:
-`f36faaffbe7d27f59a4984ccee707c564ee97980`
+DB04 contract base SHA:
+`f355cc3795280449617ed6f59dde9682aca85df3`
 
-DB03 evidence:
-`subjects/database/docs/db03/`
+DB04 contracts:
+`subjects/database/docs/db04/`
 
-Targeted validator:
-`node tests/database-db03-contract.mjs`
+Deep runtime task:
+`CODEX_HANDOFF.md#task-db04-001`
 
-Next:
-DB04 must provide isolated execution/transaction/index/query-plan/AI capabilities while consuming, not redefining, DB02/DB03 truth.
+Do not mark DB04 PASS until a real isolated learner execution provider and DB03 golden test-of-tests are verified.

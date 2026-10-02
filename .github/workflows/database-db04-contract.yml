@@ -1,0 +1,27 @@
+name: Database DB04 sandbox contract
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "subjects/database/docs/db04/**"
+      - "prompts/subjects/database/**"
+      - "CODEX_HANDOFF.md"
+      - "tests/database-db04-contract.mjs"
+      - ".github/workflows/database-db04-contract.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  db04-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - name: Validate DB04 contracts and Codex handoff
+        run: node tests/database-db04-contract.mjs

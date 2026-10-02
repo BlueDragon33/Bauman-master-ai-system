@@ -8,7 +8,7 @@
   "sourceArchive": "prompt-archives/database.zip",
   "promptArchitectureStatus": "COMPLETE",
   "repositoryExecutionStatus": "IN_PROGRESS",
-  "status": "DB03_PASS_DB04_READY",
+  "status": "DB04_IMPLEMENTATION_PENDING",
   "sequence": [
     "DB01",
     "DB02",
@@ -25,24 +25,25 @@
   "needsRevalidation": [],
   "activeModule": "DB04",
   "lastCompletedModule": "DB03",
-  "validatedSha": "f36faaffbe7d27f59a4984ccee707c564ee97980",
+  "validatedSha": "f355cc3795280449617ed6f59dde9682aca85df3",
   "evidence": [
     "subjects/database/docs/db01/",
     "subjects/database/docs/db02/",
-    "subjects/database/docs/db03/DB_RELATIONAL_REASONING_CONTRACT.md",
-    "subjects/database/docs/db03/DB_SQL_GRADER_CONTRACT.md",
-    "subjects/database/docs/db03/DB_RESULT_NORMALIZATION_CONTRACT.md",
-    "subjects/database/docs/db03/DB_DIFFERENTIAL_FIXTURE_POLICY.md",
-    "subjects/database/docs/db03/DB_SCHEMA_DESIGN_ASSESSMENT_CONTRACT.md",
-    "subjects/database/docs/db03/DB_NORMALIZATION_ASSESSMENT_CONTRACT.md",
-    "subjects/database/docs/db03/DB_TRANSACTION_ASSESSMENT_CONTRACT.md",
-    "subjects/database/docs/db03/DB_ERROR_TAXONOMY.json",
-    "subjects/database/docs/db03/DB_GOLDEN_CORRECT_QUERIES.json",
-    "subjects/database/docs/db03/DB_GOLDEN_WRONG_QUERIES.json",
-    "subjects/database/docs/db03/DB_PUBLIC_FIXTURE_CATALOG.json",
-    "tests/database-db03-contract.mjs",
-    "subjects/database/docs/db03/DB04_INPUT_CONTRACT.md"
+    "subjects/database/docs/db03/",
+    "subjects/database/docs/db04/DB_SQL_EXECUTION_SANDBOX_CONTRACT.md",
+    "subjects/database/docs/db04/DB_ENGINE_PROFILE_REGISTRY.json",
+    "subjects/database/docs/db04/DB_FIXTURE_RESET_CONTRACT.md",
+    "subjects/database/docs/db04/DB_QUERY_PLAN_PROVIDER_CONTRACT.md",
+    "subjects/database/docs/db04/DB_INDEX_VISUALIZATION_CONTRACT.md",
+    "subjects/database/docs/db04/DB_TRANSACTION_SIMULATION_CONTRACT.md",
+    "subjects/database/docs/db04/DB_BENCHMARK_CONTRACT.md",
+    "subjects/database/docs/db04/DB_AI_TUTOR_CONTRACT.md",
+    "subjects/database/docs/db04/DB_SECURITY_BOUNDARY.md",
+    "tests/database-db04-contract.mjs",
+    "CODEX_HANDOFF.md"
   ],
-  "blockers": [],
-  "nextAction": "Run DB04 capability implementation using locked DB02/DB03 contracts; add isolated learner execution without touching application/control D1."
+  "blockers": [
+    "Executable learner SQL provider not yet implemented/verified; DB04 requires Codex/deep runtime work."
+  ],
+  "nextAction": "Codex executes TASK-DB04-001 from CODEX_HANDOFF.md. Do not advance to DB05 until DB04 runtime acceptance passes."
 }
