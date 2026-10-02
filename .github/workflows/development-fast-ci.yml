@@ -58,6 +58,9 @@ jobs:
       - name: Ergonomics subject static
         run: node tests/ergonomics-subject-static.mjs
 
+      - name: Mivar subject static
+        run: node tests/mivar-subject-static.mjs
+
       - name: Thesis reference static
         run: node tests/thesis-reference-v1-static.mjs
 
