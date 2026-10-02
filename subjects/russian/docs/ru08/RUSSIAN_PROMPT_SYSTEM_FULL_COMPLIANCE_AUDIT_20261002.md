@@ -131,6 +131,36 @@ Correction:
 - release verification compares both live fingerprints to the immutable release evidence;
 - STABLE closure requires the config identity and readback evidence.
 
+### F10 — Protected production content was verified anonymously — HIGH
+
+The release helper attempted to fetch the Russian subject manifest without a production device session even though server-side runtime policy protects Russian JSON assets. That could either fail the release for the wrong reason or tempt a future bypass of the access gate.
+
+Correction:
+- anonymous protected-content access is now explicitly required to fail closed with HTTP 401/403;
+- a dedicated release-only smoke device session must be supplied through the protected production environment;
+- the authenticated request must read the exact manifest used for drift verification;
+- the same session exercises the normal heartbeat/persistence path rather than a release-only bypass;
+- missing, malformed, expired or unauthorized smoke identity blocks release before STABLE.
+
+### F11 — Migration and schema evidence was too weak — HIGH
+
+The previous migration result recorded only PASS/FAIL plus revision, while deployment readiness checked only part of the control schema.
+
+Correction:
+- deployment database readiness now verifies both device-control and Content Review tables;
+- migration result is bound to the exact migration-manifest SHA-256 and migration count;
+- migration command output is hashed and byte-counted;
+- STABLE closure rejects revision, manifest, exit-code, log or backup evidence mismatch.
+
+### F12 — Deployment artifact identity omitted Control Worker output — HIGH
+
+The previous artifact record fingerprinted `runtime-dist` only and was generated before Cloudflare dry-run bundles existed.
+
+Correction:
+- both production Worker dry-runs now run before artifact identity is recorded;
+- release artifact evidence fingerprints `runtime-dist`, the Control Worker dry-run bundle and the Learning Runtime dry-run bundle;
+- the aggregate identity is written back into the RC manifest.
+
 ## Previously encountered errors rechecked
 
 1. **Stale P3 planned-owner conflict for reading** — previous correction remains appropriate because current RU02 owner status is the active authority; no old-topology validator may overrule a materialized current owner.
