@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Bauman Hub Subject App Contract Registration",
+  "type": "object",
+  "required": [
+    "subjectId",
+    "contractVersion",
+    "status",
+    "readCapabilities",
+    "sendCapabilities"
+  ],
+  "properties": {
+    "subjectId": {
+      "type": "string"
+    },
+    "contractVersion": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "registered",
+        "degraded",
+        "disabled"
+      ]
+    },
+    "sourceOfTruth": {
+      "type": "string"
+    },
+    "launchDescriptor": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "transport": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "allowedOrigins": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "authMode": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "readCapabilities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "capability"
+        ],
+        "properties": {
+          "capability": {
+            "type": "string"
+          },
+          "endpoint": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "method": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "ttlSeconds": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "sendCapabilities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "capability"
+        ],
+        "properties": {
+          "capability": {
+            "type": "string"
+          },
+          "endpoint": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "method": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": true
+      }
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": true
+}
