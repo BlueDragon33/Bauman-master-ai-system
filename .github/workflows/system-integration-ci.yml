@@ -9,7 +9,7 @@ on:
       - "subjects/russian/**"
       - "subjects/shared/**"
       - "foundation/domain-model/**"
-      - "tests/math-*.mjs"
+      - "tests/math-*.mjs"\n      - "tests/russian-*.mjs"
       - "scripts/prepare-chatgpt-site.mjs"
       - "scripts/prepare-cloudflare-preview.mjs"
       - ".github/workflows/system-integration-ci.yml"
