@@ -149,6 +149,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-p4-assessment-source
         run: node tests/russian-p4-assessment-mastery-browser.mjs
+      - name: Run Russian prompt re-audit runtime acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-prompt-reaudit-source
+        run: node tests/russian-prompt-reaudit-browser.mjs
       - name: Run Russian Future UI route acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
@@ -218,6 +223,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-p4-assessment-package
         run: node tests/russian-p4-assessment-mastery-browser.mjs
+      - name: Run packaged Russian prompt re-audit acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-prompt-reaudit-package
+        run: node tests/russian-prompt-reaudit-browser.mjs
       - name: Run packaged Russian Future UI acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
