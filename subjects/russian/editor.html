@@ -1,1 +1,324 @@
-<!doctype html><html data-bauman-ui="future-v1"><head><meta charset="utf-8"><title>Russian Editor</title><link rel="stylesheet" href="../../platform/ui/bauman-ui.css?v=1"></head><body><p>Mở <a href="index.html">index.html</a> để quản lý dữ liệu môn Tiếng Nga.</p><script src="../../platform/ui/bauman-ui.js?v=1"></script></body></html>
+<!doctype html>
+<html data-bauman-ui="future-v1" lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Russian Authoring Workspace · RU08</title>
+  <link rel="stylesheet" href="../../platform/ui/bauman-ui.css?v=1">
+  <style>
+    :root{color-scheme:light dark}
+    body{margin:0;font-family:Inter,"Segoe UI",Arial,sans-serif;background:#f5f7fb;color:#15233a}
+    .shell{max-width:1180px;margin:0 auto;padding:24px}
+    .top{display:flex;gap:16px;justify-content:space-between;align-items:flex-start;margin-bottom:18px}
+    .top h1{margin:0 0 6px;font-size:clamp(24px,3vw,36px)}
+    .top p{margin:0;color:#5a687d;max-width:760px;line-height:1.5}
+    .back{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700}
+    .grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,.72fr);gap:16px}
+    .card{background:#fff;border:1px solid #dce5f1;border-radius:18px;padding:18px;box-shadow:0 10px 30px rgba(30,55,90,.06)}
+    .card h2{margin:0 0 14px;font-size:18px}
+    .fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .field{display:flex;flex-direction:column;gap:6px}
+    .field.full{grid-column:1/-1}
+    label{font-size:13px;font-weight:800;color:#41516a}
+    input,select,textarea,button{font:inherit}
+    input,select,textarea{box-sizing:border-box;width:100%;border:1px solid #cbd7e6;border-radius:12px;background:#fff;color:#15233a;padding:10px 12px}
+    textarea{min-height:88px;resize:vertical}
+    button{border:1px solid #cbd7e6;border-radius:12px;padding:10px 14px;background:#fff;color:#15233a;font-weight:800;cursor:pointer}
+    button.primary{background:#215bd6;border-color:#215bd6;color:#fff}
+    button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid #89b4ff;outline-offset:2px}
+    .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .lifecycle{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0;padding:0;list-style:none}
+    .lifecycle li{border:1px solid #d3deec;border-radius:999px;padding:7px 10px;font-size:12px;font-weight:800;background:#f9fbfe}
+    .note{border-left:4px solid #215bd6;background:#f2f6ff;padding:11px 12px;border-radius:10px;line-height:1.45;font-size:13px}
+    .status{min-height:68px;border-radius:12px;padding:12px;background:#f7f9fc;border:1px solid #dce5f1;white-space:pre-wrap;word-break:break-word}
+    .status.pass{border-color:#9ad3ad;background:#f2fbf5}
+    .status.fail{border-color:#e5a3a3;background:#fff5f5}
+    pre{white-space:pre-wrap;word-break:break-word;background:#0e1726;color:#e9f1ff;border-radius:14px;padding:14px;min-height:120px;overflow:auto}
+    details{margin-top:14px;border-top:1px solid #e2e8f2;padding-top:12px}
+    summary{cursor:pointer;font-weight:800}
+    .small{font-size:12px;color:#66758c;line-height:1.45}
+    .check{display:flex;align-items:center;gap:8px}
+    .check input{width:auto}
+    .danger-free{font-size:12px;color:#50627b;margin-top:10px}
+    @media(max-width:860px){.grid{grid-template-columns:1fr}.fields{grid-template-columns:1fr}.field.full{grid-column:auto}.top{flex-direction:column}}
+    @media(prefers-color-scheme:dark){
+      body{background:#0d1420;color:#edf4ff}.card{background:#121d2b;border-color:#2d3d52}.top p,.small,.danger-free{color:#a9b8cb}
+      label{color:#c5d3e5}input,select,textarea,button{background:#0e1825;color:#edf4ff;border-color:#40536c}
+      .lifecycle li,.status{background:#0e1825;border-color:#40536c}.note{background:#14233a}.status.pass{background:#10281a}.status.fail{background:#311717}
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <div class="top">
+      <div>
+        <a class="back" href="index.html">← Môn Tiếng Nga</a>
+        <h1>Russian Authoring Workspace</h1>
+        <p>RU08 authoring dùng form có cấu trúc và canonical owner registry. Workspace chỉ tạo candidate/review envelope; không có quyền ghi đè dữ liệu học canonical.</p>
+      </div>
+      <span id="configState" class="small" role="status">Đang nạp governance…</span>
+    </div>
+
+    <div class="card" style="margin-bottom:16px">
+      <strong>Lifecycle được quản trị</strong>
+      <ol class="lifecycle" aria-label="Authoring lifecycle">
+        <li>DRAFT</li><li>VALIDATED</li><li>REVIEW_REQUESTED</li><li>APPROVED</li><li>CANONICAL_PATCHED</li><li>PUBLISHED</li><li>SUPERSEDED / ARCHIVED</li>
+      </ol>
+    </div>
+
+    <div class="grid">
+      <section class="card" aria-labelledby="candidateTitle">
+        <h2 id="candidateTitle">1. Tạo candidate có cấu trúc</h2>
+        <div class="fields">
+          <div class="field">
+            <label for="responsibility">Loại nội dung / canonical responsibility</label>
+            <select id="responsibility"></select>
+          </div>
+          <div class="field">
+            <label for="state">Trạng thái candidate</label>
+            <select id="state">
+              <option>DRAFT</option>
+              <option selected>VALIDATED</option>
+              <option>REVIEW_REQUESTED</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="candidateId">Candidate ID</label>
+            <input id="candidateId" value="RU08-CANDIDATE-001" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="canonicalId">Canonical ID</label>
+            <input id="canonicalId" value="LEX-CANDIDATE-001" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="revision">Revision</label>
+            <input id="revision" value="r1" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="confidence">Provenance confidence</label>
+            <select id="confidence"><option>UNVERIFIED</option><option>PARTIAL</option><option>VERIFIED</option></select>
+          </div>
+          <div class="field full">
+            <label for="ruText">Nội dung tiếng Nga</label>
+            <textarea id="ruText" placeholder="Ví dụ: пример"></textarea>
+          </div>
+          <div class="field full">
+            <label for="viText">Giải thích / nghĩa tiếng Việt</label>
+            <textarea id="viText" placeholder="Nội dung hỗ trợ; không thay canonical truth"></textarea>
+          </div>
+          <div class="field full">
+            <label for="sourceRefs">Nguồn / provenance refs — mỗi dòng một nguồn</label>
+            <textarea id="sourceRefs" placeholder="source:dictionary-or-reviewed-reference"></textarea>
+          </div>
+          <div class="field full">
+            <label for="diffSummary">Tóm tắt thay đổi</label>
+            <textarea id="diffSummary" placeholder="Thay đổi gì và vì sao"></textarea>
+          </div>
+          <div class="field full">
+            <label for="rollbackNote">Rollback note</label>
+            <textarea id="rollbackNote" placeholder="Cách khôi phục revision trước nếu cần"></textarea>
+          </div>
+          <div class="field full check">
+            <input id="generated" type="checkbox">
+            <label for="generated">Candidate do AI/generator đề xuất — luôn non-canonical cho tới review/promotion hợp lệ</label>
+          </div>
+        </div>
+
+        <details id="advancedRaw">
+          <summary>Chế độ nâng cao: payload JSON</summary>
+          <p class="small">Không phải giao diện mặc định. Dùng khi cần trường chuyên ngành chưa có trong form.</p>
+          <textarea id="rawPayload" spellcheck="false">{}</textarea>
+          <div class="actions"><button id="syncRaw" type="button">Đồng bộ payload từ form</button></div>
+        </details>
+
+        <div class="actions">
+          <input id="importFile" type="file" accept="application/json,.json" hidden>
+          <button id="importBtn" type="button">Import candidate JSON</button>
+          <button id="newRevisionBtn" type="button">Tạo revision kế tiếp</button>
+          <button id="validateBtn" class="primary" type="button">Validate candidate</button>
+          <button id="previewBtn" type="button">Preview review envelope</button>
+          <button id="exportBtn" type="button">Xuất candidate JSON</button>
+        </div>
+        <p class="danger-free">Không có nút “Publish canonical”. Approval/publish metadata thuộc Content Review; thay đổi canonical chỉ qua reviewed repository patch theo RU08 governance.</p>
+      </section>
+
+      <aside class="card" aria-labelledby="reviewTitle">
+        <h2 id="reviewTitle">2. Validation & review handoff</h2>
+        <div class="note">ONE FACT · ONE OWNER · MANY USES. Candidate không được tự chọn nơi ghi canonical; owner được resolve từ RU02 registry.</div>
+        <p><strong>Canonical owner:</strong> <code id="ownerPath">—</code></p>
+        <p><strong>Content SHA-256:</strong> <code id="contentHash">—</code></p>
+        <div id="validationResult" class="status" role="status" aria-live="polite">Chưa validate.</div>
+        <h2 style="margin-top:18px">Review envelope</h2>
+        <pre id="reviewEnvelope" aria-label="Review envelope preview">{}</pre>
+        <p class="small">Envelope chỉ chứa metadata/hash/source path; nội dung học không được lưu trong control-service Content Review.</p>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+  (() => {
+    const $=id=>document.getElementById(id);
+    let governance=null, ownerMap=new Map(), lastCandidate=null;
+
+    function stable(v){
+      if(Array.isArray(v))return '['+v.map(stable).join(',')+']';
+      if(v&&typeof v==='object')return '{'+Object.keys(v).sort().map(k=>JSON.stringify(k)+':'+stable(v[k])).join(',')+'}';
+      return JSON.stringify(v);
+    }
+    async function sha256(v){
+      const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(stable(v)));
+      return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
+    }
+    function lines(v){return String(v||'').split(/\r?\n/).map(x=>x.trim()).filter(Boolean)}
+    function structuredPayload(){
+      const p={ru:$('ruText').value.trim(),vi:$('viText').value.trim()};
+      if(!p.vi)delete p.vi;
+      return p;
+    }
+    function payload(){
+      if($('advancedRaw').open){
+        const txt=$('rawPayload').value.trim();
+        if(txt && txt!=='{}')return JSON.parse(txt);
+      }
+      return structuredPayload();
+    }
+    function candidateBase(){
+      return {
+        schema:'RUSSIAN_AUTHORING_CANDIDATE_V1',
+        candidateId:$('candidateId').value.trim(),
+        responsibility:$('responsibility').value,
+        canonicalId:$('canonicalId').value.trim(),
+        revision:$('revision').value.trim(),
+        state:$('state').value,
+        payload:payload(),
+        sourceRefs:lines($('sourceRefs').value),
+        rollbackNote:$('rollbackNote').value.trim(),
+        diffSummary:$('diffSummary').value.trim(),
+        generated:$('generated').checked,
+        confidence:$('confidence').value
+      };
+    }
+    async function validate(){
+      const errors=[];
+      let c;
+      try{c=candidateBase()}catch(e){errors.push('payload JSON không hợp lệ');c=null}
+      if(!c)return {ok:false,errors};
+      for(const k of ['candidateId','responsibility','canonicalId','revision','rollbackNote','diffSummary'])if(!String(c[k]||'').trim())errors.push('Thiếu '+k);
+      if(!governance?.authorableEntityTypes?.includes(c.responsibility))errors.push('Loại nội dung không được author trực tiếp');
+      const owner=ownerMap.get(c.responsibility);
+      if(!owner)errors.push('Không có canonical owner');
+      if(!governance?.lifecycle?.candidateStates?.includes(c.state))errors.push('State không hợp lệ');
+      if(c.state==='REVIEW_REQUESTED' && !c.sourceRefs.length)errors.push('REVIEW_REQUESTED cần sourceRefs');
+      if(c.generated && ['APPROVED','CANONICAL_PATCHED','PUBLISHED'].includes(c.state) && c.confidence!=='VERIFIED')errors.push('Generated promotion cần VERIFIED provenance');
+      c.contentHash=await sha256(c.payload);
+      lastCandidate=c;
+      $('ownerPath').textContent=owner||'—';
+      $('contentHash').textContent=c.contentHash;
+      const box=$('validationResult');
+      box.className='status '+(errors.length?'fail':'pass');
+      box.textContent=errors.length?'FAIL\n- '+errors.join('\n- '):'PASS\nCandidate hợp lệ để staging/review. Không có canonical write.';
+      return {ok:!errors.length,errors,candidate:c,canonicalOwner:owner};
+    }
+    async function preview(){
+      const v=await validate();
+      if(!v.ok){$('reviewEnvelope').textContent='{}';return}
+      const c=v.candidate;
+      const envelope={
+        subjectId:'russian',
+        resourceType:c.responsibility,
+        resourceId:c.canonicalId,
+        revision:c.revision,
+        contentHash:c.contentHash,
+        sourcePath:v.canonicalOwner,
+        summary:c.diffSummary,
+        metadataOnly:true,
+        candidateId:c.candidateId
+      };
+      $('reviewEnvelope').textContent=JSON.stringify(envelope,null,2);
+    }
+    function applyCandidate(c){
+      if(!c||typeof c!=='object')throw new Error('Candidate JSON không hợp lệ');
+      if(c.schema!=='RUSSIAN_AUTHORING_CANDIDATE_V1')throw new Error('Sai candidate schema');
+      if(c.responsibility && ![...$('responsibility').options].some(x=>x.value===c.responsibility))throw new Error('Responsibility không thuộc governance hiện tại');
+      if(c.responsibility)$('responsibility').value=c.responsibility;
+      if(c.state && [...$('state').options].some(x=>x.value===c.state))$('state').value=c.state;else $('state').value='DRAFT';
+      $('candidateId').value=String(c.candidateId||'');
+      $('canonicalId').value=String(c.canonicalId||'');
+      $('revision').value=String(c.revision||'r1');
+      $('confidence').value=[...$('confidence').options].some(x=>x.value===c.confidence)?c.confidence:'UNVERIFIED';
+      $('ruText').value=String(c.payload?.ru||'');
+      $('viText').value=String(c.payload?.vi||'');
+      $('sourceRefs').value=Array.isArray(c.sourceRefs)?c.sourceRefs.join('\n'):'';
+      $('diffSummary').value=String(c.diffSummary||'');
+      $('rollbackNote').value=String(c.rollbackNote||'');
+      $('generated').checked=c.generated===true;
+      $('rawPayload').value=JSON.stringify(c.payload||{},null,2);
+      lastCandidate=null;
+    }
+    async function importCandidateFile(file){
+      const text=await file.text();
+      const parsed=JSON.parse(text);
+      applyCandidate(parsed);
+      const v=await validate();
+      if(!v.ok)throw new Error('Imported candidate cần sửa: '+v.errors.join('; '));
+      return v;
+    }
+    function nextRevision(){
+      const raw=$('revision').value.trim();
+      const m=raw.match(/^(.*?)(\d+)$/);
+      $('revision').value=m?(m[1]+String(Number(m[2])+1)):(raw?raw+'-r2':'r2');
+      $('candidateId').value=($('candidateId').value.trim()||'RU08-CANDIDATE')+'-NEXT';
+      $('state').value='DRAFT';
+      $('diffSummary').value='';
+      $('validationResult').className='status';
+      $('validationResult').textContent='Revision mới ở DRAFT. Hãy mô tả thay đổi, rollback note và validate lại.';
+      $('reviewEnvelope').textContent='{}';
+    }
+    async function exportCandidate(){
+      const v=await validate(); if(!v.ok)return;
+      const a=document.createElement('a');
+      a.href=URL.createObjectURL(new Blob([JSON.stringify(v.candidate,null,2)],{type:'application/json'}));
+      a.download=(v.candidate.candidateId||'russian-candidate')+'.json';
+      a.click();
+      setTimeout(()=>URL.revokeObjectURL(a.href),0);
+    }
+    async function init(){
+      try{
+        const [g,o]=await Promise.all([
+          fetch('./data/authoring-governance.json').then(r=>{if(!r.ok)throw new Error('governance '+r.status);return r.json()}),
+          fetch('./docs/ru02/RUSSIAN_RU02_CANONICAL_OWNER_REGISTRY.json').then(r=>{if(!r.ok)throw new Error('owners '+r.status);return r.json()})
+        ]);
+        governance=g;
+        ownerMap=new Map((o.owners||[]).map(x=>[x[0],x[1]]));
+        const select=$('responsibility');
+        for(const type of g.authorableEntityTypes||[]){
+          const opt=document.createElement('option');opt.value=type;opt.textContent=type;select.append(opt);
+        }
+        if([...select.options].some(x=>x.value==='LexicalEntry'))select.value='LexicalEntry';
+        $('configState').textContent='Governance '+g.schema+' · metadata-only review';
+        $('syncRaw').addEventListener('click',()=>$('rawPayload').value=JSON.stringify(structuredPayload(),null,2));
+        $('importBtn').addEventListener('click',()=>$('importFile').click());
+        $('importFile').addEventListener('change',async e=>{
+          const file=e.target.files?.[0]; if(!file)return;
+          try{await importCandidateFile(file)}
+          catch(err){$('validationResult').className='status fail';$('validationResult').textContent='IMPORT FAIL\n'+String(err.message||err)}
+          finally{e.target.value=''}
+        });
+        $('newRevisionBtn').addEventListener('click',nextRevision);
+        $('validateBtn').addEventListener('click',validate);
+        $('previewBtn').addEventListener('click',preview);
+        $('exportBtn').addEventListener('click',exportCandidate);
+        await validate();
+        window.RussianAuthoringWorkspace={validate,preview,applyCandidate,importCandidateFile,nextRevision,candidate:()=>lastCandidate,governance:()=>governance,ownerFor:type=>ownerMap.get(type)||null};
+      }catch(e){
+        $('configState').textContent='Không nạp được governance';
+        $('validationResult').className='status fail';
+        $('validationResult').textContent='FAIL\n'+String(e.message||e);
+      }
+    }
+    document.addEventListener('DOMContentLoaded',init);
+  })();
+  </script>
+  <script src="../../platform/ui/bauman-ui.js?v=1"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+name: Russian RU08 Authoring Acceptance
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "subjects/russian/editor.html"
+      - "subjects/russian/data/ai-mentor-policy.json"
+      - "subjects/russian/data/authoring-*.json"
+      - "subjects/russian/docs/ru03/**"
+      - "subjects/russian/docs/ru07/**"
+      - "subjects/russian/docs/ru08/**"
+      - "subjects/russian/scripts/validate-ru03-linguistic-authority.mjs"
+      - "subjects/russian/scripts/validate-ru07-ai-coaching.mjs"
+      - "subjects/russian/scripts/validate-ru08-integration-acceptance.mjs"
+      - "subjects/russian/scripts/russian-authoring-candidate.mjs"
+      - "tests/russian-authoring-journey-browser.mjs"
+      - "control-service/src/content-review-store.ts"
+      - "control-service/migrations/0004_content_review.sql"
+      - "control-service/tests/contract.test.mjs"
+      - ".github/workflows/russian-authoring-acceptance.yml"
+  push:
+    branches: [main]
+    paths:
+      - "subjects/russian/editor.html"
+      - "subjects/russian/data/ai-mentor-policy.json"
+      - "subjects/russian/data/authoring-*.json"
+      - "subjects/russian/docs/ru03/**"
+      - "subjects/russian/docs/ru07/**"
+      - "subjects/russian/docs/ru08/**"
+      - "subjects/russian/scripts/validate-ru03-linguistic-authority.mjs"
+      - "subjects/russian/scripts/validate-ru07-ai-coaching.mjs"
+      - "subjects/russian/scripts/validate-ru08-integration-acceptance.mjs"
+      - "subjects/russian/scripts/russian-authoring-candidate.mjs"
+      - "tests/russian-authoring-journey-browser.mjs"
+      - ".github/workflows/russian-authoring-acceptance.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  contract-and-static:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - name: Validate RU03 linguistic authority
+        run: node subjects/russian/scripts/validate-ru03-linguistic-authority.mjs
+      - name: Validate RU07 AI coaching
+        run: node subjects/russian/scripts/validate-ru07-ai-coaching.mjs
+      - name: Validate RU08 integration and evidence
+        run: node subjects/russian/scripts/validate-ru08-integration-acceptance.mjs
+      - name: Validate Content Review metadata-only contract
+        run: node --test control-service/tests/contract.test.mjs
+      - name: Parse authoring browser acceptance
+        run: node --check tests/russian-authoring-journey-browser.mjs
+
+  browser-authoring-journey:
+    needs: contract-and-static
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - name: Install Playwright Chromium
+        run: |
+          printf '{"private":true,"type":"module"}\n' > package.json
+          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Start source runtime
+        run: |
+          python3 -m http.server 4178 --bind 127.0.0.1 > /tmp/russian-authoring-http.log 2>&1 &
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4178/subjects/russian/editor.html >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/russian-authoring-http.log
+          exit 1
+      - name: Run RU08 authoring user journey
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4178/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-authoring-journey
+        run: node tests/russian-authoring-journey-browser.mjs
+      - name: Upload authoring evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: russian-authoring-${{ github.run_id }}
+          path: artifacts/russian-authoring-journey
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Show server log on failure
+        if: failure()
+        run: cat /tmp/russian-authoring-http.log || true

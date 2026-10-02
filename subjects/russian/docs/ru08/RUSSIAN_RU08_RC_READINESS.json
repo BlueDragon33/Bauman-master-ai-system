@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
   "kind": "RUSSIAN_RU08_RC_READINESS",
-  "state": "READY_FOR_MERGE",
+  "state": "CANDIDATE",
   "runtimeSourceBase": "main@f6aa11215dfcf24e2d646f7c9737733e66c642c8",
   "artifactIdentity": "Russian subject package materialized from exact accepted Git SHA",
   "contentSnapshot": "subjects/russian/subject-manifest.json + canonical datasets referenced by RU02 owner registry",
@@ -17,7 +17,7 @@
     "AI is optional",
     "large dialogue/deep-speaking datasets remain lazy"
   ],
-  "rollbackTarget": "f6aa11215dfcf24e2d646f7c9737733e66c642c8",
+  "rollbackTarget": "7697a3f05362c111fb481ebd6043738c12dbcb8c",
   "productionSmoke": [
     "open Russian",
     "resume/Today plan",
@@ -36,5 +36,26 @@
     "constitution": "PASS",
     "fastCi": "PASS"
   },
-  "rcIdentityRule": "After merge, the merge SHA is the exact RC source identity; release must not target latest/main ambiguously."
+  "rcIdentityRule": "After merge, the merge SHA is the exact RC source identity; release must not target latest/main ambiguously.",
+  "baseline": "e5ee1b8a4aadf5fbca139a37479bae1b5dde4811",
+  "revalidation": {
+    "reason": "Full RUSSIAN_PROMPT_SYSTEM re-audit found runtime/acceptance gaps after prior release.",
+    "status": "IN_PROGRESS",
+    "branch": "audit/russian-prompt-system-full-revalidation-20261002",
+    "discoveredGaps": [
+      "active P-topology leaked into RU03/RU05/RU06/RU07 metadata",
+      "RU05 scenario registry not consumed by runtime",
+      "RU06 production datasets not consumed by learner runtime",
+      "RU07 runtime guard not grounded in active policy/provenance",
+      "RU08 authoring journey lacked executable browser implementation",
+      "manifest/adapter/offline dataset parity drift"
+    ],
+    "requiredBeforeReady": [
+      "all RU validators PASS",
+      "new RU05/RU06/RU07/RU08 browser journeys PASS",
+      "whole-system integration PASS",
+      "exact-head CI evidence recorded"
+    ]
+  },
+  "evidence": []
 }

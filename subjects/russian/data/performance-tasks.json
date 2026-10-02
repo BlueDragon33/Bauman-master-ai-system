@@ -1,9 +1,9 @@
 {
   "schema": "RUSSIAN_PERFORMANCE_TASKS_V1",
-  "phase": "P9",
+  "phase": "RU06",
   "canonicalOwner": "subjects/russian/data/performance-tasks.json",
-  "assessmentOwner": "P4",
-  "rule": "P9 defines productive task contracts; P4 alone owns official scoring/mastery.",
+  "assessmentOwner": "RU04",
+  "rule": "RU06 defines productive task contracts; RU04 alone owns official scoring/mastery. Legacy P4 rubricRef values are stable compatibility references.",
   "tasks": [
     {
       "id": "PT-R11-NOTE-RECON",
@@ -146,5 +146,9 @@
       ],
       "rubricRef": "P4-research"
     }
-  ]
+  ],
+  "legacySourceResponsibility": "P9",
+  "legacyAssessmentOwner": "P4",
+  "linguisticTruthOwner": "RU03",
+  "legacyRubricNamespace": "P4"
 }
