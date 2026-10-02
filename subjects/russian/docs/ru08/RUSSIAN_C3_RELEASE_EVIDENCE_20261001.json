@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_C3_PRODUCTION_RELEASE_EVIDENCE",
+  "releaseDate": "2026-10-01",
+  "sourceSha": "7697a3f05362c111fb481ebd6043738c12dbcb8c",
+  "preview": {
+    "runId": 36881439526,
+    "conclusion": "success",
+    "exactSourceVerified": true
+  },
+  "production": {
+    "runId": 36882164198,
+    "conclusion": "success",
+    "exactSourceVerified": true,
+    "smokeTest": "PASS"
+  },
+  "priorKnownGoodProductionSha": "a3cd3ecddbd19398691e0c52af778172e0658eb8",
+  "releaseAuthority": "shared C3 Release Annex",
+  "ru08Role": "handoff only; RU08 itself does not claim production success",
+  "supersededForFutureRelease": true,
+  "supersededReason": "Runtime-owner metadata corrections from the 2026-10-02 audit require a new exact RC and release after affected gates pass."
+}
