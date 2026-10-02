@@ -52,6 +52,9 @@ jobs:
       - name: Subjects reference static
         run: node tests/subjects-reference-v1-static.mjs
 
+      - name: Entrepreneurship subject static
+        run: node tests/entrepreneurship-subject-static.mjs
+
       - name: Thesis reference static
         run: node tests/thesis-reference-v1-static.mjs
 
