@@ -1,0 +1,205 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_RU08_ACCEPTANCE_EVIDENCE",
+  "rule": "Every RU08 acceptance matrix journey/failure must resolve to executable evidence; declarations alone are not PASS evidence.",
+  "journeys": {
+    "beginner": [
+      {
+        "path": "tests/russian-ru08-journeys-browser.mjs",
+        "type": "browser",
+        "execution": "source+package"
+      },
+      {
+        "path": "tests/russian-future-ui-browser.mjs",
+        "type": "browser",
+        "execution": "source+package"
+      }
+    ],
+    "survival": [
+      {
+        "path": "tests/russian-ru08-journeys-browser.mjs",
+        "type": "browser",
+        "execution": "source+package"
+      },
+      {
+        "path": "subjects/russian/scripts/test-p6-speech-interaction-runtime.mjs",
+        "type": "runtime",
+        "execution": "ci"
+      }
+    ],
+    "university": [
+      {
+        "path": "tests/russian-ru08-journeys-browser.mjs",
+        "type": "browser",
+        "execution": "source+package"
+      },
+      {
+        "path": "subjects/russian/scripts/validate-academic-language.mjs",
+        "type": "validator",
+        "execution": "ci"
+      }
+    ],
+    "technical": [
+      {
+        "path": "tests/russian-ru08-journeys-browser.mjs",
+        "type": "browser",
+        "execution": "source+package"
+      },
+      {
+        "path": "subjects/russian/scripts/validate-ru06-academic-production.mjs",
+        "type": "validator",
+        "execution": "ci"
+      }
+    ],
+    "research": [
+      {
+        "path": "tests/russian-ru08-journeys-browser.mjs",
+        "type": "browser",
+        "execution": "source+package"
+      },
+      {
+        "path": "subjects/russian/scripts/validate-ru06-academic-production.mjs",
+        "type": "validator",
+        "execution": "ci"
+      }
+    ],
+    "author": [
+      {
+        "path": "tests/russian-ru08-author-browser.mjs",
+        "type": "browser",
+        "execution": "source+package"
+      },
+      {
+        "path": "subjects/russian/scripts/validate-ru08-integration-acceptance.mjs",
+        "type": "validator",
+        "execution": "ci"
+      }
+    ]
+  },
+  "failures": {
+    "invalid-linguistic-content": [
+      {
+        "path": "subjects/russian/scripts/validate-ru03-linguistic-authority.mjs",
+        "type": "validator",
+        "execution": "ci"
+      }
+    ],
+    "broken-audio": [
+      {
+        "path": "subjects/russian/scripts/test-p6-speech-interaction-runtime.mjs",
+        "type": "runtime",
+        "execution": "ci"
+      }
+    ],
+    "mic-denied": [
+      {
+        "path": "subjects/russian/scripts/test-p6-speech-interaction-runtime.mjs",
+        "type": "runtime",
+        "execution": "ci"
+      }
+    ],
+    "stt-unavailable": [
+      {
+        "path": "subjects/russian/scripts/test-p6-speech-interaction-runtime.mjs",
+        "type": "runtime",
+        "execution": "ci"
+      }
+    ],
+    "malformed-state": [
+      {
+        "path": "tests/russian-p4-assessment-mastery-browser.mjs",
+        "type": "browser",
+        "execution": "source+package"
+      }
+    ],
+    "duplicate-submit": [
+      {
+        "path": "tests/russian-p4-assessment-mastery-browser.mjs",
+        "type": "browser",
+        "execution": "source+package"
+      }
+    ],
+    "offline-reload": [
+      {
+        "path": "tests/russian-offline-shell-browser.mjs",
+        "type": "browser",
+        "execution": "source+package"
+      }
+    ],
+    "content-revision": [
+      {
+        "path": "subjects/russian/scripts/validate-promotion-candidate.mjs",
+        "type": "validator",
+        "execution": "ci"
+      }
+    ],
+    "huge-vocab-backlog": [
+      {
+        "path": "subjects/russian/scripts/validate-vocab-srs.mjs",
+        "type": "validator",
+        "execution": "ci"
+      }
+    ],
+    "dialogue-graph-defect": [
+      {
+        "path": "subjects/russian/scripts/validate-ru05-oral-scenarios.mjs",
+        "type": "validator",
+        "execution": "ci"
+      }
+    ],
+    "ai-unavailable": [
+      {
+        "path": "subjects/russian/scripts/validate-ai-runtime.mjs",
+        "type": "runtime",
+        "execution": "ci"
+      }
+    ],
+    "prompt-injection": [
+      {
+        "path": "subjects/russian/scripts/validate-ru07-ai-coaching.mjs",
+        "type": "validator",
+        "execution": "ci"
+      }
+    ],
+    "long-technical-text": [
+      {
+        "path": "subjects/russian/scripts/validate-ru06-academic-production.mjs",
+        "type": "validator",
+        "execution": "ci"
+      }
+    ],
+    "mobile-overflow": [
+      {
+        "path": "tests/russian-p1-forensic-browser.mjs",
+        "type": "browser",
+        "execution": "source+package"
+      }
+    ],
+    "keyboard-screen-reader": [
+      {
+        "path": "tests/russian-future-ui-browser.mjs",
+        "type": "browser",
+        "execution": "source+package"
+      }
+    ],
+    "plugin-resource-failure": [
+      {
+        "path": "subjects/russian/scripts/audit-runtime-offline.mjs",
+        "type": "audit",
+        "execution": "ci"
+      }
+    ],
+    "old-package-compatibility": [
+      {
+        "path": "tests/russian-p1-forensic-browser.mjs",
+        "type": "browser",
+        "execution": "package"
+      }
+    ]
+  },
+  "releaseBoundary": {
+    "liveProductionNotProvenByRu08": true,
+    "releaseAnnex": "GLOBAL_CONSTITUTIONS/C3_RELEASE_ANNEX_PRODUCTION.md",
+    "stableRequiresObservationPass": true
+  }
+}
