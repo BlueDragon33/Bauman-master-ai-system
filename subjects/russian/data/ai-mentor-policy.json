@@ -2,13 +2,12 @@
   "schema": "RUSSIAN_AI_MENTOR_POLICY_V1",
   "phase": "P10",
   "authority": {
-    "canonicalTruthOwner": "P7",
-    "assessmentMasteryOwner": "P4",
-    "plannerSrsOwner": "P5",
-    "speechAudioOwner": "P6",
+    "canonicalTruthOwner": "RU03",
+    "assessmentMasteryOwner": "RU04",
+    "plannerSrsOwner": "RU04",
+    "speechAudioOwner": "RU05",
     "academicTechnicalOwners": [
-      "P8",
-      "P9"
+      "RU06"
     ],
     "aiRole": "NON_AUTHORITATIVE_COACH"
   },
@@ -34,7 +33,7 @@
     ],
     "mayReferenceCanonicalIds": true,
     "mayInventSourceCitations": false,
-    "promotionPath": "P12_REVIEW_WORKFLOW"
+    "promotionPath": "RU08_REVIEW_WORKFLOW"
   },
   "sourceBoundary": {
     "canonicalClaimsRequire": [
@@ -74,5 +73,8 @@
     "targetLanguagePriority": "ru",
     "preserveTechnicalTerms": true,
     "doNotTranslateWhenTaskTestsRecognition": true
-  }
+  },
+  "sourcePhase": "P10",
+  "phaseMeaning": "legacy-source-provenance",
+  "activeOwner": "RU07"
 }
