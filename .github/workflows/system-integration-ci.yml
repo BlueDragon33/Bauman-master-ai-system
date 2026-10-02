@@ -90,6 +90,11 @@ jobs:
           node --check subjects/russian/assets/core.js
           node --check subjects/russian/assets/assessment-mastery.js
           node --check tests/russian-p4-assessment-mastery-browser.mjs
+          node --check tests/russian-prompt-reaudit-browser.mjs
+          node --check subjects/russian/assets/linguistic-authority.js
+          node --check subjects/russian/assets/scenario-runtime.js
+          node --check subjects/russian/assets/academic-production.js
+          node --check subjects/russian/assets/authoring-workbench.js
           node --check subjects/russian/assets/russian-future-ui.js
           node --check tests/russian-future-ui-browser.mjs
           node --check subjects/russian/assets/listen-write-factory.js
