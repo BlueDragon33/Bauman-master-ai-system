@@ -31,6 +31,8 @@ jobs:
       BAUMAN_CONTROL_PRODUCTION_ORIGIN: ${{ vars.BAUMAN_CONTROL_PRODUCTION_ORIGIN }}
       BAUMAN_RUNTIME_PRODUCTION_ORIGIN: ${{ vars.BAUMAN_RUNTIME_PRODUCTION_ORIGIN }}
       BAUMAN_ACCESS_MODE: managed
+      RUSSIAN_RELEASE_EVIDENCE_DIR: artifacts/russian-release-annex
+      RUSSIAN_OBSERVATION_INTERVAL_SECONDS: "20"
 
     steps:
       - name: Require explicit production confirmation
@@ -98,6 +100,9 @@ jobs:
           console.log('Exact-revision preview promotion gate PASS.');
           NODE
 
+      - name: Materialize immutable Russian release preflight evidence
+        run: node scripts/russian-release-annex-evidence.mjs preflight
+
       - name: Materialize isolated production configs and runtime assets
         run: node scripts/prepare-cloudflare-production.mjs
 
@@ -108,9 +113,31 @@ jobs:
           (cd control-service && npx wrangler deploy --dry-run --outdir dist-production --config wrangler.production.jsonc)
           npx --yes wrangler@4.92.0 deploy --dry-run --outdir .wrangler/runtime-production --config wrangler.runtime.production.jsonc
 
+      - name: Export Bauman production D1 backup before migration
+        working-directory: control-service
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "../$RUSSIAN_RELEASE_EVIDENCE_DIR"
+          npx wrangler d1 export bauman-control-db --remote --skip-confirmation --output "../$RUSSIAN_RELEASE_EVIDENCE_DIR/bauman-control-predeploy.sql" --config wrangler.production.jsonc
+          BACKUP_SHA="$(sha256sum "../$RUSSIAN_RELEASE_EVIDENCE_DIR/bauman-control-predeploy.sql" | awk '{print $1}')"
+          BACKUP_BYTES="$(wc -c < "../$RUSSIAN_RELEASE_EVIDENCE_DIR/bauman-control-predeploy.sql" | tr -d ' ')"
+          printf '{"schema":"RUSSIAN_BACKUP_DECISION_RESULT_V1","decision":"BACKUP_REQUIRED","status":"PASS","artifact":"bauman-control-predeploy.sql","sha256":"%s","bytes":%s,"revision":"%s"}\n' "$BACKUP_SHA" "$BACKUP_BYTES" "$GITHUB_SHA" > "../$RUSSIAN_RELEASE_EVIDENCE_DIR/RUSSIAN_BACKUP_DECISION_RESULT.json"
+
       - name: Apply migrations to Bauman production D1
         working-directory: control-service
-        run: npx wrangler d1 migrations apply bauman-control-db --remote --config wrangler.production.jsonc
+        shell: bash
+        run: |
+          set -euo pipefail
+          set +e
+          npx wrangler d1 migrations apply bauman-control-db --remote --config wrangler.production.jsonc 2>&1 | tee "../$RUSSIAN_RELEASE_EVIDENCE_DIR/migration-output.log"
+          code="${PIPESTATUS[0]}"
+          set -e
+          if [[ "$code" -ne 0 ]]; then
+            printf '{"schema":"RUSSIAN_MIGRATION_RESULT_V1","status":"FAIL","revision":"%s"}\n' "$GITHUB_SHA" > "../$RUSSIAN_RELEASE_EVIDENCE_DIR/RUSSIAN_MIGRATION_RESULT.json"
+            exit "$code"
+          fi
+          printf '{"schema":"RUSSIAN_MIGRATION_RESULT_V1","status":"PASS","revision":"%s"}\n' "$GITHUB_SHA" > "../$RUSSIAN_RELEASE_EVIDENCE_DIR/RUSSIAN_MIGRATION_RESULT.json"
 
       - name: Deploy Bauman Control production Worker
         working-directory: control-service
@@ -161,13 +188,45 @@ jobs:
           grep -Fq 'assets/russian-future-ui.css' /tmp/bauman-prod-russian.html
           grep -Fq 'assets/russian-optional-data-loader.js' /tmp/bauman-prod-russian.html
 
+      - name: Verify Russian production identity, security, offline contract and content drift
+        run: node scripts/russian-release-annex-evidence.mjs verify
+
+      - name: Run Russian production offline browser verification
+        shell: bash
+        env:
+          BAUMAN_E2E_BASE_URL: ${{ vars.BAUMAN_RUNTIME_PRODUCTION_ORIGIN }}/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-production-offline-browser
+        run: |
+          set -euo pipefail
+          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+          node tests/russian-offline-shell-browser.mjs
+
+      - name: Observe exact Russian production revision
+        run: node scripts/russian-release-annex-evidence.mjs observe
+
+      - name: Close Russian Release Annex state machine
+        run: node scripts/russian-release-annex-evidence.mjs close
+
+      - name: Upload Russian release closure evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: russian-release-annex-${{ github.run_id }}
+          path: |
+            artifacts/russian-release-annex
+            artifacts/russian-production-offline-browser
+          if-no-files-found: error
+          retention-days: 30
+
       - name: Production deployment summary
         shell: bash
         run: |
-          echo 'Bauman production deployment completed.'
+          echo 'Bauman production release closure completed.'
           echo 'Control Worker: bauman-control'
           echo 'D1: bauman-control-db'
           echo 'Learning Worker: bauman-master-ai'
           echo "Revision: $GITHUB_SHA"
+          echo 'State: STABLE only after exact identity, backup, migration, smoke, offline/PWA, drift and observation gates passed.'
           echo 'Promotion source: exact same revision verified live in Cloudflare preview before production.'
           echo 'Manager-owned BAUMAN_CONTROL_SERVICE_SECRET preserved; Bauman deploy does not rotate the shared control-plane secret.'
