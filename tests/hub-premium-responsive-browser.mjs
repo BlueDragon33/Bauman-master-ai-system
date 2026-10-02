@@ -6,6 +6,9 @@ const BASE=process.env.BAUMAN_E2E_BASE_URL||'http://127.0.0.1:4173/';
 const OUT=process.env.BAUMAN_E2E_ARTIFACT_DIR||'artifacts/hub-preservation-responsive';
 const EXPECT_PLATFORM_ACCESS=process.env.BAUMAN_E2E_EXPECT_PLATFORM_ACCESS==='1';
 fs.mkdirSync(OUT,{recursive:true});
+const CONTROL_CONTRACT=JSON.parse(fs.readFileSync('control/application-management.contract.json','utf8'));
+const EXPECTED_SUBJECT_IDS=[...new Set((CONTROL_CONTRACT.subclients||[]).map(item=>String(item.id||'').trim()).filter(Boolean))].sort();
+assert.ok(EXPECTED_SUBJECT_IDS.length,'Application-management contract must declare canonical subclients');
 
 // Static ownership gate: PlanningBridge is an accepted canonical wrapper around app.home.
 // The Safe Shell itself must never assign app.home or replace the canonical nav tree.
@@ -83,7 +86,7 @@ async function checkCanonicalContent(page){
     roadmapV3:window.BAUMAN_HUB_ROADMAP_V3?.selfCheck?.()||window.BAUMAN_HUB_ROADMAP_V2?.selfCheck?.(),
     primaryPagesV6:window.BAUMAN_HUB_PRIMARY_PAGES_V6?.selfCheck?.()
   }));
-  assert.deepEqual(content.subjectIds,['ai','entrepreneurship','ergonomics','foundation','math','mivar','programming','research','russian','signal','systems']);
+  assert.deepEqual(content.subjectIds,EXPECTED_SUBJECT_IDS,'Hub subject registry must match the canonical application-management contract exactly');
   assert.equal(content.pages.length,5,'canonical Hub pages were removed');
   assert.ok(content.appearance,'Giao diện control missing');
   assert.ok(content.ai,'AI control missing');
