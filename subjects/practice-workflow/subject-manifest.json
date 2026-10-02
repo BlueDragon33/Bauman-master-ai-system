@@ -1,0 +1,47 @@
+{
+  "id": "practice-workflow",
+  "kind": "workflow",
+  "studyPlan": {
+    "version": 1,
+    "relation": "related",
+    "runtimePath": "subjects/practice-workflow/",
+    "labelVi": "Workflow thực tập & sư phạm",
+    "labelEn": "Practice & Pedagogy Workflow",
+    "courseIds": [
+      "project-practice",
+      "operations-practice",
+      "pedagogy-1",
+      "pedagogy-2"
+    ]
+  },
+  "title": "Практика · Workflow hỗ trợ",
+  "stage": "m2-m3",
+  "entry": "index.html",
+  "policy": "This is a task/evidence workflow, not an independent academic subject module.",
+  "officialItems": [
+    {
+      "id": "project-practice",
+      "semester": 2,
+      "credits": 2,
+      "hours": 72
+    },
+    {
+      "id": "operations-practice",
+      "semester": 2,
+      "credits": 3,
+      "hours": 108
+    },
+    {
+      "id": "pedagogy-1",
+      "semester": 2,
+      "credits": 1,
+      "hours": 36
+    },
+    {
+      "id": "pedagogy-2",
+      "semester": 3,
+      "credits": 1,
+      "hours": 36
+    }
+  ]
+}
