@@ -185,6 +185,17 @@ try{
     },null,{timeout:10000});
     await page.waitForSelector('#page-home [data-bui-dashboard="e6"] .bui-dashboard__hero',{state:'visible',timeout:10000});
     await page.waitForTimeout(180);
+    // The Hub can replace the Home subtree once after async data hydration. Measure only
+    // after the replacement dashboard is materialized; otherwise a transient detached
+    // hero (0x0) is misreported as a topbar overlap.
+    await page.waitForFunction(()=>{
+      const app=document.getElementById('appRoot');
+      if(!app||app.classList.contains('hidden'))return true;
+      const hero=document.querySelector('#page-home [data-bui-dashboard="e6"] .bui-dashboard__hero');
+      const rect=hero?.getBoundingClientRect();
+      return window.BAUMAN_UI?.selfCheck?.().dashboardReady===true
+        && !!rect && rect.width>1 && rect.height>1;
+    },null,{timeout:10000});
     deviceProfiles[label]=await page.evaluate(()=> {
       const visible=el=>{
         if(!el)return false;
