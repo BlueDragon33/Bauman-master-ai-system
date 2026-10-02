@@ -1,0 +1,1 @@
+window.SUBJECT_CONFIG={"id":"entrepreneurship","title":"Основы предпринимательства · Cơ sở khởi nghiệp","short":"Entrepreneurship · Product","icon":"↗","tagline":"Từ vấn đề và người dùng đến giá trị, mô hình kinh doanh, chi phí và pitch dự án công nghệ.","formulaLabel":"Mẫu / Canvas / Checklist"};
