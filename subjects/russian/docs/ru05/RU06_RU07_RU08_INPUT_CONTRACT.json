@@ -1,0 +1,41 @@
+{
+  "schema": "RU05_DOWNSTREAM_INPUT_CONTRACT_V1",
+  "state": "PASS",
+  "owners": {
+    "oralInteraction": "RU05",
+    "linguisticTruth": "RU03",
+    "learningJudgment": "RU04",
+    "dynamicWording": "RU07",
+    "integrationAuthoring": "RU08"
+  },
+  "scenarioRuntime": {
+    "provider": "subjects/russian/assets/scenario-engine.js",
+    "registry": "subjects/russian/data/scenario-registry.json",
+    "sessionSchema": "RUSSIAN_SCENARIO_SESSION_V1",
+    "evidenceEvent": "russian:oral-evidence",
+    "evidenceAuthoritative": false,
+    "masteryWrite": false,
+    "replayCreatesNewRunIdentity": true,
+    "offlineTextFallback": true
+  },
+  "ru06MayConsume": [
+    "scenario-family",
+    "task-goal",
+    "repair-strategy",
+    "oral-evidence-envelope"
+  ],
+  "ru07Boundary": {
+    "mayGenerateWording": true,
+    "mayChangeWorldState": false,
+    "mayChangeCompletionSemantics": false,
+    "mayWriteMastery": false
+  },
+  "ru08MustPreserve": [
+    "stable scenario ids",
+    "separate speaking/dialogue/deep-speaking datasets",
+    "single speech adapter",
+    "non-authoritative scenario evidence",
+    "refresh-safe scenario run identity",
+    "browser/mobile/offline acceptance"
+  ]
+}
