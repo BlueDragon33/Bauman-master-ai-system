@@ -28,5 +28,7 @@ for(const id of ['beginner','survival','university','technical','research','auth
   assert(journeyIds.includes(id),'required journey absent from matrix: '+id);
 }
 assert.equal(evidence.releaseBoundary.liveProductionNotProvenByRu08,true);
+assert.equal(evidence.releaseBoundary.releaseAnnex,'prompts/constitution/C3_RELEASE_ANNEX_SHARED.md');
+assert(fs.existsSync(evidence.releaseBoundary.releaseAnnex),'canonical shared Release Annex path missing');
 assert.equal(evidence.releaseBoundary.stableRequiresObservationPass,true);
 console.log(JSON.stringify({ok:true,journeys:journeyIds.length,failures:failureIds.length,browserBoundJourneys:journeyIds.length}));
