@@ -21,7 +21,7 @@ for(const sub of contract.subclients??[]){
 
   if(manifest.editor){
     const editorPath=String(manifest.editor).includes('/')
-      ? String(manifest.editor).replace(/^\\/+/, '')
+      ? String(manifest.editor).replace(/^[/]+/, '')
       : path.join(runtime,String(manifest.editor)).replaceAll('\\\\','/');
     assert.ok(fs.existsSync(editorPath),sub.id+': declared editor missing at '+editorPath);
     assert.ok(mainJs.includes("'"+sub.id+"':'"+editorPath+"'")||mainJs.includes(sub.id+":'"+editorPath+"'"),sub.id+': editor missing from main editorMap');
