@@ -5,6 +5,7 @@ const helper=fs.readFileSync('scripts/russian-release-annex-evidence.mjs','utf8'
 for(const marker of [
  'Verify exact preview revision before production',
  'Materialize immutable Russian release preflight evidence',
+ 'Record immutable deployment artifact identity',
  'Export Bauman production D1 backup before migration',
  'Apply migrations to Bauman production D1',
  'Verify Russian production identity, security, offline contract and content drift',
@@ -16,6 +17,7 @@ for(const marker of [
 for(const evidence of [
  'RUSSIAN_RC_MANIFEST.json',
  'RUSSIAN_PRODUCTION_TARGET_RECORD.json',
+ 'RUSSIAN_DEPLOYMENT_ARTIFACT_IDENTITY.json',
  'RUSSIAN_BACKUP_DECISION_RESULT.json',
  'RUSSIAN_MIGRATION_RESULT.json',
  'RUSSIAN_PRODUCTION_SMOKE_REPORT.md',
@@ -32,4 +34,4 @@ assert(helper.includes("state:'STABLE'"),'STABLE final state missing');
 assert(helper.includes('OBSERVATION_PASS'),'observation gate missing');
 assert(workflow.indexOf('Close Russian Release Annex state machine')<workflow.indexOf('Production deployment summary'),'summary must occur only after closure');
 assert(!/Bauman production deployment completed\./.test(workflow),'workflow must not declare completion immediately after deploy/smoke');
-console.log(JSON.stringify({ok:true,annexGates:9,evidenceOutputs:13}));
+console.log(JSON.stringify({ok:true,annexGates:10,evidenceOutputs:14}));
