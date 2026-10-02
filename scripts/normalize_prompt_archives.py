@@ -327,6 +327,10 @@ def bootstrap_import(results: dict):
 def normalize_individual_archives(results: dict):
     for archive_name,meta in PACKAGES.items():
         if not meta["normalize"]: continue
+        if archive_name in results:
+            # Already normalized from the staged bootstrap source in this run.
+            # Do not re-normalize the freshly generated canonical archive.
+            continue
         archive=ARCHIVES/archive_name
         if not archive.exists(): continue
         with tempfile.TemporaryDirectory() as td:
