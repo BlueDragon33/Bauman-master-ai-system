@@ -16,6 +16,9 @@ try{
  await page.waitForFunction(()=>!!window.RussianAssessmentMastery&&!!window.RussianLearningState&&!!window.RussianAcademicLanguage,null,{timeout:15000});
 
  // Beginner: enter -> next action -> learn -> review truth -> return.
+ // Future UI is an additive renderer after the base shell; wait for the real dashboard
+ // instead of treating DOMContentLoaded as evidence that the enhancement already painted.
+ await page.waitForSelector('.rf-dashboard',{timeout:15000});
  assert.equal(await page.locator('.rf-dashboard').count(),1);
  assert.ok(await page.locator('.rf-continue-card,.rf-today-plan').count()>0);
  await page.locator('#nav [data-view="learning"]').first().click();
