@@ -7,6 +7,7 @@ const ctx=j('subjects/russian/docs/ru07/RUSSIAN_RU07_CONTEXT_GROUNDING_CONTRACT.
 const sec=j('subjects/russian/docs/ru07/RUSSIAN_RU07_FEEDBACK_ASSESSMENT_SECURITY_POLICY.json');
 const fb=j('subjects/russian/docs/ru07/RUSSIAN_RU07_FALLBACK_POLICY.json');
 const fx=j('subjects/russian/docs/ru07/RUSSIAN_RU07_GOLDEN_AI_FIXTURES.json');
+const runtime=fs.readFileSync('subjects/russian/assets/ai-mentor-guard.js','utf8');
 
 assert.equal(base.phase,'RU07','active AI policy must be owned by RU07');
 assert.equal(base.legacySourceResponsibility,'P10');
@@ -34,4 +35,12 @@ assert(fb.providerFailure.includes('deterministic-practice'));
 for(const id of ['fake-citation','assessment-leakage','prompt-injection-document','stale-response','provider-failure']) assert(fx.fixtures.some(x=>x.id===id));
 const serialized=JSON.stringify(base);
 for(const stale of ['"canonicalTruthOwner":"P7"','"assessmentMasteryOwner":"P4"','"plannerSrsOwner":"P5"','"speechAudioOwner":"P6"','P12_REVIEW_WORKFLOW']) assert(!serialized.includes(stale),'stale active P-topology leaked into RU07 policy: '+stale);
-console.log(JSON.stringify({ok:true,phase:base.phase,modes:Object.keys(modes.modes).length,fixtures:fx.fixtures.length}));
+assert.match(runtime,/RUSSIAN_AI_MENTOR_CONTEXT_V2/);
+assert.match(runtime,/RussianRuntimeData.*ai-mentor-policy/s);
+assert.match(runtime,/RussianRuntimeData.*provenance/s);
+assert.match(runtime,/conversationSummaryCanonical:false/);
+assert.match(runtime,/wholeDatasetDump:false/);
+assert.match(runtime,/RussianScenarioEngine/);
+assert.match(runtime,/RussianAcademicProduction/);
+assert(fs.existsSync('tests/russian-ai-grounding-browser.mjs'),'RU07 browser grounding acceptance missing');
+console.log(JSON.stringify({ok:true,phase:base.phase,modes:Object.keys(modes.modes).length,fixtures:fx.fixtures.length,runtimeGrounding:true,browserAcceptance:true}));
