@@ -52,9 +52,9 @@ const wrongCodes=new Set(wrong.cases.flatMap(x=>x.expectedErrors));
 for(const x of ['JOIN_ERROR','CARDINALITY_ERROR','NULL_ERROR','DUPLICATE_ERROR','ORDER_ERROR','AGGREGATION_ERROR','SUBQUERY_SCOPE_ERROR']) assert(wrongCodes.has(x),'golden library lacks '+x);
 for(const x of ['db.fx.unmatched-parent','db.fx.multi-child','db.fx.nullable-column','db.fx.null-foreign-key','db.fx.boundary-100','db.fx.duplicates','db.fx.tie-order']) assert(fixtureIds.has(x),'fixture catalog lacks '+x);
 
-assert.equal(state.status,'DB03_PASS_DB04_READY');
-assert.equal(state.activeModule,'DB04');
-assert(state.completedModules.includes('DB03'));
+assert(state.completedModules.includes('DB03'),'DB03 must remain completed after downstream progress');
+assert(['DB04','DB05','DB06'].includes(state.activeModule),'active module must not regress before DB04');
+assert(!['DB01','DB02','DB03'].includes(state.activeModule),'DB03 contract test must tolerate valid downstream state');
 
 console.log('DATABASE_DB03_CONTRACT_PASS');
 console.log(JSON.stringify({tasks:correct.tasks.length,correctAlternatives:correct.tasks.reduce((n,x)=>n+x.alternatives.length,0),wrongQueries:wrong.cases.length,fixtures:fixtures.fixtures.length,taxonomy:errors.errors.length},null,2));
