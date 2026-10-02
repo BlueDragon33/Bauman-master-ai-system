@@ -1,1 +1,33 @@
-<!doctype html><html data-bauman-ui="future-v1"><head><meta charset="utf-8"><title>Russian Editor</title><link rel="stylesheet" href="../../platform/ui/bauman-ui.css?v=1"></head><body><p>Mở <a href="index.html">index.html</a> để quản lý dữ liệu môn Tiếng Nga.</p><script src="../../platform/ui/bauman-ui.js?v=1"></script></body></html>
+<!doctype html>
+<html lang="vi" data-bauman-ui="future-v1">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Russian Authoring Workbench · Bauman</title>
+<link rel="stylesheet" href="../../platform/ui/bauman-ui.css?v=1">
+<style>
+:root{font-family:Inter,system-ui,sans-serif;color:#172033;background:#f5f7fb}.aw-shell{max-width:1180px;margin:auto;padding:24px}.aw-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:18px}.aw-head h1{margin:.2rem 0}.aw-badge{padding:7px 10px;border-radius:999px;background:#e8eefb;font-size:12px;font-weight:800}.aw-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}.aw-card{background:#fff;border:1px solid #dfe5ef;border-radius:16px;padding:16px;box-shadow:0 8px 28px rgba(30,50,80,.06)}.aw-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.aw-form label,.aw-structured label{display:grid;gap:5px;font-weight:700;font-size:13px}.aw-form input,.aw-form select,.aw-form textarea,.aw-structured input,#advancedRaw{box-sizing:border-box;width:100%;padding:10px;border:1px solid #ccd5e3;border-radius:10px;background:#fff;color:inherit}.aw-wide{grid-column:1/-1}.aw-structured{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:10px}.aw-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.aw-actions button,.aw-file{border:0;border-radius:10px;padding:9px 12px;background:#e9eef7;color:#172033;font-weight:750;cursor:pointer}.aw-actions .primary{background:#193b74;color:#fff}.aw-state{display:grid;grid-template-columns:1fr 1fr;gap:10px}.aw-state div{padding:10px;border-radius:12px;background:#f1f4f9}.aw-state span{display:block;font-size:11px;opacity:.7}.aw-state b{word-break:break-all}.aw-preview{white-space:pre-wrap;overflow:auto;max-height:520px;background:#0c1526;color:#dfe8f8;border-radius:12px;padding:12px;font:12px/1.45 ui-monospace,monospace}.aw-notice{margin-top:12px;padding:10px;border-radius:10px;background:#fff7dc;border:1px solid #f1df9b}.aw-rule{font-size:13px;line-height:1.55}.aw-rule strong{color:#923b2e}details{margin-top:12px}details summary{cursor:pointer;font-weight:800}#advancedRaw{min-height:180px;font:12px/1.45 ui-monospace,monospace}.aw-back{color:#193b74;font-weight:800;text-decoration:none}@media(max-width:850px){.aw-grid,.aw-form,.aw-structured{grid-template-columns:1fr}.aw-wide{grid-column:auto}.aw-head{display:grid}}
+</style>
+</head>
+<body>
+<main class="aw-shell" data-russian-authoring-workbench="1">
+<header class="aw-head"><div><span class="aw-badge">RU08 · STAGING ONLY</span><h1>Russian Authoring Workbench</h1><p>Tạo/import → map owner → validate → preview → request review → xuất canonical patch packet. Không ghi trực tiếp canonical datasets.</p><small id="bootState">Đang tải contracts…</small></div><a class="aw-back" href="index.html">← Về môn Tiếng Nga</a></header>
+<div class="aw-grid">
+<section class="aw-card"><h2>Candidate có cấu trúc</h2><p class="aw-rule"><strong>Quy tắc:</strong> form có schema là mặc định. Raw JSON chỉ nằm trong mục Nâng cao. Browser chỉ tạo staging candidate/review metadata; trạng thái APPROVED/CANONICAL_PATCHED/PUBLISHED phải đến từ review + repository patch thật.</p>
+<div class="aw-form">
+<label>Entity type<select id="responsibility"></select></label><label>Canonical ID<input id="canonicalId" placeholder="LEX-... / TC-... / PT-..."></label>
+<label>Revision<input id="revision" value="r1"></label><label>Confidence<select id="confidence"><option>UNVERIFIED</option><option>SOURCE_ASSERTED</option><option>VERIFIED</option></select></label>
+<label class="aw-wide">Source refs<textarea id="sourceRefs" rows="3" placeholder="Mỗi nguồn một dòng; DOI / URL / GOST / nguồn được phê duyệt"></textarea></label>
+<label class="aw-wide">Diff summary<textarea id="diffSummary" rows="2" placeholder="Thay đổi gì và vì sao"></textarea></label>
+<label class="aw-wide">Rollback note<textarea id="rollbackNote" rows="2" placeholder="Cách quay về nội dung trước"></textarea></label>
+<label><span>Generated candidate</span><input id="generated" type="checkbox"></label>
+</div>
+<h3>Payload fields</h3><div id="structuredFields" class="aw-structured"></div>
+<details data-advanced-raw-json="1"><summary>Nâng cao · Raw JSON payload</summary><p>Không phải surface mặc định. Chỉ dùng khi biết schema.</p><textarea id="advancedRaw"></textarea><div class="aw-actions"><button data-author-action="apply-raw">Áp dụng payload nâng cao vào staging</button></div></details>
+<div class="aw-actions"><button data-author-action="new">Candidate mới</button><label class="aw-file">Import candidate<input id="candidateImport" type="file" accept="application/json,.json" hidden></label><button class="primary" data-author-action="validate">Validate</button><button data-author-action="review">Request review</button></div>
+<div class="aw-actions"><button data-author-action="export-candidate">Xuất candidate</button><button data-author-action="export-review">Xuất review envelope</button><button data-author-action="export-patch">Xuất canonical patch packet</button></div>
+<div id="authorNotice" class="aw-notice" aria-live="polite"></div></section>
+<section class="aw-card"><h2>Preview & lifecycle</h2><div class="aw-state"><div><span>State</span><b id="candidateState">DRAFT</b></div><div><span>Payload SHA-256</span><b id="candidateHash">chưa validate</b></div></div><h3>Candidate preview</h3><pre id="authorPreview" class="aw-preview"></pre><p class="aw-rule">Review service là <b>metadata-only</b>. Workbench không có nút “Publish canonical” trực tiếp. Canonical content chỉ thay đổi bằng reviewed repository patch.</p></section>
+</div>
+</main>
+<script src="assets/authoring-workbench.js"></script><script src="../../platform/ui/bauman-ui.js?v=1"></script>
+</body></html>

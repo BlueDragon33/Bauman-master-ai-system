@@ -10,6 +10,7 @@ on:
       - "subjects/shared/**"
       - "foundation/domain-model/**"
       - "tests/math-*.mjs"
+      - "tests/russian-*.mjs"
       - "scripts/prepare-chatgpt-site.mjs"
       - "scripts/prepare-cloudflare-preview.mjs"
       - ".github/workflows/system-integration-ci.yml"
@@ -89,6 +90,11 @@ jobs:
           node --check subjects/russian/assets/core.js
           node --check subjects/russian/assets/assessment-mastery.js
           node --check tests/russian-p4-assessment-mastery-browser.mjs
+          node --check tests/russian-prompt-reaudit-browser.mjs
+          node --check subjects/russian/assets/linguistic-authority.js
+          node --check subjects/russian/assets/scenario-runtime.js
+          node --check subjects/russian/assets/academic-production.js
+          node --check subjects/russian/assets/authoring-workbench.js
           node --check subjects/russian/assets/russian-future-ui.js
           node --check tests/russian-future-ui-browser.mjs
           node --check subjects/russian/assets/listen-write-factory.js
@@ -149,6 +155,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-p4-assessment-source
         run: node tests/russian-p4-assessment-mastery-browser.mjs
+      - name: Run Russian prompt re-audit runtime acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-prompt-reaudit-source
+        run: node tests/russian-prompt-reaudit-browser.mjs
       - name: Run Russian Future UI route acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
@@ -218,6 +229,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-p4-assessment-package
         run: node tests/russian-p4-assessment-mastery-browser.mjs
+      - name: Run packaged Russian prompt re-audit acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-prompt-reaudit-package
+        run: node tests/russian-prompt-reaudit-browser.mjs
       - name: Run packaged Russian Future UI acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
