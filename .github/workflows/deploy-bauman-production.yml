@@ -101,6 +101,7 @@ jobs:
           const control = JSON.parse(fs.readFileSync('/tmp/bauman-preview-control.json', 'utf8'));
           const runtime = JSON.parse(fs.readFileSync('/tmp/bauman-preview-runtime.json', 'utf8'));
           if (!control.databaseReady) throw new Error('Bauman Control preview is not deployment-ready.');
+          if (!control.controlSecretConfigured) throw new Error('Bauman Control preview secret readiness is not proven.');
           if (!runtime.controlOriginConfigured) throw new Error('Bauman Learning Runtime preview is not deployment-ready.');
           console.log('Exact-revision preview promotion gate PASS.');
           NODE
@@ -189,6 +190,7 @@ jobs:
           const control = JSON.parse(fs.readFileSync('/tmp/bauman-prod-control.json', 'utf8'));
           const runtime = JSON.parse(fs.readFileSync('/tmp/bauman-prod-runtime.json', 'utf8'));
           if (!control.databaseReady) throw new Error('Production Control read-back mismatch.');
+          if (!control.controlSecretConfigured) throw new Error('Production Control secret readiness is not proven.');
           if (!runtime.controlOriginConfigured) throw new Error('Production Runtime read-back mismatch.');
           NODE
 
