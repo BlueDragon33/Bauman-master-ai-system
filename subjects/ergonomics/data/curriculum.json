@@ -1,0 +1,655 @@
+{
+  "id": "ergonomics",
+  "title": "Эргономический анализ систем обработки и отображения информации",
+  "officialPlan": {
+    "semester": 3,
+    "credits": 6,
+    "hours": 216,
+    "contactHours": 68,
+    "assessment": "Экзамен + курсовая работа",
+    "note": "Chỉ các thông tin học phần này được lấy từ kế hoạch đào tạo 2026 trong App Manager. Phân bổ chủ đề bên dưới là học liệu hỗ trợ do hệ thống xây dựng."
+  },
+  "target": "Đánh giá và cải tiến hệ thống xử lý/hiển thị thông tin theo người dùng, nhiệm vụ, tải nhận thức, lỗi và metric usability.",
+  "outcomes": [
+    "Phân tích được user–task–context của một hệ thống xử lý/hiển thị thông tin.",
+    "Đánh giá được tải nhận thức, lỗi thao tác, khả năng quan sát và mức ưu tiên thông tin.",
+    "Thiết kế và so sánh các phương án dashboard/HMI bằng metric.",
+    "Hoàn thiện một coursework audit có phương pháp, dữ liệu, kết quả và đề xuất cải tiến."
+  ],
+  "principles": [
+    "Human factors bắt đầu từ user–task–context, không bắt đầu từ màu sắc.",
+    "Mọi nhận xét quan trọng nên nối với task, error hoặc metric.",
+    "Thiết kế hiển thị phải ưu tiên quyết định và hành động cần làm.",
+    "Coursework phải phân biệt observation, measurement và inference."
+  ],
+  "stages": [
+    {
+      "id": "m3",
+      "short": "HK3",
+      "title": "Bauman HK3",
+      "period": "Học kỳ 3",
+      "target": "Học hỗ trợ cho môn 6 tín chỉ / 216 giờ: phân tích human factors, HMI và hệ thống hiển thị thông tin bằng metric, thử nghiệm và coursework có bằng chứng.",
+      "outcomes": [
+        "Phân tích được user–task–context của một hệ thống xử lý/hiển thị thông tin.",
+        "Đánh giá được tải nhận thức, lỗi thao tác, khả năng quan sát và mức ưu tiên thông tin.",
+        "Thiết kế và so sánh các phương án dashboard/HMI bằng metric.",
+        "Hoàn thiện một coursework audit có phương pháp, dữ liệu, kết quả và đề xuất cải tiến."
+      ],
+      "focusBlocks": [
+        "Human factors & task analysis",
+        "Perception & cognitive load",
+        "Information display & HMI",
+        "Human error & safety",
+        "Usability metrics & experiment",
+        "Coursework ergonomic audit"
+      ],
+      "weeklyRhythm": [
+        "Buổi 1: học khái niệm + thuật ngữ Nga/Anh.",
+        "Buổi 2: phân tích một giao diện/hệ thống thật.",
+        "Buổi 3: chạy mô phỏng hoặc mini-test có metric.",
+        "Cuối tuần: cập nhật coursework và error log."
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "erg_m301",
+      "stage": "m3",
+      "week": "E1",
+      "title": "Human factors, người dùng và phân tích nhiệm vụ",
+      "goal": "Mô hình hóa ai dùng hệ thống, làm nhiệm vụ gì, trong bối cảnh nào và với ràng buộc nào.",
+      "hours": 4,
+      "level": "Cơ bản",
+      "lessons": [
+        "erg_m301_l1",
+        "erg_m301_l2"
+      ],
+      "outputs": [
+        "User–Task–Context map.",
+        "Task decomposition + danh sách failure point."
+      ],
+      "phaseObjective": "Biến chủ đề “Human factors, người dùng và phân tích nhiệm vụ” thành năng lực phân tích có metric và bằng chứng cho môn Ergonomic Analysis.",
+      "whyImportant": [
+        "Môn chính thức yêu cầu exam + coursework; cần vừa hiểu khái niệm vừa tạo artifact phân tích.",
+        "HMI của hệ thống AI/АСОИУ có thể thất bại dù thuật toán đúng nếu hiển thị sai ưu tiên hoặc gây tải nhận thức.",
+        "Kết quả có thể dùng cho dashboard giám sát, robot/UGV, telemetry hoặc hệ thống hỗ trợ quyết định."
+      ],
+      "prerequisites": [
+        "Biết đọc sơ đồ hệ thống và luồng dữ liệu cơ bản.",
+        "Có một giao diện/dashboard/HMI làm case xuyên suốt.",
+        "Ghi riêng fact, measurement và inference."
+      ],
+      "conceptMap": [
+        "human factors",
+        "user profile",
+        "task",
+        "context",
+        "constraint",
+        "workload"
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Lý thuyết",
+          "time": "60–90 phút",
+          "work": "Đọc lõi Human factors, người dùng và phân tích nhiệm vụ, ghi thuật ngữ và tự giải thích bằng ví dụ.",
+          "evidence": "Ghi chú + glossary."
+        },
+        {
+          "session": "Ca 2 · Phân tích",
+          "time": "60–90 phút",
+          "work": "Áp dụng checklist/metric vào case HMI cụ thể.",
+          "evidence": "Bảng audit hoặc task map."
+        },
+        {
+          "session": "Ca 3 · Thử nghiệm",
+          "time": "60–120 phút",
+          "work": "Chạy mô phỏng hoặc mini-test và ghi dữ liệu.",
+          "evidence": "Metric + nhận xét."
+        },
+        {
+          "session": "Ca 4 · Coursework",
+          "time": "45–90 phút",
+          "work": "Đưa kết quả vào coursework, nêu giới hạn và đề xuất.",
+          "evidence": "1 section báo cáo."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện vấn đề ergonomic trong một màn hình.",
+        "Bài trung bình: đo task time/error rate và so sánh hai thiết kế.",
+        "Bài khá: giải thích trade-off và thiết kế test để kiểm chứng.",
+        "Bài giỏi: audit một HMI nhiều trạng thái và bảo vệ đề xuất."
+      ],
+      "simulationPlan": [
+        "Quan sát thay đổi tải thông tin, cảnh báo và bố cục.",
+        "Thực hành chọn ưu tiên hiển thị dưới áp lực thời gian.",
+        "Ghi dữ liệu trước/sau để tránh kết luận bằng cảm giác."
+      ],
+      "assessmentPlan": {
+        "unlock": "Dễ mở mặc định; mức sau mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Đúng mô hình human factors",
+          "Metric hợp lý",
+          "Phân tích lỗi rõ",
+          "Đề xuất có bằng chứng"
+        ],
+        "pass": "Hoàn thành bài học, mô phỏng, bài tập và đạt quiz ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ trực tiếp môn «Эргономический анализ систем обработки и отображения информации».",
+        "Coursework hỗ trợ nên tập trung một hệ thống xử lý/hiển thị thông tin cụ thể.",
+        "Không coi cấu trúc module này là syllabus chi tiết chính thức nếu chưa có đề cương giảng viên."
+      ],
+      "completionCriteria": [
+        "Đọc đủ bài học.",
+        "Có ít nhất 1 artifact đo/đánh giá.",
+        "Chạy ít nhất 1 mô phỏng hoặc test.",
+        "Quiz ≥ 8/10 hoặc hoàn thành error review."
+      ],
+      "risks": [
+        "Đánh giá giao diện chỉ bằng đẹp/xấu.",
+        "Không đo metric trước/sau.",
+        "Đề xuất đổi UI nhưng không gắn với task/risk."
+      ],
+      "nextStep": "Chuyển module ergonomic kế tiếp và bổ sung coursework."
+    },
+    {
+      "id": "erg_m302",
+      "stage": "m3",
+      "week": "E2",
+      "title": "Nhận thức, chú ý và tải nhận thức",
+      "goal": "Hiểu giới hạn cảm nhận/chú ý/trí nhớ làm việc khi người dùng đọc và xử lý thông tin.",
+      "hours": 4,
+      "level": "Cơ bản",
+      "lessons": [
+        "erg_m302_l1",
+        "erg_m302_l2"
+      ],
+      "outputs": [
+        "Cognitive-load checklist.",
+        "Phân tích bottleneck chú ý của một dashboard."
+      ],
+      "phaseObjective": "Biến chủ đề “Nhận thức, chú ý và tải nhận thức” thành năng lực phân tích có metric và bằng chứng cho môn Ergonomic Analysis.",
+      "whyImportant": [
+        "Môn chính thức yêu cầu exam + coursework; cần vừa hiểu khái niệm vừa tạo artifact phân tích.",
+        "HMI của hệ thống AI/АСОИУ có thể thất bại dù thuật toán đúng nếu hiển thị sai ưu tiên hoặc gây tải nhận thức.",
+        "Kết quả có thể dùng cho dashboard giám sát, robot/UGV, telemetry hoặc hệ thống hỗ trợ quyết định."
+      ],
+      "prerequisites": [
+        "Biết đọc sơ đồ hệ thống và luồng dữ liệu cơ bản.",
+        "Có một giao diện/dashboard/HMI làm case xuyên suốt.",
+        "Ghi riêng fact, measurement và inference."
+      ],
+      "conceptMap": [
+        "perception",
+        "attention",
+        "working memory",
+        "signal/noise",
+        "cognitive load"
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Lý thuyết",
+          "time": "60–90 phút",
+          "work": "Đọc lõi Nhận thức, chú ý và tải nhận thức, ghi thuật ngữ và tự giải thích bằng ví dụ.",
+          "evidence": "Ghi chú + glossary."
+        },
+        {
+          "session": "Ca 2 · Phân tích",
+          "time": "60–90 phút",
+          "work": "Áp dụng checklist/metric vào case HMI cụ thể.",
+          "evidence": "Bảng audit hoặc task map."
+        },
+        {
+          "session": "Ca 3 · Thử nghiệm",
+          "time": "60–120 phút",
+          "work": "Chạy mô phỏng hoặc mini-test và ghi dữ liệu.",
+          "evidence": "Metric + nhận xét."
+        },
+        {
+          "session": "Ca 4 · Coursework",
+          "time": "45–90 phút",
+          "work": "Đưa kết quả vào coursework, nêu giới hạn và đề xuất.",
+          "evidence": "1 section báo cáo."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện vấn đề ergonomic trong một màn hình.",
+        "Bài trung bình: đo task time/error rate và so sánh hai thiết kế.",
+        "Bài khá: giải thích trade-off và thiết kế test để kiểm chứng.",
+        "Bài giỏi: audit một HMI nhiều trạng thái và bảo vệ đề xuất."
+      ],
+      "simulationPlan": [
+        "Quan sát thay đổi tải thông tin, cảnh báo và bố cục.",
+        "Thực hành chọn ưu tiên hiển thị dưới áp lực thời gian.",
+        "Ghi dữ liệu trước/sau để tránh kết luận bằng cảm giác."
+      ],
+      "assessmentPlan": {
+        "unlock": "Dễ mở mặc định; mức sau mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Đúng mô hình human factors",
+          "Metric hợp lý",
+          "Phân tích lỗi rõ",
+          "Đề xuất có bằng chứng"
+        ],
+        "pass": "Hoàn thành bài học, mô phỏng, bài tập và đạt quiz ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ trực tiếp môn «Эргономический анализ систем обработки и отображения информации».",
+        "Coursework hỗ trợ nên tập trung một hệ thống xử lý/hiển thị thông tin cụ thể.",
+        "Không coi cấu trúc module này là syllabus chi tiết chính thức nếu chưa có đề cương giảng viên."
+      ],
+      "completionCriteria": [
+        "Đọc đủ bài học.",
+        "Có ít nhất 1 artifact đo/đánh giá.",
+        "Chạy ít nhất 1 mô phỏng hoặc test.",
+        "Quiz ≥ 8/10 hoặc hoàn thành error review."
+      ],
+      "risks": [
+        "Đánh giá giao diện chỉ bằng đẹp/xấu.",
+        "Không đo metric trước/sau.",
+        "Đề xuất đổi UI nhưng không gắn với task/risk."
+      ],
+      "nextStep": "Chuyển module ergonomic kế tiếp và bổ sung coursework."
+    },
+    {
+      "id": "erg_m303",
+      "stage": "m3",
+      "week": "E3",
+      "title": "Thiết kế hiển thị thông tin và HMI",
+      "goal": "Tổ chức thông tin, hierarchy, trạng thái, cảnh báo và feedback để giảm lỗi đọc/ra quyết định.",
+      "hours": 5,
+      "level": "Trung bình",
+      "lessons": [
+        "erg_m303_l1",
+        "erg_m303_l2"
+      ],
+      "outputs": [
+        "Information hierarchy map.",
+        "Prototype dashboard/HMI với rationale."
+      ],
+      "phaseObjective": "Biến chủ đề “Thiết kế hiển thị thông tin và HMI” thành năng lực phân tích có metric và bằng chứng cho môn Ergonomic Analysis.",
+      "whyImportant": [
+        "Môn chính thức yêu cầu exam + coursework; cần vừa hiểu khái niệm vừa tạo artifact phân tích.",
+        "HMI của hệ thống AI/АСОИУ có thể thất bại dù thuật toán đúng nếu hiển thị sai ưu tiên hoặc gây tải nhận thức.",
+        "Kết quả có thể dùng cho dashboard giám sát, robot/UGV, telemetry hoặc hệ thống hỗ trợ quyết định."
+      ],
+      "prerequisites": [
+        "Biết đọc sơ đồ hệ thống và luồng dữ liệu cơ bản.",
+        "Có một giao diện/dashboard/HMI làm case xuyên suốt.",
+        "Ghi riêng fact, measurement và inference."
+      ],
+      "conceptMap": [
+        "hierarchy",
+        "visibility",
+        "feedback",
+        "mapping",
+        "alarm",
+        "status display"
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Lý thuyết",
+          "time": "60–90 phút",
+          "work": "Đọc lõi Thiết kế hiển thị thông tin và HMI, ghi thuật ngữ và tự giải thích bằng ví dụ.",
+          "evidence": "Ghi chú + glossary."
+        },
+        {
+          "session": "Ca 2 · Phân tích",
+          "time": "60–90 phút",
+          "work": "Áp dụng checklist/metric vào case HMI cụ thể.",
+          "evidence": "Bảng audit hoặc task map."
+        },
+        {
+          "session": "Ca 3 · Thử nghiệm",
+          "time": "60–120 phút",
+          "work": "Chạy mô phỏng hoặc mini-test và ghi dữ liệu.",
+          "evidence": "Metric + nhận xét."
+        },
+        {
+          "session": "Ca 4 · Coursework",
+          "time": "45–90 phút",
+          "work": "Đưa kết quả vào coursework, nêu giới hạn và đề xuất.",
+          "evidence": "1 section báo cáo."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện vấn đề ergonomic trong một màn hình.",
+        "Bài trung bình: đo task time/error rate và so sánh hai thiết kế.",
+        "Bài khá: giải thích trade-off và thiết kế test để kiểm chứng.",
+        "Bài giỏi: audit một HMI nhiều trạng thái và bảo vệ đề xuất."
+      ],
+      "simulationPlan": [
+        "Quan sát thay đổi tải thông tin, cảnh báo và bố cục.",
+        "Thực hành chọn ưu tiên hiển thị dưới áp lực thời gian.",
+        "Ghi dữ liệu trước/sau để tránh kết luận bằng cảm giác."
+      ],
+      "assessmentPlan": {
+        "unlock": "Dễ mở mặc định; mức sau mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Đúng mô hình human factors",
+          "Metric hợp lý",
+          "Phân tích lỗi rõ",
+          "Đề xuất có bằng chứng"
+        ],
+        "pass": "Hoàn thành bài học, mô phỏng, bài tập và đạt quiz ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ trực tiếp môn «Эргономический анализ систем обработки и отображения информации».",
+        "Coursework hỗ trợ nên tập trung một hệ thống xử lý/hiển thị thông tin cụ thể.",
+        "Không coi cấu trúc module này là syllabus chi tiết chính thức nếu chưa có đề cương giảng viên."
+      ],
+      "completionCriteria": [
+        "Đọc đủ bài học.",
+        "Có ít nhất 1 artifact đo/đánh giá.",
+        "Chạy ít nhất 1 mô phỏng hoặc test.",
+        "Quiz ≥ 8/10 hoặc hoàn thành error review."
+      ],
+      "risks": [
+        "Đánh giá giao diện chỉ bằng đẹp/xấu.",
+        "Không đo metric trước/sau.",
+        "Đề xuất đổi UI nhưng không gắn với task/risk."
+      ],
+      "nextStep": "Chuyển module ergonomic kế tiếp và bổ sung coursework."
+    },
+    {
+      "id": "erg_m304",
+      "stage": "m3",
+      "week": "E4",
+      "title": "Lỗi con người, alarm và an toàn vận hành",
+      "goal": "Phân tích error mode, cảnh báo, recovery và rủi ro khi con người phối hợp với hệ thống tự động.",
+      "hours": 4,
+      "level": "Trung bình",
+      "lessons": [
+        "erg_m304_l1",
+        "erg_m304_l2"
+      ],
+      "outputs": [
+        "Human-error table.",
+        "Alarm priority matrix + recovery flow."
+      ],
+      "phaseObjective": "Biến chủ đề “Lỗi con người, alarm và an toàn vận hành” thành năng lực phân tích có metric và bằng chứng cho môn Ergonomic Analysis.",
+      "whyImportant": [
+        "Môn chính thức yêu cầu exam + coursework; cần vừa hiểu khái niệm vừa tạo artifact phân tích.",
+        "HMI của hệ thống AI/АСОИУ có thể thất bại dù thuật toán đúng nếu hiển thị sai ưu tiên hoặc gây tải nhận thức.",
+        "Kết quả có thể dùng cho dashboard giám sát, robot/UGV, telemetry hoặc hệ thống hỗ trợ quyết định."
+      ],
+      "prerequisites": [
+        "Biết đọc sơ đồ hệ thống và luồng dữ liệu cơ bản.",
+        "Có một giao diện/dashboard/HMI làm case xuyên suốt.",
+        "Ghi riêng fact, measurement và inference."
+      ],
+      "conceptMap": [
+        "slip",
+        "mistake",
+        "error mode",
+        "alarm fatigue",
+        "recovery",
+        "automation bias"
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Lý thuyết",
+          "time": "60–90 phút",
+          "work": "Đọc lõi Lỗi con người, alarm và an toàn vận hành, ghi thuật ngữ và tự giải thích bằng ví dụ.",
+          "evidence": "Ghi chú + glossary."
+        },
+        {
+          "session": "Ca 2 · Phân tích",
+          "time": "60–90 phút",
+          "work": "Áp dụng checklist/metric vào case HMI cụ thể.",
+          "evidence": "Bảng audit hoặc task map."
+        },
+        {
+          "session": "Ca 3 · Thử nghiệm",
+          "time": "60–120 phút",
+          "work": "Chạy mô phỏng hoặc mini-test và ghi dữ liệu.",
+          "evidence": "Metric + nhận xét."
+        },
+        {
+          "session": "Ca 4 · Coursework",
+          "time": "45–90 phút",
+          "work": "Đưa kết quả vào coursework, nêu giới hạn và đề xuất.",
+          "evidence": "1 section báo cáo."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện vấn đề ergonomic trong một màn hình.",
+        "Bài trung bình: đo task time/error rate và so sánh hai thiết kế.",
+        "Bài khá: giải thích trade-off và thiết kế test để kiểm chứng.",
+        "Bài giỏi: audit một HMI nhiều trạng thái và bảo vệ đề xuất."
+      ],
+      "simulationPlan": [
+        "Quan sát thay đổi tải thông tin, cảnh báo và bố cục.",
+        "Thực hành chọn ưu tiên hiển thị dưới áp lực thời gian.",
+        "Ghi dữ liệu trước/sau để tránh kết luận bằng cảm giác."
+      ],
+      "assessmentPlan": {
+        "unlock": "Dễ mở mặc định; mức sau mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Đúng mô hình human factors",
+          "Metric hợp lý",
+          "Phân tích lỗi rõ",
+          "Đề xuất có bằng chứng"
+        ],
+        "pass": "Hoàn thành bài học, mô phỏng, bài tập và đạt quiz ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ trực tiếp môn «Эргономический анализ систем обработки и отображения информации».",
+        "Coursework hỗ trợ nên tập trung một hệ thống xử lý/hiển thị thông tin cụ thể.",
+        "Không coi cấu trúc module này là syllabus chi tiết chính thức nếu chưa có đề cương giảng viên."
+      ],
+      "completionCriteria": [
+        "Đọc đủ bài học.",
+        "Có ít nhất 1 artifact đo/đánh giá.",
+        "Chạy ít nhất 1 mô phỏng hoặc test.",
+        "Quiz ≥ 8/10 hoặc hoàn thành error review."
+      ],
+      "risks": [
+        "Đánh giá giao diện chỉ bằng đẹp/xấu.",
+        "Không đo metric trước/sau.",
+        "Đề xuất đổi UI nhưng không gắn với task/risk."
+      ],
+      "nextStep": "Chuyển module ergonomic kế tiếp và bổ sung coursework."
+    },
+    {
+      "id": "erg_m305",
+      "stage": "m3",
+      "week": "E5",
+      "title": "Usability metric và thiết kế thử nghiệm",
+      "goal": "Đo effectiveness, efficiency và lỗi bằng task-based test thay vì đánh giá cảm tính.",
+      "hours": 5,
+      "level": "Trung bình",
+      "lessons": [
+        "erg_m305_l1",
+        "erg_m305_l2"
+      ],
+      "outputs": [
+        "Usability test plan.",
+        "Bảng metric + so sánh A/B."
+      ],
+      "phaseObjective": "Biến chủ đề “Usability metric và thiết kế thử nghiệm” thành năng lực phân tích có metric và bằng chứng cho môn Ergonomic Analysis.",
+      "whyImportant": [
+        "Môn chính thức yêu cầu exam + coursework; cần vừa hiểu khái niệm vừa tạo artifact phân tích.",
+        "HMI của hệ thống AI/АСОИУ có thể thất bại dù thuật toán đúng nếu hiển thị sai ưu tiên hoặc gây tải nhận thức.",
+        "Kết quả có thể dùng cho dashboard giám sát, robot/UGV, telemetry hoặc hệ thống hỗ trợ quyết định."
+      ],
+      "prerequisites": [
+        "Biết đọc sơ đồ hệ thống và luồng dữ liệu cơ bản.",
+        "Có một giao diện/dashboard/HMI làm case xuyên suốt.",
+        "Ghi riêng fact, measurement và inference."
+      ],
+      "conceptMap": [
+        "task success",
+        "task time",
+        "error rate",
+        "learnability",
+        "experiment",
+        "confounder"
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Lý thuyết",
+          "time": "60–90 phút",
+          "work": "Đọc lõi Usability metric và thiết kế thử nghiệm, ghi thuật ngữ và tự giải thích bằng ví dụ.",
+          "evidence": "Ghi chú + glossary."
+        },
+        {
+          "session": "Ca 2 · Phân tích",
+          "time": "60–90 phút",
+          "work": "Áp dụng checklist/metric vào case HMI cụ thể.",
+          "evidence": "Bảng audit hoặc task map."
+        },
+        {
+          "session": "Ca 3 · Thử nghiệm",
+          "time": "60–120 phút",
+          "work": "Chạy mô phỏng hoặc mini-test và ghi dữ liệu.",
+          "evidence": "Metric + nhận xét."
+        },
+        {
+          "session": "Ca 4 · Coursework",
+          "time": "45–90 phút",
+          "work": "Đưa kết quả vào coursework, nêu giới hạn và đề xuất.",
+          "evidence": "1 section báo cáo."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện vấn đề ergonomic trong một màn hình.",
+        "Bài trung bình: đo task time/error rate và so sánh hai thiết kế.",
+        "Bài khá: giải thích trade-off và thiết kế test để kiểm chứng.",
+        "Bài giỏi: audit một HMI nhiều trạng thái và bảo vệ đề xuất."
+      ],
+      "simulationPlan": [
+        "Quan sát thay đổi tải thông tin, cảnh báo và bố cục.",
+        "Thực hành chọn ưu tiên hiển thị dưới áp lực thời gian.",
+        "Ghi dữ liệu trước/sau để tránh kết luận bằng cảm giác."
+      ],
+      "assessmentPlan": {
+        "unlock": "Dễ mở mặc định; mức sau mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Đúng mô hình human factors",
+          "Metric hợp lý",
+          "Phân tích lỗi rõ",
+          "Đề xuất có bằng chứng"
+        ],
+        "pass": "Hoàn thành bài học, mô phỏng, bài tập và đạt quiz ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ trực tiếp môn «Эргономический анализ систем обработки и отображения информации».",
+        "Coursework hỗ trợ nên tập trung một hệ thống xử lý/hiển thị thông tin cụ thể.",
+        "Không coi cấu trúc module này là syllabus chi tiết chính thức nếu chưa có đề cương giảng viên."
+      ],
+      "completionCriteria": [
+        "Đọc đủ bài học.",
+        "Có ít nhất 1 artifact đo/đánh giá.",
+        "Chạy ít nhất 1 mô phỏng hoặc test.",
+        "Quiz ≥ 8/10 hoặc hoàn thành error review."
+      ],
+      "risks": [
+        "Đánh giá giao diện chỉ bằng đẹp/xấu.",
+        "Không đo metric trước/sau.",
+        "Đề xuất đổi UI nhưng không gắn với task/risk."
+      ],
+      "nextStep": "Chuyển module ergonomic kế tiếp và bổ sung coursework."
+    },
+    {
+      "id": "erg_m306",
+      "stage": "m3",
+      "week": "E6",
+      "title": "Coursework: ergonomic audit hệ thống xử lý & hiển thị thông tin",
+      "goal": "Tổng hợp phương pháp để audit một hệ thống và đề xuất cải tiến có bằng chứng.",
+      "hours": 6,
+      "level": "Khá",
+      "lessons": [
+        "erg_m306_l1",
+        "erg_m306_l2"
+      ],
+      "outputs": [
+        "Coursework report skeleton.",
+        "Audit + prototype cải tiến + defense notes."
+      ],
+      "phaseObjective": "Biến chủ đề “Coursework: ergonomic audit hệ thống xử lý & hiển thị thông tin” thành năng lực phân tích có metric và bằng chứng cho môn Ergonomic Analysis.",
+      "whyImportant": [
+        "Môn chính thức yêu cầu exam + coursework; cần vừa hiểu khái niệm vừa tạo artifact phân tích.",
+        "HMI của hệ thống AI/АСОИУ có thể thất bại dù thuật toán đúng nếu hiển thị sai ưu tiên hoặc gây tải nhận thức.",
+        "Kết quả có thể dùng cho dashboard giám sát, robot/UGV, telemetry hoặc hệ thống hỗ trợ quyết định."
+      ],
+      "prerequisites": [
+        "Biết đọc sơ đồ hệ thống và luồng dữ liệu cơ bản.",
+        "Có một giao diện/dashboard/HMI làm case xuyên suốt.",
+        "Ghi riêng fact, measurement và inference."
+      ],
+      "conceptMap": [
+        "audit",
+        "evidence",
+        "metric",
+        "trade-off",
+        "recommendation",
+        "defense"
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Lý thuyết",
+          "time": "60–90 phút",
+          "work": "Đọc lõi Coursework: ergonomic audit hệ thống xử lý & hiển thị thông tin, ghi thuật ngữ và tự giải thích bằng ví dụ.",
+          "evidence": "Ghi chú + glossary."
+        },
+        {
+          "session": "Ca 2 · Phân tích",
+          "time": "60–90 phút",
+          "work": "Áp dụng checklist/metric vào case HMI cụ thể.",
+          "evidence": "Bảng audit hoặc task map."
+        },
+        {
+          "session": "Ca 3 · Thử nghiệm",
+          "time": "60–120 phút",
+          "work": "Chạy mô phỏng hoặc mini-test và ghi dữ liệu.",
+          "evidence": "Metric + nhận xét."
+        },
+        {
+          "session": "Ca 4 · Coursework",
+          "time": "45–90 phút",
+          "work": "Đưa kết quả vào coursework, nêu giới hạn và đề xuất.",
+          "evidence": "1 section báo cáo."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện vấn đề ergonomic trong một màn hình.",
+        "Bài trung bình: đo task time/error rate và so sánh hai thiết kế.",
+        "Bài khá: giải thích trade-off và thiết kế test để kiểm chứng.",
+        "Bài giỏi: audit một HMI nhiều trạng thái và bảo vệ đề xuất."
+      ],
+      "simulationPlan": [
+        "Quan sát thay đổi tải thông tin, cảnh báo và bố cục.",
+        "Thực hành chọn ưu tiên hiển thị dưới áp lực thời gian.",
+        "Ghi dữ liệu trước/sau để tránh kết luận bằng cảm giác."
+      ],
+      "assessmentPlan": {
+        "unlock": "Dễ mở mặc định; mức sau mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Đúng mô hình human factors",
+          "Metric hợp lý",
+          "Phân tích lỗi rõ",
+          "Đề xuất có bằng chứng"
+        ],
+        "pass": "Hoàn thành bài học, mô phỏng, bài tập và đạt quiz ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ trực tiếp môn «Эргономический анализ систем обработки и отображения информации».",
+        "Coursework hỗ trợ nên tập trung một hệ thống xử lý/hiển thị thông tin cụ thể.",
+        "Không coi cấu trúc module này là syllabus chi tiết chính thức nếu chưa có đề cương giảng viên."
+      ],
+      "completionCriteria": [
+        "Đọc đủ bài học.",
+        "Có ít nhất 1 artifact đo/đánh giá.",
+        "Chạy ít nhất 1 mô phỏng hoặc test.",
+        "Quiz ≥ 8/10 hoặc hoàn thành error review."
+      ],
+      "risks": [
+        "Đánh giá giao diện chỉ bằng đẹp/xấu.",
+        "Không đo metric trước/sau.",
+        "Đề xuất đổi UI nhưng không gắn với task/risk."
+      ],
+      "nextStep": "Hoàn thiện coursework và luyện bảo vệ/thi."
+    }
+  ]
+}
