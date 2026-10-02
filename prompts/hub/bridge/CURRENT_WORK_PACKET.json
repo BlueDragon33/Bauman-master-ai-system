@@ -1,21 +1,59 @@
 {
   "schemaVersion": "1.0.0",
-  "packetId": null,
-  "revision": 0,
-  "status": "DRAFT",
-  "userIntent": "",
-  "objective": "",
-  "targetArea": "",
-  "baselineSha": null,
-  "allowedPaths": [],
+  "packetId": "HUB-BOOTSTRAP-RECONCILE-001",
+  "revision": 1,
+  "status": "READY_FOR_CODEX",
+  "userIntent": "Continue Bauman Hub under the repository Hub Prompt System only. Preserve the Hub↔subject boundary: do not read or modify prompts/subjects/** and do not enter subject-app internals; subject integration is API/Contract only.",
+  "objective": "Reconcile and transplant the canonical Bauman Hub Prompt System from work/curriculum-prompt-system-v1 onto a fresh branch based on current main, without bringing unrelated subject-prompt or subject-app changes. Establish the Hub normal-chat/Codex bridge on current main and return exact evidence for Chat review.",
+  "targetArea": "Bauman Hub prompt-system bootstrap and current-main reconciliation",
+  "baselineSha": "e5ee1b8a4aadf5fbca139a37479bae1b5dde4811",
+  "allowedPaths": [
+    "prompts/hub/**",
+    "prompts/PROMPT_REGISTRY.json",
+    "prompts/CHAT_ENTRY.md",
+    "prompts/README.md",
+    ".github/workflows/hub-prompt-system.yml"
+  ],
   "forbiddenPaths": [
     "prompts/subjects/**",
-    "subject-app private runtime/database/content/assessment/mastery internals"
+    "subjects/**",
+    "subject-app private runtime/database/content/assessment/mastery internals",
+    "any unrelated curriculum/subject prompt archive or subject normalization changes",
+    "production deployment configuration or release credentials"
   ],
-  "requiredContracts": [],
-  "acceptanceCriteria": [],
-  "testPlan": [],
-  "releasePolicy": "NO_RELEASE_UNLESS_EXPLICITLY_AUTHORIZED",
-  "rollbackNotes": null,
+  "requiredContracts": [
+    "prompts/CONSTITUTION.md",
+    "prompts/hub/HUB_SCOPE_BOUNDARY.md",
+    "prompts/hub/api/HUB_SUBAPP_API_BOUNDARY.md",
+    "prompts/hub/bridge/HANDOFF_PROTOCOL.md",
+    ".blueprint/constitution-adoption.json"
+  ],
+  "acceptanceCriteria": [
+    "Implementation starts from baseline main SHA e5ee1b8a4aadf5fbca139a37479bae1b5dde4811 or explicitly reports a newer main SHA and rebases/reconciles before changes.",
+    "Do not merge, rebase, or cherry-pick the whole work/curriculum-prompt-system-v1 branch. Transplant only Hub-owned prompt-system files and only the minimal shared registry/entry documentation needed to register them.",
+    "prompts/hub/chat/CHAT_START.md resolves its Hub-only load path: CONSTITUTION -> hub README -> HUB_SCOPE_BOUNDARY -> HUB_CHAT_MASTER_PROMPT -> HUB_SHARED_STATE -> current execution result when applicable.",
+    "prompts/hub/codex/CODEX_START.md and HUB_CODEX_MASTER_PROMPT.md remain consistent with the same scope boundary and bridge protocol.",
+    "CURRENT_WORK_PACKET.json and CURRENT_EXECUTION_RESULT.json validate against their schemas, and the packet/result state machine remains valid.",
+    "PROMPT_REGISTRY/CHAT_ENTRY registration, if changed, points to the canonical Hub entry files and does not load any prompts/subjects/** for Hub work.",
+    "No file under prompts/subjects/** or subjects/** is read as implementation input, modified, or required for acceptance.",
+    "No Hub integration invents subject endpoints or inspects subject internals; only registered versioned API/Contract capability names may be referenced.",
+    "Diff contains only allowed paths. Any need outside allowed paths must stop as BLOCKED instead of expanding scope silently.",
+    "Codex writes CURRENT_EXECUTION_RESULT.json with exact beforeSha/afterSha, changedPaths, tests, acceptance results, boundaryCompliance, blockers, and nextAction.",
+    "No merge to main and no production publish occurs in this packet. Final outcome waits for normal Chat review of exact SHA and evidence."
+  ],
+  "testPlan": [
+    "Parse all prompts/hub/**/*.json as JSON with zero parse errors.",
+    "Validate prompts/hub/bridge/CURRENT_WORK_PACKET.json against work-packet.schema.json.",
+    "Validate prompts/hub/bridge/CURRENT_EXECUTION_RESULT.json against execution-result.schema.json.",
+    "Verify every path referenced by CHAT_START.md and CODEX_START.md exists on the implementation branch.",
+    "Run a path-scope diff check against baselineSha and fail if any changed path is outside allowedPaths.",
+    "Run an explicit forbidden-path check proving zero changes under prompts/subjects/** and subjects/**.",
+    "Check Hub registry/entry routing resolves to Hub prompt files without loading subject prompt systems.",
+    "Check HUB_SCOPE_BOUNDARY and HUB_SUBAPP_API_BOUNDARY default-deny rules remain present and unchanged in meaning.",
+    "If a CI workflow is added, run it on the exact implementation HEAD and record the run/result; otherwise record the equivalent local/static validation evidence.",
+    "Return exact HEAD SHA and a concise regression statement that current main Hub runtime/product behavior was not modified by this prompt-system bootstrap."
+  ],
+  "releasePolicy": "NO_MERGE_NO_RELEASE_UNTIL_CHAT_REVIEW_ACCEPTS_EXACT_CODEX_HEAD",
+  "rollbackNotes": "This packet should be additive/minimal. Rollback by reverting the Hub prompt-system reconciliation commit(s); do not revert unrelated current-main commits and do not touch subject-app state.",
   "externalBlockers": []
 }
