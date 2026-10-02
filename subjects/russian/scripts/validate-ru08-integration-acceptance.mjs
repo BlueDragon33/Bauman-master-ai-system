@@ -9,6 +9,9 @@ const owners=j('subjects/russian/docs/ru02/RUSSIAN_RU02_CANONICAL_OWNER_REGISTRY
 const acceptance=j('subjects/russian/docs/ru08/RUSSIAN_RU08_ACCEPTANCE_MATRIX.json');
 const rc=j('subjects/russian/docs/ru08/RUSSIAN_RU08_RC_READINESS.json');
 const editor=fs.readFileSync('subjects/russian/editor.html','utf8');
+const adapter=fs.readFileSync('subjects/russian/assets/subject-adapter.js','utf8');
+const index=fs.readFileSync('subjects/russian/index.html','utf8');
+const sw=fs.readFileSync('subjects/russian/sw.js','utf8');
 const reviewStore=fs.readFileSync('control-service/src/content-review-store.ts','utf8');
 const migration=fs.readFileSync('control-service/migrations/0004_content_review.sql','utf8');
 const authorBrowser='tests/russian-authoring-journey-browser.mjs';
@@ -19,6 +22,13 @@ assert.equal(manifest.architecture?.authoringGovernance,'subjects/russian/data/a
 assert.equal(manifest.authoring?.ordinaryAuthorMode,'schema-aware-fields-not-raw-json-by-default');
 assert.equal(manifest.authoring?.controlReviewStorage,'metadata-only');
 assert.equal(manifest.compatibility?.destructiveMigration,false);
+const adapterMatch=adapter.match(/dataFiles:\s*\[([^\]]+)\]/s);
+assert(adapterMatch,'cannot read adapter dataFiles');
+const adapterIds=[...adapterMatch[1].matchAll(/['"]([^'"]+)['"]/g)].map(x=>x[1]);
+const manifestIds=(manifest.dataFiles||[]).map(x=>x.id);
+for(const id of adapterIds) assert(manifestIds.includes(id),'adapter required dataset missing from manifest: '+id);
+for(const id of (manifest.dataFiles||[]).filter(x=>x.required).map(x=>x.id)) assert(adapterIds.includes(id),'manifest required dataset not loaded by adapter: '+id);
+assert.deepEqual(new Set(manifest.data),new Set(manifestIds),'manifest data/dataFiles ids must match');
 for(const id of ['provenance','technical-concepts','academic-functions','reading','performance-tasks','scenario-registry','ai-mentor-policy']){
   assert((manifest.dataFiles||[]).some(x=>x.id===id),'manifest missing current dataset '+id);
 }
@@ -49,8 +59,16 @@ assert.match(editor,/RussianAuthoringWorkspace/);
 assert.match(editor,/authoring-governance\.json/);
 assert.match(editor,/RUSSIAN_RU02_CANONICAL_OWNER_REGISTRY\.json/);
 assert.match(editor,/metadataOnly:true/);
+assert.match(editor,/Import candidate JSON/);
+assert.match(editor,/Tạo revision kế tiếp/);
+assert.match(editor,/importCandidateFile/);
+assert.match(editor,/nextRevision/);
 assert.doesNotMatch(editor,/<button[^>]*>\s*Publish canonical\s*<\/button>/i,'authoring UI must not expose direct canonical publish');
 assert(fs.existsSync(authorBrowser),'RU08 authoring browser journey missing');
+for(const asset of ['scenario-engine.js','scenario-engine.css','academic-production.js','academic-production.css']){
+ assert(index.includes('assets/'+asset),'runtime asset not wired in index: '+asset);
+ assert(sw.includes('./assets/'+asset),'runtime asset not precached offline: '+asset);
+}
 
 const ownerMap=new Map((owners.owners||[]).map(x=>[x[0],x[1]]));
 for(const type of governance.authorableEntityTypes)assert(ownerMap.get(type),'authorable entity lacks RU02 owner: '+type);
