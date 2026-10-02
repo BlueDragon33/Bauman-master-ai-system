@@ -10,7 +10,8 @@
     "shared Bauman shell",
     "Device Gate",
     "Content Review metadata service",
-    "optional AI provider"
+    "optional AI provider",
+    "pre-provisioned dedicated production smoke device session stored as GitHub environment secret for Release Annex only"
   ],
   "warnings": [
     "open RU03 linguistic review debt remains non-authoritative",
@@ -54,5 +55,12 @@
     "RUSSIAN_PRODUCTION_RU08_AUTHOR.json",
     "RUSSIAN_PRODUCTION_OFFLINE_BROWSER.json"
   ],
-  "securityBoundary": "Production runtime must permit same-origin microphone for Russian speaking while keeping camera/geolocation denied; release verification fails closed on policy regression."
+  "securityBoundary": "Production runtime must permit same-origin microphone for Russian speaking while keeping camera/geolocation denied; release verification fails closed on policy regression.",
+  "productionReleaseExternalPrerequisite": {
+    "name": "BAUMAN_PRODUCTION_SMOKE_DEVICE_SESSION",
+    "purpose": "Authenticate the dedicated isolated learner journey against server-side protected production Russian data; anonymous access must remain blocked.",
+    "scope": "bauman-production GitHub environment secret",
+    "rule": "Release blocks before production mutation when missing, expired, malformed, or not bound to an approved dedicated smoke device."
+  },
+  "releaseArtifactIdentity": "Release preflight fingerprints runtime-dist plus Cloudflare control-worker and learning-worker dry-run artifacts after deterministic production packaging."
 }
