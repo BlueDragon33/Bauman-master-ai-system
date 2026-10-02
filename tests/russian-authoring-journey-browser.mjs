@@ -60,6 +60,42 @@ try{
   await page.click('#validateBtn');
   await page.waitForFunction(()=>document.getElementById('validationResult')?.textContent?.startsWith('PASS'));
 
+  const importFixture={
+    schema:'RUSSIAN_AUTHORING_CANDIDATE_V1',
+    candidateId:'RU08-IMPORTED-001',
+    responsibility:'LexicalEntry',
+    canonicalId:'LEX-IMPORTED-001',
+    revision:'r7',
+    state:'VALIDATED',
+    payload:{ru:'система',vi:'hệ thống'},
+    sourceRefs:['source:import-fixture'],
+    rollbackNote:'Restore r6',
+    diffSummary:'Imported browser fixture',
+    generated:false,
+    confidence:'VERIFIED'
+  };
+  await page.setInputFiles('#importFile',{
+    name:'candidate.json',
+    mimeType:'application/json',
+    buffer:Buffer.from(JSON.stringify(importFixture))
+  });
+  await page.waitForFunction(()=>document.getElementById('candidateId')?.value==='RU08-IMPORTED-001');
+  await page.waitForFunction(()=>document.getElementById('validationResult')?.textContent?.startsWith('PASS'));
+  assert.equal(await page.locator('#revision').inputValue(),'r7');
+  assert.equal(await page.locator('#ruText').inputValue(),'система');
+  assert.equal(await page.locator('#ownerPath').textContent(),'subjects/russian/data/vocab.json');
+
+  await page.click('#newRevisionBtn');
+  assert.equal(await page.locator('#revision').inputValue(),'r8');
+  assert.equal(await page.locator('#state').inputValue(),'DRAFT');
+  assert.match(await page.locator('#candidateId').inputValue(),/-NEXT$/);
+  assert.equal(await page.locator('#diffSummary').inputValue(),'');
+  assert.match(await page.locator('#validationResult').textContent(),/Revision mới ở DRAFT/);
+
+  await page.fill('#diffSummary','Next revision browser fixture');
+  await page.click('#validateBtn');
+  await page.waitForFunction(()=>document.getElementById('validationResult')?.textContent?.startsWith('PASS'));
+
   await page.click('#advancedRaw summary');
   assert.equal(await page.locator('#advancedRaw').evaluate(el=>el.open),true);
   await page.click('#syncRaw');
@@ -73,7 +109,10 @@ try{
     canonicalOwner:owner,
     metadataOnlyEnvelope:true,
     directCanonicalPublish:false,
-    reviewRequestedRequiresSourceRefs:true
+    reviewRequestedRequiresSourceRefs:true,
+    importCandidate:true,
+    updateCreatesNewRevision:true,
+    rollbackNotePreserved:true
   },null,2));
   console.log('Russian RU08 authoring browser journey PASS');
 }finally{
