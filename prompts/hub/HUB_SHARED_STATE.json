@@ -6,18 +6,20 @@
   "bridgeProtocol": "prompts/hub/bridge/HANDOFF_PROTOCOL.md",
   "apiBoundary": "prompts/hub/api/HUB_SUBAPP_API_BOUNDARY.md",
   "currentBranch": "work/curriculum-prompt-system-v1",
-  "currentHeadSha": "299fdab6dc1613d43fe91b19cff2e31cbaca2801",
+  "currentHeadSha": "a8c29f5a4fe0d14ca1599a6270a19c2396b52d49",
   "lastChatReviewSha": null,
   "lastCodexValidatedSha": null,
-  "activeWorkPacketId": null,
-  "activeWorkPacketRevision": 0,
-  "lifecycleStatus": "DUAL_PLANE_BOOTSTRAPPED",
+  "activeWorkPacketId": "HUB-BOOTSTRAP-RECONCILE-001",
+  "activeWorkPacketRevision": 1,
+  "lifecycleStatus": "READY_FOR_CODEX",
   "lastAcceptedPacketId": null,
   "blockers": [],
   "notes": [
     "Hub work does not load prompts/subjects/**.",
     "Subject apps are external bounded systems; integration is versioned API/contract only.",
-    "Curriculum-2026 may be loaded only for Hub curriculum/semester/roadmap/schedule projection work."
+    "Curriculum-2026 may be loaded only for Hub curriculum/semester/roadmap/schedule projection work.",
+    "Current main baseline for HUB-BOOTSTRAP-RECONCILE-001 is e5ee1b8a4aadf5fbca139a37479bae1b5dde4811.",
+    "The prompt-system source branch has diverged from current main; Codex must transplant only Hub-owned prompt-system files and must not merge/cherry-pick the branch wholesale."
   ],
-  "lastArchitectureChange": "Established dedicated normal-chat and Codex prompt planes for Bauman Hub with API-only subject-app boundary."
+  "lastArchitectureChange": "Established dedicated normal-chat and Codex prompt planes for Bauman Hub with API-only subject-app boundary; queued Hub-only current-main reconciliation as HUB-BOOTSTRAP-RECONCILE-001."
 }
