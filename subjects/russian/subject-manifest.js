@@ -12,8 +12,8 @@ window.SUBJECT_MANIFEST = {
     "adapter": "assets/subject-adapter.js",
     "theme": "assets/russian.css",
     "package": "Russian Bauman Survival Master V13.41 Presentation Overlay Fix",
-    "coreJsSha256": "3e53dccbf9695acb2604c7425021a46f0374321363d9a0e1bd5476041eb70970",
-    "rendererClean": "related concepts and keywords hidden in theory/presentation view"
+    "rendererClean": "related concepts and keywords hidden in theory/presentation view",
+    "integrityPolicy": "core.js exact revision is validated by CI/release SHA; no stale hard-coded digest"
   },
   "tabs": [
     "overview",
@@ -50,9 +50,12 @@ window.SUBJECT_MANIFEST = {
     "reading",
     "performance-tasks",
     "scenario-registry",
-    "ai-mentor-policy"
+    "ai-mentor-policy",
+    "handwriting-listen-write",
+    "listen-write-lessons",
+    "listen-write-level-rules"
   ],
-  "release": "RU08 RC integration candidate",
+  "release": "RU08 full-prompt revalidation RC candidate",
   "focus": "Bản chuẩn cuối của module Tiếng Nga: giữ nội dung gốc, giữ vá trình chiếu, ẩn metadata/từ khóa/bài liên quan khỏi vùng slide, giữ metadata cho tìm kiếm/lọc.",
   "bridge": {
     "protocol": "BAUMAN_PLANNING_BRIDGE_V3_ROUTE_CARDS",
@@ -80,7 +83,7 @@ window.SUBJECT_MANIFEST = {
     "weekendPolicy": "Main sends only week-end signal; subject decides review or unlocked assessment.",
     "standaloneFallback": "If window.parent is same window, module runs with local data only."
   },
-  "version": "Russian RU08 · Canonical Subject Package",
+  "version": "Russian RU08 · Full Prompt Revalidation Candidate",
   "coreVersion": "SubjectCore V12.94 Honest Frame Repair",
   "bridgeProtocol": "BAUMAN_PLANNING_BRIDGE_V3_ROUTE_CARDS",
   "name": "Tiếng Nga Bauman · RussianPack R4",
@@ -91,7 +94,7 @@ window.SUBJECT_MANIFEST = {
     "overviewSubtitle": "Tổng quan gọn, không khoảng trống chết: mục tiêu, luồng học, hành động nhanh và tiếp tục học ăn khớp.",
     "learningSubtitle": "Học tập ổn định: Nghe/Nói và Đối thoại tinh gọn; nút nói ổn hòa trong bảng nội dung, chữ canh đều và không tách dòng thô."
   },
-  "updated": "2026-10-01",
+  "updated": "2026-10-02",
   "package": "A1 Russian Bauman StandardFinal RenderClean V13.42",
   "paths": {
     "assets": "assets/",
@@ -321,6 +324,56 @@ window.SUBJECT_MANIFEST = {
       "group": "AI",
       "source": "local-core",
       "description": "Chính sách AI mentor"
+    },
+    {
+      "id": "grammar-path",
+      "label": "Ngữ pháp chuyên sâu",
+      "path": "data/grammar-path.json",
+      "required": true,
+      "group": "Ngữ pháp",
+      "source": "local-core",
+      "plannedCount": 19,
+      "description": "Lộ trình ngữ pháp độc lập A0-C1"
+    },
+    {
+      "id": "mindmap",
+      "label": "Mind map ôn tập",
+      "path": "data/mindmap.json",
+      "required": true,
+      "group": "Mind map",
+      "source": "local-core",
+      "plannedCount": 6,
+      "description": "Sơ đồ ôn tập theo mạng kiến thức"
+    },
+    {
+      "id": "handwriting-listen-write",
+      "label": "Nghe + viết chữ",
+      "path": "data/handwriting-listen-write.json",
+      "required": true,
+      "group": "Luyện viết",
+      "source": "local-core",
+      "plannedCount": 33,
+      "description": "Tên chữ, ví dụ âm và bài nghe-viết bảng chữ cái"
+    },
+    {
+      "id": "listen-write-lessons",
+      "label": "Nghe + viết theo bài",
+      "path": "data/listen-write-lessons.json",
+      "required": true,
+      "group": "Luyện viết",
+      "source": "local-core",
+      "plannedCount": 10,
+      "description": "Binding nghe-viết theo lessonId"
+    },
+    {
+      "id": "listen-write-level-rules",
+      "label": "Luật mức Nghe + viết",
+      "path": "data/listen-write-level-rules.json",
+      "required": true,
+      "group": "Luyện viết",
+      "source": "local-core",
+      "plannedCount": 3,
+      "description": "Quy tắc A0/A1/A2 cho nghe-viết"
     }
   ],
   "externalDataFiles": [
@@ -397,7 +450,10 @@ window.SUBJECT_MANIFEST = {
     "academicTechnicalResearch": true,
     "aiMentorBounded": true,
     "authoringGovernance": true,
-    "contentReviewMetadataOnly": true
+    "contentReviewMetadataOnly": true,
+    "scenarioRuntime": true,
+    "academicProductionRuntime": true,
+    "aiGroundingRuntime": true
   },
   "routeMapping": {
     "mainSubjectId": "russian",
@@ -495,7 +551,10 @@ window.SUBJECT_MANIFEST = {
     "oralInteraction": "subjects/russian/docs/ru05/RUSSIAN_RU05_ORAL_INTERACTION_CONTRACT.json",
     "academicProduction": "subjects/russian/docs/ru06/RUSSIAN_RU06_PRODUCTION_ARCHITECTURE.json",
     "aiCoaching": "subjects/russian/docs/ru07/RUSSIAN_RU07_AI_MODE_PERMISSION_MATRIX.json",
-    "authoringGovernance": "subjects/russian/data/authoring-governance.json"
+    "authoringGovernance": "subjects/russian/data/authoring-governance.json",
+    "scenarioRuntime": "subjects/russian/assets/scenario-engine.js",
+    "academicProductionRuntime": "subjects/russian/assets/academic-production.js",
+    "aiGroundingRuntime": "subjects/russian/assets/ai-mentor-guard.js"
   },
   "requiredCapabilities": [
     "shared-app-shell",
@@ -542,7 +601,13 @@ window.SUBJECT_MANIFEST = {
       "speaking-link-index"
     ],
     "lazyLoadLargeDatasets": true,
-    "assessmentStateDurable": true
+    "assessmentStateDurable": true,
+    "requiredRuntimeAssets": [
+      "assets/scenario-engine.js",
+      "assets/scenario-engine.css",
+      "assets/academic-production.js",
+      "assets/academic-production.css"
+    ]
   },
   "compatibility": {
     "migration": "strangler/incremental",
