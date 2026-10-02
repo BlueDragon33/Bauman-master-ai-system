@@ -67,6 +67,9 @@ jobs:
       - name: Study-plan runtime integration static
         run: node tests/study-plan-runtime-integration-static.mjs
 
+      - name: Live deploy Control smoke static
+        run: node tests/live-deploy-control-smoke-static.mjs
+
       - name: Control subclient contract alignment
         run: node tests/control-subclient-contract-alignment-static.mjs
 
