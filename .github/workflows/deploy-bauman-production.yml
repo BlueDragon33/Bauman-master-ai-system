@@ -63,6 +63,10 @@ jobs:
               exit 1
             fi
           done
+          if [[ ! "$BAUMAN_PRODUCTION_SMOKE_DEVICE_SESSION" =~ ^bm1\.[A-Za-z0-9_-]{40,100}$ ]]; then
+            echo "::error::BAUMAN_PRODUCTION_SMOKE_DEVICE_SESSION has an invalid device-session format."
+            exit 1
+          fi
 
       - name: Install Bauman Control dependencies
         working-directory: control-service
@@ -218,21 +222,6 @@ jobs:
             "$RUSSIAN_RELEASE_EVIDENCE_DIR/RUSSIAN_PRODUCTION_RU08_AUTHOR.json"
           cp artifacts/russian-production-offline-browser/summary.json \
             "$RUSSIAN_RELEASE_EVIDENCE_DIR/RUSSIAN_PRODUCTION_OFFLINE_BROWSER.json"
-
-          node --input-type=module - <<'NODE'
-          import fs from 'node:fs';
-          fs.writeFileSync(
-            process.env.RUSSIAN_RELEASE_EVIDENCE_DIR + '/RUSSIAN_PRODUCTION_ISOLATED_WRITE_PROBE.json',
-            JSON.stringify({
-              schema:'RUSSIAN_PRODUCTION_ISOLATED_WRITE_PROBE_V1',
-              status:'PASS',
-              revision:process.env.GITHUB_SHA,
-              mechanism:'pre-provisioned smoke device session',
-              proof:'protected production journey completed; runtime heartbeat persisted last_seen_at',
-              isolated:true
-            },null,2)+'\n'
-          );
-          NODE
 
       - name: Observe exact Russian production revision
         run: node scripts/russian-release-annex-evidence.mjs observe
