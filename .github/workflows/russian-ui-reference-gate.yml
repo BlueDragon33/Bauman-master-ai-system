@@ -5,6 +5,7 @@ on:
   pull_request:
     paths:
       - "subjects/russian/**"
+      - "prompts/subjects/russian/**"
       - "subjects/shared/**"
       - "foundation/domain-model/**"
       - "platform/ui/**"
@@ -30,6 +31,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22.13.0"
+      - name: Validate Russian durable prompt project state
+        run: node subjects/russian/scripts/validate-prompt-project-state.mjs
       - name: Validate Russian P2 curriculum contract
         run: node subjects/russian/scripts/validate-p2-curriculum-contract.mjs
       - name: Validate Russian P3 content schema
