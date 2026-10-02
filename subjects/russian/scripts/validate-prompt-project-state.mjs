@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 const readJson = path => JSON.parse(fs.readFileSync(path, 'utf8'));
 const statePath = 'prompts/subjects/russian/PROJECT_STATE.json';
 const state = readJson(statePath);
+const rc = readJson('subjects/russian/docs/ru08/RUSSIAN_RU08_RC_READINESS.json');
 
 assert.equal(state.subject, 'russian');
 assert.equal(state.constitution, 'prompts/CONSTITUTION.md');
@@ -39,6 +40,12 @@ assert.match(state.exactHeadBinding || '', /current Git HEAD|current git HEAD/i,
 assert(Array.isArray(state.evidence) && state.evidence.length >= 10, 'Russian project-state evidence index is incomplete');
 for (const path of state.evidence) assert(fs.existsSync(path), 'project-state evidence path missing: ' + path);
 assert(Array.isArray(state.blockers), 'blockers must be an array');
+if (state.status === 'RU08_VALIDATING') {
+  assert(['CANDIDATE', 'VALIDATING'].includes(rc.state), 'RU08 RC cannot be READY_FOR_MERGE while project state is VALIDATING');
+}
+if (state.status === 'RU08_PASS') {
+  assert.equal(rc.state, 'READY_FOR_MERGE', 'RU08 PASS requires RC READY_FOR_MERGE');
+}
 
 console.log(JSON.stringify({
   ok: true,
