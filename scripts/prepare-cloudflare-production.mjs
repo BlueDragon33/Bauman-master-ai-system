@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 
 const root = process.cwd();
 const LOCAL_D1_ID = '00000000-0000-0000-0000-000000000002';
@@ -136,6 +137,15 @@ const runtimeOrigin = exactHttpsOrigin('BAUMAN_RUNTIME_PRODUCTION_ORIGIN');
 const previewControlOrigin = exactHttpsOrigin('BAUMAN_CONTROL_PREVIEW_ORIGIN');
 const previewRuntimeOrigin = exactHttpsOrigin('BAUMAN_RUNTIME_PREVIEW_ORIGIN');
 const buildRevision = revision();
+const configFingerprint = crypto.createHash('sha256').update(JSON.stringify({
+  profile: 'bauman-cloudflare-production-v1',
+  revision: buildRevision,
+  accessMode: accessMode(),
+  applicationManagementOrigin,
+  controlOrigin,
+  runtimeOrigin,
+  productionD1,
+})).digest('hex');
 
 const origins = new Set([
   applicationManagementOrigin,
@@ -174,11 +184,13 @@ materialize('control-service/wrangler.production.example.jsonc', 'control-servic
   '__APPLICATION_MANAGEMENT_PRODUCTION_ORIGIN__': applicationManagementOrigin,
   '__BAUMAN_RUNTIME_PRODUCTION_ORIGIN__': runtimeOrigin,
   '__BAUMAN_BUILD_REVISION__': buildRevision,
+  '__BAUMAN_CONFIG_FINGERPRINT__': configFingerprint,
   '__BAUMAN_CONTROL_PRODUCTION_D1_DATABASE_ID__': productionD1,
 });
 materialize('wrangler.runtime.production.example.jsonc', 'wrangler.runtime.production.jsonc', {
   '__BAUMAN_CONTROL_PRODUCTION_ORIGIN__': controlOrigin,
   '__BAUMAN_BUILD_REVISION__': buildRevision,
+  '__BAUMAN_CONFIG_FINGERPRINT__': configFingerprint,
 });
 
 const requiredRuntimeAssets = [
@@ -221,6 +233,17 @@ for (const resource of [
 ]) {
   if (!russianHtml.includes(resource)) throw new Error(`Production Russian HTML reference missing: ${resource}`);
 }
+
+const evidenceDir = path.join(root, process.env.RUSSIAN_RELEASE_EVIDENCE_DIR || 'artifacts/russian-release-annex');
+fs.mkdirSync(evidenceDir, { recursive: true });
+fs.writeFileSync(path.join(evidenceDir, 'RUSSIAN_PRODUCTION_CONFIG_IDENTITY.json'), JSON.stringify({
+  schema: 'RUSSIAN_PRODUCTION_CONFIG_IDENTITY_V1',
+  generatedAt: new Date().toISOString(),
+  profile: 'bauman-cloudflare-production-v1',
+  revision: buildRevision,
+  fingerprint: configFingerprint,
+  accessMode: accessMode(),
+}, null, 2) + '\n');
 
 console.log('Bauman Cloudflare production package materialized safely.');
 console.log(`Control Worker: bauman-control -> ${controlOrigin}`);
