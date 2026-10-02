@@ -10,7 +10,12 @@ for(const k of ['writeMastery','writeAttemptHistory','writeSrs','writePlanner','
 need(policy.permissions.readCanonicalContext===true,'AI must be allowed read-only context');
 need(policy.permissions.generateTemporaryPractice===true,'Temporary practice support missing');
 need(policy.generatedPractice.lifecycle==='EPHEMERAL_UNTIL_REVIEWED','Generated practice must be ephemeral');
-need(policy.generatedPractice.promotionPath==='P12_REVIEW_WORKFLOW','Generated canonical promotion must route to P12');
+need(policy.activeOwner==='RU07','RU07 must be the active AI owner');
+need(policy.authority.canonicalTruthOwner==='RU03','RU03 must own canonical linguistic truth');
+need(policy.authority.assessmentMasteryOwner==='RU04'&&policy.authority.plannerSrsOwner==='RU04','RU04 must own assessment/mastery/planner-SRS judgment');
+need(policy.authority.speechAudioOwner==='RU05','RU05 must own speech/audio interaction');
+need(Array.isArray(policy.authority.academicTechnicalOwners)&&policy.authority.academicTechnicalOwners.length===1&&policy.authority.academicTechnicalOwners[0]==='RU06','RU06 must own academic/technical production');
+need(policy.generatedPractice.promotionPath==='RU08_REVIEW_WORKFLOW','Generated canonical promotion must route to RU08');
 need(policy.sourceBoundary.noFabricatedCitations===true,'Fabricated citations must be forbidden');
 need(policy.sourceBoundary.noImplicitAuthorityFromModelOutput===true,'Model output must not become authority');
 need(policy.languagePolicy.supported.includes('ru')&&policy.languagePolicy.supported.includes('vi-ru'),'Language policy incomplete');
