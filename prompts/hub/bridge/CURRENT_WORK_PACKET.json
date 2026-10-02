@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
   "packetId": "HUB-TRUTH-UX-CLEANUP-002",
-  "revision": 1,
+  "revision": 2,
   "status": "READY_FOR_CODEX",
   "userIntent": "Continue Bauman Hub continuously in Chat control plane, skip Codex execution for now, and prepare one complete Hub-only implementation packet without touching subject prompts or subject-app internals.",
   "objective": "Clean learner-facing sample/mock truth from Subjects and Research/Thesis, preserve Schedule as Hub-owned canonical planning, distinguish unknown/stale/current subject summaries, converge the five primary pages onto one presentation owner each, and migrate Hub-side subject integration toward registered descriptor/capability/launch adapters while preserving legacy compatibility behind the adapter.",
@@ -102,5 +102,158 @@
     "HUB-C7",
     "HUB-C8",
     "HUB-C9"
+  ],
+  "routeOwners": {
+    "home": {
+      "owner": "assets/js/hub-safe-shell.js",
+      "decorators": [
+        "assets/js/hub-overview-search-v2.js",
+        "assets/js/hub-reference-precision-v5.js"
+      ],
+      "rule": "Home truth and progress states are owned by the dashboard owner; decorators may not invent or overwrite academic truth."
+    },
+    "roadmap": {
+      "owner": "assets/js/hub-roadmap-comprehensive-v2.js",
+      "decorators": [
+        "assets/js/hub-primary-pages-v6.js"
+      ],
+      "rule": "Roadmap owns stage/course projection and partial progress aggregation."
+    },
+    "subjects": {
+      "owner": "assets/js/subjects-reference-v1.js",
+      "decorators": [
+        "assets/js/hub-primary-pages-v6.js",
+        "assets/js/hub-overview-search-v2.js"
+      ],
+      "rule": "Subjects owner renders descriptor/read-model truth; decorators may only add presentation chrome or search/capability summaries."
+    },
+    "schedule": {
+      "owner": "assets/js/schedule-reference-v1.js",
+      "decorators": [
+        "assets/js/hub-primary-pages-v6.js"
+      ],
+      "rule": "Schedule remains the canonical Hub planning owner."
+    },
+    "research": {
+      "owner": "assets/js/thesis-reference-v1.js",
+      "decorators": [
+        "assets/js/hub-primary-pages-v6.js"
+      ],
+      "rule": "Research owner renders Hub research workspace state; decorators may not compute fake completion."
+    }
+  },
+  "knownDefects": [
+    {
+      "id": "HUB-DATA-001",
+      "path": "assets/js/subjects-reference-v1.js",
+      "evidence": "17 occurrences of 2025 and 15 fallbackProgress references on current main scan",
+      "requiredFix": "Replace learner-facing fixtures with Hub descriptor/schedule/read-model data or explicit unavailable state."
+    },
+    {
+      "id": "HUB-DATA-002",
+      "path": "assets/js/thesis-reference-v1.js",
+      "evidence": "29 occurrences of 2025 and fixed 65% presentation values on current main scan",
+      "requiredFix": "Replace mock first-run plan/progress with an explicit unconfigured Hub research workspace."
+    },
+    {
+      "id": "HUB-DATA-003",
+      "path": "assets/js/hub-roadmap-comprehensive-v2.js",
+      "evidence": "subject progress helper coerces missing progress to zero",
+      "requiredFix": "Use known/unknown progress records and coverage-aware aggregation."
+    },
+    {
+      "id": "HUB-DATA-004",
+      "path": "assets/js/hub-safe-shell.js",
+      "evidence": "dashboard progress helper clamps missing values to numeric zero and overall averages all registered subjects",
+      "requiredFix": "Render unavailable/stale/current truth and compute aggregate only from known values with coverage."
+    },
+    {
+      "id": "HUB-DATA-005",
+      "path": "assets/js/hub-overview-search-v2.js",
+      "evidence": "home summary coerces missing progress to zero",
+      "requiredFix": "Use the same Hub truth-state helper as Home owner."
+    },
+    {
+      "id": "HUB-BOUNDARY-001",
+      "path": "assets/js/main.js",
+      "evidence": "mainPath/editorPath remain in state and openSubjectEditor remains callable",
+      "requiredFix": "Introduce Hub launch/read adapters; keep legacy paths behind compatibility adapter; remove learner-page direct editor action."
+    },
+    {
+      "id": "HUB-PRESENT-001",
+      "path": "assets/js/hub-primary-pages-v6.js",
+      "evidence": "decorator computes subject progress with numeric fallback and research checklist percent from rendered checkboxes",
+      "requiredFix": "Decorate only using normalized owner truth-state; do not create independent academic truth."
+    }
+  ],
+  "truthStateModel": {
+    "states": [
+      "CURRENT",
+      "STALE",
+      "UNAVAILABLE",
+      "LOCAL_HUB"
+    ],
+    "unknownIsZero": false,
+    "aggregationRule": "Aggregate only numeric values with approved provenance; expose knownCount/totalCount coverage and never treat unavailable subjects as zero.",
+    "staleRule": "Last-known external summary may display only with stale/freshness indication when allowed by provenance/TTL.",
+    "localRule": "Hub notes/plans are clearly local Hub state and never presented as external subject evidence."
+  },
+  "implementationPhases": [
+    {
+      "phase": "C5",
+      "name": "Subjects truth cleanup",
+      "work": [
+        "derive cards from Hub registered descriptors",
+        "derive next session from Hub schedule",
+        "remove live use of 2025 fixtures/fallback progress/example teachers",
+        "remove learner direct editor action",
+        "derive calendar/deadline/workload from Hub data or show unavailable"
+      ]
+    },
+    {
+      "phase": "C6",
+      "name": "Research/Thesis workspace truth cleanup",
+      "work": [
+        "define Hub-owned researchWorkspace state",
+        "render explicit unconfigured first-run state",
+        "persist user tasks/milestones/notes/attachments as Hub data",
+        "derive chapter/work-package progress only from configured state",
+        "remove mock 2025 plan and fixed percentages"
+      ]
+    },
+    {
+      "phase": "C7",
+      "name": "Shared subject adapter and progress truth model",
+      "work": [
+        "add normalized subject read model helper",
+        "add launch adapter wrapping legacy path transport",
+        "normalize current/stale/unavailable",
+        "make Home/Roadmap/Subjects consume shared truth",
+        "hide legacy transport details from page renderers"
+      ]
+    },
+    {
+      "phase": "C8",
+      "name": "Presentation owner convergence",
+      "work": [
+        "keep one renderer per five primary routes",
+        "restrict V6/overview/reference scripts to decoration/search only",
+        "remove duplicate truth calculations in decorators",
+        "preserve shared BUI shell and responsive contract"
+      ]
+    },
+    {
+      "phase": "C9",
+      "name": "QA hardening",
+      "work": [
+        "truth-state static/browser tests",
+        "five-route regression",
+        "schedule regression",
+        "responsive screenshots",
+        "accessibility checks",
+        "forbidden-path diff check",
+        "Device Gate/auth/PWA/offline regression statement"
+      ]
+    }
   ]
 }
