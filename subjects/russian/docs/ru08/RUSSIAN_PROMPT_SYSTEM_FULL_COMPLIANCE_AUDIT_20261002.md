@@ -96,6 +96,41 @@ Correction:
 - release preflight calculates source SHA, dependency lock aggregate SHA-256, migration manifest SHA-256 and canonical Russian content snapshot aggregate SHA-256;
 - these identities are persisted in release evidence.
 
+### F7 — Production subject smoke was incomplete — HIGH
+
+The Release Annex requires the subject-specific smoke profile emitted by RU08, but the production workflow only executed static HTTP checks plus the offline browser journey.
+
+That was insufficient to prove the accepted Russian learner and author paths still worked after production activation.
+
+Correction:
+- production now runs the representative RU08 learner journeys directly against the live production runtime;
+- production runs the governed author workspace journey directly against the live production runtime;
+- the offline reload browser journey remains required;
+- all three browser summaries are copied into Release Annex evidence and are required by closure before STABLE.
+
+### F8 — Production Permissions-Policy disabled Russian microphone — CRITICAL
+
+`cloudflare/runtime-worker.mjs` still emitted `microphone=()`, which disables microphone capture at the browser policy layer even though Russian speaking/recording is a required capability.
+
+This is a runtime-owner regression and cannot be waived by source/package tests.
+
+Correction:
+- production runtime policy is `microphone=(self)`;
+- camera and geolocation remain denied;
+- release verification rejects a production header that does not allow same-origin microphone;
+- the release-workflow validator statically rejects a regression back to `microphone=()`.
+
+### F9 — Production config identity lacked live fingerprint readback — HIGH
+
+The Release Annex requires the actual production config/profile identity to be read back after activation. Revision equality and boolean readiness alone did not prove both deployed workers were using the same intended production profile.
+
+Correction:
+- production packaging derives a SHA-256 fingerprint from the exact revision and non-secret production profile inputs;
+- the fingerprint is embedded into both production worker configs;
+- both `/__deployment` endpoints expose the fingerprint;
+- release verification compares both live fingerprints to the immutable release evidence;
+- STABLE closure requires the config identity and readback evidence.
+
 ## Previously encountered errors rechecked
 
 1. **Stale P3 planned-owner conflict for reading** — previous correction remains appropriate because current RU02 owner status is the active authority; no old-topology validator may overrule a materialized current owner.
