@@ -1,6 +1,6 @@
 # Russian Prompt System — Full Compliance Audit 2026-10-02
 
-State: **RU08 PASS · READY_FOR_MERGE — EXACT-HEAD REVALIDATION REQUIRED**
+State: **CORRECTIVE IMPLEMENTATION IN VALIDATION**
 
 Audit baseline: `main@2b0b540edc381c4ea6268e080b0444d0c78b7277`  
 Previously released Russian RC: `7697a3f05362c111fb481ebd6043738c12dbcb8c`
@@ -179,6 +179,15 @@ Correction:
 - `validate-prompt-project-state.mjs` cross-checks project state against RC state;
 - RU08 PASS requires the RC record to be `READY_FOR_MERGE`, and that transition must itself be revalidated on the new exact head.
 
+### F15 — Future Interface geometry check raced Hub dashboard hydration — HIGH
+
+The final exact-head revalidation exposed a false layout failure at iPad landscape. The browser test first observed the E6 hero as visible, then slept for a fixed interval while the Hub performed an asynchronous Home-subtree replacement. Geometry was sampled during that transient replacement, producing `dashboardReady=false` and a detached `0x0` hero, which was incorrectly reported as topbar overlap.
+
+Correction:
+- keep the same iPad/topbar geometry thresholds;
+- after the hydration window, wait for the replacement E6 dashboard to report `dashboardReady=true` and a non-zero visible hero before geometry sampling;
+- do not waive or weaken the overlap, touch-target, collision, overflow or contrast assertions.
+
 ## Previously encountered errors rechecked
 
 1. **Stale P3 planned-owner conflict for reading** — previous correction remains appropriate because current RU02 owner status is the active authority; no old-topology validator may overrule a materialized current owner.
@@ -212,4 +221,4 @@ The corrective branch is not considered PASS until:
 
 Until those conditions are met, the accurate statement is:
 
-**RUSSIAN PROMPT FULL AUDIT — RU08 CORRECTIONS PASS; READY_FOR_MERGE AFTER EXACT-HEAD REVALIDATION. PRODUCTION STABLE REMAINS A SEPARATE C3 RELEASE ANNEX RESULT.**
+**RUSSIAN PROMPT FULL AUDIT — CORRECTIONS IMPLEMENTED, VALIDATION PENDING.**
