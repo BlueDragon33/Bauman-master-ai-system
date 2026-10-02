@@ -4,14 +4,14 @@ This directory is the extracted and normalized active prompt system for **russia
 
 It is intended for both ordinary ChatGPT chat sessions and repository execution.
 
-Shared Constitution: `prompts/CONSTITUTION.md`
+Shared Constitution umbrella: `prompts/CONSTITUTION.md`\n\nClause-level shared authority: `prompts/constitution/` routed by `RUSSIAN_CONSTITUTION_ROUTER.json`
 
 Start a normal chat with `CHAT_START.md`.
 Start execution with `RUSSIAN_MASTER_PROMPT.md` + `PROJECT_STATE.json` + the active module.
 
 The source ZIP remains under `prompt-archives/` for provenance/recovery.
 Mirrored subject-level Constitution copies and legacy archives are intentionally not duplicated here.
-All C1–C4 authority comes from the single shared `prompts/CONSTITUTION.md`.
+C1–C4 authority is shared, never subject-local: `prompts/CONSTITUTION.md` is the umbrella and `prompts/constitution/` contains the canonical detailed clause sources selected by the Russian router.
 
 ---
 
