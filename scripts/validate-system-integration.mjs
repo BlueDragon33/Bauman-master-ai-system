@@ -6,7 +6,9 @@ import vm from 'node:vm';
 import {fileURLToPath} from 'node:url';
 
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-const SUBJECTS=['ai','entrepreneurship','ergonomics','foundation','math','mivar','programming','research','russian','signal','systems'];
+const CONTROL_CONTRACT=JSON.parse(fs.readFileSync(path.join(ROOT,'control/application-management.contract.json'),'utf8'));
+const SUBJECTS=[...new Set((CONTROL_CONTRACT.subclients||[]).map(item=>String(item.id||'').trim()).filter(Boolean))];
+assert.ok(SUBJECTS.length,'Application-management contract must declare canonical subclients');
 const SIMPLE_SUBJECTS=['ai','foundation','research','signal','systems'];
 const failures=[];
 const checks=[];
@@ -50,9 +52,10 @@ for(const subject of SUBJECTS){
   const jsonPath=`subjects/${subject}/subject-manifest.json`;
   const jsPath=`subjects/${subject}/subject-manifest.js`;
   check(exists(jsonPath),`${subject}: JSON manifest exists`);
-  check(exists(jsPath),`${subject}: JavaScript manifest exists`);
-  if(!exists(jsonPath)||!exists(jsPath))continue;
+  if(!exists(jsonPath))continue;
   const manifest=JSON.parse(read(jsonPath));
+  const requiresJsManifest=manifest.kind!=='workflow';
+  check(!requiresJsManifest||exists(jsPath),`${subject}: JavaScript manifest exists when required`);
   check(manifest.id===subject,`${subject}: JSON manifest identity matches directory`);
   const entry=manifestPath(subject,manifest.entry||'index.html');
   const editor=manifestPath(subject,manifest.editor||'editor.html');
@@ -60,9 +63,11 @@ for(const subject of SUBJECTS){
   check(exists(editor),`${subject}: editor point exists`);
   if(exists(entry))validateEntryAssets(entry);
   if(exists(editor))validateEntryAssets(editor);
-  const jsWindow=evaluateWindowScript(jsPath);
-  const jsManifest=jsWindow.SUBJECT_CONFIG||jsWindow.SUBJECT_MANIFEST||jsWindow.BAUMAN_SUBJECT_MANIFEST;
-  check(jsManifest?.id===subject,`${subject}: JavaScript manifest identity matches directory`);
+  if(exists(jsPath)){
+    const jsWindow=evaluateWindowScript(jsPath);
+    const jsManifest=jsWindow.SUBJECT_CONFIG||jsWindow.SUBJECT_MANIFEST||jsWindow.BAUMAN_SUBJECT_MANIFEST;
+    check(jsManifest?.id===subject,`${subject}: JavaScript manifest identity matches directory`);
+  }
   if(Array.isArray(manifest.data)){
     for(const file of manifest.data){const name=/\.json$/i.test(file)?file:`${file}.json`;check(exists(`subjects/${subject}/data/${name}`),`${subject}: declared data file exists (${file})`)}
   }

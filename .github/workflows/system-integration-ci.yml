@@ -2,6 +2,22 @@ name: Whole System Integration Gate
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "subjects/math/**"
+      - "subjects/russian/**"
+      - "subjects/shared/**"
+      - "foundation/domain-model/**"
+      - "assets/js/**"
+      - "assets/css/**"
+      - "index.html"
+      - "platform/ui/**"
+      - "control/application-management.contract.json"
+      - "tests/math-*.mjs"
+      - "scripts/prepare-chatgpt-site.mjs"
+      - "scripts/prepare-cloudflare-preview.mjs"
+      - ".github/workflows/system-integration-ci.yml"
   pull_request:
     branches: [main]
     paths:
