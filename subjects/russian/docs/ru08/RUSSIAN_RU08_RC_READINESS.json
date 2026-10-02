@@ -2,22 +2,23 @@
   "schemaVersion": "1.0.0",
   "kind": "RUSSIAN_RU08_RC_READINESS",
   "state": "READY_FOR_MERGE",
-  "runtimeSourceBase": "main@f6aa11215dfcf24e2d646f7c9737733e66c642c8",
-  "artifactIdentity": "Russian subject package materialized from exact accepted Git SHA",
-  "contentSnapshot": "subjects/russian/subject-manifest.json + canonical datasets referenced by RU02 owner registry",
+  "runtimeSourceBase": "audit-baseline main@2b0b540edc381c4ea6268e080b0444d0c78b7277",
+  "artifactIdentity": "Generated at release preflight from exact GITHUB_SHA; recorded in RUSSIAN_RC_MANIFEST.json",
+  "contentSnapshot": "Exact SHA-256 aggregate generated at release preflight from subject manifest + materialized RU02 canonical owner files",
   "schemaMigrationIdentity": "RU08 authoring additive; no destructive learner-state migration",
   "requiredConfig": [
     "shared Bauman shell",
     "Device Gate",
     "Content Review metadata service",
-    "optional AI provider"
+    "optional AI provider",
+    "pre-provisioned dedicated production smoke device session stored as GitHub environment secret for Release Annex only"
   ],
   "warnings": [
     "open RU03 linguistic review debt remains non-authoritative",
     "AI is optional",
     "large dialogue/deep-speaking datasets remain lazy"
   ],
-  "rollbackTarget": "f6aa11215dfcf24e2d646f7c9737733e66c642c8",
+  "rollbackTarget": "Resolve from live pre-deploy production /__deployment identity during release preflight; never substitute source baseline or latest",
   "productionSmoke": [
     "open Russian",
     "resume/Today plan",
@@ -26,15 +27,40 @@
     "dialogue scenario",
     "technical/research task",
     "offline reload",
-    "protected data/device gate"
+    "protected data/device gate",
+    "structured author workspace loads without direct canonical write"
   ],
-  "releaseAnnex": "GLOBAL_CONSTITUTIONS/C3_RELEASE_ANNEX_PRODUCTION.md",
+  "releaseAnnex": "prompts/constitution/C3_RELEASE_ANNEX_SHARED.md",
   "acceptanceEvidence": {
-    "russianReferenceUiGate": "PASS on d80cee27a0c1c617e78d47e20b58d4a6d64dfc42",
-    "wholeSystemIntegrationRun": 36875196038,
-    "wholeSystemIntegration": "PASS",
-    "constitution": "PASS",
-    "fastCi": "PASS"
+    "validationBinding": "Current PR head must pass the named CI gates; exact head SHA/run IDs are workflow evidence and are intentionally not hardcoded into this source record because editing the record changes HEAD.",
+    "requiredGates": [
+      "Universal Constitution Compliance",
+      "Development Fast CI",
+      "Russian Reference UI Gate",
+      "Whole System Integration Gate"
+    ],
+    "executableMatrix": "subjects/russian/docs/ru08/RUSSIAN_RU08_ACCEPTANCE_EVIDENCE.json",
+    "authorWorkspaceBrowser": "tests/russian-ru08-author-browser.mjs",
+    "representativeJourneysBrowser": "tests/russian-ru08-journeys-browser.mjs",
+    "offlineBrowser": "tests/russian-offline-shell-browser.mjs",
+    "releaseWorkflowValidator": "scripts/validate-russian-release-annex-workflow.mjs"
   },
-  "rcIdentityRule": "After merge, the merge SHA is the exact RC source identity; release must not target latest/main ambiguously."
+  "rcIdentityRule": "After merge, the merge SHA is the exact RC source identity; release must not target latest/main ambiguously.",
+  "auditCorrection": "2026-10-02-full-russian-prompt-system-audit",
+  "sourceRollbackBaseline": "f6aa11215dfcf24e2d646f7c9737733e66c642c8",
+  "releaseClosureRule": "RU08 PASS/merge does not imply production STABLE. STABLE requires C3 Release Annex observation and closure evidence.",
+  "productionConfigIdentity": "Generated from exact release revision + non-secret production profile and read back from both deployed workers as a shared SHA-256 fingerprint.",
+  "productionSmokeEvidence": [
+    "RUSSIAN_PRODUCTION_RU08_JOURNEYS.json",
+    "RUSSIAN_PRODUCTION_RU08_AUTHOR.json",
+    "RUSSIAN_PRODUCTION_OFFLINE_BROWSER.json"
+  ],
+  "securityBoundary": "Production runtime must permit same-origin microphone for Russian speaking while keeping camera/geolocation denied; release verification fails closed on policy regression.",
+  "productionReleaseExternalPrerequisite": {
+    "name": "BAUMAN_PRODUCTION_SMOKE_DEVICE_SESSION",
+    "purpose": "Authenticate the dedicated isolated learner journey against server-side protected production Russian data; anonymous access must remain blocked.",
+    "scope": "bauman-production GitHub environment secret",
+    "rule": "Release blocks before production mutation when missing, expired, malformed, or not bound to an approved dedicated smoke device."
+  },
+  "releaseArtifactIdentity": "Release preflight fingerprints runtime-dist plus Cloudflare control-worker and learning-worker dry-run artifacts after deterministic production packaging."
 }

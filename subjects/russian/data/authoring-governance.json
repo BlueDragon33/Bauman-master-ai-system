@@ -105,5 +105,554 @@
     "maxBatchItems": 500,
     "atomicCanonicalOverwrite": false,
     "eachItemValidatedIndependently": true
+  },
+  "entitySchemas": {
+    "Stage": {
+      "fields": [
+        {
+          "id": "stageCode",
+          "label": "Mã giai đoạn",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "competencyTargets",
+          "label": "Competency targets",
+          "type": "textarea",
+          "required": true
+        }
+      ],
+      "validationPolicies": [
+        "provenance"
+      ]
+    },
+    "MacroModule": {
+      "fields": [
+        {
+          "id": "stageRef",
+          "label": "Stage ref",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "unitRefs",
+          "label": "Unit refs",
+          "type": "textarea",
+          "required": true
+        }
+      ],
+      "validationPolicies": [
+        "provenance"
+      ]
+    },
+    "Unit": {
+      "fields": [
+        {
+          "id": "moduleRef",
+          "label": "Macro module ref",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "learningObjective",
+          "label": "Mục tiêu học",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "competencyRefs",
+          "label": "Competency refs",
+          "type": "textarea",
+          "required": true
+        }
+      ],
+      "validationPolicies": [
+        "provenance",
+        "assessment-alignment"
+      ]
+    },
+    "MicroLesson": {
+      "fields": [
+        {
+          "id": "unitRef",
+          "label": "Unit ref",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "learningObjective",
+          "label": "Mục tiêu vi mô",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "activityType",
+          "label": "Loại hoạt động",
+          "type": "text",
+          "required": true
+        }
+      ],
+      "validationPolicies": [
+        "provenance",
+        "assessment-alignment"
+      ]
+    },
+    "GrammarConcept": {
+      "fields": [
+        {
+          "id": "rule",
+          "label": "Quy tắc/ngữ nghĩa",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "examples",
+          "label": "Ví dụ đã kiểm chứng",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "exceptions",
+          "label": "Ngoại lệ",
+          "type": "textarea",
+          "required": false
+        },
+        {
+          "id": "government",
+          "label": "Управление / government",
+          "type": "textarea",
+          "required": false
+        }
+      ],
+      "validationPolicies": [
+        "provenance",
+        "government"
+      ]
+    },
+    "LexicalEntry": {
+      "fields": [
+        {
+          "id": "lemma",
+          "label": "Lemma",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "stress",
+          "label": "Dạng có trọng âm",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "partOfSpeech",
+          "label": "Từ loại",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "yoEPolicy",
+          "label": "Chính sách ё/е",
+          "type": "select",
+          "required": true,
+          "options": [
+            "preserve-yo",
+            "verified-e",
+            "not-applicable"
+          ]
+        },
+        {
+          "id": "morphology",
+          "label": "Thông tin hình thái",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "government",
+          "label": "Управление / kết hợp cách",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "acceptedVariants",
+          "label": "Biến thể được chấp nhận",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "register",
+          "label": "Register/ngữ vực",
+          "type": "text",
+          "required": false
+        }
+      ],
+      "validationPolicies": [
+        "provenance",
+        "stress",
+        "yo-e-policy",
+        "morphology",
+        "government",
+        "accepted-variants"
+      ]
+    },
+    "SpeakingItem": {
+      "fields": [
+        {
+          "id": "prompt",
+          "label": "Prompt nói",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "targetFunctions",
+          "label": "Chức năng giao tiếp mục tiêu",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "evidenceCriteria",
+          "label": "Tiêu chí evidence",
+          "type": "textarea",
+          "required": true
+        }
+      ],
+      "validationPolicies": [
+        "provenance",
+        "audio-transcript-pairing",
+        "assessment-alignment"
+      ]
+    },
+    "DialogueScenario": {
+      "fields": [
+        {
+          "id": "roles",
+          "label": "Vai hội thoại",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "turnPlan",
+          "label": "Turn plan",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "repairPath",
+          "label": "Repair path",
+          "type": "textarea",
+          "required": true
+        }
+      ],
+      "validationPolicies": [
+        "provenance",
+        "dialogue-role-turns",
+        "assessment-alignment"
+      ]
+    },
+    "DeepSpeakingTask": {
+      "fields": [
+        {
+          "id": "prompt",
+          "label": "Prompt nói sâu",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "rubric",
+          "label": "Rubric",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "evidenceCriteria",
+          "label": "Tiêu chí evidence",
+          "type": "textarea",
+          "required": true
+        }
+      ],
+      "validationPolicies": [
+        "provenance",
+        "assessment-alignment"
+      ]
+    },
+    "ReadingText": {
+      "fields": [
+        {
+          "id": "title",
+          "label": "Tiêu đề",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "sourceLineage",
+          "label": "Source lineage",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "taskRefs",
+          "label": "Task refs",
+          "type": "textarea",
+          "required": true
+        }
+      ],
+      "validationPolicies": [
+        "provenance",
+        "research-source-lineage"
+      ]
+    },
+    "WritingTask": {
+      "fields": [
+        {
+          "id": "prompt",
+          "label": "Prompt viết",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "targetWords",
+          "label": "Số từ mục tiêu",
+          "type": "number",
+          "required": true
+        },
+        {
+          "id": "requiredPatterns",
+          "label": "Mẫu bắt buộc",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "rubric",
+          "label": "Rubric",
+          "type": "textarea",
+          "required": true
+        }
+      ],
+      "validationPolicies": [
+        "provenance",
+        "assessment-alignment",
+        "research-source-lineage"
+      ]
+    },
+    "TechnicalConcept": {
+      "fields": [
+        {
+          "id": "domain",
+          "label": "Lĩnh vực",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "englishTerm",
+          "label": "Thuật ngữ tiếng Anh",
+          "type": "text",
+          "required": false
+        },
+        {
+          "id": "targetStages",
+          "label": "Target stages",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "authorityStatus",
+          "label": "Authority status",
+          "type": "select",
+          "required": true,
+          "options": [
+            "SOURCE_ASSERTED",
+            "VERIFIED",
+            "REVIEW_REQUIRED"
+          ]
+        }
+      ],
+      "validationPolicies": [
+        "provenance",
+        "technical-terminology"
+      ]
+    },
+    "AcademicFunction": {
+      "fields": [
+        {
+          "id": "patterns",
+          "label": "Mẫu câu",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "targetStages",
+          "label": "Target stages",
+          "type": "textarea",
+          "required": true
+        }
+      ],
+      "validationPolicies": [
+        "provenance",
+        "technical-terminology"
+      ]
+    },
+    "Exercise": {
+      "fields": [
+        {
+          "id": "exerciseType",
+          "label": "Loại bài tập",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "prompt",
+          "label": "Prompt",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "evaluationPolicy",
+          "label": "Evaluation policy",
+          "type": "textarea",
+          "required": true
+        }
+      ],
+      "validationPolicies": [
+        "provenance",
+        "assessment-alignment"
+      ]
+    },
+    "AssessmentItem": {
+      "fields": [
+        {
+          "id": "itemType",
+          "label": "Loại assessment",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "prompt",
+          "label": "Prompt",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "answerPolicy",
+          "label": "Answer/evaluation policy",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "evidenceTarget",
+          "label": "Evidence target",
+          "type": "textarea",
+          "required": true
+        }
+      ],
+      "validationPolicies": [
+        "provenance",
+        "assessment-alignment"
+      ]
+    },
+    "PerformanceTask": {
+      "fields": [
+        {
+          "id": "stage",
+          "label": "Stage",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "prompt",
+          "label": "Prompt performance",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "rubric",
+          "label": "Rubric",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "evidenceTarget",
+          "label": "Evidence target",
+          "type": "textarea",
+          "required": true
+        }
+      ],
+      "validationPolicies": [
+        "provenance",
+        "assessment-alignment",
+        "research-source-lineage"
+      ]
+    },
+    "MediaAsset": {
+      "fields": [
+        {
+          "id": "mediaType",
+          "label": "Loại media",
+          "type": "select",
+          "required": true,
+          "options": [
+            "audio",
+            "video",
+            "image"
+          ]
+        },
+        {
+          "id": "src",
+          "label": "Nguồn media",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "altText",
+          "label": "Alt/accessible text",
+          "type": "textarea",
+          "required": true
+        },
+        {
+          "id": "transcript",
+          "label": "Transcript",
+          "type": "textarea",
+          "required": false
+        }
+      ],
+      "validationPolicies": [
+        "provenance",
+        "audio-transcript-pairing"
+      ]
+    },
+    "ProvenanceRecord": {
+      "fields": [
+        {
+          "id": "targetRef",
+          "label": "Canonical target ref",
+          "type": "text",
+          "required": true
+        },
+        {
+          "id": "authorityStatus",
+          "label": "Authority status",
+          "type": "select",
+          "required": true,
+          "options": [
+            "UNVERIFIED",
+            "SOURCE_ASSERTED",
+            "VERIFIED",
+            "REVIEW_REQUIRED"
+          ]
+        },
+        {
+          "id": "reviewerEvidence",
+          "label": "Reviewer/source evidence",
+          "type": "textarea",
+          "required": true
+        }
+      ],
+      "validationPolicies": [
+        "provenance"
+      ]
+    }
+  },
+  "schemaAwareAuthoring": {
+    "mode": "ENTITY_SCHEMA_DRIVEN",
+    "schemaOwner": "subjects/russian/data/authoring-governance.json#entitySchemas",
+    "rule": "Every authorable entity type must have an explicit schema descriptor and validation-policy mapping before RU08 authoring can claim PASS."
   }
 }

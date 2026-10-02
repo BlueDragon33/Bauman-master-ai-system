@@ -1,41 +1,51 @@
 # RUSSIAN PROMPT SYSTEM STATUS
 
-`ARCHITECTURE RESTRUCTURE: COMPLETE`
+`PROMPT ARCHITECTURE: COMPLETE · EXECUTION: RU08 PASS`
 
-## Active architecture
+## Active execution state
 
-- Four global constitutions: ACTIVE
-- RU00: READY
-- RU01: READY
-- RU02: READY
-- RU03: READY
-- RU04: READY
-- RU05: READY
-- RU06: READY
-- RU07: READY
-- RU08: READY
-- Shared production release annex: READY
+- RU00 — orchestrator: ACTIVE
+- RU01 — Forensic Baseline: **PASS**
+- RU02 — Curriculum & Canonical Model: **PASS**
+- RU03 — Linguistic Authority: **PASS** with explicit non-authoritative review debt
+- RU04 — Assessment · Mastery · Adaptive: **PASS**
+- RU05 — Listening · Speaking · Dialogue · Scenario: **PASS**
+- RU06 — Academic · Technical · Research Production: **PASS**
+- RU07 — AI Mentor Russian Coaching: **PASS**
+- RU08 — Authoring · Integration · Acceptance · RC Readiness: **PASS · READY_FOR_MERGE**
+- Shared C3 Release Annex: **production-only authority; not implied by RU08**
 
-## Important
+## Current authority
 
-This status means the **prompt architecture has been reorganized**.
+Execution follows:
 
-It does not mean the repository has executed RU01–RU08 or that production is published.
+`RU00 → current module → targeted evidence → exact-head gates → handoff`
 
-## Superseded topology
+The old P0–P17 chain remains source/history only and must not be replayed as the active topology.
 
-The former P0–P17 execution sequence is superseded as the default prompt topology.
+The canonical production procedure is:
 
-Its source material remains preserved under `SOURCE_ARCHIVE/`.
+`prompts/constitution/C3_RELEASE_ANNEX_SHARED.md`
 
-## Next operational step
+## Current audit
 
-Execute:
+The 2026-10-02 full Russian prompt-system audit is correcting RU08 and Release Annex evidence gaps on PR #212.
 
-`RU00 + RU01`
+RU08 must not be marked PASS from declarations or CI labels alone. The exact current head must prove:
+- executable learner + author journeys;
+- architecture/constitution gates;
+- protected production-data behavior;
+- current schema/migration evidence;
+- rollback identity;
+- complete artifact/config identity;
+- no blocker/critical remaining.
 
-against current main.
+## Production boundary
 
-Use RU01 evidence to validate/patch RU02 before implementation-heavy work.
+RU08 may hand off an immutable RC. It does **not** claim production is live or STABLE.
 
-Do not execute all RU modules in one Work run.
+Production STABLE requires the separate C3 Release Annex to verify the exact accepted RC, production identity/content/schema/config, smoke journeys, offline behavior, observation, rollback viability and final closure evidence.
+
+## Next action
+
+Revalidate the RU08 PASS/READY_FOR_MERGE transition on the exact current PR #212 head. If all required gates remain green, merge that exact head. Production handoff remains separate under the shared C3 Release Annex.

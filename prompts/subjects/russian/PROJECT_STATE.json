@@ -1,10 +1,11 @@
 {
-  "schemaVersion": "1.0.0",
+  "schemaVersion": "1.1.0",
   "subject": "russian",
   "constitution": "prompts/CONSTITUTION.md",
+  "releaseAnnex": "prompts/constitution/C3_RELEASE_ANNEX_SHARED.md",
   "masterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
-  "status": "READY_FOR_BASELINE_RECONCILIATION",
-  "activeModule": "RU01",
+  "status": "RU08_PASS",
+  "activeModule": "RU08",
   "sequence": [
     "RU01",
     "RU02",
@@ -15,11 +16,32 @@
     "RU07",
     "RU08"
   ],
-  "completedModules": [],
+  "completedModules": [
+    "RU01",
+    "RU02",
+    "RU03",
+    "RU04",
+    "RU05",
+    "RU06",
+    "RU07",
+    "RU08"
+  ],
   "needsRevalidation": [],
-  "lastValidatedSha": null,
-  "currentHeadSha": null,
-  "evidence": [],
+  "auditBaselineSha": "2b0b540edc381c4ea6268e080b0444d0c78b7277",
+  "exactHeadBinding": "Resolve from the current Git HEAD and CI run; do not hardcode a self-invalidating head SHA in this file.",
+  "evidence": [
+    "subjects/russian/docs/ru01/RUSSIAN_RU01_PHASE_RECORD.md",
+    "subjects/russian/docs/ru02/RUSSIAN_RU02_PHASE_RECORD.md",
+    "subjects/russian/docs/ru03/RUSSIAN_RU03_PHASE_RECORD.md",
+    "subjects/russian/docs/ru04/RUSSIAN_RU04_PHASE_RECORD.md",
+    "subjects/russian/docs/ru05/RUSSIAN_RU05_PHASE_RECORD.md",
+    "subjects/russian/docs/ru06/RUSSIAN_RU06_PHASE_RECORD.md",
+    "subjects/russian/docs/ru07/RUSSIAN_RU07_PHASE_RECORD.md",
+    "subjects/russian/docs/ru08/RUSSIAN_RU08_ACCEPTANCE_EVIDENCE.json",
+    "subjects/russian/docs/ru08/RUSSIAN_RU08_RC_READINESS.json",
+    "subjects/russian/docs/ru08/RUSSIAN_PROMPT_SYSTEM_FULL_COMPLIANCE_AUDIT_20261002.md"
+  ],
+  "pendingGates": [],
   "blockers": [],
-  "nextAction": "Run RU01 against the current repository state and update this state with evidence."
+  "nextAction": "Revalidate this RU08 PASS / READY_FOR_MERGE transition on the exact current PR head. If all required gates remain green, merge that exact head. Production remains a separate C3 Release Annex execution and must not be called STABLE until closure evidence is emitted."
 }

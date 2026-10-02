@@ -21,6 +21,7 @@ function deployment(env) {
     runtime: 'learning-runtime',
     channel: env.BAUMAN_DEPLOYMENT_CHANNEL || 'unknown',
     revision: env.BAUMAN_BUILD_REVISION || 'unknown',
+    configFingerprint: env.BAUMAN_CONFIG_FINGERPRINT || 'unknown',
     controlOriginConfigured: Boolean(safeOrigin(env.BAUMAN_CONTROL_ORIGIN)),
     serverSideLearningGate: true,
     checkedAt: Date.now(),
@@ -31,7 +32,7 @@ function securityHeaders(headers) {
   const next = new Headers(headers);
   next.set('x-content-type-options', 'nosniff');
   next.set('referrer-policy', 'strict-origin-when-cross-origin');
-  next.set('permissions-policy', 'camera=(), microphone=(), geolocation=()');
+  next.set('permissions-policy', 'camera=(), microphone=(self), geolocation=()');
   next.set('content-security-policy', "frame-ancestors 'self'; object-src 'none'; base-uri 'self'");
   return next;
 }

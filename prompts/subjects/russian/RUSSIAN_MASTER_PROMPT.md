@@ -51,7 +51,7 @@ Every Russian module must comply with the relevant clauses from:
 
 Production additionally invokes:
 
-- C3 Release Annex — Production Publish / Verify / Observe / Rollback.
+- C3 Release Annex — Production Publish / Verify / Observe / Rollback at `prompts/constitution/C3_RELEASE_ANNEX_SHARED.md`.
 
 Russian prompts may specialize global rules only where Russian requires domain semantics.
 
@@ -282,12 +282,13 @@ Does it accidentally equate exposure/progress with mastery?
 Default load order:
 
 1. this RU00 file;
-2. active RU module;
+2. `PROJECT_STATE.json` to resolve the active module and durable continuation state;
 3. `RUSSIAN_CONSTITUTION_ROUTER.json`;
-4. constitution headings named by router;
-5. latest module evidence/status;
-6. diff since last validated SHA;
-7. only impacted files/tests.
+4. the active RU module named by project state;
+5. only the detailed shared Constitution clauses named by the router;
+6. latest module evidence/status;
+7. diff since the last validated/audit baseline;
+8. only impacted owners/files/tests.
 
 Use `SOURCE_ARCHIVE` only for unresolved detail.
 

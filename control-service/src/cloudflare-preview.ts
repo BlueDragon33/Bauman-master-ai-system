@@ -6,6 +6,7 @@ interface PreviewEnv {
   BAUMAN_APP_ORIGIN?: string;
   BAUMAN_DEPLOYMENT_CHANNEL?: string;
   BAUMAN_BUILD_REVISION?: string;
+  BAUMAN_CONFIG_FINGERPRINT?: string;
   DB?: D1Database;
 }
 
@@ -14,6 +15,8 @@ async function databaseReady(env: PreviewEnv) {
   try {
     await env.DB.prepare("SELECT device_id FROM bm_devices LIMIT 1").first();
     await env.DB.prepare("SELECT command_id FROM bm_control_commands LIMIT 1").first();
+    await env.DB.prepare("SELECT review_id FROM bm_content_reviews LIMIT 1").first();
+    await env.DB.prepare("SELECT command_id FROM bm_content_review_commands LIMIT 1").first();
     return true;
   } catch {
     return false;
@@ -24,7 +27,9 @@ function deployment(env: PreviewEnv, ready: boolean) {
   return {
     channel: env.BAUMAN_DEPLOYMENT_CHANNEL ?? "unknown",
     revision: env.BAUMAN_BUILD_REVISION ?? "unknown",
+    configFingerprint: env.BAUMAN_CONFIG_FINGERPRINT ?? "unknown",
     databaseReady: ready,
+    controlSecretConfigured: (env.BAUMAN_CONTROL_SERVICE_SECRET ?? "").length >= 32,
     applicationManagementOriginConfigured: Boolean(env.APPLICATION_MANAGEMENT_ORIGIN),
     appOriginConfigured: Boolean(env.BAUMAN_APP_ORIGIN),
   };

@@ -6,7 +6,7 @@ import vm from 'node:vm';
 import {fileURLToPath} from 'node:url';
 
 const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-const SUBJECTS=['ai','foundation','math','programming','research','russian','signal','systems'];
+const SUBJECTS=['ai','entrepreneurship','ergonomics','foundation','math','mivar','programming','research','russian','signal','systems'];
 const SIMPLE_SUBJECTS=['ai','foundation','research','signal','systems'];
 const failures=[];
 const checks=[];
@@ -42,8 +42,8 @@ function validateEntryAssets(relative){
 
 const dataWindow=evaluateWindowScript('assets/js/data.js');
 const hubSubjectIds=(dataWindow.BAUMAN_DATA?.subjects||[]).map(subject=>subject.id).sort();
-assert.equal(JSON.stringify(hubSubjectIds),JSON.stringify([...SUBJECTS].sort()),'Hub subject registry must contain the eight canonical subjects exactly once');
-checks.push('Hub subject registry contains eight canonical subjects');
+assert.equal(JSON.stringify(hubSubjectIds),JSON.stringify([...SUBJECTS].sort()),'Hub subject registry must contain the current canonical subjects exactly once');
+checks.push('Hub subject registry contains the current canonical subjects');
 
 validateEntryAssets('index.html');
 for(const subject of SUBJECTS){

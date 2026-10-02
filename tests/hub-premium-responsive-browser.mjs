@@ -83,7 +83,7 @@ async function checkCanonicalContent(page){
     roadmapV3:window.BAUMAN_HUB_ROADMAP_V3?.selfCheck?.()||window.BAUMAN_HUB_ROADMAP_V2?.selfCheck?.(),
     primaryPagesV6:window.BAUMAN_HUB_PRIMARY_PAGES_V6?.selfCheck?.()
   }));
-  assert.deepEqual(content.subjectIds,['ai','foundation','math','programming','research','russian','signal','systems']);
+  assert.deepEqual(content.subjectIds,['ai','entrepreneurship','ergonomics','foundation','math','mivar','programming','research','russian','signal','systems']);
   assert.equal(content.pages.length,5,'canonical Hub pages were removed');
   assert.ok(content.appearance,'Giao diện control missing');
   assert.ok(content.ai,'AI control missing');

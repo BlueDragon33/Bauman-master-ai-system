@@ -1,1 +1,63 @@
-<!doctype html><html data-bauman-ui="future-v1"><head><meta charset="utf-8"><title>Russian Editor</title><link rel="stylesheet" href="../../platform/ui/bauman-ui.css?v=1"></head><body><p>Mở <a href="index.html">index.html</a> để quản lý dữ liệu môn Tiếng Nga.</p><script src="../../platform/ui/bauman-ui.js?v=1"></script></body></html>
+<!doctype html>
+<html lang="vi" data-bauman-ui="future-v1">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Russian Author Workspace · Bauman</title>
+<link rel="stylesheet" href="../../platform/ui/bauman-ui.css?v=1">
+<link rel="stylesheet" href="assets/author-workspace.css">
+</head>
+<body class="ru-author-page">
+<main class="ru-author-shell" id="authorWorkspace">
+<header class="ru-author-head">
+  <div><span class="eyebrow">RU08 AUTHORING · STAGING ONLY</span><h1>Russian Author Workspace</h1>
+  <p>Tạo candidate có cấu trúc, kiểm tra owner/provenance và preview trước khi chuyển sang review. Workspace này không ghi trực tiếp vào canonical content.</p></div>
+  <a class="btn" href="index.html">← Quay lại môn học</a>
+</header>
+<section class="ru-author-notice" role="status"><b>ONE FACT · ONE OWNER · MANY USES</b><span>Canonical write chỉ qua reviewed repository patch. Generated content không được tự promotion.</span></section>
+<div class="ru-author-layout">
+<form id="candidateForm" class="ru-author-card">
+  <h2>1. Candidate có cấu trúc</h2>
+  <label>Loại thực thể<select id="responsibility" required></select></label>
+  <label>Canonical ID<input id="canonicalId" required placeholder="VD: LEX-RU-A1-001"></label>
+  <label>Revision<input id="revision" required value="r1"></label>
+  <label>Nội dung tiếng Nga<textarea id="ruText" required placeholder="Введите русский текст..."></textarea></label>
+  <label>Giải thích/ý nghĩa tiếng Việt<textarea id="viText" placeholder="Mô tả nghĩa hoặc mục tiêu học"></textarea></label>
+  <fieldset id="dynamicFields" class="ru-dynamic-fields">
+    <legend>Trường theo schema thực thể</legend>
+    <p class="ru-schema-hint">Chọn loại thực thể để tải schema authoring.</p>
+  </fieldset>
+  <label>Nguồn kiểm chứng<textarea id="sourceRefs" required placeholder="Mỗi dòng một nguồn; không dùng AI output như authority"></textarea></label>
+  <label>Tóm tắt thay đổi<textarea id="diffSummary" required placeholder="Thay đổi gì và vì sao"></textarea></label>
+  <label>Kế hoạch rollback<textarea id="rollbackNote" required placeholder="Cách khôi phục canonical trước đó"></textarea></label>
+  <div class="ru-author-actions">
+    <button type="submit" class="btn primary">Validate candidate</button>
+    <button type="button" class="btn" id="previewBtn">Preview</button>
+    <button type="button" class="btn" id="reviewBtn" disabled>Tạo review envelope</button>
+    <button type="button" class="btn" id="exportBtn" disabled>Xuất candidate</button>
+  </div>
+</form>
+<section class="ru-author-card">
+  <h2>2. Contract mapping & lifecycle</h2>
+  <div id="ownerPanel" class="ru-owner-panel">Đang tải canonical owner registry…</div>
+  <ol id="lifecycle" class="ru-lifecycle"></ol>
+  <h3>Preview</h3><div id="preview" class="ru-preview empty">Chưa có candidate hợp lệ.</div>
+  <h3>Validation</h3><pre id="validation" class="ru-validation" aria-live="polite">Chưa chạy.</pre>
+</section>
+</div>
+<section class="ru-author-card ru-author-handoff">
+  <h2>3. Review → canonical patch → publish → rollback</h2>
+  <p>Browser workspace chỉ tạo/stage/preview candidate và review envelope. Các bước review, canonical patch, publish và rollback là repository-governed; không có nút ghi thẳng canonical tại đây.</p>
+  <div class="ru-handoff-grid">
+    <article><b>REVIEW_REQUESTED</b><span>Metadata-only envelope → Content Review.</span></article>
+    <article><b>APPROVED</b><span>Reviewer có thẩm quyền + provenance hợp lệ.</span></article>
+    <article><b>CANONICAL_PATCHED</b><span>Reviewed repository patch đúng canonical owner.</span></article>
+    <article><b>PUBLISHED</b><span>CI/acceptance + exact-RC release.</span></article>
+    <article><b>ROLLBACK</b><span>Dùng rollbackNote + immutable production identity.</span></article>
+  </div>
+</section>
+</main>
+<script src="assets/author-workspace.js"></script>
+<script src="../../platform/ui/bauman-ui.js?v=1"></script>
+</body>
+</html>

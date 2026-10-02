@@ -91,7 +91,7 @@ window.SUBJECT_MANIFEST = {
     "overviewSubtitle": "Tổng quan gọn, không khoảng trống chết: mục tiêu, luồng học, hành động nhanh và tiếp tục học ăn khớp.",
     "learningSubtitle": "Học tập ổn định: Nghe/Nói và Đối thoại tinh gọn; nút nói ổn hòa trong bảng nội dung, chữ canh đều và không tách dòng thô."
   },
-  "updated": "2026-10-01",
+  "updated": "2026-10-02",
   "package": "A1 Russian Bauman StandardFinal RenderClean V13.42",
   "paths": {
     "assets": "assets/",
@@ -530,7 +530,11 @@ window.SUBJECT_MANIFEST = {
     "governance": "data/authoring-governance.json",
     "ordinaryAuthorMode": "schema-aware-fields-not-raw-json-by-default",
     "canonicalWrite": "reviewed-repository-patch-only",
-    "controlReviewStorage": "metadata-only"
+    "controlReviewStorage": "metadata-only",
+    "workspace": "subjects/russian/editor.html",
+    "workspaceMode": "structured-candidate-staging",
+    "browserCanonicalWrite": false,
+    "acceptanceEvidence": "subjects/russian/docs/ru08/RUSSIAN_RU08_ACCEPTANCE_EVIDENCE.json"
   },
   "offlinePolicy": {
     "coreShell": "required",
