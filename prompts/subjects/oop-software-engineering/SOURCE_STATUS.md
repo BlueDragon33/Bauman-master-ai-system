@@ -1,0 +1,21 @@
+# OOP DESIGN & SOFTWARE ENGINEERING PROMPT SYSTEM STATUS
+
+| Module | Prompt status | Repository execution |
+|---|---|---|
+| OOPSE00 | COMPLETE | READY |
+| OOPSE01 | COMPLETE / READY TO EXECUTE | NOT_STARTED |
+| OOPSE02 | COMPLETE / READY after OOPSE01 | NOT_STARTED |
+| OOPSE03 | COMPLETE / READY after OOPSE02 | NOT_STARTED |
+| OOPSE04 | COMPLETE / READY after OOPSE02/OOPSE03 | NOT_STARTED |
+| OOPSE05 | COMPLETE / READY after OOPSE02–OOPSE04 | NOT_STARTED |
+| OOPSE06 | COMPLETE / READY after integration | NOT_STARTED |
+
+`OOP DESIGN & SOFTWARE ENGINEERING PROMPT ARCHITECTURE: COMPLETE`
+
+Canonical execution source:
+
+`00_README.md`
+
+Next operational action:
+
+Run OOPSE01 against current main and actual Bauman/repository evidence.

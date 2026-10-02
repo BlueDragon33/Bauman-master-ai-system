@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "russian",
+  "constitution": "prompts/CONSTITUTION.md",
+  "masterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
+  "status": "READY_FOR_BASELINE_RECONCILIATION",
+  "activeModule": "RU01",
+  "sequence": [
+    "RU01",
+    "RU02",
+    "RU03",
+    "RU04",
+    "RU05",
+    "RU06",
+    "RU07",
+    "RU08"
+  ],
+  "completedModules": [],
+  "needsRevalidation": [],
+  "lastValidatedSha": null,
+  "currentHeadSha": null,
+  "evidence": [],
+  "blockers": [],
+  "nextAction": "Run RU01 against the current repository state and update this state with evidence."
+}

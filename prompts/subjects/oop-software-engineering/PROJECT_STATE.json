@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "oop-software-engineering",
+  "constitution": "prompts/CONSTITUTION.md",
+  "constitutionLibrary": "prompts/constitution/",
+  "masterPrompt": "prompts/subjects/oop-software-engineering/OOPSE_MASTER_PROMPT.md",
+  "router": "prompts/subjects/oop-software-engineering/OOPSE_CONSTITUTION_ROUTER.json",
+  "sourceArchive": "prompt-archives/oop-software-engineering.zip",
+  "promptArchitectureStatus": "COMPLETE",
+  "repositoryExecutionStatus": "NOT_STARTED_OR_NEEDS_RECONCILIATION",
+  "status": "READY_FOR_BASELINE_RECONCILIATION",
+  "sequence": [
+    "OOPSE01",
+    "OOPSE02",
+    "OOPSE03",
+    "OOPSE04",
+    "OOPSE05",
+    "OOPSE06"
+  ],
+  "completedModules": [],
+  "needsRevalidation": [],
+  "activeModule": "OOPSE01",
+  "lastCompletedModule": null,
+  "validatedSha": null,
+  "evidence": [],
+  "blockers": [],
+  "nextAction": "Run OOPSE01 against current repository reality before canonical implementation work."
+}

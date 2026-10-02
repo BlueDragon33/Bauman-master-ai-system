@@ -1,0 +1,60 @@
+{
+  "subject": "database-systems-sql",
+  "principle": "Load only relevant constitution clauses for the active DB owner.",
+  "global_constitutions": {
+    "C1": "../../constitution/C1_EXTENSIBLE_PLATFORM_ARCHITECTURE.md",
+    "C2": "../../constitution/C2_FUTURE_PROFESSIONAL_UI_UX.md",
+    "C3": "../../constitution/C3_PROFESSIONAL_QA_AUTO_FIX.md",
+    "C4": "../../constitution/C4_REAL_LEARNING_OUTCOME_SYSTEM.md",
+    "release_annex": "../../constitution/C3_RELEASE_ANNEX_SHARED.md"
+  },
+  "routes": {
+    "DB01": {
+      "load": [
+        "C1: architecture/ownership/current integration",
+        "C2: current SQL/schema/plan UX audit",
+        "C3: current tests/security evidence",
+        "C4: current learning/evidence model"
+      ]
+    },
+    "DB02": {
+      "load": [
+        "C1: content-as-data/stable IDs/owner model",
+        "C4: outcomes/competencies/prerequisites/evidence",
+        "C3: schema/content validation"
+      ]
+    },
+    "DB03": {
+      "load": [
+        "C4: assessment/evidence/remediation/mastery boundaries",
+        "C3: test-of-tests/regression",
+        "C1: canonical ownership"
+      ]
+    },
+    "DB04": {
+      "load": [
+        "C1: providers/adapters/security boundaries",
+        "C2: visualizer/interaction/accessibility",
+        "C3: runtime/security/failure tests",
+        "C4: AI tutoring/evidence boundaries"
+      ]
+    },
+    "DB05": {
+      "load": [
+        "C1: Subject Factory/manifest/authoring integration",
+        "C2: design system/responsive/accessibility",
+        "C4: learner journey/evidence display",
+        "C3: UX/browser regression"
+      ]
+    },
+    "DB06": {
+      "load": [
+        "C3: QA/security/regression/RC rules",
+        "C4: learning acceptance",
+        "C1: legacy/owner/migration checks",
+        "C2: final UX/accessibility",
+        "release_annex: production smoke handoff"
+      ]
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "python",
+  "constitution": "prompts/CONSTITUTION.md",
+  "masterPrompt": "prompts/subjects/python/PYTHON_MASTER_PROMPT.md",
+  "status": "READY_FOR_BASELINE_RECONCILIATION",
+  "activeModule": "PYTHON01",
+  "sequence": [
+    "PYTHON01",
+    "PYTHON02",
+    "PYTHON03",
+    "PYTHON04",
+    "PYTHON05",
+    "PYTHON06"
+  ],
+  "completedModules": [],
+  "needsRevalidation": [],
+  "lastValidatedSha": null,
+  "currentHeadSha": null,
+  "evidence": [],
+  "blockers": [],
+  "nextAction": "Run PYTHON01 against the current repository state and update this state with evidence."
+}

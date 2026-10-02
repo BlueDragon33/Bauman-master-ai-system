@@ -1,0 +1,87 @@
+name: Normalize prompt archives
+
+on:
+  push:
+    branches:
+      - work/curriculum-prompt-system-v1
+    paths:
+      - "prompt-archives/**"
+      - "scripts/normalize_prompt_archives.py"
+      - ".github/workflows/normalize-prompt-archives.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: normalize-prompt-archives-work-curriculum
+  cancel-in-progress: false
+
+jobs:
+  normalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: work/curriculum-prompt-system-v1
+          fetch-depth: 0
+
+      - name: Normalize all subject prompt systems
+        run: python scripts/normalize_prompt_archives.py
+
+      - name: Validate canonical subject prompt systems
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json
+
+          root = Path("prompts/subjects")
+          index = json.loads((root/"SUBJECT_PROMPT_INDEX.json").read_text(encoding="utf-8"))
+          subjects = index.get("subjects", [])
+          assert subjects, "No subjects in SUBJECT_PROMPT_INDEX"
+
+          extracted = [s for s in subjects if s.get("status") == "CANONICAL_EXTRACTED"]
+          assert len(extracted) >= 22, f"Expected >=22 canonical subjects, got {len(extracted)}"
+
+          for item in extracted:
+              sid = item["id"]
+              d = root/sid
+              required = [
+                  d/"README.md",
+                  d/"PROJECT_STATE.json",
+                  d/"SOURCE_STATUS.md",
+                  d/"SUBJECT_PROMPT_MANIFEST.json",
+              ]
+              for p in required:
+                  assert p.exists(), f"{sid}: missing {p.name}"
+
+              state = json.loads((d/"PROJECT_STATE.json").read_text(encoding="utf-8"))
+              assert state.get("activeModule"), f"{sid}: missing activeModule"
+
+              # New normalized systems must use the shared Constitution, not per-ZIP mirrors.
+              for p in d.iterdir():
+                  if p.is_file() and p.suffix.lower() in {".md",".json",".txt"}:
+                      text = p.read_text(encoding="utf-8")
+                      assert "GLOBAL_CONSTITUTIONS/" not in text, f"{sid}: duplicated constitution ref in {p.name}"
+
+          registry = json.loads(Path("prompts/PROMPT_REGISTRY.json").read_text(encoding="utf-8"))
+          registered = {d.get("id") for d in registry.get("domains", [])}
+          missing = [s["id"] for s in extracted if s["id"] not in registered]
+          assert not missing, f"Registry missing canonical subjects: {missing}"
+
+          print(f"NORMALIZED_PROMPT_SYSTEMS_PASS subjects={len(extracted)}")
+          PY
+
+      - name: Commit normalized prompt systems
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "No normalization changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add prompt-archives prompts/subjects prompts/PROMPT_REGISTRY.json
+          git commit -m "Normalize all remaining subject prompt systems"
+          git push origin HEAD:work/curriculum-prompt-system-v1

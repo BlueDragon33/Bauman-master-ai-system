@@ -1,0 +1,49 @@
+{
+  "subject": "big-data-processing-technologies",
+  "selected_elective_branch": "big-data",
+  "deferred_alternative": "multimedia-systems-development",
+  "global_constitutions": {
+    "C1": "../../constitution/C1_EXTENSIBLE_PLATFORM_ARCHITECTURE.md",
+    "C2": "../../constitution/C2_FUTURE_PROFESSIONAL_UI_UX.md",
+    "C3": "../../constitution/C3_PROFESSIONAL_QA_AUTO_FIX.md",
+    "C4": "../../constitution/C4_REAL_LEARNING_OUTCOME_SYSTEM.md",
+    "release_annex": "../../constitution/C3_RELEASE_ANNEX_SHARED.md"
+  },
+  "routes": {
+    "BD01": [
+      "C1 current ownership/runtime integration",
+      "C2 current distributed-data UX audit",
+      "C3 current runtime/security/resource evidence",
+      "C4 current learning/evidence model"
+    ],
+    "BD02": [
+      "C1 content-as-data/stable IDs/provider abstraction",
+      "C4 competencies/prerequisites/evidence",
+      "C3 schema/content validation"
+    ],
+    "BD03": [
+      "C4 assessment/remediation/mastery boundaries",
+      "C3 test-of-tests/regression",
+      "C1 canonical distributed-data ownership"
+    ],
+    "BD04": [
+      "C1 runtime/provider/sandbox integration",
+      "C2 DAG/metrics/accessibility",
+      "C3 isolation/failure/resource tests",
+      "C4 AI tutoring/evidence boundaries"
+    ],
+    "BD05": [
+      "C1 Subject Factory/manifest/authoring",
+      "C2 responsive/accessibility",
+      "C4 learner evidence UI",
+      "C3 UX/browser regression"
+    ],
+    "BD06": [
+      "C3 QA/security/resource/RC",
+      "C4 learning acceptance",
+      "C1 legacy/migration/owner checks",
+      "C2 final UX/a11y",
+      "release_annex production smoke handoff"
+    ]
+  }
+}

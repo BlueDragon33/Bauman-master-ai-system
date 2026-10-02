@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "algorithms",
+  "constitution": "prompts/CONSTITUTION.md",
+  "masterPrompt": "prompts/subjects/algorithms/ALG_MASTER_PROMPT.md",
+  "status": "READY_FOR_BASELINE_RECONCILIATION",
+  "activeModule": "ALG01",
+  "sequence": [
+    "ALG01",
+    "ALG02",
+    "ALG03",
+    "ALG04",
+    "ALG05",
+    "ALG06"
+  ],
+  "completedModules": [],
+  "needsRevalidation": [],
+  "lastValidatedSha": null,
+  "currentHeadSha": null,
+  "evidence": [],
+  "blockers": [],
+  "nextAction": "Run ALG01 against the current repository state and update this state with evidence."
+}

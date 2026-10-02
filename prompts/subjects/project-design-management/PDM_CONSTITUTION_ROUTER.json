@@ -1,0 +1,49 @@
+{
+  "subject": "project-design-management",
+  "course": "Управление проектированием информационных систем",
+  "scope_resolution": "PDM01",
+  "global_constitutions": {
+    "C1": "../../constitution/C1_EXTENSIBLE_PLATFORM_ARCHITECTURE.md",
+    "C2": "../../constitution/C2_FUTURE_PROFESSIONAL_UI_UX.md",
+    "C3": "../../constitution/C3_PROFESSIONAL_QA_AUTO_FIX.md",
+    "C4": "../../constitution/C4_REAL_LEARNING_OUTCOME_SYSTEM.md",
+    "release_annex": "../../constitution/C3_RELEASE_ANNEX_SHARED.md"
+  },
+  "routes": {
+    "PDM01": [
+      "C1 current ownership/integration",
+      "C2 current project-workspace UX audit",
+      "C3 current workflow/security/audit evidence",
+      "C4 current learning/evidence model"
+    ],
+    "PDM02": [
+      "C1 stable IDs/revisions/content-as-data",
+      "C4 competencies/prerequisites/evidence",
+      "C3 schema/content validation"
+    ],
+    "PDM03": [
+      "C4 assessment/remediation/mastery",
+      "C3 test-of-tests/regression",
+      "C1 canonical PDM ownership"
+    ],
+    "PDM04": [
+      "C1 providers/state/change integration",
+      "C2 project-state visualization/accessibility",
+      "C3 auth/audit/failure tests",
+      "C4 AI tutoring/evidence boundaries"
+    ],
+    "PDM05": [
+      "C1 Subject Factory/manifest/authoring",
+      "C2 responsive/accessibility",
+      "C4 learner evidence UI",
+      "C3 UX/browser regression"
+    ],
+    "PDM06": [
+      "C3 QA/security/audit/RC",
+      "C4 learning acceptance",
+      "C1 legacy/migration/owner checks",
+      "C2 final UX/a11y",
+      "release_annex production smoke handoff"
+    ]
+  }
+}

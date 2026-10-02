@@ -1,0 +1,571 @@
+{
+  "schemaVersion": "1.0.0",
+  "source": {
+    "title": "Учебный план МГТУ им. Н.Э. Баумана",
+    "programCode": "09.04.01/11",
+    "programNameRu": "Искусственный интеллект в автоматизированных системах обработки информации и управления",
+    "qualification": "Магистр",
+    "startYear": 2026,
+    "durationYears": 2,
+    "studyMode": "очная",
+    "faculty": "ИУ «Информатика и системы управления»",
+    "department": "ИУ5 «Системы обработки информации и управления»",
+    "officialCoreCredits": 120,
+    "officialCoreAcademicHours": 4320,
+    "sourceRule": "Russian titles and numeric workload are canonical. Vietnamese names are display translations only."
+  },
+  "semesters": [
+    {
+      "semester": 1,
+      "weeks": 17,
+      "credits": 30,
+      "hours": 1080
+    },
+    {
+      "semester": 2,
+      "weeks": 17,
+      "credits": 30,
+      "hours": 1080
+    },
+    {
+      "semester": 3,
+      "weeks": 17,
+      "credits": 30,
+      "hours": 1080
+    },
+    {
+      "semester": 4,
+      "weeks": 11,
+      "credits": 30,
+      "hours": 1080
+    }
+  ],
+  "units": [
+    {
+      "id": "foreign-language",
+      "nameRu": "Иностранный язык",
+      "nameVi": "Ngoại ngữ",
+      "type": "discipline",
+      "totalCredits": 4,
+      "totalHours": 144,
+      "offerings": [
+        {
+          "semester": 1,
+          "credits": 2,
+          "hours": 72,
+          "assessment": "Зчт"
+        },
+        {
+          "semester": 2,
+          "credits": 2,
+          "hours": 72,
+          "assessment": "Зчт"
+        }
+      ]
+    },
+    {
+      "id": "methodology-scientific-cognition",
+      "nameRu": "Методология научного познания",
+      "nameVi": "Phương pháp luận nhận thức khoa học",
+      "type": "discipline",
+      "totalCredits": 2,
+      "totalHours": 72,
+      "offerings": [
+        {
+          "semester": 1,
+          "credits": 2,
+          "hours": 72,
+          "assessment": "Зчт"
+        }
+      ]
+    },
+    {
+      "id": "analytical-models-asoiu",
+      "nameRu": "Аналитические модели автоматизированных систем обработки информации и управления",
+      "nameVi": "Mô hình phân tích của hệ thống tự động xử lý thông tin và điều khiển",
+      "type": "discipline",
+      "totalCredits": 4,
+      "totalHours": 144,
+      "offerings": [
+        {
+          "semester": 1,
+          "credits": 4,
+          "hours": 144,
+          "assessment": "Зчт",
+          "coursework": "КуР"
+        }
+      ]
+    },
+    {
+      "id": "multivariate-data-analysis-ai",
+      "nameRu": "Многомерный анализ данных в системах искусственного интеллекта",
+      "nameVi": "Phân tích dữ liệu đa chiều trong các hệ thống trí tuệ nhân tạo",
+      "type": "discipline",
+      "totalCredits": 5,
+      "totalHours": 180,
+      "offerings": [
+        {
+          "semester": 1,
+          "credits": 5,
+          "hours": 180,
+          "assessment": "Экз",
+          "coursework": "КуР"
+        }
+      ]
+    },
+    {
+      "id": "oop-design-asoiu",
+      "nameRu": "Объектно-ориентированное проектирование автоматизированных систем обработки информации и управления",
+      "nameVi": "Thiết kế hướng đối tượng các hệ thống tự động xử lý thông tin và điều khiển",
+      "type": "discipline",
+      "totalCredits": 6,
+      "totalHours": 216,
+      "offerings": [
+        {
+          "semester": 1,
+          "credits": 6,
+          "hours": 216,
+          "assessment": "Экз",
+          "coursework": "КуР"
+        }
+      ]
+    },
+    {
+      "id": "database-optimization-ml",
+      "nameRu": "Оптимизация баз данных систем машинного обучения",
+      "nameVi": "Tối ưu hóa cơ sở dữ liệu của các hệ thống học máy",
+      "type": "discipline",
+      "totalCredits": 4,
+      "totalHours": 144,
+      "offerings": [
+        {
+          "semester": 1,
+          "credits": 4,
+          "hours": 144,
+          "assessment": "Экз"
+        }
+      ]
+    },
+    {
+      "id": "entrepreneurship-basics",
+      "nameRu": "Основы предпринимательства",
+      "nameVi": "Cơ sở khởi nghiệp",
+      "type": "discipline",
+      "totalCredits": 2,
+      "totalHours": 72,
+      "offerings": [
+        {
+          "semester": 2,
+          "credits": 2,
+          "hours": 72,
+          "assessment": "Зчт"
+        }
+      ]
+    },
+    {
+      "id": "machine-learning-methods-asoiu",
+      "nameRu": "Методы машинного обучения в автоматизированных системах обработки информации и управления",
+      "nameVi": "Phương pháp học máy trong hệ thống tự động xử lý thông tin và điều khiển",
+      "type": "discipline",
+      "totalCredits": 3,
+      "totalHours": 108,
+      "offerings": [
+        {
+          "semester": 2,
+          "credits": 3,
+          "hours": 108,
+          "assessment": "РЭкз"
+        }
+      ]
+    },
+    {
+      "id": "reliability-models-asoiu",
+      "nameRu": "Модели надёжности АСОИУ",
+      "nameVi": "Mô hình độ tin cậy của АСОИУ",
+      "type": "discipline",
+      "totalCredits": 3,
+      "totalHours": 108,
+      "offerings": [
+        {
+          "semester": 2,
+          "credits": 3,
+          "hours": 108,
+          "assessment": "Экз"
+        }
+      ]
+    },
+    {
+      "id": "postrelational-databases",
+      "nameRu": "Постреляционные базы данных",
+      "nameVi": "Cơ sở dữ liệu hậu quan hệ",
+      "type": "discipline",
+      "totalCredits": 4,
+      "totalHours": 144,
+      "offerings": [
+        {
+          "semester": 2,
+          "credits": 4,
+          "hours": 144,
+          "assessment": "Экз"
+        }
+      ]
+    },
+    {
+      "id": "neural-network-systems-development",
+      "nameRu": "Разработка нейросетевых систем",
+      "nameVi": "Phát triển hệ thống mạng nơ-ron",
+      "type": "discipline",
+      "totalCredits": 4,
+      "totalHours": 144,
+      "offerings": [
+        {
+          "semester": 2,
+          "credits": 4,
+          "hours": 144,
+          "assessment": "Экз"
+        }
+      ]
+    },
+    {
+      "id": "time-series-analysis",
+      "nameRu": "Анализ временных рядов",
+      "nameVi": "Phân tích chuỗi thời gian",
+      "type": "discipline",
+      "totalCredits": 4,
+      "totalHours": 144,
+      "offerings": [
+        {
+          "semester": 3,
+          "credits": 4,
+          "hours": 144,
+          "assessment": "Экз"
+        }
+      ]
+    },
+    {
+      "id": "ai-business-analytics",
+      "nameRu": "Искусственный интеллект в задачах бизнес-аналитики",
+      "nameVi": "Trí tuệ nhân tạo trong các bài toán phân tích kinh doanh",
+      "type": "discipline",
+      "totalCredits": 4,
+      "totalHours": 144,
+      "offerings": [
+        {
+          "semester": 3,
+          "credits": 4,
+          "hours": 144,
+          "assessment": "Экз"
+        }
+      ]
+    },
+    {
+      "id": "information-systems-design-management",
+      "nameRu": "Управление проектированием информационных систем",
+      "nameVi": "Quản lý thiết kế hệ thống thông tin",
+      "type": "discipline",
+      "totalCredits": 3,
+      "totalHours": 108,
+      "offerings": [
+        {
+          "semester": 3,
+          "credits": 3,
+          "hours": 108,
+          "assessment": "Зчт"
+        }
+      ]
+    },
+    {
+      "id": "software-development-technologies",
+      "nameRu": "Технологии разработки программного обеспечения",
+      "nameVi": "Công nghệ phát triển phần mềm",
+      "type": "discipline",
+      "totalCredits": 6,
+      "totalHours": 216,
+      "offerings": [
+        {
+          "semester": 1,
+          "credits": 4,
+          "hours": 144,
+          "assessment": "Экз"
+        },
+        {
+          "semester": 2,
+          "credits": 2,
+          "hours": 72,
+          "coursework": "КуР"
+        }
+      ]
+    },
+    {
+      "id": "research-data-processing-analysis",
+      "nameRu": "НИР по обработке и анализу данных",
+      "nameVi": "Nghiên cứu khoa học về xử lý và phân tích dữ liệu",
+      "type": "research_course",
+      "totalCredits": 2,
+      "totalHours": 72,
+      "offerings": [
+        {
+          "semester": 3,
+          "credits": 2,
+          "hours": 72,
+          "coursework": "КуР"
+        }
+      ]
+    },
+    {
+      "id": "ergonomic-analysis-information-systems",
+      "nameRu": "Эргономический анализ систем обработки и отображения информации",
+      "nameVi": "Phân tích công thái học các hệ thống xử lý và hiển thị thông tin",
+      "type": "discipline",
+      "totalCredits": 6,
+      "totalHours": 216,
+      "offerings": [
+        {
+          "semester": 3,
+          "credits": 6,
+          "hours": 216,
+          "assessment": "Экз",
+          "coursework": "КуР"
+        }
+      ]
+    },
+    {
+      "id": "mivar-logical-ai",
+      "nameRu": "Миварные технологии логического искусственного интеллекта",
+      "nameVi": "Công nghệ MIVAR của trí tuệ nhân tạo logic",
+      "type": "discipline",
+      "totalCredits": 4,
+      "totalHours": 144,
+      "offerings": [
+        {
+          "semester": 4,
+          "credits": 4,
+          "hours": 144,
+          "assessment": "Экз",
+          "coursework": "КуР"
+        }
+      ]
+    },
+    {
+      "id": "sts-lifecycle-processes",
+      "nameRu": "Описание процессов жизненного цикла СТС",
+      "nameVi": "Mô tả các quy trình vòng đời СТС",
+      "type": "discipline",
+      "totalCredits": 4,
+      "totalHours": 144,
+      "offerings": [
+        {
+          "semester": 4,
+          "credits": 4,
+          "hours": 144,
+          "assessment": "Экз"
+        }
+      ]
+    },
+    {
+      "id": "project-technological-practice",
+      "nameRu": "Проектно-технологическая практика",
+      "nameVi": "Thực tập dự án - công nghệ",
+      "type": "practice",
+      "totalCredits": 2,
+      "totalHours": 72,
+      "offerings": [
+        {
+          "semester": 2,
+          "credits": 2,
+          "hours": 72,
+          "assessment": "ДЗчт"
+        }
+      ]
+    },
+    {
+      "id": "research-work",
+      "nameRu": "Научно-исследовательская работа",
+      "nameVi": "Công tác nghiên cứu khoa học",
+      "type": "research",
+      "totalCredits": 21,
+      "totalHours": 756,
+      "offerings": [
+        {
+          "semester": 1,
+          "credits": 3,
+          "hours": 108,
+          "assessment": "ДЗчт"
+        },
+        {
+          "semester": 2,
+          "credits": 4,
+          "hours": 144,
+          "assessment": "ДЗчт"
+        },
+        {
+          "semester": 3,
+          "credits": 7,
+          "hours": 252,
+          "assessment": "ДЗчт"
+        },
+        {
+          "semester": 4,
+          "credits": 7,
+          "hours": 252,
+          "assessment": "ДЗчт"
+        }
+      ]
+    },
+    {
+      "id": "operational-practice",
+      "nameRu": "Эксплуатационная практика",
+      "nameVi": "Thực tập vận hành / khai thác",
+      "type": "practice",
+      "totalCredits": 3,
+      "totalHours": 108,
+      "offerings": [
+        {
+          "semester": 2,
+          "credits": 3,
+          "hours": 108,
+          "assessment": "ДЗчт"
+        }
+      ]
+    },
+    {
+      "id": "pedagogical-practice",
+      "nameRu": "Педагогическая практика",
+      "nameVi": "Thực tập sư phạm",
+      "type": "practice",
+      "totalCredits": 2,
+      "totalHours": 72,
+      "offerings": [
+        {
+          "semester": 2,
+          "credits": 1,
+          "hours": 36,
+          "assessment": "ДЗчт"
+        },
+        {
+          "semester": 3,
+          "credits": 1,
+          "hours": 36,
+          "assessment": "ДЗчт"
+        }
+      ]
+    },
+    {
+      "id": "prediploma-practice",
+      "nameRu": "Преддипломная практика",
+      "nameVi": "Thực tập tiền tốt nghiệp",
+      "type": "practice",
+      "totalCredits": 3,
+      "totalHours": 108,
+      "offerings": [
+        {
+          "semester": 4,
+          "credits": 3,
+          "hours": 108,
+          "assessment": "ДЗчт"
+        }
+      ]
+    },
+    {
+      "id": "thesis-preparation-defense",
+      "nameRu": "Подготовка и защита ВКР",
+      "nameVi": "Chuẩn bị và bảo vệ ВКР / luận văn tốt nghiệp Thạc sĩ",
+      "type": "thesis",
+      "totalCredits": 9,
+      "totalHours": 324,
+      "offerings": [
+        {
+          "semester": 4,
+          "credits": 9,
+          "hours": 324,
+          "assessment": "ГЭК"
+        }
+      ]
+    }
+  ],
+  "electives": [
+    {
+      "id": "elective-group-1",
+      "semester": 3,
+      "totalCredits": 3,
+      "totalHours": 108,
+      "assessment": "Зчт",
+      "selectedOption": null,
+      "options": [
+        {
+          "id": "elective-1-information-protection",
+          "nameRu": "Защита информации в автоматизированных системах обработки информации и управления",
+          "nameVi": "Bảo vệ thông tin trong hệ thống tự động xử lý thông tin và điều khiển"
+        },
+        {
+          "id": "elective-1-information-security",
+          "nameRu": "Информационная безопасность автоматизированных систем обработки информации и управления",
+          "nameVi": "An toàn thông tin của hệ thống tự động xử lý thông tin và điều khiển"
+        }
+      ]
+    },
+    {
+      "id": "elective-group-2",
+      "semester": 4,
+      "totalCredits": 3,
+      "totalHours": 108,
+      "assessment": "Экз",
+      "selectedOption": null,
+      "options": [
+        {
+          "id": "elective-2-big-data",
+          "nameRu": "Технологии обработки больших данных",
+          "nameVi": "Công nghệ xử lý dữ liệu lớn"
+        },
+        {
+          "id": "elective-2-multimedia",
+          "nameRu": "Технологии разработки мультимедиа систем",
+          "nameVi": "Công nghệ phát triển hệ thống đa phương tiện"
+        }
+      ]
+    }
+  ],
+  "facultatives": [
+    {
+      "id": "fac-web-development-vk1",
+      "nameRu": "Программа по веб-разработке (модуль 1 от VK)",
+      "totalCredits": 42,
+      "totalHours": 1512
+    },
+    {
+      "id": "fac-ios-vk4",
+      "nameRu": "Мобильная разработка на IOS (модуль 4 от VK)",
+      "totalCredits": 20,
+      "totalHours": 720
+    },
+    {
+      "id": "fac-android-vk3",
+      "nameRu": "Мобильная разработка на Android (модуль 3 от VK)",
+      "totalCredits": 19,
+      "totalHours": 684
+    },
+    {
+      "id": "fac-ml-fundamentals-vk2",
+      "nameRu": "Основы машинного обучения (модуль 2 от VK)",
+      "totalCredits": 41,
+      "totalHours": 1476
+    },
+    {
+      "id": "fac-anti-corruption-rf",
+      "nameRu": "Антикоррупционная деятельность в Российской Федерации",
+      "totalCredits": 2,
+      "totalHours": 72
+    },
+    {
+      "id": "fac-creativity-heuristics-management",
+      "nameRu": "Менеджмент креативности и эвристики",
+      "totalCredits": 2,
+      "totalHours": 72
+    }
+  ],
+  "notes": [
+    "Elective groups are core curriculum entries and must be counted as 3 credits in S3 and 3 credits in S4.",
+    "Do not expand СТС without an authoritative source.",
+    "НИР по обработке и анализу данных is distinct from longitudinal Научно-исследовательская работа."
+  ]
+}

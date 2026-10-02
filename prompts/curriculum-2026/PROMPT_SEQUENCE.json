@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "1.0.0",
+  "masterPrompt": "prompts/curriculum-2026/CURRICULUM_MASTER_PROMPT.md",
+  "execution": [
+    "P01",
+    "P02",
+    "P03",
+    "P04",
+    "P05",
+    "P06",
+    "P07",
+    "P08",
+    "P09",
+    "P10",
+    "P11",
+    "P12",
+    "P13",
+    "P14",
+    "P15",
+    "P16",
+    "P17"
+  ],
+  "futureOnly": [
+    "P18"
+  ],
+  "advanceRule": "Do not advance until the current gate passes. Auto-fix within the phase. Merge/publish only at P16 after P01-P15 PASS."
+}

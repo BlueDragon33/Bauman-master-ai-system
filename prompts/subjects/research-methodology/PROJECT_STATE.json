@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "research-methodology",
+  "constitution": "prompts/CONSTITUTION.md",
+  "constitutionLibrary": "prompts/constitution/",
+  "masterPrompt": "prompts/subjects/research-methodology/RSW_MASTER_PROMPT.md",
+  "router": "prompts/subjects/research-methodology/RSW_CONSTITUTION_ROUTER.json",
+  "sourceArchive": "prompt-archives/research-methodology.zip",
+  "promptArchitectureStatus": "COMPLETE",
+  "repositoryExecutionStatus": "NOT_STARTED_OR_NEEDS_RECONCILIATION",
+  "status": "READY_FOR_BASELINE_RECONCILIATION",
+  "sequence": [
+    "RSW01",
+    "RSW02",
+    "RSW03",
+    "RSW04",
+    "RSW05",
+    "RSW06"
+  ],
+  "completedModules": [],
+  "needsRevalidation": [],
+  "activeModule": "RSW01",
+  "lastCompletedModule": null,
+  "validatedSha": null,
+  "evidence": [],
+  "blockers": [],
+  "nextAction": "Run RSW01 against current repository reality before canonical implementation work."
+}

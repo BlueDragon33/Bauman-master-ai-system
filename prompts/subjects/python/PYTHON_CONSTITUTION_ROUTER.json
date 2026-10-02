@@ -1,0 +1,228 @@
+{
+  "schemaVersion": "1.0",
+  "purpose": "Load only the active Python prompt plus relevant global constitution sections.",
+  "globalConstitutions": {
+    "C1": "prompts/CONSTITUTION.md#c1--extensible-platform-architecture",
+    "C2": "prompts/CONSTITUTION.md#c2--future-professional-uiux",
+    "C3": "prompts/CONSTITUTION.md#c3--professional-qa--auto-fix",
+    "C4": "prompts/CONSTITUTION.md#c4--real-learning--outcome-system"
+  },
+  "modules": {
+    "PYTHON01": {
+      "prompt": "PYTHON01_FORENSIC_BASELINE.md",
+      "load": {
+        "C1": [
+          "PLATFORM KERNEL",
+          "CONTENT ENGINE",
+          "SUBJECT FACTORY",
+          "CAPABILITY REGISTRY",
+          "BACKWARD COMPATIBILITY",
+          "MIGRATION STRATEGY"
+        ],
+        "C2": [
+          "APP SHELL",
+          "RESPONSIVE STRATEGY",
+          "ACCESSIBILITY",
+          "UX ACCEPTANCE"
+        ],
+        "C3": [
+          "STARTING RULE",
+          "TEST SCOPE MODEL",
+          "DATA PERSISTENCE TEST",
+          "STATE CONSISTENCY TEST",
+          "REGRESSION ZONES",
+          "TEST EVIDENCE"
+        ],
+        "C4": [
+          "FOUR CONCEPTS",
+          "EVIDENCE TRUTHFULNESS",
+          "AUTHORITY SEPARATION",
+          "COMPETENCY GRAPH"
+        ]
+      }
+    },
+    "PYTHON02": {
+      "prompt": "PYTHON02_ACADEMIC_BLUEPRINT_CANONICAL_MODEL.md",
+      "load": {
+        "C1": [
+          "CONTENT ENGINE",
+          "CONTENT-AS-DATA",
+          "SUBJECT FACTORY",
+          "LESSON FACTORY",
+          "SCHEMA VERSIONING",
+          "BACKWARD COMPATIBILITY"
+        ],
+        "C3": [
+          "SCHEMA TEST",
+          "CONTENT QUALITY TEST",
+          "BACKWARD COMPATIBILITY TEST",
+          "MIGRATION TEST"
+        ],
+        "C4": [
+          "ACADEMIC STRUCTURE",
+          "COMPETENCY GRAPH",
+          "PREREQUISITE GRAPH",
+          "LEARNING CONTRACT",
+          "CONTENT PROVENANCE",
+          "CONTENT AUTHORITY LEVEL",
+          "SCHEMA VERSIONING",
+          "REAL OUTPUT"
+        ]
+      }
+    },
+    "PYTHON03": {
+      "prompt": "PYTHON03_CODE_REASONING_DEBUGGING_ASSESSMENT.md",
+      "load": {
+        "C1": [
+          "STORAGE ABSTRACTION",
+          "EVENT BUS",
+          "BACKWARD COMPATIBILITY"
+        ],
+        "C2": [
+          "CONTEXTUAL UI",
+          "ERROR STATE",
+          "ACCESSIBILITY"
+        ],
+        "C3": [
+          "ASSESSMENT TEST",
+          "DATA PERSISTENCE TEST",
+          "STATE CONSISTENCY TEST",
+          "CONCURRENCY TEST",
+          "IDEMPOTENCY TEST",
+          "FAILURE INJECTION"
+        ],
+        "C4": [
+          "EVIDENCE MODEL",
+          "EVIDENCE TRUTHFULNESS",
+          "MASTERY ENGINE",
+          "ERROR NOTEBOOK",
+          "ADAPTIVE LEARNING BOUNDARY",
+          "PERSONALIZATION",
+          "TRANSFER TASK",
+          "REAL OUTPUT"
+        ]
+      }
+    },
+    "PYTHON04": {
+      "prompt": "PYTHON04_RUNTIME_TOOLCHAIN_DATA_AI_INTELLIGENCE.md",
+      "load": {
+        "C1": [
+          "EXTENSION / ADD-ON ENGINE",
+          "CAPABILITY REGISTRY",
+          "UNIVERSAL RESOURCE ADAPTER",
+          "AI LAYER",
+          "OFFLINE FIRST",
+          "SECURITY"
+        ],
+        "C2": [
+          "RESOURCE VIEWER",
+          "INTERACTION DESIGN",
+          "MOBILE",
+          "ACCESSIBILITY",
+          "ERROR STATE",
+          "AI UI",
+          "AI RESPONSE UI"
+        ],
+        "C3": [
+          "PLUGIN TEST",
+          "RESOURCE TEST",
+          "AI FEATURE TEST",
+          "AI UX TEST",
+          "OFFLINE TEST",
+          "PERFORMANCE TEST",
+          "SECURITY BASIC TEST",
+          "FAILURE INJECTION"
+        ],
+        "C4": [
+          "AI ROLE",
+          "AI FEEDBACK SAFETY",
+          "AUTHORITY SEPARATION",
+          "EVIDENCE PROVIDER CONTRACT",
+          "ADAPTIVE LEARNING BOUNDARY",
+          "TRANSFER TASK",
+          "REAL OUTPUT"
+        ]
+      }
+    },
+    "PYTHON05": {
+      "prompt": "PYTHON05_LEARNING_EXPERIENCE_AUTHORING_INTEGRATION.md",
+      "load": {
+        "C1": [
+          "SUBJECT FACTORY",
+          "LESSON FACTORY",
+          "IMPORT CENTER",
+          "NO-CODE ADMIN AUTHORING",
+          "CONTENT LIFECYCLE",
+          "PLUGIN LIFECYCLE",
+          "OFFLINE FIRST",
+          "SECURITY"
+        ],
+        "C2": [
+          "APP SHELL",
+          "DESIGN SYSTEM PACKAGE",
+          "COMPONENT CONTRACT",
+          "LAYOUT CONTRACT",
+          "SLOT SYSTEM",
+          "RESOURCE VIEWER",
+          "RESPONSIVE STRATEGY",
+          "ACCESSIBILITY",
+          "VISUAL REGRESSION",
+          "UX ACCEPTANCE"
+        ],
+        "C3": [
+          "USER JOURNEY MATRIX",
+          "CROSS-FEATURE TEST",
+          "RESPONSIVE TEST",
+          "TOUCH TEST",
+          "VISUAL REGRESSION",
+          "LEARNING EXPERIENCE TEST"
+        ],
+        "C4": [
+          "SUBJECT FACTORY ACADEMIC CONTRACT",
+          "LESSON FACTORY ACADEMIC CONTRACT",
+          "CONTENT AUTHOR UX",
+          "LEARNING EXPERIENCE MODEL",
+          "FOUR-CONSTITUTION RULE"
+        ]
+      }
+    },
+    "PYTHON06": {
+      "prompt": "PYTHON06_ACCEPTANCE_HARDENING_RC_READINESS.md",
+      "load": {
+        "C1": [
+          "MIGRATION STRATEGY",
+          "OFFLINE FIRST",
+          "SECURITY",
+          "MERGE RULE",
+          "DEPLOYMENT RULE",
+          "BACKWARD COMPATIBILITY"
+        ],
+        "C2": [
+          "RESPONSIVE STRATEGY",
+          "ACCESSIBILITY",
+          "VISUAL REGRESSION",
+          "UX ACCEPTANCE"
+        ],
+        "C3": [
+          "USER JOURNEY MATRIX",
+          "CROSS-FEATURE TEST",
+          "REGRESSION ZONES",
+          "RELEASE CANDIDATE TEST",
+          "PREVIEW RELEASE TEST",
+          "PRODUCTION SAFETY",
+          "DEFINITION OF DONE",
+          "ROOT CAUSE RULE",
+          "AUTO-FIX LOOP"
+        ],
+        "C4": [
+          "ACADEMIC REGRESSION",
+          "EVIDENCE TRUTHFULNESS",
+          "AUTHORITY SEPARATION",
+          "FOUR-CONSTITUTION RULE"
+        ]
+      }
+    }
+  },
+  "executionRule": "Load PYTHON_MASTER_PROMPT + STATUS + active module + only listed constitution sections + current diff/evidence. Broaden only when evidence requires.",
+  "productionRule": "PYTHON06 creates exact RC readiness and a Python production smoke profile. Production deployment is handled by the shared release procedure, not a Python-specific platform fork."
+}

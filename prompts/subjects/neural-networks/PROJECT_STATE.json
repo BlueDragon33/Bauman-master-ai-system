@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "neural-networks",
+  "constitution": "prompts/CONSTITUTION.md",
+  "constitutionLibrary": "prompts/constitution/",
+  "masterPrompt": "prompts/subjects/neural-networks/NN_MASTER_PROMPT.md",
+  "router": "prompts/subjects/neural-networks/NN_CONSTITUTION_ROUTER.json",
+  "sourceArchive": "prompt-archives/neural-networks.zip",
+  "promptArchitectureStatus": "COMPLETE",
+  "repositoryExecutionStatus": "NOT_STARTED_OR_NEEDS_RECONCILIATION",
+  "status": "READY_FOR_BASELINE_RECONCILIATION",
+  "sequence": [
+    "NN01",
+    "NN02",
+    "NN03",
+    "NN04",
+    "NN05",
+    "NN06"
+  ],
+  "completedModules": [],
+  "needsRevalidation": [],
+  "activeModule": "NN01",
+  "lastCompletedModule": null,
+  "validatedSha": null,
+  "evidence": [],
+  "blockers": [],
+  "nextAction": "Run NN01 against current repository reality before canonical implementation work."
+}

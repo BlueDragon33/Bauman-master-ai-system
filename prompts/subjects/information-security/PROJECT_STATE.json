@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "information-security",
+  "constitution": "prompts/CONSTITUTION.md",
+  "constitutionLibrary": "prompts/constitution/",
+  "masterPrompt": "prompts/subjects/information-security/SEC_MASTER_PROMPT.md",
+  "router": "prompts/subjects/information-security/SEC_CONSTITUTION_ROUTER.json",
+  "sourceArchive": "prompt-archives/information-security.zip",
+  "promptArchitectureStatus": "COMPLETE",
+  "repositoryExecutionStatus": "NOT_STARTED_OR_NEEDS_RECONCILIATION",
+  "status": "READY_FOR_BASELINE_RECONCILIATION",
+  "sequence": [
+    "SEC01",
+    "SEC02",
+    "SEC03",
+    "SEC04",
+    "SEC05",
+    "SEC06"
+  ],
+  "completedModules": [],
+  "needsRevalidation": [],
+  "activeModule": "SEC01",
+  "lastCompletedModule": null,
+  "validatedSha": null,
+  "evidence": [],
+  "blockers": [],
+  "nextAction": "Run SEC01 against current repository reality before canonical implementation work."
+}

@@ -1,0 +1,49 @@
+{
+  "subject": "ergonomics-hci",
+  "global_constitutions": {
+    "C1": "../../constitution/C1_EXTENSIBLE_PLATFORM_ARCHITECTURE.md",
+    "C2": "../../constitution/C2_FUTURE_PROFESSIONAL_UI_UX.md",
+    "C3": "../../constitution/C3_PROFESSIONAL_QA_AUTO_FIX.md",
+    "C4": "../../constitution/C4_REAL_LEARNING_OUTCOME_SYSTEM.md",
+    "release_annex": "../../constitution/C3_RELEASE_ANNEX_SHARED.md"
+  },
+  "routes": {
+    "HCI01": [
+      "C1 ownership/integration",
+      "C2 current interface/accessibility audit",
+      "C3 tests/security/privacy",
+      "C4 learning/evidence"
+    ],
+    "HCI02": [
+      "C1 content-as-data/stable IDs",
+      "C2 semantic UI/accessibility",
+      "C4 competencies/evidence",
+      "C3 schema validation"
+    ],
+    "HCI03": [
+      "C4 assessment/remediation",
+      "C2 usability/accessibility rationale",
+      "C3 test-of-tests",
+      "C1 canonical HCI ownership"
+    ],
+    "HCI04": [
+      "C1 instrumentation/providers",
+      "C2 interaction/accessibility",
+      "C3 privacy/security/failure tests",
+      "C4 AI/evidence boundaries"
+    ],
+    "HCI05": [
+      "C1 Subject Factory/authoring",
+      "C2 responsive/accessibility",
+      "C4 learner evidence UI",
+      "C3 UX regression"
+    ],
+    "HCI06": [
+      "C3 QA/security/privacy/RC",
+      "C4 learning acceptance",
+      "C1 legacy/migration",
+      "C2 final usability/accessibility",
+      "release_annex smoke handoff"
+    ]
+  }
+}
