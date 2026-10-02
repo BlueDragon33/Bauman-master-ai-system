@@ -2,6 +2,9 @@ import fs from 'node:fs';
 import assert from 'node:assert/strict';
 const workflow=fs.readFileSync('.github/workflows/deploy-bauman-production.yml','utf8');
 const helper=fs.readFileSync('scripts/russian-release-annex-evidence.mjs','utf8');
+const runtimeWorker=fs.readFileSync('cloudflare/runtime-worker.mjs','utf8');
+const controlTemplate=fs.readFileSync('control-service/wrangler.production.example.jsonc','utf8');
+const runtimeTemplate=fs.readFileSync('wrangler.runtime.production.example.jsonc','utf8');
 for(const marker of [
  'Verify exact preview revision before production',
  'Materialize immutable Russian release preflight evidence',
@@ -9,7 +12,7 @@ for(const marker of [
  'Export Bauman production D1 backup before migration',
  'Apply migrations to Bauman production D1',
  'Verify Russian production identity, security, offline contract and content drift',
- 'Run Russian production offline browser verification',
+ 'Run Russian production subject smoke browser acceptance',
  'Observe exact Russian production revision',
  'Close Russian Release Annex state machine',
  'Upload Russian release closure evidence'
@@ -18,12 +21,17 @@ for(const evidence of [
  'RUSSIAN_RC_MANIFEST.json',
  'RUSSIAN_PRODUCTION_TARGET_RECORD.json',
  'RUSSIAN_DEPLOYMENT_ARTIFACT_IDENTITY.json',
+ 'RUSSIAN_PRODUCTION_CONFIG_IDENTITY.json',
  'RUSSIAN_BACKUP_DECISION_RESULT.json',
  'RUSSIAN_MIGRATION_RESULT.json',
  'RUSSIAN_PRODUCTION_SMOKE_REPORT.md',
  'RUSSIAN_PRODUCTION_OFFLINE_PWA_VERIFY.md',
  'RUSSIAN_PRODUCTION_SECURITY_HEADERS_VERIFY.md',
+ 'RUSSIAN_PRODUCTION_CONFIG_PROFILE_VERIFY.json',
  'RUSSIAN_PRODUCTION_BUILD_CONTENT_DRIFT_CHECK.md',
+ 'RUSSIAN_PRODUCTION_RU08_JOURNEYS.json',
+ 'RUSSIAN_PRODUCTION_RU08_AUTHOR.json',
+ 'RUSSIAN_PRODUCTION_OFFLINE_BROWSER.json',
  'RUSSIAN_PRODUCTION_OBSERVATION_REPORT.md',
  'RUSSIAN_PRODUCTION_INCIDENT_REGISTER.json',
  'RUSSIAN_FINAL_PRODUCTION_STATE_RECORD.json',
@@ -32,6 +40,14 @@ for(const evidence of [
 ])assert(helper.includes(evidence),'release helper missing evidence output: '+evidence);
 assert(helper.includes("state:'STABLE'"),'STABLE final state missing');
 assert(helper.includes('OBSERVATION_PASS'),'observation gate missing');
+assert(workflow.includes('tests/russian-ru08-journeys-browser.mjs'),'production learner journey smoke missing');
+assert(workflow.includes('tests/russian-ru08-author-browser.mjs'),'production author journey smoke missing');
+assert(workflow.includes('tests/russian-offline-shell-browser.mjs'),'production offline browser smoke missing');
+assert(helper.includes('configFingerprint'),'release helper must verify live production config fingerprint');
+assert.match(runtimeWorker,/microphone=\(self\)/,'production runtime must permit same-origin microphone for Russian speaking');
+assert.doesNotMatch(runtimeWorker,/microphone=\(\)/,'production runtime must not globally disable microphone');
+assert(controlTemplate.includes('__BAUMAN_CONFIG_FINGERPRINT__'),'control production config fingerprint missing');
+assert(runtimeTemplate.includes('__BAUMAN_CONFIG_FINGERPRINT__'),'runtime production config fingerprint missing');
 assert(workflow.indexOf('Close Russian Release Annex state machine')<workflow.indexOf('Production deployment summary'),'summary must occur only after closure');
 assert(!/Bauman production deployment completed\./.test(workflow),'workflow must not declare completion immediately after deploy/smoke');
-console.log(JSON.stringify({ok:true,annexGates:10,evidenceOutputs:14}));
+console.log(JSON.stringify({ok:true,annexGates:10,evidenceOutputs:19,productionBrowserJourneys:3,configFingerprint:true,microphonePolicy:'self'}));
