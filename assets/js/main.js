@@ -35,7 +35,7 @@ function subjectName(id){return state.subjects[id]?.name || DATA.subjects.find(s
 function stageShort(id){return ({all:'Tất cả',prepare:'GĐ1',preparatory:'GĐ2',bauman:'GĐ3',m1:'HK1',m2:'HK2',m3:'HK3',m4:'HK4'}[id]||String(id).toUpperCase())}
 function stageLabel(id){return DATA.stages.find(s=>s.id===id)?.name || DATA.semesters.find(s=>s.id===id)?.name || id}
 function courseTypeLabel(type){return ({self_prep:'Tự chuẩn bị',prep_core:'Dự bị chính',prep_support:'Bổ trợ dự bị',official_candidate:'Chính khóa cần xác minh',nir_core:'НИР',vkr_core:'ВКР',thesis_module:'Module luận văn',support_module:'Module hỗ trợ',foundation:'Nền tảng',official:'Chính khóa'}[type]||String(type||'Học phần'))}
-function confidenceLabel(c){return ({self:'Tự thiết kế',institutional:'Theo khung dự bị',candidate:'Cần đối chiếu учебный plan',official_plan:'Theo учебный план 2026',program_flow:'Theo luồng НИР/ВКР'}[c?.confidence]||'Theo lộ trình')}
+function confidenceLabel(c){return ({self:'Tự thiết kế',institutional:'Theo khung dự bị',candidate:'Cần đối chiếu учебный план',official_plan:'Theo учебный план 2026',program_flow:'Theo luồng НИР/ВКР'}[c?.confidence]||'Theo lộ trình')}
 function courseTrackLabel(track){return ({ugv_core:'UGV lõi',usv_extension:'USV mở rộng',support:'Bổ trợ',base:'Nền bắt buộc'}[track]||'Theo lộ trình')}
 function chipsHTML(items,cls='tag'){return Array.isArray(items)&&items.length?items.map(x=>`<span class="${cls}">${esc(x)}</span>`).join(''):''}
 function isMemorizeSubject(id){return ['russian','research','foundation'].includes(id)}
