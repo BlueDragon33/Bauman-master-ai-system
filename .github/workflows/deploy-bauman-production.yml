@@ -164,10 +164,10 @@ jobs:
       - name: Production deployment summary
         shell: bash
         run: |
-          echo 'Bauman production deployment completed.'
+          echo 'Bauman production artifact deployment completed; P17 closure verification is still required.'
           echo 'Control Worker: bauman-control'
           echo 'D1: bauman-control-db'
           echo 'Learning Worker: bauman-master-ai'
           echo "Revision: $GITHUB_SHA"
           echo 'Promotion source: exact same revision verified live in Cloudflare preview before production.'
-          echo 'Manager-owned BAUMAN_CONTROL_SERVICE_SECRET preserved; Bauman deploy does not rotate the shared control-plane secret.'
+          echo 'Manager-owned BAUMAN_CONTROL_SERVICE_SECRET preserved; Bauman deploy does not rotate the shared control-plane secret.'\n          echo 'P17 state: ARTIFACT_DEPLOYED — do not call STABLE until Russian Production Release Closure succeeds on this exact SHA.'

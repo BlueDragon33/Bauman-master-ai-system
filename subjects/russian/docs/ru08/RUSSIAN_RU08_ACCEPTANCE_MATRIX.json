@@ -62,5 +62,45 @@
     "keyboard-screen-reader",
     "plugin-resource-failure",
     "old-package-compatibility"
-  ]
+  ],
+  "executableEvidence": {
+    "browser": "tests/russian-ru05-ru08-acceptance-browser.mjs",
+    "offline": "tests/russian-offline-shell-browser.mjs",
+    "static": "subjects/russian/scripts/validate-ru05-ru08-runtime-compliance.mjs",
+    "journeys": {
+      "beginner": [
+        "tests/russian-future-ui-browser.mjs",
+        "tests/russian-p4-assessment-mastery-browser.mjs"
+      ],
+      "survival": [
+        "tests/russian-ru05-ru08-acceptance-browser.mjs",
+        "P11-LIFE-ROOMMATE"
+      ],
+      "university": [
+        "tests/russian-ru05-ru08-acceptance-browser.mjs",
+        "P11-LAB-TASK"
+      ],
+      "technical": [
+        "tests/russian-ru05-ru08-acceptance-browser.mjs",
+        "R16-production-workbench"
+      ],
+      "research": [
+        "tests/russian-ru05-ru08-acceptance-browser.mjs",
+        "R20-production-workbench",
+        "P11-RESEARCH-NIR",
+        "P11-DEFENSE-COMMISSION"
+      ],
+      "author": [
+        "tests/russian-ru05-ru08-acceptance-browser.mjs",
+        "subjects/russian/editor.html"
+      ]
+    },
+    "failureCoverage": {
+      "micSttFallback": "subjects/russian/scripts/test-p6-speech-interaction-runtime.mjs",
+      "offlineReload": "tests/russian-offline-shell-browser.mjs",
+      "mobileOverflow": "tests/russian-ru05-ru08-acceptance-browser.mjs",
+      "keyboardModal": "tests/russian-future-ui-browser.mjs",
+      "aiBoundary": "tests/russian-ru05-ru08-acceptance-browser.mjs"
+    }
+  }
 }

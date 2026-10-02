@@ -14,7 +14,7 @@
     const flow=window.RussianLearningFlow?.get?.()||{};
     const vocab=window.RussianVocabSRS?.context?.()||null;
     const speaking=window.RussianSpeakingCoach?.context?.()||null;
-    const academic=window.RussianAcademicLanguage?.context?.()||null;
+    const academic=window.RussianProductionWorkbench?.context?.()||window.RussianAcademicLanguage?.context?.()||null;
     const lessonId=clean(core.lessonId)||clean(window.RussianLearningFlow?.activeLessonId?.());
     const reviewQueue=Object.values(learning.reviewQueue||{});
     const reviewIds=Object.keys(learning.reviewQueue||{});

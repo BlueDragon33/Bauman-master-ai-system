@@ -91,6 +91,10 @@ jobs:
           node --check tests/russian-p4-assessment-mastery-browser.mjs
           node --check subjects/russian/assets/russian-future-ui.js
           node --check tests/russian-future-ui-browser.mjs
+          node --check tests/russian-ru05-ru08-acceptance-browser.mjs
+          node --check subjects/russian/assets/scenario-runtime.js
+          node --check subjects/russian/assets/production-workbench.js
+          node --check subjects/russian/assets/authoring-workbench.js
           node --check subjects/russian/assets/listen-write-factory.js
           node --check subjects/russian/assets/ai-mentor-guard.js
           node --check subjects/programming/assets/core.js
@@ -154,6 +158,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-p1-future-ui-source
         run: node tests/russian-future-ui-browser.mjs
+      - name: Run Russian RU05-RU08 executable acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-ru05-ru08-source
+        run: node tests/russian-ru05-ru08-acceptance-browser.mjs
       - name: Run Russian handwriting acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
@@ -223,6 +232,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-p1-future-ui-package
         run: node tests/russian-future-ui-browser.mjs
+      - name: Run packaged Russian RU05-RU08 executable acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-ru05-ru08-package
+        run: node tests/russian-ru05-ru08-acceptance-browser.mjs
       - name: Run packaged Russian handwriting acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
@@ -253,7 +267,7 @@ jobs:
           path: |
             artifacts/russian-p1-forensic-source
             artifacts/russian-p4-assessment-source
-            artifacts/russian-p1-future-ui-source
+            artifacts/russian-p1-future-ui-source\n            artifacts/russian-ru05-ru08-source
             artifacts/russian-p1-handwriting-source
             artifacts/russian-p1-capability-hub-source
             artifacts/russian-p1-deeplink-source
@@ -263,7 +277,7 @@ jobs:
             artifacts/russian-p1-listen-write-source
             artifacts/russian-p1-forensic-package
             artifacts/russian-p4-assessment-package
-            artifacts/russian-p1-future-ui-package
+            artifacts/russian-p1-future-ui-package\n            artifacts/russian-ru05-ru08-package
             artifacts/russian-p1-handwriting-package
             artifacts/russian-p1-deeplink-package
             artifacts/russian-p1-route-receipt-package

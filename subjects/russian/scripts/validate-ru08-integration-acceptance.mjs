@@ -54,6 +54,10 @@ assert.equal(validateCandidate(generated,{requirePromotion:true}).ok,false,'gene
 
 for(const k of ['beginner','survival','university','technical','research','author'])assert(Array.isArray(acceptance.journeys[k])&&acceptance.journeys[k].length,'missing acceptance journey '+k);
 assert(acceptance.failureMatrix.length>=17,'failure matrix incomplete');
+assert.equal(acceptance.executableEvidence?.browser,'tests/russian-ru05-ru08-acceptance-browser.mjs','RU08 browser evidence must be executable');
+assert.equal(acceptance.executableEvidence?.offline,'tests/russian-offline-shell-browser.mjs','RU08 offline evidence must be executable');
+for(const k of ['survival','university','technical','research','author'])assert(acceptance.executableEvidence?.journeys?.[k]?.length,'RU08 journey lacks executable evidence: '+k);
+for(const p of ['subjects/russian/assets/scenario-runtime.js','subjects/russian/assets/production-workbench.js','subjects/russian/editor.html','subjects/russian/assets/authoring-workbench.js','tests/russian-ru05-ru08-acceptance-browser.mjs'])assert(fs.existsSync(p),'RU08 executable integration missing '+p);
 assert(['CANDIDATE','READY_FOR_MERGE'].includes(rc.state),'invalid RU08 RC readiness state');
 assert.match(rc.releaseAnnex,/C3_RELEASE_ANNEX_PRODUCTION/);
 

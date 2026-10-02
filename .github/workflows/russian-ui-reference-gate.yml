@@ -63,6 +63,10 @@ jobs:
         run: node subjects/russian/scripts/validate-ru07-ai-coaching.mjs
       - name: Validate Russian RU08 integration and acceptance
         run: node subjects/russian/scripts/validate-ru08-integration-acceptance.mjs
+      - name: Validate Russian RU05-RU08 executable runtime compliance
+        run: node subjects/russian/scripts/validate-ru05-ru08-runtime-compliance.mjs
+      - name: Validate Russian P17 release governance
+        run: node subjects/russian/scripts/validate-p17-release-governance.mjs
       - name: Validate Russian reference UI contracts
         run: node subjects/russian/scripts/validate-reference-ui.mjs
       - name: Validate Russian lesson learning flow

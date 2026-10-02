@@ -1,0 +1,109 @@
+name: Russian Production Release Closure
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: "Type VERIFY_PRODUCTION exactly"
+        required: true
+        type: string
+      expected_sha:
+        description: "Exact immutable production source SHA"
+        required: true
+        type: string
+      rollback_sha:
+        description: "Exact previous known-good rollback SHA"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: russian-production-release-closure
+  cancel-in-progress: false
+
+jobs:
+  verify-production:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    environment: bauman-production
+    env:
+      BAUMAN_CONTROL_PRODUCTION_ORIGIN: ${{ vars.BAUMAN_CONTROL_PRODUCTION_ORIGIN }}
+      BAUMAN_RUNTIME_PRODUCTION_ORIGIN: ${{ vars.BAUMAN_RUNTIME_PRODUCTION_ORIGIN }}
+      APPLICATION_MANAGEMENT_PRODUCTION_ORIGIN: ${{ vars.APPLICATION_MANAGEMENT_PRODUCTION_ORIGIN }}
+      EXPECTED_SHA: ${{ inputs.expected_sha }}
+      ROLLBACK_SHA: ${{ inputs.rollback_sha }}
+    steps:
+      - name: Require explicit closure authority
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "${{ inputs.confirm }}" == "VERIFY_PRODUCTION" ]] || { echo "::error::Enter VERIFY_PRODUCTION exactly."; exit 1; }
+          [[ "$GITHUB_SHA" == "$EXPECTED_SHA" ]] || { echo "::error::Workflow SHA $GITHUB_SHA does not equal expected immutable SHA $EXPECTED_SHA."; exit 1; }
+          [[ "$ROLLBACK_SHA" =~ ^[0-9a-f]{40}$ ]] || { echo "::error::rollback_sha must be a full immutable SHA."; exit 1; }
+
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+
+      - name: Validate P17 governance before production reads
+        run: node subjects/russian/scripts/validate-p17-release-governance.mjs
+
+      - name: Verify exact production revision before closure
+        shell: bash
+        run: |
+          set -euo pipefail
+          BAUMAN_DEPLOYMENT_URL="$BAUMAN_CONTROL_PRODUCTION_ORIGIN/__deployment"           BAUMAN_EXPECTED_REVISION="$EXPECTED_SHA"           BAUMAN_EXPECTED_CHANNEL="cloudflare-production"           BAUMAN_EXPECTED_RUNTIME="control-service"           node scripts/wait-cloudflare-deployment-revision.mjs > /tmp/russian-p17-control.json
+          BAUMAN_DEPLOYMENT_URL="$BAUMAN_RUNTIME_PRODUCTION_ORIGIN/__deployment"           BAUMAN_EXPECTED_REVISION="$EXPECTED_SHA"           BAUMAN_EXPECTED_CHANNEL="cloudflare-production"           BAUMAN_EXPECTED_RUNTIME="learning-runtime"           node scripts/wait-cloudflare-deployment-revision.mjs > /tmp/russian-p17-runtime.json
+
+      - name: Install production browser verifier
+        run: |
+          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+          node --check tests/russian-ru05-ru08-acceptance-browser.mjs
+          node --check tests/russian-offline-shell-browser.mjs
+          node --check scripts/russian-p17-production-verify.mjs
+
+      - name: Run Russian RU05-RU08 production acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: ${{ vars.BAUMAN_RUNTIME_PRODUCTION_ORIGIN }}/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-ru05-ru08-production
+        run: node tests/russian-ru05-ru08-acceptance-browser.mjs
+
+      - name: Run Russian production installed-client offline/PWA acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: ${{ vars.BAUMAN_RUNTIME_PRODUCTION_ORIGIN }}/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-offline-production
+        run: node tests/russian-offline-shell-browser.mjs
+
+      - name: Generate exact P17 production evidence and observation
+        env:
+          RUSSIAN_P17_OUT: artifacts/russian-p17
+        run: node scripts/russian-p17-production-verify.mjs
+
+      - name: Upload immutable Russian P17 closure evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: russian-p17-closure-${{ github.run_id }}
+          if-no-files-found: error
+          retention-days: 90
+          path: |
+            artifacts/russian-p17
+            artifacts/russian-ru05-ru08-production
+            artifacts/russian-offline-production
+
+      - name: Production closure summary
+        if: success()
+        shell: bash
+        run: |
+          echo "### Russian P17 production closure" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Exact SHA: `$EXPECTED_SHA`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Rollback SHA retained: `$ROLLBACK_SHA`" >> "$GITHUB_STEP_SUMMARY"
+          echo "- RU05-RU08 live browser acceptance: PASS" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Installed-client offline/PWA: PASS" >> "$GITHUB_STEP_SUMMARY"
+          echo "- Security/content drift/observation: PASS" >> "$GITHUB_STEP_SUMMARY"
+          echo "- **P17 PRODUCTION RELEASE COMPLETE — PRODUCTION VERIFIED STABLE**" >> "$GITHUB_STEP_SUMMARY"

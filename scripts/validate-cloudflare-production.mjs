@@ -137,4 +137,8 @@ if (prepare.includes("exactHttpsOrigin('BAUMAN_CONTROL_PRODUCTION_ORIGIN', { all
 if (ci.includes('wrangler d1 migrations apply bauman-control-db --remote')) throw new Error('Production CI must never mutate remote production D1.');
 if (ci.includes('DEPLOY_PRODUCTION')) throw new Error('Production CI must not contain the live deployment confirmation token.');
 
+const runtimeWorker = fs.readFileSync('cloudflare/runtime-worker.mjs','utf8');
+if (!runtimeWorker.includes("microphone=(self)")) fail('Production Runtime Permissions-Policy must allow same-origin microphone for Russian recording/STT.');
+if (runtimeWorker.includes("microphone=()")) fail('Production Runtime must not globally disable microphone while RU05 recording/STT is enabled.');
+
 console.log('Bauman production publish gate PASS: manual-only, exact-preview-first, isolated D1, Manager-owned shared secret preserved, production artifacts dry-run capable, no automatic production deployment.');

@@ -1,0 +1,26 @@
+{
+  "schema": "RUSSIAN_P17_MUTATION_MANIFEST_V1",
+  "updatedAt": "2026-10-02",
+  "scope": "subjects/russian",
+  "persistentDataMutation": false,
+  "databaseMigrationRequired": false,
+  "backfillRequired": false,
+  "oauthChange": false,
+  "dnsChange": false,
+  "secretsRotation": false,
+  "serviceWorkerChange": true,
+  "contentActivation": "EXACT_ARTIFACT",
+  "backupDecision": "NOT_REQUIRED_NO_PERSISTENT_DATA_MUTATION",
+  "requiredPostDeploy": [
+    "exact-revision",
+    "critical-content-drift",
+    "desktop-mobile-browser",
+    "scenario",
+    "academic-production",
+    "authoring",
+    "offline-pwa",
+    "security-headers",
+    "observation"
+  ],
+  "authority": "C3_RELEASE_ANNEX_PRODUCTION"
+}

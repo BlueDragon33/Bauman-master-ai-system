@@ -1,0 +1,15 @@
+{
+  "schema": "RUSSIAN_P17_INCIDENT_REGISTER_V1",
+  "incidents": [
+    {
+      "id": "RUS-P17-20261002-EVIDENCE-GAP",
+      "severity": "PROCESS_DEFECT",
+      "detectedAt": "2026-10-02",
+      "releaseSha": "7697a3f05362c111fb481ebd6043738c12dbcb8c",
+      "summary": "Production deployment was previously described as complete/stable without the full C3 Release Annex closure and observation evidence.",
+      "impact": "No learner-data corruption identified; release-truth wording/evidence was insufficient.",
+      "containment": "Historical release reclassified as deployed but not fully P17-verified. Corrective runtime acceptance and production closure workflow added.",
+      "status": "REMEDIATION_IN_PROGRESS"
+    }
+  ]
+}
