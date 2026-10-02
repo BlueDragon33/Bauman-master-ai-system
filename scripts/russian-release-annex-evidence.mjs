@@ -98,7 +98,13 @@ function close(){
  for(const f of ['RUSSIAN_PRODUCTION_RU08_JOURNEYS.json','RUSSIAN_PRODUCTION_RU08_AUTHOR.json','RUSSIAN_PRODUCTION_OFFLINE_BROWSER.json'])if(j(path.join(out,f)).status!=='PASS')throw new Error('production browser evidence not PASS: '+f);
  if(j(path.join(out,'RUSSIAN_PRODUCTION_CONFIG_PROFILE_VERIFY.json')).status!=='PASS')throw new Error('production config profile not verified');
  if(j(path.join(out,'RUSSIAN_PRODUCTION_ISOLATED_WRITE_PROBE.json')).status!=='PASS')throw new Error('isolated production write probe not verified');
- const rev=req('GITHUB_SHA');write('RUSSIAN_FINAL_PRODUCTION_STATE_RECORD.json',{schema:'RUSSIAN_FINAL_PRODUCTION_STATE_V1',generatedAt:iso(),revision:rev,state:'STABLE',evidenceComplete:true});
+ const rev=req('GITHUB_SHA'),rc=j(path.join(out,'RUSSIAN_RC_MANIFEST.json')),backup=j(path.join(out,'RUSSIAN_BACKUP_DECISION_RESULT.json')),migration=j(path.join(out,'RUSSIAN_MIGRATION_RESULT.json')),target=j(path.join(out,'RUSSIAN_PRODUCTION_TARGET_RECORD.json'));
+ if(rc.sourceSha!==rev||target.revision!==rev)throw new Error('release identity evidence revision mismatch');
+ if(backup.status!=='PASS'||backup.revision!==rev||!backup.sha256||!backup.bytes)throw new Error('production backup evidence invalid');
+ if(migration.status!=='PASS'||migration.revision!==rev||migration.exitCode!==0)throw new Error('production migration result invalid');
+ if(migration.migrationManifestSha256!==rc.migrationManifestSha256)throw new Error('production migration manifest identity mismatch');
+ if(!Number.isInteger(migration.migrationCount)||migration.migrationCount<1||!migration.outputLogSha256||migration.outputBytes<1)throw new Error('production migration execution evidence incomplete');
+write('RUSSIAN_FINAL_PRODUCTION_STATE_RECORD.json',{schema:'RUSSIAN_FINAL_PRODUCTION_STATE_V1',generatedAt:iso(),revision:rev,state:'STABLE',evidenceComplete:true});
  write('RUSSIAN_P17_EVIDENCE_INDEX.md','# Russian P17 Evidence Index\n\nState: STABLE\nRevision: '+rev+'\n\n'+files.map(x=>'- '+x).join('\n')+'\n- RUSSIAN_FINAL_PRODUCTION_STATE_RECORD.json\n');
  write('RUSSIAN_RELEASE_CLOSURE_REPORT.md','# Russian Release Closure Report\n\nP17 PRODUCTION RELEASE COMPLETE - PRODUCTION VERIFIED STABLE\n\nRevision: '+rev+'\nClosure: '+iso()+'\n');
  console.log(JSON.stringify({ok:true,state:'STABLE',revision:rev}));
