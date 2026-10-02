@@ -1,0 +1,206 @@
+{
+  "id": "specialization-elective",
+  "title": "Дисциплина по выбору №2",
+  "officialPlan": {
+    "semester": 4,
+    "credits": 3,
+    "hours": 108,
+    "contactHours": 44,
+    "assessment": "Экзамен",
+    "options": [
+      "Технологии обработки больших данных",
+      "Технологии разработки мультимедиа систем"
+    ],
+    "note": "Kế hoạch có hai lựa chọn chính thức. Module này giữ common core và tách hai branch; không tự giả định lựa chọn."
+  },
+  "target": "Chuẩn bị nền dùng chung, sau đó học sâu đúng branch Big Data hoặc Multimedia khi lựa chọn được xác nhận.",
+  "outcomes": [
+    "Vẽ được pipeline dữ liệu/media.",
+    "Phân biệt Big Data branch và Multimedia branch.",
+    "Có mini-project phù hợp branch đã chọn."
+  ],
+  "principles": [
+    "Không gộp hai branch thành một syllabus.",
+    "Common core chỉ gồm pipeline, performance, storage/delivery và testing.",
+    "Khi branch chính thức được xác nhận, ưu tiên nội dung branch đó."
+  ],
+  "stages": [
+    {
+      "id": "m4",
+      "short": "HK4",
+      "title": "HK4",
+      "period": "Học kỳ 4",
+      "target": "Elective preparation",
+      "outcomes": [
+        "Common core",
+        "Branch mini-project"
+      ],
+      "focusBlocks": [
+        "Common pipeline",
+        "Big Data",
+        "Multimedia"
+      ],
+      "weeklyRhythm": [
+        "Core",
+        "Branch",
+        "Lab",
+        "Review"
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "el2_m401",
+      "stage": "m4",
+      "week": "E1",
+      "title": "Common core: pipeline & performance",
+      "goal": "Hiểu source → process → store → deliver → observe.",
+      "hours": 3,
+      "level": "Cơ bản",
+      "lessons": [
+        "el2_m401_l1",
+        "el2_m401_l2"
+      ],
+      "outputs": [
+        "Pipeline diagram",
+        "Metric sheet"
+      ],
+      "phaseObjective": "Common architecture",
+      "whyImportant": [
+        "Cả hai branch đều có data/media flow."
+      ],
+      "prerequisites": [
+        "Programming basics"
+      ],
+      "conceptMap": [
+        "source",
+        "processing",
+        "storage",
+        "delivery",
+        "latency",
+        "throughput"
+      ],
+      "studyPlan": [],
+      "practicePlan": [
+        "Vẽ pipeline"
+      ],
+      "simulationPlan": [
+        "Thay load/buffer"
+      ],
+      "assessmentPlan": {
+        "pass": "Quiz ≥ 8/10"
+      },
+      "baumanLinks": [
+        "Common support only"
+      ],
+      "completionCriteria": [
+        "Có pipeline + metric"
+      ],
+      "risks": [
+        "Nhảy branch quá sớm"
+      ],
+      "nextStep": "Chọn branch"
+    },
+    {
+      "id": "el2_m402",
+      "stage": "m4",
+      "week": "E2",
+      "title": "Branch A: Big Data processing",
+      "goal": "Partition, batch/stream, data quality và scale.",
+      "hours": 5,
+      "level": "Trung bình",
+      "lessons": [
+        "el2_m402_l1",
+        "el2_m402_l2"
+      ],
+      "outputs": [
+        "Big Data mini-pipeline"
+      ],
+      "phaseObjective": "Big Data",
+      "whyImportant": [
+        "Phù hợp lựa chọn Big Data."
+      ],
+      "prerequisites": [
+        "Database"
+      ],
+      "conceptMap": [
+        "partition",
+        "batch",
+        "stream",
+        "throughput",
+        "quality"
+      ],
+      "studyPlan": [],
+      "practicePlan": [
+        "Mini-pipeline"
+      ],
+      "simulationPlan": [
+        "Load test"
+      ],
+      "assessmentPlan": {
+        "pass": "Quiz ≥ 8/10"
+      },
+      "baumanLinks": [
+        "Технологии обработки больших данных"
+      ],
+      "completionCriteria": [
+        "Pipeline + quality checks"
+      ],
+      "risks": [
+        "Giả lập scale không có metric"
+      ],
+      "nextStep": "Exam/project"
+    },
+    {
+      "id": "el2_m403",
+      "stage": "m4",
+      "week": "E3",
+      "title": "Branch B: Multimedia systems",
+      "goal": "Media representation, codec, sync, buffering và delivery.",
+      "hours": 5,
+      "level": "Trung bình",
+      "lessons": [
+        "el2_m403_l1",
+        "el2_m403_l2"
+      ],
+      "outputs": [
+        "Multimedia mini-pipeline"
+      ],
+      "phaseObjective": "Multimedia",
+      "whyImportant": [
+        "Phù hợp lựa chọn Multimedia."
+      ],
+      "prerequisites": [
+        "Software basics"
+      ],
+      "conceptMap": [
+        "frame",
+        "codec",
+        "audio",
+        "sync",
+        "buffer",
+        "delivery"
+      ],
+      "studyPlan": [],
+      "practicePlan": [
+        "Media flow"
+      ],
+      "simulationPlan": [
+        "Buffer/latency"
+      ],
+      "assessmentPlan": {
+        "pass": "Quiz ≥ 8/10"
+      },
+      "baumanLinks": [
+        "Технологии разработки мультимедиа систем"
+      ],
+      "completionCriteria": [
+        "Flow + trade-off"
+      ],
+      "risks": [
+        "Chỉ tập trung UI"
+      ],
+      "nextStep": "Exam/project"
+    }
+  ]
+}
