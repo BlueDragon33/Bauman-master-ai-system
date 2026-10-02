@@ -90,7 +90,7 @@
   function panelHtml(){
     if(!registry)return '<section class="ru-scenario-runner" data-ru-scenario-runner="1"><b>Đang tải kịch bản…</b></section>';
     const scenarios=registry.scenarios||[];
-    const selected=currentScenario()||scenarios[0];
+    const selected=currentScenario()||scenarioById(selectedId)||scenarios[0];
     const node=currentNode();
     const progress=state&&selected?Math.max(1,state.history?.length||1):0;
     const options=scenarios.map(s=>`<option value="${esc(s.id)}" ${selected?.id===s.id?'selected':''}>${esc(familyLabel[s.family]||s.family)} · ${esc(s.titleVi||s.id)}</option>`).join('');
@@ -123,7 +123,7 @@
     const next=e.target.closest?.('[data-ru-scenario-next]');if(next){e.preventDefault();advance(next.dataset.ruScenarioNext);return}
     const rep=e.target.closest?.('[data-ru-scenario-repair]');if(rep){e.preventDefault();repair(rep.dataset.ruScenarioRepair);return}
   },true);
-  document.addEventListener('change',e=>{if(e.target?.matches?.('[data-ru-scenario-select]')){state=null;sessionStorage.removeItem(SESSION_KEY);schedule()}},true);
+  document.addEventListener('change',e=>{if(e.target?.matches?.('[data-ru-scenario-select]')){selectedId=e.target.value;state=null;sessionStorage.removeItem(SESSION_KEY);schedule()}},true);
   document.addEventListener('DOMContentLoaded',()=>{load().catch(err=>{console.warn('Russian scenario runtime load failed',err);ready=true;schedule()});const view=document.getElementById('view');if(view)new MutationObserver(schedule).observe(view,{childList:true,subtree:false});schedule()});
   window.addEventListener('storage',schedule);
   window.RussianScenarioRuntime={schema:SCHEMA,load,start,repair,advance,clear,resume,deterministicRun,current:()=>({scenario:clone(currentScenario()),node:clone(currentNode()),state:clone(state)}),registry:()=>clone(registry),policy:{sessionStorageOnly:true,practiceOnly:true,writesMastery:false,writesSrs:false,writesPlanner:false}};
