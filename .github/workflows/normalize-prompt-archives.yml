@@ -105,6 +105,7 @@ jobs:
                       raw = z.read(info).decode("utf-8")
                       for old, new in replacements.items():
                           raw = raw.replace(old, new)
+                      raw = raw.replace("GLOBAL_CONSTITUTIONS/", "prompts/CONSTITUTION.md#")
                       raw = raw.replace(
                           "`GLOBAL_CONSTITUTIONS/` contains a package mirror of the four shared constitutions so this bundle is self-contained.",
                           "The repository uses one shared Constitution at `prompts/CONSTITUTION.md`; subject packages do not maintain independent Constitution copies."
