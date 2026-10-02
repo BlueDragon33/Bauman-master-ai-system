@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
   "packetId": "HUB-TRUTH-UX-CLEANUP-002",
-  "revision": 2,
+  "revision": 3,
   "status": "READY_FOR_CODEX",
   "userIntent": "Continue Bauman Hub continuously in Chat control plane, skip Codex execution for now, and prepare one complete Hub-only implementation packet without touching subject prompts or subject-app internals.",
   "objective": "Clean learner-facing sample/mock truth from Subjects and Research/Thesis, preserve Schedule as Hub-owned canonical planning, distinguish unknown/stale/current subject summaries, converge the five primary pages onto one presentation owner each, and migrate Hub-side subject integration toward registered descriptor/capability/launch adapters while preserving legacy compatibility behind the adapter.",
@@ -51,6 +51,7 @@
     "docs/UI_CONTRAST_CONSTITUTION.md"
   ],
   "acceptanceCriteria": [
+    "Implementation branch is created fresh from current main; because prompts/hub/** is absent on main, only the canonical Hub prompt-system files required for this packet are transplanted from work/curriculum-prompt-system-v1. The whole old branch is never merged/rebased/cherry-picked.",
     "Start from current main baseline b6df392c5ab935bed4924b07b9bbe2e95efb2c8e or report and reconcile a newer main before editing.",
     "Normal Subjects runtime no longer presents fixed 2025 semester/calendar/deadline/note/session/teacher/progress fixtures as current learner facts.",
     "Subjects cards are built from Hub-owned registered subject descriptors and approved normalized summaries; missing external summary data renders as unavailable rather than fabricated zero/progress.",
@@ -73,6 +74,7 @@
     "No production publish occurs until exact implementation SHA passes Chat review."
   ],
   "testPlan": [
+    "Verify prompts/hub/** exists on the implementation branch after the minimal transplant and all referenced Hub entry/bridge/schema files resolve without reading prompts/subjects/**.",
     "Static scan Subjects and Research/Thesis learner runtime for fixed 2025 fixture truth, fallbackProgress and other demo/reference defaults that can render as current facts.",
     "Static/browser test that missing progress produces an unavailable state and is not rendered as 0% unless explicit evidence says 0.",
     "Static/browser test that stale summary renders stale provenance/freshness state.",
@@ -200,6 +202,17 @@
   },
   "implementationPhases": [
     {
+      "phase": "C0",
+      "name": "Hub Prompt System bootstrap onto fresh current-main branch",
+      "work": [
+        "create fresh branch from current main",
+        "transplant only prompts/hub/** control-plane files needed for this packet",
+        "preserve prompts/CONSTITUTION.md from main",
+        "do not bring prompts/subjects/** or unrelated prompt archives",
+        "validate Chat/Codex entries and bridge schemas before runtime edits"
+      ]
+    },
+    {
       "phase": "C5",
       "name": "Subjects truth cleanup",
       "work": [
@@ -255,5 +268,12 @@
         "Device Gate/auth/PWA/offline regression statement"
       ]
     }
-  ]
+  ],
+  "bootstrapPolicy": {
+    "sourcePromptBranch": "work/curriculum-prompt-system-v1",
+    "implementationBase": "main",
+    "implementationBaseSha": "b6df392c5ab935bed4924b07b9bbe2e95efb2c8e",
+    "rule": "Create a fresh implementation branch from current main. Copy only prompts/hub/** required for Hub control/bridge plus minimal Hub registry/entry references if needed. Never merge/rebase/cherry-pick the whole prompt-system branch and never copy prompts/subjects/**.",
+    "mainPromptState": "prompts/CONSTITUTION.md exists on main, but prompts/hub/** does not yet exist on main."
+  }
 }
