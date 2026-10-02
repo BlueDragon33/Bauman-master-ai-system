@@ -6,11 +6,16 @@ on:
       - work/curriculum-prompt-system-v1
     paths:
       - "prompt-archives/**"
+      - "scripts/normalize_prompt_archives.py"
       - ".github/workflows/normalize-prompt-archives.yml"
   workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: normalize-prompt-archives-work-curriculum
+  cancel-in-progress: false
 
 jobs:
   normalize:
@@ -21,214 +26,51 @@ jobs:
           ref: work/curriculum-prompt-system-v1
           fetch-depth: 0
 
-      - name: Extract and normalize subject prompt systems
-        shell: bash
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          import json, zipfile
+      - name: Normalize all subject prompt systems
+        run: python scripts/normalize_prompt_archives.py
 
-          repo = Path.cwd()
-          mappings = {
-              "math": {
-                  "archive": repo/"prompt-archives/math.zip",
-                  "root": "MATH_PROMPT_SYSTEM/",
-                  "master": "MATH_MASTER_PROMPT.md",
-                  "sequence": [f"MATH0{i}" for i in range(1,7)],
-              },
-              "python": {
-                  "archive": repo/"prompt-archives/python-pack.zip",
-                  "root": "",
-                  "master": "PYTHON_MASTER_PROMPT.md",
-                  "sequence": [f"PYTHON0{i}" for i in range(1,7)],
-              },
-              "algorithms": {
-                  "archive": repo/"prompt-archives/algorithms-pack.zip",
-                  "root": "ALGORITHMS_PROMPT_SYSTEM/",
-                  "master": "ALG_MASTER_PROMPT.md",
-                  "sequence": [f"ALG0{i}" for i in range(1,7)],
-              },
-              "russian": {
-                  "archive": repo/"prompt-archives/russian-pack.zip",
-                  "root": "RUSSIAN_PROMPT_SYSTEM/",
-                  "master": "RUSSIAN_MASTER_PROMPT.md",
-                  "sequence": [f"RU0{i}" for i in range(1,9)],
-              },
-          }
-
-          replacements = {
-              "GLOBAL_CONSTITUTIONS/C1_EXTENSIBLE_PLATFORM_ARCHITECTURE.txt": "prompts/CONSTITUTION.md#c1--extensible-platform-architecture",
-              "GLOBAL_CONSTITUTIONS/C2_FUTURE_PROFESSIONAL_UI_UX.txt": "prompts/CONSTITUTION.md#c2--future-professional-uiux",
-              "GLOBAL_CONSTITUTIONS/C3_PROFESSIONAL_QA_AUTO_FIX.txt": "prompts/CONSTITUTION.md#c3--professional-qa--auto-fix",
-              "GLOBAL_CONSTITUTIONS/C4_REAL_LEARNING_OUTCOME_SYSTEM.txt": "prompts/CONSTITUTION.md#c4--real-learning--outcome-system",
-              "GLOBAL_CONSTITUTIONS/C3_RELEASE_ANNEX_SHARED.md": "prompts/CONSTITUTION.md#c3-release-annex",
-              "GLOBAL_CONSTITUTIONS/C3_RELEASE_ANNEX_PRODUCTION.md": "prompts/CONSTITUTION.md#c3-release-annex",
-              "C1_EXTENSIBLE_PLATFORM_ARCHITECTURE.txt": "prompts/CONSTITUTION.md#c1--extensible-platform-architecture",
-              "C2_FUTURE_PROFESSIONAL_UI_UX.txt": "prompts/CONSTITUTION.md#c2--future-professional-uiux",
-              "C3_PROFESSIONAL_QA_AUTO_FIX.txt": "prompts/CONSTITUTION.md#c3--professional-qa--auto-fix",
-              "C4_REAL_LEARNING_OUTCOME_SYSTEM.txt": "prompts/CONSTITUTION.md#c4--real-learning--outcome-system",
-              "C3_RELEASE_ANNEX_SHARED.md": "prompts/CONSTITUTION.md#c3-release-annex",
-              "C3_RELEASE_ANNEX_PRODUCTION.md": "prompts/CONSTITUTION.md#c3-release-annex",
-          }
-
-          for subject, cfg in mappings.items():
-              archive = cfg["archive"]
-              if not archive.exists():
-                  raise SystemExit(f"Missing archive: {archive}")
-              dest = repo/"prompts/subjects"/subject
-              dest.mkdir(parents=True, exist_ok=True)
-
-              preserved_state = None
-              state_path = dest/"PROJECT_STATE.json"
-              if state_path.exists():
-                  try:
-                      current_state = json.loads(state_path.read_text(encoding="utf-8"))
-                      if current_state.get("completedModules") or current_state.get("evidence") or current_state.get("lastValidatedSha"):
-                          preserved_state = current_state
-                  except Exception:
-                      pass
-
-              with zipfile.ZipFile(archive) as z:
-                  for info in z.infolist():
-                      if info.is_dir():
-                          continue
-                      rel = info.filename
-                      root = cfg["root"]
-                      if root:
-                          if not rel.startswith(root):
-                              continue
-                          rel = rel[len(root):]
-                      if not rel or "/" in rel:
-                          continue
-                      if Path(rel).suffix.lower() not in {".md", ".json", ".txt"}:
-                          continue
-                      raw = z.read(info).decode("utf-8")
-                      for old, new in replacements.items():
-                          raw = raw.replace(old, new)
-                      raw = raw.replace("GLOBAL_CONSTITUTIONS/", "prompts/CONSTITUTION.md#")
-                      raw = raw.replace(
-                          "`GLOBAL_CONSTITUTIONS/` contains a package mirror of the four shared constitutions so this bundle is self-contained.",
-                          "The repository uses one shared Constitution at `prompts/CONSTITUTION.md`; subject packages do not maintain independent Constitution copies."
-                      )
-                      (dest/rel).write_text(raw, encoding="utf-8")
-
-              chat_lines = [
-                  f"# CHAT START — {subject.upper()}",
-                  "",
-                  "Use this subject system in a normal ChatGPT chat, Codex, Work, or another execution surface.",
-                  "",
-                  "## Authority order",
-                  "1. `.blueprint/constitution-adoption.json` when repository access exists.",
-                  "2. `prompts/CONSTITUTION.md`.",
-                  f"3. `{cfg['master']}`.",
-                  "4. `PROJECT_STATE.json`.",
-                  "5. The active module prompt only.",
-                  "6. Current diff/evidence only when repository execution is requested.",
-                  "",
-                  "## Normal chat mode",
-                  "For discussion, study design, review, planning, content architecture, prompt refinement, or other work that does not require repository edits, do not require Codex. Read the shared Constitution + Master Prompt + current state + active module and work directly in the chat.",
-                  "",
-                  "## Repository execution mode",
-                  "For repository edits, tests, merge, or publish: use the same authority chain, inspect current HEAD and only impacted owners/files, then execute with evidence.",
-                  "",
-                  "## Token rule",
-                  "Do not load the whole repository or every subject prompt by default. Load only the shared Constitution, this subject Master Prompt, PROJECT_STATE, the active module, and impacted evidence/files.",
-                  "",
-                  "## Continuation rule",
-                  "At the end of meaningful work, update `PROJECT_STATE.json`. Chat history is supplementary, not the durable source of project state.",
-                  "",
-              ]
-              (dest/"CHAT_START.md").write_text("\n".join(chat_lines), encoding="utf-8")
-
-              state = preserved_state or {
-                  "schemaVersion": "1.0.0",
-                  "subject": subject,
-                  "constitution": "prompts/CONSTITUTION.md",
-                  "masterPrompt": f"prompts/subjects/{subject}/{cfg['master']}",
-                  "status": "READY_FOR_BASELINE_RECONCILIATION",
-                  "activeModule": cfg["sequence"][0],
-                  "sequence": cfg["sequence"],
-                  "completedModules": [],
-                  "needsRevalidation": [],
-                  "lastValidatedSha": None,
-                  "currentHeadSha": None,
-                  "evidence": [],
-                  "blockers": [],
-                  "nextAction": f"Run {cfg['sequence'][0]} against the current repository state and update this state with evidence.",
-              }
-              state_path.write_text(json.dumps(state, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
-
-              source_readme = (dest/"00_README.md").read_text(encoding="utf-8") if (dest/"00_README.md").exists() else ""
-              canonical_lines = [
-                  f"# {subject.upper()} PROMPT SYSTEM — CANONICAL REPO FORM",
-                  "",
-                  f"This directory is the extracted and normalized active prompt system for **{subject}**.",
-                  "",
-                  "It is intended for both ordinary ChatGPT chat sessions and repository execution.",
-                  "",
-                  "Shared Constitution: `prompts/CONSTITUTION.md`",
-                  "",
-                  "Start a normal chat with `CHAT_START.md`.",
-                  f"Start execution with `{cfg['master']}` + `PROJECT_STATE.json` + the active module.",
-                  "",
-                  "The source ZIP remains under `prompt-archives/` for provenance/recovery.",
-                  "Mirrored subject-level Constitution copies and legacy archives are intentionally not duplicated here.",
-                  "All C1–C4 authority comes from the single shared `prompts/CONSTITUTION.md`.",
-                  "",
-                  "---",
-                  "",
-                  "## Source package README with normalized references",
-                  "",
-                  source_readme,
-              ]
-              (dest/"README.md").write_text("\n".join(canonical_lines), encoding="utf-8")
-
-          registry_path = repo/"prompts/PROMPT_REGISTRY.json"
-          registry = json.loads(registry_path.read_text(encoding="utf-8"))
-          by_id = {d.get("id"): d for d in registry.get("domains", [])}
-          canonical = {
-              "math": ("MATH_MASTER_PROMPT.md", "prompt-archives/math.zip"),
-              "python": ("PYTHON_MASTER_PROMPT.md", "prompt-archives/python-pack.zip"),
-              "algorithms": ("ALG_MASTER_PROMPT.md", "prompt-archives/algorithms-pack.zip"),
-              "russian": ("RUSSIAN_MASTER_PROMPT.md", "prompt-archives/russian-pack.zip"),
-          }
-          for sid, (master, archive) in canonical.items():
-              d = by_id.setdefault(sid, {"id": sid})
-              d["masterPrompt"] = f"prompts/subjects/{sid}/{master}"
-              d["state"] = f"prompts/subjects/{sid}/PROJECT_STATE.json"
-              d["chatStart"] = f"prompts/subjects/{sid}/CHAT_START.md"
-              d["archivePackage"] = archive
-              d["status"] = "EXTRACTED_CANONICAL"
-          registry["domains"] = list(by_id.values())
-          registry["schemaVersion"] = "1.2.0"
-          registry_path.write_text(json.dumps(registry, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
-          PY
-
-      - name: Validate normalized prompt systems
+      - name: Validate canonical subject prompt systems
         shell: bash
         run: |
           python - <<'PY'
           from pathlib import Path
           import json
+
           root = Path("prompts/subjects")
-          expected = {
-              "math": ("MATH_MASTER_PROMPT.md", 6),
-              "python": ("PYTHON_MASTER_PROMPT.md", 6),
-              "algorithms": ("ALG_MASTER_PROMPT.md", 6),
-              "russian": ("RUSSIAN_MASTER_PROMPT.md", 8),
-          }
-          for sid, (master, n) in expected.items():
+          index = json.loads((root/"SUBJECT_PROMPT_INDEX.json").read_text(encoding="utf-8"))
+          subjects = index.get("subjects", [])
+          assert subjects, "No subjects in SUBJECT_PROMPT_INDEX"
+
+          extracted = [s for s in subjects if s.get("status") == "CANONICAL_EXTRACTED"]
+          assert len(extracted) >= 22, f"Expected >=22 canonical subjects, got {len(extracted)}"
+
+          for item in extracted:
+              sid = item["id"]
               d = root/sid
-              assert (d/"README.md").exists(), sid
-              assert (d/"CHAT_START.md").exists(), sid
-              assert (d/master).exists(), sid
-              st = json.loads((d/"PROJECT_STATE.json").read_text(encoding="utf-8"))
-              assert len(st["sequence"]) == n, (sid, st["sequence"])
+              required = [
+                  d/"README.md",
+                  d/"PROJECT_STATE.json",
+                  d/"SOURCE_STATUS.md",
+                  d/"SUBJECT_PROMPT_MANIFEST.json",
+              ]
+              for p in required:
+                  assert p.exists(), f"{sid}: missing {p.name}"
+
+              state = json.loads((d/"PROJECT_STATE.json").read_text(encoding="utf-8"))
+              assert state.get("activeModule"), f"{sid}: missing activeModule"
+
+              # New normalized systems must use the shared Constitution, not per-ZIP mirrors.
               for p in d.iterdir():
-                  if p.is_file() and p.suffix in {".md", ".json", ".txt"}:
-                      s = p.read_text(encoding="utf-8")
-                      assert "GLOBAL_CONSTITUTIONS/" not in s, (sid, p)
-          print("NORMALIZED_PROMPT_SYSTEMS_PASS")
+                  if p.is_file() and p.suffix.lower() in {".md",".json",".txt"}:
+                      text = p.read_text(encoding="utf-8")
+                      assert "GLOBAL_CONSTITUTIONS/" not in text, f"{sid}: duplicated constitution ref in {p.name}"
+
+          registry = json.loads(Path("prompts/PROMPT_REGISTRY.json").read_text(encoding="utf-8"))
+          registered = {d.get("id") for d in registry.get("domains", [])}
+          missing = [s["id"] for s in extracted if s["id"] not in registered]
+          assert not missing, f"Registry missing canonical subjects: {missing}"
+
+          print(f"NORMALIZED_PROMPT_SYSTEMS_PASS subjects={len(extracted)}")
           PY
 
       - name: Commit normalized prompt systems
@@ -240,6 +82,6 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add prompts/subjects prompts/PROMPT_REGISTRY.json
-          git commit -m "Normalize subject prompt systems for chat and Codex"
+          git add prompt-archives prompts/subjects prompts/PROMPT_REGISTRY.json
+          git commit -m "Normalize all remaining subject prompt systems"
           git push origin HEAD:work/curriculum-prompt-system-v1
