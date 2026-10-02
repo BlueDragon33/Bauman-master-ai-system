@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.0.0",
+  "schemaVersion": "1.1.0",
   "kind": "RUSSIAN_RU08_ACCEPTANCE_MATRIX",
   "journeys": {
     "beginner": [
@@ -38,10 +38,41 @@
       "map-contract",
       "validate",
       "preview",
-      "review",
-      "canonical-patch",
-      "publish",
-      "rollback"
+      "review-handoff",
+      "canonical-patch-governance",
+      "publish-metadata",
+      "rollback-contract"
+    ]
+  },
+  "journeyEvidence": {
+    "beginner": [
+      "tests/russian-capability-continue-browser.mjs",
+      "tests/russian-p4-assessment-mastery-browser.mjs",
+      "tests/russian-offline-shell-browser.mjs"
+    ],
+    "survival": [
+      "subjects/russian/scripts/test-p6-speech-interaction-runtime.mjs",
+      "subjects/russian/scripts/validate-speaking-coach.mjs",
+      "subjects/russian/scripts/validate-ru05-oral-scenarios.mjs"
+    ],
+    "university": [
+      "subjects/russian/scripts/validate-academic-language.mjs",
+      "subjects/russian/scripts/validate-ru06-academic-production.mjs"
+    ],
+    "technical": [
+      "subjects/russian/scripts/validate-p8-academic-technical.mjs",
+      "subjects/russian/scripts/validate-ru06-academic-production.mjs",
+      "subjects/russian/docs/ru06/RUSSIAN_RU06_GOLDEN_PRODUCTION_FIXTURES.json"
+    ],
+    "research": [
+      "subjects/russian/scripts/validate-p9-reading-writing-research.mjs",
+      "subjects/russian/scripts/validate-ru06-academic-production.mjs",
+      "subjects/russian/docs/ru06/RUSSIAN_RU06_SOURCE_CLAIM_LINEAGE_CONTRACT.json"
+    ],
+    "author": [
+      "tests/russian-authoring-journey-browser.mjs",
+      "subjects/russian/scripts/russian-authoring-candidate.mjs",
+      "control-service/tests/contract.test.mjs"
     ]
   },
   "failureMatrix": [
@@ -62,5 +93,61 @@
     "keyboard-screen-reader",
     "plugin-resource-failure",
     "old-package-compatibility"
-  ]
+  ],
+  "failureEvidence": {
+    "invalid-linguistic-content": [
+      "subjects/russian/scripts/validate-ru03-linguistic-authority.mjs"
+    ],
+    "broken-audio": [
+      "subjects/russian/scripts/validate-p6-speech-interaction.mjs"
+    ],
+    "mic-denied": [
+      "subjects/russian/docs/ru05/RUSSIAN_RU05_GOLDEN_SCENARIO_FIXTURES.json"
+    ],
+    "stt-unavailable": [
+      "subjects/russian/scripts/test-p6-speech-interaction-runtime.mjs"
+    ],
+    "malformed-state": [
+      "subjects/russian/scripts/validate-ru04-learning-judgment.mjs"
+    ],
+    "duplicate-submit": [
+      "control-service/tests/contract.test.mjs"
+    ],
+    "offline-reload": [
+      "tests/russian-offline-shell-browser.mjs"
+    ],
+    "content-revision": [
+      "subjects/russian/docs/ru03/RUSSIAN_RU03_VALIDATION_POLICY.md"
+    ],
+    "huge-vocab-backlog": [
+      "subjects/russian/scripts/validate-vocab-srs.mjs"
+    ],
+    "dialogue-graph-defect": [
+      "subjects/russian/scripts/validate-ru05-oral-scenarios.mjs"
+    ],
+    "ai-unavailable": [
+      "subjects/russian/scripts/validate-ai-runtime.mjs"
+    ],
+    "prompt-injection": [
+      "subjects/russian/scripts/validate-ru07-ai-coaching.mjs"
+    ],
+    "long-technical-text": [
+      "subjects/russian/scripts/validate-ru06-academic-production.mjs"
+    ],
+    "mobile-overflow": [
+      "tests/russian-p1-forensic-browser.mjs"
+    ],
+    "keyboard-screen-reader": [
+      "tests/russian-authoring-journey-browser.mjs",
+      "tests/russian-p1-forensic-browser.mjs"
+    ],
+    "plugin-resource-failure": [
+      "subjects/russian/scripts/validate-ai-runtime.mjs"
+    ],
+    "old-package-compatibility": [
+      "tests/russian-offline-shell-browser.mjs",
+      "subjects/russian/scripts/validate-ru08-integration-acceptance.mjs"
+    ]
+  },
+  "evidenceRule": "Every journey and every failure case must resolve to executable or machine-checkable evidence. A named matrix entry without evidence cannot satisfy RU08 RC readiness."
 }
