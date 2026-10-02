@@ -1,0 +1,96 @@
+{
+  "meta": {
+    "subjectId": "mivar",
+    "title": "Mivar Logical AI",
+    "version": "simulation-v1",
+    "description": "Mô phỏng rule firing, dependency graph, conflict và source status."
+  },
+  "observation": [
+    {
+      "id": "miv_obs_rules",
+      "stage": "m4",
+      "type": "rule engine",
+      "title": "Rule Firing Lab",
+      "goal": "Quan sát kết luận và inference trace khi facts/rules thay đổi.",
+      "scenario": "Thêm/bớt facts, thay priority và tạo conflict.",
+      "parameters": [
+        "facts",
+        "rule set",
+        "priority",
+        "goal"
+      ],
+      "outputs": [
+        "fired rules",
+        "conclusion",
+        "trace",
+        "conflict"
+      ]
+    },
+    {
+      "id": "miv_obs_graph",
+      "stage": "m4",
+      "type": "dependency graph",
+      "title": "Dependency Graph Lab",
+      "goal": "Quan sát reachability, cycle và missing dependency.",
+      "scenario": "Thay graph rule dependency.",
+      "parameters": [
+        "nodes",
+        "edges",
+        "start facts",
+        "goal"
+      ],
+      "outputs": [
+        "reachable goals",
+        "paths",
+        "cycles",
+        "unreachable nodes"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "miv_prac_debug",
+      "stage": "m4",
+      "type": "mô phỏng thực hành",
+      "title": "Inference Debug Mission",
+      "mission": "Sửa một knowledge base không suy ra đúng goal.",
+      "steps": [
+        "inspect facts",
+        "inspect rules",
+        "trace firing",
+        "find missing/conflict",
+        "patch",
+        "retest"
+      ],
+      "rubric": [
+        "trace rõ",
+        "patch tối thiểu",
+        "test edge case",
+        "không tạo side effect"
+      ],
+      "feedback": "Nếu chỉ sửa conclusion mà không tìm root cause, quay lại trace."
+    },
+    {
+      "id": "miv_prac_hybrid",
+      "stage": "m4",
+      "type": "mô phỏng thực hành",
+      "title": "Hybrid Decision Mission",
+      "mission": "Nối output ML vào symbolic layer an toàn.",
+      "steps": [
+        "model output",
+        "confidence policy",
+        "fact/unknown conversion",
+        "rule reasoning",
+        "action",
+        "explanation"
+      ],
+      "rubric": [
+        "uncertainty handling",
+        "traceability",
+        "safe fallback",
+        "explanation"
+      ],
+      "feedback": "Không cho low-confidence output trở thành fact không điều kiện."
+    }
+  ]
+}

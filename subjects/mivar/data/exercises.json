@@ -1,0 +1,110 @@
+[
+  {
+    "id": "miv_ex1",
+    "stage": "m4",
+    "topic": "Facts",
+    "difficulty": "easy",
+    "prompt": "Chuyển 8 phát biểu tự nhiên thành facts/predicates và đánh dấu assumption.",
+    "answer": "Representation cần vocabulary/domain nhất quán; assumption không được gắn nhãn fact.",
+    "reviewLesson": "miv_m401_l1"
+  },
+  {
+    "id": "miv_ex2",
+    "stage": "m4",
+    "topic": "Rules",
+    "difficulty": "medium",
+    "prompt": "Viết 6 rules cho case robot và tạo bảng rule id/source.",
+    "answer": "Mỗi rule cần antecedent, consequent, id và source/owner.",
+    "reviewLesson": "miv_m401_l2"
+  },
+  {
+    "id": "miv_ex3",
+    "stage": "m4",
+    "topic": "Forward",
+    "difficulty": "medium",
+    "prompt": "Trace forward reasoning từ 4 facts tới một conclusion qua ít nhất 3 rule.",
+    "answer": "Phải ghi rule firing theo thứ tự và facts mới sau mỗi bước.",
+    "reviewLesson": "miv_m402_l1"
+  },
+  {
+    "id": "miv_ex4",
+    "stage": "m4",
+    "topic": "Goal reasoning",
+    "difficulty": "medium",
+    "prompt": "Vẽ goal tree và xác định missing facts.",
+    "answer": "Goal được phân rã qua rule premises; missing fact khác contradiction.",
+    "reviewLesson": "miv_m402_l2"
+  },
+  {
+    "id": "miv_ex5",
+    "stage": "m4",
+    "topic": "Graph",
+    "difficulty": "easy",
+    "prompt": "Vẽ dependency graph 10 node và tìm path tới goal.",
+    "answer": "Node/cạnh cần có nghĩa rõ; path phải tương ứng với rule dependencies.",
+    "reviewLesson": "miv_m403_l1"
+  },
+  {
+    "id": "miv_ex6",
+    "stage": "m4",
+    "topic": "Graph validation",
+    "difficulty": "hard",
+    "prompt": "Tìm cycle, unreachable node và duplicate dependency trong graph giả định.",
+    "answer": "Ghi vị trí, ảnh hưởng và phương án xử lý; không phải cycle nào cũng sai.",
+    "reviewLesson": "miv_m403_l2"
+  },
+  {
+    "id": "miv_ex7",
+    "stage": "m4",
+    "topic": "Source discipline",
+    "difficulty": "easy",
+    "prompt": "Tạo bảng 10 claim với status official/support/unknown.",
+    "answer": "Không nâng support/unknown thành official nếu chưa có nguồn.",
+    "reviewLesson": "miv_m404_l1"
+  },
+  {
+    "id": "miv_ex8",
+    "stage": "m4",
+    "topic": "Mivar mapping",
+    "difficulty": "medium",
+    "prompt": "Tạo template mapping logic chung ↔ Mivar term ↔ source ↔ difference.",
+    "answer": "Nếu chưa có tài liệu Mivar chính thức, để term/difference ở trạng thái cần xác minh.",
+    "reviewLesson": "miv_m404_l2"
+  },
+  {
+    "id": "miv_ex9",
+    "stage": "m4",
+    "topic": "Hybrid AI",
+    "difficulty": "medium",
+    "prompt": "Chọn symbolic/neural/hybrid cho 5 task và giải thích.",
+    "answer": "Dựa trên dữ liệu, rule/constraint, explainability, maintenance và uncertainty.",
+    "reviewLesson": "miv_m405_l1"
+  },
+  {
+    "id": "miv_ex10",
+    "stage": "m4",
+    "topic": "Hybrid pipeline",
+    "difficulty": "hard",
+    "prompt": "Thiết kế pipeline ML output → confidence policy → symbolic reasoning.",
+    "answer": "Phải có threshold/unknown path và không biến output thấp confidence thành fact tuyệt đối.",
+    "reviewLesson": "miv_m405_l2"
+  },
+  {
+    "id": "miv_ex11",
+    "stage": "m4",
+    "topic": "Coursework",
+    "difficulty": "hard",
+    "prompt": "Viết 8 test cases cho rule engine gồm normal/conflict/missing/cycle.",
+    "answer": "Mỗi case có given, expected rules, expected conclusion và expected trace/exception.",
+    "reviewLesson": "miv_m406_l1"
+  },
+  {
+    "id": "miv_ex12",
+    "stage": "m4",
+    "topic": "Defense",
+    "difficulty": "hard",
+    "prompt": "Chuẩn bị demo 3 case và 5 limitation của prototype.",
+    "answer": "Demo phải input→trace→output; limitation tách coverage, conflict, scale và source gaps.",
+    "reviewLesson": "miv_m406_l2"
+  }
+]

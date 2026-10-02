@@ -1,0 +1,98 @@
+[
+  {
+    "id": "k_miv_m401_l1",
+    "type": "lesson",
+    "stage": "m4",
+    "target": "miv_m401_l1",
+    "title": "Facts, propositions và predicates",
+    "text": "Học liệu hỗ trợ “Facts, propositions và predicates” cho môn Mivar Logical AI; không thay thế syllabus chi tiết chính thức. Fact là mệnh đề/quan hệ được hệ thống coi là đầu vào đã biết trong phạm vi bài toán. Proposition phù hợp phát biểu đúng/sai; predicate mô tả quan hệ/thuộc tính có biến. Representation tốt phải có vocabulary và domain rõ. Mọi claim Mivar-specific cần source status; inference quan trọng cần trace và test."
+  },
+  {
+    "id": "k_miv_m401_l2",
+    "type": "lesson",
+    "stage": "m4",
+    "target": "miv_m401_l2",
+    "title": "Rules, constraints và knowledge base",
+    "text": "Học liệu hỗ trợ “Rules, constraints và knowledge base” cho môn Mivar Logical AI; không thay thế syllabus chi tiết chính thức. Rule nối điều kiện với kết luận/hành động. Constraint giới hạn trạng thái/quan hệ hợp lệ. Knowledge base cần naming nhất quán và traceability. Mọi claim Mivar-specific cần source status; inference quan trọng cần trace và test."
+  },
+  {
+    "id": "k_miv_m402_l1",
+    "type": "lesson",
+    "stage": "m4",
+    "target": "miv_m402_l1",
+    "title": "Forward reasoning và rule firing",
+    "text": "Học liệu hỗ trợ “Forward reasoning và rule firing” cho môn Mivar Logical AI; không thay thế syllabus chi tiết chính thức. Forward reasoning bắt đầu từ facts và áp dụng rule có điều kiện thỏa. Rule firing nên được log để giải thích kết quả. Conflict cần policy hoặc thêm specificity/source/priority thay vì xử lý ngầm. Mọi claim Mivar-specific cần source status; inference quan trọng cần trace và test."
+  },
+  {
+    "id": "k_miv_m402_l2",
+    "type": "lesson",
+    "stage": "m4",
+    "target": "miv_m402_l2",
+    "title": "Goal-driven reasoning và debug inference",
+    "text": "Học liệu hỗ trợ “Goal-driven reasoning và debug inference” cho môn Mivar Logical AI; không thay thế syllabus chi tiết chính thức. Goal-driven reasoning bắt đầu từ mục tiêu rồi tìm điều kiện cần. Missing fact khác contradiction; cần phân biệt. Debug inference nên kiểm tra representation, trigger, dependency và stopping condition. Mọi claim Mivar-specific cần source status; inference quan trọng cần trace và test."
+  },
+  {
+    "id": "k_miv_m403_l1",
+    "type": "lesson",
+    "stage": "m4",
+    "target": "miv_m403_l1",
+    "title": "Dependency graph và inference path",
+    "text": "Học liệu hỗ trợ “Dependency graph và inference path” cho môn Mivar Logical AI; không thay thế syllabus chi tiết chính thức. Graph giúp nhìn dependencies giữa facts/rules/goals. Reachability trả lời goal có thể đạt từ facts hiện có hay không. Path explanation hữu ích cho explainability và debug. Mọi claim Mivar-specific cần source status; inference quan trọng cần trace và test."
+  },
+  {
+    "id": "k_miv_m403_l2",
+    "type": "lesson",
+    "stage": "m4",
+    "target": "miv_m403_l2",
+    "title": "Cycle, redundancy và graph validation",
+    "text": "Học liệu hỗ trợ “Cycle, redundancy và graph validation” cho môn Mivar Logical AI; không thay thế syllabus chi tiết chính thức. Cycle có thể hợp lệ hoặc gây loop tùy semantics/execution policy. Redundant rules làm trace khó đọc và tăng maintenance. Validation cần kiểm tra unreachable node, cycle và duplicate dependency. Mọi claim Mivar-specific cần source status; inference quan trọng cần trace và test."
+  },
+  {
+    "id": "k_miv_m404_l1",
+    "type": "lesson",
+    "stage": "m4",
+    "target": "miv_m404_l1",
+    "title": "Mivar source map và glossary xác minh",
+    "text": "Học liệu hỗ trợ “Mivar source map và glossary xác minh” cho môn Mivar Logical AI; không thay thế syllabus chi tiết chính thức. Mivar là chủ đề cụ thể của môn nên thuật ngữ/formalism phải gắn với nguồn giảng viên/trường khi có. Glossary nên có Russian term, English/Vietnamese note, source và status. Unknown là trạng thái hợp lệ; không cần lấp khoảng trống bằng suy đoán. Mọi claim Mivar-specific cần source status; inference quan trọng cần trace và test."
+  },
+  {
+    "id": "k_miv_m404_l2",
+    "type": "lesson",
+    "stage": "m4",
+    "target": "miv_m404_l2",
+    "title": "Mapping logic chung ↔ khái niệm Mivar",
+    "text": "Học liệu hỗ trợ “Mapping logic chung ↔ khái niệm Mivar” cho môn Mivar Logical AI; không thay thế syllabus chi tiết chính thức. Logic/rule/graph là nền chung, không tự động đồng nghĩa với formalism Mivar. Khi nhận lecture, map từng thuật ngữ Mivar vào concept đã biết và ghi điểm khác biệt. Nếu có mâu thuẫn, ưu tiên tài liệu chính thức và cập nhật module hỗ trợ. Mọi claim Mivar-specific cần source status; inference quan trọng cần trace và test."
+  },
+  {
+    "id": "k_miv_m405_l1",
+    "type": "lesson",
+    "stage": "m4",
+    "target": "miv_m405_l1",
+    "title": "Symbolic vs neural: chọn theo bài toán",
+    "text": "Học liệu hỗ trợ “Symbolic vs neural: chọn theo bài toán” cho môn Mivar Logical AI; không thay thế syllabus chi tiết chính thức. Symbolic phù hợp khi rule/constraint rõ và cần giải thích trực tiếp. Neural phù hợp khi pattern nằm trong dữ liệu phức tạp và rule khó viết. Hybrid có thể dùng neural để nhận biết và symbolic để constraint/reasoning. Mọi claim Mivar-specific cần source status; inference quan trọng cần trace và test."
+  },
+  {
+    "id": "k_miv_m405_l2",
+    "type": "lesson",
+    "stage": "m4",
+    "target": "miv_m405_l2",
+    "title": "Explainability và hybrid architecture",
+    "text": "Học liệu hỗ trợ “Explainability và hybrid architecture” cho môn Mivar Logical AI; không thay thế syllabus chi tiết chính thức. Inference trace là explanation trực tiếp của rule path nhưng vẫn phụ thuộc chất lượng representation. Hybrid architecture cần interface rõ giữa model output và symbolic facts. Confidence/uncertainty từ ML không nên bị biến thành fact tuyệt đối nếu không có threshold/policy. Mọi claim Mivar-specific cần source status; inference quan trọng cần trace và test."
+  },
+  {
+    "id": "k_miv_m406_l1",
+    "type": "lesson",
+    "stage": "m4",
+    "target": "miv_m406_l1",
+    "title": "Coursework: prototype knowledge + inference",
+    "text": "Học liệu hỗ trợ “Coursework: prototype knowledge + inference” cho môn Mivar Logical AI; không thay thế syllabus chi tiết chính thức. Coursework nên có problem, representation, rule set, engine/logic, test cases, trace, results và limitations. Rule source/owner giúp audit và maintenance. Prototype nhỏ nhưng có test tốt giá trị hơn rule set lớn không kiểm chứng. Mọi claim Mivar-specific cần source status; inference quan trọng cần trace và test."
+  },
+  {
+    "id": "k_miv_m406_l2",
+    "type": "lesson",
+    "stage": "m4",
+    "target": "miv_m406_l2",
+    "title": "Defense: chứng minh traceability và giới hạn",
+    "text": "Học liệu hỗ trợ “Defense: chứng minh traceability và giới hạn” cho môn Mivar Logical AI; không thay thế syllabus chi tiết chính thức. Bảo vệ cần demo input → inference trace → output. Phải nói rõ phần hỗ trợ chung và phần Mivar-specific đã được nguồn nào xác nhận. Limitations nên nêu representation coverage, conflicts, scale và source gaps. Mọi claim Mivar-specific cần source status; inference quan trọng cần trace và test."
+  }
+]

@@ -1,0 +1,1 @@
+window.SUBJECT_CONFIG={"id":"mivar","title":"Миварные технологии логического искусственного интеллекта","short":"Mivar · Logical AI","icon":"◇","tagline":"Logic, biểu diễn tri thức, rule-based inference, graph reasoning, explainability và coursework cho AI logic.","formulaLabel":"Rule / Graph / Inference / Checklist"};

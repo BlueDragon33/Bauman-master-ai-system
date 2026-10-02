@@ -1,0 +1,1382 @@
+[
+  {
+    "id": "miv_m401_l1",
+    "stage": "m4",
+    "moduleId": "miv_m401",
+    "title": "Facts, propositions và predicates",
+    "description": "Học liệu hỗ trợ “Facts, propositions và predicates” cho môn Mivar Logical AI; không thay thế syllabus chi tiết chính thức.",
+    "kind": "lý thuyết + thực hành",
+    "keyPoints": [
+      "Fact là mệnh đề/quan hệ được hệ thống coi là đầu vào đã biết trong phạm vi bài toán.",
+      "Proposition phù hợp phát biểu đúng/sai; predicate mô tả quan hệ/thuộc tính có biến.",
+      "Representation tốt phải có vocabulary và domain rõ."
+    ],
+    "tasks": [
+      "Chuyển 10 câu tự nhiên thành facts/predicates.",
+      "Đánh dấu câu nào là assumption."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK4",
+      "moduleTitle": "Facts, propositions và predicates",
+      "estimatedMinutes": 55,
+      "sourceBasis": "Official study-plan metadata: course title, semester 4, 4 credits, 144 total hours, 33 contact hours, exam + coursework. Detailed Mivar formalism is not asserted unless present in instructor/source materials.",
+      "objectives": [
+        "Fact là mệnh đề/quan hệ được hệ thống coi là đầu vào đã biết trong phạm vi bài toán.",
+        "Proposition phù hợp phát biểu đúng/sai; predicate mô tả quan hệ/thuộc tính có biến.",
+        "Representation tốt phải có vocabulary và domain rõ."
+      ],
+      "prerequisites": [
+        "Logic cơ bản.",
+        "Graph/pseudo-code cơ bản.",
+        "Tách fact khỏi assumption."
+      ],
+      "whyItMatters": "AI logic cần representation và inference có thể kiểm tra; inference trace giúp debug và giải thích quyết định.",
+      "coreTheory": [
+        "Fact là mệnh đề/quan hệ được hệ thống coi là đầu vào đã biết trong phạm vi bài toán.",
+        "Proposition phù hợp phát biểu đúng/sai; predicate mô tả quan hệ/thuộc tính có biến.",
+        "Representation tốt phải có vocabulary và domain rõ."
+      ],
+      "coreFormulas": [
+        "facts + rules + goal → inference trace → conclusion",
+        "claim → source status → verified / unknown"
+      ],
+      "workedExample": {
+        "context": "Hệ thống hỗ trợ quyết định kỹ thuật với sensor state, operating rules và safety constraints.",
+        "steps": [
+          "Chuyển 10 câu tự nhiên thành facts/predicates.",
+          "Đánh dấu câu nào là assumption."
+        ],
+        "answer": "Đáp án tốt phải có representation rõ, inference trace, test case và source boundary."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Viết 5 facts và 3 rules.",
+          "expected": "Không trộn fact với assumption."
+        },
+        {
+          "level": "Trung bình",
+          "task": "Trace đường suy luận tới một goal.",
+          "expected": "Mỗi bước chỉ ra rule được kích hoạt."
+        },
+        {
+          "level": "Khá",
+          "task": "Tạo edge case gây conflict/cycle.",
+          "expected": "Nhận diện và xử lý được."
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng/Thực hành mô phỏng.",
+      "commonMistakes": [
+        "Rule mơ hồ.",
+        "Không ghi inference trace.",
+        "Nhầm correlation ML với logic rule.",
+        "Gắn chi tiết Mivar chưa xác minh thành sự thật."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Kết luận này đến từ rule nào?",
+          "a": "Chỉ ra rule và facts đầu vào trong trace."
+        },
+        {
+          "q": "Claim này là logic chung hay Mivar-specific?",
+          "a": "Gắn nhãn và nguồn; nếu chưa có nguồn thì để unknown."
+        },
+        {
+          "q": "Rule set có edge case chưa?",
+          "a": "Tạo ít nhất một conflict hoặc missing-fact test."
+        }
+      ],
+      "masteryCriteria": [
+        "Biểu diễn được facts/rules.",
+        "Trace được inference.",
+        "Có test case.",
+        "Giữ source boundary.",
+        "Quiz ≥ 8/10 hoặc ôn lỗi sai."
+      ],
+      "rubric": [
+        {
+          "criterion": "Representation",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Inference",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Verification",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Source discipline",
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  {
+    "id": "miv_m401_l2",
+    "stage": "m4",
+    "moduleId": "miv_m401",
+    "title": "Rules, constraints và knowledge base",
+    "description": "Học liệu hỗ trợ “Rules, constraints và knowledge base” cho môn Mivar Logical AI; không thay thế syllabus chi tiết chính thức.",
+    "kind": "lý thuyết + thực hành",
+    "keyPoints": [
+      "Rule nối điều kiện với kết luận/hành động.",
+      "Constraint giới hạn trạng thái/quan hệ hợp lệ.",
+      "Knowledge base cần naming nhất quán và traceability."
+    ],
+    "tasks": [
+      "Viết 8 rules cho case kỹ thuật.",
+      "Tạo bảng rule id → antecedent → consequent → source."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK4",
+      "moduleTitle": "Rules, constraints và knowledge base",
+      "estimatedMinutes": 55,
+      "sourceBasis": "Official study-plan metadata: course title, semester 4, 4 credits, 144 total hours, 33 contact hours, exam + coursework. Detailed Mivar formalism is not asserted unless present in instructor/source materials.",
+      "objectives": [
+        "Rule nối điều kiện với kết luận/hành động.",
+        "Constraint giới hạn trạng thái/quan hệ hợp lệ.",
+        "Knowledge base cần naming nhất quán và traceability."
+      ],
+      "prerequisites": [
+        "Logic cơ bản.",
+        "Graph/pseudo-code cơ bản.",
+        "Tách fact khỏi assumption."
+      ],
+      "whyItMatters": "AI logic cần representation và inference có thể kiểm tra; inference trace giúp debug và giải thích quyết định.",
+      "coreTheory": [
+        "Rule nối điều kiện với kết luận/hành động.",
+        "Constraint giới hạn trạng thái/quan hệ hợp lệ.",
+        "Knowledge base cần naming nhất quán và traceability."
+      ],
+      "coreFormulas": [
+        "facts + rules + goal → inference trace → conclusion",
+        "claim → source status → verified / unknown"
+      ],
+      "workedExample": {
+        "context": "Hệ thống hỗ trợ quyết định kỹ thuật với sensor state, operating rules và safety constraints.",
+        "steps": [
+          "Viết 8 rules cho case kỹ thuật.",
+          "Tạo bảng rule id → antecedent → consequent → source."
+        ],
+        "answer": "Đáp án tốt phải có representation rõ, inference trace, test case và source boundary."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Viết 5 facts và 3 rules.",
+          "expected": "Không trộn fact với assumption."
+        },
+        {
+          "level": "Trung bình",
+          "task": "Trace đường suy luận tới một goal.",
+          "expected": "Mỗi bước chỉ ra rule được kích hoạt."
+        },
+        {
+          "level": "Khá",
+          "task": "Tạo edge case gây conflict/cycle.",
+          "expected": "Nhận diện và xử lý được."
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng/Thực hành mô phỏng.",
+      "commonMistakes": [
+        "Rule mơ hồ.",
+        "Không ghi inference trace.",
+        "Nhầm correlation ML với logic rule.",
+        "Gắn chi tiết Mivar chưa xác minh thành sự thật."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Kết luận này đến từ rule nào?",
+          "a": "Chỉ ra rule và facts đầu vào trong trace."
+        },
+        {
+          "q": "Claim này là logic chung hay Mivar-specific?",
+          "a": "Gắn nhãn và nguồn; nếu chưa có nguồn thì để unknown."
+        },
+        {
+          "q": "Rule set có edge case chưa?",
+          "a": "Tạo ít nhất một conflict hoặc missing-fact test."
+        }
+      ],
+      "masteryCriteria": [
+        "Biểu diễn được facts/rules.",
+        "Trace được inference.",
+        "Có test case.",
+        "Giữ source boundary.",
+        "Quiz ≥ 8/10 hoặc ôn lỗi sai."
+      ],
+      "rubric": [
+        {
+          "criterion": "Representation",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Inference",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Verification",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Source discipline",
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  {
+    "id": "miv_m402_l1",
+    "stage": "m4",
+    "moduleId": "miv_m402",
+    "title": "Forward reasoning và rule firing",
+    "description": "Học liệu hỗ trợ “Forward reasoning và rule firing” cho môn Mivar Logical AI; không thay thế syllabus chi tiết chính thức.",
+    "kind": "lý thuyết + thực hành",
+    "keyPoints": [
+      "Forward reasoning bắt đầu từ facts và áp dụng rule có điều kiện thỏa.",
+      "Rule firing nên được log để giải thích kết quả.",
+      "Conflict cần policy hoặc thêm specificity/source/priority thay vì xử lý ngầm."
+    ],
+    "tasks": [
+      "Trace 5 bước forward reasoning.",
+      "Tạo một conflict và ghi cách xử lý."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK4",
+      "moduleTitle": "Forward reasoning và rule firing",
+      "estimatedMinutes": 55,
+      "sourceBasis": "Official study-plan metadata: course title, semester 4, 4 credits, 144 total hours, 33 contact hours, exam + coursework. Detailed Mivar formalism is not asserted unless present in instructor/source materials.",
+      "objectives": [
+        "Forward reasoning bắt đầu từ facts và áp dụng rule có điều kiện thỏa.",
+        "Rule firing nên được log để giải thích kết quả.",
+        "Conflict cần policy hoặc thêm specificity/source/priority thay vì xử lý ngầm."
+      ],
+      "prerequisites": [
+        "Logic cơ bản.",
+        "Graph/pseudo-code cơ bản.",
+        "Tách fact khỏi assumption."
+      ],
+      "whyItMatters": "AI logic cần representation và inference có thể kiểm tra; inference trace giúp debug và giải thích quyết định.",
+      "coreTheory": [
+        "Forward reasoning bắt đầu từ facts và áp dụng rule có điều kiện thỏa.",
+        "Rule firing nên được log để giải thích kết quả.",
+        "Conflict cần policy hoặc thêm specificity/source/priority thay vì xử lý ngầm."
+      ],
+      "coreFormulas": [
+        "facts + rules + goal → inference trace → conclusion",
+        "claim → source status → verified / unknown"
+      ],
+      "workedExample": {
+        "context": "Hệ thống hỗ trợ quyết định kỹ thuật với sensor state, operating rules và safety constraints.",
+        "steps": [
+          "Trace 5 bước forward reasoning.",
+          "Tạo một conflict và ghi cách xử lý."
+        ],
+        "answer": "Đáp án tốt phải có representation rõ, inference trace, test case và source boundary."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Viết 5 facts và 3 rules.",
+          "expected": "Không trộn fact với assumption."
+        },
+        {
+          "level": "Trung bình",
+          "task": "Trace đường suy luận tới một goal.",
+          "expected": "Mỗi bước chỉ ra rule được kích hoạt."
+        },
+        {
+          "level": "Khá",
+          "task": "Tạo edge case gây conflict/cycle.",
+          "expected": "Nhận diện và xử lý được."
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng/Thực hành mô phỏng.",
+      "commonMistakes": [
+        "Rule mơ hồ.",
+        "Không ghi inference trace.",
+        "Nhầm correlation ML với logic rule.",
+        "Gắn chi tiết Mivar chưa xác minh thành sự thật."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Kết luận này đến từ rule nào?",
+          "a": "Chỉ ra rule và facts đầu vào trong trace."
+        },
+        {
+          "q": "Claim này là logic chung hay Mivar-specific?",
+          "a": "Gắn nhãn và nguồn; nếu chưa có nguồn thì để unknown."
+        },
+        {
+          "q": "Rule set có edge case chưa?",
+          "a": "Tạo ít nhất một conflict hoặc missing-fact test."
+        }
+      ],
+      "masteryCriteria": [
+        "Biểu diễn được facts/rules.",
+        "Trace được inference.",
+        "Có test case.",
+        "Giữ source boundary.",
+        "Quiz ≥ 8/10 hoặc ôn lỗi sai."
+      ],
+      "rubric": [
+        {
+          "criterion": "Representation",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Inference",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Verification",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Source discipline",
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  {
+    "id": "miv_m402_l2",
+    "stage": "m4",
+    "moduleId": "miv_m402",
+    "title": "Goal-driven reasoning và debug inference",
+    "description": "Học liệu hỗ trợ “Goal-driven reasoning và debug inference” cho môn Mivar Logical AI; không thay thế syllabus chi tiết chính thức.",
+    "kind": "lý thuyết + thực hành",
+    "keyPoints": [
+      "Goal-driven reasoning bắt đầu từ mục tiêu rồi tìm điều kiện cần.",
+      "Missing fact khác contradiction; cần phân biệt.",
+      "Debug inference nên kiểm tra representation, trigger, dependency và stopping condition."
+    ],
+    "tasks": [
+      "Lập goal tree.",
+      "Debug một kết luận không xuất hiện."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK4",
+      "moduleTitle": "Goal-driven reasoning và debug inference",
+      "estimatedMinutes": 55,
+      "sourceBasis": "Official study-plan metadata: course title, semester 4, 4 credits, 144 total hours, 33 contact hours, exam + coursework. Detailed Mivar formalism is not asserted unless present in instructor/source materials.",
+      "objectives": [
+        "Goal-driven reasoning bắt đầu từ mục tiêu rồi tìm điều kiện cần.",
+        "Missing fact khác contradiction; cần phân biệt.",
+        "Debug inference nên kiểm tra representation, trigger, dependency và stopping condition."
+      ],
+      "prerequisites": [
+        "Logic cơ bản.",
+        "Graph/pseudo-code cơ bản.",
+        "Tách fact khỏi assumption."
+      ],
+      "whyItMatters": "AI logic cần representation và inference có thể kiểm tra; inference trace giúp debug và giải thích quyết định.",
+      "coreTheory": [
+        "Goal-driven reasoning bắt đầu từ mục tiêu rồi tìm điều kiện cần.",
+        "Missing fact khác contradiction; cần phân biệt.",
+        "Debug inference nên kiểm tra representation, trigger, dependency và stopping condition."
+      ],
+      "coreFormulas": [
+        "facts + rules + goal → inference trace → conclusion",
+        "claim → source status → verified / unknown"
+      ],
+      "workedExample": {
+        "context": "Hệ thống hỗ trợ quyết định kỹ thuật với sensor state, operating rules và safety constraints.",
+        "steps": [
+          "Lập goal tree.",
+          "Debug một kết luận không xuất hiện."
+        ],
+        "answer": "Đáp án tốt phải có representation rõ, inference trace, test case và source boundary."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Viết 5 facts và 3 rules.",
+          "expected": "Không trộn fact với assumption."
+        },
+        {
+          "level": "Trung bình",
+          "task": "Trace đường suy luận tới một goal.",
+          "expected": "Mỗi bước chỉ ra rule được kích hoạt."
+        },
+        {
+          "level": "Khá",
+          "task": "Tạo edge case gây conflict/cycle.",
+          "expected": "Nhận diện và xử lý được."
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng/Thực hành mô phỏng.",
+      "commonMistakes": [
+        "Rule mơ hồ.",
+        "Không ghi inference trace.",
+        "Nhầm correlation ML với logic rule.",
+        "Gắn chi tiết Mivar chưa xác minh thành sự thật."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Kết luận này đến từ rule nào?",
+          "a": "Chỉ ra rule và facts đầu vào trong trace."
+        },
+        {
+          "q": "Claim này là logic chung hay Mivar-specific?",
+          "a": "Gắn nhãn và nguồn; nếu chưa có nguồn thì để unknown."
+        },
+        {
+          "q": "Rule set có edge case chưa?",
+          "a": "Tạo ít nhất một conflict hoặc missing-fact test."
+        }
+      ],
+      "masteryCriteria": [
+        "Biểu diễn được facts/rules.",
+        "Trace được inference.",
+        "Có test case.",
+        "Giữ source boundary.",
+        "Quiz ≥ 8/10 hoặc ôn lỗi sai."
+      ],
+      "rubric": [
+        {
+          "criterion": "Representation",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Inference",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Verification",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Source discipline",
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  {
+    "id": "miv_m403_l1",
+    "stage": "m4",
+    "moduleId": "miv_m403",
+    "title": "Dependency graph và inference path",
+    "description": "Học liệu hỗ trợ “Dependency graph và inference path” cho môn Mivar Logical AI; không thay thế syllabus chi tiết chính thức.",
+    "kind": "lý thuyết + thực hành",
+    "keyPoints": [
+      "Graph giúp nhìn dependencies giữa facts/rules/goals.",
+      "Reachability trả lời goal có thể đạt từ facts hiện có hay không.",
+      "Path explanation hữu ích cho explainability và debug."
+    ],
+    "tasks": [
+      "Vẽ graph cho 10 node.",
+      "Tìm hai path tới cùng goal."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK4",
+      "moduleTitle": "Dependency graph và inference path",
+      "estimatedMinutes": 55,
+      "sourceBasis": "Official study-plan metadata: course title, semester 4, 4 credits, 144 total hours, 33 contact hours, exam + coursework. Detailed Mivar formalism is not asserted unless present in instructor/source materials.",
+      "objectives": [
+        "Graph giúp nhìn dependencies giữa facts/rules/goals.",
+        "Reachability trả lời goal có thể đạt từ facts hiện có hay không.",
+        "Path explanation hữu ích cho explainability và debug."
+      ],
+      "prerequisites": [
+        "Logic cơ bản.",
+        "Graph/pseudo-code cơ bản.",
+        "Tách fact khỏi assumption."
+      ],
+      "whyItMatters": "AI logic cần representation và inference có thể kiểm tra; inference trace giúp debug và giải thích quyết định.",
+      "coreTheory": [
+        "Graph giúp nhìn dependencies giữa facts/rules/goals.",
+        "Reachability trả lời goal có thể đạt từ facts hiện có hay không.",
+        "Path explanation hữu ích cho explainability và debug."
+      ],
+      "coreFormulas": [
+        "facts + rules + goal → inference trace → conclusion",
+        "claim → source status → verified / unknown"
+      ],
+      "workedExample": {
+        "context": "Hệ thống hỗ trợ quyết định kỹ thuật với sensor state, operating rules và safety constraints.",
+        "steps": [
+          "Vẽ graph cho 10 node.",
+          "Tìm hai path tới cùng goal."
+        ],
+        "answer": "Đáp án tốt phải có representation rõ, inference trace, test case và source boundary."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Viết 5 facts và 3 rules.",
+          "expected": "Không trộn fact với assumption."
+        },
+        {
+          "level": "Trung bình",
+          "task": "Trace đường suy luận tới một goal.",
+          "expected": "Mỗi bước chỉ ra rule được kích hoạt."
+        },
+        {
+          "level": "Khá",
+          "task": "Tạo edge case gây conflict/cycle.",
+          "expected": "Nhận diện và xử lý được."
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng/Thực hành mô phỏng.",
+      "commonMistakes": [
+        "Rule mơ hồ.",
+        "Không ghi inference trace.",
+        "Nhầm correlation ML với logic rule.",
+        "Gắn chi tiết Mivar chưa xác minh thành sự thật."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Kết luận này đến từ rule nào?",
+          "a": "Chỉ ra rule và facts đầu vào trong trace."
+        },
+        {
+          "q": "Claim này là logic chung hay Mivar-specific?",
+          "a": "Gắn nhãn và nguồn; nếu chưa có nguồn thì để unknown."
+        },
+        {
+          "q": "Rule set có edge case chưa?",
+          "a": "Tạo ít nhất một conflict hoặc missing-fact test."
+        }
+      ],
+      "masteryCriteria": [
+        "Biểu diễn được facts/rules.",
+        "Trace được inference.",
+        "Có test case.",
+        "Giữ source boundary.",
+        "Quiz ≥ 8/10 hoặc ôn lỗi sai."
+      ],
+      "rubric": [
+        {
+          "criterion": "Representation",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Inference",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Verification",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Source discipline",
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  {
+    "id": "miv_m403_l2",
+    "stage": "m4",
+    "moduleId": "miv_m403",
+    "title": "Cycle, redundancy và graph validation",
+    "description": "Học liệu hỗ trợ “Cycle, redundancy và graph validation” cho môn Mivar Logical AI; không thay thế syllabus chi tiết chính thức.",
+    "kind": "lý thuyết + thực hành",
+    "keyPoints": [
+      "Cycle có thể hợp lệ hoặc gây loop tùy semantics/execution policy.",
+      "Redundant rules làm trace khó đọc và tăng maintenance.",
+      "Validation cần kiểm tra unreachable node, cycle và duplicate dependency."
+    ],
+    "tasks": [
+      "Tìm cycle/unreachable node.",
+      "Rút gọn rule/graph mà giữ behavior test."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK4",
+      "moduleTitle": "Cycle, redundancy và graph validation",
+      "estimatedMinutes": 55,
+      "sourceBasis": "Official study-plan metadata: course title, semester 4, 4 credits, 144 total hours, 33 contact hours, exam + coursework. Detailed Mivar formalism is not asserted unless present in instructor/source materials.",
+      "objectives": [
+        "Cycle có thể hợp lệ hoặc gây loop tùy semantics/execution policy.",
+        "Redundant rules làm trace khó đọc và tăng maintenance.",
+        "Validation cần kiểm tra unreachable node, cycle và duplicate dependency."
+      ],
+      "prerequisites": [
+        "Logic cơ bản.",
+        "Graph/pseudo-code cơ bản.",
+        "Tách fact khỏi assumption."
+      ],
+      "whyItMatters": "AI logic cần representation và inference có thể kiểm tra; inference trace giúp debug và giải thích quyết định.",
+      "coreTheory": [
+        "Cycle có thể hợp lệ hoặc gây loop tùy semantics/execution policy.",
+        "Redundant rules làm trace khó đọc và tăng maintenance.",
+        "Validation cần kiểm tra unreachable node, cycle và duplicate dependency."
+      ],
+      "coreFormulas": [
+        "facts + rules + goal → inference trace → conclusion",
+        "claim → source status → verified / unknown"
+      ],
+      "workedExample": {
+        "context": "Hệ thống hỗ trợ quyết định kỹ thuật với sensor state, operating rules và safety constraints.",
+        "steps": [
+          "Tìm cycle/unreachable node.",
+          "Rút gọn rule/graph mà giữ behavior test."
+        ],
+        "answer": "Đáp án tốt phải có representation rõ, inference trace, test case và source boundary."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Viết 5 facts và 3 rules.",
+          "expected": "Không trộn fact với assumption."
+        },
+        {
+          "level": "Trung bình",
+          "task": "Trace đường suy luận tới một goal.",
+          "expected": "Mỗi bước chỉ ra rule được kích hoạt."
+        },
+        {
+          "level": "Khá",
+          "task": "Tạo edge case gây conflict/cycle.",
+          "expected": "Nhận diện và xử lý được."
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng/Thực hành mô phỏng.",
+      "commonMistakes": [
+        "Rule mơ hồ.",
+        "Không ghi inference trace.",
+        "Nhầm correlation ML với logic rule.",
+        "Gắn chi tiết Mivar chưa xác minh thành sự thật."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Kết luận này đến từ rule nào?",
+          "a": "Chỉ ra rule và facts đầu vào trong trace."
+        },
+        {
+          "q": "Claim này là logic chung hay Mivar-specific?",
+          "a": "Gắn nhãn và nguồn; nếu chưa có nguồn thì để unknown."
+        },
+        {
+          "q": "Rule set có edge case chưa?",
+          "a": "Tạo ít nhất một conflict hoặc missing-fact test."
+        }
+      ],
+      "masteryCriteria": [
+        "Biểu diễn được facts/rules.",
+        "Trace được inference.",
+        "Có test case.",
+        "Giữ source boundary.",
+        "Quiz ≥ 8/10 hoặc ôn lỗi sai."
+      ],
+      "rubric": [
+        {
+          "criterion": "Representation",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Inference",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Verification",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Source discipline",
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  {
+    "id": "miv_m404_l1",
+    "stage": "m4",
+    "moduleId": "miv_m404",
+    "title": "Mivar source map và glossary xác minh",
+    "description": "Học liệu hỗ trợ “Mivar source map và glossary xác minh” cho môn Mivar Logical AI; không thay thế syllabus chi tiết chính thức.",
+    "kind": "lý thuyết + thực hành",
+    "keyPoints": [
+      "Mivar là chủ đề cụ thể của môn nên thuật ngữ/formalism phải gắn với nguồn giảng viên/trường khi có.",
+      "Glossary nên có Russian term, English/Vietnamese note, source và status.",
+      "Unknown là trạng thái hợp lệ; không cần lấp khoảng trống bằng suy đoán."
+    ],
+    "tasks": [
+      "Tạo glossary 15 term.",
+      "Mỗi term có source status: official/support/unknown."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK4",
+      "moduleTitle": "Mivar source map và glossary xác minh",
+      "estimatedMinutes": 55,
+      "sourceBasis": "Official study-plan metadata: course title, semester 4, 4 credits, 144 total hours, 33 contact hours, exam + coursework. Detailed Mivar formalism is not asserted unless present in instructor/source materials.",
+      "objectives": [
+        "Mivar là chủ đề cụ thể của môn nên thuật ngữ/formalism phải gắn với nguồn giảng viên/trường khi có.",
+        "Glossary nên có Russian term, English/Vietnamese note, source và status.",
+        "Unknown là trạng thái hợp lệ; không cần lấp khoảng trống bằng suy đoán."
+      ],
+      "prerequisites": [
+        "Logic cơ bản.",
+        "Graph/pseudo-code cơ bản.",
+        "Tách fact khỏi assumption."
+      ],
+      "whyItMatters": "AI logic cần representation và inference có thể kiểm tra; inference trace giúp debug và giải thích quyết định.",
+      "coreTheory": [
+        "Mivar là chủ đề cụ thể của môn nên thuật ngữ/formalism phải gắn với nguồn giảng viên/trường khi có.",
+        "Glossary nên có Russian term, English/Vietnamese note, source và status.",
+        "Unknown là trạng thái hợp lệ; không cần lấp khoảng trống bằng suy đoán."
+      ],
+      "coreFormulas": [
+        "facts + rules + goal → inference trace → conclusion",
+        "claim → source status → verified / unknown"
+      ],
+      "workedExample": {
+        "context": "Hệ thống hỗ trợ quyết định kỹ thuật với sensor state, operating rules và safety constraints.",
+        "steps": [
+          "Tạo glossary 15 term.",
+          "Mỗi term có source status: official/support/unknown."
+        ],
+        "answer": "Đáp án tốt phải có representation rõ, inference trace, test case và source boundary."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Viết 5 facts và 3 rules.",
+          "expected": "Không trộn fact với assumption."
+        },
+        {
+          "level": "Trung bình",
+          "task": "Trace đường suy luận tới một goal.",
+          "expected": "Mỗi bước chỉ ra rule được kích hoạt."
+        },
+        {
+          "level": "Khá",
+          "task": "Tạo edge case gây conflict/cycle.",
+          "expected": "Nhận diện và xử lý được."
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng/Thực hành mô phỏng.",
+      "commonMistakes": [
+        "Rule mơ hồ.",
+        "Không ghi inference trace.",
+        "Nhầm correlation ML với logic rule.",
+        "Gắn chi tiết Mivar chưa xác minh thành sự thật."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Kết luận này đến từ rule nào?",
+          "a": "Chỉ ra rule và facts đầu vào trong trace."
+        },
+        {
+          "q": "Claim này là logic chung hay Mivar-specific?",
+          "a": "Gắn nhãn và nguồn; nếu chưa có nguồn thì để unknown."
+        },
+        {
+          "q": "Rule set có edge case chưa?",
+          "a": "Tạo ít nhất một conflict hoặc missing-fact test."
+        }
+      ],
+      "masteryCriteria": [
+        "Biểu diễn được facts/rules.",
+        "Trace được inference.",
+        "Có test case.",
+        "Giữ source boundary.",
+        "Quiz ≥ 8/10 hoặc ôn lỗi sai."
+      ],
+      "rubric": [
+        {
+          "criterion": "Representation",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Inference",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Verification",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Source discipline",
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  {
+    "id": "miv_m404_l2",
+    "stage": "m4",
+    "moduleId": "miv_m404",
+    "title": "Mapping logic chung ↔ khái niệm Mivar",
+    "description": "Học liệu hỗ trợ “Mapping logic chung ↔ khái niệm Mivar” cho môn Mivar Logical AI; không thay thế syllabus chi tiết chính thức.",
+    "kind": "lý thuyết + thực hành",
+    "keyPoints": [
+      "Logic/rule/graph là nền chung, không tự động đồng nghĩa với formalism Mivar.",
+      "Khi nhận lecture, map từng thuật ngữ Mivar vào concept đã biết và ghi điểm khác biệt.",
+      "Nếu có mâu thuẫn, ưu tiên tài liệu chính thức và cập nhật module hỗ trợ."
+    ],
+    "tasks": [
+      "Tạo mapping table concept chung → term Mivar → source.",
+      "Ghi 5 câu hỏi cần hỏi giảng viên."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK4",
+      "moduleTitle": "Mapping logic chung ↔ khái niệm Mivar",
+      "estimatedMinutes": 55,
+      "sourceBasis": "Official study-plan metadata: course title, semester 4, 4 credits, 144 total hours, 33 contact hours, exam + coursework. Detailed Mivar formalism is not asserted unless present in instructor/source materials.",
+      "objectives": [
+        "Logic/rule/graph là nền chung, không tự động đồng nghĩa với formalism Mivar.",
+        "Khi nhận lecture, map từng thuật ngữ Mivar vào concept đã biết và ghi điểm khác biệt.",
+        "Nếu có mâu thuẫn, ưu tiên tài liệu chính thức và cập nhật module hỗ trợ."
+      ],
+      "prerequisites": [
+        "Logic cơ bản.",
+        "Graph/pseudo-code cơ bản.",
+        "Tách fact khỏi assumption."
+      ],
+      "whyItMatters": "AI logic cần representation và inference có thể kiểm tra; inference trace giúp debug và giải thích quyết định.",
+      "coreTheory": [
+        "Logic/rule/graph là nền chung, không tự động đồng nghĩa với formalism Mivar.",
+        "Khi nhận lecture, map từng thuật ngữ Mivar vào concept đã biết và ghi điểm khác biệt.",
+        "Nếu có mâu thuẫn, ưu tiên tài liệu chính thức và cập nhật module hỗ trợ."
+      ],
+      "coreFormulas": [
+        "facts + rules + goal → inference trace → conclusion",
+        "claim → source status → verified / unknown"
+      ],
+      "workedExample": {
+        "context": "Hệ thống hỗ trợ quyết định kỹ thuật với sensor state, operating rules và safety constraints.",
+        "steps": [
+          "Tạo mapping table concept chung → term Mivar → source.",
+          "Ghi 5 câu hỏi cần hỏi giảng viên."
+        ],
+        "answer": "Đáp án tốt phải có representation rõ, inference trace, test case và source boundary."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Viết 5 facts và 3 rules.",
+          "expected": "Không trộn fact với assumption."
+        },
+        {
+          "level": "Trung bình",
+          "task": "Trace đường suy luận tới một goal.",
+          "expected": "Mỗi bước chỉ ra rule được kích hoạt."
+        },
+        {
+          "level": "Khá",
+          "task": "Tạo edge case gây conflict/cycle.",
+          "expected": "Nhận diện và xử lý được."
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng/Thực hành mô phỏng.",
+      "commonMistakes": [
+        "Rule mơ hồ.",
+        "Không ghi inference trace.",
+        "Nhầm correlation ML với logic rule.",
+        "Gắn chi tiết Mivar chưa xác minh thành sự thật."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Kết luận này đến từ rule nào?",
+          "a": "Chỉ ra rule và facts đầu vào trong trace."
+        },
+        {
+          "q": "Claim này là logic chung hay Mivar-specific?",
+          "a": "Gắn nhãn và nguồn; nếu chưa có nguồn thì để unknown."
+        },
+        {
+          "q": "Rule set có edge case chưa?",
+          "a": "Tạo ít nhất một conflict hoặc missing-fact test."
+        }
+      ],
+      "masteryCriteria": [
+        "Biểu diễn được facts/rules.",
+        "Trace được inference.",
+        "Có test case.",
+        "Giữ source boundary.",
+        "Quiz ≥ 8/10 hoặc ôn lỗi sai."
+      ],
+      "rubric": [
+        {
+          "criterion": "Representation",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Inference",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Verification",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Source discipline",
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  {
+    "id": "miv_m405_l1",
+    "stage": "m4",
+    "moduleId": "miv_m405",
+    "title": "Symbolic vs neural: chọn theo bài toán",
+    "description": "Học liệu hỗ trợ “Symbolic vs neural: chọn theo bài toán” cho môn Mivar Logical AI; không thay thế syllabus chi tiết chính thức.",
+    "kind": "lý thuyết + thực hành",
+    "keyPoints": [
+      "Symbolic phù hợp khi rule/constraint rõ và cần giải thích trực tiếp.",
+      "Neural phù hợp khi pattern nằm trong dữ liệu phức tạp và rule khó viết.",
+      "Hybrid có thể dùng neural để nhận biết và symbolic để constraint/reasoning."
+    ],
+    "tasks": [
+      "Lập decision matrix cho 5 task.",
+      "Giải thích vì sao một task cần symbolic/neural/hybrid."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK4",
+      "moduleTitle": "Symbolic vs neural: chọn theo bài toán",
+      "estimatedMinutes": 55,
+      "sourceBasis": "Official study-plan metadata: course title, semester 4, 4 credits, 144 total hours, 33 contact hours, exam + coursework. Detailed Mivar formalism is not asserted unless present in instructor/source materials.",
+      "objectives": [
+        "Symbolic phù hợp khi rule/constraint rõ và cần giải thích trực tiếp.",
+        "Neural phù hợp khi pattern nằm trong dữ liệu phức tạp và rule khó viết.",
+        "Hybrid có thể dùng neural để nhận biết và symbolic để constraint/reasoning."
+      ],
+      "prerequisites": [
+        "Logic cơ bản.",
+        "Graph/pseudo-code cơ bản.",
+        "Tách fact khỏi assumption."
+      ],
+      "whyItMatters": "AI logic cần representation và inference có thể kiểm tra; inference trace giúp debug và giải thích quyết định.",
+      "coreTheory": [
+        "Symbolic phù hợp khi rule/constraint rõ và cần giải thích trực tiếp.",
+        "Neural phù hợp khi pattern nằm trong dữ liệu phức tạp và rule khó viết.",
+        "Hybrid có thể dùng neural để nhận biết và symbolic để constraint/reasoning."
+      ],
+      "coreFormulas": [
+        "facts + rules + goal → inference trace → conclusion",
+        "claim → source status → verified / unknown"
+      ],
+      "workedExample": {
+        "context": "Hệ thống hỗ trợ quyết định kỹ thuật với sensor state, operating rules và safety constraints.",
+        "steps": [
+          "Lập decision matrix cho 5 task.",
+          "Giải thích vì sao một task cần symbolic/neural/hybrid."
+        ],
+        "answer": "Đáp án tốt phải có representation rõ, inference trace, test case và source boundary."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Viết 5 facts và 3 rules.",
+          "expected": "Không trộn fact với assumption."
+        },
+        {
+          "level": "Trung bình",
+          "task": "Trace đường suy luận tới một goal.",
+          "expected": "Mỗi bước chỉ ra rule được kích hoạt."
+        },
+        {
+          "level": "Khá",
+          "task": "Tạo edge case gây conflict/cycle.",
+          "expected": "Nhận diện và xử lý được."
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng/Thực hành mô phỏng.",
+      "commonMistakes": [
+        "Rule mơ hồ.",
+        "Không ghi inference trace.",
+        "Nhầm correlation ML với logic rule.",
+        "Gắn chi tiết Mivar chưa xác minh thành sự thật."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Kết luận này đến từ rule nào?",
+          "a": "Chỉ ra rule và facts đầu vào trong trace."
+        },
+        {
+          "q": "Claim này là logic chung hay Mivar-specific?",
+          "a": "Gắn nhãn và nguồn; nếu chưa có nguồn thì để unknown."
+        },
+        {
+          "q": "Rule set có edge case chưa?",
+          "a": "Tạo ít nhất một conflict hoặc missing-fact test."
+        }
+      ],
+      "masteryCriteria": [
+        "Biểu diễn được facts/rules.",
+        "Trace được inference.",
+        "Có test case.",
+        "Giữ source boundary.",
+        "Quiz ≥ 8/10 hoặc ôn lỗi sai."
+      ],
+      "rubric": [
+        {
+          "criterion": "Representation",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Inference",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Verification",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Source discipline",
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  {
+    "id": "miv_m405_l2",
+    "stage": "m4",
+    "moduleId": "miv_m405",
+    "title": "Explainability và hybrid architecture",
+    "description": "Học liệu hỗ trợ “Explainability và hybrid architecture” cho môn Mivar Logical AI; không thay thế syllabus chi tiết chính thức.",
+    "kind": "lý thuyết + thực hành",
+    "keyPoints": [
+      "Inference trace là explanation trực tiếp của rule path nhưng vẫn phụ thuộc chất lượng representation.",
+      "Hybrid architecture cần interface rõ giữa model output và symbolic facts.",
+      "Confidence/uncertainty từ ML không nên bị biến thành fact tuyệt đối nếu không có threshold/policy."
+    ],
+    "tasks": [
+      "Vẽ hybrid pipeline perception → facts → rules → action.",
+      "Thiết kế policy cho confidence thấp."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK4",
+      "moduleTitle": "Explainability và hybrid architecture",
+      "estimatedMinutes": 55,
+      "sourceBasis": "Official study-plan metadata: course title, semester 4, 4 credits, 144 total hours, 33 contact hours, exam + coursework. Detailed Mivar formalism is not asserted unless present in instructor/source materials.",
+      "objectives": [
+        "Inference trace là explanation trực tiếp của rule path nhưng vẫn phụ thuộc chất lượng representation.",
+        "Hybrid architecture cần interface rõ giữa model output và symbolic facts.",
+        "Confidence/uncertainty từ ML không nên bị biến thành fact tuyệt đối nếu không có threshold/policy."
+      ],
+      "prerequisites": [
+        "Logic cơ bản.",
+        "Graph/pseudo-code cơ bản.",
+        "Tách fact khỏi assumption."
+      ],
+      "whyItMatters": "AI logic cần representation và inference có thể kiểm tra; inference trace giúp debug và giải thích quyết định.",
+      "coreTheory": [
+        "Inference trace là explanation trực tiếp của rule path nhưng vẫn phụ thuộc chất lượng representation.",
+        "Hybrid architecture cần interface rõ giữa model output và symbolic facts.",
+        "Confidence/uncertainty từ ML không nên bị biến thành fact tuyệt đối nếu không có threshold/policy."
+      ],
+      "coreFormulas": [
+        "facts + rules + goal → inference trace → conclusion",
+        "claim → source status → verified / unknown"
+      ],
+      "workedExample": {
+        "context": "Hệ thống hỗ trợ quyết định kỹ thuật với sensor state, operating rules và safety constraints.",
+        "steps": [
+          "Vẽ hybrid pipeline perception → facts → rules → action.",
+          "Thiết kế policy cho confidence thấp."
+        ],
+        "answer": "Đáp án tốt phải có representation rõ, inference trace, test case và source boundary."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Viết 5 facts và 3 rules.",
+          "expected": "Không trộn fact với assumption."
+        },
+        {
+          "level": "Trung bình",
+          "task": "Trace đường suy luận tới một goal.",
+          "expected": "Mỗi bước chỉ ra rule được kích hoạt."
+        },
+        {
+          "level": "Khá",
+          "task": "Tạo edge case gây conflict/cycle.",
+          "expected": "Nhận diện và xử lý được."
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng/Thực hành mô phỏng.",
+      "commonMistakes": [
+        "Rule mơ hồ.",
+        "Không ghi inference trace.",
+        "Nhầm correlation ML với logic rule.",
+        "Gắn chi tiết Mivar chưa xác minh thành sự thật."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Kết luận này đến từ rule nào?",
+          "a": "Chỉ ra rule và facts đầu vào trong trace."
+        },
+        {
+          "q": "Claim này là logic chung hay Mivar-specific?",
+          "a": "Gắn nhãn và nguồn; nếu chưa có nguồn thì để unknown."
+        },
+        {
+          "q": "Rule set có edge case chưa?",
+          "a": "Tạo ít nhất một conflict hoặc missing-fact test."
+        }
+      ],
+      "masteryCriteria": [
+        "Biểu diễn được facts/rules.",
+        "Trace được inference.",
+        "Có test case.",
+        "Giữ source boundary.",
+        "Quiz ≥ 8/10 hoặc ôn lỗi sai."
+      ],
+      "rubric": [
+        {
+          "criterion": "Representation",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Inference",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Verification",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Source discipline",
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  {
+    "id": "miv_m406_l1",
+    "stage": "m4",
+    "moduleId": "miv_m406",
+    "title": "Coursework: prototype knowledge + inference",
+    "description": "Học liệu hỗ trợ “Coursework: prototype knowledge + inference” cho môn Mivar Logical AI; không thay thế syllabus chi tiết chính thức.",
+    "kind": "lý thuyết + thực hành",
+    "keyPoints": [
+      "Coursework nên có problem, representation, rule set, engine/logic, test cases, trace, results và limitations.",
+      "Rule source/owner giúp audit và maintenance.",
+      "Prototype nhỏ nhưng có test tốt giá trị hơn rule set lớn không kiểm chứng."
+    ],
+    "tasks": [
+      "Tạo outline coursework.",
+      "Viết 10 test cases gồm normal/conflict/missing/cycle."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK4",
+      "moduleTitle": "Coursework: prototype knowledge + inference",
+      "estimatedMinutes": 55,
+      "sourceBasis": "Official study-plan metadata: course title, semester 4, 4 credits, 144 total hours, 33 contact hours, exam + coursework. Detailed Mivar formalism is not asserted unless present in instructor/source materials.",
+      "objectives": [
+        "Coursework nên có problem, representation, rule set, engine/logic, test cases, trace, results và limitations.",
+        "Rule source/owner giúp audit và maintenance.",
+        "Prototype nhỏ nhưng có test tốt giá trị hơn rule set lớn không kiểm chứng."
+      ],
+      "prerequisites": [
+        "Logic cơ bản.",
+        "Graph/pseudo-code cơ bản.",
+        "Tách fact khỏi assumption."
+      ],
+      "whyItMatters": "AI logic cần representation và inference có thể kiểm tra; inference trace giúp debug và giải thích quyết định.",
+      "coreTheory": [
+        "Coursework nên có problem, representation, rule set, engine/logic, test cases, trace, results và limitations.",
+        "Rule source/owner giúp audit và maintenance.",
+        "Prototype nhỏ nhưng có test tốt giá trị hơn rule set lớn không kiểm chứng."
+      ],
+      "coreFormulas": [
+        "facts + rules + goal → inference trace → conclusion",
+        "claim → source status → verified / unknown"
+      ],
+      "workedExample": {
+        "context": "Hệ thống hỗ trợ quyết định kỹ thuật với sensor state, operating rules và safety constraints.",
+        "steps": [
+          "Tạo outline coursework.",
+          "Viết 10 test cases gồm normal/conflict/missing/cycle."
+        ],
+        "answer": "Đáp án tốt phải có representation rõ, inference trace, test case và source boundary."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Viết 5 facts và 3 rules.",
+          "expected": "Không trộn fact với assumption."
+        },
+        {
+          "level": "Trung bình",
+          "task": "Trace đường suy luận tới một goal.",
+          "expected": "Mỗi bước chỉ ra rule được kích hoạt."
+        },
+        {
+          "level": "Khá",
+          "task": "Tạo edge case gây conflict/cycle.",
+          "expected": "Nhận diện và xử lý được."
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng/Thực hành mô phỏng.",
+      "commonMistakes": [
+        "Rule mơ hồ.",
+        "Không ghi inference trace.",
+        "Nhầm correlation ML với logic rule.",
+        "Gắn chi tiết Mivar chưa xác minh thành sự thật."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Kết luận này đến từ rule nào?",
+          "a": "Chỉ ra rule và facts đầu vào trong trace."
+        },
+        {
+          "q": "Claim này là logic chung hay Mivar-specific?",
+          "a": "Gắn nhãn và nguồn; nếu chưa có nguồn thì để unknown."
+        },
+        {
+          "q": "Rule set có edge case chưa?",
+          "a": "Tạo ít nhất một conflict hoặc missing-fact test."
+        }
+      ],
+      "masteryCriteria": [
+        "Biểu diễn được facts/rules.",
+        "Trace được inference.",
+        "Có test case.",
+        "Giữ source boundary.",
+        "Quiz ≥ 8/10 hoặc ôn lỗi sai."
+      ],
+      "rubric": [
+        {
+          "criterion": "Representation",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Inference",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Verification",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Source discipline",
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  {
+    "id": "miv_m406_l2",
+    "stage": "m4",
+    "moduleId": "miv_m406",
+    "title": "Defense: chứng minh traceability và giới hạn",
+    "description": "Học liệu hỗ trợ “Defense: chứng minh traceability và giới hạn” cho môn Mivar Logical AI; không thay thế syllabus chi tiết chính thức.",
+    "kind": "lý thuyết + thực hành",
+    "keyPoints": [
+      "Bảo vệ cần demo input → inference trace → output.",
+      "Phải nói rõ phần hỗ trợ chung và phần Mivar-specific đã được nguồn nào xác nhận.",
+      "Limitations nên nêu representation coverage, conflicts, scale và source gaps."
+    ],
+    "tasks": [
+      "Chuẩn bị demo 3 case.",
+      "Viết 10 câu phản biện và câu trả lời."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK4",
+      "moduleTitle": "Defense: chứng minh traceability và giới hạn",
+      "estimatedMinutes": 55,
+      "sourceBasis": "Official study-plan metadata: course title, semester 4, 4 credits, 144 total hours, 33 contact hours, exam + coursework. Detailed Mivar formalism is not asserted unless present in instructor/source materials.",
+      "objectives": [
+        "Bảo vệ cần demo input → inference trace → output.",
+        "Phải nói rõ phần hỗ trợ chung và phần Mivar-specific đã được nguồn nào xác nhận.",
+        "Limitations nên nêu representation coverage, conflicts, scale và source gaps."
+      ],
+      "prerequisites": [
+        "Logic cơ bản.",
+        "Graph/pseudo-code cơ bản.",
+        "Tách fact khỏi assumption."
+      ],
+      "whyItMatters": "AI logic cần representation và inference có thể kiểm tra; inference trace giúp debug và giải thích quyết định.",
+      "coreTheory": [
+        "Bảo vệ cần demo input → inference trace → output.",
+        "Phải nói rõ phần hỗ trợ chung và phần Mivar-specific đã được nguồn nào xác nhận.",
+        "Limitations nên nêu representation coverage, conflicts, scale và source gaps."
+      ],
+      "coreFormulas": [
+        "facts + rules + goal → inference trace → conclusion",
+        "claim → source status → verified / unknown"
+      ],
+      "workedExample": {
+        "context": "Hệ thống hỗ trợ quyết định kỹ thuật với sensor state, operating rules và safety constraints.",
+        "steps": [
+          "Chuẩn bị demo 3 case.",
+          "Viết 10 câu phản biện và câu trả lời."
+        ],
+        "answer": "Đáp án tốt phải có representation rõ, inference trace, test case và source boundary."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Viết 5 facts và 3 rules.",
+          "expected": "Không trộn fact với assumption."
+        },
+        {
+          "level": "Trung bình",
+          "task": "Trace đường suy luận tới một goal.",
+          "expected": "Mỗi bước chỉ ra rule được kích hoạt."
+        },
+        {
+          "level": "Khá",
+          "task": "Tạo edge case gây conflict/cycle.",
+          "expected": "Nhận diện và xử lý được."
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng/Thực hành mô phỏng.",
+      "commonMistakes": [
+        "Rule mơ hồ.",
+        "Không ghi inference trace.",
+        "Nhầm correlation ML với logic rule.",
+        "Gắn chi tiết Mivar chưa xác minh thành sự thật."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Kết luận này đến từ rule nào?",
+          "a": "Chỉ ra rule và facts đầu vào trong trace."
+        },
+        {
+          "q": "Claim này là logic chung hay Mivar-specific?",
+          "a": "Gắn nhãn và nguồn; nếu chưa có nguồn thì để unknown."
+        },
+        {
+          "q": "Rule set có edge case chưa?",
+          "a": "Tạo ít nhất một conflict hoặc missing-fact test."
+        }
+      ],
+      "masteryCriteria": [
+        "Biểu diễn được facts/rules.",
+        "Trace được inference.",
+        "Có test case.",
+        "Giữ source boundary.",
+        "Quiz ≥ 8/10 hoặc ôn lỗi sai."
+      ],
+      "rubric": [
+        {
+          "criterion": "Representation",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Inference",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Verification",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Source discipline",
+          "weight": 0.15
+        }
+      ]
+    }
+  }
+]
