@@ -141,11 +141,27 @@ jobs:
           npx wrangler d1 migrations apply bauman-control-db --remote --config wrangler.production.jsonc 2>&1 | tee "../$RUSSIAN_RELEASE_EVIDENCE_DIR/migration-output.log"
           code="${PIPESTATUS[0]}"
           set -e
+          MIGRATION_EXIT_CODE="$code" node --input-type=module - <<'NODE'
+          import fs from 'node:fs';
+          import crypto from 'node:crypto';
+          const dir='../'+process.env.RUSSIAN_RELEASE_EVIDENCE_DIR;
+          const manifest=JSON.parse(fs.readFileSync(dir+'/RUSSIAN_MIGRATION_MANIFEST.json','utf8'));
+          const log=fs.readFileSync(dir+'/migration-output.log');
+          const code=Number(process.env.MIGRATION_EXIT_CODE||1);
+          fs.writeFileSync(dir+'/RUSSIAN_MIGRATION_RESULT.json',JSON.stringify({
+            schema:'RUSSIAN_MIGRATION_RESULT_V1',
+            status:code===0?'PASS':'FAIL',
+            revision:process.env.GITHUB_SHA,
+            exitCode:code,
+            migrationManifestSha256:manifest.sha256,
+            migrationCount:Array.isArray(manifest.files)?manifest.files.length:0,
+            outputLogSha256:crypto.createHash('sha256').update(log).digest('hex'),
+            outputBytes:log.length
+          },null,2)+'\n');
+          NODE
           if [[ "$code" -ne 0 ]]; then
-            printf '{"schema":"RUSSIAN_MIGRATION_RESULT_V1","status":"FAIL","revision":"%s"}\n' "$GITHUB_SHA" > "../$RUSSIAN_RELEASE_EVIDENCE_DIR/RUSSIAN_MIGRATION_RESULT.json"
             exit "$code"
           fi
-          printf '{"schema":"RUSSIAN_MIGRATION_RESULT_V1","status":"PASS","revision":"%s"}\n' "$GITHUB_SHA" > "../$RUSSIAN_RELEASE_EVIDENCE_DIR/RUSSIAN_MIGRATION_RESULT.json"
 
       - name: Deploy Bauman Control production Worker
         working-directory: control-service
