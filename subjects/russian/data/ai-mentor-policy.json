@@ -1,15 +1,14 @@
 {
-  "schema": "RUSSIAN_AI_MENTOR_POLICY_V1",
-  "phase": "P10",
+  "schema": "RUSSIAN_AI_MENTOR_POLICY_V2",
+  "phase": "RU07",
+  "legacySourceResponsibility": "P10",
   "authority": {
-    "canonicalTruthOwner": "P7",
-    "assessmentMasteryOwner": "P4",
-    "plannerSrsOwner": "P5",
-    "speechAudioOwner": "P6",
-    "academicTechnicalOwners": [
-      "P8",
-      "P9"
-    ],
+    "canonicalTruthOwner": "RU03",
+    "assessmentMasteryOwner": "RU04",
+    "plannerSrsOwner": "RU04",
+    "speechAudioScenarioOwner": "RU05",
+    "academicResearchProductionOwner": "RU06",
+    "authoringPromotionOwner": "RU08",
     "aiRole": "NON_AUTHORITATIVE_COACH"
   },
   "permissions": {
@@ -27,22 +26,30 @@
     "silentlyPersistGeneratedPractice": false
   },
   "generatedPractice": {
-    "lifecycle": "EPHEMERAL_UNTIL_REVIEWED",
+    "lifecycle": "EPHEMERAL_UNTIL_RU08_REVIEW",
     "requiredLabels": [
       "generated",
       "non-canonical"
     ],
     "mayReferenceCanonicalIds": true,
     "mayInventSourceCitations": false,
-    "promotionPath": "P12_REVIEW_WORKFLOW"
+    "promotionPath": "RU08_AUTHORING_REVIEW_GOVERNANCE"
   },
   "sourceBoundary": {
     "canonicalClaimsRequire": [
       "canonical-id-or-approved-source-ref"
     ],
-    "ifUncertain": "STATE_UNCERTAINTY_AND_REQUEST_SOURCE",
+    "ifUncertain": "STATE_UNCERTAINTY_AND_RESTRICT_TO_COACHING",
     "noFabricatedCitations": true,
-    "noImplicitAuthorityFromModelOutput": true
+    "noImplicitAuthorityFromModelOutput": true,
+    "truthContract": "subjects/russian/docs/ru03/RU05_RU06_RU07_TRUTH_CONTRACT.json"
+  },
+  "contextPolicy": {
+    "minimumNecessaryOnly": true,
+    "requiresTrustMetadataForAuthoritativeLookingFeedback": true,
+    "fullLearnerHistoryByDefault": false,
+    "wholeDatasetDumpByDefault": false,
+    "conversationSummaryIsCanonicalTruth": false
   },
   "coachingModes": [
     "explain",
