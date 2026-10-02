@@ -11,6 +11,21 @@ const ruSrs=j('subjects/russian/docs/ru04/RUSSIAN_RU04_SRS_SPECIALIZATION.json')
 const scheduler=fs.readFileSync('subjects/russian/assets/review-scheduler.js','utf8');
 const vocab=fs.readFileSync('subjects/russian/assets/vocab-srs.js','utf8');
 const index=fs.readFileSync('subjects/russian/index.html','utf8');
+const requiredOutputs=[
+ 'subjects/russian/docs/p4/RUSSIAN_ATTEMPT_STATE_SCHEMA.json',
+ 'subjects/russian/docs/p4/RUSSIAN_MASTERY_STATE_SCHEMA.json',
+ 'subjects/russian/docs/p4/RUSSIAN_REMEDIATION_STATE_SCHEMA.json',
+ 'subjects/russian/docs/p4/RUSSIAN_STAGE_GATE_MATRIX.md',
+ 'subjects/russian/docs/p5/RUSSIAN_ADAPTIVE_PRIORITY_POLICY.md',
+ 'subjects/russian/docs/p5/RUSSIAN_DAILY_PLANNER_CONTRACT.json',
+ 'subjects/russian/docs/p5/RUSSIAN_RECOMMENDATION_REASON_CODES.json',
+ 'subjects/russian/docs/p5/RUSSIAN_SKILL_BALANCE_POLICY.md',
+ 'subjects/russian/docs/ru04/RUSSIAN_RU04_SRS_SPECIALIZATION.json',
+ 'subjects/russian/docs/ru04/RUSSIAN_RU04_EVIDENCE_INTERFACE.json',
+ 'subjects/russian/docs/ru04/RUSSIAN_RU04_MIGRATION_FIXTURES.json',
+ 'tests/russian-p4-assessment-mastery-browser.mjs',
+ 'subjects/russian/scripts/test-p5-adaptive-planner-runtime.mjs'
+];
 assert.equal(contract.authorities.mastery,'subjects/russian/assets/assessment-mastery.js');
 assert.equal(contract.authorities.reviewOrchestration,'subjects/russian/assets/adaptive-planner.js');
 assert.equal(contract.authorities.reviewScheduler,'subjects/russian/assets/review-scheduler.js');
@@ -25,4 +40,11 @@ for(const s of ['listening','speaking','writing','technical','research']) assert
 for(const x of ['audio-playback','watch-time','page-open','AI-duration','ASR-similarity-alone']) assert(evidence.nonAuthoritativeSignals.includes(x));
 assert(planner.forbiddenRecomputeTriggers.includes('render'));
 assert.equal(planner.intensiveModeRule.includes('never rewrite mastery'),true);
-console.log(JSON.stringify({ok:true,masteryOwner:contract.authorities.mastery,plannerOwner:contract.authorities.reviewOrchestration,evidenceTypes:evidence.authoritativeEvidenceTypes.length}));
+for(const p of requiredOutputs) assert(fs.existsSync(p),'RU04 required output/evidence missing '+p);
+const reasonCodes=j('subjects/russian/docs/p5/RUSSIAN_RECOMMENDATION_REASON_CODES.json');
+const daily=j('subjects/russian/docs/p5/RUSSIAN_DAILY_PLANNER_CONTRACT.json');
+const migration=j('subjects/russian/docs/ru04/RUSSIAN_RU04_MIGRATION_FIXTURES.json');
+assert(Object.keys(reasonCodes).length>0,'recommendation reason codes empty');
+assert(daily && typeof daily==='object','daily planner contract missing');
+assert(migration && typeof migration==='object','migration fixtures missing');
+console.log(JSON.stringify({ok:true,masteryOwner:contract.authorities.mastery,plannerOwner:contract.authorities.reviewOrchestration,evidenceTypes:evidence.authoritativeEvidenceTypes.length,requiredOutputs:requiredOutputs.length}));
