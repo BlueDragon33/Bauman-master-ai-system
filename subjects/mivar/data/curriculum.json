@@ -1,0 +1,677 @@
+{
+  "id": "mivar",
+  "title": "Миварные технологии логического искусственного интеллекта",
+  "officialPlan": {
+    "semester": 4,
+    "credits": 4,
+    "hours": 144,
+    "contactHours": 33,
+    "assessment": "Экзамен + курсовая работа",
+    "note": "Chỉ tên môn, học kỳ, tín chỉ, giờ và hình thức đánh giá được coi là dữ liệu chính thức từ kế hoạch đào tạo. Nội dung chủ đề chi tiết của module là học liệu hỗ trợ cho đến khi có syllabus/lecture chính thức."
+  },
+  "target": "Chuẩn bị nền logic AI và khả năng xây prototype suy luận có giải thích, đồng thời duy trì kỷ luật nguồn khi học formalism Mivar.",
+  "outcomes": [
+    "Biểu diễn được facts, rules, dependencies và mục tiêu suy luận ở mức logic AI cơ bản.",
+    "Thiết kế và debug được một rule-based inference pipeline nhỏ.",
+    "Mô hình hóa dependency/inference bằng graph và giải thích đường suy luận.",
+    "So sánh symbolic/logical AI với ML/neural theo loại dữ liệu, khả năng giải thích và cập nhật tri thức.",
+    "Hoàn thành coursework prototype có knowledge base, rule set, inference trace, test cases và giới hạn."
+  ],
+  "principles": [
+    "Tách facts, rules, assumptions và goals.",
+    "Mọi kết luận suy luận quan trọng phải có trace.",
+    "Rule set phải có test case và edge case.",
+    "Không gắn nhãn 'Mivar chính thức' cho chi tiết chưa có nguồn giảng viên/trường.",
+    "So sánh symbolic và neural theo constraint bài toán, không theo sở thích."
+  ],
+  "stages": [
+    {
+      "id": "m4",
+      "short": "HK4",
+      "title": "Bauman HK4",
+      "period": "Học kỳ 4",
+      "target": "Chuẩn bị cho môn Mivar Logical AI bằng nền logic, knowledge representation, rule-based inference, graph reasoning và coursework có traceability; tách rõ nội dung hỗ trợ khỏi formalism Mivar chính thức khi chưa có syllabus chi tiết.",
+      "outcomes": [
+        "Biểu diễn được facts, rules, dependencies và mục tiêu suy luận ở mức logic AI cơ bản.",
+        "Thiết kế và debug được một rule-based inference pipeline nhỏ.",
+        "Mô hình hóa dependency/inference bằng graph và giải thích đường suy luận.",
+        "So sánh symbolic/logical AI với ML/neural theo loại dữ liệu, khả năng giải thích và cập nhật tri thức.",
+        "Hoàn thành coursework prototype có knowledge base, rule set, inference trace, test cases và giới hạn."
+      ],
+      "focusBlocks": [
+        "Logic & Knowledge Representation",
+        "Rule-based Inference",
+        "Graph & Dependency Reasoning",
+        "Mivar Orientation & Source Discipline",
+        "Hybrid/Explainable AI",
+        "Coursework Prototype & Defense"
+      ],
+      "weeklyRhythm": [
+        "Buổi 1: logic/representation + thuật ngữ Nga/Anh.",
+        "Buổi 2: viết facts/rules và chạy inference tay/code nhỏ.",
+        "Buổi 3: graph/trace/debug và test case.",
+        "Cuối tuần: cập nhật coursework, glossary và danh sách điểm cần xác minh từ tài liệu giảng viên."
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "miv_m401",
+      "stage": "m4",
+      "week": "M1",
+      "title": "Logic và biểu diễn tri thức cho AI",
+      "goal": "Nắm proposition/predicate ở mức dùng được, facts, rules, symbols và cách chuyển mô tả bài toán thành knowledge representation.",
+      "hours": 4,
+      "level": "Cơ bản",
+      "lessons": [
+        "miv_m401_l1",
+        "miv_m401_l2"
+      ],
+      "outputs": [
+        "Knowledge schema.",
+        "Facts/rules glossary."
+      ],
+      "phaseObjective": "Biến chủ đề “Logic và biểu diễn tri thức cho AI” thành năng lực thực hành có artifact và inference trace.",
+      "whyImportant": [
+        "Môn chính thức là AI logic và có exam + coursework; cần vừa hiểu representation vừa chứng minh đường suy luận.",
+        "Symbolic reasoning bổ sung cho ML khi bài toán có rule, constraint hoặc yêu cầu giải thích.",
+        "Mivar là một formalism/technology cụ thể; phần hỗ trợ không tự suy diễn chi tiết chưa có nguồn chính thức."
+      ],
+      "prerequisites": [
+        "Logic cơ bản.",
+        "Graph/data structures cơ bản.",
+        "Có thể viết pseudo-code hoặc Python đơn giản.",
+        "Sẵn sàng ghi nguồn cho thuật ngữ Mivar."
+      ],
+      "conceptMap": [
+        "proposition",
+        "predicate",
+        "fact",
+        "rule",
+        "symbol",
+        "knowledge base"
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Khái niệm",
+          "time": "60–90 phút",
+          "work": "Học lõi Logic và biểu diễn tri thức cho AI; viết glossary và ví dụ.",
+          "evidence": "Glossary + sơ đồ."
+        },
+        {
+          "session": "Ca 2 · Biểu diễn",
+          "time": "60–90 phút",
+          "work": "Chuyển case thành facts/rules/graph hoặc trace.",
+          "evidence": "Artifact có cấu trúc."
+        },
+        {
+          "session": "Ca 3 · Kiểm thử",
+          "time": "60–120 phút",
+          "work": "Chạy test case, tìm conflict/cycle hoặc giải thích kết quả.",
+          "evidence": "Test log + inference trace."
+        },
+        {
+          "session": "Ca 4 · Coursework",
+          "time": "45–90 phút",
+          "work": "Đưa artifact vào coursework và ghi rõ giới hạn/source status.",
+          "evidence": "Một section báo cáo."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: viết fact/rule.",
+        "Bài trung bình: trace một chuỗi suy luận.",
+        "Bài khá: debug conflict/cycle.",
+        "Bài giỏi: thiết kế prototype có giải thích và test."
+      ],
+      "simulationPlan": [
+        "Quan sát rule firing và dependency path.",
+        "Thực hành thay đổi fact/rule rồi so sánh inference trace.",
+        "Ghi rõ phần nào là logic chung và phần nào cần syllabus Mivar chính thức."
+      ],
+      "assessmentPlan": {
+        "unlock": "Dễ mở mặc định; mức sau mở khi mức trước ≥ 8/10.",
+        "rubric": [
+          "Representation đúng",
+          "Inference trace rõ",
+          "Test có edge case",
+          "Source boundary rõ"
+        ],
+        "pass": "Hoàn thành bài học, bài tập, mô phỏng và quiz ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ trực tiếp môn «Миварные технологии логического искусственного интеллекта».",
+        "Thông số HK4/4 tín chỉ/144 giờ/33 giờ tiếp xúc/exam+coursework là dữ liệu kế hoạch.",
+        "Chi tiết formalism Mivar chỉ được nâng thành 'chính thức' sau khi có syllabus/lecture nguồn."
+      ],
+      "completionCriteria": [
+        "Có artifact module.",
+        "Có ít nhất một inference trace.",
+        "Có test case/edge case.",
+        "Quiz ≥ 8/10.",
+        "Ghi source status cho claim Mivar."
+      ],
+      "risks": [
+        "Trộn logic AI chung với formalism Mivar chưa xác minh.",
+        "Rule không có test.",
+        "Inference không có trace.",
+        "So sánh symbolic/neural theo khẩu hiệu."
+      ],
+      "nextStep": "Chuyển module kế tiếp và tích lũy coursework."
+    },
+    {
+      "id": "miv_m402",
+      "stage": "m4",
+      "week": "M2",
+      "title": "Rule-based inference và kiểm soát suy luận",
+      "goal": "Hiểu forward/backward reasoning ở mức khái niệm, conflict, rule firing, goal và inference trace.",
+      "hours": 4,
+      "level": "Cơ bản",
+      "lessons": [
+        "miv_m402_l1",
+        "miv_m402_l2"
+      ],
+      "outputs": [
+        "Rule set có test case.",
+        "Inference trace + debug log."
+      ],
+      "phaseObjective": "Biến chủ đề “Rule-based inference và kiểm soát suy luận” thành năng lực thực hành có artifact và inference trace.",
+      "whyImportant": [
+        "Môn chính thức là AI logic và có exam + coursework; cần vừa hiểu representation vừa chứng minh đường suy luận.",
+        "Symbolic reasoning bổ sung cho ML khi bài toán có rule, constraint hoặc yêu cầu giải thích.",
+        "Mivar là một formalism/technology cụ thể; phần hỗ trợ không tự suy diễn chi tiết chưa có nguồn chính thức."
+      ],
+      "prerequisites": [
+        "Logic cơ bản.",
+        "Graph/data structures cơ bản.",
+        "Có thể viết pseudo-code hoặc Python đơn giản.",
+        "Sẵn sàng ghi nguồn cho thuật ngữ Mivar."
+      ],
+      "conceptMap": [
+        "forward reasoning",
+        "backward reasoning",
+        "goal",
+        "rule firing",
+        "conflict",
+        "trace"
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Khái niệm",
+          "time": "60–90 phút",
+          "work": "Học lõi Rule-based inference và kiểm soát suy luận; viết glossary và ví dụ.",
+          "evidence": "Glossary + sơ đồ."
+        },
+        {
+          "session": "Ca 2 · Biểu diễn",
+          "time": "60–90 phút",
+          "work": "Chuyển case thành facts/rules/graph hoặc trace.",
+          "evidence": "Artifact có cấu trúc."
+        },
+        {
+          "session": "Ca 3 · Kiểm thử",
+          "time": "60–120 phút",
+          "work": "Chạy test case, tìm conflict/cycle hoặc giải thích kết quả.",
+          "evidence": "Test log + inference trace."
+        },
+        {
+          "session": "Ca 4 · Coursework",
+          "time": "45–90 phút",
+          "work": "Đưa artifact vào coursework và ghi rõ giới hạn/source status.",
+          "evidence": "Một section báo cáo."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: viết fact/rule.",
+        "Bài trung bình: trace một chuỗi suy luận.",
+        "Bài khá: debug conflict/cycle.",
+        "Bài giỏi: thiết kế prototype có giải thích và test."
+      ],
+      "simulationPlan": [
+        "Quan sát rule firing và dependency path.",
+        "Thực hành thay đổi fact/rule rồi so sánh inference trace.",
+        "Ghi rõ phần nào là logic chung và phần nào cần syllabus Mivar chính thức."
+      ],
+      "assessmentPlan": {
+        "unlock": "Dễ mở mặc định; mức sau mở khi mức trước ≥ 8/10.",
+        "rubric": [
+          "Representation đúng",
+          "Inference trace rõ",
+          "Test có edge case",
+          "Source boundary rõ"
+        ],
+        "pass": "Hoàn thành bài học, bài tập, mô phỏng và quiz ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ trực tiếp môn «Миварные технологии логического искусственного интеллекта».",
+        "Thông số HK4/4 tín chỉ/144 giờ/33 giờ tiếp xúc/exam+coursework là dữ liệu kế hoạch.",
+        "Chi tiết formalism Mivar chỉ được nâng thành 'chính thức' sau khi có syllabus/lecture nguồn."
+      ],
+      "completionCriteria": [
+        "Có artifact module.",
+        "Có ít nhất một inference trace.",
+        "Có test case/edge case.",
+        "Quiz ≥ 8/10.",
+        "Ghi source status cho claim Mivar."
+      ],
+      "risks": [
+        "Trộn logic AI chung với formalism Mivar chưa xác minh.",
+        "Rule không có test.",
+        "Inference không có trace.",
+        "So sánh symbolic/neural theo khẩu hiệu."
+      ],
+      "nextStep": "Chuyển module kế tiếp và tích lũy coursework."
+    },
+    {
+      "id": "miv_m403",
+      "stage": "m4",
+      "week": "M3",
+      "title": "Graph, dependency và đường suy luận",
+      "goal": "Biểu diễn quan hệ giữa biến/tri thức/rule bằng graph để quan sát dependency và giải thích kết quả.",
+      "hours": 4,
+      "level": "Trung bình",
+      "lessons": [
+        "miv_m403_l1",
+        "miv_m403_l2"
+      ],
+      "outputs": [
+        "Dependency graph.",
+        "Path explanation + cycle check."
+      ],
+      "phaseObjective": "Biến chủ đề “Graph, dependency và đường suy luận” thành năng lực thực hành có artifact và inference trace.",
+      "whyImportant": [
+        "Môn chính thức là AI logic và có exam + coursework; cần vừa hiểu representation vừa chứng minh đường suy luận.",
+        "Symbolic reasoning bổ sung cho ML khi bài toán có rule, constraint hoặc yêu cầu giải thích.",
+        "Mivar là một formalism/technology cụ thể; phần hỗ trợ không tự suy diễn chi tiết chưa có nguồn chính thức."
+      ],
+      "prerequisites": [
+        "Logic cơ bản.",
+        "Graph/data structures cơ bản.",
+        "Có thể viết pseudo-code hoặc Python đơn giản.",
+        "Sẵn sàng ghi nguồn cho thuật ngữ Mivar."
+      ],
+      "conceptMap": [
+        "node",
+        "edge",
+        "dependency",
+        "path",
+        "cycle",
+        "reachability"
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Khái niệm",
+          "time": "60–90 phút",
+          "work": "Học lõi Graph, dependency và đường suy luận; viết glossary và ví dụ.",
+          "evidence": "Glossary + sơ đồ."
+        },
+        {
+          "session": "Ca 2 · Biểu diễn",
+          "time": "60–90 phút",
+          "work": "Chuyển case thành facts/rules/graph hoặc trace.",
+          "evidence": "Artifact có cấu trúc."
+        },
+        {
+          "session": "Ca 3 · Kiểm thử",
+          "time": "60–120 phút",
+          "work": "Chạy test case, tìm conflict/cycle hoặc giải thích kết quả.",
+          "evidence": "Test log + inference trace."
+        },
+        {
+          "session": "Ca 4 · Coursework",
+          "time": "45–90 phút",
+          "work": "Đưa artifact vào coursework và ghi rõ giới hạn/source status.",
+          "evidence": "Một section báo cáo."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: viết fact/rule.",
+        "Bài trung bình: trace một chuỗi suy luận.",
+        "Bài khá: debug conflict/cycle.",
+        "Bài giỏi: thiết kế prototype có giải thích và test."
+      ],
+      "simulationPlan": [
+        "Quan sát rule firing và dependency path.",
+        "Thực hành thay đổi fact/rule rồi so sánh inference trace.",
+        "Ghi rõ phần nào là logic chung và phần nào cần syllabus Mivar chính thức."
+      ],
+      "assessmentPlan": {
+        "unlock": "Dễ mở mặc định; mức sau mở khi mức trước ≥ 8/10.",
+        "rubric": [
+          "Representation đúng",
+          "Inference trace rõ",
+          "Test có edge case",
+          "Source boundary rõ"
+        ],
+        "pass": "Hoàn thành bài học, bài tập, mô phỏng và quiz ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ trực tiếp môn «Миварные технологии логического искусственного интеллекта».",
+        "Thông số HK4/4 tín chỉ/144 giờ/33 giờ tiếp xúc/exam+coursework là dữ liệu kế hoạch.",
+        "Chi tiết formalism Mivar chỉ được nâng thành 'chính thức' sau khi có syllabus/lecture nguồn."
+      ],
+      "completionCriteria": [
+        "Có artifact module.",
+        "Có ít nhất một inference trace.",
+        "Có test case/edge case.",
+        "Quiz ≥ 8/10.",
+        "Ghi source status cho claim Mivar."
+      ],
+      "risks": [
+        "Trộn logic AI chung với formalism Mivar chưa xác minh.",
+        "Rule không có test.",
+        "Inference không có trace.",
+        "So sánh symbolic/neural theo khẩu hiệu."
+      ],
+      "nextStep": "Chuyển module kế tiếp và tích lũy coursework."
+    },
+    {
+      "id": "miv_m404",
+      "stage": "m4",
+      "week": "M4",
+      "title": "Định hướng Mivar: thuật ngữ, formalism và kỷ luật nguồn",
+      "goal": "Tạo khung học Mivar an toàn: tách phần logic AI chung khỏi thuật ngữ/formalism chỉ được coi là chính thức khi có tài liệu giảng viên.",
+      "hours": 3,
+      "level": "Trung bình",
+      "lessons": [
+        "miv_m404_l1",
+        "miv_m404_l2"
+      ],
+      "outputs": [
+        "Mivar glossary có cột nguồn.",
+        "Danh sách claim đã xác minh/chưa xác minh."
+      ],
+      "phaseObjective": "Biến chủ đề “Định hướng Mivar: thuật ngữ, formalism và kỷ luật nguồn” thành năng lực thực hành có artifact và inference trace.",
+      "whyImportant": [
+        "Môn chính thức là AI logic và có exam + coursework; cần vừa hiểu representation vừa chứng minh đường suy luận.",
+        "Symbolic reasoning bổ sung cho ML khi bài toán có rule, constraint hoặc yêu cầu giải thích.",
+        "Mivar là một formalism/technology cụ thể; phần hỗ trợ không tự suy diễn chi tiết chưa có nguồn chính thức."
+      ],
+      "prerequisites": [
+        "Logic cơ bản.",
+        "Graph/data structures cơ bản.",
+        "Có thể viết pseudo-code hoặc Python đơn giản.",
+        "Sẵn sàng ghi nguồn cho thuật ngữ Mivar."
+      ],
+      "conceptMap": [
+        "source discipline",
+        "terminology",
+        "formalism",
+        "verified claim",
+        "unknown",
+        "mapping"
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Khái niệm",
+          "time": "60–90 phút",
+          "work": "Học lõi Định hướng Mivar: thuật ngữ, formalism và kỷ luật nguồn; viết glossary và ví dụ.",
+          "evidence": "Glossary + sơ đồ."
+        },
+        {
+          "session": "Ca 2 · Biểu diễn",
+          "time": "60–90 phút",
+          "work": "Chuyển case thành facts/rules/graph hoặc trace.",
+          "evidence": "Artifact có cấu trúc."
+        },
+        {
+          "session": "Ca 3 · Kiểm thử",
+          "time": "60–120 phút",
+          "work": "Chạy test case, tìm conflict/cycle hoặc giải thích kết quả.",
+          "evidence": "Test log + inference trace."
+        },
+        {
+          "session": "Ca 4 · Coursework",
+          "time": "45–90 phút",
+          "work": "Đưa artifact vào coursework và ghi rõ giới hạn/source status.",
+          "evidence": "Một section báo cáo."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: viết fact/rule.",
+        "Bài trung bình: trace một chuỗi suy luận.",
+        "Bài khá: debug conflict/cycle.",
+        "Bài giỏi: thiết kế prototype có giải thích và test."
+      ],
+      "simulationPlan": [
+        "Quan sát rule firing và dependency path.",
+        "Thực hành thay đổi fact/rule rồi so sánh inference trace.",
+        "Ghi rõ phần nào là logic chung và phần nào cần syllabus Mivar chính thức."
+      ],
+      "assessmentPlan": {
+        "unlock": "Dễ mở mặc định; mức sau mở khi mức trước ≥ 8/10.",
+        "rubric": [
+          "Representation đúng",
+          "Inference trace rõ",
+          "Test có edge case",
+          "Source boundary rõ"
+        ],
+        "pass": "Hoàn thành bài học, bài tập, mô phỏng và quiz ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ trực tiếp môn «Миварные технологии логического искусственного интеллекта».",
+        "Thông số HK4/4 tín chỉ/144 giờ/33 giờ tiếp xúc/exam+coursework là dữ liệu kế hoạch.",
+        "Chi tiết formalism Mivar chỉ được nâng thành 'chính thức' sau khi có syllabus/lecture nguồn."
+      ],
+      "completionCriteria": [
+        "Có artifact module.",
+        "Có ít nhất một inference trace.",
+        "Có test case/edge case.",
+        "Quiz ≥ 8/10.",
+        "Ghi source status cho claim Mivar."
+      ],
+      "risks": [
+        "Trộn logic AI chung với formalism Mivar chưa xác minh.",
+        "Rule không có test.",
+        "Inference không có trace.",
+        "So sánh symbolic/neural theo khẩu hiệu."
+      ],
+      "nextStep": "Chuyển module kế tiếp và tích lũy coursework."
+    },
+    {
+      "id": "miv_m405",
+      "stage": "m4",
+      "week": "M5",
+      "title": "Symbolic, neural và hybrid AI",
+      "goal": "Biết chọn symbolic/logical, ML/neural hoặc hybrid dựa trên dữ liệu, rule, explainability, latency và khả năng cập nhật.",
+      "hours": 4,
+      "level": "Trung bình",
+      "lessons": [
+        "miv_m405_l1",
+        "miv_m405_l2"
+      ],
+      "outputs": [
+        "Decision matrix symbolic vs neural.",
+        "Hybrid architecture sketch."
+      ],
+      "phaseObjective": "Biến chủ đề “Symbolic, neural và hybrid AI” thành năng lực thực hành có artifact và inference trace.",
+      "whyImportant": [
+        "Môn chính thức là AI logic và có exam + coursework; cần vừa hiểu representation vừa chứng minh đường suy luận.",
+        "Symbolic reasoning bổ sung cho ML khi bài toán có rule, constraint hoặc yêu cầu giải thích.",
+        "Mivar là một formalism/technology cụ thể; phần hỗ trợ không tự suy diễn chi tiết chưa có nguồn chính thức."
+      ],
+      "prerequisites": [
+        "Logic cơ bản.",
+        "Graph/data structures cơ bản.",
+        "Có thể viết pseudo-code hoặc Python đơn giản.",
+        "Sẵn sàng ghi nguồn cho thuật ngữ Mivar."
+      ],
+      "conceptMap": [
+        "symbolic AI",
+        "neural AI",
+        "hybrid AI",
+        "explainability",
+        "data",
+        "rules"
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Khái niệm",
+          "time": "60–90 phút",
+          "work": "Học lõi Symbolic, neural và hybrid AI; viết glossary và ví dụ.",
+          "evidence": "Glossary + sơ đồ."
+        },
+        {
+          "session": "Ca 2 · Biểu diễn",
+          "time": "60–90 phút",
+          "work": "Chuyển case thành facts/rules/graph hoặc trace.",
+          "evidence": "Artifact có cấu trúc."
+        },
+        {
+          "session": "Ca 3 · Kiểm thử",
+          "time": "60–120 phút",
+          "work": "Chạy test case, tìm conflict/cycle hoặc giải thích kết quả.",
+          "evidence": "Test log + inference trace."
+        },
+        {
+          "session": "Ca 4 · Coursework",
+          "time": "45–90 phút",
+          "work": "Đưa artifact vào coursework và ghi rõ giới hạn/source status.",
+          "evidence": "Một section báo cáo."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: viết fact/rule.",
+        "Bài trung bình: trace một chuỗi suy luận.",
+        "Bài khá: debug conflict/cycle.",
+        "Bài giỏi: thiết kế prototype có giải thích và test."
+      ],
+      "simulationPlan": [
+        "Quan sát rule firing và dependency path.",
+        "Thực hành thay đổi fact/rule rồi so sánh inference trace.",
+        "Ghi rõ phần nào là logic chung và phần nào cần syllabus Mivar chính thức."
+      ],
+      "assessmentPlan": {
+        "unlock": "Dễ mở mặc định; mức sau mở khi mức trước ≥ 8/10.",
+        "rubric": [
+          "Representation đúng",
+          "Inference trace rõ",
+          "Test có edge case",
+          "Source boundary rõ"
+        ],
+        "pass": "Hoàn thành bài học, bài tập, mô phỏng và quiz ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ trực tiếp môn «Миварные технологии логического искусственного интеллекта».",
+        "Thông số HK4/4 tín chỉ/144 giờ/33 giờ tiếp xúc/exam+coursework là dữ liệu kế hoạch.",
+        "Chi tiết formalism Mivar chỉ được nâng thành 'chính thức' sau khi có syllabus/lecture nguồn."
+      ],
+      "completionCriteria": [
+        "Có artifact module.",
+        "Có ít nhất một inference trace.",
+        "Có test case/edge case.",
+        "Quiz ≥ 8/10.",
+        "Ghi source status cho claim Mivar."
+      ],
+      "risks": [
+        "Trộn logic AI chung với formalism Mivar chưa xác minh.",
+        "Rule không có test.",
+        "Inference không có trace.",
+        "So sánh symbolic/neural theo khẩu hiệu."
+      ],
+      "nextStep": "Chuyển module kế tiếp và tích lũy coursework."
+    },
+    {
+      "id": "miv_m406",
+      "stage": "m4",
+      "week": "M6",
+      "title": "Coursework prototype và bảo vệ",
+      "goal": "Tổng hợp knowledge base + rules + inference trace + tests thành một prototype nhỏ có thể giải thích và bảo vệ.",
+      "hours": 5,
+      "level": "Khá",
+      "lessons": [
+        "miv_m406_l1",
+        "miv_m406_l2"
+      ],
+      "outputs": [
+        "Coursework report.",
+        "Prototype + test suite + defense slides."
+      ],
+      "phaseObjective": "Biến chủ đề “Coursework prototype và bảo vệ” thành năng lực thực hành có artifact và inference trace.",
+      "whyImportant": [
+        "Môn chính thức là AI logic và có exam + coursework; cần vừa hiểu representation vừa chứng minh đường suy luận.",
+        "Symbolic reasoning bổ sung cho ML khi bài toán có rule, constraint hoặc yêu cầu giải thích.",
+        "Mivar là một formalism/technology cụ thể; phần hỗ trợ không tự suy diễn chi tiết chưa có nguồn chính thức."
+      ],
+      "prerequisites": [
+        "Logic cơ bản.",
+        "Graph/data structures cơ bản.",
+        "Có thể viết pseudo-code hoặc Python đơn giản.",
+        "Sẵn sàng ghi nguồn cho thuật ngữ Mivar."
+      ],
+      "conceptMap": [
+        "prototype",
+        "traceability",
+        "verification",
+        "test case",
+        "limitation",
+        "defense"
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Khái niệm",
+          "time": "60–90 phút",
+          "work": "Học lõi Coursework prototype và bảo vệ; viết glossary và ví dụ.",
+          "evidence": "Glossary + sơ đồ."
+        },
+        {
+          "session": "Ca 2 · Biểu diễn",
+          "time": "60–90 phút",
+          "work": "Chuyển case thành facts/rules/graph hoặc trace.",
+          "evidence": "Artifact có cấu trúc."
+        },
+        {
+          "session": "Ca 3 · Kiểm thử",
+          "time": "60–120 phút",
+          "work": "Chạy test case, tìm conflict/cycle hoặc giải thích kết quả.",
+          "evidence": "Test log + inference trace."
+        },
+        {
+          "session": "Ca 4 · Coursework",
+          "time": "45–90 phút",
+          "work": "Đưa artifact vào coursework và ghi rõ giới hạn/source status.",
+          "evidence": "Một section báo cáo."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: viết fact/rule.",
+        "Bài trung bình: trace một chuỗi suy luận.",
+        "Bài khá: debug conflict/cycle.",
+        "Bài giỏi: thiết kế prototype có giải thích và test."
+      ],
+      "simulationPlan": [
+        "Quan sát rule firing và dependency path.",
+        "Thực hành thay đổi fact/rule rồi so sánh inference trace.",
+        "Ghi rõ phần nào là logic chung và phần nào cần syllabus Mivar chính thức."
+      ],
+      "assessmentPlan": {
+        "unlock": "Dễ mở mặc định; mức sau mở khi mức trước ≥ 8/10.",
+        "rubric": [
+          "Representation đúng",
+          "Inference trace rõ",
+          "Test có edge case",
+          "Source boundary rõ"
+        ],
+        "pass": "Hoàn thành bài học, bài tập, mô phỏng và quiz ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ trực tiếp môn «Миварные технологии логического искусственного интеллекта».",
+        "Thông số HK4/4 tín chỉ/144 giờ/33 giờ tiếp xúc/exam+coursework là dữ liệu kế hoạch.",
+        "Chi tiết formalism Mivar chỉ được nâng thành 'chính thức' sau khi có syllabus/lecture nguồn."
+      ],
+      "completionCriteria": [
+        "Có artifact module.",
+        "Có ít nhất một inference trace.",
+        "Có test case/edge case.",
+        "Quiz ≥ 8/10.",
+        "Ghi source status cho claim Mivar."
+      ],
+      "risks": [
+        "Trộn logic AI chung với formalism Mivar chưa xác minh.",
+        "Rule không có test.",
+        "Inference không có trace.",
+        "So sánh symbolic/neural theo khẩu hiệu."
+      ],
+      "nextStep": "Hoàn thiện coursework, source audit và luyện bảo vệ."
+    }
+  ]
+}
