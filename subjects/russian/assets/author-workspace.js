@@ -12,7 +12,7 @@
     if(!root)return;
     if(!schema){root.innerHTML='<legend>Trường theo schema thực thể</legend><p class="ru-schema-hint">Schema chưa được khai báo.</p>';return}
     const control=f=>{
-      const id='detail-'+f.id,req=f.required?' required':'',label=esc(f.label)+(f.required?' *':'');
+      const id='detail-'+f.id,req=f.required?' aria-required="true"':'',label=esc(f.label)+(f.required?' *':'');
       if(f.type==='textarea')return '<label>'+label+'<textarea id="'+esc(id)+'" data-detail="'+esc(f.id)+'"'+req+'></textarea></label>';
       if(f.type==='select')return '<label>'+label+'<select id="'+esc(id)+'" data-detail="'+esc(f.id)+'"'+req+'>'+((f.options||[]).map(x=>'<option value="'+esc(x)+'">'+esc(x)+'</option>').join(''))+'</select></label>';
       return '<label>'+label+'<input id="'+esc(id)+'" data-detail="'+esc(f.id)+'" type="'+esc(f.type||'text')+'"'+req+'></label>';
