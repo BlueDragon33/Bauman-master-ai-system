@@ -1,6 +1,6 @@
 # RUSSIAN PROMPT SYSTEM STATUS
 
-`PROMPT ARCHITECTURE: COMPLETE · EXECUTION: RU08 VALIDATING`
+`PROMPT ARCHITECTURE: COMPLETE · EXECUTION: RU08 PASS`
 
 ## Active execution state
 
@@ -12,7 +12,7 @@
 - RU05 — Listening · Speaking · Dialogue · Scenario: **PASS**
 - RU06 — Academic · Technical · Research Production: **PASS**
 - RU07 — AI Mentor Russian Coaching: **PASS**
-- RU08 — Authoring · Integration · Acceptance · RC Readiness: **VALIDATING**
+- RU08 — Authoring · Integration · Acceptance · RC Readiness: **PASS · READY_FOR_MERGE**
 - Shared C3 Release Annex: **production-only authority; not implied by RU08**
 
 ## Current authority
@@ -48,4 +48,4 @@ Production STABLE requires the separate C3 Release Annex to verify the exact acc
 
 ## Next action
 
-Finish RU08 validation on the exact PR #212 head, repair any failing gate at the canonical owner, then merge that exact validated head. Production handoff is separate.
+Revalidate the RU08 PASS/READY_FOR_MERGE transition on the exact current PR #212 head. If all required gates remain green, merge that exact head. Production handoff remains separate under the shared C3 Release Annex.
