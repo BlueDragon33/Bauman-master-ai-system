@@ -188,6 +188,18 @@ Correction:
 - after the hydration window, wait for the replacement E6 dashboard to report `dashboardReady=true` and a non-zero visible hero before geometry sampling;
 - do not waive or weaken the overlap, touch-target, collision, overflow or contrast assertions.
 
+### F16 — Merge-base race could bypass exact merged-head revalidation — HIGH
+
+The RU08 corrective PR was validated successfully while its then-current base was older. Before merge, `main` advanced with shared Hub changes. GitHub then created merge commit `921e4c4eb1ad59627750395183925344b0169449` from Hub parent `1425391dd059aec80bb4e1a7414c7b8dc2e3e598` and Russian audit parent `e3d030ea3fe9070cb93b3661a02f0d58db08632e`.
+
+The Whole System Integration workflow was configured for `pull_request` and manual dispatch only, so a successful PR run did not guarantee that the final merged `main` tree was revalidated when the base moved during the validation window.
+
+Correction:
+- Whole System Integration now also runs on `push` to `main`;
+- the push path family matches the shared Hub / Russian integration path family used for pull requests;
+- a merge that combines a previously-green Russian head with newer shared Hub changes therefore receives a fresh main-head integration run;
+- prior PR evidence remains useful, but it is no longer sufficient by itself when the merged tree differs.
+
 ## Previously encountered errors rechecked
 
 1. **Stale P3 planned-owner conflict for reading** — previous correction remains appropriate because current RU02 owner status is the active authority; no old-topology validator may overrule a materialized current owner.
