@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "1.0.0",
+  "baselineSha": "066ef7ce03be4e30f01fd69ae66a1cd859711226",
+  "entries": [
+    {
+      "id": "programming-pr06",
+      "path": "subjects/programming/data/lessons.json#PR06",
+      "classification": "KEEP",
+      "rationale": "Current reusable basic SQL/relational bridge."
+    },
+    {
+      "id": "programming-pr15",
+      "path": "subjects/programming/data/lessons.json#PR15",
+      "classification": "KEEP",
+      "rationale": "Current reusable JOIN/GROUP BY/basic index bridge."
+    },
+    {
+      "id": "p06-database-fundamentals",
+      "path": "assets/data/prerequisite-packs/p06-database-fundamentals.json",
+      "classification": "MIGRATE",
+      "rationale": "Strong prerequisite/curriculum evidence should feed DB02 canonical model instead of becoming a second subject truth."
+    },
+    {
+      "id": "programming-sql-query-lab",
+      "path": "subjects/programming/simulations/sim_sql_query_lab.html",
+      "classification": "MIGRATE",
+      "rationale": "Useful UI shell, but current behavior is not SQL execution/query-plan evidence and must not be presented as such."
+    },
+    {
+      "id": "programming-generic-db-learning-state",
+      "path": "subjects/programming/assets/core.js",
+      "classification": "KEEP",
+      "rationale": "Generic review/exam/remediation state remains shared; DB-specific evidence should integrate rather than duplicate."
+    },
+    {
+      "id": "control-service-d1",
+      "path": "control-service/",
+      "classification": "KEEP",
+      "rationale": "Production/preview application backend. Hard boundary from learner DB."
+    },
+    {
+      "id": "advanced-database-prompt-system",
+      "path": "prompts/subjects/advanced-database/",
+      "classification": "KEEP",
+      "rationale": "Separate advanced subject owner."
+    }
+  ],
+  "deletionAuthorized": false
+}

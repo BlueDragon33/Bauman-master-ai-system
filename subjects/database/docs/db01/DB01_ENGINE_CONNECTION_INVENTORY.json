@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "1.0.0",
+  "baselineSha": "066ef7ce03be4e30f01fd69ae66a1cd859711226",
+  "providers": [
+    {
+      "id": "programming-sql-query-lab",
+      "path": "subjects/programming/simulations/sim_sql_query_lab.html",
+      "kind": "ui_only_simulation",
+      "learnerFacing": true,
+      "executesSql": false,
+      "persistentDatabase": false,
+      "queryPlan": false,
+      "notes": "Slider-based risk/reproducibility demo; not a SQL engine."
+    },
+    {
+      "id": "control-preview-d1",
+      "path": "control-service/wrangler.preview.example.jsonc",
+      "kind": "cloudflare_d1_application_backend",
+      "environment": "preview",
+      "learnerFacing": false,
+      "binding": "DB",
+      "databaseName": "bauman-control-preview-db",
+      "migrationsDir": "migrations"
+    },
+    {
+      "id": "control-production-d1",
+      "path": "control-service/wrangler.production.example.jsonc",
+      "kind": "cloudflare_d1_application_backend",
+      "environment": "production",
+      "learnerFacing": false,
+      "binding": "DB",
+      "databaseName": "bauman-control-db",
+      "migrationsDir": "migrations"
+    },
+    {
+      "id": "postgresql-practice-recommendation",
+      "path": "assets/data/prerequisite-packs/p06-database-fundamentals.json",
+      "kind": "content_recommendation_only",
+      "learnerFacing": false,
+      "configuredProvider": false,
+      "officialBaumanRequirement": false
+    }
+  ],
+  "notProvenInRepository": [
+    "SQLite learner provider",
+    "PostgreSQL learner provider",
+    "Neon learner provider",
+    "in-memory SQL learner provider",
+    "ORM-backed learner grader",
+    "ephemeral learner database factory"
+  ],
+  "safetyBoundary": "Learner SQL must never bind to control-service D1 preview or production databases."
+}

@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "1.0.0",
+  "baselineSha": "066ef7ce03be4e30f01fd69ae66a1cd859711226",
+  "risks": [
+    {
+      "id": "DB01-R1",
+      "severity": "HIGH",
+      "title": "SQL Query Lab can be mistaken for executable SQL evidence",
+      "evidence": "subjects/programming/simulations/sim_sql_query_lab.html",
+      "mitigationOwner": "DB04"
+    },
+    {
+      "id": "DB01-R2",
+      "severity": "HIGH",
+      "title": "No proven semantic SQL grader",
+      "evidence": [
+        "Programming exercises use generic rubrics",
+        "P6 validator validates pack structure rather than learner SQL"
+      ],
+      "mitigationOwner": "DB03"
+    },
+    {
+      "id": "DB01-R3",
+      "severity": "CRITICAL_IF_INTRODUCED",
+      "title": "Learner SQL could accidentally reuse application D1",
+      "evidence": [
+        "control-service preview/production DB bindings exist"
+      ],
+      "mitigationOwner": "DB04",
+      "currentViolation": false
+    },
+    {
+      "id": "DB01-R4",
+      "severity": "MEDIUM",
+      "title": "Introductory SQL content is shallow relative to P6 scope",
+      "evidence": [
+        "PR06",
+        "PR15"
+      ],
+      "mitigationOwner": "DB02"
+    },
+    {
+      "id": "DB01-R5",
+      "severity": "MEDIUM",
+      "title": "No learner schema/seed fixture registry",
+      "mitigationOwner": "DB02/DB04"
+    },
+    {
+      "id": "DB01-R6",
+      "severity": "MEDIUM",
+      "title": "No DB-specific query history/evidence state",
+      "mitigationOwner": "DB03/DB05"
+    },
+    {
+      "id": "DB01-R7",
+      "severity": "MEDIUM",
+      "title": "PostgreSQL recommendation could be misrepresented as official requirement",
+      "evidence": "P6 explicitly says officiallyRequiredByBauman2026Plan=false",
+      "mitigationOwner": "DB02"
+    }
+  ]
+}
