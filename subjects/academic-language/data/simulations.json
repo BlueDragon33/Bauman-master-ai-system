@@ -1,0 +1,46 @@
+{
+  "meta": {
+    "subjectId": "academic-language",
+    "title": "Иностранный язык · Academic Foreign Language",
+    "version": "simulation-v1"
+  },
+  "observation": [
+    {
+      "id": "lang_obs1",
+      "stage": "m1",
+      "type": "listening",
+      "title": "Lecture Note Lab",
+      "goal": "So sánh kiểu ghi chú.",
+      "scenario": "Nghe cùng đoạn và so note.",
+      "parameters": [
+        "speed",
+        "unknown terms"
+      ],
+      "outputs": [
+        "coverage",
+        "summary"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "lang_p1",
+      "stage": "m2",
+      "type": "presentation",
+      "title": "Seminar Q&A",
+      "mission": "Trình bày 5 phút.",
+      "steps": [
+        "prepare",
+        "present",
+        "Q&A",
+        "review"
+      ],
+      "rubric": [
+        "structure",
+        "clarity",
+        "evidence"
+      ],
+      "feedback": "Rút gọn slide và trả lời trực tiếp."
+    }
+  ]
+}
