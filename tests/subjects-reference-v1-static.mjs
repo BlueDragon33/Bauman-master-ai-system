@@ -32,6 +32,10 @@ assert.ok(js.includes("title:'Cơ sở dữ liệu'"),'reference database course
 assert.ok(js.includes("title:'Cơ sở khởi nghiệp'"),'reference entrepreneurship course missing');
 assert.ok(js.includes("title:'Ergonomic Analysis'"),'reference ergonomics course missing');
 assert.ok(js.includes("title:'Mivar Logical AI'"),'reference Mivar course missing');
+assert.ok(js.includes("title:'Ngoại ngữ học thuật'"),'reference academic foreign-language course missing');
+assert.ok(js.includes("title:'Tự chọn 1 · Security'"),'reference security elective missing');
+assert.ok(js.includes("title:'Tự chọn 2 · Big Data / Multimedia'"),'reference specialization elective missing');
+assert.ok(js.includes("title:'Workflow thực tập & sư phạm'"),'reference practice workflow missing');
 assert.ok(js.includes("title:'Nghe - Nói'"),'reference speaking course missing');
 assert.ok(js.includes("TEACHER_KEY='bauman_subjects_reference_teacher_overrides_v1'"),'persistent lecturer override store missing');
 assert.ok(js.includes('function editTeacher(key)'),'editable lecturer action missing');
