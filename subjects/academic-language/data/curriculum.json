@@ -1,0 +1,236 @@
+{
+  "id": "academic-language",
+  "title": "Иностранный язык · Academic Foreign Language",
+  "target": "Xây năng lực đọc, nghe, ghi chú, trình bày và trao đổi học thuật bằng ngoại ngữ của học phần, không giả định ngôn ngữ trước khi trường/giảng viên xác nhận.",
+  "principles": [
+    "Không tự đồng nhất «Иностранный язык» với tiếng Nga hay tiếng Anh.",
+    "Ưu tiên kỹ năng học thuật chuyển đổi được giữa ngôn ngữ.",
+    "Khi ngôn ngữ chính thức được xác nhận, giữ cấu trúc kỹ năng và thay corpus/từ vựng."
+  ],
+  "stages": [
+    {
+      "id": "m1",
+      "short": "HK1",
+      "title": "HK1",
+      "period": "Học kỳ 1",
+      "target": "Nền đọc–nghe–ghi chú.",
+      "outcomes": [
+        "Đọc tài liệu kỹ thuật ngắn.",
+        "Ghi chú bài giảng.",
+        "Trình bày 2–3 phút."
+      ],
+      "focusBlocks": [
+        "Reading",
+        "Listening",
+        "Glossary"
+      ],
+      "weeklyRhythm": [
+        "Đọc",
+        "Nghe",
+        "Từ vựng",
+        "Nói"
+      ]
+    },
+    {
+      "id": "m2",
+      "short": "HK2",
+      "title": "HK2",
+      "period": "Học kỳ 2",
+      "target": "Trình bày–thảo luận–viết học thuật.",
+      "outcomes": [
+        "Tóm tắt paper.",
+        "Thảo luận câu hỏi.",
+        "Trình bày 5 phút."
+      ],
+      "focusBlocks": [
+        "Summary",
+        "Discussion",
+        "Presentation"
+      ],
+      "weeklyRhythm": [
+        "Đọc",
+        "Viết",
+        "Nói",
+        "Ôn"
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "lang_m101",
+      "stage": "m1",
+      "week": "L1",
+      "title": "Đọc tài liệu kỹ thuật",
+      "goal": "Đọc cấu trúc, thuật ngữ và ý chính.",
+      "hours": 4,
+      "level": "Cơ bản",
+      "lessons": [
+        "lang_m101_l1",
+        "lang_m101_l2"
+      ],
+      "outputs": [
+        "Glossary.",
+        "1-page summary."
+      ],
+      "phaseObjective": "Đọc hiểu học thuật.",
+      "whyImportant": [
+        "Mọi môn đều cần đọc tài liệu."
+      ],
+      "prerequisites": [
+        "Biết ngôn ngữ cơ bản."
+      ],
+      "conceptMap": [
+        "title",
+        "abstract",
+        "term",
+        "claim",
+        "evidence"
+      ],
+      "studyPlan": [],
+      "practicePlan": [],
+      "simulationPlan": [],
+      "assessmentPlan": {},
+      "baumanLinks": [
+        "Áp dụng cho mọi học phần."
+      ],
+      "completionCriteria": [
+        "Summary + glossary."
+      ],
+      "risks": [
+        "Dịch từng từ."
+      ],
+      "nextStep": "Listening"
+    },
+    {
+      "id": "lang_m102",
+      "stage": "m1",
+      "week": "L2",
+      "title": "Nghe bài giảng và ghi chú",
+      "goal": "Nghe ý chính và ghi note.",
+      "hours": 4,
+      "level": "Cơ bản",
+      "lessons": [
+        "lang_m102_l1",
+        "lang_m102_l2"
+      ],
+      "outputs": [
+        "Cornell notes.",
+        "Keyword map."
+      ],
+      "phaseObjective": "Nghe học thuật.",
+      "whyImportant": [
+        "Giảm mất thông tin trên lớp."
+      ],
+      "prerequisites": [
+        "Từ vựng cơ bản."
+      ],
+      "conceptMap": [
+        "signal words",
+        "keywords",
+        "structure"
+      ],
+      "studyPlan": [],
+      "practicePlan": [],
+      "simulationPlan": [],
+      "assessmentPlan": {},
+      "baumanLinks": [
+        "Bài giảng."
+      ],
+      "completionCriteria": [
+        "Note đủ ý."
+      ],
+      "risks": [
+        "Cố chép mọi từ."
+      ],
+      "nextStep": "Presentation"
+    },
+    {
+      "id": "lang_m201",
+      "stage": "m2",
+      "week": "L3",
+      "title": "Tóm tắt và thảo luận",
+      "goal": "Tóm tắt tài liệu và trả lời câu hỏi.",
+      "hours": 4,
+      "level": "Trung bình",
+      "lessons": [
+        "lang_m201_l1",
+        "lang_m201_l2"
+      ],
+      "outputs": [
+        "Abstract-style summary.",
+        "Q&A sheet."
+      ],
+      "phaseObjective": "Trao đổi học thuật.",
+      "whyImportant": [
+        "Seminar."
+      ],
+      "prerequisites": [
+        "Reading/listening."
+      ],
+      "conceptMap": [
+        "summary",
+        "claim",
+        "question",
+        "response"
+      ],
+      "studyPlan": [],
+      "practicePlan": [],
+      "simulationPlan": [],
+      "assessmentPlan": {},
+      "baumanLinks": [
+        "Seminar."
+      ],
+      "completionCriteria": [
+        "Summary + Q&A."
+      ],
+      "risks": [
+        "Đọc slide."
+      ],
+      "nextStep": "Presentation"
+    },
+    {
+      "id": "lang_m202",
+      "stage": "m2",
+      "week": "L4",
+      "title": "Trình bày học thuật",
+      "goal": "Trình bày 5 phút và phản hồi câu hỏi.",
+      "hours": 4,
+      "level": "Trung bình",
+      "lessons": [
+        "lang_m202_l1",
+        "lang_m202_l2"
+      ],
+      "outputs": [
+        "5-slide deck.",
+        "Recorded pitch."
+      ],
+      "phaseObjective": "Nói học thuật.",
+      "whyImportant": [
+        "Coursework/defense."
+      ],
+      "prerequisites": [
+        "Summary."
+      ],
+      "conceptMap": [
+        "opening",
+        "structure",
+        "evidence",
+        "Q&A"
+      ],
+      "studyPlan": [],
+      "practicePlan": [],
+      "simulationPlan": [],
+      "assessmentPlan": {},
+      "baumanLinks": [
+        "Bảo vệ."
+      ],
+      "completionCriteria": [
+        "5 phút + Q&A."
+      ],
+      "risks": [
+        "Quá nhiều chữ."
+      ],
+      "nextStep": "Duy trì luyện."
+    }
+  ]
+}
