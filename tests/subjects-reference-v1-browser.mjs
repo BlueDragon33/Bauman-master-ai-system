@@ -60,7 +60,7 @@ try{
   assert.equal(before.ui?.active,true,'Subjects reference UI is not active');
   assert.equal(before.pageTitle,'Môn học','Subjects page title mismatch');
   assert.equal(before.summary,4,'Subjects summary must contain four cards');
-  assert.equal(before.courses,6,'Reference Subjects state must show six course cards');
+  assert.equal(before.courses,7,'Reference Subjects state must show seven course cards');
   assert.equal(before.aiRows,4,'AI assistant must show four suggestions');
   assert.equal(before.footer,3,'Subjects footer must contain progress, heatmap and notes');
 
@@ -87,7 +87,7 @@ try{
   await page.evaluate(()=>window.BAUMAN_SUBJECTS_REF.toggleTab('exam'));
   assert.equal(await page.locator('#page-subjects .subjects-page__course-card').count(),1,'Sắp thi filter did not reduce list to one course');
   await page.evaluate(()=>window.BAUMAN_SUBJECTS_REF.toggleTab('all'));
-  assert.equal(await page.locator('#page-subjects .subjects-page__course-card').count(),6,'All filter did not restore reference six cards');
+  assert.equal(await page.locator('#page-subjects .subjects-page__course-card').count(),7,'All filter did not restore reference seven cards');
 
   await page.evaluate(()=>window.BAUMAN_SUBJECTS_REF.toggleFilter());
   await page.waitForSelector('#page-subjects .subjects-page__filter-panel.is-open',{state:'visible'});
