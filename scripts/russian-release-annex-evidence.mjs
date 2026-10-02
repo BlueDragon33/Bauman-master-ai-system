@@ -32,14 +32,17 @@ async function preflight(){
  const rev=req('GITHUB_SHA'),cp=req('BAUMAN_CONTROL_PREVIEW_ORIGIN'),rp=req('BAUMAN_RUNTIME_PREVIEW_ORIGIN'),cprod=req('BAUMAN_CONTROL_PRODUCTION_ORIGIN'),rprod=req('BAUMAN_RUNTIME_PRODUCTION_ORIGIN');
  const [a,b,c,d]=await Promise.all([get(u(cp,'/__deployment')),get(u(rp,'/__deployment')),get(u(cprod,'/__deployment')),get(u(rprod,'/__deployment'))]);
  const parse=x=>{try{return JSON.parse(x.body)}catch{return {}}};const ap=parse(a),bp=parse(b),oldc=parse(c),oldr=parse(d);
- if(ap.revision!==rev||bp.revision!==rev)throw new Error('exact preview revision mismatch');
+ if(!a.ok||!b.ok||ap.revision!==rev||bp.revision!==rev)throw new Error('exact preview revision mismatch');
+ if(ap.controlSecretConfigured!==true||ap.databaseReady!==true||bp.controlOriginConfigured!==true)throw new Error('preview release readiness incomplete');
+ const gitRevision=x=>/^[0-9a-f]{40}$/i.test(String(x||''));
+ if(!c.ok||!d.ok||!gitRevision(oldc.revision)||!gitRevision(oldr.revision))throw new Error('production rollback identity unavailable');
  const s=snap(),l=locks(),m=migrations();
  write('RUSSIAN_CONTENT_SNAPSHOT.json',{schema:'RUSSIAN_CONTENT_SNAPSHOT_V1',generatedAt:iso(),...s});
  write('RUSSIAN_DEPENDENCY_LOCK_RECORD.json',{schema:'RUSSIAN_DEPENDENCY_LOCK_V1',generatedAt:iso(),...l});
  write('RUSSIAN_MIGRATION_MANIFEST.json',{schema:'RUSSIAN_MIGRATION_MANIFEST_V1',generatedAt:iso(),...m});
  write('RUSSIAN_PRODUCTION_TARGET_RECORD.json',{schema:'RUSSIAN_PRODUCTION_TARGET_V1',generatedAt:iso(),revision:rev,environment:'bauman-production',controlOrigin:cprod,runtimeOrigin:rprod,priorProduction:{controlRevision:oldc.revision||null,runtimeRevision:oldr.revision||null},accessMode:process.env.BAUMAN_ACCESS_MODE||'managed'});
- write('RUSSIAN_RC_MANIFEST.json',{schema:'RUSSIAN_RC_MANIFEST_V1',generatedAt:iso(),sourceSha:rev,artifactIdentity:'github-source@'+rev,contentSnapshotSha256:s.sha256,dependencyLockSha256:l.sha256,migrationManifestSha256:m.sha256,rollbackTarget:oldr.revision||oldc.revision||null,state:'PREFLIGHT_PASS'});
- console.log(JSON.stringify({ok:true,revision:rev,contentSnapshot:s.sha256,rollbackTarget:oldr.revision||oldc.revision||null}));
+ write('RUSSIAN_RC_MANIFEST.json',{schema:'RUSSIAN_RC_MANIFEST_V1',generatedAt:iso(),sourceSha:rev,artifactIdentity:'github-source@'+rev,contentSnapshotSha256:s.sha256,dependencyLockSha256:l.sha256,migrationManifestSha256:m.sha256,rollbackTarget:{controlRevision:oldc.revision,runtimeRevision:oldr.revision},state:'PREFLIGHT_PASS'});
+ console.log(JSON.stringify({ok:true,revision:rev,contentSnapshot:s.sha256,rollbackTarget:{controlRevision:oldc.revision,runtimeRevision:oldr.revision}}));
 }
 function artifact(){
  const rev=req('GITHUB_SHA'),root='runtime-dist';
