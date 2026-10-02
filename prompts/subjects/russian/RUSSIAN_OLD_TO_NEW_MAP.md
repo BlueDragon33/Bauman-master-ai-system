@@ -2,7 +2,7 @@
 
 The former P0–P17 prompt architecture is **superseded as the default execution topology**.
 
-Its detailed clauses are retained in `SOURCE_ARCHIVE/`.
+Its detailed clauses are retained in `prompt-archives/russian-full-pack.zip::RUSSIAN_PROMPT_SYSTEM/SOURCE_ARCHIVE/`.
 
 Nothing important should be deleted merely because the topology changed.
 
@@ -75,7 +75,7 @@ Russian only provides exact RC inputs and production smoke journeys.
 
 If a new RU prompt appears to omit an important edge case:
 
-1. search the mapped former P file in `SOURCE_ARCHIVE`;
+1. search the mapped former P file in `prompt-archives/russian-full-pack.zip::RUSSIAN_PROMPT_SYSTEM/SOURCE_ARCHIVE/`;
 2. determine whether the clause is:
    - global constitution responsibility;
    - Russian-specific responsibility;
