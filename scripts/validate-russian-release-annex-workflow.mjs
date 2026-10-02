@@ -32,6 +32,7 @@ for(const evidence of [
  'RUSSIAN_PRODUCTION_RU08_JOURNEYS.json',
  'RUSSIAN_PRODUCTION_RU08_AUTHOR.json',
  'RUSSIAN_PRODUCTION_OFFLINE_BROWSER.json',
+ 'RUSSIAN_PRODUCTION_ISOLATED_WRITE_PROBE.json',
  'RUSSIAN_PRODUCTION_OBSERVATION_REPORT.md',
  'RUSSIAN_PRODUCTION_INCIDENT_REGISTER.json',
  'RUSSIAN_FINAL_PRODUCTION_STATE_RECORD.json',
@@ -43,6 +44,8 @@ assert(helper.includes('OBSERVATION_PASS'),'observation gate missing');
 assert(workflow.includes('tests/russian-ru08-journeys-browser.mjs'),'production learner journey smoke missing');
 assert(workflow.includes('tests/russian-ru08-author-browser.mjs'),'production author journey smoke missing');
 assert(workflow.includes('tests/russian-offline-shell-browser.mjs'),'production offline browser smoke missing');
+assert(workflow.includes('BAUMAN_PRODUCTION_SMOKE_DEVICE_SESSION'),'isolated production smoke session is required');
+assert(workflow.includes('RUSSIAN_PRODUCTION_ISOLATED_WRITE_PROBE.json'),'isolated production write-probe evidence missing');
 assert(helper.includes('configFingerprint'),'release helper must verify live production config fingerprint');
 assert.match(runtimeWorker,/microphone=\(self\)/,'production runtime must permit same-origin microphone for Russian speaking');
 assert.doesNotMatch(runtimeWorker,/microphone=\(\)/,'production runtime must not globally disable microphone');
@@ -50,4 +53,4 @@ assert(controlTemplate.includes('__BAUMAN_CONFIG_FINGERPRINT__'),'control produc
 assert(runtimeTemplate.includes('__BAUMAN_CONFIG_FINGERPRINT__'),'runtime production config fingerprint missing');
 assert(workflow.indexOf('Close Russian Release Annex state machine')<workflow.indexOf('Production deployment summary'),'summary must occur only after closure');
 assert(!/Bauman production deployment completed\./.test(workflow),'workflow must not declare completion immediately after deploy/smoke');
-console.log(JSON.stringify({ok:true,annexGates:10,evidenceOutputs:19,productionBrowserJourneys:3,configFingerprint:true,microphonePolicy:'self'}));
+console.log(JSON.stringify({ok:true,annexGates:10,evidenceOutputs:20,productionBrowserJourneys:3,configFingerprint:true,microphonePolicy:'self'}));
