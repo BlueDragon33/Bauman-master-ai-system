@@ -45,17 +45,23 @@ async function preflight(){
  console.log(JSON.stringify({ok:true,revision:rev,contentSnapshot:s.sha256,rollbackTarget:{controlRevision:oldc.revision,runtimeRevision:oldr.revision}}));
 }
 function artifact(){
- const rev=req('GITHUB_SHA'),root='runtime-dist';
- if(!fs.existsSync(root))throw new Error('runtime-dist missing before artifact identity');
+ const rev=req('GITHUB_SHA'),roots=['runtime-dist','control-service/dist-production','.wrangler/runtime-production'];
+ for(const root of roots)if(!fs.existsSync(root))throw new Error('release artifact root missing before identity: '+root);
  const files=[];
  const walk=d=>{for(const e of fs.readdirSync(d,{withFileTypes:true})){const p=path.join(d,e.name);if(e.isDirectory())walk(p);else if(e.isFile())files.push(p)}};
- walk(root);files.sort();
+ for(const root of roots)walk(root);files.sort();
  const entries=files.map(p=>({path:p.replaceAll('\\','/'),sha256:hash(fs.readFileSync(p)),bytes:fs.statSync(p).size}));
+ const byRoot={};
+ for(const root of roots){
+   const prefix=root.replaceAll('\\','/')+'/';
+   const subset=entries.filter(x=>x.path===root||x.path.startsWith(prefix));
+   byRoot[root]={sha256:hash(Buffer.from(subset.map(x=>x.path+':'+x.sha256).join('\n'))),fileCount:subset.length};
+ }
  const aggregate=hash(Buffer.from(entries.map(x=>x.path+':'+x.sha256).join('\n')));
- const record={schema:'RUSSIAN_DEPLOYMENT_ARTIFACT_IDENTITY_V1',generatedAt:iso(),revision:rev,runtimeDistSha256:aggregate,fileCount:entries.length,files:entries};
+ const record={schema:'RUSSIAN_DEPLOYMENT_ARTIFACT_IDENTITY_V2',generatedAt:iso(),revision:rev,aggregateSha256:aggregate,roots:byRoot,fileCount:entries.length,files:entries};
  write('RUSSIAN_DEPLOYMENT_ARTIFACT_IDENTITY.json',record);
- const rcPath=path.join(out,'RUSSIAN_RC_MANIFEST.json'),rc=j(rcPath);rc.artifactIdentity='runtime-dist-sha256:'+aggregate;rc.runtimeDistSha256=aggregate;write('RUSSIAN_RC_MANIFEST.json',rc);
- console.log(JSON.stringify({ok:true,revision:rev,runtimeDistSha256:aggregate,fileCount:entries.length}));
+ const rcPath=path.join(out,'RUSSIAN_RC_MANIFEST.json'),rc=j(rcPath);rc.artifactIdentity='release-artifacts-sha256:'+aggregate;rc.releaseArtifactSha256=aggregate;rc.releaseArtifactRoots=byRoot;write('RUSSIAN_RC_MANIFEST.json',rc);
+ console.log(JSON.stringify({ok:true,revision:rev,releaseArtifactSha256:aggregate,fileCount:entries.length,roots:byRoot}));
 }
 async function verify(){
  const rev=req('GITHUB_SHA'),control=req('BAUMAN_CONTROL_PRODUCTION_ORIGIN'),runtime=req('BAUMAN_RUNTIME_PRODUCTION_ORIGIN'),smokeSession=req('BAUMAN_PRODUCTION_SMOKE_DEVICE_SESSION');
