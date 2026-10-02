@@ -32,6 +32,10 @@ test("Bauman v4 publishes real device control only when D1 is ready", async () =
   assert.match(worker, /learningAccessGate: false/);
   assert.match(worker, /contentReviewApi: reviewReady/);
   assert.match(worker, /contentReviewMetadataOnly: true/);
+  assert.match(worker, /applicationManagementMayOpenLearningRuntimeDirectly: false/);
+  assert.match(worker, /applicationManagementMayEditLearningContent: false/);
+  assert.match(worker, /contentReviewStoresLearningContent: false/);
+  assert.match(worker, /workflows: SUBCLIENTS\.filter\(\(item\) => item\.state === "workflow"\)\.length/);
 });
 
 test("Cloudflare preview promotes learningAccessGate only after D1 and app origin are ready", async () => {
@@ -120,7 +124,7 @@ test("local Bauman control uses an isolated D1 binding", async () => {
 
 test("machine-readable contract records the E2E-verified learning gate and isolated preview", async () => {
   const contract = await json("../../control/application-management.contract.json");
-  assert.equal(contract.contractVersion, 7);
+  assert.ok(contract.contractVersion >= 11);
   assert.equal(contract.controlService.protocol, "bauman-control-v4");
   assert.equal(contract.requiredDeviceContract.namespace, "BM-");
   assert.equal(contract.requiredDeviceContract.challengeSingleUse, true);
@@ -176,7 +180,7 @@ test("Content Review v1 is metadata-only, role-gated and compare-and-set protect
   assert.match(store, /content_review_published/);
   assert.match(store, /metadataOnly: true/);
 
-  assert.equal(contract.contractVersion, 7);
+  assert.ok(contract.contractVersion >= 11);
   assert.equal(contract.readiness.contentReviewApi, "implemented-requires-d1");
   assert.equal(contract.contentReview.owner, "Bauman-master-ai-system");
   assert.equal(contract.contentReview.metadataOnly, true);
@@ -203,10 +207,17 @@ test("runtime worker denies protected learning data without a live approved devi
 
 test("Bauman topology remains under one level-1 hub", async () => {
   const worker = await source("../src/index.ts");
-  for (const id of ["math", "programming", "ai", "signal", "systems", "foundation", "research", "russian"]) {
+  for (const id of [
+    "math", "programming", "ai", "signal", "systems", "foundation",
+    "entrepreneurship", "ergonomics", "mivar", "research", "russian",
+    "foreign-language", "security-elective", "specialization-elective",
+    "practice-workflow",
+  ]) {
     assert.match(worker, new RegExp(`id: "${id}"`));
   }
   assert.match(worker, /BlueDragon33\/Math_Bauman/);
+  assert.match(worker, /kind: "workflow"/);
+  assert.match(worker, /state: "workflow"/);
   assert.match(worker, /subclients: "Bauman-master-ai-system"/);
 });
 

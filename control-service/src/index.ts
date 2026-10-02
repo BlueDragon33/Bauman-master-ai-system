@@ -282,6 +282,11 @@ async function controlRoute(request: Request, env: Env, url: URL) {
           subclients: "Bauman-master-ai-system",
           centralRole: "policy-and-remote-admin-only",
         },
+        policy: {
+          applicationManagementMayOpenLearningRuntimeDirectly: false,
+          applicationManagementMayEditLearningContent: false,
+          contentReviewStoresLearningContent: false,
+        },
         readiness: {
           runtime: "available",
           subclientInventory: "available",
@@ -333,6 +338,7 @@ async function controlRoute(request: Request, env: Env, url: URL) {
           subclients: SUBCLIENTS.length,
           independentSites: SUBCLIENTS.filter((item) => item.state === "independent").length,
           modules: SUBCLIENTS.filter((item) => item.state === "module").length,
+          workflows: SUBCLIENTS.filter((item) => item.state === "workflow").length,
         },
         checkedAt: Date.now(),
       });
