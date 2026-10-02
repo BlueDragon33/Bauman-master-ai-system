@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bauman.local/schemas/database/engine-profile.schema.json",
+  "title": "Database Engine Profile",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "engineId",
+    "family",
+    "version",
+    "dialect",
+    "semantics",
+    "provenance"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "engineId": {
+      "type": "string",
+      "pattern": "^db\\.engine\\.[a-z0-9.-]+$"
+    },
+    "family": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "dialect": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "semantics": {
+      "type": "object",
+      "required": [
+        "nullModel",
+        "transactionModel",
+        "isolation",
+        "indexSupport",
+        "explain"
+      ],
+      "properties": {
+        "nullModel": {
+          "type": "string"
+        },
+        "transactionModel": {
+          "type": "string"
+        },
+        "isolation": {
+          "type": "object"
+        },
+        "indexSupport": {
+          "type": "object"
+        },
+        "explain": {
+          "type": "object"
+        },
+        "typeSystem": {
+          "type": "object"
+        },
+        "returningBehavior": {
+          "type": "object"
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "status",
+        "sources"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "verified",
+            "draft",
+            "unsupported"
+          ]
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "verifiedVersion": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "verifiedAtSha": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

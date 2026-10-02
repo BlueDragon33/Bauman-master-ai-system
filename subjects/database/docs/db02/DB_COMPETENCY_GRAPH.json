@@ -1,0 +1,230 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "database",
+  "idNamespace": "db.comp",
+  "evidencePolicy": "performance_requires_demonstrable_evidence_not_completion",
+  "competencies": [
+    {
+      "id": "db.comp.relational-model",
+      "title": "Relational model reasoning",
+      "level": "foundation",
+      "prerequisites": [],
+      "concepts": [
+        "relation",
+        "tuple",
+        "attribute",
+        "domain"
+      ],
+      "evidence": [
+        "explain relation-vs-table",
+        "map a small domain to a relation schema"
+      ]
+    },
+    {
+      "id": "db.comp.keys-constraints",
+      "title": "Keys and integrity constraints",
+      "level": "foundation",
+      "prerequisites": [
+        "db.comp.relational-model"
+      ],
+      "concepts": [
+        "candidate-key",
+        "primary-key",
+        "foreign-key",
+        "constraints"
+      ],
+      "evidence": [
+        "derive keys",
+        "justify constraints"
+      ]
+    },
+    {
+      "id": "db.comp.relational-algebra",
+      "title": "Relational algebra and query decomposition",
+      "level": "foundation",
+      "prerequisites": [
+        "db.comp.relational-model"
+      ],
+      "concepts": [
+        "selection",
+        "projection",
+        "join",
+        "union",
+        "difference"
+      ],
+      "evidence": [
+        "translate requirement to algebra",
+        "translate algebra to SQL"
+      ]
+    },
+    {
+      "id": "db.comp.sql-semantics",
+      "title": "SQL semantic reasoning",
+      "level": "core",
+      "prerequisites": [
+        "db.comp.keys-constraints",
+        "db.comp.relational-algebra"
+      ],
+      "concepts": [
+        "null",
+        "three-valued-logic",
+        "bag-semantics",
+        "ordering"
+      ],
+      "evidence": [
+        "write alternative-correct SQL",
+        "explain NULL/duplicates/order"
+      ]
+    },
+    {
+      "id": "db.comp.joins-aggregation",
+      "title": "Join and aggregation reasoning",
+      "level": "core",
+      "prerequisites": [
+        "db.comp.sql-semantics"
+      ],
+      "concepts": [
+        "join-cardinality",
+        "group-by",
+        "having",
+        "count-semantics"
+      ],
+      "evidence": [
+        "predict join cardinality",
+        "explain aggregate semantics"
+      ]
+    },
+    {
+      "id": "db.comp.subquery-cte-view",
+      "title": "Subquery, CTE and view reasoning",
+      "level": "core",
+      "prerequisites": [
+        "db.comp.sql-semantics"
+      ],
+      "concepts": [
+        "subquery",
+        "cte",
+        "view"
+      ],
+      "evidence": [
+        "choose construct by semantics",
+        "distinguish logical view from materialization"
+      ]
+    },
+    {
+      "id": "db.comp.normalization",
+      "title": "Functional dependencies and normalization",
+      "level": "core",
+      "prerequisites": [
+        "db.comp.keys-constraints"
+      ],
+      "concepts": [
+        "functional-dependency",
+        "attribute-closure",
+        "normal-forms",
+        "lossless-join",
+        "dependency-preservation"
+      ],
+      "evidence": [
+        "derive key from FDs",
+        "normalize and justify decomposition"
+      ]
+    },
+    {
+      "id": "db.comp.transactions",
+      "title": "Transaction and ACID reasoning",
+      "level": "core",
+      "prerequisites": [
+        "db.comp.keys-constraints"
+      ],
+      "concepts": [
+        "transaction",
+        "acid",
+        "commit",
+        "rollback"
+      ],
+      "evidence": [
+        "define boundary/invariant",
+        "explain commit/rollback"
+      ]
+    },
+    {
+      "id": "db.comp.isolation",
+      "title": "Isolation and concurrency phenomena",
+      "level": "advanced-foundation",
+      "prerequisites": [
+        "db.comp.transactions"
+      ],
+      "concepts": [
+        "dirty-read",
+        "non-repeatable-read",
+        "phantom",
+        "lost-update",
+        "write-skew",
+        "mvcc"
+      ],
+      "evidence": [
+        "classify anomaly",
+        "reason under named engine/isolation context"
+      ]
+    },
+    {
+      "id": "db.comp.index-design",
+      "title": "Index selection and physical access reasoning",
+      "level": "advanced-foundation",
+      "prerequisites": [
+        "db.comp.sql-semantics"
+      ],
+      "concepts": [
+        "selectivity",
+        "composite-index",
+        "btree",
+        "hash-index"
+      ],
+      "evidence": [
+        "propose index from workload",
+        "state read/write/storage trade-offs"
+      ]
+    },
+    {
+      "id": "db.comp.query-plan",
+      "title": "Query-plan interpretation",
+      "level": "advanced-foundation",
+      "prerequisites": [
+        "db.comp.index-design",
+        "db.comp.joins-aggregation"
+      ],
+      "concepts": [
+        "query-plan",
+        "cardinality-estimate",
+        "planner-cost",
+        "statistics",
+        "explain"
+      ],
+      "evidence": [
+        "compare estimate vs actual",
+        "explain plan choice"
+      ]
+    },
+    {
+      "id": "db.comp.transfer",
+      "title": "Database design and implementation transfer",
+      "level": "transfer",
+      "prerequisites": [
+        "db.comp.normalization",
+        "db.comp.isolation",
+        "db.comp.query-plan"
+      ],
+      "concepts": [
+        "logical-design",
+        "physical-design",
+        "workload",
+        "provenance"
+      ],
+      "evidence": [
+        "design experiment-run-metric schema",
+        "define workload and evidence-based optimization hypothesis"
+      ]
+    }
+  ]
+}
