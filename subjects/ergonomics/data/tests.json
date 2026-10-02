@@ -1,0 +1,922 @@
+{
+  "rules": {
+    "easy": {
+      "questions": 20,
+      "unlockScore": 8
+    },
+    "medium": {
+      "questions": 30,
+      "unlockScore": 8
+    },
+    "hard": {
+      "questions": 40,
+      "unlockScore": 8
+    },
+    "excellent": {
+      "questions": 50,
+      "unlockScore": 8
+    }
+  },
+  "questions": [
+    {
+      "id": "erg_q1_v1",
+      "moduleId": "erg_m301",
+      "stage": "m3",
+      "difficulty": "easy",
+      "prompt": "Ergonomic analysis nên bắt đầu từ đâu?",
+      "options": [
+        "User–Task–Context",
+        "Màu sắc yêu thích",
+        "Framework frontend",
+        "Logo"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m301_l1"
+    },
+    {
+      "id": "erg_q2_v1",
+      "moduleId": "erg_m301",
+      "stage": "m3",
+      "difficulty": "medium",
+      "prompt": "Task decomposition hữu ích nhất để làm gì?",
+      "options": [
+        "Nối step/cue/action với failure point",
+        "Tăng số màn hình",
+        "Giảm số dòng code",
+        "Chọn font"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m301_l2"
+    },
+    {
+      "id": "erg_q3_v1",
+      "moduleId": "erg_m302",
+      "stage": "m3",
+      "difficulty": "easy",
+      "prompt": "Khi nhiều tín hiệu cạnh tranh chú ý, rủi ro gì tăng?",
+      "options": [
+        "Bỏ sót thông tin quan trọng",
+        "CPU quá nóng",
+        "Database mất index",
+        "Code compile chậm"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m302_l1"
+    },
+    {
+      "id": "erg_q4_v1",
+      "moduleId": "erg_m302",
+      "stage": "m3",
+      "difficulty": "medium",
+      "prompt": "Cách giảm working-memory load phù hợp là?",
+      "options": [
+        "Hiển thị trạng thái và grouping hợp lý",
+        "Bắt người dùng nhớ thêm mã",
+        "Ẩn toàn bộ history",
+        "Tăng số mode"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m302_l2"
+    },
+    {
+      "id": "erg_q5_v1",
+      "moduleId": "erg_m303",
+      "stage": "m3",
+      "difficulty": "easy",
+      "prompt": "Hierarchy hiển thị nên phản ánh gì?",
+      "options": [
+        "Mức quan trọng và thứ tự quyết định",
+        "Màu logo",
+        "Tên lập trình viên",
+        "Số file CSS"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m303_l1"
+    },
+    {
+      "id": "erg_q6_v1",
+      "moduleId": "erg_m303",
+      "stage": "m3",
+      "difficulty": "medium",
+      "prompt": "Trạng thái critical có nên chỉ mã hóa bằng màu?",
+      "options": [
+        "Không, nên có kênh bổ sung như text/icon/shape",
+        "Có, luôn luôn",
+        "Chỉ nếu màu đỏ",
+        "Không cần mã hóa"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m303_l2"
+    },
+    {
+      "id": "erg_q7_v1",
+      "moduleId": "erg_m304",
+      "stage": "m3",
+      "difficulty": "medium",
+      "prompt": "Slip khác mistake thế nào?",
+      "options": [
+        "Slip là thao tác sai dù mục tiêu đúng; mistake là quyết định/mô hình sai",
+        "Không khác",
+        "Slip chỉ xảy ra với người mới",
+        "Mistake chỉ do phần cứng"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m304_l1"
+    },
+    {
+      "id": "erg_q8_v1",
+      "moduleId": "erg_m304",
+      "stage": "m3",
+      "difficulty": "hard",
+      "prompt": "Mode error dễ xảy ra khi nào?",
+      "options": [
+        "Action giống nhau có nghĩa khác nhưng mode không rõ",
+        "Có một mode duy nhất",
+        "Feedback tức thời",
+        "Task rất ngắn"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m304_l2"
+    },
+    {
+      "id": "erg_q9_v1",
+      "moduleId": "erg_m305",
+      "stage": "m3",
+      "difficulty": "easy",
+      "prompt": "Task success rate 18/20 bằng bao nhiêu?",
+      "options": [
+        "90%",
+        "80%",
+        "18%",
+        "110%"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m305_l1"
+    },
+    {
+      "id": "erg_q10_v1",
+      "moduleId": "erg_m305",
+      "stage": "m3",
+      "difficulty": "medium",
+      "prompt": "A/B usability test cần kiểm soát gì?",
+      "options": [
+        "Task/context và order effect",
+        "Chỉ màu logo",
+        "Tên người test",
+        "Số commit"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m305_l2"
+    },
+    {
+      "id": "erg_q11_v1",
+      "moduleId": "erg_m306",
+      "stage": "m3",
+      "difficulty": "medium",
+      "prompt": "Finding coursework mạnh nhất có cấu trúc nào?",
+      "options": [
+        "Evidence → risk → recommendation → verification metric",
+        "Opinion → màu đẹp",
+        "Feature → slogan",
+        "Code → deploy"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m306_l1"
+    },
+    {
+      "id": "erg_q12_v1",
+      "moduleId": "erg_m306",
+      "stage": "m3",
+      "difficulty": "hard",
+      "prompt": "Khi sample nhỏ, kết luận nên thế nào?",
+      "options": [
+        "Ghi rõ là pilot và giới hạn khả năng khái quát",
+        "Khẳng định chắc chắn",
+        "Bỏ qua limitation",
+        "Tăng số biểu đồ để bù"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m306_l2"
+    },
+    {
+      "id": "erg_q1_v2",
+      "moduleId": "erg_m301",
+      "stage": "m3",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 2] Ergonomic analysis nên bắt đầu từ đâu?",
+      "options": [
+        "User–Task–Context",
+        "Màu sắc yêu thích",
+        "Framework frontend",
+        "Logo"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m301_l1"
+    },
+    {
+      "id": "erg_q2_v2",
+      "moduleId": "erg_m301",
+      "stage": "m3",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 2] Task decomposition hữu ích nhất để làm gì?",
+      "options": [
+        "Nối step/cue/action với failure point",
+        "Tăng số màn hình",
+        "Giảm số dòng code",
+        "Chọn font"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m301_l2"
+    },
+    {
+      "id": "erg_q3_v2",
+      "moduleId": "erg_m302",
+      "stage": "m3",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 2] Khi nhiều tín hiệu cạnh tranh chú ý, rủi ro gì tăng?",
+      "options": [
+        "Bỏ sót thông tin quan trọng",
+        "CPU quá nóng",
+        "Database mất index",
+        "Code compile chậm"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m302_l1"
+    },
+    {
+      "id": "erg_q4_v2",
+      "moduleId": "erg_m302",
+      "stage": "m3",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 2] Cách giảm working-memory load phù hợp là?",
+      "options": [
+        "Hiển thị trạng thái và grouping hợp lý",
+        "Bắt người dùng nhớ thêm mã",
+        "Ẩn toàn bộ history",
+        "Tăng số mode"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m302_l2"
+    },
+    {
+      "id": "erg_q5_v2",
+      "moduleId": "erg_m303",
+      "stage": "m3",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 2] Hierarchy hiển thị nên phản ánh gì?",
+      "options": [
+        "Mức quan trọng và thứ tự quyết định",
+        "Màu logo",
+        "Tên lập trình viên",
+        "Số file CSS"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m303_l1"
+    },
+    {
+      "id": "erg_q6_v2",
+      "moduleId": "erg_m303",
+      "stage": "m3",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 2] Trạng thái critical có nên chỉ mã hóa bằng màu?",
+      "options": [
+        "Không, nên có kênh bổ sung như text/icon/shape",
+        "Có, luôn luôn",
+        "Chỉ nếu màu đỏ",
+        "Không cần mã hóa"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m303_l2"
+    },
+    {
+      "id": "erg_q7_v2",
+      "moduleId": "erg_m304",
+      "stage": "m3",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 2] Slip khác mistake thế nào?",
+      "options": [
+        "Slip là thao tác sai dù mục tiêu đúng; mistake là quyết định/mô hình sai",
+        "Không khác",
+        "Slip chỉ xảy ra với người mới",
+        "Mistake chỉ do phần cứng"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m304_l1"
+    },
+    {
+      "id": "erg_q8_v2",
+      "moduleId": "erg_m304",
+      "stage": "m3",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 2] Mode error dễ xảy ra khi nào?",
+      "options": [
+        "Action giống nhau có nghĩa khác nhưng mode không rõ",
+        "Có một mode duy nhất",
+        "Feedback tức thời",
+        "Task rất ngắn"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m304_l2"
+    },
+    {
+      "id": "erg_q9_v2",
+      "moduleId": "erg_m305",
+      "stage": "m3",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 2] Task success rate 18/20 bằng bao nhiêu?",
+      "options": [
+        "90%",
+        "80%",
+        "18%",
+        "110%"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m305_l1"
+    },
+    {
+      "id": "erg_q10_v2",
+      "moduleId": "erg_m305",
+      "stage": "m3",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 2] A/B usability test cần kiểm soát gì?",
+      "options": [
+        "Task/context và order effect",
+        "Chỉ màu logo",
+        "Tên người test",
+        "Số commit"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m305_l2"
+    },
+    {
+      "id": "erg_q11_v2",
+      "moduleId": "erg_m306",
+      "stage": "m3",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 2] Finding coursework mạnh nhất có cấu trúc nào?",
+      "options": [
+        "Evidence → risk → recommendation → verification metric",
+        "Opinion → màu đẹp",
+        "Feature → slogan",
+        "Code → deploy"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m306_l1"
+    },
+    {
+      "id": "erg_q12_v2",
+      "moduleId": "erg_m306",
+      "stage": "m3",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 2] Khi sample nhỏ, kết luận nên thế nào?",
+      "options": [
+        "Ghi rõ là pilot và giới hạn khả năng khái quát",
+        "Khẳng định chắc chắn",
+        "Bỏ qua limitation",
+        "Tăng số biểu đồ để bù"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m306_l2"
+    },
+    {
+      "id": "erg_q1_v3",
+      "moduleId": "erg_m301",
+      "stage": "m3",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 3] Ergonomic analysis nên bắt đầu từ đâu?",
+      "options": [
+        "User–Task–Context",
+        "Màu sắc yêu thích",
+        "Framework frontend",
+        "Logo"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m301_l1"
+    },
+    {
+      "id": "erg_q2_v3",
+      "moduleId": "erg_m301",
+      "stage": "m3",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 3] Task decomposition hữu ích nhất để làm gì?",
+      "options": [
+        "Nối step/cue/action với failure point",
+        "Tăng số màn hình",
+        "Giảm số dòng code",
+        "Chọn font"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m301_l2"
+    },
+    {
+      "id": "erg_q3_v3",
+      "moduleId": "erg_m302",
+      "stage": "m3",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 3] Khi nhiều tín hiệu cạnh tranh chú ý, rủi ro gì tăng?",
+      "options": [
+        "Bỏ sót thông tin quan trọng",
+        "CPU quá nóng",
+        "Database mất index",
+        "Code compile chậm"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m302_l1"
+    },
+    {
+      "id": "erg_q4_v3",
+      "moduleId": "erg_m302",
+      "stage": "m3",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 3] Cách giảm working-memory load phù hợp là?",
+      "options": [
+        "Hiển thị trạng thái và grouping hợp lý",
+        "Bắt người dùng nhớ thêm mã",
+        "Ẩn toàn bộ history",
+        "Tăng số mode"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m302_l2"
+    },
+    {
+      "id": "erg_q5_v3",
+      "moduleId": "erg_m303",
+      "stage": "m3",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 3] Hierarchy hiển thị nên phản ánh gì?",
+      "options": [
+        "Mức quan trọng và thứ tự quyết định",
+        "Màu logo",
+        "Tên lập trình viên",
+        "Số file CSS"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m303_l1"
+    },
+    {
+      "id": "erg_q6_v3",
+      "moduleId": "erg_m303",
+      "stage": "m3",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 3] Trạng thái critical có nên chỉ mã hóa bằng màu?",
+      "options": [
+        "Không, nên có kênh bổ sung như text/icon/shape",
+        "Có, luôn luôn",
+        "Chỉ nếu màu đỏ",
+        "Không cần mã hóa"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m303_l2"
+    },
+    {
+      "id": "erg_q7_v3",
+      "moduleId": "erg_m304",
+      "stage": "m3",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 3] Slip khác mistake thế nào?",
+      "options": [
+        "Slip là thao tác sai dù mục tiêu đúng; mistake là quyết định/mô hình sai",
+        "Không khác",
+        "Slip chỉ xảy ra với người mới",
+        "Mistake chỉ do phần cứng"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m304_l1"
+    },
+    {
+      "id": "erg_q8_v3",
+      "moduleId": "erg_m304",
+      "stage": "m3",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 3] Mode error dễ xảy ra khi nào?",
+      "options": [
+        "Action giống nhau có nghĩa khác nhưng mode không rõ",
+        "Có một mode duy nhất",
+        "Feedback tức thời",
+        "Task rất ngắn"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m304_l2"
+    },
+    {
+      "id": "erg_q9_v3",
+      "moduleId": "erg_m305",
+      "stage": "m3",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 3] Task success rate 18/20 bằng bao nhiêu?",
+      "options": [
+        "90%",
+        "80%",
+        "18%",
+        "110%"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m305_l1"
+    },
+    {
+      "id": "erg_q10_v3",
+      "moduleId": "erg_m305",
+      "stage": "m3",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 3] A/B usability test cần kiểm soát gì?",
+      "options": [
+        "Task/context và order effect",
+        "Chỉ màu logo",
+        "Tên người test",
+        "Số commit"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m305_l2"
+    },
+    {
+      "id": "erg_q11_v3",
+      "moduleId": "erg_m306",
+      "stage": "m3",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 3] Finding coursework mạnh nhất có cấu trúc nào?",
+      "options": [
+        "Evidence → risk → recommendation → verification metric",
+        "Opinion → màu đẹp",
+        "Feature → slogan",
+        "Code → deploy"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m306_l1"
+    },
+    {
+      "id": "erg_q12_v3",
+      "moduleId": "erg_m306",
+      "stage": "m3",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 3] Khi sample nhỏ, kết luận nên thế nào?",
+      "options": [
+        "Ghi rõ là pilot và giới hạn khả năng khái quát",
+        "Khẳng định chắc chắn",
+        "Bỏ qua limitation",
+        "Tăng số biểu đồ để bù"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m306_l2"
+    },
+    {
+      "id": "erg_q1_v4",
+      "moduleId": "erg_m301",
+      "stage": "m3",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 4] Ergonomic analysis nên bắt đầu từ đâu?",
+      "options": [
+        "User–Task–Context",
+        "Màu sắc yêu thích",
+        "Framework frontend",
+        "Logo"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m301_l1"
+    },
+    {
+      "id": "erg_q2_v4",
+      "moduleId": "erg_m301",
+      "stage": "m3",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 4] Task decomposition hữu ích nhất để làm gì?",
+      "options": [
+        "Nối step/cue/action với failure point",
+        "Tăng số màn hình",
+        "Giảm số dòng code",
+        "Chọn font"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m301_l2"
+    },
+    {
+      "id": "erg_q3_v4",
+      "moduleId": "erg_m302",
+      "stage": "m3",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 4] Khi nhiều tín hiệu cạnh tranh chú ý, rủi ro gì tăng?",
+      "options": [
+        "Bỏ sót thông tin quan trọng",
+        "CPU quá nóng",
+        "Database mất index",
+        "Code compile chậm"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m302_l1"
+    },
+    {
+      "id": "erg_q4_v4",
+      "moduleId": "erg_m302",
+      "stage": "m3",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 4] Cách giảm working-memory load phù hợp là?",
+      "options": [
+        "Hiển thị trạng thái và grouping hợp lý",
+        "Bắt người dùng nhớ thêm mã",
+        "Ẩn toàn bộ history",
+        "Tăng số mode"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m302_l2"
+    },
+    {
+      "id": "erg_q5_v4",
+      "moduleId": "erg_m303",
+      "stage": "m3",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 4] Hierarchy hiển thị nên phản ánh gì?",
+      "options": [
+        "Mức quan trọng và thứ tự quyết định",
+        "Màu logo",
+        "Tên lập trình viên",
+        "Số file CSS"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m303_l1"
+    },
+    {
+      "id": "erg_q6_v4",
+      "moduleId": "erg_m303",
+      "stage": "m3",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 4] Trạng thái critical có nên chỉ mã hóa bằng màu?",
+      "options": [
+        "Không, nên có kênh bổ sung như text/icon/shape",
+        "Có, luôn luôn",
+        "Chỉ nếu màu đỏ",
+        "Không cần mã hóa"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m303_l2"
+    },
+    {
+      "id": "erg_q7_v4",
+      "moduleId": "erg_m304",
+      "stage": "m3",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 4] Slip khác mistake thế nào?",
+      "options": [
+        "Slip là thao tác sai dù mục tiêu đúng; mistake là quyết định/mô hình sai",
+        "Không khác",
+        "Slip chỉ xảy ra với người mới",
+        "Mistake chỉ do phần cứng"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m304_l1"
+    },
+    {
+      "id": "erg_q8_v4",
+      "moduleId": "erg_m304",
+      "stage": "m3",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 4] Mode error dễ xảy ra khi nào?",
+      "options": [
+        "Action giống nhau có nghĩa khác nhưng mode không rõ",
+        "Có một mode duy nhất",
+        "Feedback tức thời",
+        "Task rất ngắn"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m304_l2"
+    },
+    {
+      "id": "erg_q9_v4",
+      "moduleId": "erg_m305",
+      "stage": "m3",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 4] Task success rate 18/20 bằng bao nhiêu?",
+      "options": [
+        "90%",
+        "80%",
+        "18%",
+        "110%"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m305_l1"
+    },
+    {
+      "id": "erg_q10_v4",
+      "moduleId": "erg_m305",
+      "stage": "m3",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 4] A/B usability test cần kiểm soát gì?",
+      "options": [
+        "Task/context và order effect",
+        "Chỉ màu logo",
+        "Tên người test",
+        "Số commit"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m305_l2"
+    },
+    {
+      "id": "erg_q11_v4",
+      "moduleId": "erg_m306",
+      "stage": "m3",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 4] Finding coursework mạnh nhất có cấu trúc nào?",
+      "options": [
+        "Evidence → risk → recommendation → verification metric",
+        "Opinion → màu đẹp",
+        "Feature → slogan",
+        "Code → deploy"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m306_l1"
+    },
+    {
+      "id": "erg_q12_v4",
+      "moduleId": "erg_m306",
+      "stage": "m3",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 4] Khi sample nhỏ, kết luận nên thế nào?",
+      "options": [
+        "Ghi rõ là pilot và giới hạn khả năng khái quát",
+        "Khẳng định chắc chắn",
+        "Bỏ qua limitation",
+        "Tăng số biểu đồ để bù"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m306_l2"
+    },
+    {
+      "id": "erg_q1_v5",
+      "moduleId": "erg_m301",
+      "stage": "m3",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 5] Ergonomic analysis nên bắt đầu từ đâu?",
+      "options": [
+        "User–Task–Context",
+        "Màu sắc yêu thích",
+        "Framework frontend",
+        "Logo"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m301_l1"
+    },
+    {
+      "id": "erg_q2_v5",
+      "moduleId": "erg_m301",
+      "stage": "m3",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 5] Task decomposition hữu ích nhất để làm gì?",
+      "options": [
+        "Nối step/cue/action với failure point",
+        "Tăng số màn hình",
+        "Giảm số dòng code",
+        "Chọn font"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m301_l2"
+    },
+    {
+      "id": "erg_q3_v5",
+      "moduleId": "erg_m302",
+      "stage": "m3",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 5] Khi nhiều tín hiệu cạnh tranh chú ý, rủi ro gì tăng?",
+      "options": [
+        "Bỏ sót thông tin quan trọng",
+        "CPU quá nóng",
+        "Database mất index",
+        "Code compile chậm"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m302_l1"
+    },
+    {
+      "id": "erg_q4_v5",
+      "moduleId": "erg_m302",
+      "stage": "m3",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 5] Cách giảm working-memory load phù hợp là?",
+      "options": [
+        "Hiển thị trạng thái và grouping hợp lý",
+        "Bắt người dùng nhớ thêm mã",
+        "Ẩn toàn bộ history",
+        "Tăng số mode"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m302_l2"
+    },
+    {
+      "id": "erg_q5_v5",
+      "moduleId": "erg_m303",
+      "stage": "m3",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 5] Hierarchy hiển thị nên phản ánh gì?",
+      "options": [
+        "Mức quan trọng và thứ tự quyết định",
+        "Màu logo",
+        "Tên lập trình viên",
+        "Số file CSS"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m303_l1"
+    },
+    {
+      "id": "erg_q6_v5",
+      "moduleId": "erg_m303",
+      "stage": "m3",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 5] Trạng thái critical có nên chỉ mã hóa bằng màu?",
+      "options": [
+        "Không, nên có kênh bổ sung như text/icon/shape",
+        "Có, luôn luôn",
+        "Chỉ nếu màu đỏ",
+        "Không cần mã hóa"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m303_l2"
+    },
+    {
+      "id": "erg_q7_v5",
+      "moduleId": "erg_m304",
+      "stage": "m3",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 5] Slip khác mistake thế nào?",
+      "options": [
+        "Slip là thao tác sai dù mục tiêu đúng; mistake là quyết định/mô hình sai",
+        "Không khác",
+        "Slip chỉ xảy ra với người mới",
+        "Mistake chỉ do phần cứng"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m304_l1"
+    },
+    {
+      "id": "erg_q8_v5",
+      "moduleId": "erg_m304",
+      "stage": "m3",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 5] Mode error dễ xảy ra khi nào?",
+      "options": [
+        "Action giống nhau có nghĩa khác nhưng mode không rõ",
+        "Có một mode duy nhất",
+        "Feedback tức thời",
+        "Task rất ngắn"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m304_l2"
+    },
+    {
+      "id": "erg_q9_v5",
+      "moduleId": "erg_m305",
+      "stage": "m3",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 5] Task success rate 18/20 bằng bao nhiêu?",
+      "options": [
+        "90%",
+        "80%",
+        "18%",
+        "110%"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m305_l1"
+    },
+    {
+      "id": "erg_q10_v5",
+      "moduleId": "erg_m305",
+      "stage": "m3",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 5] A/B usability test cần kiểm soát gì?",
+      "options": [
+        "Task/context và order effect",
+        "Chỉ màu logo",
+        "Tên người test",
+        "Số commit"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m305_l2"
+    },
+    {
+      "id": "erg_q11_v5",
+      "moduleId": "erg_m306",
+      "stage": "m3",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 5] Finding coursework mạnh nhất có cấu trúc nào?",
+      "options": [
+        "Evidence → risk → recommendation → verification metric",
+        "Opinion → màu đẹp",
+        "Feature → slogan",
+        "Code → deploy"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m306_l1"
+    },
+    {
+      "id": "erg_q12_v5",
+      "moduleId": "erg_m306",
+      "stage": "m3",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 5] Khi sample nhỏ, kết luận nên thế nào?",
+      "options": [
+        "Ghi rõ là pilot và giới hạn khả năng khái quát",
+        "Khẳng định chắc chắn",
+        "Bỏ qua limitation",
+        "Tăng số biểu đồ để bù"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "erg_m306_l2"
+    }
+  ]
+}
