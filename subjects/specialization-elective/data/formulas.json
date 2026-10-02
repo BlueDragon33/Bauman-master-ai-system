@@ -1,0 +1,26 @@
+[
+  {
+    "id": "el2_f1",
+    "group": "common",
+    "name": "Pipeline",
+    "formula": "source → process → store → deliver → observe",
+    "meaning": "Common core.",
+    "example": "Data/media service"
+  },
+  {
+    "id": "el2_f2",
+    "group": "bigdata",
+    "name": "Throughput",
+    "formula": "items / time",
+    "meaning": "Tốc độ xử lý.",
+    "example": "records/s"
+  },
+  {
+    "id": "el2_f3",
+    "group": "multimedia",
+    "name": "Media trade-off",
+    "formula": "quality ↔ bitrate ↔ latency",
+    "meaning": "Trade-off multimedia.",
+    "example": "Video stream"
+  }
+]
