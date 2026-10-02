@@ -1,0 +1,300 @@
+{
+  "id": "foreign-language",
+  "title": "Иностранный язык",
+  "officialPlan": {
+    "semester1": {
+      "credits": 2,
+      "hours": 72,
+      "contactHours": 34
+    },
+    "semester2": {
+      "credits": 2,
+      "hours": 72,
+      "contactHours": 34
+    },
+    "assessment": "Зачёт",
+    "note": "Kế hoạch không chỉ rõ ngôn ngữ."
+  },
+  "target": "Kỹ năng ngoại ngữ học thuật trung lập ngôn ngữ.",
+  "outcomes": [
+    "Listening/reading.",
+    "Speaking/writing."
+  ],
+  "principles": [
+    "Không mặc định Nga/Anh."
+  ],
+  "stages": [
+    {
+      "id": "m1",
+      "short": "HK1",
+      "title": "HK1",
+      "period": "Học kỳ 1",
+      "target": "Input",
+      "outcomes": [
+        "Listening/reading"
+      ],
+      "focusBlocks": [
+        "Listening",
+        "Reading"
+      ],
+      "weeklyRhythm": [
+        "2–3 ca/tuần"
+      ]
+    },
+    {
+      "id": "m2",
+      "short": "HK2",
+      "title": "HK2",
+      "period": "Học kỳ 2",
+      "target": "Output",
+      "outcomes": [
+        "Speaking/writing"
+      ],
+      "focusBlocks": [
+        "Speaking",
+        "Writing"
+      ],
+      "weeklyRhythm": [
+        "2–3 ca/tuần"
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "fl_m101",
+      "stage": "m1",
+      "week": "FL",
+      "title": "Academic listening & note-taking",
+      "goal": "Academic listening & note-taking",
+      "hours": 3,
+      "level": "Cơ bản",
+      "lessons": [
+        "fl_m101_l1"
+      ],
+      "outputs": [
+        "Artifact."
+      ],
+      "phaseObjective": "Academic listening & note-taking",
+      "whyImportant": [
+        "Hỗ trợ học cao học."
+      ],
+      "prerequisites": [
+        "Ngôn ngữ đích cơ bản."
+      ],
+      "conceptMap": [
+        "input",
+        "term",
+        "output"
+      ],
+      "studyPlan": [
+        {
+          "session": "Practice",
+          "time": "45–60 phút",
+          "work": "Academic listening & note-taking",
+          "evidence": "Artifact"
+        }
+      ],
+      "practicePlan": [
+        "1 artifact"
+      ],
+      "simulationPlan": [
+        "Q&A/review"
+      ],
+      "assessmentPlan": {
+        "unlock": "Mở mặc định.",
+        "rubric": [
+          "Cấu trúc",
+          "Thuật ngữ"
+        ],
+        "pass": "Quiz ≥ 8/10."
+      },
+      "baumanLinks": [
+        "The plan only says Иностранный язык."
+      ],
+      "completionCriteria": [
+        "Artifact."
+      ],
+      "risks": [
+        "Giả định sai ngôn ngữ."
+      ],
+      "nextStep": "Tiếp tục."
+    },
+    {
+      "id": "fl_m102",
+      "stage": "m1",
+      "week": "FL",
+      "title": "Technical reading & terminology",
+      "goal": "Technical reading & terminology",
+      "hours": 3,
+      "level": "Cơ bản",
+      "lessons": [
+        "fl_m102_l1"
+      ],
+      "outputs": [
+        "Artifact."
+      ],
+      "phaseObjective": "Technical reading & terminology",
+      "whyImportant": [
+        "Hỗ trợ học cao học."
+      ],
+      "prerequisites": [
+        "Ngôn ngữ đích cơ bản."
+      ],
+      "conceptMap": [
+        "input",
+        "term",
+        "output"
+      ],
+      "studyPlan": [
+        {
+          "session": "Practice",
+          "time": "45–60 phút",
+          "work": "Technical reading & terminology",
+          "evidence": "Artifact"
+        }
+      ],
+      "practicePlan": [
+        "1 artifact"
+      ],
+      "simulationPlan": [
+        "Q&A/review"
+      ],
+      "assessmentPlan": {
+        "unlock": "Mở mặc định.",
+        "rubric": [
+          "Cấu trúc",
+          "Thuật ngữ"
+        ],
+        "pass": "Quiz ≥ 8/10."
+      },
+      "baumanLinks": [
+        "The plan only says Иностранный язык."
+      ],
+      "completionCriteria": [
+        "Artifact."
+      ],
+      "risks": [
+        "Giả định sai ngôn ngữ."
+      ],
+      "nextStep": "Tiếp tục."
+    },
+    {
+      "id": "fl_m201",
+      "stage": "m2",
+      "week": "FL",
+      "title": "Academic speaking & Q&A",
+      "goal": "Academic speaking & Q&A",
+      "hours": 3,
+      "level": "Cơ bản",
+      "lessons": [
+        "fl_m201_l1"
+      ],
+      "outputs": [
+        "Artifact."
+      ],
+      "phaseObjective": "Academic speaking & Q&A",
+      "whyImportant": [
+        "Hỗ trợ học cao học."
+      ],
+      "prerequisites": [
+        "Ngôn ngữ đích cơ bản."
+      ],
+      "conceptMap": [
+        "input",
+        "term",
+        "output"
+      ],
+      "studyPlan": [
+        {
+          "session": "Practice",
+          "time": "45–60 phút",
+          "work": "Academic speaking & Q&A",
+          "evidence": "Artifact"
+        }
+      ],
+      "practicePlan": [
+        "1 artifact"
+      ],
+      "simulationPlan": [
+        "Q&A/review"
+      ],
+      "assessmentPlan": {
+        "unlock": "Mở mặc định.",
+        "rubric": [
+          "Cấu trúc",
+          "Thuật ngữ"
+        ],
+        "pass": "Quiz ≥ 8/10."
+      },
+      "baumanLinks": [
+        "The plan only says Иностранный язык."
+      ],
+      "completionCriteria": [
+        "Artifact."
+      ],
+      "risks": [
+        "Giả định sai ngôn ngữ."
+      ],
+      "nextStep": "Tiếp tục."
+    },
+    {
+      "id": "fl_m202",
+      "stage": "m2",
+      "week": "FL",
+      "title": "Academic writing & presentation",
+      "goal": "Academic writing & presentation",
+      "hours": 3,
+      "level": "Cơ bản",
+      "lessons": [
+        "fl_m202_l1"
+      ],
+      "outputs": [
+        "Artifact."
+      ],
+      "phaseObjective": "Academic writing & presentation",
+      "whyImportant": [
+        "Hỗ trợ học cao học."
+      ],
+      "prerequisites": [
+        "Ngôn ngữ đích cơ bản."
+      ],
+      "conceptMap": [
+        "input",
+        "term",
+        "output"
+      ],
+      "studyPlan": [
+        {
+          "session": "Practice",
+          "time": "45–60 phút",
+          "work": "Academic writing & presentation",
+          "evidence": "Artifact"
+        }
+      ],
+      "practicePlan": [
+        "1 artifact"
+      ],
+      "simulationPlan": [
+        "Q&A/review"
+      ],
+      "assessmentPlan": {
+        "unlock": "Mở mặc định.",
+        "rubric": [
+          "Cấu trúc",
+          "Thuật ngữ"
+        ],
+        "pass": "Quiz ≥ 8/10."
+      },
+      "baumanLinks": [
+        "The plan only says Иностранный язык."
+      ],
+      "completionCriteria": [
+        "Artifact."
+      ],
+      "risks": [
+        "Giả định sai ngôn ngữ."
+      ],
+      "nextStep": "Tiếp tục."
+    }
+  ]
+}

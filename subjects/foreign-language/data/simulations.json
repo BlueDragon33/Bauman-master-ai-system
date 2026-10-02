@@ -1,0 +1,46 @@
+{
+  "meta": {
+    "subjectId": "foreign-language",
+    "title": "Academic Foreign Language",
+    "version": "simulation-v1"
+  },
+  "observation": [
+    {
+      "id": "fl_obs1",
+      "stage": "m1",
+      "type": "listening",
+      "title": "Lecture Note Lab",
+      "goal": "So sánh note.",
+      "scenario": "Bài giảng ngắn.",
+      "parameters": [
+        "speed",
+        "terminology"
+      ],
+      "outputs": [
+        "coverage",
+        "clarity"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "fl_pr1",
+      "stage": "m2",
+      "type": "presentation",
+      "title": "3-minute Academic Talk",
+      "mission": "Trình bày 3 phút.",
+      "steps": [
+        "outline",
+        "speak",
+        "Q&A",
+        "review"
+      ],
+      "rubric": [
+        "structure",
+        "terms",
+        "clarity"
+      ],
+      "feedback": "Rút gọn nếu quá dài."
+    }
+  ]
+}

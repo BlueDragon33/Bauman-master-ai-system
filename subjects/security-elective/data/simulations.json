@@ -1,0 +1,46 @@
+{
+  "meta": {
+    "subjectId": "security-elective",
+    "title": "Elective 1",
+    "version": "simulation-v1"
+  },
+  "observation": [
+    {
+      "id": "el1_obs",
+      "stage": "m3",
+      "type": "review",
+      "title": "Source Review",
+      "goal": "Phân biệt phần đã xác minh và chưa xác minh.",
+      "scenario": "Danh sách thuật ngữ.",
+      "parameters": [
+        "source",
+        "status"
+      ],
+      "outputs": [
+        "verified",
+        "pending"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "el1_pr",
+      "stage": "m3",
+      "type": "study",
+      "title": "Option Study Plan",
+      "mission": "Tạo kế hoạch sau khi option được chốt.",
+      "steps": [
+        "confirm option",
+        "collect sources",
+        "map concepts",
+        "practice",
+        "review"
+      ],
+      "rubric": [
+        "source",
+        "clarity"
+      ],
+      "feedback": "Không trộn hai option."
+    }
+  ]
+}

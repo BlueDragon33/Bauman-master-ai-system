@@ -1,5 +1,5 @@
 {
-  "contractVersion": 10,
+  "contractVersion": 11,
   "application": {
     "id": "bauman-master-ai",
     "name": "Bauman Master AI",
@@ -184,6 +184,34 @@
       "kind": "module",
       "sourcePath": "subjects/russian",
       "state": "module"
+    },
+    {
+      "id": "foreign-language",
+      "name": "Ngoại ngữ học thuật",
+      "kind": "module",
+      "sourcePath": "subjects/foreign-language",
+      "state": "module"
+    },
+    {
+      "id": "security-elective",
+      "name": "Tự chọn 1",
+      "kind": "module",
+      "sourcePath": "subjects/security-elective",
+      "state": "module"
+    },
+    {
+      "id": "specialization-elective",
+      "name": "Tự chọn 2",
+      "kind": "module",
+      "sourcePath": "subjects/specialization-elective",
+      "state": "module"
+    },
+    {
+      "id": "practice-workflow",
+      "name": "Workflow thực tập",
+      "kind": "workflow",
+      "sourcePath": "subjects/practice-workflow",
+      "state": "workflow"
     }
   ],
   "policy": {

@@ -1,0 +1,160 @@
+{
+  "id": "security-elective",
+  "title": "Дисциплина по выбору №1",
+  "officialPlan": {
+    "semester": 3,
+    "credits": 3,
+    "hours": 108,
+    "contactHours": 68,
+    "assessment": "Зачёт",
+    "options": [
+      "Защита информации…",
+      "Информационная безопасность…"
+    ]
+  },
+  "target": "Chuẩn bị nền chung trước khi xác nhận lựa chọn cụ thể.",
+  "outcomes": [
+    "Có checklist học tập.",
+    "Có glossary và ghi chú nguồn."
+  ],
+  "principles": [
+    "Không coi hai lựa chọn là cùng một syllabus."
+  ],
+  "stages": [
+    {
+      "id": "m3",
+      "short": "HK3",
+      "title": "HK3",
+      "period": "Học kỳ 3",
+      "target": "Elective foundation",
+      "outcomes": [
+        "Checklist"
+      ],
+      "focusBlocks": [
+        "Terminology",
+        "Concept map",
+        "Case review",
+        "Exam preparation"
+      ],
+      "weeklyRhythm": [
+        "2–3 ca/tuần"
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "el1_m1",
+      "stage": "m3",
+      "week": "E1",
+      "title": "Terminology & source map",
+      "goal": "Chuẩn bị thuật ngữ và nguồn.",
+      "hours": 3,
+      "level": "Cơ bản",
+      "lessons": [
+        "el1_l1"
+      ],
+      "outputs": [
+        "Glossary"
+      ],
+      "phaseObjective": "Source discipline",
+      "whyImportant": [
+        "Giữ đúng option."
+      ],
+      "prerequisites": [],
+      "conceptMap": [
+        "term",
+        "source",
+        "status"
+      ],
+      "studyPlan": [
+        {
+          "session": "Core",
+          "time": "60 phút",
+          "work": "Glossary",
+          "evidence": "Table"
+        }
+      ],
+      "practicePlan": [
+        "Review"
+      ],
+      "simulationPlan": [
+        "Review"
+      ],
+      "assessmentPlan": {
+        "unlock": "Mở",
+        "rubric": [
+          "Rõ"
+        ],
+        "pass": "Hoàn thành"
+      },
+      "baumanLinks": [
+        "Two official alternatives."
+      ],
+      "completionCriteria": [
+        "Có glossary"
+      ],
+      "risks": [
+        "Trộn hai option"
+      ],
+      "nextStep": "Concept map"
+    },
+    {
+      "id": "el1_m2",
+      "stage": "m3",
+      "week": "E2",
+      "title": "Concept map & case review",
+      "goal": "Tổ chức kiến thức theo option đã chọn.",
+      "hours": 3,
+      "level": "Cơ bản",
+      "lessons": [
+        "el1_l2"
+      ],
+      "outputs": [
+        "Concept map"
+      ],
+      "phaseObjective": "Structure",
+      "whyImportant": [
+        "Ôn tập."
+      ],
+      "prerequisites": [
+        "Glossary"
+      ],
+      "conceptMap": [
+        "concept",
+        "relation",
+        "case"
+      ],
+      "studyPlan": [
+        {
+          "session": "Core",
+          "time": "60 phút",
+          "work": "Map",
+          "evidence": "Map"
+        }
+      ],
+      "practicePlan": [
+        "Case review"
+      ],
+      "simulationPlan": [
+        "Review"
+      ],
+      "assessmentPlan": {
+        "unlock": "Mở",
+        "rubric": [
+          "Rõ"
+        ],
+        "pass": "Hoàn thành"
+      },
+      "baumanLinks": [
+        "Option-specific details added later."
+      ],
+      "completionCriteria": [
+        "Có map"
+      ],
+      "risks": [
+        "Dùng nội dung option khác"
+      ],
+      "nextStep": "Exam prep"
+    }
+  ]
+}
