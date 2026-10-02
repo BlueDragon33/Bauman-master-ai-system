@@ -9,6 +9,9 @@ on:
       - "foundation/domain-model/**"
       - "platform/ui/**"
       - ".github/workflows/russian-ui-reference-gate.yml"
+      - ".github/workflows/deploy-bauman-production.yml"
+      - "scripts/russian-release-annex-evidence.mjs"
+      - "scripts/validate-russian-release-annex-workflow.mjs"
   push:
     branches:
       - "main"
@@ -65,6 +68,8 @@ jobs:
         run: node subjects/russian/scripts/validate-ru08-integration-acceptance.mjs
       - name: Validate Russian RU08 executable acceptance evidence
         run: node subjects/russian/scripts/validate-ru08-acceptance-evidence.mjs
+      - name: Validate Russian production Release Annex workflow
+        run: node scripts/validate-russian-release-annex-workflow.mjs
       - name: Validate Russian reference UI contracts
         run: node subjects/russian/scripts/validate-reference-ui.mjs
       - name: Validate Russian lesson learning flow
