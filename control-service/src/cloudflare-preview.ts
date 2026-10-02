@@ -29,6 +29,7 @@ function deployment(env: PreviewEnv, ready: boolean) {
     revision: env.BAUMAN_BUILD_REVISION ?? "unknown",
     configFingerprint: env.BAUMAN_CONFIG_FINGERPRINT ?? "unknown",
     databaseReady: ready,
+    controlSecretConfigured: (env.BAUMAN_CONTROL_SERVICE_SECRET ?? "").length >= 32,
     applicationManagementOriginConfigured: Boolean(env.APPLICATION_MANAGEMENT_ORIGIN),
     appOriginConfigured: Boolean(env.BAUMAN_APP_ORIGIN),
   };
