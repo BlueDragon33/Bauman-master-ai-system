@@ -9,7 +9,7 @@ Shared Constitution: `prompts/CONSTITUTION.md`
 Start a normal chat with `CHAT_START.md`.
 Start execution with `RUSSIAN_MASTER_PROMPT.md` + `PROJECT_STATE.json` + the active module.
 
-The source ZIP remains under `prompt-archives/` for provenance/recovery.
+The source ZIP remains under `prompt-archives/` for provenance/recovery. Legacy P0–P17 detail is recovered from `prompt-archives/russian-full-pack.zip::RUSSIAN_PROMPT_SYSTEM/SOURCE_ARCHIVE/`; there is no live canonical `SOURCE_ARCHIVE/` directory.
 Mirrored subject-level Constitution copies and legacy archives are intentionally not duplicated here.
 All C1–C4 authority comes from the single shared `prompts/CONSTITUTION.md`.
 
