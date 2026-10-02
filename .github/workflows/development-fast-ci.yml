@@ -51,6 +51,9 @@ jobs:
 
       - name: Subjects reference static
         run: node tests/subjects-reference-v1-static.mjs
+      - name: Prompt normalization preserves durable subject state
+        run: python tests/prompt-normalization-state-preservation.py
+
 
       - name: Entrepreneurship subject static
         run: node tests/entrepreneurship-subject-static.mjs
