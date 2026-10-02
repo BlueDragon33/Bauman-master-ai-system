@@ -1,0 +1,45 @@
+{
+  "id": "foreign-language",
+  "studyPlan": {
+    "version": 1,
+    "relation": "related",
+    "runtimePath": "subjects/foreign-language/",
+    "labelVi": "Ngoại ngữ học thuật · Generic",
+    "labelEn": "Academic Foreign Language · Generic",
+    "courseIds": [
+      "foreign-1",
+      "foreign-2"
+    ]
+  },
+  "title": "Иностранный язык",
+  "stage": "m1-m2",
+  "entry": "index.html",
+  "editor": "editor.html",
+  "runtimeBase": "../foundation/assets",
+  "officialItems": [
+    {
+      "semester": 1,
+      "credits": 2,
+      "hours": 72,
+      "contactHours": 34,
+      "assessment": "credit"
+    },
+    {
+      "semester": 2,
+      "credits": 2,
+      "hours": 72,
+      "contactHours": 34,
+      "assessment": "credit"
+    }
+  ],
+  "languagePolicy": "The study plan names only 'Foreign Language'. This module stays language-neutral until the actual language is confirmed.",
+  "data": [
+    "curriculum.json",
+    "lessons.json",
+    "formulas.json",
+    "exercises.json",
+    "tests.json",
+    "simulations.json",
+    "knowledge-index.json"
+  ]
+}
