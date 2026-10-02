@@ -1,0 +1,59 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_RU08_TARGETED_REVALIDATION",
+  "date": "2026-10-02",
+  "auditBaseSha": "066ef7ce03be4e30f01fd69ae66a1cd859711226",
+  "previousReleasedSha": "7697a3f05362c111fb481ebd6043738c12dbcb8c",
+  "impactedModules": [
+    "RU03",
+    "RU05",
+    "RU06",
+    "RU07",
+    "RU08"
+  ],
+  "unaffectedByRuntimeDiff": [
+    "RU01",
+    "RU02",
+    "RU04"
+  ],
+  "findings": [
+    {
+      "id": "STATE-RESET",
+      "severity": "high",
+      "owner": "prompt-normalization",
+      "fix": "preserve existing PROJECT_STATE/SOURCE_STATUS/STATUS and add regression test"
+    },
+    {
+      "id": "ACTIVE-PXX-OWNERS",
+      "severity": "high",
+      "owner": "RU03/RU05/RU06/RU07",
+      "fix": "retain legacy Pxx only as source provenance/stable IDs; route active authority to RU owners"
+    },
+    {
+      "id": "RC-HANDOFF-INCOMPLETE",
+      "severity": "medium",
+      "owner": "RU08/C3 release evidence",
+      "fix": "record exact merged RC and separate production evidence from RU08 readiness"
+    },
+    {
+      "id": "SOURCE-ARCHIVE-BROKEN-REF",
+      "severity": "medium",
+      "owner": "RU00 prompt package",
+      "fix": "route legacy recovery to prompt-archives/russian-full-pack.zip"
+    }
+  ],
+  "forbiddenChanges": [
+    "rename stable learning/content IDs solely to remove Pxx labels",
+    "bulk semantic rewrite of unverified Russian content",
+    "learner-state reset",
+    "replay full P0-P17 topology"
+  ],
+  "exitGate": [
+    "targeted validators pass",
+    "Russian Reference UI Gate passes",
+    "Development Fast CI passes including normalization preservation regression",
+    "Whole System Integration Gate passes if triggered by affected paths",
+    "browser/user-path evidence remains green",
+    "no blocker/critical remains"
+  ]
+}

@@ -7,6 +7,14 @@ const sm=j('subjects/russian/docs/ru05/RUSSIAN_RU05_SCENARIO_STATE_MACHINE.json'
 const ev=j('subjects/russian/docs/ru05/RUSSIAN_RU05_EVIDENCE_EMISSION_CONTRACT.json');
 assert.equal(oral.owners.speechAdapter,'subjects/russian/assets/speech-interaction-engine.js');
 assert.equal(oral.masteryWrite,false);
+assert.equal(reg.activeOwner,'RU05');
+assert.equal(reg.engine.dialogueRuntimeOwner,'RU05');
+assert.equal(reg.engine.speechRecognitionOwner,'RU05');
+assert.equal(reg.engine.recordingOwner,'RU05');
+assert.equal(reg.engine.masteryOwner,'RU04');
+assert.equal(reg.engine.plannerOwner,'RU04');
+assert.equal(reg.engine.linguisticTruthOwner,'RU03');
+assert.equal(reg.engine.aiCoachOwner,'RU07');
 const ids=new Set();
 for(const s of reg.scenarios||[]){
  assert(!ids.has(s.id),'duplicate scenario '+s.id); ids.add(s.id);

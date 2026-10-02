@@ -4,9 +4,13 @@ const need=(v,msg)=>{if(!v)throw new Error(msg)};
 const registry=j('subjects/russian/data/scenario-registry.json');
 const links=j('subjects/russian/data/speaking-link-index.json');
 need(registry.schema==='RUSSIAN_SCENARIO_REGISTRY_V1','scenario registry schema');
-need(registry.engine.dialogueRuntimeOwner==='P6','P6 must own dialogue runtime');
-need(registry.engine.speechRecognitionOwner==='P6','P6 must own speech recognition');
-need(registry.engine.recordingOwner==='P6','P6 must own recording');
+need(registry.activeOwner==='RU05','RU05 must be the active scenario owner');
+need(registry.engine.dialogueRuntimeOwner==='RU05','RU05 must own dialogue runtime');
+need(registry.engine.speechRecognitionOwner==='RU05','RU05 must own speech recognition');
+need(registry.engine.recordingOwner==='RU05','RU05 must own recording');
+need(registry.engine.masteryOwner==='RU04'&&registry.engine.plannerOwner==='RU04','RU04 must own mastery/planner judgment');
+need(registry.engine.linguisticTruthOwner==='RU03','RU03 must own linguistic truth');
+need(registry.engine.aiCoachOwner==='RU07','RU07 must own AI coaching');
 need(registry.engine.duplicateSpeechEngineAllowed===false,'duplicate speech engine forbidden');
 for(const k of ['writesMastery','writesSrs','writesPlanner','officialAssessment']) need(registry.statePolicy[k]===false,'forbidden scenario authority: '+k);
 const required=new Set(registry.progression.requiredScenarioFamilies||[]);
@@ -28,7 +32,7 @@ for(const s of registry.scenarios||[]){
 }
 for(const family of required) need(seen.has(family),'required scenario family missing: '+family);
 need(new Set((registry.scenarios||[]).map(s=>s.stage)).size>=5,'scenario stage coverage too narrow');
-const p6=fs.readFileSync('subjects/russian/docs/p6/RUSSIAN_LISTENING_SPEAKING_ENGINE_CONSTITUTION.md','utf8');
-need(p6.includes('RussianSpeechRecognitionAdapter'),'P6 recognition owner evidence missing');
-need(p6.includes('RussianRecordingEngine'),'P6 recording owner evidence missing');
+const ru05=j('subjects/russian/docs/ru05/RUSSIAN_RU05_ORAL_INTERACTION_CONTRACT.json');
+need(ru05.owners.speechAdapter==='subjects/russian/assets/speech-interaction-engine.js','RU05 speech adapter evidence missing');
+need(ru05.owners.learningJudgment==='RU04'&&ru05.owners.linguisticTruth==='RU03','RU05 upstream owner evidence missing');
 console.log('RUSSIAN_P11_SCENARIO_SIMULATION_GATE=PASS',JSON.stringify({scenarios:registry.scenarios.length,families:[...seen],stages:[...new Set(registry.scenarios.map(s=>s.stage))],contextRefs:[...new Set(refs)].length}));

@@ -30,7 +30,7 @@
       "id": "grammar",
       "owner": "subjects/russian/data/grammar.json",
       "status": "PARTIAL",
-      "confidence": "SOURCE_ASSERTED_NOT_P7_VERIFIED",
+      "confidence": "SOURCE_ASSERTED_NOT_RU03_VERIFIED",
       "knownGaps": [
         "item-level provenance",
         "register/naturalness review"
@@ -43,7 +43,7 @@
       "id": "speaking",
       "owner": "subjects/russian/data/speaking.json",
       "status": "PARTIAL",
-      "confidence": "SOURCE_ASSERTED_NOT_P7_VERIFIED",
+      "confidence": "SOURCE_ASSERTED_NOT_RU03_VERIFIED",
       "knownGaps": [
         "item-level naturalness/register provenance"
       ],
@@ -55,7 +55,7 @@
       "id": "dialogue",
       "owner": "subjects/russian/data/dialogue-bauman-az.json",
       "status": "PARTIAL",
-      "confidence": "SOURCE_ASSERTED_NOT_P7_VERIFIED",
+      "confidence": "SOURCE_ASSERTED_NOT_RU03_VERIFIED",
       "knownGaps": [
         "item-level naturalness/register provenance"
       ],
@@ -65,7 +65,7 @@
       "id": "deep-speaking",
       "owner": "subjects/russian/data/deep-speaking-bauman.json",
       "status": "PARTIAL",
-      "confidence": "SOURCE_ASSERTED_NOT_P7_VERIFIED",
+      "confidence": "SOURCE_ASSERTED_NOT_RU03_VERIFIED",
       "knownGaps": [
         "technical terminology provenance",
         "academic register review"
@@ -76,7 +76,7 @@
       "id": "writing",
       "owner": "subjects/russian/data/writing.json",
       "status": "PARTIAL",
-      "confidence": "SOURCE_ASSERTED_NOT_P7_VERIFIED",
+      "confidence": "SOURCE_ASSERTED_NOT_RU03_VERIFIED",
       "knownGaps": [
         "academic register/provenance review"
       ]
@@ -170,5 +170,8 @@
       "search-indexes",
       "learner-facing-references"
     ]
-  }
+  },
+  "sourcePhase": "P7",
+  "phaseMeaning": "legacy-source-provenance",
+  "activeOwner": "RU03"
 }

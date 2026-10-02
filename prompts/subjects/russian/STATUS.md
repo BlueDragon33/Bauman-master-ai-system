@@ -1,41 +1,42 @@
 # RUSSIAN PROMPT SYSTEM STATUS
 
-`ARCHITECTURE RESTRUCTURE: COMPLETE`
+`ARCHITECTURE RESTRUCTURE: COMPLETE · RU01–RU08 EXECUTED · TARGETED REVALIDATION ACTIVE`
 
-## Active architecture
+## Durable truth
 
-- Four global constitutions: ACTIVE
-- RU00: READY
-- RU01: READY
-- RU02: READY
-- RU03: READY
-- RU04: READY
-- RU05: READY
-- RU06: READY
-- RU07: READY
-- RU08: READY
-- Shared production release annex: READY
+- RU00 routing: ACTIVE
+- RU01: PASS
+- RU02: PASS
+- RU03: PASS → targeted owner-topology revalidation
+- RU04: PASS
+- RU05: PASS → targeted owner-topology revalidation
+- RU06: PASS → targeted owner-topology revalidation
+- RU07: PASS → targeted owner-topology revalidation
+- RU08: PASS → integration/readiness revalidation
+- Shared C3 release annex: previously executed successfully
 
-## Important
+Last released Russian source SHA:
+`7697a3f05362c111fb481ebd6043738c12dbcb8c`
 
-This status means the **prompt architecture has been reorganized**.
+Release evidence:
+- Preview workflow run `36881439526`: SUCCESS
+- Production workflow run `36882164198`: SUCCESS
 
-It does not mean the repository has executed RU01–RU08 or that production is published.
+## Why revalidation is active
 
-## Superseded topology
+A full prompt-system audit found two durable-state/topology defects:
 
-The former P0–P17 execution sequence is superseded as the default prompt topology.
+1. canonical prompt normalization had reset `PROJECT_STATE.json` / status files to a false pre-execution state;
+2. active runtime metadata still exposed historical Pxx owners where RU03–RU08 are now the active authorities.
 
-Its source material remains preserved under `SOURCE_ARCHIVE/`.
+The Russian runtime itself was unchanged by the three commits after the released SHA up to audit base
+`066ef7ce03be4e30f01fd69ae66a1cd859711226`.
 
-## Next operational step
+## Execution rule
 
-Execute:
+Do **not** restart RU01 or replay P0–P17.
 
-`RU00 + RU01`
+Use RU00 dependency-aware revalidation and rerun only the impacted owners and gates:
+`RU03 → RU05/RU06/RU07 → RU08 → exact RC → shared C3 release annex when required`.
 
-against current main.
-
-Use RU01 evidence to validate/patch RU02 before implementation-heavy work.
-
-Do not execute all RU modules in one Work run.
+Historical Pxx IDs/source references remain provenance only.

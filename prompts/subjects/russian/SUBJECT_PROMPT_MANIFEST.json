@@ -6,19 +6,34 @@
   "archivePackage": "prompt-archives/russian-full-pack.zip",
   "files": [
     {
+      "path": "00_README.md",
+      "sha256": "99c753b0df12e39255732a4d684d712ab73b6adf5f231c574b1615508c38b67b",
+      "bytes": 1050
+    },
+    {
+      "path": "CHAT_START.md",
+      "sha256": "fe9e217612e651363d07db1d9413d847717810fea69d81105b5d6d39a3347a74",
+      "bytes": 1250
+    },
+    {
       "path": "EXECUTION_CHEAT_SHEET.md",
       "sha256": "cd6657c0d0a91a02bf1bba640ceff10a638c2d19048bdc89d0ea3b79e46099fe",
       "bytes": 765
     },
     {
+      "path": "MANIFEST.json",
+      "sha256": "922a938724bd167cf97c1fcec132875129f36b89412b8ede4edfe27594a9cd65",
+      "bytes": 2261
+    },
+    {
       "path": "PROJECT_STATE.json",
-      "sha256": "b82b55ed9d74da4a86f2bceff4d7b5f61d30f2017a1fa0cc508f125e2e5648e3",
-      "bytes": 739
+      "sha256": "6d1bf6904533ca8d59a085c4910235a2a5a13f645901fa539add98c681409792",
+      "bytes": 1829
     },
     {
       "path": "README.md",
-      "sha256": "983759bea7d9222ade44c8edd76cfcaa71dacc83cd7053f6b43c36c835dd2298",
-      "bytes": 4247
+      "sha256": "247823ad667462b3ab019fef992e711b7b7a92b5542d72f510b6b784e40e9ee1",
+      "bytes": 1939
     },
     {
       "path": "RU01_FORENSIC_BASELINE.md",
@@ -67,18 +82,23 @@
     },
     {
       "path": "RUSSIAN_MASTER_PROMPT.md",
-      "sha256": "7d732200419b5a4d93cab50758f8921719e676e1a02d6b07de9e0339b60d2e7a",
-      "bytes": 7414
+      "sha256": "2664e523e7d5dcbdba4920fab509403a3e99e04b674cbffe771d497b8324e8a8",
+      "bytes": 7576
     },
     {
       "path": "RUSSIAN_OLD_TO_NEW_MAP.md",
-      "sha256": "e3bf04543eee98d20707bfba8ccc0ca30fe6c967423e688f9a5f14399b3117d0",
-      "bytes": 3173
+      "sha256": "dd5749dbac7297aaf33e47d2060c828613683406611131b5c2bd303e35ce1538",
+      "bytes": 3311
     },
     {
       "path": "SOURCE_STATUS.md",
-      "sha256": "a8466dedca0be4a4a913576ce19d1d64f3dccfd89ebaab761012bbf6e8d3d587",
-      "bytes": 843
+      "sha256": "6fee27058476f455855b1b7c975be3d2d8b818fbaf11d363e167bfdeb223d8fe",
+      "bytes": 1534
+    },
+    {
+      "path": "STATUS.md",
+      "sha256": "b66554dfca6e416500d66c0d46733f4c58cc962e6d2e5aba3d82b5c5b4774f63",
+      "bytes": 1503
     }
   ],
   "note": "Canonical active prompt files are readable under prompts/subjects/russian/. Historical P0–P17 sources stay in the full ZIP archive and are not part of normal chat execution."

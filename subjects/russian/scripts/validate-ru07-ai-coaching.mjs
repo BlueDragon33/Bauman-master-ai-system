@@ -7,6 +7,13 @@ const ctx=j('subjects/russian/docs/ru07/RUSSIAN_RU07_CONTEXT_GROUNDING_CONTRACT.
 const sec=j('subjects/russian/docs/ru07/RUSSIAN_RU07_FEEDBACK_ASSESSMENT_SECURITY_POLICY.json');
 const fb=j('subjects/russian/docs/ru07/RUSSIAN_RU07_FALLBACK_POLICY.json');
 const fx=j('subjects/russian/docs/ru07/RUSSIAN_RU07_GOLDEN_AI_FIXTURES.json');
+assert.equal(base.activeOwner,'RU07');
+assert.equal(base.authority.canonicalTruthOwner,'RU03');
+assert.equal(base.authority.assessmentMasteryOwner,'RU04');
+assert.equal(base.authority.plannerSrsOwner,'RU04');
+assert.equal(base.authority.speechAudioOwner,'RU05');
+assert.deepEqual(base.authority.academicTechnicalOwners,['RU06']);
+assert.equal(base.generatedPractice.promotionPath,'RU08_REVIEW_WORKFLOW');
 for(const k of ['writeMastery','writeAttemptHistory','writeSrs','writePlanner','unlockStage','generateCanonicalContent']) assert.equal(base.permissions[k],false,'base AI permission unsafe '+k);
 for(const x of ['write-mastery','write-official-score','overwrite-canonical-content','fabricate-citation','fabricate-result']) assert(modes.forbidden.includes(x));
 for(const x of ['assessment-submit','source-rubric-revision','scenario-run-change']) assert(ctx.staleResponseQuarantine.includes(x));

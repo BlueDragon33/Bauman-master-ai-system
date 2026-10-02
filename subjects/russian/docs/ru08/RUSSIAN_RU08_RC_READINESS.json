@@ -1,8 +1,10 @@
 {
-  "schemaVersion": "1.0.0",
+  "schemaVersion": "1.1.0",
   "kind": "RUSSIAN_RU08_RC_READINESS",
-  "state": "READY_FOR_MERGE",
-  "runtimeSourceBase": "main@f6aa11215dfcf24e2d646f7c9737733e66c642c8",
+  "state": "SUPERSEDED_BY_TARGETED_REVALIDATION",
+  "ru08Baseline": "main@f6aa11215dfcf24e2d646f7c9737733e66c642c8",
+  "finalPreMergeHead": "046aa56e2e5c2ecc0c041af90b8d307bca8c9361",
+  "exactMergedRcSha": "7697a3f05362c111fb481ebd6043738c12dbcb8c",
   "artifactIdentity": "Russian subject package materialized from exact accepted Git SHA",
   "contentSnapshot": "subjects/russian/subject-manifest.json + canonical datasets referenced by RU02 owner registry",
   "schemaMigrationIdentity": "RU08 authoring additive; no destructive learner-state migration",
@@ -17,7 +19,7 @@
     "AI is optional",
     "large dialogue/deep-speaking datasets remain lazy"
   ],
-  "rollbackTarget": "f6aa11215dfcf24e2d646f7c9737733e66c642c8",
+  "priorKnownGoodProductionSha": "a3cd3ecddbd19398691e0c52af778172e0658eb8",
   "productionSmoke": [
     "open Russian",
     "resume/Today plan",
@@ -29,12 +31,19 @@
     "protected data/device gate"
   ],
   "releaseAnnex": "GLOBAL_CONSTITUTIONS/C3_RELEASE_ANNEX_PRODUCTION.md",
-  "acceptanceEvidence": {
-    "russianReferenceUiGate": "PASS on d80cee27a0c1c617e78d47e20b58d4a6d64dfc42",
-    "wholeSystemIntegrationRun": 36875196038,
-    "wholeSystemIntegration": "PASS",
-    "constitution": "PASS",
-    "fastCi": "PASS"
+  "preMergeAcceptanceEvidence": {
+    "universalConstitutionRun": 36875930311,
+    "developmentFastCiRun": 36875928726,
+    "russianReferenceUiRun": 36875928768,
+    "wholeSystemIntegrationRun": 36875928760,
+    "result": "PASS"
   },
-  "rcIdentityRule": "After merge, the merge SHA is the exact RC source identity; release must not target latest/main ambiguously."
+  "postMergeAcceptanceEvidence": {
+    "universalConstitutionRun": 36876448087,
+    "developmentFastCiRun": 36876446894,
+    "russianReferenceUiRun": 36876446786,
+    "result": "PASS"
+  },
+  "rcIdentityRule": "Release must target the exact merged RC SHA; never ambiguous latest/main.",
+  "supersededReason": "2026-10-02 full prompt-system audit found active-owner topology metadata and durable-state normalization defects. A corrected RC must be formed after targeted revalidation."
 }

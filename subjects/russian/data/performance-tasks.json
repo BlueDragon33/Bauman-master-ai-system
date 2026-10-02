@@ -2,8 +2,8 @@
   "schema": "RUSSIAN_PERFORMANCE_TASKS_V1",
   "phase": "P9",
   "canonicalOwner": "subjects/russian/data/performance-tasks.json",
-  "assessmentOwner": "P4",
-  "rule": "P9 defines productive task contracts; P4 alone owns official scoring/mastery.",
+  "assessmentOwner": "RU04",
+  "rule": "RU06 defines productive task contracts; RU04 alone owns official scoring/mastery.",
   "tasks": [
     {
       "id": "PT-R11-NOTE-RECON",
@@ -17,7 +17,7 @@
         "notes",
         "oral-recording"
       ],
-      "rubricRef": "P4-speaking-writing"
+      "rubricRef": "RU04-speaking-writing"
     },
     {
       "id": "PT-R16-FIGURE",
@@ -31,7 +31,7 @@
         "written-response",
         "oral-response"
       ],
-      "rubricRef": "P4-writing"
+      "rubricRef": "RU04-writing"
     },
     {
       "id": "PT-R17-LAB",
@@ -44,7 +44,7 @@
       "evidenceTypes": [
         "written-report"
       ],
-      "rubricRef": "P4-writing"
+      "rubricRef": "RU04-writing"
     },
     {
       "id": "PT-R18-EMAIL",
@@ -57,7 +57,7 @@
       "evidenceTypes": [
         "written-email"
       ],
-      "rubricRef": "P4-writing"
+      "rubricRef": "RU04-writing"
     },
     {
       "id": "PT-R19-NIR-PITCH",
@@ -71,7 +71,7 @@
         "written-outline",
         "oral-pitch"
       ],
-      "rubricRef": "P4-research"
+      "rubricRef": "RU04-research"
     },
     {
       "id": "PT-R20-LIT",
@@ -85,7 +85,7 @@
         "source-matrix",
         "summary"
       ],
-      "rubricRef": "P4-research"
+      "rubricRef": "RU04-research"
     },
     {
       "id": "PT-R21-QA",
@@ -98,7 +98,7 @@
       "evidenceTypes": [
         "oral-recording"
       ],
-      "rubricRef": "P4-speaking-research"
+      "rubricRef": "RU04-speaking-research"
     },
     {
       "id": "PT-R22-NIR",
@@ -113,7 +113,7 @@
         "oral-recording",
         "qa-log"
       ],
-      "rubricRef": "P4-research"
+      "rubricRef": "RU04-research"
     },
     {
       "id": "PT-R23-VKR-SECTION",
@@ -127,7 +127,7 @@
       "evidenceTypes": [
         "written-section"
       ],
-      "rubricRef": "P4-research"
+      "rubricRef": "RU04-research"
     },
     {
       "id": "PT-R25-DEFENSE",
@@ -144,7 +144,10 @@
         "qa-log",
         "written-summary"
       ],
-      "rubricRef": "P4-research"
+      "rubricRef": "RU04-research"
     }
-  ]
+  ],
+  "sourcePhase": "P9",
+  "phaseMeaning": "legacy-source-provenance",
+  "activeOwner": "RU06"
 }

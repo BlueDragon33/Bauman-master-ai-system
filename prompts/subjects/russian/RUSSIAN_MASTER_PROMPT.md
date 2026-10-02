@@ -289,7 +289,7 @@ Default load order:
 6. diff since last validated SHA;
 7. only impacted files/tests.
 
-Use `SOURCE_ARCHIVE` only for unresolved detail.
+Use `prompt-archives/russian-full-pack.zip::RUSSIAN_PROMPT_SYSTEM/SOURCE_ARCHIVE/` only for unresolved legacy detail. Do not assume a live `SOURCE_ARCHIVE/` directory exists in the canonical prompt root.
 
 Never rescan all archived P0–P17 prompts by default.
 

@@ -9,6 +9,10 @@ const arch=j('subjects/russian/docs/ru06/RUSSIAN_RU06_PRODUCTION_ARCHITECTURE.js
 const lineage=j('subjects/russian/docs/ru06/RUSSIAN_RU06_SOURCE_CLAIM_LINEAGE_CONTRACT.json');
 const rep=j('subjects/russian/docs/ru06/RUSSIAN_RU06_REPRESENTATION_INTEGRITY_POLICY.json');
 const map=j('subjects/russian/docs/ru06/RUSSIAN_RU06_PERFORMANCE_MAP.json');
+for(const [name,data] of [['technical',tech],['academic',af],['reading',rd],['performance',pt]]) assert.equal(data.activeOwner,'RU06',name+' active owner must be RU06');
+assert.equal(tech.authorityPolicy,'RU03_FAIL_CLOSED');
+assert.equal(pt.assessmentOwner,'RU04');
+for(const task of pt.tasks||[]) assert.match(String(task.rubricRef||''),/^RU04-/,'performance rubric must route to RU04: '+task.id);
 assert((tech.concepts||[]).length>=60,'technical concept coverage regressed');
 assert((af.functions||[]).length>=15,'academic function coverage regressed');
 assert((rd.tasks||[]).length>=12,'reading progression regressed');
