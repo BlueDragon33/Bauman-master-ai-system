@@ -54,8 +54,18 @@ assert.equal(validateCandidate(generated,{requirePromotion:true}).ok,false,'gene
 
 for(const k of ['beginner','survival','university','technical','research','author'])assert(Array.isArray(acceptance.journeys[k])&&acceptance.journeys[k].length,'missing acceptance journey '+k);
 assert(acceptance.failureMatrix.length>=17,'failure matrix incomplete');
-assert(['CANDIDATE','READY_FOR_MERGE'].includes(rc.state),'invalid RU08 RC readiness state');
+assert(['CANDIDATE','READY_FOR_MERGE','SUPERSEDED_BY_TARGETED_REVALIDATION'].includes(rc.state),'invalid RU08 RC readiness state');
 assert.match(rc.releaseAnnex,/C3_RELEASE_ANNEX_PRODUCTION/);
+if(rc.state==='SUPERSEDED_BY_TARGETED_REVALIDATION'){
+  assert.match(rc.exactMergedRcSha||'',/^[0-9a-f]{40}$/,'superseded RC must preserve exact merged source SHA');
+  assert(rc.supersededReason,'superseded RC must explain why revalidation is required');
+  const revalidation=j('subjects/russian/docs/ru08/RUSSIAN_RU08_REVALIDATION_20261002.json');
+  assert.equal(revalidation.previousReleasedSha,rc.exactMergedRcSha);
+  assert(revalidation.impactedModules.includes('RU08'));
+  const release=j('subjects/russian/docs/ru08/RUSSIAN_C3_RELEASE_EVIDENCE_20261001.json');
+  assert.equal(release.sourceSha,rc.exactMergedRcSha);
+  assert.equal(release.production.conclusion,'success');
+}
 
 for(const phase of ['ru02','ru03','ru04','ru05','ru06','ru07']){
  const p='subjects/russian/docs/'+phase+'/RUSSIAN_'+phase.toUpperCase()+'_PHASE_RECORD.md';
