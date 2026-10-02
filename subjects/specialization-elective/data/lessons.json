@@ -1,0 +1,464 @@
+[
+  {
+    "id": "el2_m401_l1",
+    "stage": "m4",
+    "moduleId": "el2_m401",
+    "title": "Pipeline architecture",
+    "description": "Học liệu hỗ trợ, không thay thế syllabus chính thức.",
+    "kind": "lý thuyết + thực hành",
+    "keyPoints": [
+      "Pipeline có source/process/store/deliver/observe.",
+      "Bottleneck cần metric."
+    ],
+    "tasks": [
+      "Vẽ pipeline.",
+      "Chọn 3 metric."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK4",
+      "moduleTitle": "Pipeline architecture",
+      "estimatedMinutes": 50,
+      "sourceBasis": "Official plan confirms the elective slot and two choices; detailed lesson sequence is support content.",
+      "objectives": [
+        "Pipeline có source/process/store/deliver/observe.",
+        "Bottleneck cần metric."
+      ],
+      "prerequisites": [
+        "Programming basics"
+      ],
+      "whyItMatters": "Pipeline có source/process/store/deliver/observe.",
+      "coreTheory": [
+        "Pipeline có source/process/store/deliver/observe.",
+        "Bottleneck cần metric."
+      ],
+      "coreFormulas": [
+        "source → process → store → deliver → observe"
+      ],
+      "workedExample": {
+        "context": "Mini project",
+        "steps": [
+          "Vẽ pipeline.",
+          "Chọn 3 metric."
+        ],
+        "answer": "Có architecture + metric."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Vẽ pipeline.",
+          "expected": "Có artifact"
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng.",
+      "commonMistakes": [
+        "Trộn hai branch."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Đang ở branch nào?",
+          "a": "Common / Big Data / Multimedia."
+        }
+      ],
+      "masteryCriteria": [
+        "Có artifact",
+        "Quiz ≥ 8/10"
+      ],
+      "rubric": [
+        {
+          "criterion": "Architecture",
+          "weight": 0.5
+        },
+        {
+          "criterion": "Metric",
+          "weight": 0.5
+        }
+      ]
+    }
+  },
+  {
+    "id": "el2_m401_l2",
+    "stage": "m4",
+    "moduleId": "el2_m401",
+    "title": "Latency, throughput & reliability",
+    "description": "Học liệu hỗ trợ, không thay thế syllabus chính thức.",
+    "kind": "lý thuyết + thực hành",
+    "keyPoints": [
+      "Latency và throughput khác nhau.",
+      "Retry/idempotency phụ thuộc failure model."
+    ],
+    "tasks": [
+      "Tìm bottleneck.",
+      "Viết failure cases."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK4",
+      "moduleTitle": "Latency, throughput & reliability",
+      "estimatedMinutes": 50,
+      "sourceBasis": "Official plan confirms the elective slot and two choices; detailed lesson sequence is support content.",
+      "objectives": [
+        "Latency và throughput khác nhau.",
+        "Retry/idempotency phụ thuộc failure model."
+      ],
+      "prerequisites": [
+        "Programming basics"
+      ],
+      "whyItMatters": "Latency và throughput khác nhau.",
+      "coreTheory": [
+        "Latency và throughput khác nhau.",
+        "Retry/idempotency phụ thuộc failure model."
+      ],
+      "coreFormulas": [
+        "source → process → store → deliver → observe"
+      ],
+      "workedExample": {
+        "context": "Mini project",
+        "steps": [
+          "Tìm bottleneck.",
+          "Viết failure cases."
+        ],
+        "answer": "Có architecture + metric."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Tìm bottleneck.",
+          "expected": "Có artifact"
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng.",
+      "commonMistakes": [
+        "Trộn hai branch."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Đang ở branch nào?",
+          "a": "Common / Big Data / Multimedia."
+        }
+      ],
+      "masteryCriteria": [
+        "Có artifact",
+        "Quiz ≥ 8/10"
+      ],
+      "rubric": [
+        {
+          "criterion": "Architecture",
+          "weight": 0.5
+        },
+        {
+          "criterion": "Metric",
+          "weight": 0.5
+        }
+      ]
+    }
+  },
+  {
+    "id": "el2_m402_l1",
+    "stage": "m4",
+    "moduleId": "el2_m402",
+    "title": "Partition, batch & stream",
+    "description": "Nhánh Big Data.",
+    "kind": "branch",
+    "keyPoints": [
+      "Partition chia dữ liệu.",
+      "Batch/stream có trade-off latency/complexity."
+    ],
+    "tasks": [
+      "Thiết kế partition.",
+      "Chọn batch/stream."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK4",
+      "moduleTitle": "Partition, batch & stream",
+      "estimatedMinutes": 50,
+      "sourceBasis": "Official plan confirms the elective slot and two choices; detailed lesson sequence is support content.",
+      "objectives": [
+        "Partition chia dữ liệu.",
+        "Batch/stream có trade-off latency/complexity."
+      ],
+      "prerequisites": [
+        "Programming basics"
+      ],
+      "whyItMatters": "Partition chia dữ liệu.",
+      "coreTheory": [
+        "Partition chia dữ liệu.",
+        "Batch/stream có trade-off latency/complexity."
+      ],
+      "coreFormulas": [
+        "source → process → store → deliver → observe"
+      ],
+      "workedExample": {
+        "context": "Mini project",
+        "steps": [
+          "Thiết kế partition.",
+          "Chọn batch/stream."
+        ],
+        "answer": "Có architecture + metric."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Thiết kế partition.",
+          "expected": "Có artifact"
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng.",
+      "commonMistakes": [
+        "Trộn hai branch."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Đang ở branch nào?",
+          "a": "Common / Big Data / Multimedia."
+        }
+      ],
+      "masteryCriteria": [
+        "Có artifact",
+        "Quiz ≥ 8/10"
+      ],
+      "rubric": [
+        {
+          "criterion": "Architecture",
+          "weight": 0.5
+        },
+        {
+          "criterion": "Metric",
+          "weight": 0.5
+        }
+      ]
+    }
+  },
+  {
+    "id": "el2_m402_l2",
+    "stage": "m4",
+    "moduleId": "el2_m402",
+    "title": "Data quality & scale",
+    "description": "Nhánh Big Data.",
+    "kind": "branch",
+    "keyPoints": [
+      "Scale cần metric thật.",
+      "Quality gồm completeness/validity/timeliness."
+    ],
+    "tasks": [
+      "Tạo quality checks.",
+      "Thiết kế mini-pipeline."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK4",
+      "moduleTitle": "Data quality & scale",
+      "estimatedMinutes": 50,
+      "sourceBasis": "Official plan confirms the elective slot and two choices; detailed lesson sequence is support content.",
+      "objectives": [
+        "Scale cần metric thật.",
+        "Quality gồm completeness/validity/timeliness."
+      ],
+      "prerequisites": [
+        "Programming basics"
+      ],
+      "whyItMatters": "Scale cần metric thật.",
+      "coreTheory": [
+        "Scale cần metric thật.",
+        "Quality gồm completeness/validity/timeliness."
+      ],
+      "coreFormulas": [
+        "source → process → store → deliver → observe"
+      ],
+      "workedExample": {
+        "context": "Mini project",
+        "steps": [
+          "Tạo quality checks.",
+          "Thiết kế mini-pipeline."
+        ],
+        "answer": "Có architecture + metric."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Tạo quality checks.",
+          "expected": "Có artifact"
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng.",
+      "commonMistakes": [
+        "Trộn hai branch."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Đang ở branch nào?",
+          "a": "Common / Big Data / Multimedia."
+        }
+      ],
+      "masteryCriteria": [
+        "Có artifact",
+        "Quiz ≥ 8/10"
+      ],
+      "rubric": [
+        {
+          "criterion": "Architecture",
+          "weight": 0.5
+        },
+        {
+          "criterion": "Metric",
+          "weight": 0.5
+        }
+      ]
+    }
+  },
+  {
+    "id": "el2_m403_l1",
+    "stage": "m4",
+    "moduleId": "el2_m403",
+    "title": "Media representation & codec",
+    "description": "Nhánh Multimedia.",
+    "kind": "branch",
+    "keyPoints": [
+      "Media có frame/sample/codec.",
+      "Quality-size-latency là trade-off."
+    ],
+    "tasks": [
+      "So sánh codec.",
+      "Mô tả media flow."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK4",
+      "moduleTitle": "Media representation & codec",
+      "estimatedMinutes": 50,
+      "sourceBasis": "Official plan confirms the elective slot and two choices; detailed lesson sequence is support content.",
+      "objectives": [
+        "Media có frame/sample/codec.",
+        "Quality-size-latency là trade-off."
+      ],
+      "prerequisites": [
+        "Programming basics"
+      ],
+      "whyItMatters": "Media có frame/sample/codec.",
+      "coreTheory": [
+        "Media có frame/sample/codec.",
+        "Quality-size-latency là trade-off."
+      ],
+      "coreFormulas": [
+        "source → process → store → deliver → observe"
+      ],
+      "workedExample": {
+        "context": "Mini project",
+        "steps": [
+          "So sánh codec.",
+          "Mô tả media flow."
+        ],
+        "answer": "Có architecture + metric."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "So sánh codec.",
+          "expected": "Có artifact"
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng.",
+      "commonMistakes": [
+        "Trộn hai branch."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Đang ở branch nào?",
+          "a": "Common / Big Data / Multimedia."
+        }
+      ],
+      "masteryCriteria": [
+        "Có artifact",
+        "Quiz ≥ 8/10"
+      ],
+      "rubric": [
+        {
+          "criterion": "Architecture",
+          "weight": 0.5
+        },
+        {
+          "criterion": "Metric",
+          "weight": 0.5
+        }
+      ]
+    }
+  },
+  {
+    "id": "el2_m403_l2",
+    "stage": "m4",
+    "moduleId": "el2_m403",
+    "title": "Sync, buffering & delivery",
+    "description": "Nhánh Multimedia.",
+    "kind": "branch",
+    "keyPoints": [
+      "Audio/video sync cần timestamp/buffer.",
+      "Network ảnh hưởng latency và quality."
+    ],
+    "tasks": [
+      "Vẽ sync flow.",
+      "Thiết kế buffering."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK4",
+      "moduleTitle": "Sync, buffering & delivery",
+      "estimatedMinutes": 50,
+      "sourceBasis": "Official plan confirms the elective slot and two choices; detailed lesson sequence is support content.",
+      "objectives": [
+        "Audio/video sync cần timestamp/buffer.",
+        "Network ảnh hưởng latency và quality."
+      ],
+      "prerequisites": [
+        "Programming basics"
+      ],
+      "whyItMatters": "Audio/video sync cần timestamp/buffer.",
+      "coreTheory": [
+        "Audio/video sync cần timestamp/buffer.",
+        "Network ảnh hưởng latency và quality."
+      ],
+      "coreFormulas": [
+        "source → process → store → deliver → observe"
+      ],
+      "workedExample": {
+        "context": "Mini project",
+        "steps": [
+          "Vẽ sync flow.",
+          "Thiết kế buffering."
+        ],
+        "answer": "Có architecture + metric."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Vẽ sync flow.",
+          "expected": "Có artifact"
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng.",
+      "commonMistakes": [
+        "Trộn hai branch."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Đang ở branch nào?",
+          "a": "Common / Big Data / Multimedia."
+        }
+      ],
+      "masteryCriteria": [
+        "Có artifact",
+        "Quiz ≥ 8/10"
+      ],
+      "rubric": [
+        {
+          "criterion": "Architecture",
+          "weight": 0.5
+        },
+        {
+          "criterion": "Metric",
+          "weight": 0.5
+        }
+      ]
+    }
+  }
+]
