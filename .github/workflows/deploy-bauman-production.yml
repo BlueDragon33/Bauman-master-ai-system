@@ -194,16 +194,28 @@ jobs:
       - name: Verify Russian production identity, security, offline contract and content drift
         run: node scripts/russian-release-annex-evidence.mjs verify
 
-      - name: Run Russian production offline browser verification
+      - name: Run Russian production subject smoke browser acceptance
         shell: bash
         env:
           BAUMAN_E2E_BASE_URL: ${{ vars.BAUMAN_RUNTIME_PRODUCTION_ORIGIN }}/
-          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-production-offline-browser
         run: |
           set -euo pipefail
           npm install --no-save --no-audit --no-fund playwright@1.55.0
           npx playwright install --with-deps chromium
-          node tests/russian-offline-shell-browser.mjs
+
+          BAUMAN_E2E_ARTIFACT_DIR=artifacts/russian-production-journeys \
+            node tests/russian-ru08-journeys-browser.mjs
+          BAUMAN_E2E_ARTIFACT_DIR=artifacts/russian-production-author \
+            node tests/russian-ru08-author-browser.mjs
+          BAUMAN_E2E_ARTIFACT_DIR=artifacts/russian-production-offline-browser \
+            node tests/russian-offline-shell-browser.mjs
+
+          cp artifacts/russian-production-journeys/summary.json \
+            "$RUSSIAN_RELEASE_EVIDENCE_DIR/RUSSIAN_PRODUCTION_RU08_JOURNEYS.json"
+          cp artifacts/russian-production-author/summary.json \
+            "$RUSSIAN_RELEASE_EVIDENCE_DIR/RUSSIAN_PRODUCTION_RU08_AUTHOR.json"
+          cp artifacts/russian-production-offline-browser/summary.json \
+            "$RUSSIAN_RELEASE_EVIDENCE_DIR/RUSSIAN_PRODUCTION_OFFLINE_BROWSER.json"
 
       - name: Observe exact Russian production revision
         run: node scripts/russian-release-annex-evidence.mjs observe
@@ -218,6 +230,8 @@ jobs:
           name: russian-release-annex-${{ github.run_id }}
           path: |
             artifacts/russian-release-annex
+            artifacts/russian-production-journeys
+            artifacts/russian-production-author
             artifacts/russian-production-offline-browser
           if-no-files-found: error
           retention-days: 30
