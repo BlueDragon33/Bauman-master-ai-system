@@ -41,6 +41,19 @@ async function preflight(){
  write('RUSSIAN_RC_MANIFEST.json',{schema:'RUSSIAN_RC_MANIFEST_V1',generatedAt:iso(),sourceSha:rev,artifactIdentity:'github-source@'+rev,contentSnapshotSha256:s.sha256,dependencyLockSha256:l.sha256,migrationManifestSha256:m.sha256,rollbackTarget:oldr.revision||oldc.revision||null,state:'PREFLIGHT_PASS'});
  console.log(JSON.stringify({ok:true,revision:rev,contentSnapshot:s.sha256,rollbackTarget:oldr.revision||oldc.revision||null}));
 }
+function artifact(){
+ const rev=req('GITHUB_SHA'),root='runtime-dist';
+ if(!fs.existsSync(root))throw new Error('runtime-dist missing before artifact identity');
+ const files=[];
+ const walk=d=>{for(const e of fs.readdirSync(d,{withFileTypes:true})){const p=path.join(d,e.name);if(e.isDirectory())walk(p);else if(e.isFile())files.push(p)}};
+ walk(root);files.sort();
+ const entries=files.map(p=>({path:p.replaceAll('\\','/'),sha256:hash(fs.readFileSync(p)),bytes:fs.statSync(p).size}));
+ const aggregate=hash(Buffer.from(entries.map(x=>x.path+':'+x.sha256).join('\n')));
+ const record={schema:'RUSSIAN_DEPLOYMENT_ARTIFACT_IDENTITY_V1',generatedAt:iso(),revision:rev,runtimeDistSha256:aggregate,fileCount:entries.length,files:entries};
+ write('RUSSIAN_DEPLOYMENT_ARTIFACT_IDENTITY.json',record);
+ const rcPath=path.join(out,'RUSSIAN_RC_MANIFEST.json'),rc=j(rcPath);rc.artifactIdentity='runtime-dist-sha256:'+aggregate;rc.runtimeDistSha256=aggregate;write('RUSSIAN_RC_MANIFEST.json',rc);
+ console.log(JSON.stringify({ok:true,revision:rev,runtimeDistSha256:aggregate,fileCount:entries.length}));
+}
 async function verify(){
  const rev=req('GITHUB_SHA'),control=req('BAUMAN_CONTROL_PRODUCTION_ORIGIN'),runtime=req('BAUMAN_RUNTIME_PRODUCTION_ORIGIN');
  const [dc,dr,home,ru,wm,sw,auth,remoteManifest,editor]=await Promise.all([get(u(control,'/__deployment')),get(u(runtime,'/__deployment')),get(u(runtime,'/')),get(u(runtime,'/subjects/russian/')),get(u(runtime,'/subjects/russian/manifest.webmanifest')),get(u(runtime,'/subjects/russian/sw.js')),get(u(control,'/api/control/status')),get(u(runtime,'/subjects/russian/subject-manifest.json')),get(u(runtime,'/subjects/russian/editor.html'))]);
@@ -68,7 +81,7 @@ async function observe(){
  if(!pass)throw new Error('observation failed');console.log(JSON.stringify({ok:true,status:'OBSERVATION_PASS'}));
 }
 function close(){
- const files=['RUSSIAN_RC_MANIFEST.json','RUSSIAN_PRODUCTION_TARGET_RECORD.json','RUSSIAN_CONTENT_SNAPSHOT.json','RUSSIAN_DEPENDENCY_LOCK_RECORD.json','RUSSIAN_MIGRATION_MANIFEST.json','RUSSIAN_BACKUP_DECISION_RESULT.json','RUSSIAN_MIGRATION_RESULT.json','RUSSIAN_PRODUCTION_SMOKE_REPORT.md','RUSSIAN_PRODUCTION_OFFLINE_PWA_VERIFY.md','RUSSIAN_PRODUCTION_SECURITY_HEADERS_VERIFY.md','RUSSIAN_PRODUCTION_BUILD_CONTENT_DRIFT_CHECK.md','RUSSIAN_PRODUCTION_OBSERVATION_REPORT.md','RUSSIAN_PRODUCTION_INCIDENT_REGISTER.json'];
+ const files=['RUSSIAN_RC_MANIFEST.json','RUSSIAN_PRODUCTION_TARGET_RECORD.json','RUSSIAN_CONTENT_SNAPSHOT.json','RUSSIAN_DEPENDENCY_LOCK_RECORD.json','RUSSIAN_MIGRATION_MANIFEST.json','RUSSIAN_DEPLOYMENT_ARTIFACT_IDENTITY.json','RUSSIAN_BACKUP_DECISION_RESULT.json','RUSSIAN_MIGRATION_RESULT.json','RUSSIAN_PRODUCTION_SMOKE_REPORT.md','RUSSIAN_PRODUCTION_OFFLINE_PWA_VERIFY.md','RUSSIAN_PRODUCTION_SECURITY_HEADERS_VERIFY.md','RUSSIAN_PRODUCTION_BUILD_CONTENT_DRIFT_CHECK.md','RUSSIAN_PRODUCTION_OBSERVATION_REPORT.md','RUSSIAN_PRODUCTION_INCIDENT_REGISTER.json'];
  for(const f of files)if(!fs.existsSync(path.join(out,f)))throw new Error('missing release evidence '+f);
  if(!fs.readFileSync(path.join(out,'RUSSIAN_PRODUCTION_OBSERVATION_REPORT.md'),'utf8').includes('OBSERVATION_PASS'))throw new Error('observation not pass');
  if((j(path.join(out,'RUSSIAN_PRODUCTION_INCIDENT_REGISTER.json')).incidents||[]).length)throw new Error('release incidents remain');
@@ -77,4 +90,4 @@ function close(){
  write('RUSSIAN_RELEASE_CLOSURE_REPORT.md','# Russian Release Closure Report\n\nP17 PRODUCTION RELEASE COMPLETE - PRODUCTION VERIFIED STABLE\n\nRevision: '+rev+'\nClosure: '+iso()+'\n');
  console.log(JSON.stringify({ok:true,state:'STABLE',revision:rev}));
 }
-if(mode==='preflight')await preflight();else if(mode==='verify')await verify();else if(mode==='observe')await observe();else if(mode==='close')close();else throw new Error('mode must be preflight, verify, observe, or close');
+if(mode==='preflight')await preflight();else if(mode==='artifact')artifact();else if(mode==='verify')await verify();else if(mode==='observe')await observe();else if(mode==='close')close();else throw new Error('mode must be preflight, artifact, verify, observe, or close');
