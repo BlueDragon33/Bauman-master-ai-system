@@ -1,0 +1,1 @@
+window.SUBJECT_CONFIG={"id":"security-elective","title":"Дисциплина по выбору №1","short":"Elective 1","icon":"E1","tagline":"Khung học hỗ trợ cho một trong hai lựa chọn chính thức.","formulaLabel":"Glossary / Map"};
