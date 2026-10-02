@@ -4,7 +4,8 @@ on:
   workflow_dispatch:
   pull_request:
     paths:
-      - "subjects/russian/**"\n      - "tests/russian-*.mjs"
+      - "subjects/russian/**"
+      - "tests/russian-*.mjs"
       - "subjects/shared/**"
       - "foundation/domain-model/**"
       - "platform/ui/**"
