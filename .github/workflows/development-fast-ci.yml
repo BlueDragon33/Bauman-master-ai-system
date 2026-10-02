@@ -64,6 +64,9 @@ jobs:
       - name: Study-plan coverage static
         run: node tests/study-plan-coverage-static.mjs
 
+      - name: Study-plan runtime integration static
+        run: node tests/study-plan-runtime-integration-static.mjs
+
       - name: Thesis reference static
         run: node tests/thesis-reference-v1-static.mjs
 

@@ -1,0 +1,1 @@
+window.SUBJECT_CONFIG={"id":"specialization-elective","title":"Дисциплина по выбору №2","short":"Big Data / Multimedia","icon":"◆","tagline":"Common core + hai nhánh riêng: Big Data Processing hoặc Multimedia Systems Development.","formulaLabel":"Pipeline / Checklist / Trade-off"};

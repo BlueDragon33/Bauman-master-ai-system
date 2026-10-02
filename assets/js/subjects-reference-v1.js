@@ -19,6 +19,10 @@ var COURSE_REF=[
   {key:'entrepreneurship',subjectId:'entrepreneurship',title:'Cơ sở khởi nghiệp',teacher:'GV: Chưa cập nhật',icon:'↗',tone:'orange',progressTone:'orange',status:'study',statusLabel:'HK2',fallbackProgress:0,sessions:'0/8 buổi',next:'Theo lịch Bauman'},
   {key:'ergonomics',subjectId:'ergonomics',title:'Ergonomic Analysis',teacher:'GV: Chưa cập nhật',icon:'◫',tone:'violet',progressTone:'violet',status:'study',statusLabel:'HK3',fallbackProgress:0,sessions:'0/12 bài',next:'Theo lịch Bauman'},
   {key:'mivar',subjectId:'mivar',title:'Mivar Logical AI',teacher:'GV: Chưa cập nhật',icon:'◇',tone:'cyan',progressTone:'blue',status:'study',statusLabel:'HK4',fallbackProgress:0,sessions:'0/12 bài',next:'Theo lịch Bauman'},
+  {key:'foreign-language',subjectId:'foreign-language',title:'Ngoại ngữ học thuật',teacher:'GV: Chưa cập nhật',icon:'Aa',tone:'blue',progressTone:'green',status:'study',statusLabel:'HK1–2',fallbackProgress:0,sessions:'Theo lịch',next:'Theo lịch Bauman'},
+  {key:'security-elective',subjectId:'security-elective',title:'Tự chọn 1 · Security',teacher:'GV: Chưa cập nhật',icon:'▣',tone:'green',progressTone:'green',status:'study',statusLabel:'HK3',fallbackProgress:0,sessions:'Theo lịch',next:'Theo lựa chọn chính thức'},
+  {key:'specialization-elective',subjectId:'specialization-elective',title:'Tự chọn 2 · Big Data / Multimedia',teacher:'GV: Chưa cập nhật',icon:'◆',tone:'violet',progressTone:'violet',status:'study',statusLabel:'HK4',fallbackProgress:0,sessions:'Theo lịch',next:'Theo lựa chọn chính thức'},
+  {key:'practice-workflow',subjectId:'practice-workflow',title:'Workflow thực tập & sư phạm',teacher:'Theo đơn vị/giảng viên phụ trách',icon:'✓',tone:'orange',progressTone:'orange',status:'study',statusLabel:'HK2–3',fallbackProgress:0,sessions:'4 học phần',next:'Task / evidence / reflection'},
   {key:'listen-speak',subjectId:'russian',title:'Nghe - Nói',teacher:'GV: TS. Vũ Thị Lan Anh',icon:'◉',tone:'rose',progressTone:'rose',status:'done',statusLabel:'Ôn tập',fallbackProgress:90,sessions:'18/20 buổi',next:'Thứ 2, 10/03, 10:00 – 11:30'}
 ];
 
@@ -78,7 +82,7 @@ function editTeacher(key){
 function subjectProgress(id,fallback){var s=stateRef();var raw=s&&s.progress?s.progress[id]:0;return raw>0?clamp(Math.round(raw),0,100):fallback}
 function courseProgress(c){return subjectProgress(c.subjectId,c.fallbackProgress)}
 function stageSubjectCount(){var s=stateRef(),a=appRef();try{if(a&&typeof a.filteredSubjectsForStage==='function')return a.filteredSubjectsForStage(s&&s.subjectStage||'prepare').length}catch(e){}return 5}
-function allSubjectCount(){var s=stateRef();return Object.keys(s&&s.subjects||{}).length||11}
+function allSubjectCount(){var s=stateRef();return Object.keys(s&&s.subjects||{}).length||15}
 function courseRows(){return COURSE_REF.concat(readCustom())}
 function visibleCourses(){
   return courseRows().filter(function(c){

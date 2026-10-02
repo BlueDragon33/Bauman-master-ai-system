@@ -1,0 +1,50 @@
+[
+  {
+    "id": "k_el2_m401_l1",
+    "type": "lesson",
+    "stage": "m4",
+    "target": "el2_m401_l1",
+    "title": "Pipeline architecture",
+    "text": "Pipeline có source/process/store/deliver/observe. Bottleneck cần metric."
+  },
+  {
+    "id": "k_el2_m401_l2",
+    "type": "lesson",
+    "stage": "m4",
+    "target": "el2_m401_l2",
+    "title": "Latency, throughput & reliability",
+    "text": "Latency và throughput khác nhau. Retry/idempotency phụ thuộc failure model."
+  },
+  {
+    "id": "k_el2_m402_l1",
+    "type": "lesson",
+    "stage": "m4",
+    "target": "el2_m402_l1",
+    "title": "Partition, batch & stream",
+    "text": "Partition chia dữ liệu. Batch/stream có trade-off latency/complexity."
+  },
+  {
+    "id": "k_el2_m402_l2",
+    "type": "lesson",
+    "stage": "m4",
+    "target": "el2_m402_l2",
+    "title": "Data quality & scale",
+    "text": "Scale cần metric thật. Quality gồm completeness/validity/timeliness."
+  },
+  {
+    "id": "k_el2_m403_l1",
+    "type": "lesson",
+    "stage": "m4",
+    "target": "el2_m403_l1",
+    "title": "Media representation & codec",
+    "text": "Media có frame/sample/codec. Quality-size-latency là trade-off."
+  },
+  {
+    "id": "k_el2_m403_l2",
+    "type": "lesson",
+    "stage": "m4",
+    "target": "el2_m403_l2",
+    "title": "Sync, buffering & delivery",
+    "text": "Audio/video sync cần timestamp/buffer. Network ảnh hưởng latency và quality."
+  }
+]
