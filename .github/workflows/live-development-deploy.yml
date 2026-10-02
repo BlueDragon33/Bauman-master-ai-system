@@ -72,42 +72,49 @@ jobs:
         if: steps.ready.outputs.deploy == 'true'
         run: npx --yes wrangler@4.92.0 deploy --config wrangler.runtime.production.jsonc
 
-      - name: Verify live Runtime availability
+      - name: Verify live Control and Runtime availability
         if: steps.ready.outputs.deploy == 'true'
         shell: bash
         run: |
           set -euo pipefail
 
-          echo "Checking production deployment metadata..."
-          DEPLOYMENT_OK=false
-          for i in {1..15}; do
-            STATUS="$(curl --silent --show-error --output /tmp/bauman-live-deployment.json --write-out '%{http_code}' --max-time 15 "$BAUMAN_RUNTIME_PRODUCTION_ORIGIN/__deployment" || true)"
-            if [[ "$STATUS" == "200" ]]; then
-              if node --input-type=module - <<'NODE'
+          echo "Checking exact Control deployment revision..."
+          BAUMAN_DEPLOYMENT_URL="$BAUMAN_CONTROL_PRODUCTION_ORIGIN/__deployment" \
+          BAUMAN_EXPECTED_REVISION="$GITHUB_SHA" \
+          BAUMAN_EXPECTED_CHANNEL="cloudflare-production" \
+          BAUMAN_EXPECTED_RUNTIME="control-service" \
+          node scripts/wait-cloudflare-deployment-revision.mjs > /tmp/bauman-live-control.json
+
+          echo "Checking exact Learning Runtime deployment revision..."
+          BAUMAN_DEPLOYMENT_URL="$BAUMAN_RUNTIME_PRODUCTION_ORIGIN/__deployment" \
+          BAUMAN_EXPECTED_REVISION="$GITHUB_SHA" \
+          BAUMAN_EXPECTED_CHANNEL="cloudflare-production" \
+          BAUMAN_EXPECTED_RUNTIME="learning-runtime" \
+          node scripts/wait-cloudflare-deployment-revision.mjs > /tmp/bauman-live-runtime.json
+
+          node --input-type=module - <<'NODE'
           import fs from 'node:fs';
-          const payload = JSON.parse(fs.readFileSync('/tmp/bauman-live-deployment.json', 'utf8'));
-          if (payload.ok !== true) process.exit(2);
-          if (payload.runtime !== 'learning-runtime') process.exit(3);
-          if (payload.channel !== 'cloudflare-production') process.exit(4);
-          if (payload.revision !== process.env.GITHUB_SHA) {
-            console.error(`Propagation pending: live revision ${payload.revision}, expected ${process.env.GITHUB_SHA}`);
-            process.exit(5);
-          }
-          if (payload.controlOriginConfigured !== true) process.exit(6);
+          const control = JSON.parse(fs.readFileSync('/tmp/bauman-live-control.json', 'utf8'));
+          const runtime = JSON.parse(fs.readFileSync('/tmp/bauman-live-runtime.json', 'utf8'));
+          if (control.ok !== true || control.databaseReady !== true) throw new Error('Live Control D1 readiness is not proven.');
+          if (control.controlSecretConfigured !== true) throw new Error('Live Control secret readiness is not proven.');
+          if (control.applicationManagementOriginConfigured !== true) throw new Error('Application Management origin is not configured on live Control.');
+          if (control.appOriginConfigured !== true) throw new Error('Learning Runtime origin is not configured on live Control.');
+          if (runtime.ok !== true || runtime.controlOriginConfigured !== true) throw new Error('Live Runtime → Control origin configuration is not proven.');
           NODE
-              then
-                DEPLOYMENT_OK=true
-                break
-              fi
-            fi
-            echo "Deployment endpoint not ready yet (attempt $i, HTTP $STATUS)."
-            sleep 2
-          done
-          if [[ "$DEPLOYMENT_OK" != "true" ]]; then
-            echo "::error::Bauman production deployment endpoint is not reachable."
-            cat /tmp/bauman-live-deployment.json || true
+
+          echo "Checking anonymous Control access remains fail-closed..."
+          CONTROL_STATUS_CODE="$(curl --silent --show-error --output /tmp/bauman-live-status-anonymous.json --write-out '%{http_code}' --max-time 20 "$BAUMAN_CONTROL_PRODUCTION_ORIGIN/api/control/status" || true)"
+          if [[ "$CONTROL_STATUS_CODE" != "403" ]]; then
+            echo "::error::Anonymous Bauman Control status must return HTTP 403; got $CONTROL_STATUS_CODE."
+            cat /tmp/bauman-live-status-anonymous.json || true
             exit 1
           fi
+          node --input-type=module - <<'NODE'
+          import fs from 'node:fs';
+          const payload = JSON.parse(fs.readFileSync('/tmp/bauman-live-status-anonymous.json', 'utf8'));
+          if (payload.code !== 'CONTROL_TICKET_FORBIDDEN') throw new Error('Anonymous Control status did not fail closed with CONTROL_TICKET_FORBIDDEN.');
+          NODE
 
           echo "Checking public homepage..."
           HOME_OK=false
@@ -139,7 +146,7 @@ jobs:
           if (payload.ok !== true || payload.controlReachable !== true) throw new Error('Runtime → Control link is unhealthy.');
           NODE
 
-          echo "Bauman live Runtime availability PASS."
+          echo "Bauman live Control + Runtime availability PASS."
 
       - name: Summary
         if: always()
