@@ -1,10 +1,10 @@
 {
-  "schemaVersion": "1.0.0",
+  "schemaVersion": "1.1.0",
   "subject": "russian",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
-  "status": "READY_FOR_BASELINE_RECONCILIATION",
-  "activeModule": "RU01",
+  "status": "TARGETED_REVALIDATION_ACTIVE",
+  "activeModule": "RU03-RU08_TOPOLOGY_RECONCILIATION",
   "sequence": [
     "RU01",
     "RU02",
@@ -15,11 +15,42 @@
     "RU07",
     "RU08"
   ],
-  "completedModules": [],
-  "needsRevalidation": [],
-  "lastValidatedSha": null,
-  "currentHeadSha": null,
-  "evidence": [],
+  "completedModules": [
+    "RU01",
+    "RU02",
+    "RU03",
+    "RU04",
+    "RU05",
+    "RU06",
+    "RU07",
+    "RU08"
+  ],
+  "needsRevalidation": [
+    "RU03",
+    "RU05",
+    "RU06",
+    "RU07",
+    "RU08"
+  ],
+  "lastValidatedSha": "7697a3f05362c111fb481ebd6043738c12dbcb8c",
+  "currentHeadSha": "066ef7ce03be4e30f01fd69ae66a1cd859711226",
+  "deployedSourceSha": "7697a3f05362c111fb481ebd6043738c12dbcb8c",
+  "releaseEvidence": {
+    "previewRun": 36881439526,
+    "productionRun": 36882164198,
+    "productionConclusion": "success"
+  },
+  "auditFindings": [
+    "Canonical PROJECT_STATE/STATUS had been reset to pre-execution defaults after prompt normalization.",
+    "Active Russian runtime metadata still exposed legacy Pxx owners for scenario, AI, linguistic authority and academic/research production.",
+    "RU08 RC readiness did not close the handoff with the exact merge SHA and production evidence lived only in workflow history."
+  ],
+  "preservedInvariants": [
+    "stable learner/content IDs are not renamed",
+    "legacy Pxx labels may remain only as source provenance/history",
+    "no learner-state reset or destructive migration",
+    "no semantic bulk rewrite of Russian content"
+  ],
   "blockers": [],
-  "nextAction": "Run RU01 against the current repository state and update this state with evidence."
+  "nextAction": "Finish targeted RU03/RU05/RU06/RU07/RU08 revalidation, run affected regression/browser gates, form an exact corrected RC, then use the shared C3 Release Annex if runtime-affecting changes are merged."
 }
