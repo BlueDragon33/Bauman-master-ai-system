@@ -2,7 +2,7 @@
   "schemaVersion": "1.0.0",
   "kind": "RUSSIAN_RU08_RC_READINESS",
   "state": "READY_FOR_MERGE",
-  "runtimeSourceBase": "main@f6aa11215dfcf24e2d646f7c9737733e66c642c8",
+  "runtimeSourceBase": "audit-baseline main@2b0b540edc381c4ea6268e080b0444d0c78b7277",
   "artifactIdentity": "Generated at release preflight from exact GITHUB_SHA; recorded in RUSSIAN_RC_MANIFEST.json",
   "contentSnapshot": "Exact SHA-256 aggregate generated at release preflight from subject manifest + materialized RU02 canonical owner files",
   "schemaMigrationIdentity": "RU08 authoring additive; no destructive learner-state migration",
@@ -30,7 +30,7 @@
     "protected data/device gate",
     "structured author workspace loads without direct canonical write"
   ],
-  "releaseAnnex": "GLOBAL_CONSTITUTIONS/C3_RELEASE_ANNEX_PRODUCTION.md",
+  "releaseAnnex": "prompts/constitution/C3_RELEASE_ANNEX_SHARED.md",
   "acceptanceEvidence": {
     "validationBinding": "Current PR head must pass the named CI gates; exact head SHA/run IDs are workflow evidence and are intentionally not hardcoded into this source record because editing the record changes HEAD.",
     "requiredGates": [
