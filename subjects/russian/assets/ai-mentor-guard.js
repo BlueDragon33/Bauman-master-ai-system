@@ -27,9 +27,9 @@
     return rows.filter(x=>wanted.has(x.id)).map(x=>({
       id:x.id,
       trust:x.ru03?.trust||x.trust||x.status||'UNKNOWN',
-      validation:x.ru03?.validation||x.validation||'UNVERIFIED',
+      validation:x.ru03?.validation||x.validation||x.status||'UNVERIFIED',
       confidence:x.ru03?.confidence||x.confidence||null,
-      sourceRefs:Array.isArray(x.sourceRefs)?x.sourceRefs.slice(0,4):[]
+      sourceRefs:Array.isArray(x.sourceRefs)?x.sourceRefs.slice(0,4):(Array.isArray(x.sourceEvidence)?x.sourceEvidence.slice(0,4):[])
     }));
   }
   function scenarioSummary(){
