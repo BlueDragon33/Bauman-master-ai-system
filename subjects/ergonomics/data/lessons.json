@@ -1,0 +1,1370 @@
+[
+  {
+    "id": "erg_m301_l1",
+    "stage": "m3",
+    "moduleId": "erg_m301",
+    "title": "User–Task–Context và profile người vận hành",
+    "description": "Bài học hỗ trợ về User–Task–Context và profile người vận hành cho môn Ergonomic Analysis; không thay thế syllabus chính thức của giảng viên.",
+    "kind": "lý thuyết + thực hành",
+    "keyPoints": [
+      "Ergonomic analysis cần xác định user, task và context trước khi đánh giá giao diện.",
+      "Khả năng, kinh nghiệm, áp lực thời gian và môi trường làm thay đổi yêu cầu HMI.",
+      "Một màn hình tốt cho chuyên gia chưa chắc tốt cho người mới."
+    ],
+    "tasks": [
+      "Chọn một HMI và mô tả 2 user profile.",
+      "Lập bảng task–context–constraint."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK3",
+      "moduleTitle": "User–Task–Context và profile người vận hành",
+      "estimatedMinutes": 55,
+      "sourceBasis": "Official study-plan metadata: course title, semester 3, 6 credits, 216 total hours, 68 contact hours, exam + coursework. Detailed topic sequence is support content, not an official syllabus.",
+      "objectives": [
+        "Ergonomic analysis cần xác định user, task và context trước khi đánh giá giao diện.",
+        "Khả năng, kinh nghiệm, áp lực thời gian và môi trường làm thay đổi yêu cầu HMI.",
+        "Một màn hình tốt cho chuyên gia chưa chắc tốt cho người mới."
+      ],
+      "prerequisites": [
+        "Có case HMI/dashboard cụ thể.",
+        "Biết mô tả task và dữ liệu đầu vào/đầu ra.",
+        "Chuẩn bị bảng ghi metric/error."
+      ],
+      "whyItMatters": "Một hệ thống xử lý thông tin chỉ hữu ích khi người vận hành nhìn đúng thông tin, hiểu đúng trạng thái và thực hiện đúng hành động.",
+      "coreTheory": [
+        "Ergonomic analysis cần xác định user, task và context trước khi đánh giá giao diện.",
+        "Khả năng, kinh nghiệm, áp lực thời gian và môi trường làm thay đổi yêu cầu HMI.",
+        "Một màn hình tốt cho chuyên gia chưa chắc tốt cho người mới."
+      ],
+      "coreFormulas": [
+        "user → task → context → risk → metric → redesign",
+        "observe → measure → compare → explain → verify"
+      ],
+      "workedExample": {
+        "context": "Dashboard giám sát robot/telemetry có nhiều trạng thái và cảnh báo.",
+        "steps": [
+          "Chọn một HMI và mô tả 2 user profile.",
+          "Lập bảng task–context–constraint."
+        ],
+        "answer": "Kết luận tốt phải chỉ ra task, evidence/metric, failure mode và thay đổi thiết kế có thể kiểm chứng."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Nhận diện 3 vấn đề ergonomic.",
+          "expected": "Mỗi vấn đề gắn với user/task."
+        },
+        {
+          "level": "Trung bình",
+          "task": "Đặt metric cho từng vấn đề.",
+          "expected": "Có cách đo trước/sau."
+        },
+        {
+          "level": "Khá",
+          "task": "Đề xuất redesign và dự đoán trade-off.",
+          "expected": "Có giả thuyết kiểm chứng."
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng/Thực hành mô phỏng.",
+      "commonMistakes": [
+        "Nhầm aesthetic với usability.",
+        "Không mô tả task/context.",
+        "Dùng metric không gắn với mục tiêu.",
+        "Kết luận nguyên nhân từ dữ liệu quá ít."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Vấn đề này ảnh hưởng task nào?",
+          "a": "Nêu task, user và điều kiện sử dụng."
+        },
+        {
+          "q": "Đo cải tiến bằng gì?",
+          "a": "Chọn success, time, error hoặc metric phù hợp khác."
+        },
+        {
+          "q": "Có trade-off nào?",
+          "a": "Nêu ít nhất một tác động phụ hoặc ràng buộc."
+        }
+      ],
+      "masteryCriteria": [
+        "Giải thích khái niệm bằng lời mình.",
+        "Phân tích được case cụ thể.",
+        "Có metric hoặc evidence.",
+        "Đạt quiz ≥ 8/10 hoặc ôn lỗi sai."
+      ],
+      "rubric": [
+        {
+          "criterion": "Human factors",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Metric/evidence",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Phân tích lỗi",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Trình bày",
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  {
+    "id": "erg_m301_l2",
+    "stage": "m3",
+    "moduleId": "erg_m301",
+    "title": "Task decomposition và điểm lỗi",
+    "description": "Bài học hỗ trợ về Task decomposition và điểm lỗi cho môn Ergonomic Analysis; không thay thế syllabus chính thức của giảng viên.",
+    "kind": "lý thuyết + thực hành",
+    "keyPoints": [
+      "Task nên tách thành goal, step, information cue và action.",
+      "Failure point xuất hiện khi cue khó thấy, mapping không rõ hoặc feedback chậm.",
+      "Task map giúp nối vấn đề UI với hậu quả vận hành."
+    ],
+    "tasks": [
+      "Tách một task thành 6–10 step.",
+      "Đánh dấu cue, action, feedback và failure point."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK3",
+      "moduleTitle": "Task decomposition và điểm lỗi",
+      "estimatedMinutes": 55,
+      "sourceBasis": "Official study-plan metadata: course title, semester 3, 6 credits, 216 total hours, 68 contact hours, exam + coursework. Detailed topic sequence is support content, not an official syllabus.",
+      "objectives": [
+        "Task nên tách thành goal, step, information cue và action.",
+        "Failure point xuất hiện khi cue khó thấy, mapping không rõ hoặc feedback chậm.",
+        "Task map giúp nối vấn đề UI với hậu quả vận hành."
+      ],
+      "prerequisites": [
+        "Có case HMI/dashboard cụ thể.",
+        "Biết mô tả task và dữ liệu đầu vào/đầu ra.",
+        "Chuẩn bị bảng ghi metric/error."
+      ],
+      "whyItMatters": "Một hệ thống xử lý thông tin chỉ hữu ích khi người vận hành nhìn đúng thông tin, hiểu đúng trạng thái và thực hiện đúng hành động.",
+      "coreTheory": [
+        "Task nên tách thành goal, step, information cue và action.",
+        "Failure point xuất hiện khi cue khó thấy, mapping không rõ hoặc feedback chậm.",
+        "Task map giúp nối vấn đề UI với hậu quả vận hành."
+      ],
+      "coreFormulas": [
+        "user → task → context → risk → metric → redesign",
+        "observe → measure → compare → explain → verify"
+      ],
+      "workedExample": {
+        "context": "Dashboard giám sát robot/telemetry có nhiều trạng thái và cảnh báo.",
+        "steps": [
+          "Tách một task thành 6–10 step.",
+          "Đánh dấu cue, action, feedback và failure point."
+        ],
+        "answer": "Kết luận tốt phải chỉ ra task, evidence/metric, failure mode và thay đổi thiết kế có thể kiểm chứng."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Nhận diện 3 vấn đề ergonomic.",
+          "expected": "Mỗi vấn đề gắn với user/task."
+        },
+        {
+          "level": "Trung bình",
+          "task": "Đặt metric cho từng vấn đề.",
+          "expected": "Có cách đo trước/sau."
+        },
+        {
+          "level": "Khá",
+          "task": "Đề xuất redesign và dự đoán trade-off.",
+          "expected": "Có giả thuyết kiểm chứng."
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng/Thực hành mô phỏng.",
+      "commonMistakes": [
+        "Nhầm aesthetic với usability.",
+        "Không mô tả task/context.",
+        "Dùng metric không gắn với mục tiêu.",
+        "Kết luận nguyên nhân từ dữ liệu quá ít."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Vấn đề này ảnh hưởng task nào?",
+          "a": "Nêu task, user và điều kiện sử dụng."
+        },
+        {
+          "q": "Đo cải tiến bằng gì?",
+          "a": "Chọn success, time, error hoặc metric phù hợp khác."
+        },
+        {
+          "q": "Có trade-off nào?",
+          "a": "Nêu ít nhất một tác động phụ hoặc ràng buộc."
+        }
+      ],
+      "masteryCriteria": [
+        "Giải thích khái niệm bằng lời mình.",
+        "Phân tích được case cụ thể.",
+        "Có metric hoặc evidence.",
+        "Đạt quiz ≥ 8/10 hoặc ôn lỗi sai."
+      ],
+      "rubric": [
+        {
+          "criterion": "Human factors",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Metric/evidence",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Phân tích lỗi",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Trình bày",
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  {
+    "id": "erg_m302_l1",
+    "stage": "m3",
+    "moduleId": "erg_m302",
+    "title": "Perception, attention và signal–noise",
+    "description": "Bài học hỗ trợ về Perception, attention và signal–noise cho môn Ergonomic Analysis; không thay thế syllabus chính thức của giảng viên.",
+    "kind": "lý thuyết + thực hành",
+    "keyPoints": [
+      "Người dùng không xử lý mọi phần màn hình với cùng mức ưu tiên.",
+      "Tín hiệu quan trọng cần khác biệt đủ để được phát hiện nhưng không tạo nhiễu.",
+      "Quá nhiều cảnh báo cạnh tranh làm giảm khả năng phát hiện trạng thái quan trọng."
+    ],
+    "tasks": [
+      "Phân loại primary/secondary/background information.",
+      "Tìm 5 nguồn visual noise."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK3",
+      "moduleTitle": "Perception, attention và signal–noise",
+      "estimatedMinutes": 55,
+      "sourceBasis": "Official study-plan metadata: course title, semester 3, 6 credits, 216 total hours, 68 contact hours, exam + coursework. Detailed topic sequence is support content, not an official syllabus.",
+      "objectives": [
+        "Người dùng không xử lý mọi phần màn hình với cùng mức ưu tiên.",
+        "Tín hiệu quan trọng cần khác biệt đủ để được phát hiện nhưng không tạo nhiễu.",
+        "Quá nhiều cảnh báo cạnh tranh làm giảm khả năng phát hiện trạng thái quan trọng."
+      ],
+      "prerequisites": [
+        "Có case HMI/dashboard cụ thể.",
+        "Biết mô tả task và dữ liệu đầu vào/đầu ra.",
+        "Chuẩn bị bảng ghi metric/error."
+      ],
+      "whyItMatters": "Một hệ thống xử lý thông tin chỉ hữu ích khi người vận hành nhìn đúng thông tin, hiểu đúng trạng thái và thực hiện đúng hành động.",
+      "coreTheory": [
+        "Người dùng không xử lý mọi phần màn hình với cùng mức ưu tiên.",
+        "Tín hiệu quan trọng cần khác biệt đủ để được phát hiện nhưng không tạo nhiễu.",
+        "Quá nhiều cảnh báo cạnh tranh làm giảm khả năng phát hiện trạng thái quan trọng."
+      ],
+      "coreFormulas": [
+        "user → task → context → risk → metric → redesign",
+        "observe → measure → compare → explain → verify"
+      ],
+      "workedExample": {
+        "context": "Dashboard giám sát robot/telemetry có nhiều trạng thái và cảnh báo.",
+        "steps": [
+          "Phân loại primary/secondary/background information.",
+          "Tìm 5 nguồn visual noise."
+        ],
+        "answer": "Kết luận tốt phải chỉ ra task, evidence/metric, failure mode và thay đổi thiết kế có thể kiểm chứng."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Nhận diện 3 vấn đề ergonomic.",
+          "expected": "Mỗi vấn đề gắn với user/task."
+        },
+        {
+          "level": "Trung bình",
+          "task": "Đặt metric cho từng vấn đề.",
+          "expected": "Có cách đo trước/sau."
+        },
+        {
+          "level": "Khá",
+          "task": "Đề xuất redesign và dự đoán trade-off.",
+          "expected": "Có giả thuyết kiểm chứng."
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng/Thực hành mô phỏng.",
+      "commonMistakes": [
+        "Nhầm aesthetic với usability.",
+        "Không mô tả task/context.",
+        "Dùng metric không gắn với mục tiêu.",
+        "Kết luận nguyên nhân từ dữ liệu quá ít."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Vấn đề này ảnh hưởng task nào?",
+          "a": "Nêu task, user và điều kiện sử dụng."
+        },
+        {
+          "q": "Đo cải tiến bằng gì?",
+          "a": "Chọn success, time, error hoặc metric phù hợp khác."
+        },
+        {
+          "q": "Có trade-off nào?",
+          "a": "Nêu ít nhất một tác động phụ hoặc ràng buộc."
+        }
+      ],
+      "masteryCriteria": [
+        "Giải thích khái niệm bằng lời mình.",
+        "Phân tích được case cụ thể.",
+        "Có metric hoặc evidence.",
+        "Đạt quiz ≥ 8/10 hoặc ôn lỗi sai."
+      ],
+      "rubric": [
+        {
+          "criterion": "Human factors",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Metric/evidence",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Phân tích lỗi",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Trình bày",
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  {
+    "id": "erg_m302_l2",
+    "stage": "m3",
+    "moduleId": "erg_m302",
+    "title": "Working memory và cognitive load",
+    "description": "Bài học hỗ trợ về Working memory và cognitive load cho môn Ergonomic Analysis; không thay thế syllabus chính thức của giảng viên.",
+    "kind": "lý thuyết + thực hành",
+    "keyPoints": [
+      "Nhiệm vụ giữ quá nhiều trạng thái trong trí nhớ làm tăng lỗi.",
+      "Gom nhóm, external memory và progressive disclosure có thể giảm tải.",
+      "Tải nhận thức phải được xem cùng task time và error, không chỉ cảm giác."
+    ],
+    "tasks": [
+      "Đếm số thông tin phải nhớ trong task.",
+      "Thiết kế lại để đưa ít nhất 2 trạng thái ra ngoài trí nhớ."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK3",
+      "moduleTitle": "Working memory và cognitive load",
+      "estimatedMinutes": 55,
+      "sourceBasis": "Official study-plan metadata: course title, semester 3, 6 credits, 216 total hours, 68 contact hours, exam + coursework. Detailed topic sequence is support content, not an official syllabus.",
+      "objectives": [
+        "Nhiệm vụ giữ quá nhiều trạng thái trong trí nhớ làm tăng lỗi.",
+        "Gom nhóm, external memory và progressive disclosure có thể giảm tải.",
+        "Tải nhận thức phải được xem cùng task time và error, không chỉ cảm giác."
+      ],
+      "prerequisites": [
+        "Có case HMI/dashboard cụ thể.",
+        "Biết mô tả task và dữ liệu đầu vào/đầu ra.",
+        "Chuẩn bị bảng ghi metric/error."
+      ],
+      "whyItMatters": "Một hệ thống xử lý thông tin chỉ hữu ích khi người vận hành nhìn đúng thông tin, hiểu đúng trạng thái và thực hiện đúng hành động.",
+      "coreTheory": [
+        "Nhiệm vụ giữ quá nhiều trạng thái trong trí nhớ làm tăng lỗi.",
+        "Gom nhóm, external memory và progressive disclosure có thể giảm tải.",
+        "Tải nhận thức phải được xem cùng task time và error, không chỉ cảm giác."
+      ],
+      "coreFormulas": [
+        "user → task → context → risk → metric → redesign",
+        "observe → measure → compare → explain → verify"
+      ],
+      "workedExample": {
+        "context": "Dashboard giám sát robot/telemetry có nhiều trạng thái và cảnh báo.",
+        "steps": [
+          "Đếm số thông tin phải nhớ trong task.",
+          "Thiết kế lại để đưa ít nhất 2 trạng thái ra ngoài trí nhớ."
+        ],
+        "answer": "Kết luận tốt phải chỉ ra task, evidence/metric, failure mode và thay đổi thiết kế có thể kiểm chứng."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Nhận diện 3 vấn đề ergonomic.",
+          "expected": "Mỗi vấn đề gắn với user/task."
+        },
+        {
+          "level": "Trung bình",
+          "task": "Đặt metric cho từng vấn đề.",
+          "expected": "Có cách đo trước/sau."
+        },
+        {
+          "level": "Khá",
+          "task": "Đề xuất redesign và dự đoán trade-off.",
+          "expected": "Có giả thuyết kiểm chứng."
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng/Thực hành mô phỏng.",
+      "commonMistakes": [
+        "Nhầm aesthetic với usability.",
+        "Không mô tả task/context.",
+        "Dùng metric không gắn với mục tiêu.",
+        "Kết luận nguyên nhân từ dữ liệu quá ít."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Vấn đề này ảnh hưởng task nào?",
+          "a": "Nêu task, user và điều kiện sử dụng."
+        },
+        {
+          "q": "Đo cải tiến bằng gì?",
+          "a": "Chọn success, time, error hoặc metric phù hợp khác."
+        },
+        {
+          "q": "Có trade-off nào?",
+          "a": "Nêu ít nhất một tác động phụ hoặc ràng buộc."
+        }
+      ],
+      "masteryCriteria": [
+        "Giải thích khái niệm bằng lời mình.",
+        "Phân tích được case cụ thể.",
+        "Có metric hoặc evidence.",
+        "Đạt quiz ≥ 8/10 hoặc ôn lỗi sai."
+      ],
+      "rubric": [
+        {
+          "criterion": "Human factors",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Metric/evidence",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Phân tích lỗi",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Trình bày",
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  {
+    "id": "erg_m303_l1",
+    "stage": "m3",
+    "moduleId": "erg_m303",
+    "title": "Information hierarchy, status và feedback",
+    "description": "Bài học hỗ trợ về Information hierarchy, status và feedback cho môn Ergonomic Analysis; không thay thế syllabus chính thức của giảng viên.",
+    "kind": "lý thuyết + thực hành",
+    "keyPoints": [
+      "Hierarchy tốt phản ánh mức quan trọng và thứ tự quyết định.",
+      "Trạng thái hệ thống phải quan sát được, đặc biệt khi có latency hoặc chế độ tự động.",
+      "Feedback cần cho biết action đã nhận, đang xử lý hay thất bại."
+    ],
+    "tasks": [
+      "Vẽ hierarchy 3 tầng cho dashboard.",
+      "Mô tả feedback cho 4 action chính."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK3",
+      "moduleTitle": "Information hierarchy, status và feedback",
+      "estimatedMinutes": 55,
+      "sourceBasis": "Official study-plan metadata: course title, semester 3, 6 credits, 216 total hours, 68 contact hours, exam + coursework. Detailed topic sequence is support content, not an official syllabus.",
+      "objectives": [
+        "Hierarchy tốt phản ánh mức quan trọng và thứ tự quyết định.",
+        "Trạng thái hệ thống phải quan sát được, đặc biệt khi có latency hoặc chế độ tự động.",
+        "Feedback cần cho biết action đã nhận, đang xử lý hay thất bại."
+      ],
+      "prerequisites": [
+        "Có case HMI/dashboard cụ thể.",
+        "Biết mô tả task và dữ liệu đầu vào/đầu ra.",
+        "Chuẩn bị bảng ghi metric/error."
+      ],
+      "whyItMatters": "Một hệ thống xử lý thông tin chỉ hữu ích khi người vận hành nhìn đúng thông tin, hiểu đúng trạng thái và thực hiện đúng hành động.",
+      "coreTheory": [
+        "Hierarchy tốt phản ánh mức quan trọng và thứ tự quyết định.",
+        "Trạng thái hệ thống phải quan sát được, đặc biệt khi có latency hoặc chế độ tự động.",
+        "Feedback cần cho biết action đã nhận, đang xử lý hay thất bại."
+      ],
+      "coreFormulas": [
+        "user → task → context → risk → metric → redesign",
+        "observe → measure → compare → explain → verify"
+      ],
+      "workedExample": {
+        "context": "Dashboard giám sát robot/telemetry có nhiều trạng thái và cảnh báo.",
+        "steps": [
+          "Vẽ hierarchy 3 tầng cho dashboard.",
+          "Mô tả feedback cho 4 action chính."
+        ],
+        "answer": "Kết luận tốt phải chỉ ra task, evidence/metric, failure mode và thay đổi thiết kế có thể kiểm chứng."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Nhận diện 3 vấn đề ergonomic.",
+          "expected": "Mỗi vấn đề gắn với user/task."
+        },
+        {
+          "level": "Trung bình",
+          "task": "Đặt metric cho từng vấn đề.",
+          "expected": "Có cách đo trước/sau."
+        },
+        {
+          "level": "Khá",
+          "task": "Đề xuất redesign và dự đoán trade-off.",
+          "expected": "Có giả thuyết kiểm chứng."
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng/Thực hành mô phỏng.",
+      "commonMistakes": [
+        "Nhầm aesthetic với usability.",
+        "Không mô tả task/context.",
+        "Dùng metric không gắn với mục tiêu.",
+        "Kết luận nguyên nhân từ dữ liệu quá ít."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Vấn đề này ảnh hưởng task nào?",
+          "a": "Nêu task, user và điều kiện sử dụng."
+        },
+        {
+          "q": "Đo cải tiến bằng gì?",
+          "a": "Chọn success, time, error hoặc metric phù hợp khác."
+        },
+        {
+          "q": "Có trade-off nào?",
+          "a": "Nêu ít nhất một tác động phụ hoặc ràng buộc."
+        }
+      ],
+      "masteryCriteria": [
+        "Giải thích khái niệm bằng lời mình.",
+        "Phân tích được case cụ thể.",
+        "Có metric hoặc evidence.",
+        "Đạt quiz ≥ 8/10 hoặc ôn lỗi sai."
+      ],
+      "rubric": [
+        {
+          "criterion": "Human factors",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Metric/evidence",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Phân tích lỗi",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Trình bày",
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  {
+    "id": "erg_m303_l2",
+    "stage": "m3",
+    "moduleId": "erg_m303",
+    "title": "Alarm, color, coding và information density",
+    "description": "Bài học hỗ trợ về Alarm, color, coding và information density cho môn Ergonomic Analysis; không thay thế syllabus chính thức của giảng viên.",
+    "kind": "lý thuyết + thực hành",
+    "keyPoints": [
+      "Mã hóa bằng màu không nên là kênh duy nhất cho trạng thái quan trọng.",
+      "Alarm cần priority, trigger và action rõ.",
+      "Information density cao chỉ có ích khi cấu trúc và scan path phù hợp."
+    ],
+    "tasks": [
+      "Lập alarm priority matrix.",
+      "Thiết kế trạng thái critical không phụ thuộc riêng màu."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK3",
+      "moduleTitle": "Alarm, color, coding và information density",
+      "estimatedMinutes": 55,
+      "sourceBasis": "Official study-plan metadata: course title, semester 3, 6 credits, 216 total hours, 68 contact hours, exam + coursework. Detailed topic sequence is support content, not an official syllabus.",
+      "objectives": [
+        "Mã hóa bằng màu không nên là kênh duy nhất cho trạng thái quan trọng.",
+        "Alarm cần priority, trigger và action rõ.",
+        "Information density cao chỉ có ích khi cấu trúc và scan path phù hợp."
+      ],
+      "prerequisites": [
+        "Có case HMI/dashboard cụ thể.",
+        "Biết mô tả task và dữ liệu đầu vào/đầu ra.",
+        "Chuẩn bị bảng ghi metric/error."
+      ],
+      "whyItMatters": "Một hệ thống xử lý thông tin chỉ hữu ích khi người vận hành nhìn đúng thông tin, hiểu đúng trạng thái và thực hiện đúng hành động.",
+      "coreTheory": [
+        "Mã hóa bằng màu không nên là kênh duy nhất cho trạng thái quan trọng.",
+        "Alarm cần priority, trigger và action rõ.",
+        "Information density cao chỉ có ích khi cấu trúc và scan path phù hợp."
+      ],
+      "coreFormulas": [
+        "user → task → context → risk → metric → redesign",
+        "observe → measure → compare → explain → verify"
+      ],
+      "workedExample": {
+        "context": "Dashboard giám sát robot/telemetry có nhiều trạng thái và cảnh báo.",
+        "steps": [
+          "Lập alarm priority matrix.",
+          "Thiết kế trạng thái critical không phụ thuộc riêng màu."
+        ],
+        "answer": "Kết luận tốt phải chỉ ra task, evidence/metric, failure mode và thay đổi thiết kế có thể kiểm chứng."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Nhận diện 3 vấn đề ergonomic.",
+          "expected": "Mỗi vấn đề gắn với user/task."
+        },
+        {
+          "level": "Trung bình",
+          "task": "Đặt metric cho từng vấn đề.",
+          "expected": "Có cách đo trước/sau."
+        },
+        {
+          "level": "Khá",
+          "task": "Đề xuất redesign và dự đoán trade-off.",
+          "expected": "Có giả thuyết kiểm chứng."
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng/Thực hành mô phỏng.",
+      "commonMistakes": [
+        "Nhầm aesthetic với usability.",
+        "Không mô tả task/context.",
+        "Dùng metric không gắn với mục tiêu.",
+        "Kết luận nguyên nhân từ dữ liệu quá ít."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Vấn đề này ảnh hưởng task nào?",
+          "a": "Nêu task, user và điều kiện sử dụng."
+        },
+        {
+          "q": "Đo cải tiến bằng gì?",
+          "a": "Chọn success, time, error hoặc metric phù hợp khác."
+        },
+        {
+          "q": "Có trade-off nào?",
+          "a": "Nêu ít nhất một tác động phụ hoặc ràng buộc."
+        }
+      ],
+      "masteryCriteria": [
+        "Giải thích khái niệm bằng lời mình.",
+        "Phân tích được case cụ thể.",
+        "Có metric hoặc evidence.",
+        "Đạt quiz ≥ 8/10 hoặc ôn lỗi sai."
+      ],
+      "rubric": [
+        {
+          "criterion": "Human factors",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Metric/evidence",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Phân tích lỗi",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Trình bày",
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  {
+    "id": "erg_m304_l1",
+    "stage": "m3",
+    "moduleId": "erg_m304",
+    "title": "Slip, mistake và human-error chain",
+    "description": "Bài học hỗ trợ về Slip, mistake và human-error chain cho môn Ergonomic Analysis; không thay thế syllabus chính thức của giảng viên.",
+    "kind": "lý thuyết + thực hành",
+    "keyPoints": [
+      "Slip là thao tác sai dù mục tiêu đúng; mistake là quyết định/mô hình sai.",
+      "Phân loại lỗi giúp chọn redesign đúng: control, feedback, training hay decision support.",
+      "Không nên quy mọi lỗi cho 'người dùng bất cẩn'."
+    ],
+    "tasks": [
+      "Phân loại 6 lỗi giả định thành slip/mistake.",
+      "Vẽ error chain từ cue đến consequence."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK3",
+      "moduleTitle": "Slip, mistake và human-error chain",
+      "estimatedMinutes": 55,
+      "sourceBasis": "Official study-plan metadata: course title, semester 3, 6 credits, 216 total hours, 68 contact hours, exam + coursework. Detailed topic sequence is support content, not an official syllabus.",
+      "objectives": [
+        "Slip là thao tác sai dù mục tiêu đúng; mistake là quyết định/mô hình sai.",
+        "Phân loại lỗi giúp chọn redesign đúng: control, feedback, training hay decision support.",
+        "Không nên quy mọi lỗi cho 'người dùng bất cẩn'."
+      ],
+      "prerequisites": [
+        "Có case HMI/dashboard cụ thể.",
+        "Biết mô tả task và dữ liệu đầu vào/đầu ra.",
+        "Chuẩn bị bảng ghi metric/error."
+      ],
+      "whyItMatters": "Một hệ thống xử lý thông tin chỉ hữu ích khi người vận hành nhìn đúng thông tin, hiểu đúng trạng thái và thực hiện đúng hành động.",
+      "coreTheory": [
+        "Slip là thao tác sai dù mục tiêu đúng; mistake là quyết định/mô hình sai.",
+        "Phân loại lỗi giúp chọn redesign đúng: control, feedback, training hay decision support.",
+        "Không nên quy mọi lỗi cho 'người dùng bất cẩn'."
+      ],
+      "coreFormulas": [
+        "user → task → context → risk → metric → redesign",
+        "observe → measure → compare → explain → verify"
+      ],
+      "workedExample": {
+        "context": "Dashboard giám sát robot/telemetry có nhiều trạng thái và cảnh báo.",
+        "steps": [
+          "Phân loại 6 lỗi giả định thành slip/mistake.",
+          "Vẽ error chain từ cue đến consequence."
+        ],
+        "answer": "Kết luận tốt phải chỉ ra task, evidence/metric, failure mode và thay đổi thiết kế có thể kiểm chứng."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Nhận diện 3 vấn đề ergonomic.",
+          "expected": "Mỗi vấn đề gắn với user/task."
+        },
+        {
+          "level": "Trung bình",
+          "task": "Đặt metric cho từng vấn đề.",
+          "expected": "Có cách đo trước/sau."
+        },
+        {
+          "level": "Khá",
+          "task": "Đề xuất redesign và dự đoán trade-off.",
+          "expected": "Có giả thuyết kiểm chứng."
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng/Thực hành mô phỏng.",
+      "commonMistakes": [
+        "Nhầm aesthetic với usability.",
+        "Không mô tả task/context.",
+        "Dùng metric không gắn với mục tiêu.",
+        "Kết luận nguyên nhân từ dữ liệu quá ít."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Vấn đề này ảnh hưởng task nào?",
+          "a": "Nêu task, user và điều kiện sử dụng."
+        },
+        {
+          "q": "Đo cải tiến bằng gì?",
+          "a": "Chọn success, time, error hoặc metric phù hợp khác."
+        },
+        {
+          "q": "Có trade-off nào?",
+          "a": "Nêu ít nhất một tác động phụ hoặc ràng buộc."
+        }
+      ],
+      "masteryCriteria": [
+        "Giải thích khái niệm bằng lời mình.",
+        "Phân tích được case cụ thể.",
+        "Có metric hoặc evidence.",
+        "Đạt quiz ≥ 8/10 hoặc ôn lỗi sai."
+      ],
+      "rubric": [
+        {
+          "criterion": "Human factors",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Metric/evidence",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Phân tích lỗi",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Trình bày",
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  {
+    "id": "erg_m304_l2",
+    "stage": "m3",
+    "moduleId": "erg_m304",
+    "title": "Automation bias, mode error và recovery",
+    "description": "Bài học hỗ trợ về Automation bias, mode error và recovery cho môn Ergonomic Analysis; không thay thế syllabus chính thức của giảng viên.",
+    "kind": "lý thuyết + thực hành",
+    "keyPoints": [
+      "Tự động hóa có thể làm giảm vigilance và tăng lệ thuộc nếu trạng thái không rõ.",
+      "Mode error xảy ra khi cùng action có nghĩa khác ở mode khác nhau.",
+      "Recovery path cần dễ tìm và không tạo lỗi thứ cấp."
+    ],
+    "tasks": [
+      "Audit mode visibility.",
+      "Thiết kế recovery flow cho mất kết nối/cảm biến lỗi."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK3",
+      "moduleTitle": "Automation bias, mode error và recovery",
+      "estimatedMinutes": 55,
+      "sourceBasis": "Official study-plan metadata: course title, semester 3, 6 credits, 216 total hours, 68 contact hours, exam + coursework. Detailed topic sequence is support content, not an official syllabus.",
+      "objectives": [
+        "Tự động hóa có thể làm giảm vigilance và tăng lệ thuộc nếu trạng thái không rõ.",
+        "Mode error xảy ra khi cùng action có nghĩa khác ở mode khác nhau.",
+        "Recovery path cần dễ tìm và không tạo lỗi thứ cấp."
+      ],
+      "prerequisites": [
+        "Có case HMI/dashboard cụ thể.",
+        "Biết mô tả task và dữ liệu đầu vào/đầu ra.",
+        "Chuẩn bị bảng ghi metric/error."
+      ],
+      "whyItMatters": "Một hệ thống xử lý thông tin chỉ hữu ích khi người vận hành nhìn đúng thông tin, hiểu đúng trạng thái và thực hiện đúng hành động.",
+      "coreTheory": [
+        "Tự động hóa có thể làm giảm vigilance và tăng lệ thuộc nếu trạng thái không rõ.",
+        "Mode error xảy ra khi cùng action có nghĩa khác ở mode khác nhau.",
+        "Recovery path cần dễ tìm và không tạo lỗi thứ cấp."
+      ],
+      "coreFormulas": [
+        "user → task → context → risk → metric → redesign",
+        "observe → measure → compare → explain → verify"
+      ],
+      "workedExample": {
+        "context": "Dashboard giám sát robot/telemetry có nhiều trạng thái và cảnh báo.",
+        "steps": [
+          "Audit mode visibility.",
+          "Thiết kế recovery flow cho mất kết nối/cảm biến lỗi."
+        ],
+        "answer": "Kết luận tốt phải chỉ ra task, evidence/metric, failure mode và thay đổi thiết kế có thể kiểm chứng."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Nhận diện 3 vấn đề ergonomic.",
+          "expected": "Mỗi vấn đề gắn với user/task."
+        },
+        {
+          "level": "Trung bình",
+          "task": "Đặt metric cho từng vấn đề.",
+          "expected": "Có cách đo trước/sau."
+        },
+        {
+          "level": "Khá",
+          "task": "Đề xuất redesign và dự đoán trade-off.",
+          "expected": "Có giả thuyết kiểm chứng."
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng/Thực hành mô phỏng.",
+      "commonMistakes": [
+        "Nhầm aesthetic với usability.",
+        "Không mô tả task/context.",
+        "Dùng metric không gắn với mục tiêu.",
+        "Kết luận nguyên nhân từ dữ liệu quá ít."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Vấn đề này ảnh hưởng task nào?",
+          "a": "Nêu task, user và điều kiện sử dụng."
+        },
+        {
+          "q": "Đo cải tiến bằng gì?",
+          "a": "Chọn success, time, error hoặc metric phù hợp khác."
+        },
+        {
+          "q": "Có trade-off nào?",
+          "a": "Nêu ít nhất một tác động phụ hoặc ràng buộc."
+        }
+      ],
+      "masteryCriteria": [
+        "Giải thích khái niệm bằng lời mình.",
+        "Phân tích được case cụ thể.",
+        "Có metric hoặc evidence.",
+        "Đạt quiz ≥ 8/10 hoặc ôn lỗi sai."
+      ],
+      "rubric": [
+        {
+          "criterion": "Human factors",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Metric/evidence",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Phân tích lỗi",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Trình bày",
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  {
+    "id": "erg_m305_l1",
+    "stage": "m3",
+    "moduleId": "erg_m305",
+    "title": "Usability metric: success, time và error",
+    "description": "Bài học hỗ trợ về Usability metric: success, time và error cho môn Ergonomic Analysis; không thay thế syllabus chính thức của giảng viên.",
+    "kind": "lý thuyết + thực hành",
+    "keyPoints": [
+      "Task success đo hoàn thành mục tiêu, không phải số click.",
+      "Task time chỉ có ý nghĩa khi task và điều kiện so sánh tương đương.",
+      "Error rate cần định nghĩa rõ loại lỗi và cơ hội xảy ra lỗi."
+    ],
+    "tasks": [
+      "Viết operational definition cho 3 metric.",
+      "Thiết kế bảng log 5 task."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK3",
+      "moduleTitle": "Usability metric: success, time và error",
+      "estimatedMinutes": 55,
+      "sourceBasis": "Official study-plan metadata: course title, semester 3, 6 credits, 216 total hours, 68 contact hours, exam + coursework. Detailed topic sequence is support content, not an official syllabus.",
+      "objectives": [
+        "Task success đo hoàn thành mục tiêu, không phải số click.",
+        "Task time chỉ có ý nghĩa khi task và điều kiện so sánh tương đương.",
+        "Error rate cần định nghĩa rõ loại lỗi và cơ hội xảy ra lỗi."
+      ],
+      "prerequisites": [
+        "Có case HMI/dashboard cụ thể.",
+        "Biết mô tả task và dữ liệu đầu vào/đầu ra.",
+        "Chuẩn bị bảng ghi metric/error."
+      ],
+      "whyItMatters": "Một hệ thống xử lý thông tin chỉ hữu ích khi người vận hành nhìn đúng thông tin, hiểu đúng trạng thái và thực hiện đúng hành động.",
+      "coreTheory": [
+        "Task success đo hoàn thành mục tiêu, không phải số click.",
+        "Task time chỉ có ý nghĩa khi task và điều kiện so sánh tương đương.",
+        "Error rate cần định nghĩa rõ loại lỗi và cơ hội xảy ra lỗi."
+      ],
+      "coreFormulas": [
+        "user → task → context → risk → metric → redesign",
+        "observe → measure → compare → explain → verify"
+      ],
+      "workedExample": {
+        "context": "Dashboard giám sát robot/telemetry có nhiều trạng thái và cảnh báo.",
+        "steps": [
+          "Viết operational definition cho 3 metric.",
+          "Thiết kế bảng log 5 task."
+        ],
+        "answer": "Kết luận tốt phải chỉ ra task, evidence/metric, failure mode và thay đổi thiết kế có thể kiểm chứng."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Nhận diện 3 vấn đề ergonomic.",
+          "expected": "Mỗi vấn đề gắn với user/task."
+        },
+        {
+          "level": "Trung bình",
+          "task": "Đặt metric cho từng vấn đề.",
+          "expected": "Có cách đo trước/sau."
+        },
+        {
+          "level": "Khá",
+          "task": "Đề xuất redesign và dự đoán trade-off.",
+          "expected": "Có giả thuyết kiểm chứng."
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng/Thực hành mô phỏng.",
+      "commonMistakes": [
+        "Nhầm aesthetic với usability.",
+        "Không mô tả task/context.",
+        "Dùng metric không gắn với mục tiêu.",
+        "Kết luận nguyên nhân từ dữ liệu quá ít."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Vấn đề này ảnh hưởng task nào?",
+          "a": "Nêu task, user và điều kiện sử dụng."
+        },
+        {
+          "q": "Đo cải tiến bằng gì?",
+          "a": "Chọn success, time, error hoặc metric phù hợp khác."
+        },
+        {
+          "q": "Có trade-off nào?",
+          "a": "Nêu ít nhất một tác động phụ hoặc ràng buộc."
+        }
+      ],
+      "masteryCriteria": [
+        "Giải thích khái niệm bằng lời mình.",
+        "Phân tích được case cụ thể.",
+        "Có metric hoặc evidence.",
+        "Đạt quiz ≥ 8/10 hoặc ôn lỗi sai."
+      ],
+      "rubric": [
+        {
+          "criterion": "Human factors",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Metric/evidence",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Phân tích lỗi",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Trình bày",
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  {
+    "id": "erg_m305_l2",
+    "stage": "m3",
+    "moduleId": "erg_m305",
+    "title": "A/B test, sample và confounder",
+    "description": "Bài học hỗ trợ về A/B test, sample và confounder cho môn Ergonomic Analysis; không thay thế syllabus chính thức của giảng viên.",
+    "kind": "lý thuyết + thực hành",
+    "keyPoints": [
+      "So sánh thiết kế cần cùng task, dữ liệu và điều kiện càng nhiều càng tốt.",
+      "Learning effect và order effect có thể làm sai kết luận.",
+      "Cỡ mẫu nhỏ nên được báo rõ là pilot, không phóng đại kết quả."
+    ],
+    "tasks": [
+      "Thiết kế pilot A/B 6 người hoặc 6 phiên test.",
+      "Liệt kê 4 confounder và cách giảm."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK3",
+      "moduleTitle": "A/B test, sample và confounder",
+      "estimatedMinutes": 55,
+      "sourceBasis": "Official study-plan metadata: course title, semester 3, 6 credits, 216 total hours, 68 contact hours, exam + coursework. Detailed topic sequence is support content, not an official syllabus.",
+      "objectives": [
+        "So sánh thiết kế cần cùng task, dữ liệu và điều kiện càng nhiều càng tốt.",
+        "Learning effect và order effect có thể làm sai kết luận.",
+        "Cỡ mẫu nhỏ nên được báo rõ là pilot, không phóng đại kết quả."
+      ],
+      "prerequisites": [
+        "Có case HMI/dashboard cụ thể.",
+        "Biết mô tả task và dữ liệu đầu vào/đầu ra.",
+        "Chuẩn bị bảng ghi metric/error."
+      ],
+      "whyItMatters": "Một hệ thống xử lý thông tin chỉ hữu ích khi người vận hành nhìn đúng thông tin, hiểu đúng trạng thái và thực hiện đúng hành động.",
+      "coreTheory": [
+        "So sánh thiết kế cần cùng task, dữ liệu và điều kiện càng nhiều càng tốt.",
+        "Learning effect và order effect có thể làm sai kết luận.",
+        "Cỡ mẫu nhỏ nên được báo rõ là pilot, không phóng đại kết quả."
+      ],
+      "coreFormulas": [
+        "user → task → context → risk → metric → redesign",
+        "observe → measure → compare → explain → verify"
+      ],
+      "workedExample": {
+        "context": "Dashboard giám sát robot/telemetry có nhiều trạng thái và cảnh báo.",
+        "steps": [
+          "Thiết kế pilot A/B 6 người hoặc 6 phiên test.",
+          "Liệt kê 4 confounder và cách giảm."
+        ],
+        "answer": "Kết luận tốt phải chỉ ra task, evidence/metric, failure mode và thay đổi thiết kế có thể kiểm chứng."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Nhận diện 3 vấn đề ergonomic.",
+          "expected": "Mỗi vấn đề gắn với user/task."
+        },
+        {
+          "level": "Trung bình",
+          "task": "Đặt metric cho từng vấn đề.",
+          "expected": "Có cách đo trước/sau."
+        },
+        {
+          "level": "Khá",
+          "task": "Đề xuất redesign và dự đoán trade-off.",
+          "expected": "Có giả thuyết kiểm chứng."
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng/Thực hành mô phỏng.",
+      "commonMistakes": [
+        "Nhầm aesthetic với usability.",
+        "Không mô tả task/context.",
+        "Dùng metric không gắn với mục tiêu.",
+        "Kết luận nguyên nhân từ dữ liệu quá ít."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Vấn đề này ảnh hưởng task nào?",
+          "a": "Nêu task, user và điều kiện sử dụng."
+        },
+        {
+          "q": "Đo cải tiến bằng gì?",
+          "a": "Chọn success, time, error hoặc metric phù hợp khác."
+        },
+        {
+          "q": "Có trade-off nào?",
+          "a": "Nêu ít nhất một tác động phụ hoặc ràng buộc."
+        }
+      ],
+      "masteryCriteria": [
+        "Giải thích khái niệm bằng lời mình.",
+        "Phân tích được case cụ thể.",
+        "Có metric hoặc evidence.",
+        "Đạt quiz ≥ 8/10 hoặc ôn lỗi sai."
+      ],
+      "rubric": [
+        {
+          "criterion": "Human factors",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Metric/evidence",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Phân tích lỗi",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Trình bày",
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  {
+    "id": "erg_m306_l1",
+    "stage": "m3",
+    "moduleId": "erg_m306",
+    "title": "Cấu trúc coursework ergonomic audit",
+    "description": "Bài học hỗ trợ về Cấu trúc coursework ergonomic audit cho môn Ergonomic Analysis; không thay thế syllabus chính thức của giảng viên.",
+    "kind": "lý thuyết + thực hành",
+    "keyPoints": [
+      "Coursework nên có system/context, method, task model, metrics, findings, redesign và limitations.",
+      "Finding mạnh cần evidence cụ thể: screenshot, log, task time, error hoặc observation có cấu trúc.",
+      "Recommendation phải gắn với finding, không phải danh sách ý tưởng rời."
+    ],
+    "tasks": [
+      "Tạo outline coursework 8 section.",
+      "Tạo traceability table finding → evidence → recommendation."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK3",
+      "moduleTitle": "Cấu trúc coursework ergonomic audit",
+      "estimatedMinutes": 55,
+      "sourceBasis": "Official study-plan metadata: course title, semester 3, 6 credits, 216 total hours, 68 contact hours, exam + coursework. Detailed topic sequence is support content, not an official syllabus.",
+      "objectives": [
+        "Coursework nên có system/context, method, task model, metrics, findings, redesign và limitations.",
+        "Finding mạnh cần evidence cụ thể: screenshot, log, task time, error hoặc observation có cấu trúc.",
+        "Recommendation phải gắn với finding, không phải danh sách ý tưởng rời."
+      ],
+      "prerequisites": [
+        "Có case HMI/dashboard cụ thể.",
+        "Biết mô tả task và dữ liệu đầu vào/đầu ra.",
+        "Chuẩn bị bảng ghi metric/error."
+      ],
+      "whyItMatters": "Một hệ thống xử lý thông tin chỉ hữu ích khi người vận hành nhìn đúng thông tin, hiểu đúng trạng thái và thực hiện đúng hành động.",
+      "coreTheory": [
+        "Coursework nên có system/context, method, task model, metrics, findings, redesign và limitations.",
+        "Finding mạnh cần evidence cụ thể: screenshot, log, task time, error hoặc observation có cấu trúc.",
+        "Recommendation phải gắn với finding, không phải danh sách ý tưởng rời."
+      ],
+      "coreFormulas": [
+        "user → task → context → risk → metric → redesign",
+        "observe → measure → compare → explain → verify"
+      ],
+      "workedExample": {
+        "context": "Dashboard giám sát robot/telemetry có nhiều trạng thái và cảnh báo.",
+        "steps": [
+          "Tạo outline coursework 8 section.",
+          "Tạo traceability table finding → evidence → recommendation."
+        ],
+        "answer": "Kết luận tốt phải chỉ ra task, evidence/metric, failure mode và thay đổi thiết kế có thể kiểm chứng."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Nhận diện 3 vấn đề ergonomic.",
+          "expected": "Mỗi vấn đề gắn với user/task."
+        },
+        {
+          "level": "Trung bình",
+          "task": "Đặt metric cho từng vấn đề.",
+          "expected": "Có cách đo trước/sau."
+        },
+        {
+          "level": "Khá",
+          "task": "Đề xuất redesign và dự đoán trade-off.",
+          "expected": "Có giả thuyết kiểm chứng."
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng/Thực hành mô phỏng.",
+      "commonMistakes": [
+        "Nhầm aesthetic với usability.",
+        "Không mô tả task/context.",
+        "Dùng metric không gắn với mục tiêu.",
+        "Kết luận nguyên nhân từ dữ liệu quá ít."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Vấn đề này ảnh hưởng task nào?",
+          "a": "Nêu task, user và điều kiện sử dụng."
+        },
+        {
+          "q": "Đo cải tiến bằng gì?",
+          "a": "Chọn success, time, error hoặc metric phù hợp khác."
+        },
+        {
+          "q": "Có trade-off nào?",
+          "a": "Nêu ít nhất một tác động phụ hoặc ràng buộc."
+        }
+      ],
+      "masteryCriteria": [
+        "Giải thích khái niệm bằng lời mình.",
+        "Phân tích được case cụ thể.",
+        "Có metric hoặc evidence.",
+        "Đạt quiz ≥ 8/10 hoặc ôn lỗi sai."
+      ],
+      "rubric": [
+        {
+          "criterion": "Human factors",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Metric/evidence",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Phân tích lỗi",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Trình bày",
+          "weight": 0.15
+        }
+      ]
+    }
+  },
+  {
+    "id": "erg_m306_l2",
+    "stage": "m3",
+    "moduleId": "erg_m306",
+    "title": "Defense: trình bày trade-off và giới hạn",
+    "description": "Bài học hỗ trợ về Defense: trình bày trade-off và giới hạn cho môn Ergonomic Analysis; không thay thế syllabus chính thức của giảng viên.",
+    "kind": "lý thuyết + thực hành",
+    "keyPoints": [
+      "Bảo vệ tốt giải thích vì sao metric được chọn và giới hạn của test.",
+      "Redesign nên nói rõ trade-off thay vì tuyên bố hoàn hảo.",
+      "Kết luận cần tách điều đo được, inference và future validation."
+    ],
+    "tasks": [
+      "Chuẩn bị 6 slide defense.",
+      "Viết 10 câu hỏi phản biện và câu trả lời ngắn."
+    ],
+    "eLearning": {
+      "lessonContractVersion": "elearning-v1.1",
+      "stage": "Bauman HK3",
+      "moduleTitle": "Defense: trình bày trade-off và giới hạn",
+      "estimatedMinutes": 55,
+      "sourceBasis": "Official study-plan metadata: course title, semester 3, 6 credits, 216 total hours, 68 contact hours, exam + coursework. Detailed topic sequence is support content, not an official syllabus.",
+      "objectives": [
+        "Bảo vệ tốt giải thích vì sao metric được chọn và giới hạn của test.",
+        "Redesign nên nói rõ trade-off thay vì tuyên bố hoàn hảo.",
+        "Kết luận cần tách điều đo được, inference và future validation."
+      ],
+      "prerequisites": [
+        "Có case HMI/dashboard cụ thể.",
+        "Biết mô tả task và dữ liệu đầu vào/đầu ra.",
+        "Chuẩn bị bảng ghi metric/error."
+      ],
+      "whyItMatters": "Một hệ thống xử lý thông tin chỉ hữu ích khi người vận hành nhìn đúng thông tin, hiểu đúng trạng thái và thực hiện đúng hành động.",
+      "coreTheory": [
+        "Bảo vệ tốt giải thích vì sao metric được chọn và giới hạn của test.",
+        "Redesign nên nói rõ trade-off thay vì tuyên bố hoàn hảo.",
+        "Kết luận cần tách điều đo được, inference và future validation."
+      ],
+      "coreFormulas": [
+        "user → task → context → risk → metric → redesign",
+        "observe → measure → compare → explain → verify"
+      ],
+      "workedExample": {
+        "context": "Dashboard giám sát robot/telemetry có nhiều trạng thái và cảnh báo.",
+        "steps": [
+          "Chuẩn bị 6 slide defense.",
+          "Viết 10 câu hỏi phản biện và câu trả lời ngắn."
+        ],
+        "answer": "Kết luận tốt phải chỉ ra task, evidence/metric, failure mode và thay đổi thiết kế có thể kiểm chứng."
+      },
+      "guidedPractice": [
+        {
+          "level": "Dễ",
+          "task": "Nhận diện 3 vấn đề ergonomic.",
+          "expected": "Mỗi vấn đề gắn với user/task."
+        },
+        {
+          "level": "Trung bình",
+          "task": "Đặt metric cho từng vấn đề.",
+          "expected": "Có cách đo trước/sau."
+        },
+        {
+          "level": "Khá",
+          "task": "Đề xuất redesign và dự đoán trade-off.",
+          "expected": "Có giả thuyết kiểm chứng."
+        }
+      ],
+      "simulationLink": "Mở tab Mô phỏng/Thực hành mô phỏng.",
+      "commonMistakes": [
+        "Nhầm aesthetic với usability.",
+        "Không mô tả task/context.",
+        "Dùng metric không gắn với mục tiêu.",
+        "Kết luận nguyên nhân từ dữ liệu quá ít."
+      ],
+      "checkpointQuestions": [
+        {
+          "q": "Vấn đề này ảnh hưởng task nào?",
+          "a": "Nêu task, user và điều kiện sử dụng."
+        },
+        {
+          "q": "Đo cải tiến bằng gì?",
+          "a": "Chọn success, time, error hoặc metric phù hợp khác."
+        },
+        {
+          "q": "Có trade-off nào?",
+          "a": "Nêu ít nhất một tác động phụ hoặc ràng buộc."
+        }
+      ],
+      "masteryCriteria": [
+        "Giải thích khái niệm bằng lời mình.",
+        "Phân tích được case cụ thể.",
+        "Có metric hoặc evidence.",
+        "Đạt quiz ≥ 8/10 hoặc ôn lỗi sai."
+      ],
+      "rubric": [
+        {
+          "criterion": "Human factors",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Metric/evidence",
+          "weight": 0.3
+        },
+        {
+          "criterion": "Phân tích lỗi",
+          "weight": 0.25
+        },
+        {
+          "criterion": "Trình bày",
+          "weight": 0.15
+        }
+      ]
+    }
+  }
+]
