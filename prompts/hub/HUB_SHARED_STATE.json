@@ -6,23 +6,24 @@
   "bridgeProtocol": "prompts/hub/bridge/HANDOFF_PROTOCOL.md",
   "apiBoundary": "prompts/hub/api/HUB_SUBAPP_API_BOUNDARY.md",
   "currentBranch": "work/curriculum-prompt-system-v1",
-  "currentHeadSha": "4e2d778da8884f7e0622b00c0671b591a45e7a99",
+  "currentHeadSha": "46947e6322158f30d10ef63da75794bb29622ebf",
   "lastChatReviewSha": "dc7fd3d8d90b6a84504f35ae2049752c6f339462",
   "lastCodexValidatedSha": null,
   "activeWorkPacketId": "HUB-BOOTSTRAP-RECONCILE-001",
   "activeWorkPacketRevision": 1,
-  "lifecycleStatus": "CHAT_HUB_C1_COMPLETE",
+  "lifecycleStatus": "CHAT_HUB_C1_C4_COMPLETE",
   "lastAcceptedPacketId": null,
   "blockers": [],
   "notes": [
     "Hub work does not load prompts/subjects/**.",
-    "Subject apps remain external bounded systems; integration is versioned API/contract only.",
     "User explicitly chose to skip Codex execution for now; HUB-BOOTSTRAP-RECONCILE-001 remains prepared but unexecuted.",
     "Latest Hub runtime baseline reviewed in Chat is main@dc7fd3d8d90b6a84504f35ae2049752c6f339462.",
-    "HUB-C1 truth-source audit: Home and Roadmap must distinguish missing progress from real 0%; Subjects contains reference/sample 2025 data that must not act as live truth; Schedule is substantially Hub-state-driven; Research/Thesis contains mock 2025 planning/progress data that must not act as live truth.",
-    "Direct subject editor/path launching is legacy compatibility only; target integration is registered descriptor/capability/launch contracts.",
-    "Detailed Chat audit is stored at prompts/hub/chat/HUB_CHAT_AUDIT_2026-10-02.md.",
-    "Next Chat step is HUB-C2: define the stable five-page UX contract and truth-state behavior before any implementation."
+    "HUB-C1: truth-source audit complete. Home/Roadmap need unknown-vs-zero handling; Subjects and Research/Thesis must stop presenting reference 2025 values as live truth; Schedule remains the ownership reference.",
+    "HUB-C2: five primary routes are fixed: Home, Roadmap, Subjects, Schedule, Research/Thesis. One presentation owner per route; shared shell/design system; no duplicate primary navigation.",
+    "HUB-C3: target subject integration is descriptor -> capability set -> launch adapter -> normalized Hub read model. Existing direct path/editor behavior is compatibility only and must not be extended.",
+    "HUB-C4: acceptance contract requires data-truth checks, five-route regression, responsive desktop/tablet/phone review, accessibility, exact tested SHA, scoped diff and explicit Chat review before release.",
+    "Detailed audit: prompts/hub/chat/HUB_CHAT_AUDIT_2026-10-02.md.",
+    "Stable UX contract: prompts/hub/chat/HUB_C2_PRIMARY_PAGE_UX_CONTRACT.md."
   ],
-  "lastArchitectureChange": "Completed HUB-C1 truth-source audit in Chat plane: established current/stale/unavailable semantics, unknown-vs-zero handling, and contract-only target integration while preserving Schedule as the Hub-owned planning reference."
+  "lastArchitectureChange": "Completed Chat-plane HUB-C1 through HUB-C4: truth-source model, five-page UX ownership, contract-based subject integration target, and acceptance/release criteria. No Codex execution or subject-app changes were performed."
 }
