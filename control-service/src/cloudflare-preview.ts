@@ -6,6 +6,7 @@ interface PreviewEnv {
   BAUMAN_APP_ORIGIN?: string;
   BAUMAN_DEPLOYMENT_CHANNEL?: string;
   BAUMAN_BUILD_REVISION?: string;
+  BAUMAN_CONFIG_FINGERPRINT?: string;
   DB?: D1Database;
 }
 
@@ -24,6 +25,7 @@ function deployment(env: PreviewEnv, ready: boolean) {
   return {
     channel: env.BAUMAN_DEPLOYMENT_CHANNEL ?? "unknown",
     revision: env.BAUMAN_BUILD_REVISION ?? "unknown",
+    configFingerprint: env.BAUMAN_CONFIG_FINGERPRINT ?? "unknown",
     databaseReady: ready,
     applicationManagementOriginConfigured: Boolean(env.APPLICATION_MANAGEMENT_ORIGIN),
     appOriginConfigured: Boolean(env.BAUMAN_APP_ORIGIN),
