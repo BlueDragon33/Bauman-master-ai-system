@@ -1,5 +1,5 @@
 {
-  "contractVersion": 9,
+  "contractVersion": 10,
   "application": {
     "id": "bauman-master-ai",
     "name": "Bauman Master AI",
@@ -162,6 +162,13 @@
       "name": "Công thái học · HMI",
       "kind": "module",
       "sourcePath": "subjects/ergonomics",
+      "state": "module"
+    },
+    {
+      "id": "mivar",
+      "name": "Mivar Logical AI",
+      "kind": "module",
+      "sourcePath": "subjects/mivar",
       "state": "module"
     },
     {
