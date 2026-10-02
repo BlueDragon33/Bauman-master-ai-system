@@ -2,7 +2,7 @@
 (function(){
   const A=window.SUBJECT_ADAPTER||{};
   const CORE_KEY=A.storageKey||'bauman_russian_survival_master_v11_clean_skeleton';
-  const SCHEMA='RUSSIAN_AI_MENTOR_CONTEXT_V2';
+  const SCHEMA='RUSSIAN_AI_MENTOR_CONTEXT_V1';
   const parse=(raw,fallback)=>{try{return raw?JSON.parse(raw):fallback}catch(_){return fallback}};
   const clean=v=>String(v??'').trim();
   const clone=v=>JSON.parse(JSON.stringify(v==null?null:v));
