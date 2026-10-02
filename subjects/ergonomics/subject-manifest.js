@@ -1,0 +1,1 @@
+window.SUBJECT_CONFIG={"id":"ergonomics","title":"Эргономический анализ систем обработки и отображения информации","short":"Ergonomics · HMI","icon":"◫","tagline":"Human factors, HMI, tải nhận thức, thiết kế hiển thị, lỗi con người và đánh giá usability cho hệ thống xử lý thông tin.","formulaLabel":"Metric / Checklist / Mẫu đánh giá"};
