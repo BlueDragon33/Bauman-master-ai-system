@@ -26,7 +26,7 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-          import json, zipfile, shutil, re
+          import json, zipfile
 
           repo = Path.cwd()
           mappings = {
@@ -34,79 +34,65 @@ jobs:
                   "archive": repo/"prompt-archives/math.zip",
                   "root": "MATH_PROMPT_SYSTEM/",
                   "master": "MATH_MASTER_PROMPT.md",
-                  "prefix": "MATH",
                   "sequence": [f"MATH0{i}" for i in range(1,7)],
               },
               "python": {
                   "archive": repo/"prompt-archives/python-pack.zip",
                   "root": "",
                   "master": "PYTHON_MASTER_PROMPT.md",
-                  "prefix": "PYTHON",
                   "sequence": [f"PYTHON0{i}" for i in range(1,7)],
               },
               "algorithms": {
                   "archive": repo/"prompt-archives/algorithms-pack.zip",
                   "root": "ALGORITHMS_PROMPT_SYSTEM/",
                   "master": "ALG_MASTER_PROMPT.md",
-                  "prefix": "ALG",
                   "sequence": [f"ALG0{i}" for i in range(1,7)],
               },
               "russian": {
                   "archive": repo/"prompt-archives/russian-pack.zip",
                   "root": "RUSSIAN_PROMPT_SYSTEM/",
                   "master": "RUSSIAN_MASTER_PROMPT.md",
-                  "prefix": "RU",
                   "sequence": [f"RU0{i}" for i in range(1,9)],
               },
           }
 
           replacements = {
-              "GLOBAL_CONSTITUTIONS/C1_EXTENSIBLE_PLATFORM_ARCHITECTURE.txt":
-                  "prompts/CONSTITUTION.md#c1--extensible-platform-architecture",
-              "GLOBAL_CONSTITUTIONS/C2_FUTURE_PROFESSIONAL_UI_UX.txt":
-                  "prompts/CONSTITUTION.md#c2--future-professional-uiux",
-              "GLOBAL_CONSTITUTIONS/C3_PROFESSIONAL_QA_AUTO_FIX.txt":
-                  "prompts/CONSTITUTION.md#c3--professional-qa--auto-fix",
-              "GLOBAL_CONSTITUTIONS/C4_REAL_LEARNING_OUTCOME_SYSTEM.txt":
-                  "prompts/CONSTITUTION.md#c4--real-learning--outcome-system",
-              "GLOBAL_CONSTITUTIONS/C3_RELEASE_ANNEX_SHARED.md":
-                  "prompts/CONSTITUTION.md#c3-release-annex",
-              "GLOBAL_CONSTITUTIONS/C3_RELEASE_ANNEX_PRODUCTION.md":
-                  "prompts/CONSTITUTION.md#c3-release-annex",
+              "GLOBAL_CONSTITUTIONS/C1_EXTENSIBLE_PLATFORM_ARCHITECTURE.txt": "prompts/CONSTITUTION.md#c1--extensible-platform-architecture",
+              "GLOBAL_CONSTITUTIONS/C2_FUTURE_PROFESSIONAL_UI_UX.txt": "prompts/CONSTITUTION.md#c2--future-professional-uiux",
+              "GLOBAL_CONSTITUTIONS/C3_PROFESSIONAL_QA_AUTO_FIX.txt": "prompts/CONSTITUTION.md#c3--professional-qa--auto-fix",
+              "GLOBAL_CONSTITUTIONS/C4_REAL_LEARNING_OUTCOME_SYSTEM.txt": "prompts/CONSTITUTION.md#c4--real-learning--outcome-system",
+              "GLOBAL_CONSTITUTIONS/C3_RELEASE_ANNEX_SHARED.md": "prompts/CONSTITUTION.md#c3-release-annex",
+              "GLOBAL_CONSTITUTIONS/C3_RELEASE_ANNEX_PRODUCTION.md": "prompts/CONSTITUTION.md#c3-release-annex",
           }
 
           for subject, cfg in mappings.items():
               archive = cfg["archive"]
               if not archive.exists():
                   raise SystemExit(f"Missing archive: {archive}")
-
               dest = repo/"prompts/subjects"/subject
               dest.mkdir(parents=True, exist_ok=True)
 
-              # Preserve PROJECT_STATE when it already contains real execution evidence.
               preserved_state = None
               state_path = dest/"PROJECT_STATE.json"
               if state_path.exists():
                   try:
-                      current = json.loads(state_path.read_text(encoding="utf-8"))
-                      if current.get("completedModules") or current.get("evidence") or current.get("lastValidatedSha"):
-                          preserved_state = current
+                      current_state = json.loads(state_path.read_text(encoding="utf-8"))
+                      if current_state.get("completedModules") or current_state.get("evidence") or current_state.get("lastValidatedSha"):
+                          preserved_state = current_state
                   except Exception:
                       pass
 
               with zipfile.ZipFile(archive) as z:
                   for info in z.infolist():
-                      name = info.filename
                       if info.is_dir():
                           continue
-                      rel = name
+                      rel = info.filename
                       root = cfg["root"]
                       if root:
                           if not rel.startswith(root):
                               continue
                           rel = rel[len(root):]
                       if not rel or "/" in rel:
-                          # Do not import mirrored GLOBAL_CONSTITUTIONS or legacy SOURCE_ARCHIVE.
                           continue
                       if Path(rel).suffix.lower() not in {".md", ".json", ".txt"}:
                           continue
@@ -119,31 +105,33 @@ jobs:
                       )
                       (dest/rel).write_text(raw, encoding="utf-8")
 
-              chat = f"""# CHAT START — {subject.upper()}
-
-Use this subject system in a normal ChatGPT chat, Codex, Work, or another execution surface.
-
-## Authority order
-1. `.blueprint/constitution-adoption.json` when repository access exists.
-2. `prompts/CONSTITUTION.md`.
-3. `{cfg['master']}`.
-4. `PROJECT_STATE.json`.
-5. The active module prompt only.
-6. Current diff/evidence only when repository execution is requested.
-
-## Normal chat mode
-For discussion, study design, review, planning, content architecture, prompt refinement, or other work that does not require repository edits, do not require Codex. Read the shared Constitution + Master Prompt + current state + active module and work directly in the chat.
-
-## Repository execution mode
-For repository edits, tests, merge, or publish: use the same authority chain, inspect current HEAD and only impacted owners/files, then execute with evidence.
-
-## Token rule
-Do not load the whole repository or every subject prompt by default. Load only the shared Constitution, this subject Master Prompt, PROJECT_STATE, the active module, and impacted evidence/files.
-
-## Continuation rule
-At the end of meaningful work, update `PROJECT_STATE.json`. Chat history is supplementary, not the durable source of project state.
-"""
-              (dest/"CHAT_START.md").write_text(chat, encoding="utf-8")
+              chat_lines = [
+                  f"# CHAT START — {subject.upper()}",
+                  "",
+                  "Use this subject system in a normal ChatGPT chat, Codex, Work, or another execution surface.",
+                  "",
+                  "## Authority order",
+                  "1. `.blueprint/constitution-adoption.json` when repository access exists.",
+                  "2. `prompts/CONSTITUTION.md`.",
+                  f"3. `{cfg['master']}`.",
+                  "4. `PROJECT_STATE.json`.",
+                  "5. The active module prompt only.",
+                  "6. Current diff/evidence only when repository execution is requested.",
+                  "",
+                  "## Normal chat mode",
+                  "For discussion, study design, review, planning, content architecture, prompt refinement, or other work that does not require repository edits, do not require Codex. Read the shared Constitution + Master Prompt + current state + active module and work directly in the chat.",
+                  "",
+                  "## Repository execution mode",
+                  "For repository edits, tests, merge, or publish: use the same authority chain, inspect current HEAD and only impacted owners/files, then execute with evidence.",
+                  "",
+                  "## Token rule",
+                  "Do not load the whole repository or every subject prompt by default. Load only the shared Constitution, this subject Master Prompt, PROJECT_STATE, the active module, and impacted evidence/files.",
+                  "",
+                  "## Continuation rule",
+                  "At the end of meaningful work, update `PROJECT_STATE.json`. Chat history is supplementary, not the durable source of project state.",
+                  "",
+              ]
+              (dest/"CHAT_START.md").write_text("\n".join(chat_lines), encoding="utf-8")
 
               state = preserved_state or {
                   "schemaVersion": "1.0.0",
@@ -159,37 +147,35 @@ At the end of meaningful work, update `PROJECT_STATE.json`. Chat history is supp
                   "currentHeadSha": None,
                   "evidence": [],
                   "blockers": [],
-                  "nextAction": f"Run {cfg['sequence'][0]} against the current repository state and update this state with evidence."
+                  "nextAction": f"Run {cfg['sequence'][0]} against the current repository state and update this state with evidence.",
               }
               state_path.write_text(json.dumps(state, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
 
-              original = ""
-              if (dest/"00_README.md").exists():
-                  original = (dest/"00_README.md").read_text(encoding="utf-8")
-              canonical = f"""# {subject.upper()} PROMPT SYSTEM — CANONICAL REPO FORM
+              source_readme = (dest/"00_README.md").read_text(encoding="utf-8") if (dest/"00_README.md").exists() else ""
+              canonical_lines = [
+                  f"# {subject.upper()} PROMPT SYSTEM — CANONICAL REPO FORM",
+                  "",
+                  f"This directory is the extracted and normalized active prompt system for **{subject}**.",
+                  "",
+                  "It is intended for both ordinary ChatGPT chat sessions and repository execution.",
+                  "",
+                  "Shared Constitution: `prompts/CONSTITUTION.md`",
+                  "",
+                  "Start a normal chat with `CHAT_START.md`.",
+                  f"Start execution with `{cfg['master']}` + `PROJECT_STATE.json` + the active module.",
+                  "",
+                  "The source ZIP remains under `prompt-archives/` for provenance/recovery.",
+                  "Mirrored `GLOBAL_CONSTITUTIONS/` and legacy archives are intentionally not duplicated here.",
+                  "All C1–C4 authority comes from the single shared `prompts/CONSTITUTION.md`.",
+                  "",
+                  "---",
+                  "",
+                  "## Source package README with normalized references",
+                  "",
+                  source_readme,
+              ]
+              (dest/"README.md").write_text("\n".join(canonical_lines), encoding="utf-8")
 
-This directory is the extracted and normalized active prompt system for **{subject}**.
-
-It is intended for both ordinary ChatGPT chat sessions and repository execution.
-
-Shared Constitution: `prompts/CONSTITUTION.md`
-
-Start a normal chat with `CHAT_START.md`.
-Start execution with `{cfg['master']}` + `PROJECT_STATE.json` + the active module.
-
-The source ZIP remains under `prompt-archives/` for provenance/recovery.
-Mirrored `GLOBAL_CONSTITUTIONS/` and legacy archives are intentionally not duplicated here.
-All C1–C4 authority comes from the single shared `prompts/CONSTITUTION.md`.
-
----
-
-## Source package README with normalized references
-
-{original}
-"""
-              (dest/"README.md").write_text(canonical, encoding="utf-8")
-
-          # Rebuild registry from current canonical locations.
           registry_path = repo/"prompts/PROMPT_REGISTRY.json"
           registry = json.loads(registry_path.read_text(encoding="utf-8"))
           by_id = {d.get("id"): d for d in registry.get("domains", [])}
@@ -217,24 +203,24 @@ All C1–C4 authority comes from the single shared `prompts/CONSTITUTION.md`.
           python - <<'PY'
           from pathlib import Path
           import json
-          root=Path("prompts/subjects")
-          expected={
-            "math":("MATH_MASTER_PROMPT.md",6),
-            "python":("PYTHON_MASTER_PROMPT.md",6),
-            "algorithms":("ALG_MASTER_PROMPT.md",6),
-            "russian":("RUSSIAN_MASTER_PROMPT.md",8),
+          root = Path("prompts/subjects")
+          expected = {
+              "math": ("MATH_MASTER_PROMPT.md", 6),
+              "python": ("PYTHON_MASTER_PROMPT.md", 6),
+              "algorithms": ("ALG_MASTER_PROMPT.md", 6),
+              "russian": ("RUSSIAN_MASTER_PROMPT.md", 8),
           }
-          for sid,(master,n) in expected.items():
-              d=root/sid
+          for sid, (master, n) in expected.items():
+              d = root/sid
               assert (d/"README.md").exists(), sid
               assert (d/"CHAT_START.md").exists(), sid
               assert (d/master).exists(), sid
-              st=json.loads((d/"PROJECT_STATE.json").read_text())
-              assert len(st["sequence"])==n, (sid, st["sequence"])
+              st = json.loads((d/"PROJECT_STATE.json").read_text(encoding="utf-8"))
+              assert len(st["sequence"]) == n, (sid, st["sequence"])
               for p in d.iterdir():
-                  if p.is_file() and p.suffix in {".md",".json",".txt"}:
-                      s=p.read_text(encoding="utf-8")
-                      assert "GLOBAL_CONSTITUTIONS/" not in s, (sid,p)
+                  if p.is_file() and p.suffix in {".md", ".json", ".txt"}:
+                      s = p.read_text(encoding="utf-8")
+                      assert "GLOBAL_CONSTITUTIONS/" not in s, (sid, p)
           print("NORMALIZED_PROMPT_SYSTEMS_PASS")
           PY
 
