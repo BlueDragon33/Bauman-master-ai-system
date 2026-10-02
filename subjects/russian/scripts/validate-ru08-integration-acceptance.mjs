@@ -10,12 +10,21 @@ const acceptance=j('subjects/russian/docs/ru08/RUSSIAN_RU08_ACCEPTANCE_MATRIX.js
 const rc=j('subjects/russian/docs/ru08/RUSSIAN_RU08_RC_READINESS.json');
 const reviewStore=fs.readFileSync('control-service/src/content-review-store.ts','utf8');
 const migration=fs.readFileSync('control-service/migrations/0004_content_review.sql','utf8');
+const editor=fs.readFileSync('subjects/russian/editor.html','utf8');
+const authorWorkspace=fs.readFileSync('subjects/russian/assets/author-workspace.js','utf8');
 
 assert.equal(manifest.schema,'SUBJECT_MODULE_V2');
 assert.equal(manifest.id,'russian');
 assert.equal(manifest.architecture?.authoringGovernance,'subjects/russian/data/authoring-governance.json');
 assert.equal(manifest.authoring?.ordinaryAuthorMode,'schema-aware-fields-not-raw-json-by-default');
 assert.equal(manifest.authoring?.controlReviewStorage,'metadata-only');
+assert.equal(manifest.authoring?.workspace,'subjects/russian/editor.html');
+assert.equal(manifest.authoring?.workspaceMode,'structured-candidate-staging');
+assert.equal(manifest.authoring?.browserCanonicalWrite,false);
+assert.match(editor,/id="candidateForm"/);
+assert.doesNotMatch(editor,/storageItemJson/,'ordinary author workspace must not default to raw JSON');
+assert.match(authorWorkspace,/canonicalWrite:false/);
+assert.match(authorWorkspace,/metadataOnly:true/);
 assert.equal(manifest.compatibility?.destructiveMigration,false);
 for(const id of ['provenance','technical-concepts','academic-functions','reading','performance-tasks','scenario-registry','ai-mentor-policy']){
   assert((manifest.dataFiles||[]).some(x=>x.id===id),'manifest missing current dataset '+id);
@@ -56,6 +65,8 @@ for(const k of ['beginner','survival','university','technical','research','autho
 assert(acceptance.failureMatrix.length>=17,'failure matrix incomplete');
 assert(['CANDIDATE','READY_FOR_MERGE'].includes(rc.state),'invalid RU08 RC readiness state');
 assert.match(rc.releaseAnnex,/C3_RELEASE_ANNEX_PRODUCTION/);
+assert.match(rc.releaseClosureRule,/observation/i);
+assert.match(rc.rollbackTarget,/live pre-deploy production/i);
 
 for(const phase of ['ru02','ru03','ru04','ru05','ru06','ru07']){
  const p='subjects/russian/docs/'+phase+'/RUSSIAN_'+phase.toUpperCase()+'_PHASE_RECORD.md';
