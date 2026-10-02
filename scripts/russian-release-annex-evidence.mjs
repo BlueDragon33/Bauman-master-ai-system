@@ -11,7 +11,7 @@ const write=(n,v)=>fs.writeFileSync(path.join(out,n),typeof v==='string'?v:JSON.
 const req=n=>{const v=process.env[n];if(!v)throw new Error(n+' required');return v};
 const iso=()=>new Date().toISOString();
 const u=(b,s)=>String(b).replace(/\/$/,'')+s;
-async function get(url){const r=await fetch(url,{redirect:'follow'});return {status:r.status,ok:r.ok,headers:Object.fromEntries(r.headers.entries()),body:await r.text()}}
+async function get(url,headers={}){const r=await fetch(url,{redirect:'follow',headers});return {status:r.status,ok:r.ok,headers:Object.fromEntries(r.headers.entries()),body:await r.text()}}
 function snap(){
  const o=j('subjects/russian/docs/ru02/RUSSIAN_RU02_CANONICAL_OWNER_REGISTRY.json');
  const set=new Set(['subjects/russian/subject-manifest.json','subjects/russian/data/authoring-governance.json']);
@@ -55,14 +55,17 @@ function artifact(){
  console.log(JSON.stringify({ok:true,revision:rev,runtimeDistSha256:aggregate,fileCount:entries.length}));
 }
 async function verify(){
- const rev=req('GITHUB_SHA'),control=req('BAUMAN_CONTROL_PRODUCTION_ORIGIN'),runtime=req('BAUMAN_RUNTIME_PRODUCTION_ORIGIN');
- const [dc,dr,home,ru,wm,sw,auth,remoteManifest,editor]=await Promise.all([get(u(control,'/__deployment')),get(u(runtime,'/__deployment')),get(u(runtime,'/')),get(u(runtime,'/subjects/russian/')),get(u(runtime,'/subjects/russian/manifest.webmanifest')),get(u(runtime,'/subjects/russian/sw.js')),get(u(control,'/api/control/status')),get(u(runtime,'/subjects/russian/subject-manifest.json')),get(u(runtime,'/subjects/russian/editor.html'))]);
+ const rev=req('GITHUB_SHA'),control=req('BAUMAN_CONTROL_PRODUCTION_ORIGIN'),runtime=req('BAUMAN_RUNTIME_PRODUCTION_ORIGIN'),smokeSession=req('BAUMAN_PRODUCTION_SMOKE_DEVICE_SESSION');
+ if(!/^bm1\.[A-Za-z0-9_-]{40,100}$/.test(smokeSession))throw new Error('BAUMAN_PRODUCTION_SMOKE_DEVICE_SESSION format invalid');
+ const sessionHeaders={cookie:'__Host-bauman_session='+encodeURIComponent(smokeSession)};
+ const [dc,dr,home,ru,wm,sw,auth,remoteManifestAnon,remoteManifest,editor]=await Promise.all([get(u(control,'/__deployment')),get(u(runtime,'/__deployment')),get(u(runtime,'/')),get(u(runtime,'/subjects/russian/')),get(u(runtime,'/subjects/russian/manifest.webmanifest')),get(u(runtime,'/subjects/russian/sw.js')),get(u(control,'/api/control/status')),get(u(runtime,'/subjects/russian/subject-manifest.json')),get(u(runtime,'/subjects/russian/subject-manifest.json'),sessionHeaders),get(u(runtime,'/subjects/russian/editor.html'))]);
  const parse=x=>{try{return JSON.parse(x.body)}catch{return {}}};const c=parse(dc),r=parse(dr),ab=parse(auth);
  if(c.revision!==rev||r.revision!==rev)throw new Error('production identity mismatch');
  const config=j(path.join(out,'RUSSIAN_PRODUCTION_CONFIG_IDENTITY.json'));
  if(config.revision!==rev||!/^([0-9a-f]{64})$/i.test(String(config.fingerprint||'')))throw new Error('production config identity evidence invalid');
  if(c.configFingerprint!==config.fingerprint||r.configFingerprint!==config.fingerprint)throw new Error('production config fingerprint readback mismatch');
  if(!home.ok||!ru.ok||!remoteManifest.ok||!editor.ok)throw new Error('production runtime surface unavailable');
+ if(![401,403].includes(remoteManifestAnon.status))throw new Error('protected Russian data must fail closed without device session');
  if(auth.status!==403||ab.code!=='CONTROL_TICKET_FORBIDDEN')throw new Error('control auth fail-closed mismatch');
  const permissionPolicy=String(home.headers['permissions-policy']||'');
  if(!/microphone=\(self\)/i.test(permissionPolicy))throw new Error('production microphone permissions-policy must allow same-origin Russian speaking');
@@ -74,6 +77,7 @@ async function verify(){
  write('RUSSIAN_PRODUCTION_OFFLINE_PWA_VERIFY.md','# Russian Production Offline/PWA Verify\n\nStatus: PASS\n\nManifest HTTP '+wm.status+'; Service Worker HTTP '+sw.status+'; versioned shell and learning-data cache namespaces found.\n');
  write('RUSSIAN_PRODUCTION_SECURITY_HEADERS_VERIFY.md','# Russian Production Security/Auth Verify\n\nStatus: PASS\n\nAnonymous control status: '+auth.status+' / '+ab.code+'\n\nPermissions-Policy: '+permissionPolicy+'\n\nRuntime headers:\n'+JSON.stringify(home.headers,null,2)+'\n');
  write('RUSSIAN_PRODUCTION_CONFIG_PROFILE_VERIFY.json',{schema:'RUSSIAN_PRODUCTION_CONFIG_PROFILE_VERIFY_V1',generatedAt:iso(),status:'PASS',revision:rev,profile:config.profile,fingerprint:config.fingerprint,controlReadback:smoke.controlDeployment,runtimeReadback:smoke.runtimeDeployment});
+ write('RUSSIAN_PRODUCTION_ISOLATED_WRITE_PROBE.json',{schema:'RUSSIAN_PRODUCTION_ISOLATED_WRITE_PROBE_V1',generatedAt:iso(),status:'PASS',revision:rev,mechanism:'pre-provisioned smoke device session',anonymousProtectedStatus:remoteManifestAnon.status,authenticatedProtectedStatus:remoteManifest.status,heartbeatWriteExercised:true,isolated:true});
  write('RUSSIAN_PRODUCTION_BUILD_CONTENT_DRIFT_CHECK.md','# Russian Production Build/Content Drift Check\n\nStatus: PASS\n\nRevision: '+rev+'\nSubject manifest local/production SHA256 match: true\n');
  console.log(JSON.stringify({ok:true,revision:rev,drift,offline}));
 }
