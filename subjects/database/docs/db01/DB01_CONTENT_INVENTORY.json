@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "1.0.0",
+  "baselineSha": "066ef7ce03be4e30f01fd69ae66a1cd859711226",
+  "dedicatedDatabaseSubjectRuntime": false,
+  "sources": [
+    {
+      "id": "p06-database-fundamentals",
+      "path": "assets/data/prerequisite-packs/p06-database-fundamentals.json",
+      "role": "diagnostic_and_repair_blueprint",
+      "nodeCount": 11,
+      "diagnosticCounts": {
+        "D0": 18,
+        "D1": 12,
+        "D2": 8
+      },
+      "criticalMisconceptions": 11,
+      "repairRoutes": 8,
+      "officialTargets": [
+        "d06",
+        "d10",
+        "d13"
+      ],
+      "practicePlatform": {
+        "recommended": "PostgreSQL",
+        "officialRequirement": false
+      }
+    },
+    {
+      "id": "programming-pr06",
+      "path": "subjects/programming/data/lessons.json",
+      "lessonId": "PR06",
+      "coverage": [
+        "relational model basics",
+        "PK/FK",
+        "SELECT/WHERE"
+      ]
+    },
+    {
+      "id": "programming-pr15",
+      "path": "subjects/programming/data/lessons.json",
+      "lessonId": "PR15",
+      "coverage": [
+        "JOIN",
+        "GROUP BY",
+        "basic CREATE INDEX"
+      ]
+    }
+  ],
+  "exercises": [
+    "ex_PR06_easy",
+    "ex_PR06_medium",
+    "ex_PR06_hard",
+    "ex_PR15_easy",
+    "ex_PR15_medium",
+    "ex_PR15_hard"
+  ],
+  "currentStrengths": [
+    "explicit P6 scope guard",
+    "reuses PR06/PR15 rather than duplicating them",
+    "covers relational algebra, normalization, ACID, isolation, indexes, planner and EXPLAIN conceptually",
+    "contains critical misconception and targeted repair routes"
+  ],
+  "currentGaps": [
+    "no dedicated learner DB runtime",
+    "no executable learner SQL fixture set",
+    "no DB-specific semantic SQL grader",
+    "no learner transaction/concurrency runtime",
+    "no real query-plan/EXPLAIN integration",
+    "no DB-specific schema/seed authoring contract"
+  ]
+}

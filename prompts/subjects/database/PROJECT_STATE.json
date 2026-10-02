@@ -7,8 +7,8 @@
   "router": "prompts/subjects/database/DB_CONSTITUTION_ROUTER.json",
   "sourceArchive": "prompt-archives/database.zip",
   "promptArchitectureStatus": "COMPLETE",
-  "repositoryExecutionStatus": "NOT_STARTED_OR_NEEDS_RECONCILIATION",
-  "status": "READY_FOR_BASELINE_RECONCILIATION",
+  "repositoryExecutionStatus": "IN_PROGRESS",
+  "status": "DB01_PASS_DB02_READY",
   "sequence": [
     "DB01",
     "DB02",
@@ -17,12 +17,26 @@
     "DB05",
     "DB06"
   ],
-  "completedModules": [],
+  "completedModules": [
+    "DB01"
+  ],
   "needsRevalidation": [],
-  "activeModule": "DB01",
-  "lastCompletedModule": null,
-  "validatedSha": null,
-  "evidence": [],
+  "activeModule": "DB02",
+  "lastCompletedModule": "DB01",
+  "validatedSha": "066ef7ce03be4e30f01fd69ae66a1cd859711226",
+  "evidence": [
+    "subjects/database/docs/db01/DB01_EXECUTIVE_SUMMARY.md",
+    "subjects/database/docs/db01/DB01_REPOSITORY_MAP.md",
+    "subjects/database/docs/db01/DB01_CONTENT_INVENTORY.json",
+    "subjects/database/docs/db01/DB01_ENGINE_CONNECTION_INVENTORY.json",
+    "subjects/database/docs/db01/DB01_SCHEMA_DATASET_INVENTORY.json",
+    "subjects/database/docs/db01/DB01_GRADER_AUDIT.md",
+    "subjects/database/docs/db01/DB01_SECURITY_AUDIT.md",
+    "subjects/database/docs/db01/DB01_DUPLICATE_OWNER_MAP.md",
+    "subjects/database/docs/db01/DB01_LEGACY_REGISTER.json",
+    "subjects/database/docs/db01/DB01_RISK_REGISTER.json",
+    "subjects/database/docs/db01/DB02_INPUT_CONTRACT.md"
+  ],
   "blockers": [],
-  "nextAction": "Run DB01 against current repository reality before canonical implementation work."
+  "nextAction": "Run DB02 using DB02_INPUT_CONTRACT.md and current repository evidence; do not implement DB04 runtime capabilities early."
 }

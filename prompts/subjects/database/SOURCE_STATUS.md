@@ -1,29 +1,20 @@
-# DATABASE SYSTEMS & SQL PROMPT SYSTEM STATUS
+# Database Systems & SQL — SOURCE STATUS
 
-| Module | Prompt status | Repository execution status |
-|---|---|---|
-| DB00 | COMPLETE | READY |
-| DB01 | COMPLETE / READY TO EXECUTE | NOT_STARTED |
-| DB02 | COMPLETE / READY after DB01 evidence | NOT_STARTED |
-| DB03 | COMPLETE / READY after DB02 | NOT_STARTED |
-| DB04 | COMPLETE / READY after DB02/DB03 | NOT_STARTED |
-| DB05 | COMPLETE / READY after DB02–DB04 | NOT_STARTED |
-| DB06 | COMPLETE / READY after product integration | NOT_STARTED |
+Prompt architecture source is normalized and canonical under `prompts/subjects/database/`.
 
-## Architecture
+Repository execution status: **IN_PROGRESS**
 
-`DATABASE & SQL PROMPT ARCHITECTURE: COMPLETE`
+- DB01 — **PASS**
+- DB02 — **ACTIVE / READY**
+- DB03 — NOT_STARTED
+- DB04 — NOT_STARTED
+- DB05 — NOT_STARTED
+- DB06 — NOT_STARTED
 
-## Execution
+DB01 baseline SHA: `066ef7ce03be4e30f01fd69ae66a1cd859711226`
 
-Follow only:
+DB01 evidence:
+`subjects/database/docs/db01/`
 
-`00_README.md`
-
-The README is the canonical execution runbook.
-
-## Next action
-
-Run DB01 against current main.
-
-Do not bulk-generate the Database curriculum before DB01 has produced evidence.
+Next action:
+run DB02 from the DB01 input contract, preserving the Programming/P6 reuse boundary and the hard separation from control-service D1.

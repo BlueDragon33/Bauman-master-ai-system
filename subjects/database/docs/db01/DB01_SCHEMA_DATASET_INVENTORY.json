@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "1.0.0",
+  "baselineSha": "066ef7ce03be4e30f01fd69ae66a1cd859711226",
+  "learnerSchemas": [],
+  "learnerSeedDatasets": [],
+  "learnerMigrations": [],
+  "conceptualExamples": [
+    {
+      "source": "assets/data/prerequisite-packs/p06-database-fundamentals.json",
+      "examples": [
+        "Student/Class key constraints",
+        "Enrollment normalization",
+        "experiment-run-metric workload"
+      ]
+    }
+  ],
+  "applicationSchemas": [
+    {
+      "root": "control-service/migrations/",
+      "files": [
+        "0001_device_control.sql",
+        "0002_automation_policy.sql",
+        "0003_device_metadata_contract.sql",
+        "0004_content_review.sql"
+      ],
+      "classification": "APPLICATION_BACKEND_ONLY",
+      "allowedForLearnerSql": false
+    }
+  ],
+  "conclusion": "No canonical learner schema-fixture/migration owner is currently proven. DB02/DB04 must define one without reusing application D1."
+}
