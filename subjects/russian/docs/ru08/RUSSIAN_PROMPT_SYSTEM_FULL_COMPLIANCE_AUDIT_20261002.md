@@ -161,6 +161,24 @@ Correction:
 - release artifact evidence fingerprints `runtime-dist`, the Control Worker dry-run bundle and the Learning Runtime dry-run bundle;
 - the aggregate identity is written back into the RC manifest.
 
+### F13 — Native browser validation bypassed governed RU08 negative-validation evidence — HIGH
+
+The structured author workspace rendered schema-required fields with native HTML `required`. That caused the browser to block form submission before the Russian governed validator could materialize a DRAFT candidate and emit explicit validation evidence.
+
+Correction:
+- schema-required fields remain visibly/semantically required through labels and `aria-required=true`;
+- the governed validator, not native form blocking, owns candidate validation state;
+- the RU08 author browser journey now proves both negative DRAFT and positive VALIDATED/REVIEW_REQUESTED transitions.
+
+### F14 — RU08 project state and RC readiness could contradict each other — HIGH
+
+The durable project state correctly remained `RU08_VALIDATING`, while the RC readiness record could already say `READY_FOR_MERGE`. That allowed a premature readiness label before exact-head CI/browser evidence completed.
+
+Correction:
+- RC readiness remains `VALIDATING` while the project is validating;
+- `validate-prompt-project-state.mjs` cross-checks project state against RC state;
+- RU08 PASS requires the RC record to be `READY_FOR_MERGE`, and that transition must itself be revalidated on the new exact head.
+
 ## Previously encountered errors rechecked
 
 1. **Stale P3 planned-owner conflict for reading** — previous correction remains appropriate because current RU02 owner status is the active authority; no old-topology validator may overrule a materialized current owner.
