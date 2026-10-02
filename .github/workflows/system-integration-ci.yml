@@ -9,7 +9,8 @@ on:
       - "subjects/russian/**"
       - "subjects/shared/**"
       - "foundation/domain-model/**"
-      - "tests/math-*.mjs"\n      - "tests/russian-*.mjs"
+      - "tests/math-*.mjs"
+      - "tests/russian-*.mjs"
       - "scripts/prepare-chatgpt-site.mjs"
       - "scripts/prepare-cloudflare-preview.mjs"
       - ".github/workflows/system-integration-ci.yml"
@@ -126,7 +127,8 @@ jobs:
           node-version: "22.13.0"
       - name: Install Playwright Chromium for Russian P1
         run: |
-          printf '{"private":true,"type":"module"}\n' > package.json
+          printf '{"private":true,"type":"module"}
+' > package.json
           npm install --no-save --no-audit --no-fund playwright@1.55.0
           npx playwright install --with-deps chromium
           node --check tests/russian-p1-forensic-browser.mjs
@@ -295,7 +297,8 @@ jobs:
           node-version: "22.13.0"
       - name: Install Playwright Chromium
         run: |
-          printf '{"private":true,"type":"module"}\n' > package.json
+          printf '{"private":true,"type":"module"}
+' > package.json
           npm install --no-save --no-audit --no-fund playwright@1.55.0
           npx playwright install --with-deps chromium
       - name: Start local runtime
