@@ -1,0 +1,1 @@
+window.SUBJECT_CONFIG={"id":"foreign-language","title":"Иностранный язык","short":"Academic Foreign Language","icon":"Aa","tagline":"Kỹ năng ngoại ngữ học thuật trung lập ngôn ngữ; chờ xác nhận ngôn ngữ thực tế.","formulaLabel":"Mẫu / Checklist"};

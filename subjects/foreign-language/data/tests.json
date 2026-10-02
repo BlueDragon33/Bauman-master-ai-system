@@ -1,0 +1,622 @@
+{
+  "rules": {
+    "easy": {
+      "questions": 20,
+      "unlockScore": 8
+    },
+    "medium": {
+      "questions": 30,
+      "unlockScore": 8
+    },
+    "hard": {
+      "questions": 40,
+      "unlockScore": 8
+    },
+    "excellent": {
+      "questions": 40,
+      "unlockScore": 8
+    }
+  },
+  "questions": [
+    {
+      "id": "fl_q0_0",
+      "moduleId": "fl_m101",
+      "stage": "m1",
+      "difficulty": "easy",
+      "prompt": "Ghi chú bài giảng nên ưu tiên gì?",
+      "options": [
+        "Ý chính và evidence",
+        "Chép mọi từ",
+        "Màu slide",
+        "Tên file"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m101_l1"
+    },
+    {
+      "id": "fl_q0_1",
+      "moduleId": "fl_m102",
+      "stage": "m1",
+      "difficulty": "medium",
+      "prompt": "Glossary tốt nên chứa gì?",
+      "options": [
+        "Thuật ngữ + nghĩa + ngữ cảnh",
+        "Chỉ từ đơn",
+        "Chỉ phát âm",
+        "Chỉ màu"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m102_l1"
+    },
+    {
+      "id": "fl_q0_2",
+      "moduleId": "fl_m201",
+      "stage": "m2",
+      "difficulty": "hard",
+      "prompt": "Presentation ngắn nên có gì?",
+      "options": [
+        "Mở–ý chính–kết",
+        "Chỉ đọc slide",
+        "Không Q&A",
+        "Không ví dụ"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m201_l1"
+    },
+    {
+      "id": "fl_q0_3",
+      "moduleId": "fl_m202",
+      "stage": "m2",
+      "difficulty": "excellent",
+      "prompt": "Tóm tắt học thuật nên làm gì?",
+      "options": [
+        "Giữ luận điểm chính và bằng chứng",
+        "Thêm ý mới",
+        "Bỏ nguồn",
+        "Chép nguyên văn"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m202_l1"
+    },
+    {
+      "id": "fl_q1_0",
+      "moduleId": "fl_m101",
+      "stage": "m1",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 2] Ghi chú bài giảng nên ưu tiên gì?",
+      "options": [
+        "Ý chính và evidence",
+        "Chép mọi từ",
+        "Màu slide",
+        "Tên file"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m101_l1"
+    },
+    {
+      "id": "fl_q1_1",
+      "moduleId": "fl_m102",
+      "stage": "m1",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 2] Glossary tốt nên chứa gì?",
+      "options": [
+        "Thuật ngữ + nghĩa + ngữ cảnh",
+        "Chỉ từ đơn",
+        "Chỉ phát âm",
+        "Chỉ màu"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m102_l1"
+    },
+    {
+      "id": "fl_q1_2",
+      "moduleId": "fl_m201",
+      "stage": "m2",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 2] Presentation ngắn nên có gì?",
+      "options": [
+        "Mở–ý chính–kết",
+        "Chỉ đọc slide",
+        "Không Q&A",
+        "Không ví dụ"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m201_l1"
+    },
+    {
+      "id": "fl_q1_3",
+      "moduleId": "fl_m202",
+      "stage": "m2",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 2] Tóm tắt học thuật nên làm gì?",
+      "options": [
+        "Giữ luận điểm chính và bằng chứng",
+        "Thêm ý mới",
+        "Bỏ nguồn",
+        "Chép nguyên văn"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m202_l1"
+    },
+    {
+      "id": "fl_q2_0",
+      "moduleId": "fl_m101",
+      "stage": "m1",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 3] Ghi chú bài giảng nên ưu tiên gì?",
+      "options": [
+        "Ý chính và evidence",
+        "Chép mọi từ",
+        "Màu slide",
+        "Tên file"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m101_l1"
+    },
+    {
+      "id": "fl_q2_1",
+      "moduleId": "fl_m102",
+      "stage": "m1",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 3] Glossary tốt nên chứa gì?",
+      "options": [
+        "Thuật ngữ + nghĩa + ngữ cảnh",
+        "Chỉ từ đơn",
+        "Chỉ phát âm",
+        "Chỉ màu"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m102_l1"
+    },
+    {
+      "id": "fl_q2_2",
+      "moduleId": "fl_m201",
+      "stage": "m2",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 3] Presentation ngắn nên có gì?",
+      "options": [
+        "Mở–ý chính–kết",
+        "Chỉ đọc slide",
+        "Không Q&A",
+        "Không ví dụ"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m201_l1"
+    },
+    {
+      "id": "fl_q2_3",
+      "moduleId": "fl_m202",
+      "stage": "m2",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 3] Tóm tắt học thuật nên làm gì?",
+      "options": [
+        "Giữ luận điểm chính và bằng chứng",
+        "Thêm ý mới",
+        "Bỏ nguồn",
+        "Chép nguyên văn"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m202_l1"
+    },
+    {
+      "id": "fl_q3_0",
+      "moduleId": "fl_m101",
+      "stage": "m1",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 4] Ghi chú bài giảng nên ưu tiên gì?",
+      "options": [
+        "Ý chính và evidence",
+        "Chép mọi từ",
+        "Màu slide",
+        "Tên file"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m101_l1"
+    },
+    {
+      "id": "fl_q3_1",
+      "moduleId": "fl_m102",
+      "stage": "m1",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 4] Glossary tốt nên chứa gì?",
+      "options": [
+        "Thuật ngữ + nghĩa + ngữ cảnh",
+        "Chỉ từ đơn",
+        "Chỉ phát âm",
+        "Chỉ màu"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m102_l1"
+    },
+    {
+      "id": "fl_q3_2",
+      "moduleId": "fl_m201",
+      "stage": "m2",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 4] Presentation ngắn nên có gì?",
+      "options": [
+        "Mở–ý chính–kết",
+        "Chỉ đọc slide",
+        "Không Q&A",
+        "Không ví dụ"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m201_l1"
+    },
+    {
+      "id": "fl_q3_3",
+      "moduleId": "fl_m202",
+      "stage": "m2",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 4] Tóm tắt học thuật nên làm gì?",
+      "options": [
+        "Giữ luận điểm chính và bằng chứng",
+        "Thêm ý mới",
+        "Bỏ nguồn",
+        "Chép nguyên văn"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m202_l1"
+    },
+    {
+      "id": "fl_q4_0",
+      "moduleId": "fl_m101",
+      "stage": "m1",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 5] Ghi chú bài giảng nên ưu tiên gì?",
+      "options": [
+        "Ý chính và evidence",
+        "Chép mọi từ",
+        "Màu slide",
+        "Tên file"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m101_l1"
+    },
+    {
+      "id": "fl_q4_1",
+      "moduleId": "fl_m102",
+      "stage": "m1",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 5] Glossary tốt nên chứa gì?",
+      "options": [
+        "Thuật ngữ + nghĩa + ngữ cảnh",
+        "Chỉ từ đơn",
+        "Chỉ phát âm",
+        "Chỉ màu"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m102_l1"
+    },
+    {
+      "id": "fl_q4_2",
+      "moduleId": "fl_m201",
+      "stage": "m2",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 5] Presentation ngắn nên có gì?",
+      "options": [
+        "Mở–ý chính–kết",
+        "Chỉ đọc slide",
+        "Không Q&A",
+        "Không ví dụ"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m201_l1"
+    },
+    {
+      "id": "fl_q4_3",
+      "moduleId": "fl_m202",
+      "stage": "m2",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 5] Tóm tắt học thuật nên làm gì?",
+      "options": [
+        "Giữ luận điểm chính và bằng chứng",
+        "Thêm ý mới",
+        "Bỏ nguồn",
+        "Chép nguyên văn"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m202_l1"
+    },
+    {
+      "id": "fl_q5_0",
+      "moduleId": "fl_m101",
+      "stage": "m1",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 6] Ghi chú bài giảng nên ưu tiên gì?",
+      "options": [
+        "Ý chính và evidence",
+        "Chép mọi từ",
+        "Màu slide",
+        "Tên file"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m101_l1"
+    },
+    {
+      "id": "fl_q5_1",
+      "moduleId": "fl_m102",
+      "stage": "m1",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 6] Glossary tốt nên chứa gì?",
+      "options": [
+        "Thuật ngữ + nghĩa + ngữ cảnh",
+        "Chỉ từ đơn",
+        "Chỉ phát âm",
+        "Chỉ màu"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m102_l1"
+    },
+    {
+      "id": "fl_q5_2",
+      "moduleId": "fl_m201",
+      "stage": "m2",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 6] Presentation ngắn nên có gì?",
+      "options": [
+        "Mở–ý chính–kết",
+        "Chỉ đọc slide",
+        "Không Q&A",
+        "Không ví dụ"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m201_l1"
+    },
+    {
+      "id": "fl_q5_3",
+      "moduleId": "fl_m202",
+      "stage": "m2",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 6] Tóm tắt học thuật nên làm gì?",
+      "options": [
+        "Giữ luận điểm chính và bằng chứng",
+        "Thêm ý mới",
+        "Bỏ nguồn",
+        "Chép nguyên văn"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m202_l1"
+    },
+    {
+      "id": "fl_q6_0",
+      "moduleId": "fl_m101",
+      "stage": "m1",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 7] Ghi chú bài giảng nên ưu tiên gì?",
+      "options": [
+        "Ý chính và evidence",
+        "Chép mọi từ",
+        "Màu slide",
+        "Tên file"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m101_l1"
+    },
+    {
+      "id": "fl_q6_1",
+      "moduleId": "fl_m102",
+      "stage": "m1",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 7] Glossary tốt nên chứa gì?",
+      "options": [
+        "Thuật ngữ + nghĩa + ngữ cảnh",
+        "Chỉ từ đơn",
+        "Chỉ phát âm",
+        "Chỉ màu"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m102_l1"
+    },
+    {
+      "id": "fl_q6_2",
+      "moduleId": "fl_m201",
+      "stage": "m2",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 7] Presentation ngắn nên có gì?",
+      "options": [
+        "Mở–ý chính–kết",
+        "Chỉ đọc slide",
+        "Không Q&A",
+        "Không ví dụ"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m201_l1"
+    },
+    {
+      "id": "fl_q6_3",
+      "moduleId": "fl_m202",
+      "stage": "m2",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 7] Tóm tắt học thuật nên làm gì?",
+      "options": [
+        "Giữ luận điểm chính và bằng chứng",
+        "Thêm ý mới",
+        "Bỏ nguồn",
+        "Chép nguyên văn"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m202_l1"
+    },
+    {
+      "id": "fl_q7_0",
+      "moduleId": "fl_m101",
+      "stage": "m1",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 8] Ghi chú bài giảng nên ưu tiên gì?",
+      "options": [
+        "Ý chính và evidence",
+        "Chép mọi từ",
+        "Màu slide",
+        "Tên file"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m101_l1"
+    },
+    {
+      "id": "fl_q7_1",
+      "moduleId": "fl_m102",
+      "stage": "m1",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 8] Glossary tốt nên chứa gì?",
+      "options": [
+        "Thuật ngữ + nghĩa + ngữ cảnh",
+        "Chỉ từ đơn",
+        "Chỉ phát âm",
+        "Chỉ màu"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m102_l1"
+    },
+    {
+      "id": "fl_q7_2",
+      "moduleId": "fl_m201",
+      "stage": "m2",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 8] Presentation ngắn nên có gì?",
+      "options": [
+        "Mở–ý chính–kết",
+        "Chỉ đọc slide",
+        "Không Q&A",
+        "Không ví dụ"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m201_l1"
+    },
+    {
+      "id": "fl_q7_3",
+      "moduleId": "fl_m202",
+      "stage": "m2",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 8] Tóm tắt học thuật nên làm gì?",
+      "options": [
+        "Giữ luận điểm chính và bằng chứng",
+        "Thêm ý mới",
+        "Bỏ nguồn",
+        "Chép nguyên văn"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m202_l1"
+    },
+    {
+      "id": "fl_q8_0",
+      "moduleId": "fl_m101",
+      "stage": "m1",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 9] Ghi chú bài giảng nên ưu tiên gì?",
+      "options": [
+        "Ý chính và evidence",
+        "Chép mọi từ",
+        "Màu slide",
+        "Tên file"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m101_l1"
+    },
+    {
+      "id": "fl_q8_1",
+      "moduleId": "fl_m102",
+      "stage": "m1",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 9] Glossary tốt nên chứa gì?",
+      "options": [
+        "Thuật ngữ + nghĩa + ngữ cảnh",
+        "Chỉ từ đơn",
+        "Chỉ phát âm",
+        "Chỉ màu"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m102_l1"
+    },
+    {
+      "id": "fl_q8_2",
+      "moduleId": "fl_m201",
+      "stage": "m2",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 9] Presentation ngắn nên có gì?",
+      "options": [
+        "Mở–ý chính–kết",
+        "Chỉ đọc slide",
+        "Không Q&A",
+        "Không ví dụ"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m201_l1"
+    },
+    {
+      "id": "fl_q8_3",
+      "moduleId": "fl_m202",
+      "stage": "m2",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 9] Tóm tắt học thuật nên làm gì?",
+      "options": [
+        "Giữ luận điểm chính và bằng chứng",
+        "Thêm ý mới",
+        "Bỏ nguồn",
+        "Chép nguyên văn"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m202_l1"
+    },
+    {
+      "id": "fl_q9_0",
+      "moduleId": "fl_m101",
+      "stage": "m1",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 10] Ghi chú bài giảng nên ưu tiên gì?",
+      "options": [
+        "Ý chính và evidence",
+        "Chép mọi từ",
+        "Màu slide",
+        "Tên file"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m101_l1"
+    },
+    {
+      "id": "fl_q9_1",
+      "moduleId": "fl_m102",
+      "stage": "m1",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 10] Glossary tốt nên chứa gì?",
+      "options": [
+        "Thuật ngữ + nghĩa + ngữ cảnh",
+        "Chỉ từ đơn",
+        "Chỉ phát âm",
+        "Chỉ màu"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m102_l1"
+    },
+    {
+      "id": "fl_q9_2",
+      "moduleId": "fl_m201",
+      "stage": "m2",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 10] Presentation ngắn nên có gì?",
+      "options": [
+        "Mở–ý chính–kết",
+        "Chỉ đọc slide",
+        "Không Q&A",
+        "Không ví dụ"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m201_l1"
+    },
+    {
+      "id": "fl_q9_3",
+      "moduleId": "fl_m202",
+      "stage": "m2",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 10] Tóm tắt học thuật nên làm gì?",
+      "options": [
+        "Giữ luận điểm chính và bằng chứng",
+        "Thêm ý mới",
+        "Bỏ nguồn",
+        "Chép nguyên văn"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "fl_m202_l1"
+    }
+  ]
+}
