@@ -1,0 +1,93 @@
+{
+  "meta": {
+    "subjectId": "ergonomics",
+    "title": "Ergonomic Analysis",
+    "version": "simulation-v1",
+    "description": "Mô phỏng tải thông tin, alarm, task metric và redesign HMI."
+  },
+  "observation": [
+    {
+      "id": "erg_obs_density",
+      "stage": "m3",
+      "type": "display density",
+      "title": "Information Density Lab",
+      "goal": "Quan sát task time/error khi mật độ thông tin và hierarchy thay đổi.",
+      "scenario": "Thay đổi số widget, số mức hierarchy và số highlight.",
+      "parameters": [
+        "widget count",
+        "hierarchy levels",
+        "critical highlights",
+        "time pressure"
+      ],
+      "outputs": [
+        "task time",
+        "missed cues",
+        "error count"
+      ]
+    },
+    {
+      "id": "erg_obs_alarm",
+      "stage": "m3",
+      "type": "alarm load",
+      "title": "Alarm Load Lab",
+      "goal": "Quan sát alert detection khi số alarm và priority coding thay đổi.",
+      "scenario": "Tăng alert frequency và tỷ lệ nuisance alarm.",
+      "parameters": [
+        "alarm frequency",
+        "nuisance ratio",
+        "priority levels",
+        "acknowledgement"
+      ],
+      "outputs": [
+        "detection rate",
+        "response time",
+        "missed critical alarm"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "erg_prac_audit",
+      "stage": "m3",
+      "type": "mô phỏng thực hành",
+      "title": "Ergonomic Audit Mission",
+      "mission": "Audit một dashboard theo user–task–context, metric và risk.",
+      "steps": [
+        "chọn task",
+        "ghi evidence",
+        "xếp risk",
+        "đề xuất redesign",
+        "chọn verification metric"
+      ],
+      "rubric": [
+        "traceability",
+        "metric hợp lý",
+        "risk rõ",
+        "trade-off"
+      ],
+      "feedback": "Nếu recommendation không nối được với finding cụ thể, quay lại evidence."
+    },
+    {
+      "id": "erg_prac_recovery",
+      "stage": "m3",
+      "type": "mô phỏng thực hành",
+      "title": "Critical Alarm & Recovery",
+      "mission": "Xử lý chuỗi alert trong một HMI giám sát hệ thống.",
+      "steps": [
+        "detect",
+        "interpret",
+        "prioritize",
+        "act",
+        "confirm",
+        "recover"
+      ],
+      "rubric": [
+        "không bỏ sót critical",
+        "mode awareness",
+        "safe action",
+        "feedback/recovery"
+      ],
+      "feedback": "Nếu nhầm mode hoặc bỏ qua feedback, bổ sung visible state và confirmation."
+    }
+  ]
+}
