@@ -64,7 +64,8 @@ assert.equal(validateCandidate(generated,{requirePromotion:true}).ok,false,'gene
 for(const k of ['beginner','survival','university','technical','research','author'])assert(Array.isArray(acceptance.journeys[k])&&acceptance.journeys[k].length,'missing acceptance journey '+k);
 assert(acceptance.failureMatrix.length>=17,'failure matrix incomplete');
 assert(['CANDIDATE','READY_FOR_MERGE'].includes(rc.state),'invalid RU08 RC readiness state');
-assert.match(rc.releaseAnnex,/C3_RELEASE_ANNEX_PRODUCTION/);
+assert.equal(rc.releaseAnnex,'prompts/constitution/C3_RELEASE_ANNEX_SHARED.md');
+assert(fs.existsSync(rc.releaseAnnex),'canonical shared Release Annex path missing');
 assert.match(rc.releaseClosureRule,/observation/i);
 assert.match(rc.rollbackTarget,/live pre-deploy production/i);
 
