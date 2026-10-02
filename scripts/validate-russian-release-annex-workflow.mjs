@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 const workflow=fs.readFileSync('.github/workflows/deploy-bauman-production.yml','utf8');
 const helper=fs.readFileSync('scripts/russian-release-annex-evidence.mjs','utf8');
 const runtimeWorker=fs.readFileSync('cloudflare/runtime-worker.mjs','utf8');
+const controlDeployment=fs.readFileSync('control-service/src/cloudflare-preview.ts','utf8');
 const controlTemplate=fs.readFileSync('control-service/wrangler.production.example.jsonc','utf8');
 const runtimeTemplate=fs.readFileSync('wrangler.runtime.production.example.jsonc','utf8');
 for(const marker of [
@@ -48,10 +49,18 @@ assert(workflow.includes('BAUMAN_PRODUCTION_SMOKE_DEVICE_SESSION'),'isolated pro
 assert(helper.includes('RUSSIAN_PRODUCTION_ISOLATED_WRITE_PROBE.json'),'isolated production write-probe evidence missing');
 assert(helper.includes('anonymousProtectedStatus')&&helper.includes('authenticatedProtectedStatus'),'production protected-data smoke must prove anonymous fail-closed and authenticated access');
 assert(helper.includes('configFingerprint'),'release helper must verify live production config fingerprint');
+assert(helper.includes('controlSecretConfigured'),'release helper must verify control-secret readiness');
+assert(controlDeployment.includes('controlSecretConfigured'),'control deployment identity must expose non-secret secret readiness');
+assert(controlDeployment.includes('bm_content_reviews')&&controlDeployment.includes('bm_content_review_commands'),'deployment database readiness must cover current Content Review schema');
+assert(workflow.includes('migrationManifestSha256')&&workflow.includes('outputLogSha256'),'migration result must bind exact manifest and execution log');
+assert(helper.includes('migrationManifestSha256!==rc.migrationManifestSha256'),'STABLE closure must reject migration-manifest drift');
+assert(helper.includes('production rollback identity unavailable'),'preflight must block without exact rollback identities');
+assert(workflow.indexOf('Dry-run all production artifacts before any remote mutation')<workflow.indexOf('Record immutable deployment artifact identity'),'artifact identity must be recorded after both dry-run builds');
+assert(helper.includes("control-service/dist-production")&&helper.includes(".wrangler/runtime-production"),'artifact identity must cover both Worker dry-run bundles');
 assert.match(runtimeWorker,/microphone=\(self\)/,'production runtime must permit same-origin microphone for Russian speaking');
 assert.doesNotMatch(runtimeWorker,/microphone=\(\)/,'production runtime must not globally disable microphone');
 assert(controlTemplate.includes('__BAUMAN_CONFIG_FINGERPRINT__'),'control production config fingerprint missing');
 assert(runtimeTemplate.includes('__BAUMAN_CONFIG_FINGERPRINT__'),'runtime production config fingerprint missing');
 assert(workflow.indexOf('Close Russian Release Annex state machine')<workflow.indexOf('Production deployment summary'),'summary must occur only after closure');
 assert(!/Bauman production deployment completed\./.test(workflow),'workflow must not declare completion immediately after deploy/smoke');
-console.log(JSON.stringify({ok:true,annexGates:10,evidenceOutputs:20,productionBrowserJourneys:3,configFingerprint:true,microphonePolicy:'self'}));
+console.log(JSON.stringify({ok:true,annexGates:10,evidenceOutputs:20,productionBrowserJourneys:3,configFingerprint:true,secretReadiness:true,currentSchema:true,migrationBound:true,rollbackBound:true,fullArtifactIdentity:true,microphonePolicy:'self'}));
