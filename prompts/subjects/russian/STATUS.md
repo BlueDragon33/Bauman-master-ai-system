@@ -1,6 +1,6 @@
 # RUSSIAN PROMPT SYSTEM STATUS
 
-`PROMPT ARCHITECTURE: COMPLETE · EXECUTION: RU08 VALIDATING`
+`PROMPT ARCHITECTURE: COMPLETE · EXECUTION: RU08 PASS`
 
 ## Active execution state
 
@@ -12,7 +12,7 @@
 - RU05 — Listening · Speaking · Dialogue · Scenario: **PASS**
 - RU06 — Academic · Technical · Research Production: **PASS**
 - RU07 — AI Mentor Russian Coaching: **PASS**
-- RU08 — Authoring · Integration · Acceptance · RC Readiness: **VALIDATING**
+- RU08 — Authoring · Integration · Acceptance · RC Readiness: **PASS · READY_FOR_MERGE**
 - Shared C3 Release Annex: **production-only authority; not implied by RU08**
 
 ## Current authority
