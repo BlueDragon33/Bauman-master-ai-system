@@ -21,6 +21,7 @@ function deployment(env) {
     runtime: 'learning-runtime',
     channel: env.BAUMAN_DEPLOYMENT_CHANNEL || 'unknown',
     revision: env.BAUMAN_BUILD_REVISION || 'unknown',
+    configFingerprint: env.BAUMAN_CONFIG_FINGERPRINT || 'unknown',
     controlOriginConfigured: Boolean(safeOrigin(env.BAUMAN_CONTROL_ORIGIN)),
     serverSideLearningGate: true,
     checkedAt: Date.now(),
