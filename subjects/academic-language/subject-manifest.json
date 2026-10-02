@@ -1,0 +1,38 @@
+{
+  "id": "academic-language",
+  "studyPlan": {
+    "version": 1,
+    "relation": "related",
+    "runtimePath": "subjects/academic-language/",
+    "labelVi": "Ngoại ngữ học thuật",
+    "labelEn": "Academic Foreign Language",
+    "courseIds": [
+      "foreign-1",
+      "foreign-2"
+    ]
+  },
+  "title": "Иностранный язык · Academic Foreign Language",
+  "stage": "m1",
+  "entry": "index.html",
+  "editor": "editor.html",
+  "runtimeBase": "../foundation/assets",
+  "officialCourse": {
+    "semesters": [
+      1,
+      2
+    ],
+    "creditsTotal": 4,
+    "hoursTotal": 144,
+    "assessment": "credit each semester",
+    "sourceNote": "Kế hoạch chỉ ghi «Иностранный язык»; module này cố ý không xác định đó là tiếng Nga hay tiếng Anh."
+  },
+  "data": [
+    "curriculum.json",
+    "lessons.json",
+    "formulas.json",
+    "exercises.json",
+    "tests.json",
+    "simulations.json",
+    "knowledge-index.json"
+  ]
+}
