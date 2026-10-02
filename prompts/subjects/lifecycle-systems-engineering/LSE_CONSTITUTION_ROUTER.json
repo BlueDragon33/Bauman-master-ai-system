@@ -1,0 +1,47 @@
+{
+  "subject": "lifecycle-systems-engineering",
+  "global_constitutions": {
+    "C1": "../../constitution/C1_EXTENSIBLE_PLATFORM_ARCHITECTURE.md",
+    "C2": "../../constitution/C2_FUTURE_PROFESSIONAL_UI_UX.md",
+    "C3": "../../constitution/C3_PROFESSIONAL_QA_AUTO_FIX.md",
+    "C4": "../../constitution/C4_REAL_LEARNING_OUTCOME_SYSTEM.md",
+    "release_annex": "../../constitution/C3_RELEASE_ANNEX_SHARED.md"
+  },
+  "routes": {
+    "LSE01": [
+      "C1 ownership/integration",
+      "C2 current workspace UX",
+      "C3 tests/security/audit",
+      "C4 current learning/evidence"
+    ],
+    "LSE02": [
+      "C1 stable IDs/revisions",
+      "C4 competencies/evidence",
+      "C3 schema validation"
+    ],
+    "LSE03": [
+      "C4 assessment/remediation",
+      "C3 test-of-tests",
+      "C1 canonical traceability"
+    ],
+    "LSE04": [
+      "C1 providers/config/change",
+      "C2 lifecycle workspace UX",
+      "C3 auth/audit/failure",
+      "C4 AI evidence boundary"
+    ],
+    "LSE05": [
+      "C1 Subject Factory/authoring",
+      "C2 responsive/accessibility",
+      "C4 learner evidence UI",
+      "C3 UX regression"
+    ],
+    "LSE06": [
+      "C3 QA/security/RC",
+      "C4 learning acceptance",
+      "C1 legacy/migration",
+      "C2 final UX/a11y",
+      "release_annex smoke handoff"
+    ]
+  }
+}

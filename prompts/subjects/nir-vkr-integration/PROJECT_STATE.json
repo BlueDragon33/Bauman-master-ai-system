@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "nir-vkr-integration",
+  "constitution": "prompts/CONSTITUTION.md",
+  "constitutionLibrary": "prompts/constitution/",
+  "masterPrompt": "prompts/subjects/nir-vkr-integration/NIRVKR_MASTER_PROMPT.md",
+  "router": "prompts/subjects/nir-vkr-integration/NIRVKR_CONSTITUTION_ROUTER.json",
+  "sourceArchive": "prompt-archives/nir-vkr-integration.zip",
+  "promptArchitectureStatus": "COMPLETE",
+  "repositoryExecutionStatus": "NOT_STARTED_OR_NEEDS_RECONCILIATION",
+  "status": "READY_FOR_BASELINE_RECONCILIATION",
+  "sequence": [
+    "NIRVKR01",
+    "NIRVKR02",
+    "NIRVKR03",
+    "NIRVKR04",
+    "NIRVKR05",
+    "NIRVKR06"
+  ],
+  "completedModules": [],
+  "needsRevalidation": [],
+  "activeModule": "NIRVKR01",
+  "lastCompletedModule": null,
+  "validatedSha": null,
+  "evidence": [],
+  "blockers": [],
+  "nextAction": "Run NIRVKR01 against current repository reality before canonical implementation work."
+}

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.2.0",
+  "schemaVersion": "1.3.0",
   "project": "BlueDragon33/Bauman-master-ai-system",
   "canonicalPromptRoot": "prompts",
   "constitution": "prompts/CONSTITUTION.md",
@@ -17,7 +17,8 @@
       "router": "prompts/subjects/russian/RUSSIAN_CONSTITUTION_ROUTER.json",
       "archivePackage": "prompt-archives/russian-pack.zip",
       "fullRecoveryArchive": "prompt-archives/russian-full-pack.zip",
-      "chatStart": "prompts/subjects/russian/CHAT_START.md"
+      "chatStart": "prompts/subjects/russian/CHAT_START.md",
+      "label": "Russian"
     },
     {
       "id": "curriculum-2026",
@@ -35,7 +36,8 @@
       "router": "prompts/subjects/math/MATH_CONSTITUTION_ROUTER.json",
       "state": "prompts/subjects/math/PROJECT_STATE.json",
       "archivePackage": "prompt-archives/math.zip",
-      "chatStart": "prompts/subjects/math/CHAT_START.md"
+      "chatStart": "prompts/subjects/math/CHAT_START.md",
+      "label": "Mathematics"
     },
     {
       "id": "ai",
@@ -76,7 +78,8 @@
       "state": "prompts/subjects/python/PROJECT_STATE.json",
       "archivePackage": "prompt-archives/python-pack.zip",
       "status": "EXTRACTED_CANONICAL",
-      "chatStart": "prompts/subjects/python/CHAT_START.md"
+      "chatStart": "prompts/subjects/python/CHAT_START.md",
+      "label": "Python"
     },
     {
       "id": "algorithms",
@@ -87,7 +90,170 @@
       "state": "prompts/subjects/algorithms/PROJECT_STATE.json",
       "archivePackage": "prompt-archives/algorithms-pack.zip",
       "status": "EXTRACTED_CANONICAL",
-      "chatStart": "prompts/subjects/algorithms/CHAT_START.md"
+      "chatStart": "prompts/subjects/algorithms/CHAT_START.md",
+      "label": "Algorithms & Data Structures"
+    },
+    {
+      "id": "database",
+      "label": "Database Systems & SQL",
+      "masterPrompt": "prompts/subjects/database/DB_MASTER_PROMPT.md",
+      "state": "prompts/subjects/database/PROJECT_STATE.json",
+      "chatStart": "prompts/subjects/database/CHAT_START.md",
+      "archivePackage": "prompt-archives/database.zip",
+      "status": "EXTRACTED_CANONICAL"
+    },
+    {
+      "id": "ml-data-analysis",
+      "label": "Multivariate Data Analysis & Machine Learning",
+      "masterPrompt": "prompts/subjects/ml-data-analysis/ML_MASTER_PROMPT.md",
+      "state": "prompts/subjects/ml-data-analysis/PROJECT_STATE.json",
+      "chatStart": "prompts/subjects/ml-data-analysis/CHAT_START.md",
+      "archivePackage": "prompt-archives/ml-data-analysis.zip",
+      "status": "EXTRACTED_CANONICAL"
+    },
+    {
+      "id": "analytical-models",
+      "label": "Analytical Models of ASOIU",
+      "masterPrompt": "prompts/subjects/analytical-models/AM_MASTER_PROMPT.md",
+      "state": "prompts/subjects/analytical-models/PROJECT_STATE.json",
+      "chatStart": "prompts/subjects/analytical-models/CHAT_START.md",
+      "archivePackage": "prompt-archives/analytical-models.zip",
+      "status": "EXTRACTED_CANONICAL"
+    },
+    {
+      "id": "oop-software-engineering",
+      "label": "OOP Design & Software Engineering",
+      "masterPrompt": "prompts/subjects/oop-software-engineering/OOPSE_MASTER_PROMPT.md",
+      "state": "prompts/subjects/oop-software-engineering/PROJECT_STATE.json",
+      "chatStart": "prompts/subjects/oop-software-engineering/CHAT_START.md",
+      "archivePackage": "prompt-archives/oop-software-engineering.zip",
+      "status": "EXTRACTED_CANONICAL"
+    },
+    {
+      "id": "advanced-database",
+      "label": "Advanced Database Systems",
+      "masterPrompt": "prompts/subjects/advanced-database/ADB_MASTER_PROMPT.md",
+      "state": "prompts/subjects/advanced-database/PROJECT_STATE.json",
+      "chatStart": "prompts/subjects/advanced-database/CHAT_START.md",
+      "archivePackage": "prompt-archives/advanced-database.zip",
+      "status": "EXTRACTED_CANONICAL"
+    },
+    {
+      "id": "reliability-models",
+      "label": "Reliability Models of ASOIU",
+      "masterPrompt": "prompts/subjects/reliability-models/REL_MASTER_PROMPT.md",
+      "state": "prompts/subjects/reliability-models/PROJECT_STATE.json",
+      "chatStart": "prompts/subjects/reliability-models/CHAT_START.md",
+      "archivePackage": "prompt-archives/reliability-models.zip",
+      "status": "EXTRACTED_CANONICAL"
+    },
+    {
+      "id": "neural-networks",
+      "label": "Neural Network Systems",
+      "masterPrompt": "prompts/subjects/neural-networks/NN_MASTER_PROMPT.md",
+      "state": "prompts/subjects/neural-networks/PROJECT_STATE.json",
+      "chatStart": "prompts/subjects/neural-networks/CHAT_START.md",
+      "archivePackage": "prompt-archives/neural-networks.zip",
+      "status": "EXTRACTED_CANONICAL"
+    },
+    {
+      "id": "time-series",
+      "label": "Time Series Analysis",
+      "masterPrompt": "prompts/subjects/time-series/TS_MASTER_PROMPT.md",
+      "state": "prompts/subjects/time-series/PROJECT_STATE.json",
+      "chatStart": "prompts/subjects/time-series/CHAT_START.md",
+      "archivePackage": "prompt-archives/time-series.zip",
+      "status": "EXTRACTED_CANONICAL"
+    },
+    {
+      "id": "research-methodology",
+      "label": "Research Methodology & Scientific Work",
+      "masterPrompt": "prompts/subjects/research-methodology/RSW_MASTER_PROMPT.md",
+      "state": "prompts/subjects/research-methodology/PROJECT_STATE.json",
+      "chatStart": "prompts/subjects/research-methodology/CHAT_START.md",
+      "archivePackage": "prompt-archives/research-methodology.zip",
+      "status": "EXTRACTED_CANONICAL"
+    },
+    {
+      "id": "ai-business-analytics",
+      "label": "AI in Business Analytics",
+      "masterPrompt": "prompts/subjects/ai-business-analytics/AIBA_MASTER_PROMPT.md",
+      "state": "prompts/subjects/ai-business-analytics/PROJECT_STATE.json",
+      "chatStart": "prompts/subjects/ai-business-analytics/CHAT_START.md",
+      "archivePackage": "prompt-archives/ai-business-analytics.zip",
+      "status": "EXTRACTED_CANONICAL"
+    },
+    {
+      "id": "mivar-logical-ai",
+      "label": "Mivar / Logical AI",
+      "masterPrompt": "prompts/subjects/mivar-logical-ai/MIVAR_MASTER_PROMPT.md",
+      "state": "prompts/subjects/mivar-logical-ai/PROJECT_STATE.json",
+      "chatStart": "prompts/subjects/mivar-logical-ai/CHAT_START.md",
+      "archivePackage": "prompt-archives/mivar-logical-ai.zip",
+      "status": "EXTRACTED_CANONICAL"
+    },
+    {
+      "id": "ergonomics-hci",
+      "label": "Ergonomics / HCI",
+      "masterPrompt": "prompts/subjects/ergonomics-hci/HCI_MASTER_PROMPT.md",
+      "state": "prompts/subjects/ergonomics-hci/PROJECT_STATE.json",
+      "chatStart": "prompts/subjects/ergonomics-hci/CHAT_START.md",
+      "archivePackage": "prompt-archives/ergonomics-hci.zip",
+      "status": "EXTRACTED_CANONICAL"
+    },
+    {
+      "id": "lifecycle-systems-engineering",
+      "label": "Lifecycle & Systems Engineering",
+      "masterPrompt": "prompts/subjects/lifecycle-systems-engineering/LSE_MASTER_PROMPT.md",
+      "state": "prompts/subjects/lifecycle-systems-engineering/PROJECT_STATE.json",
+      "chatStart": "prompts/subjects/lifecycle-systems-engineering/CHAT_START.md",
+      "archivePackage": "prompt-archives/lifecycle-systems-engineering.zip",
+      "status": "EXTRACTED_CANONICAL"
+    },
+    {
+      "id": "information-security",
+      "label": "Information Security for ASOIU",
+      "masterPrompt": "prompts/subjects/information-security/SEC_MASTER_PROMPT.md",
+      "state": "prompts/subjects/information-security/PROJECT_STATE.json",
+      "chatStart": "prompts/subjects/information-security/CHAT_START.md",
+      "archivePackage": "prompt-archives/information-security.zip",
+      "status": "EXTRACTED_CANONICAL"
+    },
+    {
+      "id": "big-data-processing",
+      "label": "Big Data Processing Technologies",
+      "masterPrompt": "prompts/subjects/big-data-processing/BD_MASTER_PROMPT.md",
+      "state": "prompts/subjects/big-data-processing/PROJECT_STATE.json",
+      "chatStart": "prompts/subjects/big-data-processing/CHAT_START.md",
+      "archivePackage": "prompt-archives/big-data-processing.zip",
+      "status": "EXTRACTED_CANONICAL"
+    },
+    {
+      "id": "project-design-management",
+      "label": "Project Design Management",
+      "masterPrompt": "prompts/subjects/project-design-management/PDM_MASTER_PROMPT.md",
+      "state": "prompts/subjects/project-design-management/PROJECT_STATE.json",
+      "chatStart": "prompts/subjects/project-design-management/CHAT_START.md",
+      "archivePackage": "prompt-archives/project-design-management.zip",
+      "status": "EXTRACTED_CANONICAL"
+    },
+    {
+      "id": "entrepreneurship",
+      "label": "Entrepreneurship",
+      "masterPrompt": "prompts/subjects/entrepreneurship/ENT_MASTER_PROMPT.md",
+      "state": "prompts/subjects/entrepreneurship/PROJECT_STATE.json",
+      "chatStart": "prompts/subjects/entrepreneurship/CHAT_START.md",
+      "archivePackage": "prompt-archives/entrepreneurship.zip",
+      "status": "EXTRACTED_CANONICAL"
+    },
+    {
+      "id": "nir-vkr-integration",
+      "label": "Research Practice / NIR / VKR Integration",
+      "masterPrompt": "prompts/subjects/nir-vkr-integration/NIRVKR_MASTER_PROMPT.md",
+      "state": "prompts/subjects/nir-vkr-integration/PROJECT_STATE.json",
+      "chatStart": "prompts/subjects/nir-vkr-integration/CHAT_START.md",
+      "archivePackage": "prompt-archives/nir-vkr-integration.zip",
+      "status": "EXTRACTED_CANONICAL"
     }
   ],
   "prohibition": [

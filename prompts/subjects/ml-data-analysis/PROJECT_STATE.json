@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "ml-data-analysis",
+  "constitution": "prompts/CONSTITUTION.md",
+  "constitutionLibrary": "prompts/constitution/",
+  "masterPrompt": "prompts/subjects/ml-data-analysis/ML_MASTER_PROMPT.md",
+  "router": "prompts/subjects/ml-data-analysis/ML_CONSTITUTION_ROUTER.json",
+  "sourceArchive": "prompt-archives/ml-data-analysis.zip",
+  "promptArchitectureStatus": "COMPLETE",
+  "repositoryExecutionStatus": "NOT_STARTED_OR_NEEDS_RECONCILIATION",
+  "status": "READY_FOR_BASELINE_RECONCILIATION",
+  "sequence": [
+    "ML01",
+    "ML02",
+    "ML03",
+    "ML04",
+    "ML05",
+    "ML06"
+  ],
+  "completedModules": [],
+  "needsRevalidation": [],
+  "activeModule": "ML01",
+  "lastCompletedModule": null,
+  "validatedSha": null,
+  "evidence": [],
+  "blockers": [],
+  "nextAction": "Run ML01 against current repository reality before canonical implementation work."
+}

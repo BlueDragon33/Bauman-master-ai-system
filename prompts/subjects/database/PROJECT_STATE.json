@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "database",
+  "constitution": "prompts/CONSTITUTION.md",
+  "constitutionLibrary": "prompts/constitution/",
+  "masterPrompt": "prompts/subjects/database/DB_MASTER_PROMPT.md",
+  "router": "prompts/subjects/database/DB_CONSTITUTION_ROUTER.json",
+  "sourceArchive": "prompt-archives/database.zip",
+  "promptArchitectureStatus": "COMPLETE",
+  "repositoryExecutionStatus": "NOT_STARTED_OR_NEEDS_RECONCILIATION",
+  "status": "READY_FOR_BASELINE_RECONCILIATION",
+  "sequence": [
+    "DB01",
+    "DB02",
+    "DB03",
+    "DB04",
+    "DB05",
+    "DB06"
+  ],
+  "completedModules": [],
+  "needsRevalidation": [],
+  "activeModule": "DB01",
+  "lastCompletedModule": null,
+  "validatedSha": null,
+  "evidence": [],
+  "blockers": [],
+  "nextAction": "Run DB01 against current repository reality before canonical implementation work."
+}

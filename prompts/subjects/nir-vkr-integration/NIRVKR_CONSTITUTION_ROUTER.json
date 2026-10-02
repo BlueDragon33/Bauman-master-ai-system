@@ -1,0 +1,48 @@
+{
+  "subject": "research-practice-nir-vkr-integration",
+  "institutional_scope_resolution": "NIRVKR01",
+  "global_constitutions": {
+    "C1": "../../constitution/C1_EXTENSIBLE_PLATFORM_ARCHITECTURE.md",
+    "C2": "../../constitution/C2_FUTURE_PROFESSIONAL_UI_UX.md",
+    "C3": "../../constitution/C3_PROFESSIONAL_QA_AUTO_FIX.md",
+    "C4": "../../constitution/C4_REAL_LEARNING_OUTCOME_SYSTEM.md",
+    "release_annex": "../../constitution/C3_RELEASE_ANNEX_SHARED.md"
+  },
+  "routes": {
+    "NIRVKR01": [
+      "C1 current ownership/integration",
+      "C2 current research-workspace UX audit",
+      "C3 current tests/privacy/audit evidence",
+      "C4 current learning/evidence model"
+    ],
+    "NIRVKR02": [
+      "C1 stable IDs/revisions/content-as-data",
+      "C4 competency/evidence continuity",
+      "C3 schema/content validation"
+    ],
+    "NIRVKR03": [
+      "C4 assessment/evidence/readiness",
+      "C3 test-of-tests/regression",
+      "C1 canonical project ownership"
+    ],
+    "NIRVKR04": [
+      "C1 artifact/provider/integration",
+      "C2 traceability/review UX",
+      "C3 provenance/privacy/failure tests",
+      "C4 AI tutoring/evidence boundaries"
+    ],
+    "NIRVKR05": [
+      "C1 authoring/manifest/integration",
+      "C2 responsive/accessibility",
+      "C4 evidence workspace",
+      "C3 UX/browser regression"
+    ],
+    "NIRVKR06": [
+      "C3 QA/privacy/authorization/RC",
+      "C4 final learning/evidence acceptance",
+      "C1 legacy/migration/owner checks",
+      "C2 final UX/a11y",
+      "release_annex production smoke handoff"
+    ]
+  }
+}

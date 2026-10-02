@@ -1,0 +1,19 @@
+# ML DATA ANALYSIS PROMPT SYSTEM STATUS
+
+| Module | Prompt status | Repository execution |
+|---|---|---|
+| ML00 | COMPLETE | READY |
+| ML01 | COMPLETE / READY TO EXECUTE | NOT_STARTED |
+| ML02 | COMPLETE / READY after ML01 | NOT_STARTED |
+| ML03 | COMPLETE / READY after ML02 | NOT_STARTED |
+| ML04 | COMPLETE / READY after ML02/ML03 | NOT_STARTED |
+| ML05 | COMPLETE / READY after ML02–ML04 | NOT_STARTED |
+| ML06 | COMPLETE / READY after integration | NOT_STARTED |
+
+`ML DATA ANALYSIS PROMPT ARCHITECTURE: COMPLETE`
+
+Execution source of truth:
+`00_README.md`
+
+Next:
+Run ML01 on current main.

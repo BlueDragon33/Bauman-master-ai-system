@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "advanced-database",
+  "constitution": "prompts/CONSTITUTION.md",
+  "constitutionLibrary": "prompts/constitution/",
+  "masterPrompt": "prompts/subjects/advanced-database/ADB_MASTER_PROMPT.md",
+  "router": "prompts/subjects/advanced-database/ADB_CONSTITUTION_ROUTER.json",
+  "sourceArchive": "prompt-archives/advanced-database.zip",
+  "promptArchitectureStatus": "COMPLETE",
+  "repositoryExecutionStatus": "NOT_STARTED_OR_NEEDS_RECONCILIATION",
+  "status": "READY_FOR_BASELINE_RECONCILIATION",
+  "sequence": [
+    "ADB01",
+    "ADB02",
+    "ADB03",
+    "ADB04",
+    "ADB05",
+    "ADB06"
+  ],
+  "completedModules": [],
+  "needsRevalidation": [],
+  "activeModule": "ADB01",
+  "lastCompletedModule": null,
+  "validatedSha": null,
+  "evidence": [],
+  "blockers": [],
+  "nextAction": "Run ADB01 against current repository reality before canonical implementation work."
+}

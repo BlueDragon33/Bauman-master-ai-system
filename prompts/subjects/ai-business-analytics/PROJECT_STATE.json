@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "ai-business-analytics",
+  "constitution": "prompts/CONSTITUTION.md",
+  "constitutionLibrary": "prompts/constitution/",
+  "masterPrompt": "prompts/subjects/ai-business-analytics/AIBA_MASTER_PROMPT.md",
+  "router": "prompts/subjects/ai-business-analytics/AIBA_CONSTITUTION_ROUTER.json",
+  "sourceArchive": "prompt-archives/ai-business-analytics.zip",
+  "promptArchitectureStatus": "COMPLETE",
+  "repositoryExecutionStatus": "NOT_STARTED_OR_NEEDS_RECONCILIATION",
+  "status": "READY_FOR_BASELINE_RECONCILIATION",
+  "sequence": [
+    "AIBA01",
+    "AIBA02",
+    "AIBA03",
+    "AIBA04",
+    "AIBA05",
+    "AIBA06"
+  ],
+  "completedModules": [],
+  "needsRevalidation": [],
+  "activeModule": "AIBA01",
+  "lastCompletedModule": null,
+  "validatedSha": null,
+  "evidence": [],
+  "blockers": [],
+  "nextAction": "Run AIBA01 against current repository reality before canonical implementation work."
+}

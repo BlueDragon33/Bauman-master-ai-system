@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "reliability-models",
+  "constitution": "prompts/CONSTITUTION.md",
+  "constitutionLibrary": "prompts/constitution/",
+  "masterPrompt": "prompts/subjects/reliability-models/REL_MASTER_PROMPT.md",
+  "router": "prompts/subjects/reliability-models/REL_CONSTITUTION_ROUTER.json",
+  "sourceArchive": "prompt-archives/reliability-models.zip",
+  "promptArchitectureStatus": "COMPLETE",
+  "repositoryExecutionStatus": "NOT_STARTED_OR_NEEDS_RECONCILIATION",
+  "status": "READY_FOR_BASELINE_RECONCILIATION",
+  "sequence": [
+    "REL01",
+    "REL02",
+    "REL03",
+    "REL04",
+    "REL05",
+    "REL06"
+  ],
+  "completedModules": [],
+  "needsRevalidation": [],
+  "activeModule": "REL01",
+  "lastCompletedModule": null,
+  "validatedSha": null,
+  "evidence": [],
+  "blockers": [],
+  "nextAction": "Run REL01 against current repository reality before canonical implementation work."
+}
