@@ -1,0 +1,150 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "developer-golden-correct-query-library",
+  "runtimeVisibility": "test-only-not-learner-content",
+  "note": "Developer canaries only. Production hidden fixtures/solutions must be isolated from learner and AI-tutor runtime.",
+  "tasks": [
+    {
+      "taskId": "db.task.departments-with-count",
+      "semantics": {
+        "columns": [
+          "department_id",
+          "department_name",
+          "employee_count"
+        ],
+        "duplicatePolicy": "preserve-bag",
+        "orderingPolicy": "unordered",
+        "nullPolicy": "sql-three-valued",
+        "requirement": "Return every department, including departments with zero employees, with employee count."
+      },
+      "discriminatingFixtures": [
+        "db.fx.unmatched-parent",
+        "db.fx.multi-child",
+        "db.fx.empty-child"
+      ],
+      "alternatives": [
+        {
+          "id": "q1",
+          "sql": "SELECT d.id AS department_id, d.name AS department_name, COUNT(e.id) AS employee_count FROM department d LEFT JOIN employee e ON e.department_id = d.id GROUP BY d.id, d.name"
+        },
+        {
+          "id": "q2",
+          "sql": "SELECT d.id AS department_id, d.name AS department_name, (SELECT COUNT(*) FROM employee e WHERE e.department_id = d.id) AS employee_count FROM department d"
+        }
+      ]
+    },
+    {
+      "taskId": "db.task.non-null-email-count",
+      "semantics": {
+        "columns": [
+          "non_null_email_count"
+        ],
+        "duplicatePolicy": "preserve-bag",
+        "orderingPolicy": "unordered",
+        "nullPolicy": "sql-three-valued",
+        "requirement": "Count only rows whose email is non-NULL."
+      },
+      "discriminatingFixtures": [
+        "db.fx.nullable-column"
+      ],
+      "alternatives": [
+        {
+          "id": "q1",
+          "sql": "SELECT COUNT(email) AS non_null_email_count FROM customer"
+        },
+        {
+          "id": "q2",
+          "sql": "SELECT COUNT(*) AS non_null_email_count FROM customer WHERE email IS NOT NULL"
+        }
+      ]
+    },
+    {
+      "taskId": "db.task.customers-without-orders",
+      "semantics": {
+        "columns": [
+          "customer_id"
+        ],
+        "duplicatePolicy": "distinct-required",
+        "orderingPolicy": "unordered",
+        "nullPolicy": "sql-three-valued",
+        "requirement": "Return customers that have no matching order."
+      },
+      "discriminatingFixtures": [
+        "db.fx.unmatched-parent",
+        "db.fx.null-foreign-key",
+        "db.fx.multi-child"
+      ],
+      "alternatives": [
+        {
+          "id": "q1",
+          "sql": "SELECT c.id AS customer_id FROM customer c WHERE NOT EXISTS (SELECT 1 FROM orders o WHERE o.customer_id = c.id)"
+        },
+        {
+          "id": "q2",
+          "sql": "SELECT c.id AS customer_id FROM customer c LEFT JOIN orders o ON o.customer_id = c.id WHERE o.id IS NULL"
+        }
+      ]
+    },
+    {
+      "taskId": "db.task.high-value-customers",
+      "semantics": {
+        "columns": [
+          "customer_id",
+          "total_amount"
+        ],
+        "duplicatePolicy": "preserve-bag",
+        "orderingPolicy": "unordered",
+        "nullPolicy": "sql-three-valued",
+        "requirement": "Return customers whose total non-NULL order amount exceeds 100."
+      },
+      "discriminatingFixtures": [
+        "db.fx.multi-child",
+        "db.fx.null-measure",
+        "db.fx.boundary-100"
+      ],
+      "alternatives": [
+        {
+          "id": "q1",
+          "sql": "SELECT customer_id, SUM(amount) AS total_amount FROM orders GROUP BY customer_id HAVING SUM(amount) > 100"
+        },
+        {
+          "id": "q2",
+          "sql": "SELECT c.id AS customer_id, x.total_amount FROM customer c JOIN (SELECT customer_id, SUM(amount) AS total_amount FROM orders GROUP BY customer_id) x ON x.customer_id = c.id WHERE x.total_amount > 100"
+        }
+      ]
+    },
+    {
+      "taskId": "db.task.unique-city-list",
+      "semantics": {
+        "columns": [
+          "city"
+        ],
+        "duplicatePolicy": "distinct-required",
+        "orderingPolicy": "ordered-by-contract",
+        "orderKeys": [
+          {
+            "column": "city",
+            "direction": "ASC"
+          }
+        ],
+        "nullPolicy": "sql-three-valued",
+        "requirement": "Return unique non-NULL cities alphabetically."
+      },
+      "discriminatingFixtures": [
+        "db.fx.duplicates",
+        "db.fx.nullable-column",
+        "db.fx.tie-order"
+      ],
+      "alternatives": [
+        {
+          "id": "q1",
+          "sql": "SELECT DISTINCT city FROM customer WHERE city IS NOT NULL ORDER BY city ASC"
+        },
+        {
+          "id": "q2",
+          "sql": "SELECT city FROM customer WHERE city IS NOT NULL GROUP BY city ORDER BY city ASC"
+        }
+      ]
+    }
+  ]
+}

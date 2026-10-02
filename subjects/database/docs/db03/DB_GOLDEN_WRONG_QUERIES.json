@@ -1,0 +1,125 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "developer-golden-wrong-query-library",
+  "runtimeVisibility": "test-only-not-learner-content",
+  "cases": [
+    {
+      "id": "db.wrong.missing-join-predicate",
+      "taskId": "db.task.departments-with-count",
+      "sql": "SELECT d.id, d.name, COUNT(e.id) FROM department d, employee e GROUP BY d.id, d.name",
+      "expectedErrors": [
+        "JOIN_ERROR",
+        "CARDINALITY_ERROR"
+      ],
+      "distinguishedBy": [
+        "db.fx.multi-child",
+        "db.fx.unmatched-parent"
+      ]
+    },
+    {
+      "id": "db.wrong.accidental-inner-join",
+      "taskId": "db.task.departments-with-count",
+      "sql": "SELECT d.id, d.name, COUNT(e.id) FROM department d JOIN employee e ON e.department_id=d.id GROUP BY d.id,d.name",
+      "expectedErrors": [
+        "JOIN_ERROR"
+      ],
+      "distinguishedBy": [
+        "db.fx.unmatched-parent",
+        "db.fx.empty-child"
+      ]
+    },
+    {
+      "id": "db.wrong.count-star-nullable",
+      "taskId": "db.task.non-null-email-count",
+      "sql": "SELECT COUNT(*) AS non_null_email_count FROM customer",
+      "expectedErrors": [
+        "NULL_ERROR",
+        "AGGREGATION_ERROR"
+      ],
+      "distinguishedBy": [
+        "db.fx.nullable-column"
+      ]
+    },
+    {
+      "id": "db.wrong.not-in-null-trap",
+      "taskId": "db.task.customers-without-orders",
+      "sql": "SELECT id AS customer_id FROM customer WHERE id NOT IN (SELECT customer_id FROM orders)",
+      "expectedErrors": [
+        "NULL_ERROR",
+        "SUBQUERY_SCOPE_ERROR"
+      ],
+      "distinguishedBy": [
+        "db.fx.null-foreign-key"
+      ]
+    },
+    {
+      "id": "db.wrong.duplicate-customer",
+      "taskId": "db.task.customers-without-orders",
+      "sql": "SELECT c.id AS customer_id FROM customer c JOIN orders o ON o.customer_id <> c.id",
+      "expectedErrors": [
+        "JOIN_ERROR",
+        "DUPLICATE_ERROR",
+        "CARDINALITY_ERROR"
+      ],
+      "distinguishedBy": [
+        "db.fx.multi-child",
+        "db.fx.duplicates"
+      ]
+    },
+    {
+      "id": "db.wrong.where-on-aggregate",
+      "taskId": "db.task.high-value-customers",
+      "sql": "SELECT customer_id, SUM(amount) AS total_amount FROM orders WHERE SUM(amount) > 100 GROUP BY customer_id",
+      "expectedErrors": [
+        "AGGREGATION_ERROR"
+      ],
+      "distinguishedBy": [
+        "db.fx.multi-child"
+      ]
+    },
+    {
+      "id": "db.wrong.threshold-inclusive",
+      "taskId": "db.task.high-value-customers",
+      "sql": "SELECT customer_id, SUM(amount) total_amount FROM orders GROUP BY customer_id HAVING SUM(amount) >= 100",
+      "expectedErrors": [
+        "AGGREGATION_ERROR"
+      ],
+      "distinguishedBy": [
+        "db.fx.boundary-100"
+      ]
+    },
+    {
+      "id": "db.wrong.missing-distinct",
+      "taskId": "db.task.unique-city-list",
+      "sql": "SELECT city FROM customer WHERE city IS NOT NULL ORDER BY city",
+      "expectedErrors": [
+        "DUPLICATE_ERROR"
+      ],
+      "distinguishedBy": [
+        "db.fx.duplicates"
+      ]
+    },
+    {
+      "id": "db.wrong.missing-order",
+      "taskId": "db.task.unique-city-list",
+      "sql": "SELECT DISTINCT city FROM customer WHERE city IS NOT NULL",
+      "expectedErrors": [
+        "ORDER_ERROR"
+      ],
+      "distinguishedBy": [
+        "db.fx.tie-order"
+      ]
+    },
+    {
+      "id": "db.wrong.null-equality",
+      "taskId": "db.task.unique-city-list",
+      "sql": "SELECT DISTINCT city FROM customer WHERE city <> NULL ORDER BY city",
+      "expectedErrors": [
+        "NULL_ERROR"
+      ],
+      "distinguishedBy": [
+        "db.fx.nullable-column"
+      ]
+    }
+  ]
+}
