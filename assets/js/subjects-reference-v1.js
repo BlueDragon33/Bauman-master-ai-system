@@ -17,6 +17,7 @@ var COURSE_REF=[
   {key:'probability',subjectId:'math',title:'Xác suất thống kê',teacher:'GV: PGS. Đặng Thùy Linh',icon:'▥',tone:'orange',progressTone:'orange',status:'exam',statusLabel:'Sắp thi',fallbackProgress:45,sessions:'9/20 buổi',next:'Thứ 3, 11/03, 15:30 – 17:00'},
   {key:'database',subjectId:'programming',title:'Cơ sở dữ liệu',teacher:'GV: ThS. Phạm Trung Hiếu',icon:'DB',tone:'cyan',progressTone:'blue',status:'study',statusLabel:'Đang học',fallbackProgress:65,sessions:'13/20 buổi',next:'Thứ 5, 13/03, 13:30 – 15:00'},
   {key:'entrepreneurship',subjectId:'entrepreneurship',title:'Cơ sở khởi nghiệp',teacher:'GV: Chưa cập nhật',icon:'↗',tone:'orange',progressTone:'orange',status:'study',statusLabel:'HK2',fallbackProgress:0,sessions:'0/8 buổi',next:'Theo lịch Bauman'},
+  {key:'ergonomics',subjectId:'ergonomics',title:'Ergonomic Analysis',teacher:'GV: Chưa cập nhật',icon:'◫',tone:'violet',progressTone:'violet',status:'study',statusLabel:'HK3',fallbackProgress:0,sessions:'0/12 bài',next:'Theo lịch Bauman'},
   {key:'listen-speak',subjectId:'russian',title:'Nghe - Nói',teacher:'GV: TS. Vũ Thị Lan Anh',icon:'◉',tone:'rose',progressTone:'rose',status:'done',statusLabel:'Ôn tập',fallbackProgress:90,sessions:'18/20 buổi',next:'Thứ 2, 10/03, 10:00 – 11:30'}
 ];
 
@@ -76,7 +77,7 @@ function editTeacher(key){
 function subjectProgress(id,fallback){var s=stateRef();var raw=s&&s.progress?s.progress[id]:0;return raw>0?clamp(Math.round(raw),0,100):fallback}
 function courseProgress(c){return subjectProgress(c.subjectId,c.fallbackProgress)}
 function stageSubjectCount(){var s=stateRef(),a=appRef();try{if(a&&typeof a.filteredSubjectsForStage==='function')return a.filteredSubjectsForStage(s&&s.subjectStage||'prepare').length}catch(e){}return 5}
-function allSubjectCount(){var s=stateRef();return Object.keys(s&&s.subjects||{}).length||8}
+function allSubjectCount(){var s=stateRef();return Object.keys(s&&s.subjects||{}).length||10}
 function courseRows(){return COURSE_REF.concat(readCustom())}
 function visibleCourses(){
   return courseRows().filter(function(c){
