@@ -106,6 +106,9 @@ jobs:
       - name: Materialize isolated production configs and runtime assets
         run: node scripts/prepare-cloudflare-production.mjs
 
+      - name: Record immutable deployment artifact identity
+        run: node scripts/russian-release-annex-evidence.mjs artifact
+
       - name: Dry-run all production artifacts before any remote mutation
         shell: bash
         run: |
