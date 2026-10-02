@@ -1,0 +1,66 @@
+[
+  {
+    "id": "miv_f1",
+    "group": "logic",
+    "name": "Implication rule",
+    "formula": "A ∧ B → C",
+    "meaning": "Nếu A và B đúng thì rule có thể suy ra C trong mô hình đơn giản.",
+    "example": "sensor_ok ∧ mode_auto → allow_move."
+  },
+  {
+    "id": "miv_f2",
+    "group": "logic",
+    "name": "Rule trace",
+    "formula": "facts₀ → rule₁ → facts₁ → rule₂ → goal",
+    "meaning": "Chuỗi giải thích kết luận từ facts và rule.",
+    "example": "battery_low → r12 → return_required."
+  },
+  {
+    "id": "miv_f3",
+    "group": "graph",
+    "name": "Dependency edge",
+    "formula": "premise → conclusion",
+    "meaning": "Cạnh biểu diễn dependency cho graph suy luận.",
+    "example": "gps_valid → navigation_available."
+  },
+  {
+    "id": "miv_f4",
+    "group": "graph",
+    "name": "Reachability",
+    "formula": "reachable(facts, goal) = exists(path)",
+    "meaning": "Goal có thể được nối từ facts theo graph rule hay không.",
+    "example": "Nếu không có path, tìm missing fact/rule."
+  },
+  {
+    "id": "miv_f5",
+    "group": "verification",
+    "name": "Rule test contract",
+    "formula": "given facts → expected fired rules → expected conclusion",
+    "meaning": "Cấu trúc test cho rule-based inference.",
+    "example": "Given A,B → fire r3 → expect C."
+  },
+  {
+    "id": "miv_f6",
+    "group": "verification",
+    "name": "Source status",
+    "formula": "claim → {official | support | unknown}",
+    "meaning": "Phân biệt dữ liệu/tài liệu chính thức với học liệu hỗ trợ hoặc khoảng trống.",
+    "example": "Course hours=official; detailed Mivar topic sequence=support until syllabus arrives."
+  },
+  {
+    "id": "miv_f7",
+    "group": "hybrid",
+    "name": "Hybrid boundary",
+    "formula": "model output + confidence → policy → symbolic fact/unknown",
+    "meaning": "Không biến mọi output ML thành fact tuyệt đối.",
+    "example": "confidence<τ → unknown/review."
+  },
+  {
+    "id": "miv_f8",
+    "group": "coursework",
+    "name": "Traceability chain",
+    "formula": "requirement → knowledge item → rule → test → result",
+    "meaning": "Khung chứng minh coursework có thể kiểm tra.",
+    "example": "Safety requirement → fact/rule → edge-case test → expected safe action."
+  }
+]
