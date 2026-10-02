@@ -132,6 +132,9 @@
         </details>
 
         <div class="actions">
+          <input id="importFile" type="file" accept="application/json,.json" hidden>
+          <button id="importBtn" type="button">Import candidate JSON</button>
+          <button id="newRevisionBtn" type="button">Tạo revision kế tiếp</button>
           <button id="validateBtn" class="primary" type="button">Validate candidate</button>
           <button id="previewBtn" type="button">Preview review envelope</button>
           <button id="exportBtn" type="button">Xuất candidate JSON</button>
@@ -233,6 +236,44 @@
       };
       $('reviewEnvelope').textContent=JSON.stringify(envelope,null,2);
     }
+    function applyCandidate(c){
+      if(!c||typeof c!=='object')throw new Error('Candidate JSON không hợp lệ');
+      if(c.schema!=='RUSSIAN_AUTHORING_CANDIDATE_V1')throw new Error('Sai candidate schema');
+      if(c.responsibility && ![...$('responsibility').options].some(x=>x.value===c.responsibility))throw new Error('Responsibility không thuộc governance hiện tại');
+      if(c.responsibility)$('responsibility').value=c.responsibility;
+      if(c.state && [...$('state').options].some(x=>x.value===c.state))$('state').value=c.state;else $('state').value='DRAFT';
+      $('candidateId').value=String(c.candidateId||'');
+      $('canonicalId').value=String(c.canonicalId||'');
+      $('revision').value=String(c.revision||'r1');
+      $('confidence').value=[...$('confidence').options].some(x=>x.value===c.confidence)?c.confidence:'UNVERIFIED';
+      $('ruText').value=String(c.payload?.ru||'');
+      $('viText').value=String(c.payload?.vi||'');
+      $('sourceRefs').value=Array.isArray(c.sourceRefs)?c.sourceRefs.join('\n'):'';
+      $('diffSummary').value=String(c.diffSummary||'');
+      $('rollbackNote').value=String(c.rollbackNote||'');
+      $('generated').checked=c.generated===true;
+      $('rawPayload').value=JSON.stringify(c.payload||{},null,2);
+      lastCandidate=null;
+    }
+    async function importCandidateFile(file){
+      const text=await file.text();
+      const parsed=JSON.parse(text);
+      applyCandidate(parsed);
+      const v=await validate();
+      if(!v.ok)throw new Error('Imported candidate cần sửa: '+v.errors.join('; '));
+      return v;
+    }
+    function nextRevision(){
+      const raw=$('revision').value.trim();
+      const m=raw.match(/^(.*?)(\d+)$/);
+      $('revision').value=m?(m[1]+String(Number(m[2])+1)):(raw?raw+'-r2':'r2');
+      $('candidateId').value=($('candidateId').value.trim()||'RU08-CANDIDATE')+'-NEXT';
+      $('state').value='DRAFT';
+      $('diffSummary').value='';
+      $('validationResult').className='status';
+      $('validationResult').textContent='Revision mới ở DRAFT. Hãy mô tả thay đổi, rollback note và validate lại.';
+      $('reviewEnvelope').textContent='{}';
+    }
     async function exportCandidate(){
       const v=await validate(); if(!v.ok)return;
       const a=document.createElement('a');
@@ -256,11 +297,19 @@
         if([...select.options].some(x=>x.value==='LexicalEntry'))select.value='LexicalEntry';
         $('configState').textContent='Governance '+g.schema+' · metadata-only review';
         $('syncRaw').addEventListener('click',()=>$('rawPayload').value=JSON.stringify(structuredPayload(),null,2));
+        $('importBtn').addEventListener('click',()=>$('importFile').click());
+        $('importFile').addEventListener('change',async e=>{
+          const file=e.target.files?.[0]; if(!file)return;
+          try{await importCandidateFile(file)}
+          catch(err){$('validationResult').className='status fail';$('validationResult').textContent='IMPORT FAIL\n'+String(err.message||err)}
+          finally{e.target.value=''}
+        });
+        $('newRevisionBtn').addEventListener('click',nextRevision);
         $('validateBtn').addEventListener('click',validate);
         $('previewBtn').addEventListener('click',preview);
         $('exportBtn').addEventListener('click',exportCandidate);
         await validate();
-        window.RussianAuthoringWorkspace={validate,preview,candidate:()=>lastCandidate,governance:()=>governance,ownerFor:type=>ownerMap.get(type)||null};
+        window.RussianAuthoringWorkspace={validate,preview,applyCandidate,importCandidateFile,nextRevision,candidate:()=>lastCandidate,governance:()=>governance,ownerFor:type=>ownerMap.get(type)||null};
       }catch(e){
         $('configState').textContent='Không nạp được governance';
         $('validationResult').className='status fail';
