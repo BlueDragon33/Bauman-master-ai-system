@@ -23,6 +23,10 @@
   <label>Revision<input id="revision" required value="r1"></label>
   <label>Nội dung tiếng Nga<textarea id="ruText" required placeholder="Введите русский текст..."></textarea></label>
   <label>Giải thích/ý nghĩa tiếng Việt<textarea id="viText" placeholder="Mô tả nghĩa hoặc mục tiêu học"></textarea></label>
+  <fieldset id="dynamicFields" class="ru-dynamic-fields">
+    <legend>Trường theo schema thực thể</legend>
+    <p class="ru-schema-hint">Chọn loại thực thể để tải schema authoring.</p>
+  </fieldset>
   <label>Nguồn kiểm chứng<textarea id="sourceRefs" required placeholder="Mỗi dòng một nguồn; không dùng AI output như authority"></textarea></label>
   <label>Tóm tắt thay đổi<textarea id="diffSummary" required placeholder="Thay đổi gì và vì sao"></textarea></label>
   <label>Kế hoạch rollback<textarea id="rollbackNote" required placeholder="Cách khôi phục canonical trước đó"></textarea></label>
