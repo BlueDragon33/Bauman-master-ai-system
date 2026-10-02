@@ -28,7 +28,7 @@ try{
  await page.locator('#nav [data-view="learning"]').first().click();
  const practice=page.locator('[data-learn="practice"]').first();
  if(await practice.count())await practice.click();
- await page.waitForFunction(()=>!!window.RussianRecordingEngine&&!!window.RussianSpeechInteractionEngine,null,{timeout:10000});
+ await page.waitForFunction(()=>!!window.RussianRecordingEngine&&!!window.RussianAudioEngine&&!!window.RussianSpeechRecognitionAdapter,null,{timeout:10000});
  const survival=await page.evaluate(async()=>{
    const reg=await fetch('data/scenario-registry.json').then(r=>r.json());
    const rows=reg.scenarios||[];
