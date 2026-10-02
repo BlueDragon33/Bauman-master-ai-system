@@ -2,16 +2,22 @@
   "schemaVersion": "1.0.0",
   "subject": "algorithms",
   "constitution": "prompts/CONSTITUTION.md",
-  "constitutionLibrary": "prompts/constitution/",
   "masterPrompt": "prompts/subjects/algorithms/ALG_MASTER_PROMPT.md",
-  "router": "prompts/subjects/algorithms/ALG_CONSTITUTION_ROUTER.json",
-  "sourceArchive": "prompt-archives/algorithms-pack.zip",
-  "promptArchitectureStatus": "COMPLETE",
-  "repositoryExecutionStatus": "NOT_STARTED_OR_NEEDS_RECONCILIATION",
+  "status": "READY_FOR_BASELINE_RECONCILIATION",
   "activeModule": "ALG01",
-  "lastCompletedModule": null,
-  "validatedSha": null,
+  "sequence": [
+    "ALG01",
+    "ALG02",
+    "ALG03",
+    "ALG04",
+    "ALG05",
+    "ALG06"
+  ],
+  "completedModules": [],
+  "needsRevalidation": [],
+  "lastValidatedSha": null,
+  "currentHeadSha": null,
   "evidence": [],
   "blockers": [],
-  "nextAction": "Run ALG01 against current repository reality before canonical implementation work."
+  "nextAction": "Run ALG01 against the current repository state and update this state with evidence."
 }

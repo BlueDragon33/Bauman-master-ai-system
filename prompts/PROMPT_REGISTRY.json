@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "2.0.0",
+  "schemaVersion": "1.2.0",
   "project": "BlueDragon33/Bauman-master-ai-system",
   "canonicalPromptRoot": "prompts",
   "constitution": "prompts/CONSTITUTION.md",
@@ -12,11 +12,12 @@
       "implementationScope": "subjects/russian/",
       "masterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
       "state": "prompts/subjects/russian/PROJECT_STATE.json",
-      "status": "IMPORTED_CANONICAL",
+      "status": "EXTRACTED_CANONICAL",
       "readme": "prompts/subjects/russian/README.md",
       "router": "prompts/subjects/russian/RUSSIAN_CONSTITUTION_ROUTER.json",
       "archivePackage": "prompt-archives/russian-pack.zip",
-      "fullRecoveryArchive": "prompt-archives/russian-full-pack.zip"
+      "fullRecoveryArchive": "prompt-archives/russian-full-pack.zip",
+      "chatStart": "prompts/subjects/russian/CHAT_START.md"
     },
     {
       "id": "curriculum-2026",
@@ -28,12 +29,13 @@
     {
       "id": "math",
       "implementationScope": "subjects/math/",
-      "status": "IMPORTED_CANONICAL",
+      "status": "EXTRACTED_CANONICAL",
       "readme": "prompts/subjects/math/README.md",
       "masterPrompt": "prompts/subjects/math/MATH_MASTER_PROMPT.md",
       "router": "prompts/subjects/math/MATH_CONSTITUTION_ROUTER.json",
       "state": "prompts/subjects/math/PROJECT_STATE.json",
-      "archivePackage": "prompt-archives/math.zip"
+      "archivePackage": "prompt-archives/math.zip",
+      "chatStart": "prompts/subjects/math/CHAT_START.md"
     },
     {
       "id": "ai",
@@ -73,7 +75,8 @@
       "router": "prompts/subjects/python/PYTHON_CONSTITUTION_ROUTER.json",
       "state": "prompts/subjects/python/PROJECT_STATE.json",
       "archivePackage": "prompt-archives/python-pack.zip",
-      "status": "IMPORTED_CANONICAL"
+      "status": "EXTRACTED_CANONICAL",
+      "chatStart": "prompts/subjects/python/CHAT_START.md"
     },
     {
       "id": "algorithms",
@@ -83,7 +86,8 @@
       "router": "prompts/subjects/algorithms/ALG_CONSTITUTION_ROUTER.json",
       "state": "prompts/subjects/algorithms/PROJECT_STATE.json",
       "archivePackage": "prompt-archives/algorithms-pack.zip",
-      "status": "IMPORTED_CANONICAL"
+      "status": "EXTRACTED_CANONICAL",
+      "chatStart": "prompts/subjects/algorithms/CHAT_START.md"
     }
   ],
   "prohibition": [

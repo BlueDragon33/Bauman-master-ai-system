@@ -1,22 +1,3 @@
-# RUSSIAN PROMPT SYSTEM — CANONICAL REPO FORM
-
-This directory is the extracted and normalized active prompt system for **russian**.
-
-It is intended for both ordinary ChatGPT chat sessions and repository execution.
-
-Shared Constitution: `prompts/CONSTITUTION.md`
-
-Start a normal chat with `CHAT_START.md`.
-Start execution with `RUSSIAN_MASTER_PROMPT.md` + `PROJECT_STATE.json` + the active module.
-
-The source ZIP remains under `prompt-archives/` for provenance/recovery.
-Mirrored subject-level Constitution copies and legacy archives are intentionally not duplicated here.
-All C1–C4 authority comes from the single shared `prompts/CONSTITUTION.md`.
-
----
-
-## Source package README with normalized references
-
 # RUSSIAN PROMPT SYSTEM — CANONICAL REPO ARCHIVE
 
 This archive contains the active Russian subject prompt system only.

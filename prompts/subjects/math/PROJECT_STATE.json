@@ -2,16 +2,22 @@
   "schemaVersion": "1.0.0",
   "subject": "math",
   "constitution": "prompts/CONSTITUTION.md",
-  "constitutionLibrary": "prompts/constitution/",
   "masterPrompt": "prompts/subjects/math/MATH_MASTER_PROMPT.md",
-  "router": "prompts/subjects/math/MATH_CONSTITUTION_ROUTER.json",
-  "sourceArchive": "prompt-archives/math.zip",
-  "promptArchitectureStatus": "COMPLETE",
-  "repositoryExecutionStatus": "NOT_STARTED_OR_NEEDS_RECONCILIATION",
+  "status": "READY_FOR_BASELINE_RECONCILIATION",
   "activeModule": "MATH01",
-  "lastCompletedModule": null,
-  "validatedSha": null,
+  "sequence": [
+    "MATH01",
+    "MATH02",
+    "MATH03",
+    "MATH04",
+    "MATH05",
+    "MATH06"
+  ],
+  "completedModules": [],
+  "needsRevalidation": [],
+  "lastValidatedSha": null,
+  "currentHeadSha": null,
   "evidence": [],
   "blockers": [],
-  "nextAction": "Run MATH01 against current repository reality before canonical implementation work."
+  "nextAction": "Run MATH01 against the current repository state and update this state with evidence."
 }

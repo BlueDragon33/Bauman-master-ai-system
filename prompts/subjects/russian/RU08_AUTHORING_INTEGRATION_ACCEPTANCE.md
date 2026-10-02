@@ -343,7 +343,7 @@ It does not claim production is live.
 
 Invoke:
 
-`../../constitution/C3_RELEASE_ANNEX_SHARED.md`
+`prompts/CONSTITUTION.md#c3-release-annex`
 
 using the exact accepted RC.
 
