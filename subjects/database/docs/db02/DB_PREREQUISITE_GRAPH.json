@@ -1,0 +1,177 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "database",
+  "nodes": [
+    {
+      "id": "db.comp.relational-model",
+      "title": "Relational model reasoning",
+      "level": "foundation"
+    },
+    {
+      "id": "db.comp.keys-constraints",
+      "title": "Keys and integrity constraints",
+      "level": "foundation"
+    },
+    {
+      "id": "db.comp.relational-algebra",
+      "title": "Relational algebra and query decomposition",
+      "level": "foundation"
+    },
+    {
+      "id": "db.comp.sql-semantics",
+      "title": "SQL semantic reasoning",
+      "level": "core"
+    },
+    {
+      "id": "db.comp.joins-aggregation",
+      "title": "Join and aggregation reasoning",
+      "level": "core"
+    },
+    {
+      "id": "db.comp.subquery-cte-view",
+      "title": "Subquery, CTE and view reasoning",
+      "level": "core"
+    },
+    {
+      "id": "db.comp.normalization",
+      "title": "Functional dependencies and normalization",
+      "level": "core"
+    },
+    {
+      "id": "db.comp.transactions",
+      "title": "Transaction and ACID reasoning",
+      "level": "core"
+    },
+    {
+      "id": "db.comp.isolation",
+      "title": "Isolation and concurrency phenomena",
+      "level": "advanced-foundation"
+    },
+    {
+      "id": "db.comp.index-design",
+      "title": "Index selection and physical access reasoning",
+      "level": "advanced-foundation"
+    },
+    {
+      "id": "db.comp.query-plan",
+      "title": "Query-plan interpretation",
+      "level": "advanced-foundation"
+    },
+    {
+      "id": "db.comp.transfer",
+      "title": "Database design and implementation transfer",
+      "level": "transfer"
+    }
+  ],
+  "edges": [
+    {
+      "from": "db.comp.relational-model",
+      "to": "db.comp.keys-constraints",
+      "type": "required"
+    },
+    {
+      "from": "db.comp.relational-model",
+      "to": "db.comp.relational-algebra",
+      "type": "required"
+    },
+    {
+      "from": "db.comp.keys-constraints",
+      "to": "db.comp.sql-semantics",
+      "type": "required"
+    },
+    {
+      "from": "db.comp.relational-algebra",
+      "to": "db.comp.sql-semantics",
+      "type": "required"
+    },
+    {
+      "from": "db.comp.sql-semantics",
+      "to": "db.comp.joins-aggregation",
+      "type": "required"
+    },
+    {
+      "from": "db.comp.sql-semantics",
+      "to": "db.comp.subquery-cte-view",
+      "type": "required"
+    },
+    {
+      "from": "db.comp.keys-constraints",
+      "to": "db.comp.normalization",
+      "type": "required"
+    },
+    {
+      "from": "db.comp.keys-constraints",
+      "to": "db.comp.transactions",
+      "type": "required"
+    },
+    {
+      "from": "db.comp.transactions",
+      "to": "db.comp.isolation",
+      "type": "required"
+    },
+    {
+      "from": "db.comp.sql-semantics",
+      "to": "db.comp.index-design",
+      "type": "required"
+    },
+    {
+      "from": "db.comp.index-design",
+      "to": "db.comp.query-plan",
+      "type": "required"
+    },
+    {
+      "from": "db.comp.joins-aggregation",
+      "to": "db.comp.query-plan",
+      "type": "required"
+    },
+    {
+      "from": "db.comp.normalization",
+      "to": "db.comp.transfer",
+      "type": "required"
+    },
+    {
+      "from": "db.comp.isolation",
+      "to": "db.comp.transfer",
+      "type": "required"
+    },
+    {
+      "from": "db.comp.query-plan",
+      "to": "db.comp.transfer",
+      "type": "required"
+    }
+  ],
+  "reuseBridges": [
+    {
+      "source": "subjects/programming/data/lessons.json#PR06",
+      "supports": [
+        "db.comp.relational-model",
+        "db.comp.keys-constraints",
+        "db.comp.sql-semantics"
+      ]
+    },
+    {
+      "source": "subjects/programming/data/lessons.json#PR15",
+      "supports": [
+        "db.comp.joins-aggregation",
+        "db.comp.index-design"
+      ]
+    },
+    {
+      "source": "assets/data/prerequisite-packs/p06-database-fundamentals.json",
+      "supports": [
+        "db.comp.relational-model",
+        "db.comp.keys-constraints",
+        "db.comp.relational-algebra",
+        "db.comp.sql-semantics",
+        "db.comp.joins-aggregation",
+        "db.comp.subquery-cte-view",
+        "db.comp.normalization",
+        "db.comp.transactions",
+        "db.comp.isolation",
+        "db.comp.index-design",
+        "db.comp.query-plan",
+        "db.comp.transfer"
+      ]
+    }
+  ]
+}

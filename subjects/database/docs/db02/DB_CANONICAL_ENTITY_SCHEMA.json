@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bauman.local/schemas/database/canonical-entity.schema.json",
+  "title": "Bauman Database Canonical Entity",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "id",
+    "entityType",
+    "provenance",
+    "payload"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^db\\.[a-z0-9][a-z0-9.-]*$"
+    },
+    "entityType": {
+      "enum": [
+        "DatabaseConcept",
+        "RelationSchema",
+        "Attribute",
+        "Domain",
+        "TupleFixture",
+        "Key",
+        "Constraint",
+        "FunctionalDependency",
+        "NormalizationProblem",
+        "RelationalAlgebraExpression",
+        "SQLTask",
+        "SQLQueryCandidate",
+        "ExpectedSemantics",
+        "TransactionScenario",
+        "IsolationPhenomenon",
+        "IndexConcept",
+        "QueryPlanConcept",
+        "DatabaseEngineProfile",
+        "Misconception",
+        "Remediation"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "status",
+        "sources"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "canonical-curated",
+            "repo-existing",
+            "engine-specific",
+            "generated-draft"
+          ]
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "reviewedAtSha": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "payload": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "entityContracts": {
+    "RelationSchema": [
+      "attributes",
+      "keys",
+      "constraints"
+    ],
+    "Attribute": [
+      "name",
+      "domainId",
+      "nullable"
+    ],
+    "Key": [
+      "kind",
+      "attributeIds"
+    ],
+    "FunctionalDependency": [
+      "schemaId",
+      "determinant",
+      "dependent"
+    ],
+    "SQLTask": [
+      "sourceSchemaIds",
+      "expectedSemantics"
+    ],
+    "ExpectedSemantics": [
+      "columns",
+      "duplicatePolicy",
+      "orderingPolicy",
+      "nullPolicy"
+    ],
+    "TransactionScenario": [
+      "operations",
+      "isolationContext",
+      "expectedOutcome"
+    ],
+    "DatabaseEngineProfile": [
+      "engineId",
+      "version",
+      "dialect"
+    ]
+  }
+}
