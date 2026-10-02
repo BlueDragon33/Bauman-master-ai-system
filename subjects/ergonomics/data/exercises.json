@@ -1,0 +1,110 @@
+[
+  {
+    "id": "erg_ex1",
+    "stage": "m3",
+    "topic": "User–Task–Context",
+    "difficulty": "easy",
+    "prompt": "Chọn một dashboard và mô tả user, task, context, constraint.",
+    "answer": "Cần ít nhất một user profile, mục tiêu task, điều kiện sử dụng và ràng buộc thời gian/môi trường.",
+    "reviewLesson": "erg_m301_l1"
+  },
+  {
+    "id": "erg_ex2",
+    "stage": "m3",
+    "topic": "Task analysis",
+    "difficulty": "medium",
+    "prompt": "Tách task xử lý cảnh báo thành 6 bước và đánh dấu failure point.",
+    "answer": "Mỗi bước nên có cue → interpretation → action → feedback; failure point phải gắn hậu quả.",
+    "reviewLesson": "erg_m301_l2"
+  },
+  {
+    "id": "erg_ex3",
+    "stage": "m3",
+    "topic": "Attention",
+    "difficulty": "easy",
+    "prompt": "Tìm 5 yếu tố gây visual noise và xếp thông tin thành primary/secondary/background.",
+    "answer": "Ưu tiên phải dựa task và consequence, không dựa sở thích màu.",
+    "reviewLesson": "erg_m302_l1"
+  },
+  {
+    "id": "erg_ex4",
+    "stage": "m3",
+    "topic": "Cognitive load",
+    "difficulty": "medium",
+    "prompt": "Redesign task đang yêu cầu nhớ 6 trạng thái để giảm memory load.",
+    "answer": "Dùng grouping, visible state, history hoặc checklist; nêu metric sẽ kiểm tra.",
+    "reviewLesson": "erg_m302_l2"
+  },
+  {
+    "id": "erg_ex5",
+    "stage": "m3",
+    "topic": "HMI hierarchy",
+    "difficulty": "medium",
+    "prompt": "Thiết kế hierarchy 3 tầng cho dashboard UGV/telemetry.",
+    "answer": "Tầng 1 nên chứa trạng thái/alert cần quyết định ngay, các tầng sau mới mở chi tiết.",
+    "reviewLesson": "erg_m303_l1"
+  },
+  {
+    "id": "erg_ex6",
+    "stage": "m3",
+    "topic": "Alarm",
+    "difficulty": "medium",
+    "prompt": "Lập matrix 4 alarm theo consequence, urgency và actionability.",
+    "answer": "Phải chỉ rõ trigger, priority, message, required action và recovery.",
+    "reviewLesson": "erg_m303_l2"
+  },
+  {
+    "id": "erg_ex7",
+    "stage": "m3",
+    "topic": "Human error",
+    "difficulty": "medium",
+    "prompt": "Phân loại 6 tình huống thành slip/mistake và đề xuất control tương ứng.",
+    "answer": "Slip thiên về control/feedback/constraint; mistake thiên về model, information, training hoặc decision support.",
+    "reviewLesson": "erg_m304_l1"
+  },
+  {
+    "id": "erg_ex8",
+    "stage": "m3",
+    "topic": "Automation",
+    "difficulty": "hard",
+    "prompt": "Thiết kế recovery flow khi autonomy mode mất localization.",
+    "answer": "Cần mode visibility, alert, fallback, operator action, acknowledgement, safe state và restore.",
+    "reviewLesson": "erg_m304_l2"
+  },
+  {
+    "id": "erg_ex9",
+    "stage": "m3",
+    "topic": "Metrics",
+    "difficulty": "easy",
+    "prompt": "Baseline task time 50 s, redesign 40 s. Tính relative improvement.",
+    "answer": "(50−40)/50 × 100% = 20%.",
+    "reviewLesson": "erg_m305_l1"
+  },
+  {
+    "id": "erg_ex10",
+    "stage": "m3",
+    "topic": "Experiment",
+    "difficulty": "hard",
+    "prompt": "Thiết kế pilot A/B và liệt kê 4 confounder.",
+    "answer": "Cùng task/context; cân bằng thứ tự; confounder có thể gồm kinh nghiệm, learning effect, thiết bị, dữ liệu scenario.",
+    "reviewLesson": "erg_m305_l2"
+  },
+  {
+    "id": "erg_ex11",
+    "stage": "m3",
+    "topic": "Coursework",
+    "difficulty": "medium",
+    "prompt": "Tạo traceability table 3 hàng: finding → evidence → risk → recommendation → metric.",
+    "answer": "Mỗi recommendation phải giải quyết finding cụ thể và có metric kiểm chứng.",
+    "reviewLesson": "erg_m306_l1"
+  },
+  {
+    "id": "erg_ex12",
+    "stage": "m3",
+    "topic": "Defense",
+    "difficulty": "hard",
+    "prompt": "Viết 5 câu phản biện coursework và trả lời có giới hạn.",
+    "answer": "Câu trả lời tốt nêu evidence, uncertainty, limitation và validation tiếp theo.",
+    "reviewLesson": "erg_m306_l2"
+  }
+]
