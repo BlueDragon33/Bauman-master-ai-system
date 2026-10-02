@@ -28,6 +28,27 @@ try{
   await page.fill('#sourceRefs','source:ru08-browser-fixture');
   await page.fill('#diffSummary','Browser acceptance candidate');
   await page.fill('#rollbackNote','Restore prior canonical item');
+
+  // Entity-specific schema must fail closed before required lexical authority fields exist.
+  await page.locator('#candidateForm button[type="submit"]').click();
+  await page.waitForFunction(()=>window.RussianAuthorWorkspace.state.candidate?.state==='DRAFT');
+  const blocked=await page.evaluate(()=>({
+    validation:document.getElementById('validation').textContent,
+    reviewDisabled:document.getElementById('reviewBtn').disabled,
+    schema:window.RussianAuthorWorkspace.schemaFor('LexicalEntry')
+  }));
+  assert.equal(blocked.reviewDisabled,true);
+  assert.match(blocked.validation,/Lemma|trọng âm|hình thái|government|Biến thể/i);
+  assert.ok(blocked.schema.validationPolicies.includes('stress'));
+
+  await page.fill('#detail-lemma','пример');
+  await page.fill('#detail-stress','приме́р');
+  await page.fill('#detail-partOfSpeech','noun');
+  await page.selectOption('#detail-yoEPolicy','not-applicable');
+  await page.fill('#detail-morphology','м.р.; неодуш.; 2-е склонение');
+  await page.fill('#detail-government','not-applicable');
+  await page.fill('#detail-acceptedVariants','пример');
+  await page.fill('#detail-register','neutral');
   await page.locator('#candidateForm button[type="submit"]').click();
   await page.waitForFunction(()=>window.RussianAuthorWorkspace.state.candidate?.state==='VALIDATED');
   const valid=await page.evaluate(()=>({
@@ -49,7 +70,7 @@ try{
   assert.equal(reviewed.envelope.canonicalOwner,'subjects/russian/data/vocab.json');
   assert.equal(await page.locator('[data-canonical-write]').count(),0,'Workspace must not expose direct canonical-write controls');
   await page.screenshot({path:path.join(OUT,'author-workspace.png'),fullPage:true});
-  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',owner:valid.owner,candidateState:reviewed.candidate.state,metadataOnly:true},null,2));
+  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',owner:valid.owner,candidateState:reviewed.candidate.state,metadataOnly:true,schemaAware:true,negativeValidation:true,validationPolicies:blocked.schema.validationPolicies},null,2));
   assert.deepEqual(errors,[]);
   console.log('Russian RU08 author browser acceptance PASS');
 }finally{await browser?.close();}
