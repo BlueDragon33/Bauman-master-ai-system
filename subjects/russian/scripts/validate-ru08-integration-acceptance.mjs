@@ -50,14 +50,36 @@ assert.match(reviewStore,/PUBLISHER_REQUIRED/);
 assert.doesNotMatch(migration,/content_body|body_json|learning_content/i);
 
 const ownerMap=new Map((owners.owners||[]).map(x=>[x[0],x[1]]));
-for(const type of governance.authorableEntityTypes)assert(ownerMap.get(type),'authorable entity lacks RU02 owner: '+type);
+const schemaPolicies=new Set();
+for(const type of governance.authorableEntityTypes){
+  assert(ownerMap.get(type),'authorable entity lacks RU02 owner: '+type);
+  const schema=governance.entitySchemas?.[type];
+  assert(schema,'authorable entity lacks schema-aware descriptor: '+type);
+  assert(Array.isArray(schema.fields)&&schema.fields.length,'authorable entity schema has no fields: '+type);
+  assert(Array.isArray(schema.validationPolicies)&&schema.validationPolicies.length,'authorable entity lacks validation policies: '+type);
+  assert.equal(new Set(schema.fields.map(x=>x.id)).size,schema.fields.length,'duplicate schema field id: '+type);
+  for(const policy of schema.validationPolicies)schemaPolicies.add(policy);
+}
+assert.equal(governance.schemaAwareAuthoring?.mode,'ENTITY_SCHEMA_DRIVEN');
+for(const policy of governance.russianValidation)assert(schemaPolicies.has(policy),'Russian validation policy is not mapped to any entity schema: '+policy);
+assert.match(authorWorkspace,/schemaFor/);
+assert.match(authorWorkspace,/data-detail/);
+assert.match(authorWorkspace,/validationPolicies/);
 
-const draft={schema:'RUSSIAN_AUTHORING_CANDIDATE_V1',candidateId:'RU08-DEMO',responsibility:'LexicalEntry',canonicalId:'LEX-DEMO',revision:'r1',state:'VALIDATED',payload:{ru:'пример'},sourceRefs:['source:test'],rollbackNote:'restore previous canonical item',diffSummary:'fixture'};
+const draft={schema:'RUSSIAN_AUTHORING_CANDIDATE_V1',candidateId:'RU08-DEMO',responsibility:'LexicalEntry',canonicalId:'LEX-DEMO',revision:'r1',state:'VALIDATED',payload:{ru:'приме́р',vi:'ví dụ',details:{lemma:'пример',stress:'приме́р',partOfSpeech:'noun',yoEPolicy:'not-applicable',morphology:'м.р.; неодуш.; 2-е склонение',government:'not-applicable',acceptedVariants:'пример',register:'neutral'}},sourceRefs:['source:test'],rollbackNote:'restore previous canonical item',diffSummary:'fixture'};
 draft.contentHash=hashPayload(draft.payload);
 const v=validateCandidate(draft);
 assert.equal(v.ok,true,v.errors.join('; '));
 assert.equal(v.canonicalOwner,'subjects/russian/data/vocab.json');
+assert(v.validationPolicies.includes('stress'));
 assert.equal(reviewEnvelope(draft).metadataOnly,true);
+const invalidStress=structuredClone(draft);
+invalidStress.candidateId='RU08-BAD-STRESS';
+invalidStress.payload.details.stress='пример';
+invalidStress.contentHash=hashPayload(invalidStress.payload);
+const invalidStressResult=validateCandidate(invalidStress);
+assert.equal(invalidStressResult.ok,false,'LexicalEntry without explicit stress must fail closed');
+assert(invalidStressResult.errors.some(x=>x.includes('stress')),'stress failure reason missing');
 const generated={...draft,candidateId:'RU08-GEN',state:'APPROVED',generated:true,reviewer:'reviewer',reviewedAt:'2026-10-01T00:00:00Z',confidence:'UNVERIFIED'};
 assert.equal(validateCandidate(generated,{requirePromotion:true}).ok,false,'generated unverified content cannot promote');
 
@@ -74,4 +96,4 @@ for(const phase of ['ru02','ru03','ru04','ru05','ru06','ru07']){
  assert(fs.existsSync(p),'missing '+p);
  assert.match(fs.readFileSync(p,'utf8'),/State:\s*\*\*PASS\*\*|RU0[2-7] STATE:\s*PASS/i,'upstream not PASS: '+phase);
 }
-console.log(JSON.stringify({ok:true,subject:manifest.id,dataFiles:manifest.dataFiles.length,capabilities:manifest.requiredCapabilities.length,authorable:governance.authorableEntityTypes.length,failures:acceptance.failureMatrix.length}));
+console.log(JSON.stringify({ok:true,subject:manifest.id,dataFiles:manifest.dataFiles.length,capabilities:manifest.requiredCapabilities.length,authorable:governance.authorableEntityTypes.length,schemaPolicies:schemaPolicies.size,failures:acceptance.failureMatrix.length}));
