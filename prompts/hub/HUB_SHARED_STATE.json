@@ -11,7 +11,7 @@
   "lastCodexValidatedSha": null,
   "activeWorkPacketId": "HUB-BOOTSTRAP-RECONCILE-001",
   "activeWorkPacketRevision": 1,
-  "lifecycleStatus": "CHAT_HUB_C1_C4_COMPLETE",
+  "lifecycleStatus": "CHAT_CONTINUOUS_EXECUTION",
   "lastAcceptedPacketId": null,
   "blockers": [],
   "notes": [
@@ -23,7 +23,35 @@
     "HUB-C3: target subject integration is descriptor -> capability set -> launch adapter -> normalized Hub read model. Existing direct path/editor behavior is compatibility only and must not be extended.",
     "HUB-C4: acceptance contract requires data-truth checks, five-route regression, responsive desktop/tablet/phone review, accessibility, exact tested SHA, scoped diff and explicit Chat review before release.",
     "Detailed audit: prompts/hub/chat/HUB_CHAT_AUDIT_2026-10-02.md.",
-    "Stable UX contract: prompts/hub/chat/HUB_C2_PRIMARY_PAGE_UX_CONTRACT.md."
+    "Stable UX contract: prompts/hub/chat/HUB_C2_PRIMARY_PAGE_UX_CONTRACT.md.",
+    "User requested continuous Chat execution. Do not stop at intermediate HUB-C checkpoints or ask for routine confirmation; auto-advance until completion or a real blocker."
   ],
-  "lastArchitectureChange": "Completed Chat-plane HUB-C1 through HUB-C4: truth-source model, five-page UX ownership, contract-based subject integration target, and acceptance/release criteria. No Codex execution or subject-app changes were performed."
+  "lastArchitectureChange": "Enabled continuous Chat execution for Bauman Hub: auto-advance across Hub steps, self-fix Hub-only issues, and stop only on completion, real blocker, external authority need, boundary conflict, or safety/policy block.",
+  "executionMode": {
+    "mode": "CONTINUOUS_CHAT",
+    "autoAdvance": true,
+    "stopOnlyWhen": [
+      "TASK_COMPLETE",
+      "REAL_BLOCKER",
+      "EXTERNAL_AUTHORITY_REQUIRED",
+      "SCOPE_BOUNDARY_WOULD_BE_CROSSED",
+      "SAFETY_OR_POLICY_BLOCK"
+    ],
+    "doNotStopFor": [
+      "intermediate_checkpoints",
+      "phase_transitions",
+      "routine validation",
+      "next-step confirmation",
+      "minor implementation choices inside Hub scope"
+    ],
+    "behavior": [
+      "Automatically continue from the current Hub step to the next logical Hub step.",
+      "Automatically inspect/fix Hub-only defects found during the run.",
+      "Automatically add follow-up Hub-only steps when needed for completeness.",
+      "Do not ask the user to confirm each HUB-Cx transition.",
+      "Keep prompts/subjects/** and subject-app internals out of scope.",
+      "Use only registered API/Contract boundaries for subject integration.",
+      "Report progress periodically, but do not stop merely to report."
+    ]
+  }
 }
