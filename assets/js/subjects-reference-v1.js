@@ -16,6 +16,7 @@ var COURSE_REF=[
   {key:'python',subjectId:'programming',title:'Lập trình Python',teacher:'GV: TS. Nguyễn Quốc Bảo',icon:'Py',tone:'green',progressTone:'green',status:'study',statusLabel:'Đang học',fallbackProgress:80,sessions:'16/20 buổi',next:'Thứ 6, 14/03, 09:00 – 11:00'},
   {key:'probability',subjectId:'math',title:'Xác suất thống kê',teacher:'GV: PGS. Đặng Thùy Linh',icon:'▥',tone:'orange',progressTone:'orange',status:'exam',statusLabel:'Sắp thi',fallbackProgress:45,sessions:'9/20 buổi',next:'Thứ 3, 11/03, 15:30 – 17:00'},
   {key:'database',subjectId:'programming',title:'Cơ sở dữ liệu',teacher:'GV: ThS. Phạm Trung Hiếu',icon:'DB',tone:'cyan',progressTone:'blue',status:'study',statusLabel:'Đang học',fallbackProgress:65,sessions:'13/20 buổi',next:'Thứ 5, 13/03, 13:30 – 15:00'},
+  {key:'entrepreneurship',subjectId:'entrepreneurship',title:'Cơ sở khởi nghiệp',teacher:'GV: Chưa cập nhật',icon:'↗',tone:'orange',progressTone:'orange',status:'study',statusLabel:'HK2',fallbackProgress:0,sessions:'0/8 buổi',next:'Theo lịch Bauman'},
   {key:'listen-speak',subjectId:'russian',title:'Nghe - Nói',teacher:'GV: TS. Vũ Thị Lan Anh',icon:'◉',tone:'rose',progressTone:'rose',status:'done',statusLabel:'Ôn tập',fallbackProgress:90,sessions:'18/20 buổi',next:'Thứ 2, 10/03, 10:00 – 11:30'}
 ];
 
