@@ -1,0 +1,922 @@
+{
+  "rules": {
+    "easy": {
+      "questions": 20,
+      "unlockScore": 8
+    },
+    "medium": {
+      "questions": 30,
+      "unlockScore": 8
+    },
+    "hard": {
+      "questions": 40,
+      "unlockScore": 8
+    },
+    "excellent": {
+      "questions": 50,
+      "unlockScore": 8
+    }
+  },
+  "questions": [
+    {
+      "id": "miv_q1_v1",
+      "moduleId": "miv_m401",
+      "stage": "m4",
+      "difficulty": "easy",
+      "prompt": "Fact trong knowledge base là gì?",
+      "options": [
+        "Thông tin được coi là đã biết trong phạm vi bài toán",
+        "Mọi dự đoán ML",
+        "Mọi ý kiến",
+        "Tên file"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m401_l1"
+    },
+    {
+      "id": "miv_q2_v1",
+      "moduleId": "miv_m401",
+      "stage": "m4",
+      "difficulty": "medium",
+      "prompt": "Rule A∧B→C cần gì để fire trong mô hình đơn giản?",
+      "options": [
+        "A và B thỏa",
+        "Chỉ A",
+        "Chỉ C",
+        "Không cần fact"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m401_l2"
+    },
+    {
+      "id": "miv_q3_v1",
+      "moduleId": "miv_m402",
+      "stage": "m4",
+      "difficulty": "easy",
+      "prompt": "Forward reasoning bắt đầu từ đâu?",
+      "options": [
+        "Facts hiện có",
+        "Goal cuối cùng בלבד",
+        "UI",
+        "Random rule"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m402_l1"
+    },
+    {
+      "id": "miv_q4_v1",
+      "moduleId": "miv_m402",
+      "stage": "m4",
+      "difficulty": "medium",
+      "prompt": "Missing fact khác contradiction thế nào?",
+      "options": [
+        "Missing là chưa biết; contradiction là thông tin xung đột",
+        "Giống nhau",
+        "Missing luôn false",
+        "Contradiction luôn true"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m402_l2"
+    },
+    {
+      "id": "miv_q5_v1",
+      "moduleId": "miv_m403",
+      "stage": "m4",
+      "difficulty": "easy",
+      "prompt": "Dependency graph giúp gì?",
+      "options": [
+        "Quan sát path/dependency giữa facts, rules và goals",
+        "Tăng GPU",
+        "Nén ảnh",
+        "Đổi font"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m403_l1"
+    },
+    {
+      "id": "miv_q6_v1",
+      "moduleId": "miv_m403",
+      "stage": "m4",
+      "difficulty": "hard",
+      "prompt": "Cycle trong graph luôn là lỗi?",
+      "options": [
+        "Không; cần xem semantics và execution policy",
+        "Có, luôn luôn",
+        "Chỉ khi có 2 node",
+        "Không bao giờ cần kiểm tra"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m403_l2"
+    },
+    {
+      "id": "miv_q7_v1",
+      "moduleId": "miv_m404",
+      "stage": "m4",
+      "difficulty": "easy",
+      "prompt": "Khi chưa có syllabus Mivar chi tiết, claim Mivar-specific nên làm gì?",
+      "options": [
+        "Gắn source status và để unknown nếu chưa xác minh",
+        "Tự đoán",
+        "Biến thành official",
+        "Xóa hết logic chung"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m404_l1"
+    },
+    {
+      "id": "miv_q8_v1",
+      "moduleId": "miv_m404",
+      "stage": "m4",
+      "difficulty": "medium",
+      "prompt": "Logic/rule/graph chung có đồng nghĩa với formalism Mivar không?",
+      "options": [
+        "Không; cần mapping bằng nguồn chính thức",
+        "Có hoàn toàn",
+        "Chỉ graph là Mivar",
+        "Chỉ rule là Mivar"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m404_l2"
+    },
+    {
+      "id": "miv_q9_v1",
+      "moduleId": "miv_m405",
+      "stage": "m4",
+      "difficulty": "easy",
+      "prompt": "Symbolic AI thường có lợi thế gì khi rule rõ?",
+      "options": [
+        "Giải thích/constraint trực tiếp",
+        "Luôn tốt hơn neural",
+        "Không cần representation",
+        "Không cần test"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m405_l1"
+    },
+    {
+      "id": "miv_q10_v1",
+      "moduleId": "miv_m405",
+      "stage": "m4",
+      "difficulty": "medium",
+      "prompt": "ML output confidence thấp nên làm gì trước symbolic fact?",
+      "options": [
+        "Qua policy/threshold hoặc giữ unknown",
+        "Luôn biến thành fact",
+        "Bỏ confidence",
+        "Fire mọi rule"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m405_l2"
+    },
+    {
+      "id": "miv_q11_v1",
+      "moduleId": "miv_m406",
+      "stage": "m4",
+      "difficulty": "medium",
+      "prompt": "Coursework rule engine nên có gì?",
+      "options": [
+        "Representation, rules, tests, trace, results, limitations",
+        "Chỉ slide",
+        "Chỉ code",
+        "Chỉ screenshot"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m406_l1"
+    },
+    {
+      "id": "miv_q12_v1",
+      "moduleId": "miv_m406",
+      "stage": "m4",
+      "difficulty": "hard",
+      "prompt": "Defense tốt nhất demo gì?",
+      "options": [
+        "Input → inference trace → output",
+        "Logo",
+        "Số dòng code",
+        "Tất cả file JSON"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m406_l2"
+    },
+    {
+      "id": "miv_q1_v2",
+      "moduleId": "miv_m401",
+      "stage": "m4",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 2] Fact trong knowledge base là gì?",
+      "options": [
+        "Thông tin được coi là đã biết trong phạm vi bài toán",
+        "Mọi dự đoán ML",
+        "Mọi ý kiến",
+        "Tên file"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m401_l1"
+    },
+    {
+      "id": "miv_q2_v2",
+      "moduleId": "miv_m401",
+      "stage": "m4",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 2] Rule A∧B→C cần gì để fire trong mô hình đơn giản?",
+      "options": [
+        "A và B thỏa",
+        "Chỉ A",
+        "Chỉ C",
+        "Không cần fact"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m401_l2"
+    },
+    {
+      "id": "miv_q3_v2",
+      "moduleId": "miv_m402",
+      "stage": "m4",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 2] Forward reasoning bắt đầu từ đâu?",
+      "options": [
+        "Facts hiện có",
+        "Goal cuối cùng בלבד",
+        "UI",
+        "Random rule"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m402_l1"
+    },
+    {
+      "id": "miv_q4_v2",
+      "moduleId": "miv_m402",
+      "stage": "m4",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 2] Missing fact khác contradiction thế nào?",
+      "options": [
+        "Missing là chưa biết; contradiction là thông tin xung đột",
+        "Giống nhau",
+        "Missing luôn false",
+        "Contradiction luôn true"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m402_l2"
+    },
+    {
+      "id": "miv_q5_v2",
+      "moduleId": "miv_m403",
+      "stage": "m4",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 2] Dependency graph giúp gì?",
+      "options": [
+        "Quan sát path/dependency giữa facts, rules và goals",
+        "Tăng GPU",
+        "Nén ảnh",
+        "Đổi font"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m403_l1"
+    },
+    {
+      "id": "miv_q6_v2",
+      "moduleId": "miv_m403",
+      "stage": "m4",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 2] Cycle trong graph luôn là lỗi?",
+      "options": [
+        "Không; cần xem semantics và execution policy",
+        "Có, luôn luôn",
+        "Chỉ khi có 2 node",
+        "Không bao giờ cần kiểm tra"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m403_l2"
+    },
+    {
+      "id": "miv_q7_v2",
+      "moduleId": "miv_m404",
+      "stage": "m4",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 2] Khi chưa có syllabus Mivar chi tiết, claim Mivar-specific nên làm gì?",
+      "options": [
+        "Gắn source status và để unknown nếu chưa xác minh",
+        "Tự đoán",
+        "Biến thành official",
+        "Xóa hết logic chung"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m404_l1"
+    },
+    {
+      "id": "miv_q8_v2",
+      "moduleId": "miv_m404",
+      "stage": "m4",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 2] Logic/rule/graph chung có đồng nghĩa với formalism Mivar không?",
+      "options": [
+        "Không; cần mapping bằng nguồn chính thức",
+        "Có hoàn toàn",
+        "Chỉ graph là Mivar",
+        "Chỉ rule là Mivar"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m404_l2"
+    },
+    {
+      "id": "miv_q9_v2",
+      "moduleId": "miv_m405",
+      "stage": "m4",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 2] Symbolic AI thường có lợi thế gì khi rule rõ?",
+      "options": [
+        "Giải thích/constraint trực tiếp",
+        "Luôn tốt hơn neural",
+        "Không cần representation",
+        "Không cần test"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m405_l1"
+    },
+    {
+      "id": "miv_q10_v2",
+      "moduleId": "miv_m405",
+      "stage": "m4",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 2] ML output confidence thấp nên làm gì trước symbolic fact?",
+      "options": [
+        "Qua policy/threshold hoặc giữ unknown",
+        "Luôn biến thành fact",
+        "Bỏ confidence",
+        "Fire mọi rule"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m405_l2"
+    },
+    {
+      "id": "miv_q11_v2",
+      "moduleId": "miv_m406",
+      "stage": "m4",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 2] Coursework rule engine nên có gì?",
+      "options": [
+        "Representation, rules, tests, trace, results, limitations",
+        "Chỉ slide",
+        "Chỉ code",
+        "Chỉ screenshot"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m406_l1"
+    },
+    {
+      "id": "miv_q12_v2",
+      "moduleId": "miv_m406",
+      "stage": "m4",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 2] Defense tốt nhất demo gì?",
+      "options": [
+        "Input → inference trace → output",
+        "Logo",
+        "Số dòng code",
+        "Tất cả file JSON"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m406_l2"
+    },
+    {
+      "id": "miv_q1_v3",
+      "moduleId": "miv_m401",
+      "stage": "m4",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 3] Fact trong knowledge base là gì?",
+      "options": [
+        "Thông tin được coi là đã biết trong phạm vi bài toán",
+        "Mọi dự đoán ML",
+        "Mọi ý kiến",
+        "Tên file"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m401_l1"
+    },
+    {
+      "id": "miv_q2_v3",
+      "moduleId": "miv_m401",
+      "stage": "m4",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 3] Rule A∧B→C cần gì để fire trong mô hình đơn giản?",
+      "options": [
+        "A và B thỏa",
+        "Chỉ A",
+        "Chỉ C",
+        "Không cần fact"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m401_l2"
+    },
+    {
+      "id": "miv_q3_v3",
+      "moduleId": "miv_m402",
+      "stage": "m4",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 3] Forward reasoning bắt đầu từ đâu?",
+      "options": [
+        "Facts hiện có",
+        "Goal cuối cùng בלבד",
+        "UI",
+        "Random rule"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m402_l1"
+    },
+    {
+      "id": "miv_q4_v3",
+      "moduleId": "miv_m402",
+      "stage": "m4",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 3] Missing fact khác contradiction thế nào?",
+      "options": [
+        "Missing là chưa biết; contradiction là thông tin xung đột",
+        "Giống nhau",
+        "Missing luôn false",
+        "Contradiction luôn true"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m402_l2"
+    },
+    {
+      "id": "miv_q5_v3",
+      "moduleId": "miv_m403",
+      "stage": "m4",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 3] Dependency graph giúp gì?",
+      "options": [
+        "Quan sát path/dependency giữa facts, rules và goals",
+        "Tăng GPU",
+        "Nén ảnh",
+        "Đổi font"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m403_l1"
+    },
+    {
+      "id": "miv_q6_v3",
+      "moduleId": "miv_m403",
+      "stage": "m4",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 3] Cycle trong graph luôn là lỗi?",
+      "options": [
+        "Không; cần xem semantics và execution policy",
+        "Có, luôn luôn",
+        "Chỉ khi có 2 node",
+        "Không bao giờ cần kiểm tra"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m403_l2"
+    },
+    {
+      "id": "miv_q7_v3",
+      "moduleId": "miv_m404",
+      "stage": "m4",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 3] Khi chưa có syllabus Mivar chi tiết, claim Mivar-specific nên làm gì?",
+      "options": [
+        "Gắn source status và để unknown nếu chưa xác minh",
+        "Tự đoán",
+        "Biến thành official",
+        "Xóa hết logic chung"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m404_l1"
+    },
+    {
+      "id": "miv_q8_v3",
+      "moduleId": "miv_m404",
+      "stage": "m4",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 3] Logic/rule/graph chung có đồng nghĩa với formalism Mivar không?",
+      "options": [
+        "Không; cần mapping bằng nguồn chính thức",
+        "Có hoàn toàn",
+        "Chỉ graph là Mivar",
+        "Chỉ rule là Mivar"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m404_l2"
+    },
+    {
+      "id": "miv_q9_v3",
+      "moduleId": "miv_m405",
+      "stage": "m4",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 3] Symbolic AI thường có lợi thế gì khi rule rõ?",
+      "options": [
+        "Giải thích/constraint trực tiếp",
+        "Luôn tốt hơn neural",
+        "Không cần representation",
+        "Không cần test"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m405_l1"
+    },
+    {
+      "id": "miv_q10_v3",
+      "moduleId": "miv_m405",
+      "stage": "m4",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 3] ML output confidence thấp nên làm gì trước symbolic fact?",
+      "options": [
+        "Qua policy/threshold hoặc giữ unknown",
+        "Luôn biến thành fact",
+        "Bỏ confidence",
+        "Fire mọi rule"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m405_l2"
+    },
+    {
+      "id": "miv_q11_v3",
+      "moduleId": "miv_m406",
+      "stage": "m4",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 3] Coursework rule engine nên có gì?",
+      "options": [
+        "Representation, rules, tests, trace, results, limitations",
+        "Chỉ slide",
+        "Chỉ code",
+        "Chỉ screenshot"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m406_l1"
+    },
+    {
+      "id": "miv_q12_v3",
+      "moduleId": "miv_m406",
+      "stage": "m4",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 3] Defense tốt nhất demo gì?",
+      "options": [
+        "Input → inference trace → output",
+        "Logo",
+        "Số dòng code",
+        "Tất cả file JSON"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m406_l2"
+    },
+    {
+      "id": "miv_q1_v4",
+      "moduleId": "miv_m401",
+      "stage": "m4",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 4] Fact trong knowledge base là gì?",
+      "options": [
+        "Thông tin được coi là đã biết trong phạm vi bài toán",
+        "Mọi dự đoán ML",
+        "Mọi ý kiến",
+        "Tên file"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m401_l1"
+    },
+    {
+      "id": "miv_q2_v4",
+      "moduleId": "miv_m401",
+      "stage": "m4",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 4] Rule A∧B→C cần gì để fire trong mô hình đơn giản?",
+      "options": [
+        "A và B thỏa",
+        "Chỉ A",
+        "Chỉ C",
+        "Không cần fact"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m401_l2"
+    },
+    {
+      "id": "miv_q3_v4",
+      "moduleId": "miv_m402",
+      "stage": "m4",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 4] Forward reasoning bắt đầu từ đâu?",
+      "options": [
+        "Facts hiện có",
+        "Goal cuối cùng בלבד",
+        "UI",
+        "Random rule"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m402_l1"
+    },
+    {
+      "id": "miv_q4_v4",
+      "moduleId": "miv_m402",
+      "stage": "m4",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 4] Missing fact khác contradiction thế nào?",
+      "options": [
+        "Missing là chưa biết; contradiction là thông tin xung đột",
+        "Giống nhau",
+        "Missing luôn false",
+        "Contradiction luôn true"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m402_l2"
+    },
+    {
+      "id": "miv_q5_v4",
+      "moduleId": "miv_m403",
+      "stage": "m4",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 4] Dependency graph giúp gì?",
+      "options": [
+        "Quan sát path/dependency giữa facts, rules và goals",
+        "Tăng GPU",
+        "Nén ảnh",
+        "Đổi font"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m403_l1"
+    },
+    {
+      "id": "miv_q6_v4",
+      "moduleId": "miv_m403",
+      "stage": "m4",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 4] Cycle trong graph luôn là lỗi?",
+      "options": [
+        "Không; cần xem semantics và execution policy",
+        "Có, luôn luôn",
+        "Chỉ khi có 2 node",
+        "Không bao giờ cần kiểm tra"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m403_l2"
+    },
+    {
+      "id": "miv_q7_v4",
+      "moduleId": "miv_m404",
+      "stage": "m4",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 4] Khi chưa có syllabus Mivar chi tiết, claim Mivar-specific nên làm gì?",
+      "options": [
+        "Gắn source status và để unknown nếu chưa xác minh",
+        "Tự đoán",
+        "Biến thành official",
+        "Xóa hết logic chung"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m404_l1"
+    },
+    {
+      "id": "miv_q8_v4",
+      "moduleId": "miv_m404",
+      "stage": "m4",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 4] Logic/rule/graph chung có đồng nghĩa với formalism Mivar không?",
+      "options": [
+        "Không; cần mapping bằng nguồn chính thức",
+        "Có hoàn toàn",
+        "Chỉ graph là Mivar",
+        "Chỉ rule là Mivar"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m404_l2"
+    },
+    {
+      "id": "miv_q9_v4",
+      "moduleId": "miv_m405",
+      "stage": "m4",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 4] Symbolic AI thường có lợi thế gì khi rule rõ?",
+      "options": [
+        "Giải thích/constraint trực tiếp",
+        "Luôn tốt hơn neural",
+        "Không cần representation",
+        "Không cần test"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m405_l1"
+    },
+    {
+      "id": "miv_q10_v4",
+      "moduleId": "miv_m405",
+      "stage": "m4",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 4] ML output confidence thấp nên làm gì trước symbolic fact?",
+      "options": [
+        "Qua policy/threshold hoặc giữ unknown",
+        "Luôn biến thành fact",
+        "Bỏ confidence",
+        "Fire mọi rule"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m405_l2"
+    },
+    {
+      "id": "miv_q11_v4",
+      "moduleId": "miv_m406",
+      "stage": "m4",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 4] Coursework rule engine nên có gì?",
+      "options": [
+        "Representation, rules, tests, trace, results, limitations",
+        "Chỉ slide",
+        "Chỉ code",
+        "Chỉ screenshot"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m406_l1"
+    },
+    {
+      "id": "miv_q12_v4",
+      "moduleId": "miv_m406",
+      "stage": "m4",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 4] Defense tốt nhất demo gì?",
+      "options": [
+        "Input → inference trace → output",
+        "Logo",
+        "Số dòng code",
+        "Tất cả file JSON"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m406_l2"
+    },
+    {
+      "id": "miv_q1_v5",
+      "moduleId": "miv_m401",
+      "stage": "m4",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 5] Fact trong knowledge base là gì?",
+      "options": [
+        "Thông tin được coi là đã biết trong phạm vi bài toán",
+        "Mọi dự đoán ML",
+        "Mọi ý kiến",
+        "Tên file"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m401_l1"
+    },
+    {
+      "id": "miv_q2_v5",
+      "moduleId": "miv_m401",
+      "stage": "m4",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 5] Rule A∧B→C cần gì để fire trong mô hình đơn giản?",
+      "options": [
+        "A và B thỏa",
+        "Chỉ A",
+        "Chỉ C",
+        "Không cần fact"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m401_l2"
+    },
+    {
+      "id": "miv_q3_v5",
+      "moduleId": "miv_m402",
+      "stage": "m4",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 5] Forward reasoning bắt đầu từ đâu?",
+      "options": [
+        "Facts hiện có",
+        "Goal cuối cùng בלבד",
+        "UI",
+        "Random rule"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m402_l1"
+    },
+    {
+      "id": "miv_q4_v5",
+      "moduleId": "miv_m402",
+      "stage": "m4",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 5] Missing fact khác contradiction thế nào?",
+      "options": [
+        "Missing là chưa biết; contradiction là thông tin xung đột",
+        "Giống nhau",
+        "Missing luôn false",
+        "Contradiction luôn true"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m402_l2"
+    },
+    {
+      "id": "miv_q5_v5",
+      "moduleId": "miv_m403",
+      "stage": "m4",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 5] Dependency graph giúp gì?",
+      "options": [
+        "Quan sát path/dependency giữa facts, rules và goals",
+        "Tăng GPU",
+        "Nén ảnh",
+        "Đổi font"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m403_l1"
+    },
+    {
+      "id": "miv_q6_v5",
+      "moduleId": "miv_m403",
+      "stage": "m4",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 5] Cycle trong graph luôn là lỗi?",
+      "options": [
+        "Không; cần xem semantics và execution policy",
+        "Có, luôn luôn",
+        "Chỉ khi có 2 node",
+        "Không bao giờ cần kiểm tra"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m403_l2"
+    },
+    {
+      "id": "miv_q7_v5",
+      "moduleId": "miv_m404",
+      "stage": "m4",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 5] Khi chưa có syllabus Mivar chi tiết, claim Mivar-specific nên làm gì?",
+      "options": [
+        "Gắn source status và để unknown nếu chưa xác minh",
+        "Tự đoán",
+        "Biến thành official",
+        "Xóa hết logic chung"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m404_l1"
+    },
+    {
+      "id": "miv_q8_v5",
+      "moduleId": "miv_m404",
+      "stage": "m4",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 5] Logic/rule/graph chung có đồng nghĩa với formalism Mivar không?",
+      "options": [
+        "Không; cần mapping bằng nguồn chính thức",
+        "Có hoàn toàn",
+        "Chỉ graph là Mivar",
+        "Chỉ rule là Mivar"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m404_l2"
+    },
+    {
+      "id": "miv_q9_v5",
+      "moduleId": "miv_m405",
+      "stage": "m4",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 5] Symbolic AI thường có lợi thế gì khi rule rõ?",
+      "options": [
+        "Giải thích/constraint trực tiếp",
+        "Luôn tốt hơn neural",
+        "Không cần representation",
+        "Không cần test"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m405_l1"
+    },
+    {
+      "id": "miv_q10_v5",
+      "moduleId": "miv_m405",
+      "stage": "m4",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 5] ML output confidence thấp nên làm gì trước symbolic fact?",
+      "options": [
+        "Qua policy/threshold hoặc giữ unknown",
+        "Luôn biến thành fact",
+        "Bỏ confidence",
+        "Fire mọi rule"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m405_l2"
+    },
+    {
+      "id": "miv_q11_v5",
+      "moduleId": "miv_m406",
+      "stage": "m4",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 5] Coursework rule engine nên có gì?",
+      "options": [
+        "Representation, rules, tests, trace, results, limitations",
+        "Chỉ slide",
+        "Chỉ code",
+        "Chỉ screenshot"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m406_l1"
+    },
+    {
+      "id": "miv_q12_v5",
+      "moduleId": "miv_m406",
+      "stage": "m4",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 5] Defense tốt nhất demo gì?",
+      "options": [
+        "Input → inference trace → output",
+        "Logo",
+        "Số dòng code",
+        "Tất cả file JSON"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "miv_m406_l2"
+    }
+  ]
+}
