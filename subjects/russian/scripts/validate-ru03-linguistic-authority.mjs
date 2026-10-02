@@ -2,6 +2,8 @@ import fs from 'node:fs';
 import assert from 'node:assert/strict';
 const j=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 const prov=j('subjects/russian/data/provenance.json');
+assert.equal(prov.phase,'RU03');
+assert.equal(prov.legacySourceResponsibility,'P7');
 const tech=j('subjects/russian/data/technical-concepts.json');
 const queue=j('subjects/russian/docs/ru03/RUSSIAN_RU03_CONTENT_ISSUE_QUEUE.json');
 const fixtures=j('subjects/russian/docs/ru03/RUSSIAN_RU03_GOLDEN_LINGUISTIC_FIXTURES.json');
