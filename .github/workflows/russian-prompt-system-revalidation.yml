@@ -1,0 +1,122 @@
+name: Russian Prompt System Revalidation
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "subjects/russian/**"
+      - "tests/russian-*.mjs"
+      - "control-service/**"
+      - ".github/workflows/russian-prompt-system-revalidation.yml"
+  push:
+    branches: [main]
+    paths:
+      - "subjects/russian/**"
+      - "tests/russian-*.mjs"
+      - "control-service/**"
+      - ".github/workflows/russian-prompt-system-revalidation.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  static-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - name: Parse changed runtime and browser scripts
+        run: |
+          node --check subjects/russian/assets/scenario-engine.js
+          node --check subjects/russian/assets/academic-production.js
+          node --check subjects/russian/assets/ai-mentor-guard.js
+          node --check tests/russian-scenario-journey-browser.mjs
+          node --check tests/russian-academic-production-journey-browser.mjs
+          node --check tests/russian-ai-grounding-browser.mjs
+          node --check tests/russian-authoring-journey-browser.mjs
+      - name: Validate RU02 canonical model
+        run: node subjects/russian/scripts/validate-ru02-canonical-model.mjs
+      - name: Validate RU03 linguistic authority
+        run: node subjects/russian/scripts/validate-ru03-linguistic-authority.mjs
+      - name: Validate RU04 learning judgment
+        run: node subjects/russian/scripts/validate-ru04-learning-judgment.mjs
+      - name: Validate RU05 oral scenarios
+        run: node subjects/russian/scripts/validate-ru05-oral-scenarios.mjs
+      - name: Validate RU06 academic production
+        run: node subjects/russian/scripts/validate-ru06-academic-production.mjs
+      - name: Preserve P8 academic technical compatibility
+        run: node subjects/russian/scripts/validate-p8-academic-technical.mjs
+      - name: Preserve P9 reading writing research compatibility
+        run: node subjects/russian/scripts/validate-p9-reading-writing-research.mjs
+      - name: Validate RU07 AI coaching
+        run: node subjects/russian/scripts/validate-ru07-ai-coaching.mjs
+      - name: Validate RU08 integration acceptance
+        run: node subjects/russian/scripts/validate-ru08-integration-acceptance.mjs
+      - name: Validate Content Review contract
+        run: node --test control-service/tests/contract.test.mjs
+
+  browser-journeys:
+    needs: static-contract
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - name: Install Playwright Chromium
+        run: |
+          printf '{"private":true,"type":"module"}\n' > package.json
+          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Start Russian source runtime
+        run: |
+          python3 -m http.server 4182 --bind 127.0.0.1 > /tmp/russian-revalidation-http.log 2>&1 &
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4182/subjects/russian/index.html >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/russian-revalidation-http.log
+          exit 1
+      - name: RU05 scenario browser mobile offline
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4182/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-scenario-journey
+        run: node tests/russian-scenario-journey-browser.mjs
+      - name: RU06 academic production browser
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4182/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-academic-production
+        run: node tests/russian-academic-production-journey-browser.mjs
+      - name: RU07 AI grounding browser
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4182/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-ai-grounding
+        run: node tests/russian-ai-grounding-browser.mjs
+      - name: RU08 authoring browser
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4182/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-authoring-journey
+        run: node tests/russian-authoring-journey-browser.mjs
+      - name: Preserve canonical P4 browser behavior
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4182/
+        run: node tests/russian-p4-assessment-mastery-browser.mjs
+      - name: Preserve true offline shell
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4182/
+        run: node tests/russian-offline-shell-browser.mjs
+      - name: Upload full revalidation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: russian-prompt-revalidation-${{ github.run_id }}
+          path: artifacts/
+          if-no-files-found: warn
+          retention-days: 14
+      - name: Show server log on failure
+        if: failure()
+        run: cat /tmp/russian-revalidation-http.log || true
