@@ -1,0 +1,74 @@
+[
+  {
+    "id": "ent_ex1",
+    "stage": "m2",
+    "topic": "Problem framing",
+    "difficulty": "easy",
+    "prompt": "Viết một problem statement cho dự án công nghệ theo who → problem → impact → evidence.",
+    "answer": "Đáp án tốt phải có người dùng cụ thể, vấn đề quan sát được, tác động và bằng chứng/giả định được đánh dấu.",
+    "reviewLesson": "ent_m201_l1"
+  },
+  {
+    "id": "ent_ex2",
+    "stage": "m2",
+    "topic": "Stakeholder",
+    "difficulty": "medium",
+    "prompt": "Phân biệt user, buyer, operator và beneficiary trong một hệ thống robot/AI.",
+    "answer": "Có thể trùng vai nhưng phải nêu rõ ai sử dụng, ai chi tiền/quyết định, ai vận hành và ai nhận lợi ích.",
+    "reviewLesson": "ent_m201_l2"
+  },
+  {
+    "id": "ent_ex3",
+    "stage": "m2",
+    "topic": "Value proposition",
+    "difficulty": "easy",
+    "prompt": "Chuyển 3 feature kỹ thuật thành 3 lợi ích người dùng có metric.",
+    "answer": "Mỗi lợi ích nên có outcome + metric thay vì chỉ nói nhanh hơn/tốt hơn.",
+    "reviewLesson": "ent_m202_l1"
+  },
+  {
+    "id": "ent_ex4",
+    "stage": "m2",
+    "topic": "Hypothesis",
+    "difficulty": "medium",
+    "prompt": "Viết giả thuyết nếu… thì… đo bằng… và ngưỡng pass/fail.",
+    "answer": "Phải có nhóm/đối tượng, hành động/giải pháp, outcome, metric và threshold.",
+    "reviewLesson": "ent_m202_l2"
+  },
+  {
+    "id": "ent_ex5",
+    "stage": "m2",
+    "topic": "Business model",
+    "difficulty": "medium",
+    "prompt": "Lập BMC rút gọn cho một sản phẩm AI/robotics.",
+    "answer": "Ít nhất phải nhất quán giữa customer segment, value, channels, resources, costs và revenue.",
+    "reviewLesson": "ent_m203_l1"
+  },
+  {
+    "id": "ent_ex6",
+    "stage": "m2",
+    "topic": "Unit economics",
+    "difficulty": "medium",
+    "prompt": "Fixed cost 60.000, giá 1.500, biến phí 900. Tính CM và break-even.",
+    "answer": "CM = 600; break-even = 100 đơn vị.",
+    "reviewLesson": "ent_m203_l2"
+  },
+  {
+    "id": "ent_ex7",
+    "stage": "m2",
+    "topic": "Validation",
+    "difficulty": "hard",
+    "prompt": "Thiết kế một experiment rẻ trong 1 tuần để kiểm chứng giả định rủi ro nhất.",
+    "answer": "Cần assumption, test, sample/context, metric, threshold và cách diễn giải cả kết quả pass/fail.",
+    "reviewLesson": "ent_m204_l1"
+  },
+  {
+    "id": "ent_ex8",
+    "stage": "m2",
+    "topic": "Pitch",
+    "difficulty": "hard",
+    "prompt": "Viết outline pitch 3 phút gồm 6 phần và 1 câu ask/next step.",
+    "answer": "Problem → evidence → value → model → validation → next step; tránh sa vào chi tiết kỹ thuật không phục vụ quyết định.",
+    "reviewLesson": "ent_m204_l2"
+  }
+]

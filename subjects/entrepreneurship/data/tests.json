@@ -1,0 +1,772 @@
+{
+  "rules": {
+    "easy": {
+      "questions": 20,
+      "unlockScore": 8
+    },
+    "medium": {
+      "questions": 30,
+      "unlockScore": 8
+    },
+    "hard": {
+      "questions": 40,
+      "unlockScore": 8
+    },
+    "excellent": {
+      "questions": 50,
+      "unlockScore": 8
+    }
+  },
+  "questions": [
+    {
+      "id": "ent_q1_v1",
+      "moduleId": "ent_m201",
+      "stage": "m2",
+      "difficulty": "easy",
+      "prompt": "Problem statement tốt nhất cần gì?",
+      "options": [
+        "Người dùng, vấn đề, tác động và bằng chứng",
+        "Tên công nghệ càng dài càng tốt",
+        "Danh sách feature",
+        "Dự báo doanh thu"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m201_l1"
+    },
+    {
+      "id": "ent_q2_v1",
+      "moduleId": "ent_m201",
+      "stage": "m2",
+      "difficulty": "medium",
+      "prompt": "Cách hỏi discovery tốt hơn là gì?",
+      "options": [
+        "Hỏi hành vi và ví dụ thực tế",
+        "Hỏi 'anh có thích sản phẩm này không?'",
+        "Giải thích sản phẩm trước rồi xin đồng ý",
+        "Chỉ hỏi bạn bè"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m201_l2"
+    },
+    {
+      "id": "ent_q3_v1",
+      "moduleId": "ent_m202",
+      "stage": "m2",
+      "difficulty": "easy",
+      "prompt": "Value proposition khác feature ở điểm nào?",
+      "options": [
+        "Nó mô tả kết quả có giá trị cho người dùng",
+        "Nó là danh sách thông số kỹ thuật",
+        "Nó chỉ là slogan",
+        "Nó là giá bán"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m202_l1"
+    },
+    {
+      "id": "ent_q4_v1",
+      "moduleId": "ent_m202",
+      "stage": "m2",
+      "difficulty": "medium",
+      "prompt": "Giả thuyết kiểm chứng cần thêm gì ngoài 'nếu… thì…'?",
+      "options": [
+        "Metric và ngưỡng pass/fail",
+        "Logo",
+        "Tên công ty",
+        "Màu slide"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m202_l2"
+    },
+    {
+      "id": "ent_q5_v1",
+      "moduleId": "ent_m203",
+      "stage": "m2",
+      "difficulty": "easy",
+      "prompt": "BMC nên được hiểu là gì?",
+      "options": [
+        "Bản giả định có cấu trúc cần kiểm chứng",
+        "Bằng chứng mọi giả định đã đúng",
+        "Báo cáo tài chính kiểm toán",
+        "Syllabus môn học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m203_l1"
+    },
+    {
+      "id": "ent_q6_v1",
+      "moduleId": "ent_m203",
+      "stage": "m2",
+      "difficulty": "medium",
+      "prompt": "Nếu price=100 và variable cost=60 thì contribution margin là?",
+      "options": [
+        "40",
+        "160",
+        "60",
+        "1.67"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m203_l2"
+    },
+    {
+      "id": "ent_q7_v1",
+      "moduleId": "ent_m203",
+      "stage": "m2",
+      "difficulty": "hard",
+      "prompt": "Fixed cost=4000, CM=40 thì break-even units là?",
+      "options": [
+        "100",
+        "40",
+        "4000",
+        "160000"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m203_l2"
+    },
+    {
+      "id": "ent_q8_v1",
+      "moduleId": "ent_m204",
+      "stage": "m2",
+      "difficulty": "easy",
+      "prompt": "MVP phù hợp nhất là gì?",
+      "options": [
+        "Cách học nhanh về giả định rủi ro với nguồn lực nhỏ",
+        "Sản phẩm hoàn chỉnh 100%",
+        "Bản demo đẹp nhất",
+        "Báo cáo dài"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m204_l1"
+    },
+    {
+      "id": "ent_q9_v1",
+      "moduleId": "ent_m204",
+      "stage": "m2",
+      "difficulty": "medium",
+      "prompt": "Kết quả experiment 'fail' có giá trị khi nào?",
+      "options": [
+        "Khi nó làm giảm bất định và cập nhật quyết định",
+        "Không bao giờ",
+        "Chỉ khi có doanh thu",
+        "Chỉ khi người dùng khen"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m204_l1"
+    },
+    {
+      "id": "ent_q10_v1",
+      "moduleId": "ent_m204",
+      "stage": "m2",
+      "difficulty": "hard",
+      "prompt": "Pitch 3 phút nên ưu tiên điều gì?",
+      "options": [
+        "Problem, evidence, value, model, validation và next step",
+        "Toàn bộ chi tiết thuật toán",
+        "Lịch sử công ty dài",
+        "Tất cả source code"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m204_l2"
+    },
+    {
+      "id": "ent_q1_v2",
+      "moduleId": "ent_m201",
+      "stage": "m2",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 2] Problem statement tốt nhất cần gì?",
+      "options": [
+        "Người dùng, vấn đề, tác động và bằng chứng",
+        "Tên công nghệ càng dài càng tốt",
+        "Danh sách feature",
+        "Dự báo doanh thu"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m201_l1"
+    },
+    {
+      "id": "ent_q2_v2",
+      "moduleId": "ent_m201",
+      "stage": "m2",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 2] Cách hỏi discovery tốt hơn là gì?",
+      "options": [
+        "Hỏi hành vi và ví dụ thực tế",
+        "Hỏi 'anh có thích sản phẩm này không?'",
+        "Giải thích sản phẩm trước rồi xin đồng ý",
+        "Chỉ hỏi bạn bè"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m201_l2"
+    },
+    {
+      "id": "ent_q3_v2",
+      "moduleId": "ent_m202",
+      "stage": "m2",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 2] Value proposition khác feature ở điểm nào?",
+      "options": [
+        "Nó mô tả kết quả có giá trị cho người dùng",
+        "Nó là danh sách thông số kỹ thuật",
+        "Nó chỉ là slogan",
+        "Nó là giá bán"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m202_l1"
+    },
+    {
+      "id": "ent_q4_v2",
+      "moduleId": "ent_m202",
+      "stage": "m2",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 2] Giả thuyết kiểm chứng cần thêm gì ngoài 'nếu… thì…'?",
+      "options": [
+        "Metric và ngưỡng pass/fail",
+        "Logo",
+        "Tên công ty",
+        "Màu slide"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m202_l2"
+    },
+    {
+      "id": "ent_q5_v2",
+      "moduleId": "ent_m203",
+      "stage": "m2",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 2] BMC nên được hiểu là gì?",
+      "options": [
+        "Bản giả định có cấu trúc cần kiểm chứng",
+        "Bằng chứng mọi giả định đã đúng",
+        "Báo cáo tài chính kiểm toán",
+        "Syllabus môn học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m203_l1"
+    },
+    {
+      "id": "ent_q6_v2",
+      "moduleId": "ent_m203",
+      "stage": "m2",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 2] Nếu price=100 và variable cost=60 thì contribution margin là?",
+      "options": [
+        "40",
+        "160",
+        "60",
+        "1.67"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m203_l2"
+    },
+    {
+      "id": "ent_q7_v2",
+      "moduleId": "ent_m203",
+      "stage": "m2",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 2] Fixed cost=4000, CM=40 thì break-even units là?",
+      "options": [
+        "100",
+        "40",
+        "4000",
+        "160000"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m203_l2"
+    },
+    {
+      "id": "ent_q8_v2",
+      "moduleId": "ent_m204",
+      "stage": "m2",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 2] MVP phù hợp nhất là gì?",
+      "options": [
+        "Cách học nhanh về giả định rủi ro với nguồn lực nhỏ",
+        "Sản phẩm hoàn chỉnh 100%",
+        "Bản demo đẹp nhất",
+        "Báo cáo dài"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m204_l1"
+    },
+    {
+      "id": "ent_q9_v2",
+      "moduleId": "ent_m204",
+      "stage": "m2",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 2] Kết quả experiment 'fail' có giá trị khi nào?",
+      "options": [
+        "Khi nó làm giảm bất định và cập nhật quyết định",
+        "Không bao giờ",
+        "Chỉ khi có doanh thu",
+        "Chỉ khi người dùng khen"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m204_l1"
+    },
+    {
+      "id": "ent_q10_v2",
+      "moduleId": "ent_m204",
+      "stage": "m2",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 2] Pitch 3 phút nên ưu tiên điều gì?",
+      "options": [
+        "Problem, evidence, value, model, validation và next step",
+        "Toàn bộ chi tiết thuật toán",
+        "Lịch sử công ty dài",
+        "Tất cả source code"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m204_l2"
+    },
+    {
+      "id": "ent_q1_v3",
+      "moduleId": "ent_m201",
+      "stage": "m2",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 3] Problem statement tốt nhất cần gì?",
+      "options": [
+        "Người dùng, vấn đề, tác động và bằng chứng",
+        "Tên công nghệ càng dài càng tốt",
+        "Danh sách feature",
+        "Dự báo doanh thu"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m201_l1"
+    },
+    {
+      "id": "ent_q2_v3",
+      "moduleId": "ent_m201",
+      "stage": "m2",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 3] Cách hỏi discovery tốt hơn là gì?",
+      "options": [
+        "Hỏi hành vi và ví dụ thực tế",
+        "Hỏi 'anh có thích sản phẩm này không?'",
+        "Giải thích sản phẩm trước rồi xin đồng ý",
+        "Chỉ hỏi bạn bè"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m201_l2"
+    },
+    {
+      "id": "ent_q3_v3",
+      "moduleId": "ent_m202",
+      "stage": "m2",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 3] Value proposition khác feature ở điểm nào?",
+      "options": [
+        "Nó mô tả kết quả có giá trị cho người dùng",
+        "Nó là danh sách thông số kỹ thuật",
+        "Nó chỉ là slogan",
+        "Nó là giá bán"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m202_l1"
+    },
+    {
+      "id": "ent_q4_v3",
+      "moduleId": "ent_m202",
+      "stage": "m2",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 3] Giả thuyết kiểm chứng cần thêm gì ngoài 'nếu… thì…'?",
+      "options": [
+        "Metric và ngưỡng pass/fail",
+        "Logo",
+        "Tên công ty",
+        "Màu slide"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m202_l2"
+    },
+    {
+      "id": "ent_q5_v3",
+      "moduleId": "ent_m203",
+      "stage": "m2",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 3] BMC nên được hiểu là gì?",
+      "options": [
+        "Bản giả định có cấu trúc cần kiểm chứng",
+        "Bằng chứng mọi giả định đã đúng",
+        "Báo cáo tài chính kiểm toán",
+        "Syllabus môn học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m203_l1"
+    },
+    {
+      "id": "ent_q6_v3",
+      "moduleId": "ent_m203",
+      "stage": "m2",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 3] Nếu price=100 và variable cost=60 thì contribution margin là?",
+      "options": [
+        "40",
+        "160",
+        "60",
+        "1.67"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m203_l2"
+    },
+    {
+      "id": "ent_q7_v3",
+      "moduleId": "ent_m203",
+      "stage": "m2",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 3] Fixed cost=4000, CM=40 thì break-even units là?",
+      "options": [
+        "100",
+        "40",
+        "4000",
+        "160000"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m203_l2"
+    },
+    {
+      "id": "ent_q8_v3",
+      "moduleId": "ent_m204",
+      "stage": "m2",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 3] MVP phù hợp nhất là gì?",
+      "options": [
+        "Cách học nhanh về giả định rủi ro với nguồn lực nhỏ",
+        "Sản phẩm hoàn chỉnh 100%",
+        "Bản demo đẹp nhất",
+        "Báo cáo dài"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m204_l1"
+    },
+    {
+      "id": "ent_q9_v3",
+      "moduleId": "ent_m204",
+      "stage": "m2",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 3] Kết quả experiment 'fail' có giá trị khi nào?",
+      "options": [
+        "Khi nó làm giảm bất định và cập nhật quyết định",
+        "Không bao giờ",
+        "Chỉ khi có doanh thu",
+        "Chỉ khi người dùng khen"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m204_l1"
+    },
+    {
+      "id": "ent_q10_v3",
+      "moduleId": "ent_m204",
+      "stage": "m2",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 3] Pitch 3 phút nên ưu tiên điều gì?",
+      "options": [
+        "Problem, evidence, value, model, validation và next step",
+        "Toàn bộ chi tiết thuật toán",
+        "Lịch sử công ty dài",
+        "Tất cả source code"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m204_l2"
+    },
+    {
+      "id": "ent_q1_v4",
+      "moduleId": "ent_m201",
+      "stage": "m2",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 4] Problem statement tốt nhất cần gì?",
+      "options": [
+        "Người dùng, vấn đề, tác động và bằng chứng",
+        "Tên công nghệ càng dài càng tốt",
+        "Danh sách feature",
+        "Dự báo doanh thu"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m201_l1"
+    },
+    {
+      "id": "ent_q2_v4",
+      "moduleId": "ent_m201",
+      "stage": "m2",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 4] Cách hỏi discovery tốt hơn là gì?",
+      "options": [
+        "Hỏi hành vi và ví dụ thực tế",
+        "Hỏi 'anh có thích sản phẩm này không?'",
+        "Giải thích sản phẩm trước rồi xin đồng ý",
+        "Chỉ hỏi bạn bè"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m201_l2"
+    },
+    {
+      "id": "ent_q3_v4",
+      "moduleId": "ent_m202",
+      "stage": "m2",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 4] Value proposition khác feature ở điểm nào?",
+      "options": [
+        "Nó mô tả kết quả có giá trị cho người dùng",
+        "Nó là danh sách thông số kỹ thuật",
+        "Nó chỉ là slogan",
+        "Nó là giá bán"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m202_l1"
+    },
+    {
+      "id": "ent_q4_v4",
+      "moduleId": "ent_m202",
+      "stage": "m2",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 4] Giả thuyết kiểm chứng cần thêm gì ngoài 'nếu… thì…'?",
+      "options": [
+        "Metric và ngưỡng pass/fail",
+        "Logo",
+        "Tên công ty",
+        "Màu slide"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m202_l2"
+    },
+    {
+      "id": "ent_q5_v4",
+      "moduleId": "ent_m203",
+      "stage": "m2",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 4] BMC nên được hiểu là gì?",
+      "options": [
+        "Bản giả định có cấu trúc cần kiểm chứng",
+        "Bằng chứng mọi giả định đã đúng",
+        "Báo cáo tài chính kiểm toán",
+        "Syllabus môn học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m203_l1"
+    },
+    {
+      "id": "ent_q6_v4",
+      "moduleId": "ent_m203",
+      "stage": "m2",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 4] Nếu price=100 và variable cost=60 thì contribution margin là?",
+      "options": [
+        "40",
+        "160",
+        "60",
+        "1.67"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m203_l2"
+    },
+    {
+      "id": "ent_q7_v4",
+      "moduleId": "ent_m203",
+      "stage": "m2",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 4] Fixed cost=4000, CM=40 thì break-even units là?",
+      "options": [
+        "100",
+        "40",
+        "4000",
+        "160000"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m203_l2"
+    },
+    {
+      "id": "ent_q8_v4",
+      "moduleId": "ent_m204",
+      "stage": "m2",
+      "difficulty": "excellent",
+      "prompt": "[Biến thể 4] MVP phù hợp nhất là gì?",
+      "options": [
+        "Cách học nhanh về giả định rủi ro với nguồn lực nhỏ",
+        "Sản phẩm hoàn chỉnh 100%",
+        "Bản demo đẹp nhất",
+        "Báo cáo dài"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m204_l1"
+    },
+    {
+      "id": "ent_q9_v4",
+      "moduleId": "ent_m204",
+      "stage": "m2",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 4] Kết quả experiment 'fail' có giá trị khi nào?",
+      "options": [
+        "Khi nó làm giảm bất định và cập nhật quyết định",
+        "Không bao giờ",
+        "Chỉ khi có doanh thu",
+        "Chỉ khi người dùng khen"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m204_l1"
+    },
+    {
+      "id": "ent_q10_v4",
+      "moduleId": "ent_m204",
+      "stage": "m2",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 4] Pitch 3 phút nên ưu tiên điều gì?",
+      "options": [
+        "Problem, evidence, value, model, validation và next step",
+        "Toàn bộ chi tiết thuật toán",
+        "Lịch sử công ty dài",
+        "Tất cả source code"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m204_l2"
+    },
+    {
+      "id": "ent_q1_v5",
+      "moduleId": "ent_m201",
+      "stage": "m2",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 5] Problem statement tốt nhất cần gì?",
+      "options": [
+        "Người dùng, vấn đề, tác động và bằng chứng",
+        "Tên công nghệ càng dài càng tốt",
+        "Danh sách feature",
+        "Dự báo doanh thu"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m201_l1"
+    },
+    {
+      "id": "ent_q2_v5",
+      "moduleId": "ent_m201",
+      "stage": "m2",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 5] Cách hỏi discovery tốt hơn là gì?",
+      "options": [
+        "Hỏi hành vi và ví dụ thực tế",
+        "Hỏi 'anh có thích sản phẩm này không?'",
+        "Giải thích sản phẩm trước rồi xin đồng ý",
+        "Chỉ hỏi bạn bè"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m201_l2"
+    },
+    {
+      "id": "ent_q3_v5",
+      "moduleId": "ent_m202",
+      "stage": "m2",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 5] Value proposition khác feature ở điểm nào?",
+      "options": [
+        "Nó mô tả kết quả có giá trị cho người dùng",
+        "Nó là danh sách thông số kỹ thuật",
+        "Nó chỉ là slogan",
+        "Nó là giá bán"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m202_l1"
+    },
+    {
+      "id": "ent_q4_v5",
+      "moduleId": "ent_m202",
+      "stage": "m2",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 5] Giả thuyết kiểm chứng cần thêm gì ngoài 'nếu… thì…'?",
+      "options": [
+        "Metric và ngưỡng pass/fail",
+        "Logo",
+        "Tên công ty",
+        "Màu slide"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m202_l2"
+    },
+    {
+      "id": "ent_q5_v5",
+      "moduleId": "ent_m203",
+      "stage": "m2",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 5] BMC nên được hiểu là gì?",
+      "options": [
+        "Bản giả định có cấu trúc cần kiểm chứng",
+        "Bằng chứng mọi giả định đã đúng",
+        "Báo cáo tài chính kiểm toán",
+        "Syllabus môn học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m203_l1"
+    },
+    {
+      "id": "ent_q6_v5",
+      "moduleId": "ent_m203",
+      "stage": "m2",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 5] Nếu price=100 và variable cost=60 thì contribution margin là?",
+      "options": [
+        "40",
+        "160",
+        "60",
+        "1.67"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m203_l2"
+    },
+    {
+      "id": "ent_q7_v5",
+      "moduleId": "ent_m203",
+      "stage": "m2",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 5] Fixed cost=4000, CM=40 thì break-even units là?",
+      "options": [
+        "100",
+        "40",
+        "4000",
+        "160000"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m203_l2"
+    },
+    {
+      "id": "ent_q8_v5",
+      "moduleId": "ent_m204",
+      "stage": "m2",
+      "difficulty": "easy",
+      "prompt": "[Biến thể 5] MVP phù hợp nhất là gì?",
+      "options": [
+        "Cách học nhanh về giả định rủi ro với nguồn lực nhỏ",
+        "Sản phẩm hoàn chỉnh 100%",
+        "Bản demo đẹp nhất",
+        "Báo cáo dài"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m204_l1"
+    },
+    {
+      "id": "ent_q9_v5",
+      "moduleId": "ent_m204",
+      "stage": "m2",
+      "difficulty": "medium",
+      "prompt": "[Biến thể 5] Kết quả experiment 'fail' có giá trị khi nào?",
+      "options": [
+        "Khi nó làm giảm bất định và cập nhật quyết định",
+        "Không bao giờ",
+        "Chỉ khi có doanh thu",
+        "Chỉ khi người dùng khen"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m204_l1"
+    },
+    {
+      "id": "ent_q10_v5",
+      "moduleId": "ent_m204",
+      "stage": "m2",
+      "difficulty": "hard",
+      "prompt": "[Biến thể 5] Pitch 3 phút nên ưu tiên điều gì?",
+      "options": [
+        "Problem, evidence, value, model, validation và next step",
+        "Toàn bộ chi tiết thuật toán",
+        "Lịch sử công ty dài",
+        "Tất cả source code"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "ent_m204_l2"
+    }
+  ]
+}

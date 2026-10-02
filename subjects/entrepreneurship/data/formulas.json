@@ -1,0 +1,50 @@
+[
+  {
+    "id": "ent_f1",
+    "group": "canvas",
+    "name": "Problem statement",
+    "formula": "[User] gặp [problem] trong [context], gây [impact], bằng chứng hiện có: [evidence].",
+    "meaning": "Khung mô tả vấn đề trước khi nói tới giải pháp.",
+    "example": "Operator mất nhiều thời gian kiểm tra thủ công; log vận hành cho thấy X giờ/tuần."
+  },
+  {
+    "id": "ent_f2",
+    "group": "canvas",
+    "name": "Value hypothesis",
+    "formula": "Nếu [user] dùng [solution], thì [outcome] sẽ thay đổi [direction], đo bằng [metric].",
+    "meaning": "Biến value proposition thành giả thuyết kiểm chứng.",
+    "example": "Nếu dùng cảnh báo AI, thời gian phản ứng giảm, đo bằng median response time."
+  },
+  {
+    "id": "ent_f3",
+    "group": "finance",
+    "name": "Contribution margin",
+    "formula": "CM = Price − Variable Cost",
+    "meaning": "Phần còn lại mỗi đơn vị để bù fixed cost và tạo lợi nhuận.",
+    "example": "Giá 100, biến phí 60 → CM = 40."
+  },
+  {
+    "id": "ent_f4",
+    "group": "finance",
+    "name": "Break-even units",
+    "formula": "Q_BE = Fixed Cost / Contribution Margin",
+    "meaning": "Số đơn vị cần để bù fixed cost trong mô hình đơn giản.",
+    "example": "Fixed 4000, CM 40 → 100 đơn vị."
+  },
+  {
+    "id": "ent_f5",
+    "group": "validation",
+    "name": "Experiment contract",
+    "formula": "Assumption → Test → Metric → Threshold → Learning",
+    "meaning": "Khung thiết kế thử nghiệm kiểm chứng giả định.",
+    "example": "Assumption: operator cần alert; test prototype; metric adoption; threshold ≥ 60%."
+  },
+  {
+    "id": "ent_f6",
+    "group": "pitch",
+    "name": "3-minute pitch",
+    "formula": "Problem → Evidence → Value → Model → Validation → Next step",
+    "meaning": "Cấu trúc pitch ngắn cho project công nghệ.",
+    "example": "Mỗi phần 20–40 giây, ưu tiên bằng chứng."
+  }
+]

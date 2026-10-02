@@ -1,0 +1,92 @@
+{
+  "meta": {
+    "subjectId": "entrepreneurship",
+    "title": "Основы предпринимательства",
+    "version": "simulation-v1",
+    "description": "Mô phỏng quyết định sản phẩm, chi phí và validation ở mức học phần."
+  },
+  "observation": [
+    {
+      "id": "ent_obs_problem",
+      "stage": "m2",
+      "type": "decision simulation",
+      "title": "Problem–Solution Fit",
+      "goal": "Quan sát cách chất lượng bằng chứng ảnh hưởng đến quyết định tiếp tục xây.",
+      "scenario": "So sánh 3 problem statement với mức evidence khác nhau.",
+      "parameters": [
+        "số phỏng vấn",
+        "mức pain",
+        "tần suất vấn đề",
+        "chi phí hiện tại"
+      ],
+      "outputs": [
+        "evidence score",
+        "assumption risk",
+        "next interview"
+      ]
+    },
+    {
+      "id": "ent_obs_economics",
+      "stage": "m2",
+      "type": "unit economics",
+      "title": "Unit Economics Sandbox",
+      "goal": "Quan sát độ nhạy break-even khi giá/biến phí/fixed cost đổi.",
+      "scenario": "Thay đổi price, variable cost và fixed cost.",
+      "parameters": [
+        "price",
+        "variable cost",
+        "fixed cost"
+      ],
+      "outputs": [
+        "contribution margin",
+        "break-even units",
+        "sensitivity note"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "ent_prac_validation",
+      "stage": "m2",
+      "type": "mô phỏng thực hành",
+      "title": "Thiết kế validation experiment",
+      "mission": "Chọn giả định rủi ro nhất và thiết kế test trong 1 tuần.",
+      "steps": [
+        "chọn assumption",
+        "chọn test",
+        "đặt metric",
+        "đặt threshold",
+        "ghi learning"
+      ],
+      "rubric": [
+        "rẻ và nhanh",
+        "đo được",
+        "không dẫn dắt",
+        "có pass/fail"
+      ],
+      "feedback": "Nếu test quá lớn, thu nhỏ tới một giả định duy nhất."
+    },
+    {
+      "id": "ent_prac_pitch",
+      "stage": "m2",
+      "type": "mô phỏng thực hành",
+      "title": "Pitch & phản biện",
+      "mission": "Pitch 3 phút và trả lời phản biện stakeholder.",
+      "steps": [
+        "problem",
+        "evidence",
+        "value",
+        "model",
+        "validation",
+        "next step"
+      ],
+      "rubric": [
+        "rõ vấn đề",
+        "có bằng chứng",
+        "logic chi phí",
+        "next step cụ thể"
+      ],
+      "feedback": "Nếu pitch sa vào thuật toán, quay lại câu hỏi người nghe cần quyết định điều gì."
+    }
+  ]
+}
