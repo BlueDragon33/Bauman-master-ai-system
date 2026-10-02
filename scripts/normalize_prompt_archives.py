@@ -15,6 +15,7 @@ ARCHIVES = ROOT / "prompt-archives"
 SUBJECTS = ROOT / "prompts" / "subjects"
 BOOTSTRAP = ARCHIVES / "_remaining-subject-sources.zip"
 BOOTSTRAP_TAR = ARCHIVES / "_remaining-subject-sources.tar.xz"
+BOOTSTRAP_TAR_B64 = ARCHIVES / "_remaining-subject-sources.tar.xz.b64"
 BOOTSTRAP_PART_GLOB = "_remaining-subject-sources.b64.part*"
 BOOTSTRAP_TAR_PART_GLOB = "_remaining-subject-sources.tar.xz.b64.part*"
 
@@ -54,6 +55,34 @@ REPLACEMENTS = {
     "GLOBAL_CONSTITUTIONS/C4_REAL_LEARNING_OUTCOME_SYSTEM.md":"../../constitution/C4_REAL_LEARNING_OUTCOME_SYSTEM.md",
     "GLOBAL_CONSTITUTIONS/C3_RELEASE_ANNEX_SHARED.md":"../../constitution/C3_RELEASE_ANNEX_SHARED.md",
 }
+
+CHAT_START_TEMPLATE = """# CHAT START — {label}
+
+Use this subject system from ordinary ChatGPT chat, Work, or Codex.
+
+## Authority order
+
+1. `prompts/CONSTITUTION.md`
+2. exact C1–C4 clauses routed by this subject router
+3. this subject `README.md`
+4. subject Master Prompt
+5. `PROJECT_STATE.json`
+6. active module only
+7. current repository diff/evidence only when repository execution is requested
+
+## Token rule
+
+Do not load the whole repository or every subject prompt by default.
+
+Use:
+
+`README → PROJECT_STATE / SOURCE_STATUS → active module → router → diff/evidence → PASS gate → next module`
+
+## Continuation rule
+
+Repository state is the durable handoff. Chat history is supplementary.
+Update `PROJECT_STATE.json` after meaningful execution progress.
+"""
 
 CHAT_ENTRY = """
 ---
@@ -115,7 +144,9 @@ def normalize_source_dir(src: Path, archive_name: str, meta: dict) -> dict:
         readme=readme.rstrip()+"\n\n"+CHAT_ENTRY
     (dest/"README.md").write_text(readme,encoding="utf-8")
     (dest/"SOURCE_STATUS.md").write_text(normalize_text(status_src.read_text(encoding="utf-8")),encoding="utf-8")
+    (dest/"CHAT_START.md").write_text(CHAT_START_TEMPLATE.format(label=meta["label"]),encoding="utf-8")
 
+    sequence=[f"{prefix}0{i}" for i in range(1,7)]
     state={
       "schemaVersion":"1.0.0",
       "subject":slug,
@@ -126,6 +157,10 @@ def normalize_source_dir(src: Path, archive_name: str, meta: dict) -> dict:
       "sourceArchive":f"prompt-archives/{archive_name}",
       "promptArchitectureStatus":"COMPLETE",
       "repositoryExecutionStatus":"NOT_STARTED_OR_NEEDS_RECONCILIATION",
+      "status":"READY_FOR_BASELINE_RECONCILIATION",
+      "sequence":sequence,
+      "completedModules":[],
+      "needsRevalidation":[],
       "activeModule":f"{prefix}01",
       "lastCompletedModule":None,
       "validatedSha":None,
@@ -292,6 +327,32 @@ Archive hashes above preserve provenance. Canonical readable prompt files live u
 """
     (ARCHIVES/"README.md").write_text(readme,encoding="utf-8")
     (SUBJECTS/"SUBJECT_PROMPT_INDEX.json").write_text(json.dumps({"schemaVersion":"1.0.0","executionRule":"ONE_SUBJECT_AT_A_TIME","sharedConstitution":"prompts/constitution/","subjects":subjects},ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+
+    registry_path=ROOT/"prompts"/"PROMPT_REGISTRY.json"
+    if registry_path.exists():
+        registry=json.loads(registry_path.read_text(encoding="utf-8"))
+    else:
+        registry={"schemaVersion":"1.0.0","domains":[]}
+    by_id={d.get("id"):d for d in registry.get("domains",[]) if d.get("id")}
+    for archive_name,meta in PACKAGES.items():
+        canonical=SUBJECTS/meta["slug"]
+        if not canonical.exists():
+            continue
+        master=find_one(canonical,"*_MASTER_PROMPT.md")
+        if not master:
+            continue
+        d=by_id.setdefault(meta["slug"],{"id":meta["slug"]})
+        d.update({
+          "label":meta["label"],
+          "masterPrompt":f"prompts/subjects/{meta['slug']}/{master}",
+          "state":f"prompts/subjects/{meta['slug']}/PROJECT_STATE.json",
+          "chatStart":f"prompts/subjects/{meta['slug']}/CHAT_START.md",
+          "archivePackage":f"prompt-archives/{archive_name}",
+          "status":"EXTRACTED_CANONICAL"
+        })
+    registry["schemaVersion"]="1.3.0"
+    registry["domains"]=list(by_id.values())
+    registry_path.write_text(json.dumps(registry,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 
 def main():
     SUBJECTS.mkdir(parents=True,exist_ok=True)
