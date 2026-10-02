@@ -199,6 +199,8 @@ Correction:
 - the push path family matches the shared Hub / Russian integration path family used for pull requests;
 - a merge that combines a previously-green Russian head with newer shared Hub changes therefore receives a fresh main-head integration run;
 - prior PR evidence remains useful, but it is no longer sufficient by itself when the merged tree differs.
+- the static whole-system validator and Hub responsive browser acceptance now derive the canonical subject registry from the application-management contract instead of a frozen 11-subject list;
+- workflow-only surfaces such as `practice-workflow` are validated according to their declared `kind` and are not forced to fabricate a JavaScript subject manifest.
 
 ## Previously encountered errors rechecked
 
