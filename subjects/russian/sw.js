@@ -1,5 +1,5 @@
 'use strict';
-const CACHE='russian-app-shell-v9-prompt-reaudit';
+const CACHE='russian-app-shell-v8-speech-interaction';
 const DATA_CACHE='russian-learning-data-v1';
 const SHELL=[
   './','./index.html','./manifest.webmanifest','../shared/host-bridge.js',
@@ -8,7 +8,8 @@ const SHELL=[
   '../../platform/ui/tokens.css','../../platform/ui/foundations.css','../../platform/ui/components.css','../../platform/ui/layouts.css','../../platform/ui/responsive.css','../../platform/ui/bauman-ui.css','../../platform/ui/bauman-ui.css?v=1','../../platform/ui/bauman-ui.js','../../platform/ui/bauman-ui.js?v=1',
   './assets/core.css','./assets/russian.css','./assets/russian-future-ui.css',
   './assets/learning-state.css','./assets/content-contract.css','./assets/learning-flow.css','./assets/vocab-srs.css','./assets/speaking-coach.css','./assets/academic-language.css','./assets/scenario-runtime.css','./assets/academic-production.css','./assets/capability-progression.css','./assets/runtime-optimizer.css',
-  './assets/subject-adapter.js','./assets/ui-cleanup-contract.js','./assets/content-contract.js','./assets/planning-bridge.js','./assets/russian-optional-data-loader.js','./assets/listen-write-factory.js','./assets/speech-interaction-engine.js','./assets/core.js','./assets/assessment-mastery.js','./assets/review-scheduler.js','./assets/adaptive-planner.js','./assets/learning-state.js','./assets/learning-flow.js','./assets/handwriting-glyph-authority.js','./assets/handwriting-recognition.js','./assets/vocab-srs.js','./assets/linguistic-authority.js','./assets/speaking-coach.js','./assets/scenario-runtime.js','./assets/academic-language.js','./assets/academic-production.js','./assets/capability-progression.js','./assets/ai-mentor-guard.js','./assets/runtime-optimizer.js','./assets/russian-future-ui.js',\n  './data/provenance.json','./data/scenario-registry.json','./data/technical-concepts.json','./data/academic-functions.json','./data/reading.json','./data/performance-tasks.json'
+  './assets/subject-adapter.js','./assets/ui-cleanup-contract.js','./assets/content-contract.js','./assets/planning-bridge.js','./assets/russian-optional-data-loader.js','./assets/listen-write-factory.js','./assets/speech-interaction-engine.js','./assets/core.js','./assets/assessment-mastery.js','./assets/review-scheduler.js','./assets/adaptive-planner.js','./assets/learning-state.js','./assets/learning-flow.js','./assets/handwriting-glyph-authority.js','./assets/handwriting-recognition.js','./assets/vocab-srs.js','./assets/linguistic-authority.js','./assets/speaking-coach.js','./assets/scenario-runtime.js','./assets/academic-language.js','./assets/academic-production.js','./assets/capability-progression.js','./assets/ai-mentor-guard.js','./assets/runtime-optimizer.js','./assets/russian-future-ui.js',
+  './data/provenance.json','./data/scenario-registry.json','./data/technical-concepts.json','./data/academic-functions.json','./data/reading.json','./data/performance-tasks.json'
 ];
 const OPTIONAL_LARGE=new Set(['dialogue-bauman-az.json','deep-speaking-bauman.json','speaking-link-index.json']);
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting()));});
@@ -54,7 +55,7 @@ self.addEventListener('fetch',event=>{
         if(res&&res.ok)await cache.put(req,res.clone());
         return res;
       }catch(_){
-        const hit=await cache.match(req);
+        const hit=(await cache.match(req))||(await caches.match(req));
         return hit||new Response(JSON.stringify({offline:true,missing:true,source:file}),{status:503,statusText:'Required learning data unavailable offline',headers:{'Content-Type':'application/json'}});
       }
     }));
