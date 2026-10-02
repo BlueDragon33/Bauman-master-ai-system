@@ -59,15 +59,21 @@ async function verify(){
  const [dc,dr,home,ru,wm,sw,auth,remoteManifest,editor]=await Promise.all([get(u(control,'/__deployment')),get(u(runtime,'/__deployment')),get(u(runtime,'/')),get(u(runtime,'/subjects/russian/')),get(u(runtime,'/subjects/russian/manifest.webmanifest')),get(u(runtime,'/subjects/russian/sw.js')),get(u(control,'/api/control/status')),get(u(runtime,'/subjects/russian/subject-manifest.json')),get(u(runtime,'/subjects/russian/editor.html'))]);
  const parse=x=>{try{return JSON.parse(x.body)}catch{return {}}};const c=parse(dc),r=parse(dr),ab=parse(auth);
  if(c.revision!==rev||r.revision!==rev)throw new Error('production identity mismatch');
+ const config=j(path.join(out,'RUSSIAN_PRODUCTION_CONFIG_IDENTITY.json'));
+ if(config.revision!==rev||!/^([0-9a-f]{64})$/i.test(String(config.fingerprint||'')))throw new Error('production config identity evidence invalid');
+ if(c.configFingerprint!==config.fingerprint||r.configFingerprint!==config.fingerprint)throw new Error('production config fingerprint readback mismatch');
  if(!home.ok||!ru.ok||!remoteManifest.ok||!editor.ok)throw new Error('production runtime surface unavailable');
  if(auth.status!==403||ab.code!=='CONTROL_TICKET_FORBIDDEN')throw new Error('control auth fail-closed mismatch');
+ const permissionPolicy=String(home.headers['permissions-policy']||'');
+ if(!/microphone=\(self\)/i.test(permissionPolicy))throw new Error('production microphone permissions-policy must allow same-origin Russian speaking');
  const local=fs.readFileSync('subjects/russian/subject-manifest.json'),drift=hash(local)===hash(Buffer.from(remoteManifest.body));if(!drift)throw new Error('subject manifest drift');
  const offline=wm.ok&&sw.ok&&/russian-app-shell-v[0-9]+/.test(sw.body)&&/russian-learning-data-v1/.test(sw.body);if(!offline)throw new Error('offline PWA verification failed');
- const smoke={status:'PASS',revision:rev,controlStatus:dc.status,runtimeStatus:dr.status,home:home.status,russian:ru.status,authorWorkspace:editor.status,deviceGate:home.body.includes('device-access-gate.js'),futureUi:ru.body.includes('russian-future-ui.js')};
+ const smoke={status:'PASS',revision:rev,controlStatus:dc.status,runtimeStatus:dr.status,home:home.status,russian:ru.status,authorWorkspace:editor.status,deviceGate:home.body.includes('device-access-gate.js'),futureUi:ru.body.includes('russian-future-ui.js'),configFingerprint:config.fingerprint,controlDeployment:{application:c.application,runtime:c.runtime,channel:c.channel,databaseReady:c.databaseReady},runtimeDeployment:{application:r.application,runtime:r.runtime,channel:r.channel,controlOriginConfigured:r.controlOriginConfigured,serverSideLearningGate:r.serverSideLearningGate},permissionsPolicy:permissionPolicy};
  if(!smoke.deviceGate||!smoke.futureUi)throw new Error('critical Russian smoke failed');
  write('RUSSIAN_PRODUCTION_SMOKE_REPORT.md','# Russian Production Smoke Report\n\nStatus: PASS\n\nRevision: '+rev+'\n\n'+JSON.stringify(smoke,null,2)+'\n');
  write('RUSSIAN_PRODUCTION_OFFLINE_PWA_VERIFY.md','# Russian Production Offline/PWA Verify\n\nStatus: PASS\n\nManifest HTTP '+wm.status+'; Service Worker HTTP '+sw.status+'; versioned shell and learning-data cache namespaces found.\n');
- write('RUSSIAN_PRODUCTION_SECURITY_HEADERS_VERIFY.md','# Russian Production Security/Auth Verify\n\nStatus: PASS\n\nAnonymous control status: '+auth.status+' / '+ab.code+'\n\nRuntime headers:\n'+JSON.stringify(home.headers,null,2)+'\n');
+ write('RUSSIAN_PRODUCTION_SECURITY_HEADERS_VERIFY.md','# Russian Production Security/Auth Verify\n\nStatus: PASS\n\nAnonymous control status: '+auth.status+' / '+ab.code+'\n\nPermissions-Policy: '+permissionPolicy+'\n\nRuntime headers:\n'+JSON.stringify(home.headers,null,2)+'\n');
+ write('RUSSIAN_PRODUCTION_CONFIG_PROFILE_VERIFY.json',{schema:'RUSSIAN_PRODUCTION_CONFIG_PROFILE_VERIFY_V1',generatedAt:iso(),status:'PASS',revision:rev,profile:config.profile,fingerprint:config.fingerprint,controlReadback:smoke.controlDeployment,runtimeReadback:smoke.runtimeDeployment});
  write('RUSSIAN_PRODUCTION_BUILD_CONTENT_DRIFT_CHECK.md','# Russian Production Build/Content Drift Check\n\nStatus: PASS\n\nRevision: '+rev+'\nSubject manifest local/production SHA256 match: true\n');
  console.log(JSON.stringify({ok:true,revision:rev,drift,offline}));
 }
@@ -81,10 +87,12 @@ async function observe(){
  if(!pass)throw new Error('observation failed');console.log(JSON.stringify({ok:true,status:'OBSERVATION_PASS'}));
 }
 function close(){
- const files=['RUSSIAN_RC_MANIFEST.json','RUSSIAN_PRODUCTION_TARGET_RECORD.json','RUSSIAN_CONTENT_SNAPSHOT.json','RUSSIAN_DEPENDENCY_LOCK_RECORD.json','RUSSIAN_MIGRATION_MANIFEST.json','RUSSIAN_DEPLOYMENT_ARTIFACT_IDENTITY.json','RUSSIAN_BACKUP_DECISION_RESULT.json','RUSSIAN_MIGRATION_RESULT.json','RUSSIAN_PRODUCTION_SMOKE_REPORT.md','RUSSIAN_PRODUCTION_OFFLINE_PWA_VERIFY.md','RUSSIAN_PRODUCTION_SECURITY_HEADERS_VERIFY.md','RUSSIAN_PRODUCTION_BUILD_CONTENT_DRIFT_CHECK.md','RUSSIAN_PRODUCTION_OBSERVATION_REPORT.md','RUSSIAN_PRODUCTION_INCIDENT_REGISTER.json'];
+ const files=['RUSSIAN_RC_MANIFEST.json','RUSSIAN_PRODUCTION_TARGET_RECORD.json','RUSSIAN_CONTENT_SNAPSHOT.json','RUSSIAN_DEPENDENCY_LOCK_RECORD.json','RUSSIAN_MIGRATION_MANIFEST.json','RUSSIAN_DEPLOYMENT_ARTIFACT_IDENTITY.json','RUSSIAN_PRODUCTION_CONFIG_IDENTITY.json','RUSSIAN_BACKUP_DECISION_RESULT.json','RUSSIAN_MIGRATION_RESULT.json','RUSSIAN_PRODUCTION_SMOKE_REPORT.md','RUSSIAN_PRODUCTION_OFFLINE_PWA_VERIFY.md','RUSSIAN_PRODUCTION_SECURITY_HEADERS_VERIFY.md','RUSSIAN_PRODUCTION_CONFIG_PROFILE_VERIFY.json','RUSSIAN_PRODUCTION_BUILD_CONTENT_DRIFT_CHECK.md','RUSSIAN_PRODUCTION_RU08_JOURNEYS.json','RUSSIAN_PRODUCTION_RU08_AUTHOR.json','RUSSIAN_PRODUCTION_OFFLINE_BROWSER.json','RUSSIAN_PRODUCTION_OBSERVATION_REPORT.md','RUSSIAN_PRODUCTION_INCIDENT_REGISTER.json'];
  for(const f of files)if(!fs.existsSync(path.join(out,f)))throw new Error('missing release evidence '+f);
  if(!fs.readFileSync(path.join(out,'RUSSIAN_PRODUCTION_OBSERVATION_REPORT.md'),'utf8').includes('OBSERVATION_PASS'))throw new Error('observation not pass');
  if((j(path.join(out,'RUSSIAN_PRODUCTION_INCIDENT_REGISTER.json')).incidents||[]).length)throw new Error('release incidents remain');
+ for(const f of ['RUSSIAN_PRODUCTION_RU08_JOURNEYS.json','RUSSIAN_PRODUCTION_RU08_AUTHOR.json','RUSSIAN_PRODUCTION_OFFLINE_BROWSER.json'])if(j(path.join(out,f)).status!=='PASS')throw new Error('production browser evidence not PASS: '+f);
+ if(j(path.join(out,'RUSSIAN_PRODUCTION_CONFIG_PROFILE_VERIFY.json')).status!=='PASS')throw new Error('production config profile not verified');
  const rev=req('GITHUB_SHA');write('RUSSIAN_FINAL_PRODUCTION_STATE_RECORD.json',{schema:'RUSSIAN_FINAL_PRODUCTION_STATE_V1',generatedAt:iso(),revision:rev,state:'STABLE',evidenceComplete:true});
  write('RUSSIAN_P17_EVIDENCE_INDEX.md','# Russian P17 Evidence Index\n\nState: STABLE\nRevision: '+rev+'\n\n'+files.map(x=>'- '+x).join('\n')+'\n- RUSSIAN_FINAL_PRODUCTION_STATE_RECORD.json\n');
  write('RUSSIAN_RELEASE_CLOSURE_REPORT.md','# Russian Release Closure Report\n\nP17 PRODUCTION RELEASE COMPLETE - PRODUCTION VERIFIED STABLE\n\nRevision: '+rev+'\nClosure: '+iso()+'\n');
