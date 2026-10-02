@@ -1,0 +1,46 @@
+{
+  "meta": {
+    "subjectId": "specialization-elective",
+    "title": "Elective 2",
+    "version": "simulation-v1"
+  },
+  "observation": [
+    {
+      "id": "el2_obs1",
+      "stage": "m4",
+      "type": "pipeline",
+      "title": "Pipeline Bottleneck Lab",
+      "goal": "Quan sát latency/throughput.",
+      "scenario": "Thay load/buffer.",
+      "parameters": [
+        "load",
+        "buffer"
+      ],
+      "outputs": [
+        "latency",
+        "throughput"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "el2_p1",
+      "stage": "m4",
+      "type": "branch",
+      "title": "Branch Mini Project",
+      "mission": "Chọn một branch và build mini-pipeline.",
+      "steps": [
+        "choose",
+        "design",
+        "test",
+        "measure"
+      ],
+      "rubric": [
+        "architecture",
+        "metric",
+        "trade-off"
+      ],
+      "feedback": "Không trộn branch trong project chính."
+    }
+  ]
+}
