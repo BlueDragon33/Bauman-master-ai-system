@@ -231,6 +231,136 @@ function createModal(){
   if(!ui.taskOpen)return '';
   return '<div class="thesis-page__modal-backdrop" onclick="if(event.target===this)BAUMAN_THESIS_REF.closeCreate()"><div class="thesis-page__modal"><div class="thesis-page__modal-head"><div><small>Kế hoạch luận văn</small><h3>Tạo nhiệm vụ</h3></div><button onclick="BAUMAN_THESIS_REF.closeCreate()">×</button></div><label>Tên nhiệm vụ<input id="thesisTaskTitle" placeholder="Ví dụ: Kiểm tra thang đo"></label><div class="thesis-page__form-grid"><label>Ngày<select id="thesisTaskDay">'+DAYS.map(function(d,i){return '<option value="'+i+'">'+d.label+' '+d.short+'</option>'}).join('')+'</select></label><label>Màu<select id="thesisTaskTone"><option value="blue">Xanh</option><option value="green">Xanh lá</option><option value="yellow">Vàng</option><option value="purple">Tím</option><option value="red">Đỏ</option></select></label><label>Bắt đầu<input id="thesisTaskStart" type="time" value="09:00"></label><label>Kết thúc<input id="thesisTaskEnd" type="time" value="10:30"></label></div><div class="thesis-page__modal-actions"><button onclick="BAUMAN_THESIS_REF.closeCreate()">Hủy</button><button class="is-primary" onclick="BAUMAN_THESIS_REF.createTask()">Tạo nhiệm vụ</button></div></div></div>';
 }
+
+/* Truth-safe Research runtime overrides. Static reference samples above are
+   retained as design provenance only and are excluded from active learner data. */
+function pad2(n){return String(n).padStart(2,'0')}
+function isoDate(d){return d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate())}
+function parseDateSafe(v){var m=String(v||'').match(/^(\d{4})-(\d{2})-(\d{2})$/);return m?new Date(+m[1],+m[2]-1,+m[3]):new Date()}
+function mondayOfDate(d){var x=new Date(d),delta=(x.getDay()+6)%7;x.setHours(0,0,0,0);x.setDate(x.getDate()-delta);return x}
+function addDate(d,n){var x=new Date(d);x.setDate(x.getDate()+n);return x}
+function currentWeekStart(){return addDate(mondayOfDate(new Date()),Number(ui.weekOffset||0)*7)}
+function currentDays(){var start=currentWeekStart(),now=isoDate(new Date());return Array.from({length:7},function(_,i){var d=addDate(start,i),key=isoDate(d);return {date:key,label:['Chủ nhật','Thứ 2','Thứ 3','Thứ 4','Thứ 5','Thứ 6','Thứ 7'][d.getDay()],short:pad2(d.getDate())+'/'+pad2(d.getMonth()+1),today:key===now}})}
+function monthBase(){var raw=ui.month||isoDate(new Date()).slice(0,7),m=raw.match(/^(\d{4})-(\d{2})$/);return m?new Date(+m[1],+m[2]-1,1):new Date(new Date().getFullYear(),new Date().getMonth(),1)}
+function readUI(){
+  try{
+    var raw=JSON.parse(localStorage.getItem(UI_KEY)||'{}'),month=raw.month||isoDate(new Date()).slice(0,7);
+    return {view:['week','month','gantt','list'].includes(raw.view)?raw.view:'week',month:month,weekOffset:Number(raw.weekOffset)||0,filterOpen:false,aiDone:new Set(),detailId:'',taskOpen:false,upcomingExpanded:false};
+  }catch(e){return {view:'week',month:isoDate(new Date()).slice(0,7),weekOffset:0,filterOpen:false,aiDone:new Set(),detailId:'',taskOpen:false,upcomingExpanded:false}}
+}
+function readTasks(){
+  try{
+    var v=JSON.parse(localStorage.getItem(TASK_KEY)||'[]');
+    if(!Array.isArray(v))return [];
+    var referenceIds=new Set(REFERENCE_TASKS.map(function(x){return x.id}));
+    return v.filter(function(x){return x&&x.id&&!referenceIds.has(x.id)}).map(function(x){
+      if(!x.date&&Number.isInteger(Number(x.day))){var ds=currentDays(),d=ds[Math.max(0,Math.min(6,Number(x.day)))];return Object.assign({},x,{date:d&&d.date,localCreated:true})}
+      return Object.assign({},x,{localCreated:true});
+    });
+  }catch(e){return []}
+}
+function readNotes(){
+  try{
+    var v=JSON.parse(localStorage.getItem(NOTE_KEY)||'[]'),referenceIds=new Set(DEFAULT_NOTES.map(function(x){return x.id}));
+    return Array.isArray(v)?v.filter(function(x){return x&&x.id&&!referenceIds.has(x.id)}):[];
+  }catch(e){return []}
+}
+function todayLabel(){var ds=currentDays();return 'Tuần '+ds[0].short+' - '+ds[6].short+'/'+parseDateSafe(ds[6].date).getFullYear()}
+function setMonth(v){ui.month=v||isoDate(new Date()).slice(0,7);saveUI();render()}
+function shiftWeek(n){ui.weekOffset+=Number(n)||0;saveUI();render()}
+function goToday(){ui.weekOffset=0;ui.month=isoDate(new Date()).slice(0,7);saveUI();render()}
+function topicState(){
+  var s=typeof state!=='undefined'&&state?state:{},id=s.researchTopic||'ugv',topic=(typeof RESEARCH_TOPICS!=='undefined'&&RESEARCH_TOPICS[id])||null,keys=['questions','data','hardware','outputs','risks','tasks'],total=0,done=0;
+  if(topic)keys.forEach(function(k){(topic[k]||[]).forEach(function(_,i){total++;if(s.researchChecks&&s.researchChecks[id+'.'+k+'.'+i])done++})});
+  return {id:id,topic:topic,total:total,done:done,pct:total?Math.round(done*100/total):null};
+}
+function header(){
+  var base=monthBase();
+  return '<header class="thesis-page__header"><div><h2>НИР & Luận văn</h2><p>Nội dung nghiên cứu lấy từ Hub canonical; checklist, ghi chú và nhiệm vụ tự tạo là LOCAL_HUB, không phải điểm hay mastery.</p></div>'+
+  '<div class="thesis-page__header-actions"><input class="thesis-page__select" type="month" value="'+esc(ui.month)+'" onchange="BAUMAN_THESIS_REF.setMonth(this.value)">'+
+  '<div class="thesis-page__filter-wrap"><button class="thesis-page__button" onclick="BAUMAN_THESIS_REF.toggleFilter()">⌁ Bộ lọc</button>'+filterPanel()+'</div>'+
+  '<button class="thesis-page__button thesis-page__button--primary" onclick="BAUMAN_THESIS_REF.openCreate()">＋ Tạo nhiệm vụ LOCAL_HUB</button></div></header>';
+}
+function summaryCard(tone,icon,label,main,sub,desc,kind,ringValue,status){
+  var tail=kind==='ring'?'<span class="thesis-page__donut" style="--p:'+(Number.isFinite(ringValue)?ringValue:0)+'"><i>'+(Number.isFinite(ringValue)?ringValue+'%':'—')+'</i></span>':'<span class="thesis-page__chev">›</span>';
+  return '<article class="thesis-page__summary-card is-'+tone+'" data-truth-status="'+esc(status||'CURRENT')+'"><span class="thesis-page__summary-icon">'+icon+'</span><div><small>'+esc(label)+'</small><b>'+esc(main)+'</b><strong>'+esc(sub)+'</strong><p>'+esc(desc)+'</p></div>'+tail+'</article>';
+}
+function summary(){
+  var t=topicState(),tasks=readTasks(),notes=readNotes(),title=t.topic&&t.topic.title||'Chưa có chủ đề nghiên cứu';
+  return '<section class="thesis-page__metrics">'+
+    summaryCard('blue','▥','Checklist LOCAL_HUB',t.total?(t.done+'/'+t.total+' mục'):'Chưa có dữ liệu',Number.isFinite(t.pct)?t.pct+'%':'—','Không phải điểm số hoặc mastery.','ring',t.pct,'LOCAL_HUB')+
+    summaryCard('green','▧','Hướng nghiên cứu',title,t.topic&&t.topic.short||'Chưa có dữ liệu','Nguồn: RESEARCH_TOPICS canonical.','chev',null,t.topic?'CURRENT':'UNAVAILABLE')+
+    summaryCard('orange','!','Nhiệm vụ cá nhân',tasks.length+' nhiệm vụ LOCAL_HUB',tasks.length?'Do bạn tự tạo':'Chưa có nhiệm vụ','Không dùng nhiệm vụ mẫu.','chev',null,'LOCAL_HUB')+
+    summaryCard('purple','✦','Gợi ý AI','Chưa có dữ liệu gợi ý','Không dùng gợi ý mẫu','Chỉ hiển thị khi có capability AI thật.','chev',null,'UNAVAILABLE')+
+  '</section>';
+}
+function eventCard(t){
+  var start=timeMinutes(t.start),end=timeMinutes(t.end),top=(start-480)/780*100,height=Math.max(5,(end-start)/780*100);
+  return '<button class="thesis-page__event is-'+esc(t.tone||'blue')+'" style="--top:'+top+'%;--height:'+height+'%" onclick="BAUMAN_THESIS_REF.openTask(\''+esc(t.id)+'\')"><b>'+esc(t.title)+'</b><span>'+esc((t.start||'')+' – '+(t.end||''))+'</span><small>LOCAL_HUB</small></button>';
+}
+function weekView(){
+  var tasks=readTasks(),ds=currentDays();
+  return '<div class="thesis-page__week-label">'+todayLabel()+'</div>'+
+    '<div class="thesis-page__timeline"><div class="thesis-page__corner"></div>'+
+    ds.map(function(d){return '<div class="thesis-page__day-head '+(d.today?'is-today':'')+'"><b>'+d.label+'</b><span>'+d.short+'</span></div>'}).join('')+
+    '<div class="thesis-page__time-axis">'+Array.from({length:14},function(_,i){return '<span>'+String(8+i).padStart(2,'0')+':00</span>'}).join('')+'</div>'+
+    ds.map(function(d){return '<div class="thesis-page__day-col '+(d.today?'is-today':'')+'">'+tasks.filter(function(t){return t.date===d.date}).map(eventCard).join('')+'</div>'}).join('')+
+    '</div>';
+}
+function monthCellsDynamic(base){var first=new Date(base.getFullYear(),base.getMonth(),1),start=mondayOfDate(first);return Array.from({length:42},function(_,i){return addDate(start,i)})}
+function monthView(){
+  var base=monthBase(),tasks=readTasks(),marks={};tasks.forEach(function(t){if(t.date)marks[t.date]=(marks[t.date]||0)+1});
+  return '<div class="thesis-page__month-view"><div class="thesis-page__month-weekdays">'+['T2','T3','T4','T5','T6','T7','CN'].map(function(x){return '<span>'+x+'</span>'}).join('')+'</div><div class="thesis-page__month-grid">'+monthCellsDynamic(base).map(function(d){var key=isoDate(d),out=d.getMonth()!==base.getMonth(),active=key===isoDate(new Date());return '<button class="'+(out?'is-outside ':'')+(active?'is-active':'')+'"><b>'+d.getDate()+'</b>'+(marks[key]?'<i class="is-blue" title="'+marks[key]+' nhiệm vụ LOCAL_HUB"></i>':'')+'</button>'}).join('')+'</div></div>';
+}
+function ganttView(){
+  var tasks=readTasks().sort(function(a,b){return String(a.date||'').localeCompare(String(b.date||''))});
+  if(!tasks.length)return '<div class="thesis-page__empty" data-truth-status="UNAVAILABLE">Chưa có nhiệm vụ LOCAL_HUB để dựng Gantt.</div>';
+  return '<div class="thesis-page__task-list">'+tasks.map(function(t){return '<button onclick="BAUMAN_THESIS_REF.openTask(\''+esc(t.id)+'\')"><i class="is-'+esc(t.tone||'blue')+'"></i><div><b>'+esc(t.title)+'</b><span>'+esc(t.date||'Chưa có ngày')+' · '+esc((t.start||'')+' – '+(t.end||''))+'</span></div><em>LOCAL_HUB</em></button>'}).join('')+'</div>';
+}
+function listView(){
+  var tasks=readTasks();
+  return '<div class="thesis-page__task-list">'+(tasks.length?tasks.map(function(t){return '<button onclick="BAUMAN_THESIS_REF.openTask(\''+esc(t.id)+'\')"><i class="is-'+esc(t.tone||'blue')+'"></i><div><b>'+esc(t.title)+'</b><span>'+esc(t.date||'Chưa có ngày')+' · '+esc((t.start||'')+' – '+(t.end||''))+'</span></div><em>LOCAL_HUB</em></button>'}).join(''):'<div class="thesis-page__empty">Chưa có nhiệm vụ cá nhân.</div>')+'</div>';
+}
+function aiPanel(){
+  return '<section class="thesis-page__panel thesis-page__ai" data-truth-status="UNAVAILABLE"><div class="thesis-page__panel-head"><div><span class="thesis-page__spark">✦</span><b>Trợ lý luận văn AI</b><em>AI</em></div></div><div class="thesis-page__ai-intro"><span>🤖</span><p>Chưa có capability AI luận văn được xác nhận. Hub không hiển thị gợi ý mẫu như dữ liệu thật.</p></div></section>';
+}
+function miniCalendar(){
+  var base=monthBase(),tasks=readTasks(),marks={};tasks.forEach(function(t){if(t.date)marks[t.date]=(marks[t.date]||0)+1});
+  return '<section class="thesis-page__panel thesis-page__mini-calendar"><div class="thesis-page__panel-head"><b>Tháng '+(base.getMonth()+1)+', '+base.getFullYear()+'</b><div><button onclick="BAUMAN_THESIS_REF.setMonth(\''+isoDate(new Date(base.getFullYear(),base.getMonth()-1,1)).slice(0,7)+'\')">‹</button><button onclick="BAUMAN_THESIS_REF.setMonth(\''+isoDate(new Date(base.getFullYear(),base.getMonth()+1,1)).slice(0,7)+'\')">›</button></div></div><div class="thesis-page__mini-week">'+['T2','T3','T4','T5','T6','T7','CN'].map(function(x){return '<span>'+x+'</span>'}).join('')+'</div><div class="thesis-page__mini-grid">'+monthCellsDynamic(base).map(function(d){var key=isoDate(d),out=d.getMonth()!==base.getMonth(),active=key===isoDate(new Date());return '<button class="'+(out?'is-outside ':'')+(active?'is-active':'')+'"><b>'+d.getDate()+'</b>'+(marks[key]?'<i class="is-blue"></i>':'')+'</button>'}).join('')+'</div></section>';
+}
+function milestones(){
+  return '<section class="thesis-page__panel thesis-page__milestones" data-truth-status="UNAVAILABLE"><div class="thesis-page__panel-head"><b>Mốc chính thức</b></div><div class="thesis-page__milestone-list"><p>Chưa có nguồn mốc chính thức được kết nối. Không dùng deadline mẫu.</p></div></section>';
+}
+function chapterProgress(){
+  return '<section class="thesis-page__panel thesis-page__progress" data-truth-status="UNAVAILABLE"><div class="thesis-page__panel-head"><b>Tiến độ theo chương</b></div><div class="thesis-page__progress-list"><p>Chưa có nguồn canonical cho tiến độ chương; Hub không tự suy ra phần trăm.</p></div></section>';
+}
+function heatmap(){
+  var ds=currentDays(),tasks=readTasks(),hours=ds.map(function(d){return tasks.filter(function(t){return t.date===d.date}).reduce(function(sum,t){var a=timeMinutes(t.start),b=timeMinutes(t.end);return sum+Math.max(0,b-a)/60},0)});
+  function level(v){return v<=0?0:v<1?1:v<2?2:v<3?3:4}
+  return '<section class="thesis-page__panel thesis-page__heatmap" data-truth-status="LOCAL_HUB"><div class="thesis-page__panel-head"><b>Cường độ nhiệm vụ LOCAL_HUB</b></div><div class="thesis-page__heat-body"><div class="thesis-page__heat-grid"><span></span>'+['T2','T3','T4','T5','T6','T7','CN'].map(function(x){return '<b>'+x+'</b>'}).join('')+'<span>Giờ tự khai báo</span>'+hours.map(function(v){return '<i class="l'+level(v)+'" title="'+v.toFixed(1)+' giờ"></i>'}).join('')+'</div><div class="thesis-page__heat-legend"><span>Chỉ tính các nhiệm vụ do bạn tự tạo.</span></div></div></section>';
+}
+function notes(){
+  var rows=readNotes();
+  return '<section class="thesis-page__panel thesis-page__notes" data-truth-status="LOCAL_HUB"><div class="thesis-page__panel-head"><b>Ghi chú LOCAL_HUB</b><button onclick="BAUMAN_THESIS_REF.addNote()">＋ Thêm mới</button></div><div class="thesis-page__notes-grid">'+(rows.length?rows.map(function(n){return '<label class="'+(n.done?'is-done':'')+'"><input type="checkbox" '+(n.done?'checked':'')+' onchange="BAUMAN_THESIS_REF.toggleNote(\''+esc(n.id)+'\',this.checked)"><span><b>'+esc(n.text)+'</b><small>'+esc(n.date)+'</small></span></label>'}).join(''):'<p>Chưa có ghi chú cá nhân.</p>')+'</div></section>';
+}
+function createTask(){
+  var root=document.getElementById('page-research'),title=root&&root.querySelector('#thesisTaskTitle'),date=root&&root.querySelector('#thesisTaskDate'),start=root&&root.querySelector('#thesisTaskStart'),end=root&&root.querySelector('#thesisTaskEnd'),tone=root&&root.querySelector('#thesisTaskTone');
+  if(!title||!title.value.trim())return toastSafe('Hãy nhập tên nhiệm vụ.');
+  var rows=readTasks();
+  rows.push({id:'local-'+Date.now(),date:date&&date.value||isoDate(new Date()),title:title.value.trim().slice(0,80),start:start&&start.value||'09:00',end:end&&end.value||'10:00',tone:tone&&tone.value||'blue',detail:'Nhiệm vụ LOCAL_HUB do người dùng tự tạo.',localCreated:true});
+  writeTasks(rows);ui.taskOpen=false;render();toastSafe('Đã thêm nhiệm vụ LOCAL_HUB.');
+}
+function taskDetail(){
+  if(!ui.detailId)return '';
+  var t=readTasks().find(function(x){return x.id===ui.detailId});if(!t)return '';
+  return '<div class="thesis-page__modal-backdrop" onclick="if(event.target===this)BAUMAN_THESIS_REF.closeTask()"><div class="thesis-page__modal"><div class="thesis-page__modal-head"><div><small>LOCAL_HUB</small><h3>'+esc(t.title)+'</h3></div><button onclick="BAUMAN_THESIS_REF.closeTask()">×</button></div><p>'+esc(t.detail||'Nhiệm vụ cá nhân trong Hub.')+'</p><div class="thesis-page__detail-grid"><span><small>Ngày</small><b>'+esc(t.date||'Chưa có ngày')+'</b></span><span><small>Thời gian</small><b>'+esc((t.start||'')+' – '+(t.end||''))+'</b></span></div><div class="thesis-page__modal-actions"><button onclick="BAUMAN_THESIS_REF.closeTask()">Đóng</button></div></div></div>';
+}
+function createModal(){
+  if(!ui.taskOpen)return '';
+  return '<div class="thesis-page__modal-backdrop" onclick="if(event.target===this)BAUMAN_THESIS_REF.closeCreate()"><div class="thesis-page__modal"><div class="thesis-page__modal-head"><div><small>LOCAL_HUB</small><h3>Tạo nhiệm vụ</h3></div><button onclick="BAUMAN_THESIS_REF.closeCreate()">×</button></div><label>Tên nhiệm vụ<input id="thesisTaskTitle" placeholder="Ví dụ: Đọc paper về telemetry"></label><div class="thesis-page__form-grid"><label>Ngày<input id="thesisTaskDate" type="date" value="'+isoDate(new Date())+'"></label><label>Màu<select id="thesisTaskTone"><option value="blue">Xanh</option><option value="green">Xanh lá</option><option value="yellow">Vàng</option><option value="purple">Tím</option><option value="red">Đỏ</option></select></label><label>Bắt đầu<input id="thesisTaskStart" type="time" value="09:00"></label><label>Kết thúc<input id="thesisTaskEnd" type="time" value="10:30"></label></div><div class="thesis-page__modal-actions"><button onclick="BAUMAN_THESIS_REF.closeCreate()">Hủy</button><button class="is-primary" onclick="BAUMAN_THESIS_REF.createTask()">Tạo nhiệm vụ</button></div></div></div>';
+}
+function openMilestone(){toastSafe('Chưa có nguồn mốc chính thức được kết nối.')}
+
 function render(){
   var host=document.getElementById('page-research');if(!host)return false;
   host.innerHTML='<div class="thesis-page" data-thesis-reference="'+RELEASE+'">'+header()+summary()+'<section class="thesis-page__workspace"><div class="thesis-page__main-column">'+plan()+'<div class="thesis-page__left-bottom">'+chapterProgress()+heatmap()+'</div></div>'+rightRail()+'</section>'+taskDetail()+createModal()+'</div>';
