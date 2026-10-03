@@ -26,6 +26,8 @@ jobs:
         run: node subjects/math/tools/validate-links.js
       - name: Validate learning relationships
         run: node subjects/math/tools/validate-learning-relationships.js
+      - name: Validate MATH02 canonical contract
+        run: node tests/math-p2-canonical-contract.mjs
       - name: Syntax check Math runtime
         shell: bash
         run: |

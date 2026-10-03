@@ -1,0 +1,118 @@
+import fs from 'node:fs';
+import path from 'node:path';
+
+const root = process.cwd();
+const readJson = (rel) => JSON.parse(fs.readFileSync(path.join(root, rel), 'utf8'));
+const fail = (msg) => { throw new Error('[MATH02] ' + msg); };
+
+const model = readJson('prompts/subjects/math/evidence/MATH_P2_CANONICAL_MODEL.json');
+
+if (model.schemaVersion !== '1.0.0') fail('unexpected schemaVersion');
+if (model.status !== 'PASS') fail('accepted MATH02 contract must be PASS');
+if (model.owner?.curriculumTruth !== 'prompts/subjects/math/evidence/MATH_P2_CANONICAL_MODEL.json') fail('canonical curriculum owner mismatch');
+
+const tiers = Object.keys(model.evidenceSemantics || {});
+for (const tier of ['exposure','progress','performance','mastery']) {
+  if (!tiers.includes(tier)) fail('missing evidence tier ' + tier);
+}
+if (!/never granted from self-report/i.test(model.evidenceSemantics.mastery || '')) {
+  fail('mastery truthfulness guard missing');
+}
+
+for (const [name, def] of Object.entries(model.entityFamilies || {})) {
+  if (!def.prefix || !Array.isArray(def.required) || !def.required.includes('provenance')) {
+    fail('entity family lacks prefix/required provenance: ' + name);
+  }
+}
+
+const counts = new Set(model.countSemantics || []);
+for (const key of ['actualRecordCount','plannedTargetCount','coverageCount','derivedIndexCount','legacyCompatibilityCount']) {
+  if (!counts.has(key)) fail('missing count semantic ' + key);
+}
+
+if (!model.migration?.preserveLearnerState) fail('learner-state preservation must be explicit');
+if (!model.migration?.rollbackRequired) fail('rollback requirement missing');
+if (model.mathematicalTruth?.generatedCandidateCanonicalByDefault !== false) fail('generated candidate authority unsafe');
+
+const topo = model.topology?.order || [];
+if (topo.join('>') !== 'stage>discipline>chapter>lesson') fail('non-deterministic topology');
+
+const collectStrings = (node, keys, out = new Set()) => {
+  if (Array.isArray(node)) {
+    for (const v of node) collectStrings(v, keys, out);
+  } else if (node && typeof node === 'object') {
+    for (const [k, v] of Object.entries(node)) {
+      if (keys.has(k) && typeof v === 'string') out.add(v);
+      collectStrings(v, keys, out);
+    }
+  }
+  return out;
+};
+
+const chapters = readJson('subjects/math/data/chapter_spine.json');
+const chapterIds = collectStrings(chapters, new Set(['id','chapterId']));
+if (chapterIds.size < 56) fail('chapter spine exposes fewer than 56 chapter IDs');
+
+const sidecars = [
+  'formula_content.json',
+  'exercise_content.json',
+  'application_content.json',
+  'simulation_content.json',
+  'professor_qa_content.json',
+  'review_pack_content.json',
+  'question_bank_content.json'
+];
+
+let checked = 0;
+let canonicalLessonIds = null;
+for (const file of sidecars) {
+  const doc = readJson('subjects/math/data/' + file);
+  const records = Array.isArray(doc) ? doc : (Array.isArray(doc.records) ? doc.records : []);
+  const fileLessonIds = new Set();
+
+  for (const record of records) {
+    if (record.chapterId && !chapterIds.has(record.chapterId)) {
+      fail(file + ' orphan chapterId ' + record.chapterId);
+    }
+    if (record.lessonId) fileLessonIds.add(record.lessonId);
+    if (record.lessonId || record.chapterId) checked += 1;
+  }
+
+  if (!canonicalLessonIds) {
+    canonicalLessonIds = fileLessonIds;
+  } else {
+    const missing = [...canonicalLessonIds].filter(id => !fileLessonIds.has(id));
+    const extra = [...fileLessonIds].filter(id => !canonicalLessonIds.has(id));
+    if (missing.length || extra.length) {
+      fail(file + ' lesson-ID set drift: missing=' + missing.length + ' extra=' + extra.length);
+    }
+  }
+}
+
+if (checked === 0) fail('no sidecar references were checked');
+if (!canonicalLessonIds || canonicalLessonIds.size !== 86) {
+  fail('audited sidecar lesson-ID set expected 86, got ' + (canonicalLessonIds?.size ?? 0));
+}
+
+const theory = readJson('subjects/math/data/theory_lecture_content.json');
+const theoryRecords = Array.isArray(theory) ? theory : (Array.isArray(theory.records) ? theory.records : []);
+if (theoryRecords.length === 0) fail('theory_lecture_content has no measurable records');
+
+const evidence = model.validationEvidence || {};
+if (evidence.exactTestedHead !== 'e3a2588505504cc2c154e6ce2e95af1afbca4a90') fail('accepted tested head drift');
+if (evidence.chapterIds !== chapterIds.size) fail('accepted chapter count drift');
+if (evidence.auditedSidecarLessonIds !== canonicalLessonIds.size) fail('accepted lesson count drift');
+if (evidence.sidecarReferencesChecked !== checked) fail('accepted sidecar reference count drift');
+if (evidence.theoryLectureRecords !== theoryRecords.length) fail('accepted theory record count drift');
+if (evidence.orphanReferencesDetected !== 0) fail('accepted evidence records orphan references');
+if (evidence.productionRuntimeMutation !== false) fail('MATH02 must remain runtime-mutation free');
+if (evidence.runtimeMigrationActivated !== false) fail('MATH02 must not activate runtime migration');
+
+console.log(JSON.stringify({
+  status: 'PASS',
+  check: 'MATH02 canonical contract',
+  chapterIds: chapterIds.size,
+  auditedSidecarLessonIds: canonicalLessonIds.size,
+  sidecarReferencesChecked: checked,
+  theoryLectureRecords: theoryRecords.length
+}));
