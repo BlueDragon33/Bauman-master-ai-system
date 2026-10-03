@@ -3,7 +3,7 @@
   "subject": "math",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/subjects/math/MATH_MASTER_PROMPT.md",
-  "status": "MATH04_READY",
+  "status": "MATH04_VALIDATING",
   "activeModule": "MATH04",
   "sequence": [
     "MATH01",
@@ -53,10 +53,22 @@
     "MATH03 exact runtime-tested head 25cd32b94df21e5e0bbd3dc4aaae804f5d9478b6: PASS",
     "Math Learning App Gate run 37120673436: SUCCESS",
     "Whole System Integration Gate run 37120673379: SUCCESS",
-    "MATH03 metadata tail after testedRuntimeHead changes governance/handoff only"
+    "MATH03 metadata tail after testedRuntimeHead changes governance/handoff only",
+    "prompts/subjects/math/evidence/MATH_CAPABILITY_REGISTRY.json",
+    "prompts/subjects/math/evidence/MATH_EXPRESSION_PARSER_CONTRACT.md",
+    "prompts/subjects/math/evidence/MATH_SYMBOLIC_PROVIDER_CONTRACT.md",
+    "prompts/subjects/math/evidence/MATH_NUMERICAL_COMPUTATION_POLICY.md",
+    "prompts/subjects/math/evidence/MATH_GRAPH_GEOMETRY_CONTRACT.md",
+    "prompts/subjects/math/evidence/MATH_SIMULATION_NUMERICAL_METHODS_CONTRACT.md",
+    "prompts/subjects/math/evidence/MATH_AI_TUTOR_CONTRACT.md",
+    "prompts/subjects/math/evidence/MATH_AI_TOOL_PERMISSION_MATRIX.md",
+    "prompts/subjects/math/evidence/MATH_COMPUTATION_VISUALIZATION_GOLDEN_FIXTURES.json",
+    "prompts/subjects/math/evidence/MATH_P5_INPUT_CONTRACT.md",
+    "tests/math-p4-capability-contract.mjs",
+    "tests/math-p4-capability-browser.mjs"
   ],
   "blockers": [],
-  "nextAction": "Merge MATH03 PR #233 after metadata-only exact-head CI remains green; then execute MATH04 from MATH_P4_INPUT_CONTRACT.md on unified main.",
+  "nextAction": "Validate MATH04 capability contracts/runtime/golden fixtures on exact branch head; root-cause fix until green; then lock MATH05 handoff without production deployment.",
   "notes": [
     "MATH01 changed no production Math runtime or academic content.",
     "MATH02 PASS is evidence/contract-only; no Math production runtime/content mutation was performed.",
