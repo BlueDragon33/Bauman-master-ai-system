@@ -65,6 +65,8 @@ jobs:
         run: node scripts/validate-deep-study-journal-v1.js
       - name: Validate stable V6 primary-page shell
         run: node tests/hub-primary-pages-v6-static.mjs
+      - name: Validate Hub data-truth contract
+        run: node tests/hub-data-truth-static.mjs
       - name: Validate scoped Schedule reference UI
         run: node tests/schedule-reference-v1-static.mjs
       - name: Validate scoped Subjects reference UI
@@ -81,10 +83,13 @@ jobs:
           node --check assets/js/hub-safe-shell.js
           node --check assets/js/hub-overview-search-v2.js
           node --check assets/js/hub-primary-pages-v6.js
+          node --check assets/js/hub-data-truth.js
           node --check assets/js/schedule-reference-v1.js
           node --check assets/js/subjects-reference-v1.js
           node --check assets/js/thesis-reference-v1.js
           node --check tests/hub-primary-pages-v6-static.mjs
+          node --check tests/hub-data-truth-static.mjs
+          node --check tests/hub-data-truth-browser.mjs
           node --check tests/schedule-reference-v1-static.mjs
           node --check tests/schedule-reference-v1-browser.mjs
           node --check tests/subjects-reference-v1-static.mjs
@@ -379,6 +384,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/hub-premium-responsive
         run: node tests/hub-premium-responsive-browser.mjs
+      - name: Run Hub data-truth browser acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/hub-data-truth
+        run: node tests/hub-data-truth-browser.mjs
       - name: Run Russian P1 forensic browser audit
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
@@ -519,6 +529,12 @@ jobs:
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-hub-responsive
           BAUMAN_E2E_EXPECT_PLATFORM_ACCESS: "1"
         run: node tests/hub-premium-responsive-browser.mjs
+      - name: Run packaged Hub data-truth browser acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-hub-data-truth
+          BAUMAN_E2E_EXPECT_PLATFORM_ACCESS: "1"
+        run: node tests/hub-data-truth-browser.mjs
       - name: Run packaged Russian capability Hub acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
@@ -588,6 +604,7 @@ jobs:
             artifacts/math-study-command-center
             artifacts/math-learning-journey
             artifacts/hub-premium-responsive
+            artifacts/hub-data-truth
             artifacts/schedule-reference-v1
             artifacts/russian-handwriting-recognition
             artifacts/russian-handwriting-offline-authority
@@ -608,6 +625,7 @@ jobs:
             artifacts/chatgpt-site-russian-handwriting-recognition
             artifacts/chatgpt-site-russian-handwriting-offline-authority
             artifacts/chatgpt-site-hub-responsive
+            artifacts/chatgpt-site-hub-data-truth
             artifacts/chatgpt-site-russian-capability-hub
             artifacts/chatgpt-site-russian-capability-deeplink
             artifacts/chatgpt-site-russian-capability-route-receipt
