@@ -1,6 +1,6 @@
 # MATH01 EVIDENCE INDEX
 
-Status: GATE_READY  
+Status: PASS  
 PR: #227  
 Base main: `b2b62fe610aa34229581d3d00f9fbc4cdb6d9b9b`
 
@@ -8,8 +8,8 @@ Base main: `b2b62fe610aa34229581d3d00f9fbc4cdb6d9b9b`
 
 | Evidence | Purpose | Status |
 |---|---|---|
-| `MATH_P1_EXECUTIVE_SUMMARY.md` | Human-readable forensic conclusions, root causes and gate state | GATE_READY |
-| `MATH_P1_BASELINE.json` | Machine-readable runtime/content/owner/state baseline | GATE_READY |
+| `MATH_P1_EXECUTIVE_SUMMARY.md` | Human-readable forensic conclusions, root causes and gate state | PASS |
+| `MATH_P1_BASELINE.json` | Machine-readable runtime/content/owner/state baseline | PASS |
 | `MATH_P2_INPUT_CONTRACT.md` | Evidence-based downstream contract for canonical Math model | READY |
 | `tests/math-p1-forensic-browser.mjs` | Browser probe for responsive/accessibility/performance baseline | PASS · run 37096211260 |
 
