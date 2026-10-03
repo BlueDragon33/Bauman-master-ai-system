@@ -80,6 +80,13 @@ try{
   assert.ok(!before.text.includes('Báo cáo tiến độ tháng 3'),'Reference milestone is still learner-facing');
   assert.ok(!before.text.includes('Gợi ý cấu trúc chi tiết cho Chương 3'),'Reference AI suggestion is still learner-facing');
 
+  const checklistCount=await page.locator('#page-research input[data-research-check="1"]').count();
+  assert.ok(checklistCount>0,'Canonical Research checklist is missing from Thesis workspace');
+  const firstCheck=page.locator('#page-research input[data-research-check="1"]').first();
+  const checkBefore=await firstCheck.isChecked();
+  await firstCheck.click();
+  assert.notEqual(await page.locator('#page-research input[data-research-check="1"]').first().isChecked(),checkBefore,'Canonical Research checklist did not persist LOCAL_HUB state');
+
   const geometry=await page.evaluate(()=>{
     const workspace=document.querySelector('#page-research .thesis-page__workspace');
     const plan=document.querySelector('#page-research .thesis-page__plan');
