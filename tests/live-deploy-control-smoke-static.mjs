@@ -15,6 +15,14 @@ for(const token of [
   'runtime.controlOriginConfigured !== true',
   'CONTROL_TICKET_FORBIDDEN',
   'BAUMAN_RUNTIME_PRODUCTION_ORIGIN/__control-link',
+  'subjects/entrepreneurship/',
+  'subjects/ergonomics/',
+  'subjects/mivar/',
+  'subjects/foreign-language/',
+  'subjects/security-elective/',
+  'subjects/specialization-elective/',
+  'subjects/practice-workflow/',
+  'Study-plan module routes PASS.',
   'Bauman live Control + Runtime availability PASS.',
 ]){
   assert.ok(workflow.includes(token), `Live deploy verification missing: ${token}`);
