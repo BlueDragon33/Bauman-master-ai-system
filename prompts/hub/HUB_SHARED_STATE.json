@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "1.0.0",
+  "domain": "hub",
+  "constitution": "prompts/CONSTITUTION.md",
+  "masterPrompt": "prompts/hub/chat/HUB_CHAT_MASTER_PROMPT.md",
+  "status": "READY_FOR_CODEX",
+  "lifecycle": "DATA_TRUTH_RECONCILIATION",
+  "baselineMainSha": "db747b1e6c65e5eb2a28cfd7ea2aeee8e3f9872c",
+  "lastReviewedSha": "db747b1e6c65e5eb2a28cfd7ea2aeee8e3f9872c",
+  "workingBranch": "work/hub-governance-truth-20261003",
+  "canonicalRoutes": [
+    "home",
+    "roadmap",
+    "subjects",
+    "schedule",
+    "research"
+  ],
+  "classACompleted": [
+    "Confirmed the five-route learner navigation on current main.",
+    "Materialized Hub-specific prompt/governance authority under prompts/hub.",
+    "Locked CURRENT/STALE/UNAVAILABLE/LOCAL_HUB data-truth semantics.",
+    "Locked Hub↔Subject public-contract boundary.",
+    "Audited current primary-page owner/decorator layers and targeted regression tests."
+  ],
+  "findings": [
+    {
+      "id": "HUB-TRUTH-001",
+      "severity": "high",
+      "class": "B",
+      "area": "subjects",
+      "summary": "Subjects reference UI promotes hard-coded reference teachers, March 2025 dates, session counts and fallback progress as learner-facing truth when canonical values are missing."
+    },
+    {
+      "id": "HUB-TRUTH-002",
+      "severity": "high",
+      "class": "B",
+      "area": "research",
+      "summary": "Thesis/Research reference UI seeds a March 2025 reference week, tasks, milestones, chapter percentages, heatmap and 65% KPI and replaces the canonical research renderer."
+    },
+    {
+      "id": "HUB-TRUTH-003",
+      "severity": "high",
+      "class": "B",
+      "area": "tests",
+      "summary": "Existing Subjects and Thesis browser/static tests assert reference sample counts/copy, so regression currently protects mock/stale learner-facing output."
+    },
+    {
+      "id": "HUB-TRUTH-004",
+      "severity": "medium",
+      "class": "B",
+      "area": "home-roadmap-schedule",
+      "summary": "Several Hub projections coerce missing progress to numeric zero rather than an explicit unavailable/stale state."
+    },
+    {
+      "id": "HUB-TRUTH-005",
+      "severity": "medium",
+      "class": "B",
+      "area": "research",
+      "summary": "Presentation code derives research progress from local checklist/UI state; it must remain LOCAL_HUB and must not imply subject mastery or assessment."
+    }
+  ],
+  "activePacket": "prompts/hub/CURRENT_WORK_PACKET.json",
+  "blockers": [],
+  "externalBlockers": [],
+  "nextAction": "Codex executes HUB-TRUTH-20261003-001 against current main, then writes prompts/hub/CURRENT_EXECUTION_RESULT.json for Chat review."
+}
