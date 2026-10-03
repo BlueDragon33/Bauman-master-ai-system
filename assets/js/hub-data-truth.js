@@ -71,6 +71,9 @@
     }
     a.__hubDataTruthV1={release:RELEASE,subjectPrevious,researchPrevious};
     document.documentElement.dataset.hubDataTruth=RELEASE;
+    const current=window.state?.page;
+    if(current==='subjects'&&typeof a.subjects==='function')a.subjects();
+    if(current==='research'&&typeof a.research==='function')a.research();
     return true;
   }
 
