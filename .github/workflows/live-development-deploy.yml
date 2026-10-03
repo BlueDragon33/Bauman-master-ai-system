@@ -133,6 +133,37 @@ jobs:
             exit 1
           fi
 
+          echo "Checking study-plan module routes..."
+          while IFS='|' read -r SUBJECT_PATH SUBJECT_MARKER; do
+            [[ -n "$SUBJECT_PATH" ]] || continue
+            SUBJECT_OK=false
+            SAFE_NAME="$(printf '%s' "$SUBJECT_PATH" | tr '/-' '__')"
+            for i in {1..10}; do
+              STATUS="$(curl --silent --show-error --location --output "/tmp/bauman-live-${SAFE_NAME}.html" --write-out '%{http_code}' --max-time 15 "$BAUMAN_RUNTIME_PRODUCTION_ORIGIN/$SUBJECT_PATH" || true)"
+              if [[ "$STATUS" == "200" ]] && grep -Fqi '<html' "/tmp/bauman-live-${SAFE_NAME}.html" && grep -Fq "$SUBJECT_MARKER" "/tmp/bauman-live-${SAFE_NAME}.html"; then
+                SUBJECT_OK=true
+                break
+              fi
+              echo "Subject route $SUBJECT_PATH not ready yet (attempt $i, HTTP $STATUS)."
+              sleep 2
+            done
+            if [[ "$SUBJECT_OK" != "true" ]]; then
+              echo "::error::Study-plan module route failed: $SUBJECT_PATH"
+              head -c 1200 "/tmp/bauman-live-${SAFE_NAME}.html" || true
+              exit 1
+            fi
+          done <<'SUBJECT_ROUTES'
+          subjects/entrepreneurship/|Основы предпринимательства
+          subjects/ergonomics/|Эргономический анализ
+          subjects/mivar/|Миварные технологии
+          subjects/foreign-language/|Иностранный язык
+          subjects/security-elective/|Elective 1
+          subjects/specialization-elective/|Дисциплина по выбору №2
+          subjects/practice-workflow/|Practice Workflow
+          SUBJECT_ROUTES
+
+          echo "Study-plan module routes PASS."
+
           echo "Checking Runtime → Control link..."
           LINK_STATUS="$(curl --silent --show-error --output /tmp/bauman-live-control-link.json --write-out '%{http_code}' --max-time 15 "$BAUMAN_RUNTIME_PRODUCTION_ORIGIN/__control-link" || true)"
           if [[ "$LINK_STATUS" != "200" ]]; then
