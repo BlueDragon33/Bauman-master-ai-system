@@ -1,6 +1,6 @@
 # MATH01 · FORENSIC BASELINE — EXECUTIVE SUMMARY
 
-Status: VALIDATING  
+Status: GATE_READY  
 Subject: Mathematics  
 Base main: `b2b62fe610aa34229581d3d00f9fbc4cdb6d9b9b`  
 Runtime-equivalent verified main: `db747b1e6c65e5eb2a28cfd7ea2aeee8e3f9872c`  
@@ -128,7 +128,27 @@ What they do not prove:
 - real AI tutor behavior;
 - production performance targets.
 
-PR #227 adds `tests/math-p1-forensic-browser.mjs` solely to capture the missing baseline: 1920/1440/1280/1024/768/430/390, keyboard/focus smoke, touch-target inventory, navigation/resource timing, formula-render timing, Math Lab/formula-library open timing and route-cycle memory snapshot.
+PR #227 forensic run **37096211260** captured the missing baseline and PASSed:
+- 7 viewports (1920/1440/1280/1024/768/430/390): **0 horizontal overflow** at every size;
+- controls below 44px: 10–15 depending on viewport — accessibility/touch debt, not hidden;
+- keyboard focus smoke: first 12 focusable controls showed a visible 3px solid outline;
+- buttons without accessible name: 0/481;
+- inputs without an associated label: **19/30**;
+- math semantic nodes with `role="math"`: **0**;
+- Math Lab SVG exposes `role="img"` and `aria-label="Mô phỏng Toán"`.
+
+Browser-run performance baseline on GitHub Actions:
+- navigation load event: **281.7 ms**; DOMContentLoaded: **203.2 ms**;
+- 95 resources; decoded resource total: **18,425,035 bytes**;
+- largest/slowest observed resource: `data/lessons.json`, **7,822,102 decoded bytes**, ~289.7 ms;
+- Roadmap route: **104.62 ms**;
+- accepted L05 lesson open: **184.03 ms**;
+- E234 custom formula render, 500 iterations: **35.4 ms total / 0.0708 ms average** in this probe;
+- Math Lab open: **42.34 ms**;
+- Formula Library open: **64.81 ms**, 325 visible/listed items;
+- eight Roadmap↔Learn cycles showed the same coarse Chromium `performance.memory.usedJSHeapSize` snapshot (64 MB before/after). This is a smoke baseline, not proof of absence of leaks.
+
+Capability probe confirmed `symbolicEvaluator:false`, `externalCAS:false`, `aiMathProvider:false`.
 
 ## 8. Root causes grouped
 
@@ -171,9 +191,9 @@ PR #227 adds `tests/math-p1-forensic-browser.mjs` solely to capture the missing 
 3. Truth owners known/unresolved — PASS  
 4. Evaluator/computation/visualization mapped — PASS  
 5. Learner-state writes mapped — PASS  
-6. UI/accessibility/performance baseline — VALIDATING via PR #227 forensic probe  
+6. UI/accessibility/performance baseline — PASS (baseline captured; accessibility/performance debts routed downstream)  
 7. Test blind spots known — PASS  
 8. Root causes grouped — PASS  
-9. MATH02 input contract — PASS once companion artifact is committed
+9. MATH02 input contract — PASS
 
-MATH01 remains **VALIDATING** until the PR #227 forensic probe returns and is recorded. Production remains unchanged.
+MATH01 evidence is **GATE_READY**. The forensic probe is recorded; final PASS is committed to project state only after the exact final PR head passes required checks. Production remains unchanged.
