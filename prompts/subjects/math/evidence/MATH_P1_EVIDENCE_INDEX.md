@@ -1,6 +1,6 @@
 # MATH01 EVIDENCE INDEX
 
-Status: VALIDATING  
+Status: GATE_READY  
 PR: #227  
 Base main: `b2b62fe610aa34229581d3d00f9fbc4cdb6d9b9b`
 
@@ -8,10 +8,10 @@ Base main: `b2b62fe610aa34229581d3d00f9fbc4cdb6d9b9b`
 
 | Evidence | Purpose | Status |
 |---|---|---|
-| `MATH_P1_EXECUTIVE_SUMMARY.md` | Human-readable forensic conclusions, root causes and gate state | VALIDATING |
-| `MATH_P1_BASELINE.json` | Machine-readable runtime/content/owner/state baseline | VALIDATING |
+| `MATH_P1_EXECUTIVE_SUMMARY.md` | Human-readable forensic conclusions, root causes and gate state | GATE_READY |
+| `MATH_P1_BASELINE.json` | Machine-readable runtime/content/owner/state baseline | GATE_READY |
 | `MATH_P2_INPUT_CONTRACT.md` | Evidence-based downstream contract for canonical Math model | READY |
-| `tests/math-p1-forensic-browser.mjs` | Browser probe for missing responsive/accessibility/performance baseline | RUNNING IN PR GATE |
+| `tests/math-p1-forensic-browser.mjs` | Browser probe for responsive/accessibility/performance baseline | PASS · run 37096211260 |
 
 ## Source evidence inspected
 
@@ -77,16 +77,17 @@ Whole System Integration Gate:
 
 The later base main `b2b62fe...` changes only prompt/hub governance files relative to that runtime SHA, so this is accepted as runtime-equivalent evidence, not as exact final PR-head evidence.
 
-## PR #227 exact-head evidence
+## PR #227 browser evidence
 
-Pending:
-- MATH01 forensic browser probe;
-- Math Learning App Gate;
-- Whole System Integration Gate;
-- Universal Constitution Compliance;
-- Development Fast CI.
+First executable probe head `7b3ff9bb3dc36df94db3c463ad175f033bf11432`:
+- Math Learning App Gate run `37096211260`: SUCCESS;
+- MATH01 forensic browser probe: `PASS_BASELINE_CAPTURED`;
+- artifact: `math-browser-evidence`, artifact id `11263908216`;
+- Whole System Integration Gate run `37096211257`: SUCCESS;
+- Universal Constitution Compliance run `37096211675`: SUCCESS;
+- Development Fast CI run `37096211293`: SUCCESS.
 
-MATH01 must remain VALIDATING until the exact final PR head passes the required gates and the browser baseline is recorded.
+Measured findings are persisted in `MATH_P1_BASELINE.json`. Later evidence/state commits must still pass the exact final PR-head gates before merge.
 
 ## Known evidence boundaries
 
@@ -94,4 +95,4 @@ MATH01 must remain VALIDATING until the exact final PR head passes the required 
 - Current browser journeys do not prove symbolic equivalence, proof grading or CAS behavior.
 - Existing AI Mentor shell text does not prove a Math AI provider.
 - Existing Activity Mastery UI is not accepted as canonical mastery evidence.
-- Performance values are not invented; they will be copied from the PR browser artifact only after execution.
+- Performance values in the baseline come from the GitHub Actions browser probe and are environment-specific baselines, not production SLAs.
