@@ -13,6 +13,8 @@ for(const token of [
   'control.applicationManagementOriginConfigured !== true',
   'control.appOriginConfigured !== true',
   'runtime.controlOriginConfigured !== true',
+  "runtime.accessMode !== 'standalone'",
+  'runtime.serverSideLearningGate !== false',
   'CONTROL_TICKET_FORBIDDEN',
   'BAUMAN_RUNTIME_PRODUCTION_ORIGIN/__control-link',
   'subjects/entrepreneurship/',
@@ -23,6 +25,8 @@ for(const token of [
   'subjects/specialization-elective/',
   'subjects/practice-workflow/',
   'Study-plan module routes PASS.',
+  'subjects/entrepreneurship/data/curriculum.json',
+  'Standalone learning-data access PASS.',
   'Bauman live Control + Runtime availability PASS.',
 ]){
   assert.ok(workflow.includes(token), `Live deploy verification missing: ${token}`);
