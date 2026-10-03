@@ -1,35 +1,102 @@
 # BAUMAN HUB CODEX MASTER PROMPT
-## Repository Execution Plane
+## Deep Repository Execution Plane
 
-Mission: implement, test and harden **Bauman Hub only** from approved Chat work packets.
+Mission: execute only approved **Class-B Bauman Hub** work packets.
+
+Codex is used for work that materially benefits from deep repository execution, multi-file reasoning, test/fix loops and runtime verification. It is not the default tool for simple edits.
+
+## Start order
+
+Read:
+1. `prompts/CONSTITUTION.md`
+2. `prompts/hub/WORK_SPLIT_CHAT_CODEX.md`
+3. `prompts/hub/HUB_SCOPE_BOUNDARY.md`
+4. `prompts/hub/api/HUB_SUBAPP_API_BOUNDARY.md`
+5. `prompts/hub/HUB_SHARED_STATE.json`
+6. `prompts/hub/bridge/CURRENT_WORK_PACKET.json`
+
+Then inspect only the impacted Hub owners/contracts/tests required by the packet.
 
 ## Scope boundary
+
 Hub integration with subject apps is API/contract-only. Treat subject apps as external bounded systems.
 
 Never:
-- modify `prompts/subjects/**` as part of Hub work;
-- patch subject lessons/quizzes/mastery/pedagogy/internal DB/runtime;
-- couple Hub to subject DOM/localStorage/private files;
-- invent external API endpoints or capabilities.
+- modify `prompts/subjects/**`;
+- modify `subjects/**`;
+- inspect private subject DB/localStorage/IndexedDB/DOM as an integration shortcut;
+- patch subject lesson/quiz/mastery/pedagogy/runtime;
+- invent subject endpoints/capabilities.
 
-## Execution
-1. read CURRENT_WORK_PACKET;
-2. verify packet status/revision and current branch/HEAD;
-3. inspect only impacted Hub owners/contracts;
-4. verify required external capabilities are registered;
-5. implement smallest canonical-owner change;
-6. targeted validation;
-7. regression for affected Hub journeys;
-8. verify no subject-internal changes;
-9. write CURRENT_EXECUTION_RESULT;
-10. update HUB_SHARED_STATE;
-11. stop for Chat review unless packet explicitly authorizes chained Hub-only work.
+If the required subject capability is missing, return a blocker rather than crossing the boundary.
+
+## Execution model
+
+Run continuously:
+inspect approved scope -> implement -> targeted test -> diagnose -> smallest safe fix -> retest -> affected regression -> evidence.
+
+Do not ask for routine confirmation between phases.
+
+If current main moved beyond packet baseline:
+- reconcile against latest main before editing;
+- record exact beforeSha;
+- preserve packet invariants;
+- continue unless there is a real conflict.
+
+## Typical Codex-owned work
+
+- coupled runtime refactors across multiple files;
+- normalized read-model/adapter architecture;
+- compatibility/state migrations;
+- render-owner convergence;
+- browser/E2E/responsive verification;
+- CI/build/service worker/PWA/offline changes;
+- auth/Device Gate/security-sensitive implementation;
+- non-trivial persistence;
+- performance/debug profiling;
+- broad test hardening;
+- repeated implement/test/fix loops.
+
+## Implementation discipline
+
+- make the smallest architecture-consistent change;
+- preserve one canonical owner per concern;
+- do not add fallback fake academic truth;
+- do not weaken tests to obtain PASS;
+- do not hide errors with demo/mock values;
+- preserve compatibility behind adapters instead of leaking legacy details into presentation;
+- do not expand scope silently.
+
+If an unrelated issue is found:
+- fix it only when necessary for packet acceptance and inside allowed scope;
+- otherwise record it for Chat.
 
 ## Evidence
-Return beforeSha, afterSha, changedPaths, commands/tests, acceptance matrix, API compatibility, subject-boundary compliance, defects, blockers and release state.
 
-## Block instead of crossing boundary
-Block if a subject app lacks the required exported capability, credentials/production authority are missing, the packet conflicts with Constitution, or implementation would require private subject internals.
+Update `prompts/hub/bridge/CURRENT_EXECUTION_RESULT.json` with:
+- packetId/revision/status;
+- beforeSha/afterSha;
+- changedPaths;
+- commands/tests/results;
+- acceptance matrix;
+- API compatibility;
+- boundary compliance;
+- defects fixed;
+- blockers;
+- release state;
+- next action.
 
-## Release
-Do not merge/publish unless the packet and repository authority explicitly authorize that gate.
+Update `prompts/hub/HUB_SHARED_STATE.json` to reflect actual execution state.
+
+## Completion
+
+Return `CODEX_DONE` only when:
+- packet phases are implemented;
+- affected tests pass or genuine blockers are documented;
+- browser/runtime evidence required by the packet exists;
+- boundary checks pass;
+- exact tested HEAD is recorded.
+
+Do not merge or publish unless the packet explicitly authorizes that gate.
+
+Stop at exact tested HEAD for Chat review.
