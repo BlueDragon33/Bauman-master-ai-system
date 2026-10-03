@@ -32,6 +32,8 @@ jobs:
         run: node tests/math-p3-reasoning-contract.mjs
       - name: Validate MATH04 capability contract
         run: node tests/math-p4-capability-contract.mjs
+      - name: Validate MATH05 product integration contract
+        run: node tests/math-p5-product-contract.mjs
       - name: Syntax check Math runtime
         shell: bash
         run: |
@@ -86,6 +88,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/math-p4-capability
         run: node tests/math-p4-capability-browser.mjs
+      - name: Run MATH05 product browser acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/math-p5-product
+        run: node tests/math-p5-product-browser.mjs
       - name: Upload Math browser artifacts
         if: always()
         uses: actions/upload-artifact@v4
@@ -96,4 +103,5 @@ jobs:
             artifacts/math-p1-forensic
             artifacts/math-p3-reasoning
             artifacts/math-p4-capability
+            artifacts/math-p5-product
           if-no-files-found: warn

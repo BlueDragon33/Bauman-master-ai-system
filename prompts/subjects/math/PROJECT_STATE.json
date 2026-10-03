@@ -3,8 +3,8 @@
   "subject": "math",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/subjects/math/MATH_MASTER_PROMPT.md",
-  "status": "MATH05_READY",
-  "activeModule": "MATH05",
+  "status": "MATH06_READY",
+  "activeModule": "MATH06",
   "sequence": [
     "MATH01",
     "MATH02",
@@ -17,11 +17,12 @@
     "MATH01",
     "MATH02",
     "MATH03",
-    "MATH04"
+    "MATH04",
+    "MATH05"
   ],
   "needsRevalidation": [],
-  "lastValidatedSha": "c39b4ca271b7750b42adbb6b315d87d3b41ffa53",
-  "currentHeadSha": "c39b4ca271b7750b42adbb6b315d87d3b41ffa53",
+  "lastValidatedSha": "251e2dc667087b323ef2edd2dc5182751f23fbca",
+  "currentHeadSha": "251e2dc667087b323ef2edd2dc5182751f23fbca",
   "evidence": [
     "prompts/subjects/math/evidence/MATH_P1_EXECUTIVE_SUMMARY.md",
     "prompts/subjects/math/evidence/MATH_P1_BASELINE.json",
@@ -73,10 +74,17 @@
     "Development Fast CI run 37123186702: SUCCESS",
     "Universal Constitution Compliance run 37123187267: SUCCESS",
     "Future Interface System CI run 37123186688: SUCCESS",
-    "MATH04 provider facade preserves MATH02 truth authority and MATH03 assessment authority; unbound providers fail honest; no production deployment"
+    "MATH04 provider facade preserves MATH02 truth authority and MATH03 assessment authority; unbound providers fail honest; no production deployment",
+    "MATH05 exact runtime-tested head 251e2dc667087b323ef2edd2dc5182751f23fbca: PASS",
+    "Math Learning App Gate run 37133184413: SUCCESS",
+    "Whole System Integration Gate run 37133184441: SUCCESS; direct and packaged acceptance",
+    "Development Fast CI run 37133184360: SUCCESS",
+    "Universal Constitution Compliance run 37133184808: SUCCESS",
+    "Future Interface System CI run 37133184434: SUCCESS",
+    "MATH05 product integration preserves shared shell ownership, capability boundaries and no mastery/academic writes; no production deployment"
   ],
   "blockers": [],
-  "nextAction": "Merge MATH04 PR #234 after metadata-only exact-head CI remains green; then execute MATH05 from MATH_P5_INPUT_CONTRACT.md on unified main.",
+  "nextAction": "Merge MATH05 PR #235 after metadata-only exact-head CI remains green; then execute MATH06 acceptance/hardening from MATH_P6_INPUT_CONTRACT.md.",
   "notes": [
     "MATH01 changed no production Math runtime or academic content.",
     "MATH02 PASS is evidence/contract-only; no Math production runtime/content mutation was performed.",
@@ -85,7 +93,8 @@
     "MATH03 locked typed equivalence, proof/reasoning authority boundaries, immutable/idempotent first-attempt evidence, root-cause remediation and no-fake-mastery semantics.",
     "MATH03 deterministic evaluator is intentionally not a general CAS or formal proof verifier; unsupported cases degrade to INDETERMINATE.",
     "MATH04 must consume MATH03 contracts as provider boundaries rather than redefining them.",
-    "MATH04 locked a capability registry/facade with safe parser, deterministic numeric/graph/matrix/simulation providers, fail-honest unbound CAS/geometry/vector/AI boundaries, typed provenance and no mastery/academic write authority."
+    "MATH04 locked a capability registry/facade with safe parser, deterministic numeric/graph/matrix/simulation providers, fail-honest unbound CAS/geometry/vector/AI boundaries, typed provenance and no mastery/academic write authority.",
+    "MATH05 locked shared-platform learner surfaces, Math input, authoring/lifecycle, responsive/accessibility, offline packaging and incremental legacy integration; representative desktop/tablet/mobile product journey passed."
   ],
-  "testedRuntimeHead": "c39b4ca271b7750b42adbb6b315d87d3b41ffa53"
+  "testedRuntimeHead": "251e2dc667087b323ef2edd2dc5182751f23fbca"
 }
