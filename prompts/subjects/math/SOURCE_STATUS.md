@@ -4,7 +4,7 @@
 |---|---|---|
 | MATH00 | COMPLETE | READY |
 | MATH01 | COMPLETE | **PASS · PR #227 forensic evidence** |
-| MATH02 | COMPLETE / READY TO EXECUTE | **ACTIVE / READY** |
+| MATH02 | COMPLETE | **VALIDATING · canonical contract + targeted validator on PR** |
 | MATH03 | COMPLETE / READY TO EXECUTE after MATH02 contract | NOT_STARTED |
 | MATH04 | COMPLETE / READY TO EXECUTE after MATH02/MATH03 contract | NOT_STARTED |
 | MATH05 | COMPLETE / READY TO EXECUTE after MATH02–MATH04 | NOT_STARTED |
@@ -20,7 +20,7 @@ It does **not** mean the Math repository implementation has been audited, rebuil
 
 ## Next operational action
 
-Run `MATH02` from `evidence/MATH_P2_INPUT_CONTRACT.md`. Establish one canonical curriculum/entity/competency owner and migration contract before scaling content.
+Validate the MATH02 canonical owner contract on PR CI. Do not scale content or mutate runtime until the targeted validator confirms retained IDs/sidecars and the gate evidence is recorded.
 
 ## MATH01 repository evidence
 
@@ -33,3 +33,14 @@ Run `MATH02` from `evidence/MATH_P2_INPUT_CONTRACT.md`. Establish one canonical 
 - Downstream contract: `prompts/subjects/math/evidence/MATH_P2_INPUT_CONTRACT.md`
 
 MATH01 findings are forensic inputs, not permission to bypass MATH02 ownership design.
+
+
+## MATH02 validating evidence
+
+- Canonical blueprint: `evidence/MATH_ACADEMIC_BLUEPRINT.md`
+- Canonical owner/model: `evidence/MATH_P2_CANONICAL_MODEL.json`
+- Migration plan: `evidence/MATH_SCHEMA_MIGRATION_PLAN.md`
+- Downstream contract: `evidence/MATH_P3_INPUT_CONTRACT.md`
+- Targeted validator: `tests/math-p2-canonical-contract.mjs`
+- Runtime/content production mutation: **NO**
+- Current gate: PR CI must validate ownership invariants, retained IDs, sidecar orphan references, measurable theory-content count and existing Math regressions.
