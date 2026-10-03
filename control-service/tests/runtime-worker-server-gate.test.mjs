@@ -13,6 +13,7 @@ function request(path, init = {}) {
 function env(assetHandler) {
   return {
     BAUMAN_CONTROL_ORIGIN: CONTROL_ORIGIN,
+    BAUMAN_ACCESS_MODE: "managed",
     BAUMAN_DEPLOYMENT_CHANNEL: "test",
     BAUMAN_BUILD_REVISION: "issue-28",
     ASSETS: { fetch: assetHandler },
