@@ -45,30 +45,17 @@
   function restoreTruthSafePrimaryRenderers(){
     const a=typeof app!=='undefined'?app:null;
     if(!a||a.__hubDataTruthV1)return false;
-
-    const subjectPrevious=a.__subjectsReferenceV1?.previousSubjects;
-    const researchPrevious=a.__thesisReferenceV1?.previousResearch;
-
-    // Subjects reference V1 is truth-safe under this adapter and keeps its UX/local overrides.
-    // Research remains temporarily restored to its canonical renderer until its reference workspace
-    // is normalized by the same packet.
-    if(typeof researchPrevious==='function'){
-      a.research=function(){
-        const out=researchPrevious();
-        const host=document.getElementById('page-research');
-        mark(host,STATES.LOCAL_HUB,'hub.canonical.research+hub.local.checklist');
-        const note=host?.querySelector('.canva-research-hero p');
-        if(note&&!host.querySelector('[data-hub-local-evidence-note]')){
-          note.insertAdjacentHTML('afterend','<small data-hub-local-evidence-note="1">Tiến độ đánh dấu trong Hub là ghi chú LOCAL_HUB, không phải điểm số, mastery hay đánh giá chính thức.</small>');
-        }
-        return out;
-      };
-    }
-    a.__hubDataTruthV1={release:RELEASE,subjectPrevious,researchPrevious};
+    a.__hubDataTruthV1={
+      release:RELEASE,
+      subjectReferenceTruthSafe:Boolean(a.__subjectsReferenceV1),
+      researchReferenceTruthSafe:Boolean(a.__thesisReferenceV1)
+    };
     document.documentElement.dataset.hubDataTruth=RELEASE;
     const current=window.state?.page;
     if(current==='subjects'&&typeof a.subjects==='function')a.subjects();
     if(current==='research'&&typeof a.research==='function')a.research();
+    const host=current==='subjects'?document.getElementById('page-subjects'):current==='research'?document.getElementById('page-research'):null;
+    if(host)mark(host,current==='research'?STATES.LOCAL_HUB:STATES.CURRENT,current==='research'?'hub.canonical.research+hub.local':'hub.canonical.subjects+hub.local');
     return true;
   }
 
@@ -78,8 +65,8 @@
       release:RELEASE,
       patched:Boolean(a?.__hubDataTruthV1),
       states:Object.values(STATES),
-      subjectReferenceTruthSafe:Boolean(a?.__subjectsReferenceV1),
-      researchReferenceBypassed:typeof a?.__hubDataTruthV1?.researchPrevious==='function',
+      subjectReferenceTruthSafe:Boolean(a?.__hubDataTruthV1?.subjectReferenceTruthSafe),
+      researchReferenceTruthSafe:Boolean(a?.__hubDataTruthV1?.researchReferenceTruthSafe),
       realZero:progress({x:0},'x').value===0,
       missingIsUnavailable:progress({},'x').status===STATES.UNAVAILABLE
     };
