@@ -214,7 +214,7 @@ jobs:
       - name: Verify Russian production identity, security, offline contract and content drift
         run: node scripts/russian-release-annex-evidence.mjs verify
 
-      - name: Run production subject smoke browser acceptance
+      - name: Run Russian production subject smoke browser acceptance
         shell: bash
         env:
           BAUMAN_E2E_BASE_URL: ${{ vars.BAUMAN_RUNTIME_PRODUCTION_ORIGIN }}/
@@ -223,11 +223,6 @@ jobs:
           set -euo pipefail
           npm install --no-save --no-audit --no-fund playwright@1.55.0
           npx playwright install --with-deps chromium
-
-          BAUMAN_E2E_ARTIFACT_DIR=artifacts/math-production-rc \
-            node tests/math-p6-rc-browser.mjs
-          BAUMAN_E2E_ARTIFACT_DIR=artifacts/math-production-reasoning \
-            node tests/math-p3-reasoning-browser.mjs
 
           BAUMAN_E2E_ARTIFACT_DIR=artifacts/russian-production-journeys \
             node tests/russian-ru08-journeys-browser.mjs
@@ -242,6 +237,19 @@ jobs:
             "$RUSSIAN_RELEASE_EVIDENCE_DIR/RUSSIAN_PRODUCTION_RU08_AUTHOR.json"
           cp artifacts/russian-production-offline-browser/summary.json \
             "$RUSSIAN_RELEASE_EVIDENCE_DIR/RUSSIAN_PRODUCTION_OFFLINE_BROWSER.json"
+
+      - name: Run Math production subject smoke browser acceptance
+        shell: bash
+        env:
+          BAUMAN_E2E_BASE_URL: ${{ vars.BAUMAN_RUNTIME_PRODUCTION_ORIGIN }}/
+          BAUMAN_E2E_DEVICE_SESSION: ${{ env.BAUMAN_PRODUCTION_SMOKE_DEVICE_SESSION }}
+        run: |
+          set -euo pipefail
+          BAUMAN_E2E_ARTIFACT_DIR=artifacts/math-production-rc \
+            node tests/math-p6-rc-browser.mjs
+          BAUMAN_E2E_ARTIFACT_DIR=artifacts/math-production-reasoning \
+            node tests/math-p3-reasoning-browser.mjs
+
           cp artifacts/math-production-rc/summary.json \
             "$RUSSIAN_RELEASE_EVIDENCE_DIR/MATH_PRODUCTION_RC_SMOKE.json"
           cp artifacts/math-production-reasoning/summary.json \
