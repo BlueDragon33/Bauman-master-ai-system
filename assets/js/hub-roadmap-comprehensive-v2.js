@@ -10,9 +10,12 @@
   const qa=(s,r=document)=>[...r.querySelectorAll(s)];
   const D=()=>window.BAUMAN_DATA||{stages:[],semesters:[],subjects:[],courses:[]};
   const S=()=>window.state||{subjects:{},progress:{},schedule:{entries:{}},reviewQueue:[]};
+  const T=()=>window.BAUMAN_HUB_TRUTH||null;
   const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-  const clamp=v=>Math.max(0,Math.min(100,Math.round(Number(v)||0)));
-  const avg=xs=>xs.length?Math.round(xs.reduce((a,b)=>a+b,0)/xs.length):0;
+  const clamp=v=>Math.max(0,Math.min(100,Math.round(Number(v))));
+  const avg=xs=>{const known=(xs||[]).filter(v=>Number.isFinite(v));return known.length?Math.round(known.reduce((a,b)=>a+b,0)/known.length):null};
+  const fieldValue=x=>x&&Number.isFinite(x.value)?x.value:null;
+  const fieldLabel=x=>fieldValue(x)===null?'—':fieldValue(x)+'%';
 
   const PHASES=[
     {id:'foundation',n:1,title:'Giai đoạn 1: Nền tảng',short:'Nền tảng',subtitle:'Xây dựng nền tảng vững chắc',source:['prepare'],tone:'green'},
@@ -41,7 +44,13 @@
     return concise[id]||subjectObj(id).name||id;
   }
   function subjectIcon(id){return SUBJECT_ICON[id]||subjectObj(id).icon||'•'}
-  function subjectProgress(id){return clamp(S().progress?.[id]||0)}
+  function subjectProgress(id){
+    const truth=T();
+    if(truth)return truth.progress(S().progress||{},id,{source:'hub.state.progress'});
+    const map=S().progress||{};
+    if(!Object.prototype.hasOwnProperty.call(map,id)||!Number.isFinite(Number(map[id])))return {status:'UNAVAILABLE',value:null,source:'hub.state.progress'};
+    return {status:'CURRENT',value:clamp(map[id]),source:'hub.state.progress'};
+  }
 
   function coursesForPhase(phase,filterId=activeFilter()){
     const f=FILTERS.find(x=>x.id===filterId)||FILTERS[0];
@@ -51,8 +60,10 @@
     return [...new Set((D().courses||[]).filter(c=>phase.source.includes(c.stage)).map(c=>c.subject))];
   }
   function phaseProgress(phase){
-    const ids=subjectsForPhase(phase);
-    return avg(ids.map(subjectProgress));
+    const ids=subjectsForPhase(phase),truth=T();
+    if(truth)return truth.averageProgress(S().progress||{},ids,{source:'hub.state.progress'});
+    const vals=ids.map(id=>fieldValue(subjectProgress(id))).filter(v=>Number.isFinite(v));
+    return {status:vals.length?(vals.length===ids.length?'CURRENT':'STALE'):'UNAVAILABLE',value:avg(vals),source:'hub.state.progress'};
   }
   function phasePeriod(phase){
     const semesterIds=(phase.source||[]).filter(id=>/^m\d$/.test(id));
@@ -68,8 +79,10 @@
     return String(stage?.period||'');
   }
   function overall(){
-    const ids=Object.keys(S().subjects||{});
-    return avg(ids.map(subjectProgress));
+    const ids=Object.keys(S().subjects||{}),truth=T();
+    if(truth)return truth.averageProgress(S().progress||{},ids,{source:'hub.state.progress'});
+    const vals=ids.map(id=>fieldValue(subjectProgress(id))).filter(v=>Number.isFinite(v));
+    return {status:vals.length?(vals.length===ids.length?'CURRENT':'STALE'):'UNAVAILABLE',value:avg(vals),source:'hub.state.progress'};
   }
   function phaseForState(){
     const id=S().roadmapStage||S().schedule?.autoStage||'prepare';
@@ -87,14 +100,14 @@
 
   function stageCards(){
     return PHASES.map((p,i)=>{
-      const pct=phaseProgress(p),current=phaseForState().id===p.id;
+      const progress=phaseProgress(p),pct=fieldValue(progress),current=phaseForState().id===p.id;
       return '<article class="hub-rm-stage-card '+p.tone+' '+(current?'current':'')+'" data-rm-stage="'+p.id+'">'+
         '<div class="hub-rm-stage-top">'+
           '<span class="hub-rm-stage-num">'+p.n+'</span>'+
           '<div><h3>'+esc(p.title)+'</h3><p>'+esc(p.subtitle)+'</p><span class="hub-rm-stage-period">'+esc(phasePeriod(p))+'</span></div>'+
           (current?'<span class="hub-rm-stage-check">✓</span>':'')+
         '</div>'+
-        '<div class="hub-rm-stage-progress"><i><u style="width:'+pct+'%"></u></i><b>'+pct+'%</b></div>'+
+        '<div class="hub-rm-stage-progress" data-truth-status="'+esc(progress.status)+'"><i><u style="width:'+(pct===null?0:pct)+'%"></u></i><b>'+fieldLabel(progress)+'</b></div>'+
         '<small>Môn học chính trong giai đoạn:</small>'+
         '<div class="hub-rm-stage-subjects">'+phaseSubjectChips(p)+'</div>'+
         (i<PHASES.length-1?'<span class="hub-rm-stage-arrow">›</span>':'')+
@@ -123,13 +136,14 @@
   function phaseRows(){
     const open=readOpen(),filterId=activeFilter();
     return PHASES.map(p=>{
-      const rows=coursesForPhase(p,filterId),pct=rows.length?avg([...new Set(rows.map(c=>c.subject))].map(subjectProgress)):phaseProgress(p);
-      const isOpen=open.has(p.id),shown=isOpen?rows.slice(0,p.id==='foundation'?8:6):[];
+      const rows=coursesForPhase(p,filterId),ids=[...new Set(rows.map(c=>c.subject))],truth=T();
+      const progress=rows.length?(truth?truth.averageProgress(S().progress||{},ids,{source:'hub.state.progress'}):{status:'CURRENT',value:avg(ids.map(id=>fieldValue(subjectProgress(id))))}):phaseProgress(p);
+      const pct=fieldValue(progress),isOpen=open.has(p.id),shown=isOpen?rows.slice(0,p.id==='foundation'?8:6):[];
       return '<section class="hub-rm-level '+p.tone+' '+(isOpen?'open':'')+'" data-rm-level="'+p.id+'">'+
         '<button class="hub-rm-level-head" data-rm-toggle="'+p.id+'">'+
           '<span class="hub-rm-level-num">'+p.n+'</span>'+
           '<span class="hub-rm-level-copy"><b>'+esc(p.short)+'</b><small>'+esc(p.subtitle)+'</small></span>'+
-          '<span class="hub-rm-level-progress"><i><u style="width:'+pct+'%"></u></i><b>'+pct+'%</b></span>'+
+          '<span class="hub-rm-level-progress" data-truth-status="'+esc(progress.status)+'"><i><u style="width:'+(pct===null?0:pct)+'%"></u></i><b>'+fieldLabel(progress)+'</b></span>'+
           '<span class="hub-rm-level-count">'+rows.length+' học phần</span>'+
           '<span class="hub-rm-level-chevron">'+(isOpen?'⌃':'⌄')+'</span>'+
         '</button>'+
@@ -159,21 +173,21 @@
   }
 
   function rightRail(){
-    const pct=overall(),current=phaseForState(),cp=phaseProgress(current),courseCount=coursesForPhase(current,'all').length;
-    const ids=Object.keys(S().subjects||{}),values=ids.map(subjectProgress),done=values.filter(v=>v>=100).length,active=values.filter(v=>v>0&&v<100).length,todo=values.filter(v=>v<=0).length;
+    const overallField=overall(),pct=fieldValue(overallField),current=phaseForState(),currentField=phaseProgress(current),cp=fieldValue(currentField),courseCount=coursesForPhase(current,'all').length;
+    const ids=Object.keys(S().subjects||{}),fields=ids.map(subjectProgress),values=fields.map(fieldValue),done=values.filter(v=>v!==null&&v>=100).length,active=values.filter(v=>v!==null&&v>0&&v<100).length,todo=values.filter(v=>v===0).length,unknown=values.filter(v=>v===null).length;
     return '<aside class="hub-rm-rail">'+
       '<article class="hub-rm-side-card hub-rm-overall">'+
         '<div class="hub-rm-side-head"><h3>Tiến độ học tập tổng thể</h3><button data-rm-action="progress">Xem chi tiết →</button></div>'+
         '<div class="hub-rm-overall-body">'+
-          '<div class="hub-rm-donut" style="--pct:'+pct+'"><b>'+pct+'%</b></div>'+
-          '<div><span>Đã hoàn thành</span><strong>'+done+'/'+ids.length+' môn</strong><div class="hub-rm-legend"><i class="done"></i>Hoàn thành '+done+' <i class="active"></i>Đang học '+active+' <i class="todo"></i>Chưa học '+todo+'</div></div>'+
+          '<div class="hub-rm-donut" data-truth-status="'+esc(overallField.status)+'" style="--pct:'+(pct===null?0:pct)+'"><b>'+fieldLabel(overallField)+'</b></div>'+
+          '<div><span>'+(overallField.status==='UNAVAILABLE'?'Chưa có dữ liệu tiến độ':'Đã hoàn thành')+'</span><strong>'+done+'/'+ids.length+' môn</strong><div class="hub-rm-legend"><i class="done"></i>Hoàn thành '+done+' <i class="active"></i>Đang học '+active+' <i class="todo"></i>0% thật '+todo+(unknown?' · Chưa có dữ liệu '+unknown:'')+'</div></div>'+
         '</div>'+
       '</article>'+
       '<article class="hub-rm-side-card">'+
         '<div class="hub-rm-side-head"><h3>Giai đoạn hiện tại</h3><button data-rm-action="current">Xem lộ trình →</button></div>'+
         '<div class="hub-rm-current">'+
           '<span class="hub-rm-current-icon '+current.tone+'">'+current.n+'</span>'+
-          '<div><b>'+esc(current.title)+'</b><small>'+esc(current.subtitle)+(phasePeriod(current)?' · '+esc(phasePeriod(current)):'')+'</small><span class="hub-rm-doing">Đang thực hiện</span><div class="hub-rm-mini-progress"><i><u style="width:'+cp+'%"></u></i><b>'+cp+'%</b><em>'+courseCount+' học phần</em></div></div>'+
+          '<div><b>'+esc(current.title)+'</b><small>'+esc(current.subtitle)+(phasePeriod(current)?' · '+esc(phasePeriod(current)):'')+'</small><span class="hub-rm-doing">Đang thực hiện</span><div class="hub-rm-mini-progress" data-truth-status="'+esc(currentField.status)+'"><i><u style="width:'+(cp===null?0:cp)+'%"></u></i><b>'+fieldLabel(currentField)+'</b><em>'+courseCount+' học phần</em></div></div>'+
         '</div>'+
       '</article>'+
       '<article class="hub-rm-side-card">'+

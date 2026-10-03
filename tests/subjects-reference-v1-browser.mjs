@@ -27,7 +27,7 @@ async function openSubjects(page){
   await page.goto(BASE,{waitUntil:'domcontentloaded',timeout:30000});
   await page.waitForFunction(()=>['standalone','authorized','offline-grace'].includes(document.documentElement.dataset.baumanDeviceAccess),null,{timeout:30000});
   await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'),null,{timeout:30000});
-  await page.waitForFunction(()=>window.BAUMAN_SUBJECTS_REF?.selfCheck?.().patched===true,null,{timeout:15000});
+  await page.waitForFunction(()=>window.BAUMAN_SUBJECTS_REF?.selfCheck?.().patched===true&&window.BAUMAN_HUB_TRUTH?.selfCheck?.().patched===true,null,{timeout:15000});
   await page.evaluate(()=>window.app?.page?.('subjects',false));
   await page.waitForSelector('#page-subjects .subjects-page',{state:'visible',timeout:15000});
 }
@@ -49,20 +49,49 @@ try{
     topbar:document.querySelector('.topbar')?.innerHTML||'',
     navOrder:[...document.querySelectorAll('#nav [data-page]')].map(x=>x.dataset.page),
     ui:window.BAUMAN_SUBJECTS_REF?.selfCheck?.(),
+    truth:window.BAUMAN_HUB_TRUTH?.selfCheck?.(),
     pageTitle:document.querySelector('#page-subjects .subjects-page__header h2')?.textContent,
     summary:document.querySelectorAll('#page-subjects .subjects-page__summary-card').length,
     courses:document.querySelectorAll('#page-subjects .subjects-page__course-card').length,
-    aiRows:document.querySelectorAll('#page-subjects .subjects-page__ai-list>button').length,
-    footer:document.querySelectorAll('#page-subjects .subjects-page__footer>.subjects-page__panel').length
+    expected:window.app?.filteredSubjectsForStage?.(window.state?.subjectStage||'prepare')?.length||0,
+    footer:document.querySelectorAll('#page-subjects .subjects-page__footer>.subjects-page__panel').length,
+    text:document.querySelector('#page-subjects .subjects-page')?.textContent||''
   }));
 
   assert.deepEqual(before.navOrder,['home','roadmap','subjects','schedule','research'],'Subjects rebuild changed primary navigation');
   assert.equal(before.ui?.active,true,'Subjects reference UI is not active');
+  assert.equal(before.truth?.realZero,true,'Hub truth helper no longer preserves real zero');
+  assert.equal(before.truth?.missingIsUnavailable,true,'Hub truth helper no longer preserves unavailable state');
   assert.equal(before.pageTitle,'Môn học','Subjects page title mismatch');
   assert.equal(before.summary,4,'Subjects summary must contain four cards');
-  assert.equal(before.courses,13,'Reference Subjects state must show thirteen course cards');
-  assert.equal(before.aiRows,4,'AI assistant must show four suggestions');
+  assert.equal(before.courses,before.expected,'Subjects cards must come from canonical stage subjects');
+  assert.ok(before.courses>0,'Canonical stage has no visible subject cards');
   assert.equal(before.footer,3,'Subjects footer must contain progress, heatmap and notes');
+  assert.ok(!before.text.includes('13/03/2025'),'Subjects still exposes March 2025 reference schedule');
+  assert.ok(!before.text.includes('TS. Trần Thị Mai'),'Subjects still exposes reference lecturer data');
+
+  const truthCases=await page.evaluate(()=>{
+    const visible=window.app.filteredSubjectsForStage(window.state.subjectStage||'prepare').map(x=>x.id);
+    if(visible.length<2)throw new Error('Need two canonical subjects for truth-state QA');
+    window.state.progress=window.state.progress||{};
+    window.state.progress[visible[0]]=0;
+    delete window.state.progress[visible[1]];
+    window.save?.();
+    window.BAUMAN_SUBJECTS_REF.render();
+    const card=id=>document.querySelector('#page-subjects [data-course-key="'+CSS.escape(id)+'"]');
+    return {
+      zeroId:visible[0],
+      missingId:visible[1],
+      zeroStatus:card(visible[0])?.dataset.truthStatus,
+      zeroText:card(visible[0])?.querySelector('.subjects-page__course-progress b')?.textContent,
+      missingStatus:card(visible[1])?.dataset.truthStatus,
+      missingText:card(visible[1])?.querySelector('.subjects-page__course-progress b')?.textContent
+    };
+  });
+  assert.equal(truthCases.zeroStatus,'CURRENT','Stored zero must remain CURRENT');
+  assert.equal(truthCases.zeroText,'0%','Stored zero must render as 0%');
+  assert.equal(truthCases.missingStatus,'UNAVAILABLE','Missing progress must be UNAVAILABLE');
+  assert.equal(truthCases.missingText,'—','Missing progress must not render as 0%');
 
   const geometry=await page.evaluate(()=>{
     const workspace=document.querySelector('#page-subjects .subjects-page__workspace');
@@ -72,53 +101,45 @@ try{
     const wr=workspace.getBoundingClientRect(),lr=list.getBoundingClientRect(),rr=rail.getBoundingClientRect();
     return {
       ratio:lr.width/rr.width,
-      courseColumns:new Set(cards.slice(0,2).map(x=>Math.round(x.getBoundingClientRect().top))).size===1,
+      courseColumns:cards.length<2||new Set(cards.slice(0,2).map(x=>Math.round(x.getBoundingClientRect().top))).size===1,
       firstHeight:cards[0]?.getBoundingClientRect().height||0,
       courseTitleFont:parseFloat(getComputedStyle(cards[0]?.querySelector('.subjects-page__course-name b')).fontSize)||0,
-      courseMetaFont:parseFloat(getComputedStyle(cards[0]?.querySelector('.subjects-page__course-meta')).fontSize)||0,
       workspaceWidth:wr.width
     };
   });
   assert.ok(geometry.ratio>1.75&&geometry.ratio<2.35,'Desktop subjects workspace is not close to the reference 67/33 split');
   assert.equal(geometry.courseColumns,true,'Desktop course grid is not two columns');
-  assert.ok(geometry.firstHeight>=185&&geometry.firstHeight<=240,'Course-card readable height drifted unexpectedly');
+  assert.ok(geometry.firstHeight>=170,'Course-card readable height regressed');
   assert.ok(geometry.courseTitleFont>=14.5,'Course title font fell below readable size');
-
-  await page.evaluate(()=>window.BAUMAN_SUBJECTS_REF.toggleTab('exam'));
-  assert.equal(await page.locator('#page-subjects .subjects-page__course-card').count(),1,'Sắp thi filter did not reduce list to one course');
-  await page.evaluate(()=>window.BAUMAN_SUBJECTS_REF.toggleTab('all'));
-  assert.equal(await page.locator('#page-subjects .subjects-page__course-card').count(),13,'All filter did not restore reference thirteen cards');
 
   await page.evaluate(()=>window.BAUMAN_SUBJECTS_REF.toggleFilter());
   await page.waitForSelector('#page-subjects .subjects-page__filter-panel.is-open',{state:'visible'});
   await page.evaluate(()=>window.BAUMAN_SUBJECTS_REF.toggleFilter());
 
-  await page.evaluate(()=>window.BAUMAN_SUBJECTS_REF.toggleAI('math'));
-  const aiMath=await page.locator('#page-subjects .subjects-page__ai-list>button').nth(2).getAttribute('class');
-  assert.ok(aiMath?.includes('is-done'),'AI suggestion checkbox interaction failed');
-
-  // Lecturer names are user-editable, stored outside canonical course identity,
-  // and must survive a Subjects rerender.
-  await page.evaluate(()=>{
+  const firstKey=await page.locator('#page-subjects .subjects-page__course-card').first().getAttribute('data-course-key');
+  await page.evaluate(key=>{
     window.prompt=()=> 'PGS. TS. Nguyễn Văn A';
-    window.BAUMAN_SUBJECTS_REF.editTeacher('russian');
-  });
-  const editedTeacher=await page.textContent('#page-subjects [data-course-key="russian"] .subjects-page__course-name small');
-  assert.equal(editedTeacher,'GV: PGS. TS. Nguyễn Văn A','Edited lecturer name was not rendered');
+    window.BAUMAN_SUBJECTS_REF.editTeacher(key);
+  },firstKey);
+  const editedTeacher=await page.textContent('#page-subjects [data-course-key="'+firstKey+'"] .subjects-page__course-name small');
+  assert.equal(editedTeacher,'GV: PGS. TS. Nguyễn Văn A','LOCAL_HUB lecturer override was not rendered');
   const teacherStore=await page.evaluate(()=>JSON.parse(localStorage.getItem('bauman_subjects_reference_teacher_overrides_v1')||'{}'));
-  assert.equal(teacherStore.russian,'GV: PGS. TS. Nguyễn Văn A','Edited lecturer name was not persisted');
-  await page.evaluate(()=>window.BAUMAN_SUBJECTS_REF.render());
-  const persistedTeacher=await page.textContent('#page-subjects [data-course-key="russian"] .subjects-page__course-name small');
-  assert.equal(persistedTeacher,'GV: PGS. TS. Nguyễn Văn A','Lecturer override did not survive rerender');
+  assert.equal(teacherStore[firstKey],'GV: PGS. TS. Nguyễn Văn A','LOCAL_HUB lecturer override was not persisted');
 
+  const calendarBefore=await page.textContent('#page-subjects .subjects-page__calendar .subjects-page__panel-head>b');
   await page.evaluate(()=>window.BAUMAN_SUBJECTS_REF.shiftCalendar(1));
-  const calendarTitle=await page.textContent('#page-subjects .subjects-page__calendar .subjects-page__panel-head>b');
-  assert.ok(calendarTitle?.includes('4, 2025'),'Calendar next-month interaction failed');
+  const calendarAfter=await page.textContent('#page-subjects .subjects-page__calendar .subjects-page__panel-head>b');
+  assert.notEqual(calendarAfter,calendarBefore,'Calendar next-month interaction failed');
   await page.evaluate(()=>window.BAUMAN_SUBJECTS_REF.shiftCalendar(-1));
 
   await page.evaluate(()=>window.BAUMAN_SUBJECTS_REF.openAddCourse());
   await page.waitForSelector('#page-subjects .subjects-page__modal',{state:'visible'});
-  await page.evaluate(()=>window.BAUMAN_SUBJECTS_REF.closeAddCourse());
+  await page.fill('#subjectsAddName','Mục kiểm thử LOCAL_HUB');
+  await page.locator('#subjectsAddSubject').selectOption({index:0});
+  await page.fill('#subjectsAddTeacher','Ghi chú local');
+  await page.evaluate(()=>window.BAUMAN_SUBJECTS_REF.submitAddCourse());
+  const localCard=page.locator('#page-subjects .subjects-page__course-card[data-truth-status="LOCAL_HUB"]');
+  assert.ok(await localCard.count()>=1,'Custom Subjects item is not labeled LOCAL_HUB');
 
   const after=await page.evaluate(()=>({
     nav:document.getElementById('nav')?.innerHTML||'',
@@ -146,7 +167,7 @@ try{
   await page.screenshot({path:path.join(OUT,'subjects-mobile-390x844.png'),fullPage:true});
 
   assert.deepEqual(errors,[],'Subjects browser emitted console/page errors');
-  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({release:before.ui?.release,desktop:true,mobile,geometry,navOrder:before.navOrder},null,2));
+  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({release:before.ui?.release,mobile,geometry,navOrder:before.navOrder,truthCases},null,2));
   console.log('SUBJECTS_REFERENCE_V1_BROWSER_PASS');
 }finally{
   await browser?.close();

@@ -63,6 +63,19 @@ try{
   assert.equal(before.rightRail,true,'Schedule right rail is missing');
   assert.equal(before.schedule?.priorityLegendItems,4,'Schedule must explain all four priority colors');
 
+  const progressTruth=await page.evaluate(()=>{
+    const ids=Object.keys(state.subjects||{});
+    if(ids.length<2)throw new Error('Need two subjects for Schedule truth-state QA');
+    state.progress=state.progress||{};
+    state.progress[ids[0]]=0;
+    delete state.progress[ids[1]];
+    save();
+    window.BAUMAN_SCHEDULE_REF.render();
+    return [...document.querySelectorAll('#page-schedule .schedule-ref__progress-list>div')].map(x=>({status:x.dataset.truthStatus,text:x.querySelector('b')?.textContent}));
+  });
+  assert.ok(progressTruth.some(x=>x.status==='CURRENT'&&x.text==='0%'),'Schedule lost a genuine stored zero');
+  assert.ok(progressTruth.some(x=>x.status==='UNAVAILABLE'&&x.text==='—'),'Schedule maps missing progress to numeric zero');
+
   await page.evaluate(()=>{
     const nodes=[...document.querySelectorAll('#page-schedule .schedule-ref__event')].slice(0,4);
     if(nodes.length<4)throw new Error('Need at least four schedule events for priority palette QA');

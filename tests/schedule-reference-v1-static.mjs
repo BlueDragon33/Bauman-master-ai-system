@@ -7,6 +7,7 @@ const css=fs.readFileSync('assets/css/schedule-reference-v1.css','utf8');
 
 assert.ok(index.includes('assets/css/schedule-reference-v1.css?v=6'),'schedule stylesheet is not loaded');
 assert.ok(index.includes('assets/js/schedule-reference-v1.js?v=4'),'schedule renderer is not loaded');
+assert.ok(index.includes('assets/js/hub-data-truth.js?v=1'),'Hub truth adapter is not loaded');
 assert.ok(js.includes("a.schedule=function(){return render()}"),'module must patch app.schedule only');
 assert.ok(!js.includes('a.page=function'),'module must not patch app.page');
 assert.ok(!js.includes("querySelector('#nav"),'module must not touch sidebar/navigation');
@@ -41,4 +42,6 @@ assert.ok(css.includes('#3E7BE0'),'q2 blue accent missing');
 assert.ok(css.includes('#35A76B'),'q4 green accent missing');
 for(const q of ['q1','q3','q2','q4']) assert.ok(css.includes('is-priority-'+q),'priority style missing: '+q);
 assert.ok(!js.includes('tonePaint('),'subject palette must not drive primary schedule colors');
+assert.ok(js.includes("truth?truth.progress"),'Schedule progress must use truth-aware progress fields');
+assert.ok(js.includes("data-truth-status"),'Schedule progress rows must expose truth status');
 console.log('SCHEDULE_REFERENCE_V1_STATIC_PASS');
