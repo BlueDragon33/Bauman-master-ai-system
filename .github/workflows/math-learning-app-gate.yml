@@ -28,6 +28,8 @@ jobs:
         run: node subjects/math/tools/validate-learning-relationships.js
       - name: Validate MATH02 canonical contract
         run: node tests/math-p2-canonical-contract.mjs
+      - name: Validate MATH03 reasoning and evidence contract
+        run: node tests/math-p3-reasoning-contract.mjs
       - name: Syntax check Math runtime
         shell: bash
         run: |
@@ -72,6 +74,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/math-p1-forensic
         run: node tests/math-p1-forensic-browser.mjs
+      - name: Run MATH03 reasoning browser acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/math-p3-reasoning
+        run: node tests/math-p3-reasoning-browser.mjs
       - name: Upload Math browser artifacts
         if: always()
         uses: actions/upload-artifact@v4
@@ -80,4 +87,5 @@ jobs:
           path: |
             artifacts/math-learning-journey
             artifacts/math-p1-forensic
+            artifacts/math-p3-reasoning
           if-no-files-found: warn
