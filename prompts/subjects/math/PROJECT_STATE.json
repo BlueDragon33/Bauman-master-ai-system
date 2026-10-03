@@ -3,8 +3,8 @@
   "subject": "math",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/subjects/math/MATH_MASTER_PROMPT.md",
-  "status": "MATH04_VALIDATING",
-  "activeModule": "MATH04",
+  "status": "MATH05_READY",
+  "activeModule": "MATH05",
   "sequence": [
     "MATH01",
     "MATH02",
@@ -16,11 +16,12 @@
   "completedModules": [
     "MATH01",
     "MATH02",
-    "MATH03"
+    "MATH03",
+    "MATH04"
   ],
   "needsRevalidation": [],
-  "lastValidatedSha": "25cd32b94df21e5e0bbd3dc4aaae804f5d9478b6",
-  "currentHeadSha": "25cd32b94df21e5e0bbd3dc4aaae804f5d9478b6",
+  "lastValidatedSha": "c39b4ca271b7750b42adbb6b315d87d3b41ffa53",
+  "currentHeadSha": "c39b4ca271b7750b42adbb6b315d87d3b41ffa53",
   "evidence": [
     "prompts/subjects/math/evidence/MATH_P1_EXECUTIVE_SUMMARY.md",
     "prompts/subjects/math/evidence/MATH_P1_BASELINE.json",
@@ -65,10 +66,17 @@
     "prompts/subjects/math/evidence/MATH_COMPUTATION_VISUALIZATION_GOLDEN_FIXTURES.json",
     "prompts/subjects/math/evidence/MATH_P5_INPUT_CONTRACT.md",
     "tests/math-p4-capability-contract.mjs",
-    "tests/math-p4-capability-browser.mjs"
+    "tests/math-p4-capability-browser.mjs",
+    "MATH04 exact runtime-tested head c39b4ca271b7750b42adbb6b315d87d3b41ffa53: PASS",
+    "Math Learning App Gate run 37123186751: SUCCESS",
+    "Whole System Integration Gate run 37123186689: SUCCESS",
+    "Development Fast CI run 37123186702: SUCCESS",
+    "Universal Constitution Compliance run 37123187267: SUCCESS",
+    "Future Interface System CI run 37123186688: SUCCESS",
+    "MATH04 provider facade preserves MATH02 truth authority and MATH03 assessment authority; unbound providers fail honest; no production deployment"
   ],
   "blockers": [],
-  "nextAction": "Validate MATH04 capability contracts/runtime/golden fixtures on exact branch head; root-cause fix until green; then lock MATH05 handoff without production deployment.",
+  "nextAction": "Merge MATH04 PR #234 after metadata-only exact-head CI remains green; then execute MATH05 from MATH_P5_INPUT_CONTRACT.md on unified main.",
   "notes": [
     "MATH01 changed no production Math runtime or academic content.",
     "MATH02 PASS is evidence/contract-only; no Math production runtime/content mutation was performed.",
@@ -76,7 +84,8 @@
     "Stable stage/chapter/lesson IDs and learner-state keys remain preserved.",
     "MATH03 locked typed equivalence, proof/reasoning authority boundaries, immutable/idempotent first-attempt evidence, root-cause remediation and no-fake-mastery semantics.",
     "MATH03 deterministic evaluator is intentionally not a general CAS or formal proof verifier; unsupported cases degrade to INDETERMINATE.",
-    "MATH04 must consume MATH03 contracts as provider boundaries rather than redefining them."
+    "MATH04 must consume MATH03 contracts as provider boundaries rather than redefining them.",
+    "MATH04 locked a capability registry/facade with safe parser, deterministic numeric/graph/matrix/simulation providers, fail-honest unbound CAS/geometry/vector/AI boundaries, typed provenance and no mastery/academic write authority."
   ],
-  "testedRuntimeHead": "25cd32b94df21e5e0bbd3dc4aaae804f5d9478b6"
+  "testedRuntimeHead": "c39b4ca271b7750b42adbb6b315d87d3b41ffa53"
 }
