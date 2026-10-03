@@ -39,10 +39,14 @@ for(const tc of fixtures.cases.filter(x=>x.capability)){
 }
 
 const rc=read('prompts/subjects/math/evidence/MATH_RC_MANIFEST.json');
-assert.equal(rc.status,'VALIDATING');
+assert.ok(['VALIDATING','PASS_RC_READY'].includes(rc.status),'Unexpected RC lifecycle status');
 assert.equal(rc.productionDeployed,false);
 assert.equal(rc.baseMainSha,'42c61ea58070530cad309a1054eee9dfc3abcd55');
 assert.ok(rc.rollbackTarget);
+if(rc.status==='PASS_RC_READY'){
+ assert.match(rc.exactRcSha||'',/^[0-9a-f]{40}$/,'PASS_RC_READY requires exactRcSha');
+ assert.equal(rc.runtimeTestedHead,rc.exactRcSha,'RC identity must match runtime-tested head');
+}
 for(const owner of ['mathematicalTruth','assessmentVerdict','toolExecution','productIntegration','mastery'])assert.ok(rc.featureAuthority[owner]);
 
 const editor=fs.readFileSync('subjects/math/editor.html','utf8');
