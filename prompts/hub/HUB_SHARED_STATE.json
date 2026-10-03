@@ -3,11 +3,11 @@
   "domain": "hub",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/hub/chat/HUB_CHAT_MASTER_PROMPT.md",
-  "status": "READY_FOR_CODEX",
-  "lifecycle": "DATA_TRUTH_RECONCILIATION",
+  "status": "READY_FOR_CHAT_REVIEW",
+  "lifecycle": "DATA_TRUTH_RECONCILIATION_EXECUTED",
   "baselineMainSha": "db747b1e6c65e5eb2a28cfd7ea2aeee8e3f9872c",
   "lastReviewedSha": "db747b1e6c65e5eb2a28cfd7ea2aeee8e3f9872c",
-  "workingBranch": "main",
+  "workingBranch": "codex/hub-truth-20261003-001",
   "canonicalRoutes": [
     "home",
     "roadmap",
@@ -62,8 +62,21 @@
   "activePacket": "prompts/hub/CURRENT_WORK_PACKET.json",
   "blockers": [],
   "externalBlockers": [],
-  "nextAction": "Codex executes prompts/hub/CURRENT_WORK_PACKET.json from current main; first reconfirm that Hub runtime owners have not changed since runtime baseline db747b1e6c65e5eb2a28cfd7ea2aeee8e3f9872c, then write prompts/hub/CURRENT_EXECUTION_RESULT.json for Chat review.",
+  "nextAction": "Chat reviews CURRENT_EXECUTION_RESULT.json and testedRuntimeHead evidence. If accepted, mark packet/state ACCEPTED_PENDING_MERGE and merge PR #230 without production deployment.",
   "mainSyncStatus": "in_main",
   "governanceMergedSha": "6ef5e8814ac841f927f079e18d5062274ee0d847",
-  "lastReviewedRuntimeSha": "db747b1e6c65e5eb2a28cfd7ea2aeee8e3f9872c"
+  "lastReviewedRuntimeSha": "db747b1e6c65e5eb2a28cfd7ea2aeee8e3f9872c",
+  "currentHeadSha": "5329fcbfe32e3da9b1ae9f626ecb09247f170737",
+  "testedRuntimeHead": "9a2b1e6cae9d602b880181424a4a44016dba70f7",
+  "executionResult": "prompts/hub/CURRENT_EXECUTION_RESULT.json",
+  "lastExecution": {
+    "packetId": "HUB-TRUTH-20261003-001",
+    "packetRevision": 3,
+    "beforeSha": "4bd4adf0137bf9dc8e15b55f538a6286a0a020d3",
+    "testedRuntimeHead": "9a2b1e6cae9d602b880181424a4a44016dba70f7",
+    "workflowRunId": 37113655419,
+    "result": "PASS",
+    "productionDeployed": false,
+    "externalBaselineFailure": "Cloudflare Workers Build also fails on base main; outside packet."
+  }
 }
