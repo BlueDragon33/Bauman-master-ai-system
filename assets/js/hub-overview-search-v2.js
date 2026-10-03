@@ -10,6 +10,7 @@ const safe=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'
 const S=()=>typeof state!=='undefined'&&state?state:{};
 const D=()=>typeof DATA!=='undefined'&&DATA?DATA:(window.BAUMAN_DATA||{});
 const A=()=>typeof app!=='undefined'?app:null;
+const T=()=>window.BAUMAN_HUB_TRUTH||null;
 const saveState=()=>{try{if(typeof save==='function')save()}catch{}};
 const closeSearch=()=>{try{if(typeof closeModal==='function')closeModal()}catch{}};
 const normalize=text=>String(text??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/Đ/g,'D').toLowerCase().replace(/[^a-z0-9\u0400-\u04ff]+/g,' ').trim();
@@ -17,7 +18,11 @@ const today=()=>{const d=new Date();return d.getFullYear()+'-'+String(d.getMonth
 
 function overallProgress(){
   const ids=Object.keys(S().subjects||{});
-  return ids.length?Math.round(ids.reduce((sum,id)=>sum+Math.max(0,Math.min(100,Number(S().progress?.[id])||0)),0)/ids.length):0;
+  const truth=T();
+  if(truth)return truth.averageProgress(S().progress||{},ids,{source:'hub.state.progress'});
+  const known=ids.filter(id=>Object.prototype.hasOwnProperty.call(S().progress||{},id)&&Number.isFinite(Number(S().progress[id])));
+  if(!known.length)return {status:'UNAVAILABLE',value:null,source:'hub.state.progress'};
+  return {status:known.length===ids.length?'CURRENT':'STALE',value:Math.round(known.reduce((sum,id)=>sum+Math.max(0,Math.min(100,Number(S().progress[id]))),0)/known.length),source:'hub.state.progress'};
 }
 function routeItem(){
   const id=S().roadmapStage||S().schedule?.autoStage||'prepare';
@@ -45,7 +50,8 @@ function researchFocus(){
   }catch{return 'НИР / ВКР'}
 }
 function homeHTML(){
-  const route=routeItem(),resume=resumeSubject(),pct=Math.max(0,Math.min(100,Number(S().progress?.[resume.id])||0));
+  const route=routeItem(),resume=resumeSubject(),truth=T();
+  const pct=truth?truth.progress(S().progress||{},resume.id,{source:'hub.state.progress'}):{status:Object.prototype.hasOwnProperty.call(S().progress||{},resume.id)?'CURRENT':'UNAVAILABLE',value:Object.prototype.hasOwnProperty.call(S().progress||{},resume.id)?Math.max(0,Math.min(100,Number(S().progress[resume.id]))):null};
   const next=nextSchedule(),reviews=(S().reviewQueue||[]).length,overall=overallProgress();
   const routeGoal=route.goal||route.focus||'Theo dõi mục tiêu và học phần của giai đoạn hiện tại.';
   const nextText=next?(next.learningItem||next.label||S().subjects?.[next.subjectId]?.name||'Học theo lịch'):'Chưa có ca học sắp tới';
@@ -58,11 +64,11 @@ function homeHTML(){
     +'</section>'
     +'<section class="hub-v2-resume-card">'
       +'<div class="hub-v2-resume-main"><span class="hub-v2-eyebrow">TIẾP TỤC TỪ NƠI GẦN NHẤT</span><h2>'+safe(resume.name||'Môn học')+'</h2><p>'+safe(nextText)+'</p><small>'+safe(nextWhen)+'</small></div>'
-      +'<div class="hub-v2-resume-progress"><div class="hub-v2-progress-ring" style="--pct:'+pct+'"><b>'+pct+'%</b></div><span>Tiến độ môn</span></div>'
+      +'<div class="hub-v2-resume-progress" data-truth-status="'+safe(pct.status)+'"><div class="hub-v2-progress-ring" style="--pct:'+(Number.isFinite(pct.value)?pct.value:0)+'"><b>'+(Number.isFinite(pct.value)?pct.value+'%':'—')+'</b></div><span>'+(pct.status==='UNAVAILABLE'?'Chưa có dữ liệu tiến độ':'Tiến độ môn')+'</span></div>'
       +'<button class="btn hub-safe-gold" data-hub-v2-action="continue">Mở lại</button>'
     +'</section>'
     +'<section class="hub-v2-system-strip" aria-label="Tóm tắt nhanh">'
-      +'<button data-hub-v2-action="progress"><small>Tiến độ chung</small><b>'+overall+'%</b><span>Xem khi cần</span></button>'
+      +'<button data-hub-v2-action="progress" data-truth-status="'+safe(overall.status)+'"><small>Tiến độ chung</small><b>'+(Number.isFinite(overall.value)?overall.value+'%':'—')+'</b><span>'+(overall.status==='UNAVAILABLE'?'Chưa có dữ liệu':overall.status==='STALE'?'Dữ liệu chưa đầy đủ':'Xem khi cần')+'</span></button>'
       +'<button data-hub-v2-action="review"><small>Cần ôn</small><b>'+reviews+'</b><span>'+(reviews?'Ưu tiên xử lý':'Đang sạch')+'</span></button>'
       +'<button data-hub-v2-action="schedule"><small>Ca tiếp theo</small><b>'+safe(next?.date||'—')+'</b><span>'+safe(nextText)+'</span></button>'
     +'</section>'
