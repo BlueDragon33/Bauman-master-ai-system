@@ -93,7 +93,6 @@
   "releasePolicy": "IMPLEMENTATION_MAY_BE_PREPARED_AND_TESTED_ON_A_FRESH_BRANCH_FROM_CURRENT_MAIN; DO_NOT_MERGE_OR_PUBLISH UNTIL NORMAL CHAT REVIEWS AND ACCEPTS THE EXACT HEAD SHA. USER HAS CURRENTLY DEFERRED CODEX EXECUTION.",
   "rollbackNotes": "Keep the change additive and adapter-first. If regression occurs, revert the Hub cleanup commits only; preserve current main curriculum/control changes and all subject-app state.",
   "externalBlockers": [],
-  "executionDeferredByUser": true,
   "chatPlanCompleted": [
     "HUB-C1",
     "HUB-C2",
@@ -275,5 +274,13 @@
     "implementationBaseSha": "b6df392c5ab935bed4924b07b9bbe2e95efb2c8e",
     "rule": "Create a fresh implementation branch from current main. Copy only prompts/hub/** required for Hub control/bridge plus minimal Hub registry/entry references if needed. Never merge/rebase/cherry-pick the whole prompt-system branch and never copy prompts/subjects/**.",
     "mainPromptState": "prompts/CONSTITUTION.md exists on main, but prompts/hub/** does not yet exist on main."
-  }
+  },
+  "workClass": "B",
+  "dispatchReason": "Coupled Hub runtime cleanup across multiple page owners, normalized subject adapter/read-model architecture, compatibility handling, responsive/browser verification, and repeated test/fix loops materially benefit from Codex.",
+  "executionPlane": "CODEX",
+  "chatResponsibilities": [
+    "Preserve architecture and truth-state invariants",
+    "Review exact Codex evidence",
+    "Decide ACCEPT/REVISE/BLOCKED"
+  ]
 }
