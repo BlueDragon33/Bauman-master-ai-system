@@ -314,7 +314,7 @@ function monthView(){
 }
 function ganttView(){
   var tasks=readTasks().sort(function(a,b){return String(a.date||'').localeCompare(String(b.date||''))});
-  if(!tasks.length)return '<div class="thesis-page__empty" data-truth-status="UNAVAILABLE">Chưa có nhiệm vụ LOCAL_HUB để dựng Gantt.</div>';
+  if(!tasks.length)return '<div class="thesis-page__gantt thesis-page__empty" data-truth-status="UNAVAILABLE">Chưa có nhiệm vụ LOCAL_HUB để dựng Gantt.</div>';
   return '<div class="thesis-page__task-list">'+tasks.map(function(t){return '<button onclick="BAUMAN_THESIS_REF.openTask(\''+esc(t.id)+'\')"><i class="is-'+esc(t.tone||'blue')+'"></i><div><b>'+esc(t.title)+'</b><span>'+esc(t.date||'Chưa có ngày')+' · '+esc((t.start||'')+' – '+(t.end||''))+'</span></div><em>LOCAL_HUB</em></button>'}).join('')+'</div>';
 }
 function listView(){
