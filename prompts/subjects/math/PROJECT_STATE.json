@@ -3,7 +3,7 @@
   "subject": "math",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/subjects/math/MATH_MASTER_PROMPT.md",
-  "status": "MATH01_PASS_MATH02_READY",
+  "status": "MATH02_VALIDATING",
   "activeModule": "MATH02",
   "sequence": [
     "MATH01",
@@ -17,8 +17,8 @@
     "MATH01"
   ],
   "needsRevalidation": [],
-  "lastValidatedSha": "7b3ff9bb3dc36df94db3c463ad175f033bf11432",
-  "currentHeadSha": "b2b62fe610aa34229581d3d00f9fbc4cdb6d9b9b",
+  "lastValidatedSha": "4bd4adf0137bf9dc8e15b55f538a6286a0a020d3",
+  "currentHeadSha": "6617cab7ec933f3ce7270d9e408c7e0cb5000d9b",
   "evidence": [
     "prompts/subjects/math/evidence/MATH_P1_EXECUTIVE_SUMMARY.md",
     "prompts/subjects/math/evidence/MATH_P1_BASELINE.json",
@@ -26,13 +26,20 @@
     "prompts/subjects/math/evidence/MATH_P2_INPUT_CONTRACT.md",
     "tests/math-p1-forensic-browser.mjs",
     "Math Learning App Gate run 37096211260: SUCCESS / PASS_BASELINE_CAPTURED",
-    "Whole System Integration Gate run 37096211257: SUCCESS"
+    "Whole System Integration Gate run 37096211257: SUCCESS",
+    "prompts/subjects/math/evidence/MATH_ACADEMIC_BLUEPRINT.md",
+    "prompts/subjects/math/evidence/MATH_P2_CANONICAL_MODEL.json",
+    "prompts/subjects/math/evidence/MATH_SCHEMA_MIGRATION_PLAN.md",
+    "prompts/subjects/math/evidence/MATH_P3_INPUT_CONTRACT.md",
+    "tests/math-p2-canonical-contract.mjs"
   ],
   "blockers": [],
-  "nextAction": "Run MATH02 from MATH_P2_INPUT_CONTRACT.md. Establish one canonical curriculum/entity/competency owner and migration contract before scaling Math content.",
+  "nextAction": "Run PR CI for MATH02 canonical contract. If targeted validator and existing Math/whole-system gates pass, record exact evidence and decide whether MATH02 can PASS or remains VALIDATING on any orphan/ownership defect.",
   "notes": [
     "MATH01 changed no production Math runtime or academic content.",
     "lastValidatedSha is the executable PR head that produced the recorded browser baseline; currentHeadSha is the unchanged main baseline inspected before PR merge.",
-    "Known downstream debts: stale manifest counts, non-authoritative mastery wording, no symbolic equivalence/CAS, accessibility labeling/touch-target debt, large lessons.json load."
+    "Known downstream debts: stale manifest counts, non-authoritative mastery wording, no symbolic equivalence/CAS, accessibility labeling/touch-target debt, large lessons.json load.",
+    "MATH02 branch introduces contract/evidence only; no Math production runtime/content mutation.",
+    "Canonical proposal: one curriculum/entity owner, explicit evidence tiers, count semantics, stable-ID migration and downstream MATH03 contract."
   ]
 }
