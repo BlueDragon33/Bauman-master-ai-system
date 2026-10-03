@@ -101,6 +101,8 @@ jobs:
           if (control.applicationManagementOriginConfigured !== true) throw new Error('Application Management origin is not configured on live Control.');
           if (control.appOriginConfigured !== true) throw new Error('Learning Runtime origin is not configured on live Control.');
           if (runtime.ok !== true || runtime.controlOriginConfigured !== true) throw new Error('Live Runtime → Control origin configuration is not proven.');
+          if (runtime.accessMode !== 'standalone') throw new Error('Live Development runtime must be standalone.');
+          if (runtime.serverSideLearningGate !== false) throw new Error('Standalone runtime must not require the managed server-side learning gate.');
           NODE
 
           echo "Checking anonymous Control access remains fail-closed..."
@@ -163,6 +165,20 @@ jobs:
           SUBJECT_ROUTES
 
           echo "Study-plan module routes PASS."
+
+          echo "Checking standalone learning-data access..."
+          DATA_STATUS="$(curl --silent --show-error --location --output /tmp/bauman-live-entrepreneurship-curriculum.json --write-out '%{http_code}' --max-time 15 "$BAUMAN_RUNTIME_PRODUCTION_ORIGIN/subjects/entrepreneurship/data/curriculum.json" || true)"
+          if [[ "$DATA_STATUS" != "200" ]]; then
+            echo "::error::Standalone learning-data route must return HTTP 200; got $DATA_STATUS."
+            cat /tmp/bauman-live-entrepreneurship-curriculum.json || true
+            exit 1
+          fi
+          node --input-type=module - <<'NODE'
+          import fs from 'node:fs';
+          const payload = JSON.parse(fs.readFileSync('/tmp/bauman-live-entrepreneurship-curriculum.json', 'utf8'));
+          if (payload.id !== 'entrepreneurship') throw new Error('Standalone learning-data payload identity is invalid.');
+          NODE
+          echo "Standalone learning-data access PASS."
 
           echo "Checking Runtime → Control link..."
           LINK_STATUS="$(curl --silent --show-error --output /tmp/bauman-live-control-link.json --write-out '%{http_code}' --max-time 15 "$BAUMAN_RUNTIME_PRODUCTION_ORIGIN/__control-link" || true)"
