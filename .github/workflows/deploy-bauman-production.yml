@@ -238,6 +238,23 @@ jobs:
           cp artifacts/russian-production-offline-browser/summary.json \
             "$RUSSIAN_RELEASE_EVIDENCE_DIR/RUSSIAN_PRODUCTION_OFFLINE_BROWSER.json"
 
+      - name: Run Math production subject smoke browser acceptance
+        shell: bash
+        env:
+          BAUMAN_E2E_BASE_URL: ${{ vars.BAUMAN_RUNTIME_PRODUCTION_ORIGIN }}/
+          BAUMAN_E2E_DEVICE_SESSION: ${{ env.BAUMAN_PRODUCTION_SMOKE_DEVICE_SESSION }}
+        run: |
+          set -euo pipefail
+          BAUMAN_E2E_ARTIFACT_DIR=artifacts/math-production-rc \
+            node tests/math-p6-rc-browser.mjs
+          BAUMAN_E2E_ARTIFACT_DIR=artifacts/math-production-reasoning \
+            node tests/math-p3-reasoning-browser.mjs
+
+          cp artifacts/math-production-rc/summary.json \
+            "$RUSSIAN_RELEASE_EVIDENCE_DIR/MATH_PRODUCTION_RC_SMOKE.json"
+          cp artifacts/math-production-reasoning/summary.json \
+            "$RUSSIAN_RELEASE_EVIDENCE_DIR/MATH_PRODUCTION_REASONING_SMOKE.json"
+
       - name: Observe exact Russian production revision
         run: node scripts/russian-release-annex-evidence.mjs observe
 
@@ -258,6 +275,8 @@ jobs:
             artifacts/russian-production-journeys
             artifacts/russian-production-author
             artifacts/russian-production-offline-browser
+            artifacts/math-production-rc
+            artifacts/math-production-reasoning
           if-no-files-found: error
           retention-days: 30
 

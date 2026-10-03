@@ -25,6 +25,44 @@
     if(!route||typeof route!=='object'||typeof extractor?.coreRouteId!=='function')return '';
     return clean(extractor.coreRouteId(route));
   }
+  function routePairs(value){
+    const out=new Map();
+    for(const part of clean(value).split('&')){
+      if(!part)continue;
+      const at=part.indexOf('=');
+      const key=at>=0?part.slice(0,at):part;
+      const val=at>=0?part.slice(at+1):'';
+      if(key)out.set(key,val);
+    }
+    return out;
+  }
+  function compatibleRouteScore(leftId,rightId){
+    const left=routePairs(leftId),right=routePairs(rightId);
+    if(!left.size||!right.size)return -1;
+    for(const key of ['view','learnTab','lessonId']){
+      if(left.has(key)&&right.has(key)&&left.get(key)!==right.get(key))return -1;
+    }
+    let common=0,conflicts=0;
+    for(const [key,value] of left){
+      if(!right.has(key))continue;
+      if(right.get(key)!==value)conflicts++;else common++;
+    }
+    if(conflicts||!common)return -1;
+    return common*100-Math.abs(left.size-right.size);
+  }
+  function canonicalRouteFor(routeLegacyId){
+    const exact=canonicalFor('russian-core-state','route',routeLegacyId);
+    if(exact||!durable()||!routeLegacyId)return exact;
+    const api=projection();
+    if(typeof api?.list!=='function')return null;
+    const matches=api.list({systemId:'russian-core-state',scope:'route'})
+      .map(row=>({row,score:compatibleRouteScore(routeLegacyId,row?.legacy?.id)}))
+      .filter(item=>item.score>=0)
+      .sort((a,b)=>b.score-a.score);
+    if(!matches.length)return null;
+    if(matches.length>1&&matches[0].score===matches[1].score)return null;
+    return clean(matches[0].row?.canonicalId)||null;
+  }
   function hostCanonical(task){
     const t=task&&typeof task==='object'?task:{};
     return {
@@ -59,7 +97,7 @@
       canonical:{
         subject:canonicalFor('bauman-subject-host','subject',clean(source.subjectId)||clean(hostTask?.subjectId)),
         lesson:canonicalFor('russian-learning-flow','lesson',lessonId),
-        route:canonicalFor('russian-core-state','route',routeLegacyId),
+        route:canonicalRouteFor(routeLegacyId),
         resume:resume?canonicalFor('russian-learning-state','resume','current'):null,
         review:reviewCanonical(source.reviewIds),
         host:hostCanonical(hostTask)
