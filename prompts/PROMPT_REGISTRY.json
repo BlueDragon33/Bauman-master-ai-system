@@ -8,6 +8,19 @@
   "rule": "ONE_PROJECT_ONE_SHARED_CONSTITUTION_ONE_MASTER_PROMPT_PER_DOMAIN_CONTINUOUS_EVOLUTION",
   "domains": [
     {
+      "id": "hub",
+      "label": "Bauman Master Hub",
+      "implementationScope": "Hub primary learner routes: Home, Roadmap, Subjects, Schedule, Research / НИР & Luận văn",
+      "readme": "prompts/hub/README.md",
+      "masterPrompt": "prompts/hub/chat/HUB_CHAT_MASTER_PROMPT.md",
+      "state": "prompts/hub/HUB_SHARED_STATE.json",
+      "workSplit": "prompts/hub/WORK_SPLIT_CHAT_CODEX.md",
+      "scopeBoundary": "prompts/hub/HUB_SCOPE_BOUNDARY.md",
+      "subappBoundary": "prompts/hub/api/HUB_SUBAPP_API_BOUNDARY.md",
+      "workPacket": "prompts/hub/CURRENT_WORK_PACKET.json",
+      "status": "READY_FOR_CODEX"
+    },
+    {
       "id": "russian",
       "implementationScope": "subjects/russian/",
       "masterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
