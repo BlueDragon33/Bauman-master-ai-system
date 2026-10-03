@@ -2,6 +2,7 @@
 
 Migration ID: `MATH02-CANONICAL-OWNER-001`  
 Status: PREPARED / NOT ACTIVATED  
+Validation: PASS on `e3a2588505504cc2c154e6ce2e95af1afbca4a90`  
 Production mutation: NO
 
 ## From
@@ -62,6 +63,17 @@ Before activation:
 - every competency evidence requirement declares its evidence tier;
 - self-report cannot satisfy mastery;
 - theory-content record count is measured, not inferred.
+
+## MATH02 validation evidence
+
+- 56 retained chapter IDs;
+- 86 retained audited lesson IDs;
+- 2,024 sidecar references checked;
+- 102 theory records measured;
+- no orphan chapter/lesson reference detected by the MATH02 validator;
+- Math Learning App Gate `37116036092` and Whole System Integration `37116036068` passed.
+
+This validates the migration contract only. Activation remains deferred to a later explicit runtime migration phase.
 
 ## Rollback
 
