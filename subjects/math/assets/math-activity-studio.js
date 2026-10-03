@@ -12,6 +12,7 @@
   const REASONING_SOURCE='data/math_reasoning_pilot_v1.json';
   let timer=0,loading=null;
   const cache={};
+  const reasoningDrafts={};
 
   const SOURCES={
     exercises:[['exercise','data/exercise_content.json'],['question','data/question_bank_content.json']],
@@ -96,12 +97,17 @@
     return reasoningProblems().filter(p=>String(p?.canonicalLessonId||'')===id).slice(0,3);
   }
   function reasoningProblemById(id){return reasoningProblems().find(p=>String(p?.problemId||'')===String(id||''))||null}
+  function captureReasoningDraft(card){
+    const id=String(card?.dataset?.math03ProblemId||'');if(!id)return;
+    const p=reasoningProblemById(id);if(!p)return;
+    reasoningDrafts[id]=reasoningResponse(card,p);
+  }
   function lastReasoningAttempt(problemId){
     const rows=global.BAUMAN_MATH_REASONING_EVIDENCE?.attemptsForProblem?.(problemId)||[];
     return rows.length?rows[rows.length-1]:null;
   }
   function reasoningControl(p,attempt){
-    const type=String(p?.responseSchema?.type||'text'),response=attempt?.response||{};
+    const type=String(p?.responseSchema?.type||'text'),response=attempt?.response||reasoningDrafts[p.problemId]||{};
     const value=name=>esc(response&&typeof response==='object'?response[name]??'':response??'');
     if(type==='numeric')return '<label class="math-exercise-input"><span>Nhập giá trị</span><input type="number" step="any" data-math03-answer="value" value="'+value('value')+'" autocomplete="off"></label>';
     if(type==='algebraic_expression_with_domain'){
@@ -327,7 +333,7 @@
     const review=e.target.closest('[data-exercise-review-step]');if(review){e.preventDefault();reviewStep(review.dataset.exerciseReviewStep);return}
     const a=e.target.closest('[data-activity-action]')?.dataset.activityAction;if(a){e.preventDefault();action(a);return}
     if(e.target.closest('[data-e186-pick="activity"],[data-e169-pick-activity],[data-math-nav],[data-e129-back-theory],[data-e129-nav]'))schedule(180)
-  },true);document.addEventListener('input',e=>{const card=e.target.closest?.('[data-math03-problem-id]');if(card)delete card.dataset.mathSubmissionId},true);document.addEventListener('change',e=>{const card=e.target.closest?.('[data-math03-problem-id]');if(card)delete card.dataset.mathSubmissionId},true)}
+  },true);document.addEventListener('input',e=>{const card=e.target.closest?.('[data-math03-problem-id]');if(card){delete card.dataset.mathSubmissionId;captureReasoningDraft(card)}},true);document.addEventListener('change',e=>{const card=e.target.closest?.('[data-math03-problem-id]');if(card){delete card.dataset.mathSubmissionId;captureReasoningDraft(card)}},true)}
   function selfCheck(){const act=activity();return{release:RELEASE,ready:!!$('#mathActivityStudio'),activity:act,lessonId:lessonId()||null,canonicalSources:(SOURCES[act]||[]).length,companionMatches:sourceStatuses().reduce((s,x)=>s+x.match,0),reasoningPilotContracts:reasoningProblems().length,reasoningPilotMatches:act==='exercises'?reasoningProblemsForLesson().length:0,reasoningEvaluatorReady:!!global.BAUMAN_MATH_REASONING_EVALUATOR,evidenceLedgerReady:!!global.BAUMAN_MATH_REASONING_EVIDENCE,embeddedFallbackSlides:roleSlides().length,theorySource:global.DB?.theory_lecture_content?'runtime-db':(cache[THEORY_SOURCE]?.ok?'e240-durable-fallback':'unavailable'),sampleRecordsRendered:false,deterministicFeedbackContract:true,autoGradeOnlyWhenContractReady:true,academicWrites:false,masteryWrites:false,mutationObserver:false,newRouteEngine:false}}
   function init(){if(!document.body||document.body.dataset.mathActivityStudio==='1')return;document.body.dataset.mathActivityStudio='1';bind();load().then(()=>{render();[500,1200,2400].forEach(ms=>setTimeout(render,ms))});global.BAUMAN_MATH_ACTIVITY_STUDIO={release:RELEASE,refresh:()=>schedule(0),render,selfCheck}}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
