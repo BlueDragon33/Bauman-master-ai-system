@@ -14,6 +14,6 @@ need(policy.generatedPractice.promotionPath==='P12_REVIEW_WORKFLOW','Generated c
 need(policy.sourceBoundary.noFabricatedCitations===true,'Fabricated citations must be forbidden');
 need(policy.sourceBoundary.noImplicitAuthorityFromModelOutput===true,'Model output must not become authority');
 need(policy.languagePolicy.supported.includes('ru')&&policy.languagePolicy.supported.includes('vi-ru'),'Language policy incomplete');
-for(const token of ['canonicalStateReadOnly:true','masteryReadOnly:true','aiMayModifyMastery:false','RussianLearningState?.get','RussianLearningFlow?.get','const canonicalRoute=core','route:canonicalRoute']) need(guard.includes(token),'Existing guard missing '+token);
+for(const token of ['canonicalStateReadOnly:true','masteryReadOnly:true','aiMayModifyMastery:false','RussianLearningState?.get','RussianLearningFlow?.get','const canonicalRoute=core','const canonicalFull=','canonicalFull?.canonical?.route','...canonicalInput,route']) need(guard.includes(token),'Existing guard missing '+token);
 for(const token of ['RussianLearningState?.set','.addReview',"status:'mastered'"]) need(!guard.includes(token),'AI runtime forbidden mutation token '+token);
 console.log('RUSSIAN_P10_AI_MENTOR_GUARDRAIL_GATE=PASS',JSON.stringify({coachingModes:policy.coachingModes.length,languages:policy.languagePolicy.supported.length,temporaryPractice:policy.permissions.generateTemporaryPractice}));
