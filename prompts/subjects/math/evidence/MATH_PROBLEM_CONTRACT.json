@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "1.0.0",
+  "owner": "MATH03",
+  "status": "ACTIVE",
+  "authority": {
+    "mathematicalTruth": "MATH02 canonical facts/specification",
+    "problemAndEvaluation": "MATH03",
+    "computationProviders": "MATH04 capability signals only",
+    "mastery": "global C4 policy; MATH03 emits evidence only"
+  },
+  "required": [
+    "problemId",
+    "canonicalLessonId",
+    "canonicalChapterId",
+    "targetCompetencyIds",
+    "targetEvidenceDimensions",
+    "givens",
+    "unknowns",
+    "domain",
+    "assumptions",
+    "allowedRepresentations",
+    "responseSchema",
+    "equivalencePolicy",
+    "verificationMethod",
+    "remediationMapping",
+    "evidenceType",
+    "provenance"
+  ],
+  "optional": [
+    "sourceExerciseId",
+    "sourceAnchors",
+    "acceptableSolutionFamilies",
+    "hintPolicy",
+    "partialCreditCriteria",
+    "transferTarget"
+  ],
+  "responseClasses": [
+    "exact_scalar",
+    "algebraic_expression",
+    "numeric_approximation",
+    "set_interval",
+    "vector",
+    "matrix",
+    "unit_quantity",
+    "proof_reasoning",
+    "open_modeling"
+  ],
+  "evaluatorVerdicts": [
+    "ACCEPTED",
+    "REJECTED",
+    "CONDITIONAL",
+    "INDETERMINATE"
+  ],
+  "stepValidity": [
+    "VALID_EQUIVALENT_TRANSFORMATION",
+    "VALID_IMPLICATION_ONLY",
+    "VALID_UNDER_CONDITION",
+    "INVALID_TRANSFORMATION",
+    "ARITHMETIC_ERROR",
+    "ALGEBRA_ERROR",
+    "DOMAIN_ERROR",
+    "UNJUSTIFIED",
+    "UNKNOWN"
+  ],
+  "evidenceTiers": [
+    "exposure",
+    "progress",
+    "performance",
+    "mastery-input"
+  ],
+  "invariants": [
+    "final answer and reasoning are distinct",
+    "missing domain/assumption cannot be silently accepted",
+    "unsupported equivalence degrades to INDETERMINATE",
+    "proof/open modeling are not auto-scored without validated authority",
+    "AI confidence cannot award official score or mastery",
+    "retry appends evidence; first attempt is immutable"
+  ]
+}

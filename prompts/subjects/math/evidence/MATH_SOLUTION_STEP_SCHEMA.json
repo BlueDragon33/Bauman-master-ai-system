@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "1.0.0",
+  "owner": "MATH03",
+  "status": "ACTIVE",
+  "required": [
+    "stepId",
+    "before",
+    "operation",
+    "after",
+    "justification",
+    "validity"
+  ],
+  "optional": [
+    "theoremOrRuleRefs",
+    "assumptionRefs",
+    "domainBefore",
+    "domainAfter",
+    "learnerConfidence",
+    "hintLevel",
+    "errorCode",
+    "evaluatorRevision"
+  ],
+  "validity": [
+    "VALID_EQUIVALENT_TRANSFORMATION",
+    "VALID_IMPLICATION_ONLY",
+    "VALID_UNDER_CONDITION",
+    "INVALID_TRANSFORMATION",
+    "ARITHMETIC_ERROR",
+    "ALGEBRA_ERROR",
+    "DOMAIN_ERROR",
+    "UNJUSTIFIED",
+    "UNKNOWN"
+  ],
+  "rules": [
+    "stepId is stable across rerender/retry when evidence references it",
+    "equivalence is not claimed for implication-only transforms",
+    "domainBefore/domainAfter are explicit when a transform can lose or add values",
+    "unknown is preferred to fabricated certainty"
+  ]
+}

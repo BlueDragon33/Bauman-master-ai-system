@@ -1,0 +1,335 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentRevision": "MATH03-PILOT-1",
+  "owner": "MATH03",
+  "authority": "temporary assessment contracts; MATH02 facts/IDs remain canonical",
+  "problems": [
+    {
+      "problemId": "math03:zscore:e16r-t02-e02",
+      "sourceExerciseId": "E16R-M_P07_T02-E02",
+      "canonicalLessonId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie-E16R-MP07-T02-centering-scaling",
+      "canonicalChapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "targetCompetencyIds": [],
+      "competencyBindingStatus": "UNAVAILABLE_CANONICAL_INSTANCE_REGISTRY_NOT_ACTIVATED",
+      "targetEvidenceDimensions": [
+        "procedural_calculation",
+        "interpretation_communication"
+      ],
+      "prompt": "Với feature có mean 10 và s=2, z-score của x=14 là bao nhiêu?",
+      "givens": [
+        "mean=10",
+        "s=2",
+        "x=14"
+      ],
+      "unknowns": [
+        "z-score"
+      ],
+      "domain": "real; s != 0",
+      "assumptions": [
+        "s is the declared scale"
+      ],
+      "allowedRepresentations": [
+        "numeric"
+      ],
+      "responseSchema": {
+        "type": "numeric"
+      },
+      "equivalencePolicy": {
+        "class": "numeric_approximation",
+        "expected": 2,
+        "absTolerance": 0,
+        "relTolerance": 0
+      },
+      "acceptableSolutionFamilies": [
+        "(x-mean)/s"
+      ],
+      "verificationMethod": "deterministic_numeric",
+      "hintPolicy": {
+        "maxLevel": 4
+      },
+      "remediationMapping": {
+        "default": "ARITHMETIC_ERROR",
+        "reviewStepId": "example"
+      },
+      "evidenceType": "performance",
+      "partialCreditCriteria": [
+        "correct_setup",
+        "correct_calculation",
+        "interpretation"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "source": "subjects/math/data/exercise_content.json"
+      }
+    },
+    {
+      "problemId": "math03:domain:rational-cancel-01",
+      "sourceExerciseId": "E18-M_P09_T02-E06",
+      "canonicalLessonId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_-E18-MP09-T02-sets-functions",
+      "canonicalChapterId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+      "targetCompetencyIds": [],
+      "competencyBindingStatus": "UNAVAILABLE_CANONICAL_INSTANCE_REGISTRY_NOT_ACTIVATED",
+      "targetEvidenceDimensions": [
+        "symbolic_fluency",
+        "reasoning_justification"
+      ],
+      "prompt": "Rút gọn (x^2-4)/(x-2) và giữ nguyên điều kiện xác định.",
+      "givens": [
+        "(x^2-4)/(x-2)"
+      ],
+      "unknowns": [
+        "equivalent expression",
+        "excluded values"
+      ],
+      "domain": "x != 2",
+      "assumptions": [
+        "real variable x"
+      ],
+      "allowedRepresentations": [
+        "algebraic_expression_with_domain"
+      ],
+      "responseSchema": {
+        "type": "algebraic_expression_with_domain",
+        "fields": [
+          "expression",
+          "excludedValues"
+        ]
+      },
+      "equivalencePolicy": {
+        "class": "algebraic_expression",
+        "expectedExpression": "x+2",
+        "requiredExcludedValues": [
+          "2"
+        ]
+      },
+      "acceptableSolutionFamilies": [
+        "x+2 with x!=2",
+        "2+x with x!=2"
+      ],
+      "verificationMethod": "deterministic_polynomial_plus_domain",
+      "hintPolicy": {
+        "maxLevel": 5
+      },
+      "remediationMapping": {
+        "DOMAIN_RESTRICTION_MISSING": "DOMAIN_ERROR",
+        "default": "ALGEBRA_ERROR",
+        "reviewStepId": "understand"
+      },
+      "evidenceType": "performance",
+      "partialCreditCriteria": [
+        "equivalent_expression",
+        "domain_preserved",
+        "verification"
+      ],
+      "provenance": {
+        "class": "GENERATED_CANDIDATE",
+        "temporaryPractice": true,
+        "sourceAnchor": "E18-M_P09_T02-E06",
+        "validatedBy": "MATH03_GOLDEN_TEST"
+      }
+    },
+    {
+      "problemId": "math03:interval:union-01",
+      "sourceExerciseId": "E18-M_P09_T02-E06",
+      "canonicalLessonId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_-E18-MP09-T02-sets-functions",
+      "canonicalChapterId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+      "targetCompetencyIds": [],
+      "competencyBindingStatus": "UNAVAILABLE_CANONICAL_INSTANCE_REGISTRY_NOT_ACTIVATED",
+      "targetEvidenceDimensions": [
+        "representation_conversion",
+        "symbolic_fluency"
+      ],
+      "prompt": "Viết tập {x | x<1 hoặc x>=2} bằng ký hiệu khoảng.",
+      "givens": [
+        "x<1",
+        "x>=2"
+      ],
+      "unknowns": [
+        "interval union"
+      ],
+      "domain": "real",
+      "assumptions": [],
+      "allowedRepresentations": [
+        "set_interval"
+      ],
+      "responseSchema": {
+        "type": "text"
+      },
+      "equivalencePolicy": {
+        "class": "set_interval",
+        "expected": "(-inf,1)U[2,inf)"
+      },
+      "acceptableSolutionFamilies": [
+        "(-∞,1)∪[2,∞)",
+        "[2,∞)∪(-∞,1)"
+      ],
+      "verificationMethod": "deterministic_interval_normalization",
+      "hintPolicy": {
+        "maxLevel": 4
+      },
+      "remediationMapping": {
+        "default": "TASK_MISUNDERSTANDING",
+        "reviewStepId": "represent"
+      },
+      "evidenceType": "performance",
+      "partialCreditCriteria": [
+        "correct_boundaries",
+        "correct_union"
+      ],
+      "provenance": {
+        "class": "GENERATED_CANDIDATE",
+        "temporaryPractice": true,
+        "sourceAnchor": "E18-M_P09_T02-E06",
+        "validatedBy": "MATH03_GOLDEN_TEST"
+      }
+    },
+    {
+      "problemId": "math03:unit:length-01",
+      "sourceExerciseId": "E18-M_P09_T06-E06",
+      "canonicalLessonId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_-E18-MP09-T06-geometry-coordinates",
+      "canonicalChapterId": "MATH-PREP-C12-giai_tich_ii_nhieu_bien_",
+      "targetCompetencyIds": [],
+      "competencyBindingStatus": "UNAVAILABLE_CANONICAL_INSTANCE_REGISTRY_NOT_ACTIVATED",
+      "targetEvidenceDimensions": [
+        "procedural_calculation",
+        "modeling_application"
+      ],
+      "prompt": "Đổi 1.5 m sang một đơn vị độ dài được phép và nhập cả giá trị lẫn đơn vị.",
+      "givens": [
+        "1.5 m"
+      ],
+      "unknowns": [
+        "equivalent length"
+      ],
+      "domain": "non-negative length",
+      "assumptions": [],
+      "allowedRepresentations": [
+        "unit_quantity"
+      ],
+      "responseSchema": {
+        "type": "unit_quantity"
+      },
+      "equivalencePolicy": {
+        "class": "unit_quantity",
+        "expected": {
+          "value": 1.5,
+          "unit": "m",
+          "dimension": "length"
+        },
+        "absTolerance": 1e-12,
+        "relTolerance": 1e-12,
+        "units": {
+          "m": {
+            "dimension": "length",
+            "scale": 1
+          },
+          "cm": {
+            "dimension": "length",
+            "scale": 0.01
+          },
+          "mm": {
+            "dimension": "length",
+            "scale": 0.001
+          }
+        }
+      },
+      "acceptableSolutionFamilies": [
+        "1.5 m",
+        "150 cm",
+        "1500 mm"
+      ],
+      "verificationMethod": "dimension_then_unit_conversion",
+      "hintPolicy": {
+        "maxLevel": 3
+      },
+      "remediationMapping": {
+        "default": "UNIT_ERROR",
+        "reviewStepId": "example"
+      },
+      "evidenceType": "performance",
+      "partialCreditCriteria": [
+        "correct_dimension",
+        "correct_conversion"
+      ],
+      "provenance": {
+        "class": "GENERATED_CANDIDATE",
+        "temporaryPractice": true,
+        "sourceAnchor": "E18-M_P09_T06-E06",
+        "validatedBy": "MATH03_GOLDEN_TEST"
+      }
+    },
+    {
+      "problemId": "math03:proof:rank-bound-e16r-t01-e06",
+      "sourceExerciseId": "E16R-M_P07_T01-E06",
+      "canonicalLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+      "canonicalChapterId": "MATH-VN-C01-vector_trong_khong_gian_",
+      "targetCompetencyIds": [],
+      "competencyBindingStatus": "UNAVAILABLE_CANONICAL_INSTANCE_REGISTRY_NOT_ACTIVATED",
+      "targetEvidenceDimensions": [
+        "proof",
+        "reasoning_justification"
+      ],
+      "prompt": "Chứng minh rank(X) <= min(n,p).",
+      "givens": [
+        "X has n rows and p columns"
+      ],
+      "unknowns": [
+        "proof of rank upper bound"
+      ],
+      "domain": "finite-dimensional real matrix",
+      "assumptions": [
+        "rank is dimension of row/column space"
+      ],
+      "allowedRepresentations": [
+        "proof_reasoning"
+      ],
+      "responseSchema": {
+        "type": "long_text"
+      },
+      "equivalencePolicy": {
+        "class": "proof_reasoning"
+      },
+      "acceptableSolutionFamilies": [
+        "column-space dimension argument",
+        "row-space dimension argument"
+      ],
+      "verificationMethod": "validated_rubric_review",
+      "rubricCriteria": [
+        {
+          "id": "hypotheses",
+          "weight": 1
+        },
+        {
+          "id": "column_bound",
+          "weight": 2
+        },
+        {
+          "id": "row_bound",
+          "weight": 2
+        },
+        {
+          "id": "conclusion",
+          "weight": 1
+        }
+      ],
+      "hintPolicy": {
+        "maxLevel": 5
+      },
+      "remediationMapping": {
+        "default": "PROOF_GAP",
+        "reviewStepId": "understand"
+      },
+      "evidenceType": "performance",
+      "partialCreditCriteria": [
+        "hypotheses",
+        "column_bound",
+        "row_bound",
+        "conclusion"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "source": "subjects/math/data/exercise_content.json"
+      }
+    }
+  ]
+}

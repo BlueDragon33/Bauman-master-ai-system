@@ -1,0 +1,24 @@
+/* Bauman Math Reasoning Evidence Ledger V1 · MATH03
+ * Additive learner evidence only. Never writes mastery or academic records.
+ */
+(function mathReasoningEvidence(root){
+  'use strict';
+  const RELEASE='MATH_REASONING_EVIDENCE_V1',KEY='bauman_math_reasoning_evidence_v1',MAX_ATTEMPTS=500;
+  function empty(){return{schemaVersion:'1.0.0',revision:0,attempts:[]}}
+  function storage(){try{return root.localStorage||null}catch(_){return null}}
+  function normalize(raw){const base=raw&&typeof raw==='object'?raw:{},attempts=Array.isArray(base.attempts)?base.attempts.filter(x=>x&&x.attemptId&&x.problemId).slice(-MAX_ATTEMPTS):[],seen=new Set(),unique=[];for(const a of attempts){if(seen.has(a.attemptId))continue;seen.add(a.attemptId);unique.push(a)}return{schemaVersion:'1.0.0',revision:Math.max(0,Number(base.revision||0)),attempts:unique}}
+  function read(){const s=storage();if(!s)return empty();try{return normalize(JSON.parse(s.getItem(KEY)||'null'))}catch(_){return empty()}}
+  function write(value){const s=storage();if(!s)return false;try{s.setItem(KEY,JSON.stringify(normalize(value)));return true}catch(_){return false}}
+  function safeClone(value){try{return JSON.parse(JSON.stringify(value))}catch(_){return null}}
+  function attemptFrom(detail){if(!detail||!detail.submissionId||!detail.problemId)return null;const evaluation=safeClone(detail.evaluation)||{};return{attemptId:String(detail.submissionId),submissionId:String(detail.submissionId),problemId:String(detail.problemId),sourceExerciseId:detail.sourceExerciseId?String(detail.sourceExerciseId):null,lessonId:detail.lessonId?String(detail.lessonId):null,chapterId:detail.chapterId?String(detail.chapterId):null,response:safeClone(detail.response),evaluation,evaluatorRevision:String(evaluation.evaluatorRevision||detail.evaluatorRevision||''),evidenceTier:String(evaluation.evidenceTier||'progress'),evidenceDimensions:Array.isArray(evaluation.evidenceDimensions)?[...evaluation.evidenceDimensions]:[],mode:String(detail.mode||'guided_practice'),hintLevel:Number.isFinite(Number(detail.hintLevel))?Number(detail.hintLevel):0,problemRevision:String(detail.problemRevision||''),at:Number(detail.at||Date.now()),masteryWrite:false,academicWrite:false}}
+  function appendSync(detail){const attempt=attemptFrom(detail);if(!attempt)return{ok:false,reason:'invalid_attempt'};let current=read();if(current.attempts.some(x=>x.attemptId===attempt.attemptId))return{ok:true,duplicate:true,attempt:firstAttempt(attempt.problemId)};current.attempts=[...current.attempts,attempt].slice(-MAX_ATTEMPTS);current.revision+=1;if(!write(current))return{ok:false,reason:'storage_unavailable'};let verified=read();if(!verified.attempts.some(x=>x.attemptId===attempt.attemptId)){const merged=normalize(verified);if(!merged.attempts.some(x=>x.attemptId===attempt.attemptId))merged.attempts.push(attempt);merged.revision=Math.max(merged.revision,current.revision)+1;if(!write(merged))return{ok:false,reason:'concurrent_write_failed'};verified=read()}return{ok:verified.attempts.some(x=>x.attemptId===attempt.attemptId),duplicate:false,attempt}}
+  async function recordAttempt(detail){const locks=root.navigator?.locks;if(locks?.request)return locks.request(KEY,()=>appendSync(detail));return appendSync(detail)}
+  function attemptsForProblem(problemId){return read().attempts.filter(x=>x.problemId===String(problemId||'')).sort((a,b)=>a.at-b.at)}
+  function firstAttempt(problemId){return attemptsForProblem(problemId)[0]||null}
+  function summaryForLesson(lessonId){const rows=read().attempts.filter(x=>x.lessonId===String(lessonId||'')),counts={accepted:0,rejected:0,conditional:0,indeterminate:0},dimensions={};for(const a of rows){const status=String(a.evaluation?.status||'INDETERMINATE').toLowerCase();if(Object.prototype.hasOwnProperty.call(counts,status))counts[status]++;else counts.indeterminate++;for(const d of a.evidenceDimensions||[])dimensions[d]=(dimensions[d]||0)+1}return{lessonId:String(lessonId||''),attempts:rows.length,...counts,dimensions,masteryWrite:false,academicWrite:false}}
+  function selfCheck(){const v=read();return{release:RELEASE,key:KEY,schemaVersion:v.schemaVersion,revision:v.revision,attempts:v.attempts.length,immutableAppendOnly:true,idempotentBySubmissionId:true,webLocksPreferred:!!root.navigator?.locks?.request,masteryAuthority:false,academicWrites:false}}
+  function onResult(event){recordAttempt(event?.detail||{}).then(result=>{try{root.document?.dispatchEvent(new CustomEvent('bauman:math:evidence-recorded',{detail:result}))}catch(_){}})}
+  try{root.document?.addEventListener('bauman:math:problem-result',onResult)}catch(_){}
+  const api=Object.freeze({release:RELEASE,key:KEY,recordAttempt,attemptsForProblem,firstAttempt,summaryForLesson,selfCheck});
+  root.BAUMAN_MATH_REASONING_EVIDENCE=api;if(typeof module!=='undefined'&&module.exports)module.exports=api;
+})(typeof window!=='undefined'?window:globalThis);
