@@ -1,6 +1,6 @@
 # MATH02 · ACADEMIC BLUEPRINT
 
-Status: VALIDATING  
+Status: PASS  
 Canonical owner proposal: `prompts/subjects/math/evidence/MATH_P2_CANONICAL_MODEL.json`  
 Runtime mutation: NO
 
@@ -168,10 +168,16 @@ Every count must be labeled as one of:
 
 No generic `count` field may be used to imply current content truth when the source is planned or historical.
 
-## 15. Exit-gate position
+## 15. Exit-gate acceptance
 
-This blueprint locks the ownership model but MATH02 remains VALIDATING until:
-- canonical model validator passes on current retained IDs;
-- current sidecar references have no orphan chapter/lesson IDs;
-- theory-content whole-file count is measured by executable validation;
-- downstream input contract is accepted by tests/CI.
+MATH02 passed its repository gate on exact tested head `e3a2588505504cc2c154e6ce2e95af1afbca4a90`.
+
+Executable evidence:
+- 56 canonical chapter IDs were retained;
+- 86 audited sidecar lesson IDs were retained;
+- 2,024 sidecar chapter/lesson references were checked with no orphan detected;
+- `theory_lecture_content.json` contains 102 measurable records;
+- Math Learning App Gate run `37116036092` passed;
+- Whole System Integration Gate run `37116036068` passed direct and packaged acceptance.
+
+This acceptance authorizes MATH03 to consume the canonical contract. It does **not** activate runtime schema migration, rewrite learner state, or make presentation/runtime projections canonical owners.
