@@ -73,6 +73,9 @@ jobs:
       - name: Study-plan runtime integration static
         run: node tests/study-plan-runtime-integration-static.mjs
 
+      - name: Study-plan runtime integrity static
+        run: node tests/study-plan-runtime-integrity-static.mjs
+
       - name: Live deploy Control smoke static
         run: node tests/live-deploy-control-smoke-static.mjs
 
