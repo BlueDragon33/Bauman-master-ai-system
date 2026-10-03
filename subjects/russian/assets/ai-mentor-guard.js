@@ -20,15 +20,19 @@
     const reviewIds=Object.keys(learning.reviewQueue||{});
     const reviewDue=reviewQueue.filter(x=>!x?.dueAt||Date.parse(x.dueAt)<=Date.now()).length;
     const route={view:clean(core.view)||'overview',learnTab:clean(core.learnTab),stage:clean(core.stage)||'vn',lessonId,slide:Math.max(0,Number(core.slide)||0)};
+    const canonicalRoute=core&&typeof core==='object'&&Object.keys(core).length?core:route;
     const resume=clone(learning.resume||null);
-    const canonical=window.BaumanFoundationCanonicalContext?.current?.({
+    const canonicalInput={
       subjectId:'russian',
-      route,
       resume,
       reviewIds,
       lessonId,
       hostTask:window.BaumanSubjectHost?.getTask?.()||window.BAUMAN_HOST_TASK||null
-    })||null;
+    };
+    const canonicalFull=window.BaumanFoundationCanonicalContext?.current?.({...canonicalInput,route:canonicalRoute})||null;
+    const canonical=canonicalFull?.canonical?.route
+      ?canonicalFull
+      :(window.BaumanFoundationCanonicalContext?.current?.({...canonicalInput,route})||canonicalFull);
     return {
       schema:SCHEMA,
       subjectId:'russian',
