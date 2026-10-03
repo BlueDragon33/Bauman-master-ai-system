@@ -11,11 +11,9 @@
   "lastCodexValidatedSha": null,
   "activeWorkPacketId": "HUB-TRUTH-UX-CLEANUP-002",
   "activeWorkPacketRevision": 3,
-  "lifecycleStatus": "CHAT_PLAN_COMPLETE_EXECUTION_DEFERRED",
+  "lifecycleStatus": "WORK_SPLIT_REDEFINED",
   "lastAcceptedPacketId": null,
-  "blockers": [
-    "Runtime implementation is intentionally not executed in Chat plane because HUB_CHAT_MASTER_PROMPT defines Chat as control/spec/review plane and the user has explicitly deferred Codex execution."
-  ],
+  "blockers": [],
   "notes": [
     "Hub work does not load prompts/subjects/**.",
     "Current runtime baseline reviewed is main@b6df392c5ab935bed4924b07b9bbe2e95efb2c8e.",
@@ -25,34 +23,21 @@
     "Exactly five learner routes remain canonical: home, roadmap, subjects, schedule, research.",
     "Schedule remains the Hub-owned planning reference; Subjects and Research/Thesis require major truth cleanup.",
     "Target subject integration remains descriptor -> capabilities -> launch adapter -> normalized Hub read model; legacy mainPath/editorPath may survive only behind compatibility adapters.",
-    "User requested continuous operation without routine checkpoint questions. Resume from the active packet/state directly."
+    "User requested continuous operation without routine checkpoint questions. Resume from the active packet/state directly.",
+    "Work split revised: normal Chat now owns careful Class-A execution; Codex is reserved for Class-B deep repository work.",
+    "Current HUB-TRUTH-UX-CLEANUP-002 remains Class B because it spans coupled runtime owners, normalized adapters, responsive/browser QA and repeated test/fix loops."
   ],
-  "lastArchitectureChange": "Completed continuous Chat control-plane work through C9 and consolidated all remaining Hub runtime cleanup into HUB-TRUTH-UX-CLEANUP-002 revision 3, based on current main and including a minimal Hub Prompt System bootstrap phase.",
+  "lastArchitectureChange": "Reclassified Bauman Hub workflow into Class A (Chat careful/light execution), Class B (Codex deep repository execution), and Class C (external authority).",
   "executionMode": {
-    "mode": "CONTINUOUS_CHAT",
-    "autoAdvance": true,
-    "stopOnlyWhen": [
-      "TASK_COMPLETE",
-      "REAL_BLOCKER",
-      "EXTERNAL_AUTHORITY_REQUIRED",
-      "SCOPE_BOUNDARY_WOULD_BE_CROSSED",
-      "SAFETY_OR_POLICY_BLOCK"
-    ],
-    "doNotStopFor": [
-      "intermediate_checkpoints",
-      "phase_transitions",
-      "routine validation",
-      "next-step confirmation",
-      "minor implementation choices inside Hub scope"
-    ],
-    "behavior": [
-      "Automatically continue from the current Hub step to the next logical Hub step.",
-      "Automatically inspect/fix Hub-only defects found during the run.",
-      "Automatically add follow-up Hub-only steps when needed for completeness.",
-      "Do not ask the user to confirm each HUB-Cx transition.",
-      "Keep prompts/subjects/** and subject-app internals out of scope.",
-      "Use only registered API/Contract boundaries for subject integration.",
-      "Report progress periodically, but do not stop merely to report."
-    ]
-  }
+    "mode": "CLASSIFIED_DUAL_PLANE",
+    "classifyBeforeWork": true,
+    "classes": {
+      "A": "Chat executes directly, slowly and carefully, for small deterministic Hub-only work.",
+      "B": "Codex executes deep/coupled/runtime/test-loop work from an approved packet; Chat reviews.",
+      "C": "Stop only for genuine external authority/blocker."
+    },
+    "continuousWithinPlane": true,
+    "noRoutineCheckpointQuestions": true
+  },
+  "workSplit": "prompts/hub/WORK_SPLIT_CHAT_CODEX.md"
 }
