@@ -18,11 +18,17 @@ for (const subclient of contract.subclients ?? []) {
   const manifest = JSON.parse(fs.readFileSync(manifestPath,'utf8'));
   assert.equal(manifest.id, subclient.id, `Manifest id mismatch for ${subclient.id}`);
 
-  const indexPath = path.join(root, manifest.entry || 'index.html');
+  const resolveDeclaredPath = (declared, fallback) => {
+    const value = String(declared || fallback).replace(/^[/]+/, '');
+    if (value.includes('/')) return value;
+    return path.join(root, value);
+  };
+
+  const indexPath = resolveDeclaredPath(manifest.entry, 'index.html');
   assert.ok(fs.existsSync(indexPath), `Missing runtime entry for ${subclient.id}: ${indexPath}`);
 
   if (manifest.editor) {
-    const editorPath = path.join(root, manifest.editor);
+    const editorPath = resolveDeclaredPath(manifest.editor, 'editor.html');
     assert.ok(fs.existsSync(editorPath), `Missing editor for ${subclient.id}: ${editorPath}`);
   }
 
