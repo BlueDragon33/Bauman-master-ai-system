@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "contentRevision": "MATH02-DRAFT-1",
-  "status": "VALIDATING",
+  "contentRevision": "MATH02-ACCEPTED-1",
+  "status": "PASS",
   "owner": {
     "curriculumTruth": "prompts/subjects/math/evidence/MATH_P2_CANONICAL_MODEL.json",
     "compatibilitySources": [
@@ -239,13 +239,25 @@
     "chapterSpineEntries": 56,
     "auditedLiveLessonIds": 86,
     "auditedContentBearingChapterIds": 17,
-    "unresolved": [
-      "theory_lecture_content whole-file record count must be measured by executable validator"
-    ]
+    "unresolved": [],
+    "theoryLectureRecords": 102,
+    "sidecarReferencesChecked": 2024
   },
   "downstreamContracts": {
     "MATH03": "May define reasoning/evaluation behavior but must reference canonical fact/entity IDs.",
     "MATH04": "May provide computation/visualization but cannot override canonical truth.",
     "MATH05": "May render/author projections but cannot become a second curriculum writer."
+  },
+  "validationEvidence": {
+    "exactTestedHead": "e3a2588505504cc2c154e6ce2e95af1afbca4a90",
+    "mathLearningAppGateRunId": 37116036092,
+    "wholeSystemIntegrationRunId": 37116036068,
+    "chapterIds": 56,
+    "auditedSidecarLessonIds": 86,
+    "sidecarReferencesChecked": 2024,
+    "theoryLectureRecords": 102,
+    "orphanReferencesDetected": 0,
+    "productionRuntimeMutation": false,
+    "runtimeMigrationActivated": false
   }
 }
