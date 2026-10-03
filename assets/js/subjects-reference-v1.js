@@ -219,11 +219,17 @@ function addModal(){
    visual provenance and are never used as learner-facing data sources. */
 function readUI(){
   try{
-    var raw=JSON.parse(localStorage.getItem(UI_KEY)||'{}'),stage=(stateRef()&&stateRef().subjectStage)||'prepare';
-    return {tab:raw.tab||'all',semester:raw.semester||stage,filterOpen:false,menu:'',calendarOffset:Number(raw.calendarOffset)||0,aiDone:new Set(Array.isArray(raw.aiDone)?raw.aiDone:[])};
+    var raw=JSON.parse(localStorage.getItem(UI_KEY)||'{}'),stage=(stateRef()&&stateRef().subjectStage)||'prepare',allowed=['prepare','preparatory','m1','m2','m3','m4'];
+    var semester=allowed.includes(raw.semester)?raw.semester:stage;
+    return {tab:raw.tab||'all',semester:semester,filterOpen:false,menu:'',calendarOffset:Number(raw.calendarOffset)||0,aiDone:new Set(Array.isArray(raw.aiDone)?raw.aiDone:[])};
   }catch(e){return {tab:'all',semester:(stateRef()&&stateRef().subjectStage)||'prepare',filterOpen:false,menu:'',calendarOffset:0,aiDone:new Set()}}
 }
-function readNotes(){try{var v=JSON.parse(localStorage.getItem(NOTES_KEY)||'[]');return Array.isArray(v)?v:[]}catch(e){return []}}
+function readNotes(){
+  try{
+    var v=JSON.parse(localStorage.getItem(NOTES_KEY)||'[]'),legacy=new Set(DEFAULT_NOTES.map(function(x){return x.id}));
+    return Array.isArray(v)?v.filter(function(x){return x&&x.id&&!legacy.has(x.id)}):[];
+  }catch(e){return []}
+}
 function truthProgress(id){
   var t=window.BAUMAN_HUB_TRUTH,s=stateRef(),map=s&&s.progress||{};
   if(t)return t.progress(map,id,{source:'hub.state.progress'});
