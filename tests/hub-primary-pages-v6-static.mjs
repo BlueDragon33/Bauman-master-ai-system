@@ -12,6 +12,7 @@ const search=fs.readFileSync('assets/js/hub-overview-search-v2.js','utf8');
 assert.ok(index.includes('hub-ui-booting'),'Hub boot guard is missing');
 assert.ok(index.includes('assets/css/hub-primary-pages-v6.css?v=1'),'V6 page stylesheet is not loaded');
 assert.ok(index.includes('assets/js/hub-primary-pages-v6.js?v=1'),'V6 page renderer is not loaded');
+assert.ok(index.includes('assets/js/hub-data-truth.js?v=1'),'Hub truth adapter is not loaded');
 
 for(const id of ['subjects','schedule','research']){
   assert.ok(pages.includes(`a.${id}=function()`),`V6 does not synchronously own the ${id} presentation pass`);
@@ -33,5 +34,8 @@ assert.ok(!search.includes('setTimeout(install,350)'),'Overview/search still per
 assert.ok(!search.includes('setTimeout(install,1200)'),'Overview/search still performs delayed 1200ms startup reflow');
 assert.ok(!search.includes('setTimeout(compactHome,0)'),'Home observer still defers layout mutation to a later paint');
 assert.ok(!search.includes('setTimeout(compactSubjectCapability,0)'),'Subject capability observer still defers layout mutation to a later paint');
+assert.ok(pages.includes("truth?truth.progress"),'Subjects V6 hero must preserve progress truth state');
+assert.ok(pages.includes("input[data-research-check=\"1\"]"),'Research V6 metrics must count only canonical checklist evidence');
+assert.ok(pages.includes("checklist LOCAL_HUB"),'Research checklist must be labeled LOCAL_HUB');
 
 console.log('HUB_PRIMARY_PAGES_V6_STATIC_PASS');

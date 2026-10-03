@@ -1,0 +1,144 @@
+{
+  "schemaVersion": "1.0.0",
+  "packetId": "HUB-TRUTH-20261003-001",
+  "packetRevision": 3,
+  "status": "EXECUTION_COMPLETE_PENDING_CHAT_REVIEW",
+  "branch": "codex/hub-truth-20261003-001",
+  "baseBranch": "main",
+  "beforeSha": "4bd4adf0137bf9dc8e15b55f538a6286a0a020d3",
+  "testedRuntimeHead": "9a2b1e6cae9d602b880181424a4a44016dba70f7",
+  "executionSummary": [
+    "Added one normalized Hub truth adapter with CURRENT/STALE/UNAVAILABLE/LOCAL_HUB semantics.",
+    "Preserved a genuine stored progress value of 0 while representing missing progress as UNAVAILABLE.",
+    "Removed learner-facing reference/sample truth from Subjects and Thesis/Research without discarding their polished workspaces.",
+    "Restored canonical RESEARCH_TOPICS checklist inside Thesis; checklist state and user-created notes/tasks remain explicitly LOCAL_HUB.",
+    "Made Home, Roadmap, Schedule and primary-page progress projections truth-aware.",
+    "Replaced regression assertions that required reference samples with canonical-source/provenance/zero-vs-missing assertions.",
+    "Connected Hub data-truth static/browser tests to Whole System Integration for direct and packaged ChatGPT Site execution.",
+    "Fixed two test/runtime defects discovered during execution: Subjects deadline row strict-mode scope and an explicit-reload Academic JSON abort classification."
+  ],
+  "changedRuntimePaths": [
+    "index.html",
+    "assets/js/hub-data-truth.js",
+    "assets/js/hub-overview-search-v2.js",
+    "assets/js/hub-primary-pages-v6.js",
+    "assets/js/hub-roadmap-comprehensive-v2.js",
+    "assets/js/schedule-reference-v1.js",
+    "assets/js/subjects-reference-v1.js",
+    "assets/js/thesis-reference-v1.js"
+  ],
+  "changedQaPaths": [
+    ".github/workflows/system-integration-ci.yml",
+    "tests/hub-data-truth-static.mjs",
+    "tests/hub-data-truth-browser.mjs",
+    "tests/hub-primary-pages-v6-static.mjs",
+    "tests/hub-readable-typography-v1-browser.mjs",
+    "tests/schedule-reference-v1-static.mjs",
+    "tests/schedule-reference-v1-browser.mjs",
+    "tests/subjects-reference-v1-static.mjs",
+    "tests/subjects-reference-v1-browser.mjs",
+    "tests/system-browser-acceptance.mjs",
+    "tests/thesis-reference-v1-static.mjs",
+    "tests/thesis-reference-v1-browser.mjs"
+  ],
+  "changedGovernancePaths": [
+    "prompts/hub/CURRENT_WORK_PACKET.json"
+  ],
+  "defectsFixed": [
+    {
+      "id": "HUB-TRUTH-001",
+      "status": "FIXED",
+      "evidence": "Subjects active rows, schedule metadata, lecturer availability, progress and suggestions now derive from canonical Hub state/schedule; local overrides are LOCAL_HUB; legacy sample state is filtered."
+    },
+    {
+      "id": "HUB-TRUTH-002",
+      "status": "FIXED",
+      "evidence": "Thesis no longer seeds March-2025 tasks/milestones/AI/chapter percentages/heatmap; current calendar is dynamic, canonical topic/checklist remains visible, local tasks/notes are LOCAL_HUB."
+    },
+    {
+      "id": "HUB-TRUTH-003",
+      "status": "FIXED",
+      "evidence": "Subjects/Thesis regression no longer requires fixed sample counts/copy; tests assert canonical data, provenance and unavailable states."
+    },
+    {
+      "id": "HUB-TRUTH-004",
+      "status": "FIXED",
+      "evidence": "Home/Roadmap/Schedule/primary projections distinguish real zero from missing; truth contract tests cover direct and packaged runtime."
+    },
+    {
+      "id": "HUB-TRUTH-005",
+      "status": "FIXED",
+      "evidence": "Research checklist/user-created evidence is explicitly LOCAL_HUB and copy states it is not score/mastery/official assessment."
+    }
+  ],
+  "verification": {
+    "exactTestedHead": "9a2b1e6cae9d602b880181424a4a44016dba70f7",
+    "workflowRunId": 37113655419,
+    "githubActions": {
+      "constitution": "SUCCESS",
+      "fastCheck": "SUCCESS",
+      "validateSystemIntegration": "SUCCESS",
+      "subjectsReference": "SUCCESS",
+      "thesisReference": "SUCCESS",
+      "readableUi": "SUCCESS",
+      "futureInterface": "SUCCESS",
+      "russianP1BrowserAcceptance": "SUCCESS",
+      "browserSystemAcceptance": "SUCCESS"
+    },
+    "wholeSystemDirect": {
+      "wholeSystemBrowser": "SUCCESS",
+      "foundationIdentity": "SUCCESS",
+      "foundationProjection": "SUCCESS",
+      "foundationContext": "SUCCESS",
+      "mathCommandCenter": "SUCCESS",
+      "mathLearnerJourney": "SUCCESS",
+      "hubResponsive": "SUCCESS",
+      "hubDataTruth": "SUCCESS",
+      "russianP1": "SUCCESS",
+      "scheduleReference": "SUCCESS",
+      "subjectsReference": "SUCCESS",
+      "thesisReference": "SUCCESS",
+      "subjectProgressContract": "SUCCESS",
+      "deepStudyJournal": "SUCCESS",
+      "russianOfflineAndCapabilityRegression": "SUCCESS"
+    },
+    "packagedChatGptSite": {
+      "materialization": "SUCCESS",
+      "packagedRuntime": "SUCCESS",
+      "packagedWholeSiteBrowser": "SUCCESS",
+      "packagedSubjectsReference": "SUCCESS",
+      "packagedThesisReference": "SUCCESS",
+      "packagedHubResponsive": "SUCCESS",
+      "packagedHubDataTruth": "SUCCESS",
+      "packagedSubjectProgressContract": "SUCCESS",
+      "packagedDeepStudyJournal": "SUCCESS",
+      "packagedRussianOfflineCapabilityFutureUi": "SUCCESS"
+    },
+    "keyTruthAssertions": [
+      "stored 0 => CURRENT and 0%",
+      "missing progress => UNAVAILABLE and —",
+      "partial aggregate => STALE",
+      "local notes/tasks/checklist state => LOCAL_HUB",
+      "sample/reference content is not required for PASS"
+    ]
+  },
+  "externalBaseline": {
+    "cloudflareWorkersBuild": {
+      "packetHead": "FAILURE",
+      "baseMain": "FAILURE",
+      "baseMainSha": "4bd4adf0137bf9dc8e15b55f538a6286a0a020d3",
+      "classification": "PRE_EXISTING_EXTERNAL_BASELINE_FAILURE_OUTSIDE_PACKET",
+      "action": "No production deploy or Cloudflare configuration mutation performed."
+    }
+  },
+  "boundary": {
+    "subjectPrivatePathsChanged": false,
+    "subjectPrivateStateReadIntroduced": false,
+    "controlServiceChanged": false,
+    "cloudflareConfigChanged": false,
+    "productionDeployPerformed": false,
+    "primaryRoutesChanged": false
+  },
+  "releaseState": "NOT_DEPLOYED_PRODUCTION",
+  "mergeRecommendation": "ACCEPT_IF_CHAT_REVIEW_CONFIRMS_METADATA_ONLY_FOLLOWUP_AND_ALLOWED_PATH_DIFF"
+}

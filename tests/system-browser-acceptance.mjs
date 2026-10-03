@@ -48,7 +48,8 @@ function isConfirmedNavigationAbort(request){
     ]);
     const isPrerequisitePack=/^\/assets\/data\/prerequisite-packs\/(?:p\d{2}-[a-z0-9-]+|j\d{2}-[a-z0-9-]+)\.json$/.test(requestUrl.pathname);
     const isAcademicLazyAsset=/^\/assets\/(?:js\/academic-(?:course|event|grade|transcript|command-center)-runtime\.js|css\/academic-(?:course|event|grade|transcript|command-center)-2026\.css)$/.test(requestUrl.pathname);
-    return requestUrl.origin===baseUrl.origin&&(decorativePaths.has(requestUrl.pathname)||isPrerequisitePack||(explicitReloadInProgress&&isAcademicLazyAsset));
+    const isAcademicLazyData=requestUrl.pathname==='/assets/data/course-learning-architecture-s1-2026.json';
+    return requestUrl.origin===baseUrl.origin&&(decorativePaths.has(requestUrl.pathname)||isPrerequisitePack||(explicitReloadInProgress&&(isAcademicLazyAsset||isAcademicLazyData)));
   }catch{return false}
 }
 
