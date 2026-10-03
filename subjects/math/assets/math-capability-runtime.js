@@ -77,7 +77,7 @@
     }
     function unary(){if(peek()==='+'){take();return unary()}if(peek()==='-'){take();return -unary()}return primary()}
     function power(){let v=unary();if(peek()==='^'){take();const rhs=power();v=Math.pow(v,rhs);if(!Number.isFinite(v))throw new Error('DOMAIN_OR_NON_FINITE')}return v}
-    function term(){let v=power();while(peek()==='*'||peek()==='/'){const op=take(),r=power();if(op==='/'&&r===0)throw new Error('DIVISION_BY_ZERO');v=op==='*'?v*r:v/r;if(!Number.isFinite(v))throw new Error('NON_FINITE')}}return v}
+    function term(){let v=power();while(peek()==='*'||peek()==='/'){const op=take(),r=power();if(op==='/'&&r===0)throw new Error('DIVISION_BY_ZERO');v=op==='*'?v*r:v/r;if(!Number.isFinite(v))throw new Error('NON_FINITE')}return v}
     function expression(){let v=term();while(peek()==='+'||peek()==='-'){const op=take(),r=term();v=op==='+'?v+r:v-r;if(!Number.isFinite(v))throw new Error('NON_FINITE')}return v}
     const value=expression();if(i!==tokens.length)throw new Error('UNSUPPORTED_SYNTAX');return value;
   }
