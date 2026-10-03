@@ -1,0 +1,120 @@
+{
+  "schemaVersion": "1.0.0",
+  "module": "MATH01",
+  "status": "VALIDATING",
+  "baseMainSha": "b2b62fe610aa34229581d3d00f9fbc4cdb6d9b9b",
+  "runtimeEquivalentEvidenceSha": "db747b1e6c65e5eb2a28cfd7ea2aeee8e3f9872c",
+  "productionChanged": false,
+  "entry": "subjects/math/index.html",
+  "runtimeSourceWeight": {
+    "uniqueScripts": 40,
+    "uniqueStylesheets": 23,
+    "javascriptBytes": 591392,
+    "cssBytes": 1261061,
+    "totalBytes": 1852453,
+    "scope": "uncompressed referenced JS/CSS only; excludes JSON/fonts/images and transfer compression"
+  },
+  "curriculum": {
+    "stages": 10,
+    "chapters": 56,
+    "disciplines": 12,
+    "chaptersByStage": {
+      "vn": 6, "prep": 12, "hk1": 6, "hk2": 6, "hk3": 6, "hk4": 4,
+      "phd_bridge": 4, "phd_y1": 4, "phd_y2": 4, "phd_thesis": 4
+    }
+  },
+  "content": {
+    "commonLessonIdsAcrossAuditedSidecars": 86,
+    "chapterIdsAcrossAuditedSidecars": 17,
+    "records": {
+      "formula": 264,
+      "exercise": 704,
+      "application": 176,
+      "simulation": 176,
+      "professorQa": 88,
+      "reviewPack": 88,
+      "questionBank": 528,
+      "theoryLecture": "UNKNOWN_CONNECTOR_SIZE_LIMIT"
+    },
+    "duplicateRecordFacts": [
+      {
+        "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+        "professorQaRecords": 3,
+        "reviewPackRecords": 3
+      }
+    ],
+    "metadataDrift": [
+      "data/content-manifest.json still reports planned/current counts of 18 for many content files and empty_by_design",
+      "subject-manifest.json contains historical/planned counts that do not match current split-content files"
+    ]
+  },
+  "owners": {
+    "theorySource": "E240: window.DB.theory_lecture_content > local E129 overlay > data/theory_lecture_content.json",
+    "theoryShell": "E129",
+    "artifactRegistry": "E244",
+    "artifactRoute": "E245",
+    "artifactReader": "E241",
+    "primaryNavigation": "BAUMAN_MATH_NAVIGATION",
+    "learnerProgressCompletion": "BAUMAN_MATH_LEARNING_FLOW",
+    "exerciseFeedback": "BAUMAN_MATH_ACTIVITY_STUDIO",
+    "formulaReaderRendering": "E224 + E234 + E235 custom renderer chain",
+    "formulaLibrary": "data/formula_content.json canonical + formulas-or-patterns.json compatibility fallback",
+    "genericVisualization": "BAUMAN_MATH_WORKSPACE",
+    "simulationDiscovery": "BAUMAN_MATH_SIMULATION_SOURCE",
+    "mastery": "UNRESOLVED_CANONICAL; Activity Mastery is a non-authoritative projection",
+    "aiMath": "UNPROVEN"
+  },
+  "evaluator": {
+    "autoGradedTypes": ["multiple_choice", "numeric", "exact_text"],
+    "numericRule": "finite Number comparison within numericTolerance",
+    "textRule": "trim + collapse whitespace + lowercase locale vi equality",
+    "symbolicEquivalence": false,
+    "externalCas": false,
+    "proofGrader": false,
+    "risk": "mathematically equivalent free-form expressions can false-negative"
+  },
+  "stateStores": [
+    "bauman_math_learning_flow_v1",
+    "bauman_math_learning_notes_v1",
+    "bauman_math_learning_bookmarks_v1",
+    "bauman_math_workspace_v1",
+    "bauman_math_formula_favorites_v1",
+    "bauman_math_professor_drill_v1",
+    "bauman_math_activity_notes_v1",
+    "bauman_math_activity_session_v1",
+    "bauman_math_e129_theory_content_overlay_v1",
+    "bauman_math_e129_theory_content_report_v1"
+  ],
+  "offline": {
+    "serviceWorker": "subjects/math/sw.js",
+    "cache": "bauman-math-shell-v2",
+    "jsonStrategy": "network-first",
+    "staticStrategy": "stale-while-revalidate",
+    "indexedDbProven": false,
+    "mathBackendWriteProven": false
+  },
+  "testEvidence": {
+    "currentMainWholeSystemRun": 37094380012,
+    "runtimeEvidenceSha": "db747b1e6c65e5eb2a28cfd7ea2aeee8e3f9872c",
+    "mathStudyCommandCenter": "PASS",
+    "mathLearnerJourney": "PASS",
+    "prForensicRun": "PENDING",
+    "prNumber": 227
+  },
+  "rootCauseGroups": [
+    "architecture_owner_layering",
+    "manifest_metadata_drift",
+    "curriculum_truth_duplication",
+    "expression_equivalence_gap",
+    "assessment_mastery_semantics",
+    "custom_renderer_specialization_debt",
+    "ai_placeholder_without_provider",
+    "accessibility_performance_test_coverage_gap"
+  ],
+  "blockersForMath02": [
+    "Do not treat legacy/planned manifest counts as canonical content truth",
+    "Do not treat Activity Mastery projection as canonical mastery evidence",
+    "Do not assume a symbolic evaluator/CAS exists",
+    "Choose one canonical curriculum/entity model and migration path before scaling content"
+  ]
+}
