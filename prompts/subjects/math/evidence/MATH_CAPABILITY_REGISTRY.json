@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "1.0.0",
+  "owner": "MATH04",
+  "status": "ACTIVE",
+  "authority": {
+    "mathematicalTruth": "MATH02",
+    "assessmentVerdicts": "MATH03",
+    "toolExecution": "MATH04",
+    "mastery": "global C4"
+  },
+  "resultContract": {
+    "status": [
+      "OK",
+      "UNAVAILABLE",
+      "ERROR"
+    ],
+    "required": [
+      "capability",
+      "status",
+      "data",
+      "provenance",
+      "error",
+      "masteryWrite",
+      "academicWrite"
+    ],
+    "provenance": [
+      "provider",
+      "providerVersion",
+      "operation",
+      "exactness",
+      "assumptions",
+      "mode",
+      "offline"
+    ]
+  },
+  "capabilities": [
+    {
+      "id": "math.parse.expression",
+      "provider": "bauman-local-deterministic",
+      "offline": true,
+      "authority": "representation_only"
+    },
+    {
+      "id": "math.numeric.evaluate",
+      "provider": "bauman-local-deterministic",
+      "offline": true,
+      "authority": "computation_evidence"
+    },
+    {
+      "id": "math.graph.sample",
+      "provider": "bauman-local-deterministic",
+      "offline": true,
+      "authority": "visualization_input"
+    },
+    {
+      "id": "math.matrix.compute",
+      "provider": "bauman-local-deterministic",
+      "offline": true,
+      "authority": "computation_evidence"
+    },
+    {
+      "id": "math.simulation.run",
+      "provider": "bauman-local-deterministic",
+      "offline": true,
+      "authority": "simulation_evidence"
+    },
+    {
+      "id": "math.symbolic.simplify",
+      "provider": "unbound-symbolic-provider",
+      "offline": false,
+      "status": "UNAVAILABLE_UNTIL_PROVIDER_BOUND"
+    },
+    {
+      "id": "math.symbolic.solve",
+      "provider": "unbound-symbolic-provider",
+      "offline": false,
+      "status": "UNAVAILABLE_UNTIL_PROVIDER_BOUND"
+    },
+    {
+      "id": "math.geometry.render",
+      "provider": "unbound-geometry-provider",
+      "offline": false,
+      "status": "UNAVAILABLE_UNTIL_PROVIDER_BOUND"
+    },
+    {
+      "id": "math.vector.visualize",
+      "provider": "unbound-vector-provider",
+      "offline": false,
+      "status": "UNAVAILABLE_UNTIL_PROVIDER_BOUND"
+    },
+    {
+      "id": "math.ai.coach",
+      "provider": "policy-gated-ai-provider",
+      "offline": false,
+      "status": "POLICY_GATED"
+    }
+  ],
+  "invariants": [
+    "No arbitrary eval",
+    "Provider output cannot set mastery",
+    "Provider output cannot replace MATH02 truth",
+    "MATH03 retains assessment verdict authority",
+    "Unsupported capability returns UNAVAILABLE, not fabricated success",
+    "Assumptions/domain travel with provider provenance"
+  ]
+}

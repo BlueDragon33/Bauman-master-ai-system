@@ -1,0 +1,195 @@
+{
+  "schemaVersion": "1.0.0",
+  "owner": "MATH04",
+  "status": "ACTIVE",
+  "cases": [
+    {
+      "id": "parse-safe",
+      "capability": "math.parse.expression",
+      "input": {
+        "expression": "2*(x+1)^2"
+      },
+      "expect": {
+        "status": "OK"
+      }
+    },
+    {
+      "id": "parse-malicious",
+      "capability": "math.parse.expression",
+      "input": {
+        "expression": "globalThis.alert(1)"
+      },
+      "expect": {
+        "status": "ERROR"
+      }
+    },
+    {
+      "id": "numeric",
+      "capability": "math.numeric.evaluate",
+      "input": {
+        "expression": "sqrt(9)+x^2",
+        "variables": {
+          "x": 2
+        }
+      },
+      "expect": {
+        "status": "OK",
+        "value": 7
+      }
+    },
+    {
+      "id": "numeric-domain",
+      "capability": "math.numeric.evaluate",
+      "input": {
+        "expression": "sqrt(-1)"
+      },
+      "expect": {
+        "status": "ERROR"
+      }
+    },
+    {
+      "id": "symbolic-unbound",
+      "capability": "math.symbolic.simplify",
+      "input": {
+        "expression": "(x^2-4)/(x-2)",
+        "assumptions": [
+          "x!=2"
+        ]
+      },
+      "expect": {
+        "status": "UNAVAILABLE"
+      }
+    },
+    {
+      "id": "graph-hole",
+      "capability": "math.graph.sample",
+      "input": {
+        "expression": "1/x",
+        "min": -1,
+        "max": 1,
+        "samples": 101
+      },
+      "expect": {
+        "status": "OK",
+        "hasGap": true
+      }
+    },
+    {
+      "id": "matrix-dimension",
+      "capability": "math.matrix.compute",
+      "input": {
+        "operation": "multiply",
+        "A": [
+          [
+            1,
+            2
+          ]
+        ],
+        "B": [
+          [
+            1,
+            2
+          ]
+        ]
+      },
+      "expect": {
+        "status": "ERROR",
+        "error": "MATRIX_DIMENSION_MISMATCH"
+      }
+    },
+    {
+      "id": "matrix-ok",
+      "capability": "math.matrix.compute",
+      "input": {
+        "operation": "multiply",
+        "A": [
+          [
+            1,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "B": [
+          [
+            2
+          ],
+          [
+            1
+          ]
+        ]
+      },
+      "expect": {
+        "status": "OK",
+        "value": [
+          [
+            4
+          ],
+          [
+            10
+          ]
+        ]
+      }
+    },
+    {
+      "id": "simulation-converges",
+      "capability": "math.simulation.run",
+      "input": {
+        "kind": "fixed_point",
+        "expression": "cos(x)",
+        "initial": 1,
+        "maxIterations": 100,
+        "tolerance": 1e-8
+      },
+      "expect": {
+        "status": "OK",
+        "converged": true
+      }
+    },
+    {
+      "id": "simulation-nonconverge",
+      "capability": "math.simulation.run",
+      "input": {
+        "kind": "fixed_point",
+        "expression": "x+1",
+        "initial": 0,
+        "maxIterations": 5,
+        "tolerance": 1e-12
+      },
+      "expect": {
+        "status": "OK",
+        "converged": false,
+        "warning": "NON_CONVERGED"
+      }
+    },
+    {
+      "id": "ai-offline",
+      "capability": "math.ai.coach",
+      "input": {
+        "request": "hint"
+      },
+      "context": {},
+      "expect": {
+        "status": "UNAVAILABLE",
+        "error": "AI_PROVIDER_UNAVAILABLE"
+      }
+    },
+    {
+      "id": "ai-exam-reveal",
+      "capability": "math.ai.coach",
+      "input": {
+        "request": "reveal_final"
+      },
+      "context": {
+        "approvedProvider": true,
+        "mode": "exam"
+      },
+      "expect": {
+        "status": "ERROR",
+        "error": "ANSWER_REVEAL_BLOCKED_BY_POLICY"
+      }
+    }
+  ]
+}
