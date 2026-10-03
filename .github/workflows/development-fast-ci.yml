@@ -39,6 +39,7 @@ jobs:
             subjects/russian/assets/core.js
             subjects/russian/assets/russian-future-ui.js
             scripts/prepare-cloudflare-preview.mjs
+            scripts/list-study-plan-runtime-routes.mjs
           )
           for file in "${files[@]}"; do
             if [[ -f "$file" ]]; then
