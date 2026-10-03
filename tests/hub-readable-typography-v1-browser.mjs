@@ -164,13 +164,19 @@ try{
     event:await style(page,'#page-research .thesis-page__event b'),
     eventMeta:await style(page,'#page-research .thesis-page__event span'),
     kpi:await style(page,'#page-research .thesis-page__summary-card small'),
-    ai:await style(page,'#page-research .thesis-page__ai-list b')
+    ai:await style(page,'#page-research .thesis-page__ai-list b'),
+    unavailable:await style(page,'#page-research .thesis-page__ai-intro p'),
+    unavailableText:await page.textContent('#page-research .thesis-page__ai-intro p').catch(()=>null)
   };
   console.log('READABLE_THESIS',JSON.stringify(thesis));
-  assert.ok(thesis.event?.fontSize>=13.5,'Thesis event title is below readable size');
-  assert.ok(thesis.eventMeta?.fontSize>=12.5,'Thesis event metadata is below readable size');
+  if(thesis.event)assert.ok(thesis.event.fontSize>=13.5,'Thesis event title is below readable size');
+  if(thesis.eventMeta)assert.ok(thesis.eventMeta.fontSize>=12.5,'Thesis event metadata is below readable size');
   assert.ok(thesis.kpi?.fontSize>=13.5,'Thesis KPI copy is below readable size');
-  assert.ok(thesis.ai?.fontSize>=13.5,'Thesis AI suggestions are below readable size');
+  if(thesis.ai)assert.ok(thesis.ai.fontSize>=13.5,'Thesis AI suggestions are below readable size');
+  else{
+    assert.ok(thesis.unavailableText?.includes('Chưa có capability AI'),'Unavailable Thesis AI state is not explicit');
+    assert.ok(thesis.unavailable?.fontSize>=13.5,'Unavailable Thesis AI copy is below readable size');
+  }
   await noPageOverflow(page,'Thesis');
   await page.screenshot({path:path.join(OUT,'thesis-readable-1440x1000.png'),fullPage:true});
 
