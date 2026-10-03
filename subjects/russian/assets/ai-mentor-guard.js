@@ -20,10 +20,11 @@
     const reviewIds=Object.keys(learning.reviewQueue||{});
     const reviewDue=reviewQueue.filter(x=>!x?.dueAt||Date.parse(x.dueAt)<=Date.now()).length;
     const route={view:clean(core.view)||'overview',learnTab:clean(core.learnTab),stage:clean(core.stage)||'vn',lessonId,slide:Math.max(0,Number(core.slide)||0)};
+    const canonicalRoute=core&&typeof core==='object'&&Object.keys(core).length?core:route;
     const resume=clone(learning.resume||null);
     const canonical=window.BaumanFoundationCanonicalContext?.current?.({
       subjectId:'russian',
-      route,
+      route:canonicalRoute,
       resume,
       reviewIds,
       lessonId,
