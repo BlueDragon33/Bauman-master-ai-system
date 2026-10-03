@@ -28,7 +28,16 @@ try{
   await page.waitForFunction(()=>window.BAUMAN_MATH_NAVIGATION&&window.BAUMAN_MATH_E186_LESSON_FIRST&&window.BAUMAN_MATH_REASONING_EVALUATOR&&window.BAUMAN_MATH_REASONING_EVIDENCE&&window.BAUMAN_MATH_ACTIVITY_STUDIO,null,{timeout:30000});
   await page.waitForFunction(()=>window.BAUMAN_MATH_E129_CONTENT_SOURCE_READY||window.BAUMAN_MATH_THEORY_E129?.sourceStatus?.().content>=3,null,{timeout:30000});
 
-  await page.evaluate(()=>window.BAUMAN_MATH_E186_LESSON_FIRST.open('lesson'));
+  await page.evaluate(()=>{
+    const p=window.BAUMAN_MATH_E186_LESSON_FIRST.path();
+    p.moduleId='pure';
+    p.courseId='pure-geometry';
+    p.chapterId='c08';
+    p.lessonId='';
+    p.activityId='theory';
+    window.__BAUMAN_CORE_API?.save?.();
+    window.BAUMAN_MATH_E186_LESSON_FIRST.open('lesson');
+  });
   const pick=page.locator(`[data-e186-pick="lesson"][data-e186-id="${LESSON}"]`);
   await pick.waitFor({state:'visible',timeout:15000});
   await pick.click();
