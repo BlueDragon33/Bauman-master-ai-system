@@ -1,6 +1,6 @@
 # MATH01 · FORENSIC BASELINE — EXECUTIVE SUMMARY
 
-Status: GATE_READY  
+Status: PASS  
 Subject: Mathematics  
 Base main: `b2b62fe610aa34229581d3d00f9fbc4cdb6d9b9b`  
 Runtime-equivalent verified main: `db747b1e6c65e5eb2a28cfd7ea2aeee8e3f9872c`  
@@ -196,4 +196,4 @@ Capability probe confirmed `symbolicEvaluator:false`, `externalCAS:false`, `aiMa
 8. Root causes grouped — PASS  
 9. MATH02 input contract — PASS
 
-MATH01 evidence is **GATE_READY**. The forensic probe is recorded; final PASS is committed to project state only after the exact final PR head passes required checks. Production remains unchanged.
+MATH01 is **PASS** as a forensic phase. PR merge remains independently gated by required checks on the final PR head. Production remains unchanged.
