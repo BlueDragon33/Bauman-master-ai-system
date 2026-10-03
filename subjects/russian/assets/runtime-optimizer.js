@@ -4,6 +4,7 @@
   const CORE_DATA=['curriculum','lessons','grammar','grammar-path','vocab','mindmap','exercises','tests','simulations','speaking','handwriting','handwriting-listen-write','listen-write-lessons','listen-write-level-rules','writing','videos','knowledge-index'];
   const LIGHT_DATA=['curriculum','grammar','grammar-path','handwriting','handwriting-listen-write','writing','videos','knowledge-index'];
   const DATA_CACHE='russian-learning-data-v1';
+  const DATA_FETCH_TIMEOUT_MS=8000;
   let preparing=false, prepared=Number(localStorage.getItem('ru_offline_core_count')||0);
 
   function statusButton(){
@@ -18,6 +19,13 @@
     btn.dataset.online=online?'1':'0';btn.dataset.ready=ready?'1':'0';
     const label=preparing?'Đang chuẩn bị offline…':ready?(online?'Offline sẵn sàng':'Đang dùng offline'):(online?`Online · offline ${prepared}/${CORE_DATA.length}`:'Offline · dữ liệu chưa đủ');
     const span=btn.querySelector('span');if(span)span.textContent=label;btn.title=ready?'Bộ dữ liệu học bắt buộc đã được cache cho lần dùng offline tiếp theo.':'Bấm để chuẩn bị bộ dữ liệu học bắt buộc cho offline.';
+  }
+  async function fetchWithTimeout(url,options={},timeoutMs=DATA_FETCH_TIMEOUT_MS){
+    if(typeof AbortController!=='function')return fetch(url,options);
+    const controller=new AbortController();
+    const timer=setTimeout(()=>controller.abort(),timeoutMs);
+    try{return await fetch(url,{...options,signal:controller.signal});}
+    finally{clearTimeout(timer);}
   }
   async function countCached(names=CORE_DATA){
     if(!('caches'in window))return 0;
@@ -38,7 +46,7 @@
       try{
         const existing=await cache.match(url);
         if(existing&&!refresh){count++;continue;}
-        const res=await fetch(url,{cache:'no-store'});
+        const res=await fetchWithTimeout(url,{cache:'no-store'});
         if(res.ok){await cache.put(url,res.clone());count++;}
         else if(existing){count++;}
       }catch(_){if(await cache.match(url))count++;}

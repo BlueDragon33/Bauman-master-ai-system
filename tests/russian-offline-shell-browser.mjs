@@ -6,6 +6,16 @@ const BASE=process.env.BAUMAN_E2E_BASE_URL||'http://127.0.0.1:4173/';
 const OUT=process.env.BAUMAN_E2E_ARTIFACT_DIR||'artifacts/russian-offline-shell';
 fs.mkdirSync(OUT,{recursive:true});
 
+async function withTimeout(promise,timeoutMs,label){
+  let timer;
+  try{
+    return await Promise.race([
+      promise,
+      new Promise((_,reject)=>{timer=setTimeout(()=>reject(new Error(`${label} timed out after ${timeoutMs}ms`)),timeoutMs);})
+    ]);
+  }finally{if(timer)clearTimeout(timer);}
+}
+
 let browser;
 try{
   browser=await chromium.launch({headless:true,...(process.env.BAUMAN_CHROME_PATH?{executablePath:process.env.BAUMAN_CHROME_PATH}:{})});
@@ -23,22 +33,22 @@ try{
   const url=new URL('subjects/russian/index.html',BASE).href;
   await page.goto(url,{waitUntil:'domcontentloaded',timeout:30000});
   await page.waitForFunction(()=>!!window.RussianRuntimeOptimizer&&!!window.RussianCapabilityProgression,null,{timeout:30000});
-  await page.evaluate(async()=>{
+  await withTimeout(page.evaluate(async()=>{
     const reg=await navigator.serviceWorker.ready;
     if(!navigator.serviceWorker.controller){
       await new Promise(resolve=>navigator.serviceWorker.addEventListener('controllerchange',resolve,{once:true}));
     }
     await reg.update().catch(()=>{});
-  });
+  }),30000,'Russian service-worker readiness');
   await page.waitForFunction(()=>!!navigator.serviceWorker.controller,null,{timeout:15000});
   await page.waitForFunction(()=>window.BAUMAN_FOUNDATION_IDENTITY_REPORT!==undefined,null,{timeout:15000});
 
   // Explicitly exercise the product's "prepare offline core" flow before asserting
   // that all required learning data is available without a network.
-  const offlinePreparation=await page.evaluate(async()=>{
+  const offlinePreparation=await withTimeout(page.evaluate(async()=>{
     await window.RussianRuntimeOptimizer.prepareOfflineCore();
     return window.RussianRuntimeOptimizer.status();
-  });
+  }),120000,'Russian offline-core preparation');
   assert.equal(offlinePreparation.ready,true,'Russian offline core did not become ready');
   assert.equal(offlinePreparation.prepared,offlinePreparation.total,'Russian offline core count mismatch');
 
