@@ -3,8 +3,8 @@
   "subject": "math",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/subjects/math/MATH_MASTER_PROMPT.md",
-  "status": "MATH06_READY",
-  "activeModule": "MATH06",
+  "status": "MATH06_PASS_RC_READY",
+  "activeModule": null,
   "sequence": [
     "MATH01",
     "MATH02",
@@ -18,11 +18,12 @@
     "MATH02",
     "MATH03",
     "MATH04",
-    "MATH05"
+    "MATH05",
+    "MATH06"
   ],
   "needsRevalidation": [],
-  "lastValidatedSha": "251e2dc667087b323ef2edd2dc5182751f23fbca",
-  "currentHeadSha": "251e2dc667087b323ef2edd2dc5182751f23fbca",
+  "lastValidatedSha": "0c613f804f4cd459655cfbaa2b2fb8e7067bc2ac",
+  "currentHeadSha": "e99efd11ac13247b148cea25be17b98a945b79e1",
   "evidence": [
     "prompts/subjects/math/evidence/MATH_P1_EXECUTIVE_SUMMARY.md",
     "prompts/subjects/math/evidence/MATH_P1_BASELINE.json",
@@ -81,10 +82,17 @@
     "Development Fast CI run 37133184360: SUCCESS",
     "Universal Constitution Compliance run 37133184808: SUCCESS",
     "Future Interface System CI run 37133184434: SUCCESS",
-    "MATH05 product integration preserves shared shell ownership, capability boundaries and no mastery/academic writes; no production deployment"
+    "MATH05 product integration preserves shared shell ownership, capability boundaries and no mastery/academic writes; no production deployment",
+    "MATH06 exact runtime-tested RC 0c613f804f4cd459655cfbaa2b2fb8e7067bc2ac: PASS / RC READY",
+    "MATH06 terminal contract head e99efd11ac13247b148cea25be17b98a945b79e1: PASS",
+    "Math Learning App Gate run 37135215455: SUCCESS; MATH06 RC contract/browser and prior-module gates passed",
+    "Whole System Integration Gate run 37135215448: SUCCESS; direct + packaged acceptance passed",
+    "Development Fast CI run 37135215439: SUCCESS",
+    "Universal Constitution Compliance run 37135215702: SUCCESS",
+    "MATH06 productionDeployed=false; production handoff only"
   ],
   "blockers": [],
-  "nextAction": "Merge MATH05 PR #235 after metadata-only exact-head CI remains green; then execute MATH06 acceptance/hardening from MATH_P6_INPUT_CONTRACT.md.",
+  "nextAction": "Hand exact Math RC to the shared production release authority. MATH06 is complete; do not deploy production from the Math module.",
   "notes": [
     "MATH01 changed no production Math runtime or academic content.",
     "MATH02 PASS is evidence/contract-only; no Math production runtime/content mutation was performed.",
@@ -94,7 +102,8 @@
     "MATH03 deterministic evaluator is intentionally not a general CAS or formal proof verifier; unsupported cases degrade to INDETERMINATE.",
     "MATH04 must consume MATH03 contracts as provider boundaries rather than redefining them.",
     "MATH04 locked a capability registry/facade with safe parser, deterministic numeric/graph/matrix/simulation providers, fail-honest unbound CAS/geometry/vector/AI boundaries, typed provenance and no mastery/academic write authority.",
-    "MATH05 locked shared-platform learner surfaces, Math input, authoring/lifecycle, responsive/accessibility, offline packaging and incremental legacy integration; representative desktop/tablet/mobile product journey passed."
+    "MATH05 locked shared-platform learner surfaces, Math input, authoring/lifecycle, responsive/accessibility, offline packaging and incremental legacy integration; representative desktop/tablet/mobile product journey passed.",
+    "MATH06 closed Math-specific acceptance/hardening with exact RC identity, golden regression, browser/device/accessibility, offline/migration, performance/security, AI/authoring and production-smoke handoff; production release remains shared authority."
   ],
-  "testedRuntimeHead": "251e2dc667087b323ef2edd2dc5182751f23fbca"
+  "testedRuntimeHead": "0c613f804f4cd459655cfbaa2b2fb8e7067bc2ac"
 }
