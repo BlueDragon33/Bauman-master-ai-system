@@ -25,6 +25,9 @@ for(const marker of [
 for(const label of ['Tuần','Tháng','Gantt','Danh sách']) assert.ok(js.includes("'"+label+"'")||js.includes('>'+label+'<'),'view missing: '+label);
 
 assert.ok(js.includes('function topicState()'),'canonical research-topic projection missing');
+assert.ok(js.includes('function researchChecklistPanel()'),'canonical research checklist panel missing');
+assert.ok(js.includes('data-research-check="1"'),'canonical checklist evidence marker missing');
+assert.ok(js.includes('toggleCanonicalResearch'),'canonical checklist interaction missing');
 assert.ok(js.includes("return Array.isArray(v)?v.filter"),'persisted reference task/note filtering missing');
 assert.ok(js.includes("referenceIds=new Set(DEFAULT_NOTES"),'reference notes must be filtered from local state');
 assert.ok(js.includes("var referenceIds=new Set(REFERENCE_TASKS"),'reference tasks must be filtered from local state');
