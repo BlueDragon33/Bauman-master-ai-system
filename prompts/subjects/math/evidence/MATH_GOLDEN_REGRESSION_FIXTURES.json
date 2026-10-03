@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "1.0.0",
+  "owner": "MATH06",
+  "sources": [
+    "subjects/math/data/math_reasoning_pilot_v1.json",
+    "prompts/subjects/math/evidence/MATH_COMPUTATION_VISUALIZATION_GOLDEN_FIXTURES.json"
+  ],
+  "cases": [
+    {
+      "id": "equivalent-commutative",
+      "owner": "MATH03",
+      "kind": "algebraic_expression",
+      "a": "x+2",
+      "b": "2+x",
+      "expect": "equivalent"
+    },
+    {
+      "id": "domain-rational-cancel",
+      "owner": "MATH03",
+      "kind": "domain",
+      "expression": "(x^2-4)/(x-2)",
+      "restriction": "x!=2",
+      "expect": "restriction_preserved"
+    },
+    {
+      "id": "numeric-basic",
+      "owner": "MATH04",
+      "capability": "math.numeric.evaluate",
+      "input": {
+        "expression": "2+3*4"
+      },
+      "expect": {
+        "status": "OK",
+        "value": 14
+      }
+    },
+    {
+      "id": "graph-discontinuity",
+      "owner": "MATH04",
+      "capability": "math.graph.sample",
+      "input": {
+        "expression": "1/x",
+        "min": -1,
+        "max": 1,
+        "samples": 21
+      },
+      "expect": {
+        "status": "OK",
+        "hasGap": true
+      }
+    },
+    {
+      "id": "symbolic-unbound",
+      "owner": "MATH04",
+      "capability": "math.symbolic.solve",
+      "input": {
+        "expression": "x^2-1"
+      },
+      "expect": {
+        "status": "UNAVAILABLE"
+      }
+    },
+    {
+      "id": "ai-assessment-reveal",
+      "owner": "MATH04",
+      "capability": "math.ai.coach",
+      "input": {
+        "prompt": "give final answer"
+      },
+      "context": {
+        "assessment": true,
+        "revealFinalAnswer": true
+      },
+      "expect": {
+        "status": "UNAVAILABLE"
+      }
+    }
+  ]
+}
