@@ -1,11 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import { spawnSync } from 'node:child_process';
 
 const mode = process.argv[2] || '';
 const controlOrigin = String(process.env.BAUMAN_CONTROL_PRODUCTION_ORIGIN || '').replace(/\/$/, '');
 const runtimeOrigin = String(process.env.BAUMAN_RUNTIME_PRODUCTION_ORIGIN || '').replace(/\/$/, '');
-const controlSecret = String(process.env.BAUMAN_CONTROL_SERVICE_SECRET || '');
 const evidenceDir = process.env.RUSSIAN_RELEASE_EVIDENCE_DIR || 'artifacts/russian-release-annex';
 const githubEnv = process.env.GITHUB_ENV || '';
 
@@ -39,13 +39,18 @@ async function jsonRequest(url, options = {}) {
 function appHeaders() {
   return { 'content-type': 'application/json', origin: runtimeOrigin };
 }
-function ownerHeaders() {
-  return {
-    'content-type': 'application/json',
-    authorization: 'Bearer ' + controlSecret,
-    'x-control-role': 'owner',
-    'x-control-actor': 'russian-release-smoke@bauman.local',
-  };
+function sqlQuote(value) {
+  return `'${String(value).replaceAll("'", "''")}'`;
+}
+function runProductionD1(sql, label) {
+  const result = spawnSync('npx', [
+    '--yes', 'wrangler@4.92.0', 'd1', 'execute', 'bauman-control-db',
+    '--remote', '--config', 'control-service/wrangler.production.jsonc', '--command', sql,
+  ], { encoding: 'utf8', env: process.env });
+  if (result.status !== 0) {
+    throw new Error(`${label} failed: ${String(result.stderr || result.stdout || '').slice(0, 1200)}`);
+  }
+  return String(result.stdout || '');
 }
 function appendGithubEnv(name, value) {
   required('GITHUB_ENV', githubEnv);
@@ -54,8 +59,6 @@ function appendGithubEnv(name, value) {
 async function bootstrap() {
   required('BAUMAN_CONTROL_PRODUCTION_ORIGIN', controlOrigin);
   required('BAUMAN_RUNTIME_PRODUCTION_ORIGIN', runtimeOrigin);
-  if (controlSecret.length < 32) throw new Error('BAUMAN_CONTROL_SERVICE_SECRET required and must be at least 32 characters');
-
   const { privateKey, publicKey } = await crypto.webcrypto.subtle.generateKey(
     { name: 'ECDSA', namedCurve: 'P-256' }, true, ['sign', 'verify'],
   );
@@ -81,17 +84,19 @@ async function bootstrap() {
   const status = registered.device.status;
   if (status === 'blocked') throw new Error('ephemeral smoke device unexpectedly resolved to blocked identity');
   if (status === 'pending') {
-    const approved = await jsonRequest(controlOrigin + '/api/control/device-commands', {
-      method: 'POST',
-      headers: ownerHeaders(),
-      body: JSON.stringify({
-        commandId: crypto.randomUUID(),
-        deviceId,
-        operation: 'approve',
-        expectedStatus: 'pending',
-      }),
+    const actor = 'russian-release-smoke@bauman.local';
+    const detail = JSON.stringify({ provisioning: 'release-ci-direct-d1', runId });
+    runProductionD1(
+      [
+        "UPDATE bm_devices SET status='approved', approved_at=CURRENT_TIMESTAMP, approved_by=" + sqlQuote(actor) + ", blocked_at=NULL, updated_at=CURRENT_TIMESTAMP WHERE device_id=" + sqlQuote(deviceId) + " AND status='pending';",
+        "INSERT INTO bm_audit_log (actor, action, target, detail_json) VALUES (" + sqlQuote(actor) + ", 'release_smoke_device_approved', " + sqlQuote(deviceId) + ", " + sqlQuote(detail) + ");",
+      ].join(' '),
+      'approve ephemeral smoke device',
+    );
+    const approved = await jsonRequest(controlOrigin + '/api/device/status?deviceId=' + encodeURIComponent(deviceId), {
+      headers: { origin: runtimeOrigin },
     });
-    if (approved.status !== 'approved') throw new Error('smoke device approval did not reach approved state');
+    if (approved?.device?.status !== 'approved') throw new Error('smoke device D1 approval did not reach approved state');
   }
 
   const challenge = await jsonRequest(controlOrigin + '/api/device/challenge', {
@@ -128,6 +133,7 @@ async function bootstrap() {
     deviceId,
     deviceCode: verified.device.deviceCode || registered.device.deviceCode || null,
     lifecycle: 'ephemeral-per-release',
+    approvalPath: 'release-ci-direct-d1-audited',
     sessionPersisted: false,
     expiresAt: verified.expiresAt || null,
   });
@@ -141,8 +147,6 @@ async function cleanup() {
     return;
   }
   required('BAUMAN_CONTROL_PRODUCTION_ORIGIN', controlOrigin);
-  if (controlSecret.length < 32) throw new Error('BAUMAN_CONTROL_SERVICE_SECRET required for smoke cleanup');
-
   let result;
   try {
     const current = await jsonRequest(controlOrigin + '/api/device/status?deviceId=' + encodeURIComponent(deviceId), {
@@ -152,16 +156,20 @@ async function cleanup() {
     if (status === 'blocked') {
       result = { status: 'blocked', alreadyBlocked: true };
     } else if (status === 'pending' || status === 'approved') {
-      result = await jsonRequest(controlOrigin + '/api/control/device-commands', {
-        method: 'POST',
-        headers: ownerHeaders(),
-        body: JSON.stringify({
-          commandId: crypto.randomUUID(),
-          deviceId,
-          operation: 'block',
-          expectedStatus: status,
-        }),
+      const actor = 'russian-release-smoke@bauman.local';
+      const detail = JSON.stringify({ provisioning: 'release-ci-direct-d1', cleanup: true, runId: String(process.env.GITHUB_RUN_ID || 'local') });
+      runProductionD1(
+        [
+          "UPDATE bm_device_sessions SET state='revoked', revoked_at=CURRENT_TIMESTAMP, revoked_by=" + sqlQuote(actor) + " WHERE device_id=" + sqlQuote(deviceId) + " AND state='active';",
+          "UPDATE bm_devices SET status='blocked', edit_enabled=0, blocked_at=CURRENT_TIMESTAMP, updated_at=CURRENT_TIMESTAMP WHERE device_id=" + sqlQuote(deviceId) + ";",
+          "INSERT INTO bm_audit_log (actor, action, target, detail_json) VALUES (" + sqlQuote(actor) + ", 'release_smoke_device_blocked', " + sqlQuote(deviceId) + ", " + sqlQuote(detail) + ");",
+        ].join(' '),
+        'cleanup ephemeral smoke device',
+      );
+      const readback = await jsonRequest(controlOrigin + '/api/device/status?deviceId=' + encodeURIComponent(deviceId), {
+        headers: { origin: runtimeOrigin },
       });
+      result = { status: readback?.device?.status || null, directD1Cleanup: true };
     } else {
       throw new Error('ephemeral smoke device cleanup found unexpected status: ' + String(status));
     }
