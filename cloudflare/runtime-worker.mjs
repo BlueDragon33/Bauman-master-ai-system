@@ -14,7 +14,14 @@ function safeOrigin(value) {
   }
 }
 
+function runtimeAccessMode(env) {
+  return String(env.BAUMAN_ACCESS_MODE || 'standalone').trim().toLowerCase() === 'managed'
+    ? 'managed'
+    : 'standalone';
+}
+
 function deployment(env) {
+  const accessMode = runtimeAccessMode(env);
   return {
     ok: true,
     application: 'bauman-master-ai',
@@ -23,7 +30,8 @@ function deployment(env) {
     revision: env.BAUMAN_BUILD_REVISION || 'unknown',
     configFingerprint: env.BAUMAN_CONFIG_FINGERPRINT || 'unknown',
     controlOriginConfigured: Boolean(safeOrigin(env.BAUMAN_CONTROL_ORIGIN)),
-    serverSideLearningGate: true,
+    accessMode,
+    serverSideLearningGate: accessMode === 'managed',
     checkedAt: Date.now(),
   };
 }
@@ -169,7 +177,8 @@ export default {
       });
     }
 
-    if (protectedLearningAsset(url.pathname)) {
+    const accessMode = runtimeAccessMode(env);
+    if (accessMode === 'managed' && protectedLearningAsset(url.pathname)) {
       const token = cookieValue(request, RUNTIME_SESSION_COOKIE);
       const validation = await validateDeviceSession(request, controlOrigin, token);
       if (!validation.ok) return gateResponse(validation, true);
@@ -192,6 +201,7 @@ export default {
       .on('head', {
         element(element) {
           element.append(`<meta name="bauman-control-origin" content="${controlOrigin}">`, { html: true });
+          element.append(`<meta name="bauman-access-mode" content="${accessMode}">`, { html: true });
           element.append(`<meta name="bauman-deployment-channel" content="${env.BAUMAN_DEPLOYMENT_CHANNEL || 'unknown'}">`, { html: true });
           element.append(`<meta name="bauman-build-revision" content="${env.BAUMAN_BUILD_REVISION || 'unknown'}">`, { html: true });
         },

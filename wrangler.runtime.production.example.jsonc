@@ -6,6 +6,7 @@
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
   "vars": {
     "BAUMAN_CONTROL_ORIGIN": "__BAUMAN_CONTROL_PRODUCTION_ORIGIN__",
+    "BAUMAN_ACCESS_MODE": "__BAUMAN_ACCESS_MODE__",
     "BAUMAN_DEPLOYMENT_CHANNEL": "cloudflare-production",
     "BAUMAN_BUILD_REVISION": "__BAUMAN_BUILD_REVISION__",
     "BAUMAN_CONFIG_FINGERPRINT": "__BAUMAN_CONFIG_FINGERPRINT__"

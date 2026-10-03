@@ -176,6 +176,7 @@ materialize('control-service/wrangler.preview.example.jsonc', 'control-service/w
 });
 materialize('wrangler.runtime.preview.example.jsonc', 'wrangler.runtime.preview.jsonc', {
   '__BAUMAN_CONTROL_PREVIEW_ORIGIN__': controlOrigin,
+  '__BAUMAN_ACCESS_MODE__': accessMode(),
   '__BAUMAN_BUILD_REVISION__': buildRevision,
 });
 

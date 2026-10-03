@@ -189,6 +189,7 @@ materialize('control-service/wrangler.production.example.jsonc', 'control-servic
 });
 materialize('wrangler.runtime.production.example.jsonc', 'wrangler.runtime.production.jsonc', {
   '__BAUMAN_CONTROL_PRODUCTION_ORIGIN__': controlOrigin,
+  '__BAUMAN_ACCESS_MODE__': accessMode(),
   '__BAUMAN_BUILD_REVISION__': buildRevision,
   '__BAUMAN_CONFIG_FINGERPRINT__': configFingerprint,
 });
