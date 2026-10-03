@@ -230,6 +230,10 @@
           "mm": {
             "dimension": "length",
             "scale": 0.001
+          },
+          "kg": {
+            "dimension": "mass",
+            "scale": 1
           }
         }
       },
@@ -329,6 +333,193 @@
       "provenance": {
         "class": "CURATED",
         "source": "subjects/math/data/exercise_content.json"
+      }
+    }
+  ],
+  "pilotRequirements": {
+    "representativeProblemId": "math03:domain:rational-cancel-01",
+    "canonicalRefs": {
+      "chapterId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_",
+      "lessonId": "MATH-PREP-C08-logic_tap_hop_ham_so_va_-E18-MP09-T02-sets-functions",
+      "sourceExerciseId": "E18-M_P09_T02-E06"
+    },
+    "multiStepSolution": [
+      {
+        "stepId": "factor",
+        "before": "x^2-4",
+        "operation": "factor_difference_of_squares",
+        "after": "(x-2)*(x+2)",
+        "justification": "difference of squares",
+        "relation": "equivalent",
+        "expectedValidity": "VALID_EQUIVALENT_TRANSFORMATION"
+      },
+      {
+        "stepId": "preserve-domain",
+        "before": "(x-2)*(x+2)",
+        "operation": "cancel_common_factor_in_original_fraction",
+        "after": "x+2",
+        "justification": "cancellation is valid only for x != 2",
+        "relation": "implication",
+        "conditionRequired": true,
+        "conditionSatisfied": true,
+        "expectedValidity": "VALID_UNDER_CONDITION"
+      }
+    ],
+    "commonMisconception": {
+      "code": "DOMAIN_RESTRICTION_MISSING",
+      "learnerResponse": {
+        "expression": "x+2",
+        "excludedValues": []
+      },
+      "expectedStatus": "CONDITIONAL",
+      "remediation": "DOMAIN_ERROR"
+    },
+    "remediationAndRecheck": {
+      "repairedResponse": {
+        "expression": "2+x",
+        "excludedValues": [
+          "2"
+        ]
+      },
+      "expectedStatus": "ACCEPTED",
+      "independentRecheckRequired": true
+    },
+    "deterministicExpectedEvidence": {
+      "evidenceTier": "performance",
+      "dimensions": [
+        "symbolic_fluency",
+        "reasoning_justification"
+      ],
+      "masteryWrite": false,
+      "academicWrite": false
+    }
+  },
+  "goldenCases": [
+    {
+      "id": "algebra-alt-domain-ok",
+      "problemId": "math03:domain:rational-cancel-01",
+      "response": {
+        "expression": "2+x",
+        "excludedValues": [
+          "2"
+        ]
+      },
+      "expected": {
+        "status": "ACCEPTED",
+        "stepValidity": "VALID_EQUIVALENT_TRANSFORMATION",
+        "evidenceTier": "performance"
+      }
+    },
+    {
+      "id": "algebra-domain-missing",
+      "problemId": "math03:domain:rational-cancel-01",
+      "response": {
+        "expression": "x+2",
+        "excludedValues": []
+      },
+      "expected": {
+        "status": "CONDITIONAL",
+        "errorCode": "DOMAIN_RESTRICTION_MISSING",
+        "stepValidity": "VALID_UNDER_CONDITION"
+      }
+    },
+    {
+      "id": "algebra-unsupported",
+      "problemId": "math03:domain:rational-cancel-01",
+      "response": {
+        "expression": "(x^2-4)/(x-2)",
+        "excludedValues": [
+          "2"
+        ]
+      },
+      "expected": {
+        "status": "INDETERMINATE",
+        "errorCode": "ALGEBRA_UNSUPPORTED"
+      }
+    },
+    {
+      "id": "interval-union-order",
+      "problemId": "math03:interval:union-01",
+      "response": "[2,inf)U(-inf,1)",
+      "expected": {
+        "status": "ACCEPTED"
+      }
+    },
+    {
+      "id": "unit-conversion",
+      "problemId": "math03:unit:length-01",
+      "response": {
+        "value": 150,
+        "unit": "cm"
+      },
+      "expected": {
+        "status": "ACCEPTED"
+      }
+    },
+    {
+      "id": "unit-dimension-error",
+      "problemId": "math03:unit:length-01",
+      "response": {
+        "value": 1.5,
+        "unit": "kg"
+      },
+      "expected": {
+        "status": "REJECTED",
+        "errorCode": "UNIT_ERROR"
+      }
+    },
+    {
+      "id": "proof-no-authority",
+      "problemId": "math03:proof:rank-bound-e16r-t01-e06",
+      "response": {
+        "criterionEvidence": {
+          "hypotheses": true,
+          "column_bound": true,
+          "row_bound": true,
+          "conclusion": true
+        }
+      },
+      "context": {},
+      "expected": {
+        "status": "INDETERMINATE",
+        "errorCode": "REQUIRES_VALIDATED_REVIEW"
+      }
+    },
+    {
+      "id": "proof-partial",
+      "problemId": "math03:proof:rank-bound-e16r-t01-e06",
+      "response": {
+        "criterionEvidence": {
+          "hypotheses": true,
+          "column_bound": true,
+          "row_bound": false,
+          "conclusion": true
+        }
+      },
+      "context": {
+        "providerAuthority": "validated_human"
+      },
+      "expected": {
+        "status": "CONDITIONAL",
+        "errorCode": "PROOF_PARTIAL"
+      }
+    },
+    {
+      "id": "proof-all",
+      "problemId": "math03:proof:rank-bound-e16r-t01-e06",
+      "response": {
+        "criterionEvidence": {
+          "hypotheses": true,
+          "column_bound": true,
+          "row_bound": true,
+          "conclusion": true
+        }
+      },
+      "context": {
+        "providerAuthority": "validated_human"
+      },
+      "expected": {
+        "status": "ACCEPTED"
       }
     }
   ]
