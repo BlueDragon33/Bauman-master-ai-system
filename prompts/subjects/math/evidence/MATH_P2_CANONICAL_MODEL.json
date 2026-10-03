@@ -1,0 +1,251 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentRevision": "MATH02-DRAFT-1",
+  "status": "VALIDATING",
+  "owner": {
+    "curriculumTruth": "prompts/subjects/math/evidence/MATH_P2_CANONICAL_MODEL.json",
+    "compatibilitySources": [
+      "subjects/math/data/curriculum.json",
+      "subjects/math/data/discipline_spine.json",
+      "subjects/math/data/chapter_spine.json"
+    ],
+    "projections": [
+      "roadmap UI",
+      "E129/E186 hierarchy",
+      "subject manifest counts",
+      "frame files",
+      "indexes/search maps",
+      "legacy exports"
+    ],
+    "writeRule": "Only canonical model/migration tooling may author curriculum identity/order after migration activation."
+  },
+  "topology": {
+    "order": [
+      "stage",
+      "discipline",
+      "chapter",
+      "lesson"
+    ],
+    "optionalGrouping": [
+      "module",
+      "unit"
+    ],
+    "stableExistingIds": true,
+    "displayLanguageIndependentIdentity": true
+  },
+  "entityFamilies": {
+    "programOutcome": {
+      "prefix": "outcome:",
+      "required": [
+        "id",
+        "title",
+        "competencyIds",
+        "provenance"
+      ]
+    },
+    "competency": {
+      "prefix": "comp:",
+      "required": [
+        "id",
+        "title",
+        "dimension",
+        "evidenceRequirement",
+        "provenance"
+      ]
+    },
+    "concept": {
+      "prefix": "concept:",
+      "required": [
+        "id",
+        "title",
+        "domain",
+        "provenance"
+      ]
+    },
+    "definition": {
+      "prefix": "def:",
+      "required": [
+        "id",
+        "conceptId",
+        "statement",
+        "domain",
+        "assumptions",
+        "provenance"
+      ]
+    },
+    "notation": {
+      "prefix": "notation:",
+      "required": [
+        "id",
+        "symbol",
+        "meaning",
+        "scope",
+        "provenance"
+      ]
+    },
+    "assumption": {
+      "prefix": "assumption:",
+      "required": [
+        "id",
+        "statement",
+        "scope",
+        "provenance"
+      ]
+    },
+    "formula": {
+      "prefix": "formula:",
+      "required": [
+        "id",
+        "expression",
+        "variables",
+        "domain",
+        "assumptions",
+        "exactness",
+        "provenance"
+      ]
+    },
+    "theorem": {
+      "prefix": "theorem:",
+      "required": [
+        "id",
+        "hypotheses",
+        "conclusion",
+        "scope",
+        "dependencies",
+        "provenance"
+      ]
+    },
+    "representation": {
+      "prefix": "repr:",
+      "required": [
+        "id",
+        "conceptIds",
+        "kind",
+        "provenance"
+      ]
+    },
+    "workedProblem": {
+      "prefix": "problem:",
+      "required": [
+        "id",
+        "conceptIds",
+        "competencyIds",
+        "givens",
+        "unknowns",
+        "assumptions",
+        "strategy",
+        "verification",
+        "provenance"
+      ]
+    },
+    "misconception": {
+      "prefix": "misconception:",
+      "required": [
+        "id",
+        "category",
+        "causeHypothesis",
+        "targetCompetencyIds",
+        "remediationIds",
+        "provenance"
+      ]
+    },
+    "remediation": {
+      "prefix": "remediation:",
+      "required": [
+        "id",
+        "targetIds",
+        "actions",
+        "recheckEvidenceRequirement",
+        "provenance"
+      ]
+    }
+  },
+  "competencyDimensions": [
+    "conceptual_understanding",
+    "symbolic_fluency",
+    "procedural_calculation",
+    "representation_conversion",
+    "reasoning_justification",
+    "proof",
+    "problem_solving",
+    "modeling_application",
+    "numerical_computational_implementation",
+    "interpretation_communication",
+    "transfer"
+  ],
+  "evidenceSemantics": {
+    "exposure": "Learner was presented with or opened content.",
+    "progress": "Learner completed an interaction or workflow step.",
+    "performance": "Learner produced scored/validated evidence under an assessment contract.",
+    "mastery": "A policy projection over accepted performance evidence; never granted from self-report alone."
+  },
+  "prerequisiteGraph": {
+    "type": "DAG_WHERE_POSSIBLE",
+    "allowedEdgeKinds": [
+      "requires",
+      "supports",
+      "external_requires"
+    ],
+    "invalid": [
+      "self_edge",
+      "cycle",
+      "dangling_reference",
+      "retired_target_without_alias"
+    ]
+  },
+  "mathematicalTruth": {
+    "authorityOrder": [
+      "canonical_entity",
+      "validated_evaluator_contract",
+      "validated_compute_provider",
+      "visualization",
+      "ai_explanation",
+      "ui_text"
+    ],
+    "exactness": [
+      "exact",
+      "rounded",
+      "measured",
+      "numerical_approximation",
+      "asymptotic_estimate"
+    ],
+    "provenanceClasses": [
+      "AUTHORITATIVE",
+      "CURATED",
+      "GENERATED_CANDIDATE",
+      "DERIVED",
+      "LEGACY",
+      "UNKNOWN"
+    ],
+    "generatedCandidateCanonicalByDefault": false
+  },
+  "countSemantics": [
+    "actualRecordCount",
+    "plannedTargetCount",
+    "coverageCount",
+    "derivedIndexCount",
+    "legacyCompatibilityCount"
+  ],
+  "migration": {
+    "preserveLearnerState": true,
+    "aliasesDeterministic": true,
+    "identityChangesRequireMigration": true,
+    "idempotentPreferred": true,
+    "rollbackRequired": true
+  },
+  "retainedReality": {
+    "stages": 10,
+    "disciplines": 12,
+    "chapterSpineEntries": 56,
+    "auditedLiveLessonIds": 86,
+    "auditedContentBearingChapterIds": 17,
+    "unresolved": [
+      "theory_lecture_content whole-file record count must be measured by executable validator"
+    ]
+  },
+  "downstreamContracts": {
+    "MATH03": "May define reasoning/evaluation behavior but must reference canonical fact/entity IDs.",
+    "MATH04": "May provide computation/visualization but cannot override canonical truth.",
+    "MATH05": "May render/author projections but cannot become a second curriculum writer."
+  }
+}
