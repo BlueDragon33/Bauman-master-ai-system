@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import assert from 'node:assert/strict';
 const workflow=fs.readFileSync('.github/workflows/deploy-bauman-production.yml','utf8');
 const helper=fs.readFileSync('scripts/russian-release-annex-evidence.mjs','utf8');
+const smokeDevice=fs.readFileSync('scripts/russian-production-smoke-device.mjs','utf8');
 const runtimeWorker=fs.readFileSync('cloudflare/runtime-worker.mjs','utf8');
 const controlDeployment=fs.readFileSync('control-service/src/cloudflare-preview.ts','utf8');
 const controlTemplate=fs.readFileSync('control-service/wrangler.production.example.jsonc','utf8');
@@ -12,6 +13,7 @@ for(const marker of [
  'Record immutable deployment artifact identity',
  'Export Bauman production D1 backup before migration',
  'Apply migrations to Bauman production D1',
+ 'Bootstrap isolated Russian production smoke device session',
  'Verify Russian production identity, security, offline contract and content drift',
  'Run Russian production subject smoke browser acceptance',
  'Observe exact Russian production revision',
@@ -45,7 +47,14 @@ assert(helper.includes('OBSERVATION_PASS'),'observation gate missing');
 assert(workflow.includes('tests/russian-ru08-journeys-browser.mjs'),'production learner journey smoke missing');
 assert(workflow.includes('tests/russian-ru08-author-browser.mjs'),'production author journey smoke missing');
 assert(workflow.includes('tests/russian-offline-shell-browser.mjs'),'production offline browser smoke missing');
-assert(workflow.includes('BAUMAN_PRODUCTION_SMOKE_DEVICE_SESSION'),'isolated production smoke session is required');
+assert(workflow.includes('BAUMAN_CONTROL_SERVICE_SECRET'),'production release must authenticate smoke-device approval through control service');
+assert(workflow.includes('scripts/russian-production-smoke-device.mjs bootstrap'),'ephemeral production smoke-device bootstrap missing');
+assert(workflow.includes('scripts/russian-production-smoke-device.mjs cleanup'),'ephemeral production smoke-device cleanup missing');
+assert(workflow.includes('BAUMAN_E2E_DEVICE_SESSION: ${{ env.BAUMAN_PRODUCTION_SMOKE_DEVICE_SESSION }}'),'browser smoke must consume the run-scoped ephemeral device session');
+assert(!workflow.includes('secrets.BAUMAN_PRODUCTION_SMOKE_DEVICE_SESSION'),'release must not depend on an expiring pre-provisioned smoke session secret');
+assert(smokeDevice.includes("operation: 'approve'")&&smokeDevice.includes("expectedStatus: 'pending'"),'smoke bootstrap must use the owner device-command approval contract');
+assert(smokeDevice.includes("operation: 'block'"),'smoke cleanup must revoke smoke-device access through the canonical block command');
+assert(smokeDevice.includes("name: 'ECDSA'")&&smokeDevice.includes("namedCurve: 'P-256'"),'smoke bootstrap must prove the canonical P-256 device identity flow');
 assert(helper.includes('RUSSIAN_PRODUCTION_ISOLATED_WRITE_PROBE.json'),'isolated production write-probe evidence missing');
 assert(helper.includes('anonymousProtectedStatus')&&helper.includes('authenticatedProtectedStatus'),'production protected-data smoke must prove anonymous fail-closed and authenticated access');
 assert(helper.includes('configFingerprint'),'release helper must verify live production config fingerprint');

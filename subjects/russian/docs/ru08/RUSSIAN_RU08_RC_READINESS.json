@@ -11,7 +11,7 @@
     "Device Gate",
     "Content Review metadata service",
     "optional AI provider",
-    "pre-provisioned dedicated production smoke device session stored as GitHub environment secret for Release Annex only"
+    "Bauman Control service secret available to Release Annex so an ephemeral P-256 smoke device can be approved, verified, exercised, and revoked inside the exact release run"
   ],
   "warnings": [
     "open RU03 linguistic review debt remains non-authoritative",
@@ -57,10 +57,17 @@
   ],
   "securityBoundary": "Production runtime must permit same-origin microphone for Russian speaking while keeping camera/geolocation denied; release verification fails closed on policy regression.",
   "productionReleaseExternalPrerequisite": {
-    "name": "BAUMAN_PRODUCTION_SMOKE_DEVICE_SESSION",
-    "purpose": "Authenticate the dedicated isolated learner journey against server-side protected production Russian data; anonymous access must remain blocked.",
+    "name": "BAUMAN_CONTROL_SERVICE_SECRET",
+    "purpose": "Authorize the release-only owner control command that approves and later blocks the ephemeral P-256 smoke device used to prove protected production Russian journeys.",
     "scope": "bauman-production GitHub environment secret",
-    "rule": "Release blocks before production mutation when missing, expired, malformed, or not bound to an approved dedicated smoke device."
+    "rule": "Release blocks before production mutation when the control secret is unavailable. No expiring bm1.* session is stored as a long-lived GitHub secret; the session is minted inside the release run and revoked by blocking the smoke device during cleanup."
   },
-  "releaseArtifactIdentity": "Release preflight fingerprints runtime-dist plus Cloudflare control-worker and learning-worker dry-run artifacts after deterministic production packaging."
+  "releaseArtifactIdentity": "Release preflight fingerprints runtime-dist plus Cloudflare control-worker and learning-worker dry-run artifacts after deterministic production packaging.",
+  "productionSmokeSessionLifecycle": {
+    "mode": "ephemeral-per-release",
+    "bootstrapScript": "scripts/russian-production-smoke-device.mjs bootstrap",
+    "cleanupScript": "scripts/russian-production-smoke-device.mjs cleanup",
+    "cryptographicIdentity": "ECDSA P-256 challenge/sign/verify via the canonical Bauman Device Gate",
+    "persistenceRule": "Do not persist the bm1.* session token outside the workflow environment; retain only non-secret device/evidence metadata."
+  }
 }
