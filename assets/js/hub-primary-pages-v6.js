@@ -72,7 +72,7 @@
   function decorateResearch(){
     const host=q('#page-research .thesis-page')||q('#page-research .canva-research-page');
     if(!host)return false;
-    const checks=qa('input[type="checkbox"]',host);
+    const checks=qa('input[data-research-check="1"]',host);
     const done=checks.filter(x=>x.checked).length;
     const progress=checks.length?Math.round(done*100/checks.length):null;
     const files=qa('.file-pill',host).length;
