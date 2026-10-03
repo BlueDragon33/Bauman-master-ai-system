@@ -25,6 +25,8 @@ for(const token of [
   'subjects/specialization-elective/',
   'subjects/practice-workflow/',
   'Study-plan module routes PASS.',
+  'scripts/list-study-plan-runtime-routes.mjs',
+  'All manifest-driven study-plan runtime routes PASS',
   'subjects/entrepreneurship/data/curriculum.json',
   'Standalone learning-data access PASS.',
   'Bauman live Control + Runtime availability PASS.',

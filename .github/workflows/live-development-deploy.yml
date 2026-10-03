@@ -166,6 +166,27 @@ jobs:
 
           echo "Study-plan module routes PASS."
 
+          echo "Checking every manifest-driven study-plan runtime route..."
+          node scripts/list-study-plan-runtime-routes.mjs > /tmp/bauman-study-plan-routes.txt
+          ROUTE_COUNT="$(wc -l < /tmp/bauman-study-plan-routes.txt | tr -d ' ')"
+          if (( ROUTE_COUNT < 13 )); then
+            echo "::error::Expected at least 13 manifest-driven study-plan runtime routes; got $ROUTE_COUNT."
+            cat /tmp/bauman-study-plan-routes.txt || true
+            exit 1
+          fi
+          while IFS= read -r SUBJECT_PATH; do
+            [[ -n "$SUBJECT_PATH" ]] || continue
+            SAFE_NAME="$(printf '%s' "$SUBJECT_PATH" | tr '/-' '__')"
+            OUT_FILE="/tmp/bauman-live-all-$SAFE_NAME.html"
+            STATUS="$(curl --silent --show-error --location --output "$OUT_FILE" --write-out '%{http_code}' --max-time 20 "$BAUMAN_RUNTIME_PRODUCTION_ORIGIN/$SUBJECT_PATH" || true)"
+            if [[ "$STATUS" != "200" ]] || ! grep -Fqi '<html' "$OUT_FILE"; then
+              echo "::error::Manifest-driven study-plan route failed: $SUBJECT_PATH (HTTP $STATUS)"
+              head -c 1200 "$OUT_FILE" || true
+              exit 1
+            fi
+          done < /tmp/bauman-study-plan-routes.txt
+          echo "All manifest-driven study-plan runtime routes PASS ($ROUTE_COUNT routes)."
+
           echo "Checking standalone learning-data access..."
           DATA_STATUS="$(curl --silent --show-error --location --output /tmp/bauman-live-entrepreneurship-curriculum.json --write-out '%{http_code}' --max-time 15 "$BAUMAN_RUNTIME_PRODUCTION_ORIGIN/subjects/entrepreneurship/data/curriculum.json" || true)"
           if [[ "$DATA_STATUS" != "200" ]]; then
