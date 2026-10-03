@@ -152,6 +152,10 @@
     feedback.className='math-exercise-feedback '+(result.status==='ACCEPTED'?'correct':result.status==='INDETERMINATE'?'':'incorrect');
     feedback.innerHTML='<b>'+esc(result.status)+'</b><p>'+esc(reasoningMessage(result))+'</p>'+(result.remediationId?'<button type="button" data-exercise-review-step="'+esc(p?.remediationMapping?.reviewStepId||'understand')+'">Ôn lại phần liên quan →</button>':'');
     const detail={submissionId:submissionId(card),problemId:p.problemId,sourceExerciseId:p.sourceExerciseId||null,lessonId:p.canonicalLessonId,chapterId:p.canonicalChapterId,response,evaluation:result,mode:'guided_practice',hintLevel:0,problemRevision:cache[REASONING_SOURCE]?.data?.contentRevision||'',at:Date.now()};
+    const ledger=global.BAUMAN_MATH_REASONING_EVIDENCE;
+    if(ledger?.recordAttempt){
+      Promise.resolve(ledger.recordAttempt(detail)).catch(error=>console.warn('[MATH03] reasoning evidence persistence failed safely',error));
+    }
     document.dispatchEvent(new CustomEvent('bauman:math:problem-result',{detail}));
   }
   function feedbackReady(r){
