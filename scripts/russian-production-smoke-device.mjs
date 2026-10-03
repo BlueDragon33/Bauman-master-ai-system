@@ -76,6 +76,7 @@ async function bootstrap() {
     }),
   });
   if (registered?.device?.deviceId !== deviceId) throw new Error('registered smoke device identity mismatch');
+  appendGithubEnv('BAUMAN_PRODUCTION_SMOKE_DEVICE_ID', deviceId);
 
   const status = registered.device.status;
   if (status === 'blocked') throw new Error('ephemeral smoke device unexpectedly resolved to blocked identity');
@@ -119,7 +120,6 @@ async function bootstrap() {
   if (verified?.device?.status !== 'approved') throw new Error('ephemeral smoke device verification is not approved');
 
   appendGithubEnv('BAUMAN_PRODUCTION_SMOKE_DEVICE_SESSION', sessionToken);
-  appendGithubEnv('BAUMAN_PRODUCTION_SMOKE_DEVICE_ID', deviceId);
   writeEvidence('RUSSIAN_PRODUCTION_SMOKE_DEVICE_BOOTSTRAP.json', {
     schema: 'RUSSIAN_PRODUCTION_SMOKE_DEVICE_BOOTSTRAP_V1',
     status: 'PASS',
@@ -145,16 +145,26 @@ async function cleanup() {
 
   let result;
   try {
-    result = await jsonRequest(controlOrigin + '/api/control/device-commands', {
-      method: 'POST',
-      headers: ownerHeaders(),
-      body: JSON.stringify({
-        commandId: crypto.randomUUID(),
-        deviceId,
-        operation: 'block',
-        expectedStatus: 'approved',
-      }),
+    const current = await jsonRequest(controlOrigin + '/api/device/status?deviceId=' + encodeURIComponent(deviceId), {
+      headers: { origin: runtimeOrigin },
     });
+    const status = current?.device?.status;
+    if (status === 'blocked') {
+      result = { status: 'blocked', alreadyBlocked: true };
+    } else if (status === 'pending' || status === 'approved') {
+      result = await jsonRequest(controlOrigin + '/api/control/device-commands', {
+        method: 'POST',
+        headers: ownerHeaders(),
+        body: JSON.stringify({
+          commandId: crypto.randomUUID(),
+          deviceId,
+          operation: 'block',
+          expectedStatus: status,
+        }),
+      });
+    } else {
+      throw new Error('ephemeral smoke device cleanup found unexpected status: ' + String(status));
+    }
   } catch (error) {
     writeEvidence('RUSSIAN_PRODUCTION_SMOKE_DEVICE_CLEANUP.json', {
       schema: 'RUSSIAN_PRODUCTION_SMOKE_DEVICE_CLEANUP_V1',
