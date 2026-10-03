@@ -7,7 +7,7 @@
   "lifecycle": "DATA_TRUTH_RECONCILIATION",
   "baselineMainSha": "db747b1e6c65e5eb2a28cfd7ea2aeee8e3f9872c",
   "lastReviewedSha": "db747b1e6c65e5eb2a28cfd7ea2aeee8e3f9872c",
-  "workingBranch": "work/hub-governance-truth-20261003",
+  "workingBranch": "main",
   "canonicalRoutes": [
     "home",
     "roadmap",
@@ -62,5 +62,8 @@
   "activePacket": "prompts/hub/CURRENT_WORK_PACKET.json",
   "blockers": [],
   "externalBlockers": [],
-  "nextAction": "Codex executes HUB-TRUTH-20261003-001 against current main, then writes prompts/hub/CURRENT_EXECUTION_RESULT.json for Chat review."
+  "nextAction": "Codex executes prompts/hub/CURRENT_WORK_PACKET.json from current main; first reconfirm that Hub runtime owners have not changed since runtime baseline db747b1e6c65e5eb2a28cfd7ea2aeee8e3f9872c, then write prompts/hub/CURRENT_EXECUTION_RESULT.json for Chat review.",
+  "mainSyncStatus": "in_main",
+  "governanceMergedSha": "6ef5e8814ac841f927f079e18d5062274ee0d847",
+  "lastReviewedRuntimeSha": "db747b1e6c65e5eb2a28cfd7ea2aeee8e3f9872c"
 }
