@@ -60,4 +60,13 @@ for(const prior of [
  'tests/math-p4-capability-contract.mjs','tests/math-p5-product-contract.mjs'
 ])assert.ok(fs.existsSync(prior),'Missing prior-module gate '+prior);
 
+const productionWorkflow=fs.readFileSync('.github/workflows/deploy-bauman-production.yml','utf8');
+for(const token of [
+ 'tests/math-p6-rc-browser.mjs',
+ 'tests/math-p3-reasoning-browser.mjs',
+ 'artifacts/math-production-rc',
+ 'artifacts/math-production-reasoning',
+ 'BAUMAN_E2E_DEVICE_SESSION'
+])assert.ok(productionWorkflow.includes(token),'Shared production release must consume Math smoke profile: '+token);
+
 console.log(JSON.stringify({status:'PASS',check:'MATH06 RC contract',outputs:outputs.length,goldenCases:fixtures.cases.length,productionDeployed:false}));
