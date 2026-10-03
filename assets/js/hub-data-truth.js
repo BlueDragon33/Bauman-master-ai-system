@@ -49,14 +49,9 @@
     const subjectPrevious=a.__subjectsReferenceV1?.previousSubjects;
     const researchPrevious=a.__thesisReferenceV1?.previousResearch;
 
-    if(typeof subjectPrevious==='function'){
-      a.subjects=function(){
-        const out=subjectPrevious();
-        const host=document.getElementById('page-subjects');
-        mark(host,STATES.CURRENT,'hub.canonical.subjects');
-        return out;
-      };
-    }
+    // Subjects reference V1 is truth-safe under this adapter and keeps its UX/local overrides.
+    // Research remains temporarily restored to its canonical renderer until its reference workspace
+    // is normalized by the same packet.
     if(typeof researchPrevious==='function'){
       a.research=function(){
         const out=researchPrevious();
@@ -83,7 +78,7 @@
       release:RELEASE,
       patched:Boolean(a?.__hubDataTruthV1),
       states:Object.values(STATES),
-      subjectReferenceBypassed:typeof a?.__hubDataTruthV1?.subjectPrevious==='function',
+      subjectReferenceTruthSafe:Boolean(a?.__subjectsReferenceV1),
       researchReferenceBypassed:typeof a?.__hubDataTruthV1?.researchPrevious==='function',
       realZero:progress({x:0},'x').value===0,
       missingIsUnavailable:progress({},'x').status===STATES.UNAVAILABLE
