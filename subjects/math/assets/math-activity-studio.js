@@ -96,20 +96,33 @@
     return reasoningProblems().filter(p=>String(p?.canonicalLessonId||'')===id).slice(0,3);
   }
   function reasoningProblemById(id){return reasoningProblems().find(p=>String(p?.problemId||'')===String(id||''))||null}
-  function reasoningControl(p){
-    const type=String(p?.responseSchema?.type||'text');
-    if(type==='numeric')return '<label class="math-exercise-input"><span>Nhập giá trị</span><input type="number" step="any" data-math03-answer="value" autocomplete="off"></label>';
-    if(type==='algebraic_expression_with_domain')return '<label class="math-exercise-input"><span>Biểu thức rút gọn</span><input type="text" data-math03-answer="expression" autocomplete="off"></label><label class="math-exercise-input"><span>Giá trị loại trừ (phân cách bằng dấu phẩy)</span><input type="text" data-math03-answer="excludedValues" placeholder="Ví dụ: 2" autocomplete="off"></label>';
-    if(type==='unit_quantity'){
-      const units=Object.keys(p?.equivalencePolicy?.units||{});
-      return '<label class="math-exercise-input"><span>Giá trị</span><input type="number" step="any" data-math03-answer="value" autocomplete="off"></label><label class="math-exercise-input"><span>Đơn vị</span><select data-math03-answer="unit">'+units.map(u=>'<option value="'+esc(u)+'">'+esc(u)+'</option>').join('')+'</select></label>';
+  function lastReasoningAttempt(problemId){
+    const rows=global.BAUMAN_MATH_REASONING_EVIDENCE?.attemptsForProblem?.(problemId)||[];
+    return rows.length?rows[rows.length-1]:null;
+  }
+  function reasoningControl(p,attempt){
+    const type=String(p?.responseSchema?.type||'text'),response=attempt?.response||{};
+    const value=name=>esc(response&&typeof response==='object'?response[name]??'':response??'');
+    if(type==='numeric')return '<label class="math-exercise-input"><span>Nhập giá trị</span><input type="number" step="any" data-math03-answer="value" value="'+value('value')+'" autocomplete="off"></label>';
+    if(type==='algebraic_expression_with_domain'){
+      const excluded=Array.isArray(response?.excludedValues)?response.excludedValues.join(', '):'';
+      return '<label class="math-exercise-input"><span>Biểu thức rút gọn</span><input type="text" data-math03-answer="expression" value="'+value('expression')+'" autocomplete="off"></label><label class="math-exercise-input"><span>Giá trị loại trừ (phân cách bằng dấu phẩy)</span><input type="text" data-math03-answer="excludedValues" value="'+esc(excluded)+'" placeholder="Ví dụ: 2" autocomplete="off"></label>';
     }
-    if(type==='long_text')return '<label class="math-exercise-input"><span>Lập luận / chứng minh</span><textarea rows="5" data-math03-answer="text" autocomplete="off"></textarea></label>';
-    return '<label class="math-exercise-input"><span>Câu trả lời</span><input type="text" data-math03-answer="value" autocomplete="off"></label>';
+    if(type==='unit_quantity'){
+      const units=Object.keys(p?.equivalencePolicy?.units||{}),selected=String(response?.unit||'');
+      return '<label class="math-exercise-input"><span>Giá trị</span><input type="number" step="any" data-math03-answer="value" value="'+value('value')+'" autocomplete="off"></label><label class="math-exercise-input"><span>Đơn vị</span><select data-math03-answer="unit">'+units.map(u=>'<option value="'+esc(u)+'" '+(u===selected?'selected':'')+'>'+esc(u)+'</option>').join('')+'</select></label>';
+    }
+    if(type==='long_text')return '<label class="math-exercise-input"><span>Lập luận / chứng minh</span><textarea rows="5" data-math03-answer="text" autocomplete="off">'+value('text')+'</textarea></label>';
+    return '<label class="math-exercise-input"><span>Câu trả lời</span><input type="text" data-math03-answer="value" value="'+value('value')+'" autocomplete="off"></label>';
+  }
+  function reasoningFeedback(attempt,p){
+    const result=attempt?.evaluation;if(!result)return '';
+    const cls=result.status==='ACCEPTED'?' correct':result.status==='INDETERMINATE'?'':' incorrect';
+    return '<div class="math-exercise-feedback'+cls+'" data-math03-feedback aria-live="polite"><b>'+esc(result.status||'INDETERMINATE')+'</b><p>'+esc(reasoningMessage(result))+'</p>'+(result.remediationId?'<button type="button" data-exercise-review-step="'+esc(p?.remediationMapping?.reviewStepId||'understand')+'">Ôn lại phần liên quan →</button>':'')+'</div>';
   }
   function reasoningProblemCard(p){
-    const prov=String(p?.provenance?.class||'MATH03_PILOT');
-    return '<article class="math-activity-card math-exercise-card" data-math03-problem-id="'+esc(p.problemId||'')+'"><span class="role">MATH03 PILOT · '+esc(prov)+' · '+esc(p.evidenceType||'performance')+'</span><h4>'+esc(p.prompt||p.problemId||'Bài đánh giá')+'</h4><p>'+esc(clip((p.givens||[]).join(' · '),420))+'</p>'+reasoningControl(p)+'<div class="math-exercise-actions"><button type="button" data-math03-check>Kiểm tra theo contract</button></div><div class="math-exercise-feedback" data-math03-feedback aria-live="polite"></div></article>';
+    const prov=String(p?.provenance?.class||'MATH03_PILOT'),attempt=lastReasoningAttempt(p.problemId);
+    return '<article class="math-activity-card math-exercise-card" data-math03-problem-id="'+esc(p.problemId||'')+'"><span class="role">MATH03 PILOT · '+esc(prov)+' · '+esc(p.evidenceType||'performance')+'</span><h4>'+esc(p.prompt||p.problemId||'Bài đánh giá')+'</h4><p>'+esc(clip((p.givens||[]).join(' · '),420))+'</p>'+reasoningControl(p,attempt)+'<div class="math-exercise-actions"><button type="button" data-math03-check>Kiểm tra theo contract</button></div>'+(attempt?reasoningFeedback(attempt,p):'<div class="math-exercise-feedback" data-math03-feedback aria-live="polite"></div>')+'</article>';
   }
   function reasoningResponse(card,p){
     const type=String(p?.responseSchema?.type||'text');
