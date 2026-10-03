@@ -1,0 +1,182 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+
+const mode = process.argv[2] || '';
+const controlOrigin = String(process.env.BAUMAN_CONTROL_PRODUCTION_ORIGIN || '').replace(/\/$/, '');
+const runtimeOrigin = String(process.env.BAUMAN_RUNTIME_PRODUCTION_ORIGIN || '').replace(/\/$/, '');
+const controlSecret = String(process.env.BAUMAN_CONTROL_SERVICE_SECRET || '');
+const evidenceDir = process.env.RUSSIAN_RELEASE_EVIDENCE_DIR || 'artifacts/russian-release-annex';
+const githubEnv = process.env.GITHUB_ENV || '';
+
+function required(name, value) {
+  if (!value) throw new Error(name + ' required');
+  return value;
+}
+function base64Url(buffer) {
+  return Buffer.from(buffer).toString('base64url');
+}
+function sha256Hex(value) {
+  return crypto.createHash('sha256').update(value).digest('hex');
+}
+function canonicalPublicJwk(jwk) {
+  return JSON.stringify({ crv: 'P-256', kty: 'EC', x: jwk.x, y: jwk.y });
+}
+function writeEvidence(name, value) {
+  fs.mkdirSync(evidenceDir, { recursive: true });
+  fs.writeFileSync(path.join(evidenceDir, name), JSON.stringify(value, null, 2) + '\n');
+}
+async function jsonRequest(url, options = {}) {
+  const response = await fetch(url, options);
+  const text = await response.text();
+  let body = {};
+  try { body = JSON.parse(text); } catch {}
+  if (!response.ok) {
+    throw new Error(`${options.method || 'GET'} ${url} failed HTTP ${response.status}: ${body.code || text.slice(0, 300)}`);
+  }
+  return body;
+}
+function appHeaders() {
+  return { 'content-type': 'application/json', origin: runtimeOrigin };
+}
+function ownerHeaders() {
+  return {
+    'content-type': 'application/json',
+    authorization: 'Bearer ' + controlSecret,
+    'x-control-role': 'owner',
+    'x-control-actor': 'russian-release-smoke@bauman.local',
+  };
+}
+function appendGithubEnv(name, value) {
+  required('GITHUB_ENV', githubEnv);
+  fs.appendFileSync(githubEnv, `${name}=${value}\n`);
+}
+async function bootstrap() {
+  required('BAUMAN_CONTROL_PRODUCTION_ORIGIN', controlOrigin);
+  required('BAUMAN_RUNTIME_PRODUCTION_ORIGIN', runtimeOrigin);
+  if (controlSecret.length < 32) throw new Error('BAUMAN_CONTROL_SERVICE_SECRET required and must be at least 32 characters');
+
+  const { privateKey, publicKey } = await crypto.webcrypto.subtle.generateKey(
+    { name: 'ECDSA', namedCurve: 'P-256' }, true, ['sign', 'verify'],
+  );
+  const publicJwk = await crypto.webcrypto.subtle.exportKey('jwk', publicKey);
+  const deviceId = sha256Hex(canonicalPublicJwk(publicJwk));
+  const runId = String(process.env.GITHUB_RUN_ID || 'local');
+
+  const registered = await jsonRequest(controlOrigin + '/api/device/register', {
+    method: 'POST',
+    headers: appHeaders(),
+    body: JSON.stringify({
+      publicJwk,
+      deviceType: 'desktop',
+      platform: 'github-actions',
+      browser: 'release-smoke',
+      displayName: 'Russian Release Smoke',
+      label: 'release-smoke:' + runId,
+    }),
+  });
+  if (registered?.device?.deviceId !== deviceId) throw new Error('registered smoke device identity mismatch');
+
+  const status = registered.device.status;
+  if (status === 'blocked') throw new Error('ephemeral smoke device unexpectedly resolved to blocked identity');
+  if (status === 'pending') {
+    const approved = await jsonRequest(controlOrigin + '/api/control/device-commands', {
+      method: 'POST',
+      headers: ownerHeaders(),
+      body: JSON.stringify({
+        commandId: crypto.randomUUID(),
+        deviceId,
+        operation: 'approve',
+        expectedStatus: 'pending',
+      }),
+    });
+    if (approved.status !== 'approved') throw new Error('smoke device approval did not reach approved state');
+  }
+
+  const challenge = await jsonRequest(controlOrigin + '/api/device/challenge', {
+    method: 'POST',
+    headers: appHeaders(),
+    body: JSON.stringify({ deviceId }),
+  });
+  if (!challenge.challengeId || !challenge.signingInput) throw new Error('smoke device challenge incomplete');
+
+  const signature = await crypto.webcrypto.subtle.sign(
+    { name: 'ECDSA', hash: 'SHA-256' },
+    privateKey,
+    new TextEncoder().encode(challenge.signingInput),
+  );
+  const verified = await jsonRequest(controlOrigin + '/api/device/verify', {
+    method: 'POST',
+    headers: appHeaders(),
+    body: JSON.stringify({
+      deviceId,
+      challengeId: challenge.challengeId,
+      signature: base64Url(signature),
+    }),
+  });
+  const sessionToken = String(verified.sessionToken || '');
+  if (!/^bm1\.[A-Za-z0-9_-]{40,100}$/.test(sessionToken)) throw new Error('ephemeral smoke device session format invalid');
+  if (verified?.device?.status !== 'approved') throw new Error('ephemeral smoke device verification is not approved');
+
+  appendGithubEnv('BAUMAN_PRODUCTION_SMOKE_DEVICE_SESSION', sessionToken);
+  appendGithubEnv('BAUMAN_PRODUCTION_SMOKE_DEVICE_ID', deviceId);
+  writeEvidence('RUSSIAN_PRODUCTION_SMOKE_DEVICE_BOOTSTRAP.json', {
+    schema: 'RUSSIAN_PRODUCTION_SMOKE_DEVICE_BOOTSTRAP_V1',
+    status: 'PASS',
+    revision: process.env.GITHUB_SHA || null,
+    runId,
+    deviceId,
+    deviceCode: verified.device.deviceCode || registered.device.deviceCode || null,
+    lifecycle: 'ephemeral-per-release',
+    sessionPersisted: false,
+    expiresAt: verified.expiresAt || null,
+  });
+  console.log(JSON.stringify({ ok: true, status: 'PASS', deviceId, deviceCode: verified.device.deviceCode || null }));
+}
+
+async function cleanup() {
+  const deviceId = String(process.env.BAUMAN_PRODUCTION_SMOKE_DEVICE_ID || '');
+  if (!deviceId) {
+    console.log(JSON.stringify({ ok: true, status: 'NOOP', reason: 'smoke-device-not-created' }));
+    return;
+  }
+  required('BAUMAN_CONTROL_PRODUCTION_ORIGIN', controlOrigin);
+  if (controlSecret.length < 32) throw new Error('BAUMAN_CONTROL_SERVICE_SECRET required for smoke cleanup');
+
+  let result;
+  try {
+    result = await jsonRequest(controlOrigin + '/api/control/device-commands', {
+      method: 'POST',
+      headers: ownerHeaders(),
+      body: JSON.stringify({
+        commandId: crypto.randomUUID(),
+        deviceId,
+        operation: 'block',
+        expectedStatus: 'approved',
+      }),
+    });
+  } catch (error) {
+    writeEvidence('RUSSIAN_PRODUCTION_SMOKE_DEVICE_CLEANUP.json', {
+      schema: 'RUSSIAN_PRODUCTION_SMOKE_DEVICE_CLEANUP_V1',
+      status: 'FAIL',
+      revision: process.env.GITHUB_SHA || null,
+      deviceId,
+      reason: String(error?.message || error),
+    });
+    throw error;
+  }
+  if (result.status !== 'blocked') throw new Error('ephemeral smoke device cleanup did not reach blocked state');
+  writeEvidence('RUSSIAN_PRODUCTION_SMOKE_DEVICE_CLEANUP.json', {
+    schema: 'RUSSIAN_PRODUCTION_SMOKE_DEVICE_CLEANUP_V1',
+    status: 'PASS',
+    revision: process.env.GITHUB_SHA || null,
+    deviceId,
+    finalStatus: result.status,
+    sessionRevokedByDeviceBlock: true,
+  });
+  console.log(JSON.stringify({ ok: true, status: 'PASS', deviceId, finalStatus: result.status }));
+}
+
+if (mode === 'bootstrap') await bootstrap();
+else if (mode === 'cleanup') await cleanup();
+else throw new Error('mode must be bootstrap or cleanup');
