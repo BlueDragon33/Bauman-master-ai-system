@@ -1,10 +1,10 @@
 {
   "schemaVersion": "1.0.0",
   "owner": "MATH06",
-  "status": "VALIDATING",
+  "status": "PASS_RC_READY",
   "baseMainSha": "42c61ea58070530cad309a1054eee9dfc3abcd55",
-  "exactRcSha": null,
-  "runtimeTestedHead": null,
+  "exactRcSha": "0c613f804f4cd459655cfbaa2b2fb8e7067bc2ac",
+  "runtimeTestedHead": "0c613f804f4cd459655cfbaa2b2fb8e7067bc2ac",
   "contentIdentity": {
     "subjectId": "math",
     "schema": "subject-v7",
@@ -43,5 +43,14 @@
     "Remote AI/CAS/geometry/vector providers are not bound and must remain safely unavailable.",
     "Shared production/admin lifecycle, CSP and deployment preflight remain outside Math-module authority.",
     "Accessibility evidence is critical-journey based and is not a full WCAG certification."
-  ]
+  ],
+  "acceptanceContractHead": "e99efd11ac13247b148cea25be17b98a945b79e1",
+  "acceptanceEvidence": {
+    "mathLearningAppGateRunId": 37135215455,
+    "wholeSystemIntegrationRunId": 37135215448,
+    "developmentFastCiRunId": 37135215439,
+    "constitutionRunId": 37135215702,
+    "terminalContractResult": "SUCCESS",
+    "directAndPackagedAcceptance": "SUCCESS"
+  }
 }
