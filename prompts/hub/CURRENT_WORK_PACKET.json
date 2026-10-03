@@ -1,7 +1,7 @@
 {
   "packetId": "HUB-TRUTH-20261003-001",
-  "revision": 1,
-  "status": "READY_FOR_CODEX",
+  "revision": 2,
+  "status": "IN_PROGRESS",
   "userIntent": "Continue the Bauman Hub carefully and continuously; fix all Chat-owned work first, then hand off only the runtime work that genuinely requires Codex.",
   "objective": "Remove mock/stale learner-facing truth from the five Hub primary routes, introduce explicit data-truth handling for missing/stale/local values, and rewrite regression so it protects truth rather than reference samples.",
   "baselinePolicy": {
@@ -57,7 +57,9 @@
     "tests/hub-data-truth-browser.mjs",
     "prompts/hub/HUB_SHARED_STATE.json",
     "prompts/hub/CURRENT_WORK_PACKET.json",
-    "prompts/hub/CURRENT_EXECUTION_RESULT.json"
+    "prompts/hub/CURRENT_EXECUTION_RESULT.json",
+    "tests/hub-readable-typography-v1-browser.mjs",
+    ".github/workflows/system-integration-ci.yml"
   ],
   "forbiddenPaths": [
     "subjects/**",
@@ -189,5 +191,20 @@
   },
   "releasePolicy": "No merge until exact-head static + browser acceptance passes. No production deployment from this packet. Production remains a separate explicit release gate.",
   "rollbackNotes": "Rollback target is main@db747b1e6c65e5eb2a28cfd7ea2aeee8e3f9872c for runtime changes; preserve any later unrelated main commits by reverting only the packet merge if needed.",
-  "externalBlockers": []
+  "externalBlockers": [],
+  "scopeExpansions": [
+    {
+      "revision": 2,
+      "reason": "Truth-safe Research correctly removes seeded Thesis event/AI rows, exposing a regression test that assumed optional sample content was mandatory. The new hub-data-truth tests also need an existing CI execution path.",
+      "paths": [
+        "tests/hub-readable-typography-v1-browser.mjs",
+        ".github/workflows/system-integration-ci.yml"
+      ],
+      "invariants": [
+        "Do not weaken typography thresholds for content that exists.",
+        "When optional content is unavailable, assert an explicit readable unavailable state instead of requiring fake rows.",
+        "Run hub-data-truth static/browser tests in the existing Whole System Integration workflow."
+      ]
+    }
+  ]
 }
