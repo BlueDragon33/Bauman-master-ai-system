@@ -10,10 +10,15 @@ const mapped = [];
 const integrity = [];
 
 for (const subclient of contract.subclients ?? []) {
-  if (!subclient.sourcePath) continue;
-  const root = subclient.sourcePath;
+  const contractRoot = subclient.sourcePath ? String(subclient.sourcePath).replace(/^\/+|\/+$/g,'') : null;
+  const conventionalRoot = `subjects/${subclient.id}`;
+  const root = contractRoot || conventionalRoot;
   const manifestPath = path.join(root,'subject-manifest.json');
-  assert.ok(fs.existsSync(manifestPath), `Missing manifest for subclient ${subclient.id}: ${manifestPath}`);
+  if (!fs.existsSync(manifestPath)) {
+    // Independent subclients may be repository-only and have no local runtime proxy.
+    if (!subclient.sourcePath && subclient.repository) continue;
+    assert.fail(`Missing manifest for subclient ${subclient.id}: ${manifestPath}`);
+  }
 
   const manifest = JSON.parse(fs.readFileSync(manifestPath,'utf8'));
   assert.equal(manifest.id, subclient.id, `Manifest id mismatch for ${subclient.id}`);
@@ -40,7 +45,10 @@ for (const subclient of contract.subclients ?? []) {
 
   const normalizedSource = String(root).replace(/^\/+|\/+$/g,'');
   const normalizedRuntime = String(studyPlan.runtimePath || '').replace(/^\/+|\/+$/g,'');
-  assert.equal(normalizedRuntime, normalizedSource, `runtimePath/sourcePath mismatch for ${subclient.id}`);
+  assert.equal(normalizedRuntime, normalizedSource, `runtimePath/local runtime root mismatch for ${subclient.id}`);
+  if (contractRoot) {
+    assert.equal(normalizedRuntime, contractRoot, `runtimePath/sourcePath mismatch for ${subclient.id}`);
+  }
 
   const localIds = new Set();
   for (const courseId of studyPlan.courseIds) {
