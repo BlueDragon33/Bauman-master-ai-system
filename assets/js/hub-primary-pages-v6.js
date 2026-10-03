@@ -30,7 +30,8 @@
     const stage=s.subjectStage||'prepare';
     const subjectCards=qa('.subject-card',host);
     const courseCards=qa('.subject-course-list .course',host);
-    const progress=pct(s.progress?.[current.id]);
+    const truth=window.BAUMAN_HUB_TRUTH;
+    const progress=truth?truth.progress(s.progress||{},current.id,{source:'hub.state.progress'}):{status:Object.prototype.hasOwnProperty.call(s.progress||{},current.id)?'CURRENT':'UNAVAILABLE',value:Object.prototype.hasOwnProperty.call(s.progress||{},current.id)?pct(s.progress[current.id]):null};
     prependHero(host,hero({
       eyebrow:'Learning workspace',
       title:'Môn học & năng lực',
@@ -38,7 +39,7 @@
       kpis:[
         {value:subjectCards.length,label:'môn ở giai đoạn'},
         {value:courseCards.length,label:'khối nội dung đang thấy'},
-        {value:`${progress}%`,label:'tiến độ môn chọn'},
+        {value:Number.isFinite(progress.value)?`${progress.value}%`:'—',label:progress.status==='UNAVAILABLE'?'chưa có dữ liệu tiến độ':'tiến độ môn chọn'},
         {value:String(stage).toUpperCase(),label:'giai đoạn'}
       ]
     }));
@@ -73,7 +74,7 @@
     if(!host)return false;
     const checks=qa('input[type="checkbox"]',host);
     const done=checks.filter(x=>x.checked).length;
-    const progress=checks.length?Math.round(done*100/checks.length):0;
+    const progress=checks.length?Math.round(done*100/checks.length):null;
     const files=qa('.file-pill',host).length;
     const topic=S().researchTopic||'ugv';
     prependHero(host,hero({
@@ -82,7 +83,7 @@
       description:'Theo dõi câu hỏi nghiên cứu, dữ liệu, phần cứng, rủi ro và mốc НИР → ВКР trong cùng một không gian làm việc.',
       kpis:[
         {value:`${done}/${checks.length}`,label:'việc hoàn thành'},
-        {value:`${progress}%`,label:'tiến độ checklist'},
+        {value:Number.isFinite(progress)?`${progress}%`:'—',label:checks.length?'checklist LOCAL_HUB':'chưa có checklist LOCAL_HUB'},
         {value:files,label:'tệp đính kèm'},
         {value:String(topic).toUpperCase(),label:'hướng nghiên cứu'}
       ]
