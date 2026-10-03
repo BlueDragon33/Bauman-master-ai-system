@@ -4,13 +4,15 @@
  */
 (function mathActivityStudio(global){
   'use strict';
-  const RELEASE='MATH_ACTIVITY_STUDIO_V1';
+  const RELEASE='MATH_ACTIVITY_STUDIO_V2_MATH03_PILOT';
   const $=(s,r=document)=>r.querySelector(s);
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const clip=(s,n=420)=>{s=String(s??'').replace(/\s+/g,' ').trim();return s.length>n?s.slice(0,n-1)+'…':s};
   const THEORY_SOURCE='data/theory_lecture_content.json';
+  const REASONING_SOURCE='data/math_reasoning_pilot_v1.json';
   let timer=0,loading=null;
   const cache={};
+  const reasoningDrafts={};
 
   const SOURCES={
     exercises:[['exercise','data/exercise_content.json'],['question','data/question_bank_content.json']],
@@ -57,7 +59,7 @@
   }
   function load(){
     if(loading)return loading;
-    const all=[...new Set([THEORY_SOURCE,...Object.values(SOURCES).flat().map(x=>x[1])])];
+    const all=[...new Set([THEORY_SOURCE,REASONING_SOURCE,...Object.values(SOURCES).flat().map(x=>x[1])])];
     loading=Promise.all(all.map(fetchJson)).then(()=>cache);return loading;
   }
 
@@ -85,6 +87,95 @@
       clearTimeout(el._timer);
       el._timer=setTimeout(()=>{el.style.opacity='0'},1800);
     }else console.info('[Math Activity Studio]',message);
+  }
+  function reasoningProblems(){
+    const raw=cache[REASONING_SOURCE]?.data;
+    return Array.isArray(raw?.problems)?raw.problems:[];
+  }
+  function reasoningProblemsForLesson(){
+    const id=lessonId();
+    return reasoningProblems().filter(p=>String(p?.canonicalLessonId||'')===id).slice(0,3);
+  }
+  function reasoningProblemById(id){return reasoningProblems().find(p=>String(p?.problemId||'')===String(id||''))||null}
+  function captureReasoningDraft(card){
+    const id=String(card?.dataset?.math03ProblemId||'');if(!id)return;
+    const p=reasoningProblemById(id);if(!p)return;
+    reasoningDrafts[id]=reasoningResponse(card,p);
+  }
+  function lastReasoningAttempt(problemId){
+    const rows=global.BAUMAN_MATH_REASONING_EVIDENCE?.attemptsForProblem?.(problemId)||[];
+    return rows.length?rows[rows.length-1]:null;
+  }
+  function reasoningControl(p,attempt){
+    const type=String(p?.responseSchema?.type||'text'),response=attempt?.response||reasoningDrafts[p.problemId]||{};
+    const value=name=>esc(response&&typeof response==='object'?response[name]??'':response??'');
+    if(type==='numeric')return '<label class="math-exercise-input"><span>Nhập giá trị</span><input type="number" step="any" data-math03-answer="value" value="'+value('value')+'" autocomplete="off"></label>';
+    if(type==='algebraic_expression_with_domain'){
+      const excluded=Array.isArray(response?.excludedValues)?response.excludedValues.join(', '):'';
+      return '<label class="math-exercise-input"><span>Biểu thức rút gọn</span><input type="text" data-math03-answer="expression" value="'+value('expression')+'" autocomplete="off"></label><label class="math-exercise-input"><span>Giá trị loại trừ (phân cách bằng dấu phẩy)</span><input type="text" data-math03-answer="excludedValues" value="'+esc(excluded)+'" placeholder="Ví dụ: 2" autocomplete="off"></label>';
+    }
+    if(type==='unit_quantity'){
+      const units=Object.keys(p?.equivalencePolicy?.units||{}),selected=String(response?.unit||'');
+      return '<label class="math-exercise-input"><span>Giá trị</span><input type="number" step="any" data-math03-answer="value" value="'+value('value')+'" autocomplete="off"></label><label class="math-exercise-input"><span>Đơn vị</span><select data-math03-answer="unit">'+units.map(u=>'<option value="'+esc(u)+'" '+(u===selected?'selected':'')+'>'+esc(u)+'</option>').join('')+'</select></label>';
+    }
+    if(type==='long_text')return '<label class="math-exercise-input"><span>Lập luận / chứng minh</span><textarea rows="5" data-math03-answer="text" autocomplete="off">'+value('text')+'</textarea></label>';
+    return '<label class="math-exercise-input"><span>Câu trả lời</span><input type="text" data-math03-answer="value" value="'+value('value')+'" autocomplete="off"></label>';
+  }
+  function reasoningFeedback(attempt,p){
+    const result=attempt?.evaluation;if(!result)return '';
+    const cls=result.status==='ACCEPTED'?' correct':result.status==='INDETERMINATE'?'':' incorrect';
+    return '<div class="math-exercise-feedback'+cls+'" data-math03-feedback aria-live="polite"><b>'+esc(result.status||'INDETERMINATE')+'</b><p>'+esc(reasoningMessage(result))+'</p>'+(result.remediationId?'<button type="button" data-exercise-review-step="'+esc(p?.remediationMapping?.reviewStepId||'understand')+'">Ôn lại phần liên quan →</button>':'')+'</div>';
+  }
+  function reasoningProblemCard(p){
+    const prov=String(p?.provenance?.class||'MATH03_PILOT'),attempt=lastReasoningAttempt(p.problemId);
+    return '<article class="math-activity-card math-exercise-card" data-math03-problem-id="'+esc(p.problemId||'')+'"><span class="role">MATH03 PILOT · '+esc(prov)+' · '+esc(p.evidenceType||'performance')+'</span><h4>'+esc(p.prompt||p.problemId||'Bài đánh giá')+'</h4><p>'+esc(clip((p.givens||[]).join(' · '),420))+'</p>'+reasoningControl(p,attempt)+'<div class="math-exercise-actions"><button type="button" data-math03-check>Kiểm tra theo contract</button></div>'+(attempt?reasoningFeedback(attempt,p):'<div class="math-exercise-feedback" data-math03-feedback aria-live="polite"></div>')+'</article>';
+  }
+  function reasoningResponse(card,p){
+    const type=String(p?.responseSchema?.type||'text');
+    const val=name=>card.querySelector('[data-math03-answer="'+name+'"]')?.value;
+    if(type==='numeric')return val('value');
+    if(type==='algebraic_expression_with_domain')return{expression:String(val('expression')||'').trim(),excludedValues:String(val('excludedValues')||'').split(/[,;]+/).map(x=>x.trim()).filter(Boolean)};
+    if(type==='unit_quantity')return{value:val('value'),unit:val('unit')};
+    if(type==='long_text')return{text:String(val('text')||'')};
+    return val('value');
+  }
+  function responsePresent(response){
+    if(response===undefined||response===null)return false;
+    if(typeof response==='string')return response.trim().length>0;
+    if(typeof response==='object'){
+      if(Object.prototype.hasOwnProperty.call(response,'expression'))return String(response.expression||'').trim().length>0;
+      if(Object.prototype.hasOwnProperty.call(response,'value'))return String(response.value??'').trim().length>0;
+      if(Object.prototype.hasOwnProperty.call(response,'text'))return String(response.text||'').trim().length>0;
+    }
+    return true;
+  }
+  function submissionId(card){
+    if(card.dataset.mathSubmissionId)return card.dataset.mathSubmissionId;
+    const id=global.crypto?.randomUUID?.()||('math03-'+Date.now()+'-'+Math.random().toString(36).slice(2));
+    card.dataset.mathSubmissionId=id;return id;
+  }
+  function reasoningMessage(result){
+    if(result.status==='ACCEPTED')return 'Đạt theo evaluator contract. Đây là performance evidence, chưa phải mastery.';
+    if(result.status==='CONDITIONAL')return 'Phần biến đổi có thể đúng nhưng điều kiện/miền chưa được bảo toàn đầy đủ.';
+    if(result.status==='REJECTED')return 'Chưa đạt theo evaluator contract. Hãy sửa đúng lỗi được chỉ ra rồi thử một lần mới.';
+    if(result.errorCode==='REQUIRES_VALIDATED_REVIEW')return 'Bài proof/reasoning cần human hoặc formal verifier đã được xác thực; hệ thống không tự chấm giả.';
+    return 'Evaluator không đủ authority/capability để kết luận an toàn. Kết quả được giữ ở trạng thái INDETERMINATE.';
+  }
+  function checkReasoningProblem(button){
+    const card=button.closest('[data-math03-problem-id]'),feedback=card&&card.querySelector('[data-math03-feedback]');
+    if(!card||!feedback)return;
+    const p=reasoningProblemById(card.dataset.math03ProblemId),evaluator=global.BAUMAN_MATH_REASONING_EVALUATOR;
+    if(!p||!evaluator?.evaluate){toast('MATH03 evaluator chưa sẵn sàng.');return}
+    const response=reasoningResponse(card,p);if(!responsePresent(response)){toast('Hãy nhập câu trả lời trước.');return}
+    const result=evaluator.evaluate(p,response,{providerAuthority:'learner_submission'});
+    feedback.className='math-exercise-feedback '+(result.status==='ACCEPTED'?'correct':result.status==='INDETERMINATE'?'':'incorrect');
+    feedback.innerHTML='<b>'+esc(result.status)+'</b><p>'+esc(reasoningMessage(result))+'</p>'+(result.remediationId?'<button type="button" data-exercise-review-step="'+esc(p?.remediationMapping?.reviewStepId||'understand')+'">Ôn lại phần liên quan →</button>':'');
+    const detail={submissionId:submissionId(card),problemId:p.problemId,sourceExerciseId:p.sourceExerciseId||null,lessonId:p.canonicalLessonId,chapterId:p.canonicalChapterId,response,evaluation:result,mode:'guided_practice',hintLevel:0,problemRevision:cache[REASONING_SOURCE]?.data?.contentRevision||'',at:Date.now()};
+    const ledger=global.BAUMAN_MATH_REASONING_EVIDENCE;
+    if(ledger?.recordAttempt){
+      Promise.resolve(ledger.recordAttempt(detail)).catch(error=>console.warn('[MATH03] reasoning evidence persistence failed safely',error));
+    }
+    document.dispatchEvent(new CustomEvent('bauman:math:problem-result',{detail}));
   }
   function feedbackReady(r){
     if(!r||typeof r!=='object')return false;
@@ -184,11 +275,14 @@
     const companion=[];
     (SOURCES[act]||[]).forEach(([kind,path])=>{const c=cache[path];if(c?.data)matched(kind,c.data).slice(0,6).forEach(r=>companion.push(companionCard(kind,r)))});
     const fallback=roleSlides().map(slideCard);
+    const pilot=act==='exercises'?reasoningProblemsForLesson().map(reasoningProblemCard):[];
     const reviewEvidence=act==='review'?reviewEvidenceCards():[];
-    const cards=act==='review'?reviewEvidence:(companion.length?companion:fallback);
+    const baseCards=companion.length?companion:fallback;
+    const cards=act==='review'?reviewEvidence:(pilot.length?[...pilot,...baseCards]:baseCards);
     const id=lessonId(),ch=chapterId();
-    const sourceHtml=statuses.map(x=>`<span class="math-activity-source ${x.match?'live':'fallback'}"><i></i>${esc(x.path.replace('data/',''))}: ${x.count} records · ${x.match} match</span>`).join('')+`<span class="math-activity-source ${fallback.length?'live':'fallback'}"><i></i>theory embedded: ${fallback.length} semantic slide</span>`;
-    const sourceMode=act==='review'?'LESSON_CHECK_EVIDENCE':companion.length?'COMPANION_CANONICAL':'EMBEDDED_THEORY_FALLBACK';
+    const reasoningSource=cache[REASONING_SOURCE],reasoningMatch=act==='exercises'?reasoningProblemsForLesson().length:0;
+    const sourceHtml=statuses.map(x=>`<span class="math-activity-source ${x.match?'live':'fallback'}"><i></i>${esc(x.path.replace('data/',''))}: ${x.count} records · ${x.match} match</span>`).join('')+`<span class="math-activity-source ${reasoningMatch?'live':'fallback'}"><i></i>math_reasoning_pilot_v1.json: ${reasoningProblems().length} contracts · ${reasoningMatch} match</span><span class="math-activity-source ${fallback.length?'live':'fallback'}"><i></i>theory embedded: ${fallback.length} semantic slide</span>`;
+    const sourceMode=act==='review'?'LESSON_CHECK_EVIDENCE':pilot.length?'MATH03_PILOT':companion.length?'COMPANION_CANONICAL':'EMBEDDED_THEORY_FALLBACK';
     host.innerHTML=`<header class="math-activity-hero"><div><span class="math-activity-kicker">${esc(meta.kicker)}</span><h2>${esc(meta.title)}</h2><p>${esc(meta.desc)}</p></div><div class="math-activity-hero-actions"><button class="math-activity-btn primary" data-activity-action="theory">← Bài lý thuyết</button><button class="math-activity-btn" data-activity-action="lab">∿ Math Lab</button><button class="math-activity-btn" data-activity-action="control">☷ Nội dung</button></div></header><div class="math-activity-source-strip">${sourceHtml}</div><div class="math-activity-grid"><section class="math-activity-panel"><div class="math-activity-panel-head"><h3>Nội dung khả dụng</h3><span>${cards.length} mục · ${sourceMode}</span></div><div class="math-activity-cards">${cards.length?cards.join(''):`<div class="math-activity-empty">${act==='review'?'Hiện chưa có nội dung cần ôn. Lesson Check chưa ghi nhận điểm yếu nào cho bài hiện tại.':'Chưa có companion record và bài hiện tại cũng chưa có slide semantic phù hợp. Studio không tự sinh nội dung thay thế.'}</div>`}</div></section><aside class="math-activity-panel"><div class="math-activity-panel-head"><h3>Ngữ cảnh</h3><span>read-only</span></div><div class="math-activity-side"><div class="math-activity-status"><b>${esc(id||'Chưa gắn lessonId')}</b><span>${esc(ch||'Chưa xác định chapterId')}</span><strong>${sourceMode}</strong></div><div class="math-activity-status"><b>Chính sách nguồn</b><span>sampleRecord trong các *_content.json chỉ là schema example/DRAFT và không được render như dữ liệu học thật.</span></div><div class="math-activity-next"><button data-activity-action="formula"><span>∑ Công thức bài hiện tại</span><b>→</b></button><button data-activity-action="library"><span>★ Study Library</span><b>→</b></button><button data-activity-action="vault"><span>▣ DataVault E129</span><b>→</b></button></div></div></aside></div>`;
     try{global.BAUMAN_MATH_ACTIVITY_MASTERY?.refresh?.()}catch(_){ }
     try{global.BAUMAN_MATH_STUDY_COMMAND_CENTER?.refresh?.()}catch(_){ }
@@ -234,12 +328,13 @@
   function schedule(ms=150){clearTimeout(timer);timer=setTimeout(()=>load().then(render),ms)}
   function bind(){global.addEventListener('bauman:math:route-changed',()=>schedule(40));document.addEventListener('click',e=>{
     const reviewStep=e.target.closest('[data-review-step]');if(reviewStep){e.preventDefault();openReviewStep(reviewStep.dataset.reviewStep);return}
+    const reasoningCheck=e.target.closest('[data-math03-check]');if(reasoningCheck){e.preventDefault();checkReasoningProblem(reasoningCheck);return}
     const check=e.target.closest('[data-exercise-check]');if(check){e.preventDefault();checkExercise(check);return}
     const review=e.target.closest('[data-exercise-review-step]');if(review){e.preventDefault();reviewStep(review.dataset.exerciseReviewStep);return}
     const a=e.target.closest('[data-activity-action]')?.dataset.activityAction;if(a){e.preventDefault();action(a);return}
     if(e.target.closest('[data-e186-pick="activity"],[data-e169-pick-activity],[data-math-nav],[data-e129-back-theory],[data-e129-nav]'))schedule(180)
-  },true)}
-  function selfCheck(){const act=activity();return{release:RELEASE,ready:!!$('#mathActivityStudio'),activity:act,lessonId:lessonId()||null,canonicalSources:(SOURCES[act]||[]).length,companionMatches:sourceStatuses().reduce((s,x)=>s+x.match,0),embeddedFallbackSlides:roleSlides().length,theorySource:global.DB?.theory_lecture_content?'runtime-db':(cache[THEORY_SOURCE]?.ok?'e240-durable-fallback':'unavailable'),sampleRecordsRendered:false,deterministicFeedbackContract:true,autoGradeOnlyWhenContractReady:true,academicWrites:false,mutationObserver:false,newRouteEngine:false}}
+  },true);document.addEventListener('input',e=>{const card=e.target.closest?.('[data-math03-problem-id]');if(card){delete card.dataset.mathSubmissionId;captureReasoningDraft(card)}},true);document.addEventListener('change',e=>{const card=e.target.closest?.('[data-math03-problem-id]');if(card){delete card.dataset.mathSubmissionId;captureReasoningDraft(card)}},true)}
+  function selfCheck(){const act=activity();return{release:RELEASE,ready:!!$('#mathActivityStudio'),activity:act,lessonId:lessonId()||null,canonicalSources:(SOURCES[act]||[]).length,companionMatches:sourceStatuses().reduce((s,x)=>s+x.match,0),reasoningPilotContracts:reasoningProblems().length,reasoningPilotMatches:act==='exercises'?reasoningProblemsForLesson().length:0,reasoningEvaluatorReady:!!global.BAUMAN_MATH_REASONING_EVALUATOR,evidenceLedgerReady:!!global.BAUMAN_MATH_REASONING_EVIDENCE,embeddedFallbackSlides:roleSlides().length,theorySource:global.DB?.theory_lecture_content?'runtime-db':(cache[THEORY_SOURCE]?.ok?'e240-durable-fallback':'unavailable'),sampleRecordsRendered:false,deterministicFeedbackContract:true,autoGradeOnlyWhenContractReady:true,academicWrites:false,masteryWrites:false,mutationObserver:false,newRouteEngine:false}}
   function init(){if(!document.body||document.body.dataset.mathActivityStudio==='1')return;document.body.dataset.mathActivityStudio='1';bind();load().then(()=>{render();[500,1200,2400].forEach(ms=>setTimeout(render,ms))});global.BAUMAN_MATH_ACTIVITY_STUDIO={release:RELEASE,refresh:()=>schedule(0),render,selfCheck}}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })(window);

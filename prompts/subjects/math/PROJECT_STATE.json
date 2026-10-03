@@ -3,8 +3,8 @@
   "subject": "math",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/subjects/math/MATH_MASTER_PROMPT.md",
-  "status": "MATH03_READY",
-  "activeModule": "MATH03",
+  "status": "MATH04_READY",
+  "activeModule": "MATH04",
   "sequence": [
     "MATH01",
     "MATH02",
@@ -15,11 +15,12 @@
   ],
   "completedModules": [
     "MATH01",
-    "MATH02"
+    "MATH02",
+    "MATH03"
   ],
   "needsRevalidation": [],
-  "lastValidatedSha": "e3a2588505504cc2c154e6ce2e95af1afbca4a90",
-  "currentHeadSha": "e3a2588505504cc2c154e6ce2e95af1afbca4a90",
+  "lastValidatedSha": "25cd32b94df21e5e0bbd3dc4aaae804f5d9478b6",
+  "currentHeadSha": "25cd32b94df21e5e0bbd3dc4aaae804f5d9478b6",
   "evidence": [
     "prompts/subjects/math/evidence/MATH_P1_EXECUTIVE_SUMMARY.md",
     "prompts/subjects/math/evidence/MATH_P1_BASELINE.json",
@@ -36,15 +37,34 @@
     "MATH02 exact tested head e3a2588505504cc2c154e6ce2e95af1afbca4a90: PASS",
     "Math Learning App Gate run 37116036092: SUCCESS; validator=56 chapter IDs / 86 lesson IDs / 2024 sidecar references / 102 theory records",
     "Whole System Integration Gate run 37116036068: SUCCESS; direct and packaged ChatGPT Site acceptance",
-    "Cloudflare Workers Build failure reproduced on base main and remains outside MATH02 scope"
+    "Cloudflare Workers Build failure reproduced on base main and remains outside MATH02 scope",
+    "prompts/subjects/math/evidence/MATH_PROBLEM_CONTRACT.json",
+    "prompts/subjects/math/evidence/MATH_SOLUTION_STEP_SCHEMA.json",
+    "prompts/subjects/math/evidence/MATH_EQUIVALENCE_POLICY.md",
+    "prompts/subjects/math/evidence/MATH_PROOF_REASONING_POLICY.md",
+    "prompts/subjects/math/evidence/MATH_ERROR_REMEDIATION_MAP.md",
+    "prompts/subjects/math/evidence/MATH_ASSESSMENT_EVIDENCE_POLICY.md",
+    "prompts/subjects/math/evidence/MATH_MASTERY_SPECIALIZATION.md",
+    "prompts/subjects/math/evidence/MATH_ADAPTIVE_PROBLEM_POLICY.md",
+    "prompts/subjects/math/evidence/MATH_FIRST_ATTEMPT_INTEGRITY_REPORT.md",
+    "prompts/subjects/math/evidence/MATH_P4_INPUT_CONTRACT.md",
+    "tests/math-p3-reasoning-contract.mjs",
+    "tests/math-p3-reasoning-browser.mjs",
+    "MATH03 exact runtime-tested head 25cd32b94df21e5e0bbd3dc4aaae804f5d9478b6: PASS",
+    "Math Learning App Gate run 37120673436: SUCCESS",
+    "Whole System Integration Gate run 37120673379: SUCCESS",
+    "MATH03 metadata tail after testedRuntimeHead changes governance/handoff only"
   ],
   "blockers": [],
-  "nextAction": "Finish PR #229 exact-head revalidation and merge MATH02 without production deployment; then execute MATH03 from MATH_P3_INPUT_CONTRACT.md on the unified main line.",
+  "nextAction": "Merge MATH03 PR #233 after metadata-only exact-head CI remains green; then execute MATH04 from MATH_P4_INPUT_CONTRACT.md on unified main.",
   "notes": [
     "MATH01 changed no production Math runtime or academic content.",
     "MATH02 PASS is evidence/contract-only; no Math production runtime/content mutation was performed.",
     "MATH02 canonical owner is accepted as the downstream contract but runtime migration remains NOT ACTIVATED.",
-    "Known downstream debts for MATH03+: non-authoritative mastery wording, no symbolic equivalence/CAS contract, accessibility labeling/touch-target debt, large lessons.json load.",
-    "Stable stage/chapter/lesson IDs and learner-state keys remain preserved."
-  ]
+    "Stable stage/chapter/lesson IDs and learner-state keys remain preserved.",
+    "MATH03 locked typed equivalence, proof/reasoning authority boundaries, immutable/idempotent first-attempt evidence, root-cause remediation and no-fake-mastery semantics.",
+    "MATH03 deterministic evaluator is intentionally not a general CAS or formal proof verifier; unsupported cases degrade to INDETERMINATE.",
+    "MATH04 must consume MATH03 contracts as provider boundaries rather than redefining them."
+  ],
+  "testedRuntimeHead": "25cd32b94df21e5e0bbd3dc4aaae804f5d9478b6"
 }

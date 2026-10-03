@@ -86,7 +86,8 @@ try{
   const initial=await page.evaluate(()=>({summary:window.BAUMAN_MATH_STUDY_COMMAND_CENTER.summarize(),review:window.BAUMAN_MATH_STUDY_COMMAND_CENTER.reviewItems(),self:window.BAUMAN_MATH_STUDY_COMMAND_CENTER.selfCheck()}));
   assert.equal(initial.summary.total,checkCount);
   assert.equal(initial.summary.review,1);
-  assert.equal(initial.summary.learning,checkCount-1);
+  assert.equal(initial.summary.learning,0,'Understood self-report must not be relabeled as learning/performance');
+  assert.equal(initial.summary.selfReported,checkCount-1,'Understood Lesson Check items must remain self-report evidence');
   assert.equal(initial.summary.mastered,0);
   assert.equal(initial.summary.pct,0);
   assert.equal(initial.review.length,1);
