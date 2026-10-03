@@ -1,6 +1,6 @@
 {
   "packetId": "HUB-TRUTH-20261003-001",
-  "revision": 2,
+  "revision": 3,
   "status": "IN_PROGRESS",
   "userIntent": "Continue the Bauman Hub carefully and continuously; fix all Chat-owned work first, then hand off only the runtime work that genuinely requires Codex.",
   "objective": "Remove mock/stale learner-facing truth from the five Hub primary routes, introduce explicit data-truth handling for missing/stale/local values, and rewrite regression so it protects truth rather than reference samples.",
@@ -59,7 +59,8 @@
     "prompts/hub/CURRENT_WORK_PACKET.json",
     "prompts/hub/CURRENT_EXECUTION_RESULT.json",
     "tests/hub-readable-typography-v1-browser.mjs",
-    ".github/workflows/system-integration-ci.yml"
+    ".github/workflows/system-integration-ci.yml",
+    "tests/system-browser-acceptance.mjs"
   ],
   "forbiddenPaths": [
     "subjects/**",
@@ -204,6 +205,17 @@
         "Do not weaken typography thresholds for content that exists.",
         "When optional content is unavailable, assert an explicit readable unavailable state instead of requiring fake rows.",
         "Run hub-data-truth static/browser tests in the existing Whole System Integration workflow."
+      ]
+    },
+    {
+      "revision": 3,
+      "reason": "Whole-system browser exposes a deterministic reload race: the test explicitly reloads while Academic A2 lazily fetches course-learning-architecture-s1-2026.json. The existing navigation-abort guard covers Academic lazy JS/CSS but omits this exact read-only JSON dependency.",
+      "paths": [
+        "tests/system-browser-acceptance.mjs"
+      ],
+      "invariants": [
+        "Ignore only GET net::ERR_ABORTED for the exact Academic architecture JSON while explicitReloadInProgress is true.",
+        "Do not ignore 4xx/5xx responses, non-abort failures, other JSON assets, or aborts outside the explicit reload window."
       ]
     }
   ]
