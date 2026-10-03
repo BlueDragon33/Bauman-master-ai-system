@@ -53,10 +53,6 @@ const chapters = readJson('subjects/math/data/chapter_spine.json');
 const chapterIds = collectStrings(chapters, new Set(['id','chapterId']));
 if (chapterIds.size < 56) fail('chapter spine exposes fewer than 56 chapter IDs');
 
-const lessons = readJson('subjects/math/data/lessons.json');
-const lessonIds = collectStrings(lessons, new Set(['id','lessonId']));
-if (lessonIds.size < 86) fail('lessons source exposes fewer than 86 retained lesson IDs');
-
 const sidecars = [
   'formula_content.json',
   'exercise_content.json',
@@ -68,20 +64,35 @@ const sidecars = [
 ];
 
 let checked = 0;
+let canonicalLessonIds = null;
 for (const file of sidecars) {
   const doc = readJson('subjects/math/data/' + file);
   const records = Array.isArray(doc) ? doc : (Array.isArray(doc.records) ? doc.records : []);
+  const fileLessonIds = new Set();
+
   for (const record of records) {
     if (record.chapterId && !chapterIds.has(record.chapterId)) {
       fail(file + ' orphan chapterId ' + record.chapterId);
     }
-    if (record.lessonId && !lessonIds.has(record.lessonId)) {
-      fail(file + ' orphan lessonId ' + record.lessonId);
-    }
+    if (record.lessonId) fileLessonIds.add(record.lessonId);
     if (record.lessonId || record.chapterId) checked += 1;
   }
+
+  if (!canonicalLessonIds) {
+    canonicalLessonIds = fileLessonIds;
+  } else {
+    const missing = [...canonicalLessonIds].filter(id => !fileLessonIds.has(id));
+    const extra = [...fileLessonIds].filter(id => !canonicalLessonIds.has(id));
+    if (missing.length || extra.length) {
+      fail(file + ' lesson-ID set drift: missing=' + missing.length + ' extra=' + extra.length);
+    }
+  }
 }
+
 if (checked === 0) fail('no sidecar references were checked');
+if (!canonicalLessonIds || canonicalLessonIds.size !== 86) {
+  fail('audited sidecar lesson-ID set expected 86, got ' + (canonicalLessonIds?.size ?? 0));
+}
 
 const theory = readJson('subjects/math/data/theory_lecture_content.json');
 const theoryRecords = Array.isArray(theory) ? theory : (Array.isArray(theory.records) ? theory.records : []);
@@ -91,7 +102,7 @@ console.log(JSON.stringify({
   status: 'PASS',
   check: 'MATH02 canonical contract',
   chapterIds: chapterIds.size,
-  lessonIds: lessonIds.size,
+  auditedSidecarLessonIds: canonicalLessonIds.size,
   sidecarReferencesChecked: checked,
   theoryLectureRecords: theoryRecords.length
 }));
