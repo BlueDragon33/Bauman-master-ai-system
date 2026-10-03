@@ -65,10 +65,17 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/math-learning-journey
         run: node tests/math-learning-journey-browser.mjs
-      - name: Upload learner journey artifacts
+      - name: Run MATH01 forensic baseline probe
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/math-p1-forensic
+        run: node tests/math-p1-forensic-browser.mjs
+      - name: Upload Math browser artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: math-learning-journey
-          path: artifacts/math-learning-journey
+          name: math-browser-evidence
+          path: |
+            artifacts/math-learning-journey
+            artifacts/math-p1-forensic
           if-no-files-found: warn

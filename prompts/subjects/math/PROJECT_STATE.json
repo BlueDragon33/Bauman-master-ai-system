@@ -3,8 +3,8 @@
   "subject": "math",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/subjects/math/MATH_MASTER_PROMPT.md",
-  "status": "READY_FOR_BASELINE_RECONCILIATION",
-  "activeModule": "MATH01",
+  "status": "MATH01_PASS_MATH02_READY",
+  "activeModule": "MATH02",
   "sequence": [
     "MATH01",
     "MATH02",
@@ -13,11 +13,26 @@
     "MATH05",
     "MATH06"
   ],
-  "completedModules": [],
+  "completedModules": [
+    "MATH01"
+  ],
   "needsRevalidation": [],
-  "lastValidatedSha": null,
-  "currentHeadSha": null,
-  "evidence": [],
+  "lastValidatedSha": "7b3ff9bb3dc36df94db3c463ad175f033bf11432",
+  "currentHeadSha": "b2b62fe610aa34229581d3d00f9fbc4cdb6d9b9b",
+  "evidence": [
+    "prompts/subjects/math/evidence/MATH_P1_EXECUTIVE_SUMMARY.md",
+    "prompts/subjects/math/evidence/MATH_P1_BASELINE.json",
+    "prompts/subjects/math/evidence/MATH_P1_EVIDENCE_INDEX.md",
+    "prompts/subjects/math/evidence/MATH_P2_INPUT_CONTRACT.md",
+    "tests/math-p1-forensic-browser.mjs",
+    "Math Learning App Gate run 37096211260: SUCCESS / PASS_BASELINE_CAPTURED",
+    "Whole System Integration Gate run 37096211257: SUCCESS"
+  ],
   "blockers": [],
-  "nextAction": "Run MATH01 against the current repository state and update this state with evidence."
+  "nextAction": "Run MATH02 from MATH_P2_INPUT_CONTRACT.md. Establish one canonical curriculum/entity/competency owner and migration contract before scaling Math content.",
+  "notes": [
+    "MATH01 changed no production Math runtime or academic content.",
+    "lastValidatedSha is the executable PR head that produced the recorded browser baseline; currentHeadSha is the unchanged main baseline inspected before PR merge.",
+    "Known downstream debts: stale manifest counts, non-authoritative mastery wording, no symbolic equivalence/CAS, accessibility labeling/touch-target debt, large lessons.json load."
+  ]
 }
