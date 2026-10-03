@@ -1,7 +1,16 @@
 # MATH03 INPUT CONTRACT
 
-Status: READY WHEN MATH02 PASS  
+Status: READY · MATH02 PASS  
 Subject: Mathematics
+
+## Accepted MATH02 baseline
+
+- Exact tested head: `e3a2588505504cc2c154e6ce2e95af1afbca4a90`
+- Math Learning App Gate: `37116036092` · SUCCESS
+- Whole System Integration Gate: `37116036068` · SUCCESS
+- Repository reality: 56 chapter IDs · 86 lesson IDs · 2,024 checked sidecar references · 102 theory records
+- Runtime migration: NOT ACTIVATED
+- Production Math mutation in MATH02: NO
 
 ## Canonical inputs
 
