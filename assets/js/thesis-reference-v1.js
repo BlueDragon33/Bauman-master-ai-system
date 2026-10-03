@@ -361,9 +361,23 @@ function createModal(){
 }
 function openMilestone(){toastSafe('Chưa có nguồn mốc chính thức được kết nối.')}
 
+
+function toggleCanonicalResearch(key,index,done){
+  var s=typeof state!=='undefined'&&state?state:null,t=topicState();if(!s||!t.topic)return;
+  if(!s.researchChecks)s.researchChecks={};
+  s.researchChecks[t.id+'.'+key+'.'+index]=!!done;
+  try{if(typeof save==='function')save()}catch(e){}
+  render();
+}
+function researchChecklistPanel(){
+  var t=topicState(),keys=['questions','data','hardware','outputs','risks','tasks'],labels={questions:'Câu hỏi nghiên cứu',data:'Dữ liệu',hardware:'Phần cứng',outputs:'Đầu ra',risks:'Rủi ro',tasks:'Nhiệm vụ'};
+  if(!t.topic)return '<section class="thesis-page__panel thesis-page__canonical-research" data-truth-status="UNAVAILABLE"><div class="thesis-page__panel-head"><b>Nội dung nghiên cứu canonical</b></div><p>Chưa có chủ đề nghiên cứu canonical.</p></section>';
+  return '<section class="thesis-page__panel thesis-page__canonical-research" data-truth-status="CURRENT"><div class="thesis-page__panel-head"><div><b>'+esc(t.topic.title||'Nội dung nghiên cứu')+'</b><small>Nguồn: RESEARCH_TOPICS canonical · trạng thái đánh dấu là LOCAL_HUB</small></div></div><div class="thesis-page__canonical-grid">'+keys.map(function(key){var rows=t.topic[key]||[];return '<article><h3>'+esc(labels[key])+'</h3>'+(rows.length?'<ul>'+rows.map(function(item,i){var checked=!!(state.researchChecks&&state.researchChecks[t.id+'.'+key+'.'+i]);return '<li><label><input type="checkbox" data-research-check="1" '+(checked?'checked':'')+' onchange="BAUMAN_THESIS_REF.toggleCanonicalResearch(\''+key+'\','+i+',this.checked)"><span>'+esc(item)+'</span><em>LOCAL_HUB</em></label></li>'}).join('')+'</ul>':'<p>Chưa có dữ liệu.</p>')+'</article>'}).join('')+'</div></section>';
+}
+
 function render(){
   var host=document.getElementById('page-research');if(!host)return false;
-  host.innerHTML='<div class="thesis-page" data-thesis-reference="'+RELEASE+'">'+header()+summary()+'<section class="thesis-page__workspace"><div class="thesis-page__main-column">'+plan()+'<div class="thesis-page__left-bottom">'+chapterProgress()+heatmap()+'</div></div>'+rightRail()+'</section>'+taskDetail()+createModal()+'</div>';
+  host.innerHTML='<div class="thesis-page" data-thesis-reference="'+RELEASE+'">'+header()+summary()+researchChecklistPanel()+'<section class="thesis-page__workspace"><div class="thesis-page__main-column">'+plan()+'<div class="thesis-page__left-bottom">'+chapterProgress()+heatmap()+'</div></div>'+rightRail()+'</section>'+taskDetail()+createModal()+'</div>';
   host.dataset.thesisReference='v1';
   document.body.dataset.hubPrimaryPage='research';
   return true;
@@ -382,7 +396,7 @@ function selfCheck(){
 }
 
 window.BAUMAN_THESIS_REF={
-  release:RELEASE,patch:patch,render:render,selfCheck:selfCheck,setView:setView,setMonth:setMonth,toggleFilter:toggleFilter,clearFilters:clearFilters,shiftWeek:shiftWeek,goToday:goToday,toggleAI:toggleAI,toggleUpcoming:toggleUpcoming,openTask:openTask,closeTask:closeTask,openCreate:openCreate,closeCreate:closeCreate,createTask:createTask,toggleNote:toggleNote,addNote:addNote,openMilestone:openMilestone
+  release:RELEASE,patch:patch,render:render,selfCheck:selfCheck,setView:setView,setMonth:setMonth,toggleFilter:toggleFilter,clearFilters:clearFilters,shiftWeek:shiftWeek,goToday:goToday,toggleAI:toggleAI,toggleUpcoming:toggleUpcoming,openTask:openTask,closeTask:closeTask,openCreate:openCreate,closeCreate:closeCreate,createTask:createTask,toggleNote:toggleNote,addNote:addNote,openMilestone:openMilestone,toggleCanonicalResearch:toggleCanonicalResearch
 };
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',patch,{once:true});else patch();
 })();
