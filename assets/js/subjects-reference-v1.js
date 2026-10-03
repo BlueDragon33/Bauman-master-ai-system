@@ -333,8 +333,18 @@ function monthPanel(){
   return '<section class="subjects-page__panel subjects-page__calendar"><div class="subjects-page__panel-head"><b>'+title+'</b><div><button onclick="BAUMAN_SUBJECTS_REF.shiftCalendar(-1)">‹</button><button onclick="BAUMAN_SUBJECTS_REF.shiftCalendar(1)">›</button></div></div><div class="subjects-page__calendar-week">'+['T2','T3','T4','T5','T6','T7','CN'].map(function(x){return '<span>'+x+'</span>'}).join('')+'</div><div class="subjects-page__calendar-grid">'+cells.map(function(d){var outside=d.getMonth()!==base.getMonth(),key=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'),n=counts[key]||0,active=key===new Date().toISOString().slice(0,10);return '<button class="'+(outside?'is-outside ':'')+(active?'is-active':'')+'"><b>'+d.getDate()+'</b>'+(n?'<i class="is-blue" title="'+n+' ca"></i>':'')+'</button>'}).join('')+'</div></section>';
 }
 function deadlineRows(){
-  var s=stateRef(),entries=s&&s.schedule&&s.schedule.entries||{},today=new Date();today.setHours(0,0,0,0),rows=[];
-  Object.keys(entries).forEach(function(key){var cut=key.lastIndexOf('|'),date=key.slice(0,cut),e=entries[key]||{},m=date.match(/^(\d{4})-(\d{2})-(\d{2})$/);if(!m)return;var d=new Date(+m[1],+m[2]-1,+m[3]);if(d<today)return;rows.push({date:date,d:d,subjectId:e.subjectId,title:e.learningItem||e.label||'Học theo lịch'})});
+  var s=stateRef();
+  var entries=s&&s.schedule&&s.schedule.entries||{};
+  var today=new Date();
+  var rows=[];
+  today.setHours(0,0,0,0);
+  Object.keys(entries).forEach(function(key){
+    var cut=key.lastIndexOf('|'),date=key.slice(0,cut),e=entries[key]||{},m=date.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if(!m)return;
+    var d=new Date(+m[1],+m[2]-1,+m[3]);
+    if(d<today)return;
+    rows.push({date:date,d:d,subjectId:e.subjectId,title:e.learningItem||e.label||'Học theo lịch'});
+  });
   return rows.sort(function(a,b){return a.d-b.d}).slice(0,4);
 }
 function openDeadline(i){var x=deadlineRows()[i];if(x&&x.subjectId)openSubject(x.subjectId,'study')}
