@@ -49,6 +49,9 @@ jobs:
       - name: Runtime device gate regression
         run: node scripts/runtime-device-gate-regression.mjs
 
+      - name: Runtime access-mode static
+        run: node tests/runtime-access-mode-static.mjs
+
       - name: Subjects reference static
         run: node tests/subjects-reference-v1-static.mjs
 
