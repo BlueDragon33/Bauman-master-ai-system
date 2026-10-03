@@ -8,7 +8,7 @@ const fail = (msg) => { throw new Error('[MATH02] ' + msg); };
 const model = readJson('prompts/subjects/math/evidence/MATH_P2_CANONICAL_MODEL.json');
 
 if (model.schemaVersion !== '1.0.0') fail('unexpected schemaVersion');
-if (model.status !== 'VALIDATING') fail('contract must remain VALIDATING until repository evidence passes');
+if (model.status !== 'PASS') fail('accepted MATH02 contract must be PASS');
 if (model.owner?.curriculumTruth !== 'prompts/subjects/math/evidence/MATH_P2_CANONICAL_MODEL.json') fail('canonical curriculum owner mismatch');
 
 const tiers = Object.keys(model.evidenceSemantics || {});
@@ -97,6 +97,16 @@ if (!canonicalLessonIds || canonicalLessonIds.size !== 86) {
 const theory = readJson('subjects/math/data/theory_lecture_content.json');
 const theoryRecords = Array.isArray(theory) ? theory : (Array.isArray(theory.records) ? theory.records : []);
 if (theoryRecords.length === 0) fail('theory_lecture_content has no measurable records');
+
+const evidence = model.validationEvidence || {};
+if (evidence.exactTestedHead !== 'e3a2588505504cc2c154e6ce2e95af1afbca4a90') fail('accepted tested head drift');
+if (evidence.chapterIds !== chapterIds.size) fail('accepted chapter count drift');
+if (evidence.auditedSidecarLessonIds !== canonicalLessonIds.size) fail('accepted lesson count drift');
+if (evidence.sidecarReferencesChecked !== checked) fail('accepted sidecar reference count drift');
+if (evidence.theoryLectureRecords !== theoryRecords.length) fail('accepted theory record count drift');
+if (evidence.orphanReferencesDetected !== 0) fail('accepted evidence records orphan references');
+if (evidence.productionRuntimeMutation !== false) fail('MATH02 must remain runtime-mutation free');
+if (evidence.runtimeMigrationActivated !== false) fail('MATH02 must not activate runtime migration');
 
 console.log(JSON.stringify({
   status: 'PASS',
