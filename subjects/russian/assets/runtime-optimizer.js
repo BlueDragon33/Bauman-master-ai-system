@@ -4,6 +4,7 @@
   const CORE_DATA=['curriculum','lessons','grammar','grammar-path','vocab','mindmap','exercises','tests','simulations','speaking','handwriting','handwriting-listen-write','listen-write-lessons','listen-write-level-rules','writing','videos','knowledge-index'];
   const LIGHT_DATA=['curriculum','grammar','grammar-path','handwriting','handwriting-listen-write','writing','videos','knowledge-index'];
   const DATA_CACHE='russian-learning-data-v1';
+  const PROTECTED_OFFLINE_ASSETS=['../../foundation/domain-model/legacy-mapping-registry.v1.json'];
   const DATA_FETCH_TIMEOUT_MS=8000;
   const SW_READY_TIMEOUT_MS=20000;
   const SW_REGISTER_ATTEMPTS=3;
@@ -56,11 +57,35 @@
     }
     return count;
   }
+  async function currentShellCacheName(){
+    if(!('caches'in window))return '';
+    const names=await caches.keys();
+    return names.filter(x=>/^russian-app-shell-v[0-9]+(?:-|$)/i.test(x)).sort((a,b)=>{
+      const av=Number(a.match(/russian-app-shell-v([0-9]+)/i)?.[1]||0);
+      const bv=Number(b.match(/russian-app-shell-v([0-9]+)/i)?.[1]||0);
+      return bv-av;
+    })[0]||'';
+  }
+  async function prepareProtectedOfflineAssets(){
+    const shellName=await currentShellCacheName();
+    if(!shellName)throw new Error('Russian offline shell cache unavailable');
+    const cache=await caches.open(shellName);
+    for(const url of PROTECTED_OFFLINE_ASSETS){
+      const res=await fetchWithTimeout(url,{cache:'no-store',credentials:'include'});
+      if(!res.ok)throw new Error('Protected offline asset unavailable: '+url+' HTTP '+res.status);
+      await cache.put(url,res.clone());
+    }
+    return PROTECTED_OFFLINE_ASSETS.length;
+  }
   async function prepareOfflineCore(){
     if(preparing||!navigator.onLine)return;
     preparing=true;paint();
-    try{prepared=await cacheNames(CORE_DATA,{refresh:true});localStorage.setItem('ru_offline_core_count',String(prepared));}
-    finally{preparing=false;paint();}
+    try{
+      await ensureServiceWorkerReady();
+      await prepareProtectedOfflineAssets();
+      prepared=await cacheNames(CORE_DATA,{refresh:true});
+      localStorage.setItem('ru_offline_core_count',String(prepared));
+    }finally{preparing=false;paint();}
   }
   function idleWarm(){
     if(!navigator.onLine||navigator.connection?.saveData)return;
@@ -111,5 +136,5 @@
   function bootOfflineRuntime(){paint();register();}
   window.addEventListener('online',()=>{paint();reconcileOfflineCore();});window.addEventListener('offline',()=>{paint();reconcileOfflineCore();});
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bootOfflineRuntime,{once:true});else bootOfflineRuntime();
-  window.RussianRuntimeOptimizer={schema:SCHEMA,prepareOfflineCore,reconcileOfflineCore,ensureServiceWorkerReady,status:()=>({online:navigator.onLine,prepared,total:CORE_DATA.length,ready:prepared>=CORE_DATA.length,serviceWorkerControlled:!!navigator.serviceWorker?.controller}),coreData:[...CORE_DATA]};
+  window.RussianRuntimeOptimizer={schema:SCHEMA,prepareOfflineCore,reconcileOfflineCore,ensureServiceWorkerReady,prepareProtectedOfflineAssets,status:()=>({online:navigator.onLine,prepared,total:CORE_DATA.length,ready:prepared>=CORE_DATA.length,serviceWorkerControlled:!!navigator.serviceWorker?.controller}),coreData:[...CORE_DATA],protectedOfflineAssets:[...PROTECTED_OFFLINE_ASSETS]};
 })();
