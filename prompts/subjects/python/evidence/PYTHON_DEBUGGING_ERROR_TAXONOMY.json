@@ -1,0 +1,167 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "python",
+  "owner": "PYTHON03",
+  "categories": [
+    {
+      "id": "syntax_indentation",
+      "label": "Syntax / indentation",
+      "competencyIds": [
+        "py.comp.syntax-expressions"
+      ],
+      "remediation": "parser-feedback + minimal corrected form + recheck"
+    },
+    {
+      "id": "name_scope",
+      "label": "Name / scope",
+      "competencyIds": [
+        "py.comp.functions",
+        "py.comp.modules-imports"
+      ],
+      "remediation": "binding/scope trace then transfer task"
+    },
+    {
+      "id": "type",
+      "label": "Type",
+      "competencyIds": [
+        "py.comp.type-semantics"
+      ],
+      "remediation": "type-behavior prediction then code repair"
+    },
+    {
+      "id": "value",
+      "label": "Value",
+      "competencyIds": [
+        "py.comp.type-semantics",
+        "py.comp.control-flow"
+      ],
+      "remediation": "precondition/case analysis"
+    },
+    {
+      "id": "index_key",
+      "label": "Index / key",
+      "competencyIds": [
+        "py.comp.collections-iteration"
+      ],
+      "remediation": "collection-boundary trace"
+    },
+    {
+      "id": "attribute",
+      "label": "Attribute",
+      "competencyIds": [
+        "py.comp.oop"
+      ],
+      "remediation": "object-state and attribute-source trace"
+    },
+    {
+      "id": "import_environment",
+      "label": "Import / environment",
+      "competencyIds": [
+        "py.comp.modules-imports",
+        "py.comp.tooling-reproducibility"
+      ],
+      "remediation": "module/environment isolation workflow"
+    },
+    {
+      "id": "file_encoding",
+      "label": "File / encoding",
+      "competencyIds": [
+        "py.comp.files-data"
+      ],
+      "remediation": "path/encoding/context-manager micro-practice"
+    },
+    {
+      "id": "control_flow",
+      "label": "Control flow",
+      "competencyIds": [
+        "py.comp.control-flow"
+      ],
+      "remediation": "branch/loop trace"
+    },
+    {
+      "id": "off_by_one",
+      "label": "Off by one",
+      "competencyIds": [
+        "py.comp.control-flow",
+        "py.comp.collections-iteration"
+      ],
+      "remediation": "boundary-case table + regression test"
+    },
+    {
+      "id": "mutation_aliasing",
+      "label": "Mutation / aliasing",
+      "competencyIds": [
+        "py.comp.state-mutation"
+      ],
+      "remediation": "reference graph + nested mutation trace"
+    },
+    {
+      "id": "none_truthiness",
+      "label": "None / truthiness",
+      "competencyIds": [
+        "py.comp.type-semantics"
+      ],
+      "remediation": "truthiness cases + explicit sentinel reasoning"
+    },
+    {
+      "id": "iterator_state",
+      "label": "Iterator state",
+      "competencyIds": [
+        "py.comp.iterators-generators"
+      ],
+      "remediation": "iterator lifecycle/exhaustion trace"
+    },
+    {
+      "id": "float_numeric",
+      "label": "Float / numeric",
+      "competencyIds": [
+        "py.comp.type-semantics"
+      ],
+      "remediation": "approximation/tolerance reasoning"
+    },
+    {
+      "id": "logic_requirement",
+      "label": "Logic / requirement",
+      "competencyIds": [
+        "py.comp.functions",
+        "py.comp.transfer"
+      ],
+      "remediation": "restate contract + counterexample + corrected implementation"
+    },
+    {
+      "id": "state_side_effect",
+      "label": "State / side effect",
+      "competencyIds": [
+        "py.comp.functions",
+        "py.comp.state-mutation"
+      ],
+      "remediation": "state-transition trace + isolation"
+    },
+    {
+      "id": "test_fixture",
+      "label": "Test / fixture",
+      "competencyIds": [
+        "py.comp.testing-debugging"
+      ],
+      "remediation": "test oracle/fixture diagnosis + corrected regression"
+    },
+    {
+      "id": "notebook_stale_state",
+      "label": "Notebook stale state",
+      "competencyIds": [
+        "py.comp.tooling-reproducibility"
+      ],
+      "remediation": "restart-run-all reproducibility check"
+    }
+  ],
+  "debuggingLoop": [
+    "REPRODUCE",
+    "MINIMIZE",
+    "OBSERVE",
+    "HYPOTHESIZE",
+    "TEST_HYPOTHESIS",
+    "FIX_ROOT_CAUSE",
+    "REGRESSION_TEST"
+  ],
+  "recordPolicy": "Record recurring error patterns and evidence-linked remediation, not every transient typo."
+}

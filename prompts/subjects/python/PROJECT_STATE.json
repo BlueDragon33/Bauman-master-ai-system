@@ -3,8 +3,8 @@
   "subject": "python",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/subjects/python/PYTHON_MASTER_PROMPT.md",
-  "status": "PYTHON02_PASS_CANONICAL_MODEL",
-  "activeModule": "PYTHON03",
+  "status": "PYTHON03_PASS_ASSESSMENT_MODEL",
+  "activeModule": "PYTHON04",
   "sequence": [
     "PYTHON01",
     "PYTHON02",
@@ -15,11 +15,12 @@
   ],
   "completedModules": [
     "PYTHON01",
-    "PYTHON02"
+    "PYTHON02",
+    "PYTHON03"
   ],
   "needsRevalidation": [],
-  "lastValidatedSha": "0b249f986d3e8c86f4e8ac2290f900f1048bb3eb",
-  "currentHeadSha": "0b249f986d3e8c86f4e8ac2290f900f1048bb3eb",
+  "lastValidatedSha": "ee16b75b86a8029ca005278ee99e20ad8a64f7fb",
+  "currentHeadSha": "ee16b75b86a8029ca005278ee99e20ad8a64f7fb",
   "evidence": [
     "prompts/subjects/python/evidence/PYTHON_P1_EXECUTIVE_SUMMARY.md",
     "prompts/subjects/python/evidence/PYTHON_CURRENT_ARCHITECTURE_MAP.md",
@@ -45,10 +46,23 @@
     "prompts/subjects/python/evidence/PYTHON03_INPUT_CONTRACT.md",
     "tests/python-p2-canonical-contract.mjs",
     "Development Fast CI run 37192313375: SUCCESS; Python P2 canonical contract PASS",
-    "Universal Constitution Compliance run 37192313724: SUCCESS"
+    "Universal Constitution Compliance run 37192313724: SUCCESS",
+    "prompts/subjects/python/evidence/PYTHON_P3_ASSESSMENT_MODEL.json",
+    "prompts/subjects/python/evidence/PYTHON_CODE_REASONING_CONTRACT.md",
+    "prompts/subjects/python/evidence/PYTHON_DEBUGGING_ERROR_TAXONOMY.json",
+    "prompts/subjects/python/evidence/PYTHON_CODING_ASSESSMENT_CONTRACT.md",
+    "prompts/subjects/python/evidence/PYTHON_TEST_QUALITY_POLICY.md",
+    "prompts/subjects/python/evidence/PYTHON_PARTIAL_CREDIT_RUBRIC.md",
+    "prompts/subjects/python/evidence/PYTHON_ERROR_NOTEBOOK_MAPPING.md",
+    "prompts/subjects/python/evidence/PYTHON_TRANSFER_TASK_POLICY.md",
+    "prompts/subjects/python/evidence/PYTHON_ASSESSMENT_GOLDEN_FIXTURES.json",
+    "prompts/subjects/python/evidence/PYTHON04_INPUT_CONTRACT.md",
+    "tests/python-p3-assessment-contract.mjs",
+    "Development Fast CI run 37192666431: SUCCESS; Python P3 assessment contract PASS",
+    "Universal Constitution Compliance run 37192666782: SUCCESS"
   ],
   "blockers": [],
-  "nextAction": "Run PYTHON03 Code Reasoning, Debugging & Assessment from the accepted PYTHON02 contract. Do not activate an interpreter/sandbox/runtime from PYTHON03.",
+  "nextAction": "Hand PYTHON04 Runtime, Toolchain, Data & AI Intelligence to Codex/Class B using the accepted PYTHON02/PYTHON03 contracts. Do not enable learner code execution until the sandbox/security owner and runtime contract are proven.",
   "notes": [
     "Actual learner runtime is subjects/programming/, not subjects/python/.",
     "Current Programming package mixes Python with Algorithms, Database, ML tooling and Software Engineering.",
@@ -60,6 +74,11 @@
     "PYTHON02 accepted 16 canonical competency families and a 32-edge acyclic prerequisite graph.",
     "All 48 legacy PR lessons are explicitly classified while preserving current IDs and runtime projection.",
     "PYTHON02 does not bind a Python minor version, mutate learner state, activate runtime execution, or authorize production migration.",
-    "PYTHON02 exact tested evidence head is 0b249f986d3e8c86f4e8ac2290f900f1048bb3eb; this state/evidence tail is governance-only and must still pass final PR-head CI before merge."
+    "PYTHON02 exact tested evidence head is 0b249f986d3e8c86f4e8ac2290f900f1048bb3eb; this state/evidence tail is governance-only and must still pass final PR-head CI before merge.",
+    "PYTHON03 accepted 10 reasoning dimensions, the canonical seven-step debugging loop, 18 Python error-pattern categories, and 10 golden assessment fixtures.",
+    "Programming assessment is behavior/evidence based: source-string equality is forbidden as the primary grader, one sample output is insufficient, and equivalent valid implementations must pass.",
+    "The legacy bank remains 384 MCQs with 192 unique question texts / 192 exact duplicate groups; legacy quiz score is not promoted to programming mastery.",
+    "First official attempt evidence is immutable and retries append; learner code execution remains unauthorized in PYTHON03.",
+    "PYTHON03 exact tested evidence head is ee16b75b86a8029ca005278ee99e20ad8a64f7fb; this terminal state/evidence metadata tail is governance-only and must still pass final PR-head CI before merge."
   ]
 }
