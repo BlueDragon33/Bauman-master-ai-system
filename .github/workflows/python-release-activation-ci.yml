@@ -13,6 +13,9 @@ on:
       - "tests/python-release-activation-contract.mjs"
       - "prompts/subjects/python/evidence/PYTHON_RELEASE_ACTIVATION.json"
       - ".github/workflows/python-release-activation-ci.yml"
+      - ".github/workflows/python-approved-release.yml"
+      - ".github/release-requests/python-20261004.json"
+      - "tests/python-approved-release-contract.mjs"
   workflow_dispatch:
 
 permissions:
@@ -29,6 +32,8 @@ jobs:
           node-version: "22.13.0"
       - name: Release activation contract
         run: node tests/python-release-activation-contract.mjs
+      - name: Approved release orchestration contract
+        run: node tests/python-approved-release-contract.mjs
       - name: Preserve Python RC contract
         run: |
           node tests/python-p6-rc-contract.mjs
