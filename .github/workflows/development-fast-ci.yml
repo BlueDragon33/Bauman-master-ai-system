@@ -83,6 +83,9 @@ jobs:
       - name: Python P5 product contract
         run: node tests/python-p5-product-contract.mjs
 
+      - name: Python P6 RC contract
+        run: node tests/python-p6-rc-contract.mjs
+
       - name: Entrepreneurship subject static
         run: node tests/entrepreneurship-subject-static.mjs
 
