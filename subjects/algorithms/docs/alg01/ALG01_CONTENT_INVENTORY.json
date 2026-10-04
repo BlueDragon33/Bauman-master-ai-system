@@ -1,0 +1,166 @@
+{
+  "schema": "ALG01_CONTENT_INVENTORY_V1",
+  "baselineSha": "13f781a34c3de240e64c71d87c5a7497e34a9d3c",
+  "actualRuntimeScope": [
+    "subjects/programming/",
+    "assets/data/prerequisite-packs/p04-discrete-algorithms-data-structures.json",
+    "subjects/math/data/discipline_spine.json"
+  ],
+  "dedicatedAlgorithmsRuntimeExists": false,
+  "programmingTotals": {
+    "lessons": 48,
+    "exercises": 144,
+    "testItems": 384,
+    "simulationRecords": 96
+  },
+  "directReusableLessons": [
+    {
+      "id": "PR02",
+      "title": "Tư duy thuật toán và độ phức tạp",
+      "status": "PRESENT_SHALLOW",
+      "exercises": 3,
+      "testItems": 8,
+      "uniqueTestPrompts": 4,
+      "simulations": 2
+    },
+    {
+      "id": "PR10",
+      "title": "Pseudocode và giải thích thuật toán bằng tiếng Nga",
+      "status": "PRESENT_BRIDGE",
+      "exercises": 3,
+      "testItems": 8,
+      "uniqueTestPrompts": 4,
+      "simulations": 2
+    },
+    {
+      "id": "PR11",
+      "title": "Cấu trúc dữ liệu nhập môn",
+      "status": "PRESENT_SHALLOW",
+      "exercises": 3,
+      "testItems": 8,
+      "uniqueTestPrompts": 4,
+      "simulations": 2
+    }
+  ],
+  "directReusableTotals": {
+    "lessons": 3,
+    "exercises": 9,
+    "testItems": 24,
+    "uniqueTestPrompts": 12,
+    "simulationRecords": 6
+  },
+  "programmingTestBank": {
+    "questionType": "multiple_choice",
+    "total": 384,
+    "uniquePromptTexts": 192,
+    "exactDuplicatePromptGroups": 192
+  },
+  "p04PrerequisitePack": {
+    "nodes": 10,
+    "diagnostic": {
+      "D0": 18,
+      "D1": 12,
+      "D2": 8,
+      "total": 38
+    },
+    "criticalMisconceptions": 10,
+    "repairRoutesMinimum": 8,
+    "officialAdministrativePrerequisite": false
+  },
+  "topicStatus": [
+    {
+      "topic": "asymptotic complexity",
+      "status": "PARTIAL",
+      "evidence": [
+        "PR02",
+        "P4-N02",
+        "P4-N09"
+      ]
+    },
+    {
+      "topic": "array / linked list",
+      "status": "PARTIAL",
+      "evidence": [
+        "PR11",
+        "P4-N03"
+      ]
+    },
+    {
+      "topic": "stack / queue",
+      "status": "PARTIAL",
+      "evidence": [
+        "PR11",
+        "P4-N03"
+      ]
+    },
+    {
+      "topic": "hashing / collision / load factor",
+      "status": "PRESENT_IN_P4_ONLY",
+      "evidence": [
+        "P4-N04"
+      ]
+    },
+    {
+      "topic": "tree / BST / traversal",
+      "status": "PRESENT_IN_P4_ONLY",
+      "evidence": [
+        "P4-N05"
+      ]
+    },
+    {
+      "topic": "recursion / call stack",
+      "status": "PRESENT_IN_P4_ONLY",
+      "evidence": [
+        "P4-N06"
+      ]
+    },
+    {
+      "topic": "sorting / binary search",
+      "status": "PRESENT_IN_P4_ONLY",
+      "evidence": [
+        "P4-N07"
+      ]
+    },
+    {
+      "topic": "graph representation / BFS / DFS",
+      "status": "PRESENT_IN_P4_ONLY",
+      "evidence": [
+        "P4-N08",
+        "P4-N09"
+      ]
+    },
+    {
+      "topic": "greedy",
+      "status": "MISSING_FROM_ACTIVE_BASELINE",
+      "evidence": []
+    },
+    {
+      "topic": "dynamic programming",
+      "status": "MISSING_FROM_ACTIVE_BASELINE",
+      "evidence": []
+    },
+    {
+      "topic": "backtracking",
+      "status": "MISSING_FROM_ACTIVE_BASELINE",
+      "evidence": []
+    },
+    {
+      "topic": "heap / priority queue",
+      "status": "MISSING_OR_AWARENESS_ONLY",
+      "evidence": []
+    },
+    {
+      "topic": "topological sort / weighted shortest path / MST / union-find",
+      "status": "MISSING_FROM_ACTIVE_BASELINE",
+      "evidence": []
+    }
+  ],
+  "adjacentMathOwner": {
+    "disciplineId": "discrete_graph_db_knowledge",
+    "status": "PRESENT",
+    "role": "generic discrete/graph/tree/relation/complexity foundation"
+  },
+  "assessmentDepth": "legacy MCQ plus ungraded/diagnostic P4 application/oral prompts",
+  "execution": "shared Python capability exists; no algorithms-specific runner/trace provider",
+  "visualization": "generic template simulations; no canonical algorithm-state visualizer"
+}

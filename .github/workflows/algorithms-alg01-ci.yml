@@ -1,0 +1,39 @@
+name: Algorithms ALG01 Forensic Baseline CI
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "prompts/subjects/algorithms/**"
+      - "subjects/algorithms/docs/alg01/**"
+      - "subjects/programming/data/**"
+      - "subjects/programming/simulations/**"
+      - "subjects/programming/assets/core.js"
+      - "subjects/programming/assets/subject-adapter.js"
+      - "subjects/math/data/discipline_spine.json"
+      - "assets/data/prerequisite-packs/p04-discrete-algorithms-data-structures.json"
+      - "scripts/validate-p04-discrete-algorithms-data-structures.js"
+      - "tests/algorithms-alg01-forensic-static.mjs"
+      - ".github/workflows/algorithms-alg01-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: algorithms-alg01-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  forensic:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - name: Validate existing P4 prerequisite pack
+        run: node scripts/validate-p04-discrete-algorithms-data-structures.js
+      - name: ALG01 forensic static acceptance
+        run: node tests/algorithms-alg01-forensic-static.mjs

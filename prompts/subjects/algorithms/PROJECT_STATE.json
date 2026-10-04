@@ -3,8 +3,8 @@
   "subject": "algorithms",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/subjects/algorithms/ALG_MASTER_PROMPT.md",
-  "status": "READY_FOR_BASELINE_RECONCILIATION",
-  "activeModule": "ALG01",
+  "status": "ALG01_PASS",
+  "activeModule": "ALG02",
   "sequence": [
     "ALG01",
     "ALG02",
@@ -13,11 +13,40 @@
     "ALG05",
     "ALG06"
   ],
-  "completedModules": [],
+  "completedModules": [
+    "ALG01"
+  ],
   "needsRevalidation": [],
-  "lastValidatedSha": null,
-  "currentHeadSha": null,
-  "evidence": [],
+  "lastValidatedSha": "f52aaa495987479fbe8c763f63929da1aee2c92a",
+  "currentHeadSha": "f52aaa495987479fbe8c763f63929da1aee2c92a",
+  "evidence": [
+    "subjects/algorithms/docs/alg01/ALG01_EXECUTIVE_SUMMARY.md",
+    "subjects/algorithms/docs/alg01/ALG01_REPOSITORY_MAP.md",
+    "subjects/algorithms/docs/alg01/ALG01_CONTENT_INVENTORY.json",
+    "subjects/algorithms/docs/alg01/ALG01_ALGORITHM_INVENTORY.json",
+    "subjects/algorithms/docs/alg01/ALG01_DATA_STRUCTURE_INVENTORY.json",
+    "subjects/algorithms/docs/alg01/ALG01_ASSESSMENT_GRADER_AUDIT.md",
+    "subjects/algorithms/docs/alg01/ALG01_RUNTIME_VISUALIZATION_AUDIT.md",
+    "subjects/algorithms/docs/alg01/ALG01_OWNER_DUPLICATION_MAP.md",
+    "subjects/algorithms/docs/alg01/ALG01_LEGACY_REGISTER.json",
+    "subjects/algorithms/docs/alg01/ALG01_RISK_REGISTER.json",
+    "subjects/algorithms/docs/alg01/ALG02_INPUT_CONTRACT.md",
+    "tests/algorithms-alg01-forensic-static.mjs",
+    ".github/workflows/algorithms-alg01-ci.yml",
+    "Algorithms ALG01 Forensic Baseline CI run 37216354669: SUCCESS",
+    "Development Fast CI run 37216354622: SUCCESS",
+    "Universal Constitution Compliance run 37216354995: SUCCESS"
+  ],
   "blockers": [],
-  "nextAction": "Run ALG01 against the current repository state and update this state with evidence."
+  "nextAction": "Start ALG02 from subjects/algorithms/docs/alg01/ALG02_INPUT_CONTRACT.md and create the language-neutral canonical academic model without changing existing learner behavior until the ALG02 contract passes.",
+  "notes": [
+    "ALG01 is audit-only; no current learner runtime/content/state behavior was changed.",
+    "Actual Algorithms scope is distributed across Programming PR02/PR10/PR11, P4 prerequisite data, and adjacent Math discrete/graph foundations.",
+    "No subjects/algorithms learner runtime existed on baseline SHA 13f781a34c3de240e64c71d87c5a7497e34a9d3c.",
+    "Programming test bank baseline: 384 MCQs / 192 unique prompt texts; algorithm-related PR02/PR10/PR11 subset: 24 items / 12 unique prompts.",
+    "P4 baseline: 10 nodes, 38 diagnostic items, 10 critical misconceptions, at least 8 repair routes.",
+    "The current sim_algorithm_complexity_lab.html is a generic demo-risk/reproducibility meter, not an algorithm complexity engine.",
+    "ALG01 exact tested evidence head f52aaa495987479fbe8c763f63929da1aee2c92a passed P4 integrity + ALG01 forensic static + Development Fast + Universal Constitution.",
+    "ALG01 terminal state/evidence tail is governance-only and must re-pass PR-head CI before merge."
+  ]
 }

@@ -1,0 +1,78 @@
+{
+  "schema": "ALG01_LEGACY_REGISTER_V1",
+  "baselineSha": "13f781a34c3de240e64c71d87c5a7497e34a9d3c",
+  "records": [
+    {
+      "id": "PR02",
+      "path": "subjects/programming/data/lessons.json",
+      "classification": "KEEP",
+      "reason": "useful bridge lesson identity, but canonical complexity truth must migrate to ALG02"
+    },
+    {
+      "id": "PR10",
+      "path": "subjects/programming/data/lessons.json",
+      "classification": "KEEP",
+      "reason": "useful bilingual pseudocode bridge"
+    },
+    {
+      "id": "PR11",
+      "path": "subjects/programming/data/lessons.json",
+      "classification": "KEEP",
+      "reason": "useful introductory bridge, but ADT semantics need canonical owner"
+    },
+    {
+      "id": "PROGRAMMING_TEST_BANK_DUPLICATES",
+      "path": "subjects/programming/data/tests.json",
+      "classification": "MIGRATE",
+      "reason": "384 MCQs / 192 unique prompts; algorithm subset 24 / 12 unique"
+    },
+    {
+      "id": "SIM_ALGORITHM_COMPLEXITY_LAB",
+      "path": "subjects/programming/simulations/sim_algorithm_complexity_lab.html",
+      "classification": "RETIRE_AS_ALGORITHM_AUTHORITY",
+      "reason": "generic risk/reproducibility formula, not complexity model"
+    },
+    {
+      "id": "PR10_SIM_MAPPING",
+      "path": "subjects/programming/data/simulations.json",
+      "classification": "MIGRATE",
+      "reason": "pseudocode lesson points to generic complexity lab"
+    },
+    {
+      "id": "PR11_SIM_MAPPING",
+      "path": "subjects/programming/data/simulations.json",
+      "classification": "MIGRATE",
+      "reason": "data-structure lesson points to dataframe-cleaning lab"
+    },
+    {
+      "id": "P04_PREREQUISITE_PACK",
+      "path": "assets/data/prerequisite-packs/p04-discrete-algorithms-data-structures.json",
+      "classification": "KEEP",
+      "reason": "strongest current structured algorithms prerequisite evidence"
+    },
+    {
+      "id": "P04_VALIDATOR",
+      "path": "scripts/validate-p04-discrete-algorithms-data-structures.js",
+      "classification": "KEEP",
+      "reason": "deterministic baseline integrity checks and small independent algorithm invariants"
+    },
+    {
+      "id": "MATH_DISCRETE_SPINE",
+      "path": "subjects/math/data/discipline_spine.json",
+      "classification": "KEEP",
+      "reason": "adjacent generic math/discrete authority"
+    },
+    {
+      "id": "PROGRAMMING_LOCAL_EXAM_STATE",
+      "path": "subjects/programming/assets/core.js",
+      "classification": "KEEP_WITH_BOUNDARY",
+      "reason": "legacy local review/exam/remediation state; must not become C4 mastery owner"
+    },
+    {
+      "id": "PROGRAMMING_AI_MENTOR",
+      "path": "subjects/programming/assets/core.js",
+      "classification": "KEEP_WITH_BOUNDARY",
+      "reason": "deterministic helper only; not correctness/complexity authority"
+    }
+  ]
+}

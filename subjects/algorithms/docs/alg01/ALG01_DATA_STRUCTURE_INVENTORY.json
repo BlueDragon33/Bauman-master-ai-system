@@ -1,0 +1,112 @@
+{
+  "schema": "ALG01_DATA_STRUCTURE_INVENTORY_V1",
+  "baselineSha": "13f781a34c3de240e64c71d87c5a7497e34a9d3c",
+  "canonicalDataStructureRegistryExists": false,
+  "adtRepresentationSeparationExists": false,
+  "records": [
+    {
+      "name": "array",
+      "sources": [
+        "PR11",
+        "P4-N03"
+      ],
+      "status": "PRESENT_PARTIAL",
+      "operations": "implicit",
+      "invariant": "missing",
+      "complexity": "partial"
+    },
+    {
+      "name": "linked list",
+      "sources": [
+        "P4-N03"
+      ],
+      "status": "PRESENT_IN_P4",
+      "operations": "compare random access/insert/delete",
+      "invariant": "missing",
+      "complexity": "partial"
+    },
+    {
+      "name": "stack",
+      "sources": [
+        "PR11",
+        "P4-N03"
+      ],
+      "status": "PRESENT_PARTIAL",
+      "operations": "push/pop named",
+      "invariant": "missing",
+      "complexity": "missing"
+    },
+    {
+      "name": "queue",
+      "sources": [
+        "PR11",
+        "P4-N03",
+        "P4-N08"
+      ],
+      "status": "PRESENT_PARTIAL",
+      "operations": "enqueue/dequeue named",
+      "invariant": "missing",
+      "complexity": "missing"
+    },
+    {
+      "name": "hash table",
+      "sources": [
+        "P4-N04"
+      ],
+      "status": "PRESENT_IN_P4",
+      "operations": "lookup/collision handling",
+      "invariant": "missing",
+      "complexity": "expected/worst distinction partially present"
+    },
+    {
+      "name": "tree",
+      "sources": [
+        "P4-N05"
+      ],
+      "status": "PRESENT_IN_P4",
+      "operations": "traversal",
+      "invariant": "generic tree vocabulary",
+      "complexity": "partial"
+    },
+    {
+      "name": "BST",
+      "sources": [
+        "P4-N05"
+      ],
+      "status": "PRESENT_IN_P4",
+      "operations": "lookup/traversal",
+      "invariant": "ordering mentioned",
+      "complexity": "height relation mentioned"
+    },
+    {
+      "name": "graph",
+      "sources": [
+        "PR11",
+        "P4-N08",
+        "P4-N09"
+      ],
+      "status": "PRESENT_PARTIAL",
+      "operations": "BFS/DFS",
+      "invariant": "missing",
+      "complexity": "O(V+E) with adjacency list mentioned"
+    },
+    {
+      "name": "adjacency list / matrix",
+      "sources": [
+        "P4-N08",
+        "P4-N09"
+      ],
+      "status": "PRESENT_IN_P4",
+      "operations": "representation choice",
+      "invariant": "missing",
+      "complexity": "representation-sensitive outcome present"
+    }
+  ],
+  "missingOrUnknown": [
+    "heap/priority queue",
+    "trie",
+    "disjoint set",
+    "balanced-tree concrete variants"
+  ],
+  "note": "Current content does not cleanly separate ADT semantics from concrete representation."
+}

@@ -1,0 +1,102 @@
+{
+  "schema": "ALG01_RISK_REGISTER_V1",
+  "baselineSha": "13f781a34c3de240e64c71d87c5a7497e34a9d3c",
+  "risks": [
+    {
+      "id": "ALG-R01",
+      "severity": "HIGH",
+      "category": "OWNER",
+      "summary": "No canonical Algorithms learner/runtime owner exists.",
+      "evidence": "No subjects/algorithms learner entry/manifest on baseline.",
+      "route": "ALG02/ALG05"
+    },
+    {
+      "id": "ALG-R02",
+      "severity": "HIGH",
+      "category": "COMPLEXITY_TRUTH",
+      "summary": "PR02 exposes naked O(n log n)/O(n) claims without algorithm, size measure, case or assumptions.",
+      "evidence": "PR02 formula field.",
+      "route": "ALG02"
+    },
+    {
+      "id": "ALG-R03",
+      "severity": "CRITICAL",
+      "category": "VISUALIZATION_DIVERGENCE",
+      "summary": "Algorithm Complexity Lab computes generic demo risk/reproducibility, not algorithm complexity.",
+      "evidence": "sim_algorithm_complexity_lab.html.",
+      "route": "ALG04/ALG05/ALG06"
+    },
+    {
+      "id": "ALG-R04",
+      "severity": "HIGH",
+      "category": "WEAK_GRADER",
+      "summary": "Algorithm-related learner assessment is duplicate MCQ-only.",
+      "evidence": "24 items / 12 unique prompts across PR02/PR10/PR11.",
+      "route": "ALG03"
+    },
+    {
+      "id": "ALG-R05",
+      "severity": "HIGH",
+      "category": "CORRECTNESS",
+      "summary": "No canonical invariants/preconditions/postconditions/termination model for algorithms.",
+      "evidence": "P4 has some outcome text but no canonical entities.",
+      "route": "ALG02/ALG03"
+    },
+    {
+      "id": "ALG-R06",
+      "severity": "HIGH",
+      "category": "ADT_MODEL",
+      "summary": "ADT and representation are not explicitly separated in learner content.",
+      "evidence": "PR11 keyword list + P4 structure outcomes.",
+      "route": "ALG02"
+    },
+    {
+      "id": "ALG-R07",
+      "severity": "HIGH",
+      "category": "TRACE",
+      "summary": "No canonical algorithm trace schema/provider/golden traces.",
+      "evidence": "No algorithm trace runtime discovered.",
+      "route": "ALG04"
+    },
+    {
+      "id": "ALG-R08",
+      "severity": "MEDIUM",
+      "category": "DUPLICATE_OWNER",
+      "summary": "Complexity/data-structure truth is split among Programming, P4 and Math.",
+      "evidence": "PR02/PR11, P4, discrete_graph_db_knowledge.",
+      "route": "ALG02"
+    },
+    {
+      "id": "ALG-R09",
+      "severity": "MEDIUM",
+      "category": "LEARNER_STATE",
+      "summary": "Programming local exam/stage gate can become duplicate mastery authority if reused as official state.",
+      "evidence": "core.js localStorage examProgress/examHistory/remedialPlan/stage gate.",
+      "route": "ALG03/C4"
+    },
+    {
+      "id": "ALG-R10",
+      "severity": "MEDIUM",
+      "category": "AI_AUTHORITY",
+      "summary": "Programming AI Mentor is generic deterministic text and could be mistaken for subject intelligence.",
+      "evidence": "core.js aiGenerate/renderAiMentor.",
+      "route": "ALG04"
+    },
+    {
+      "id": "ALG-R11",
+      "severity": "MEDIUM",
+      "category": "SCOPE_GAP",
+      "summary": "Greedy, DP, backtracking, heap/PQ and advanced graph algorithms are absent from active baseline.",
+      "evidence": "P4 active scope + repository discovery.",
+      "route": "ALG02 decides whether in scope"
+    },
+    {
+      "id": "ALG-R12",
+      "severity": "MEDIUM",
+      "category": "QA",
+      "summary": "No algorithm-specific property tests/test-of-tests/visual trace regression.",
+      "evidence": "Only P4 pack validator and Python capability tests currently exist.",
+      "route": "ALG03/ALG04/ALG06"
+    }
+  ]
+}
