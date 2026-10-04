@@ -1,0 +1,110 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "algorithms",
+  "purpose": "Representative wrong implementations/reasoning that a valid grader/test-of-tests must reject or classify.",
+  "fixtures": [
+    {
+      "id": "alg.gold.wrong.binary-search.off-by-one",
+      "algorithmId": "alg.algorithm.binary-search",
+      "kind": "implementation",
+      "language": "python",
+      "entry": "solve",
+      "expected": "FAIL",
+      "expectedErrorIds": [
+        "BOUNDARY_ERROR"
+      ],
+      "pythonSource": "def solve(a, target):\n    lo, hi = 0, len(a)\n    while lo <= hi:\n        mid = (lo + hi)//2\n        if a[mid] == target:\n            return mid\n        if a[mid] < target:\n            lo = mid + 1\n        else:\n            hi = mid - 1\n    return -1\n"
+    },
+    {
+      "id": "alg.gold.wrong.binary-search.no-equality-check",
+      "algorithmId": "alg.algorithm.binary-search",
+      "kind": "implementation",
+      "language": "python",
+      "entry": "solve",
+      "expected": "FAIL",
+      "expectedErrorIds": [
+        "PRECONDITION_ERROR",
+        "STATE_UPDATE_ERROR"
+      ],
+      "pythonSource": "def solve(a, target):\n    lo, hi = 0, len(a)-1\n    while lo < hi:\n        mid=(lo+hi)//2\n        if a[mid] < target: lo=mid+1\n        else: hi=mid\n    return lo\n"
+    },
+    {
+      "id": "alg.gold.wrong.sort-deduplicates",
+      "algorithmId": "alg.algorithm.insertion-sort",
+      "kind": "implementation",
+      "language": "python",
+      "entry": "solve",
+      "expected": "FAIL",
+      "expectedErrorIds": [
+        "PERMUTATION_ERROR"
+      ],
+      "pythonSource": "def solve(items):\n    return sorted(set(items))\n"
+    },
+    {
+      "id": "alg.gold.wrong.sort-unstable-on-equal",
+      "algorithmId": "alg.algorithm.insertion-sort",
+      "kind": "implementation",
+      "language": "python",
+      "entry": "solve",
+      "expected": "FAIL",
+      "expectedErrorIds": [
+        "STABILITY_ERROR"
+      ],
+      "pythonSource": "def solve(items):\n    a=list(items)\n    for i in range(1,len(a)):\n        key=a[i]; j=i-1\n        while j>=0 and a[j][0] >= key[0]:\n            a[j+1]=a[j]; j-=1\n        a[j+1]=key\n    return a\n"
+    },
+    {
+      "id": "alg.gold.wrong.dfs-first-neighbor-only",
+      "algorithmId": "alg.algorithm.dfs",
+      "kind": "implementation",
+      "language": "python",
+      "entry": "solve",
+      "expected": "FAIL",
+      "expectedErrorIds": [
+        "STATE_UPDATE_ERROR"
+      ],
+      "pythonSource": "def solve(graph, start):\n    seen={start}; u=start\n    while graph.get(u):\n        u=graph[u][0]\n        if u in seen: break\n        seen.add(u)\n    return sorted(seen)\n"
+    },
+    {
+      "id": "alg.gold.wrong.bfs-weighted-shortest-generalization",
+      "algorithmId": "alg.algorithm.bfs",
+      "kind": "reasoning",
+      "expected": "FAIL",
+      "expectedErrorIds": [
+        "PRECONDITION_ERROR",
+        "GRAPH_MODEL_ERROR"
+      ],
+      "claim": "BFS always returns the minimum-weight path in any weighted graph."
+    },
+    {
+      "id": "alg.gold.wrong.bst-always-logn",
+      "algorithmId": null,
+      "kind": "reasoning",
+      "expected": "FAIL",
+      "expectedErrorIds": [
+        "COMPLEXITY_ERROR"
+      ],
+      "claim": "BST search is always O(log n), even without a balance guarantee."
+    },
+    {
+      "id": "alg.gold.wrong.hash-guaranteed-constant",
+      "algorithmId": null,
+      "kind": "reasoning",
+      "expected": "FAIL",
+      "expectedErrorIds": [
+        "CASE_CONFUSION",
+        "COMPLEXITY_ERROR"
+      ],
+      "claim": "Hash table lookup is guaranteed O(1) regardless of collisions and load factor."
+    },
+    {
+      "id": "alg.gold.wrong.bigo-from-stopwatch",
+      "algorithmId": null,
+      "kind": "reasoning",
+      "expected": "FAIL",
+      "expectedErrorIds": [
+        "COMPLEXITY_ERROR"
+      ],
+      "claim": "The program took 3 ms, therefore its complexity is O(1)."
+    }
+  ]
+}
