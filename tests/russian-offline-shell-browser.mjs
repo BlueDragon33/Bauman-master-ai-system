@@ -55,6 +55,7 @@ try{
   }),120000,'Russian offline-core preparation');
   assert.equal(offlinePreparation.ready,true,'Russian offline core did not become ready');
   assert.equal(offlinePreparation.prepared,offlinePreparation.total,'Russian offline core count mismatch');
+  assert.equal(offlinePreparation.protectedPrepared,offlinePreparation.protectedTotal,'Russian protected offline authority cache mismatch');
 
   const cached=await page.evaluate(async()=>{
     const names=await caches.keys();
@@ -71,7 +72,8 @@ try{
     const dataCache=dataName?await caches.open(dataName):null;
     const dataKeys=dataCache?await dataCache.keys():[];
     const shellVersion=Number(shell.match(/russian-app-shell-v([0-9]+)/i)?.[1]||0);
-    return {shell,shellVersion,urls:keys.map(x=>new URL(x.url).pathname),dataName,dataUrls:dataKeys.map(x=>new URL(x.url).pathname)};
+    const urls=keys.map(x=>new URL(x.url).pathname),dataUrls=dataKeys.map(x=>new URL(x.url).pathname);
+    return {shell,shellVersion,urls,dataName,dataUrls,allUrls:[...urls,...dataUrls]};
   });
   assert.match(cached.shell||'',/^russian-app-shell-v[0-9]+(?:-|$)/i,'Russian offline shell cache must use a versioned namespace');
   assert.ok(cached.shellVersion>=2,`Russian offline shell cache version must remain bumped (got v${cached.shellVersion})`);
@@ -87,7 +89,7 @@ try{
     '/subjects/shared/foundation-identity-persistence.js',
     '/subjects/shared/foundation-identity-projection.js',
     '/subjects/shared/foundation-canonical-context.js'
-  ])assert.ok(cached.urls.some(x=>x.endsWith(suffix)),`offline cache missing ${suffix}`);
+  ])assert.ok(cached.allUrls.some(x=>x.endsWith(suffix)),`offline cache missing ${suffix}`);
 
   errors.length=0;
   await context.setOffline(true);
