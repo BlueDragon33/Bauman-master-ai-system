@@ -19,6 +19,7 @@ assert.match(router,/BAUMAN_MATH_ACTIVITY_STUDIO&&window\.BAUMAN_MATH_ACTIVITY_S
 assert.doesNotMatch(router,/function e170VaultRecords/,'E170 must not keep a second Content Vault renderer');
 assert.doesNotMatch(router,/function e170ActivityCard/,'E170 must not duplicate canonical Activity Studio cards');
 assert.match(studio,/function matched\(sourceKind,raw\)/,'Activity Studio must own source matching');
+assert.match(studio,/const reviewCards=reviewEvidence\.length\?reviewEvidence:baseCards/,'Review must prefer weak Lesson Check evidence, then canonical review pack/theory fallback');
 assert.match(studio,/\(!!id&&rid===id\)\|\|\(!id&&!!ch&&rch===ch\)/,'Activity Studio must match lesson first or selected chapter');
 assert.match(router,/data-e170-activity=/,'E170 rendered activity shell marker missing');
 console.log('MATH_E170_ACTIVITY_ROUTER_CONTRACT_PASS');
