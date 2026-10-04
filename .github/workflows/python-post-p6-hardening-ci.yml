@@ -1,0 +1,83 @@
+name: Python Post-P6 Hardening CI
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "cloudflare/runtime-worker-python.mjs"
+      - "subjects/programming/**"
+      - "tests/python-post-p6-*.mjs"
+      - ".github/workflows/python-post-p6-hardening-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: python-post-p6-hardening-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  hardening:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - name: Post-P6 static hardening
+        run: node tests/python-post-p6-hardening-static.mjs
+      - name: Preserve P6 and release activation contracts
+        run: |
+          node tests/python-p6-rc-contract.mjs
+          node tests/python-release-activation-contract.mjs
+          node tests/python-p5-product-contract.mjs
+          node tests/python-p4-provider-static.mjs
+      - name: Start real Worker plus Container provider
+        run: |
+          npx --yes wrangler@4.147.0 dev --config wrangler.runtime.python-ci.jsonc --ip 127.0.0.1 --port 8788 > /tmp/python-hardening-wrangler.log 2>&1 &
+          echo "$!" > /tmp/python-hardening-wrangler.pid
+      - name: Wait for provider
+        run: |
+          set -euo pipefail
+          for i in {1..120}; do
+            if curl --fail --silent --show-error --max-time 5 http://127.0.0.1:8788/__python/provider-health >/dev/null; then exit 0; fi
+            if ! kill -0 "$(cat /tmp/python-hardening-wrangler.pid)" 2>/dev/null; then cat /tmp/python-hardening-wrangler.log; exit 1; fi
+            sleep 2
+          done
+          cat /tmp/python-hardening-wrangler.log
+          exit 1
+      - name: Real in-flight cancellation
+        run: node tests/python-post-p6-cancel-live.mjs
+      - name: Start static learner surface
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/python-hardening-static.log 2>&1 &
+          echo "$!" > /tmp/python-hardening-static.pid
+      - name: Install Chromium
+        run: |
+          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Browser cancel/stale/canonical-authoring acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/python-post-p6-browser
+        run: node tests/python-post-p6-cancel-browser.mjs
+      - name: Upload focused evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-post-p6-hardening-${{ github.run_id }}
+          path: artifacts/python-post-p6-browser
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Show logs on failure
+        if: failure()
+        run: |
+          cat /tmp/python-hardening-wrangler.log || true
+          cat /tmp/python-hardening-static.log || true
+      - name: Stop services
+        if: always()
+        run: |
+          [[ -f /tmp/python-hardening-wrangler.pid ]] && kill "$(cat /tmp/python-hardening-wrangler.pid)" 2>/dev/null || true
+          [[ -f /tmp/python-hardening-static.pid ]] && kill "$(cat /tmp/python-hardening-static.pid)" 2>/dev/null || true
