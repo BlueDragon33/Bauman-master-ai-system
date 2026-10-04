@@ -1,0 +1,15 @@
+{
+  "schema": "PYTHON_APPROVED_RELEASE_REQUEST_V1",
+  "releaseId": "python-runtime-2026-10-04-r2",
+  "status": "APPROVED_ONE_TIME",
+  "confirm": "DEPLOY_PRODUCTION",
+  "sourceP6MergeSha": "23e594b7f6a62d45fdad9f2669866f1410d2db6f",
+  "activationMergeSha": "04cf1978198ee90a47dc61698ad70aec011a78bc",
+  "failedReleaseSha": "8c57f346a8c787db4e931b8dd997d697dc515ab6",
+  "retryReason": "Observable retry after first one-time release failed after authorization; attach GitHub Actions run URL to commit status for exact root-cause evidence.",
+  "runtimeProfile": "cpython-3.14.8-stdlib-v1",
+  "provider": "cloudflare-container-durable-object-v1",
+  "requirement": "Deploy exact caller SHA to preview; only after exact preview PASS promote same SHA to production and require full production smoke/observation closure.",
+  "approvalBasis": "User explicitly requested merge and publish after prompt completion in this project conversation.",
+  "oneTime": true
+}
