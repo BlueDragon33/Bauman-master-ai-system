@@ -7,6 +7,7 @@ const runtimeWorker=fs.readFileSync('cloudflare/runtime-worker.mjs','utf8');
 const controlDeployment=fs.readFileSync('control-service/src/cloudflare-preview.ts','utf8');
 const controlTemplate=fs.readFileSync('control-service/wrangler.production.example.jsonc','utf8');
 const runtimeTemplate=fs.readFileSync('wrangler.runtime.production.example.jsonc','utf8');
+const productionPackager=fs.readFileSync('scripts/prepare-cloudflare-production.mjs','utf8');
 for(const marker of [
  'Verify exact preview revision before production',
  'Materialize immutable Russian release preflight evidence',
@@ -70,6 +71,16 @@ assert.match(runtimeWorker,/microphone=\(self\)/,'production runtime must permit
 assert.doesNotMatch(runtimeWorker,/microphone=\(\)/,'production runtime must not globally disable microphone');
 assert(controlTemplate.includes('__BAUMAN_CONFIG_FINGERPRINT__'),'control production config fingerprint missing');
 assert(runtimeTemplate.includes('__BAUMAN_CONFIG_FINGERPRINT__'),'runtime production config fingerprint missing');
+assert(productionPackager.includes("fs.cpSync(path.join(root, 'platform', 'ui'), path.join(runtimeDist, 'platform', 'ui'), { recursive: true });"),'production runtime must package shared platform UI');
+for(const asset of [
+ 'platform/ui/tokens.css',
+ 'platform/ui/foundations.css',
+ 'platform/ui/components.css',
+ 'platform/ui/layouts.css',
+ 'platform/ui/responsive.css',
+ 'platform/ui/bauman-ui.css',
+ 'platform/ui/bauman-ui.js'
+])assert(productionPackager.includes("'"+asset+"'"),'production runtime preflight must require shared platform UI asset: '+asset);
 assert(workflow.indexOf('Close Russian Release Annex state machine')<workflow.indexOf('Production deployment summary'),'summary must occur only after closure');
 assert(!/Bauman production deployment completed\./.test(workflow),'workflow must not declare completion immediately after deploy/smoke');
 console.log(JSON.stringify({ok:true,annexGates:10,evidenceOutputs:20,productionBrowserJourneys:3,configFingerprint:true,secretReadiness:true,currentSchema:true,migrationBound:true,rollbackBound:true,fullArtifactIdentity:true,microphonePolicy:'self'}));
