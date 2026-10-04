@@ -1,0 +1,39 @@
+name: Algorithms ALG02 Canonical Model CI
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "prompts/subjects/algorithms/**"
+      - "subjects/algorithms/docs/alg01/**"
+      - "subjects/algorithms/docs/alg02/**"
+      - "assets/data/prerequisite-packs/p04-discrete-algorithms-data-structures.json"
+      - "subjects/programming/data/lessons.json"
+      - "subjects/math/data/discipline_spine.json"
+      - "scripts/validate-p04-discrete-algorithms-data-structures.js"
+      - "tests/algorithms-alg0[12]-*.mjs"
+      - ".github/workflows/algorithms-alg0[12]-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: algorithms-alg02-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  canonical:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - name: Preserve ALG01 forensic contract
+        run: node tests/algorithms-alg01-forensic-static.mjs
+      - name: Preserve P4 prerequisite integrity
+        run: node scripts/validate-p04-discrete-algorithms-data-structures.js
+      - name: ALG02 canonical academic contract
+        run: node tests/algorithms-alg02-canonical-contract.mjs

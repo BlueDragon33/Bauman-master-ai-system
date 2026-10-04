@@ -74,8 +74,13 @@ assert.ok(risk.risks.some(x=>x.id==="ALG-R03"&&x.severity==="CRITICAL"));
 assert.ok(risk.risks.some(x=>x.id==="ALG-R04"&&x.category==="WEAK_GRADER"));
 
 const state=json("prompts/subjects/algorithms/PROJECT_STATE.json");
-assert.ok(["ALG01","ALG02"].includes(state.activeModule),"unexpected activeModule "+state.activeModule);
-assert.ok(["ALG01_VALIDATING","ALG01_PASS"].includes(state.status));
-if(state.status==="ALG01_PASS")assert.equal(state.activeModule,"ALG02","PASS must hand off to ALG02");
+const sequence=["ALG01","ALG02","ALG03","ALG04","ALG05","ALG06"];
+assert.ok(sequence.includes(state.activeModule),"unexpected activeModule "+state.activeModule);
+assert.ok(Array.isArray(state.completedModules)&&state.completedModules.includes("ALG01"),"accepted ALG01 must remain in completedModules");
+assert.ok(
+  ["ALG01_PASS","ALG02_VALIDATING","ALG02_PASS","ALG03_VALIDATING","ALG03_PASS","ALG04_VALIDATING","ALG04_PASS","ALG05_VALIDATING","ALG05_PASS","ALG06_VALIDATING","ALG06_PASS"].includes(state.status),
+  "ALG01 regression contract must remain valid after downstream handoff; got "+state.status
+);
+if(state.activeModule==="ALG01")throw new Error("accepted ALG01 must not regress to active ALG01 state");
 
 console.log("ALG01_FORENSIC_STATIC=PASS");

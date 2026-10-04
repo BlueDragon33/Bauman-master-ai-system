@@ -3,9 +3,9 @@
 | Module | Prompt status | Repository execution status |
 |---|---|---|
 | ALG00 | COMPLETE | READY |
-| ALG01 | COMPLETE | **PASS · FORENSIC BASELINE ACCEPTED** |
-| ALG02 | COMPLETE / READY TO EXECUTE | READY |
-| ALG03 | COMPLETE / READY AFTER ALG02 | NOT_STARTED |
+| ALG01 | COMPLETE | PASS · FORENSIC BASELINE ACCEPTED |
+| ALG02 | COMPLETE | **PASS · CANONICAL MODEL ACCEPTED** |
+| ALG03 | COMPLETE / READY TO EXECUTE | READY |
 | ALG04 | COMPLETE / READY AFTER ALG02/ALG03 | NOT_STARTED |
 | ALG05 | COMPLETE / READY AFTER ALG02–ALG04 | NOT_STARTED |
 | ALG06 | COMPLETE / READY AFTER PRODUCT INTEGRATION | NOT_STARTED |
@@ -14,25 +14,32 @@
 
 `ALGORITHMS & DATA STRUCTURES PROMPT ARCHITECTURE: COMPLETE`
 
-## ALG01 accepted baseline
+## ALG01
 
-Exact tested evidence head: `f52aaa495987479fbe8c763f63929da1aee2c92a`
+Merged main SHA: `e66aa6bd7c47c1bd7c91c9e28fdf390b1b930875`.
+
+## ALG02 accepted model
+
+Exact tested implementation head: `3aabbeaa0cd64a12ed0e73967837eadd913165f4`
 
 Acceptance evidence:
-- Algorithms ALG01 Forensic Baseline CI `37216354669` — SUCCESS
-- Development Fast CI `37216354622` — SUCCESS
-- Universal Constitution Compliance `37216354995` — SUCCESS
+- Algorithms ALG02 Canonical Model CI `37217275094` — SUCCESS
+- Algorithms ALG01 Forensic Baseline CI `37217275082` — SUCCESS
+- Development Fast CI `37217275163` — SUCCESS
+- Universal Constitution Compliance `37217275435` — SUCCESS
 
-Accepted reality:
-- no dedicated `subjects/algorithms/` learner runtime exists yet;
-- reusable learner bridge is Programming PR02/PR10/PR11;
-- Programming bank is 384 MCQs / 192 unique prompt texts;
-- algorithm-related PR02/PR10/PR11 subset is 24 items / 12 unique prompt texts;
-- P4 prerequisite pack supplies 10 nodes / 38 diagnostics / 10 critical misconceptions / targeted repair routes;
-- current “Algorithm Complexity Lab” is not algorithm complexity truth;
-- shared Python execution is reusable capability, not canonical Algorithms ownership;
-- local Programming exam/remediation state is not promoted to C4 mastery.
+Accepted canonical truth:
+- 15 stable `alg.comp.*` competencies and an acyclic prerequisite graph;
+- language-neutral algorithm/entity IDs;
+- explicit ADT vs representation separation;
+- preconditions, postconditions, invariants and trace schemas as first-class data;
+- complexity claims bind input measure, dimension, case and assumptions;
+- baseline core algorithms: binary search, insertion/selection/bubble/merge/quick sort, tree DFS traversal, BFS and DFS;
+- baseline structures: array/list/stack/queue/hash/tree/BST/graph list/matrix;
+- PR02/PR10/PR11 and P4 are compatibility projections, not competing truth owners;
+- Dijkstra/topological/MST/heap/union-find/greedy/DP/backtracking remain deferred JIT until downstream evidence requires them;
+- no learner runtime, production or learner-state mutation was authorized.
 
 ## Next operational action
 
-Execute `ALG02_ACADEMIC_BLUEPRINT_CANONICAL_MODEL.md` using `subjects/algorithms/docs/alg01/ALG02_INPUT_CONTRACT.md` as the entry evidence contract.
+After this terminal metadata head re-passes exact PR checks and merges, execute `ALG03_REASONING_CORRECTNESS_COMPLEXITY_ASSESSMENT.md` using `subjects/algorithms/docs/alg02/ALG03_INPUT_CONTRACT.md`.

@@ -1,0 +1,1544 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "algorithms",
+  "canonicalOwner": "subjects/algorithms/docs/alg02/ALG_ALGORITHM_REGISTRY.json",
+  "note": "Language-neutral canonical semantics. Python code is a later implementation projection.",
+  "preconditions": [
+    {
+      "id": "alg.pre.sorted-total-order",
+      "statement": "Input sequence is ordered according to a consistent total ordering compatible with the target comparison.",
+      "scope": "binary search",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.pre.random-access-search",
+      "statement": "Canonical logarithmic binary-search claim assumes random-access indexing or an equivalent O(1) midpoint access model.",
+      "scope": "binary search complexity",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07",
+          "ALG02 reasoning"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.pre.comparable-keys",
+      "statement": "Keys/elements are comparable under the task ordering relation.",
+      "scope": "comparison sorts",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.pre.rooted-tree",
+      "statement": "Input is a finite rooted tree and child ordering is explicit when traversal order matters.",
+      "scope": "tree depth-first traversal",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N05"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.pre.graph-explicit",
+      "statement": "Graph direction, weight semantics and adjacency-order policy are declared.",
+      "scope": "graph traversal",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N08"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.pre.bfs-unweighted-shortest",
+      "statement": "Shortest-path-by-edge-count semantics require an unweighted graph or equal edge cost.",
+      "scope": "BFS shortest path",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N08",
+          "P4-M08"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.pre.finite-reachable-space",
+      "statement": "Traversal input is finite for termination under the canonical visited-set policy.",
+      "scope": "BFS/DFS termination",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N08",
+          "ALG02 correctness contract"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    }
+  ],
+  "postconditions": [
+    {
+      "id": "alg.post.search-index",
+      "statement": "Returns a valid matching position when target is present; otherwise returns the task-declared not-found value.",
+      "scope": "search",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.post.sorted-permutation",
+      "statement": "Output is ordered by the declared comparator and is a permutation/multiset-preserving transformation of the input.",
+      "scope": "sorting",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07",
+          "ALG02 correctness contract"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.post.tree-visit-once",
+      "statement": "Every node reachable from the declared root is emitted exactly once in the variant-defined preorder/inorder/postorder.",
+      "scope": "tree traversal",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N05"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.post.graph-reachability",
+      "statement": "Every vertex reachable from the start under graph direction semantics is visited exactly once.",
+      "scope": "BFS/DFS",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N08"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.post.bfs-distance",
+      "statement": "For every reached vertex, recorded distance equals the minimum number of edges from the start under the unweighted/equal-cost precondition.",
+      "scope": "BFS",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N08",
+          "P4-M08"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    }
+  ],
+  "invariants": [
+    {
+      "id": "alg.inv.binary-search-interval",
+      "statement": "If the target exists, at each iteration at least one valid target position remains inside the active interval [lo, hi].",
+      "scope": "binary search",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07",
+          "ALG02 correctness contract"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.inv.insertion-prefix",
+      "statement": "Before iteration i, the prefix [0,i) is sorted and contains exactly the original elements from that prefix.",
+      "scope": "insertion sort",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07",
+          "ALG02 correctness contract"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.inv.selection-prefix",
+      "statement": "After k selections, the prefix contains the k smallest elements in final order and will not change.",
+      "scope": "selection sort",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07",
+          "ALG02 correctness contract"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.inv.bubble-suffix",
+      "statement": "After each full pass of the optimized ascending variant, the established suffix contains final-position largest elements.",
+      "scope": "bubble sort",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07",
+          "ALG02 correctness contract"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.inv.merge-sorted-halves",
+      "statement": "Merge consumes two sorted sequences while the emitted prefix remains sorted and contains exactly the consumed elements.",
+      "scope": "merge sort",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07",
+          "ALG02 correctness contract"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.inv.quicksort-partition",
+      "statement": "After partition, elements are divided according to the declared pivot relation and recursive subproblems exclude the pivot's settled region.",
+      "scope": "quicksort",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07",
+          "ALG02 correctness contract"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.inv.tree-dfs-stack",
+      "statement": "The active call/stack path is a valid root-to-current-node path and completed subtrees satisfy the variant visit order.",
+      "scope": "tree traversal",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N05",
+          "P4-N06"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.inv.bfs-frontier",
+      "statement": "Discovered vertices are enqueued at most once; queue order processes nondecreasing discovered edge-distance layers.",
+      "scope": "BFS",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N08"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.inv.dfs-visited",
+      "statement": "A vertex marked visited is never expanded as undiscovered again; the explicit/recursive stack represents the current depth-first frontier.",
+      "scope": "DFS",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N08"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    }
+  ],
+  "traces": [
+    {
+      "id": "alg.trace.binary-search-v1",
+      "ownerId": "alg.algorithm.binary-search",
+      "stateFields": [
+        "lo",
+        "hi",
+        "mid",
+        "comparison",
+        "decision"
+      ],
+      "orderingPolicy": "one record per interval decision",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "ALG02"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.trace.sort-array-v1",
+      "ownerId": "alg.concept.comparison-sort",
+      "stateFields": [
+        "array",
+        "activeIndices",
+        "comparison",
+        "swapOrWrite",
+        "fixedRegion"
+      ],
+      "orderingPolicy": "semantic operation steps, not language bytecode",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "ALG02"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.trace.tree-dfs-v1",
+      "ownerId": "alg.algorithm.tree-dfs-traversal",
+      "stateFields": [
+        "currentNode",
+        "stackPath",
+        "visitedOrder",
+        "event"
+      ],
+      "orderingPolicy": "event in {enter,emit,leave}; child order must be declared",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "ALG02"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.trace.bfs-v1",
+      "ownerId": "alg.algorithm.bfs",
+      "stateFields": [
+        "currentVertex",
+        "queue",
+        "visited",
+        "distance",
+        "parent",
+        "discovered"
+      ],
+      "orderingPolicy": "adjacency order is task-declared or multiple equivalent traces allowed",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "ALG02"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.trace.dfs-v1",
+      "ownerId": "alg.algorithm.dfs",
+      "stateFields": [
+        "currentVertex",
+        "stack",
+        "visited",
+        "event",
+        "parent"
+      ],
+      "orderingPolicy": "adjacency order is task-declared or multiple equivalent traces allowed",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "ALG02"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    }
+  ],
+  "variants": [
+    {
+      "id": "alg.variant.binary-search.iterative",
+      "algorithmId": "alg.algorithm.binary-search",
+      "title": "Iterative binary search",
+      "semanticDifferences": "Uses explicit lo/hi loop; auxiliary space Theta(1).",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.variant.insertion-sort.standard",
+      "algorithmId": "alg.algorithm.insertion-sort",
+      "title": "Standard stable insertion sort",
+      "semanticDifferences": "Shifts larger preceding elements and inserts current key.",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.variant.selection-sort.standard",
+      "algorithmId": "alg.algorithm.selection-sort",
+      "title": "Standard selection sort",
+      "semanticDifferences": "Select minimum remaining item and swap into prefix; not stable by default.",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.variant.bubble-sort.early-exit",
+      "algorithmId": "alg.algorithm.bubble-sort",
+      "title": "Bubble sort with early-exit flag",
+      "semanticDifferences": "Stops when a pass performs no swaps, giving linear best case.",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.variant.merge-sort.top-down",
+      "algorithmId": "alg.algorithm.merge-sort",
+      "title": "Top-down merge sort",
+      "semanticDifferences": "Recursively sorts halves then merges; canonical array form uses auxiliary storage.",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.variant.quicksort.partition-generic",
+      "algorithmId": "alg.algorithm.quicksort",
+      "title": "Quicksort with declared partition scheme",
+      "semanticDifferences": "Pivot and partition scheme are explicit variant details; complexity claims depend on partition balance.",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.variant.tree-dfs.preorder",
+      "algorithmId": "alg.algorithm.tree-dfs-traversal",
+      "title": "Preorder",
+      "semanticDifferences": "Emit node before child subtrees.",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N05"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.variant.tree-dfs.inorder-binary",
+      "algorithmId": "alg.algorithm.tree-dfs-traversal",
+      "title": "Inorder for binary trees",
+      "semanticDifferences": "Traverse left subtree, emit node, then right subtree.",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N05"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.variant.tree-dfs.postorder",
+      "algorithmId": "alg.algorithm.tree-dfs-traversal",
+      "title": "Postorder",
+      "semanticDifferences": "Emit node after child subtrees.",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N05"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.variant.bfs.queue",
+      "algorithmId": "alg.algorithm.bfs",
+      "title": "Queue-based BFS",
+      "semanticDifferences": "Uses FIFO frontier and discover-on-enqueue policy.",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N08"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.variant.dfs.recursive",
+      "algorithmId": "alg.algorithm.dfs",
+      "title": "Recursive DFS",
+      "semanticDifferences": "Uses call stack.",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N08",
+          "P4-N06"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.variant.dfs.iterative",
+      "algorithmId": "alg.algorithm.dfs",
+      "title": "Iterative DFS",
+      "semanticDifferences": "Uses explicit LIFO stack; traversal order depends on push order.",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N08"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    }
+  ],
+  "complexityClaims": [
+    {
+      "id": "alg.cx.binary-search.worst-time",
+      "ownerId": "alg.algorithm.binary-search",
+      "operationOrAlgorithm": "search",
+      "inputMeasure": "n = number of searchable positions",
+      "dimension": "time",
+      "case": "worst",
+      "notation": "Theta",
+      "bound": "Theta(log n)",
+      "assumptions": [
+        "sorted total order",
+        "O(1) random access midpoint"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.cx.binary-search.best-time",
+      "ownerId": "alg.algorithm.binary-search",
+      "operationOrAlgorithm": "search",
+      "inputMeasure": "n = number of searchable positions",
+      "dimension": "time",
+      "case": "best",
+      "notation": "Theta",
+      "bound": "Theta(1)",
+      "assumptions": [
+        "first midpoint matches"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "ALG02"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.cx.binary-search.aux-space",
+      "ownerId": "alg.variant.binary-search.iterative",
+      "operationOrAlgorithm": "search",
+      "inputMeasure": "n = number of searchable positions",
+      "dimension": "auxiliary_space",
+      "case": "all_cases",
+      "notation": "Theta",
+      "bound": "Theta(1)",
+      "assumptions": [
+        "iterative variant"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "ALG02"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.cx.insertion-sort.worst-time",
+      "ownerId": "alg.algorithm.insertion-sort",
+      "operationOrAlgorithm": "sort",
+      "inputMeasure": "n = number of elements",
+      "dimension": "time",
+      "case": "worst",
+      "notation": "Theta",
+      "bound": "Theta(n^2)",
+      "assumptions": [
+        "comparison model"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.cx.insertion-sort.best-time",
+      "ownerId": "alg.algorithm.insertion-sort",
+      "operationOrAlgorithm": "sort",
+      "inputMeasure": "n = number of elements",
+      "dimension": "time",
+      "case": "best",
+      "notation": "Theta",
+      "bound": "Theta(n)",
+      "assumptions": [
+        "already ordered input",
+        "standard early stop in inner shift loop"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "ALG02"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.cx.insertion-sort.aux-space",
+      "ownerId": "alg.algorithm.insertion-sort",
+      "operationOrAlgorithm": "sort",
+      "inputMeasure": "n = number of elements",
+      "dimension": "auxiliary_space",
+      "case": "all_cases",
+      "notation": "Theta",
+      "bound": "Theta(1)",
+      "assumptions": [
+        "in-place array variant"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "ALG02"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.cx.selection-sort.time",
+      "ownerId": "alg.algorithm.selection-sort",
+      "operationOrAlgorithm": "sort",
+      "inputMeasure": "n = number of elements",
+      "dimension": "time",
+      "case": "all_cases",
+      "notation": "Theta",
+      "bound": "Theta(n^2)",
+      "assumptions": [
+        "standard scan-for-minimum variant"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.cx.selection-sort.aux-space",
+      "ownerId": "alg.algorithm.selection-sort",
+      "operationOrAlgorithm": "sort",
+      "inputMeasure": "n = number of elements",
+      "dimension": "auxiliary_space",
+      "case": "all_cases",
+      "notation": "Theta",
+      "bound": "Theta(1)",
+      "assumptions": [
+        "in-place array variant"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "ALG02"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.cx.bubble-sort.worst-time",
+      "ownerId": "alg.algorithm.bubble-sort",
+      "operationOrAlgorithm": "sort",
+      "inputMeasure": "n = number of elements",
+      "dimension": "time",
+      "case": "worst",
+      "notation": "Theta",
+      "bound": "Theta(n^2)",
+      "assumptions": [
+        "comparison model"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.cx.bubble-sort.best-time",
+      "ownerId": "alg.variant.bubble-sort.early-exit",
+      "operationOrAlgorithm": "sort",
+      "inputMeasure": "n = number of elements",
+      "dimension": "time",
+      "case": "best",
+      "notation": "Theta",
+      "bound": "Theta(n)",
+      "assumptions": [
+        "early-exit flag",
+        "already ordered input"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "ALG02"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.cx.bubble-sort.aux-space",
+      "ownerId": "alg.algorithm.bubble-sort",
+      "operationOrAlgorithm": "sort",
+      "inputMeasure": "n = number of elements",
+      "dimension": "auxiliary_space",
+      "case": "all_cases",
+      "notation": "Theta",
+      "bound": "Theta(1)",
+      "assumptions": [
+        "in-place adjacent swaps"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "ALG02"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.cx.merge-sort.time",
+      "ownerId": "alg.variant.merge-sort.top-down",
+      "operationOrAlgorithm": "sort",
+      "inputMeasure": "n = number of elements",
+      "dimension": "time",
+      "case": "all_cases",
+      "notation": "Theta",
+      "bound": "Theta(n log n)",
+      "assumptions": [
+        "standard balanced binary split and linear merge"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.cx.merge-sort.aux-space",
+      "ownerId": "alg.variant.merge-sort.top-down",
+      "operationOrAlgorithm": "sort",
+      "inputMeasure": "n = number of elements",
+      "dimension": "auxiliary_space",
+      "case": "worst",
+      "notation": "Theta",
+      "bound": "Theta(n)",
+      "assumptions": [
+        "standard array merge buffer; recursion stack lower order"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "ALG02"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.cx.quicksort.average-time",
+      "ownerId": "alg.algorithm.quicksort",
+      "operationOrAlgorithm": "sort",
+      "inputMeasure": "n = number of elements",
+      "dimension": "time",
+      "case": "average",
+      "notation": "Theta",
+      "bound": "Theta(n log n)",
+      "assumptions": [
+        "pivot/inputs yield expected balanced partitions; exact distribution must be declared for formal average-case claim"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.cx.quicksort.worst-time",
+      "ownerId": "alg.algorithm.quicksort",
+      "operationOrAlgorithm": "sort",
+      "inputMeasure": "n = number of elements",
+      "dimension": "time",
+      "case": "worst",
+      "notation": "Theta",
+      "bound": "Theta(n^2)",
+      "assumptions": [
+        "highly unbalanced partitions can occur"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.cx.quicksort.aux-space-average",
+      "ownerId": "alg.algorithm.quicksort",
+      "operationOrAlgorithm": "sort",
+      "inputMeasure": "n = number of elements",
+      "dimension": "auxiliary_space",
+      "case": "average",
+      "notation": "O",
+      "bound": "O(log n)",
+      "assumptions": [
+        "in-place partition",
+        "balanced expected recursion depth"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "ALG02"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.cx.quicksort.aux-space-worst",
+      "ownerId": "alg.algorithm.quicksort",
+      "operationOrAlgorithm": "sort",
+      "inputMeasure": "n = number of elements",
+      "dimension": "auxiliary_space",
+      "case": "worst",
+      "notation": "O",
+      "bound": "O(n)",
+      "assumptions": [
+        "in-place partition",
+        "degenerate recursion depth"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "ALG02"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.cx.tree-dfs.time",
+      "ownerId": "alg.algorithm.tree-dfs-traversal",
+      "operationOrAlgorithm": "traversal",
+      "inputMeasure": "n = number of reachable tree nodes",
+      "dimension": "time",
+      "case": "all_cases",
+      "notation": "Theta",
+      "bound": "Theta(n)",
+      "assumptions": [
+        "each node/edge-to-child processed constant times"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N05"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.cx.tree-dfs.aux-space",
+      "ownerId": "alg.algorithm.tree-dfs-traversal",
+      "operationOrAlgorithm": "traversal",
+      "inputMeasure": "h = tree height",
+      "dimension": "auxiliary_space",
+      "case": "worst",
+      "notation": "O",
+      "bound": "O(h)",
+      "assumptions": [
+        "recursive or explicit depth-first stack excluding output"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N05",
+          "P4-N06"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.cx.bfs.time-adj-list",
+      "ownerId": "alg.algorithm.bfs",
+      "operationOrAlgorithm": "traversal",
+      "inputMeasure": "V = vertices, E = edges represented by adjacency lists",
+      "dimension": "time",
+      "case": "all_cases",
+      "notation": "Theta",
+      "bound": "Theta(V+E)",
+      "assumptions": [
+        "adjacency-list representation",
+        "visited lookup expected O(1) or equivalent"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N09"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.cx.bfs.aux-space",
+      "ownerId": "alg.algorithm.bfs",
+      "operationOrAlgorithm": "traversal",
+      "inputMeasure": "V = reachable/represented vertices",
+      "dimension": "auxiliary_space",
+      "case": "worst",
+      "notation": "O",
+      "bound": "O(V)",
+      "assumptions": [
+        "visited plus queue plus optional parent/distance maps"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "ALG02"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.cx.dfs.time-adj-list",
+      "ownerId": "alg.algorithm.dfs",
+      "operationOrAlgorithm": "traversal",
+      "inputMeasure": "V = vertices, E = edges represented by adjacency lists",
+      "dimension": "time",
+      "case": "all_cases",
+      "notation": "Theta",
+      "bound": "Theta(V+E)",
+      "assumptions": [
+        "adjacency-list representation",
+        "visited lookup expected O(1) or equivalent"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N09"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.cx.dfs.aux-space",
+      "ownerId": "alg.algorithm.dfs",
+      "operationOrAlgorithm": "traversal",
+      "inputMeasure": "V = reachable/represented vertices",
+      "dimension": "auxiliary_space",
+      "case": "worst",
+      "notation": "O",
+      "bound": "O(V)",
+      "assumptions": [
+        "visited plus explicit/recursive stack"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "ALG02"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    }
+  ],
+  "algorithms": [
+    {
+      "id": "alg.algorithm.binary-search",
+      "title": "Binary search",
+      "conceptIds": [
+        "alg.concept.search",
+        "alg.concept.ordered-search"
+      ],
+      "competencyIds": [
+        "alg.comp.search-sort",
+        "alg.comp.correctness-invariants",
+        "alg.comp.complexity"
+      ],
+      "preconditionIds": [
+        "alg.pre.sorted-total-order",
+        "alg.pre.random-access-search"
+      ],
+      "postconditionIds": [
+        "alg.post.search-index"
+      ],
+      "invariantIds": [
+        "alg.inv.binary-search-interval"
+      ],
+      "complexityClaimIds": [
+        "alg.cx.binary-search.worst-time",
+        "alg.cx.binary-search.best-time",
+        "alg.cx.binary-search.aux-space"
+      ],
+      "traceSchemaId": "alg.trace.binary-search-v1",
+      "variantIds": [
+        "alg.variant.binary-search.iterative"
+      ],
+      "properties": {
+        "stable": null,
+        "inPlace": null,
+        "determinism": "deterministic for declared midpoint/tie policy"
+      },
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07",
+          "P4-M06"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.algorithm.insertion-sort",
+      "title": "Insertion sort",
+      "conceptIds": [
+        "alg.concept.comparison-sort"
+      ],
+      "competencyIds": [
+        "alg.comp.search-sort",
+        "alg.comp.correctness-invariants",
+        "alg.comp.complexity"
+      ],
+      "preconditionIds": [
+        "alg.pre.comparable-keys"
+      ],
+      "postconditionIds": [
+        "alg.post.sorted-permutation"
+      ],
+      "invariantIds": [
+        "alg.inv.insertion-prefix"
+      ],
+      "complexityClaimIds": [
+        "alg.cx.insertion-sort.worst-time",
+        "alg.cx.insertion-sort.best-time",
+        "alg.cx.insertion-sort.aux-space"
+      ],
+      "traceSchemaId": "alg.trace.sort-array-v1",
+      "variantIds": [
+        "alg.variant.insertion-sort.standard"
+      ],
+      "properties": {
+        "stable": true,
+        "inPlace": true
+      },
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.algorithm.selection-sort",
+      "title": "Selection sort",
+      "conceptIds": [
+        "alg.concept.comparison-sort"
+      ],
+      "competencyIds": [
+        "alg.comp.search-sort",
+        "alg.comp.correctness-invariants",
+        "alg.comp.complexity"
+      ],
+      "preconditionIds": [
+        "alg.pre.comparable-keys"
+      ],
+      "postconditionIds": [
+        "alg.post.sorted-permutation"
+      ],
+      "invariantIds": [
+        "alg.inv.selection-prefix"
+      ],
+      "complexityClaimIds": [
+        "alg.cx.selection-sort.time",
+        "alg.cx.selection-sort.aux-space"
+      ],
+      "traceSchemaId": "alg.trace.sort-array-v1",
+      "variantIds": [
+        "alg.variant.selection-sort.standard"
+      ],
+      "properties": {
+        "stable": false,
+        "inPlace": true
+      },
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.algorithm.bubble-sort",
+      "title": "Bubble sort",
+      "conceptIds": [
+        "alg.concept.comparison-sort"
+      ],
+      "competencyIds": [
+        "alg.comp.search-sort",
+        "alg.comp.correctness-invariants",
+        "alg.comp.complexity"
+      ],
+      "preconditionIds": [
+        "alg.pre.comparable-keys"
+      ],
+      "postconditionIds": [
+        "alg.post.sorted-permutation"
+      ],
+      "invariantIds": [
+        "alg.inv.bubble-suffix"
+      ],
+      "complexityClaimIds": [
+        "alg.cx.bubble-sort.worst-time",
+        "alg.cx.bubble-sort.best-time",
+        "alg.cx.bubble-sort.aux-space"
+      ],
+      "traceSchemaId": "alg.trace.sort-array-v1",
+      "variantIds": [
+        "alg.variant.bubble-sort.early-exit"
+      ],
+      "properties": {
+        "stable": true,
+        "inPlace": true
+      },
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.algorithm.merge-sort",
+      "title": "Merge sort",
+      "conceptIds": [
+        "alg.concept.comparison-sort",
+        "alg.concept.divide-and-conquer"
+      ],
+      "competencyIds": [
+        "alg.comp.search-sort",
+        "alg.comp.recursion",
+        "alg.comp.complexity"
+      ],
+      "preconditionIds": [
+        "alg.pre.comparable-keys"
+      ],
+      "postconditionIds": [
+        "alg.post.sorted-permutation"
+      ],
+      "invariantIds": [
+        "alg.inv.merge-sorted-halves"
+      ],
+      "complexityClaimIds": [
+        "alg.cx.merge-sort.time",
+        "alg.cx.merge-sort.aux-space"
+      ],
+      "traceSchemaId": "alg.trace.sort-array-v1",
+      "variantIds": [
+        "alg.variant.merge-sort.top-down"
+      ],
+      "properties": {
+        "stable": "true when equal-key merge takes from left first",
+        "inPlace": false
+      },
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.algorithm.quicksort",
+      "title": "Quicksort",
+      "conceptIds": [
+        "alg.concept.comparison-sort",
+        "alg.concept.divide-and-conquer"
+      ],
+      "competencyIds": [
+        "alg.comp.search-sort",
+        "alg.comp.recursion",
+        "alg.comp.complexity"
+      ],
+      "preconditionIds": [
+        "alg.pre.comparable-keys"
+      ],
+      "postconditionIds": [
+        "alg.post.sorted-permutation"
+      ],
+      "invariantIds": [
+        "alg.inv.quicksort-partition"
+      ],
+      "complexityClaimIds": [
+        "alg.cx.quicksort.average-time",
+        "alg.cx.quicksort.worst-time",
+        "alg.cx.quicksort.aux-space-average",
+        "alg.cx.quicksort.aux-space-worst"
+      ],
+      "traceSchemaId": "alg.trace.sort-array-v1",
+      "variantIds": [
+        "alg.variant.quicksort.partition-generic"
+      ],
+      "properties": {
+        "stable": false,
+        "inPlace": "partition-variant dependent; canonical common projection uses in-place partition"
+      },
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.algorithm.tree-dfs-traversal",
+      "title": "Depth-first tree traversal",
+      "conceptIds": [
+        "alg.concept.tree-traversal"
+      ],
+      "competencyIds": [
+        "alg.comp.tree-bst",
+        "alg.comp.recursion",
+        "alg.comp.correctness-invariants"
+      ],
+      "preconditionIds": [
+        "alg.pre.rooted-tree"
+      ],
+      "postconditionIds": [
+        "alg.post.tree-visit-once"
+      ],
+      "invariantIds": [
+        "alg.inv.tree-dfs-stack"
+      ],
+      "complexityClaimIds": [
+        "alg.cx.tree-dfs.time",
+        "alg.cx.tree-dfs.aux-space"
+      ],
+      "traceSchemaId": "alg.trace.tree-dfs-v1",
+      "variantIds": [
+        "alg.variant.tree-dfs.preorder",
+        "alg.variant.tree-dfs.inorder-binary",
+        "alg.variant.tree-dfs.postorder"
+      ],
+      "properties": {
+        "determinism": "requires declared child order"
+      },
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N05"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.algorithm.bfs",
+      "title": "Breadth-first search/traversal",
+      "conceptIds": [
+        "alg.concept.graph-traversal",
+        "alg.concept.unweighted-shortest-path"
+      ],
+      "competencyIds": [
+        "alg.comp.graph-traversal",
+        "alg.comp.complexity",
+        "alg.comp.correctness-invariants"
+      ],
+      "preconditionIds": [
+        "alg.pre.graph-explicit",
+        "alg.pre.finite-reachable-space",
+        "alg.pre.bfs-unweighted-shortest"
+      ],
+      "postconditionIds": [
+        "alg.post.graph-reachability",
+        "alg.post.bfs-distance"
+      ],
+      "invariantIds": [
+        "alg.inv.bfs-frontier"
+      ],
+      "complexityClaimIds": [
+        "alg.cx.bfs.time-adj-list",
+        "alg.cx.bfs.aux-space"
+      ],
+      "traceSchemaId": "alg.trace.bfs-v1",
+      "variantIds": [
+        "alg.variant.bfs.queue"
+      ],
+      "properties": {
+        "determinism": "neighbor-order dependent unless tie policy declared"
+      },
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N08",
+          "P4-N09",
+          "P4-M08"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.algorithm.dfs",
+      "title": "Depth-first search/traversal",
+      "conceptIds": [
+        "alg.concept.graph-traversal"
+      ],
+      "competencyIds": [
+        "alg.comp.graph-traversal",
+        "alg.comp.recursion",
+        "alg.comp.correctness-invariants",
+        "alg.comp.complexity"
+      ],
+      "preconditionIds": [
+        "alg.pre.graph-explicit",
+        "alg.pre.finite-reachable-space"
+      ],
+      "postconditionIds": [
+        "alg.post.graph-reachability"
+      ],
+      "invariantIds": [
+        "alg.inv.dfs-visited"
+      ],
+      "complexityClaimIds": [
+        "alg.cx.dfs.time-adj-list",
+        "alg.cx.dfs.aux-space"
+      ],
+      "traceSchemaId": "alg.trace.dfs-v1",
+      "variantIds": [
+        "alg.variant.dfs.recursive",
+        "alg.variant.dfs.iterative"
+      ],
+      "properties": {
+        "determinism": "neighbor/push-order dependent unless policy declared"
+      },
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N08",
+          "P4-N09"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    }
+  ],
+  "deferredNotDefault": [
+    {
+      "id": "alg.algorithm.dijkstra",
+      "status": "DEFERRED_JIT",
+      "reason": "not present in active ALG01/P4 baseline; requires explicit downstream need and nonnegative-weight contract"
+    },
+    {
+      "id": "alg.algorithm.topological-sort",
+      "status": "DEFERRED_JIT",
+      "reason": "not present in active baseline"
+    },
+    {
+      "id": "alg.algorithm.kruskal",
+      "status": "DEFERRED_JIT",
+      "reason": "MST not present in active baseline"
+    },
+    {
+      "id": "alg.algorithm.dynamic-programming-family",
+      "status": "DEFERRED_JIT",
+      "reason": "not present in active baseline"
+    },
+    {
+      "id": "alg.algorithm.backtracking-family",
+      "status": "DEFERRED_JIT",
+      "reason": "not present in active baseline"
+    }
+  ],
+  "concepts": [
+    {
+      "id": "alg.concept.pseudocode",
+      "title": "Language-neutral pseudocode",
+      "competencyIds": [
+        "alg.comp.pseudocode-state"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "PR10",
+          "ALG02"
+        ],
+        "reviewRule": "ALG02"
+      }
+    },
+    {
+      "id": "alg.concept.complexity",
+      "title": "Asymptotic complexity",
+      "competencyIds": [
+        "alg.comp.complexity"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N02",
+          "P4-N09"
+        ],
+        "reviewRule": "ALG02"
+      }
+    },
+    {
+      "id": "alg.concept.search",
+      "title": "Search",
+      "competencyIds": [
+        "alg.comp.search-sort"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07"
+        ],
+        "reviewRule": "ALG02"
+      }
+    },
+    {
+      "id": "alg.concept.ordered-search",
+      "title": "Ordered search",
+      "competencyIds": [
+        "alg.comp.search-sort"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07"
+        ],
+        "reviewRule": "ALG02"
+      }
+    },
+    {
+      "id": "alg.concept.comparison-sort",
+      "title": "Comparison sorting",
+      "competencyIds": [
+        "alg.comp.search-sort"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07"
+        ],
+        "reviewRule": "ALG02"
+      }
+    },
+    {
+      "id": "alg.concept.divide-and-conquer",
+      "title": "Divide and conquer",
+      "competencyIds": [
+        "alg.comp.recursion",
+        "alg.comp.search-sort"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07",
+          "ALG02"
+        ],
+        "reviewRule": "ALG02"
+      }
+    },
+    {
+      "id": "alg.concept.tree-traversal",
+      "title": "Tree traversal",
+      "competencyIds": [
+        "alg.comp.tree-bst"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N05"
+        ],
+        "reviewRule": "ALG02"
+      }
+    },
+    {
+      "id": "alg.concept.graph-traversal",
+      "title": "Graph traversal",
+      "competencyIds": [
+        "alg.comp.graph-traversal"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N08"
+        ],
+        "reviewRule": "ALG02"
+      }
+    },
+    {
+      "id": "alg.concept.unweighted-shortest-path",
+      "title": "Shortest path by edge count in unweighted/equal-cost graph",
+      "competencyIds": [
+        "alg.comp.graph-traversal"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N08",
+          "P4-M08"
+        ],
+        "reviewRule": "ALG02"
+      }
+    }
+  ]
+}

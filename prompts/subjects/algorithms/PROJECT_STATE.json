@@ -3,8 +3,8 @@
   "subject": "algorithms",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/subjects/algorithms/ALG_MASTER_PROMPT.md",
-  "status": "ALG01_PASS",
-  "activeModule": "ALG02",
+  "status": "ALG02_PASS",
+  "activeModule": "ALG03",
   "sequence": [
     "ALG01",
     "ALG02",
@@ -14,11 +14,12 @@
     "ALG06"
   ],
   "completedModules": [
-    "ALG01"
+    "ALG01",
+    "ALG02"
   ],
   "needsRevalidation": [],
-  "lastValidatedSha": "f52aaa495987479fbe8c763f63929da1aee2c92a",
-  "currentHeadSha": "f52aaa495987479fbe8c763f63929da1aee2c92a",
+  "lastValidatedSha": "3aabbeaa0cd64a12ed0e73967837eadd913165f4",
+  "currentHeadSha": "3aabbeaa0cd64a12ed0e73967837eadd913165f4",
   "evidence": [
     "subjects/algorithms/docs/alg01/ALG01_EXECUTIVE_SUMMARY.md",
     "subjects/algorithms/docs/alg01/ALG01_REPOSITORY_MAP.md",
@@ -35,10 +36,28 @@
     ".github/workflows/algorithms-alg01-ci.yml",
     "Algorithms ALG01 Forensic Baseline CI run 37216354669: SUCCESS",
     "Development Fast CI run 37216354622: SUCCESS",
-    "Universal Constitution Compliance run 37216354995: SUCCESS"
+    "Universal Constitution Compliance run 37216354995: SUCCESS",
+    "subjects/algorithms/docs/alg02/ALG_P2_CANONICAL_MODEL.json",
+    "subjects/algorithms/docs/alg02/ALG_ACADEMIC_BLUEPRINT.md",
+    "subjects/algorithms/docs/alg02/ALG_COMPETENCY_GRAPH.json",
+    "subjects/algorithms/docs/alg02/ALG_PREREQUISITE_GRAPH.json",
+    "subjects/algorithms/docs/alg02/ALG_CANONICAL_ENTITY_SCHEMA.json",
+    "subjects/algorithms/docs/alg02/ALG_ADT_OPERATION_CONTRACT.md",
+    "subjects/algorithms/docs/alg02/ALG_COMPLEXITY_CLAIM_CONTRACT.md",
+    "subjects/algorithms/docs/alg02/ALG_CORRECTNESS_INVARIANT_CONTRACT.md",
+    "subjects/algorithms/docs/alg02/ALG_ALGORITHM_REGISTRY.json",
+    "subjects/algorithms/docs/alg02/ALG_DATA_STRUCTURE_REGISTRY.json",
+    "subjects/algorithms/docs/alg02/ALG_LEGACY_COMPATIBILITY_MAP.json",
+    "subjects/algorithms/docs/alg02/ALG03_INPUT_CONTRACT.md",
+    "tests/algorithms-alg02-canonical-contract.mjs",
+    ".github/workflows/algorithms-alg02-ci.yml",
+    "Algorithms ALG02 Canonical Model CI run 37217275094: SUCCESS",
+    "Algorithms ALG01 Forensic Baseline CI run 37217275082: SUCCESS on ALG02 head",
+    "Development Fast CI run 37217275163: SUCCESS on ALG02 head",
+    "Universal Constitution Compliance run 37217275435: SUCCESS on ALG02 head"
   ],
   "blockers": [],
-  "nextAction": "Start ALG02 from subjects/algorithms/docs/alg01/ALG02_INPUT_CONTRACT.md and create the language-neutral canonical academic model without changing existing learner behavior until the ALG02 contract passes.",
+  "nextAction": "Start ALG03 from subjects/algorithms/docs/alg02/ALG03_INPUT_CONTRACT.md after this terminal ALG02 metadata head re-passes PR-head ALG02, Development Fast and Constitution checks.",
   "notes": [
     "ALG01 is audit-only; no current learner runtime/content/state behavior was changed.",
     "Actual Algorithms scope is distributed across Programming PR02/PR10/PR11, P4 prerequisite data, and adjacent Math discrete/graph foundations.",
@@ -47,6 +66,12 @@
     "P4 baseline: 10 nodes, 38 diagnostic items, 10 critical misconceptions, at least 8 repair routes.",
     "The current sim_algorithm_complexity_lab.html is a generic demo-risk/reproducibility meter, not an algorithm complexity engine.",
     "ALG01 exact tested evidence head f52aaa495987479fbe8c763f63929da1aee2c92a passed P4 integrity + ALG01 forensic static + Development Fast + Universal Constitution.",
-    "ALG01 terminal state/evidence tail is governance-only and must re-pass PR-head CI before merge."
+    "ALG01 terminal state/evidence tail is governance-only and must re-pass PR-head CI before merge.",
+    "ALG02 is additive academic governance only: no learner runtime, production deployment, existing Programming content, P4 prerequisite data, or learner state is mutated.",
+    "Canonical Algorithms namespace uses 15 alg.comp.* competencies, a language-neutral entity model, explicit ADT/representation separation, and structured correctness/complexity claims.",
+    "Default canonical algorithm scope is restricted to ALG01/P4 evidence; Dijkstra/topological/MST/greedy/DP/backtracking/heap/union-find remain deferred JIT rather than silently required.",
+    "ALG01 merged to main at e66aa6bd7c47c1bd7c91c9e28fdf390b1b930875.",
+    "ALG02 exact tested implementation head 3aabbeaa0cd64a12ed0e73967837eadd913165f4 passed canonical, ALG01 regression, P4 integrity, Development Fast and Universal Constitution checks.",
+    "ALG02 terminal PASS metadata tail is governance-only and must re-pass final PR-head checks before merge."
   ]
 }

@@ -1,0 +1,990 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "algorithms",
+  "canonicalOwner": "subjects/algorithms/docs/alg02/ALG_DATA_STRUCTURE_REGISTRY.json",
+  "rule": "ADT behavior and concrete representation are separate canonical entities.",
+  "abstractDataTypes": [
+    {
+      "id": "alg.adt.sequence",
+      "title": "Sequence",
+      "behavioralContract": "Finite ordered collection with positional access semantics defined by the representation.",
+      "operationIds": [
+        "alg.op.sequence.access",
+        "alg.op.sequence.insert",
+        "alg.op.sequence.delete"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N03"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.adt.stack",
+      "title": "Stack",
+      "behavioralContract": "LIFO collection.",
+      "operationIds": [
+        "alg.op.stack.push",
+        "alg.op.stack.pop",
+        "alg.op.stack.peek"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N03",
+          "P4-M07"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.adt.queue",
+      "title": "Queue",
+      "behavioralContract": "FIFO collection.",
+      "operationIds": [
+        "alg.op.queue.enqueue",
+        "alg.op.queue.dequeue",
+        "alg.op.queue.front"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N03",
+          "P4-N08",
+          "P4-M07"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.adt.map",
+      "title": "Associative map",
+      "behavioralContract": "Maps keys to values under declared key equality/hash/order semantics.",
+      "operationIds": [
+        "alg.op.map.get",
+        "alg.op.map.put",
+        "alg.op.map.delete"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N04"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.adt.rooted-tree",
+      "title": "Rooted tree",
+      "behavioralContract": "Hierarchical parent/child relation with one root and unique parent for each non-root node.",
+      "operationIds": [
+        "alg.op.tree.children",
+        "alg.op.tree.traverse"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N05"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.adt.ordered-symbol-table",
+      "title": "Ordered symbol table",
+      "behavioralContract": "Key/value association preserving a total key ordering sufficient for ordered search operations.",
+      "operationIds": [
+        "alg.op.ost.get",
+        "alg.op.ost.put",
+        "alg.op.ost.delete"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N05"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.adt.graph",
+      "title": "Graph",
+      "behavioralContract": "Vertex/edge relation with direction and weight semantics explicitly declared.",
+      "operationIds": [
+        "alg.op.graph.neighbors",
+        "alg.op.graph.add-edge"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N08"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    }
+  ],
+  "operations": [
+    {
+      "id": "alg.op.sequence.access",
+      "ownerId": "alg.adt.sequence",
+      "inputs": [
+        "index"
+      ],
+      "output": "element",
+      "mutates": false,
+      "preconditions": [
+        "index in declared range"
+      ],
+      "postconditions": [
+        "returns element at position"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N03"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.op.sequence.insert",
+      "ownerId": "alg.adt.sequence",
+      "inputs": [
+        "position",
+        "element"
+      ],
+      "output": "updated sequence or handle",
+      "mutates": "implementation-defined; must be declared",
+      "preconditions": [
+        "position valid"
+      ],
+      "postconditions": [
+        "relative order preserved around insertion"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N03"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.op.sequence.delete",
+      "ownerId": "alg.adt.sequence",
+      "inputs": [
+        "position"
+      ],
+      "output": "removed element or updated sequence",
+      "mutates": "implementation-defined; must be declared",
+      "preconditions": [
+        "position valid"
+      ],
+      "postconditions": [
+        "selected element removed"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N03"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.op.stack.push",
+      "ownerId": "alg.adt.stack",
+      "inputs": [
+        "element"
+      ],
+      "output": "stack state",
+      "mutates": true,
+      "preconditions": [],
+      "postconditions": [
+        "element becomes top"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N03"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.op.stack.pop",
+      "ownerId": "alg.adt.stack",
+      "inputs": [],
+      "output": "top element",
+      "mutates": true,
+      "preconditions": [
+        "stack non-empty unless task defines empty behavior"
+      ],
+      "postconditions": [
+        "previous top removed"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N03"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.op.stack.peek",
+      "ownerId": "alg.adt.stack",
+      "inputs": [],
+      "output": "top element",
+      "mutates": false,
+      "preconditions": [
+        "stack non-empty unless task defines empty behavior"
+      ],
+      "postconditions": [
+        "stack unchanged"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N03"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.op.queue.enqueue",
+      "ownerId": "alg.adt.queue",
+      "inputs": [
+        "element"
+      ],
+      "output": "queue state",
+      "mutates": true,
+      "preconditions": [],
+      "postconditions": [
+        "element becomes newest/back item"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N03"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.op.queue.dequeue",
+      "ownerId": "alg.adt.queue",
+      "inputs": [],
+      "output": "oldest/front element",
+      "mutates": true,
+      "preconditions": [
+        "queue non-empty unless task defines empty behavior"
+      ],
+      "postconditions": [
+        "previous front removed"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N03"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.op.queue.front",
+      "ownerId": "alg.adt.queue",
+      "inputs": [],
+      "output": "front element",
+      "mutates": false,
+      "preconditions": [
+        "queue non-empty unless task defines empty behavior"
+      ],
+      "postconditions": [
+        "queue unchanged"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N03"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.op.map.get",
+      "ownerId": "alg.adt.map",
+      "inputs": [
+        "key"
+      ],
+      "output": "value or task-declared missing value",
+      "mutates": false,
+      "preconditions": [
+        "key semantics declared"
+      ],
+      "postconditions": [
+        "mapping unchanged"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N04"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.op.map.put",
+      "ownerId": "alg.adt.map",
+      "inputs": [
+        "key",
+        "value"
+      ],
+      "output": "mapping state",
+      "mutates": true,
+      "preconditions": [
+        "key semantics declared"
+      ],
+      "postconditions": [
+        "key maps to new value"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N04"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.op.map.delete",
+      "ownerId": "alg.adt.map",
+      "inputs": [
+        "key"
+      ],
+      "output": "removed value/status",
+      "mutates": true,
+      "preconditions": [
+        "key semantics declared"
+      ],
+      "postconditions": [
+        "key absent"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N04"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.op.tree.children",
+      "ownerId": "alg.adt.rooted-tree",
+      "inputs": [
+        "node"
+      ],
+      "output": "ordered/unordered child collection per model",
+      "mutates": false,
+      "preconditions": [
+        "node belongs to tree"
+      ],
+      "postconditions": [
+        "tree unchanged"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N05"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.op.tree.traverse",
+      "ownerId": "alg.adt.rooted-tree",
+      "inputs": [
+        "root",
+        "variant"
+      ],
+      "output": "visit sequence",
+      "mutates": false,
+      "preconditions": [
+        "finite rooted tree"
+      ],
+      "postconditions": [
+        "reachable nodes visited according to variant"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N05"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.op.ost.get",
+      "ownerId": "alg.adt.ordered-symbol-table",
+      "inputs": [
+        "key"
+      ],
+      "output": "value/missing",
+      "mutates": false,
+      "preconditions": [
+        "total ordering declared"
+      ],
+      "postconditions": [
+        "table unchanged"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N05"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.op.ost.put",
+      "ownerId": "alg.adt.ordered-symbol-table",
+      "inputs": [
+        "key",
+        "value"
+      ],
+      "output": "table state",
+      "mutates": true,
+      "preconditions": [
+        "total ordering declared"
+      ],
+      "postconditions": [
+        "ordering invariant preserved"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N05"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.op.ost.delete",
+      "ownerId": "alg.adt.ordered-symbol-table",
+      "inputs": [
+        "key"
+      ],
+      "output": "table state/status",
+      "mutates": true,
+      "preconditions": [
+        "total ordering declared"
+      ],
+      "postconditions": [
+        "ordering invariant preserved"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N05"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.op.graph.neighbors",
+      "ownerId": "alg.adt.graph",
+      "inputs": [
+        "vertex"
+      ],
+      "output": "adjacent vertex/edge records",
+      "mutates": false,
+      "preconditions": [
+        "vertex identity valid"
+      ],
+      "postconditions": [
+        "graph unchanged"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N08"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.op.graph.add-edge",
+      "ownerId": "alg.adt.graph",
+      "inputs": [
+        "u",
+        "v",
+        "optional weight"
+      ],
+      "output": "graph state",
+      "mutates": true,
+      "preconditions": [
+        "graph model permits edge"
+      ],
+      "postconditions": [
+        "direction/multiplicity/weight semantics preserved"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N08"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    }
+  ],
+  "invariants": [
+    {
+      "id": "alg.inv.linked-list-chain",
+      "statement": "Each reachable node has representation-valid next linkage and traversal terminates at the declared sentinel/null boundary for the acyclic list model.",
+      "scope": "singly linked list",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N03"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.inv.hash-table-key-placement",
+      "statement": "Every stored key is discoverable by the table's declared hash/equality and collision-resolution policy.",
+      "scope": "hash table",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N04",
+          "P4-M03"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.inv.binary-tree-parent-child",
+      "statement": "Each non-root node has exactly one parent in the tree model; no cycles.",
+      "scope": "binary tree",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N05"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.inv.bst-order",
+      "statement": "For each node, keys in the left/right subtrees satisfy the canonical duplicate/order policy relative to that node.",
+      "scope": "BST",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N05",
+          "P4-M04"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.inv.graph-representation-equivalence",
+      "statement": "Adjacency representation encodes exactly the graph's declared vertices/edges/direction/weights.",
+      "scope": "graph representations",
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N08",
+          "P4-M09"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    }
+  ],
+  "dataStructures": [
+    {
+      "id": "alg.ds.array",
+      "title": "Contiguous array",
+      "implementsAdtIds": [
+        "alg.adt.sequence"
+      ],
+      "representation": "contiguous indexed cells",
+      "invariantIds": [],
+      "operationComplexityClaims": [
+        {
+          "operation": "access",
+          "inputMeasure": "n elements",
+          "case": "all_cases",
+          "time": "Theta(1)",
+          "assumptions": [
+            "direct indexing"
+          ]
+        },
+        {
+          "operation": "insert/delete at arbitrary position",
+          "inputMeasure": "n elements",
+          "case": "worst",
+          "time": "Theta(n)",
+          "assumptions": [
+            "contiguous shift required"
+          ]
+        }
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N03"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.ds.singly-linked-list",
+      "title": "Singly linked list",
+      "implementsAdtIds": [
+        "alg.adt.sequence"
+      ],
+      "representation": "nodes linked by next references",
+      "invariantIds": [
+        "alg.inv.linked-list-chain"
+      ],
+      "operationComplexityClaims": [
+        {
+          "operation": "access by index",
+          "inputMeasure": "n elements",
+          "case": "worst",
+          "time": "Theta(n)",
+          "assumptions": [
+            "start from head"
+          ]
+        },
+        {
+          "operation": "insert/delete after known node",
+          "inputMeasure": "n elements",
+          "case": "all_cases",
+          "time": "Theta(1)",
+          "assumptions": [
+            "node handle already known; search cost excluded"
+          ]
+        }
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N03",
+          "P4-M02"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.ds.stack-array",
+      "title": "Array-backed stack",
+      "implementsAdtIds": [
+        "alg.adt.stack"
+      ],
+      "representation": "sequence with one end designated top",
+      "invariantIds": [],
+      "operationComplexityClaims": [
+        {
+          "operation": "push/pop at end",
+          "inputMeasure": "n elements",
+          "case": "amortized",
+          "time": "O(1)",
+          "assumptions": [
+            "dynamic growth policy when capacity changes; exact resize model belongs implementation projection"
+          ]
+        }
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N03"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.ds.queue-ring-buffer",
+      "title": "Ring-buffer queue",
+      "implementsAdtIds": [
+        "alg.adt.queue"
+      ],
+      "representation": "array plus head/tail indices",
+      "invariantIds": [],
+      "operationComplexityClaims": [
+        {
+          "operation": "enqueue/dequeue",
+          "inputMeasure": "n elements",
+          "case": "amortized",
+          "time": "O(1)",
+          "assumptions": [
+            "capacity management declared"
+          ]
+        }
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N03"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.ds.hash-table-chaining",
+      "title": "Hash table with separate chaining",
+      "implementsAdtIds": [
+        "alg.adt.map"
+      ],
+      "representation": "bucket array with per-bucket collections",
+      "invariantIds": [
+        "alg.inv.hash-table-key-placement"
+      ],
+      "operationComplexityClaims": [
+        {
+          "operation": "get/put/delete",
+          "inputMeasure": "n keys, m buckets, load factor alpha=n/m",
+          "case": "expected",
+          "time": "expected O(1)",
+          "assumptions": [
+            "hash distributes keys adequately",
+            "load factor controlled"
+          ]
+        },
+        {
+          "operation": "get/put/delete",
+          "inputMeasure": "n keys",
+          "case": "worst",
+          "time": "O(n)",
+          "assumptions": [
+            "collisions can concentrate keys"
+          ]
+        }
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N04",
+          "P4-M03"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.ds.hash-table-open-addressing",
+      "title": "Hash table with open addressing",
+      "implementsAdtIds": [
+        "alg.adt.map"
+      ],
+      "representation": "bucket/probe array with declared tombstone/empty semantics",
+      "invariantIds": [
+        "alg.inv.hash-table-key-placement"
+      ],
+      "operationComplexityClaims": [
+        {
+          "operation": "get/put/delete",
+          "inputMeasure": "n keys, m buckets, alpha=n/m",
+          "case": "expected",
+          "time": "expected O(1)",
+          "assumptions": [
+            "probe/hash assumptions and load factor bounded away from 1"
+          ]
+        },
+        {
+          "operation": "get/put/delete",
+          "inputMeasure": "n keys",
+          "case": "worst",
+          "time": "O(n)",
+          "assumptions": [
+            "pathological clustering/probing possible"
+          ]
+        }
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N04"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.ds.binary-tree",
+      "title": "Binary tree",
+      "implementsAdtIds": [
+        "alg.adt.rooted-tree"
+      ],
+      "representation": "each node has at most left/right child relations",
+      "invariantIds": [
+        "alg.inv.binary-tree-parent-child"
+      ],
+      "operationComplexityClaims": [
+        {
+          "operation": "full traversal",
+          "inputMeasure": "n nodes",
+          "case": "all_cases",
+          "time": "Theta(n)",
+          "assumptions": [
+            "visit each node once"
+          ]
+        }
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N05"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.ds.binary-search-tree",
+      "title": "Unbalanced binary search tree",
+      "implementsAdtIds": [
+        "alg.adt.ordered-symbol-table",
+        "alg.adt.rooted-tree"
+      ],
+      "representation": "binary tree with key-order invariant",
+      "invariantIds": [
+        "alg.inv.binary-tree-parent-child",
+        "alg.inv.bst-order"
+      ],
+      "operationComplexityClaims": [
+        {
+          "operation": "search/insert/delete",
+          "inputMeasure": "h = tree height",
+          "case": "all_cases",
+          "time": "O(h)",
+          "assumptions": [
+            "standard pointer-based BST"
+          ]
+        },
+        {
+          "operation": "search/insert/delete",
+          "inputMeasure": "n nodes",
+          "case": "worst",
+          "time": "O(n)",
+          "assumptions": [
+            "tree may degenerate"
+          ]
+        }
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N05",
+          "P4-M04"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.ds.graph-adjacency-list",
+      "title": "Adjacency-list graph representation",
+      "implementsAdtIds": [
+        "alg.adt.graph"
+      ],
+      "representation": "per-vertex adjacency collection",
+      "invariantIds": [
+        "alg.inv.graph-representation-equivalence"
+      ],
+      "operationComplexityClaims": [
+        {
+          "operation": "storage",
+          "inputMeasure": "V vertices, E edges",
+          "case": "all_cases",
+          "space": "Theta(V+E)",
+          "assumptions": [
+            "standard adjacency lists; undirected edge may be stored twice"
+          ]
+        },
+        {
+          "operation": "iterate all neighbors over full traversal",
+          "inputMeasure": "V,E",
+          "case": "all_cases",
+          "time": "Theta(V+E)",
+          "assumptions": [
+            "all lists traversed"
+          ]
+        }
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N08",
+          "P4-N09"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    },
+    {
+      "id": "alg.ds.graph-adjacency-matrix",
+      "title": "Adjacency-matrix graph representation",
+      "implementsAdtIds": [
+        "alg.adt.graph"
+      ],
+      "representation": "V by V edge-presence/weight matrix",
+      "invariantIds": [
+        "alg.inv.graph-representation-equivalence"
+      ],
+      "operationComplexityClaims": [
+        {
+          "operation": "storage",
+          "inputMeasure": "V vertices",
+          "case": "all_cases",
+          "space": "Theta(V^2)",
+          "assumptions": [
+            "dense matrix allocated"
+          ]
+        },
+        {
+          "operation": "edge lookup",
+          "inputMeasure": "V vertices",
+          "case": "all_cases",
+          "time": "Theta(1)",
+          "assumptions": [
+            "direct matrix indexing"
+          ]
+        },
+        {
+          "operation": "scan neighbors of one vertex",
+          "inputMeasure": "V vertices",
+          "case": "all_cases",
+          "time": "Theta(V)",
+          "assumptions": [
+            "row scan"
+          ]
+        }
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N08",
+          "P4-N09"
+        ],
+        "reviewRule": "canonical_changes_require_ALG02_or_selective_revalidation"
+      }
+    }
+  ],
+  "deferredNotDefault": [
+    {
+      "id": "alg.adt.priority-queue",
+      "status": "DEFERRED_JIT",
+      "reason": "not active in ALG01/P4 core baseline"
+    },
+    {
+      "id": "alg.ds.heap",
+      "status": "DEFERRED_JIT",
+      "reason": "not active in ALG01/P4 core baseline"
+    },
+    {
+      "id": "alg.ds.disjoint-set",
+      "status": "DEFERRED_JIT",
+      "reason": "not active in ALG01/P4 core baseline"
+    }
+  ]
+}
