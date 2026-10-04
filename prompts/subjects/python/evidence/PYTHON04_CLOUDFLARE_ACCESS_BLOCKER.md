@@ -2,9 +2,9 @@
 
 Status: REAL EXTERNAL BLOCKER — IMPLEMENTATION DISABLED, MODULE NOT ACCEPTED.
 Main reconfirmed: `a86f00ebe339a0f39ad8feab66315046b94185a7`.
-Exact remote CI source: `57c9815a18edc4c133823cc9b95858d1a476af64`.
-Workflow: https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37199893492
-Receipt: `cloudflare-ci/57c9815a18edc4c133823cc9b95858d1a476af64.json`.
+Exact remote CI source after latest-main owner integration: `0499f6540db5cc225a2517f4ee7ec3f8975dc1b0`.
+Workflow: https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37200541466
+Receipt: `cloudflare-ci/0499f6540db5cc225a2517f4ee7ec3f8975dc1b0.json`.
 
 ## Evidence and root cause
 

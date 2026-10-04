@@ -41,3 +41,13 @@ test('cleanup failure quarantines evidence; pre-start cancellation executes no c
   assert.equal(failed.status,'cleanup_failed');
   assert.equal(failed.cleanup,false);
 });
+
+test('structured Unicode evidence survives native pipe chunk boundaries',async()=>{
+  const {superviseContainer}=await import('../runtime/python-cloudflare/controller.mjs');
+  const stdout='Tiếng Việt · Привет · 🐍\n';
+  const bytes=new TextEncoder().encode(JSON.stringify({status:'completed',stdout,stderr:''}));
+  const process={stdout:new ReadableStream({start(c){for(const byte of bytes)c.enqueue(Uint8Array.of(byte));c.close();}}),stderr:new ReadableStream({start(c){c.close();}}),exitCode:Promise.resolve(0),kill(){}};
+  const container={images:{python:'sha256:'+'1'.repeat(64)},running:false,start(){this.running=true;},async exec(){return process;},async destroy(){this.running=false;},async inspect(){return null;}};
+  const result=await superviseContainer(container,{runId:crypto.randomUUID(),code:'pass'});
+  assert.equal(result.status,'completed');assert.equal(result.stdout,stdout);assert.equal(result.cleanup,true);
+});

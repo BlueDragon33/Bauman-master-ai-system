@@ -70,11 +70,11 @@ export async function superviseContainer(container,input,{signal}={}) {
   let text='',stdoutBytes=0,stderrBytes=0;
   const drain=async(stream,isError=false)=>{
     if(!stream)throw new Error('MISSING_PIPE');
-    const reader=stream.getReader();
+    const reader=stream.getReader(),decoder=new TextDecoder();
     try{while(true){const {value,done}=await reader.read();if(done)break;
       if(isError){stderrBytes+=value.byteLength;if(stderrBytes>POLICY.outputBytes)stop('output_limit');}
-      else {stdoutBytes+=value.byteLength;if(stdoutBytes>POLICY.transportBytes)stop('output_limit');else text+=new TextDecoder().decode(value);}
-    }}finally{reader.releaseLock();}
+      else {stdoutBytes+=value.byteLength;if(stdoutBytes>POLICY.transportBytes)stop('output_limit');else text+=decoder.decode(value,{stream:true});}
+    }if(!isError&&stdoutBytes<=POLICY.transportBytes)text+=decoder.decode();}finally{reader.releaseLock();}
   };
   try {
     if(container.running)throw new Error('WORKSPACE_REUSE_FORBIDDEN');

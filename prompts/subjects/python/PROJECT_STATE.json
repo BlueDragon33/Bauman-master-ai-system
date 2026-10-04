@@ -82,7 +82,8 @@
     "tests/python-p4-cloudflare-real.mjs",
     "tests/python-p4-cloudflare-browser.mjs",
     "prompts/subjects/python/evidence/cloudflare-ci/57c9815a18edc4c133823cc9b95858d1a476af64.json",
-    "prompts/subjects/python/evidence/PYTHON04_CLOUDFLARE_ACCESS_BLOCKER.md"
+    "prompts/subjects/python/evidence/PYTHON04_CLOUDFLARE_ACCESS_BLOCKER.md",
+    "prompts/subjects/python/evidence/cloudflare-ci/0499f6540db5cc225a2517f4ee7ec3f8975dc1b0.json"
   ],
   "blockers": [
     "REAL EXTERNAL BLOCKER: configured bauman-preview account-owned Cloudflare token verifies HTTP 200 active, but native /accounts/{account}/containers/me returns HTTP 403 Authentication error (code 10000). Provider safety cannot be proven until authorized Container access is granted. No learner execution, official assessment or production activation is permitted."
@@ -114,8 +115,8 @@
     "Gated desktop/mobile UI passed on source and preview-packaged assets; offline execution is unavailable and learner state remained unchanged. These are not native provider acceptance.",
     "Main advanced to b9e2253d7f9cef872067cb1ebb77f15ca7fd9a51 during execution. Its canonical cloudflare provider entry/image owner is reused, not duplicated. The prior local-only provider PASS requires native/full-packet revalidation."
   ],
-  "lastImplementationTestedSha": "57c9815a18edc4c133823cc9b95858d1a476af64",
+  "lastImplementationTestedSha": "0499f6540db5cc225a2517f4ee7ec3f8975dc1b0",
   "learnerExecutionEnabled": false,
   "productionDeployed": false,
-  "lastProviderCiSha": "57c9815a18edc4c133823cc9b95858d1a476af64"
+  "lastProviderCiSha": "0499f6540db5cc225a2517f4ee7ec3f8975dc1b0"
 }

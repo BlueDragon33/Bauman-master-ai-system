@@ -125,3 +125,7 @@ facade found no blocking stale/state/secret findings; it explicitly did not
 establish native VM safety or authenticated learner E2E. The Control-owner HTTP
 integration fixture covers origin, missing/malformed session, owner-bound runId,
 private-payload rejection and the disabled gate using trusted test shims only.
+
+Structured output now uses one streaming UTF-8 decoder per native pipe. The
+byte-at-a-time Vietnamese/Russian/emoji fixture failed with corrupted evidence
+before the owner fix and passed afterward; output byte limits remain unchanged.

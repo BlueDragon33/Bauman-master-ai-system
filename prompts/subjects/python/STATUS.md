@@ -25,8 +25,9 @@ Hand `PYTHON04_RUNTIME_TOOLCHAIN_DATA_AI_INTELLIGENCE.md` to Codex/Class B using
 
 ## Current PYTHON04 implementation evidence
 
-Main reconfirmed: `a86f00ebe339a0f39ad8feab66315046b94185a7`.
-Provider CI evidence head: `57c9815a18edc4c133823cc9b95858d1a476af64`.
+Initial main reconfirmed: `a86f00ebe339a0f39ad8feab66315046b94185a7`.
+Latest main integrated: `b9e2253d7f9cef872067cb1ebb77f15ca7fd9a51`.
+Provider CI evidence head: `0499f6540db5cc225a2517f4ee7ec3f8975dc1b0`.
 Static/integration/bootstrap/controller/lifecycle and gated desktop/mobile browser
 checks passed. The `bauman-preview` account-owned token is active (HTTP 200);
 the native Container API denies it (HTTP 403, Authentication error, code 10000).
