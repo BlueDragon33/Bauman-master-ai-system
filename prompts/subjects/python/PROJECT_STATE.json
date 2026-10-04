@@ -19,10 +19,11 @@
     "PYTHON03"
   ],
   "needsRevalidation": [
-    "PYTHON04"
+    "PYTHON04",
+    "PYTHON05"
   ],
   "lastValidatedSha": "95c90f34e4deef1b9b51474863ca1d7cb06054dc",
-  "currentHeadSha": "b9e2253d7f9cef872067cb1ebb77f15ca7fd9a51",
+  "currentHeadSha": "ae7b7c5b4677cb6056583c453b93f04ba48793ba",
   "evidence": [
     "prompts/subjects/python/evidence/PYTHON_P1_EXECUTIVE_SUMMARY.md",
     "prompts/subjects/python/evidence/PYTHON_CURRENT_ARCHITECTURE_MAP.md",
@@ -83,7 +84,10 @@
     "tests/python-p4-cloudflare-browser.mjs",
     "prompts/subjects/python/evidence/cloudflare-ci/57c9815a18edc4c133823cc9b95858d1a476af64.json",
     "prompts/subjects/python/evidence/PYTHON04_CLOUDFLARE_ACCESS_BLOCKER.md",
-    "prompts/subjects/python/evidence/cloudflare-ci/0499f6540db5cc225a2517f4ee7ec3f8975dc1b0.json"
+    "prompts/subjects/python/evidence/cloudflare-ci/0499f6540db5cc225a2517f4ee7ec3f8975dc1b0.json",
+    "prompts/subjects/python/evidence/cloudflare-ci/292123108b45778ff22ccfe4bf4a0f878b21d45f.json",
+    "tests/python-p4-product-facade.test.mjs",
+    "tests/python-p4-product-browser.mjs"
   ],
   "blockers": [
     "REAL EXTERNAL BLOCKER: configured bauman-preview account-owned Cloudflare token verifies HTTP 200 active, but native /accounts/{account}/containers/me returns HTTP 403 Authentication error (code 10000). Provider safety cannot be proven until authorized Container access is granted. No learner execution, official assessment or production activation is permitted."
@@ -113,10 +117,12 @@
     "Official assessment requires a clean sandbox identity per run/attempt with Internet disabled by default, no platform secrets, and hidden tests confined to the server-side sandbox boundary.",
     "Preview environment secrets were verified present by real GitHub Actions run 37199496997; the initial missing binding was a workflow environment-selection bug and was fixed at its owner.",
     "Gated desktop/mobile UI passed on source and preview-packaged assets; offline execution is unavailable and learner state remained unchanged. These are not native provider acceptance.",
-    "Main advanced to b9e2253d7f9cef872067cb1ebb77f15ca7fd9a51 during execution. Its canonical cloudflare provider entry/image owner is reused, not duplicated. The prior local-only provider PASS requires native/full-packet revalidation."
+    "Main advanced to b9e2253d7f9cef872067cb1ebb77f15ca7fd9a51 during execution. Its canonical cloudflare provider entry/image owner is reused, not duplicated. The prior local-only provider PASS requires native/full-packet revalidation.",
+    "Latest main ae7b7c5b4677cb6056583c453b93f04ba48793ba Code Lab/authoring/catalog was integrated without changing its task/lesson IDs or migrating learner state. Both lab surfaces and author preview use one governed facade.",
+    "Unsupported task grading and official submission explicitly return unavailable until native provider and assessment contracts pass; no stdout-based official correctness authority is enabled. Existing P5 acceptance tests are retained, not weakened or treated as native proof."
   ],
-  "lastImplementationTestedSha": "0499f6540db5cc225a2517f4ee7ec3f8975dc1b0",
+  "lastImplementationTestedSha": "292123108b45778ff22ccfe4bf4a0f878b21d45f",
   "learnerExecutionEnabled": false,
   "productionDeployed": false,
-  "lastProviderCiSha": "0499f6540db5cc225a2517f4ee7ec3f8975dc1b0"
+  "lastProviderCiSha": "292123108b45778ff22ccfe4bf4a0f878b21d45f"
 }

@@ -1,10 +1,10 @@
 # PYTHON04 native Cloudflare authorization blocker
 
 Status: REAL EXTERNAL BLOCKER — IMPLEMENTATION DISABLED, MODULE NOT ACCEPTED.
-Main reconfirmed: `a86f00ebe339a0f39ad8feab66315046b94185a7`.
-Exact remote CI source after latest-main owner integration: `0499f6540db5cc225a2517f4ee7ec3f8975dc1b0`.
-Workflow: https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37200541466
-Receipt: `cloudflare-ci/0499f6540db5cc225a2517f4ee7ec3f8975dc1b0.json`.
+Latest main reconfirmed: `ae7b7c5b4677cb6056583c453b93f04ba48793ba`.
+Continuation retry exact remote source: `292123108b45778ff22ccfe4bf4a0f878b21d45f`.
+Workflow: https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37202409934
+Receipt: `cloudflare-ci/292123108b45778ff22ccfe4bf4a0f878b21d45f.json`.
 
 ## Evidence and root cause
 
@@ -74,3 +74,16 @@ workspace traversal boundary. The owner bootstrap was replaced with chroot and
 seccomp, and the identical traversal fixture now must return FileNotFoundError
 with empty stdout. Native fork/socket policy regression checks are also retained.
 This is local RED/GREEN bootstrap evidence, not native Container proof.
+
+## Latest-main product integration
+
+The Code Lab, authoring surface and catalog from main ae7b7c5b are retained.
+Both product execution and author preview now delegate to the canonical facade;
+URL parameters cannot redirect learner code to another provider. Pending runs
+are invalidated on cancellation, task/code/stdin changes and author draft edits.
+Delayed completion and out-of-order author preview fixtures were reproduced
+before the owner fixes and pass afterwards on desktop/mobile. Newer-tab drafts
+survive autosave and reload. Unsupported grading/official submission returns
+unavailable, without granting academic/mastery evidence. Original PYTHON05
+acceptance assertions remain unchanged and require revalidation; these new
+trusted transport fixtures establish UI behavior only, never native execution.

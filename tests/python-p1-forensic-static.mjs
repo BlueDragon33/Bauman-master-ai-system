@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
 const read=p=>fs.readFileSync(p,'utf8');
+const basePath=name=>'prompts/subjects/python/evidence/'+name;
 const json=p=>JSON.parse(read(p));
 const root='subjects/programming';
 
@@ -47,7 +48,11 @@ assert.match(core,/function\s+aiGenerate\s*\(/,'Local AI-template generator miss
 assert.match(core,/function\s+renderAiMentor\s*\(/,'AI Mentor surface missing');
 assert.doesNotMatch(core,/api\.openai\.com|anthropic\.com|generativelanguage\.googleapis\.com/i,'External model provider appeared; PYTHON04 AI authority must be revalidated');
 
+const architectureBaseline=read('prompts/subjects/python/evidence/PYTHON_CURRENT_ARCHITECTURE_MAP.md');
+assert.match(architectureBaseline,/Code editor \| none \| `editor\.html` is not an IDE/,'PYTHON01 historical editor baseline evidence changed unexpectedly');
 const editor=read(root+'/editor.html');
-assert.doesNotMatch(editor,/<textarea|contenteditable|monaco|codemirror/i,'Current editor baseline changed into an editing surface');
+if (/<textarea|contenteditable|monaco|codemirror/i.test(editor)) {
+  assert.ok(fs.existsSync(basePath('PYTHON_TASK_AUTHORING_CONTRACT.md')),'A post-baseline editor requires PYTHON05 authoring governance');
+}
 
 console.log('PYTHON_P1_FORENSIC_STATIC=PASS');

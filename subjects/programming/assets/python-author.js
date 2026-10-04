@@ -1,0 +1,30 @@
+(function(){
+ const $=id=>document.getElementById(id), pub=$("publicTests"), hid=$("hiddenTests"), status=$("authorStatus"), out=$("validationOutput");
+ let epoch=0,previewing=false;
+ function invalidatePreview(){epoch++;if(previewing)void window.BAUMAN_PYTHON_PRODUCT.invoke('cancel');previewing=false;$("previewOutput").textContent='';}
+ function edited(){invalidatePreview();status.textContent='DRAFT · thay đổi sau validate';}
+ function addTest(root,kind,stdin="",expected=""){const row=document.createElement("div");row.className="test-row";row.innerHTML='<label>'+kind+' stdin<textarea class="test-code test-stdin"></textarea></label><label>Expected<textarea class="test-code test-expected"></textarea></label><button type="button" aria-label="Xóa test">×</button>';row.querySelector(".test-stdin").value=stdin;row.querySelector(".test-expected").value=expected;row.querySelector("button").onclick=()=>{edited();row.remove();};root.appendChild(row);}
+ addTest(pub,"Public","2 3\n","5\n");addTest(hid,"Hidden","0 0\n","0\n");
+ $("addPublic").onclick=()=>{edited();addTest(pub,"Public");};$("addHidden").onclick=()=>{edited();addTest(hid,"Hidden");};
+ function tests(root){return [...root.querySelectorAll(".test-row")].map((r,i)=>({id:"case-"+(i+1),stdin:r.querySelector(".test-stdin").value,expected:r.querySelector(".test-expected").value}));}
+ function record(includeHidden=false){const base={schema:"PYTHON_CODING_TASK_V1",id:$("taskId").value.trim(),title:$("title").value.trim(),competency:$("competency").value.trim(),prompt:$("prompt").value.trim(),starterCode:$("starter").value,runtimeProfileId:$("runtime").value,mode:$("mode").value,resourceLimits:{timeoutMs:Number($("timeout").value)},hints:$("hints").value.split("\n").map(x=>x.trim()).filter(Boolean),publicTests:tests(pub),lifecycle:"DRAFT"};if(includeHidden)base.hiddenTests=tests(hid);return base;}
+ function validate(){const r=record(true),errors=[];if(!/^[a-z0-9-]{4,64}$/.test(r.id))errors.push("Task ID không hợp lệ.");for(const k of ["title","competency","prompt"])if(!r[k])errors.push(k+" bắt buộc.");if(!r.publicTests.length)errors.push("Cần ít nhất 1 public test.");if(!r.hiddenTests.length)errors.push("Cần ít nhất 1 hidden test cho task đánh giá.");if(r.resourceLimits.timeoutMs<100||r.resourceLimits.timeoutMs>5000)errors.push("Timeout ngoài policy.");const serialized=JSON.stringify({public:{...r,hiddenTests:undefined}});if(serialized.includes("hiddenTests"))errors.push("Public export chứa hidden tests.");out.textContent=errors.length?errors.join("\n"):"VALIDATE PASS\n- schema hợp lệ\n- runtime từ governed picker\n- public/hidden tách biệt\n- không có privileged command field\n- preview không ghi mastery";status.textContent=errors.length?"DRAFT · VALIDATE FAIL":"VALIDATED · Chờ REVIEW/PREVIEW";return !errors.length;}
+ function download(name,obj){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(obj,null,2)+"\n"],{type:"application/json"}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);}
+ $("validateBtn").onclick=validate;
+ $("exportPublicBtn").onclick=()=>{if(validate()){const r=record(false);download(r.id+".public.json",r);}};
+ $("exportSecureBtn").onclick=()=>{if(validate()){const r=record(true);download(r.id+".secure-author-bundle.json",r);}};
+ $("previewBtn").onclick=async()=>{
+  if(!validate())return;
+  invalidatePreview();const own=epoch;previewing=true;status.textContent="PREVIEW · sandbox run";
+  const r=record(false);
+  try{
+   const res=await window.BAUMAN_PYTHON_PRODUCT.invoke("run",{taskId:r.id,code:r.starterCode,stdin:r.publicTests[0]?.stdin||""});
+   if(own!==epoch||res.status==='stale_result')return;
+   $("previewOutput").textContent=JSON.stringify({...res,masteryWrite:false,officialAttemptWrite:false},null,2);
+   status.textContent=res.ok===false?"PREVIEW UNAVAILABLE · no learner evidence write":"PREVIEW COMPLETE · practice only, no learner evidence write";
+  }catch{if(own===epoch)status.textContent='PREVIEW UNAVAILABLE · no learner evidence write';}
+  finally{if(own===epoch)previewing=false;}
+ };
+ document.getElementById("taskForm").addEventListener("input",edited);
+ document.getElementById("taskForm").addEventListener("change",edited);
+})();

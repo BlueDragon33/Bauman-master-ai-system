@@ -1,1 +1,44 @@
-<!doctype html><html data-bauman-ui="future-v1" lang="vi"><head><meta charset="utf-8"><title>Programming Data Editor</title><link rel="stylesheet" href="../../platform/ui/bauman-ui.css?v=1"></head><body><p>Mở <a href="index.html">index.html</a> để quản lý dữ liệu môn Python, CSDL và kỹ nghệ phần mềm.</p><script src="../../platform/ui/bauman-ui.js?v=1"></script></body></html>
+<!doctype html>
+<html data-bauman-ui="future-v1" lang="vi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Python Task Authoring · Programming Bauman</title>
+<link rel="stylesheet" href="../../platform/ui/bauman-ui.css?v=1">
+<link rel="stylesheet" href="assets/python-author.css?v=1">
+</head>
+<body>
+<main class="author-shell">
+<header><a href="index.html">← Programming</a><p class="eyebrow">PYTHON · AUTHORING</p><h1>Task Authoring</h1><p>Tạo coding task bằng dữ liệu. Không chỉnh source renderer. Lifecycle: DRAFT → VALIDATE → REVIEW → PREVIEW → APPROVE → ACTIVATE.</p></header>
+<div id="authorStatus" class="status" role="status">DRAFT · Chưa validate</div>
+<form id="taskForm">
+<section class="card"><h2>1. Nội dung</h2>
+<label>Task ID<input id="taskId" required pattern="[a-z0-9-]{4,64}" value="py-new-task"></label>
+<label>Tiêu đề<input id="title" required value="Bài Python mới"></label>
+<label>Competency<input id="competency" required value="python.basics"></label>
+<label>Prompt<textarea id="prompt" required>Viết chương trình theo yêu cầu.</textarea></label>
+<label>Starter code<textarea id="starter" class="code"># Bắt đầu ở đây
+</textarea></label>
+</section>
+<section class="card"><h2>2. Runtime & policy</h2>
+<label>Runtime profile<select id="runtime"><option value="cpython-3.14.8-stdlib-v1">CPython 3.14.8 · stdlib</option></select></label>
+<label>Assessment mode<select id="mode"><option value="practice">Practice</option><option value="assessment-preview">Assessment preview</option></select></label>
+<label>Timeout (ms)<input id="timeout" type="number" min="100" max="5000" value="3000"></label>
+<p class="note">Không có trường arbitrary command/pip install. Package profile chỉ được chọn từ allowlist được quản trị.</p>
+</section>
+<section class="card tests"><h2>3. Public tests</h2><div id="publicTests"></div><button type="button" id="addPublic">+ Public test</button></section>
+<section class="card tests secure"><h2>4. Hidden tests · author-only</h2><p class="note">Hidden tests không được ghi vào public learner catalog. Export secure bundle tách riêng.</p><div id="hiddenTests"></div><button type="button" id="addHidden">+ Hidden test</button></section>
+<section class="card"><h2>5. Hint ladder</h2><textarea id="hints" placeholder="Mỗi dòng một gợi ý">Đọc kỹ input/output.
+Kiểm tra edge case.</textarea></section>
+<section class="card actions"><h2>6. Validate / Preview / Export</h2>
+<div class="buttons"><button type="button" id="validateBtn">Validate</button><button type="button" id="previewBtn">Preview starter trong sandbox</button><button type="button" id="exportPublicBtn">Export public JSON</button><button type="button" id="exportSecureBtn">Export secure bundle</button></div>
+<pre id="validationOutput" aria-live="polite">Chưa validate.</pre>
+</section>
+</form>
+<section class="card"><h2>Preview</h2><div id="previewPane"><p>Preview không tạo learner mastery/official attempt.</p><pre id="previewOutput"></pre></div></section>
+</main>
+<script src="../../platform/ui/bauman-ui.js?v=1"></script>
+<script src="assets/subject-adapter.js"></script>
+<script src="assets/python-runtime.js"></script>
+<script src="assets/python-product-integration.js?v=1"></script>
+<script src="assets/python-author.js?v=1"></script>
+</body></html>

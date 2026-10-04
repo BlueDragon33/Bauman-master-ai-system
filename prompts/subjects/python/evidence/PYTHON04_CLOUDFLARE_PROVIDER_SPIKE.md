@@ -129,3 +129,24 @@ private-payload rejection and the disabled gate using trusted test shims only.
 Structured output now uses one streaming UTF-8 decoder per native pipe. The
 byte-at-a-time Vietnamese/Russian/emoji fixture failed with corrupted evidence
 before the owner fix and passed afterward; output byte limits remain unchanged.
+
+
+## Latest-main Code Lab integration
+
+Main ae7b7c5b4677cb6056583c453b93f04ba48793ba was integrated. Its Code Lab,
+authoring and task catalog are retained; the provider validation lab uses separate
+asset filenames. Product/author preview delegate to `SUBJECT_ADAPTER.pythonRuntime`
+and cannot redirect learner code via URL query. They send declared public practice
+inputs only, never author hidden fields or unofficial attempt authority.
+
+Product facade RED/GREEN tests cover the separate-transport bug, private inputs,
+unsupported official/task grading and offline execution. Browser RED/GREEN exposed
+cancel-before-result; current desktop/mobile fixtures verify cancellation, stale
+selected-task/stdin output, author edits and out-of-order preview completion,
+newer-tab draft protection, offline and reload persistence. Source and locally
+materialized preview-package desktop/mobile fixtures pass. A focused review of
+the fixes found no remaining blocking UI/facade defects. Static P1–P5 contracts,
+497 integration checks and 15 controller/lifecycle/facade/bootstrap tests pass;
+the provider typecheck and dry-run build pass with writable Buildx cache.
+The browser transport is a trusted fixture and executes no Python. No native or
+P5 official acceptance is inferred; original P5 assertions remain unmodified.

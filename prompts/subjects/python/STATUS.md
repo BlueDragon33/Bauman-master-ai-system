@@ -26,8 +26,8 @@ Hand `PYTHON04_RUNTIME_TOOLCHAIN_DATA_AI_INTELLIGENCE.md` to Codex/Class B using
 ## Current PYTHON04 implementation evidence
 
 Initial main reconfirmed: `a86f00ebe339a0f39ad8feab66315046b94185a7`.
-Latest main integrated: `b9e2253d7f9cef872067cb1ebb77f15ca7fd9a51`.
-Provider CI evidence head: `0499f6540db5cc225a2517f4ee7ec3f8975dc1b0`.
+Latest main integrated: `ae7b7c5b4677cb6056583c453b93f04ba48793ba`.
+Continuation provider CI evidence head: `292123108b45778ff22ccfe4bf4a0f878b21d45f`.
 Static/integration/bootstrap/controller/lifecycle and gated desktop/mobile browser
 checks passed. The `bauman-preview` account-owned token is active (HTTP 200);
 the native Container API denies it (HTTP 403, Authentication error, code 10000).
@@ -36,3 +36,7 @@ Real native security and execution browser gates have not run. Learner execution
 and official assessment remain disabled; no production deploy, merge or PYTHON04
 PASS is claimed. PYTHON05 handoff remains provisional/NOT READY. See the exact
 receipt and `PYTHON04_CLOUDFLARE_ACCESS_BLOCKER.md` for the resumption gate.
+
+Code Lab/authoring from latest main now use the single facade. Native API access
+was rechecked on continuation and still denied (active token, 403 code 10000).
+Integrated P5 execution/assessment acceptance requires revalidation.

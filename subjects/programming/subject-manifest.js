@@ -46,7 +46,7 @@ window.SUBJECT_MANIFEST = {
   "ui": {
     "coreLabel": "PROGRAMMING BAUMAN · CLEAN ROADMAP"
   },
-  "updated": "2026-06-13",
+  "updated": "2026-10-04",
   "package": "A3_Programming_Bauman_Elearning_VIP_Clean",
   "paths": {
     "assets": "assets/",
@@ -57,7 +57,10 @@ window.SUBJECT_MANIFEST = {
     "themeCss": "assets/programming.css",
     "subjectJs": "assets/programming.js",
     "adapterJs": "assets/subject-adapter.js",
-    "planningBridgeJs": "assets/planning-bridge.js"
+    "planningBridgeJs": "assets/planning-bridge.js",
+    "codeLab": "code-lab.html",
+    "authoring": "editor.html",
+    "pythonProductIntegration": "assets/python-product-integration.js"
   },
   "dataFiles": [
     {
@@ -143,6 +146,12 @@ window.SUBJECT_MANIFEST = {
       "label": "knowledge-index",
       "path": "data/knowledge-index.json",
       "required": true
+    },
+    {
+      "id": "python-task-catalog",
+      "label": "Python coding tasks (public)",
+      "path": "data/python-task-catalog.json",
+      "required": true
     }
   ],
   "externalDataFiles": [
@@ -182,7 +191,11 @@ window.SUBJECT_MANIFEST = {
     "parameterSimulation": true,
     "programmingOralDefense": true,
     "syntaxCards": true,
-    "softwareLab": true
+    "softwareLab": true,
+    "pythonCodeLab": true,
+    "codingTaskAuthoring": true,
+    "governedPythonRuntime": true,
+    "hiddenTestServerBoundary": true
   },
   "routeMapping": {
     "mainSubjectId": "programming",
@@ -216,12 +229,21 @@ window.SUBJECT_MANIFEST = {
   "description": "Module Programming bám lộ trình Main: Python, SQL, Git, OOP, CSDL ML, pipeline, kiểm thử, Docker, tài liệu kỹ thuật và repo nghiên cứu.",
   "packageProtocol": "PROGRAMMING_BAUMAN_CLEAN_V2",
   "pythonRuntime": {
-  "facade": "assets/python-runtime.js",
-  "entry": "python-lab.html",
-  "provider": "cloudflare-container-durable-object-v1",
-  "availability": "acceptance-pending",
-  "learnerExecutionEnabled": false,
-  "officialAssessment": false,
-  "offlineExecution": false
-}
+    "provider": "cloudflare-container-durable-object-v1",
+    "runtimeProfileId": "cpython-3.14.8-stdlib-v1",
+    "learnerExecutionFeatureGated": true,
+    "facade": "assets/python-runtime.js",
+    "validationEntry": "python-lab.html",
+    "learnerExecutionEnabled": false,
+    "officialAssessment": false,
+    "offlineExecution": false
+  },
+  "learnerSurfaces": [
+    "overview",
+    "learning",
+    "code-lab",
+    "review",
+    "assessment-preview",
+    "error-notebook"
+  ]
 };

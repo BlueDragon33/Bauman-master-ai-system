@@ -1,0 +1,101 @@
+<!doctype html>
+<html data-bauman-ui="future-v1" lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Python Code Lab · Programming Bauman</title>
+<link rel="stylesheet" href="../../platform/ui/bauman-ui.css?v=1">
+<link rel="stylesheet" href="assets/python-lab.css?v=1">
+</head>
+<body>
+<a class="skip-link" href="#codeEditor">Bỏ qua tới trình soạn mã</a>
+<div class="lab-shell">
+  <header class="lab-header">
+    <div>
+      <a class="back-link" href="index.html">← Programming</a>
+      <p class="eyebrow">PYTHON · CODE LAB</p>
+      <h1>Code Lab</h1>
+      <p id="runtimeSummary" class="muted">Runtime: đang kiểm tra…</p>
+    </div>
+    <div class="header-actions">
+      <label for="taskSelect">Bài</label>
+      <select id="taskSelect" aria-label="Chọn bài Python"></select>
+      <span id="saveStatus" class="status-chip" role="status">Chưa thay đổi</span>
+    </div>
+  </header>
+
+  <div id="offlineBanner" class="banner hidden" role="status">Ngoại tuyến: bài học và bản nháp vẫn dùng được; chạy Python cần kết nối.</div>
+  <div id="conflictBanner" class="banner warning hidden" role="alert">Bản nháp đã thay đổi ở tab khác. Kiểm tra trước khi ghi đè.</div>
+
+  <main class="lab-grid">
+    <section class="panel instructions" aria-labelledby="taskTitle">
+      <p id="taskMode" class="mode-badge"></p>
+      <h2 id="taskTitle">Đang tải…</h2>
+      <p id="taskPrompt"></p>
+      <div class="hint-box">
+        <button id="hintBtn" type="button" class="secondary">Gợi ý</button>
+        <ol id="hintList" aria-live="polite"></ol>
+      </div>
+      <div class="semantics-card">
+        <strong>Run ≠ Test ≠ Submit</strong>
+        <p>Run chỉ chạy mã. Test chạy bộ kiểm thử công khai. Submit tạo bằng chứng đánh giá; trạng thái chính thức chỉ được ghi bởi owner learner-state.</p>
+      </div>
+    </section>
+
+    <section class="panel editor-panel" aria-labelledby="editorHeading">
+      <div class="panel-toolbar">
+        <div>
+          <p class="eyebrow">EDITOR</p>
+          <h2 id="editorHeading">main.py</h2>
+        </div>
+        <div class="mobile-code-tools" aria-label="Công cụ nhập mã trên thiết bị cảm ứng">
+          <button type="button" data-insert="    ">⇥ 4 spaces</button>
+          <button type="button" data-insert=":">:</button>
+          <button type="button" data-insert="()">()</button>
+          <button type="button" data-insert="[]">[]</button>
+        </div>
+      </div>
+      <label class="sr-only" for="codeEditor">Mã Python</label>
+      <textarea id="codeEditor" spellcheck="false" autocapitalize="off" autocomplete="off" aria-describedby="editorHelp"></textarea>
+      <p id="editorHelp" class="muted">Tab thụt 4 spaces. Bản nháp tự lưu cục bộ; runtime memory không được xem là source state.</p><label class="stdin-label" for="stdinInput">stdin mẫu</label><textarea id="stdinInput" class="stdin-input" aria-label="Dữ liệu stdin cho Run"></textarea>
+      <div class="runbar" role="group" aria-label="Điều khiển thực thi Python">
+        <button id="runBtn" type="button" class="primary">▶ Run</button>
+        <button id="testBtn" type="button">✓ Run tests</button>
+        <button id="submitBtn" type="button" class="submit">Submit</button>
+        <button id="cancelBtn" type="button" class="danger hidden">Cancel</button>
+      </div>
+      <div id="runStatus" class="run-status" role="status" aria-live="polite">Sẵn sàng</div>
+    </section>
+
+    <section class="panel output-panel" aria-labelledby="outputHeading">
+      <div class="panel-toolbar">
+        <div><p class="eyebrow">RESULT</p><h2 id="outputHeading">Console & Tests</h2></div>
+        <button id="clearOutputBtn" type="button" class="secondary">Xóa</button>
+      </div>
+      <div class="output-tabs" role="tablist" aria-label="Kết quả">
+        <button id="consoleTab" role="tab" aria-selected="true" aria-controls="consolePane">Console</button>
+        <button id="testsTab" role="tab" aria-selected="false" aria-controls="testsPane">Tests</button>
+        <button id="evidenceTab" role="tab" aria-selected="false" aria-controls="evidencePane">Evidence</button>
+      </div>
+      <div id="consolePane" role="tabpanel" aria-labelledby="consoleTab">
+        <section class="stream"><h3>stdout</h3><pre id="stdout"></pre></section>
+        <section class="stream error"><h3>stderr / traceback</h3><pre id="stderr"></pre></section>
+        <section class="stream system"><h3>system</h3><pre id="systemOutput">Chưa có lượt chạy.</pre></section>
+      </div>
+      <div id="testsPane" class="hidden" role="tabpanel" aria-labelledby="testsTab"><div id="testResults"></div></div>
+      <div id="evidencePane" class="hidden" role="tabpanel" aria-labelledby="evidenceTab"><pre id="evidenceOutput">Chưa có bằng chứng submit.</pre></div>
+    </section>
+  </main>
+
+  <aside class="repro-card" aria-label="Tính tái lập">
+    <strong>Clean-state reproducibility</strong>
+    <span>Official assessment luôn dùng container sạch theo run/attempt. Notebook runtime chưa được hỗ trợ trong profile hiện tại; UI không giả vờ có offline/notebook execution.</span>
+  </aside>
+</div>
+<script src="../../platform/ui/bauman-ui.js?v=1"></script>
+<script src="assets/subject-adapter.js"></script>
+<script src="assets/python-runtime.js"></script>
+<script src="assets/python-product-integration.js?v=1"></script>
+<script src="assets/python-lab.js?v=1"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+name: Python P5 Learning Product CI
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'subjects/programming/**'
+      - 'cloudflare/**'
+      - 'runtime/python-cloudflare/**'
+      - 'tests/python-p4-*.mjs'
+      - 'tests/python-p5-*.mjs'
+      - 'prompts/subjects/python/**'
+      - '.github/workflows/python-p5-product-ci.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  native-provider:
+    uses: ./.github/workflows/python-p4-cloudflare-provider.yml
+    secrets: inherit
+  original-product-acceptance:
+    needs: native-provider
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.13.0'
+      - name: Install pinned browser toolchain
+        run: |
+          npm ci --prefix runtime/python-cloudflare --no-audit --no-fund
+          runtime/python-cloudflare/node_modules/.bin/playwright install --with-deps chromium
+      - name: Preserve original product acceptance assertions
+        env:
+          BAUMAN_PLAYWRIGHT_MODULE: ../runtime/python-cloudflare/node_modules/playwright/index.mjs
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+        run: |
+          set -euo pipefail
+          node tests/python-p5-product-contract.mjs
+          node scripts/serve-local-runtime.mjs --port 4173 > /tmp/python05-static.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for attempt in {1..50}; do
+            if curl --fail --silent http://127.0.0.1:4173/_local/health > /dev/null; then break; fi
+            sleep 0.1
+          done
+          node tests/python-p5-product-browser.mjs
+      - name: Upload product evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: python05-original-acceptance-${{ github.sha }}
+          path: artifacts/python-p5-browser
+          if-no-files-found: warn

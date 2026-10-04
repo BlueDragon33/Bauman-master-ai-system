@@ -16,13 +16,13 @@
 
 ## Current repository evidence
 
-PYTHON01–PYTHON04 have been executed against the repository. PYTHON04 now has a real Cloudflare Durable Object Container provider using CPython 3.14.8, with the base security/resource golden fixtures passing in GitHub Actions.
+PYTHON01–PYTHON03 are accepted. PYTHON04 has an implemented Cloudflare Durable Object Container provider using CPython 3.14.8; local bootstrap/security fixtures pass, but deployed native security/resource proof is blocked by authorization.
 
-The product feature flag remains disabled outside the dedicated provider CI until PYTHON05/PYTHON06 acceptance. Exact provider evidence head: `19afbae5fc3b3243a945da5a115cbdc7b0b2e63a`, provider CI run `37198860782`.
+The learner feature flag remains disabled in every configuration. Historical local-only evidence: `19afbae5fc3b3243a945da5a115cbdc7b0b2e63a`, run `37198860782`. Continuation native access retry: `292123108b45778ff22ccfe4bf4a0f878b21d45f`, run `37202409934`; account token active, Containers HTTP 403/code 10000.
 
 ## Next operational action
 
-Run PYTHON05 learner experience, authoring and product integration from current main after PYTHON04 is merged.
+Grant compatible native Containers authorization in the existing bauman-preview binding, then rerun exact-head PYTHON04 proof and complete the packet. Main ae7b7c5b Code Lab/authoring/catalog are integrated through one facade; PYTHON05/PYTHON06 require revalidation.
 
 
 ## Current native-provider revalidation
