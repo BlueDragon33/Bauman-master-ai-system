@@ -166,6 +166,12 @@
       "label": "Python coding tasks (public)",
       "path": "data/python-task-catalog.json",
       "required": true
+    },
+    {
+      "id": "python-competencies",
+      "label": "Python canonical competencies",
+      "path": "data/python-competencies.json",
+      "required": true
     }
   ],
   "externalDataFiles": [
@@ -245,8 +251,9 @@
   "pythonRuntime": {
     "provider": "cloudflare-container-durable-object-v1",
     "runtimeProfileId": "cpython-3.14.8-stdlib-v1",
-    "learnerExecutionFeatureGated": true,
-    "offlineExecution": false
+    "learnerExecutionFeatureGated": false,
+    "offlineExecution": false,
+    "releaseGate": "PYTHON06_RC_AND_SHARED_RELEASE"
   },
   "learnerSurfaces": [
     "overview",
