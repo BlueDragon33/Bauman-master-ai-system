@@ -1,5 +1,5 @@
 'use strict';
-const CACHE='russian-app-shell-v8-speech-interaction';
+const CACHE='russian-app-shell-v9-readiness-fx';
 const DATA_CACHE='russian-learning-data-v1';
 const SHELL=[
   './','./index.html','./manifest.webmanifest','../shared/host-bridge.js',
@@ -11,7 +11,21 @@ const SHELL=[
   './assets/subject-adapter.js','./assets/ui-cleanup-contract.js','./assets/content-contract.js','./assets/planning-bridge.js','./assets/russian-optional-data-loader.js','./assets/listen-write-factory.js','./assets/speech-interaction-engine.js','./assets/core.js','./assets/learning-state.js','./assets/learning-flow.js','./assets/handwriting-glyph-authority.js','./assets/handwriting-recognition.js','./assets/vocab-srs.js','./assets/speaking-coach.js','./assets/academic-language.js','./assets/capability-progression.js','./assets/ai-mentor-guard.js','./assets/assessment-mastery.js','./assets/review-scheduler.js','./assets/adaptive-planner.js','./assets/runtime-optimizer.js','./assets/russian-future-ui.js'
 ];
 const OPTIONAL_LARGE=new Set(['dialogue-bauman-az.json','deep-speaking-bauman.json','speaking-link-index.json']);
-self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting()));});
+const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+async function cacheShellWithRetry(){
+  const cache=await caches.open(CACHE);let lastError=null;
+  for(let attempt=1;attempt<=3;attempt++){
+    try{
+      await cache.addAll(SHELL.map(url=>new Request(url,{cache:'reload'})));
+      return;
+    }catch(e){
+      lastError=e;
+      if(attempt<3)await sleep(500*attempt);
+    }
+  }
+  throw lastError||new Error('Russian shell precache failed');
+}
+self.addEventListener('install',event=>{event.waitUntil(cacheShellWithRetry().then(()=>self.skipWaiting()));});
 self.addEventListener('activate',event=>{event.waitUntil(Promise.all([caches.keys().then(keys=>Promise.all(keys.filter(k=>![CACHE,DATA_CACHE].includes(k)).map(k=>caches.delete(k)))),self.clients.claim()]));});
 self.addEventListener('fetch',event=>{
   const req=event.request;if(req.method!=='GET')return;
