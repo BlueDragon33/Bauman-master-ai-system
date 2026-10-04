@@ -4,8 +4,8 @@
 |---|---|---|
 | ALG00 | COMPLETE | READY |
 | ALG01 | COMPLETE | PASS · FORENSIC BASELINE ACCEPTED |
-| ALG02 | COMPLETE | **VALIDATING · CANONICAL MODEL BUILT** |
-| ALG03 | COMPLETE / READY AFTER ALG02 | NOT_STARTED |
+| ALG02 | COMPLETE | **PASS · CANONICAL MODEL ACCEPTED** |
+| ALG03 | COMPLETE / READY TO EXECUTE | READY |
 | ALG04 | COMPLETE / READY AFTER ALG02/ALG03 | NOT_STARTED |
 | ALG05 | COMPLETE / READY AFTER ALG02–ALG04 | NOT_STARTED |
 | ALG06 | COMPLETE / READY AFTER PRODUCT INTEGRATION | NOT_STARTED |
@@ -18,24 +18,28 @@
 
 Merged main SHA: `e66aa6bd7c47c1bd7c91c9e28fdf390b1b930875`.
 
-ALG01 established that current Algorithms reality is distributed across Programming PR02/PR10/PR11, P4 prerequisite data and adjacent Math foundations. No dedicated Algorithms learner runtime existed.
+## ALG02 accepted model
 
-## ALG02 candidate model
+Exact tested implementation head: `3aabbeaa0cd64a12ed0e73967837eadd913165f4`
 
-The candidate defines:
-- 15 stable `alg.comp.*` competencies and an explicit prerequisite DAG;
-- language-neutral Algorithm / AlgorithmVariant identities;
-- ADT vs concrete representation separation;
-- canonical preconditions, postconditions, invariants and trace schemas;
-- structured complexity claims with input measure, dimension, case and assumptions;
-- core registry for binary search, five baseline sorts, tree DFS traversals, BFS and DFS;
-- array/list/stack/queue/hash/tree/BST/graph representations;
-- compatibility projections for PR02/PR10/PR11 and P4;
-- deferred-JIT treatment for non-baseline advanced topics rather than generic-syllabus expansion;
-- explicit ALG03 assessment handoff.
+Acceptance evidence:
+- Algorithms ALG02 Canonical Model CI `37217275094` — SUCCESS
+- Algorithms ALG01 Forensic Baseline CI `37217275082` — SUCCESS
+- Development Fast CI `37217275163` — SUCCESS
+- Universal Constitution Compliance `37217275435` — SUCCESS
 
-No runtime or learner-state mutation is authorized by ALG02.
+Accepted canonical truth:
+- 15 stable `alg.comp.*` competencies and an acyclic prerequisite graph;
+- language-neutral algorithm/entity IDs;
+- explicit ADT vs representation separation;
+- preconditions, postconditions, invariants and trace schemas as first-class data;
+- complexity claims bind input measure, dimension, case and assumptions;
+- baseline core algorithms: binary search, insertion/selection/bubble/merge/quick sort, tree DFS traversal, BFS and DFS;
+- baseline structures: array/list/stack/queue/hash/tree/BST/graph list/matrix;
+- PR02/PR10/PR11 and P4 are compatibility projections, not competing truth owners;
+- Dijkstra/topological/MST/heap/union-find/greedy/DP/backtracking remain deferred JIT until downstream evidence requires them;
+- no learner runtime, production or learner-state mutation was authorized.
 
 ## Next operational action
 
-Run exact PR-head `Algorithms ALG02 Canonical Model CI`, `Development Fast CI` and `Universal Constitution Compliance`. Close ALG02 as PASS only on the exact tested terminal head.
+After this terminal metadata head re-passes exact PR checks and merges, execute `ALG03_REASONING_CORRECTNESS_COMPLEXITY_ASSESSMENT.md` using `subjects/algorithms/docs/alg02/ALG03_INPUT_CONTRACT.md`.
