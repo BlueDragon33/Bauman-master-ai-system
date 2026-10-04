@@ -1,0 +1,108 @@
+name: Python P5 Learning Product CI
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "subjects/programming/**"
+      - "cloudflare/runtime-worker-python.mjs"
+      - "cloudflare/python-task-registry.mjs"
+      - "tests/python-p5-*.mjs"
+      - "prompts/subjects/python/**"
+      - ".github/workflows/python-p5-product-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: python-p5-product-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  product:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+
+      - name: PYTHON05 product contract
+        run: node tests/python-p5-product-contract.mjs
+
+      - name: Preserve PYTHON04 runtime contracts
+        run: |
+          node tests/python-p4-runtime-security-contract.mjs
+          node tests/python-p4-provider-static.mjs
+
+      - name: Start real Worker plus Container provider
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes wrangler@4.147.0 dev --config wrangler.runtime.python-ci.jsonc --ip 127.0.0.1 --port 8788 > /tmp/python-p5-wrangler.log 2>&1 &
+          echo "$!" > /tmp/python-p5-wrangler.pid
+
+      - name: Wait for provider
+        shell: bash
+        run: |
+          set -euo pipefail
+          for i in {1..120}; do
+            if curl --fail --silent --show-error --max-time 5 http://127.0.0.1:8788/__python/provider-health >/tmp/python-p5-health.json; then
+              exit 0
+            fi
+            if ! kill -0 "$(cat /tmp/python-p5-wrangler.pid)" 2>/dev/null; then
+              cat /tmp/python-p5-wrangler.log
+              exit 1
+            fi
+            sleep 2
+          done
+          cat /tmp/python-p5-wrangler.log
+          exit 1
+
+      - name: Real provider product integration
+        run: |
+          mkdir -p artifacts/python-p5-provider
+          node tests/python-p5-provider-product-live.mjs | tee artifacts/python-p5-provider/result.json
+
+      - name: Start static learner surface
+        shell: bash
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/python-p5-static.log 2>&1 &
+          echo "$!" > /tmp/python-p5-static.pid
+
+      - name: Install browser acceptance runtime
+        run: |
+          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Browser responsive and authoring acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/python-p5-browser
+        run: node tests/python-p5-product-browser.mjs
+
+      - name: Show logs on failure
+        if: failure()
+        run: |
+          cat /tmp/python-p5-wrangler.log || true
+          cat /tmp/python-p5-static.log || true
+
+      - name: Upload P5 evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-p5-product-${{ github.run_id }}
+          path: |
+            artifacts/python-p5-provider
+            artifacts/python-p5-browser
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Stop local services
+        if: always()
+        shell: bash
+        run: |
+          [[ -f /tmp/python-p5-wrangler.pid ]] && kill "$(cat /tmp/python-p5-wrangler.pid)" 2>/dev/null || true
+          [[ -f /tmp/python-p5-static.pid ]] && kill "$(cat /tmp/python-p5-static.pid)" 2>/dev/null || true
