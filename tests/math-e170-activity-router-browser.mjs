@@ -34,7 +34,7 @@ try{
   await page.goto(BASE+'subjects/math/index.html?host=main&hostOrigin='+encodeURIComponent(new URL(BASE).origin)+'&subjectId=math&taskId=e170-revalidation&stage=prepare',{waitUntil:'load',timeout:30000});
   await page.waitForFunction(()=>!!window.BAUMAN_MATH_THEORY_E129,null,{timeout:30000});
   await page.waitForFunction(()=>window.BAUMAN_MATH_THEORY_E129.sourceStatus().frame>0,null,{timeout:30000});
-  await page.waitForFunction(()=>['exercise_content','simulation_content','application_content','review_pack_content','question_bank_content'].every(k=>window.DB?.[k]),null,{timeout:30000});
+  await page.waitForFunction(()=>!!window.BAUMAN_MATH_ACTIVITY_STUDIO,null,{timeout:30000});
 
   await page.evaluate(()=>{
     window.__MATH_STATE=window.__MATH_STATE||{};
@@ -54,24 +54,29 @@ try{
       await page.locator('[data-e169-open="activity"]').click();
     }
     await page.locator('[data-e169-pick-activity="'+activity+'"]').click();
-    const shell=page.locator('.e169-activity-shell[data-e170-activity="'+activity+'"]');
+    const shell=page.locator('.e169-activity-shell[data-e170-activity="'+activity+'"][data-e170-owner="math-activity-studio"]');
     await shell.waitFor({state:'visible',timeout:10000});
-    const snapshot=await page.evaluate(({activity,source,chapterId})=>{
+    await page.waitForFunction(a=>window.BAUMAN_MATH_ACTIVITY_STUDIO?.selfCheck?.().activity===a,activity,{timeout:10000});
+    await page.waitForFunction(src=>[...document.querySelectorAll('#mathActivityStudio .math-activity-source')].some(x=>x.textContent.includes(src+'.json')),source,{timeout:10000});
+    const snapshot=await page.evaluate(({activity,source})=>{
       const shell=document.querySelector('.e169-activity-shell[data-e170-activity="'+activity+'"]');
-      const raw=window.DB?.[source];
-      const rows=Array.isArray(raw)?raw:(Array.isArray(raw?.records)?raw.records:(Array.isArray(raw?.items)?raw.items:(Array.isArray(raw?.data?.records)?raw.data.records:[])));
+      const studio=document.querySelector('#mathActivityStudio');
+      const sourceRow=[...studio.querySelectorAll('.math-activity-source')].find(x=>x.textContent.includes(source+'.json'));
+      const match=Number((sourceRow?.textContent.match(/·\s*(\d+)\s+match/)||[])[1]||0);
       return {
         text:shell?.textContent||'',
-        cards:shell?.querySelectorAll('.e169-placeholder-grid article').length||0,
-        expected:rows.filter(x=>String(x?.chapterId||'')===chapterId).length
+        studioText:studio?.textContent||'',
+        cards:studio?.querySelectorAll('.math-activity-card').length||0,
+        match,
+        self:window.BAUMAN_MATH_ACTIVITY_STUDIO.selfCheck()
       };
-    },{activity,source,chapterId:CHAPTER1});
-    assert.ok(snapshot.expected>0,source+' has no C01 fixture records');
+    },{activity,source});
+    assert.ok(snapshot.match>0,source+' has no C01 canonical match');
     assert.match(snapshot.text,new RegExp(source),'Activity shell does not identify '+source);
-    assert.match(snapshot.text,new RegExp(snapshot.expected+' record'),'Rendered count does not match C01 '+source);
-    assert.ok(snapshot.cards>0,activity+' rendered no cards');
-    assert.ok(!snapshot.text.includes('Chưa có dữ liệu khớp'),activity+' incorrectly rendered empty state for C01');
-    observed[activity]={source,expected:snapshot.expected,cards:snapshot.cards};
+    assert.equal(snapshot.self.activity,activity,'Activity Studio state mismatch');
+    assert.ok(snapshot.cards>0,activity+' rendered no canonical/fallback cards');
+    assert.ok(!snapshot.studioText.includes('Chưa có companion record'),activity+' incorrectly rendered empty state for C01');
+    observed[activity]={source,match:snapshot.match,cards:snapshot.cards};
     await page.locator('[data-e169-open="activity"]').click();
   }
 
@@ -82,10 +87,17 @@ try{
   await page.locator('[data-e169-pick-activity="application"]').click();
   const emptyShell=page.locator('.e169-activity-shell[data-e170-activity="application"]');
   await emptyShell.waitFor({state:'visible',timeout:10000});
-  const emptyText=await emptyShell.textContent();
-  assert.match(emptyText,/0 record/,'C03 empty route must report zero records');
-  assert.match(emptyText,/Chưa có dữ liệu khớp/,'C03 empty route must show truthful empty state');
-  assert.ok(!emptyText.includes('Đóng gói telemetry robot thành ma trận dữ liệu'),'C03 borrowed C01 application data');
+  await page.waitForFunction(()=>window.BAUMAN_MATH_ACTIVITY_STUDIO?.selfCheck?.().activity==='application',null,{timeout:10000});
+  await page.waitForFunction(()=>[...document.querySelectorAll('#mathActivityStudio .math-activity-source')].some(x=>x.textContent.includes('application_content.json')),null,{timeout:10000});
+  const empty=await page.evaluate(()=>{
+    const studio=document.querySelector('#mathActivityStudio');
+    const row=[...studio.querySelectorAll('.math-activity-source')].find(x=>x.textContent.includes('application_content.json'));
+    return {text:studio?.textContent||'',source:row?.textContent||'',cards:studio?.querySelectorAll('.math-activity-card').length||0};
+  });
+  assert.match(empty.source,/·\s*0\s+match/,'C03 application route must report zero canonical matches');
+  assert.equal(empty.cards,0,'C03 must not borrow canonical cards from another chapter');
+  assert.match(empty.text,/Chưa có companion record/,'C03 empty route must show truthful Activity Studio empty state');
+  assert.ok(!empty.text.includes('Đóng gói telemetry robot thành ma trận dữ liệu'),'C03 borrowed C01 application data');
 
   // Return to C01 theory and prove E129 Reader remains owned by theory.
   await page.locator('[data-e169-open="chapter"]').click();
