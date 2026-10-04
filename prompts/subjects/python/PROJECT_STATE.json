@@ -3,7 +3,7 @@
   "subject": "python",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/subjects/python/PYTHON_MASTER_PROMPT.md",
-  "status": "PYTHON04_ACTIVE_SERVER_CONTAINER_PROVIDER",
+  "status": "PYTHON04_BLOCKED_CLOUDFLARE_INFRASTRUCTURE",
   "activeModule": "PYTHON04",
   "sequence": [
     "PYTHON01",
@@ -18,9 +18,11 @@
     "PYTHON02",
     "PYTHON03"
   ],
-  "needsRevalidation": [],
+  "needsRevalidation": [
+    "PYTHON04"
+  ],
   "lastValidatedSha": "95c90f34e4deef1b9b51474863ca1d7cb06054dc",
-  "currentHeadSha": "1622aa591fc0ded12c0659caf42e38d21b051487",
+  "currentHeadSha": "a86f00ebe339a0f39ad8feab66315046b94185a7",
   "evidence": [
     "prompts/subjects/python/evidence/PYTHON_P1_EXECUTIVE_SUMMARY.md",
     "prompts/subjects/python/evidence/PYTHON_CURRENT_ARCHITECTURE_MAP.md",
@@ -73,12 +75,13 @@
     "PR #258 merged at 95c90f34e4deef1b9b51474863ca1d7cb06054dc; Constitution + Development Fast CI PASS",
     "prompts/subjects/python/evidence/PYTHON_P4_SAFE_RUNTIME_PROVIDER_BLOCKER.md",
     "prompts/subjects/python/evidence/PYTHON04_RUNTIME_PROVIDER_DECISION.md",
-    "prompts/subjects/python/evidence/PYTHON04_CLOUDFLARE_SANDBOX_IMPLEMENTATION_PLAN.md"
+    "prompts/subjects/python/evidence/PYTHON04_CLOUDFLARE_SANDBOX_IMPLEMENTATION_PLAN.md",
+    "prompts/subjects/python/evidence/PYTHON04_CLOUDFLARE_INFRASTRUCTURE_BLOCKER.md"
   ],
   "blockers": [
-    "Cloudflare Sandbox Container is selected as the canonical learner Python runtime provider, but no in-repo provider binding has yet passed the PYTHON04 security/resource/reproducibility golden fixtures. learnerExecutionEnabled must remain false until that proof exists."
+    "The selected Cloudflare Sandbox/Containers provider cannot yet be proven: this session has no Cloudflare account/token binding, no configured Sandbox test binding, and proxy CONNECT requests to api.cloudflare.com return 403. GitHub API is also blocked, preventing remote exact-head CI/PR acceptance. Learner execution remains disabled."
   ],
-  "nextAction": "Implement the Cloudflare Sandbox Container provider spike behind learnerExecutionEnabled=false, bind the CPython 3.14.8 runtime profile, and run every PYTHON04 golden security fixture through the real provider before advancing PYTHON05 executable UX.",
+  "nextAction": "Apply the saved development-environment draft with api.cloudflare.com/api.github.com access and scoped Cloudflare test-account credentials, then implement/prove the canonical Cloudflare provider using PYTHON04_CLOUDFLARE_SANDBOX_IMPLEMENTATION_PLAN.md. Never substitute the isolated local Docker reference spike for Cloudflare acceptance. Do not advance PYTHON05, merge or deploy Production before the required exact-head gates.",
   "notes": [
     "Actual learner runtime is subjects/programming/, not subjects/python/.",
     "Current Programming package mixes Python with Algorithms, Database, ML tooling and Software Engineering.",
@@ -100,6 +103,18 @@
     "Repository-wide discovery found no Pyodide/PyScript/MicroPython/CPython-WASM bundle and no isolated Python server/container runner.",
     "PYTHON04 architecture decision on 2026-10-04 selects dedicated server/container sandbox via Cloudflare Sandboxes/Containers; browser sandbox is non-canonical practice-only and external runner is contingency-only.",
     "Initial provider spike binds CPython 3.14.8 because Python 3.15.0 final is not yet released on the decision date.",
-    "Official assessment requires a clean sandbox identity per run/attempt with Internet disabled by default, no platform secrets, and hidden tests confined to the server-side sandbox boundary."
-  ]
+    "Official assessment requires a clean sandbox identity per run/attempt with Internet disabled by default, no platform secrets, and hidden tests confined to the server-side sandbox boundary.",
+    "Main moved during implementation; commits #258/#259 and the canonical Cloudflare decision #260 were integrated. The initial gated local Docker spike is preserved separately on codex/python04-local-sandbox-spike; it is not merged or accepted as the canonical provider. No academic, assessment, lesson-ID or learner-state migration occurred."
+  ],
+  "python04Validation": {
+    "status": "BLOCKED",
+    "canonicalProvider": "Cloudflare Sandboxes / Containers",
+    "requiredPython": "3.14.8",
+    "learnerExecutionEnabled": false,
+    "baselineMainSha": "a86f00ebe339a0f39ad8feab66315046b94185a7",
+    "referenceSpikeSha": "6e9df869d263d0d22f3cc27b13b347abb692d4bf",
+    "referenceSpikeIsCanonicalAcceptance": false,
+    "remoteExactHeadCi": "NOT_RUN_API_BLOCKED",
+    "productionDeployment": false
+  }
 }

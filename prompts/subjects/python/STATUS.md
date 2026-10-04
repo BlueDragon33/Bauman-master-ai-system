@@ -6,7 +6,7 @@
 | PYTHON01 | COMPLETE | PASS |
 | PYTHON02 | COMPLETE | PASS |
 | PYTHON03 | COMPLETE | PASS |
-| PYTHON04 | COMPLETE / READY FOR CODEX CLASS B | NOT_STARTED |
+| PYTHON04 | COMPLETE / READY FOR CODEX CLASS B | BLOCKED — Cloudflare test infrastructure / API access |
 | PYTHON05 | COMPLETE / READY TO EXECUTE after PYTHON02–PYTHON04 | NOT_STARTED |
 | PYTHON06 | COMPLETE / READY TO EXECUTE after product integration | NOT_STARTED |
 
@@ -21,3 +21,7 @@ It does **not** mean the Python repository implementation has been audited, rebu
 ## Next operational action
 
 Hand `PYTHON04_RUNTIME_TOOLCHAIN_DATA_AI_INTELLIGENCE.md` to Codex/Class B using the accepted PYTHON02/PYTHON03 contracts. Do not activate learner execution until sandbox/security and runtime authority are proven.
+
+## Current PYTHON04 blocker
+
+Canonical provider: Cloudflare Sandboxes/Containers with CPython 3.14.8, as accepted on main `a86f00ebe339a0f39ad8feab66315046b94185a7`. Learner execution stays disabled and PYTHON05 remains NOT READY. This environment lacks the selected provider binding/credentials and cannot reach Cloudflare/GitHub APIs. See [the infrastructure evidence](evidence/PYTHON04_CLOUDFLARE_INFRASTRUCTURE_BLOCKER.md). No Production deployment or merge occurred.
