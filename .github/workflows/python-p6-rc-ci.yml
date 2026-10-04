@@ -1,0 +1,109 @@
+name: Python P6 RC Acceptance CI
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "subjects/programming/**"
+      - "cloudflare/runtime-worker-python.mjs"
+      - "cloudflare/python-sandbox-provider.mjs"
+      - "cloudflare/python-task-registry.mjs"
+      - "cloudflare/python-runtime/**"
+      - "wrangler.runtime.*.jsonc"
+      - "tests/python-p[456]-*.mjs"
+      - "tests/python-production-smoke-browser.mjs"
+      - "scripts/python-p6-rc-evidence.mjs"
+      - "prompts/subjects/python/**"
+      - ".github/workflows/python-p6-rc-ci.yml"
+      - ".github/workflows/deploy-bauman-production.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: python-p6-rc-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  rc:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - name: P6 static RC contract
+        run: node tests/python-p6-rc-contract.mjs
+      - name: Preserve P1-P5 contracts
+        run: |
+          node tests/python-p1-forensic-static.mjs
+          node tests/python-p2-canonical-contract.mjs
+          node tests/python-p3-assessment-contract.mjs
+          node tests/python-p4-runtime-security-contract.mjs
+          node tests/python-p4-provider-static.mjs
+          node tests/python-p5-product-contract.mjs
+      - name: Verify Docker
+        run: docker info
+      - name: Start real Worker plus Container provider
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes wrangler@4.147.0 dev --config wrangler.runtime.python-ci.jsonc --ip 127.0.0.1 --port 8788 > /tmp/python-p6-wrangler.log 2>&1 &
+          echo "$!" > /tmp/python-p6-wrangler.pid
+      - name: Wait for provider
+        shell: bash
+        run: |
+          set -euo pipefail
+          for i in {1..120}; do
+            if curl --fail --silent --show-error --max-time 5 http://127.0.0.1:8788/__python/provider-health >/tmp/python-p6-health.json; then exit 0; fi
+            if ! kill -0 "$(cat /tmp/python-p6-wrangler.pid)" 2>/dev/null; then cat /tmp/python-p6-wrangler.log; exit 1; fi
+            sleep 2
+          done
+          cat /tmp/python-p6-wrangler.log
+          exit 1
+      - name: Preserve P4 real security fixtures
+        run: node tests/python-p4-provider-live.mjs
+      - name: P6 language runtime assessment and cancellation matrix
+        run: |
+          mkdir -p artifacts/python-p6-live
+          node tests/python-p6-rc-live.mjs | tee artifacts/python-p6-live/summary.json
+      - name: Start static learner surface
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/python-p6-static.log 2>&1 &
+          echo "$!" > /tmp/python-p6-static.pid
+      - name: Install browser acceptance runtime
+        run: |
+          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: P6 responsive accessibility state and authoring acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/python-p6-browser
+        run: node tests/python-p6-rc-browser.mjs
+      - name: Materialize exact RC identity
+        env:
+          PYTHON_RC_EVIDENCE_DIR: artifacts/python-p6-rc
+        run: node scripts/python-p6-rc-evidence.mjs
+      - name: Show logs on failure
+        if: failure()
+        run: |
+          cat /tmp/python-p6-wrangler.log || true
+          cat /tmp/python-p6-static.log || true
+      - name: Upload P6 RC evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-p6-rc-${{ github.run_id }}
+          path: |
+            artifacts/python-p6-live
+            artifacts/python-p6-browser
+            artifacts/python-p6-rc
+          if-no-files-found: error
+          retention-days: 30
+      - name: Stop local services
+        if: always()
+        run: |
+          [[ -f /tmp/python-p6-wrangler.pid ]] && kill "$(cat /tmp/python-p6-wrangler.pid)" 2>/dev/null || true
+          [[ -f /tmp/python-p6-static.pid ]] && kill "$(cat /tmp/python-p6-static.pid)" 2>/dev/null || true
