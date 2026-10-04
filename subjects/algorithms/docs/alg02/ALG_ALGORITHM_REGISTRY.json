@@ -1407,5 +1407,138 @@
       "status": "DEFERRED_JIT",
       "reason": "not present in active baseline"
     }
+  ],
+  "concepts": [
+    {
+      "id": "alg.concept.pseudocode",
+      "title": "Language-neutral pseudocode",
+      "competencyIds": [
+        "alg.comp.pseudocode-state"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "PR10",
+          "ALG02"
+        ],
+        "reviewRule": "ALG02"
+      }
+    },
+    {
+      "id": "alg.concept.complexity",
+      "title": "Asymptotic complexity",
+      "competencyIds": [
+        "alg.comp.complexity"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N02",
+          "P4-N09"
+        ],
+        "reviewRule": "ALG02"
+      }
+    },
+    {
+      "id": "alg.concept.search",
+      "title": "Search",
+      "competencyIds": [
+        "alg.comp.search-sort"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07"
+        ],
+        "reviewRule": "ALG02"
+      }
+    },
+    {
+      "id": "alg.concept.ordered-search",
+      "title": "Ordered search",
+      "competencyIds": [
+        "alg.comp.search-sort"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07"
+        ],
+        "reviewRule": "ALG02"
+      }
+    },
+    {
+      "id": "alg.concept.comparison-sort",
+      "title": "Comparison sorting",
+      "competencyIds": [
+        "alg.comp.search-sort"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07"
+        ],
+        "reviewRule": "ALG02"
+      }
+    },
+    {
+      "id": "alg.concept.divide-and-conquer",
+      "title": "Divide and conquer",
+      "competencyIds": [
+        "alg.comp.recursion",
+        "alg.comp.search-sort"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N07",
+          "ALG02"
+        ],
+        "reviewRule": "ALG02"
+      }
+    },
+    {
+      "id": "alg.concept.tree-traversal",
+      "title": "Tree traversal",
+      "competencyIds": [
+        "alg.comp.tree-bst"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N05"
+        ],
+        "reviewRule": "ALG02"
+      }
+    },
+    {
+      "id": "alg.concept.graph-traversal",
+      "title": "Graph traversal",
+      "competencyIds": [
+        "alg.comp.graph-traversal"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N08"
+        ],
+        "reviewRule": "ALG02"
+      }
+    },
+    {
+      "id": "alg.concept.unweighted-shortest-path",
+      "title": "Shortest path by edge count in unweighted/equal-cost graph",
+      "competencyIds": [
+        "alg.comp.graph-traversal"
+      ],
+      "provenance": {
+        "class": "CURATED",
+        "sources": [
+          "P4-N08",
+          "P4-M08"
+        ],
+        "reviewRule": "ALG02"
+      }
+    }
   ]
 }
