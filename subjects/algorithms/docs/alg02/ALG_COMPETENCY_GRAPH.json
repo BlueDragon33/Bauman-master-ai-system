@@ -1,0 +1,228 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "algorithms",
+  "idNamespace": "alg.comp",
+  "evidencePolicy": "performance_requires_algorithmic_reasoning_or_verified_artifact_evidence_not_route_completion_or_legacy_mcq_score",
+  "stages": [
+    {
+      "id": "foundation",
+      "title": "Foundation — modeling, pseudocode, complexity, correctness"
+    },
+    {
+      "id": "core",
+      "title": "Core — ADTs, linear structures, recursion, search and sorting"
+    },
+    {
+      "id": "structures",
+      "title": "Structures — hashing and trees"
+    },
+    {
+      "id": "graphs",
+      "title": "Graphs — representation and traversal"
+    },
+    {
+      "id": "transfer",
+      "title": "Transfer — testing, selection and ASOIU integration"
+    }
+  ],
+  "competencies": [
+    {
+      "id": "alg.comp.problem-modeling",
+      "title": "Problem modeling and constraints",
+      "level": "foundation",
+      "prerequisites": [],
+      "evidence": [
+        "identify input/output/constraints/size measure",
+        "separate problem requirement from implementation detail"
+      ]
+    },
+    {
+      "id": "alg.comp.pseudocode-state",
+      "title": "Language-neutral pseudocode and state reasoning",
+      "level": "foundation",
+      "prerequisites": [
+        "alg.comp.problem-modeling"
+      ],
+      "evidence": [
+        "write unambiguous pseudocode with explicit range/index convention",
+        "trace meaningful state transitions"
+      ]
+    },
+    {
+      "id": "alg.comp.complexity",
+      "title": "Asymptotic time/space reasoning",
+      "level": "foundation",
+      "prerequisites": [
+        "alg.comp.problem-modeling",
+        "alg.comp.pseudocode-state"
+      ],
+      "evidence": [
+        "name the input-size measure and derive a bound",
+        "distinguish time/space and best/average/worst/amortized meanings"
+      ]
+    },
+    {
+      "id": "alg.comp.correctness-invariants",
+      "title": "Preconditions, invariants, termination and correctness",
+      "level": "foundation",
+      "prerequisites": [
+        "alg.comp.pseudocode-state"
+      ],
+      "evidence": [
+        "state a precondition and invariant",
+        "explain preservation/termination or provide a counterexample"
+      ]
+    },
+    {
+      "id": "alg.comp.adt-operation",
+      "title": "ADT and operation semantics",
+      "level": "core",
+      "prerequisites": [
+        "alg.comp.problem-modeling",
+        "alg.comp.complexity"
+      ],
+      "evidence": [
+        "separate abstract operations from representation",
+        "state operation contract, mutation and complexity assumptions"
+      ]
+    },
+    {
+      "id": "alg.comp.linear-structures",
+      "title": "Array/list/stack/queue reasoning",
+      "level": "core",
+      "prerequisites": [
+        "alg.comp.adt-operation"
+      ],
+      "evidence": [
+        "choose a linear representation for a workload",
+        "trace push/pop/enqueue/dequeue and compare access/update trade-offs"
+      ]
+    },
+    {
+      "id": "alg.comp.recursion",
+      "title": "Recursion and call-stack reasoning",
+      "level": "core",
+      "prerequisites": [
+        "alg.comp.pseudocode-state",
+        "alg.comp.correctness-invariants",
+        "alg.comp.linear-structures"
+      ],
+      "evidence": [
+        "identify base/progress conditions and trace call stack",
+        "compare recursive and iterative formulations including space"
+      ]
+    },
+    {
+      "id": "alg.comp.search-sort",
+      "title": "Search and sorting selection/reasoning",
+      "level": "core",
+      "prerequisites": [
+        "alg.comp.complexity",
+        "alg.comp.linear-structures",
+        "alg.comp.correctness-invariants"
+      ],
+      "evidence": [
+        "apply binary search only under valid ordering preconditions",
+        "compare sorting algorithms by stability/in-place/case/space requirements"
+      ]
+    },
+    {
+      "id": "alg.comp.hashing",
+      "title": "Hashing and associative lookup",
+      "level": "structures",
+      "prerequisites": [
+        "alg.comp.adt-operation",
+        "alg.comp.complexity"
+      ],
+      "evidence": [
+        "reason about collision/load factor/resizing",
+        "distinguish expected lookup from worst-case guarantees"
+      ]
+    },
+    {
+      "id": "alg.comp.tree-bst",
+      "title": "Trees, BSTs and traversal",
+      "level": "structures",
+      "prerequisites": [
+        "alg.comp.adt-operation",
+        "alg.comp.recursion",
+        "alg.comp.correctness-invariants"
+      ],
+      "evidence": [
+        "preserve BST ordering and reason about height",
+        "trace preorder/inorder/postorder and analyze O(n) traversal"
+      ]
+    },
+    {
+      "id": "alg.comp.graph-representation",
+      "title": "Graph model and representation",
+      "level": "graphs",
+      "prerequisites": [
+        "alg.comp.adt-operation",
+        "alg.comp.linear-structures"
+      ],
+      "evidence": [
+        "distinguish directed/undirected and weighted/unweighted semantics",
+        "choose adjacency list or matrix using density/workload"
+      ]
+    },
+    {
+      "id": "alg.comp.graph-traversal",
+      "title": "BFS/DFS traversal and reachability",
+      "level": "graphs",
+      "prerequisites": [
+        "alg.comp.graph-representation",
+        "alg.comp.linear-structures",
+        "alg.comp.recursion",
+        "alg.comp.correctness-invariants",
+        "alg.comp.complexity"
+      ],
+      "evidence": [
+        "trace BFS queue/frontier and DFS stack/recursion",
+        "justify O(V+E) under adjacency-list assumptions and BFS shortest-path-by-edge-count scope"
+      ]
+    },
+    {
+      "id": "alg.comp.edge-case-testing",
+      "title": "Algorithm edge-case and property testing",
+      "level": "transfer",
+      "prerequisites": [
+        "alg.comp.correctness-invariants",
+        "alg.comp.complexity"
+      ],
+      "evidence": [
+        "construct empty/singleton/duplicate/boundary/cycle/collision cases",
+        "verify semantic properties instead of one sample output"
+      ]
+    },
+    {
+      "id": "alg.comp.algorithm-selection",
+      "title": "Algorithm/data-structure selection and trade-offs",
+      "level": "transfer",
+      "prerequisites": [
+        "alg.comp.complexity",
+        "alg.comp.search-sort",
+        "alg.comp.hashing",
+        "alg.comp.tree-bst",
+        "alg.comp.graph-traversal"
+      ],
+      "evidence": [
+        "choose a structure/algorithm from workload constraints",
+        "justify time/space/precondition/trade-off decisions"
+      ]
+    },
+    {
+      "id": "alg.comp.transfer",
+      "title": "Engineering transfer to ASOIU/database/logical-AI contexts",
+      "level": "transfer",
+      "prerequisites": [
+        "alg.comp.algorithm-selection",
+        "alg.comp.edge-case-testing"
+      ],
+      "evidence": [
+        "produce a decision note or small verified artifact",
+        "explain where database/AI/domain semantics become external ownership"
+      ]
+    }
+  ]
+}
