@@ -4,7 +4,7 @@ import fs from "node:fs";
 const preview=fs.readFileSync(".github/workflows/deploy-bauman-preview.yml","utf8");
 const production=fs.readFileSync(".github/workflows/deploy-bauman-production.yml","utf8");
 const orchestration=fs.readFileSync(".github/workflows/python-approved-release.yml","utf8");
-const request=JSON.parse(fs.readFileSync(".github/release-requests/python-20261004.json","utf8"));
+const request=JSON.parse(fs.readFileSync(".github/release-requests/python-20261004-r2.json","utf8"));
 
 assert.match(preview,/workflow_call:/);
 assert.match(production,/workflow_call:/);
@@ -28,6 +28,7 @@ assert.match(orchestration,/uses: \.\/\.github\/workflows\/deploy-bauman-product
 assert.match(orchestration,/confirm: DEPLOY_PRODUCTION/);
 assert.match(orchestration,/statuses: write/);
 assert.match(orchestration,/python\/release-publish/);
+assert.match(orchestration,/actions\/runs\/\$GITHUB_RUN_ID/);
 assert.match(orchestration,/"state":"success"/);
 assert.match(orchestration,/"state":"failure"/);
 console.log("PYTHON_APPROVED_RELEASE_CONTRACT=PASS");
