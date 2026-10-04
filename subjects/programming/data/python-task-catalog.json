@@ -7,7 +7,7 @@
       "title": "Tính tổng hai số",
       "journey": "beginner",
       "mode": "practice",
-      "competency": "python.io-arithmetic",
+      "competency": "py.comp.syntax-expressions",
       "prompt": "Đọc hai số nguyên trên một dòng và in ra tổng của chúng.",
       "starterCode": "a, b = map(int, input().split())\nprint(a + b)\n",
       "hints": [
@@ -28,7 +28,7 @@
       "title": "Sửa lỗi duyệt danh sách",
       "journey": "debug",
       "mode": "practice",
-      "competency": "python.debug-index",
+      "competency": "py.comp.testing-debugging",
       "prompt": "Đoạn mã đang truy cập vượt chỉ số. Sửa để in lần lượt 10, 20, 30.",
       "starterCode": "values = [10, 20, 30]\nfor i in range(len(values) + 1):\n    print(values[i])\n",
       "hints": [
@@ -47,7 +47,7 @@
       "title": "Kiểm tra số chẵn",
       "journey": "assessment",
       "mode": "assessment-preview",
-      "competency": "python.branching",
+      "competency": "py.comp.control-flow",
       "prompt": "Đọc một số nguyên. In EVEN nếu chẵn, ODD nếu lẻ.",
       "starterCode": "n = int(input())\n# Viết lời giải ở đây\n",
       "hints": [
