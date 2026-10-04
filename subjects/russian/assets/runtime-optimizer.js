@@ -5,7 +5,9 @@
   const LIGHT_DATA=['curriculum','grammar','grammar-path','handwriting','handwriting-listen-write','writing','videos','knowledge-index'];
   const DATA_CACHE='russian-learning-data-v1';
   const DATA_FETCH_TIMEOUT_MS=8000;
-  let preparing=false, prepared=Number(localStorage.getItem('ru_offline_core_count')||0);
+  const SW_READY_TIMEOUT_MS=20000;
+  const SW_REGISTER_ATTEMPTS=3;
+  let preparing=false, prepared=Number(localStorage.getItem('ru_offline_core_count')||0), swReadyPromise=null;
 
   function statusButton(){
     const host=document.querySelector('.ru-top-actions');if(!host)return null;
@@ -65,12 +67,49 @@
     const run=()=>cacheNames(LIGHT_DATA).then(()=>reconcileOfflineCore()).catch(()=>{});
     if('requestIdleCallback'in window)requestIdleCallback(run,{timeout:5000});else setTimeout(run,1800);
   }
+  function sleep(ms){return new Promise(resolve=>setTimeout(resolve,ms));}
+  function promiseTimeout(promise,timeoutMs,label){
+    let timer;
+    return Promise.race([
+      promise,
+      new Promise((_,reject)=>{timer=setTimeout(()=>reject(new Error(label+' timed out after '+timeoutMs+'ms')),timeoutMs);})
+    ]).finally(()=>{if(timer)clearTimeout(timer);});
+  }
+  async function serviceWorkerAttempt(){
+    const reg=await navigator.serviceWorker.register('./sw.js',{scope:'./',updateViaCache:'none'});
+    await reg.update().catch(()=>{});
+    const ready=await promiseTimeout(navigator.serviceWorker.ready,SW_READY_TIMEOUT_MS,'Russian service-worker ready');
+    if(!navigator.serviceWorker.controller){
+      await promiseTimeout(new Promise(resolve=>navigator.serviceWorker.addEventListener('controllerchange',resolve,{once:true})),SW_READY_TIMEOUT_MS,'Russian service-worker controller');
+    }
+    if(!navigator.serviceWorker.controller)throw new Error('Russian service-worker controller unavailable after activation');
+    return ready;
+  }
+  async function ensureServiceWorkerReady({force=false}={}){
+    if(!('serviceWorker'in navigator)||location.protocol==='file:')return null;
+    if(swReadyPromise&&!force)return swReadyPromise;
+    const run=(async()=>{
+      let lastError=null;
+      for(let attempt=1;attempt<=SW_REGISTER_ATTEMPTS;attempt++){
+        try{return await serviceWorkerAttempt();}
+        catch(e){
+          lastError=e;
+          if(attempt<SW_REGISTER_ATTEMPTS)await sleep(600*attempt);
+        }
+      }
+      throw lastError||new Error('Russian service-worker registration failed');
+    })();
+    swReadyPromise=run;
+    try{return await run;}
+    catch(e){if(swReadyPromise===run)swReadyPromise=null;throw e;}
+  }
   async function register(){
     if(!('serviceWorker'in navigator)||location.protocol==='file:')return;
-    try{await navigator.serviceWorker.register('./sw.js',{scope:'./'});await navigator.serviceWorker.ready;await reconcileOfflineCore();idleWarm();}
+    try{await ensureServiceWorkerReady();await reconcileOfflineCore();idleWarm();}
     catch(e){console.warn('Russian offline shell unavailable',e);}
   }
+  function bootOfflineRuntime(){paint();register();}
   window.addEventListener('online',()=>{paint();reconcileOfflineCore();});window.addEventListener('offline',()=>{paint();reconcileOfflineCore();});
-  document.addEventListener('DOMContentLoaded',()=>{paint();register();});
-  window.RussianRuntimeOptimizer={schema:SCHEMA,prepareOfflineCore,reconcileOfflineCore,status:()=>({online:navigator.onLine,prepared,total:CORE_DATA.length,ready:prepared>=CORE_DATA.length}),coreData:[...CORE_DATA]};
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bootOfflineRuntime,{once:true});else bootOfflineRuntime();
+  window.RussianRuntimeOptimizer={schema:SCHEMA,prepareOfflineCore,reconcileOfflineCore,ensureServiceWorkerReady,status:()=>({online:navigator.onLine,prepared,total:CORE_DATA.length,ready:prepared>=CORE_DATA.length,serviceWorkerControlled:!!navigator.serviceWorker?.controller}),coreData:[...CORE_DATA]};
 })();
