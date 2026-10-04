@@ -57,24 +57,42 @@ function runId() {
   return crypto.randomUUID().toLowerCase();
 }
 
+function resolveRunId(body) {
+  const candidate = String(body?.runId || "").toLowerCase();
+  return RUN_ID_RE.test(candidate) ? candidate : runId();
+}
+
 function sandboxFor(env, id) {
   if (!env.PYTHON_SANDBOX) throw new Error("PYTHON_SANDBOX_BINDING_MISSING");
   return env.PYTHON_SANDBOX.getByName(`python-${id}`);
+}
+
+async function sandboxFetch(env, id, pathname, payload, signal) {
+  const stub = sandboxFor(env, id);
+  const request = new Request(`http://python-sandbox${pathname}`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(payload),
+    signal,
+  });
+  const response = await stub.fetch(request);
+  if (!response.ok) throw new Error("PYTHON_SANDBOX_FETCH_FAILED");
+  return response.json();
 }
 
 async function runCode(request, env) {
   const auth = await authorize(request, env);
   if (!auth.ok) return json({ ok: false, code: auth.code }, auth.status);
   const body = await parseJson(request);
-  const id = runId();
-  const result = await sandboxFor(env, id).runCode({
+  const id = resolveRunId(body);
+  const result = await sandboxFetch(env, id, "/run-code", {
     runId: id,
     taskId: typeof body.taskId === "string" ? body.taskId : null,
     attemptId: typeof body.attemptId === "string" ? body.attemptId : null,
     code: body.code,
     stdin: typeof body.stdin === "string" ? body.stdin : "",
     timeoutMs: Number.isInteger(body.timeoutMs) ? body.timeoutMs : 3000,
-  });
+  }, request.signal);
   return json({ ok: result.status === "complete", ...result });
 }
 
@@ -103,13 +121,13 @@ async function runTaskTests(request, env) {
   const task = pythonTask(body.taskId);
   if (!task) return json({ ok: false, code: "PYTHON_TASK_NOT_FOUND" }, 404);
   if (typeof body.code !== "string" || !body.code.trim()) return json({ ok: false, code: "CODE_REQUIRED" }, 400);
-  const id = runId();
-  const report = await sandboxFor(env, id).runTests({
+  const id = resolveRunId(body);
+  const report = await sandboxFetch(env, id, "/run-tests", {
     runId: id,
     code: body.code,
     cases: task.publicTests,
     timeoutMs: 3000,
-  });
+  }, request.signal);
   const envelope = publicTestEnvelope(report);
   return json({ ok: envelope.passed === envelope.total, ...envelope });
 }
@@ -121,14 +139,14 @@ async function submitTaskEvidence(request, env) {
   const task = pythonTask(body.taskId);
   if (!task) return json({ ok: false, code: "PYTHON_TASK_NOT_FOUND" }, 404);
   if (typeof body.code !== "string" || !body.code.trim()) return json({ ok: false, code: "CODE_REQUIRED" }, 400);
-  const id = runId();
+  const id = resolveRunId(body);
   const cases = [...task.publicTests, ...task.hiddenTests];
-  const report = await sandboxFor(env, id).runTests({
+  const report = await sandboxFetch(env, id, "/run-tests", {
     runId: id,
     code: body.code,
     cases,
     timeoutMs: 3000,
-  });
+  }, request.signal);
   const passed = Number(report.passed || 0);
   const total = Number(report.total || cases.length);
   return json({

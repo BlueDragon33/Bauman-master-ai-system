@@ -14,7 +14,7 @@
 <section class="card"><h2>1. Nội dung</h2>
 <label>Task ID<input id="taskId" required pattern="[a-z0-9-]{4,64}" value="py-new-task"></label>
 <label>Tiêu đề<input id="title" required value="Bài Python mới"></label>
-<label>Competency<input id="competency" required value="python.basics"></label>
+<label>Competency<select id="competency" required aria-describedby="competencyHelp"></select></label><p id="competencyHelp" class="note">Chỉ chọn competency canonical từ PYTHON02.</p>
 <label>Prompt<textarea id="prompt" required>Viết chương trình theo yêu cầu.</textarea></label>
 <label>Starter code<textarea id="starter" class="code"># Bắt đầu ở đây
 </textarea></label>
