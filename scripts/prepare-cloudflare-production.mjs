@@ -172,6 +172,9 @@ fs.copyFileSync(path.join(root, 'index.html'), path.join(runtimeDist, 'index.htm
 fs.cpSync(path.join(root, 'assets'), path.join(runtimeDist, 'assets'), { recursive: true });
 fs.cpSync(path.join(root, 'subjects'), path.join(runtimeDist, 'subjects'), { recursive: true });
 fs.cpSync(path.join(root, 'foundation'), path.join(runtimeDist, 'foundation'), { recursive: true });
+// Keep production runtime packaging in parity with preview/package: Russian pages
+// reference shared platform UI through ../../platform/ui/*.
+fs.cpSync(path.join(root, 'platform', 'ui'), path.join(runtimeDist, 'platform', 'ui'), { recursive: true });
 
 for (const relativePath of [
   'subjects/russian/data/dialogue-bauman-az.json',
@@ -217,6 +220,13 @@ const requiredRuntimeAssets = [
   'foundation/domain-model/legacy-snapshot-extractor.js',
   'foundation/domain-model/canonical-read-projection.js',
   'foundation/domain-model/legacy-mapping-registry.v1.json',
+  'platform/ui/tokens.css',
+  'platform/ui/foundations.css',
+  'platform/ui/components.css',
+  'platform/ui/layouts.css',
+  'platform/ui/responsive.css',
+  'platform/ui/bauman-ui.css',
+  'platform/ui/bauman-ui.js',
   'subjects/russian/data/chunks/dialogue-bauman-az/manifest.json',
   'subjects/russian/data/chunks/deep-speaking-bauman/manifest.json',
 ];
