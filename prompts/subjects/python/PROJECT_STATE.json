@@ -3,8 +3,8 @@
   "subject": "python",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/subjects/python/PYTHON_MASTER_PROMPT.md",
-  "status": "PYTHON05_PASS_PRODUCT_INTEGRATION",
-  "activeModule": "PYTHON06",
+  "status": "PYTHON06_PASS_RC_READY",
+  "activeModule": "SHARED_C3_RELEASE",
   "sequence": [
     "PYTHON01",
     "PYTHON02",
@@ -18,11 +18,12 @@
     "PYTHON02",
     "PYTHON03",
     "PYTHON04",
-    "PYTHON05"
+    "PYTHON05",
+    "PYTHON06"
   ],
   "needsRevalidation": [],
-  "lastValidatedSha": "d27cde65639f5c15b69ed488eceec4526efd2b7f",
-  "currentHeadSha": "d27cde65639f5c15b69ed488eceec4526efd2b7f",
+  "lastValidatedSha": "cb9a46e8cbacd0be79f2bf63246c9a67805dd7ad",
+  "currentHeadSha": "cb9a46e8cbacd0be79f2bf63246c9a67805dd7ad",
   "evidence": [
     "prompts/subjects/python/evidence/PYTHON_P1_EXECUTIVE_SUMMARY.md",
     "prompts/subjects/python/evidence/PYTHON_CURRENT_ARCHITECTURE_MAP.md",
@@ -102,10 +103,24 @@
     "Python P4 Container Provider CI run 37199916222: SUCCESS",
     "Development Fast CI run 37199916238: SUCCESS",
     "Future Interface System CI run 37199916223: SUCCESS",
-    "Universal Constitution Compliance run 37199916665: SUCCESS"
+    "Universal Constitution Compliance run 37199916665: SUCCESS",
+    "prompts/subjects/python/evidence/PYTHON06_ACCEPTANCE_MATRIX.md",
+    "prompts/subjects/python/evidence/PYTHON_LANGUAGE_RUNTIME_REGRESSION.md",
+    "prompts/subjects/python/evidence/PYTHON_ASSESSMENT_TEST_OF_TESTS_REPORT.md",
+    "prompts/subjects/python/evidence/PYTHON_SANDBOX_SECURITY_REPORT.md",
+    "prompts/subjects/python/evidence/PYTHON_OFFLINE_PERFORMANCE_REPORT.md",
+    "prompts/subjects/python/evidence/PYTHON_AI_TUTOR_ACCEPTANCE.md",
+    "prompts/subjects/python/evidence/PYTHON_UX_ACCESSIBILITY_ACCEPTANCE.md",
+    "prompts/subjects/python/evidence/PYTHON_LEGACY_RETIREMENT_MAP.md",
+    "prompts/subjects/python/evidence/PYTHON_RC_MANIFEST.json",
+    "prompts/subjects/python/evidence/PYTHON_PRODUCTION_SMOKE_PROFILE.md",
+    "prompts/subjects/python/evidence/PYTHON06_EVIDENCE_INDEX.md",
+    "Python P6 RC Acceptance CI run 37208454277: SUCCESS",
+    "Python P5 Learning Product CI run 37208454217: SUCCESS",
+    "Python P4 Container Provider CI run 37208454214: SUCCESS"
   ],
   "blockers": [],
-  "nextAction": "Execute PYTHON06 Acceptance, Hardening & RC Readiness. Do not publish production until exact RC acceptance and shared release smoke/rollback gates pass.",
+  "nextAction": "Run the shared C3 exact-revision release procedure: deploy final merged main SHA to preview, verify preview identity and Python smoke profile, then promote the exact same revision to production and observe/rollback on failure.",
   "notes": [
     "Actual learner runtime is subjects/programming/, not subjects/python/.",
     "Current Programming package mixes Python with Algorithms, Database, ML tooling and Software Engineering.",
@@ -131,6 +146,7 @@
     "PYTHON04 exact provider evidence head 19afbae5fc3b3243a945da5a115cbdc7b0b2e63a passed real local Worker + Docker Container integration in CI run 37198860782.",
     "PYTHON04 provider PASS does not itself enable preview/production learner execution; BAUMAN_PYTHON_EXECUTION_ENABLED remains false until PYTHON05/PYTHON06 release gates.",
     "PYTHON04 terminal metadata tail must re-pass PR-head CI before merge; production publication remains deferred by releasePolicy until PYTHON05/PYTHON06.",
-    "PYTHON05 exact tested implementation head d27cde65639f5c15b69ed488eceec4526efd2b7f passed real provider integration and Playwright responsive/authoring acceptance. Terminal metadata tail must re-pass PR-head CI before merge."
+    "PYTHON05 exact tested implementation head d27cde65639f5c15b69ed488eceec4526efd2b7f passed real provider integration and Playwright responsive/authoring acceptance. Terminal metadata tail must re-pass PR-head CI before merge.",
+    "PYTHON06 tested implementation head cb9a46e8cbacd0be79f2bf63246c9a67805dd7ad passed full P1-P6 static, real provider, browser/offline and preserved P4/P5 regression. Terminal PASS metadata tail must re-pass PR-head CI before merge."
   ]
 }
