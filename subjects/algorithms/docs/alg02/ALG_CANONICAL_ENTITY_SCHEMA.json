@@ -1,0 +1,239 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "algorithms",
+  "identityRule": "Stable IDs are language-neutral and display-language-independent. Implementation language is a projection, never the canonical identity.",
+  "namespaces": {
+    "competency": "alg.comp",
+    "concept": "alg.concept",
+    "algorithm": "alg.algorithm",
+    "variant": "alg.variant",
+    "adt": "alg.adt",
+    "dataStructure": "alg.ds",
+    "operation": "alg.op",
+    "invariant": "alg.inv",
+    "precondition": "alg.pre",
+    "postcondition": "alg.post",
+    "complexityClaim": "alg.cx",
+    "problemPattern": "alg.pattern",
+    "strategy": "alg.strategy",
+    "trace": "alg.trace",
+    "counterexample": "alg.counterexample",
+    "implementationExample": "alg.impl",
+    "assessmentTask": "alg.task",
+    "misconception": "alg.misconception",
+    "remediation": "alg.remediation"
+  },
+  "provenanceClasses": [
+    "AUTHORITATIVE",
+    "CURATED",
+    "DERIVED",
+    "LEGACY",
+    "GENERATED_CANDIDATE",
+    "UNKNOWN"
+  ],
+  "entityFamilies": {
+    "AlgorithmConcept": {
+      "required": [
+        "id",
+        "title",
+        "competencyIds",
+        "provenance"
+      ]
+    },
+    "Algorithm": {
+      "required": [
+        "id",
+        "title",
+        "conceptIds",
+        "preconditionIds",
+        "postconditionIds",
+        "invariantIds",
+        "complexityClaimIds",
+        "traceSchemaId",
+        "provenance"
+      ]
+    },
+    "AlgorithmVariant": {
+      "required": [
+        "id",
+        "algorithmId",
+        "title",
+        "semanticDifferences",
+        "provenance"
+      ]
+    },
+    "AbstractDataType": {
+      "required": [
+        "id",
+        "title",
+        "operationIds",
+        "behavioralContract",
+        "provenance"
+      ]
+    },
+    "DataStructure": {
+      "required": [
+        "id",
+        "title",
+        "implementsAdtIds",
+        "representation",
+        "invariantIds",
+        "operationComplexityClaims",
+        "provenance"
+      ]
+    },
+    "Operation": {
+      "required": [
+        "id",
+        "ownerId",
+        "inputs",
+        "output",
+        "mutates",
+        "preconditions",
+        "postconditions",
+        "provenance"
+      ]
+    },
+    "Invariant": {
+      "required": [
+        "id",
+        "statement",
+        "scope",
+        "provenance"
+      ]
+    },
+    "Precondition": {
+      "required": [
+        "id",
+        "statement",
+        "scope",
+        "provenance"
+      ]
+    },
+    "Postcondition": {
+      "required": [
+        "id",
+        "statement",
+        "scope",
+        "provenance"
+      ]
+    },
+    "ComplexityClaim": {
+      "required": [
+        "id",
+        "ownerId",
+        "operationOrAlgorithm",
+        "inputMeasure",
+        "dimension",
+        "case",
+        "notation",
+        "assumptions",
+        "provenance"
+      ]
+    },
+    "ProblemPattern": {
+      "required": [
+        "id",
+        "title",
+        "constraints",
+        "candidateStrategies",
+        "provenance"
+      ]
+    },
+    "Strategy": {
+      "required": [
+        "id",
+        "title",
+        "selectionConditions",
+        "provenance"
+      ]
+    },
+    "Trace": {
+      "required": [
+        "id",
+        "ownerId",
+        "stateFields",
+        "orderingPolicy",
+        "provenance"
+      ]
+    },
+    "Counterexample": {
+      "required": [
+        "id",
+        "targetClaim",
+        "input",
+        "explanation",
+        "provenance"
+      ]
+    },
+    "ImplementationExample": {
+      "required": [
+        "id",
+        "canonicalOwnerId",
+        "languageOwner",
+        "runtimeProfile",
+        "provenance"
+      ]
+    },
+    "AssessmentTask": {
+      "required": [
+        "id",
+        "competencyIds",
+        "canonicalEntityIds",
+        "evidenceContract",
+        "provenance"
+      ]
+    },
+    "Misconception": {
+      "required": [
+        "id",
+        "category",
+        "targetCompetencyIds",
+        "remediationIds",
+        "provenance"
+      ]
+    },
+    "Remediation": {
+      "required": [
+        "id",
+        "targetIds",
+        "actions",
+        "recheckEvidenceRequirement",
+        "provenance"
+      ]
+    }
+  },
+  "complexityCaseEnum": [
+    "best",
+    "average",
+    "worst",
+    "amortized",
+    "all_cases",
+    "expected"
+  ],
+  "complexityDimensionEnum": [
+    "time",
+    "auxiliary_space",
+    "total_space",
+    "output_space"
+  ],
+  "notationEnum": [
+    "O",
+    "Omega",
+    "Theta",
+    "expected_O",
+    "expected_Theta"
+  ],
+  "graphSemantics": {
+    "vertexIdentityDistinctFromDisplayLabel": true,
+    "directionExplicit": true,
+    "weightSemanticsExplicit": true,
+    "representationExplicitForComplexity": true,
+    "tieBreakingExplicitWhenRequired": true
+  },
+  "mutationSemantics": {
+    "inPlaceMustBeExplicit": true,
+    "operationMutationMustBeExplicit": true
+  },
+  "runtimeMutationAuthorized": false
+}
