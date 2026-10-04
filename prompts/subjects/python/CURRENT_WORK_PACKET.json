@@ -104,10 +104,10 @@
     "A destructive learner-state/data migration would be required without explicit authorization."
   ],
   "releasePolicy": "PYTHON04 may merge after terminal state/documentation head re-passes required PR checks. Do not publish production from PYTHON04 alone; production remains the shared release gate after PYTHON05/PYTHON06.",
-  "verifiedProviderHead": "6984c97effa094e4cb61c193103186f3d0da727f",
+  "verifiedProviderHead": "19afbae5fc3b3243a945da5a115cbdc7b0b2e63a",
   "providerEvidence": {
     "workflow": "Python P4 Container Provider CI",
-    "runId": 37197219411,
+    "runId": 37198860782,
     "conclusion": "success",
     "runtimeProfileId": "cpython-3.14.8-stdlib-v1",
     "provider": "cloudflare-container-durable-object-v1"
