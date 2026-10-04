@@ -1,0 +1,123 @@
+{
+  "schemaVersion": "1.0.0",
+  "baselineOwner": "subjects/algorithms/docs/alg01/ALG02_INPUT_CONTRACT.md",
+  "migrationActivated": false,
+  "legacyLessons": [
+    {
+      "lessonId": "PR02",
+      "title": "Tư duy thuật toán và độ phức tạp",
+      "classification": "COMPATIBILITY_PROJECTION",
+      "canonicalCompetencyIds": [
+        "alg.comp.problem-modeling",
+        "alg.comp.complexity",
+        "alg.comp.algorithm-selection"
+      ],
+      "canonicalEntityIds": [
+        "alg.concept.complexity"
+      ],
+      "preserveLegacyId": true,
+      "productionDeletionAuthorized": false
+    },
+    {
+      "lessonId": "PR10",
+      "title": "Pseudocode và giải thích thuật toán bằng tiếng Nga",
+      "classification": "COMPATIBILITY_PROJECTION",
+      "canonicalCompetencyIds": [
+        "alg.comp.problem-modeling",
+        "alg.comp.pseudocode-state"
+      ],
+      "canonicalEntityIds": [
+        "alg.concept.pseudocode"
+      ],
+      "preserveLegacyId": true,
+      "productionDeletionAuthorized": false
+    },
+    {
+      "lessonId": "PR11",
+      "title": "Cấu trúc dữ liệu nhập môn",
+      "classification": "COMPATIBILITY_PROJECTION",
+      "canonicalCompetencyIds": [
+        "alg.comp.adt-operation",
+        "alg.comp.linear-structures",
+        "alg.comp.hashing",
+        "alg.comp.graph-representation"
+      ],
+      "canonicalEntityIds": [
+        "alg.adt.sequence",
+        "alg.adt.stack",
+        "alg.adt.queue",
+        "alg.adt.map",
+        "alg.adt.graph"
+      ],
+      "preserveLegacyId": true,
+      "productionDeletionAuthorized": false
+    }
+  ],
+  "p04Nodes": [
+    {
+      "id": "P4-N01",
+      "canonicalCompetencyIds": [
+        "alg.comp.problem-modeling"
+      ],
+      "adjacentOwner": "math",
+      "note": "logic/relations foundation remains Math-owned; ALG consumes"
+    },
+    {
+      "id": "P4-N02",
+      "canonicalCompetencyIds": [
+        "alg.comp.complexity"
+      ]
+    },
+    {
+      "id": "P4-N03",
+      "canonicalCompetencyIds": [
+        "alg.comp.adt-operation",
+        "alg.comp.linear-structures"
+      ]
+    },
+    {
+      "id": "P4-N04",
+      "canonicalCompetencyIds": [
+        "alg.comp.hashing"
+      ]
+    },
+    {
+      "id": "P4-N05",
+      "canonicalCompetencyIds": [
+        "alg.comp.tree-bst"
+      ]
+    },
+    {
+      "id": "P4-N06",
+      "canonicalCompetencyIds": [
+        "alg.comp.recursion"
+      ]
+    },
+    {
+      "id": "P4-N07",
+      "canonicalCompetencyIds": [
+        "alg.comp.search-sort"
+      ]
+    },
+    {
+      "id": "P4-N08",
+      "canonicalCompetencyIds": [
+        "alg.comp.graph-representation",
+        "alg.comp.graph-traversal"
+      ]
+    },
+    {
+      "id": "P4-N09",
+      "canonicalCompetencyIds": [
+        "alg.comp.complexity",
+        "alg.comp.algorithm-selection"
+      ]
+    },
+    {
+      "id": "P4-N10",
+      "canonicalCompetencyIds": [
+        "alg.comp.transfer"
+      ]
+    }
+  ]
+}
