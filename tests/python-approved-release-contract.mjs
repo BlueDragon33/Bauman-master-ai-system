@@ -19,7 +19,7 @@ assert.equal(request.activationMergeSha,"04cf1978198ee90a47dc61698ad70aec011a78b
 
 assert.match(orchestration,/push:/);
 assert.match(orchestration,/branches: \[main\]/);
-assert.match(orchestration,/python-20261004\.json/);
+assert.match(orchestration,/python-20261004-r2\.json/);
 assert.match(orchestration,/--diff-filter=A/);
 assert.match(orchestration,/git merge-base --is-ancestor 04cf1978198ee90a47dc61698ad70aec011a78bc/);
 assert.match(orchestration,/uses: \.\/\.github\/workflows\/deploy-bauman-preview\.yml/);
