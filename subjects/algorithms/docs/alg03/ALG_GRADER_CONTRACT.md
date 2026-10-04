@@ -12,7 +12,7 @@ Declare task/version, competency/canonical entity IDs, assessment mode, allowed 
 Dimension status: `PASS | PARTIAL | FAIL | UNRESOLVED | NOT_ASSESSED`. Error/remediation IDs may be emitted. The grader never writes mastery.
 
 ## Semantic validators
-Source-string equality is forbidden as the primary grader. Use exact value only when uniqueness is part of the task contract. Otherwise prefer predicate/property validators: valid index, sortedness, permutation, stability, reachable set, distance/path validity, invariant/trace validity and normalized complexity claim.
+Source-string equality is forbidden as the primary grader. Multiple valid outputs, traces, implementations, or algorithms must be accepted whenever the task contract permits them. Use exact value only when uniqueness is part of the task contract. Otherwise prefer predicate/property validators: valid index, sortedness, permutation, stability, reachable set, distance/path validity, invariant/trace validity and normalized complexity claim.
 
 ## Hidden boundary
 Hidden inputs/expected/source stay provider-side. Learner/AI can receive aggregate outcomes, labels and remediation, not hidden material.
