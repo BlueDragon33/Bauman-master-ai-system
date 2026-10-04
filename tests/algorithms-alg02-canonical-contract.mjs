@@ -126,7 +126,13 @@ assert.equal(p04.nodes.length,10);
 assert.equal(p04.notOfficialAdministrativePrerequisite,true);
 
 const project=json("prompts/subjects/algorithms/PROJECT_STATE.json");
-assert.equal(project.activeModule,"ALG02");
-assert.ok(["ALG02_VALIDATING","ALG02_PASS"].includes(project.status));
+const sequence=["ALG01","ALG02","ALG03","ALG04","ALG05","ALG06"];
+assert.ok(sequence.includes(project.activeModule),"unexpected active module "+project.activeModule);
+assert.ok(Array.isArray(project.completedModules)&&project.completedModules.includes("ALG01"),"ALG01 completion missing");
+assert.ok(
+  ["ALG02_VALIDATING","ALG02_PASS","ALG03_VALIDATING","ALG03_PASS","ALG04_VALIDATING","ALG04_PASS","ALG05_VALIDATING","ALG05_PASS","ALG06_VALIDATING","ALG06_PASS"].includes(project.status),
+  "ALG02 contract must remain valid after downstream handoff; got "+project.status
+);
+if(project.activeModule!=="ALG02")assert.ok(project.completedModules.includes("ALG02"),"downstream handoff requires ALG02 completion");
 
 console.log(JSON.stringify({status:"PASS",check:"ALG02 canonical academic contract",competencies:comp.competencies.length,edges:graph.edges.length,algorithms:alg.algorithms.length,dataStructures:ds.dataStructures.length,runtimeMutation:false}));
