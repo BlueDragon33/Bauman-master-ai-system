@@ -49,6 +49,9 @@ try {
     if(real) {
       await run('print(6 * 7)');assert.match(await page.locator('#pythonOutput').textContent(),/42/);
       assert.match(await page.locator('#pythonIdentity').textContent(),/3\.14\.8.*python04-cf-stdlib-v1/);
+      await run("print('<img src=x onerror=window.python04Escape=1>')");
+      assert.equal(await page.locator('#pythonOutput img').count(),0);
+      assert.equal(await page.evaluate(()=>window.python04Escape),undefined);
       await run('def solve(values):\n    return sum(values)','test');assert.match(await page.locator('#pythonTests').textContent(),/4 passed.*0 failed/);
       await run('print(missing_name)','trace','runtime_error');assert.match(await page.locator('#pythonException').textContent(),/NameError/);
       await page.locator('#pythonHint').click();assert.match(await page.locator('#pythonAdvice').textContent(),/tên biến/);

@@ -1,0 +1,60 @@
+{
+  "status": "NO_REAL_PROVIDER_RECEIPT",
+  "providerAccess": {
+    "exactTestedSha": "57c9815a18edc4c133823cc9b95858d1a476af64",
+    "status": "PROVIDER_ACCESS_BLOCKED",
+    "checks": [
+      {
+        "name": "user_token",
+        "http": 401,
+        "success": false,
+        "tokenStatus": null,
+        "errors": [
+          {
+            "code": 1000,
+            "message": "Invalid API Token"
+          }
+        ]
+      },
+      {
+        "name": "account_token",
+        "http": 200,
+        "success": true,
+        "tokenStatus": "active",
+        "errors": []
+      },
+      {
+        "name": "containers",
+        "http": 403,
+        "success": false,
+        "errors": [
+          {
+            "code": 10000,
+            "message": "Authentication error"
+          }
+        ]
+      }
+    ]
+  },
+  "diagnostics": {},
+  "credentialBindings": {
+    "CLOUDFLARE_API_TOKEN": true,
+    "CLOUDFLARE_ACCOUNT_ID": true
+  },
+  "githubEnvironment": "bauman-preview",
+  "exactTestedSha": "57c9815a18edc4c133823cc9b95858d1a476af64",
+  "workflowRunUrl": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37199893492",
+  "outcomes": {
+    "GATED_BROWSER_OUTCOME": "success",
+    "REAL_BROWSER_OUTCOME": "skipped",
+    "STATIC_OUTCOME": "success",
+    "INFRASTRUCTURE_OUTCOME": "success",
+    "ACCESS_OUTCOME": "failure",
+    "DEPLOY_OUTCOME": "skipped",
+    "PROVIDER_OUTCOME": "skipped",
+    "CLEANUP_OUTCOME": "skipped"
+  },
+  "learnerExecutionEnabled": false,
+  "productionDeployed": false,
+  "moduleAcceptance": "PENDING_EXACT_HEAD_REVIEW"
+}

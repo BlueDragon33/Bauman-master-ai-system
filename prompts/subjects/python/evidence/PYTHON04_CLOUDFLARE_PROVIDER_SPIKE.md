@@ -1,6 +1,6 @@
 # PYTHON04 canonical Cloudflare provider spike
 
-Status: IMPLEMENTED BEHIND DISABLED LEARNER GATE; REAL PROVIDER PROOF PENDING.
+Status: IMPLEMENTED BEHIND DISABLED LEARNER GATE; REAL PROVIDER PROOF BLOCKED BY CONTAINER AUTHORIZATION.
 Baseline reconfirmed: `a86f00ebe339a0f39ad8feab66315046b94185a7`.
 Authority: `PYTHON04_RUNTIME_PROVIDER_DECISION.md` and the Cloudflare plan.
 
@@ -111,3 +111,14 @@ editing, cancellation or a newer run invalidates old UI results and cancels
 late reservations. No learner-state writes are added. Local/offline execution
 has no fallback. Gated desktop/mobile checks pass; real browser journeys require
 the actual acceptance endpoint and keep its key exclusively in the Node driver.
+
+## Final access proof
+
+The account-owned token verifies active in `bauman-preview`; native Containers
+returns 403 code 10000. This is recorded in
+`PYTHON04_CLOUDFLARE_ACCESS_BLOCKER.md`. Learner execution remains false and
+PYTHON04 acceptance is incomplete. Focused review of the additive Programming
+facade found no blocking stale/state/secret findings; it explicitly did not
+establish native VM safety or authenticated learner E2E. The Control-owner HTTP
+integration fixture covers origin, missing/malformed session, owner-bound runId,
+private-payload rejection and the disabled gate using trusted test shims only.

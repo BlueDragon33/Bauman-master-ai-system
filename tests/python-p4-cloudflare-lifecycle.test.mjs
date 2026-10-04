@@ -14,7 +14,7 @@ await build({entryPoints:['runtime/python-cloudflare/worker.ts'],outfile:output,
     b.onLoad({filter:/.*/,namespace:'test-only'},()=>({contents:'export class DurableObject {constructor(ctx,env){this.ctx=ctx;this.env=env;}}'}));
   }
 }]});
-const {PythonSandbox}=await import(pathToFileURL(output));
+const {PythonSandbox,default:worker}=await import(pathToFileURL(output));
 test.after(async()=>rm(dir,{recursive:true,force:true}));
 
 function setup() {
@@ -23,7 +23,7 @@ function setup() {
   function create(){
     const data=new Map();let alarm=null,tail=Promise.resolve();
     const storage={async get(k){return structuredClone(data.get(k));},async put(k,v){data.set(k,structuredClone(v));},async delete(k){data.delete(k);},async setAlarm(time){alarm=time;},async deleteAlarm(){alarm=null;},async getAlarm(){return alarm;},async transaction(fn){const before=new Map(data),previous=alarm;try{return await fn(storage);}catch(e){data.clear();for(const [k,v]of before)data.set(k,v);alarm=previous;throw e;}}};
-    const ctx={storage,container:{running:false,async inspect(){return null;},async destroy(){this.running=false;}},blockConcurrencyWhile(fn){const next=tail.then(fn);tail=next.catch(()=>{});return next;}};
+    const ctx={storage,container:{images:{python:"fixture@sha256:"+"a".repeat(64)},running:false,async inspect(){return null;},async destroy(){this.running=false;}},blockConcurrencyWhile(fn){const next=tail.then(fn);tail=next.catch(()=>{});return next;}};
     const object=new PythonSandbox(ctx,env);object.testContext=ctx;return object;
   }
   return {env,objects};
@@ -63,4 +63,34 @@ test('release RPC failure retains recovery alarm and never executes a late cance
   assert.equal(await admission.testContext.storage.get('activeRun'),undefined);
   const late=await child.runCode({runId,code:"print('MUST_NOT_EXECUTE')"});
   assert.equal(late.status,'stale_result');
+});
+
+
+test('learner HTTP routes reuse Control authorization and bind attempts to that owner',async()=>{
+  const {env,objects}=setup();Object.assign(env,{BAUMAN_PYTHON04_ENABLED:'true',BAUMAN_CONTROL_ORIGIN:'https://control.example.test'});
+  const originalFetch=globalThis.fetch;
+  const origin='https://runtime.example.test';
+  const tokenA='bm1.'+'A'.repeat(40),tokenB='bm1.'+'B'.repeat(40);
+  globalThis.fetch=async(url,options)=>{
+    assert.equal(url,'https://control.example.test/api/device/heartbeat');
+    assert.equal(options.headers.origin,origin);
+    return Response.json({device:{id:options.headers.authorization.includes(tokenA)?'owner-a':'owner-b',status:'approved'}});
+  };
+  const request=(op,body={},token='',extra={})=>new Request(origin+'/api/python/'+op,{method:'POST',headers:{'content-type':'application/json',origin,...(token?{authorization:'Bearer '+token}:{}),...extra},body:JSON.stringify(body)});
+  try {
+    assert.equal((await worker.fetch(request('reserve'),env)).status,401);
+    assert.equal(objects.size,0,'unauthorized request selected provider objects');
+    assert.equal((await worker.fetch(request('reserve',{},tokenA,{origin:'https://evil.example.test'}),env)).status,403);
+    assert.equal((await worker.fetch(request('reserve',{},'',{cookie:'__Host-bauman_session=%ZZ'}),env)).status,401);
+    const reserved=await (await worker.fetch(request('reserve',{},tokenA),env)).json();assert.equal(reserved.status,'reserved');
+    assert.equal((await worker.fetch(request('reserve',{},tokenA),env)).status,409);
+    const stolen=await (await worker.fetch(request('run',{runId:reserved.runId,code:'MUST_NOT_EXECUTE'},tokenB),env)).json();
+    assert.equal(stolen.status,'stale_result');
+    const hidden=await worker.fetch(request('run',{runId:reserved.runId,code:'pass',hiddenTests:['PRIVATE_CANARY']},tokenA),env);
+    assert.equal(hidden.status,400);assert.ok(!(await hidden.text()).includes('PRIVATE_CANARY'));
+    assert.equal((await (await worker.fetch(request('cancel',{runId:reserved.runId},tokenA),env)).json()).cleanup,true);
+    assert.equal((await (await worker.fetch(request('reserve',{},tokenA),env)).json()).status,'reserved');
+    env.BAUMAN_PYTHON04_ENABLED='false';
+    assert.equal((await worker.fetch(request('reserve',{},tokenA),env)).status,403);
+  } finally{globalThis.fetch=originalFetch;}
 });

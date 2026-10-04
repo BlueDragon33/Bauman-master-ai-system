@@ -3,7 +3,7 @@
   "subject": "python",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/subjects/python/PYTHON_MASTER_PROMPT.md",
-  "status": "PYTHON04_ACTIVE_SERVER_CONTAINER_PROVIDER",
+  "status": "PYTHON04_BLOCKED_CLOUDFLARE_CONTAINER_AUTHORIZATION",
   "activeModule": "PYTHON04",
   "sequence": [
     "PYTHON01",
@@ -20,7 +20,7 @@
   ],
   "needsRevalidation": [],
   "lastValidatedSha": "95c90f34e4deef1b9b51474863ca1d7cb06054dc",
-  "currentHeadSha": "1622aa591fc0ded12c0659caf42e38d21b051487",
+  "currentHeadSha": "a86f00ebe339a0f39ad8feab66315046b94185a7",
   "evidence": [
     "prompts/subjects/python/evidence/PYTHON_P1_EXECUTIVE_SUMMARY.md",
     "prompts/subjects/python/evidence/PYTHON_CURRENT_ARCHITECTURE_MAP.md",
@@ -73,16 +73,23 @@
     "PR #258 merged at 95c90f34e4deef1b9b51474863ca1d7cb06054dc; Constitution + Development Fast CI PASS",
     "prompts/subjects/python/evidence/PYTHON_P4_SAFE_RUNTIME_PROVIDER_BLOCKER.md",
     "prompts/subjects/python/evidence/PYTHON04_RUNTIME_PROVIDER_DECISION.md",
-    "prompts/subjects/python/evidence/PYTHON04_CLOUDFLARE_SANDBOX_IMPLEMENTATION_PLAN.md"
+    "prompts/subjects/python/evidence/PYTHON04_CLOUDFLARE_SANDBOX_IMPLEMENTATION_PLAN.md",
+    "prompts/subjects/python/evidence/PYTHON04_CLOUDFLARE_PROVIDER_SPIKE.md",
+    "prompts/subjects/python/evidence/cloudflare-ci/18faf85c24078d5de29d06117572884ed3031bc9.json",
+    "runtime/python-cloudflare/README.md",
+    "tests/python-p4-cloudflare-real.mjs",
+    "tests/python-p4-cloudflare-browser.mjs",
+    "prompts/subjects/python/evidence/cloudflare-ci/57c9815a18edc4c133823cc9b95858d1a476af64.json",
+    "prompts/subjects/python/evidence/PYTHON04_CLOUDFLARE_ACCESS_BLOCKER.md"
   ],
   "blockers": [
-    "Cloudflare Sandbox Container is selected as the canonical learner Python runtime provider, but no in-repo provider binding has yet passed the PYTHON04 security/resource/reproducibility golden fixtures. learnerExecutionEnabled must remain false until that proof exists."
+    "REAL EXTERNAL BLOCKER: configured bauman-preview account-owned Cloudflare token verifies HTTP 200 active, but native /accounts/{account}/containers/me returns HTTP 403 Authentication error (code 10000). Provider safety cannot be proven until authorized Container access is granted. No learner execution, official assessment or production activation is permitted."
   ],
-  "nextAction": "Implement the Cloudflare Sandbox Container provider spike behind learnerExecutionEnabled=false, bind the CPython 3.14.8 runtime profile, and run every PYTHON04 golden security fixture through the real provider before advancing PYTHON05 executable UX.",
+  "nextAction": "Cloudflare account/token owner must grant compatible native Containers access to the configured preview binding. Rerun the provider workflow at the exact branch head; then complete real security/browser/assessment acceptance before PYTHON04 PASS, PR/merge and PYTHON05 activation.",
   "notes": [
     "Actual learner runtime is subjects/programming/, not subjects/python/.",
     "Current Programming package mixes Python with Algorithms, Database, ML tooling and Software Engineering.",
-    "No executable learner Python interpreter, sandbox, code runner or Python environment owner is currently present.",
+    "At the audit baseline no executable learner Python provider existed. The additive native Cloudflare provider and Programming facade now exist behind a disabled learner gate; no safe real-provider execution is yet proven.",
     "Current 384-question bank is all multiple choice and contains 192 unique question texts / 192 exact duplicate groups.",
     "Current AI Mentor is deterministic local template generation, not a model/provider authority.",
     "PYTHON01 is audit-only: no production runtime, content, mastery or learner-state mutation.",
@@ -100,6 +107,12 @@
     "Repository-wide discovery found no Pyodide/PyScript/MicroPython/CPython-WASM bundle and no isolated Python server/container runner.",
     "PYTHON04 architecture decision on 2026-10-04 selects dedicated server/container sandbox via Cloudflare Sandboxes/Containers; browser sandbox is non-canonical practice-only and external runner is contingency-only.",
     "Initial provider spike binds CPython 3.14.8 because Python 3.15.0 final is not yet released on the decision date.",
-    "Official assessment requires a clean sandbox identity per run/attempt with Internet disabled by default, no platform secrets, and hidden tests confined to the server-side sandbox boundary."
-  ]
+    "Official assessment requires a clean sandbox identity per run/attempt with Internet disabled by default, no platform secrets, and hidden tests confined to the server-side sandbox boundary.",
+    "Preview environment secrets were verified present by real GitHub Actions run 37199496997; the initial missing binding was a workflow environment-selection bug and was fixed at its owner.",
+    "Gated desktop/mobile UI passed on source and preview-packaged assets; offline execution is unavailable and learner state remained unchanged. These are not native provider acceptance."
+  ],
+  "lastImplementationTestedSha": "57c9815a18edc4c133823cc9b95858d1a476af64",
+  "learnerExecutionEnabled": false,
+  "productionDeployed": false,
+  "lastProviderCiSha": "57c9815a18edc4c133823cc9b95858d1a476af64"
 }

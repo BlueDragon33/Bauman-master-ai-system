@@ -1,0 +1,22 @@
+{
+  "status": "NO_REAL_PROVIDER_RECEIPT",
+  "credentialBindings": {
+    "CLOUDFLARE_API_TOKEN": true,
+    "CLOUDFLARE_ACCOUNT_ID": true
+  },
+  "githubEnvironment": "bauman-preview",
+  "exactTestedSha": "18faf85c24078d5de29d06117572884ed3031bc9",
+  "workflowRunUrl": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37199496997",
+  "outcomes": {
+    "GATED_BROWSER_OUTCOME": "success",
+    "REAL_BROWSER_OUTCOME": "skipped",
+    "STATIC_OUTCOME": "success",
+    "INFRASTRUCTURE_OUTCOME": "success",
+    "DEPLOY_OUTCOME": "failure",
+    "PROVIDER_OUTCOME": "skipped",
+    "CLEANUP_OUTCOME": "failure"
+  },
+  "learnerExecutionEnabled": false,
+  "productionDeployed": false,
+  "moduleAcceptance": "PENDING_EXACT_HEAD_REVIEW"
+}
