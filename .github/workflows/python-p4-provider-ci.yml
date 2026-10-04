@@ -46,7 +46,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          npx --yes wrangler@4.141.0 dev \
+          npx --yes wrangler@4.147.0 dev \
             --config wrangler.runtime.python-ci.jsonc \
             --ip 127.0.0.1 \
             --port 8788 \

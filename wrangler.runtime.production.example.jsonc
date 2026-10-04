@@ -2,7 +2,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "bauman-master-ai",
   "main": "cloudflare/runtime-worker-python.mjs",
-  "compatibility_date": "2026-10-04",
+  "compatibility_date": "2026-10-02",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
   "vars": {
     "BAUMAN_CONTROL_ORIGIN": "__BAUMAN_CONTROL_PRODUCTION_ORIGIN__",

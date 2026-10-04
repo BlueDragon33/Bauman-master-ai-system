@@ -62,7 +62,7 @@ jobs:
         run: npx wrangler deploy --config wrangler.preview.jsonc
 
       - name: Deploy Learning Runtime preview
-        run: npx --yes wrangler@4.141.0 deploy --config wrangler.runtime.preview.jsonc
+        run: npx --yes wrangler@4.147.0 deploy --config wrangler.runtime.preview.jsonc
 
       - name: Quick preview availability check
         shell: bash
