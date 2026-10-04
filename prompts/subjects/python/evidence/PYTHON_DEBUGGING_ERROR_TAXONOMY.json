@@ -1,0 +1,306 @@
+{
+  "schemaVersion": "1.0.0",
+  "owner": "PYTHON03",
+  "categories": [
+    {
+      "id": "py.err.syntax-indentation",
+      "label": "Syntax / indentation",
+      "signals": [
+        "parser failure",
+        "invalid block structure"
+      ],
+      "competencies": [
+        "py.comp.syntax-expressions"
+      ],
+      "remediation": [
+        "minimal parse repair",
+        "read error location",
+        "rewrite smallest failing construct"
+      ]
+    },
+    {
+      "id": "py.err.name-scope",
+      "label": "Name / scope",
+      "signals": [
+        "NameError",
+        "UnboundLocalError",
+        "shadowing/scope mismatch"
+      ],
+      "competencies": [
+        "py.comp.functions",
+        "py.comp.state-mutation"
+      ],
+      "remediation": [
+        "binding trace",
+        "scope micro-task"
+      ]
+    },
+    {
+      "id": "py.err.type",
+      "label": "Type misuse",
+      "signals": [
+        "TypeError",
+        "unsupported operation"
+      ],
+      "competencies": [
+        "py.comp.type-semantics"
+      ],
+      "remediation": [
+        "predict operand types",
+        "conversion/contract task"
+      ]
+    },
+    {
+      "id": "py.err.value",
+      "label": "Invalid value",
+      "signals": [
+        "ValueError",
+        "value outside accepted domain"
+      ],
+      "competencies": [
+        "py.comp.type-semantics",
+        "py.comp.functions"
+      ],
+      "remediation": [
+        "input contract task",
+        "validation branch practice"
+      ]
+    },
+    {
+      "id": "py.err.index-key",
+      "label": "Index / key",
+      "signals": [
+        "IndexError",
+        "KeyError"
+      ],
+      "competencies": [
+        "py.comp.collections-iteration"
+      ],
+      "remediation": [
+        "boundary trace",
+        "membership/default handling"
+      ]
+    },
+    {
+      "id": "py.err.attribute",
+      "label": "Attribute / object state",
+      "signals": [
+        "AttributeError",
+        "wrong instance state"
+      ],
+      "competencies": [
+        "py.comp.oop"
+      ],
+      "remediation": [
+        "class-instance trace",
+        "responsibility/state task"
+      ]
+    },
+    {
+      "id": "py.err.import-environment",
+      "label": "Import / environment",
+      "signals": [
+        "ModuleNotFoundError",
+        "ImportError",
+        "wrong environment"
+      ],
+      "competencies": [
+        "py.comp.modules-imports",
+        "py.comp.tooling-reproducibility"
+      ],
+      "remediation": [
+        "module path trace",
+        "environment reproduction checklist"
+      ]
+    },
+    {
+      "id": "py.err.file-encoding",
+      "label": "File / encoding",
+      "signals": [
+        "FileNotFoundError",
+        "PermissionError",
+        "UnicodeDecodeError"
+      ],
+      "competencies": [
+        "py.comp.files-data",
+        "py.comp.exceptions"
+      ],
+      "remediation": [
+        "path/context-manager task",
+        "encoding/error-handling task"
+      ]
+    },
+    {
+      "id": "py.err.control-flow",
+      "label": "Control flow",
+      "signals": [
+        "wrong branch",
+        "unreachable path",
+        "loop termination defect"
+      ],
+      "competencies": [
+        "py.comp.control-flow"
+      ],
+      "remediation": [
+        "branch table",
+        "trace normal and edge paths"
+      ]
+    },
+    {
+      "id": "py.err.off-by-one",
+      "label": "Off by one",
+      "signals": [
+        "boundary omitted",
+        "extra iteration"
+      ],
+      "competencies": [
+        "py.comp.control-flow",
+        "py.comp.collections-iteration"
+      ],
+      "remediation": [
+        "zero/one/many case table",
+        "range boundary practice"
+      ]
+    },
+    {
+      "id": "py.err.mutation-aliasing",
+      "label": "Mutation / aliasing",
+      "signals": [
+        "shared-object surprise",
+        "shallow copy defect"
+      ],
+      "competencies": [
+        "py.comp.state-mutation"
+      ],
+      "remediation": [
+        "binding/object-state trace",
+        "copy vs alias transfer task"
+      ]
+    },
+    {
+      "id": "py.err.none-truthiness",
+      "label": "None / truthiness",
+      "signals": [
+        "unexpected falsy branch",
+        "None propagated"
+      ],
+      "competencies": [
+        "py.comp.type-semantics",
+        "py.comp.control-flow"
+      ],
+      "remediation": [
+        "truthiness matrix",
+        "explicit sentinel task"
+      ]
+    },
+    {
+      "id": "py.err.iterator-state",
+      "label": "Iterator state",
+      "signals": [
+        "unexpected exhaustion",
+        "reused one-shot iterator"
+      ],
+      "competencies": [
+        "py.comp.iterators-generators"
+      ],
+      "remediation": [
+        "iterator state trace",
+        "repeat-consumption task"
+      ]
+    },
+    {
+      "id": "py.err.float-numeric",
+      "label": "Float / numeric",
+      "signals": [
+        "naive equality failure",
+        "rounding/precision issue"
+      ],
+      "competencies": [
+        "py.comp.type-semantics"
+      ],
+      "remediation": [
+        "tolerance comparison task",
+        "numeric edge-case explanation"
+      ]
+    },
+    {
+      "id": "py.err.logic-requirement",
+      "label": "Logic / requirement",
+      "signals": [
+        "program runs but violates requirement",
+        "hard-coded sample"
+      ],
+      "competencies": [
+        "py.comp.functions",
+        "py.comp.testing-debugging"
+      ],
+      "remediation": [
+        "contract restatement",
+        "new hidden-case transfer task"
+      ]
+    },
+    {
+      "id": "py.err.state-side-effect",
+      "label": "State / side effect",
+      "signals": [
+        "unexpected mutation",
+        "order-dependent result",
+        "mutable default"
+      ],
+      "competencies": [
+        "py.comp.state-mutation",
+        "py.comp.functions"
+      ],
+      "remediation": [
+        "state transition trace",
+        "pure-vs-side-effect comparison"
+      ]
+    },
+    {
+      "id": "py.err.test-fixture",
+      "label": "Test / fixture",
+      "signals": [
+        "invalid fixture",
+        "test asserts undocumented behavior",
+        "non-isolated test state"
+      ],
+      "competencies": [
+        "py.comp.testing-debugging"
+      ],
+      "remediation": [
+        "contract-test alignment",
+        "fixture isolation task"
+      ]
+    },
+    {
+      "id": "py.err.notebook-state",
+      "label": "Notebook stale state",
+      "signals": [
+        "passes only after hidden execution order",
+        "restart fails"
+      ],
+      "competencies": [
+        "py.comp.tooling-reproducibility"
+      ],
+      "remediation": [
+        "restart-and-run-all",
+        "extract reproducible script"
+      ]
+    },
+    {
+      "id": "py.err.concurrency",
+      "label": "Concurrency",
+      "signals": [
+        "race/deadlock/nondeterministic shared state"
+      ],
+      "competencies": [
+        "py.comp.transfer"
+      ],
+      "enabledByDefault": false,
+      "remediation": [
+        "activate only if curriculum explicitly includes concurrency"
+      ]
+    }
+  ],
+  "notebookPolicy": "Record recurring error patterns and remediation evidence; do not log every typo forever."
+}

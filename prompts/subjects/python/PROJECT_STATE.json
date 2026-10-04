@@ -3,7 +3,7 @@
   "subject": "python",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/subjects/python/PYTHON_MASTER_PROMPT.md",
-  "status": "PYTHON02_PASS_CANONICAL_MODEL",
+  "status": "PYTHON03_VALIDATING",
   "activeModule": "PYTHON03",
   "sequence": [
     "PYTHON01",
@@ -19,7 +19,7 @@
   ],
   "needsRevalidation": [],
   "lastValidatedSha": "0b249f986d3e8c86f4e8ac2290f900f1048bb3eb",
-  "currentHeadSha": "0b249f986d3e8c86f4e8ac2290f900f1048bb3eb",
+  "currentHeadSha": "90b633284b8bfb73aa491e1a6e577d24c36729f1",
   "evidence": [
     "prompts/subjects/python/evidence/PYTHON_P1_EXECUTIVE_SUMMARY.md",
     "prompts/subjects/python/evidence/PYTHON_CURRENT_ARCHITECTURE_MAP.md",
@@ -45,10 +45,20 @@
     "prompts/subjects/python/evidence/PYTHON03_INPUT_CONTRACT.md",
     "tests/python-p2-canonical-contract.mjs",
     "Development Fast CI run 37192313375: SUCCESS; Python P2 canonical contract PASS",
-    "Universal Constitution Compliance run 37192313724: SUCCESS"
+    "Universal Constitution Compliance run 37192313724: SUCCESS",
+    "prompts/subjects/python/evidence/PYTHON_CODE_REASONING_CONTRACT.md",
+    "prompts/subjects/python/evidence/PYTHON_DEBUGGING_ERROR_TAXONOMY.json",
+    "prompts/subjects/python/evidence/PYTHON_CODING_ASSESSMENT_CONTRACT.md",
+    "prompts/subjects/python/evidence/PYTHON_TEST_QUALITY_POLICY.md",
+    "prompts/subjects/python/evidence/PYTHON_PARTIAL_CREDIT_RUBRIC.md",
+    "prompts/subjects/python/evidence/PYTHON_ERROR_NOTEBOOK_MAPPING.md",
+    "prompts/subjects/python/evidence/PYTHON_TRANSFER_TASK_POLICY.md",
+    "prompts/subjects/python/evidence/PYTHON04_INPUT_CONTRACT.md",
+    "prompts/subjects/python/evidence/PYTHON_P3_GOLDEN_FIXTURES.json",
+    "tests/python-p3-assessment-contract.mjs"
   ],
   "blockers": [],
-  "nextAction": "Run PYTHON03 Code Reasoning, Debugging & Assessment from the accepted PYTHON02 contract. Do not activate an interpreter/sandbox/runtime from PYTHON03.",
+  "nextAction": "Validate PYTHON03 reasoning/debugging/assessment contracts and golden fixtures. Do not activate interpreter/sandbox/runtime; that belongs to PYTHON04.",
   "notes": [
     "Actual learner runtime is subjects/programming/, not subjects/python/.",
     "Current Programming package mixes Python with Algorithms, Database, ML tooling and Software Engineering.",
@@ -60,6 +70,8 @@
     "PYTHON02 accepted 16 canonical competency families and a 32-edge acyclic prerequisite graph.",
     "All 48 legacy PR lessons are explicitly classified while preserving current IDs and runtime projection.",
     "PYTHON02 does not bind a Python minor version, mutate learner state, activate runtime execution, or authorize production migration.",
-    "PYTHON02 exact tested evidence head is 0b249f986d3e8c86f4e8ac2290f900f1048bb3eb; this state/evidence tail is governance-only and must still pass final PR-head CI before merge."
+    "PYTHON02 exact tested evidence head is 0b249f986d3e8c86f4e8ac2290f900f1048bb3eb; this state/evidence tail is governance-only and must still pass final PR-head CI before merge.",
+    "PYTHON03 defines evidence semantics only; no learner interpreter, sandbox, runtime provider, learner-state migration or production deployment is authorized.",
+    "Programming evidence distinguishes syntax/runtime/test/partial/correct/reproducibility outcomes; final output and source-string equality are insufficient as primary grading truth."
   ]
 }

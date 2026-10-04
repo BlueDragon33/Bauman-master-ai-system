@@ -1,0 +1,158 @@
+{
+  "schemaVersion": "1.0.0",
+  "owner": "PYTHON03",
+  "fixtures": [
+    {
+      "id": "py.fx.mutable-default",
+      "title": "Mutable default argument",
+      "errorId": "py.err.state-side-effect",
+      "competencies": [
+        "py.comp.functions",
+        "py.comp.state-mutation"
+      ],
+      "publicContract": "Repeated calls must not share unintended list state.",
+      "acceptance": [
+        "detect shared default state",
+        "propose non-shared initialization",
+        "add regression covering two calls"
+      ]
+    },
+    {
+      "id": "py.fx.is-vs-eq",
+      "title": "is vs ==",
+      "errorId": "py.err.mutation-aliasing",
+      "competencies": [
+        "py.comp.type-semantics",
+        "py.comp.state-mutation"
+      ],
+      "publicContract": "Value equality must not be inferred from object identity.",
+      "acceptance": [
+        "explain identity/equality distinction",
+        "fix comparison according to requirement"
+      ]
+    },
+    {
+      "id": "py.fx.shallow-copy",
+      "title": "Shallow copy / nested aliasing",
+      "errorId": "py.err.mutation-aliasing",
+      "competencies": [
+        "py.comp.state-mutation"
+      ],
+      "publicContract": "Mutation behavior of nested data must match declared isolation.",
+      "acceptance": [
+        "trace shared nested object",
+        "choose copy strategy appropriate to contract"
+      ]
+    },
+    {
+      "id": "py.fx.off-by-one",
+      "title": "Off-by-one loop",
+      "errorId": "py.err.off-by-one",
+      "competencies": [
+        "py.comp.control-flow",
+        "py.comp.collections-iteration"
+      ],
+      "publicContract": "All intended boundary elements are processed exactly once.",
+      "acceptance": [
+        "test empty/one/many/boundary cases",
+        "repair range/index logic"
+      ]
+    },
+    {
+      "id": "py.fx.iterator-exhaustion",
+      "title": "Iterator exhaustion",
+      "errorId": "py.err.iterator-state",
+      "competencies": [
+        "py.comp.iterators-generators"
+      ],
+      "publicContract": "Repeated consumption assumptions must be explicit.",
+      "acceptance": [
+        "predict exhausted state",
+        "recreate/materialize only when contract justifies"
+      ]
+    },
+    {
+      "id": "py.fx.exception-misuse",
+      "title": "Overbroad exception handling",
+      "errorId": "py.err.logic-requirement",
+      "competencies": [
+        "py.comp.exceptions",
+        "py.comp.testing-debugging"
+      ],
+      "publicContract": "Only recoverable failures should be handled at this layer.",
+      "acceptance": [
+        "identify swallowed programmer error",
+        "narrow handling",
+        "preserve useful failure signal"
+      ]
+    },
+    {
+      "id": "py.fx.float-compare",
+      "title": "Naive float equality",
+      "errorId": "py.err.float-numeric",
+      "competencies": [
+        "py.comp.type-semantics"
+      ],
+      "publicContract": "Approximate numeric results use declared tolerance.",
+      "acceptance": [
+        "choose tolerance from task contract",
+        "avoid exact equality when approximation is expected"
+      ]
+    },
+    {
+      "id": "py.fx.stale-notebook",
+      "title": "Stale notebook state",
+      "errorId": "py.err.notebook-state",
+      "competencies": [
+        "py.comp.tooling-reproducibility"
+      ],
+      "publicContract": "Artifact must succeed from a fresh known state.",
+      "acceptance": [
+        "restart/run-all fails before fix",
+        "remove hidden state dependency",
+        "reproduce from clean state"
+      ]
+    },
+    {
+      "id": "py.fx.hardcoded-sample",
+      "title": "Hard-coded sample output",
+      "errorId": "py.err.logic-requirement",
+      "competencies": [
+        "py.comp.functions",
+        "py.comp.testing-debugging"
+      ],
+      "publicContract": "Program must implement behavior for the documented input domain.",
+      "acceptance": [
+        "sample passes",
+        "hidden documented-domain case fails before fix",
+        "generalized implementation passes"
+      ]
+    },
+    {
+      "id": "py.fx.alternate-valid",
+      "title": "Valid alternate implementation",
+      "errorId": "py.err.test-fixture",
+      "competencies": [
+        "py.comp.testing-debugging"
+      ],
+      "publicContract": "Grader accepts behaviorally equivalent code.",
+      "acceptance": [
+        "two structurally different implementations pass",
+        "no primary source-string match"
+      ]
+    },
+    {
+      "id": "py.fx.invalid-hidden-test",
+      "title": "Undocumented hidden-test behavior",
+      "errorId": "py.err.test-fixture",
+      "competencies": [
+        "py.comp.testing-debugging"
+      ],
+      "publicContract": "Hidden tests may only assert documented behavior.",
+      "acceptance": [
+        "flag invalid grader expectation",
+        "repair test contract instead of learner code"
+      ]
+    }
+  ]
+}
