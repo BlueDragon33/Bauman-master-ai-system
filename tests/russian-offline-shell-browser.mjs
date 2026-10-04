@@ -33,13 +33,17 @@ try{
   const url=new URL('subjects/russian/index.html',BASE).href;
   await page.goto(url,{waitUntil:'domcontentloaded',timeout:30000});
   await page.waitForFunction(()=>!!window.RussianRuntimeOptimizer&&!!window.RussianCapabilityProgression,null,{timeout:30000});
-  await withTimeout(page.evaluate(async()=>{
-    const reg=await navigator.serviceWorker.ready;
-    if(!navigator.serviceWorker.controller){
-      await new Promise(resolve=>navigator.serviceWorker.addEventListener('controllerchange',resolve,{once:true}));
-    }
-    await reg.update().catch(()=>{});
-  }),30000,'Russian service-worker readiness');
+  const swReadiness=await withTimeout(page.evaluate(async()=>{
+    const reg=await window.RussianRuntimeOptimizer.ensureServiceWorkerReady({force:true});
+    const registrations=await navigator.serviceWorker.getRegistrations();
+    return {
+      scope:reg?.scope||'',
+      controller:!!navigator.serviceWorker.controller,
+      registrations:registrations.map(x=>({scope:x.scope,active:x.active?.state||'',installing:x.installing?.state||'',waiting:x.waiting?.state||''}))
+    };
+  }),75000,'Russian service-worker readiness');
+  assert.equal(swReadiness.controller,true,'Russian service-worker must control the production page before offline verification');
+  assert.ok(swReadiness.registrations.some(x=>x.active==='activated'),'Russian service-worker registration has no activated worker');
   await page.waitForFunction(()=>!!navigator.serviceWorker.controller,null,{timeout:15000});
   await page.waitForFunction(()=>window.BAUMAN_FOUNDATION_IDENTITY_REPORT!==undefined,null,{timeout:15000});
 
