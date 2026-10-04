@@ -32,6 +32,8 @@ function deployment(env) {
     controlOriginConfigured: Boolean(safeOrigin(env.BAUMAN_CONTROL_ORIGIN)),
     accessMode,
     serverSideLearningGate: accessMode === 'managed',
+    pythonExecutionEnabled: String(env.BAUMAN_PYTHON_EXECUTION_ENABLED || 'false').toLowerCase() === 'true',
+    pythonRuntimeProfile: env.BAUMAN_PYTHON_RUNTIME_PROFILE || 'unknown',
     checkedAt: Date.now(),
   };
 }
