@@ -145,7 +145,11 @@ export class PythonSandbox extends DurableObject {
     }
   }
 
-  async runCode(request, signal = null) {
+  async runCode(request) {
+    return this.runCodeWithSignal(request, null);
+  }
+
+  async runCodeWithSignal(request, signal = null) {
     return {
       runId: request.runId,
       taskId: request.taskId || null,
@@ -154,7 +158,11 @@ export class PythonSandbox extends DurableObject {
     };
   }
 
-  async runTests(request, signal = null) {
+  async runTests(request) {
+    return this.runTestsWithSignal(request, null);
+  }
+
+  async runTestsWithSignal(request, signal = null) {
     const results = [];
     for (const [index, testCase] of request.cases.entries()) {
       if (signal?.aborted) break;
@@ -192,10 +200,10 @@ export class PythonSandbox extends DurableObject {
     if (request.method !== "POST") return new Response("Method not allowed", { status: 405 });
     const body = await request.json();
     if (url.pathname === "/run-code") {
-      return Response.json(await this.runCode(body, request.signal));
+      return Response.json(await this.runCodeWithSignal(body, request.signal));
     }
     if (url.pathname === "/run-tests") {
-      return Response.json(await this.runTests(body, request.signal));
+      return Response.json(await this.runTestsWithSignal(body, request.signal));
     }
     return new Response("Not found", { status: 404 });
   }
