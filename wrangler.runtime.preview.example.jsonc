@@ -1,14 +1,41 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "bauman-master-ai-preview",
-  "main": "cloudflare/runtime-worker.mjs",
-  "compatibility_date": "2026-09-01",
+  "main": "cloudflare/runtime-worker-python.mjs",
+  "compatibility_date": "2026-10-04",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
   "vars": {
     "BAUMAN_CONTROL_ORIGIN": "__BAUMAN_CONTROL_PREVIEW_ORIGIN__",
     "BAUMAN_ACCESS_MODE": "__BAUMAN_ACCESS_MODE__",
     "BAUMAN_DEPLOYMENT_CHANNEL": "cloudflare-preview",
-    "BAUMAN_BUILD_REVISION": "__BAUMAN_BUILD_REVISION__"
+    "BAUMAN_BUILD_REVISION": "__BAUMAN_BUILD_REVISION__",
+    "BAUMAN_PYTHON_EXECUTION_ENABLED": "false",
+    "BAUMAN_PYTHON_RUNTIME_PROFILE": "cpython-3.14.8-stdlib-v1"
+  },
+  "containers": [
+    {
+      "class_name": "PythonSandbox",
+      "scheduling_policy": "durable_object",
+      "images": {
+        "python": {
+          "dockerfile": "./cloudflare/python-runtime/Dockerfile"
+        }
+      }
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "PYTHON_SANDBOX",
+        "class_name": "PythonSandbox"
+      }
+    ]
+  },
+  "exports": {
+    "PythonSandbox": {
+      "type": "durable-object",
+      "storage": "sqlite"
+    }
   },
   "assets": {
     "directory": "./runtime-dist",
