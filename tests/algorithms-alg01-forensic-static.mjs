@@ -74,7 +74,8 @@ assert.ok(risk.risks.some(x=>x.id==="ALG-R03"&&x.severity==="CRITICAL"));
 assert.ok(risk.risks.some(x=>x.id==="ALG-R04"&&x.category==="WEAK_GRADER"));
 
 const state=json("prompts/subjects/algorithms/PROJECT_STATE.json");
-assert.equal(state.activeModule,"ALG01");
+assert.ok(["ALG01","ALG02"].includes(state.activeModule),"unexpected activeModule "+state.activeModule);
 assert.ok(["ALG01_VALIDATING","ALG01_PASS"].includes(state.status));
+if(state.status==="ALG01_PASS")assert.equal(state.activeModule,"ALG02","PASS must hand off to ALG02");
 
 console.log("ALG01_FORENSIC_STATIC=PASS");
