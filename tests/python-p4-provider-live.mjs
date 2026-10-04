@@ -33,7 +33,7 @@ assert.equal(timeout.status, "timeout");
 const memory = await run("x = bytearray(10**10)", { timeoutMs: 2000 });
 assert.equal(memory.status, "resource_failure");
 
-const flood = await run("print('x' * 100000000)", { timeoutMs: 2000 });
+const flood = await run("for _ in range(2048): print('x' * 1024)", { timeoutMs: 2000 });
 assert.equal(flood.status, "output_limit");
 assert.ok(flood.truncated.stdout || flood.stdout.length <= 65536);
 
