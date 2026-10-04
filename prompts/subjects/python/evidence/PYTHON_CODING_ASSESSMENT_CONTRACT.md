@@ -49,6 +49,10 @@ Final stdout alone does not prove robust implementation. The grader may require 
 - Notebooks: restart from a known state and run in declared order before accepting reproducibility evidence.
 - Anti-hardcode: hidden cases may reject sample-output printing that does not implement requirements.
 
+## Runtime/security boundary
+
+Interpreter/sandbox/test-runner providers belong to PYTHON04. PYTHON03 defines assessment semantics only and never executes untrusted learner code. Provider evidence must remain separable from C4/global mastery authority.
+
 ## AI/support policy
 
 Each official task declares `allowed | hint-only | prohibited | post-submit`. Support use changes evidence metadata, not runtime truth. AI cannot silently grant mastery or expose hidden tests/answers.
