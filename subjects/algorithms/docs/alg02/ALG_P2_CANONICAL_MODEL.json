@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "contentRevision": "ALG02-CANDIDATE-1",
-  "status": "VALIDATING",
+  "contentRevision": "ALG02-ACCEPTED-1",
+  "status": "PASS",
   "subject": "algorithms",
   "owner": {
     "academicTruth": "subjects/algorithms/docs/alg02/ALG_P2_CANONICAL_MODEL.json",
@@ -134,6 +134,11 @@
     "expectedCompetencyCount": 15,
     "prerequisiteGraphMustBeAcyclic": true,
     "runtimeMutation": false,
-    "productionDeployment": false
+    "productionDeployment": false,
+    "exactTestedHead": "3aabbeaa0cd64a12ed0e73967837eadd913165f4",
+    "alg02CanonicalCiRunId": 37217275094,
+    "alg01RegressionCiRunId": 37217275082,
+    "developmentFastCiRunId": 37217275163,
+    "universalConstitutionRunId": 37217275435
   }
 }
