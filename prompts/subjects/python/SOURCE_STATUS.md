@@ -7,8 +7,8 @@
 | PYTHON02 | COMPLETE | PASS |
 | PYTHON03 | COMPLETE | PASS |
 | PYTHON04 | COMPLETE | PASS |
-| PYTHON05 | COMPLETE | READY / ACTIVE NEXT |
-| PYTHON06 | COMPLETE | WAITING FOR PYTHON05 |
+| PYTHON05 | COMPLETE | PASS · CODE LAB + AUTHORING |
+| PYTHON06 | COMPLETE | READY / ACTIVE NEXT |
 
 ## Architecture status
 
@@ -22,4 +22,4 @@ The product feature flag remains disabled outside the dedicated provider CI unti
 
 ## Next operational action
 
-Run PYTHON05 learner experience, authoring and product integration from current main after PYTHON04 is merged.
+Execute `PYTHON06_ACCEPTANCE_HARDENING_RC_READINESS.md` against the accepted P4/P5 runtime and product surfaces. Production remains blocked until exact RC and shared release gates pass.
