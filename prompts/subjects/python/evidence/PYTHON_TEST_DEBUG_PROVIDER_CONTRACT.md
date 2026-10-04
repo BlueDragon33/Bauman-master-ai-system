@@ -3,7 +3,7 @@ Status: TEST PROVIDER PROVEN — richer debugger/trace providers remain optional
 
 ## Test results
 
-`PythonSandbox.runTests()` provides the governed `python.test.run` execution path. It returns structured case id, status and runtime status plus provider/runtime identity. Hidden case input, expected output and hidden source are not returned.
+`PythonSandbox.runTests()` provides the governed `python.test.run` execution path. It returns structured case id, status and runtime status plus provider/runtime identity. Hidden test source is never returned. Hidden case input, expected output and other hidden grading material are not returned.
 
 The PYTHON04 test-of-tests fixture proved:
 - canonical valid implementation: 3/3;
