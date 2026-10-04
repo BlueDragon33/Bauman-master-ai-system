@@ -97,6 +97,8 @@ jobs:
           if (!control.databaseReady) throw new Error('Bauman Control preview is not deployment-ready.');
           if (!control.controlSecretConfigured) throw new Error('Bauman Control preview secret readiness is not proven.');
           if (!runtime.controlOriginConfigured) throw new Error('Bauman Learning Runtime preview is not deployment-ready.');
+          if (runtime.pythonExecutionEnabled !== true) throw new Error('Preview Python execution is not enabled for promotion.');
+          if (runtime.pythonRuntimeProfile !== 'cpython-3.14.8-stdlib-v1') throw new Error('Preview Python runtime profile mismatch.');
           console.log('Exact-revision preview promotion gate PASS.');
           NODE
 
@@ -186,6 +188,8 @@ jobs:
           if (!control.databaseReady) throw new Error('Production Control read-back mismatch.');
           if (!control.controlSecretConfigured) throw new Error('Production Control secret readiness is not proven.');
           if (!runtime.controlOriginConfigured) throw new Error('Production Runtime read-back mismatch.');
+          if (runtime.pythonExecutionEnabled !== true) throw new Error('Production Python execution read-back mismatch.');
+          if (runtime.pythonRuntimeProfile !== 'cpython-3.14.8-stdlib-v1') throw new Error('Production Python runtime profile mismatch.');
           NODE
 
           CONTROL_STATUS_CODE="$(curl --silent --show-error --output /tmp/bauman-prod-status-anonymous.json --write-out '%{http_code}' --max-time 20 "$BAUMAN_CONTROL_PRODUCTION_ORIGIN/api/control/status" || true)"
@@ -210,6 +214,15 @@ jobs:
 
       - name: Bootstrap isolated Russian production smoke device session
         run: node scripts/russian-production-smoke-device.mjs bootstrap
+
+      - name: Run Python production smoke
+        shell: bash
+        env:
+          BAUMAN_PYTHON_PROVIDER_URL: ${{ vars.BAUMAN_RUNTIME_PRODUCTION_ORIGIN }}
+          BAUMAN_E2E_DEVICE_SESSION: ${{ env.BAUMAN_PRODUCTION_SMOKE_DEVICE_SESSION }}
+        run: |
+          set -euo pipefail
+          node tests/python-production-smoke.mjs | tee "$RUSSIAN_RELEASE_EVIDENCE_DIR/PYTHON_PRODUCTION_SMOKE.json"
 
       - name: Verify Russian production identity, security, offline contract and content drift
         run: node scripts/russian-release-annex-evidence.mjs verify
