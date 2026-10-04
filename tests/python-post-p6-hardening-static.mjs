@@ -16,6 +16,9 @@ const worker=fs.readFileSync('cloudflare/runtime-worker-python.mjs','utf8');
 assert.match(worker,/function resolveRunId\(body\)/);
 assert.ok((worker.match(/resolveRunId\(body\)/g)||[]).length>=4,'run/test/submit must accept governed client runId');
 
+for(const file of ['wrangler.runtime.python-ci.jsonc','wrangler.runtime.preview.example.jsonc','wrangler.runtime.production.example.jsonc'])assert.match(fs.readFileSync(file,'utf8'),/enable_request_signal/,'request signal compatibility missing '+file);
+const provider=fs.readFileSync('cloudflare/python-sandbox-provider.mjs','utf8');assert.match(provider,/async fetch\(request\)/);assert.match(provider,/request\.signal/);
+const integration=fs.readFileSync('subjects/programming/assets/python-product-integration.js','utf8');assert.match(integration,/new AbortController\(\)/);assert.match(integration,/controller\.abort\(\)/);
 const lab=fs.readFileSync('subjects/programming/assets/python-lab.js','utf8');
 for(const token of ['actionToken','requestRunId="ui-"+crypto.randomUUID().toLowerCase()','Hết thời gian chạy (timeout).','invoke("cancel",{runId:id})'])assert.ok(lab.includes(token),'lab hardening missing '+token);
 assert.match(lab,/if\(token!==actionToken\)return/,'late result quarantine missing');
