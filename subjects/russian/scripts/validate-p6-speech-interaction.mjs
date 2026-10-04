@@ -35,7 +35,10 @@ const shellCache=sw.match(/const CACHE='russian-app-shell-v([0-9]+)([^']*)'/i);
 assert.ok(shellCache,'versioned Russian app-shell cache missing');
 assert.ok(Number(shellCache[1])>=8,'P6 requires app-shell cache version >= 8');
 assert.match(sw,/\.\/assets\/speech-interaction-engine\.js/);
-assert.match(sw,/cacheShellWithRetry|c\.addAll\(SHELL\)/,'offline shell must precache required runtime assets');
+assert.match(sw,/const SHELL=\[/,'offline shell manifest missing');
+assert.match(sw,/cacheShellAfterActivation/,'offline shell must be prepared after service-worker activation');
+assert.match(sw,/RUSSIAN_PREPARE_OFFLINE_SHELL/,'offline shell preparation message contract missing');
+assert.match(sw,/SHELL\.map\(url=>cacheShellAsset\(cache,url\)\)/,'offline shell preparation must cache the declared runtime assets');
 
 const required=[
  'RUSSIAN_LISTENING_SPEAKING_ENGINE_CONSTITUTION.md','RUSSIAN_AUDIO_OWNER_MAP.md','RUSSIAN_RECORDING_CONTRACT.md',
