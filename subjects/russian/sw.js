@@ -1,9 +1,9 @@
 'use strict';
-const CACHE='russian-app-shell-v9-readiness-fx';
+const CACHE='russian-app-shell-v10-protected-registry';
 const DATA_CACHE='russian-learning-data-v1';
 const SHELL=[
   './','./index.html','./manifest.webmanifest','../shared/host-bridge.js',
-  '../../foundation/domain-model/canonical-identity-runtime.js','../../foundation/domain-model/identity-overlay-store.js','../../foundation/domain-model/legacy-snapshot-extractor.js','../../foundation/domain-model/canonical-read-projection.js','../../foundation/domain-model/legacy-mapping-registry.v1.json',
+  '../../foundation/domain-model/canonical-identity-runtime.js','../../foundation/domain-model/identity-overlay-store.js','../../foundation/domain-model/legacy-snapshot-extractor.js','../../foundation/domain-model/canonical-read-projection.js',
   '../shared/foundation-identity-bootstrap.js','../shared/foundation-identity-persistence.js','../shared/foundation-identity-projection.js','../shared/foundation-canonical-context.js',
   '../../platform/ui/tokens.css','../../platform/ui/foundations.css','../../platform/ui/components.css','../../platform/ui/layouts.css','../../platform/ui/responsive.css','../../platform/ui/bauman-ui.css','../../platform/ui/bauman-ui.css?v=1','../../platform/ui/bauman-ui.js','../../platform/ui/bauman-ui.js?v=1',
   './assets/core.css','./assets/russian.css','./assets/russian-future-ui.css',
