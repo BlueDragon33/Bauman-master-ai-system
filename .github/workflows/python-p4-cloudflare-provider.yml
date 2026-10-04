@@ -95,7 +95,7 @@ jobs:
         run: |
           set -euo pipefail
           case "$PYTHON04_WORKER_NAME" in bauman-python04-spike-*) ;; *) exit 1;; esac
-          ./node_modules/.bin/wrangler delete --config wrangler.jsonc --name "$PYTHON04_WORKER_NAME" --force
+          ./node_modules/.bin/wrangler delete --config wrangler.jsonc --name "$PYTHON04_WORKER_NAME" --force > /tmp/python04-cleanup.log 2>&1
       - name: Publish exact-source receipt on a separate evidence branch
         if: always() && github.event_name == 'push'
         env:
@@ -114,7 +114,16 @@ jobs:
           from pathlib import Path
           sha=os.environ['GITHUB_SHA']; source=Path('/tmp/python04-cloudflare-real-receipt.json')
           receipt=json.loads(source.read_text()) if source.exists() else {'status':'NO_REAL_PROVIDER_RECEIPT'}
-          receipt.update(credentialBindings={key:bool(os.environ.get(key)) for key in ['CLOUDFLARE_API_TOKEN','CLOUDFLARE_ACCOUNT_ID']},githubEnvironment='bauman-preview',exactTestedSha=sha,workflowRunUrl='https://github.com/'+os.environ['GITHUB_REPOSITORY']+'/actions/runs/'+os.environ['GITHUB_RUN_ID'],outcomes={key:os.environ.get(key,'unknown') for key in ['GATED_BROWSER_OUTCOME','REAL_BROWSER_OUTCOME','STATIC_OUTCOME','INFRASTRUCTURE_OUTCOME','DEPLOY_OUTCOME','PROVIDER_OUTCOME','CLEANUP_OUTCOME']},learnerExecutionEnabled=False,productionDeployed=False,moduleAcceptance='PENDING_EXACT_HEAD_REVIEW')
+          diagnostics={}
+          for phase in ['deploy','cleanup']:
+              log=Path('/tmp/python04-'+phase+'.log')
+              if log.exists():
+                  text=log.read_text(errors='replace')[-8000:]
+                  for key in ['CLOUDFLARE_API_TOKEN','CLOUDFLARE_ACCOUNT_ID','BAUMAN_PYTHON04_ACCEPTANCE_SECRET']:
+                      secret=os.environ.get(key,'')
+                      if secret: text=text.replace(secret,'[REDACTED]')
+                  diagnostics[phase]=text
+          receipt.update(diagnostics=diagnostics,credentialBindings={key:bool(os.environ.get(key)) for key in ['CLOUDFLARE_API_TOKEN','CLOUDFLARE_ACCOUNT_ID']},githubEnvironment='bauman-preview',exactTestedSha=sha,workflowRunUrl='https://github.com/'+os.environ['GITHUB_REPOSITORY']+'/actions/runs/'+os.environ['GITHUB_RUN_ID'],outcomes={key:os.environ.get(key,'unknown') for key in ['GATED_BROWSER_OUTCOME','REAL_BROWSER_OUTCOME','STATIC_OUTCOME','INFRASTRUCTURE_OUTCOME','DEPLOY_OUTCOME','PROVIDER_OUTCOME','CLEANUP_OUTCOME']},learnerExecutionEnabled=False,productionDeployed=False,moduleAcceptance='PENDING_EXACT_HEAD_REVIEW')
           Path('prompts/subjects/python/evidence/cloudflare-ci/'+sha+'.json').write_text(json.dumps(receipt,indent=2)+'\n')
           PY
           git config user.name 'github-actions[bot]'
@@ -129,6 +138,7 @@ jobs:
           name: python04-cloudflare-${{ github.sha }}
           path: |
             /tmp/python04-deploy.log
+            /tmp/python04-cleanup.log
             /tmp/python04-cloudflare-real-receipt.json
             /tmp/python04-gated-browser.json
             /tmp/python04-real-browser.json
