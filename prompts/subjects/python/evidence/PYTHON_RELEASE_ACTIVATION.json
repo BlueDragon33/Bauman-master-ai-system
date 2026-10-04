@@ -1,0 +1,26 @@
+{
+  "schema": "PYTHON_RELEASE_ACTIVATION_V1",
+  "status": "RELEASE_CANDIDATE",
+  "sourceP6MergeSha": "23e594b7f6a62d45fdad9f2669866f1410d2db6f",
+  "provider": "cloudflare-container-durable-object-v1",
+  "runtimeProfile": "cpython-3.14.8-stdlib-v1",
+  "pythonVersion": "3.14.8",
+  "previewExecutionEnabled": true,
+  "productionExecutionEnabled": true,
+  "productionSmokeRequired": true,
+  "promotionPolicy": "exact same merged main revision must pass preview identity before production",
+  "securityBoundary": {
+    "authentication": "approved Bauman device session",
+    "internetDefault": "deny",
+    "freshContainerPerRun": true,
+    "hiddenTestsServerSide": true,
+    "platformSecretsInSandbox": false,
+    "officialAttemptWrite": false,
+    "masteryWrite": false
+  },
+  "rollback": {
+    "trigger": "any exact-identity, Python smoke, security, assessment or release observation failure",
+    "action": "rollback/redeploy prior known-good revision or set BAUMAN_PYTHON_EXECUTION_ENABLED=false and redeploy",
+    "failClosedExecutionValue": false
+  }
+}
