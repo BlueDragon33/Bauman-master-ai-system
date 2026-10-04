@@ -1,8 +1,8 @@
-const RUNTIME_SESSION_COOKIE = '__Host-bauman_session';
+export const RUNTIME_SESSION_COOKIE = '__Host-bauman_session';
 const PROTECTED_LEARNING_ROOTS = ['/subjects/', '/roadmap_v2/', '/foundation/'];
 const PROTECTED_LEARNING_EXTENSIONS = /\.(?:json|md|txt|csv|tsv)$/i;
 
-function safeOrigin(value) {
+export function safeOrigin(value) {
   const raw = typeof value === 'string' ? value.trim().replace(/\/$/, '') : '';
   if (!raw) return '';
   try {
@@ -14,7 +14,7 @@ function safeOrigin(value) {
   }
 }
 
-function runtimeAccessMode(env) {
+export function runtimeAccessMode(env) {
   return String(env.BAUMAN_ACCESS_MODE || 'standalone').trim().toLowerCase() === 'managed'
     ? 'managed'
     : 'standalone';
@@ -45,7 +45,7 @@ function securityHeaders(headers) {
   return next;
 }
 
-function cookieValue(request, name) {
+export function cookieValue(request, name) {
   const source = request.headers.get('cookie') || '';
   for (const part of source.split(';')) {
     const [key, ...value] = part.trim().split('=');
@@ -54,7 +54,7 @@ function cookieValue(request, name) {
   return '';
 }
 
-function bearerToken(request) {
+export function bearerToken(request) {
   const authorization = request.headers.get('authorization') || '';
   return authorization.startsWith('Bearer ') ? authorization.slice(7).trim() : '';
 }
@@ -72,7 +72,7 @@ function protectedLearningAsset(pathname) {
     && PROTECTED_LEARNING_EXTENSIONS.test(pathname);
 }
 
-async function validateDeviceSession(request, controlOrigin, token) {
+export async function validateDeviceSession(request, controlOrigin, token) {
   if (!/^bm1\.[A-Za-z0-9_-]{40,100}$/.test(token)) {
     return { ok: false, status: 401, code: 'DEVICE_SESSION_REQUIRED' };
   }

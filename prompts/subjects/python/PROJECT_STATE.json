@@ -3,8 +3,8 @@
   "subject": "python",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/subjects/python/PYTHON_MASTER_PROMPT.md",
-  "status": "PYTHON04_ACTIVE_SERVER_CONTAINER_PROVIDER",
-  "activeModule": "PYTHON04",
+  "status": "PYTHON04_PASS_RUNTIME_PROVIDER",
+  "activeModule": "PYTHON05",
   "sequence": [
     "PYTHON01",
     "PYTHON02",
@@ -16,11 +16,12 @@
   "completedModules": [
     "PYTHON01",
     "PYTHON02",
-    "PYTHON03"
+    "PYTHON03",
+    "PYTHON04"
   ],
   "needsRevalidation": [],
-  "lastValidatedSha": "95c90f34e4deef1b9b51474863ca1d7cb06054dc",
-  "currentHeadSha": "1622aa591fc0ded12c0659caf42e38d21b051487",
+  "lastValidatedSha": "19afbae5fc3b3243a945da5a115cbdc7b0b2e63a",
+  "currentHeadSha": "19afbae5fc3b3243a945da5a115cbdc7b0b2e63a",
   "evidence": [
     "prompts/subjects/python/evidence/PYTHON_P1_EXECUTIVE_SUMMARY.md",
     "prompts/subjects/python/evidence/PYTHON_CURRENT_ARCHITECTURE_MAP.md",
@@ -73,16 +74,27 @@
     "PR #258 merged at 95c90f34e4deef1b9b51474863ca1d7cb06054dc; Constitution + Development Fast CI PASS",
     "prompts/subjects/python/evidence/PYTHON_P4_SAFE_RUNTIME_PROVIDER_BLOCKER.md",
     "prompts/subjects/python/evidence/PYTHON04_RUNTIME_PROVIDER_DECISION.md",
-    "prompts/subjects/python/evidence/PYTHON04_CLOUDFLARE_SANDBOX_IMPLEMENTATION_PLAN.md"
+    "prompts/subjects/python/evidence/PYTHON04_CLOUDFLARE_SANDBOX_IMPLEMENTATION_PLAN.md",
+    "cloudflare/runtime-worker-python.mjs",
+    "cloudflare/python-sandbox-provider.mjs",
+    "cloudflare/python-runtime/Dockerfile",
+    "cloudflare/python-runtime/runner.py",
+    "wrangler.runtime.python-ci.jsonc",
+    "tests/python-p4-provider-static.mjs",
+    "tests/python-p4-provider-live.mjs",
+    ".github/workflows/python-p4-provider-ci.yml",
+    "prompts/subjects/python/evidence/PYTHON04_CONTAINER_PROVIDER_ACCEPTANCE_REPORT.md",
+    "Python P4 Container Provider CI run 37198860782: SUCCESS; real Worker + Docker Container golden fixtures PASS",
+    "Development Fast CI run 37198860787: SUCCESS",
+    "Universal Constitution Compliance run 37198861173: SUCCESS",
+    "Russian Reference UI Gate run 37198860790: SUCCESS"
   ],
-  "blockers": [
-    "Cloudflare Sandbox Container is selected as the canonical learner Python runtime provider, but no in-repo provider binding has yet passed the PYTHON04 security/resource/reproducibility golden fixtures. learnerExecutionEnabled must remain false until that proof exists."
-  ],
-  "nextAction": "Implement the Cloudflare Sandbox Container provider spike behind learnerExecutionEnabled=false, bind the CPython 3.14.8 runtime profile, and run every PYTHON04 golden security fixture through the real provider before advancing PYTHON05 executable UX.",
+  "blockers": [],
+  "nextAction": "Execute PYTHON05 Learning Experience, Authoring & Product Integration against the accepted CPython 3.14.8 Cloudflare Container provider. Keep preview/production learner execution gated until PYTHON05 acceptance proves the executable learner UX and task-authoring boundary.",
   "notes": [
     "Actual learner runtime is subjects/programming/, not subjects/python/.",
     "Current Programming package mixes Python with Algorithms, Database, ML tooling and Software Engineering.",
-    "No executable learner Python interpreter, sandbox, code runner or Python environment owner is currently present.",
+    "PYTHON01 baseline had no executable learner Python runtime; PYTHON04 now provides an accepted Cloudflare Container CPython 3.14.8 provider without rewriting the historical baseline evidence.",
     "Current 384-question bank is all multiple choice and contains 192 unique question texts / 192 exact duplicate groups.",
     "Current AI Mentor is deterministic local template generation, not a model/provider authority.",
     "PYTHON01 is audit-only: no production runtime, content, mastery or learner-state mutation.",
@@ -100,6 +112,9 @@
     "Repository-wide discovery found no Pyodide/PyScript/MicroPython/CPython-WASM bundle and no isolated Python server/container runner.",
     "PYTHON04 architecture decision on 2026-10-04 selects dedicated server/container sandbox via Cloudflare Sandboxes/Containers; browser sandbox is non-canonical practice-only and external runner is contingency-only.",
     "Initial provider spike binds CPython 3.14.8 because Python 3.15.0 final is not yet released on the decision date.",
-    "Official assessment requires a clean sandbox identity per run/attempt with Internet disabled by default, no platform secrets, and hidden tests confined to the server-side sandbox boundary."
+    "Official assessment requires a clean sandbox identity per run/attempt with Internet disabled by default, no platform secrets, and hidden tests confined to the server-side sandbox boundary.",
+    "PYTHON04 exact provider evidence head 19afbae5fc3b3243a945da5a115cbdc7b0b2e63a passed real local Worker + Docker Container integration in CI run 37198860782.",
+    "PYTHON04 provider PASS does not itself enable preview/production learner execution; BAUMAN_PYTHON_EXECUTION_ENABLED remains false until PYTHON05/PYTHON06 release gates.",
+    "PYTHON04 terminal metadata tail must re-pass PR-head CI before merge; production publication remains deferred by releasePolicy until PYTHON05/PYTHON06."
   ]
 }

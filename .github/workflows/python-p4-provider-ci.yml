@@ -1,0 +1,101 @@
+name: Python P4 Container Provider CI
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "cloudflare/runtime-worker.mjs"
+      - "cloudflare/runtime-worker-python.mjs"
+      - "cloudflare/python-sandbox-provider.mjs"
+      - "cloudflare/python-runtime/**"
+      - "wrangler.runtime.*.jsonc"
+      - "tests/python-p4-provider-*.mjs"
+      - "tests/python-p4-runtime-security-contract.mjs"
+      - "prompts/subjects/python/**"
+      - ".github/workflows/python-p4-provider-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: python-p4-provider-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  provider:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+
+      - name: Verify Docker
+        run: docker info
+
+      - name: Static provider contract
+        run: node tests/python-p4-provider-static.mjs
+
+      - name: Existing PYTHON04 contract
+        run: node tests/python-p4-runtime-security-contract.mjs
+
+      - name: Start real local Worker plus Container provider
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes wrangler@4.147.0 dev \
+            --config wrangler.runtime.python-ci.jsonc \
+            --ip 127.0.0.1 \
+            --port 8788 \
+            > /tmp/python-p4-wrangler.log 2>&1 &
+          echo "$!" > /tmp/python-p4-wrangler.pid
+
+      - name: Wait for real provider
+        shell: bash
+        run: |
+          set -euo pipefail
+          for i in {1..120}; do
+            if curl --fail --silent --show-error --max-time 5 http://127.0.0.1:8788/__python/provider-health > /tmp/python-p4-health.json; then
+              cat /tmp/python-p4-health.json
+              exit 0
+            fi
+            if ! kill -0 "$(cat /tmp/python-p4-wrangler.pid)" 2>/dev/null; then
+              cat /tmp/python-p4-wrangler.log
+              exit 1
+            fi
+            sleep 2
+          done
+          cat /tmp/python-p4-wrangler.log
+          exit 1
+
+      - name: Run real PYTHON04 golden provider fixtures
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/python-p4-provider
+          node tests/python-p4-provider-live.mjs | tee artifacts/python-p4-provider/PYTHON_P4_PROVIDER_LIVE_RESULT.json
+          cp /tmp/python-p4-health.json artifacts/python-p4-provider/PYTHON_P4_PROVIDER_HEALTH.json
+
+      - name: Show provider log on failure
+        if: failure()
+        run: cat /tmp/python-p4-wrangler.log || true
+
+      - name: Upload provider evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-p4-provider-${{ github.run_id }}
+          path: artifacts/python-p4-provider
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Stop local provider
+        if: always()
+        shell: bash
+        run: |
+          if [[ -f /tmp/python-p4-wrangler.pid ]]; then
+            kill "$(cat /tmp/python-p4-wrangler.pid)" 2>/dev/null || true
+          fi

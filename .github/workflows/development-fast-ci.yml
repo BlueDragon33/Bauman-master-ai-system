@@ -40,6 +40,8 @@ jobs:
             subjects/russian/assets/russian-future-ui.js
             scripts/prepare-cloudflare-preview.mjs
             scripts/list-study-plan-runtime-routes.mjs
+            cloudflare/runtime-worker-python.mjs
+            cloudflare/python-sandbox-provider.mjs
           )
           for file in "${files[@]}"; do
             if [[ -f "$file" ]]; then
@@ -70,6 +72,9 @@ jobs:
 
       - name: Python P4 runtime security contract
         run: node tests/python-p4-runtime-security-contract.mjs
+
+      - name: Python P4 provider static
+        run: node tests/python-p4-provider-static.mjs
 
       - name: Entrepreneurship subject static
         run: node tests/entrepreneurship-subject-static.mjs

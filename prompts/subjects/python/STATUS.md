@@ -6,18 +6,20 @@
 | PYTHON01 | COMPLETE | PASS |
 | PYTHON02 | COMPLETE | PASS |
 | PYTHON03 | COMPLETE | PASS |
-| PYTHON04 | COMPLETE / READY FOR CODEX CLASS B | NOT_STARTED |
-| PYTHON05 | COMPLETE / READY TO EXECUTE after PYTHON02–PYTHON04 | NOT_STARTED |
-| PYTHON06 | COMPLETE / READY TO EXECUTE after product integration | NOT_STARTED |
+| PYTHON04 | COMPLETE | PASS · CLOUDFLARE CONTAINER CPYTHON 3.14.8 |
+| PYTHON05 | COMPLETE | READY / ACTIVE NEXT |
+| PYTHON06 | COMPLETE | WAITING FOR PYTHON05 |
 
 ## Architecture status
 
 `PYTHON PROMPT ARCHITECTURE: COMPLETE`
 
-This means the prompt system is complete.
+## Runtime status
 
-It does **not** mean the Python repository implementation has been audited, rebuilt, accepted or published.
+PYTHON04 has a real isolated provider. The exact provider head `19afbae5fc3b3243a945da5a115cbdc7b0b2e63a` passed the real Worker + Docker Container golden-fixture CI run `37198860782`.
+
+Preview/production learner execution remains intentionally feature-gated until PYTHON05 and PYTHON06 complete.
 
 ## Next operational action
 
-Hand `PYTHON04_RUNTIME_TOOLCHAIN_DATA_AI_INTELLIGENCE.md` to Codex/Class B using the accepted PYTHON02/PYTHON03 contracts. Do not activate learner execution until sandbox/security and runtime authority are proven.
+Execute `PYTHON05_LEARNING_EXPERIENCE_AUTHORING_INTEGRATION.md` against the accepted `cpython-3.14.8-stdlib-v1` provider. Do not bypass the shared App Shell, canonical learner-state owner or hidden-test boundary.

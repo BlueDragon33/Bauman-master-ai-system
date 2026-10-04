@@ -102,7 +102,7 @@ jobs:
         run: npx wrangler deploy --dry-run --outdir dist-preview --config wrangler.preview.jsonc
 
       - name: Verify learning runtime preview artifact without deployment
-        run: npx --yes wrangler@4.92.0 deploy --dry-run --outdir .wrangler/runtime-preview --config wrangler.runtime.preview.jsonc
+        run: npx --yes wrangler@4.147.0 deploy --dry-run --outdir .wrangler/runtime-preview --config wrangler.runtime.preview.jsonc
 
       - name: Assert generated configs remain preview-only
         shell: bash

@@ -3,21 +3,23 @@
 | Module | Prompt status | Repository execution status |
 |---|---|---|
 | PYTHON00 | COMPLETE | READY |
-| PYTHON01 | COMPLETE / READY TO EXECUTE | NOT_STARTED |
-| PYTHON02 | COMPLETE / READY TO EXECUTE after PYTHON01 evidence | NOT_STARTED |
-| PYTHON03 | COMPLETE / READY TO EXECUTE after PYTHON02 contract | NOT_STARTED |
-| PYTHON04 | COMPLETE / READY TO EXECUTE after PYTHON02/PYTHON03 contract | NOT_STARTED |
-| PYTHON05 | COMPLETE / READY TO EXECUTE after PYTHON02–PYTHON04 | NOT_STARTED |
-| PYTHON06 | COMPLETE / READY TO EXECUTE after product integration | NOT_STARTED |
+| PYTHON01 | COMPLETE | PASS |
+| PYTHON02 | COMPLETE | PASS |
+| PYTHON03 | COMPLETE | PASS |
+| PYTHON04 | COMPLETE | PASS |
+| PYTHON05 | COMPLETE | READY / ACTIVE NEXT |
+| PYTHON06 | COMPLETE | WAITING FOR PYTHON05 |
 
 ## Architecture status
 
 `PYTHON PROMPT ARCHITECTURE: COMPLETE`
 
-This means the prompt system is complete.
+## Current repository evidence
 
-It does **not** mean the Python repository implementation has been audited, rebuilt, accepted or published.
+PYTHON01–PYTHON04 have been executed against the repository. PYTHON04 now has a real Cloudflare Durable Object Container provider using CPython 3.14.8, with the base security/resource golden fixtures passing in GitHub Actions.
+
+The product feature flag remains disabled outside the dedicated provider CI until PYTHON05/PYTHON06 acceptance. Exact provider evidence head: `19afbae5fc3b3243a945da5a115cbdc7b0b2e63a`, provider CI run `37198860782`.
 
 ## Next operational action
 
-Run `PYTHON01_FORENSIC_BASELINE.md` against current main and produce real evidence before canonicalizing the Python curriculum/runtime model.
+Run PYTHON05 learner experience, authoring and product integration from current main after PYTHON04 is merged.
