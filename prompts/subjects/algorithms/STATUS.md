@@ -3,8 +3,8 @@
 | Module | Prompt status | Repository execution status |
 |---|---|---|
 | ALG00 | COMPLETE | READY |
-| ALG01 | COMPLETE | **PASS · FORENSIC BASELINE ACCEPTED** |
-| ALG02 | COMPLETE / READY TO EXECUTE | READY |
+| ALG01 | COMPLETE | PASS · FORENSIC BASELINE ACCEPTED |
+| ALG02 | COMPLETE | **VALIDATING · CANONICAL MODEL BUILT** |
 | ALG03 | COMPLETE / READY AFTER ALG02 | NOT_STARTED |
 | ALG04 | COMPLETE / READY AFTER ALG02/ALG03 | NOT_STARTED |
 | ALG05 | COMPLETE / READY AFTER ALG02–ALG04 | NOT_STARTED |
@@ -14,25 +14,28 @@
 
 `ALGORITHMS & DATA STRUCTURES PROMPT ARCHITECTURE: COMPLETE`
 
-## ALG01 accepted baseline
+## ALG01
 
-Exact tested evidence head: `f52aaa495987479fbe8c763f63929da1aee2c92a`
+Merged main SHA: `e66aa6bd7c47c1bd7c91c9e28fdf390b1b930875`.
 
-Acceptance evidence:
-- Algorithms ALG01 Forensic Baseline CI `37216354669` — SUCCESS
-- Development Fast CI `37216354622` — SUCCESS
-- Universal Constitution Compliance `37216354995` — SUCCESS
+ALG01 established that current Algorithms reality is distributed across Programming PR02/PR10/PR11, P4 prerequisite data and adjacent Math foundations. No dedicated Algorithms learner runtime existed.
 
-Accepted reality:
-- no dedicated `subjects/algorithms/` learner runtime exists yet;
-- reusable learner bridge is Programming PR02/PR10/PR11;
-- Programming bank is 384 MCQs / 192 unique prompt texts;
-- algorithm-related PR02/PR10/PR11 subset is 24 items / 12 unique prompt texts;
-- P4 prerequisite pack supplies 10 nodes / 38 diagnostics / 10 critical misconceptions / targeted repair routes;
-- current “Algorithm Complexity Lab” is not algorithm complexity truth;
-- shared Python execution is reusable capability, not canonical Algorithms ownership;
-- local Programming exam/remediation state is not promoted to C4 mastery.
+## ALG02 candidate model
+
+The candidate defines:
+- 15 stable `alg.comp.*` competencies and an explicit prerequisite DAG;
+- language-neutral Algorithm / AlgorithmVariant identities;
+- ADT vs concrete representation separation;
+- canonical preconditions, postconditions, invariants and trace schemas;
+- structured complexity claims with input measure, dimension, case and assumptions;
+- core registry for binary search, five baseline sorts, tree DFS traversals, BFS and DFS;
+- array/list/stack/queue/hash/tree/BST/graph representations;
+- compatibility projections for PR02/PR10/PR11 and P4;
+- deferred-JIT treatment for non-baseline advanced topics rather than generic-syllabus expansion;
+- explicit ALG03 assessment handoff.
+
+No runtime or learner-state mutation is authorized by ALG02.
 
 ## Next operational action
 
-Execute `ALG02_ACADEMIC_BLUEPRINT_CANONICAL_MODEL.md` using `subjects/algorithms/docs/alg01/ALG02_INPUT_CONTRACT.md` as the entry evidence contract.
+Run exact PR-head `Algorithms ALG02 Canonical Model CI`, `Development Fast CI` and `Universal Constitution Compliance`. Close ALG02 as PASS only on the exact tested terminal head.
