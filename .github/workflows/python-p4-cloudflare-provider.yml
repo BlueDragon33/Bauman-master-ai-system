@@ -61,6 +61,9 @@ jobs:
           worker_name="bauman-python04-spike-${GITHUB_SHA:0:12}"
           echo "PYTHON04_WORKER_NAME=$worker_name" >> "$GITHUB_ENV"
           node --input-type=module -e 'import {randomBytes} from "node:crypto"; import {appendFileSync} from "node:fs"; const key=randomBytes(32).toString("hex"); process.stdout.write("::add-mask::"+key+"\n"); appendFileSync(process.env.GITHUB_ENV,"BAUMAN_PYTHON04_ACCEPTANCE_SECRET="+key+"\n");'
+      - name: Read-only token and native Container API authorization check
+        id: provider_access
+        run: node tests/python-p4-cloudflare-access.mjs
       - name: Deploy only a unique, gated non-production test Worker
         id: deploy
         working-directory: runtime/python-cloudflare
@@ -103,6 +106,7 @@ jobs:
           REAL_BROWSER_OUTCOME: ${{ steps.real_browser.outcome }}
           STATIC_OUTCOME: ${{ steps.static.outcome }}
           INFRASTRUCTURE_OUTCOME: ${{ steps.infrastructure.outcome }}
+          ACCESS_OUTCOME: ${{ steps.provider_access.outcome }}
           DEPLOY_OUTCOME: ${{ steps.deploy.outcome }}
           PROVIDER_OUTCOME: ${{ steps.real_provider.outcome }}
           CLEANUP_OUTCOME: ${{ steps.cleanup.outcome }}
@@ -123,7 +127,9 @@ jobs:
                       secret=os.environ.get(key,'')
                       if secret: text=text.replace(secret,'[REDACTED]')
                   diagnostics[phase]=text
-          receipt.update(diagnostics=diagnostics,credentialBindings={key:bool(os.environ.get(key)) for key in ['CLOUDFLARE_API_TOKEN','CLOUDFLARE_ACCOUNT_ID']},githubEnvironment='bauman-preview',exactTestedSha=sha,workflowRunUrl='https://github.com/'+os.environ['GITHUB_REPOSITORY']+'/actions/runs/'+os.environ['GITHUB_RUN_ID'],outcomes={key:os.environ.get(key,'unknown') for key in ['GATED_BROWSER_OUTCOME','REAL_BROWSER_OUTCOME','STATIC_OUTCOME','INFRASTRUCTURE_OUTCOME','DEPLOY_OUTCOME','PROVIDER_OUTCOME','CLEANUP_OUTCOME']},learnerExecutionEnabled=False,productionDeployed=False,moduleAcceptance='PENDING_EXACT_HEAD_REVIEW')
+          access=Path('/tmp/python04-provider-access.json')
+          if access.exists(): receipt['providerAccess']=json.loads(access.read_text())
+          receipt.update(diagnostics=diagnostics,credentialBindings={key:bool(os.environ.get(key)) for key in ['CLOUDFLARE_API_TOKEN','CLOUDFLARE_ACCOUNT_ID']},githubEnvironment='bauman-preview',exactTestedSha=sha,workflowRunUrl='https://github.com/'+os.environ['GITHUB_REPOSITORY']+'/actions/runs/'+os.environ['GITHUB_RUN_ID'],outcomes={key:os.environ.get(key,'unknown') for key in ['GATED_BROWSER_OUTCOME','REAL_BROWSER_OUTCOME','STATIC_OUTCOME','INFRASTRUCTURE_OUTCOME','ACCESS_OUTCOME','DEPLOY_OUTCOME','PROVIDER_OUTCOME','CLEANUP_OUTCOME']},learnerExecutionEnabled=False,productionDeployed=False,moduleAcceptance='PENDING_EXACT_HEAD_REVIEW')
           Path('prompts/subjects/python/evidence/cloudflare-ci/'+sha+'.json').write_text(json.dumps(receipt,indent=2)+'\n')
           PY
           git config user.name 'github-actions[bot]'
@@ -139,6 +145,7 @@ jobs:
           path: |
             /tmp/python04-deploy.log
             /tmp/python04-cleanup.log
+            /tmp/python04-provider-access.json
             /tmp/python04-cloudflare-real-receipt.json
             /tmp/python04-gated-browser.json
             /tmp/python04-real-browser.json
