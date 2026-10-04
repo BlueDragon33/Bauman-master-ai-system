@@ -1,0 +1,38 @@
+{
+  "schema": "PYTHON_RC_MANIFEST_V1",
+  "status": "PYTHON06_PASS_RC_READY",
+  "baseSha": "ae7b7c5b4677cb6056583c453b93f04ba48793ba",
+  "subject": "programming",
+  "contentSnapshot": {
+    "taskCatalogBlob": "3cf242d4f1faa590ba348323570ce69b13ca2562",
+    "subjectManifestBlob": "86093a02677a9db7783b0101d96af71eb3bde31a"
+  },
+  "runtime": {
+    "provider": "cloudflare-container-durable-object-v1",
+    "profile": "cpython-3.14.8-stdlib-v1",
+    "python": "3.14.8",
+    "dockerfileBlob": "efbe19f15851ee1fbdc8e3006120dd14b11e0a8f",
+    "runnerBlob": "776f7fe268e453910dc67f5442c365e50e8e9f7d"
+  },
+  "featureFlags": {
+    "learnerExecutionProduction": false,
+    "offlineExecution": false,
+    "notebookExecution": false
+  },
+  "migrationSet": "none-for-python-p6",
+  "acceptanceEvidence": [
+    "python-p4-provider-ci",
+    "python-p5-product-ci",
+    "python-p6-rc-ci"
+  ],
+  "releasePolicy": "publish only after P6 PASS and exact-revision preview + shared production release gates",
+  "testedImplementationSha": "cb9a46e8cbacd0be79f2bf63246c9a67805dd7ad",
+  "ciEvidence": {
+    "pythonP6Rc": 37208454277,
+    "pythonP5Product": 37208454217,
+    "pythonP4Provider": 37208454214,
+    "developmentFast": 37208454215,
+    "constitution": 37208454674
+  },
+  "releaseIdentityPolicy": "Deploy only the final merged main SHA after exact-revision preview verification; content/runtime identities in this manifest are frozen."
+}

@@ -1,0 +1,11 @@
+import assert from "node:assert/strict";import fs from "node:fs";import path from "node:path";
+const {chromium}=await import(process.env.BAUMAN_PLAYWRIGHT_MODULE||"playwright");
+const BASE=process.env.BAUMAN_E2E_BASE_URL||"http://127.0.0.1:4173/";const OUT=process.env.BAUMAN_E2E_ARTIFACT_DIR||"artifacts/python-p6-browser";fs.mkdirSync(OUT,{recursive:true});
+let browser;try{browser=await chromium.launch({headless:true});const context=await browser.newContext({viewport:{width:1440,height:900}});const page=await context.newPage();const errors=[];page.on("pageerror",e=>errors.push(String(e)));
+await page.route("**/api/python/runtime",r=>r.fulfill({status:200,contentType:"application/json",body:JSON.stringify({ok:true,implementation:"CPython",version:"3.14.8",runtimeProfileId:"cpython-3.14.8-stdlib-v1"})}));
+await page.goto(BASE+"subjects/programming/code-lab.html?task=py-beginner-sum",{waitUntil:"load"});await page.waitForSelector("#codeEditor");
+for(const vp of [{width:1440,height:900},{width:1024,height:768},{width:390,height:844}]){await page.setViewportSize(vp);await page.waitForTimeout(50);const o=await page.evaluate(()=>({c:document.documentElement.clientWidth,s:document.documentElement.scrollWidth}));assert.ok(o.s<=o.c+2,"overflow "+vp.width);}
+await page.locator("#codeEditor").fill("print('draft-p6')");await page.waitForTimeout(700);assert.equal(await page.evaluate(()=>Object.keys(localStorage).some(k=>k.startsWith("bauman:python:draft:"))),true);
+await context.setOffline(true);await page.evaluate(()=>dispatchEvent(new Event("offline")));await page.waitForTimeout(50);assert.equal(await page.locator("#runBtn").isDisabled(),true);assert.equal(await page.locator("#testBtn").isDisabled(),true);assert.equal(await page.locator("#submitBtn").isDisabled(),true);assert.equal(await page.locator("#offlineBanner").isVisible(),true);
+await context.setOffline(false);await page.evaluate(()=>dispatchEvent(new Event("online")));await page.screenshot({path:path.join(OUT,"python-p6-mobile.png")});
+assert.deepEqual(errors,[]);fs.writeFileSync(path.join(OUT,"summary.json"),JSON.stringify({status:"PASS",viewports:["1440x900","1024x768","390x844"],offlineFailClosed:true,draftPersistence:true},null,2));console.log("PYTHON_P6_BROWSER=PASS");}finally{await browser?.close();}
