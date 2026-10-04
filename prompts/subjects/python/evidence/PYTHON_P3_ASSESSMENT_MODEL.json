@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "contentRevision": "PYTHON03-CANDIDATE-1",
-  "status": "VALIDATING",
+  "contentRevision": "PYTHON03-ACCEPTED-1",
+  "status": "PASS",
   "subject": "python",
   "owner": {
     "assessmentTruth": "prompts/subjects/python/evidence/PYTHON_P3_ASSESSMENT_MODEL.json",
@@ -125,9 +125,9 @@
     "prompts/subjects/python/evidence/PYTHON_ASSESSMENT_GOLDEN_FIXTURES.json"
   ],
   "validationEvidence": {
-    "exactTestedHead": null,
-    "developmentFastCiRunId": null,
-    "universalConstitutionRunId": null,
+    "exactTestedHead": "ee16b75b86a8029ca005278ee99e20ad8a64f7fb",
+    "developmentFastCiRunId": 37192666431,
+    "universalConstitutionRunId": 37192666782,
     "runtimeMutation": false,
     "learnerStateMigration": false,
     "productionDeployment": false
