@@ -1,0 +1,161 @@
+{
+  "schemaVersion": "1.0.0",
+  "owner": "PYTHON02",
+  "nodes": [
+    {
+      "id": "PY-C01",
+      "name": "Read and predict Python expressions",
+      "family": "syntax-expression"
+    },
+    {
+      "id": "PY-C02",
+      "name": "Reason about built-in types and values",
+      "family": "data-model"
+    },
+    {
+      "id": "PY-C03",
+      "name": "Control program flow",
+      "family": "control-flow"
+    },
+    {
+      "id": "PY-C04",
+      "name": "Decompose behavior into functions",
+      "family": "functions"
+    },
+    {
+      "id": "PY-C05",
+      "name": "Use collections and iteration correctly",
+      "family": "collections"
+    },
+    {
+      "id": "PY-C06",
+      "name": "Reason about mutation, identity and shared state",
+      "family": "state-reference"
+    },
+    {
+      "id": "PY-C07",
+      "name": "Handle exceptions and diagnose failures",
+      "family": "errors-debugging"
+    },
+    {
+      "id": "PY-C08",
+      "name": "Structure code with modules and imports",
+      "family": "modules"
+    },
+    {
+      "id": "PY-C09",
+      "name": "Read and write files/data interchange",
+      "family": "files-data"
+    },
+    {
+      "id": "PY-C10",
+      "name": "Use comprehensions/iterators/generators appropriately",
+      "family": "iteration-advanced"
+    },
+    {
+      "id": "PY-C11",
+      "name": "Model state with Python classes/objects",
+      "family": "oop"
+    },
+    {
+      "id": "PY-C12",
+      "name": "Use type hints/dataclasses as engineering signals",
+      "family": "typing"
+    },
+    {
+      "id": "PY-C13",
+      "name": "Write tests and use debugging evidence",
+      "family": "testing-debugging"
+    },
+    {
+      "id": "PY-C14",
+      "name": "Understand interpreter/environment/package concepts",
+      "family": "tooling-literacy"
+    },
+    {
+      "id": "PY-C15",
+      "name": "Operate scientific/data Python bridges without owning adjacent theory",
+      "family": "data-science-bridge"
+    },
+    {
+      "id": "PY-C16",
+      "name": "Build a reproducible Python project artifact and transfer skills",
+      "family": "project-transfer"
+    }
+  ],
+  "edges": [
+    [
+      "PY-C01",
+      "PY-C02"
+    ],
+    [
+      "PY-C01",
+      "PY-C03"
+    ],
+    [
+      "PY-C02",
+      "PY-C05"
+    ],
+    [
+      "PY-C03",
+      "PY-C04"
+    ],
+    [
+      "PY-C04",
+      "PY-C08"
+    ],
+    [
+      "PY-C05",
+      "PY-C06"
+    ],
+    [
+      "PY-C05",
+      "PY-C09"
+    ],
+    [
+      "PY-C05",
+      "PY-C10"
+    ],
+    [
+      "PY-C06",
+      "PY-C11"
+    ],
+    [
+      "PY-C04",
+      "PY-C07"
+    ],
+    [
+      "PY-C04",
+      "PY-C13"
+    ],
+    [
+      "PY-C08",
+      "PY-C13"
+    ],
+    [
+      "PY-C11",
+      "PY-C12"
+    ],
+    [
+      "PY-C08",
+      "PY-C14"
+    ],
+    [
+      "PY-C09",
+      "PY-C15"
+    ],
+    [
+      "PY-C13",
+      "PY-C16"
+    ],
+    [
+      "PY-C14",
+      "PY-C16"
+    ],
+    [
+      "PY-C15",
+      "PY-C16"
+    ]
+  ],
+  "evidencePolicy": "Exposure/progress is not mastery. PYTHON03 will define executable/reasoning assessment semantics; this graph only defines competency truth."
+}

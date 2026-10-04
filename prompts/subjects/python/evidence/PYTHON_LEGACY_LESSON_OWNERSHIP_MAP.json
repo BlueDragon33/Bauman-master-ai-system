@@ -1,0 +1,312 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "python",
+  "sourceRuntime": "subjects/programming/",
+  "policy": "Preserve every PRxx legacy ID until a receiving owner/projection exists; classification changes ownership, not immediate deletion.",
+  "allowedClassifications": [
+    "KEEP_PYTHON",
+    "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+    "ROUTE_TO_ALGORITHMS",
+    "ROUTE_TO_DATABASE",
+    "ROUTE_TO_ML_AI",
+    "ROUTE_TO_SOFTWARE_ENGINEERING"
+  ],
+  "summary": {
+    "KEEP_PYTHON": 7,
+    "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT": 13,
+    "ROUTE_TO_ALGORITHMS": 3,
+    "ROUTE_TO_DATABASE": 4,
+    "ROUTE_TO_ML_AI": 7,
+    "ROUTE_TO_SOFTWARE_ENGINEERING": 14
+  },
+  "lessons": [
+    {
+      "lessonId": "PR01",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "rationale": "Python environment/venv is relevant; VS Code/Live Server are tooling context, not language semantics.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR02",
+      "classification": "ROUTE_TO_ALGORITHMS",
+      "rationale": "Algorithmic complexity is owned by Algorithms; Python may supply implementation examples.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR03",
+      "classification": "KEEP_PYTHON",
+      "rationale": "Core Python types, functions and modules are canonical Python competencies.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR04",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "rationale": "NumPy is a scientific-computing bridge; package semantics remain versioned implementation context.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR05",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "rationale": "Pandas is a data-tooling bridge; data/statistical ownership stays outside Python.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR06",
+      "classification": "ROUTE_TO_DATABASE",
+      "rationale": "Relational model and SQL semantics belong to Database.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR07",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "rationale": "Git/repository workflow is general software-engineering ownership.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR08",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "rationale": "Notebook reproducibility is a Python workflow context, not language semantics.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR09",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "rationale": "Russian CS terminology is a learning overlay supporting Python study, not semantic authority.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR10",
+      "classification": "ROUTE_TO_ALGORITHMS",
+      "rationale": "Pseudocode/algorithm explanation is algorithmic reasoning ownership.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR11",
+      "classification": "ROUTE_TO_ALGORITHMS",
+      "rationale": "Data-structure theory belongs to Algorithms; Python containers may be implementation examples.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR12",
+      "classification": "KEEP_PYTHON",
+      "rationale": "Python file/path, JSON and CSV I/O are canonical Python operational competencies.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR13",
+      "classification": "KEEP_PYTHON",
+      "rationale": "Exceptions/debugging/logging are Python-specific programming competencies.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR14",
+      "classification": "KEEP_PYTHON",
+      "rationale": "Python testing literacy and pytest usage feed Python assessment/runtime modules.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR15",
+      "classification": "ROUTE_TO_DATABASE",
+      "rationale": "JOIN/GROUP BY/index semantics belong to Database.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR16",
+      "classification": "KEEP_PYTHON",
+      "rationale": "Python naming/docstrings/documentation conventions are canonical Python practice.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR17",
+      "classification": "KEEP_PYTHON",
+      "rationale": "Python classes, instances, methods and state are canonical Python object-model competencies.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR18",
+      "classification": "KEEP_PYTHON",
+      "rationale": "Python modules/imports/package organization are canonical Python competencies.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR19",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "rationale": "General design-pattern theory belongs to Software Engineering; Python may host examples.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR20",
+      "classification": "ROUTE_TO_DATABASE",
+      "rationale": "Schema/metadata modeling belongs to Database.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR21",
+      "classification": "ROUTE_TO_DATABASE",
+      "rationale": "ORM/schema migration semantics depend on Database ownership.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR22",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "rationale": "Requirements/issues/milestones/release workflow is general software engineering.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR23",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "rationale": "Integration/data tests may be implemented in Python but general test-process ownership is broader.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR24",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "rationale": "Lint/type-check/test tooling is relevant Python tooling context; CI ownership is broader.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR25",
+      "classification": "ROUTE_TO_ML_AI",
+      "rationale": "ML data pipeline and feature-engineering theory belong to ML/AI.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR26",
+      "classification": "ROUTE_TO_ML_AI",
+      "rationale": "Model fitting, splits and metrics are ML/AI ownership; Python only implements them.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR27",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "rationale": "FastAPI is a Python ecosystem integration capability, not core language truth.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR28",
+      "classification": "ROUTE_TO_ML_AI",
+      "rationale": "Model serialization/artifact lifecycle here is ML artifact ownership.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR29",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "rationale": "Experiment configuration is a reproducibility context consumed by Python projects.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR30",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "rationale": "Containerization/environment packaging is general engineering/deployment ownership.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR31",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "rationale": "Secrets/access-control practice is platform/security engineering ownership.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR32",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "rationale": "Architecture documentation/API-spec practice is general software engineering.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR33",
+      "classification": "ROUTE_TO_ML_AI",
+      "rationale": "Dataset-card semantics belong to data/ML research governance.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR34",
+      "classification": "ROUTE_TO_ML_AI",
+      "rationale": "Experiment tracking and metric comparison are ML/research ownership.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR35",
+      "classification": "ROUTE_TO_ML_AI",
+      "rationale": "Ablation-study design belongs to ML/research methodology.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR36",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "rationale": "Telemetry/time-series processing is a transfer context for Python data handling.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR37",
+      "classification": "ROUTE_TO_ML_AI",
+      "rationale": "Model failure/error analysis is ML evaluation ownership.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR38",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "rationale": "Dashboard prototyping is a Python project integration context.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR39",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "rationale": "Demo packaging/release scripts are software-engineering ownership.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR40",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "rationale": "Software/reproducibility risk management is engineering-process ownership.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR41",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "rationale": "Release tagging/changelog/freeze are software release practices.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR42",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "rationale": "Reproduction scripts are a Python project-transfer context.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR43",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "rationale": "Thesis artifact/folder organization is project/research engineering process.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR44",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "rationale": "Offline demo/fallback planning is deployment/release engineering.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR45",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "rationale": "Runtime/memory/latency measurement is a Python performance context; systems theory remains external.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR46",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "rationale": "License/citation/open-source compliance is software/project governance.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR47",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "rationale": "Technical defense slide/story structure is project communication, not Python semantics.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    },
+    {
+      "lessonId": "PR48",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "rationale": "Architecture/data/metric defense is project/software-engineering communication.",
+      "compatibility": "PRESERVE_LEGACY_ID"
+    }
+  ]
+}
