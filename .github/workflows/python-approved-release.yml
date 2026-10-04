@@ -1,0 +1,119 @@
+name: Python Approved One-Time Release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/release-requests/python-20261004.json"
+
+permissions:
+  contents: read
+  statuses: write
+
+concurrency:
+  group: python-approved-release-20261004
+  cancel-in-progress: false
+
+jobs:
+  authorize:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - name: Validate one-time approved release request
+        shell: bash
+        run: |
+          set -euo pipefail
+          REQUEST=".github/release-requests/python-20261004.json"
+          BEFORE="${{ github.event.before }}"
+          if [[ ! -f "$REQUEST" ]]; then
+            echo "::error::Approved release request is missing."
+            exit 1
+          fi
+          if [[ "$BEFORE" =~ ^0+$ ]]; then
+            echo "::error::Release request must be added to an existing main history."
+            exit 1
+          fi
+          if ! git diff --diff-filter=A --name-only "$BEFORE" "$GITHUB_SHA" -- "$REQUEST" | grep -Fxq "$REQUEST"; then
+            echo "::error::Release request is not a newly-added one-time request in this push."
+            exit 1
+          fi
+          git merge-base --is-ancestor 04cf1978198ee90a47dc61698ad70aec011a78bc "$GITHUB_SHA"
+          node --input-type=module - <<'NODE'
+          import fs from 'node:fs';
+          const r=JSON.parse(fs.readFileSync('.github/release-requests/python-20261004.json','utf8'));
+          if(r.schema!=='PYTHON_APPROVED_RELEASE_REQUEST_V1') throw new Error('release request schema mismatch');
+          if(r.releaseId!=='python-runtime-2026-10-04') throw new Error('release id mismatch');
+          if(r.status!=='APPROVED_ONE_TIME'||r.oneTime!==true) throw new Error('release is not one-time approved');
+          if(r.confirm!=='DEPLOY_PRODUCTION') throw new Error('explicit production confirmation missing');
+          if(r.sourceP6MergeSha!=='23e594b7f6a62d45fdad9f2669866f1410d2db6f') throw new Error('P6 source mismatch');
+          if(r.activationMergeSha!=='04cf1978198ee90a47dc61698ad70aec011a78bc') throw new Error('activation source mismatch');
+          if(r.runtimeProfile!=='cpython-3.14.8-stdlib-v1') throw new Error('runtime profile mismatch');
+          if(r.provider!=='cloudflare-container-durable-object-v1') throw new Error('provider mismatch');
+          console.log('One-time approved release request PASS.');
+          NODE
+      - name: Mark release pending
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail-with-body --silent --show-error \
+            -X POST \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/statuses/$GITHUB_SHA" \
+            -d '{"state":"pending","context":"python/release-publish","description":"Exact-revision preview then production release is running"}'
+
+  preview:
+    needs: authorize
+    uses: ./.github/workflows/deploy-bauman-preview.yml
+    secrets: inherit
+
+  production:
+    needs: preview
+    uses: ./.github/workflows/deploy-bauman-production.yml
+    with:
+      confirm: DEPLOY_PRODUCTION
+    secrets: inherit
+
+  mark-success:
+    needs: production
+    if: ${{ success() }}
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Mark exact release successful
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail-with-body --silent --show-error \
+            -X POST \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/statuses/$GITHUB_SHA" \
+            -d '{"state":"success","context":"python/release-publish","description":"Preview and production exact-revision release PASS"}'
+
+  mark-failure:
+    needs: [authorize, preview, production]
+    if: ${{ always() && (needs.authorize.result != 'success' || needs.preview.result != 'success' || needs.production.result != 'success') }}
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Mark exact release failed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail-with-body --silent --show-error \
+            -X POST \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/$GITHUB_REPOSITORY/statuses/$GITHUB_SHA" \
+            -d '{"state":"failure","context":"python/release-publish","description":"Exact-revision release gate failed; production is not stable"}'
