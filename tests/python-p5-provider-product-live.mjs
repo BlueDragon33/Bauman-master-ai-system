@@ -6,7 +6,7 @@ assert.equal(test.passed,2);assert.equal(test.total,2);assert.equal(test.mastery
 assert.doesNotMatch(JSON.stringify(test),/2 3|-5 7|expected|1000000/);
 const submitGood=await req("/api/python/submit",{taskId:"py-assessment-even",attemptId:"p5-good",code:"n=int(input());print('EVEN' if n%2==0 else 'ODD')"});
 assert.equal(submitGood.ok,true);assert.equal(submitGood.result,"passed");assert.equal(submitGood.publicTestCount,2);assert.equal(submitGood.hiddenTestCount,3);assert.equal(submitGood.hiddenMaterialReturned,false);assert.equal(submitGood.officialAttemptWrite,false);assert.equal(submitGood.masteryWrite,false);assert.equal(submitGood.learnerStateOwnerRequired,true);
-assert.doesNotMatch(JSON.stringify(submitGood),/1000001|-3|expected|negative|large/);
+assert.doesNotMatch(JSON.stringify(submitGood),/1000001|expected|negative|large|\"stdin\"/);
 const submitWrong=await req("/api/python/submit",{taskId:"py-assessment-even",attemptId:"p5-wrong",code:"print('EVEN')"});
 assert.equal(submitWrong.ok,false);assert.equal(submitWrong.result,"failed");assert.ok(submitWrong.passed<submitWrong.total);
 console.log(JSON.stringify({schema:"PYTHON_P5_PROVIDER_PRODUCT_LIVE_V1",status:"PASS",test:{passed:test.passed,total:test.total},submit:{passed:submitGood.passed,total:submitGood.total,hiddenMaterialReturned:false}},null,2));
