@@ -100,6 +100,17 @@ async function validateDeviceSession(request, controlOrigin, token) {
   }
 }
 
+// Execution providers reuse this owner; standalone asset access never grants
+// permission to spend sandbox resources or submit execution evidence.
+export async function authorizeRuntimeRequest(request, env) {
+  const controlOrigin = safeOrigin(env.BAUMAN_CONTROL_ORIGIN);
+  if (!controlOrigin) return {ok:false,status:503,code:'BAUMAN_CONTROL_ORIGIN_NOT_CONFIGURED'};
+  try {
+    const token = cookieValue(request, RUNTIME_SESSION_COOKIE) || bearerToken(request);
+    return await validateDeviceSession(request, controlOrigin, token);
+  } catch { return {ok:false,status:401,code:'DEVICE_SESSION_REQUIRED'}; }
+}
+
 function gateResponse(result, clearCookie = false) {
   const headers = new Headers({
     'cache-control': 'no-store, private',

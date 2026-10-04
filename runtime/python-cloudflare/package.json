@@ -1,0 +1,14 @@
+{
+  "name": "bauman-python04-cloudflare-provider",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "wrangler deploy --dry-run --config wrangler.jsonc --outdir /tmp/python04-worker-build"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "5.20261004.1",
+    "typescript": "5.9.3",
+    "wrangler": "4.147.0"
+  }
+}

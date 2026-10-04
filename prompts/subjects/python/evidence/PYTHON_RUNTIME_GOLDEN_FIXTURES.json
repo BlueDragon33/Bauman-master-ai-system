@@ -1,67 +1,115 @@
 {
   "schema": "PYTHON_RUNTIME_GOLDEN_FIXTURES_V1",
-  "status": "CONTRACT_ONLY_PROVIDER_PENDING",
+  "status": "VALIDATING_CLOUDFLARE_PROVIDER_DISABLED",
   "learnerExecutionEnabled": false,
   "fixtures": [
     {
       "id": "infinite-loop",
       "category": "timeout",
       "program": "while True: pass",
-      "expected": "terminated_by_timeout"
+      "expected": "terminated_by_timeout",
+      "baselineProgram": "while True: pass",
+      "kind": "sandbox",
+      "expectedStatus": "timeout"
     },
     {
       "id": "huge-allocation",
       "category": "memory",
-      "program": "x = bytearray(10**10)",
-      "expected": "contained_resource_failure"
+      "program": "x = bytearray(256 * 1024 * 1024)",
+      "expected": "contained_resource_failure",
+      "baselineProgram": "x = bytearray(10**10)",
+      "kind": "sandbox",
+      "expectedStatus": "memory_limit"
     },
     {
       "id": "output-flood",
       "category": "output_limit",
-      "program": "print('x' * 100000000)",
-      "expected": "bounded_output_with_truncation"
+      "program": "while True: print('x' * 1024)",
+      "expected": "bounded_output_with_truncation",
+      "baselineProgram": "print('x' * 100000000)",
+      "kind": "sandbox",
+      "expectedStatus": "output_limit"
     },
     {
       "id": "path-traversal",
       "category": "filesystem",
-      "program": "open('../../secret.txt').read()",
-      "expected": "denied_outside_workspace"
+      "program": "open('../../etc/passwd').read()",
+      "expected": "denied_outside_workspace",
+      "baselineProgram": "open('../../secret.txt').read()",
+      "kind": "sandbox",
+      "expectedStatus": "runtime_error",
+      "exception": "FileNotFoundError"
     },
     {
       "id": "env-read",
       "category": "secret_protection",
-      "program": "import os; print(os.environ)",
-      "expected": "platform_secrets_unavailable"
+      "program": "import os\nassert not os.environ\nassert os.getenv('PYTHON04_PRIVATE_CANARY') is None\nassert not os.path.exists('/proc/self/environ')\nprint('isolated')",
+      "expected": "platform_secrets_unavailable",
+      "baselineProgram": "import os; print(os.environ)",
+      "kind": "sandbox",
+      "expectedStatus": "completed",
+      "stdout": "isolated\n"
     },
     {
       "id": "network",
       "category": "network",
-      "program": "import urllib.request; urllib.request.urlopen('https://example.com')",
-      "expected": "denied_by_default"
+      "program": "import ctypes\nlib = ctypes.CDLL(None, use_errno=True)\nassert lib.socket(2, 1, 0) == -1\nassert ctypes.get_errno() == 1\nprint('denied')",
+      "expected": "denied_by_default",
+      "baselineProgram": "import urllib.request; urllib.request.urlopen('https://example.com')",
+      "kind": "sandbox",
+      "expectedStatus": "completed",
+      "stdout": "denied\n"
     },
     {
       "id": "subprocess",
       "category": "subprocess",
-      "program": "import subprocess; subprocess.run(['sh','-c','id'])",
-      "expected": "denied_or_isolated_by_policy"
+      "program": "import ctypes\nlib = ctypes.CDLL(None, use_errno=True)\nassert lib.fork() == -1\nassert ctypes.get_errno() == 1\nassert lib.execve(b'/bin/sh', 0, 0) == -1\nassert ctypes.get_errno() == 1\nprint('denied')",
+      "expected": "denied_or_isolated_by_policy",
+      "baselineProgram": "import subprocess; subprocess.run(['sh','-c','id'])",
+      "kind": "sandbox",
+      "expectedStatus": "completed",
+      "stdout": "denied\n"
     },
     {
       "id": "unsafe-pickle",
       "category": "deserialization",
-      "program": "import pickle; pickle.loads(b'...')",
-      "expected": "must_not_execute_in_privileged_host_context"
+      "program": "import pickle\npickle.loads(b\"cos\\nsystem\\n(S'touch /escaped'\\ntR.\")",
+      "expected": "must_not_execute_in_privileged_host_context",
+      "baselineProgram": "import pickle; pickle.loads(b'...')",
+      "kind": "sandbox",
+      "expectedStatus": "runtime_error",
+      "exception": "ModuleNotFoundError"
     },
     {
       "id": "stale-result",
       "category": "concurrency",
       "program": "print('old run')",
-      "expected": "old_run_cannot_overwrite_new_attempt"
+      "expected": "old_run_cannot_overwrite_new_attempt",
+      "kind": "control-plane"
     },
     {
       "id": "hidden-test-leak",
       "category": "assessment_security",
       "program": "print('request hidden tests')",
-      "expected": "hidden_tests_never_exposed"
+      "expected": "hidden_tests_never_exposed",
+      "kind": "control-plane"
+    },
+    {
+      "id": "raw-output-flood",
+      "category": "output_limit",
+      "kind": "sandbox",
+      "program": "import os\nwhile True: os.write(1, b'x' * 8192)",
+      "expectedStatus": "output_limit",
+      "expected": "bounded_raw_descriptor_output"
+    },
+    {
+      "id": "raw-stderr-flood",
+      "category": "output_limit",
+      "kind": "sandbox",
+      "program": "import os\nwhile True: os.write(2, b'x' * 8192)",
+      "expectedStatus": "output_limit",
+      "expected": "bounded_raw_descriptor_output"
     }
-  ]
+  ],
+  "fixturePolicy": "Real Cloudflare execution required; local Docker and controller fault mocks are separate evidence. Output/network/subprocess fixtures exercise the actual boundary rather than allocation or missing-import substitutes."
 }

@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "bauman-python04-sandbox-spike",
+  "main": "worker.ts",
+  "compatibility_date": "2026-10-04",
+  "compatibility_flags": ["nodejs_compat"],
+  "vars": {"BAUMAN_PYTHON04_ENABLED": "false", "BAUMAN_BUILD_REVISION": "unvalidated"},
+  "durable_objects": {"bindings": [{"name": "PYTHON_SANDBOX", "class_name": "PythonSandbox"}]},
+  "containers": [{"class_name": "PythonSandbox", "scheduling_policy": "durable_object", "observability": {"enabled": false}, "images": {"python": {"dockerfile": "./Dockerfile"}}}],
+  "exports": {"PythonSandbox": {"type": "durable-object", "storage": "sqlite"}},
+  "observability": {"enabled": false}
+}
