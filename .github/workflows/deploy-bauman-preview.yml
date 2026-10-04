@@ -64,19 +64,25 @@ jobs:
       - name: Deploy Learning Runtime preview
         run: npx --yes wrangler@4.147.0 deploy --config wrangler.runtime.preview.jsonc
 
-      - name: Quick preview availability check
+      - name: Verify exact preview runtime and Python activation
         shell: bash
         run: |
           set -euo pipefail
-          for i in {1..10}; do
-            if curl --fail --silent --show-error --max-time 10 "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/" >/dev/null; then
-              echo "Preview is reachable."
-              exit 0
-            fi
-            sleep 2
-          done
-          echo "::error::Preview did not become reachable in time."
-          exit 1
+          BAUMAN_DEPLOYMENT_URL="$BAUMAN_RUNTIME_PREVIEW_ORIGIN/__deployment" \
+          BAUMAN_EXPECTED_REVISION="$GITHUB_SHA" \
+          BAUMAN_EXPECTED_CHANNEL="cloudflare-preview" \
+          BAUMAN_EXPECTED_RUNTIME="learning-runtime" \
+          node scripts/wait-cloudflare-deployment-revision.mjs > /tmp/bauman-preview-runtime.json
+          node --input-type=module - <<'NODE'
+          import fs from 'node:fs';
+          const runtime = JSON.parse(fs.readFileSync('/tmp/bauman-preview-runtime.json', 'utf8'));
+          if (!runtime.controlOriginConfigured) throw new Error('Preview runtime control origin is not configured.');
+          if (runtime.pythonExecutionEnabled !== true) throw new Error('Preview Python execution is not enabled.');
+          if (runtime.pythonRuntimeProfile !== 'cpython-3.14.8-stdlib-v1') {
+            throw new Error('Preview Python runtime profile mismatch: ' + String(runtime.pythonRuntimeProfile));
+          }
+          console.log('Exact preview Python release identity PASS.');
+          NODE
 
       - name: Preview summary
         run: |

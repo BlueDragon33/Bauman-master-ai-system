@@ -1,0 +1,36 @@
+name: Python Release Activation CI
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "cloudflare/runtime-worker.mjs"
+      - "wrangler.runtime.preview.example.jsonc"
+      - "wrangler.runtime.production.example.jsonc"
+      - ".github/workflows/deploy-bauman-preview.yml"
+      - ".github/workflows/deploy-bauman-production.yml"
+      - "tests/python-production-smoke.mjs"
+      - "tests/python-release-activation-contract.mjs"
+      - "prompts/subjects/python/evidence/PYTHON_RELEASE_ACTIVATION.json"
+      - ".github/workflows/python-release-activation-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  activation:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - name: Release activation contract
+        run: node tests/python-release-activation-contract.mjs
+      - name: Preserve Python RC contract
+        run: |
+          node tests/python-p6-rc-contract.mjs
+          node tests/python-p4-runtime-security-contract.mjs
+          node tests/python-p5-product-contract.mjs

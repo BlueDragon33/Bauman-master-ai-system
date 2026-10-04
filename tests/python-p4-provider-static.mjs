@@ -36,8 +36,24 @@ for (const [name, source] of [["preview", preview], ["production", production], 
   assert.equal(parsed.exports?.PythonSandbox?.storage, "sqlite", `${name}: missing sqlite export`);
   assert.equal(parsed.vars?.BAUMAN_PYTHON_RUNTIME_PROFILE, "cpython-3.14.8-stdlib-v1", `${name}: wrong profile`);
 }
-assert.equal(JSON.parse(preview).vars.BAUMAN_PYTHON_EXECUTION_ENABLED, "false");
-assert.equal(JSON.parse(production).vars.BAUMAN_PYTHON_EXECUTION_ENABLED, "false");
+const previewExecution = JSON.parse(preview).vars.BAUMAN_PYTHON_EXECUTION_ENABLED;
+const productionExecution = JSON.parse(production).vars.BAUMAN_PYTHON_EXECUTION_ENABLED;
+const activationPath = "prompts/subjects/python/evidence/PYTHON_RELEASE_ACTIVATION.json";
+
+if (fs.existsSync(activationPath)) {
+  const activation = JSON.parse(read(activationPath));
+  assert.equal(activation.schema, "PYTHON_RELEASE_ACTIVATION_V1");
+  assert.equal(activation.sourceP6MergeSha, "23e594b7f6a62d45fdad9f2669866f1410d2db6f");
+  assert.equal(activation.provider, "cloudflare-container-durable-object-v1");
+  assert.equal(activation.runtimeProfile, "cpython-3.14.8-stdlib-v1");
+  assert.equal(activation.productionSmokeRequired, true);
+  assert.equal(activation.rollback?.failClosedExecutionValue, false);
+  assert.equal(previewExecution, activation.previewExecutionEnabled ? "true" : "false");
+  assert.equal(productionExecution, activation.productionExecutionEnabled ? "true" : "false");
+} else {
+  assert.equal(previewExecution, "false");
+  assert.equal(productionExecution, "false");
+}
 assert.equal(JSON.parse(ci).vars.BAUMAN_PYTHON_EXECUTION_ENABLED, "true");
 
 console.log("PYTHON_P4_PROVIDER_STATIC=PASS");
