@@ -49,7 +49,7 @@ assert.match(assessment,/Interpreter\/sandbox\/test-runner providers belong to P
 
 const rubric=read(root+'/PYTHON_PARTIAL_CREDIT_RUBRIC.md');
 assert.match(rubric,/Ordinal evidence bands/i);
-assert.doesNotMatch(rubric,/universal weighted percentage/i);
+assert.match(rubric,/Do not compute a universal weighted percentage/i);
 
 const p4=read(root+'/PYTHON04_INPUT_CONTRACT.md');
 assert.match(p4,/Execution is untrusted/i);
