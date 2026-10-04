@@ -7,8 +7,8 @@
 | PYTHON02 | COMPLETE | PASS |
 | PYTHON03 | COMPLETE | PASS |
 | PYTHON04 | COMPLETE | PASS · CLOUDFLARE CONTAINER CPYTHON 3.14.8 |
-| PYTHON05 | COMPLETE | READY / ACTIVE NEXT |
-| PYTHON06 | COMPLETE | WAITING FOR PYTHON05 |
+| PYTHON05 | COMPLETE | PASS · CODE LAB + AUTHORING |
+| PYTHON06 | COMPLETE | READY / ACTIVE NEXT |
 
 ## Architecture status
 
@@ -22,4 +22,4 @@ Preview/production learner execution remains intentionally feature-gated until P
 
 ## Next operational action
 
-Execute `PYTHON05_LEARNING_EXPERIENCE_AUTHORING_INTEGRATION.md` against the accepted `cpython-3.14.8-stdlib-v1` provider. Do not bypass the shared App Shell, canonical learner-state owner or hidden-test boundary.
+Execute `PYTHON06_ACCEPTANCE_HARDENING_RC_READINESS.md` against the accepted P4/P5 runtime and product surfaces. Production remains blocked until exact RC and shared release gates pass.
