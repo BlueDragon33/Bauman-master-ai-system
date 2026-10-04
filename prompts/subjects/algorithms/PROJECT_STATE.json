@@ -3,7 +3,7 @@
   "subject": "algorithms",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/subjects/algorithms/ALG_MASTER_PROMPT.md",
-  "status": "ALG02_PASS",
+  "status": "ALG03_VALIDATING",
   "activeModule": "ALG03",
   "sequence": [
     "ALG01",
@@ -19,7 +19,7 @@
   ],
   "needsRevalidation": [],
   "lastValidatedSha": "3aabbeaa0cd64a12ed0e73967837eadd913165f4",
-  "currentHeadSha": "3aabbeaa0cd64a12ed0e73967837eadd913165f4",
+  "currentHeadSha": "a316fa1661c5c4dc1db8d028b96311e44f006f70",
   "evidence": [
     "subjects/algorithms/docs/alg01/ALG01_EXECUTIVE_SUMMARY.md",
     "subjects/algorithms/docs/alg01/ALG01_REPOSITORY_MAP.md",
@@ -54,10 +54,25 @@
     "Algorithms ALG02 Canonical Model CI run 37217275094: SUCCESS",
     "Algorithms ALG01 Forensic Baseline CI run 37217275082: SUCCESS on ALG02 head",
     "Development Fast CI run 37217275163: SUCCESS on ALG02 head",
-    "Universal Constitution Compliance run 37217275435: SUCCESS on ALG02 head"
+    "Universal Constitution Compliance run 37217275435: SUCCESS on ALG02 head",
+    "subjects/algorithms/docs/alg03/ALG_P3_ASSESSMENT_MODEL.json",
+    "subjects/algorithms/docs/alg03/ALG_REASONING_CONTRACT.md",
+    "subjects/algorithms/docs/alg03/ALG_CORRECTNESS_ASSESSMENT_CONTRACT.md",
+    "subjects/algorithms/docs/alg03/ALG_COMPLEXITY_ASSESSMENT_CONTRACT.md",
+    "subjects/algorithms/docs/alg03/ALG_ERROR_TAXONOMY.json",
+    "subjects/algorithms/docs/alg03/ALG_ALTERNATE_SOLUTION_POLICY.md",
+    "subjects/algorithms/docs/alg03/ALG_GRADER_CONTRACT.md",
+    "subjects/algorithms/docs/alg03/ALG_PARTIAL_CREDIT_RUBRIC.json",
+    "subjects/algorithms/docs/alg03/ALG_GOLDEN_CORRECT_SOLUTIONS.json",
+    "subjects/algorithms/docs/alg03/ALG_GOLDEN_WRONG_SOLUTIONS.json",
+    "subjects/algorithms/docs/alg03/ALG_GOLDEN_EDGE_CASES.json",
+    "subjects/algorithms/docs/alg03/ALG04_INPUT_CONTRACT.md",
+    "tests/algorithms-alg03-assessment-contract.mjs",
+    "tests/algorithms-alg03-test-of-tests.mjs",
+    ".github/workflows/algorithms-alg03-ci.yml"
   ],
   "blockers": [],
-  "nextAction": "Start ALG03 from subjects/algorithms/docs/alg02/ALG03_INPUT_CONTRACT.md after this terminal ALG02 metadata head re-passes PR-head ALG02, Development Fast and Constitution checks.",
+  "nextAction": "Run exact PR-head ALG03 assessment CI, Development Fast and Universal Constitution checks; reject known wrong implementations, accept alternate correct implementations, and fix any root-cause defect before PASS.",
   "notes": [
     "ALG01 is audit-only; no current learner runtime/content/state behavior was changed.",
     "Actual Algorithms scope is distributed across Programming PR02/PR10/PR11, P4 prerequisite data, and adjacent Math discrete/graph foundations.",
@@ -72,6 +87,10 @@
     "Default canonical algorithm scope is restricted to ALG01/P4 evidence; Dijkstra/topological/MST/greedy/DP/backtracking/heap/union-find remain deferred JIT rather than silently required.",
     "ALG01 merged to main at e66aa6bd7c47c1bd7c91c9e28fdf390b1b930875.",
     "ALG02 exact tested implementation head 3aabbeaa0cd64a12ed0e73967837eadd913165f4 passed canonical, ALG01 regression, P4 integrity, Development Fast and Universal Constitution checks.",
-    "ALG02 terminal PASS metadata tail is governance-only and must re-pass final PR-head checks before merge."
+    "ALG02 terminal PASS metadata tail is governance-only and must re-pass final PR-head checks before merge.",
+    "ALG03 defines Algorithms-specific evidence/grader semantics only; it does not mutate production runtime or learner state.",
+    "Assessment separates functional correctness, complexity, memory, ordering/stability and reasoning dimensions instead of collapsing them into one sample-output score.",
+    "Golden test-of-tests includes known-correct, alternate-correct, known-wrong and edge/adversarial fixtures; Python snippets are fixture evidence only and do not become canonical algorithm identity.",
+    "Official first-attempt/retry/mastery state remains C4/global ownership."
   ]
 }
