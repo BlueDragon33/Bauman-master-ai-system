@@ -3,7 +3,7 @@
   "subject": "python",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/subjects/python/PYTHON_MASTER_PROMPT.md",
-  "status": "READY_FOR_BASELINE_RECONCILIATION",
+  "status": "PYTHON01_VALIDATING",
   "activeModule": "PYTHON01",
   "sequence": [
     "PYTHON01",
@@ -17,7 +17,26 @@
   "needsRevalidation": [],
   "lastValidatedSha": null,
   "currentHeadSha": null,
-  "evidence": [],
+  "evidence": [
+    "prompts/subjects/python/evidence/PYTHON_P1_EXECUTIVE_SUMMARY.md",
+    "prompts/subjects/python/evidence/PYTHON_CURRENT_ARCHITECTURE_MAP.md",
+    "prompts/subjects/python/evidence/PYTHON_CONTENT_INVENTORY.json",
+    "prompts/subjects/python/evidence/PYTHON_RUNTIME_TOOLCHAIN_INVENTORY.md",
+    "prompts/subjects/python/evidence/PYTHON_ASSESSMENT_STATE_AUDIT.md",
+    "prompts/subjects/python/evidence/PYTHON_LEGACY_DUPLICATE_MAP.md",
+    "prompts/subjects/python/evidence/PYTHON_RISK_REGISTER.json",
+    "prompts/subjects/python/evidence/PYTHON_P1_EVIDENCE_INDEX.md",
+    "prompts/subjects/python/evidence/PYTHON_P2_INPUT_CONTRACT.md",
+    "tests/python-p1-forensic-static.mjs"
+  ],
   "blockers": [],
-  "nextAction": "Run PYTHON01 against the current repository state and update this state with evidence."
+  "nextAction": "Validate PYTHON01 forensic evidence on the PR head. If all required gates pass, mark PYTHON01 PASS and advance activeModule to PYTHON02.",
+  "notes": [
+    "Actual learner runtime is subjects/programming/, not subjects/python/.",
+    "Current Programming package mixes Python with Algorithms, Database, ML tooling and Software Engineering.",
+    "No executable learner Python interpreter, sandbox, code runner or Python environment owner is currently present.",
+    "Current 384-question bank is all multiple choice and contains 192 unique question texts / 192 exact duplicate groups.",
+    "Current AI Mentor is deterministic local template generation, not a model/provider authority.",
+    "PYTHON01 is audit-only: no production runtime, content, mastery or learner-state mutation."
+  ]
 }
