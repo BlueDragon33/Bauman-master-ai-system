@@ -18,7 +18,7 @@
     {
       "id": "output-flood",
       "category": "output_limit",
-      "program": "print('x' * 100000000)",
+      "program": "for _ in range(2048): print('x' * 1024)",
       "expected": "bounded_output_with_truncation"
     },
     {
