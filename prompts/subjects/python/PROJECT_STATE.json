@@ -23,7 +23,7 @@
   ],
   "needsRevalidation": [],
   "lastValidatedSha": "c420d2d9bb876ab0be2b14cff58a323537903110",
-  "currentHeadSha": "c420d2d9bb876ab0be2b14cff58a323537903110",
+  "currentHeadSha": "f9b9428a6839f2ec838f0e46ce6c57e2bea5c098",
   "evidence": [
     "prompts/subjects/python/evidence/PYTHON_P1_EXECUTIVE_SUMMARY.md",
     "prompts/subjects/python/evidence/PYTHON_CURRENT_ARCHITECTURE_MAP.md",
@@ -127,12 +127,14 @@
     "Python Release Activation CI run 37209771298: SUCCESS on hardening head",
     "Development Fast CI run 37209771296: SUCCESS on hardening head",
     "Universal Constitution Compliance run 37209771631: SUCCESS on hardening head",
-    "Approved one-time release run 37209439349: FAILED at preview Learning Runtime container deployment; production skipped"
+    "Approved one-time release r2 run 37215938779: FAILED in authorization due shallow checkout; preview/production skipped",
+    "PR #269 merged at f9b9428a6839f2ec838f0e46ce6c57e2bea5c098; full-history release authorization fix + r3 request",
+    "Approved one-time release r3 run 37216104758: authorization PASS; Control preview PASS; Python Docker image build PASS; Cloudflare Containers /containers/me permission failure; production skipped"
   ],
   "blockers": [
-    "External release credential blocker: the configured Cloudflare deployment API token failed access to /accounts/<account>/containers/me during preview container deployment in run 37209439349. Cloudflare container management requires Workers Containers Write / Containers Edit permission. Production was not attempted."
+    "External release credential blocker reconfirmed by exact-main r3 run 37216104758: current Cloudflare deployment API token cannot access /accounts/<account>/containers/me during Learning Runtime preview deployment. Repository authorization and container image build passed. Production was not attempted."
   ],
-  "nextAction": "Merge the post-P6 hardening after terminal PR-head CI. Then update the Cloudflare deployment API token used by bauman-preview/bauman-production to include Workers Containers Write (Containers Edit) for the target account, and rerun exact merged-main preview before production.",
+  "nextAction": "Update the Cloudflare deployment API token used by the Bauman preview/production GitHub environments with the required account-scoped Workers Containers management permission while retaining existing Workers/D1 permissions. Then create a fresh add-only exact-main release request and rerun preview -> verification -> confirmed production -> production smoke. Do not begin the next subject until publish passes.",
   "notes": [
     "Actual learner runtime is subjects/programming/, not subjects/python/.",
     "Current Programming package mixes Python with Algorithms, Database, ML tooling and Software Engineering.",
@@ -162,7 +164,10 @@
     "PYTHON06 tested implementation head cb9a46e8cbacd0be79f2bf63246c9a67805dd7ad passed full P1-P6 static, real provider, browser/offline and preserved P4/P5 regression. Terminal PASS metadata tail must re-pass PR-head CI before merge.",
     "Post-P6 hardening exact implementation head c420d2d9bb876ab0be2b14cff58a323537903110 passed focused real request-abort cancellation, stale-result quarantine, canonical competency authoring, P4/P5/P6 regressions, release activation, Development Fast and Constitution gates.",
     "Cloudflare request-signal cancellation is implemented through Durable Object fetch + enable_request_signal; RPC compatibility methods remain for existing provider contracts.",
-    "One-time approved release run 37209439349 authorized successfully, but preview runtime container deployment failed at Cloudflare /containers/me. Production was skipped, so no production Python publish occurred.",
-    "This metadata tail is governance-only and must re-pass terminal PR-head CI before merge."
+    "This metadata tail is governance-only and must re-pass terminal PR-head CI before merge.",
+    "Release r2 at 70f4fcb150bd9dc677e93570990afbc7aa5a47b9 exposed a repository-side shallow-checkout authorization defect before preview.",
+    "PR #269 fixed release authorization with fetch-depth 0 and passed Release Activation, Development Fast CI, and Universal Constitution Compliance.",
+    "Release r3 at f9b9428a6839f2ec838f0e46ce6c57e2bea5c098 passed authorization and Control preview deployment; its Python 3.14.8 container image built successfully, then Wrangler failed at Cloudflare /accounts/<account>/containers/me due the external deployment credential permission. Production was skipped.",
+    "Prompt sequencing remains ONE_SUBJECT_AT_A_TIME; Algorithms is next in the normalized subject index after Python, but must not start until Python publication closes successfully."
   ]
 }
