@@ -3,8 +3,8 @@
   "subject": "python",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/subjects/python/PYTHON_MASTER_PROMPT.md",
-  "status": "PYTHON01_PASS_BASELINE_CAPTURED",
-  "activeModule": "PYTHON02",
+  "status": "PYTHON02_PASS_CANONICAL_MODEL",
+  "activeModule": "PYTHON03",
   "sequence": [
     "PYTHON01",
     "PYTHON02",
@@ -14,11 +14,12 @@
     "PYTHON06"
   ],
   "completedModules": [
-    "PYTHON01"
+    "PYTHON01",
+    "PYTHON02"
   ],
   "needsRevalidation": [],
-  "lastValidatedSha": "c913fcfe2ecb48ce312410c76da577e811911b58",
-  "currentHeadSha": "c913fcfe2ecb48ce312410c76da577e811911b58",
+  "lastValidatedSha": "0b249f986d3e8c86f4e8ac2290f900f1048bb3eb",
+  "currentHeadSha": "0b249f986d3e8c86f4e8ac2290f900f1048bb3eb",
   "evidence": [
     "prompts/subjects/python/evidence/PYTHON_P1_EXECUTIVE_SUMMARY.md",
     "prompts/subjects/python/evidence/PYTHON_CURRENT_ARCHITECTURE_MAP.md",
@@ -31,10 +32,23 @@
     "prompts/subjects/python/evidence/PYTHON_P2_INPUT_CONTRACT.md",
     "tests/python-p1-forensic-static.mjs",
     "Development Fast CI run 37189296213: SUCCESS; Python P1 forensic static PASS",
-    "Universal Constitution Compliance run 37189296458: SUCCESS"
+    "Universal Constitution Compliance run 37189296458: SUCCESS",
+    "prompts/subjects/python/evidence/PYTHON_P2_CANONICAL_MODEL.json",
+    "prompts/subjects/python/evidence/PYTHON_CURRICULUM_BLUEPRINT.md",
+    "prompts/subjects/python/evidence/PYTHON_COMPETENCY_GRAPH.json",
+    "prompts/subjects/python/evidence/PYTHON_PREREQUISITE_GRAPH.json",
+    "prompts/subjects/python/evidence/PYTHON_CANONICAL_ENTITY_MODEL.md",
+    "prompts/subjects/python/evidence/PYTHON_VERSION_AUTHORITY_POLICY.md",
+    "prompts/subjects/python/evidence/PYTHON_CONTENT_PROVENANCE_POLICY.md",
+    "prompts/subjects/python/evidence/PYTHON_ADJACENT_SUBJECT_BOUNDARY.md",
+    "prompts/subjects/python/evidence/PYTHON_LEGACY_LESSON_OWNERSHIP_MAP.json",
+    "prompts/subjects/python/evidence/PYTHON03_INPUT_CONTRACT.md",
+    "tests/python-p2-canonical-contract.mjs",
+    "Development Fast CI run 37192313375: SUCCESS; Python P2 canonical contract PASS",
+    "Universal Constitution Compliance run 37192313724: SUCCESS"
   ],
   "blockers": [],
-  "nextAction": "Run PYTHON02 Academic Blueprint & Canonical Programming Model from the PYTHON01 evidence-backed input contract. Do not activate a Python runtime or production migration from PYTHON02.",
+  "nextAction": "Run PYTHON03 Code Reasoning, Debugging & Assessment from the accepted PYTHON02 contract. Do not activate an interpreter/sandbox/runtime from PYTHON03.",
   "notes": [
     "Actual learner runtime is subjects/programming/, not subjects/python/.",
     "Current Programming package mixes Python with Algorithms, Database, ML tooling and Software Engineering.",
@@ -42,6 +56,10 @@
     "Current 384-question bank is all multiple choice and contains 192 unique question texts / 192 exact duplicate groups.",
     "Current AI Mentor is deterministic local template generation, not a model/provider authority.",
     "PYTHON01 is audit-only: no production runtime, content, mastery or learner-state mutation.",
-    "PYTHON01 exact tested evidence head is c913fcfe2ecb48ce312410c76da577e811911b58; the terminal state/evidence metadata tail is governance-only and must still pass final PR-head CI before merge."
+    "PYTHON01 exact tested evidence head is c913fcfe2ecb48ce312410c76da577e811911b58; the terminal state/evidence metadata tail is governance-only and must still pass final PR-head CI before merge.",
+    "PYTHON02 accepted 16 canonical competency families and a 32-edge acyclic prerequisite graph.",
+    "All 48 legacy PR lessons are explicitly classified while preserving current IDs and runtime projection.",
+    "PYTHON02 does not bind a Python minor version, mutate learner state, activate runtime execution, or authorize production migration.",
+    "PYTHON02 exact tested evidence head is 0b249f986d3e8c86f4e8ac2290f900f1048bb3eb; this state/evidence tail is governance-only and must still pass final PR-head CI before merge."
   ]
 }

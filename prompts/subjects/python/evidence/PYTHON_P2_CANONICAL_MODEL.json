@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "contentRevision": "PYTHON02-CANDIDATE-1",
-  "status": "VALIDATING",
+  "contentRevision": "PYTHON02-ACCEPTED-1",
+  "status": "PASS",
   "subject": "python",
   "owner": {
     "academicTruth": "prompts/subjects/python/evidence/PYTHON_P2_CANONICAL_MODEL.json",
@@ -97,9 +97,9 @@
     "expectedLegacyLessonCount": 48,
     "expectedCompetencyCount": 16,
     "prerequisiteGraphMustBeAcyclic": true,
-    "exactTestedHead": null,
-    "developmentFastCiRunId": null,
-    "universalConstitutionRunId": null,
+    "exactTestedHead": "0b249f986d3e8c86f4e8ac2290f900f1048bb3eb",
+    "developmentFastCiRunId": 37192313375,
+    "universalConstitutionRunId": 37192313724,
     "runtimeMutation": false,
     "productionDeployment": false
   }
