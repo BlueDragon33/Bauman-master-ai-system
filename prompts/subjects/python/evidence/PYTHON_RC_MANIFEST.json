@@ -1,6 +1,6 @@
 {
   "schema": "PYTHON_RC_MANIFEST_V1",
-  "status": "CANDIDATE_PENDING_P6_CI",
+  "status": "PYTHON06_PASS_RC_READY",
   "baseSha": "ae7b7c5b4677cb6056583c453b93f04ba48793ba",
   "subject": "programming",
   "contentSnapshot": {
@@ -25,5 +25,14 @@
     "python-p5-product-ci",
     "python-p6-rc-ci"
   ],
-  "releasePolicy": "publish only after P6 PASS and exact-revision preview + shared production release gates"
+  "releasePolicy": "publish only after P6 PASS and exact-revision preview + shared production release gates",
+  "testedImplementationSha": "cb9a46e8cbacd0be79f2bf63246c9a67805dd7ad",
+  "ciEvidence": {
+    "pythonP6Rc": 37208454277,
+    "pythonP5Product": 37208454217,
+    "pythonP4Provider": 37208454214,
+    "developmentFast": 37208454215,
+    "constitution": 37208454674
+  },
+  "releaseIdentityPolicy": "Deploy only the final merged main SHA after exact-revision preview verification; content/runtime identities in this manifest are frozen."
 }
