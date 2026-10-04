@@ -46,11 +46,14 @@ assert.match(ai,/untrusted until sandboxed\/tested/i);
 
 const fixtures=JSON.parse(read('PYTHON_RUNTIME_GOLDEN_FIXTURES.json'));
 assert.equal(fixtures.schema,'PYTHON_RUNTIME_GOLDEN_FIXTURES_V1');
-assert.equal(fixtures.learnerExecutionEnabled,false);\nassert.equal(fixtures.status,'PROVIDER_PROVEN_LOCAL_CONTAINER_CI');\nassert.equal(fixtures.runtimeProfileId,'cpython-3.14.8-stdlib-v1');
+assert.equal(fixtures.learnerExecutionEnabled,false);
+assert.equal(fixtures.status,'PROVIDER_PROVEN_LOCAL_CONTAINER_CI');
+assert.equal(fixtures.runtimeProfileId,'cpython-3.14.8-stdlib-v1');
 const ids=new Set(fixtures.fixtures.map(x=>x.id));
 for(const id of ['infinite-loop','huge-allocation','output-flood','path-traversal','env-read','network','subprocess','unsafe-pickle','stale-result','hidden-test-leak'])assert.ok(ids.has(id),`missing runtime fixture ${id}`);
 
 const handoff=read('PYTHON05_INPUT_CONTRACT.md');
-assert.match(handoff,/Status: READY/);\nassert.match(handoff,/cloudflare-container-durable-object-v1/);
+assert.match(handoff,/Status: READY/);
+assert.match(handoff,/cloudflare-container-durable-object-v1/);
 
 console.log('PYTHON_P4_RUNTIME_SECURITY_CONTRACT=PASS');
