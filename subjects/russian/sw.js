@@ -1,5 +1,5 @@
 'use strict';
-const CACHE='russian-app-shell-v10-auth-deferred';
+const CACHE='russian-app-shell-v11-post-activation';
 const DATA_CACHE='russian-learning-data-v1';
 const SHELL=[
   './','./index.html','./manifest.webmanifest','../shared/host-bridge.js',
@@ -12,22 +12,49 @@ const SHELL=[
 ];
 const PROTECTED_OFFLINE=['../../foundation/domain-model/legacy-mapping-registry.v1.json'];
 const OPTIONAL_LARGE=new Set(['dialogue-bauman-az.json','deep-speaking-bauman.json','speaking-link-index.json']);
+const SHELL_FETCH_TIMEOUT_MS=8000;
 const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
-async function cacheShellWithRetry(){
-  const cache=await caches.open(CACHE);let lastError=null;
+async function cacheShellAsset(cache,url){
+  const existing=await cache.match(url);
+  if(existing)return {url,cached:true};
+  let lastError=null;
   for(let attempt=1;attempt<=3;attempt++){
+    const controller=typeof AbortController==='function'?new AbortController():null;
+    const timer=controller?setTimeout(()=>controller.abort(),SHELL_FETCH_TIMEOUT_MS):null;
     try{
-      await cache.addAll(SHELL.map(url=>new Request(url,{cache:'reload'})));
-      return;
+      const request=new Request(url,{cache:'reload',credentials:'same-origin'});
+      const response=await fetch(request,controller?{signal:controller.signal}:undefined);
+      if(!response.ok)throw new Error('HTTP '+response.status);
+      await cache.put(request,response.clone());
+      return {url,cached:true};
     }catch(e){
       lastError=e;
-      if(attempt<3)await sleep(500*attempt);
+      if(attempt<3)await sleep(400*attempt);
+    }finally{
+      if(timer)clearTimeout(timer);
     }
   }
-  throw lastError||new Error('Russian shell precache failed');
+  throw new Error('Russian shell asset failed '+url+': '+String(lastError?.message||lastError||'unknown'));
 }
-self.addEventListener('install',event=>{event.waitUntil(cacheShellWithRetry().then(()=>self.skipWaiting()));});
+async function cacheShellAfterActivation(){
+  const cache=await caches.open(CACHE);
+  const results=await Promise.allSettled(SHELL.map(url=>cacheShellAsset(cache,url)));
+  const failures=results.filter(x=>x.status==='rejected').map(x=>String(x.reason?.message||x.reason||'unknown'));
+  if(failures.length)throw new Error('Russian shell cache failed: '+failures.join(' | '));
+  return SHELL.length;
+}
+self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(()=>self.skipWaiting()));});
 self.addEventListener('activate',event=>{event.waitUntil(Promise.all([caches.keys().then(keys=>Promise.all(keys.filter(k=>![CACHE,DATA_CACHE].includes(k)).map(k=>caches.delete(k)))),self.clients.claim()]));});
+self.addEventListener('message',event=>{
+  if(event.data?.type!=='RUSSIAN_PREPARE_OFFLINE_SHELL')return;
+  const port=event.ports?.[0]||null;
+  event.waitUntil(cacheShellAfterActivation().then(count=>{
+    port?.postMessage({ok:true,count,cache:CACHE});
+  }).catch(error=>{
+    port?.postMessage({ok:false,error:String(error?.message||error||'Russian shell cache failed')});
+    throw error;
+  }));
+});
 self.addEventListener('fetch',event=>{
   const req=event.request;if(req.method!=='GET')return;
   const url=new URL(req.url);if(url.origin!==self.location.origin)return;
