@@ -7,8 +7,9 @@
   const PROTECTED_OFFLINE_ASSETS=['../../foundation/domain-model/legacy-mapping-registry.v1.json'];
   const DATA_FETCH_TIMEOUT_MS=8000;
   const SW_READY_TIMEOUT_MS=20000;
+  const SW_SHELL_TIMEOUT_MS=45000;
   const SW_REGISTER_ATTEMPTS=3;
-  let preparing=false, prepared=Number(localStorage.getItem('ru_offline_core_count')||0), swReadyPromise=null;
+  let preparing=false, prepared=Number(localStorage.getItem('ru_offline_core_count')||0), protectedPrepared=false, shellPrepared=false, swReadyPromise=null;
 
   function statusButton(){
     const host=document.querySelector('.ru-top-actions');if(!host)return null;
@@ -18,7 +19,7 @@
   }
   function paint(){
     const btn=statusButton();if(!btn)return;
-    const online=navigator.onLine;const ready=prepared>=CORE_DATA.length;
+    const online=navigator.onLine;const ready=prepared>=CORE_DATA.length&&protectedPrepared&&shellPrepared;
     btn.dataset.online=online?'1':'0';btn.dataset.ready=ready?'1':'0';
     const label=preparing?'Đang chuẩn bị offline…':ready?(online?'Offline sẵn sàng':'Đang dùng offline'):(online?`Online · offline ${prepared}/${CORE_DATA.length}`:'Offline · dữ liệu chưa đủ');
     const span=btn.querySelector('span');if(span)span.textContent=label;btn.title=ready?'Bộ dữ liệu học bắt buộc đã được cache cho lần dùng offline tiếp theo.':'Bấm để chuẩn bị bộ dữ liệu học bắt buộc cho offline.';
@@ -37,8 +38,15 @@
     return count;
   }
   async function reconcileOfflineCore(){
-    try{prepared=await countCached(CORE_DATA);localStorage.setItem('ru_offline_core_count',String(prepared));}
-    catch(_){prepared=0;}
+    try{
+      prepared=await countCached(CORE_DATA);
+      const shellName=await currentShellCacheName();
+      if(shellName){
+        const cache=await caches.open(shellName);
+        protectedPrepared=(await Promise.all(PROTECTED_OFFLINE_ASSETS.map(url=>cache.match(url)))).every(Boolean);
+      }else protectedPrepared=false;
+      localStorage.setItem('ru_offline_core_count',String(prepared));
+    }catch(_){prepared=0;protectedPrepared=false;}
     paint();return prepared;
   }
   async function cacheNames(names,{refresh=false}={}){
@@ -75,6 +83,7 @@
       if(!res.ok)throw new Error('Protected offline asset unavailable: '+url+' HTTP '+res.status);
       await cache.put(url,res.clone());
     }
+    protectedPrepared=true;paint();
     return PROTECTED_OFFLINE_ASSETS.length;
   }
   async function prepareOfflineCore(){
@@ -82,6 +91,7 @@
     preparing=true;paint();
     try{
       await ensureServiceWorkerReady();
+      await prepareServiceWorkerShell();
       await prepareProtectedOfflineAssets();
       prepared=await cacheNames(CORE_DATA,{refresh:true});
       localStorage.setItem('ru_offline_core_count',String(prepared));
@@ -128,13 +138,34 @@
     try{return await run;}
     catch(e){if(swReadyPromise===run)swReadyPromise=null;throw e;}
   }
+  async function prepareServiceWorkerShell(){
+    const reg=await ensureServiceWorkerReady();
+    const worker=navigator.serviceWorker.controller||reg?.active;
+    if(!worker)throw new Error('Russian service-worker active worker unavailable for shell preparation');
+    if(typeof MessageChannel!=='function')throw new Error('Russian service-worker shell preparation requires MessageChannel');
+    const result=await promiseTimeout(new Promise((resolve,reject)=>{
+      const channel=new MessageChannel();
+      channel.port1.onmessage=event=>{
+        const payload=event.data||{};
+        if(payload.ok)resolve(payload);
+        else reject(new Error(payload.error||'Russian service-worker shell preparation failed'));
+      };
+      worker.postMessage({type:'RUSSIAN_PREPARE_OFFLINE_SHELL'},[channel.port2]);
+    }),SW_SHELL_TIMEOUT_MS,'Russian service-worker shell preparation');
+    shellPrepared=Number(result?.count||0)>0;paint();
+    return result;
+  }
   async function register(){
     if(!('serviceWorker'in navigator)||location.protocol==='file:')return;
-    try{await ensureServiceWorkerReady();await reconcileOfflineCore();idleWarm();}
-    catch(e){console.warn('Russian offline shell unavailable',e);}
+    try{
+      await ensureServiceWorkerReady();
+      await prepareServiceWorkerShell();
+      await reconcileOfflineCore();
+      idleWarm();
+    }catch(e){console.warn('Russian offline shell unavailable',e);}
   }
   function bootOfflineRuntime(){paint();register();}
   window.addEventListener('online',()=>{paint();reconcileOfflineCore();});window.addEventListener('offline',()=>{paint();reconcileOfflineCore();});
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bootOfflineRuntime,{once:true});else bootOfflineRuntime();
-  window.RussianRuntimeOptimizer={schema:SCHEMA,prepareOfflineCore,reconcileOfflineCore,ensureServiceWorkerReady,prepareProtectedOfflineAssets,status:()=>({online:navigator.onLine,prepared,total:CORE_DATA.length,ready:prepared>=CORE_DATA.length,serviceWorkerControlled:!!navigator.serviceWorker?.controller}),coreData:[...CORE_DATA],protectedOfflineAssets:[...PROTECTED_OFFLINE_ASSETS]};
+  window.RussianRuntimeOptimizer={schema:SCHEMA,prepareOfflineCore,reconcileOfflineCore,ensureServiceWorkerReady,prepareServiceWorkerShell,prepareProtectedOfflineAssets,status:()=>({online:navigator.onLine,prepared,total:CORE_DATA.length,protectedPrepared,shellPrepared,ready:prepared>=CORE_DATA.length&&protectedPrepared&&shellPrepared,serviceWorkerControlled:!!navigator.serviceWorker?.controller}),coreData:[...CORE_DATA],protectedOfflineAssets:[...PROTECTED_OFFLINE_ASSETS]};
 })();
