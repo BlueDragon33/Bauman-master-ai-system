@@ -62,7 +62,9 @@ jobs:
           exit 1
 
       - name: Real provider product integration
+        shell: bash
         run: |
+          set -euo pipefail
           mkdir -p artifacts/python-p5-provider
           node tests/python-p5-provider-product-live.mjs | tee artifacts/python-p5-provider/result.json
 
