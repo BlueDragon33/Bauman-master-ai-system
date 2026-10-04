@@ -1,0 +1,525 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "algorithms",
+  "policies": {
+    "graphDefault": "simple directed-or-undirected graph as task declares; self-loops/parallel edges require explicit opt-in",
+    "multipleValidOrder": "accept any output satisfying postconditions unless ordering/tie policy is explicit",
+    "duplicateSearch": "any matching index is valid unless leftmost/rightmost is explicitly requested"
+  },
+  "fixtures": [
+    {
+      "id": "alg.edge.search.empty",
+      "family": "binary-search",
+      "input": {
+        "a": [],
+        "target": 5
+      },
+      "expected": {
+        "kind": "exact",
+        "value": -1
+      },
+      "targets": [
+        "BOUNDARY_ERROR"
+      ]
+    },
+    {
+      "id": "alg.edge.search.singleton-hit",
+      "family": "binary-search",
+      "input": {
+        "a": [
+          7
+        ],
+        "target": 7
+      },
+      "expected": {
+        "kind": "valid-index",
+        "target": 7
+      },
+      "targets": [
+        "BOUNDARY_ERROR"
+      ]
+    },
+    {
+      "id": "alg.edge.search.singleton-miss",
+      "family": "binary-search",
+      "input": {
+        "a": [
+          7
+        ],
+        "target": 6
+      },
+      "expected": {
+        "kind": "exact",
+        "value": -1
+      },
+      "targets": [
+        "BOUNDARY_ERROR"
+      ]
+    },
+    {
+      "id": "alg.edge.search.first",
+      "family": "binary-search",
+      "input": {
+        "a": [
+          1,
+          3,
+          5,
+          7
+        ],
+        "target": 1
+      },
+      "expected": {
+        "kind": "valid-index",
+        "target": 1
+      },
+      "targets": [
+        "BOUNDARY_ERROR"
+      ]
+    },
+    {
+      "id": "alg.edge.search.last",
+      "family": "binary-search",
+      "input": {
+        "a": [
+          1,
+          3,
+          5,
+          7
+        ],
+        "target": 7
+      },
+      "expected": {
+        "kind": "valid-index",
+        "target": 7
+      },
+      "targets": [
+        "BOUNDARY_ERROR"
+      ]
+    },
+    {
+      "id": "alg.edge.search.missing-high",
+      "family": "binary-search",
+      "input": {
+        "a": [
+          1,
+          3,
+          5,
+          7
+        ],
+        "target": 9
+      },
+      "expected": {
+        "kind": "exact",
+        "value": -1
+      },
+      "targets": [
+        "BOUNDARY_ERROR"
+      ]
+    },
+    {
+      "id": "alg.edge.search.duplicates",
+      "family": "binary-search",
+      "input": {
+        "a": [
+          1,
+          2,
+          2,
+          2,
+          5
+        ],
+        "target": 2
+      },
+      "expected": {
+        "kind": "any-valid-index",
+        "valid": [
+          1,
+          2,
+          3
+        ]
+      },
+      "targets": [
+        "TRAVERSAL_ORDER_ERROR"
+      ]
+    },
+    {
+      "id": "alg.edge.sort.empty",
+      "family": "stable-sort",
+      "input": {
+        "items": []
+      },
+      "expected": {
+        "kind": "sorted-stable-permutation"
+      },
+      "targets": [
+        "BOUNDARY_ERROR"
+      ]
+    },
+    {
+      "id": "alg.edge.sort.singleton",
+      "family": "stable-sort",
+      "input": {
+        "items": [
+          [
+            2,
+            "a"
+          ]
+        ]
+      },
+      "expected": {
+        "kind": "sorted-stable-permutation"
+      },
+      "targets": [
+        "BOUNDARY_ERROR"
+      ]
+    },
+    {
+      "id": "alg.edge.sort.duplicates",
+      "family": "stable-sort",
+      "input": {
+        "items": [
+          [
+            2,
+            "a"
+          ],
+          [
+            1,
+            "x"
+          ],
+          [
+            2,
+            "b"
+          ],
+          [
+            1,
+            "y"
+          ]
+        ]
+      },
+      "expected": {
+        "kind": "sorted-stable-permutation"
+      },
+      "targets": [
+        "STABILITY_ERROR",
+        "PERMUTATION_ERROR"
+      ]
+    },
+    {
+      "id": "alg.edge.sort.all-equal",
+      "family": "stable-sort",
+      "input": {
+        "items": [
+          [
+            1,
+            "a"
+          ],
+          [
+            1,
+            "b"
+          ],
+          [
+            1,
+            "c"
+          ]
+        ]
+      },
+      "expected": {
+        "kind": "sorted-stable-permutation"
+      },
+      "targets": [
+        "STABILITY_ERROR"
+      ]
+    },
+    {
+      "id": "alg.edge.sort.already-sorted",
+      "family": "stable-sort",
+      "input": {
+        "items": [
+          [
+            1,
+            "a"
+          ],
+          [
+            2,
+            "b"
+          ],
+          [
+            3,
+            "c"
+          ]
+        ]
+      },
+      "expected": {
+        "kind": "sorted-stable-permutation"
+      },
+      "targets": [
+        "CASE_CONFUSION"
+      ]
+    },
+    {
+      "id": "alg.edge.sort.reverse",
+      "family": "stable-sort",
+      "input": {
+        "items": [
+          [
+            3,
+            "a"
+          ],
+          [
+            2,
+            "b"
+          ],
+          [
+            1,
+            "c"
+          ]
+        ]
+      },
+      "expected": {
+        "kind": "sorted-stable-permutation"
+      },
+      "targets": [
+        "CASE_CONFUSION"
+      ]
+    },
+    {
+      "id": "alg.edge.graph.disconnected",
+      "family": "reachability",
+      "input": {
+        "graph": {
+          "A": [
+            "B"
+          ],
+          "B": [],
+          "C": [
+            "D"
+          ],
+          "D": []
+        },
+        "start": "A"
+      },
+      "expected": {
+        "kind": "reachable-set",
+        "values": [
+          "A",
+          "B"
+        ]
+      },
+      "targets": [
+        "GRAPH_MODEL_ERROR"
+      ]
+    },
+    {
+      "id": "alg.edge.graph.cycle",
+      "family": "reachability",
+      "input": {
+        "graph": {
+          "A": [
+            "B"
+          ],
+          "B": [
+            "C"
+          ],
+          "C": [
+            "A"
+          ]
+        },
+        "start": "A"
+      },
+      "expected": {
+        "kind": "reachable-set",
+        "values": [
+          "A",
+          "B",
+          "C"
+        ]
+      },
+      "targets": [
+        "TERMINATION_ERROR",
+        "VISITED_TIMING_ERROR"
+      ]
+    },
+    {
+      "id": "alg.edge.graph.bfs-tie",
+      "family": "bfs-distance",
+      "input": {
+        "graph": {
+          "A": [
+            "B",
+            "C"
+          ],
+          "B": [
+            "D"
+          ],
+          "C": [
+            "D"
+          ],
+          "D": []
+        },
+        "start": "A"
+      },
+      "expected": {
+        "kind": "distance-map",
+        "value": {
+          "A": 0,
+          "B": 1,
+          "C": 1,
+          "D": 2
+        },
+        "parentOfDAny": [
+          "B",
+          "C"
+        ]
+      },
+      "targets": [
+        "TRAVERSAL_ORDER_ERROR"
+      ]
+    },
+    {
+      "id": "alg.edge.graph.unreachable-target",
+      "family": "bfs-distance",
+      "input": {
+        "graph": {
+          "A": [
+            "B"
+          ],
+          "B": [],
+          "Z": []
+        },
+        "start": "A"
+      },
+      "expected": {
+        "kind": "distance-map-excludes-unreachable",
+        "unreachable": [
+          "Z"
+        ]
+      },
+      "targets": [
+        "GRAPH_MODEL_ERROR"
+      ]
+    },
+    {
+      "id": "alg.edge.graph.weighted-bfs-invalid",
+      "family": "precondition",
+      "input": {
+        "weightedEdges": [
+          [
+            "A",
+            "B",
+            10
+          ],
+          [
+            "A",
+            "C",
+            1
+          ],
+          [
+            "C",
+            "B",
+            1
+          ]
+        ]
+      },
+      "expected": {
+        "kind": "reject-claim",
+        "reason": "BFS edge-count shortest is not minimum-weight shortest"
+      },
+      "targets": [
+        "PRECONDITION_ERROR",
+        "GRAPH_MODEL_ERROR"
+      ]
+    },
+    {
+      "id": "alg.edge.graph.self-loop-policy",
+      "family": "graph-model",
+      "input": {
+        "edges": [
+          [
+            "A",
+            "A"
+          ]
+        ]
+      },
+      "expected": {
+        "kind": "require-explicit-policy"
+      },
+      "targets": [
+        "GRAPH_MODEL_ERROR"
+      ]
+    },
+    {
+      "id": "alg.edge.graph.parallel-edge-policy",
+      "family": "graph-model",
+      "input": {
+        "edges": [
+          [
+            "A",
+            "B"
+          ],
+          [
+            "A",
+            "B"
+          ]
+        ]
+      },
+      "expected": {
+        "kind": "require-explicit-policy"
+      },
+      "targets": [
+        "GRAPH_MODEL_ERROR"
+      ]
+    },
+    {
+      "id": "alg.edge.hash.collision",
+      "family": "hashing",
+      "input": {
+        "keys": [
+          "k1",
+          "k2"
+        ],
+        "forcedHash": 0
+      },
+      "expected": {
+        "kind": "both-keys-retrievable"
+      },
+      "targets": [
+        "COLLISION_HANDLING_ERROR"
+      ]
+    },
+    {
+      "id": "alg.edge.bst.degenerate",
+      "family": "bst-complexity",
+      "input": {
+        "insertOrder": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      },
+      "expected": {
+        "kind": "height",
+        "value": 5,
+        "searchWorst": "O(n)"
+      },
+      "targets": [
+        "COMPLEXITY_ERROR"
+      ]
+    },
+    {
+      "id": "alg.edge.recursion.large-depth",
+      "family": "runtime-boundary",
+      "input": {
+        "depth": "large"
+      },
+      "expected": {
+        "kind": "separate-runtime-limit-from-algorithmic-space",
+        "algorithmicAux": "O(h)"
+      },
+      "targets": [
+        "IMPLEMENTATION_LANGUAGE_ERROR",
+        "COMPLEXITY_ERROR"
+      ]
+    }
+  ]
+}

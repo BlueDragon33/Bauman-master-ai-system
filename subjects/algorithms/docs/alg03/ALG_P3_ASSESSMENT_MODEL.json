@@ -1,0 +1,169 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentRevision": "ALG03-CANDIDATE-1",
+  "status": "VALIDATING",
+  "subject": "algorithms",
+  "owner": {
+    "assessmentTruth": "subjects/algorithms/docs/alg03/ALG_P3_ASSESSMENT_MODEL.json",
+    "academicInputs": [
+      "subjects/algorithms/docs/alg02/ALG_P2_CANONICAL_MODEL.json",
+      "subjects/algorithms/docs/alg02/ALG_COMPETENCY_GRAPH.json",
+      "subjects/algorithms/docs/alg02/ALG_ALGORITHM_REGISTRY.json",
+      "subjects/algorithms/docs/alg02/ALG_DATA_STRUCTURE_REGISTRY.json"
+    ],
+    "rule": "ALG03 owns Algorithms-specific evidence semantics and grader contracts. C4 owns generic mastery aggregation/state; execution providers emit evidence only."
+  },
+  "reasoningDimensions": [
+    {
+      "id": "representation",
+      "title": "Representation",
+      "description": "Model the data/ADT/graph/tree representation and state semantics correctly."
+    },
+    {
+      "id": "strategy",
+      "title": "Strategy selection",
+      "description": "Choose an algorithmic strategy that satisfies constraints and preconditions."
+    },
+    {
+      "id": "trace",
+      "title": "State trace",
+      "description": "Track meaningful canonical algorithm state rather than bytecode/runtime noise."
+    },
+    {
+      "id": "invariant",
+      "title": "Invariant reasoning",
+      "description": "State and use the invariant or structural property that stays true."
+    },
+    {
+      "id": "correctness",
+      "title": "Correctness",
+      "description": "Connect preconditions, invariant, termination and postcondition or provide a counterexample."
+    },
+    {
+      "id": "complexity",
+      "title": "Complexity",
+      "description": "Identify size measure, case, representation, time/space and justified asymptotic bound."
+    },
+    {
+      "id": "implementation",
+      "title": "Implementation",
+      "description": "Implement behavior without relying on one reference source shape."
+    },
+    {
+      "id": "testing",
+      "title": "Testing",
+      "description": "Use edge cases/properties that could falsify the solution."
+    },
+    {
+      "id": "tradeoff",
+      "title": "Trade-off",
+      "description": "Explain why the chosen structure/algorithm fits the workload and what is sacrificed."
+    },
+    {
+      "id": "explanation",
+      "title": "Explanation",
+      "description": "Communicate assumptions, steps, limitations and transfer clearly."
+    }
+  ],
+  "evidenceLevels": [
+    {
+      "id": "L0_OBSERVE",
+      "meaning": "Can observe/recognize a result; insufficient alone for competence."
+    },
+    {
+      "id": "L1_EXECUTE_TRACE",
+      "meaning": "Can execute/trace a declared algorithm or operation correctly."
+    },
+    {
+      "id": "L2_EXPLAIN",
+      "meaning": "Can explain representation, strategy, precondition and state changes."
+    },
+    {
+      "id": "L3_JUSTIFY",
+      "meaning": "Can justify correctness and complexity with invariant/assumption evidence."
+    },
+    {
+      "id": "L4_TRANSFER",
+      "meaning": "Can choose/adapt the approach on a structurally similar but surface-changed task."
+    }
+  ],
+  "resultDimensions": {
+    "functionalCorrectness": "separate",
+    "complexityCompliance": "separate",
+    "memoryCompliance": "separate",
+    "orderingStabilityCompliance": "separate",
+    "explanationEvidence": "separate",
+    "overallRule": "A task may require all declared hard constraints. Functional correctness cannot silently override a failed complexity/memory/precondition requirement."
+  },
+  "scoreScale": {
+    "min": 0,
+    "max": 4,
+    "anchors": {
+      "0": "missing or contradicts canonical contract",
+      "1": "partial recognition; major unsupported gaps",
+      "2": "partially correct with material error/omission",
+      "3": "correct for declared scope with minor omission",
+      "4": "correct, justified, edge-aware and transferable for the requested dimension"
+    }
+  },
+  "assessmentModes": [
+    "diagnostic",
+    "practice",
+    "assessment-preview",
+    "official-assessment-candidate",
+    "oral-defense",
+    "transfer"
+  ],
+  "graderPrinciples": [
+    "behavior_and_contract_over_source_shape",
+    "property_checks_over_single_sample",
+    "multiple_valid_outputs_supported",
+    "complexity_and_functionality_scored_separately",
+    "hidden_tests_never_exposed_to_ai_or_learner",
+    "timing_never_sole_asymptotic_truth",
+    "arbitrary_source_complexity_not_claimed_without_supported_analyzer",
+    "first_attempt_history_owned_by_C4",
+    "retries_append_evidence_not_overwrite_first_attempt"
+  ],
+  "retryPolicy": {
+    "owner": "C4/global assessment policy",
+    "subjectRecommendation": "After a material algorithmic error, route to targeted remediation and/or a changed-surface retry rather than unlimited identical resubmission.",
+    "officialFirstAttemptWrite": false,
+    "masteryWrite": false
+  },
+  "aiBoundary": {
+    "can": [
+      "restate constraints",
+      "ask Socratic questions",
+      "suggest representation/strategy family",
+      "coach invariant reasoning",
+      "generate temporary practice under canonical contracts"
+    ],
+    "cannot": [
+      "declare official score",
+      "write mastery",
+      "reveal hidden tests",
+      "fabricate canonical complexity",
+      "bypass solution-reveal policy"
+    ]
+  },
+  "runtimeMutationAuthorized": false,
+  "learnerStateMutationAuthorized": false,
+  "deliverables": [
+    "subjects/algorithms/docs/alg03/ALG_REASONING_CONTRACT.md",
+    "subjects/algorithms/docs/alg03/ALG_CORRECTNESS_ASSESSMENT_CONTRACT.md",
+    "subjects/algorithms/docs/alg03/ALG_COMPLEXITY_ASSESSMENT_CONTRACT.md",
+    "subjects/algorithms/docs/alg03/ALG_ERROR_TAXONOMY.json",
+    "subjects/algorithms/docs/alg03/ALG_ALTERNATE_SOLUTION_POLICY.md",
+    "subjects/algorithms/docs/alg03/ALG_GRADER_CONTRACT.md",
+    "subjects/algorithms/docs/alg03/ALG_GOLDEN_CORRECT_SOLUTIONS.json",
+    "subjects/algorithms/docs/alg03/ALG_GOLDEN_WRONG_SOLUTIONS.json",
+    "subjects/algorithms/docs/alg03/ALG_GOLDEN_EDGE_CASES.json",
+    "subjects/algorithms/docs/alg03/ALG04_INPUT_CONTRACT.md"
+  ],
+  "validationEvidence": {
+    "baselineAlg02MergeSha": "ddcc314d0cbbcb61026a5be21fb425ff0f614ba5",
+    "runtimeMutation": false,
+    "learnerStateMutation": false
+  }
+}

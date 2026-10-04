@@ -4,42 +4,28 @@
 |---|---|---|
 | ALG00 | COMPLETE | READY |
 | ALG01 | COMPLETE | PASS · FORENSIC BASELINE ACCEPTED |
-| ALG02 | COMPLETE | **PASS · CANONICAL MODEL ACCEPTED** |
-| ALG03 | COMPLETE / READY TO EXECUTE | READY |
-| ALG04 | COMPLETE / READY AFTER ALG02/ALG03 | NOT_STARTED |
+| ALG02 | COMPLETE | PASS · CANONICAL MODEL ACCEPTED |
+| ALG03 | COMPLETE | **VALIDATING · ASSESSMENT MODEL BUILT** |
+| ALG04 | COMPLETE / READY AFTER ALG03 | NOT_STARTED |
 | ALG05 | COMPLETE / READY AFTER ALG02–ALG04 | NOT_STARTED |
 | ALG06 | COMPLETE / READY AFTER PRODUCT INTEGRATION | NOT_STARTED |
 
-## Architecture status
+## ALG03 candidate
 
-`ALGORITHMS & DATA STRUCTURES PROMPT ARCHITECTURE: COMPLETE`
+The candidate now defines:
+- ten separately observable reasoning dimensions;
+- correctness evidence beyond sample output;
+- structured complexity evidence with representation/case/time-space separation;
+- property-based acceptance of alternate valid outputs/algorithms;
+- 18 error categories with targeted remediation/recheck evidence;
+- partial-credit profiles without allowing weights to bypass hard constraints;
+- known-correct, alternate-correct and known-wrong solution libraries;
+- 23 edge/adversarial fixtures covering search boundaries, sort duplicates/stability, disconnected/cyclic graphs, BFS ties/preconditions, hash collisions and degenerate BSTs;
+- a grader contract that keeps hidden tests provider-side and returns evidence without mastery writes;
+- a deterministic test-of-tests harness for implementation fixtures.
 
-## ALG01
-
-Merged main SHA: `e66aa6bd7c47c1bd7c91c9e28fdf390b1b930875`.
-
-## ALG02 accepted model
-
-Exact tested implementation head: `3aabbeaa0cd64a12ed0e73967837eadd913165f4`
-
-Acceptance evidence:
-- Algorithms ALG02 Canonical Model CI `37217275094` — SUCCESS
-- Algorithms ALG01 Forensic Baseline CI `37217275082` — SUCCESS
-- Development Fast CI `37217275163` — SUCCESS
-- Universal Constitution Compliance `37217275435` — SUCCESS
-
-Accepted canonical truth:
-- 15 stable `alg.comp.*` competencies and an acyclic prerequisite graph;
-- language-neutral algorithm/entity IDs;
-- explicit ADT vs representation separation;
-- preconditions, postconditions, invariants and trace schemas as first-class data;
-- complexity claims bind input measure, dimension, case and assumptions;
-- baseline core algorithms: binary search, insertion/selection/bubble/merge/quick sort, tree DFS traversal, BFS and DFS;
-- baseline structures: array/list/stack/queue/hash/tree/BST/graph list/matrix;
-- PR02/PR10/PR11 and P4 are compatibility projections, not competing truth owners;
-- Dijkstra/topological/MST/heap/union-find/greedy/DP/backtracking remain deferred JIT until downstream evidence requires them;
-- no learner runtime, production or learner-state mutation was authorized.
+ALG03 does not add an execution provider or learner-state authority.
 
 ## Next operational action
 
-After this terminal metadata head re-passes exact PR checks and merges, execute `ALG03_REASONING_CORRECTNESS_COMPLEXITY_ASSESSMENT.md` using `subjects/algorithms/docs/alg02/ALG03_INPUT_CONTRACT.md`.
+Run exact PR-head ALG03 CI plus Development Fast and Universal Constitution. Mark PASS only if known wrong solutions are rejected, alternate correct solutions are accepted, upstream ALG01/ALG02 contracts remain valid and no C4 ownership boundary is crossed.

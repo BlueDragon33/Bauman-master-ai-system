@@ -1,0 +1,159 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "algorithms",
+  "scale": {
+    "min": 0,
+    "max": 4
+  },
+  "dimensions": [
+    {
+      "id": "representation",
+      "anchors": {
+        "0": "No usable evidence or contradicts canonical contract.",
+        "1": "Recognizes part of the dimension but has major gap/error.",
+        "2": "Partially correct; material omission/error remains.",
+        "3": "Correct for declared scope; minor omission only.",
+        "4": "Correct, justified, edge-aware and transferable."
+      }
+    },
+    {
+      "id": "strategy",
+      "anchors": {
+        "0": "No usable evidence or contradicts canonical contract.",
+        "1": "Recognizes part of the dimension but has major gap/error.",
+        "2": "Partially correct; material omission/error remains.",
+        "3": "Correct for declared scope; minor omission only.",
+        "4": "Correct, justified, edge-aware and transferable."
+      }
+    },
+    {
+      "id": "trace",
+      "anchors": {
+        "0": "No usable evidence or contradicts canonical contract.",
+        "1": "Recognizes part of the dimension but has major gap/error.",
+        "2": "Partially correct; material omission/error remains.",
+        "3": "Correct for declared scope; minor omission only.",
+        "4": "Correct, justified, edge-aware and transferable."
+      }
+    },
+    {
+      "id": "invariant",
+      "anchors": {
+        "0": "No usable evidence or contradicts canonical contract.",
+        "1": "Recognizes part of the dimension but has major gap/error.",
+        "2": "Partially correct; material omission/error remains.",
+        "3": "Correct for declared scope; minor omission only.",
+        "4": "Correct, justified, edge-aware and transferable."
+      }
+    },
+    {
+      "id": "correctness",
+      "anchors": {
+        "0": "No usable evidence or contradicts canonical contract.",
+        "1": "Recognizes part of the dimension but has major gap/error.",
+        "2": "Partially correct; material omission/error remains.",
+        "3": "Correct for declared scope; minor omission only.",
+        "4": "Correct, justified, edge-aware and transferable."
+      }
+    },
+    {
+      "id": "complexity",
+      "anchors": {
+        "0": "No usable evidence or contradicts canonical contract.",
+        "1": "Recognizes part of the dimension but has major gap/error.",
+        "2": "Partially correct; material omission/error remains.",
+        "3": "Correct for declared scope; minor omission only.",
+        "4": "Correct, justified, edge-aware and transferable."
+      }
+    },
+    {
+      "id": "implementation",
+      "anchors": {
+        "0": "No usable evidence or contradicts canonical contract.",
+        "1": "Recognizes part of the dimension but has major gap/error.",
+        "2": "Partially correct; material omission/error remains.",
+        "3": "Correct for declared scope; minor omission only.",
+        "4": "Correct, justified, edge-aware and transferable."
+      }
+    },
+    {
+      "id": "testing",
+      "anchors": {
+        "0": "No usable evidence or contradicts canonical contract.",
+        "1": "Recognizes part of the dimension but has major gap/error.",
+        "2": "Partially correct; material omission/error remains.",
+        "3": "Correct for declared scope; minor omission only.",
+        "4": "Correct, justified, edge-aware and transferable."
+      }
+    },
+    {
+      "id": "tradeoff",
+      "anchors": {
+        "0": "No usable evidence or contradicts canonical contract.",
+        "1": "Recognizes part of the dimension but has major gap/error.",
+        "2": "Partially correct; material omission/error remains.",
+        "3": "Correct for declared scope; minor omission only.",
+        "4": "Correct, justified, edge-aware and transferable."
+      }
+    },
+    {
+      "id": "explanation",
+      "anchors": {
+        "0": "No usable evidence or contradicts canonical contract.",
+        "1": "Recognizes part of the dimension but has major gap/error.",
+        "2": "Partially correct; material omission/error remains.",
+        "3": "Correct for declared scope; minor omission only.",
+        "4": "Correct, justified, edge-aware and transferable."
+      }
+    }
+  ],
+  "taskProfileExamples": [
+    {
+      "id": "trace-practice",
+      "weights": {
+        "representation": 0.15,
+        "strategy": 0.1,
+        "trace": 0.35,
+        "invariant": 0.15,
+        "correctness": 0.1,
+        "complexity": 0.05,
+        "implementation": 0,
+        "testing": 0.05,
+        "tradeoff": 0,
+        "explanation": 0.05
+      }
+    },
+    {
+      "id": "implementation-assessment",
+      "weights": {
+        "representation": 0.1,
+        "strategy": 0.1,
+        "trace": 0.05,
+        "invariant": 0.1,
+        "correctness": 0.2,
+        "complexity": 0.15,
+        "implementation": 0.15,
+        "testing": 0.1,
+        "tradeoff": 0.025,
+        "explanation": 0.025
+      }
+    },
+    {
+      "id": "oral-defense",
+      "weights": {
+        "representation": 0.1,
+        "strategy": 0.15,
+        "trace": 0.05,
+        "invariant": 0.15,
+        "correctness": 0.2,
+        "complexity": 0.15,
+        "implementation": 0.05,
+        "testing": 0.025,
+        "tradeoff": 0.075,
+        "explanation": 0.05
+      }
+    }
+  ],
+  "hardConstraintRule": "Weights do not override hard task constraints. Required complexity/precondition/stability may fail overall even with a high weighted score.",
+  "masteryWrite": false
+}

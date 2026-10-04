@@ -1,0 +1,134 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "algorithms",
+  "purpose": "Known-correct/alternate implementation and reasoning fixtures for test-of-tests. Python snippets are fixture evidence only, not canonical algorithm identity.",
+  "fixtures": [
+    {
+      "id": "alg.gold.correct.binary-search.iterative",
+      "algorithmId": "alg.algorithm.binary-search",
+      "kind": "implementation",
+      "language": "python",
+      "entry": "solve",
+      "expected": "PASS",
+      "pythonSource": "def solve(a, target):\n    lo, hi = 0, len(a) - 1\n    while lo <= hi:\n        mid = (lo + hi) // 2\n        if a[mid] == target:\n            return mid\n        if a[mid] < target:\n            lo = mid + 1\n        else:\n            hi = mid - 1\n    return -1\n",
+      "contract": [
+        "sorted-input",
+        "any-valid-match",
+        "missing=-1"
+      ],
+      "complexityClaimId": "alg.cx.binary-search.worst-time"
+    },
+    {
+      "id": "alg.gold.correct.binary-search.leftmost",
+      "algorithmId": "alg.algorithm.binary-search",
+      "kind": "implementation",
+      "language": "python",
+      "entry": "solve",
+      "expected": "PASS",
+      "alternate": true,
+      "pythonSource": "def solve(a, target):\n    lo, hi = 0, len(a) - 1\n    ans = -1\n    while lo <= hi:\n        mid = (lo + hi) // 2\n        if a[mid] >= target:\n            if a[mid] == target:\n                ans = mid\n            hi = mid - 1\n        else:\n            lo = mid + 1\n    return ans\n",
+      "contract": [
+        "sorted-input",
+        "any-valid-match",
+        "missing=-1"
+      ],
+      "complexityClaimId": "alg.cx.binary-search.worst-time"
+    },
+    {
+      "id": "alg.gold.correct.insertion-sort",
+      "algorithmId": "alg.algorithm.insertion-sort",
+      "kind": "implementation",
+      "language": "python",
+      "entry": "solve",
+      "expected": "PASS",
+      "pythonSource": "def solve(items):\n    a = list(items)\n    for i in range(1, len(a)):\n        key = a[i]\n        j = i - 1\n        while j >= 0 and a[j][0] > key[0]:\n            a[j + 1] = a[j]\n            j -= 1\n        a[j + 1] = key\n    return a\n",
+      "contract": [
+        "sort-by-first-field",
+        "stable",
+        "permutation"
+      ],
+      "complexityClaimId": "alg.cx.insertion-sort.worst-time"
+    },
+    {
+      "id": "alg.gold.correct.merge-sort",
+      "algorithmId": "alg.algorithm.merge-sort",
+      "kind": "implementation",
+      "language": "python",
+      "entry": "solve",
+      "expected": "PASS",
+      "pythonSource": "def solve(items):\n    if len(items) <= 1:\n        return list(items)\n    m = len(items)//2\n    left, right = solve(items[:m]), solve(items[m:])\n    out=[]; i=j=0\n    while i<len(left) and j<len(right):\n        if left[i][0] <= right[j][0]:\n            out.append(left[i]); i+=1\n        else:\n            out.append(right[j]); j+=1\n    return out + left[i:] + right[j:]\n",
+      "contract": [
+        "sort-by-first-field",
+        "stable",
+        "permutation"
+      ],
+      "complexityClaimId": "alg.cx.merge-sort.time"
+    },
+    {
+      "id": "alg.gold.correct.bfs-distance",
+      "algorithmId": "alg.algorithm.bfs",
+      "kind": "implementation",
+      "language": "python",
+      "entry": "solve",
+      "expected": "PASS",
+      "pythonSource": "from collections import deque\ndef solve(graph, start):\n    q=deque([start]); dist={start:0}\n    while q:\n        u=q.popleft()\n        for v in graph.get(u, []):\n            if v not in dist:\n                dist[v]=dist[u]+1\n                q.append(v)\n    return dist\n",
+      "contract": [
+        "unweighted-graph",
+        "distance-by-edge-count",
+        "reachable-only"
+      ],
+      "complexityClaimId": "alg.cx.bfs.time-adj-list"
+    },
+    {
+      "id": "alg.gold.correct.dfs-reachable-recursive",
+      "algorithmId": "alg.algorithm.dfs",
+      "kind": "implementation",
+      "language": "python",
+      "entry": "solve",
+      "expected": "PASS",
+      "pythonSource": "def solve(graph, start):\n    seen=set()\n    def dfs(u):\n        if u in seen:\n            return\n        seen.add(u)\n        for v in graph.get(u, []):\n            dfs(v)\n    dfs(start)\n    return sorted(seen)\n",
+      "contract": [
+        "reachable-set",
+        "order-not-graded"
+      ],
+      "complexityClaimId": "alg.cx.dfs.time-adj-list"
+    },
+    {
+      "id": "alg.gold.correct.bst-complexity",
+      "algorithmId": null,
+      "kind": "reasoning",
+      "expected": "PASS",
+      "claim": {
+        "operation": "search",
+        "bound": "O(h)",
+        "worstInN": "O(n)",
+        "assumptions": [
+          "unbalanced BST"
+        ]
+      },
+      "targetCompetencyIds": [
+        "alg.comp.tree-bst",
+        "alg.comp.complexity"
+      ]
+    },
+    {
+      "id": "alg.gold.correct.hash-complexity",
+      "algorithmId": null,
+      "kind": "reasoning",
+      "expected": "PASS",
+      "claim": {
+        "operation": "lookup",
+        "expected": "O(1)",
+        "worst": "O(n)",
+        "assumptions": [
+          "adequate hash distribution",
+          "controlled load factor"
+        ]
+      },
+      "targetCompetencyIds": [
+        "alg.comp.hashing",
+        "alg.comp.complexity"
+      ]
+    }
+  ]
+}

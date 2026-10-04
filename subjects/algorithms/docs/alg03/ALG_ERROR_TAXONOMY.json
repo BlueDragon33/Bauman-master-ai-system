@@ -1,0 +1,386 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "algorithms",
+  "errors": [
+    {
+      "id": "REPRESENTATION_ERROR",
+      "description": "Wrong data/ADT/graph representation or conflation of ADT with implementation.",
+      "targetCompetencyIds": [
+        "alg.comp.adt-operation",
+        "alg.comp.graph-representation"
+      ],
+      "remediationId": "alg.remed.representation",
+      "evidenceRule": "Classify only when observable evidence supports this error; do not infer from one wrong final answer alone."
+    },
+    {
+      "id": "PRECONDITION_ERROR",
+      "description": "Applies an algorithm outside its canonical preconditions.",
+      "targetCompetencyIds": [
+        "alg.comp.correctness-invariants",
+        "alg.comp.search-sort",
+        "alg.comp.graph-traversal"
+      ],
+      "remediationId": "alg.remed.preconditions",
+      "evidenceRule": "Classify only when observable evidence supports this error; do not infer from one wrong final answer alone."
+    },
+    {
+      "id": "INVARIANT_ERROR",
+      "description": "Invariant is missing, false, or not preserved.",
+      "targetCompetencyIds": [
+        "alg.comp.correctness-invariants"
+      ],
+      "remediationId": "alg.remed.invariant",
+      "evidenceRule": "Classify only when observable evidence supports this error; do not infer from one wrong final answer alone."
+    },
+    {
+      "id": "BOUNDARY_ERROR",
+      "description": "Off-by-one, empty/singleton/boundary target handling defect.",
+      "targetCompetencyIds": [
+        "alg.comp.pseudocode-state",
+        "alg.comp.edge-case-testing"
+      ],
+      "remediationId": "alg.remed.boundaries",
+      "evidenceRule": "Classify only when observable evidence supports this error; do not infer from one wrong final answer alone."
+    },
+    {
+      "id": "TERMINATION_ERROR",
+      "description": "Loop/recursion/search does not make required progress or lacks reachable termination.",
+      "targetCompetencyIds": [
+        "alg.comp.correctness-invariants",
+        "alg.comp.recursion"
+      ],
+      "remediationId": "alg.remed.termination",
+      "evidenceRule": "Classify only when observable evidence supports this error; do not infer from one wrong final answer alone."
+    },
+    {
+      "id": "STATE_UPDATE_ERROR",
+      "description": "Algorithm updates the wrong state or in the wrong order.",
+      "targetCompetencyIds": [
+        "alg.comp.pseudocode-state",
+        "alg.comp.graph-traversal"
+      ],
+      "remediationId": "alg.remed.state-trace",
+      "evidenceRule": "Classify only when observable evidence supports this error; do not infer from one wrong final answer alone."
+    },
+    {
+      "id": "COMPLEXITY_ERROR",
+      "description": "Asymptotic bound or operation-growth derivation is incorrect.",
+      "targetCompetencyIds": [
+        "alg.comp.complexity"
+      ],
+      "remediationId": "alg.remed.complexity",
+      "evidenceRule": "Classify only when observable evidence supports this error; do not infer from one wrong final answer alone."
+    },
+    {
+      "id": "CASE_CONFUSION",
+      "description": "Best/average/worst/amortized/expected cases are conflated.",
+      "targetCompetencyIds": [
+        "alg.comp.complexity"
+      ],
+      "remediationId": "alg.remed.case-semantics",
+      "evidenceRule": "Classify only when observable evidence supports this error; do not infer from one wrong final answer alone."
+    },
+    {
+      "id": "MUTATION_ERROR",
+      "description": "Mutating/non-mutating semantics or aliasing effects violate the task/ADT contract.",
+      "targetCompetencyIds": [
+        "alg.comp.adt-operation",
+        "alg.comp.linear-structures"
+      ],
+      "remediationId": "alg.remed.mutation",
+      "evidenceRule": "Classify only when observable evidence supports this error; do not infer from one wrong final answer alone."
+    },
+    {
+      "id": "TRAVERSAL_ORDER_ERROR",
+      "description": "Requires or produces an invalid traversal order under the declared order policy.",
+      "targetCompetencyIds": [
+        "alg.comp.tree-bst",
+        "alg.comp.graph-traversal"
+      ],
+      "remediationId": "alg.remed.traversal",
+      "evidenceRule": "Classify only when observable evidence supports this error; do not infer from one wrong final answer alone."
+    },
+    {
+      "id": "GREEDY_FALLACY",
+      "description": "Claims a greedy choice is correct without an applicable proof/condition.",
+      "targetCompetencyIds": [
+        "alg.comp.algorithm-selection"
+      ],
+      "remediationId": "alg.remed.strategy-proof",
+      "evidenceRule": "Classify only when observable evidence supports this error; do not infer from one wrong final answer alone."
+    },
+    {
+      "id": "DP_STATE_ERROR",
+      "description": "DP state/transition/base/dependency order is inconsistent.",
+      "targetCompetencyIds": [
+        "alg.comp.algorithm-selection"
+      ],
+      "remediationId": "alg.remed.deferred-jit",
+      "evidenceRule": "Classify only when observable evidence supports this error; do not infer from one wrong final answer alone."
+    },
+    {
+      "id": "GRAPH_MODEL_ERROR",
+      "description": "Direction, weight, vertex identity, adjacency or reachability semantics are wrong.",
+      "targetCompetencyIds": [
+        "alg.comp.graph-representation",
+        "alg.comp.graph-traversal"
+      ],
+      "remediationId": "alg.remed.graph-model",
+      "evidenceRule": "Classify only when observable evidence supports this error; do not infer from one wrong final answer alone."
+    },
+    {
+      "id": "IMPLEMENTATION_LANGUAGE_ERROR",
+      "description": "Language/runtime syntax defect that is not itself an algorithmic misconception.",
+      "targetCompetencyIds": [
+        "alg.comp.edge-case-testing"
+      ],
+      "remediationId": "alg.remed.route-python",
+      "evidenceRule": "Classify only when observable evidence supports this error; do not infer from one wrong final answer alone."
+    },
+    {
+      "id": "STABILITY_ERROR",
+      "description": "Sort stability requirement is ignored or falsely claimed.",
+      "targetCompetencyIds": [
+        "alg.comp.search-sort"
+      ],
+      "remediationId": "alg.remed.sort-properties",
+      "evidenceRule": "Classify only when observable evidence supports this error; do not infer from one wrong final answer alone."
+    },
+    {
+      "id": "COLLISION_HANDLING_ERROR",
+      "description": "Hash collision/probing/chaining behavior violates map/hash contract.",
+      "targetCompetencyIds": [
+        "alg.comp.hashing"
+      ],
+      "remediationId": "alg.remed.hashing",
+      "evidenceRule": "Classify only when observable evidence supports this error; do not infer from one wrong final answer alone."
+    },
+    {
+      "id": "PERMUTATION_ERROR",
+      "description": "Sorting output is ordered but does not preserve the input multiset.",
+      "targetCompetencyIds": [
+        "alg.comp.search-sort",
+        "alg.comp.correctness-invariants"
+      ],
+      "remediationId": "alg.remed.sort-properties",
+      "evidenceRule": "Classify only when observable evidence supports this error; do not infer from one wrong final answer alone."
+    },
+    {
+      "id": "VISITED_TIMING_ERROR",
+      "description": "Visited/discovery policy causes duplicate expansion, wrong parent/distance semantics or avoidable blow-up.",
+      "targetCompetencyIds": [
+        "alg.comp.graph-traversal"
+      ],
+      "remediationId": "alg.remed.graph-traversal",
+      "evidenceRule": "Classify only when observable evidence supports this error; do not infer from one wrong final answer alone."
+    }
+  ],
+  "remediations": [
+    {
+      "id": "alg.remed.representation",
+      "targetIds": [
+        "alg.comp.adt-operation",
+        "alg.comp.graph-representation"
+      ],
+      "actions": [
+        "restate abstract operations",
+        "compare at least two representations",
+        "recheck representation-sensitive cost"
+      ],
+      "recheckEvidenceRequirement": "choose a representation for a changed workload and justify it"
+    },
+    {
+      "id": "alg.remed.preconditions",
+      "targetIds": [
+        "alg.comp.correctness-invariants"
+      ],
+      "actions": [
+        "list algorithm preconditions",
+        "construct a violating counterexample",
+        "rerun on a valid instance"
+      ],
+      "recheckEvidenceRequirement": "identify valid/invalid use on a new task"
+    },
+    {
+      "id": "alg.remed.invariant",
+      "targetIds": [
+        "alg.comp.correctness-invariants"
+      ],
+      "actions": [
+        "state invariant before code",
+        "check initialization",
+        "check one maintenance step",
+        "connect termination to postcondition"
+      ],
+      "recheckEvidenceRequirement": "produce invariant-based proof sketch on changed data"
+    },
+    {
+      "id": "alg.remed.boundaries",
+      "targetIds": [
+        "alg.comp.pseudocode-state",
+        "alg.comp.edge-case-testing"
+      ],
+      "actions": [
+        "trace empty/singleton/first/last/missing cases",
+        "mark inclusive/exclusive ranges"
+      ],
+      "recheckEvidenceRequirement": "pass a boundary-focused changed-surface fixture"
+    },
+    {
+      "id": "alg.remed.termination",
+      "targetIds": [
+        "alg.comp.correctness-invariants",
+        "alg.comp.recursion"
+      ],
+      "actions": [
+        "identify progress measure",
+        "verify base/exit is reachable",
+        "trace decreasing interval/depth"
+      ],
+      "recheckEvidenceRequirement": "explain why a new loop/recursion terminates"
+    },
+    {
+      "id": "alg.remed.state-trace",
+      "targetIds": [
+        "alg.comp.pseudocode-state"
+      ],
+      "actions": [
+        "write canonical state fields",
+        "trace one transition at a time",
+        "compare against invariant"
+      ],
+      "recheckEvidenceRequirement": "produce a valid trace on new input"
+    },
+    {
+      "id": "alg.remed.complexity",
+      "targetIds": [
+        "alg.comp.complexity"
+      ],
+      "actions": [
+        "name input-size measure",
+        "count dominant operations",
+        "separate time/space",
+        "state assumptions"
+      ],
+      "recheckEvidenceRequirement": "derive a new bound with size/case/representation"
+    },
+    {
+      "id": "alg.remed.case-semantics",
+      "targetIds": [
+        "alg.comp.complexity"
+      ],
+      "actions": [
+        "label best/average/worst/amortized/expected separately",
+        "construct case-specific inputs"
+      ],
+      "recheckEvidenceRequirement": "classify and justify case on a changed algorithm/input"
+    },
+    {
+      "id": "alg.remed.mutation",
+      "targetIds": [
+        "alg.comp.adt-operation",
+        "alg.comp.linear-structures"
+      ],
+      "actions": [
+        "mark mutating operations",
+        "trace aliases/state before-after"
+      ],
+      "recheckEvidenceRequirement": "predict mutation behavior on new operation sequence"
+    },
+    {
+      "id": "alg.remed.traversal",
+      "targetIds": [
+        "alg.comp.tree-bst",
+        "alg.comp.graph-traversal"
+      ],
+      "actions": [
+        "declare child/neighbor order policy",
+        "trace frontier/stack",
+        "accept equivalent orders when unspecified"
+      ],
+      "recheckEvidenceRequirement": "produce or validate one legal traversal under a new ordering policy"
+    },
+    {
+      "id": "alg.remed.strategy-proof",
+      "targetIds": [
+        "alg.comp.algorithm-selection"
+      ],
+      "actions": [
+        "state strategy condition",
+        "search for counterexample",
+        "compare with canonical alternative"
+      ],
+      "recheckEvidenceRequirement": "justify selection or reject greedy on a new task"
+    },
+    {
+      "id": "alg.remed.deferred-jit",
+      "targetIds": [
+        "alg.comp.algorithm-selection"
+      ],
+      "actions": [
+        "activate only if corresponding JIT topic is assigned",
+        "review topic-specific state/transition contract"
+      ],
+      "recheckEvidenceRequirement": "topic-specific assessor required"
+    },
+    {
+      "id": "alg.remed.graph-model",
+      "targetIds": [
+        "alg.comp.graph-representation",
+        "alg.comp.graph-traversal"
+      ],
+      "actions": [
+        "declare directed/weighted/multiplicity semantics",
+        "draw/encode the graph explicitly",
+        "re-evaluate algorithm precondition"
+      ],
+      "recheckEvidenceRequirement": "model a changed graph and choose a valid algorithm"
+    },
+    {
+      "id": "alg.remed.route-python",
+      "targetIds": [],
+      "actions": [
+        "route syntax/runtime issue to Python owner",
+        "retain the algorithmic evidence separately"
+      ],
+      "recheckEvidenceRequirement": "implementation executes under declared language/runtime without changing algorithm contract"
+    },
+    {
+      "id": "alg.remed.sort-properties",
+      "targetIds": [
+        "alg.comp.search-sort",
+        "alg.comp.correctness-invariants"
+      ],
+      "actions": [
+        "check sortedness",
+        "check permutation/multiset preservation",
+        "check stability only when required"
+      ],
+      "recheckEvidenceRequirement": "validate all declared sort properties on duplicate-key data"
+    },
+    {
+      "id": "alg.remed.hashing",
+      "targetIds": [
+        "alg.comp.hashing"
+      ],
+      "actions": [
+        "force a collision",
+        "trace chain/probe",
+        "reason about load factor and worst case"
+      ],
+      "recheckEvidenceRequirement": "handle a changed collision set correctly"
+    },
+    {
+      "id": "alg.remed.graph-traversal",
+      "targetIds": [
+        "alg.comp.graph-traversal"
+      ],
+      "actions": [
+        "mark discovery timing explicitly",
+        "trace queue/stack + visited",
+        "check duplicate frontier entries and parent/distance"
+      ],
+      "recheckEvidenceRequirement": "pass cyclic/disconnected changed graph fixture"
+    }
+  ]
+}

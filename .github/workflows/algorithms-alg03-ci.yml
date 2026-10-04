@@ -1,0 +1,38 @@
+name: Algorithms ALG03 Assessment CI
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "prompts/subjects/algorithms/**"
+      - "subjects/algorithms/docs/alg0[123]/**"
+      - "tests/algorithms-alg0[123]-*.mjs"
+      - ".github/workflows/algorithms-alg0[123]-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: algorithms-alg03-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  assessment:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - name: Preserve ALG01 forensic baseline
+        run: node tests/algorithms-alg01-forensic-static.mjs
+      - name: Preserve ALG02 canonical model
+        run: node tests/algorithms-alg02-canonical-contract.mjs
+      - name: ALG03 static assessment contract
+        run: node tests/algorithms-alg03-assessment-contract.mjs
+      - name: Python fixture interpreter identity
+        run: python3 --version
+      - name: ALG03 test-of-tests correct/wrong/alternate fixtures
+        run: node tests/algorithms-alg03-test-of-tests.mjs
