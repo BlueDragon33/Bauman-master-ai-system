@@ -62,6 +62,9 @@ jobs:
       - name: Python P1 forensic static
         run: node tests/python-p1-forensic-static.mjs
 
+      - name: Python P2 canonical contract
+        run: node tests/python-p2-canonical-contract.mjs
+
       - name: Entrepreneurship subject static
         run: node tests/entrepreneurship-subject-static.mjs
 
