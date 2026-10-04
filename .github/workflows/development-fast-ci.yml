@@ -59,6 +59,9 @@ jobs:
       - name: Subjects reference static
         run: node tests/subjects-reference-v1-static.mjs
 
+      - name: Python P1 forensic static
+        run: node tests/python-p1-forensic-static.mjs
+
       - name: Entrepreneurship subject static
         run: node tests/entrepreneurship-subject-static.mjs
 

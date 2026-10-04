@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "python",
+  "baseSha": "fd9cf24fefc85cfbbc152a7784e043c7fe1b19af",
+  "risks": [
+    {
+      "id": "PY-R01",
+      "severity": "critical",
+      "category": "runtime_truth",
+      "finding": "No learner Python interpreter/sandbox exists although the subject teaches executable programming.",
+      "route": "PYTHON04"
+    },
+    {
+      "id": "PY-R02",
+      "severity": "high",
+      "category": "assessment_truth",
+      "finding": "384/384 test records are MCQ; no execution-based coding assessment is proven.",
+      "route": "PYTHON03"
+    },
+    {
+      "id": "PY-R03",
+      "severity": "high",
+      "category": "assessment_duplication",
+      "finding": "384 test records collapse to 192 unique question texts; 192 exact duplicate groups.",
+      "route": "PYTHON02/PYTHON03"
+    },
+    {
+      "id": "PY-R04",
+      "severity": "high",
+      "category": "ownership",
+      "finding": "Python, Algorithms, Database, ML and Software Engineering theory are mixed in one 48-lesson package.",
+      "route": "PYTHON02"
+    },
+    {
+      "id": "PY-R05",
+      "severity": "high",
+      "category": "false_confidence",
+      "finding": "Quiz/progress state can appear competency-like without executable code evidence.",
+      "route": "PYTHON03/C4"
+    },
+    {
+      "id": "PY-R06",
+      "severity": "medium",
+      "category": "ai_truth",
+      "finding": "AI Mentor label is a deterministic local template generator, not model inference.",
+      "route": "PYTHON04/PYTHON05"
+    },
+    {
+      "id": "PY-R07",
+      "severity": "medium",
+      "category": "legacy_template",
+      "finding": "Active core retains Math/Russian-era version and fallback storage identifiers.",
+      "route": "PYTHON05/PYTHON06"
+    },
+    {
+      "id": "PY-R08",
+      "severity": "medium",
+      "category": "data_duplication",
+      "finding": "grammar.json and grammar-path.json are byte-identical active files.",
+      "route": "PYTHON02"
+    },
+    {
+      "id": "PY-R09",
+      "severity": "high",
+      "category": "qa",
+      "finding": "No Python/Programming-specific test existed before PYTHON01 baseline gate.",
+      "route": "PYTHON01/PYTHON06"
+    },
+    {
+      "id": "PY-R10",
+      "severity": "medium",
+      "category": "authoring",
+      "finding": "editor.html is not a code editor; code-task authoring/execution contract is absent.",
+      "route": "PYTHON05"
+    }
+  ]
+}

@@ -3,8 +3,8 @@
   "subject": "python",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/subjects/python/PYTHON_MASTER_PROMPT.md",
-  "status": "READY_FOR_BASELINE_RECONCILIATION",
-  "activeModule": "PYTHON01",
+  "status": "PYTHON01_PASS_BASELINE_CAPTURED",
+  "activeModule": "PYTHON02",
   "sequence": [
     "PYTHON01",
     "PYTHON02",
@@ -13,11 +13,35 @@
     "PYTHON05",
     "PYTHON06"
   ],
-  "completedModules": [],
+  "completedModules": [
+    "PYTHON01"
+  ],
   "needsRevalidation": [],
-  "lastValidatedSha": null,
-  "currentHeadSha": null,
-  "evidence": [],
+  "lastValidatedSha": "c913fcfe2ecb48ce312410c76da577e811911b58",
+  "currentHeadSha": "c913fcfe2ecb48ce312410c76da577e811911b58",
+  "evidence": [
+    "prompts/subjects/python/evidence/PYTHON_P1_EXECUTIVE_SUMMARY.md",
+    "prompts/subjects/python/evidence/PYTHON_CURRENT_ARCHITECTURE_MAP.md",
+    "prompts/subjects/python/evidence/PYTHON_CONTENT_INVENTORY.json",
+    "prompts/subjects/python/evidence/PYTHON_RUNTIME_TOOLCHAIN_INVENTORY.md",
+    "prompts/subjects/python/evidence/PYTHON_ASSESSMENT_STATE_AUDIT.md",
+    "prompts/subjects/python/evidence/PYTHON_LEGACY_DUPLICATE_MAP.md",
+    "prompts/subjects/python/evidence/PYTHON_RISK_REGISTER.json",
+    "prompts/subjects/python/evidence/PYTHON_P1_EVIDENCE_INDEX.md",
+    "prompts/subjects/python/evidence/PYTHON_P2_INPUT_CONTRACT.md",
+    "tests/python-p1-forensic-static.mjs",
+    "Development Fast CI run 37189296213: SUCCESS; Python P1 forensic static PASS",
+    "Universal Constitution Compliance run 37189296458: SUCCESS"
+  ],
   "blockers": [],
-  "nextAction": "Run PYTHON01 against the current repository state and update this state with evidence."
+  "nextAction": "Run PYTHON02 Academic Blueprint & Canonical Programming Model from the PYTHON01 evidence-backed input contract. Do not activate a Python runtime or production migration from PYTHON02.",
+  "notes": [
+    "Actual learner runtime is subjects/programming/, not subjects/python/.",
+    "Current Programming package mixes Python with Algorithms, Database, ML tooling and Software Engineering.",
+    "No executable learner Python interpreter, sandbox, code runner or Python environment owner is currently present.",
+    "Current 384-question bank is all multiple choice and contains 192 unique question texts / 192 exact duplicate groups.",
+    "Current AI Mentor is deterministic local template generation, not a model/provider authority.",
+    "PYTHON01 is audit-only: no production runtime, content, mastery or learner-state mutation.",
+    "PYTHON01 exact tested evidence head is c913fcfe2ecb48ce312410c76da577e811911b58; the terminal state/evidence metadata tail is governance-only and must still pass final PR-head CI before merge."
+  ]
 }

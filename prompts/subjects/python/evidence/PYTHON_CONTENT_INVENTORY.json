@@ -1,0 +1,93 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "python",
+  "actualRuntimeScope": "subjects/programming/",
+  "baseSha": "fd9cf24fefc85cfbbc152a7784e043c7fe1b19af",
+  "counts": {
+    "files": 41,
+    "stages": 6,
+    "modules": 6,
+    "lessons": 48,
+    "exercises": 144,
+    "simulations": 96,
+    "testRecords": 384,
+    "uniqueTestQuestionText": 192
+  },
+  "stageLessonCounts": {
+    "vn": 8,
+    "prep": 8,
+    "hk1": 8,
+    "hk2": 8,
+    "hk3": 8,
+    "hk4": 8
+  },
+  "exercise": {
+    "taskTypeCounts": {
+      "programming-practice": 144
+    },
+    "levelCounts": {
+      "easy": 48,
+      "medium": 48,
+      "hard": 48
+    }
+  },
+  "simulations": {
+    "typeCounts": {
+      "theory-simulation": 48,
+      "application-simulation": 48
+    },
+    "executionAuthority": "javascript_parameter_simulation_only"
+  },
+  "assessment": {
+    "questionTypeCounts": {
+      "multiple_choice": 384
+    },
+    "skillCounts": {
+      "programming-reasoning": 384
+    },
+    "levelCounts": {
+      "easy": 96,
+      "medium": 96,
+      "hard": 96,
+      "expert": 96
+    },
+    "exactDuplicateSignatureGroups": 192
+  },
+  "adjacentOwnership": {
+    "python": [
+      "PR01 environment",
+      "PR03 Python basics",
+      "PR12 files/JSON/CSV as Python integration",
+      "PR13 debug/exceptions/logging",
+      "PR14 pytest",
+      "PR17-PR18 Python OOP/package architecture"
+    ],
+    "algorithms": [
+      "PR02 algorithm complexity",
+      "PR10 pseudocode",
+      "PR11 data structures"
+    ],
+    "database": [
+      "PR06 SQL basics",
+      "PR15 advanced SQL",
+      "PR20 database for ML",
+      "PR21 ORM/migrations where DB semantics dominate"
+    ],
+    "mlData": [
+      "PR04 NumPy",
+      "PR05 Pandas",
+      "PR25-PR29 ML/data pipeline tooling; Python keeps implementation context, ML theory routes outward"
+    ],
+    "softwareEngineering": [
+      "Git/CI/Docker/requirements/issues/milestones/architecture/release workflow where software-engineering theory dominates"
+    ]
+  },
+  "evidencePaths": [
+    "subjects/programming/subject-manifest.json",
+    "subjects/programming/data/curriculum.json",
+    "subjects/programming/data/lessons.json",
+    "subjects/programming/data/exercises.json",
+    "subjects/programming/data/tests.json",
+    "subjects/programming/data/simulations.json"
+  ]
+}
