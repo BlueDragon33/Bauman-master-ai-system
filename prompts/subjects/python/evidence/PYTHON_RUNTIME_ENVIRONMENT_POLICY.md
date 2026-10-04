@@ -1,5 +1,5 @@
 # PYTHON04 RUNTIME ENVIRONMENT POLICY
-Status: POLICY — version binding pending provider selection.
+Status: BOUND VALIDATION PROFILE — provider acceptance pending.
 
 ## Runtime profiles
 Official tasks must reference a stable `runtimeProfileId` that resolves to an exact Python implementation/minor version and a reproducible package environment. The current repository has no learner interpreter, so no version is asserted yet.
@@ -18,3 +18,17 @@ No offline interpreter is currently proven. Offline fallback is limited to readi
 
 ## Initialization
 Large runtimes/packages must lazy-load and must not inflate normal subject startup when coding capability is unused.
+
+## Bound validation profile
+
+The baseline discovery found no learner interpreter. The additive disabled
+provider now pins CPython 3.14.8 amd64, runtimeProfileId
+`python04-cf-stdlib-v1`, packageProfileId `python04-cf-curated-stdlib-v1`,
+with packageInstall=false. Base digest and actual deployed imageId are recorded
+in structured results. Dockerfile and provider npm lockfile pin build inputs.
+Native local-dev mutable tags are refused. Only the deployed image digest can
+satisfy the provider gate. PYTHON02 language truth remains unchanged.
+
+Each run is fresh, with declared text inputs and PYTHONHASHSEED=0; random/time
+and external datasets are not declared deterministic. NumPy/Pandas, arbitrary
+package installation and official reproducibility claims remain unavailable.

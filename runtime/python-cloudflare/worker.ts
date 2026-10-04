@@ -14,6 +14,11 @@ type Reservation={runId:string;admissionName:string;phase:'reserved'|'running'|'
 type AdmissionLease={runId:string;childName:string};
 type ExecutionResult={status:string;runId?:string;officialEvidence:boolean;cleanup?:boolean;[key:string]:unknown};
 const reply=(body:unknown,status=200)=>Response.json(body,{status,headers:{'cache-control':'no-store, private','x-content-type-options':'nosniff'}});
+async function cleanupDeadline<T>(operation:Promise<T>):Promise<T> {
+  let timer:ReturnType<typeof setTimeout>|undefined;
+  try{return await Promise.race([operation,new Promise<never>((_,reject)=>{timer=setTimeout(()=>reject(new Error('CLEANUP_DEADLINE')),POLICY.cleanupMs);})]);}
+  finally{if(timer!==undefined)clearTimeout(timer);}
+}
 const validId=(value:unknown):value is string=>typeof value==='string'&&/^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/.test(value);
 async function digest(value:string) {return [...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(value)))].map(b=>b.toString(16).padStart(2,'0')).join('');}
 async function acceptanceOwner(request:Request,env:Env) {
@@ -68,8 +73,8 @@ export class PythonSandbox extends DurableObject<Env> {
     });
     let cleanup=false;
     try {
-      if(this.ctx.container?.running)await this.ctx.container.destroy();
-      cleanup=(await this.ctx.container?.inspect())===null;
+      if(this.ctx.container?.running)await cleanupDeadline(this.ctx.container.destroy());
+      cleanup=(await cleanupDeadline(this.ctx.container!.inspect()))===null;
     }catch{}
     if(!cleanup)await this.ctx.storage.put('reservation',{...await this.ctx.storage.get<Reservation>('reservation'),runId,phase:'cleanup_failed'});
     return {cleanup};

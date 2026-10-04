@@ -6,7 +6,7 @@ on:
     branches: [codex/python04-cloudflare-provider]
   pull_request:
     branches: [main]
-    paths: ['runtime/python-cloudflare/**', 'cloudflare/runtime-worker.mjs', 'tests/python-p4-cloudflare-*', '.github/workflows/python-p4-cloudflare-provider.yml']
+    paths: ['runtime/python-cloudflare/**', 'cloudflare/runtime-worker.mjs', 'tests/python-p4-cloudflare-*', 'tests/python-p4-facade.test.mjs', 'subjects/programming/**', '.github/workflows/python-p4-cloudflare-provider.yml']
 
 permissions:
   contents: write
@@ -18,6 +18,7 @@ concurrency:
 jobs:
   provider-proof:
     runs-on: ubuntu-24.04
+    environment: bauman-preview
     timeout-minutes: 20
     env:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -42,9 +43,15 @@ jobs:
           node tests/python-p3-assessment-contract.mjs
           node tests/python-p4-runtime-security-contract.mjs
           node scripts/validate-system-integration.mjs
-          node --test tests/python-p4-cloudflare-controller.test.mjs tests/python-p4-cloudflare-lifecycle.test.mjs
+          node --test tests/python-p4-cloudflare-controller.test.mjs tests/python-p4-cloudflare-lifecycle.test.mjs tests/python-p4-facade.test.mjs
           docker build --network none -t bauman-python04-cf-spike:3.14.8 runtime/python-cloudflare
           node --test tests/python-p4-cloudflare-bootstrap.test.mjs
+      - name: Desktop/mobile gated UI, offline and state-preservation browser checks
+        id: gated_browser
+        run: |
+          set -euo pipefail
+          runtime/python-cloudflare/node_modules/.bin/playwright install --with-deps chromium
+          node tests/python-p4-cloudflare-browser.mjs > /tmp/python04-gated-browser.json
       - name: Require actual configured Cloudflare test infrastructure
         id: infrastructure
         run: |
@@ -76,6 +83,11 @@ jobs:
         env:
           BAUMAN_PYTHON04_RECEIPT: /tmp/python04-cloudflare-real-receipt.json
         run: node tests/python-p4-cloudflare-real.mjs
+      - name: Desktop/mobile journeys through the real provider
+        id: real_browser
+        env:
+          BAUMAN_PYTHON04_BROWSER_REAL: 'true'
+        run: node tests/python-p4-cloudflare-browser.mjs > /tmp/python04-real-browser.json
       - name: Remove only this non-production test Worker
         id: cleanup
         if: always() && env.PYTHON04_DEPLOY_ATTEMPTED == 'true'
@@ -87,6 +99,8 @@ jobs:
       - name: Publish exact-source receipt on a separate evidence branch
         if: always() && github.event_name == 'push'
         env:
+          GATED_BROWSER_OUTCOME: ${{ steps.gated_browser.outcome }}
+          REAL_BROWSER_OUTCOME: ${{ steps.real_browser.outcome }}
           STATIC_OUTCOME: ${{ steps.static.outcome }}
           INFRASTRUCTURE_OUTCOME: ${{ steps.infrastructure.outcome }}
           DEPLOY_OUTCOME: ${{ steps.deploy.outcome }}
@@ -100,7 +114,7 @@ jobs:
           from pathlib import Path
           sha=os.environ['GITHUB_SHA']; source=Path('/tmp/python04-cloudflare-real-receipt.json')
           receipt=json.loads(source.read_text()) if source.exists() else {'status':'NO_REAL_PROVIDER_RECEIPT'}
-          receipt.update(exactTestedSha=sha,workflowRunUrl='https://github.com/'+os.environ['GITHUB_REPOSITORY']+'/actions/runs/'+os.environ['GITHUB_RUN_ID'],outcomes={key:os.environ.get(key,'unknown') for key in ['STATIC_OUTCOME','INFRASTRUCTURE_OUTCOME','DEPLOY_OUTCOME','PROVIDER_OUTCOME','CLEANUP_OUTCOME']},learnerExecutionEnabled=False,productionDeployed=False,moduleAcceptance='PENDING_EXACT_HEAD_REVIEW')
+          receipt.update(credentialBindings={key:bool(os.environ.get(key)) for key in ['CLOUDFLARE_API_TOKEN','CLOUDFLARE_ACCOUNT_ID']},githubEnvironment='bauman-preview',exactTestedSha=sha,workflowRunUrl='https://github.com/'+os.environ['GITHUB_REPOSITORY']+'/actions/runs/'+os.environ['GITHUB_RUN_ID'],outcomes={key:os.environ.get(key,'unknown') for key in ['GATED_BROWSER_OUTCOME','REAL_BROWSER_OUTCOME','STATIC_OUTCOME','INFRASTRUCTURE_OUTCOME','DEPLOY_OUTCOME','PROVIDER_OUTCOME','CLEANUP_OUTCOME']},learnerExecutionEnabled=False,productionDeployed=False,moduleAcceptance='PENDING_EXACT_HEAD_REVIEW')
           Path('prompts/subjects/python/evidence/cloudflare-ci/'+sha+'.json').write_text(json.dumps(receipt,indent=2)+'\n')
           PY
           git config user.name 'github-actions[bot]'
@@ -116,4 +130,6 @@ jobs:
           path: |
             /tmp/python04-deploy.log
             /tmp/python04-cloudflare-real-receipt.json
+            /tmp/python04-gated-browser.json
+            /tmp/python04-real-browser.json
           if-no-files-found: warn

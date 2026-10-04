@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="vi" data-bauman-ui="future-v1">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Python Lab · Programming Bauman</title>
+  <link rel="stylesheet" href="assets/core.css">
+  <link rel="stylesheet" href="../../platform/ui/bauman-ui.css">
+  <link rel="stylesheet" href="assets/python-lab.css">
+</head>
+<body>
+<main class="python-lab">
+  <header class="panel">
+    <a class="btn soft" href="index.html">Về môn Programming</a>
+    <h1>Python Lab</h1>
+    <p>Thực hành trong workspace riêng cho mỗi lần chạy. Mã bạn viết và mã AI sinh ra đều không được tin cậy.</p>
+    <p class="note">Thực thi cần kết nối và quyền truy cập lab đã được kích hoạt. Hiện đang chờ kiểm chứng provider. Không có thực thi offline hoặc assessment chính thức; lịch sử học và mastery được giữ nguyên.</p>
+  </header>
+  <section class="panel" aria-labelledby="codeTitle">
+    <h2 id="codeTitle">Mã và dữ liệu</h2>
+    <label for="pythonMode">Cách chạy</label>
+    <select class="input" id="pythonMode">
+      <option value="run">Chạy độc lập</option>
+      <option value="test">Kiểm thử công khai: solve(values) trả tổng số nguyên</option>
+      <option value="trace">Trace dòng lệnh (tham khảo)</option>
+      <option value="notebook">Notebook: restart + run all; tách cell bằng # %%</option>
+    </select>
+    <p class="note">Test công khai: [] → 0, [1,2] → 3, [-3,3] → 0, [4,5,6] → 15. Đây là phản hồi thực hành.</p>
+    <label for="pythonCode">Mã Python</label>
+    <textarea class="input" id="pythonCode" aria-label="Mã Python không tin cậy" spellcheck="false">def solve(values):
+    return sum(values)
+
+print(solve([1, 2, 3]))</textarea>
+    <details><summary>stdin và file văn bản đầu vào</summary>
+      <label for="pythonStdin">stdin</label><textarea class="input" id="pythonStdin"></textarea>
+      <label for="pythonFiles">File JSON map, ví dụ {"data/demo.csv":"value\n42\n"}</label>
+      <textarea class="input" id="pythonFiles">{}</textarea>
+      <p class="note">Tối đa 8 file, 16 KiB tổng nội dung. File chỉ tồn tại trong lần chạy này. Không cài package hoặc đọc file máy chủ.</p>
+    </details>
+    <div class="python-actions">
+      <button class="btn primary" id="pythonRun">Chạy</button>
+      <button class="btn" id="pythonCancel" disabled>Hủy</button>
+      <button class="btn" id="pythonRestart">Restart workspace</button>
+      <button class="btn" id="pythonDownload">Lưu mã .py</button>
+    </div>
+    <p id="pythonStatus" role="status" aria-live="polite" data-status="idle">Sẵn sàng. Mỗi lần chạy bắt đầu từ workspace mới.</p>
+  </section>
+  <section class="panel" aria-labelledby="resultTitle">
+    <h2 id="resultTitle">Kết quả và evidence thực hành</h2>
+    <p id="pythonIdentity"></p>
+    <p id="pythonTests"></p>
+    <pre id="pythonOutput" aria-label="stdout và stderr"></pre>
+    <pre id="pythonException" aria-label="Lỗi và trace"></pre>
+    <button class="btn" id="pythonHint">Gợi ý cục bộ từ evidence</button>
+    <p id="pythonAdvice" aria-live="polite"></p>
+  </section>
+</main>
+<script src="assets/subject-adapter.js"></script>
+<script src="assets/python-runtime.js"></script>
+<script src="assets/python-lab.js"></script>
+<script src="../../platform/ui/bauman-ui.js"></script>
+</body>
+</html>

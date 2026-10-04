@@ -13,7 +13,7 @@
       "software-2",
       "postrelational"
     ]
-},
+  },
   "title": "Python, CSDL và kỹ nghệ phần mềm Bauman · INFO Clean Render",
   "entry": "subjects/programming/index.html",
   "editor": "subjects/programming/editor.html",
@@ -228,5 +228,14 @@
   },
   "notes": "Bản này ưu tiên gọn, sạch và dễ tiếp tục nhân bản sang môn kế tiếp; không thay đổi bố cục UX/UI lõi.",
   "description": "Module Programming bám lộ trình Main: Python, SQL, Git, OOP, CSDL ML, pipeline, kiểm thử, Docker, tài liệu kỹ thuật và repo nghiên cứu.",
-  "packageProtocol": "PROGRAMMING_BAUMAN_CLEAN_V2"
+  "packageProtocol": "PROGRAMMING_BAUMAN_CLEAN_V2",
+  "pythonRuntime": {
+    "facade": "assets/python-runtime.js",
+    "entry": "python-lab.html",
+    "provider": "cloudflare-container-native",
+    "availability": "acceptance-pending",
+    "learnerExecutionEnabled": false,
+    "officialAssessment": false,
+    "offlineExecution": false
+  }
 }

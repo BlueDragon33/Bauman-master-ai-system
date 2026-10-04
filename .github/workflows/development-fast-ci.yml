@@ -71,6 +71,9 @@ jobs:
       - name: Python P4 runtime security contract
         run: node tests/python-p4-runtime-security-contract.mjs
 
+      - name: Python governed facade regression
+        run: node --test tests/python-p4-facade.test.mjs
+
       - name: Entrepreneurship subject static
         run: node tests/entrepreneurship-subject-static.mjs
 

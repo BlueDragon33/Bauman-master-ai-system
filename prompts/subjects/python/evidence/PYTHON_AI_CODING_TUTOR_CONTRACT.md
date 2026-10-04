@@ -10,3 +10,12 @@ AI diagnoses from actual code, traceback and test evidence. If runtime evidence 
 Hint ladder: H0 learner works → H1 clarify requirement → H2 point to concept/error region → H3 suggest diagnostic/test → H4 next code step → H5 worked solution only when policy permits.
 
 AI output is untrusted until sandboxed/tested. Hidden tests/solutions are excluded. AI failure must degrade to canonical explanations and deterministic tools. Official score/mastery remains governed by PYTHON03/C4.
+
+## Implemented safe degradation
+
+`pythonRuntime.advice` provides deterministic local hints using sanitized
+exception type, structured public test failure or runtime status. The UI labels
+these as local hints, not model AI. `ai_prohibited` returns disabled; absent
+runtime evidence never invents a run. Hints grant no mastery and provide no
+hidden tests/solutions. External model execution and automatic code replacement
+are unavailable; future generated code must use the same untrusted facade.

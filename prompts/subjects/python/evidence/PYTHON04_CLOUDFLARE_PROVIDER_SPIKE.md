@@ -72,8 +72,8 @@ Controller mocks test failure handling only. Docker checks test the exact
 `tests/python-p4-cloudflare-real.mjs` requires an actual test URL and scoped
 acceptance key; it runs the golden fixtures and records exact source/image IDs.
 
-The provider workflow uses the repository's established Cloudflare Actions
-secret names, creates only a uniquely named `bauman-python04-spike-*` Worker,
+The provider workflow uses the repository's established `bauman-preview` GitHub
+Environment and Cloudflare Actions secret names, creates only a uniquely named `bauman-python04-spike-*` Worker,
 keeps learner execution disabled, generates a test-only Worker key, executes
 the real provider tests, deletes that test Worker and publishes a bounded
 receipt on a separate CI evidence branch. The key stays in the control plane
@@ -83,8 +83,7 @@ does not modify or deploy the production Worker.
 The current executor still reports no configured Cloudflare credential bindings
 and direct GitHub/Cloudflare API access remains proxy-denied. The pipeline can
 use existing repository secrets without copying them into this executor. Its
-actual receipt, not the user's assertion or a mock, determines infrastructure
-readiness and provider safety. No acceptance/merge claim is made yet.
+actual receipt determines infrastructure readiness and provider safety. No acceptance/merge claim is made yet.
 
 Rollback: keep learner flag false; remove the additive provider binding/routes
 and test-only Worker. Existing learning state, stable IDs, PYTHON02 academic
@@ -101,3 +100,14 @@ The bootstrap high-descriptor escape fixture also failed before the all-fd close
 fix and passed afterward. Controller tests verify output bounding, malformed
 results, cancellation and cleanup failure. These tests are control-plane/local
 bootstrap evidence, not proof of the Cloudflare VM boundary.
+
+## Programming integration
+
+`SUBJECT_ADAPTER.pythonRuntime` is the single subject extension/facade. The
+Programming manifest declares the disabled Cloudflare provider; the lab uses
+same-origin reserve/run/cancel requests and owner-minted UUIDs. It never calls
+Container APIs or an interpreter. Each tab/run carries a unique session token;
+editing, cancellation or a newer run invalidates old UI results and cancels
+late reservations. No learner-state writes are added. Local/offline execution
+has no fallback. Gated desktop/mobile checks pass; real browser journeys require
+the actual acceptance endpoint and keep its key exclusively in the Node driver.
