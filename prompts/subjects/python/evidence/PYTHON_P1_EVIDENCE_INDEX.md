@@ -47,3 +47,11 @@ The repository production release at the audit base is closed successfully:
 - Release Annex closure: PASS
 
 PYTHON01 itself changes no production runtime/content.
+
+## PR #251 exact-head validation
+
+Tested evidence head: `c913fcfe2ecb48ce312410c76da577e811911b58`
+- Development Fast CI run `37189296213`: SUCCESS; `Python P1 forensic static`: SUCCESS.
+- Universal Constitution Compliance run `37189296458`: SUCCESS.
+
+The following terminal PROJECT_STATE/evidence-index metadata tail changes governance/handoff only and do not mutate learner runtime/content.
