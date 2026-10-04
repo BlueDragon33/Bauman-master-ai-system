@@ -10,6 +10,7 @@ import {
   PYTHON_RUNTIME_PROFILE_ID,
   PythonSandbox,
 } from "./python-sandbox-provider.mjs";
+import { pythonTask } from "./python-task-registry.mjs";
 
 export { PythonSandbox };
 
@@ -75,6 +76,79 @@ async function runCode(request, env) {
     timeoutMs: Number.isInteger(body.timeoutMs) ? body.timeoutMs : 3000,
   });
   return json({ ok: result.status === "complete", ...result });
+}
+
+
+function publicTestEnvelope(report) {
+  return {
+    runId: report.runId,
+    provider: report.provider,
+    runtimeProfileId: report.runtimeProfileId,
+    passed: report.passed,
+    total: report.total,
+    tests: (report.tests || []).map((item) => ({
+      id: item.id,
+      status: item.status,
+      runtimeStatus: item.runtimeStatus,
+    })),
+    masteryWrite: false,
+    academicWrite: false,
+  };
+}
+
+async function runTaskTests(request, env) {
+  const auth = await authorize(request, env);
+  if (!auth.ok) return json({ ok: false, code: auth.code }, auth.status);
+  const body = await parseJson(request);
+  const task = pythonTask(body.taskId);
+  if (!task) return json({ ok: false, code: "PYTHON_TASK_NOT_FOUND" }, 404);
+  if (typeof body.code !== "string" || !body.code.trim()) return json({ ok: false, code: "CODE_REQUIRED" }, 400);
+  const id = runId();
+  const report = await sandboxFor(env, id).runTests({
+    runId: id,
+    code: body.code,
+    cases: task.publicTests,
+    timeoutMs: 3000,
+  });
+  const envelope = publicTestEnvelope(report);
+  return json({ ok: envelope.passed === envelope.total, ...envelope });
+}
+
+async function submitTaskEvidence(request, env) {
+  const auth = await authorize(request, env);
+  if (!auth.ok) return json({ ok: false, code: auth.code }, auth.status);
+  const body = await parseJson(request);
+  const task = pythonTask(body.taskId);
+  if (!task) return json({ ok: false, code: "PYTHON_TASK_NOT_FOUND" }, 404);
+  if (typeof body.code !== "string" || !body.code.trim()) return json({ ok: false, code: "CODE_REQUIRED" }, 400);
+  const id = runId();
+  const cases = [...task.publicTests, ...task.hiddenTests];
+  const report = await sandboxFor(env, id).runTests({
+    runId: id,
+    code: body.code,
+    cases,
+    timeoutMs: 3000,
+  });
+  const passed = Number(report.passed || 0);
+  const total = Number(report.total || cases.length);
+  return json({
+    ok: passed === total,
+    runId: id,
+    taskId: String(body.taskId),
+    attemptId: typeof body.attemptId === "string" ? body.attemptId : null,
+    provider: report.provider,
+    runtimeProfileId: report.runtimeProfileId,
+    result: passed === total ? "passed" : "failed",
+    passed,
+    total,
+    publicTestCount: task.publicTests.length,
+    hiddenTestCount: task.hiddenTests.length,
+    hiddenMaterialReturned: false,
+    evidenceOnly: true,
+    officialAttemptWrite: false,
+    masteryWrite: false,
+    learnerStateOwnerRequired: true,
+  });
 }
 
 async function runtimeIdentity(request, env) {
@@ -158,6 +232,8 @@ async function pythonApi(request, env, url) {
   try {
     if (url.pathname === "/api/python/runtime" && request.method === "GET") return runtimeIdentity(request, env);
     if (url.pathname === "/api/python/run" && request.method === "POST") return runCode(request, env);
+    if (url.pathname === "/api/python/test" && request.method === "POST") return runTaskTests(request, env);
+    if (url.pathname === "/api/python/submit" && request.method === "POST") return submitTaskEvidence(request, env);
     if (url.pathname === "/api/python/cancel" && request.method === "POST") {
       const auth = await authorize(request, env);
       if (!auth.ok) return json({ ok: false, code: auth.code }, auth.status);
