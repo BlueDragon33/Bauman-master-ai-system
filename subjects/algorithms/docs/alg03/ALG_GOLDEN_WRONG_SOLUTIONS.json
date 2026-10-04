@@ -38,7 +38,7 @@
       "expectedErrorIds": [
         "PERMUTATION_ERROR"
       ],
-      "pythonSource": "def solve(items):\n    return sorted(set(items))\n"
+      "pythonSource": "def solve(items):\n    return sorted({tuple(x) for x in items})\n"
     },
     {
       "id": "alg.gold.wrong.sort-unstable-on-equal",
