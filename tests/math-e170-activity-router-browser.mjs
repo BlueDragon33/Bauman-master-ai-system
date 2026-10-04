@@ -32,13 +32,14 @@ try{
   await page.addInitScript(()=>localStorage.clear());
 
   await page.goto(BASE+'subjects/math/index.html?host=main&hostOrigin='+encodeURIComponent(new URL(BASE).origin)+'&subjectId=math&taskId=e170-revalidation&stage=prepare',{waitUntil:'load',timeout:30000});
-  await page.waitForFunction(()=>window.BAUMAN_MATH_THEORY_E129&&window.__BAUMAN_CORE_API?.state,null,{timeout:30000});
+  await page.waitForFunction(()=>!!window.BAUMAN_MATH_THEORY_E129,null,{timeout:30000});
   await page.waitForFunction(()=>window.BAUMAN_MATH_THEORY_E129.sourceStatus().frame>0,null,{timeout:30000});
   await page.waitForFunction(()=>['exercise_content','simulation_content','application_content','review_pack_content','question_bank_content'].every(k=>window.DB?.[k]),null,{timeout:30000});
 
   await page.evaluate(()=>{
-    const st=window.__BAUMAN_CORE_API.state;
-    st.view='learning';st.learnTab='theory';delete st.e169Path;
+    window.__MATH_STATE=window.__MATH_STATE||{};
+    const st=window.__MATH_STATE;
+    st.view='learning';st.learnTab='theory';st.stage='vn';delete st.e169Path;
     window.BAUMAN_MATH_THEORY_E129.render();
   });
   await page.waitForSelector('[data-e169-open="chapter"]',{timeout:10000});
