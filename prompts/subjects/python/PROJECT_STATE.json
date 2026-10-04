@@ -3,8 +3,8 @@
   "subject": "python",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/subjects/python/PYTHON_MASTER_PROMPT.md",
-  "status": "PYTHON02_VALIDATING",
-  "activeModule": "PYTHON02",
+  "status": "PYTHON02_PASS_CANONICAL_MODEL_LOCKED",
+  "activeModule": "PYTHON03",
   "sequence": [
     "PYTHON01",
     "PYTHON02",
@@ -14,11 +14,12 @@
     "PYTHON06"
   ],
   "completedModules": [
-    "PYTHON01"
+    "PYTHON01",
+    "PYTHON02"
   ],
   "needsRevalidation": [],
-  "lastValidatedSha": "c913fcfe2ecb48ce312410c76da577e811911b58",
-  "currentHeadSha": "19154d3c0df2aed3d1e6aa5866544b6ccdf5c515",
+  "lastValidatedSha": "6e291d5e171020916674f1b83709e95118d39115",
+  "currentHeadSha": "6e291d5e171020916674f1b83709e95118d39115",
   "evidence": [
     "prompts/subjects/python/evidence/PYTHON_P1_EXECUTIVE_SUMMARY.md",
     "prompts/subjects/python/evidence/PYTHON_CURRENT_ARCHITECTURE_MAP.md",
@@ -41,10 +42,12 @@
     "prompts/subjects/python/evidence/PYTHON_ADJACENT_SUBJECT_BOUNDARY.md",
     "prompts/subjects/python/evidence/PYTHON_LEGACY_LESSON_OWNERSHIP_MAP.json",
     "prompts/subjects/python/evidence/PYTHON03_INPUT_CONTRACT.md",
-    "tests/python-p2-blueprint-static.mjs"
+    "tests/python-p2-blueprint-static.mjs",
+    "Development Fast CI run 37192414921: SUCCESS; Python P2 blueprint static PASS",
+    "Universal Constitution Compliance run 37192415254: SUCCESS"
   ],
   "blockers": [],
-  "nextAction": "Validate PYTHON02 canonical academic blueprint, 48-lesson ownership map, competency/prerequisite DAGs and PYTHON03 input contract. No runtime or production migration.",
+  "nextAction": "Run PYTHON03 Code Reasoning · Debugging · Assessment from the PYTHON02 canonical curriculum, graphs, ownership map and PYTHON03 input contract. Do not implement the interpreter/sandbox until PYTHON04.",
   "notes": [
     "Actual learner runtime is subjects/programming/, not subjects/python/.",
     "Current Programming package mixes Python with Algorithms, Database, ML tooling and Software Engineering.",
@@ -54,6 +57,7 @@
     "PYTHON01 is audit-only: no production runtime, content, mastery or learner-state mutation.",
     "PYTHON01 exact tested evidence head is c913fcfe2ecb48ce312410c76da577e811911b58; the terminal state/evidence metadata tail is governance-only and must still pass final PR-head CI before merge.",
     "PYTHON02 is architecture/content-governance only: no learner runtime, interpreter, sandbox, learner-state migration or production deployment is authorized.",
-    "All 48 PRxx lesson IDs are preserved through an explicit ownership/compatibility map while adjacent-subject theory is routed to its canonical owner."
+    "All 48 PRxx lesson IDs are preserved through an explicit ownership/compatibility map while adjacent-subject theory is routed to its canonical owner.",
+    "PYTHON02 exact tested evidence head is 6e291d5e171020916674f1b83709e95118d39115; terminal PASS metadata is governance-only and must still pass final PR-head CI before merge."
   ]
 }
