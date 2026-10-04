@@ -3,7 +3,7 @@
   "subject": "python",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/subjects/python/PYTHON_MASTER_PROMPT.md",
-  "status": "PYTHON04_BLOCKED_SAFE_RUNTIME_PROVIDER",
+  "status": "PYTHON04_ACTIVE_SERVER_CONTAINER_PROVIDER",
   "activeModule": "PYTHON04",
   "sequence": [
     "PYTHON01",
@@ -20,7 +20,7 @@
   ],
   "needsRevalidation": [],
   "lastValidatedSha": "95c90f34e4deef1b9b51474863ca1d7cb06054dc",
-  "currentHeadSha": "95c90f34e4deef1b9b51474863ca1d7cb06054dc",
+  "currentHeadSha": "1622aa591fc0ded12c0659caf42e38d21b051487",
   "evidence": [
     "prompts/subjects/python/evidence/PYTHON_P1_EXECUTIVE_SUMMARY.md",
     "prompts/subjects/python/evidence/PYTHON_CURRENT_ARCHITECTURE_MAP.md",
@@ -71,12 +71,14 @@
     "prompts/subjects/python/evidence/PYTHON05_INPUT_CONTRACT.md",
     "tests/python-p4-runtime-security-contract.mjs",
     "PR #258 merged at 95c90f34e4deef1b9b51474863ca1d7cb06054dc; Constitution + Development Fast CI PASS",
-    "prompts/subjects/python/evidence/PYTHON_P4_SAFE_RUNTIME_PROVIDER_BLOCKER.md"
+    "prompts/subjects/python/evidence/PYTHON_P4_SAFE_RUNTIME_PROVIDER_BLOCKER.md",
+    "prompts/subjects/python/evidence/PYTHON04_RUNTIME_PROVIDER_DECISION.md",
+    "prompts/subjects/python/evidence/PYTHON04_CLOUDFLARE_SANDBOX_IMPLEMENTATION_PLAN.md"
   ],
   "blockers": [
-    "No safe learner Python execution provider is currently proven in-repo: no browser Python/WASM runtime, no isolated server/container sandbox, and no approved external runner binding. Learner execution must remain disabled until one provider passes PYTHON04 security/resource/reproducibility fixtures."
+    "Cloudflare Sandbox Container is selected as the canonical learner Python runtime provider, but no in-repo provider binding has yet passed the PYTHON04 security/resource/reproducibility golden fixtures. learnerExecutionEnabled must remain false until that proof exists."
   ],
-  "nextAction": "Resolve the PYTHON04 runtime-provider architecture blocker: authorize and prove either a browser sandbox provider, dedicated isolated server/container sandbox, or approved external runner. Do not enable learner execution or advance PYTHON05 executable UX until the provider passes the PYTHON04 golden security fixtures.",
+  "nextAction": "Implement the Cloudflare Sandbox Container provider spike behind learnerExecutionEnabled=false, bind the CPython 3.14.8 runtime profile, and run every PYTHON04 golden security fixture through the real provider before advancing PYTHON05 executable UX.",
   "notes": [
     "Actual learner runtime is subjects/programming/, not subjects/python/.",
     "Current Programming package mixes Python with Algorithms, Database, ML tooling and Software Engineering.",
@@ -95,6 +97,9 @@
     "First official attempt evidence is immutable and retries append; learner code execution remains unauthorized in PYTHON03.",
     "PYTHON03 exact tested evidence head is ee16b75b86a8029ca005278ee99e20ad8a64f7fb; this terminal state/evidence metadata tail is governance-only and must still pass final PR-head CI before merge.",
     "PYTHON04 contract phase merged at 95c90f34e4deef1b9b51474863ca1d7cb06054dc; execution remains disabled by design.",
-    "Repository-wide discovery found no Pyodide/PyScript/MicroPython/CPython-WASM bundle and no isolated Python server/container runner."
+    "Repository-wide discovery found no Pyodide/PyScript/MicroPython/CPython-WASM bundle and no isolated Python server/container runner.",
+    "PYTHON04 architecture decision on 2026-10-04 selects dedicated server/container sandbox via Cloudflare Sandboxes/Containers; browser sandbox is non-canonical practice-only and external runner is contingency-only.",
+    "Initial provider spike binds CPython 3.14.8 because Python 3.15.0 final is not yet released on the decision date.",
+    "Official assessment requires a clean sandbox identity per run/attempt with Internet disabled by default, no platform secrets, and hidden tests confined to the server-side sandbox boundary."
   ]
 }
