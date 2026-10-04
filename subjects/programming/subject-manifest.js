@@ -182,7 +182,8 @@ window.SUBJECT_MANIFEST = {
     "parameterSimulation": true,
     "programmingOralDefense": true,
     "syntaxCards": true,
-    "softwareLab": true
+    "softwareLab": true,
+    "pythonLab": true
   },
   "routeMapping": {
     "mainSubjectId": "programming",
@@ -214,5 +215,14 @@ window.SUBJECT_MANIFEST = {
   },
   "notes": "Bản này ưu tiên gọn, sạch và dễ tiếp tục nhân bản sang môn kế tiếp; không thay đổi bố cục UX/UI lõi.",
   "description": "Module Programming bám lộ trình Main: Python, SQL, Git, OOP, CSDL ML, pipeline, kiểm thử, Docker, tài liệu kỹ thuật và repo nghiên cứu.",
-  "packageProtocol": "PROGRAMMING_BAUMAN_CLEAN_V2"
+  "packageProtocol": "PROGRAMMING_BAUMAN_CLEAN_V2",
+  "pythonRuntime": {
+    "facade": "assets/python-runtime.js",
+    "entry": "python-lab.html",
+    "provider": "local-docker-chroot-seccomp",
+    "availability": "local-companion-only",
+    "learnerExecutionEnabled": false,
+    "officialAssessment": false,
+    "offlineExecution": false
+  }
 };

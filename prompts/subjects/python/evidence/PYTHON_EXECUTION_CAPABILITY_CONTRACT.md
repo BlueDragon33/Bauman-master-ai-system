@@ -1,19 +1,61 @@
-# PYTHON04 EXECUTION CAPABILITY CONTRACT
-Status: CONTRACT ONLY — learner execution remains disabled.
+# PYTHON04 execution capability contract
 
-Canonical facade: `python.execute`.
-Related capabilities: `python.repl`, `python.notebook`, `python.test.run`, `python.trace`, `python.debug`, `python.lint`, `python.format`, `python.typecheck`, `python.files`, `python.package.info`, `python.data.numpy`, `python.data.pandas`, `python.ai.tutor`.
+Status: VALIDATING; remote exact-head CI/PR acceptance is not yet established.
 
-## Request
-Every run must carry `runId`, `taskId`, `attemptId`, source code, stdin/files only when declared, runtime profile, package profile, timeout/output/resource policy, and deterministic seed when required. Secrets and ambient platform environment are excluded.
+## Canonical integration
 
-## Result
-Providers return structured `status`, `stdout`, `stderr`, exception class/message/traceback, exit code when applicable, duration/resource signals, produced artifacts, runtime identity, truncation flags and cancellation/timeout state.
+`subjects/programming/subject-manifest.{json,js}` declares `pythonRuntime` and
+the lab entry. `assets/subject-adapter.js` remains the Programming integration
+owner. `assets/python-runtime.js` attaches exactly one facade to that adapter;
+the lab uses only `SUBJECT_ADAPTER.pythonRuntime.run`. No global registry/kernel
+is introduced. Shared `subjects/shared/host-bridge.js` remains task/progress
+transport; Python execution does not write progress or mastery.
 
-Provider output is evidence, not mastery. PYTHON03 remains assessment semantics owner and C4 remains mastery authority.
+## Supported provider
 
-## Provider boundary
-UI and lessons call this facade only. No lesson may instantiate an interpreter directly. Provider implementations may be browser, server, external or desktop, but must satisfy the same envelope.
+Local companion `runtime/python/server.mjs`, loopback port 4414, serving only
+the local development origins on port 3005. Native CPython 3.12.12, Linux
+x86_64, cgroup v2, Docker with the tested limits and seccomp support. Start:
 
-## Current gate
-No compliant provider is proven in the repository. Therefore executable learner code stays disabled and the product must not claim Python execution support.
+```sh
+cd /workspace/Bauman-master-ai-system
+node runtime/python/setup.mjs
+node runtime/python/server.mjs --acceptance
+node scripts/serve-local-runtime.mjs --port 3005
+```
+
+The provider is a development companion, not a Cloudflare Worker or production
+service. Hosted pages fail closed; no remote endpoint, external credential,
+desktop host interpreter or browser eval fallback is selected automatically.
+
+## Request/result
+
+Requests allow only run/task/session IDs, code or ordered cells, stdin, text
+file map and mode (`run`, `notebook`, `trace`, `test`). Code: 16 KiB / 12 cells;
+stdin: 8 KiB; files: 8 / 16 KiB. Unknown fields, runtime/image/policy overrides,
+official test payloads and unsafe paths are rejected before container launch.
+
+Results bind request identity, provider, pinned runtime/environment/image ID,
+policy, status, bounded stdout/stderr, exception class/location, cell/trace
+metadata, duration, truncation and verified cleanup. Public-test results carry
+passed/failed/cases. Transport is structured JSON; printed `PASS` is not a
+correctness signal. Interpreter diagnostics remain adversarial reports.
+Identity, policy, cleanup and official-evidence authority are set by the
+supervisor, never accepted from learner output.
+
+`officialEvidence=false` always. Public tests are practice feedback, not a
+score or mastery decision. PYTHON02/PYTHON03 and existing learner history are
+unchanged. IDs plus facade generation quarantine late replies; edits,
+restart, cancel and newer runs invalidate the previous request.
+
+## Lifecycle / failure
+
+One concurrent run per companion. Busy/unavailable/invalid-result/timeout,
+memory/output-limit, cancellation and cleanup failure are distinct. Cleanup
+failure blocks subsequent runs until the provider is repaired/restarted;
+never automatically reuse its workspace. The lab gives honest unavailable
+feedback when the companion is down or network/browser is offline.
+
+## Pending release gate
+
+Canonical logical capability: `python.execute`; the existing subject adapter owns its concrete facade. Provider output is evidence, not mastery. Until required CI/review accepts the exact head, executable learner code stays disabled. The default companion returns `acceptance_pending`; only an explicitly started loopback `--acceptance` harness runs the security/browser fixtures. This is not a deployed learner service. Requests bind run/task/session identity; official attempt ownership remains PYTHON03.

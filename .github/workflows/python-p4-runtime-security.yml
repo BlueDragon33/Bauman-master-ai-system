@@ -1,0 +1,95 @@
+name: Python04 Runtime Security
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['runtime/python/**', 'subjects/programming/**', 'tests/python-p4-*', 'prompts/subjects/python/**', '.github/workflows/python-p4-runtime-security.yml']
+  pull_request:
+    branches: [main]
+    paths: ['runtime/python/**', 'subjects/programming/**', 'tests/python-p4-*', 'prompts/subjects/python/**', '.github/workflows/python-p4-runtime-security.yml']
+
+permissions:
+  contents: read
+
+jobs:
+  local-sandbox-acceptance:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.13.0'
+      - name: Build fingerprinted pinned sandbox
+        run: node runtime/python/setup.mjs
+      - name: Static, accepted owner regressions and integration
+        run: |
+          set -euo pipefail
+          node tests/python-p4-runtime-security-contract.mjs
+          node tests/python-p4-static.mjs
+          node tests/python-p1-forensic-static.mjs
+          node tests/python-p2-canonical-contract.mjs
+          node tests/python-p3-assessment-contract.mjs
+          node scripts/validate-system-integration.mjs
+      - name: Real sandbox security and failure injection
+        run: node --test --test-concurrency=1 tests/python-p4-*.test.mjs
+      - name: Prepare browser tools outside checkout
+        run: |
+          npm install --prefix /tmp/python04-tools --no-audit --no-fund playwright@1.55.0
+          /tmp/python04-tools/node_modules/.bin/playwright install --with-deps chromium
+      - name: Source desktop and mobile journeys
+        env:
+          BAUMAN_PLAYWRIGHT_MODULE: /tmp/python04-tools/node_modules/playwright/index.mjs
+        run: |
+          set -euo pipefail
+          node runtime/python/server.mjs --acceptance >/tmp/python04-provider.log 2>&1 &
+          provider_pid=$!
+          node scripts/serve-local-runtime.mjs --port 3005 >/tmp/python04-static.log 2>&1 &
+          static_pid=$!
+          trap 'kill "$provider_pid" "$static_pid" 2>/dev/null || true' EXIT
+          for port in 4414 3005; do
+            for attempt in {1..30}; do
+              if curl --fail --silent http://127.0.0.1:$port/ >/dev/null || { [ "$port" = 4414 ] && curl --fail --silent http://127.0.0.1:$port/health >/dev/null; }; then break; fi
+              sleep 0.2
+            done
+          done
+          node tests/python-p4-browser.mjs
+      - name: Materialize package without deployment
+        env:
+          BAUMAN_CONTROL_PREVIEW_D1_DATABASE_ID: 11111111-1111-4111-8111-111111111111
+          BAUMAN_CONTROL_PRODUCTION_D1_DATABASE_ID: 22222222-2222-4222-8222-222222222222
+          APPLICATION_MANAGEMENT_PREVIEW_ORIGIN: https://application-management-preview.example.com
+          BAUMAN_CONTROL_PREVIEW_ORIGIN: https://bauman-control-preview.example.com
+          BAUMAN_RUNTIME_PREVIEW_ORIGIN: https://bauman-runtime-preview.example.com
+        run: node scripts/prepare-cloudflare-preview.mjs
+      - name: Packaged desktop and mobile journeys
+        env:
+          BAUMAN_PLAYWRIGHT_MODULE: /tmp/python04-tools/node_modules/playwright/index.mjs
+        run: |
+          set -euo pipefail
+          test ! -e runtime-dist/runtime/python
+          node runtime/python/server.mjs --acceptance >/tmp/python04-provider-package.log 2>&1 &
+          provider_pid=$!
+          node scripts/serve-local-runtime.mjs --root runtime-dist --port 3005 >/tmp/python04-static-package.log 2>&1 &
+          static_pid=$!
+          trap 'kill "$provider_pid" "$static_pid" 2>/dev/null || true' EXIT
+          for port in 4414 3005; do
+            for attempt in {1..30}; do
+              if curl --fail --silent http://127.0.0.1:$port/ >/dev/null || { [ "$port" = 4414 ] && curl --fail --silent http://127.0.0.1:$port/health >/dev/null; }; then break; fi
+              sleep 0.2
+            done
+          done
+          node tests/python-p4-browser.mjs
+          mkdir -p artifacts/python04
+          git rev-parse HEAD >artifacts/python04/exact-tested-sha.txt
+          git diff --exit-code
+      - name: Upload exact-head receipts and diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: python04-acceptance-${{ github.sha }}
+          path: |
+            artifacts/python04
+            /tmp/python04-*.log
+          if-no-files-found: warn

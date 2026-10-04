@@ -71,6 +71,9 @@ jobs:
       - name: Python P4 runtime security contract
         run: node tests/python-p4-runtime-security-contract.mjs
 
+      - name: Python P4 integration wiring
+        run: node tests/python-p4-static.mjs
+
       - name: Entrepreneurship subject static
         run: node tests/entrepreneurship-subject-static.mjs
 

@@ -1,13 +1,29 @@
-# PYTHON04 TEST / DEBUG PROVIDER CONTRACT
-Status: CONTRACT — provider pending.
+# PYTHON04 test/debug provider contract
 
-## Test results
-`python.test.run` returns structured cases with id/name, status (`passed|failed|error|skipped`), visibility, safe expected/actual data, error category and runtime identity. Hidden test source is never returned.
+Public practice task `sum-integers`: implement `solve(values)` returning the sum
+of the given integer list. Cases are public: []→0, [1,2]→3, [-3,3]→0,
+[4,5,6]→15. The sandbox receives function inputs; expected values are compared
+in the trusted supervisor, never inferred from stdout or a learner PASS claim.
+Equivalent implementations are accepted. Returned case IDs, visibility,
+passed/failed counts and correctness category are structured practice feedback.
+Errors/timeouts/resource limits remain distinct from failed behavior tests.
 
-## Trace/debug
-`python.trace` and `python.debug` may expose deterministic steps, call stack, variables, breakpoints and safe expression inspection. Real exception class/location is preserved; learner-friendly explanations may be added but may not replace runtime evidence.
+No official hidden task/test source or solution is implemented or packaged.
+Requests cannot submit hiddenTests, solutions, official scores or authority.
+Private official assessment remains disabled; adding it requires a trusted
+server-side task store/evaluator separate from learner execution and public
+packaging. Never place private evaluator source/expected answers in a Python
+frame, browser bundle, provider request, local hint or AI prompt.
 
-## Static tools
-Lint/format/typecheck are advisory providers. Formatting is not correctness. Lint/style is not mastery. Static-analysis findings must be clearly separated from runtime behavior.
+Trace reports at most 100 cell line locations. Exceptions preserve class,
+message and cell locations, with supervisor bounds. They are advisory reports
+from an adversarial process: learner code can disable tracing or change its own
+runtime diagnostics. This is not a privileged debugger or correctness oracle.
+No source-string grading. Lint/format/typecheck providers are not implemented
+and are not presented as available.
 
-All provider evidence flows into PYTHON03 contracts; no provider grants mastery by itself.
+Official evidence is always false; retries/runs cannot alter PYTHON03's immutable
+first-attempt rule because this capability performs no official state writes.
+The existing canonical learner-state and shared bridge remain unchanged.
+
+Hidden test source is never returned; no provider grants mastery.

@@ -1,67 +1,131 @@
 {
   "schema": "PYTHON_RUNTIME_GOLDEN_FIXTURES_V1",
-  "status": "CONTRACT_ONLY_PROVIDER_PENDING",
+  "status": "VALIDATING_LOCAL_CANDIDATE_RELEASE_BLOCKED",
   "learnerExecutionEnabled": false,
   "fixtures": [
     {
       "id": "infinite-loop",
       "category": "timeout",
       "program": "while True: pass",
-      "expected": "terminated_by_timeout"
+      "expected": "terminated_by_timeout",
+      "code": "while True: pass",
+      "statuses": [
+        "timeout"
+      ]
     },
     {
       "id": "huge-allocation",
       "category": "memory",
       "program": "x = bytearray(10**10)",
-      "expected": "contained_resource_failure"
+      "expected": "contained_resource_failure",
+      "code": "x = bytearray(256 * 1024 * 1024)",
+      "statuses": [
+        "memory_limit"
+      ]
     },
     {
       "id": "output-flood",
       "category": "output_limit",
       "program": "print('x' * 100000000)",
-      "expected": "bounded_output_with_truncation"
+      "expected": "bounded_output_with_truncation",
+      "code": "print('x' * 20000)",
+      "statuses": [
+        "output_limit"
+      ]
     },
     {
       "id": "path-traversal",
       "category": "filesystem",
       "program": "open('../../secret.txt').read()",
-      "expected": "denied_outside_workspace"
+      "expected": "denied_outside_workspace",
+      "code": "open('../../etc/passwd').read()",
+      "statuses": [
+        "runtime_error"
+      ],
+      "exception": "FileNotFoundError"
     },
     {
       "id": "env-read",
       "category": "secret_protection",
       "program": "import os; print(os.environ)",
-      "expected": "platform_secrets_unavailable"
+      "expected": "platform_secrets_unavailable",
+      "code": "import os\nassert not os.environ\nassert os.getenv('PYTHON04_PRIVATE_CANARY') is None\nassert not os.path.exists('/proc/self/environ')\nprint('isolated')",
+      "statuses": [
+        "completed"
+      ],
+      "stdout": "isolated\n"
     },
     {
       "id": "network",
       "category": "network",
       "program": "import urllib.request; urllib.request.urlopen('https://example.com')",
-      "expected": "denied_by_default"
+      "expected": "denied_by_default",
+      "code": "import ctypes\nlib = ctypes.CDLL(None, use_errno=True)\nassert lib.socket(2, 1, 0) == -1\nassert ctypes.get_errno() == 1\nprint('denied')",
+      "statuses": [
+        "completed"
+      ],
+      "stdout": "denied\n"
     },
     {
       "id": "subprocess",
       "category": "subprocess",
       "program": "import subprocess; subprocess.run(['sh','-c','id'])",
-      "expected": "denied_or_isolated_by_policy"
+      "expected": "denied_or_isolated_by_policy",
+      "code": "import ctypes\nlib = ctypes.CDLL(None, use_errno=True)\nassert lib.fork() == -1\nassert ctypes.get_errno() == 1\nassert lib.execve(b'/bin/sh', 0, 0) == -1\nassert ctypes.get_errno() == 1\nprint('denied')",
+      "statuses": [
+        "completed"
+      ],
+      "stdout": "denied\n"
     },
     {
       "id": "unsafe-pickle",
       "category": "deserialization",
       "program": "import pickle; pickle.loads(b'...')",
-      "expected": "must_not_execute_in_privileged_host_context"
+      "expected": "must_not_execute_in_privileged_host_context",
+      "code": "import pickle\npickle.loads(b\"cos\\nsystem\\n(S'touch /escaped'\\ntR.\")",
+      "statuses": [
+        "runtime_error"
+      ],
+      "exception": "ModuleNotFoundError"
     },
     {
       "id": "stale-result",
       "category": "concurrency",
       "program": "print('old run')",
-      "expected": "old_run_cannot_overwrite_new_attempt"
+      "expected": "old_run_cannot_overwrite_new_attempt",
+      "code": "print('old run')",
+      "statuses": [
+        "completed"
+      ],
+      "stdout": "old run\n",
+      "testOwner": "tests/python-p4-facade.test.mjs"
     },
     {
       "id": "hidden-test-leak",
       "category": "assessment_security",
       "program": "print('request hidden tests')",
-      "expected": "hidden_tests_never_exposed"
+      "expected": "hidden_tests_never_exposed",
+      "code": "open('/hidden-tests.json').read()",
+      "statuses": [
+        "runtime_error"
+      ],
+      "testOwner": "provider request allowlist and public-only supervisor",
+      "exception": "FileNotFoundError"
+    },
+    {
+      "id": "raw_output_flood",
+      "code": "import os\nwhile True: os.write(1, b'x' * 8192)",
+      "statuses": [
+        "output_limit"
+      ]
+    },
+    {
+      "id": "raw_stderr_flood",
+      "code": "import os\nwhile True: os.write(2, b'x' * 8192)",
+      "statuses": [
+        "output_limit"
+      ]
     }
-  ]
+  ],
+  "scope": "local Docker provider; never run attack fixtures on host Python"
 }

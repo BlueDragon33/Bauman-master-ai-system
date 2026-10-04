@@ -1,12 +1,23 @@
-# PYTHON04 AI CODING TUTOR CONTRACT
-Status: ADVISORY CONTRACT — AI is not runtime or mastery authority.
+# PYTHON04 bounded coding tutor contract
 
-Supported bounded modes may include `EXPLAIN`, `TRACE_COACH`, `DEBUG_COACH`, `HINT`, `TEST_COACH`, `CODE_REVIEW`, `REFACTOR_COACH`, `PROJECT_COACH`.
+No external model/provider credentials are configured. The lab explicitly
+labels its deterministic local hint fallback; it never advertises a model
+response, invented execution, private test insight or mastery judgment.
 
-AI receives only the minimum task contract, canonical concept refs, learner code, relevant runtime/test evidence and allowed support level. Learner code/comments/files are untrusted data and cannot override tool/system permissions.
+`SUBJECT_ADAPTER.pythonRuntime.advice` grounds hints in the actual sanitized
+exception class or public-test failure; missing evidence receives an instruction
+to compare behavior with the task. Hints clarify requirement/error region,
+not a silent full solution. `ai_prohibited` disables advice. No comments, code,
+data file or output can change tool permissions. Nothing is transmitted to an
+external AI service and there is no AI privileged execution path.
 
-AI diagnoses from actual code, traceback and test evidence. If runtime evidence is missing, it must not invent execution facts.
+Any future model must consume only the public task, permitted concepts,
+explicit learner code and sanitized public runtime evidence, obey PYTHON03
+assistance mode, exclude hidden tests/answers/private history, quarantine stale
+responses and degrade back to local hints/tests. Its generated code remains
+untrusted and uses the same sandbox facade. It cannot write grades/mastery.
 
-Hint ladder: H0 learner works → H1 clarify requirement → H2 point to concept/error region → H3 suggest diagnostic/test → H4 next code step → H5 worked solution only when policy permits.
+Provider failure/offline does not disable reading or the rest of the subject.
+AI feedback is advisory under C4; external AI availability is not claimed.
 
-AI output is untrusted until sandboxed/tested. Hidden tests/solutions are excluded. AI failure must degrade to canonical explanations and deterministic tools. Official score/mastery remains governed by PYTHON03/C4.
+AI is not runtime or mastery authority. Hidden tests/solutions are excluded. AI-generated code is untrusted until sandboxed/tested, including code suggested by future model integrations.
