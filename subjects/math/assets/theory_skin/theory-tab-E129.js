@@ -62,7 +62,8 @@
     {id:'review',tab:'review',label:'Ôn tập',name:'Hệ thống hóa kiến thức',summary:'Mindmap, cheat sheet, flashcard và thuật ngữ song ngữ.'},
     {id:'exam',tab:'exam',label:'Kiểm tra',name:'Đánh giá năng lực',summary:'Bài thi tổng hợp, trắc nghiệm + tự luận, time-box; giữ logic đề hiện có.'}
   ];
-  var E169_TAB_ROUTES = {theory:'theory',exercises:'exercises',practice:'practice',review:'review',exam:'exam'};
+  var E169_TAB_ROUTES = {theory:'theory',exercises:'exercises',practice:'practice',application:'application',review:'review',exam:'exam'};
+  var E170_ACTIVITY_SOURCES = {exercises:'exercise_content',practice:'simulation_content',application:'application_content',review:'review_pack_content',exam:'question_bank_content'};
   var E169_HIERARCHY = [
     {id:'pure',code:'I',title:'Toán học Thuần túy',en:'Pure Mathematics Module',courses:[
       {id:'pure-algebra',no:1,title:'Đại số và Cấu trúc số',en:'Algebra & Structures',chapters:[
@@ -536,15 +537,66 @@
     document.body.classList.toggle('e129-presenting',!!state().e129Present);
     return true;
   }
+  function e170VaultRecords(key){
+    var raw=db()[key];
+    if(Array.isArray(raw)) return raw;
+    if(raw&&Array.isArray(raw.records)) return raw.records;
+    if(raw&&Array.isArray(raw.items)) return raw.items;
+    if(raw&&raw.data) return e170Extract(raw.data);
+    return [];
+  }
+  function e170Extract(raw){
+    if(Array.isArray(raw)) return raw;
+    if(raw&&Array.isArray(raw.records)) return raw.records;
+    if(raw&&Array.isArray(raw.items)) return raw.items;
+    return [];
+  }
+  function e170ActivityRecords(activityId,frame,p){
+    var source=E170_ACTIVITY_SOURCES[activityId]||'';
+    var xs=source?e170VaultRecords(source):[];
+    var lessonId=S((p&&p.lessonId)||state().e129LessonId||'');
+    if(lessonId){
+      var exact=xs.filter(function(r){return S(r&&r.lessonId)===lessonId;});
+      if(exact.length) return exact;
+    }
+    var chapterId=S(frame&&frame.chapterId||'');
+    if(chapterId) return xs.filter(function(r){return S(r&&r.chapterId)===chapterId;});
+    return [];
+  }
+  function e170Text(v){ return H(S(v||'')); }
+  function e170ActivityCard(activityId,r,index){
+    if(activityId==='exercises'){
+      return '<article><b>'+e170Text(r.level||r.difficulty||('Bài '+(index+1)))+'</b><p>'+e170Text(r.prompt||r.question||r.title)+'</p>'+(r.solution||r.answer?'<details><summary>Đáp án / gợi ý</summary><p>'+e170Text(r.solution||r.answer)+'</p></details>':'')+'</article>';
+    }
+    if(activityId==='practice'){
+      return '<article><b>'+e170Text(r.title||r.simulationId||('Mô phỏng '+(index+1)))+'</b><p>'+e170Text(r.goal||r.mission||r.scenario||r.description||r.summary)+'</p>'+(r.output||r.requiredOutput?'<p><strong>Đầu ra:</strong> '+e170Text(r.output||r.requiredOutput)+'</p>':'')+'</article>';
+    }
+    if(activityId==='application'){
+      return '<article><b>'+e170Text(r.title||r.applicationId||('Ứng dụng '+(index+1)))+'</b><p>'+e170Text(r.scenario||r.summary||r.description)+'</p>'+(r.method?'<p><strong>Phương pháp:</strong> '+e170Text(r.method)+'</p>':'')+'</article>';
+    }
+    if(activityId==='review'){
+      var items=arr(r.items).slice(0,6);
+      return '<article><b>'+e170Text(r.title||r.reviewPackId||('Gói ôn '+(index+1)))+'</b>'+(items.length?'<ul>'+items.map(function(x){return '<li>'+e170Text(x.prompt||x.question||x.title)+'</li>';}).join('')+'</ul>':'<p>Gói ôn tập chưa có item hiển thị.</p>')+'</article>';
+    }
+    if(activityId==='exam'){
+      return '<article><b>'+e170Text((r.level||r.difficulty||'Câu hỏi')+' · '+(r.questionId||index+1))+'</b><p>'+e170Text(r.question||r.prompt||r.title)+'</p>'+(r.answer?'<details><summary>Đáp án</summary><p>'+e170Text(r.answer)+'</p></details>':'')+'</article>';
+    }
+    return '<article><b>'+e170Text(r.title||('Mục '+(index+1)))+'</b><p>'+e170Text(r.summary||r.description||'')+'</p></article>';
+  }
   function renderE169Activity(){
     var view=document.getElementById('view'); if(!view) return false;
     rebuildFromDb();
     var p=e169Path(), frame=e169FrameChapter(), localChapter=e169Chapter(p.moduleId,p.courseId,p.chapterId), act=e169Activity(p.activityId);
     var known=!!E169_TAB_ROUTES[p.activityId];
-    setHeader(act.label, 'E169 · Learning path router · '+(known?'route nội bộ đã map':'placeholder an toàn'));
+    var source=E170_ACTIVITY_SOURCES[p.activityId]||'';
+    var records=e170ActivityRecords(p.activityId,frame,p);
+    setHeader(act.label, 'E170 · Activity Data Router · '+(source?source:'route nội bộ'));
     var detail=e169SpecialDetail(localChapter,act)||act.summary;
-    var routeLabel=known?('learnTab = '+E169_TAB_ROUTES[p.activityId]):'Chưa có tab route riêng, hiển thị placeholder trong khu Học tập';
-    view.innerHTML='<main class="e129-theory-shell e169-activity-shell" data-e129-release="'+RELEASE+'"><section class="e129-panel e129-reader"><header class="e129-reader-head e169-reader-head"><div>'+e169SelectorHtml()+'</div></header><section class="e169-activity-card"><span class="e129-badge">'+H(routeLabel)+'</span><h2>'+H(act.label+' · '+act.name)+'</h2><p>'+H(detail)+'</p><div class="e169-activity-meta"><span>'+H(localChapter?('Chương '+localChapter.no):'Chưa chọn chương')+'</span><span>'+H(frame?frame.chapterId:'Chưa có frame/content tương ứng')+'</span></div><div class="e169-placeholder-grid"><article><b>Trạng thái</b><p>Khung hoạt động đã route an toàn, chưa sinh nội dung học thuật dài.</p></article><article><b>Reader</b><p>E129 Reader vẫn giữ full content ở tab Lý thuyết.</p></article><article><b>Đi tiếp</b><p>Dùng breadcrumb hoặc nút Khối kiến thức để đổi cấp chọn.</p></article></div></section></section></main>';
+    var routeLabel=known?('learnTab = '+E169_TAB_ROUTES[p.activityId]):'route nội bộ';
+    var body=records.length
+      ? '<div class="e169-placeholder-grid">'+records.slice(0,18).map(function(r,i){return e170ActivityCard(p.activityId,r,i);}).join('')+'</div>'
+      : '<div class="e169-placeholder-grid"><article><b>Chưa có dữ liệu khớp</b><p>Không tìm thấy record trong '+H(source||'Content Vault')+' cho chapter/lesson đang chọn. Không dùng dữ liệu chương khác để lấp chỗ trống.</p></article><article><b>Reader</b><p>E129 Reader vẫn giữ full content ở tab Lý thuyết.</p></article><article><b>Đi tiếp</b><p>Dùng breadcrumb hoặc nút Khối kiến thức để đổi cấp chọn.</p></article></div>';
+    view.innerHTML='<main class="e129-theory-shell e169-activity-shell" data-e129-release="'+RELEASE+'" data-e170-activity="'+H(p.activityId)+'"><section class="e129-panel e129-reader"><header class="e129-reader-head e169-reader-head"><div>'+e169SelectorHtml()+'</div></header><section class="e169-activity-card"><span class="e129-badge">'+H(routeLabel+(source?' · '+source:''))+'</span><h2>'+H(act.label+' · '+act.name)+'</h2><p>'+H(detail)+'</p><div class="e169-activity-meta"><span>'+H(localChapter?('Chương '+localChapter.no):'Chưa chọn chương')+'</span><span>'+H(frame?frame.chapterId:'Chưa có frame/content tương ứng')+'</span><span>'+records.length+' record</span></div>'+body+'</section></section></main>';
     document.body.classList.remove('e129-presenting','e129-theory-storage');
     return true;
   }
