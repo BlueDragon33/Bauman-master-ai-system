@@ -1,0 +1,120 @@
+{
+  "schema": "ALG01_ALGORITHM_INVENTORY_V1",
+  "baselineSha": "13f781a34c3de240e64c71d87c5a7497e34a9d3c",
+  "canonicalAlgorithmRegistryExists": false,
+  "records": [
+    {
+      "name": "binary search",
+      "source": [
+        "P4-N07"
+      ],
+      "status": "MENTIONED_WITH_PRECONDITION_OUTCOME",
+      "stableId": null,
+      "traceModel": false,
+      "correctnessClaim": false,
+      "implementationOwner": null
+    },
+    {
+      "name": "insertion sort",
+      "source": [
+        "P4-N07"
+      ],
+      "status": "MENTIONED_INTUITIVELY",
+      "stableId": null,
+      "traceModel": false,
+      "correctnessClaim": false,
+      "implementationOwner": null
+    },
+    {
+      "name": "selection sort",
+      "source": [
+        "P4-N07"
+      ],
+      "status": "MENTIONED_INTUITIVELY",
+      "stableId": null,
+      "traceModel": false,
+      "correctnessClaim": false,
+      "implementationOwner": null
+    },
+    {
+      "name": "bubble sort",
+      "source": [
+        "P4-N07"
+      ],
+      "status": "MENTIONED_INTUITIVELY",
+      "stableId": null,
+      "traceModel": false,
+      "correctnessClaim": false,
+      "implementationOwner": null
+    },
+    {
+      "name": "merge sort",
+      "source": [
+        "P4-N07"
+      ],
+      "status": "MENTIONED_WITH_COMPLEXITY",
+      "stableId": null,
+      "traceModel": false,
+      "correctnessClaim": false,
+      "implementationOwner": null
+    },
+    {
+      "name": "quicksort",
+      "source": [
+        "P4-N07"
+      ],
+      "status": "MENTIONED_WITH_WORST_CASE_AWARENESS",
+      "stableId": null,
+      "traceModel": false,
+      "correctnessClaim": false,
+      "implementationOwner": null
+    },
+    {
+      "name": "BFS",
+      "source": [
+        "P4-N08",
+        "P4-N09"
+      ],
+      "status": "STRUCTURED_PREREQUISITE_OUTCOME",
+      "stableId": null,
+      "traceModel": false,
+      "correctnessClaim": false,
+      "implementationOwner": null
+    },
+    {
+      "name": "DFS",
+      "source": [
+        "P4-N08",
+        "P4-N09"
+      ],
+      "status": "STRUCTURED_PREREQUISITE_OUTCOME",
+      "stableId": null,
+      "traceModel": false,
+      "correctnessClaim": false,
+      "implementationOwner": null
+    },
+    {
+      "name": "preorder/inorder/postorder traversal",
+      "source": [
+        "P4-N05"
+      ],
+      "status": "STRUCTURED_PREREQUISITE_OUTCOME",
+      "stableId": null,
+      "traceModel": false,
+      "correctnessClaim": false,
+      "implementationOwner": null
+    }
+  ],
+  "explicitlyNotFoundAsCanonicalEntities": [
+    "Dijkstra",
+    "Bellman-Ford",
+    "topological sort",
+    "Kruskal",
+    "Prim",
+    "union-find",
+    "dynamic programming",
+    "backtracking",
+    "greedy family"
+  ],
+  "note": "Records above are current mentions/outcomes, not canonical Algorithm entities."
+}
