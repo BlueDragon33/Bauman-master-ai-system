@@ -1,0 +1,161 @@
+{
+  "schemaVersion": "1.0.0",
+  "owner": "prompts/subjects/python/evidence/PYTHON_P2_CANONICAL_MODEL.json",
+  "nodes": [
+    "pycomp:syntax-expressions",
+    "pycomp:data-model-types",
+    "pycomp:control-flow",
+    "pycomp:functions-decomposition",
+    "pycomp:collections-iteration",
+    "pycomp:mutation-state",
+    "pycomp:exceptions-debugging",
+    "pycomp:modules-imports",
+    "pycomp:files-data-interchange",
+    "pycomp:iterators-comprehensions",
+    "pycomp:oop",
+    "pycomp:type-hints-dataclasses",
+    "pycomp:testing",
+    "pycomp:environment-tooling",
+    "pycomp:data-scientific-bridge",
+    "pycomp:project-transfer"
+  ],
+  "edges": [
+    {
+      "from": "pycomp:syntax-expressions",
+      "to": "pycomp:data-model-types",
+      "kind": "requires"
+    },
+    {
+      "from": "pycomp:data-model-types",
+      "to": "pycomp:control-flow",
+      "kind": "requires"
+    },
+    {
+      "from": "pycomp:data-model-types",
+      "to": "pycomp:collections-iteration",
+      "kind": "requires"
+    },
+    {
+      "from": "pycomp:control-flow",
+      "to": "pycomp:functions-decomposition",
+      "kind": "requires"
+    },
+    {
+      "from": "pycomp:collections-iteration",
+      "to": "pycomp:functions-decomposition",
+      "kind": "requires"
+    },
+    {
+      "from": "pycomp:collections-iteration",
+      "to": "pycomp:mutation-state",
+      "kind": "requires"
+    },
+    {
+      "from": "pycomp:functions-decomposition",
+      "to": "pycomp:mutation-state",
+      "kind": "requires"
+    },
+    {
+      "from": "pycomp:functions-decomposition",
+      "to": "pycomp:exceptions-debugging",
+      "kind": "requires"
+    },
+    {
+      "from": "pycomp:functions-decomposition",
+      "to": "pycomp:modules-imports",
+      "kind": "requires"
+    },
+    {
+      "from": "pycomp:collections-iteration",
+      "to": "pycomp:iterators-comprehensions",
+      "kind": "requires"
+    },
+    {
+      "from": "pycomp:functions-decomposition",
+      "to": "pycomp:iterators-comprehensions",
+      "kind": "requires"
+    },
+    {
+      "from": "pycomp:mutation-state",
+      "to": "pycomp:oop",
+      "kind": "requires"
+    },
+    {
+      "from": "pycomp:modules-imports",
+      "to": "pycomp:oop",
+      "kind": "requires"
+    },
+    {
+      "from": "pycomp:oop",
+      "to": "pycomp:type-hints-dataclasses",
+      "kind": "requires"
+    },
+    {
+      "from": "pycomp:modules-imports",
+      "to": "pycomp:testing",
+      "kind": "requires"
+    },
+    {
+      "from": "pycomp:exceptions-debugging",
+      "to": "pycomp:testing",
+      "kind": "requires"
+    },
+    {
+      "from": "pycomp:collections-iteration",
+      "to": "pycomp:files-data-interchange",
+      "kind": "requires"
+    },
+    {
+      "from": "pycomp:exceptions-debugging",
+      "to": "pycomp:files-data-interchange",
+      "kind": "requires"
+    },
+    {
+      "from": "pycomp:modules-imports",
+      "to": "pycomp:files-data-interchange",
+      "kind": "requires"
+    },
+    {
+      "from": "pycomp:collections-iteration",
+      "to": "pycomp:data-scientific-bridge",
+      "kind": "requires"
+    },
+    {
+      "from": "pycomp:functions-decomposition",
+      "to": "pycomp:data-scientific-bridge",
+      "kind": "requires"
+    },
+    {
+      "from": "pycomp:files-data-interchange",
+      "to": "pycomp:data-scientific-bridge",
+      "kind": "requires"
+    },
+    {
+      "from": "pycomp:environment-tooling",
+      "to": "pycomp:data-scientific-bridge",
+      "kind": "requires"
+    },
+    {
+      "from": "pycomp:modules-imports",
+      "to": "pycomp:project-transfer",
+      "kind": "requires"
+    },
+    {
+      "from": "pycomp:testing",
+      "to": "pycomp:project-transfer",
+      "kind": "requires"
+    },
+    {
+      "from": "pycomp:files-data-interchange",
+      "to": "pycomp:project-transfer",
+      "kind": "requires"
+    },
+    {
+      "from": "pycomp:environment-tooling",
+      "to": "pycomp:project-transfer",
+      "kind": "requires"
+    }
+  ],
+  "cyclePolicy": "FAIL",
+  "externalPrerequisitePolicy": "Reference owning subject; do not copy external theory into Python."
+}
