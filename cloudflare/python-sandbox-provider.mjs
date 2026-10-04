@@ -83,8 +83,18 @@ export class PythonSandbox extends DurableObject {
     }
   }
 
-  async execute(payload) {
+  async execute(payload, signal = null) {
     const container = await this.ensureRunning();
+    let aborted = Boolean(signal?.aborted);
+    const abort = () => {
+      aborted = true;
+      try {
+        const pending = container.destroy("learner request aborted");
+        if (pending?.catch) pending.catch(() => {});
+      } catch {}
+    };
+    if (signal && !signal.aborted) signal.addEventListener("abort", abort, { once: true });
+    if (signal?.aborted) abort();
     try {
       const runnerPayload = JSON.stringify({
         code: payload.code,
@@ -96,6 +106,17 @@ export class PythonSandbox extends DurableObject {
         cwd: "/workspace",
       });
       const output = await process.output();
+      if (aborted || signal?.aborted) {
+        return normalizeRunnerResult({
+          ok: false,
+          status: "canceled",
+          stdout: "",
+          stderr: "",
+          exitCode: null,
+          durationMs: null,
+          truncated: { stdout: false, stderr: false },
+        }, { implementation: "CPython", version: "3.14.8" });
+      }
       if (output.stdout.byteLength > MAX_RUNNER_OUTPUT_BYTES || output.stderr.byteLength > 8192) {
         throw new Error("PYTHON_RUNNER_ENVELOPE_TOO_LARGE");
       }
@@ -105,28 +126,43 @@ export class PythonSandbox extends DurableObject {
         implementation: "CPython",
         version: "3.14.8",
       });
+    } catch (error) {
+      if (aborted || signal?.aborted) {
+        return normalizeRunnerResult({
+          ok: false,
+          status: "canceled",
+          stdout: "",
+          stderr: "",
+          exitCode: null,
+          durationMs: null,
+          truncated: { stdout: false, stderr: false },
+        }, { implementation: "CPython", version: "3.14.8" });
+      }
+      throw error;
     } finally {
-      await container.destroy("fresh run cleanup");
+      if (signal) signal.removeEventListener("abort", abort);
+      try { await container.destroy("fresh run cleanup"); } catch {}
     }
   }
 
-  async runCode(request) {
+  async runCode(request, signal = null) {
     return {
       runId: request.runId,
       taskId: request.taskId || null,
       attemptId: request.attemptId || null,
-      ...(await this.execute(request)),
+      ...(await this.execute(request, signal)),
     };
   }
 
-  async runTests(request) {
+  async runTests(request, signal = null) {
     const results = [];
     for (const [index, testCase] of request.cases.entries()) {
+      if (signal?.aborted) break;
       const result = await this.execute({
         code: request.code,
         stdin: testCase.stdin,
         timeoutMs: request.timeoutMs,
-      });
+      }, signal);
       const actual = String(result.stdout || "").replace(/\r\n/g, "\n").trimEnd();
       const expected = String(testCase.expected || "").replace(/\r\n/g, "\n").trimEnd();
       results.push({
@@ -149,6 +185,19 @@ export class PythonSandbox extends DurableObject {
     const container = this.ctx.container;
     if (container?.running) await container.destroy("run canceled");
     return { canceled: true, provider: PROVIDER_ID };
+  }
+
+  async fetch(request) {
+    const url = new URL(request.url);
+    if (request.method !== "POST") return new Response("Method not allowed", { status: 405 });
+    const body = await request.json();
+    if (url.pathname === "/run-code") {
+      return Response.json(await this.runCode(body, request.signal));
+    }
+    if (url.pathname === "/run-tests") {
+      return Response.json(await this.runTests(body, request.signal));
+    }
+    return new Response("Not found", { status: 404 });
   }
 }
 
