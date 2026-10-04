@@ -1,25 +1,26 @@
 {
-  "packetId": "PYTHON05-PRODUCT-20261004-001",
+  "packetId": "PYTHON06-RC-20261004-001",
   "revision": 1,
-  "status": "PASS_PENDING_MERGE",
-  "workClass": "B_PRODUCT_INTEGRATION",
+  "status": "IN_PROGRESS",
+  "workClass": "CHAT_ORCHESTRATED_ACCEPTANCE_HARDENING",
   "repository": "BlueDragon33/Bauman-master-ai-system",
-  "baselineSha": "b9e2253d7f9cef872067cb1ebb77f15ca7fd9a51",
-  "activeModule": "PYTHON05",
-  "objective": "Integrate the accepted Python runtime into a responsive learner Code Lab and data-driven authoring surface without forking platform shell, leaking hidden tests, or writing mastery directly.",
-  "authoritativeInputs": [
-    "prompts/subjects/python/PYTHON05_LEARNING_EXPERIENCE_AUTHORING_INTEGRATION.md",
-    "prompts/subjects/python/evidence/PYTHON05_INPUT_CONTRACT.md",
-    "prompts/subjects/python/evidence/PYTHON_EXECUTION_CAPABILITY_CONTRACT.md"
+  "baselineSha": "ae7b7c5b4677cb6056583c453b93f04ba48793ba",
+  "activeModule": "PYTHON06",
+  "objective": "Harden the accepted Python runtime/product, close canonical-ID/cancellation/stale-result gaps, prove exact RC acceptance, and integrate a non-destructive production smoke profile into the shared release procedure.",
+  "knownGaps": [
+    "P5 public task competency IDs were not using canonical py.comp.* IDs.",
+    "Client learned runId only after execution completed, so Cancel could not target an in-flight run and stale results could repaint UI.",
+    "Preview/production execution flag remained false pending P6 acceptance.",
+    "No Python-specific RC CI or shared production smoke step existed."
   ],
-  "acceptedHead": "d27cde65639f5c15b69ed488eceec4526efd2b7f",
-  "evidence": {
-    "p5RunId": 37199916215,
-    "p4RunId": 37199916222,
-    "developmentFast": 37199916238,
-    "futureInterface": 37199916223,
-    "constitution": 37199916665
-  },
-  "releasePolicy": "PYTHON05 may merge after terminal metadata head re-passes required checks. Production remains blocked until PYTHON06 exact RC and shared release procedure pass.",
-  "nextModule": "PYTHON06"
+  "invariants": [
+    "No host/browser eval fallback.",
+    "Hidden tests remain server-side.",
+    "Official attempt/mastery writes remain disabled until canonical global learner-state authority owns them.",
+    "CPython 3.14.8 profile remains pinned.",
+    "Offline execution remains honestly unsupported.",
+    "AI Tutor may be DEGRADED/disabled but cannot gain privileged execution/mastery authority.",
+    "Production uses shared release workflow only."
+  ],
+  "releasePolicy": "Merge only after exact PR-head P6 RC CI plus preserved P4/P5/Fast/Constitution gates pass. Production still requires the shared explicit DEPLOY_PRODUCTION workflow after exact preview promotion."
 }
