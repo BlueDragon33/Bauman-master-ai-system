@@ -1,0 +1,1029 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentRevision": "PYTHON02-CANDIDATE-1",
+  "status": "VALIDATING",
+  "owner": {
+    "curriculumTruth": "prompts/subjects/python/evidence/PYTHON_P2_CANONICAL_MODEL.json",
+    "compatibilitySources": [
+      "subjects/programming/data/curriculum.json",
+      "subjects/programming/data/lessons.json",
+      "subjects/programming/subject-manifest.json"
+    ],
+    "runtimePath": "subjects/programming/",
+    "writeRule": "Canonical Python identity/semantics live here after acceptance; current runtime JSON remains a compatibility projection until migration activation."
+  },
+  "topology": {
+    "academicOrder": [
+      "competency_family",
+      "competency",
+      "concept_or_construct"
+    ],
+    "compatibilityOrder": [
+      "stage",
+      "module",
+      "lesson"
+    ],
+    "stableExistingLessonIds": true,
+    "timelineStageIsNotMasteryOrder": true,
+    "displayLanguageIndependentIdentity": true
+  },
+  "versionAuthority": {
+    "runtimeVersionStatus": "UNRESOLVED_NO_LEARNER_INTERPRETER",
+    "defaultMinorVersion": null,
+    "languageAuthority": "Official Python language/reference documentation for the supported runtime version once selected.",
+    "packageAuthority": "Official versioned package documentation.",
+    "versionSensitiveContentRequiresExplicitContext": true
+  },
+  "entityFamilies": {
+    "programOutcome": {
+      "prefix": "pyout:",
+      "required": [
+        "id",
+        "title",
+        "competencyIds",
+        "provenance"
+      ]
+    },
+    "competency": {
+      "prefix": "pycomp:",
+      "required": [
+        "id",
+        "title",
+        "dimension",
+        "evidenceRequirement",
+        "provenance"
+      ]
+    },
+    "concept": {
+      "prefix": "pyconcept:",
+      "required": [
+        "id",
+        "title",
+        "provenance"
+      ]
+    },
+    "languageConstruct": {
+      "prefix": "pyconstruct:",
+      "required": [
+        "id",
+        "name",
+        "semanticMeaning",
+        "prerequisiteIds",
+        "versionContext",
+        "provenance"
+      ]
+    },
+    "syntaxForm": {
+      "prefix": "pysyntax:",
+      "required": [
+        "id",
+        "constructId",
+        "form",
+        "versionContext",
+        "provenance"
+      ]
+    },
+    "semanticRule": {
+      "prefix": "pysem:",
+      "required": [
+        "id",
+        "statement",
+        "constructIds",
+        "versionContext",
+        "provenance"
+      ]
+    },
+    "runtimeBehavior": {
+      "prefix": "pyruntime:",
+      "required": [
+        "id",
+        "statement",
+        "runtimeContext",
+        "provenance"
+      ]
+    },
+    "typeBehavior": {
+      "prefix": "pytype:",
+      "required": [
+        "id",
+        "typeName",
+        "behavior",
+        "versionContext",
+        "provenance"
+      ]
+    },
+    "exceptionPattern": {
+      "prefix": "pyexc:",
+      "required": [
+        "id",
+        "exceptionType",
+        "cause",
+        "handlingBoundary",
+        "provenance"
+      ]
+    },
+    "codeExample": {
+      "prefix": "pyexample:",
+      "required": [
+        "id",
+        "purpose",
+        "code",
+        "expectedBehavior",
+        "versionContext",
+        "competencyIds",
+        "provenance"
+      ]
+    },
+    "counterexample": {
+      "prefix": "pycounter:",
+      "required": [
+        "id",
+        "code",
+        "failureOrMisconception",
+        "competencyIds",
+        "provenance"
+      ]
+    },
+    "bugPattern": {
+      "prefix": "pybug:",
+      "required": [
+        "id",
+        "category",
+        "causeHypothesis",
+        "targetCompetencyIds",
+        "remediationIds",
+        "provenance"
+      ]
+    },
+    "codingTask": {
+      "prefix": "pytask:",
+      "required": [
+        "id",
+        "competencyIds",
+        "prompt",
+        "inputs",
+        "expectedBehavior",
+        "constraints",
+        "assessmentMode",
+        "runtimeContext",
+        "provenance"
+      ]
+    },
+    "testCase": {
+      "prefix": "pytestcase:",
+      "required": [
+        "id",
+        "taskId",
+        "visibility",
+        "input",
+        "expectedBehavior",
+        "determinism",
+        "provenance"
+      ]
+    },
+    "projectTask": {
+      "prefix": "pyproject:",
+      "required": [
+        "id",
+        "competencyIds",
+        "artifactContract",
+        "reproducibilityContract",
+        "provenance"
+      ]
+    },
+    "toolConcept": {
+      "prefix": "pytool:",
+      "required": [
+        "id",
+        "name",
+        "authorityBoundary",
+        "provenance"
+      ]
+    },
+    "packageConcept": {
+      "prefix": "pypackage:",
+      "required": [
+        "id",
+        "name",
+        "versionContext",
+        "authorityBoundary",
+        "provenance"
+      ]
+    }
+  },
+  "evidenceSemantics": {
+    "exposure": "Content was opened/presented.",
+    "progress": "A learning workflow interaction was completed.",
+    "performance": "Learner-authored code/reasoning/artifact was validated under a declared contract.",
+    "mastery": "Policy projection over accepted performance evidence; quiz recognition, self-report or page completion alone cannot grant mastery.",
+    "transfer": "Validated use of competencies in a new task/project context."
+  },
+  "competencies": [
+    {
+      "id": "pycomp:syntax-expressions",
+      "title": "Syntax & expression fluency",
+      "dimension": "language_semantics",
+      "evidenceRequirement": "performance_required_for_mastery",
+      "provenance": {
+        "class": "CURATED",
+        "source": "PYTHON02"
+      }
+    },
+    {
+      "id": "pycomp:data-model-types",
+      "title": "Data model & type reasoning",
+      "dimension": "language_semantics",
+      "evidenceRequirement": "performance_required_for_mastery",
+      "provenance": {
+        "class": "CURATED",
+        "source": "PYTHON02"
+      }
+    },
+    {
+      "id": "pycomp:control-flow",
+      "title": "Control flow",
+      "dimension": "program_reasoning",
+      "evidenceRequirement": "performance_required_for_mastery",
+      "provenance": {
+        "class": "CURATED",
+        "source": "PYTHON02"
+      }
+    },
+    {
+      "id": "pycomp:functions-decomposition",
+      "title": "Function decomposition",
+      "dimension": "program_design",
+      "evidenceRequirement": "performance_required_for_mastery",
+      "provenance": {
+        "class": "CURATED",
+        "source": "PYTHON02"
+      }
+    },
+    {
+      "id": "pycomp:collections-iteration",
+      "title": "Collections & iteration",
+      "dimension": "language_semantics",
+      "evidenceRequirement": "performance_required_for_mastery",
+      "provenance": {
+        "class": "CURATED",
+        "source": "PYTHON02"
+      }
+    },
+    {
+      "id": "pycomp:mutation-state",
+      "title": "Mutation, reference & state reasoning",
+      "dimension": "program_reasoning",
+      "evidenceRequirement": "performance_required_for_mastery",
+      "provenance": {
+        "class": "CURATED",
+        "source": "PYTHON02"
+      }
+    },
+    {
+      "id": "pycomp:exceptions-debugging",
+      "title": "Exceptions & debugging",
+      "dimension": "robustness",
+      "evidenceRequirement": "performance_required_for_mastery",
+      "provenance": {
+        "class": "CURATED",
+        "source": "PYTHON02"
+      }
+    },
+    {
+      "id": "pycomp:modules-imports",
+      "title": "Modules & imports",
+      "dimension": "program_design",
+      "evidenceRequirement": "performance_required_for_mastery",
+      "provenance": {
+        "class": "CURATED",
+        "source": "PYTHON02"
+      }
+    },
+    {
+      "id": "pycomp:files-data-interchange",
+      "title": "Files & data interchange",
+      "dimension": "integration",
+      "evidenceRequirement": "performance_required_for_mastery",
+      "provenance": {
+        "class": "CURATED",
+        "source": "PYTHON02"
+      }
+    },
+    {
+      "id": "pycomp:iterators-comprehensions",
+      "title": "Iterators, generators & comprehensions",
+      "dimension": "language_semantics",
+      "evidenceRequirement": "performance_required_for_mastery",
+      "provenance": {
+        "class": "CURATED",
+        "source": "PYTHON02"
+      }
+    },
+    {
+      "id": "pycomp:oop",
+      "title": "Python object-oriented design basics",
+      "dimension": "program_design",
+      "evidenceRequirement": "performance_required_for_mastery",
+      "provenance": {
+        "class": "CURATED",
+        "source": "PYTHON02"
+      }
+    },
+    {
+      "id": "pycomp:type-hints-dataclasses",
+      "title": "Type hints & dataclasses",
+      "dimension": "program_design",
+      "evidenceRequirement": "performance_required_for_mastery",
+      "provenance": {
+        "class": "CURATED",
+        "source": "PYTHON02"
+      }
+    },
+    {
+      "id": "pycomp:testing",
+      "title": "Testing & verification",
+      "dimension": "robustness",
+      "evidenceRequirement": "performance_required_for_mastery",
+      "provenance": {
+        "class": "CURATED",
+        "source": "PYTHON02"
+      }
+    },
+    {
+      "id": "pycomp:environment-tooling",
+      "title": "Environment & tooling literacy",
+      "dimension": "tooling",
+      "evidenceRequirement": "performance_required_for_mastery",
+      "provenance": {
+        "class": "CURATED",
+        "source": "PYTHON02"
+      }
+    },
+    {
+      "id": "pycomp:data-scientific-bridge",
+      "title": "Scientific/data Python bridge",
+      "dimension": "integration",
+      "evidenceRequirement": "performance_required_for_mastery",
+      "provenance": {
+        "class": "CURATED",
+        "source": "PYTHON02"
+      }
+    },
+    {
+      "id": "pycomp:project-transfer",
+      "title": "Engineering/research project transfer",
+      "dimension": "transfer",
+      "evidenceRequirement": "performance_required_for_mastery",
+      "provenance": {
+        "class": "CURATED",
+        "source": "PYTHON02"
+      }
+    }
+  ],
+  "prerequisiteGraph": {
+    "type": "DAG",
+    "allowedEdgeKinds": [
+      "requires",
+      "supports",
+      "external_requires"
+    ],
+    "edges": [
+      {
+        "from": "pycomp:syntax-expressions",
+        "to": "pycomp:data-model-types",
+        "kind": "requires"
+      },
+      {
+        "from": "pycomp:data-model-types",
+        "to": "pycomp:control-flow",
+        "kind": "requires"
+      },
+      {
+        "from": "pycomp:data-model-types",
+        "to": "pycomp:collections-iteration",
+        "kind": "requires"
+      },
+      {
+        "from": "pycomp:control-flow",
+        "to": "pycomp:functions-decomposition",
+        "kind": "requires"
+      },
+      {
+        "from": "pycomp:collections-iteration",
+        "to": "pycomp:functions-decomposition",
+        "kind": "requires"
+      },
+      {
+        "from": "pycomp:collections-iteration",
+        "to": "pycomp:mutation-state",
+        "kind": "requires"
+      },
+      {
+        "from": "pycomp:functions-decomposition",
+        "to": "pycomp:mutation-state",
+        "kind": "requires"
+      },
+      {
+        "from": "pycomp:functions-decomposition",
+        "to": "pycomp:exceptions-debugging",
+        "kind": "requires"
+      },
+      {
+        "from": "pycomp:functions-decomposition",
+        "to": "pycomp:modules-imports",
+        "kind": "requires"
+      },
+      {
+        "from": "pycomp:collections-iteration",
+        "to": "pycomp:iterators-comprehensions",
+        "kind": "requires"
+      },
+      {
+        "from": "pycomp:functions-decomposition",
+        "to": "pycomp:iterators-comprehensions",
+        "kind": "requires"
+      },
+      {
+        "from": "pycomp:mutation-state",
+        "to": "pycomp:oop",
+        "kind": "requires"
+      },
+      {
+        "from": "pycomp:modules-imports",
+        "to": "pycomp:oop",
+        "kind": "requires"
+      },
+      {
+        "from": "pycomp:oop",
+        "to": "pycomp:type-hints-dataclasses",
+        "kind": "requires"
+      },
+      {
+        "from": "pycomp:modules-imports",
+        "to": "pycomp:testing",
+        "kind": "requires"
+      },
+      {
+        "from": "pycomp:exceptions-debugging",
+        "to": "pycomp:testing",
+        "kind": "requires"
+      },
+      {
+        "from": "pycomp:collections-iteration",
+        "to": "pycomp:files-data-interchange",
+        "kind": "requires"
+      },
+      {
+        "from": "pycomp:exceptions-debugging",
+        "to": "pycomp:files-data-interchange",
+        "kind": "requires"
+      },
+      {
+        "from": "pycomp:modules-imports",
+        "to": "pycomp:files-data-interchange",
+        "kind": "requires"
+      },
+      {
+        "from": "pycomp:collections-iteration",
+        "to": "pycomp:data-scientific-bridge",
+        "kind": "requires"
+      },
+      {
+        "from": "pycomp:functions-decomposition",
+        "to": "pycomp:data-scientific-bridge",
+        "kind": "requires"
+      },
+      {
+        "from": "pycomp:files-data-interchange",
+        "to": "pycomp:data-scientific-bridge",
+        "kind": "requires"
+      },
+      {
+        "from": "pycomp:environment-tooling",
+        "to": "pycomp:data-scientific-bridge",
+        "kind": "requires"
+      },
+      {
+        "from": "pycomp:modules-imports",
+        "to": "pycomp:project-transfer",
+        "kind": "requires"
+      },
+      {
+        "from": "pycomp:testing",
+        "to": "pycomp:project-transfer",
+        "kind": "requires"
+      },
+      {
+        "from": "pycomp:files-data-interchange",
+        "to": "pycomp:project-transfer",
+        "kind": "requires"
+      },
+      {
+        "from": "pycomp:environment-tooling",
+        "to": "pycomp:project-transfer",
+        "kind": "requires"
+      }
+    ]
+  },
+  "lessonOwnership": [
+    {
+      "lessonId": "PR01",
+      "title": "Thiết lập môi trường Python, VS Code và Live Server",
+      "stageId": "vn",
+      "moduleId": "mod_vn",
+      "classification": "KEEP_PYTHON",
+      "canonicalOwner": "python",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR02",
+      "title": "Tư duy thuật toán và độ phức tạp",
+      "stageId": "vn",
+      "moduleId": "mod_vn",
+      "classification": "ROUTE_TO_ALGORITHMS",
+      "canonicalOwner": "algorithms",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR03",
+      "title": "Python căn bản: kiểu dữ liệu, hàm, module",
+      "stageId": "vn",
+      "moduleId": "mod_vn",
+      "classification": "KEEP_PYTHON",
+      "canonicalOwner": "python",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR04",
+      "title": "NumPy và vector hóa dữ liệu",
+      "stageId": "vn",
+      "moduleId": "mod_vn",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "canonicalOwner": "python_context",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR05",
+      "title": "Pandas và làm sạch bảng dữ liệu",
+      "stageId": "vn",
+      "moduleId": "mod_vn",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "canonicalOwner": "python_context",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR06",
+      "title": "SQL căn bản và mô hình quan hệ",
+      "stageId": "vn",
+      "moduleId": "mod_vn",
+      "classification": "ROUTE_TO_DATABASE",
+      "canonicalOwner": "database",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR07",
+      "title": "Git, GitHub và nhật ký học tập",
+      "stageId": "vn",
+      "moduleId": "mod_vn",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "canonicalOwner": "oop_software_engineering",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR08",
+      "title": "Notebook thực nghiệm và README tái lập",
+      "stageId": "vn",
+      "moduleId": "mod_vn",
+      "classification": "KEEP_PYTHON",
+      "canonicalOwner": "python",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR09",
+      "title": "Thuật ngữ tin học Nga cho lớp dự bị",
+      "stageId": "prep",
+      "moduleId": "mod_prep",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "canonicalOwner": "python_context",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR10",
+      "title": "Pseudocode và giải thích thuật toán bằng tiếng Nga",
+      "stageId": "prep",
+      "moduleId": "mod_prep",
+      "classification": "ROUTE_TO_ALGORITHMS",
+      "canonicalOwner": "algorithms",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR11",
+      "title": "Cấu trúc dữ liệu nhập môn",
+      "stageId": "prep",
+      "moduleId": "mod_prep",
+      "classification": "ROUTE_TO_ALGORITHMS",
+      "canonicalOwner": "algorithms",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR12",
+      "title": "File, JSON, CSV và dữ liệu học tập",
+      "stageId": "prep",
+      "moduleId": "mod_prep",
+      "classification": "KEEP_PYTHON",
+      "canonicalOwner": "python",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR13",
+      "title": "Debug, exception và logging",
+      "stageId": "prep",
+      "moduleId": "mod_prep",
+      "classification": "KEEP_PYTHON",
+      "canonicalOwner": "python",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR14",
+      "title": "Unit test căn bản với pytest",
+      "stageId": "prep",
+      "moduleId": "mod_prep",
+      "classification": "KEEP_PYTHON",
+      "canonicalOwner": "python",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR15",
+      "title": "SQL nâng nền: JOIN, GROUP BY, index",
+      "stageId": "prep",
+      "moduleId": "mod_prep",
+      "classification": "ROUTE_TO_DATABASE",
+      "canonicalOwner": "database",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR16",
+      "title": "Quy tắc đặt tên, comment và tài liệu song ngữ",
+      "stageId": "prep",
+      "moduleId": "mod_prep",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "canonicalOwner": "python_context",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR17",
+      "title": "OOP cho АСОИУ: class, interface, responsibility",
+      "stageId": "hk1",
+      "moduleId": "mod_hk1",
+      "classification": "KEEP_PYTHON",
+      "canonicalOwner": "python",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR18",
+      "title": "Thiết kế module và kiến trúc package Python",
+      "stageId": "hk1",
+      "moduleId": "mod_hk1",
+      "classification": "KEEP_PYTHON",
+      "canonicalOwner": "python",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR19",
+      "title": "Mẫu thiết kế ứng dụng: factory, strategy, adapter",
+      "stageId": "hk1",
+      "moduleId": "mod_hk1",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "canonicalOwner": "oop_software_engineering",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR20",
+      "title": "CSDL cho hệ thống học máy: schema và metadata",
+      "stageId": "hk1",
+      "moduleId": "mod_hk1",
+      "classification": "ROUTE_TO_DATABASE",
+      "canonicalOwner": "database",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR21",
+      "title": "ORM và migration nhập môn",
+      "stageId": "hk1",
+      "moduleId": "mod_hk1",
+      "classification": "ROUTE_TO_DATABASE",
+      "canonicalOwner": "database",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR22",
+      "title": "Kỹ nghệ phần mềm: requirement, issue, milestone",
+      "stageId": "hk1",
+      "moduleId": "mod_hk1",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "canonicalOwner": "oop_software_engineering",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR23",
+      "title": "Kiểm thử tích hợp và test dữ liệu",
+      "stageId": "hk1",
+      "moduleId": "mod_hk1",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "canonicalOwner": "python_context",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR24",
+      "title": "CI nhẹ và kiểm tra chất lượng code",
+      "stageId": "hk1",
+      "moduleId": "mod_hk1",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "canonicalOwner": "oop_software_engineering",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR25",
+      "title": "Pipeline dữ liệu cho ML",
+      "stageId": "hk2",
+      "moduleId": "mod_hk2",
+      "classification": "ROUTE_TO_ML_AI",
+      "canonicalOwner": "ml_data_analysis",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR26",
+      "title": "Scikit-learn baseline và metric",
+      "stageId": "hk2",
+      "moduleId": "mod_hk2",
+      "classification": "ROUTE_TO_ML_AI",
+      "canonicalOwner": "ml_data_analysis",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR27",
+      "title": "API inference với FastAPI",
+      "stageId": "hk2",
+      "moduleId": "mod_hk2",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "canonicalOwner": "python_context",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR28",
+      "title": "Serialization model và artifact version",
+      "stageId": "hk2",
+      "moduleId": "mod_hk2",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "canonicalOwner": "python_context",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR29",
+      "title": "Cấu hình thí nghiệm bằng YAML/JSON",
+      "stageId": "hk2",
+      "moduleId": "mod_hk2",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "canonicalOwner": "python_context",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR30",
+      "title": "Docker nhập môn cho môi trường tái lập",
+      "stageId": "hk2",
+      "moduleId": "mod_hk2",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "canonicalOwner": "oop_software_engineering",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR31",
+      "title": "Bảo mật dữ liệu và quản lý secret",
+      "stageId": "hk2",
+      "moduleId": "mod_hk2",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "canonicalOwner": "python_context",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR32",
+      "title": "Tài liệu kỹ thuật và sơ đồ kiến trúc",
+      "stageId": "hk2",
+      "moduleId": "mod_hk2",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "canonicalOwner": "oop_software_engineering",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR33",
+      "title": "Dataset card cho telemetry và cảm biến",
+      "stageId": "hk3",
+      "moduleId": "mod_hk3",
+      "classification": "ROUTE_TO_ML_AI",
+      "canonicalOwner": "ml_data_analysis",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR34",
+      "title": "Experiment tracking và bảng metric",
+      "stageId": "hk3",
+      "moduleId": "mod_hk3",
+      "classification": "ROUTE_TO_ML_AI",
+      "canonicalOwner": "ml_data_analysis",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR35",
+      "title": "Ablation study bằng code có kiểm soát",
+      "stageId": "hk3",
+      "moduleId": "mod_hk3",
+      "classification": "ROUTE_TO_ML_AI",
+      "canonicalOwner": "ml_data_analysis",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR36",
+      "title": "Xử lý log cảm biến và chuỗi thời gian",
+      "stageId": "hk3",
+      "moduleId": "mod_hk3",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "canonicalOwner": "python_context",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR37",
+      "title": "Module đánh giá lỗi và phân tích thất bại",
+      "stageId": "hk3",
+      "moduleId": "mod_hk3",
+      "classification": "ROUTE_TO_ML_AI",
+      "canonicalOwner": "ml_data_analysis",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR38",
+      "title": "Prototype dashboard kết quả nghiên cứu",
+      "stageId": "hk3",
+      "moduleId": "mod_hk3",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "canonicalOwner": "python_context",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR39",
+      "title": "Đóng gói demo nghiên cứu",
+      "stageId": "hk3",
+      "moduleId": "mod_hk3",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "canonicalOwner": "python_context",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR40",
+      "title": "Quản lý rủi ro phần mềm trong НИР",
+      "stageId": "hk3",
+      "moduleId": "mod_hk3",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "canonicalOwner": "oop_software_engineering",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR41",
+      "title": "Đóng băng mã nguồn và tag release",
+      "stageId": "hk4",
+      "moduleId": "mod_hk4",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "canonicalOwner": "oop_software_engineering",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR42",
+      "title": "Script chạy lại toàn bộ kết quả",
+      "stageId": "hk4",
+      "moduleId": "mod_hk4",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "canonicalOwner": "python_context",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR43",
+      "title": "Chuẩn hóa thư mục luận văn và artifact",
+      "stageId": "hk4",
+      "moduleId": "mod_hk4",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "canonicalOwner": "python_context",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR44",
+      "title": "Demo offline và kế hoạch dự phòng",
+      "stageId": "hk4",
+      "moduleId": "mod_hk4",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "canonicalOwner": "oop_software_engineering",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR45",
+      "title": "Tối ưu nhỏ: runtime, memory và latency",
+      "stageId": "hk4",
+      "moduleId": "mod_hk4",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "canonicalOwner": "python_context",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR46",
+      "title": "Kiểm tra license, citation và nguồn mở",
+      "stageId": "hk4",
+      "moduleId": "mod_hk4",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "canonicalOwner": "oop_software_engineering",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR47",
+      "title": "Slide kỹ thuật: kiến trúc, pipeline, kết quả",
+      "stageId": "hk4",
+      "moduleId": "mod_hk4",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "canonicalOwner": "python_context",
+      "retainCompatibilityRoute": true
+    },
+    {
+      "lessonId": "PR48",
+      "title": "Trả lời phản biện kỹ thuật phần mềm",
+      "stageId": "hk4",
+      "moduleId": "mod_hk4",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "canonicalOwner": "oop_software_engineering",
+      "retainCompatibilityRoute": true
+    }
+  ],
+  "ownershipClasses": [
+    "KEEP_PYTHON",
+    "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+    "ROUTE_TO_ALGORITHMS",
+    "ROUTE_TO_DATABASE",
+    "ROUTE_TO_ML_AI",
+    "ROUTE_TO_SOFTWARE_ENGINEERING"
+  ],
+  "provenanceClasses": [
+    "AUTHORITATIVE",
+    "CURATED",
+    "GENERATED_CANDIDATE",
+    "DERIVED",
+    "LEGACY",
+    "UNKNOWN"
+  ],
+  "generatedCandidateCanonicalByDefault": false,
+  "countSemantics": [
+    "actualRecordCount",
+    "uniqueAssessmentPromptCount",
+    "plannedTargetCount",
+    "coverageCount",
+    "derivedIndexCount",
+    "legacyCompatibilityCount"
+  ],
+  "migration": {
+    "id": "PYTHON02-CANONICAL-OWNER-001",
+    "runtimeMigrationActivated": false,
+    "productionRuntimeMutation": false,
+    "preserveLessonIds": true,
+    "preserveLearnerState": true,
+    "compatibilityRouteRetained": true,
+    "aliasesDeterministic": true,
+    "rollbackRequired": true,
+    "duplicateResolutionDeferred": true
+  },
+  "retainedReality": {
+    "stages": 6,
+    "modules": 6,
+    "lessons": 48,
+    "exercises": 144,
+    "simulations": 96,
+    "testRecords": 384,
+    "uniqueTestQuestionText": 192,
+    "knownExactDuplicateFiles": [
+      "subjects/programming/data/grammar.json",
+      "subjects/programming/data/grammar-path.json"
+    ]
+  },
+  "authorityBoundaries": {
+    "runtimeExecution": "PYTHON04",
+    "codeReasoningAssessment": "PYTHON03",
+    "learnerExperienceAuthoring": "PYTHON05",
+    "productionRelease": "shared_release_authority",
+    "aiModelInference": "PYTHON04_if_provider_exists",
+    "mastery": "global_C4_policy"
+  },
+  "validationEvidence": {
+    "exactTestedHead": null,
+    "developmentFastCiRunId": null,
+    "universalConstitutionRunId": null,
+    "mappedCurrentLessons": 48,
+    "orphanLessonMappingsDetected": 0,
+    "prerequisiteCyclesDetected": 0,
+    "runtimeMigrationActivated": false,
+    "productionRuntimeMutation": false
+  }
+}
