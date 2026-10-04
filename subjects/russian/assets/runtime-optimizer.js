@@ -4,6 +4,7 @@
   const CORE_DATA=['curriculum','lessons','grammar','grammar-path','vocab','mindmap','exercises','tests','simulations','speaking','handwriting','handwriting-listen-write','listen-write-lessons','listen-write-level-rules','writing','videos','knowledge-index'];
   const LIGHT_DATA=['curriculum','grammar','grammar-path','handwriting','handwriting-listen-write','writing','videos','knowledge-index'];
   const DATA_CACHE='russian-learning-data-v1';
+  const PRECACHE_REPORT='./__precache-report.json';
   const PROTECTED_OFFLINE_ASSETS=['../../foundation/domain-model/legacy-mapping-registry.v1.json'];
   const DATA_FETCH_TIMEOUT_MS=8000;
   const SW_READY_TIMEOUT_MS=20000;
@@ -66,6 +67,38 @@
       return bv-av;
     })[0]||'';
   }
+  async function readShellPrecacheReport(){
+    const shellName=await currentShellCacheName();
+    if(!shellName)return null;
+    const cache=await caches.open(shellName);
+    const res=await cache.match(PRECACHE_REPORT);
+    if(!res)return null;
+    try{return await res.json();}catch(_){return null;}
+  }
+  async function repairShellPrecache(){
+    const shellName=await currentShellCacheName();
+    if(!shellName)throw new Error('Russian offline shell cache unavailable');
+    const cache=await caches.open(shellName);
+    const report=await readShellPrecacheReport();
+    if(!report||!Array.isArray(report.failed))throw new Error('Russian shell precache report unavailable');
+    if(!report.failed.length)return report;
+    const remaining=[];
+    for(const item of report.failed){
+      const url=String(item?.url||'');
+      if(!url){remaining.push({url,error:'invalid precache URL'});continue;}
+      try{
+        const res=await fetchWithTimeout(url,{cache:'no-store',credentials:'include'});
+        if(!res.ok)throw new Error('HTTP '+res.status);
+        await cache.put(new Request(url),res.clone());
+      }catch(e){
+        remaining.push({url,error:String(e?.message||e)});
+      }
+    }
+    const next={...report,cached:Number(report.total||0)-remaining.length,failed:remaining,repairedAt:Date.now()};
+    await cache.put(PRECACHE_REPORT,new Response(JSON.stringify(next),{headers:{'Content-Type':'application/json','Cache-Control':'no-store'}}));
+    if(remaining.length)throw new Error('Russian shell precache incomplete: '+remaining.map(x=>x.url+' ('+x.error+')').join(', '));
+    return next;
+  }
   async function prepareProtectedOfflineAssets(){
     const shellName=await currentShellCacheName();
     if(!shellName)throw new Error('Russian offline shell cache unavailable');
@@ -104,6 +137,7 @@
     const reg=await navigator.serviceWorker.register('./sw.js',{scope:'./',updateViaCache:'none'});
     await reg.update().catch(()=>{});
     const ready=await promiseTimeout(navigator.serviceWorker.ready,SW_READY_TIMEOUT_MS,'Russian service-worker ready');
+    await repairShellPrecache();
     if(!navigator.serviceWorker.controller){
       await promiseTimeout(new Promise(resolve=>navigator.serviceWorker.addEventListener('controllerchange',resolve,{once:true})),SW_READY_TIMEOUT_MS,'Russian service-worker controller');
     }
@@ -136,5 +170,5 @@
   function bootOfflineRuntime(){paint();register();}
   window.addEventListener('online',()=>{paint();reconcileOfflineCore();});window.addEventListener('offline',()=>{paint();reconcileOfflineCore();});
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bootOfflineRuntime,{once:true});else bootOfflineRuntime();
-  window.RussianRuntimeOptimizer={schema:SCHEMA,prepareOfflineCore,reconcileOfflineCore,ensureServiceWorkerReady,prepareProtectedOfflineAssets,status:()=>({online:navigator.onLine,prepared,total:CORE_DATA.length,ready:prepared>=CORE_DATA.length,serviceWorkerControlled:!!navigator.serviceWorker?.controller}),coreData:[...CORE_DATA],protectedOfflineAssets:[...PROTECTED_OFFLINE_ASSETS]};
+  window.RussianRuntimeOptimizer={schema:SCHEMA,prepareOfflineCore,reconcileOfflineCore,ensureServiceWorkerReady,prepareProtectedOfflineAssets,readShellPrecacheReport,repairShellPrecache,status:()=>({online:navigator.onLine,prepared,total:CORE_DATA.length,ready:prepared>=CORE_DATA.length,serviceWorkerControlled:!!navigator.serviceWorker?.controller}),coreData:[...CORE_DATA],protectedOfflineAssets:[...PROTECTED_OFFLINE_ASSETS]};
 })();

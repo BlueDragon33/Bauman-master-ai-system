@@ -39,11 +39,14 @@ try{
     return {
       scope:reg?.scope||'',
       controller:!!navigator.serviceWorker.controller,
+      precacheReport:await window.RussianRuntimeOptimizer.readShellPrecacheReport(),
       registrations:registrations.map(x=>({scope:x.scope,active:x.active?.state||'',installing:x.installing?.state||'',waiting:x.waiting?.state||''}))
     };
   }),75000,'Russian service-worker readiness');
   assert.equal(swReadiness.controller,true,'Russian service-worker must control the production page before offline verification');
   assert.ok(swReadiness.registrations.some(x=>x.active==='activated'),'Russian service-worker registration has no activated worker');
+  assert.equal(swReadiness.precacheReport?.schema,'RUSSIAN_SW_PRECACHE_REPORT_V1','Russian service-worker precache report is unavailable');
+  assert.deepEqual(swReadiness.precacheReport?.failed||[],[],'Russian service-worker precache still has failed assets after authenticated repair');
   await page.waitForFunction(()=>!!navigator.serviceWorker.controller,null,{timeout:15000});
   await page.waitForFunction(()=>window.BAUMAN_FOUNDATION_IDENTITY_REPORT!==undefined,null,{timeout:15000});
 

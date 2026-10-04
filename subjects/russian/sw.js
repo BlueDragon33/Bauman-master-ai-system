@@ -1,5 +1,5 @@
 'use strict';
-const CACHE='russian-app-shell-v10-auth-deferred';
+const CACHE='russian-app-shell-v11-precache-resilience';
 const DATA_CACHE='russian-learning-data-v1';
 const SHELL=[
   './','./index.html','./manifest.webmanifest','../shared/host-bridge.js',
@@ -12,19 +12,32 @@ const SHELL=[
 ];
 const PROTECTED_OFFLINE=['../../foundation/domain-model/legacy-mapping-registry.v1.json'];
 const OPTIONAL_LARGE=new Set(['dialogue-bauman-az.json','deep-speaking-bauman.json','speaking-link-index.json']);
+const PRECACHE_REPORT='./__precache-report.json';
 const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms));
-async function cacheShellWithRetry(){
-  const cache=await caches.open(CACHE);let lastError=null;
+async function cacheShellAsset(cache,url){
+  let lastError=null;
   for(let attempt=1;attempt<=3;attempt++){
     try{
-      await cache.addAll(SHELL.map(url=>new Request(url,{cache:'reload'})));
-      return;
+      const req=new Request(url,{cache:'reload'});
+      const res=await fetch(req);
+      if(!res||!res.ok)throw new Error(url+' HTTP '+(res?.status||0));
+      await cache.put(req,res.clone());
+      return {url,status:'cached'};
     }catch(e){
       lastError=e;
       if(attempt<3)await sleep(500*attempt);
     }
   }
-  throw lastError||new Error('Russian shell precache failed');
+  return {url,status:'failed',error:String(lastError?.message||lastError||'unknown precache error')};
+}
+async function cacheShellWithRetry(){
+  const cache=await caches.open(CACHE);
+  const results=[];
+  for(const url of SHELL)results.push(await cacheShellAsset(cache,url));
+  const failed=results.filter(item=>item.status==='failed');
+  const report={schema:'RUSSIAN_SW_PRECACHE_REPORT_V1',cache:CACHE,total:SHELL.length,cached:SHELL.length-failed.length,failed,generatedAt:Date.now()};
+  await cache.put(PRECACHE_REPORT,new Response(JSON.stringify(report),{headers:{'Content-Type':'application/json','Cache-Control':'no-store'}}));
+  return report;
 }
 self.addEventListener('install',event=>{event.waitUntil(cacheShellWithRetry().then(()=>self.skipWaiting()));});
 self.addEventListener('activate',event=>{event.waitUntil(Promise.all([caches.keys().then(keys=>Promise.all(keys.filter(k=>![CACHE,DATA_CACHE].includes(k)).map(k=>caches.delete(k)))),self.clients.claim()]));});
