@@ -1,0 +1,67 @@
+{
+  "schema": "PYTHON_RC_MANIFEST_V1",
+  "status": "CANDIDATE",
+  "subject": "python",
+  "sourceSha": "RESOLVE_FROM_GIT_HEAD_AT_VALIDATION_AND_RELEASE",
+  "sourceShaPolicy": "materialize_exact_with_scripts/python-p6-rc-evidence.mjs",
+  "contentSnapshot": {
+    "canonicalModel": "PYTHON02-ACCEPTED-1",
+    "assessmentModel": "PYTHON03-ACCEPTED-1",
+    "publicTaskCatalog": "PYTHON_TASK_CATALOG_V1",
+    "learnerRuntimePath": "subjects/programming/"
+  },
+  "runtime": {
+    "provider": "cloudflare-container-durable-object-v1",
+    "runtimeProfileId": "cpython-3.14.8-stdlib-v1",
+    "implementation": "CPython",
+    "version": "3.14.8",
+    "packages": "stdlib-only",
+    "network": "deny",
+    "isolation": "fresh-container-per-run"
+  },
+  "featureFlags": {
+    "previewLearnerExecution": true,
+    "productionLearnerExecution": true,
+    "offlineExecution": false,
+    "notebookExecution": false
+  },
+  "evidenceAuthority": {
+    "academic": "PYTHON02",
+    "assessment": "PYTHON03",
+    "runtime": "PYTHON04",
+    "product": "PYTHON05",
+    "releaseReadiness": "PYTHON06",
+    "mastery": "GLOBAL_C4"
+  },
+  "statePolicy": {
+    "officialAttemptWrite": false,
+    "masteryWrite": false,
+    "practiceEvidenceOnly": true,
+    "firstOfficialAttemptOwner": "canonical learner-state authority — not Python runtime"
+  },
+  "identityFiles": [
+    "prompts/subjects/python/evidence/PYTHON_P2_CANONICAL_MODEL.json",
+    "prompts/subjects/python/evidence/PYTHON_P3_ASSESSMENT_MODEL.json",
+    "subjects/programming/subject-manifest.json",
+    "subjects/programming/data/python-task-catalog.json",
+    "subjects/programming/data/python-competencies.json",
+    "cloudflare/runtime-worker-python.mjs",
+    "cloudflare/python-sandbox-provider.mjs",
+    "cloudflare/python-runtime/Dockerfile",
+    "cloudflare/python-runtime/runner.py",
+    "wrangler.runtime.preview.example.jsonc",
+    "wrangler.runtime.production.example.jsonc"
+  ],
+  "acceptance": {
+    "static": "tests/python-p6-rc-contract.mjs",
+    "live": "tests/python-p6-rc-live.mjs",
+    "browser": "tests/python-p6-rc-browser.mjs",
+    "productionSmoke": "tests/python-production-smoke-browser.mjs",
+    "workflow": ".github/workflows/python-p6-rc-ci.yml"
+  },
+  "release": {
+    "previewFirst": true,
+    "sharedProductionWorkflow": ".github/workflows/deploy-bauman-production.yml",
+    "destructiveProductionSecurityTests": false
+  }
+}
