@@ -68,6 +68,9 @@ jobs:
       - name: Python P3 assessment contract
         run: node tests/python-p3-assessment-contract.mjs
 
+      - name: Python P4 runtime security contract
+        run: node tests/python-p4-runtime-security-contract.mjs
+
       - name: Entrepreneurship subject static
         run: node tests/entrepreneurship-subject-static.mjs
 
