@@ -211,6 +211,27 @@ jobs:
       - name: Bootstrap isolated Russian production smoke device session
         run: node scripts/russian-production-smoke-device.mjs bootstrap
 
+      - name: Materialize exact Python production RC identity
+        env:
+          PYTHON_RC_EVIDENCE_DIR: artifacts/python-production-rc
+        run: node scripts/python-p6-rc-evidence.mjs
+
+      - name: Run Python production RC smoke browser acceptance
+        shell: bash
+        env:
+          BAUMAN_E2E_BASE_URL: ${{ vars.BAUMAN_RUNTIME_PRODUCTION_ORIGIN }}/
+          BAUMAN_E2E_DEVICE_SESSION: ${{ env.BAUMAN_PRODUCTION_SMOKE_DEVICE_SESSION }}
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/python-production-smoke
+        run: |
+          set -euo pipefail
+          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+          node tests/python-production-smoke-browser.mjs
+          cp artifacts/python-production-smoke/summary.json \
+            "$RUSSIAN_RELEASE_EVIDENCE_DIR/PYTHON_PRODUCTION_RC_SMOKE.json"
+          cp artifacts/python-production-rc/PYTHON_RC_EXACT.json \
+            "$RUSSIAN_RELEASE_EVIDENCE_DIR/PYTHON_RC_EXACT.json"
+
       - name: Verify Russian production identity, security, offline contract and content drift
         run: node scripts/russian-release-annex-evidence.mjs verify
 
@@ -277,6 +298,8 @@ jobs:
             artifacts/russian-production-offline-browser
             artifacts/math-production-rc
             artifacts/math-production-reasoning
+            artifacts/python-production-smoke
+            artifacts/python-production-rc
           if-no-files-found: error
           retention-days: 30
 
