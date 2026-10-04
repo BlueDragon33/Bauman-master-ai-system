@@ -29,6 +29,6 @@ assert.match(orchestration,/confirm: DEPLOY_PRODUCTION/);
 assert.match(orchestration,/statuses: write/);
 assert.match(orchestration,/python\/release-publish/);
 assert.match(orchestration,/actions\/runs\/\$GITHUB_RUN_ID/);
-assert.match(orchestration,/"state":"success"/);
-assert.match(orchestration,/"state":"failure"/);
+assert.match(orchestration,/\\"state\\":\\"success\\"/);
+assert.match(orchestration,/\\"state\\":\\"failure\\"/);
 console.log("PYTHON_APPROVED_RELEASE_CONTRACT=PASS");
