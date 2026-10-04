@@ -1,0 +1,107 @@
+{
+  "packetId": "PYTHON04-CODEX-20261004-001",
+  "revision": 1,
+  "status": "READY_FOR_CODEX",
+  "workClass": "B_RUNTIME_SECURITY_TOOLCHAIN",
+  "repository": "BlueDragon33/Bauman-master-ai-system",
+  "baselineSha": "a9a098cea6276c14916d31ccee39bd8b78a1f7ab",
+  "activeModule": "PYTHON04",
+  "objective": "Implement the governed Python runtime/toolchain/data/AI capability layer required by PYTHON04 without creating a second platform kernel, second mastery owner, unsafe learner-code path, or undocumented production dependency.",
+  "whyCodexRequired": [
+    "PYTHON04 introduces executable untrusted learner code and therefore requires runtime/sandbox/security implementation, not documentation-only work.",
+    "The work is expected to span 3+ coupled runtime/provider/UI/test files and require repeated implement-run-debug-retest loops.",
+    "Browser/E2E, offline/package behavior, failure injection, security limits and provider integration are Class B responsibilities."
+  ],
+  "authoritativeInputs": [
+    "prompts/CONSTITUTION.md",
+    "prompts/subjects/python/PYTHON_MASTER_PROMPT.md",
+    "prompts/subjects/python/PYTHON04_RUNTIME_TOOLCHAIN_DATA_AI_INTELLIGENCE.md",
+    "prompts/subjects/python/PROJECT_STATE.json",
+    "prompts/subjects/python/evidence/PYTHON_P2_CANONICAL_MODEL.json",
+    "prompts/subjects/python/evidence/PYTHON_COMPETENCY_GRAPH.json",
+    "prompts/subjects/python/evidence/PYTHON_P3_ASSESSMENT_MODEL.json",
+    "prompts/subjects/python/evidence/PYTHON04_INPUT_CONTRACT.md",
+    "prompts/subjects/python/evidence/PYTHON_RUNTIME_TOOLCHAIN_INVENTORY.md",
+    "prompts/subjects/python/evidence/PYTHON_ASSESSMENT_GOLDEN_FIXTURES.json"
+  ],
+  "currentReality": [
+    "Actual learner runtime path is subjects/programming/, not subjects/python/.",
+    "No learner Python interpreter, sandbox, code runner, REPL/notebook executor, test runner or debugger exists at baseline.",
+    "No subject Python dependency/environment owner exists: no pyproject.toml, requirements, Pipfile, Poetry lock or Conda environment was found.",
+    "Current Programming simulations are JavaScript pedagogical visualizations, not Python execution.",
+    "Current assessment bank is 384 MCQs with 192 unique question texts / 192 exact duplicate groups; quiz score is not programming mastery.",
+    "PYTHON02 and PYTHON03 are accepted and must remain the academic/assessment truth owners."
+  ],
+  "mandatoryDiscoveryBeforeImplementation": [
+    "Reconfirm exact main SHA and diff from baselineSha.",
+    "Locate the existing canonical capability registry/provider/extension path and reuse it; do not fork Core just to match example capability names.",
+    "Inspect subjects/programming runtime integration, shared subject bridge, service/control boundaries, Cloudflare/runtime constraints and offline/PWA packaging before selecting a provider.",
+    "Prove where execution can be isolated safely. Compare feasible browser-worker/server/external-runner options against actual repository/platform constraints.",
+    "If no safe provider can be proven with enforceable resource and secret boundaries, stop before enabling execution and record a concrete blocker instead of falling back to host eval."
+  ],
+  "nonNegotiableInvariants": [
+    "Learner and AI-generated code are untrusted.",
+    "No platform secret or unrestricted environment variable may enter learner execution.",
+    "No ungoverned browser/host eval or exec path.",
+    "Network denied by default unless a task contract explicitly authorizes approved endpoints.",
+    "Filesystem access restricted to an isolated run workspace; path traversal must fail closed.",
+    "Subprocess/package installation denied or tightly allowlisted unless an explicit provider contract safely supports them.",
+    "CPU/time, memory and stdout/stderr limits must be enforceable for the chosen provider.",
+    "Hidden official tests/solutions must not be exposed to learner or learner-facing AI context.",
+    "Runtime/test/debug output is structured evidence; stdout text alone is not correctness.",
+    "First official attempt remains immutable and retries append through the canonical learner-state owner.",
+    "Supported Python/runtime/package identity must be explicit for official evidence.",
+    "Late/stale result from another task/tab/session must not overwrite newer attempt state.",
+    "Offline behavior must be honest: never claim offline execution without evidence.",
+    "AI is advisory and bounded; it cannot grant mastery or execute privileged code.",
+    "No production deployment from this packet."
+  ],
+  "requiredDeliverables": [
+    "prompts/subjects/python/evidence/PYTHON_EXECUTION_CAPABILITY_CONTRACT.md",
+    "prompts/subjects/python/evidence/PYTHON_SANDBOX_SECURITY_CONTRACT.md",
+    "prompts/subjects/python/evidence/PYTHON_RUNTIME_ENVIRONMENT_POLICY.md",
+    "prompts/subjects/python/evidence/PYTHON_NOTEBOOK_REPRODUCIBILITY_POLICY.md",
+    "prompts/subjects/python/evidence/PYTHON_TEST_DEBUG_PROVIDER_CONTRACT.md",
+    "prompts/subjects/python/evidence/PYTHON_DATA_TOOLING_CONTRACT.md",
+    "prompts/subjects/python/evidence/PYTHON_AI_CODING_TUTOR_CONTRACT.md",
+    "prompts/subjects/python/evidence/PYTHON_RUNTIME_GOLDEN_FIXTURES.json",
+    "prompts/subjects/python/evidence/PYTHON05_INPUT_CONTRACT.md",
+    "implementation and tests required to make those contracts true in the actual Programming runtime"
+  ],
+  "requiredSecurityFixtures": [
+    "infinite loop",
+    "huge allocation",
+    "output flood",
+    "path traversal",
+    "environment-variable read attempt",
+    "unauthorized network attempt",
+    "prohibited subprocess attempt",
+    "unsafe pickle/deserialization attempt where relevant"
+  ],
+  "acceptanceCriteria": [
+    "Exactly one governed execution facade is used by learner-facing Python execution.",
+    "Runtime identity/version and package environment identity are observable in structured results.",
+    "Untrusted code is sandboxed with enforceable timeout/resource/output/filesystem/network boundaries appropriate to the provider.",
+    "REPL/notebook state semantics and restart/run-all reproducibility are explicit.",
+    "Test/debug providers return structured results and keep hidden tests hidden.",
+    "Package/data environments are reproducible enough for official evidence.",
+    "AI tutor is grounded in actual code/traceback/test evidence, obeys task assistance policy and degrades safely when unavailable.",
+    "Required security fixtures fail closed and do not hang/crash the app/service.",
+    "Desktop/mobile learner journeys and relevant offline/failure paths pass browser acceptance.",
+    "Targeted static + unit/integration + browser/E2E + security/failure-injection regressions pass at one exact head SHA.",
+    "PYTHON04 evidence/state records the exact tested head and produces a stable PYTHON05 input contract."
+  ],
+  "executionProtocol": [
+    "Inspect -> choose canonical owner/provider -> write/update contracts -> smallest safe implementation -> targeted tests -> failure injection -> browser/E2E -> regression -> record exact evidence.",
+    "Fix root causes, never weaken tests merely to get green.",
+    "Keep implementation additive/backward-compatible until migration evidence proves otherwise.",
+    "Do not ask the user ordinary technical choices that can be resolved from evidence; stop only for credentials, external infrastructure authority, destructive action or a genuine architecture/product decision not inferable from the repository."
+  ],
+  "stopConditions": [
+    "No safe execution isolation can be proven on available infrastructure.",
+    "Required provider needs credentials/external service authorization not already available.",
+    "A change would redefine a global Constitution owner, canonical mastery store or production release mechanism.",
+    "A destructive learner-state/data migration would be required without explicit authorization."
+  ],
+  "releasePolicy": "Complete PYTHON04 and merge only after exact-head acceptance. Do not publish production; production remains a separate explicit release gate after the subject reaches the appropriate release stage."
+}
