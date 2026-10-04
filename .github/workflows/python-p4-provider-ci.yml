@@ -72,11 +72,25 @@ jobs:
           exit 1
 
       - name: Run real PYTHON04 golden provider fixtures
-        run: node tests/python-p4-provider-live.mjs | tee /tmp/python-p4-provider-result.json
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p artifacts/python-p4-provider
+          node tests/python-p4-provider-live.mjs | tee artifacts/python-p4-provider/PYTHON_P4_PROVIDER_LIVE_RESULT.json
+          cp /tmp/python-p4-health.json artifacts/python-p4-provider/PYTHON_P4_PROVIDER_HEALTH.json
 
       - name: Show provider log on failure
         if: failure()
         run: cat /tmp/python-p4-wrangler.log || true
+
+      - name: Upload provider evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-p4-provider-${{ github.run_id }}
+          path: artifacts/python-p4-provider
+          if-no-files-found: warn
+          retention-days: 30
 
       - name: Stop local provider
         if: always()

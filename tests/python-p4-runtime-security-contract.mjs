@@ -19,14 +19,14 @@ const read=file=>fs.readFileSync(base+file,'utf8');
 const exec=read('PYTHON_EXECUTION_CAPABILITY_CONTRACT.md');
 assert.match(exec,/python\.execute/);
 assert.match(exec,/Provider output is evidence, not mastery/);
-assert.match(exec,/executable learner code stays disabled/);
+assert.match(exec,/PROVIDER PROVEN/);
 
 const sandbox=read('PYTHON_SANDBOX_SECURITY_CONTRACT.md');
 for(const token of ['Default deny','Resource limits','Network','Hidden evidence','Fail closed'])assert.ok(sandbox.includes(token),`sandbox contract missing ${token}`);
 assert.match(sandbox,/Browser `eval`/);
 
 const runtime=read('PYTHON_RUNTIME_ENVIRONMENT_POLICY.md');
-assert.match(runtime,/no learner interpreter/i);
+assert.match(runtime,/CPython 3\.14\.8/);
 assert.match(runtime,/runtimeProfileId/);
 assert.match(runtime,/Uncontrolled learner `pip install`/);
 
@@ -46,12 +46,11 @@ assert.match(ai,/untrusted until sandboxed\/tested/i);
 
 const fixtures=JSON.parse(read('PYTHON_RUNTIME_GOLDEN_FIXTURES.json'));
 assert.equal(fixtures.schema,'PYTHON_RUNTIME_GOLDEN_FIXTURES_V1');
-assert.equal(fixtures.learnerExecutionEnabled,false);
+assert.equal(fixtures.learnerExecutionEnabled,false);\nassert.equal(fixtures.status,'PROVIDER_PROVEN_LOCAL_CONTAINER_CI');\nassert.equal(fixtures.runtimeProfileId,'cpython-3.14.8-stdlib-v1');
 const ids=new Set(fixtures.fixtures.map(x=>x.id));
 for(const id of ['infinite-loop','huge-allocation','output-flood','path-traversal','env-read','network','subprocess','unsafe-pickle','stale-result','hidden-test-leak'])assert.ok(ids.has(id),`missing runtime fixture ${id}`);
 
 const handoff=read('PYTHON05_INPUT_CONTRACT.md');
-assert.match(handoff,/NOT READY/);
-assert.match(handoff,/no compliant learner Python execution provider has yet been proven/i);
+assert.match(handoff,/Status: READY/);\nassert.match(handoff,/cloudflare-container-durable-object-v1/);
 
 console.log('PYTHON_P4_RUNTIME_SECURITY_CONTRACT=PASS');

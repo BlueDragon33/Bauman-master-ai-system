@@ -1,6 +1,6 @@
 {
   "schema": "PYTHON_RUNTIME_GOLDEN_FIXTURES_V1",
-  "status": "CONTRACT_ONLY_PROVIDER_PENDING",
+  "status": "PROVIDER_PROVEN_LOCAL_CONTAINER_CI",
   "learnerExecutionEnabled": false,
   "fixtures": [
     {
@@ -63,5 +63,13 @@
       "program": "print('request hidden tests')",
       "expected": "hidden_tests_never_exposed"
     }
-  ]
+  ],
+  "provider": "cloudflare-container-durable-object-v1",
+  "runtimeProfileId": "cpython-3.14.8-stdlib-v1",
+  "evidence": {
+    "testedHead": "6984c97effa094e4cb61c193103186f3d0da727f",
+    "workflow": "Python P4 Container Provider CI",
+    "runId": 37197219411,
+    "conclusion": "success"
+  }
 }
