@@ -1,0 +1,168 @@
+{
+  "schemaVersion": "1.0.0",
+  "owner": "prompts/subjects/python/evidence/PYTHON_P2_CANONICAL_MODEL.json",
+  "competencies": [
+    {
+      "id": "pycomp:syntax-expressions",
+      "title": "Syntax & expression fluency",
+      "dimension": "language_semantics",
+      "evidenceRequirement": "performance_required_for_mastery",
+      "provenance": {
+        "class": "CURATED",
+        "source": "PYTHON02"
+      }
+    },
+    {
+      "id": "pycomp:data-model-types",
+      "title": "Data model & type reasoning",
+      "dimension": "language_semantics",
+      "evidenceRequirement": "performance_required_for_mastery",
+      "provenance": {
+        "class": "CURATED",
+        "source": "PYTHON02"
+      }
+    },
+    {
+      "id": "pycomp:control-flow",
+      "title": "Control flow",
+      "dimension": "program_reasoning",
+      "evidenceRequirement": "performance_required_for_mastery",
+      "provenance": {
+        "class": "CURATED",
+        "source": "PYTHON02"
+      }
+    },
+    {
+      "id": "pycomp:functions-decomposition",
+      "title": "Function decomposition",
+      "dimension": "program_design",
+      "evidenceRequirement": "performance_required_for_mastery",
+      "provenance": {
+        "class": "CURATED",
+        "source": "PYTHON02"
+      }
+    },
+    {
+      "id": "pycomp:collections-iteration",
+      "title": "Collections & iteration",
+      "dimension": "language_semantics",
+      "evidenceRequirement": "performance_required_for_mastery",
+      "provenance": {
+        "class": "CURATED",
+        "source": "PYTHON02"
+      }
+    },
+    {
+      "id": "pycomp:mutation-state",
+      "title": "Mutation, reference & state reasoning",
+      "dimension": "program_reasoning",
+      "evidenceRequirement": "performance_required_for_mastery",
+      "provenance": {
+        "class": "CURATED",
+        "source": "PYTHON02"
+      }
+    },
+    {
+      "id": "pycomp:exceptions-debugging",
+      "title": "Exceptions & debugging",
+      "dimension": "robustness",
+      "evidenceRequirement": "performance_required_for_mastery",
+      "provenance": {
+        "class": "CURATED",
+        "source": "PYTHON02"
+      }
+    },
+    {
+      "id": "pycomp:modules-imports",
+      "title": "Modules & imports",
+      "dimension": "program_design",
+      "evidenceRequirement": "performance_required_for_mastery",
+      "provenance": {
+        "class": "CURATED",
+        "source": "PYTHON02"
+      }
+    },
+    {
+      "id": "pycomp:files-data-interchange",
+      "title": "Files & data interchange",
+      "dimension": "integration",
+      "evidenceRequirement": "performance_required_for_mastery",
+      "provenance": {
+        "class": "CURATED",
+        "source": "PYTHON02"
+      }
+    },
+    {
+      "id": "pycomp:iterators-comprehensions",
+      "title": "Iterators, generators & comprehensions",
+      "dimension": "language_semantics",
+      "evidenceRequirement": "performance_required_for_mastery",
+      "provenance": {
+        "class": "CURATED",
+        "source": "PYTHON02"
+      }
+    },
+    {
+      "id": "pycomp:oop",
+      "title": "Python object-oriented design basics",
+      "dimension": "program_design",
+      "evidenceRequirement": "performance_required_for_mastery",
+      "provenance": {
+        "class": "CURATED",
+        "source": "PYTHON02"
+      }
+    },
+    {
+      "id": "pycomp:type-hints-dataclasses",
+      "title": "Type hints & dataclasses",
+      "dimension": "program_design",
+      "evidenceRequirement": "performance_required_for_mastery",
+      "provenance": {
+        "class": "CURATED",
+        "source": "PYTHON02"
+      }
+    },
+    {
+      "id": "pycomp:testing",
+      "title": "Testing & verification",
+      "dimension": "robustness",
+      "evidenceRequirement": "performance_required_for_mastery",
+      "provenance": {
+        "class": "CURATED",
+        "source": "PYTHON02"
+      }
+    },
+    {
+      "id": "pycomp:environment-tooling",
+      "title": "Environment & tooling literacy",
+      "dimension": "tooling",
+      "evidenceRequirement": "performance_required_for_mastery",
+      "provenance": {
+        "class": "CURATED",
+        "source": "PYTHON02"
+      }
+    },
+    {
+      "id": "pycomp:data-scientific-bridge",
+      "title": "Scientific/data Python bridge",
+      "dimension": "integration",
+      "evidenceRequirement": "performance_required_for_mastery",
+      "provenance": {
+        "class": "CURATED",
+        "source": "PYTHON02"
+      }
+    },
+    {
+      "id": "pycomp:project-transfer",
+      "title": "Engineering/research project transfer",
+      "dimension": "transfer",
+      "evidenceRequirement": "performance_required_for_mastery",
+      "provenance": {
+        "class": "CURATED",
+        "source": "PYTHON02"
+      }
+    }
+  ],
+  "masteryRule": "performance_required; exposure/progress/self-report/MCQ recognition alone insufficient",
+  "runtimeRequiredForExecutableEvidence": "PYTHON04 provider contract"
+}
