@@ -1,0 +1,86 @@
+{
+  "schema": "PYTHON_COMPETENCY_PROJECTION_V1",
+  "source": "prompts/subjects/python/evidence/PYTHON_COMPETENCY_GRAPH.json",
+  "competencies": [
+    {
+      "id": "py.comp.syntax-expressions",
+      "title": "Syntax and expression fluency",
+      "level": "foundation"
+    },
+    {
+      "id": "py.comp.type-semantics",
+      "title": "Data model and type reasoning",
+      "level": "foundation"
+    },
+    {
+      "id": "py.comp.control-flow",
+      "title": "Control-flow reasoning",
+      "level": "core"
+    },
+    {
+      "id": "py.comp.functions",
+      "title": "Function decomposition and contracts",
+      "level": "core"
+    },
+    {
+      "id": "py.comp.collections-iteration",
+      "title": "Collections and iteration",
+      "level": "core"
+    },
+    {
+      "id": "py.comp.state-mutation",
+      "title": "Name binding, references and mutation",
+      "level": "core"
+    },
+    {
+      "id": "py.comp.exceptions",
+      "title": "Exceptions and error handling",
+      "level": "structured"
+    },
+    {
+      "id": "py.comp.modules-imports",
+      "title": "Modules, imports and namespace boundaries",
+      "level": "structured"
+    },
+    {
+      "id": "py.comp.files-data",
+      "title": "Files and data interchange",
+      "level": "structured"
+    },
+    {
+      "id": "py.comp.iterators-generators",
+      "title": "Iterables, iterators, generators and comprehensions",
+      "level": "structured"
+    },
+    {
+      "id": "py.comp.oop",
+      "title": "Python object model and OOP basics",
+      "level": "structured"
+    },
+    {
+      "id": "py.comp.typing-dataclasses",
+      "title": "Type hints and dataclasses",
+      "level": "robustness"
+    },
+    {
+      "id": "py.comp.testing-debugging",
+      "title": "Testing and debugging",
+      "level": "robustness"
+    },
+    {
+      "id": "py.comp.tooling-reproducibility",
+      "title": "Environment, package and reproducibility literacy",
+      "level": "robustness"
+    },
+    {
+      "id": "py.comp.scientific-data-bridge",
+      "title": "Scientific/data Python bridge",
+      "level": "ecosystem"
+    },
+    {
+      "id": "py.comp.transfer",
+      "title": "Engineering project transfer",
+      "level": "transfer"
+    }
+  ]
+}
