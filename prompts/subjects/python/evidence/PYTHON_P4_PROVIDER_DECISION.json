@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "1.0.0",
+  "owner": "PYTHON04",
+  "baselineSha": "991b342704a2bc52337f0bb4fd293d3c74b3ec30",
+  "status": "BLOCKED_EXTERNAL_AUTHORITY",
+  "officialExecutionEnabled": false,
+  "selectedCandidate": {
+    "id": "cloudflare-sandbox-container",
+    "reason": "Fits existing Cloudflare boundary and is designed for isolated untrusted code with application-controlled data/network exposure.",
+    "requiredExternalProof": [
+      "Workers Paid / Sandboxes-Containers entitlement",
+      "deployment token permissions for required Worker/Durable Object/Container resources",
+      "local/CI Docker path required for image deployment"
+    ]
+  },
+  "rejected": [
+    {
+      "id": "same-origin-browser-pyodide",
+      "official": false,
+      "reason": "Browser Python can access Web APIs/network; Worker isolation alone does not prove required credential/network/resource boundary."
+    },
+    {
+      "id": "host-eval-or-process",
+      "official": false,
+      "reason": "Would execute learner code in privileged application/host context."
+    },
+    {
+      "id": "current-learning-runtime-worker",
+      "official": false,
+      "reason": "Static/access-gate Worker is not a general Python process sandbox."
+    }
+  ],
+  "explorationOnlyCandidates": [
+    "browser Pyodide on a separately proven isolated origin; not authorized by this decision"
+  ],
+  "resumeCondition": "External entitlement/credentials are proven, then Class-B implementation and security/failure-injection acceptance must pass.",
+  "productionDeploymentAuthorized": false
+}
