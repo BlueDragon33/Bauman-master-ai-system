@@ -31,8 +31,11 @@ assert.match(coach,/không tự tạo mastery/);
 const enginePos=index.indexOf('assets/speech-interaction-engine.js');
 const corePos=index.indexOf('assets/core.js');
 assert.ok(enginePos>=0&&enginePos<corePos,'P6 interaction engine must load before core');
-assert.match(sw,/russian-app-shell-v8-speech-interaction/);
+const shellCache=sw.match(/const CACHE='russian-app-shell-v([0-9]+)([^']*)'/i);
+assert.ok(shellCache,'versioned Russian app-shell cache missing');
+assert.ok(Number(shellCache[1])>=8,'P6 requires app-shell cache version >= 8');
 assert.match(sw,/\.\/assets\/speech-interaction-engine\.js/);
+assert.match(sw,/cacheShellWithRetry|c\.addAll\(SHELL\)/,'offline shell must precache required runtime assets');
 
 const required=[
  'RUSSIAN_LISTENING_SPEAKING_ENGINE_CONSTITUTION.md','RUSSIAN_AUDIO_OWNER_MAP.md','RUSSIAN_RECORDING_CONTRACT.md',
