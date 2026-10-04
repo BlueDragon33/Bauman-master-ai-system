@@ -3,8 +3,8 @@
 | Module | Prompt status | Repository execution status |
 |---|---|---|
 | ALG00 | COMPLETE | READY |
-| ALG01 | COMPLETE | VALIDATING · FORENSIC EVIDENCE BUILT |
-| ALG02 | COMPLETE / READY AFTER ALG01 PASS | NOT_STARTED |
+| ALG01 | COMPLETE | **PASS · FORENSIC BASELINE ACCEPTED** |
+| ALG02 | COMPLETE / READY TO EXECUTE | READY |
 | ALG03 | COMPLETE / READY AFTER ALG02 | NOT_STARTED |
 | ALG04 | COMPLETE / READY AFTER ALG02/ALG03 | NOT_STARTED |
 | ALG05 | COMPLETE / READY AFTER ALG02–ALG04 | NOT_STARTED |
@@ -14,18 +14,25 @@
 
 `ALGORITHMS & DATA STRUCTURES PROMPT ARCHITECTURE: COMPLETE`
 
-## ALG01 baseline reality
+## ALG01 accepted baseline
 
-Baseline SHA: `13f781a34c3de240e64c71d87c5a7497e34a9d3c`
+Exact tested evidence head: `f52aaa495987479fbe8c763f63929da1aee2c92a`
 
-- No dedicated `subjects/algorithms/` learner runtime exists.
-- Current learner-facing bridge is Programming PR02/PR10/PR11.
-- Programming test bank is 384 MCQs / 192 unique prompt texts.
-- Algorithm-related PR02/PR10/PR11 subset is 24 items / 12 unique prompt texts.
-- P4 prerequisite pack is the strongest current structured algorithms foundation: 10 nodes, 38 diagnostics, 10 critical misconceptions and targeted repair routes.
-- Current “Algorithm Complexity Lab” is a generic demo-risk/reproducibility meter and cannot be algorithmic truth.
-- Shared Python execution is reusable capability; no separate Algorithms trace/runtime owner exists.
+Acceptance evidence:
+- Algorithms ALG01 Forensic Baseline CI `37216354669` — SUCCESS
+- Development Fast CI `37216354622` — SUCCESS
+- Universal Constitution Compliance `37216354995` — SUCCESS
+
+Accepted reality:
+- no dedicated `subjects/algorithms/` learner runtime exists yet;
+- reusable learner bridge is Programming PR02/PR10/PR11;
+- Programming bank is 384 MCQs / 192 unique prompt texts;
+- algorithm-related PR02/PR10/PR11 subset is 24 items / 12 unique prompt texts;
+- P4 prerequisite pack supplies 10 nodes / 38 diagnostics / 10 critical misconceptions / targeted repair routes;
+- current “Algorithm Complexity Lab” is not algorithm complexity truth;
+- shared Python execution is reusable capability, not canonical Algorithms ownership;
+- local Programming exam/remediation state is not promoted to C4 mastery.
 
 ## Next operational action
 
-Run exact PR-head ALG01 forensic CI plus Constitution compliance. If all PASS, close ALG01 as PASS and start ALG02 from `subjects/algorithms/docs/alg01/ALG02_INPUT_CONTRACT.md`.
+Execute `ALG02_ACADEMIC_BLUEPRINT_CANONICAL_MODEL.md` using `subjects/algorithms/docs/alg01/ALG02_INPUT_CONTRACT.md` as the entry evidence contract.
