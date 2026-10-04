@@ -33,14 +33,17 @@ try{
   const url=new URL('subjects/russian/index.html',BASE).href;
   await page.goto(url,{waitUntil:'domcontentloaded',timeout:30000});
   await page.waitForFunction(()=>!!window.RussianRuntimeOptimizer&&!!window.RussianCapabilityProgression,null,{timeout:30000});
-  await withTimeout(page.evaluate(async()=>{
+  const swState=await withTimeout(page.evaluate(async()=>{
     const reg=await navigator.serviceWorker.ready;
-    if(!navigator.serviceWorker.controller){
-      await new Promise(resolve=>navigator.serviceWorker.addEventListener('controllerchange',resolve,{once:true}));
-    }
     await reg.update().catch(()=>{});
-  }),30000,'Russian service-worker readiness');
-  await page.waitForFunction(()=>!!navigator.serviceWorker.controller,null,{timeout:15000});
+    return {active:!!reg.active,controller:!!navigator.serviceWorker.controller};
+  }),30000,'Russian service-worker activation');
+  assert.equal(swState.active,true,'Russian service worker did not activate');
+  if(!swState.controller){
+    await page.reload({waitUntil:'domcontentloaded',timeout:30000});
+    await page.waitForFunction(()=>!!window.RussianRuntimeOptimizer&&!!window.RussianCapabilityProgression,null,{timeout:30000});
+  }
+  await page.waitForFunction(()=>!!navigator.serviceWorker.controller,null,{timeout:30000});
   await page.waitForFunction(()=>window.BAUMAN_FOUNDATION_IDENTITY_REPORT!==undefined,null,{timeout:15000});
 
   // Explicitly exercise the product's "prepare offline core" flow before asserting
