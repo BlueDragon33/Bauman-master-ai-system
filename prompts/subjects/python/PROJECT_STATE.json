@@ -3,7 +3,7 @@
   "subject": "python",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/subjects/python/PYTHON_MASTER_PROMPT.md",
-  "status": "PYTHON03_PASS_ASSESSMENT_MODEL",
+  "status": "PYTHON04_BLOCKED_SAFE_RUNTIME_PROVIDER",
   "activeModule": "PYTHON04",
   "sequence": [
     "PYTHON01",
@@ -19,8 +19,8 @@
     "PYTHON03"
   ],
   "needsRevalidation": [],
-  "lastValidatedSha": "ee16b75b86a8029ca005278ee99e20ad8a64f7fb",
-  "currentHeadSha": "ee16b75b86a8029ca005278ee99e20ad8a64f7fb",
+  "lastValidatedSha": "95c90f34e4deef1b9b51474863ca1d7cb06054dc",
+  "currentHeadSha": "95c90f34e4deef1b9b51474863ca1d7cb06054dc",
   "evidence": [
     "prompts/subjects/python/evidence/PYTHON_P1_EXECUTIVE_SUMMARY.md",
     "prompts/subjects/python/evidence/PYTHON_CURRENT_ARCHITECTURE_MAP.md",
@@ -59,10 +59,24 @@
     "prompts/subjects/python/evidence/PYTHON04_INPUT_CONTRACT.md",
     "tests/python-p3-assessment-contract.mjs",
     "Development Fast CI run 37192666431: SUCCESS; Python P3 assessment contract PASS",
-    "Universal Constitution Compliance run 37192666782: SUCCESS"
+    "Universal Constitution Compliance run 37192666782: SUCCESS",
+    "prompts/subjects/python/evidence/PYTHON_EXECUTION_CAPABILITY_CONTRACT.md",
+    "prompts/subjects/python/evidence/PYTHON_SANDBOX_SECURITY_CONTRACT.md",
+    "prompts/subjects/python/evidence/PYTHON_RUNTIME_ENVIRONMENT_POLICY.md",
+    "prompts/subjects/python/evidence/PYTHON_NOTEBOOK_REPRODUCIBILITY_POLICY.md",
+    "prompts/subjects/python/evidence/PYTHON_TEST_DEBUG_PROVIDER_CONTRACT.md",
+    "prompts/subjects/python/evidence/PYTHON_DATA_TOOLING_CONTRACT.md",
+    "prompts/subjects/python/evidence/PYTHON_AI_CODING_TUTOR_CONTRACT.md",
+    "prompts/subjects/python/evidence/PYTHON_RUNTIME_GOLDEN_FIXTURES.json",
+    "prompts/subjects/python/evidence/PYTHON05_INPUT_CONTRACT.md",
+    "tests/python-p4-runtime-security-contract.mjs",
+    "PR #258 merged at 95c90f34e4deef1b9b51474863ca1d7cb06054dc; Constitution + Development Fast CI PASS",
+    "prompts/subjects/python/evidence/PYTHON_P4_SAFE_RUNTIME_PROVIDER_BLOCKER.md"
   ],
-  "blockers": [],
-  "nextAction": "Hand PYTHON04 Runtime, Toolchain, Data & AI Intelligence to Codex/Class B using the accepted PYTHON02/PYTHON03 contracts. Do not enable learner code execution until the sandbox/security owner and runtime contract are proven.",
+  "blockers": [
+    "No safe learner Python execution provider is currently proven in-repo: no browser Python/WASM runtime, no isolated server/container sandbox, and no approved external runner binding. Learner execution must remain disabled until one provider passes PYTHON04 security/resource/reproducibility fixtures."
+  ],
+  "nextAction": "Resolve the PYTHON04 runtime-provider architecture blocker: authorize and prove either a browser sandbox provider, dedicated isolated server/container sandbox, or approved external runner. Do not enable learner execution or advance PYTHON05 executable UX until the provider passes the PYTHON04 golden security fixtures.",
   "notes": [
     "Actual learner runtime is subjects/programming/, not subjects/python/.",
     "Current Programming package mixes Python with Algorithms, Database, ML tooling and Software Engineering.",
@@ -79,6 +93,8 @@
     "Programming assessment is behavior/evidence based: source-string equality is forbidden as the primary grader, one sample output is insufficient, and equivalent valid implementations must pass.",
     "The legacy bank remains 384 MCQs with 192 unique question texts / 192 exact duplicate groups; legacy quiz score is not promoted to programming mastery.",
     "First official attempt evidence is immutable and retries append; learner code execution remains unauthorized in PYTHON03.",
-    "PYTHON03 exact tested evidence head is ee16b75b86a8029ca005278ee99e20ad8a64f7fb; this terminal state/evidence metadata tail is governance-only and must still pass final PR-head CI before merge."
+    "PYTHON03 exact tested evidence head is ee16b75b86a8029ca005278ee99e20ad8a64f7fb; this terminal state/evidence metadata tail is governance-only and must still pass final PR-head CI before merge.",
+    "PYTHON04 contract phase merged at 95c90f34e4deef1b9b51474863ca1d7cb06054dc; execution remains disabled by design.",
+    "Repository-wide discovery found no Pyodide/PyScript/MicroPython/CPython-WASM bundle and no isolated Python server/container runner."
   ]
 }
