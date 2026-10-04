@@ -55,6 +55,8 @@ try{
   }),120000,'Russian offline-core preparation');
   assert.equal(offlinePreparation.ready,true,'Russian offline core did not become ready');
   assert.equal(offlinePreparation.prepared,offlinePreparation.total,'Russian offline core count mismatch');
+  const protectedOffline=await page.evaluate(()=>window.RussianRuntimeOptimizer.protectedOfflineAssets||[]);
+  assert.ok(protectedOffline.includes('../../foundation/domain-model/legacy-mapping-registry.v1.json'),'Protected Foundation offline asset is not routed through authenticated preparation');
 
   const cached=await page.evaluate(async()=>{
     const names=await caches.keys();
