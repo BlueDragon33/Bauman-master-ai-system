@@ -4,10 +4,11 @@
   const CORE_DATA=['curriculum','lessons','grammar','grammar-path','vocab','mindmap','exercises','tests','simulations','speaking','handwriting','handwriting-listen-write','listen-write-lessons','listen-write-level-rules','writing','videos','knowledge-index'];
   const LIGHT_DATA=['curriculum','grammar','grammar-path','handwriting','handwriting-listen-write','writing','videos','knowledge-index'];
   const DATA_CACHE='russian-learning-data-v1';
+  const PROTECTED_OFFLINE_URLS=['../../foundation/domain-model/legacy-mapping-registry.v1.json'];
   const DATA_FETCH_TIMEOUT_MS=8000;
   const SW_READY_TIMEOUT_MS=20000;
   const SW_REGISTER_ATTEMPTS=3;
-  let preparing=false, prepared=Number(localStorage.getItem('ru_offline_core_count')||0), swReadyPromise=null;
+  let preparing=false, prepared=Number(localStorage.getItem('ru_offline_core_count')||0), protectedPrepared=0, swReadyPromise=null;
 
   function statusButton(){
     const host=document.querySelector('.ru-top-actions');if(!host)return null;
@@ -17,7 +18,7 @@
   }
   function paint(){
     const btn=statusButton();if(!btn)return;
-    const online=navigator.onLine;const ready=prepared>=CORE_DATA.length;
+    const online=navigator.onLine;const ready=prepared>=CORE_DATA.length&&protectedPrepared>=PROTECTED_OFFLINE_URLS.length;
     btn.dataset.online=online?'1':'0';btn.dataset.ready=ready?'1':'0';
     const label=preparing?'Đang chuẩn bị offline…':ready?(online?'Offline sẵn sàng':'Đang dùng offline'):(online?`Online · offline ${prepared}/${CORE_DATA.length}`:'Offline · dữ liệu chưa đủ');
     const span=btn.querySelector('span');if(span)span.textContent=label;btn.title=ready?'Bộ dữ liệu học bắt buộc đã được cache cho lần dùng offline tiếp theo.':'Bấm để chuẩn bị bộ dữ liệu học bắt buộc cho offline.';
@@ -35,9 +36,17 @@
     for(const name of names){if(await cache.match(`data/${name}.json`))count++;}
     return count;
   }
+  async function countProtectedCached(urls=PROTECTED_OFFLINE_URLS){
+    if(!('caches'in window))return 0;
+    const cache=await caches.open(DATA_CACHE);let count=0;
+    for(const url of urls){if(await cache.match(url))count++;}
+    return count;
+  }
   async function reconcileOfflineCore(){
-    try{prepared=await countCached(CORE_DATA);localStorage.setItem('ru_offline_core_count',String(prepared));}
-    catch(_){prepared=0;}
+    try{
+      [prepared,protectedPrepared]=await Promise.all([countCached(CORE_DATA),countProtectedCached()]);
+      localStorage.setItem('ru_offline_core_count',String(prepared));
+    }catch(_){prepared=0;protectedPrepared=0;}
     paint();return prepared;
   }
   async function cacheNames(names,{refresh=false}={}){
@@ -56,11 +65,30 @@
     }
     return count;
   }
+  async function cacheProtectedOffline(urls=PROTECTED_OFFLINE_URLS,{refresh=false}={}){
+    if(!('caches'in window))return 0;
+    const cache=await caches.open(DATA_CACHE);let count=0;
+    for(const url of urls){
+      try{
+        const existing=await cache.match(url);
+        if(existing&&!refresh){count++;continue;}
+        const res=await fetchWithTimeout(url,{cache:'no-store',credentials:'include'});
+        if(res.ok){await cache.put(url,res.clone());count++;}
+        else if(existing){count++;}
+      }catch(_){if(await cache.match(url))count++;}
+    }
+    protectedPrepared=count;paint();return count;
+  }
   async function prepareOfflineCore(){
     if(preparing||!navigator.onLine)return;
     preparing=true;paint();
-    try{prepared=await cacheNames(CORE_DATA,{refresh:true});localStorage.setItem('ru_offline_core_count',String(prepared));}
-    finally{preparing=false;paint();}
+    try{
+      [prepared,protectedPrepared]=await Promise.all([
+        cacheNames(CORE_DATA,{refresh:true}),
+        cacheProtectedOffline(PROTECTED_OFFLINE_URLS,{refresh:true})
+      ]);
+      localStorage.setItem('ru_offline_core_count',String(prepared));
+    }finally{preparing=false;paint();}
   }
   function idleWarm(){
     if(!navigator.onLine||navigator.connection?.saveData)return;
@@ -111,5 +139,5 @@
   function bootOfflineRuntime(){paint();register();}
   window.addEventListener('online',()=>{paint();reconcileOfflineCore();});window.addEventListener('offline',()=>{paint();reconcileOfflineCore();});
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bootOfflineRuntime,{once:true});else bootOfflineRuntime();
-  window.RussianRuntimeOptimizer={schema:SCHEMA,prepareOfflineCore,reconcileOfflineCore,ensureServiceWorkerReady,status:()=>({online:navigator.onLine,prepared,total:CORE_DATA.length,ready:prepared>=CORE_DATA.length,serviceWorkerControlled:!!navigator.serviceWorker?.controller}),coreData:[...CORE_DATA]};
+  window.RussianRuntimeOptimizer={schema:SCHEMA,prepareOfflineCore,reconcileOfflineCore,ensureServiceWorkerReady,status:()=>({online:navigator.onLine,prepared,total:CORE_DATA.length,protectedPrepared,protectedTotal:PROTECTED_OFFLINE_URLS.length,ready:prepared>=CORE_DATA.length&&protectedPrepared>=PROTECTED_OFFLINE_URLS.length,serviceWorkerControlled:!!navigator.serviceWorker?.controller}),coreData:[...CORE_DATA],protectedOfflineUrls:[...PROTECTED_OFFLINE_URLS]};
 })();
