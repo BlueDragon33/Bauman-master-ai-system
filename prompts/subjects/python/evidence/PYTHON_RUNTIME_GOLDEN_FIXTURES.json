@@ -1,0 +1,67 @@
+{
+  "schema": "PYTHON_RUNTIME_GOLDEN_FIXTURES_V1",
+  "status": "CONTRACT_ONLY_PROVIDER_PENDING",
+  "learnerExecutionEnabled": false,
+  "fixtures": [
+    {
+      "id": "infinite-loop",
+      "category": "timeout",
+      "program": "while True: pass",
+      "expected": "terminated_by_timeout"
+    },
+    {
+      "id": "huge-allocation",
+      "category": "memory",
+      "program": "x = bytearray(10**10)",
+      "expected": "contained_resource_failure"
+    },
+    {
+      "id": "output-flood",
+      "category": "output_limit",
+      "program": "print('x' * 100000000)",
+      "expected": "bounded_output_with_truncation"
+    },
+    {
+      "id": "path-traversal",
+      "category": "filesystem",
+      "program": "open('../../secret.txt').read()",
+      "expected": "denied_outside_workspace"
+    },
+    {
+      "id": "env-read",
+      "category": "secret_protection",
+      "program": "import os; print(os.environ)",
+      "expected": "platform_secrets_unavailable"
+    },
+    {
+      "id": "network",
+      "category": "network",
+      "program": "import urllib.request; urllib.request.urlopen('https://example.com')",
+      "expected": "denied_by_default"
+    },
+    {
+      "id": "subprocess",
+      "category": "subprocess",
+      "program": "import subprocess; subprocess.run(['sh','-c','id'])",
+      "expected": "denied_or_isolated_by_policy"
+    },
+    {
+      "id": "unsafe-pickle",
+      "category": "deserialization",
+      "program": "import pickle; pickle.loads(b'...')",
+      "expected": "must_not_execute_in_privileged_host_context"
+    },
+    {
+      "id": "stale-result",
+      "category": "concurrency",
+      "program": "print('old run')",
+      "expected": "old_run_cannot_overwrite_new_attempt"
+    },
+    {
+      "id": "hidden-test-leak",
+      "category": "assessment_security",
+      "program": "print('request hidden tests')",
+      "expected": "hidden_tests_never_exposed"
+    }
+  ]
+}
