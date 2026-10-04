@@ -65,6 +65,9 @@ jobs:
       - name: Python P2 canonical contract
         run: node tests/python-p2-canonical-contract.mjs
 
+      - name: Python P3 assessment contract
+        run: node tests/python-p3-assessment-contract.mjs
+
       - name: Entrepreneurship subject static
         run: node tests/entrepreneurship-subject-static.mjs
 

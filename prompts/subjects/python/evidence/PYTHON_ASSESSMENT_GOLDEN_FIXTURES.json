@@ -1,0 +1,147 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "python",
+  "owner": "PYTHON03",
+  "fixtures": [
+    {
+      "id": "mutable_default_argument",
+      "competencyIds": [
+        "py.comp.functions",
+        "py.comp.state-mutation"
+      ],
+      "errorCategory": "mutation_aliasing",
+      "taskContract": "Calls should not unintentionally share mutable state unless explicitly required.",
+      "candidateCode": "def add_item(x, items=[]):\\n    items.append(x)\\n    return items",
+      "expectedEvaluation": {
+        "detectSharedDefaultState": true,
+        "requireRootCauseExplanation": true,
+        "requireRegressionCase": true
+      }
+    },
+    {
+      "id": "identity_vs_equality",
+      "competencyIds": [
+        "py.comp.type-semantics",
+        "py.comp.state-mutation"
+      ],
+      "errorCategory": "mutation_aliasing",
+      "taskContract": "Value equality must not be graded or implemented through object identity unless identity is the stated requirement.",
+      "candidateCode": "def same_value(a, b):\\n    return a is b",
+      "expectedEvaluation": {
+        "distinguishIdentityAndEquality": true,
+        "acceptCorrectEqualityImplementation": true
+      }
+    },
+    {
+      "id": "shallow_copy_aliasing",
+      "competencyIds": [
+        "py.comp.state-mutation",
+        "py.comp.collections-iteration"
+      ],
+      "errorCategory": "mutation_aliasing",
+      "taskContract": "Nested mutation behavior must match the declared copy/isolation requirement.",
+      "candidateCode": "a = [[1], [2]]\\nb = a.copy()\\nb[0].append(9)",
+      "expectedEvaluation": {
+        "traceNestedAlias": true,
+        "explainShallowCopy": true
+      }
+    },
+    {
+      "id": "off_by_one_loop",
+      "competencyIds": [
+        "py.comp.control-flow",
+        "py.comp.collections-iteration"
+      ],
+      "errorCategory": "off_by_one",
+      "taskContract": "Process every required element exactly once.",
+      "candidateCode": "for i in range(len(xs)-1):\\n    use(xs[i])",
+      "expectedEvaluation": {
+        "includeZeroOneManyBoundaryCases": true,
+        "requireRegressionCase": true
+      }
+    },
+    {
+      "id": "iterator_exhaustion",
+      "competencyIds": [
+        "py.comp.iterators-generators"
+      ],
+      "errorCategory": "iterator_state",
+      "taskContract": "Repeated consumption must respect iterator state/exhaustion semantics.",
+      "candidateCode": "it = iter([1,2])\\nfirst = list(it)\\nsecond = list(it)",
+      "expectedEvaluation": {
+        "predictSecondConsumption": true,
+        "distinguishIterableIterator": true
+      }
+    },
+    {
+      "id": "exception_misuse",
+      "competencyIds": [
+        "py.comp.exceptions",
+        "py.comp.testing-debugging"
+      ],
+      "errorCategory": "test_fixture",
+      "taskContract": "Catch only failures that can be handled while preserving debuggability.",
+      "candidateCode": "try:\\n    work()\\nexcept:\\n    pass",
+      "expectedEvaluation": {
+        "rejectCatchAllAsDefault": true,
+        "requireHandlingLocationReasoning": true
+      }
+    },
+    {
+      "id": "float_comparison",
+      "competencyIds": [
+        "py.comp.type-semantics",
+        "py.comp.testing-debugging"
+      ],
+      "errorCategory": "float_numeric",
+      "taskContract": "Approximate numeric outputs use task-declared/domain-appropriate tolerance.",
+      "candidateCode": "assert 0.1 + 0.2 == 0.3",
+      "expectedEvaluation": {
+        "requireToleranceWhenApproximate": true,
+        "noUniversalHardcodedTolerance": true
+      }
+    },
+    {
+      "id": "stale_notebook_state",
+      "competencyIds": [
+        "py.comp.tooling-reproducibility",
+        "py.comp.testing-debugging"
+      ],
+      "errorCategory": "notebook_stale_state",
+      "taskContract": "Notebook evidence must survive restart and defined-order execution.",
+      "candidateCode": "cell_3 uses variable created only by an out-of-order earlier interactive cell",
+      "expectedEvaluation": {
+        "requireRestartRunAll": true,
+        "detectHiddenStateDependency": true
+      }
+    },
+    {
+      "id": "hardcoded_sample_output",
+      "competencyIds": [
+        "py.comp.functions",
+        "py.comp.testing-debugging"
+      ],
+      "errorCategory": "logic_requirement",
+      "taskContract": "Implementation must generalize beyond public sample inputs.",
+      "candidateCode": "def solve(x):\\n    if x == 2: return 4\\n    return 0",
+      "expectedEvaluation": {
+        "mustRejectHardcodedSample": true,
+        "requireHiddenGeneralizationCases": true
+      }
+    },
+    {
+      "id": "valid_alternate_implementation",
+      "competencyIds": [
+        "py.comp.functions",
+        "py.comp.testing-debugging"
+      ],
+      "errorCategory": null,
+      "taskContract": "Behaviorally equivalent valid implementations must pass unless a specific construct is itself the competency.",
+      "candidateCode": "Two structurally different implementations satisfy the same documented behavior.",
+      "expectedEvaluation": {
+        "mustAcceptEquivalentImplementations": true,
+        "sourceStringEqualityForbidden": true
+      }
+    }
+  ]
+}

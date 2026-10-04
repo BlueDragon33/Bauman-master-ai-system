@@ -1,0 +1,135 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentRevision": "PYTHON03-CANDIDATE-1",
+  "status": "VALIDATING",
+  "subject": "python",
+  "owner": {
+    "assessmentTruth": "prompts/subjects/python/evidence/PYTHON_P3_ASSESSMENT_MODEL.json",
+    "runtimeExecutionOwner": "PYTHON04",
+    "masteryOwner": "GLOBAL_C4",
+    "rule": "PYTHON03 defines what constitutes trustworthy programming evidence; it does not execute untrusted code or grant mastery."
+  },
+  "upstream": {
+    "canonicalAcademicModel": "prompts/subjects/python/evidence/PYTHON_P2_CANONICAL_MODEL.json",
+    "competencyGraph": "prompts/subjects/python/evidence/PYTHON_COMPETENCY_GRAPH.json",
+    "prerequisiteGraph": "prompts/subjects/python/evidence/PYTHON_PREREQUISITE_GRAPH.json"
+  },
+  "reasoningDimensions": [
+    "reading",
+    "tracing",
+    "predicting",
+    "constructing",
+    "decomposing",
+    "debugging",
+    "testing",
+    "explaining",
+    "refactoring",
+    "transferring"
+  ],
+  "constructionChain": [
+    "PROBLEM",
+    "INPUT_STATE",
+    "DECOMPOSITION",
+    "ALGORITHM_PLAN",
+    "CODE",
+    "TRACE_EXECUTION",
+    "TEST",
+    "DEBUG",
+    "RESULT",
+    "EXPLANATION",
+    "TRANSFER"
+  ],
+  "debuggingLoop": [
+    "REPRODUCE",
+    "MINIMIZE",
+    "OBSERVE",
+    "HYPOTHESIZE",
+    "TEST_HYPOTHESIS",
+    "FIX_ROOT_CAUSE",
+    "REGRESSION_TEST"
+  ],
+  "grading": {
+    "primary": "BEHAVIOR_CONTRACT_TESTS_AND_RUBRIC",
+    "sourceStringPrimaryGrader": false,
+    "finalSampleOutputAloneSufficient": false,
+    "equivalentValidImplementationsMustPass": true,
+    "hiddenTestsMustFollowDocumentedContract": true,
+    "styleMayDominateCorrectness": false,
+    "typeCheckerUniversalCorrectnessOracle": false,
+    "floatComparison": "task_or_domain_appropriate_tolerance_when_approximate",
+    "orderSensitivity": "only_when_declared_by_task_contract",
+    "randomness": "controlled_seed_statistical_contract_or_deterministic_abstraction",
+    "performance": "only_when_competency_requires_it"
+  },
+  "history": {
+    "firstOfficialAttemptImmutable": true,
+    "retriesAppend": true,
+    "latestPassingAttemptMayOverwriteHistory": false,
+    "supportLevelRecordedWhenRelevant": true
+  },
+  "assistance": {
+    "modes": [
+      "independent",
+      "starter_scaffold",
+      "hint_used",
+      "ai_allowed",
+      "ai_hint_only",
+      "ai_prohibited",
+      "post_submit_solution"
+    ],
+    "rule": "Support level is evidence context. AI may assist only under the task policy and never silently preserve a false claim of independent mastery."
+  },
+  "resultContract": [
+    "syntax_runtime_failure",
+    "failed_tests",
+    "partial_behavior",
+    "correct_behavior",
+    "test_quality_feedback",
+    "support_used",
+    "official_evidence_status"
+  ],
+  "remediation": {
+    "targetUnderlyingPattern": true,
+    "repeatSameQuestionOnly": false,
+    "errorNotebookOwner": "GLOBAL_C4_WITH_PYTHON_SPECIALIZATION"
+  },
+  "transfer": {
+    "sameUnderlyingCompetencyNewContext": true,
+    "artifactPlusExplanationPreferred": true
+  },
+  "currentLegacyReality": {
+    "source": "subjects/programming/data/tests.json",
+    "questionRecords": 384,
+    "questionType": "multiple_choice",
+    "uniqueQuestionText": 192,
+    "exactDuplicateSignatureGroups": 192,
+    "executableCodeEvidenceAuthority": false,
+    "quizScoreIsProgrammingMastery": false
+  },
+  "runtimeSecurity": {
+    "untrustedLearnerCode": true,
+    "executionAuthorizedInPYTHON03": false,
+    "sandboxOwner": "PYTHON04",
+    "securityHardeningOwner": "PYTHON06",
+    "hiddenTestLeakForbidden": true
+  },
+  "deliverables": [
+    "prompts/subjects/python/evidence/PYTHON_CODE_REASONING_CONTRACT.md",
+    "prompts/subjects/python/evidence/PYTHON_DEBUGGING_ERROR_TAXONOMY.json",
+    "prompts/subjects/python/evidence/PYTHON_CODING_ASSESSMENT_CONTRACT.md",
+    "prompts/subjects/python/evidence/PYTHON_TEST_QUALITY_POLICY.md",
+    "prompts/subjects/python/evidence/PYTHON_PARTIAL_CREDIT_RUBRIC.md",
+    "prompts/subjects/python/evidence/PYTHON_ERROR_NOTEBOOK_MAPPING.md",
+    "prompts/subjects/python/evidence/PYTHON_TRANSFER_TASK_POLICY.md",
+    "prompts/subjects/python/evidence/PYTHON04_INPUT_CONTRACT.md",
+    "prompts/subjects/python/evidence/PYTHON_ASSESSMENT_GOLDEN_FIXTURES.json"
+  ],
+  "validationEvidence": {
+    "exactTestedHead": null,
+    "developmentFastCiRunId": null,
+    "universalConstitutionRunId": null,
+    "runtimeMutation": false,
+    "learnerStateMigration": false,
+    "productionDeployment": false
+  }
+}
