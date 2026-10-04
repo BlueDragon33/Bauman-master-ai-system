@@ -1,0 +1,282 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "algorithms",
+  "graphType": "DAG",
+  "nodes": [
+    {
+      "id": "alg.comp.problem-modeling",
+      "title": "Problem modeling and constraints",
+      "level": "foundation"
+    },
+    {
+      "id": "alg.comp.pseudocode-state",
+      "title": "Language-neutral pseudocode and state reasoning",
+      "level": "foundation"
+    },
+    {
+      "id": "alg.comp.complexity",
+      "title": "Asymptotic time/space reasoning",
+      "level": "foundation"
+    },
+    {
+      "id": "alg.comp.correctness-invariants",
+      "title": "Preconditions, invariants, termination and correctness",
+      "level": "foundation"
+    },
+    {
+      "id": "alg.comp.adt-operation",
+      "title": "ADT and operation semantics",
+      "level": "core"
+    },
+    {
+      "id": "alg.comp.linear-structures",
+      "title": "Array/list/stack/queue reasoning",
+      "level": "core"
+    },
+    {
+      "id": "alg.comp.recursion",
+      "title": "Recursion and call-stack reasoning",
+      "level": "core"
+    },
+    {
+      "id": "alg.comp.search-sort",
+      "title": "Search and sorting selection/reasoning",
+      "level": "core"
+    },
+    {
+      "id": "alg.comp.hashing",
+      "title": "Hashing and associative lookup",
+      "level": "structures"
+    },
+    {
+      "id": "alg.comp.tree-bst",
+      "title": "Trees, BSTs and traversal",
+      "level": "structures"
+    },
+    {
+      "id": "alg.comp.graph-representation",
+      "title": "Graph model and representation",
+      "level": "graphs"
+    },
+    {
+      "id": "alg.comp.graph-traversal",
+      "title": "BFS/DFS traversal and reachability",
+      "level": "graphs"
+    },
+    {
+      "id": "alg.comp.edge-case-testing",
+      "title": "Algorithm edge-case and property testing",
+      "level": "transfer"
+    },
+    {
+      "id": "alg.comp.algorithm-selection",
+      "title": "Algorithm/data-structure selection and trade-offs",
+      "level": "transfer"
+    },
+    {
+      "id": "alg.comp.transfer",
+      "title": "Engineering transfer to ASOIU/database/logical-AI contexts",
+      "level": "transfer"
+    }
+  ],
+  "edges": [
+    {
+      "from": "alg.comp.problem-modeling",
+      "to": "alg.comp.pseudocode-state",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.problem-modeling",
+      "to": "alg.comp.complexity",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.pseudocode-state",
+      "to": "alg.comp.complexity",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.pseudocode-state",
+      "to": "alg.comp.correctness-invariants",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.problem-modeling",
+      "to": "alg.comp.adt-operation",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.complexity",
+      "to": "alg.comp.adt-operation",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.adt-operation",
+      "to": "alg.comp.linear-structures",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.pseudocode-state",
+      "to": "alg.comp.recursion",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.correctness-invariants",
+      "to": "alg.comp.recursion",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.linear-structures",
+      "to": "alg.comp.recursion",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.complexity",
+      "to": "alg.comp.search-sort",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.linear-structures",
+      "to": "alg.comp.search-sort",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.correctness-invariants",
+      "to": "alg.comp.search-sort",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.adt-operation",
+      "to": "alg.comp.hashing",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.complexity",
+      "to": "alg.comp.hashing",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.adt-operation",
+      "to": "alg.comp.tree-bst",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.recursion",
+      "to": "alg.comp.tree-bst",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.correctness-invariants",
+      "to": "alg.comp.tree-bst",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.adt-operation",
+      "to": "alg.comp.graph-representation",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.linear-structures",
+      "to": "alg.comp.graph-representation",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.graph-representation",
+      "to": "alg.comp.graph-traversal",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.linear-structures",
+      "to": "alg.comp.graph-traversal",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.recursion",
+      "to": "alg.comp.graph-traversal",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.correctness-invariants",
+      "to": "alg.comp.graph-traversal",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.complexity",
+      "to": "alg.comp.graph-traversal",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.correctness-invariants",
+      "to": "alg.comp.edge-case-testing",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.complexity",
+      "to": "alg.comp.edge-case-testing",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.complexity",
+      "to": "alg.comp.algorithm-selection",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.search-sort",
+      "to": "alg.comp.algorithm-selection",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.hashing",
+      "to": "alg.comp.algorithm-selection",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.tree-bst",
+      "to": "alg.comp.algorithm-selection",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.graph-traversal",
+      "to": "alg.comp.algorithm-selection",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.algorithm-selection",
+      "to": "alg.comp.transfer",
+      "type": "required"
+    },
+    {
+      "from": "alg.comp.edge-case-testing",
+      "to": "alg.comp.transfer",
+      "type": "required"
+    }
+  ],
+  "invalid": [
+    "self_edge",
+    "cycle",
+    "dangling_reference",
+    "retired_target_without_alias"
+  ],
+  "externalBoundaries": [
+    {
+      "owner": "math",
+      "rule": "Generic discrete mathematics, induction/proof foundations and recurrence-solving theory remain Math-owned."
+    },
+    {
+      "owner": "python",
+      "rule": "Python syntax, mutation/runtime behavior and sandbox execution remain Python-owned; ALG may reference implementations."
+    },
+    {
+      "owner": "database",
+      "rule": "Pages, storage engines, query planners, transactions and database-specific index semantics remain Database-owned."
+    },
+    {
+      "owner": "ml-ai",
+      "rule": "Model-specific learning/inference algorithms remain AI/ML-owned."
+    },
+    {
+      "owner": "C4",
+      "rule": "Official mastery aggregation and learner-state authority remain global C4."
+    }
+  ]
+}
