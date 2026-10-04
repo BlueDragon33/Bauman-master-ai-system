@@ -16,6 +16,7 @@ on:
       - ".github/workflows/python-approved-release.yml"
       - ".github/release-requests/python-20261004.json"
       - ".github/release-requests/python-20261004-r2.json"
+      - ".github/release-requests/python-20261004-r3.json"
       - "tests/python-approved-release-contract.mjs"
   workflow_dispatch:
 

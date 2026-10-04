@@ -4,14 +4,14 @@ on:
   push:
     branches: [main]
     paths:
-      - ".github/release-requests/python-20261004-r2.json"
+      - ".github/release-requests/python-20261004-r3.json"
 
 permissions:
   contents: read
   statuses: write
 
 concurrency:
-  group: python-approved-release-20261004-r2
+  group: python-approved-release-20261004-r3
   cancel-in-progress: false
 
 jobs:
@@ -21,12 +21,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 0
       - name: Validate one-time approved release request
         shell: bash
         run: |
           set -euo pipefail
-          REQUEST=".github/release-requests/python-20261004-r2.json"
+          REQUEST=".github/release-requests/python-20261004-r3.json"
           BEFORE="${{ github.event.before }}"
           if [[ ! -f "$REQUEST" ]]; then
             echo "::error::Approved release request is missing."
@@ -43,9 +43,9 @@ jobs:
           git merge-base --is-ancestor 04cf1978198ee90a47dc61698ad70aec011a78bc "$GITHUB_SHA"
           node --input-type=module - <<'NODE'
           import fs from 'node:fs';
-          const r=JSON.parse(fs.readFileSync('.github/release-requests/python-20261004-r2.json','utf8'));
+          const r=JSON.parse(fs.readFileSync('.github/release-requests/python-20261004-r3.json','utf8'));
           if(r.schema!=='PYTHON_APPROVED_RELEASE_REQUEST_V1') throw new Error('release request schema mismatch');
-          if(r.releaseId!=='python-runtime-2026-10-04-r2') throw new Error('release id mismatch');
+          if(r.releaseId!=='python-runtime-2026-10-04-r3') throw new Error('release id mismatch');
           if(r.status!=='APPROVED_ONE_TIME'||r.oneTime!==true) throw new Error('release is not one-time approved');
           if(r.confirm!=='DEPLOY_PRODUCTION') throw new Error('explicit production confirmation missing');
           if(r.sourceP6MergeSha!=='23e594b7f6a62d45fdad9f2669866f1410d2db6f') throw new Error('P6 source mismatch');
