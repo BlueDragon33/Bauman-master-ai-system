@@ -42,6 +42,10 @@ jobs:
             scripts/list-study-plan-runtime-routes.mjs
             cloudflare/runtime-worker-python.mjs
             cloudflare/python-sandbox-provider.mjs
+            cloudflare/python-task-registry.mjs
+            subjects/programming/assets/python-product-integration.js
+            subjects/programming/assets/python-lab.js
+            subjects/programming/assets/python-author.js
           )
           for file in "${files[@]}"; do
             if [[ -f "$file" ]]; then
@@ -75,6 +79,9 @@ jobs:
 
       - name: Python P4 provider static
         run: node tests/python-p4-provider-static.mjs
+
+      - name: Python P5 product contract
+        run: node tests/python-p5-product-contract.mjs
 
       - name: Entrepreneurship subject static
         run: node tests/entrepreneurship-subject-static.mjs
