@@ -1,0 +1,139 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentRevision": "ALG02-CANDIDATE-1",
+  "status": "VALIDATING",
+  "subject": "algorithms",
+  "owner": {
+    "academicTruth": "subjects/algorithms/docs/alg02/ALG_P2_CANONICAL_MODEL.json",
+    "compatibilitySources": [
+      "subjects/algorithms/docs/alg01/ALG02_INPUT_CONTRACT.md",
+      "assets/data/prerequisite-packs/p04-discrete-algorithms-data-structures.json",
+      "subjects/programming/data/lessons.json",
+      "subjects/math/data/discipline_spine.json"
+    ],
+    "runtimeProjection": "NONE_IN_ALG02",
+    "rule": "ALG02 defines language-neutral academic truth only. Existing Programming runtime, P4 pack and Math content remain unchanged compatibility inputs."
+  },
+  "targetProgram": {
+    "code": "09.04.01/11",
+    "role": "prerequisite_algorithms_and_data_structures_foundation_for_oop_database_mivar_and_big_data_targets",
+    "officialTargets": [
+      "d05",
+      "d06",
+      "d10",
+      "d18",
+      "e02a"
+    ],
+    "officialAdministrativePrerequisiteClaimed": false
+  },
+  "topology": {
+    "academicStages": [
+      "foundation",
+      "core",
+      "structures",
+      "graphs",
+      "transfer"
+    ],
+    "legacyCompatibilityLessons": [
+      "PR02",
+      "PR10",
+      "PR11"
+    ],
+    "p04CompatibilityNodes": [
+      "P4-N01",
+      "P4-N02",
+      "P4-N03",
+      "P4-N04",
+      "P4-N05",
+      "P4-N06",
+      "P4-N07",
+      "P4-N08",
+      "P4-N09",
+      "P4-N10"
+    ],
+    "stableLegacyIds": true,
+    "displayLanguageIndependentIdentity": true
+  },
+  "evidenceSemantics": {
+    "exposure": "Content was presented or opened.",
+    "progress": "A learning interaction or practice step was completed.",
+    "performance": "Validated algorithmic reasoning, trace, correctness, complexity or implementation evidence was produced under a task contract.",
+    "mastery": "A C4 policy projection over accepted performance evidence; never inferred from route completion, visualization interaction or legacy MCQ score alone."
+  },
+  "scopePolicy": {
+    "requiredCore": [
+      "complexity",
+      "array-linked-list",
+      "stack-queue",
+      "hashing",
+      "tree-bst-traversal",
+      "recursion",
+      "sorting-binary-search",
+      "graph-representation",
+      "BFS-DFS",
+      "algorithm/data-structure selection"
+    ],
+    "optionalJitNotDefault": [
+      "heap-priority-queue",
+      "topological-sort",
+      "Dijkstra",
+      "MST",
+      "disjoint-set",
+      "greedy",
+      "dynamic-programming",
+      "backtracking"
+    ],
+    "excludedDefault": [
+      "competitive-programming tricks",
+      "segment-tree",
+      "Fenwick-tree",
+      "suffix-array/tree",
+      "advanced max-flow/min-cost-flow",
+      "computational-geometry",
+      "deep NP-completeness proofs"
+    ],
+    "rule": "Optional JIT topics require explicit downstream-course/project evidence before being promoted into default required scope."
+  },
+  "truthOrder": [
+    "canonical_algorithm_or_data_structure_entity",
+    "validated_correctness_and_complexity_contract",
+    "validated_trace_or_execution_provider",
+    "curated_lesson_projection",
+    "visualization",
+    "ai_explanation",
+    "ui_text"
+  ],
+  "migration": {
+    "preserveLegacyIds": true,
+    "preserveLearnerState": true,
+    "runtimeMutationAuthorized": false,
+    "productionMigrationActivated": false,
+    "deleteLegacyLessonsBeforeProjectionReady": false,
+    "rollbackRequiredWhenMigrationEventuallyActivates": true
+  },
+  "deliverables": [
+    "subjects/algorithms/docs/alg02/ALG_ACADEMIC_BLUEPRINT.md",
+    "subjects/algorithms/docs/alg02/ALG_COMPETENCY_GRAPH.json",
+    "subjects/algorithms/docs/alg02/ALG_PREREQUISITE_GRAPH.json",
+    "subjects/algorithms/docs/alg02/ALG_CANONICAL_ENTITY_SCHEMA.json",
+    "subjects/algorithms/docs/alg02/ALG_ADT_OPERATION_CONTRACT.md",
+    "subjects/algorithms/docs/alg02/ALG_COMPLEXITY_CLAIM_CONTRACT.md",
+    "subjects/algorithms/docs/alg02/ALG_CORRECTNESS_INVARIANT_CONTRACT.md",
+    "subjects/algorithms/docs/alg02/ALG_ALGORITHM_REGISTRY.json",
+    "subjects/algorithms/docs/alg02/ALG_DATA_STRUCTURE_REGISTRY.json",
+    "subjects/algorithms/docs/alg02/ALG_LEGACY_COMPATIBILITY_MAP.json",
+    "subjects/algorithms/docs/alg02/ALG03_INPUT_CONTRACT.md"
+  ],
+  "downstreamContracts": {
+    "ALG03": "May define reasoning, assessment, alternate-solution and error semantics against alg.comp and canonical entity IDs; cannot write global mastery.",
+    "ALG04": "May build trace/visualization/execution capabilities that consume canonical Algorithm/DataStructure contracts; cannot redefine semantics.",
+    "ALG05": "May render/author projections and preserve PR02/PR10/PR11 compatibility; cannot become second academic truth owner."
+  },
+  "validationEvidence": {
+    "baselineAlg01MergeSha": "e66aa6bd7c47c1bd7c91c9e28fdf390b1b930875",
+    "expectedCompetencyCount": 15,
+    "prerequisiteGraphMustBeAcyclic": true,
+    "runtimeMutation": false,
+    "productionDeployment": false
+  }
+}
