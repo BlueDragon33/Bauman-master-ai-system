@@ -1,12 +1,13 @@
 name: Python04 Cloudflare Provider Proof
 
 on:
+  workflow_call:
   workflow_dispatch:
   push:
     branches: [codex/python04-cloudflare-provider]
   pull_request:
     branches: [main]
-    paths: ['runtime/python-cloudflare/**', 'cloudflare/runtime-worker.mjs', 'tests/python-p4-cloudflare-*', 'tests/python-p4-facade.test.mjs', 'subjects/programming/**', '.github/workflows/python-p4-cloudflare-provider.yml']
+    paths: ['runtime/python-cloudflare/**', 'cloudflare/python-runtime/**', 'cloudflare/runtime-worker-python.mjs', 'cloudflare/python-sandbox-provider.mjs', 'cloudflare/runtime-worker.mjs', 'tests/python-p4-cloudflare-*', 'tests/python-p4-facade.test.mjs', 'subjects/programming/**', '.github/workflows/python-p4-cloudflare-provider.yml']
 
 permissions:
   contents: write
@@ -42,9 +43,10 @@ jobs:
           node tests/python-p2-canonical-contract.mjs
           node tests/python-p3-assessment-contract.mjs
           node tests/python-p4-runtime-security-contract.mjs
+          node tests/python-p4-provider-static.mjs
           node scripts/validate-system-integration.mjs
           node --test tests/python-p4-cloudflare-controller.test.mjs tests/python-p4-cloudflare-lifecycle.test.mjs tests/python-p4-facade.test.mjs
-          docker build --network none -t bauman-python04-cf-spike:3.14.8 runtime/python-cloudflare
+          docker build --network none -t bauman-python04-cf-spike:3.14.8 cloudflare/python-runtime
           node --test tests/python-p4-cloudflare-bootstrap.test.mjs
       - name: Desktop/mobile gated UI, offline and state-preservation browser checks
         id: gated_browser

@@ -49,7 +49,28 @@ Grant compatible native Containers access to the `bauman-preview` token/account
 binding; do not send secret values in Chat or commit them. The exact endpoint
 must return success. Rerun `Python04 Cloudflare Provider Proof` at the branch
 head. Fix failures at their owner without weakening image pinning or security
-fixtures. Keep `BAUMAN_PYTHON04_ENABLED=false` until native security/resource,
+fixtures. Keep `BAUMAN_PYTHON_EXECUTION_ENABLED=false` until native security/resource,
 private-boundary, state and authenticated browser gates all pass at one exact
 head. Complete the remaining work packet before marking PYTHON04 PASS, opening
 the acceptance PR and merging. Do not deploy Production in this packet.
+
+
+## Upstream canonical-owner integration
+
+Main advanced to b9e2253d7f9cef872067cb1ebb77f15ca7fd9a51 with PR #261.
+The canonical cloudflare entry/provider/image paths are preserved and now route
+to one implementation; duplicate image/bootstrap sources were removed. Its
+local-only acceptance is marked for revalidation rather than reused as native
+Cloudflare proof. All configs, including local CI, keep execution false and
+remove the unauthenticated provider-test bypass. Official/mastery owners remain
+unchanged. Provider static checks now verify actual owner exports, default-deny
+bootstrap, resources, cleanup/recovery and all disabled configurations.
+
+
+The upstream runner at b9e2253d was reproduced in a separate bounded,
+network-denied, read-only Docker test: `open('../../etc/passwd')` returned
+`root:x:0:0:root:/root:/bin/bash` with status complete. This violates the packet's
+workspace traversal boundary. The owner bootstrap was replaced with chroot and
+seccomp, and the identical traversal fixture now must return FileNotFoundError
+with empty stdout. Native fork/socket policy regression checks are also retained.
+This is local RED/GREEN bootstrap evidence, not native Container proof.

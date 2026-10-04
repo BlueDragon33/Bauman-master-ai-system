@@ -67,7 +67,7 @@ test('release RPC failure retains recovery alarm and never executes a late cance
 
 
 test('learner HTTP routes reuse Control authorization and bind attempts to that owner',async()=>{
-  const {env,objects}=setup();Object.assign(env,{BAUMAN_PYTHON04_ENABLED:'true',BAUMAN_CONTROL_ORIGIN:'https://control.example.test'});
+  const {env,objects}=setup();Object.assign(env,{BAUMAN_PYTHON_EXECUTION_ENABLED:'true',BAUMAN_CONTROL_ORIGIN:'https://control.example.test'});
   const originalFetch=globalThis.fetch;
   const origin='https://runtime.example.test';
   const tokenA='bm1.'+'A'.repeat(40),tokenB='bm1.'+'B'.repeat(40);
@@ -90,7 +90,7 @@ test('learner HTTP routes reuse Control authorization and bind attempts to that 
     assert.equal(hidden.status,400);assert.ok(!(await hidden.text()).includes('PRIVATE_CANARY'));
     assert.equal((await (await worker.fetch(request('cancel',{runId:reserved.runId},tokenA),env)).json()).cleanup,true);
     assert.equal((await (await worker.fetch(request('reserve',{},tokenA),env)).json()).status,'reserved');
-    env.BAUMAN_PYTHON04_ENABLED='false';
+    env.BAUMAN_PYTHON_EXECUTION_ENABLED='false';
     assert.equal((await worker.fetch(request('reserve',{},tokenA),env)).status,403);
   } finally{globalThis.fetch=originalFetch;}
 });

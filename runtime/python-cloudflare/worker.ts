@@ -4,7 +4,7 @@ import {superviseContainer,validateRequest,RUNTIME,POLICY} from './controller.mj
 
 interface Env {
   PYTHON_SANDBOX: DurableObjectNamespace<PythonSandbox>;
-  BAUMAN_PYTHON04_ENABLED?: string;
+  BAUMAN_PYTHON_EXECUTION_ENABLED?: string;
   BAUMAN_PYTHON04_ACCEPTANCE_SECRET?: string;
   BAUMAN_BUILD_REVISION?: string;
   BAUMAN_CONTROL_ORIGIN?: string;
@@ -149,7 +149,7 @@ export class PythonSandbox extends DurableObject<Env> {
 export default {
   async fetch(request:Request,env:Env):Promise<Response> {
     const url=new URL(request.url);
-    if(url.pathname==='/__python04/health')return reply({status:'validation_only',learnerExecutionEnabled:env.BAUMAN_PYTHON04_ENABLED==='true',officialAssessment:false,runtime:RUNTIME,revision:env.BAUMAN_BUILD_REVISION||'unvalidated'});
+    if(url.pathname==='/__python04/health')return reply({status:'validation_only',learnerExecutionEnabled:env.BAUMAN_PYTHON_EXECUTION_ENABLED==='true',officialAssessment:false,runtime:RUNTIME,revision:env.BAUMAN_BUILD_REVISION||'unvalidated'});
     const acceptance=url.pathname.startsWith('/__python04/');
     const learner=url.pathname.startsWith('/api/python/');
     if(!acceptance&&!learner) {
@@ -159,7 +159,7 @@ export default {
     if(request.method!=='POST')return reply({status:'method_not_allowed'},405);
     const operation=url.pathname.split('/').pop();
     if(!['reserve','run','cancel'].includes(operation||''))return reply({status:'not_found'},404);
-    if(learner&&env.BAUMAN_PYTHON04_ENABLED!=='true')return reply({status:'acceptance_pending',officialEvidence:false},403);
+    if(learner&&env.BAUMAN_PYTHON_EXECUTION_ENABLED!=='true')return reply({status:'acceptance_pending',officialEvidence:false},403);
     let owner='';
     if(acceptance){owner=await acceptanceOwner(request,env);if(!owner)return reply({status:'unauthorized'},401);}
     else {

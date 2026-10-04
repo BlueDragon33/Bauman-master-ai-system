@@ -6,7 +6,10 @@ Authority: `PYTHON04_RUNTIME_PROVIDER_DECISION.md` and the Cloudflare plan.
 
 ## Owner and implementation
 
-`runtime/python-cloudflare/worker.ts` owns the native Cloudflare 1.x provider.
+The canonical `cloudflare/runtime-worker-python.mjs` and
+`cloudflare/python-sandbox-provider.mjs` export the single implementation in
+`runtime/python-cloudflare/worker.ts`. The sole image/bootstrap owner is
+`cloudflare/python-runtime/`.
 The current official Sandbox 1.0 README uses an application Durable Object and
 `ctx.container`, not the 0.x `getSandbox` facade. No browser/host interpreter is
 added. The existing runtime Worker exports its session authorization function;

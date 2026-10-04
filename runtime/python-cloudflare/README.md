@@ -44,3 +44,11 @@ NumPy/Pandas, runtime pip install and offline execution are unavailable.
 Activation requires the remaining acceptance gates; rollback keeps the flag
 false and removes only the additive provider/test binding. Current learner
 state, academic truth and assessment truth are not migrated.
+
+
+After upstream PR #261, canonical entries remain
+`cloudflare/runtime-worker-python.mjs` / `cloudflare/python-sandbox-provider.mjs`;
+both export the same shared implementation. The sole image/bootstrap owner is
+`cloudflare/python-runtime/`. Build the test image from that directory. All
+preview/production/local configs keep execution disabled; legacy unauthenticated
+provider-test mode and mutable local-image execution are removed.

@@ -23,7 +23,7 @@ Large runtimes/packages must lazy-load and must not inflate normal subject start
 
 The baseline discovery found no learner interpreter. The additive disabled
 provider now pins CPython 3.14.8 amd64, runtimeProfileId
-`python04-cf-stdlib-v1`, packageProfileId `python04-cf-curated-stdlib-v1`,
+`cpython-3.14.8-stdlib-v1`, packageProfileId `python04-cf-curated-stdlib-v1`,
 with packageInstall=false. Base digest and actual deployed imageId are recorded
 in structured results. Dockerfile and provider npm lockfile pin build inputs.
 Native local-dev mutable tags are refused. Only the deployed image digest can

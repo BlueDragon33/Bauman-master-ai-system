@@ -1,0 +1,9 @@
+name: Python P4 Container Provider CI
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  real-native-provider:
+    uses: ./.github/workflows/python-p4-cloudflare-provider.yml
+    secrets: inherit

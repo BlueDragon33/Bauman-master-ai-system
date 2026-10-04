@@ -111,7 +111,7 @@ jobs:
         run: |
           set -euo pipefail
           (cd control-service && npx wrangler deploy --dry-run --outdir dist-production --config wrangler.production.jsonc)
-          npx --yes wrangler@4.92.0 deploy --dry-run --outdir .wrangler/runtime-production --config wrangler.runtime.production.jsonc
+          npx --yes wrangler@4.147.0 deploy --dry-run --outdir .wrangler/runtime-production --config wrangler.runtime.production.jsonc
 
       - name: Record immutable deployment artifact identity
         run: node scripts/russian-release-annex-evidence.mjs artifact
@@ -163,7 +163,7 @@ jobs:
         run: npx wrangler deploy --config wrangler.production.jsonc
 
       - name: Deploy Bauman Learning Runtime production Worker
-        run: npx --yes wrangler@4.92.0 deploy --config wrangler.runtime.production.jsonc
+        run: npx --yes wrangler@4.147.0 deploy --config wrangler.runtime.production.jsonc
 
       - name: Smoke test production stack
         shell: bash

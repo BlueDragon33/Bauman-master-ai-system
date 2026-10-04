@@ -18,9 +18,11 @@
     "PYTHON02",
     "PYTHON03"
   ],
-  "needsRevalidation": [],
+  "needsRevalidation": [
+    "PYTHON04"
+  ],
   "lastValidatedSha": "95c90f34e4deef1b9b51474863ca1d7cb06054dc",
-  "currentHeadSha": "a86f00ebe339a0f39ad8feab66315046b94185a7",
+  "currentHeadSha": "b9e2253d7f9cef872067cb1ebb77f15ca7fd9a51",
   "evidence": [
     "prompts/subjects/python/evidence/PYTHON_P1_EXECUTIVE_SUMMARY.md",
     "prompts/subjects/python/evidence/PYTHON_CURRENT_ARCHITECTURE_MAP.md",
@@ -109,7 +111,8 @@
     "Initial provider spike binds CPython 3.14.8 because Python 3.15.0 final is not yet released on the decision date.",
     "Official assessment requires a clean sandbox identity per run/attempt with Internet disabled by default, no platform secrets, and hidden tests confined to the server-side sandbox boundary.",
     "Preview environment secrets were verified present by real GitHub Actions run 37199496997; the initial missing binding was a workflow environment-selection bug and was fixed at its owner.",
-    "Gated desktop/mobile UI passed on source and preview-packaged assets; offline execution is unavailable and learner state remained unchanged. These are not native provider acceptance."
+    "Gated desktop/mobile UI passed on source and preview-packaged assets; offline execution is unavailable and learner state remained unchanged. These are not native provider acceptance.",
+    "Main advanced to b9e2253d7f9cef872067cb1ebb77f15ca7fd9a51 during execution. Its canonical cloudflare provider entry/image owner is reused, not duplicated. The prior local-only provider PASS requires native/full-packet revalidation."
   ],
   "lastImplementationTestedSha": "57c9815a18edc4c133823cc9b95858d1a476af64",
   "learnerExecutionEnabled": false,

@@ -2,7 +2,7 @@ export const POLICY = Object.freeze({wallMs:5000,startupMs:15000,cleanupMs:5000,
   addressSpaceBytes:100663296,cpuSoftSeconds:2,cpuHardSeconds:3,outputBytes:16384,
   transportBytes:131072,fileBytes:16384,maxFileBytes:1048576,
   vm:Object.freeze({vcpu:0.25,memoryMib:256,diskMb:2048})});
-export const RUNTIME = Object.freeze({python:'3.14.8',packageProfileId:'python04-cf-curated-stdlib-v1',packageInstall:false,runtimeProfileId:'python04-cf-stdlib-v1',
+export const RUNTIME = Object.freeze({python:'3.14.8',packageProfileId:'python04-cf-curated-stdlib-v1',packageInstall:false,runtimeProfileId:'cpython-3.14.8-stdlib-v1',
   baseImage:'sha256:d1e795fbdab8a4744432467f32f348c6baa99f07abc05ffde710913f65c8261d'});
 const encoder=new TextEncoder();
 const size=text=>encoder.encode(text).length;
@@ -56,7 +56,7 @@ function normalize(payload,base) {
 export async function superviseContainer(container,input,{signal}={}) {
   const request=validateRequest(input), started=Date.now();
   const base={runId:request.runId,taskId:request.taskId,sessionId:request.sessionId,mode:request.mode,
-    provider:'cloudflare-container-native',runtime:RUNTIME,policy:POLICY,stdout:'',stderr:'',exception:null,trace:[],cells:[],
+    provider:'cloudflare-container-durable-object-v1',runtime:RUNTIME,policy:POLICY,stdout:'',stderr:'',exception:null,trace:[],cells:[],
     officialEvidence:false,correctness:'not_assessed',cleanup:false,truncated:false,exitCode:null,artifacts:[]};
   if(signal?.aborted) return {...base,status:'cancelled',cleanup:true};
   const image=container?.images?.python;

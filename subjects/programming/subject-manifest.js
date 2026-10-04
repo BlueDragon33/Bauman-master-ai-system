@@ -218,7 +218,7 @@ window.SUBJECT_MANIFEST = {
   "pythonRuntime": {
   "facade": "assets/python-runtime.js",
   "entry": "python-lab.html",
-  "provider": "cloudflare-container-native",
+  "provider": "cloudflare-container-durable-object-v1",
   "availability": "acceptance-pending",
   "learnerExecutionEnabled": false,
   "officialAssessment": false,

@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "bauman-master-ai",
+  "name": "bauman-python-runtime-ci",
   "main": "cloudflare/runtime-worker-python.mjs",
   "compatibility_date": "2026-10-02",
   "compatibility_flags": [
@@ -8,11 +8,10 @@
     "global_fetch_strictly_public"
   ],
   "vars": {
-    "BAUMAN_CONTROL_ORIGIN": "__BAUMAN_CONTROL_PRODUCTION_ORIGIN__",
-    "BAUMAN_ACCESS_MODE": "__BAUMAN_ACCESS_MODE__",
-    "BAUMAN_DEPLOYMENT_CHANNEL": "cloudflare-production",
-    "BAUMAN_BUILD_REVISION": "__BAUMAN_BUILD_REVISION__",
-    "BAUMAN_CONFIG_FINGERPRINT": "__BAUMAN_CONFIG_FINGERPRINT__",
+    "BAUMAN_CONTROL_ORIGIN": "https://control.example.test",
+    "BAUMAN_ACCESS_MODE": "standalone",
+    "BAUMAN_DEPLOYMENT_CHANNEL": "python-p4-local-ci",
+    "BAUMAN_BUILD_REVISION": "python-p4-local-ci",
     "BAUMAN_PYTHON_EXECUTION_ENABLED": "false",
     "BAUMAN_PYTHON_RUNTIME_PROFILE": "cpython-3.14.8-stdlib-v1"
   },
@@ -43,11 +42,6 @@
       "type": "durable-object",
       "storage": "sqlite"
     }
-  },
-  "assets": {
-    "directory": "./runtime-dist",
-    "binding": "ASSETS",
-    "run_worker_first": true
   },
   "observability": {
     "enabled": false

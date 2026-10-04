@@ -58,5 +58,5 @@
   }
   adapter.pythonRuntime=Object.freeze({run,runCode:run,runTests:input=>run({...input,mode:'test'}),
     invalidate,cancel:invalidate,cancelRun:invalidate,getRuntimeIdentity:()=>identity,advice,
-    provider:'cloudflare-container-native',offlineExecution:false,officialAssessment:false});
+    provider:'cloudflare-container-durable-object-v1',offlineExecution:false,officialAssessment:false});
 })();

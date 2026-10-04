@@ -7,6 +7,13 @@ test('Python 3.14 bootstrap closes inherited descriptors above 1024 before code'
   // This launcher is trusted test scaffolding; learner code runs only in jail.
   const launcher="import os; fd=os.open('/etc/os-release',os.O_RDONLY); os.dup2(fd,2048,inheritable=True); os.execv('/usr/local/bin/python',['python','-s','-P','/runner.py'])";
   const code="import os\ntry: os.read(2048,64)\nexcept OSError as e: assert e.errno == 9; print('closed')\nelse: raise Exception('inherited descriptor escaped jail')";
+  const result=runJailed(code,launcher);
+  assert.equal(result.status,'completed',JSON.stringify(result));
+  assert.equal(result.stdout,'closed\n');
+});
+
+
+function runJailed(code,launcher="import os; os.execv('/usr/local/bin/python',['python','-s','-P','/runner.py'])") {
   const args=['--host=unix:///var/run/docker.sock','run','--rm','-i','--network','none','--read-only',
     '--cap-drop','ALL','--cap-add','SYS_CHROOT','--cap-add','SETUID','--cap-add','SETGID',
     '--security-opt','no-new-privileges','--memory','256m','--memory-swap','256m','--cpus','0.25','--pids-limit','2',
@@ -15,6 +22,13 @@ test('Python 3.14 bootstrap closes inherited descriptors above 1024 before code'
   const output=spawnSync('docker',args,{input:JSON.stringify({cells:[code]}),encoding:'utf8',timeout:15000,maxBuffer:150000});
   assert.equal(output.status,0,output.stderr);
   const result=JSON.parse(output.stdout);
-  assert.equal(result.status,'completed',JSON.stringify(result));
-  assert.equal(result.stdout,'closed\n');
+  return result;
+}
+
+test('canonical bootstrap denies workspace traversal and prohibited native process/network syscalls',()=>{
+  const path=runJailed("open('../../etc/passwd').read()");
+  assert.equal(path.status,'runtime_error',JSON.stringify(path));
+  assert.equal(path.exception.type,'FileNotFoundError');assert.equal(path.stdout,'');
+  const policy=runJailed("import ctypes\nlib=ctypes.CDLL(None,use_errno=True)\nassert lib.fork()==-1 and ctypes.get_errno()==1\nassert lib.socket(2,1,0)==-1 and ctypes.get_errno()==1\nprint('denied')");
+  assert.equal(policy.status,'completed',JSON.stringify(policy));assert.equal(policy.stdout,'denied\n');
 });

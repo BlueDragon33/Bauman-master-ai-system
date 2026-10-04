@@ -5,7 +5,7 @@ const secret=process.env.BAUMAN_PYTHON04_ACCEPTANCE_SECRET;
 const revision=process.env.BAUMAN_BUILD_REVISION;
 if(!base||!secret||!revision||!/^[a-f0-9]{40}$/.test(revision))throw new Error('REAL_PROVIDER_REQUIRED: actual endpoint, scoped acceptance key and exact source SHA required; never replace this gate with a mock');
 const headers={'content-type':'application/json',authorization:'Bearer '+secret};
-const receipt={status:'RUNNING',provider:'cloudflare-container-native',target:base,exactTestedSha:revision,results:[],officialAssessmentEnabled:false};
+const receipt={status:'RUNNING',provider:'cloudflare-container-durable-object-v1',target:base,exactTestedSha:revision,results:[],officialAssessmentEnabled:false};
 async function post(op,body,signal) {
   const response=await fetch(base+'/__python04/'+op,{method:'POST',headers,body:JSON.stringify(body),signal:signal||AbortSignal.timeout(45000)});
   const text=await response.text();assert.ok(Buffer.byteLength(text)<262144,'response boundary');

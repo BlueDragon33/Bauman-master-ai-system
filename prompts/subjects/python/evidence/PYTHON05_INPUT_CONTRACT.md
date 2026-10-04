@@ -18,7 +18,7 @@ Current handoff is intentionally blocked because no compliant learner Python exe
 Programming lab: `subjects/programming/python-lab.html`.
 Single facade: `SUBJECT_ADAPTER.pythonRuntime`.
 Canonical provider: native Cloudflare 1.x Container, CPython 3.14.8,
-`python04-cf-stdlib-v1` / `python04-cf-curated-stdlib-v1`.
+`cpython-3.14.8-stdlib-v1` / `python04-cf-curated-stdlib-v1`.
 Supported validation modes: fresh run, public tests, bounded line trace,
 ordered notebook replay, declared CSV/JSON text files, deterministic local hints.
 Unavailable: offline execution, persistent REPL, official grading/persistence,
