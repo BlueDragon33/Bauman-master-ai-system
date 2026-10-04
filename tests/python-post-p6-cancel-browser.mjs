@@ -7,10 +7,10 @@ let browser;
 try{
  browser=await chromium.launch({headless:true,...(process.env.BAUMAN_CHROME_PATH?{executablePath:process.env.BAUMAN_CHROME_PATH}:{})});
  const context=await browser.newContext({viewport:{width:1280,height:800}});
- const page=await context.newPage();const errors=[];let runId=null,cancelId=null;
+ const page=await context.newPage();const errors=[];let runId=null,cancelId=null,runRequestAborted=false;
  page.on('pageerror',e=>errors.push(String(e)));page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
  await page.route('**/api/python/runtime',r=>r.fulfill({status:200,contentType:'application/json',body:JSON.stringify({ok:true,implementation:'CPython',version:'3.14.8',runtimeProfileId:'cpython-3.14.8-stdlib-v1'})}));
- await page.route('**/api/python/run',async r=>{const b=JSON.parse(r.request().postData()||'{}');runId=b.runId;await new Promise(x=>setTimeout(x,1000));await r.fulfill({status:200,contentType:'application/json',body:JSON.stringify({ok:true,status:'complete',runId:b.runId,stdout:'LATE\n',stderr:'',durationMs:1000,runtimeProfileId:'cpython-3.14.8-stdlib-v1'})})});
+ await page.route('**/api/python/run',async r=>{const b=JSON.parse(r.request().postData()||'{}');runId=b.runId;await new Promise(x=>setTimeout(x,1000));try{await r.fulfill({status:200,contentType:'application/json',body:JSON.stringify({ok:true,status:'complete',runId:b.runId,stdout:'LATE\n',stderr:'',durationMs:1000,runtimeProfileId:'cpython-3.14.8-stdlib-v1'})});}catch{runRequestAborted=true;}});
  await page.route('**/api/python/cancel',async r=>{const b=JSON.parse(r.request().postData()||'{}');cancelId=b.runId;await r.fulfill({status:200,contentType:'application/json',body:JSON.stringify({ok:true,canceled:true,runId:b.runId})})});
  await page.goto(BASE+'subjects/programming/code-lab.html?task=py-beginner-sum',{waitUntil:'load'});
  await page.locator('#runBtn').click();await page.waitForTimeout(100);
@@ -18,7 +18,7 @@ try{
  await page.locator('#cancelBtn').click();
  await page.waitForFunction(()=>document.querySelector('#runStatus')?.textContent?.includes('Đã hủy'));
  await page.waitForTimeout(1100);
- assert.equal(runId,cancelId,'client must cancel exact in-flight run');
+ assert.equal(runId,cancelId,'client must send cleanup cancel for exact in-flight run');
  assert.doesNotMatch(await page.locator('#stdout').innerText(),/LATE/,'late result must not repaint UI');
  assert.match(await page.locator('#runStatus').innerText(),/Đã hủy/);
 
@@ -28,6 +28,6 @@ try{
  await author.locator('#validateBtn').click();assert.match(await author.locator('#validationOutput').innerText(),/VALIDATE PASS/);
 
  assert.deepEqual(errors,[]);
- fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',cancelExactRun:true,lateResultQuarantined:true,canonicalAuthoring:true},null,2));
+ fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',cancelExactRun:true,lateResultQuarantined:true,requestAbortAttempted:true,routeObservedAbort:runRequestAborted,canonicalAuthoring:true},null,2));
  console.log('PYTHON_POST_P6_CANCEL_BROWSER=PASS');
 }finally{await browser?.close();}
