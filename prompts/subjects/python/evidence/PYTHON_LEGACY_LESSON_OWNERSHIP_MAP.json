@@ -1,0 +1,500 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "python",
+  "runtimeScope": "subjects/programming/",
+  "source": "subjects/programming/data/lessons.json",
+  "expectedLessonCount": 48,
+  "stableIdsPreserved": true,
+  "learnerStateMigrationAuthorized": false,
+  "runtimeMigrationActivated": false,
+  "allowedClassifications": [
+    "KEEP_PYTHON",
+    "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+    "ROUTE_TO_ALGORITHMS",
+    "ROUTE_TO_DATABASE",
+    "ROUTE_TO_ML_AI",
+    "ROUTE_TO_SOFTWARE_ENGINEERING"
+  ],
+  "lessons": [
+    {
+      "lessonId": "PR01",
+      "legacyStage": "vn",
+      "title": "Thiết lập môi trường Python, VS Code và Live Server",
+      "classification": "KEEP_PYTHON",
+      "receivingOwner": "python",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "Python language/tooling competency remains canonical in the Python subject."
+    },
+    {
+      "lessonId": "PR02",
+      "legacyStage": "vn",
+      "title": "Tư duy thuật toán và độ phức tạp",
+      "classification": "ROUTE_TO_ALGORITHMS",
+      "receivingOwner": "algorithms",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "Algorithm/data-structure theory belongs to Algorithms; Python may remain an implementation vehicle."
+    },
+    {
+      "lessonId": "PR03",
+      "legacyStage": "vn",
+      "title": "Python căn bản: kiểu dữ liệu, hàm, module",
+      "classification": "KEEP_PYTHON",
+      "receivingOwner": "python",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "Python language/tooling competency remains canonical in the Python subject."
+    },
+    {
+      "lessonId": "PR04",
+      "legacyStage": "vn",
+      "title": "NumPy và vector hóa dữ liệu",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "receivingOwner": "python-implementation-context",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "Keep the stable lesson as a Python implementation/reproducibility context, while adjacent theory remains with its owning subject."
+    },
+    {
+      "lessonId": "PR05",
+      "legacyStage": "vn",
+      "title": "Pandas và làm sạch bảng dữ liệu",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "receivingOwner": "python-implementation-context",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "Keep the stable lesson as a Python implementation/reproducibility context, while adjacent theory remains with its owning subject."
+    },
+    {
+      "lessonId": "PR06",
+      "legacyStage": "vn",
+      "title": "SQL căn bản và mô hình quan hệ",
+      "classification": "ROUTE_TO_DATABASE",
+      "receivingOwner": "database",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "Relational/SQL/schema/migration theory belongs to Database; Python may retain integration examples."
+    },
+    {
+      "lessonId": "PR07",
+      "legacyStage": "vn",
+      "title": "Git, GitHub và nhật ký học tập",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "receivingOwner": "oop-software-engineering",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "General software-engineering/process/release theory belongs to Software Engineering; Python may retain language-specific examples."
+    },
+    {
+      "lessonId": "PR08",
+      "legacyStage": "vn",
+      "title": "Notebook thực nghiệm và README tái lập",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "receivingOwner": "python-implementation-context",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "Keep the stable lesson as a Python implementation/reproducibility context, while adjacent theory remains with its owning subject."
+    },
+    {
+      "lessonId": "PR09",
+      "legacyStage": "prep",
+      "title": "Thuật ngữ tin học Nga cho lớp dự bị",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "receivingOwner": "python-implementation-context",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "Keep the stable lesson as a Python implementation/reproducibility context, while adjacent theory remains with its owning subject."
+    },
+    {
+      "lessonId": "PR10",
+      "legacyStage": "prep",
+      "title": "Pseudocode và giải thích thuật toán bằng tiếng Nga",
+      "classification": "ROUTE_TO_ALGORITHMS",
+      "receivingOwner": "algorithms",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "Algorithm/data-structure theory belongs to Algorithms; Python may remain an implementation vehicle."
+    },
+    {
+      "lessonId": "PR11",
+      "legacyStage": "prep",
+      "title": "Cấu trúc dữ liệu nhập môn",
+      "classification": "ROUTE_TO_ALGORITHMS",
+      "receivingOwner": "algorithms",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "Algorithm/data-structure theory belongs to Algorithms; Python may remain an implementation vehicle."
+    },
+    {
+      "lessonId": "PR12",
+      "legacyStage": "prep",
+      "title": "File, JSON, CSV và dữ liệu học tập",
+      "classification": "KEEP_PYTHON",
+      "receivingOwner": "python",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "Python language/tooling competency remains canonical in the Python subject."
+    },
+    {
+      "lessonId": "PR13",
+      "legacyStage": "prep",
+      "title": "Debug, exception và logging",
+      "classification": "KEEP_PYTHON",
+      "receivingOwner": "python",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "Python language/tooling competency remains canonical in the Python subject."
+    },
+    {
+      "lessonId": "PR14",
+      "legacyStage": "prep",
+      "title": "Unit test căn bản với pytest",
+      "classification": "KEEP_PYTHON",
+      "receivingOwner": "python",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "Python language/tooling competency remains canonical in the Python subject."
+    },
+    {
+      "lessonId": "PR15",
+      "legacyStage": "prep",
+      "title": "SQL nâng nền: JOIN, GROUP BY, index",
+      "classification": "ROUTE_TO_DATABASE",
+      "receivingOwner": "database",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "Relational/SQL/schema/migration theory belongs to Database; Python may retain integration examples."
+    },
+    {
+      "lessonId": "PR16",
+      "legacyStage": "prep",
+      "title": "Quy tắc đặt tên, comment và tài liệu song ngữ",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "receivingOwner": "python-implementation-context",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "Keep the stable lesson as a Python implementation/reproducibility context, while adjacent theory remains with its owning subject."
+    },
+    {
+      "lessonId": "PR17",
+      "legacyStage": "hk1",
+      "title": "OOP cho АСОИУ: class, interface, responsibility",
+      "classification": "KEEP_PYTHON",
+      "receivingOwner": "python",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "Python language/tooling competency remains canonical in the Python subject."
+    },
+    {
+      "lessonId": "PR18",
+      "legacyStage": "hk1",
+      "title": "Thiết kế module và kiến trúc package Python",
+      "classification": "KEEP_PYTHON",
+      "receivingOwner": "python",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "Python language/tooling competency remains canonical in the Python subject."
+    },
+    {
+      "lessonId": "PR19",
+      "legacyStage": "hk1",
+      "title": "Mẫu thiết kế ứng dụng: factory, strategy, adapter",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "receivingOwner": "oop-software-engineering",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "General software-engineering/process/release theory belongs to Software Engineering; Python may retain language-specific examples."
+    },
+    {
+      "lessonId": "PR20",
+      "legacyStage": "hk1",
+      "title": "CSDL cho hệ thống học máy: schema và metadata",
+      "classification": "ROUTE_TO_DATABASE",
+      "receivingOwner": "database",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "Relational/SQL/schema/migration theory belongs to Database; Python may retain integration examples."
+    },
+    {
+      "lessonId": "PR21",
+      "legacyStage": "hk1",
+      "title": "ORM và migration nhập môn",
+      "classification": "ROUTE_TO_DATABASE",
+      "receivingOwner": "database",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "Relational/SQL/schema/migration theory belongs to Database; Python may retain integration examples."
+    },
+    {
+      "lessonId": "PR22",
+      "legacyStage": "hk1",
+      "title": "Kỹ nghệ phần mềm: requirement, issue, milestone",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "receivingOwner": "oop-software-engineering",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "General software-engineering/process/release theory belongs to Software Engineering; Python may retain language-specific examples."
+    },
+    {
+      "lessonId": "PR23",
+      "legacyStage": "hk1",
+      "title": "Kiểm thử tích hợp và test dữ liệu",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "receivingOwner": "oop-software-engineering",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "General software-engineering/process/release theory belongs to Software Engineering; Python may retain language-specific examples."
+    },
+    {
+      "lessonId": "PR24",
+      "legacyStage": "hk1",
+      "title": "CI nhẹ và kiểm tra chất lượng code",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "receivingOwner": "oop-software-engineering",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "General software-engineering/process/release theory belongs to Software Engineering; Python may retain language-specific examples."
+    },
+    {
+      "lessonId": "PR25",
+      "legacyStage": "hk2",
+      "title": "Pipeline dữ liệu cho ML",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "receivingOwner": "python-implementation-context",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "Keep the stable lesson as a Python implementation/reproducibility context, while adjacent theory remains with its owning subject."
+    },
+    {
+      "lessonId": "PR26",
+      "legacyStage": "hk2",
+      "title": "Scikit-learn baseline và metric",
+      "classification": "ROUTE_TO_ML_AI",
+      "receivingOwner": "ml-data-analysis",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "Model/data-analysis theory belongs to ML/Data Analysis; Python retains implementation prerequisites only."
+    },
+    {
+      "lessonId": "PR27",
+      "legacyStage": "hk2",
+      "title": "API inference với FastAPI",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "receivingOwner": "python-implementation-context",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "Keep the stable lesson as a Python implementation/reproducibility context, while adjacent theory remains with its owning subject."
+    },
+    {
+      "lessonId": "PR28",
+      "legacyStage": "hk2",
+      "title": "Serialization model và artifact version",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "receivingOwner": "python-implementation-context",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "Keep the stable lesson as a Python implementation/reproducibility context, while adjacent theory remains with its owning subject."
+    },
+    {
+      "lessonId": "PR29",
+      "legacyStage": "hk2",
+      "title": "Cấu hình thí nghiệm bằng YAML/JSON",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "receivingOwner": "python-implementation-context",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "Keep the stable lesson as a Python implementation/reproducibility context, while adjacent theory remains with its owning subject."
+    },
+    {
+      "lessonId": "PR30",
+      "legacyStage": "hk2",
+      "title": "Docker nhập môn cho môi trường tái lập",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "receivingOwner": "oop-software-engineering",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "General software-engineering/process/release theory belongs to Software Engineering; Python may retain language-specific examples."
+    },
+    {
+      "lessonId": "PR31",
+      "legacyStage": "hk2",
+      "title": "Bảo mật dữ liệu và quản lý secret",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "receivingOwner": "oop-software-engineering",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "General software-engineering/process/release theory belongs to Software Engineering; Python may retain language-specific examples."
+    },
+    {
+      "lessonId": "PR32",
+      "legacyStage": "hk2",
+      "title": "Tài liệu kỹ thuật và sơ đồ kiến trúc",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "receivingOwner": "oop-software-engineering",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "General software-engineering/process/release theory belongs to Software Engineering; Python may retain language-specific examples."
+    },
+    {
+      "lessonId": "PR33",
+      "legacyStage": "hk3",
+      "title": "Dataset card cho telemetry và cảm biến",
+      "classification": "ROUTE_TO_ML_AI",
+      "receivingOwner": "ml-data-analysis",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "Model/data-analysis theory belongs to ML/Data Analysis; Python retains implementation prerequisites only."
+    },
+    {
+      "lessonId": "PR34",
+      "legacyStage": "hk3",
+      "title": "Experiment tracking và bảng metric",
+      "classification": "ROUTE_TO_ML_AI",
+      "receivingOwner": "ml-data-analysis",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "Model/data-analysis theory belongs to ML/Data Analysis; Python retains implementation prerequisites only."
+    },
+    {
+      "lessonId": "PR35",
+      "legacyStage": "hk3",
+      "title": "Ablation study bằng code có kiểm soát",
+      "classification": "ROUTE_TO_ML_AI",
+      "receivingOwner": "ml-data-analysis",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "Model/data-analysis theory belongs to ML/Data Analysis; Python retains implementation prerequisites only."
+    },
+    {
+      "lessonId": "PR36",
+      "legacyStage": "hk3",
+      "title": "Xử lý log cảm biến và chuỗi thời gian",
+      "classification": "ROUTE_TO_ML_AI",
+      "receivingOwner": "ml-data-analysis",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "Model/data-analysis theory belongs to ML/Data Analysis; Python retains implementation prerequisites only."
+    },
+    {
+      "lessonId": "PR37",
+      "legacyStage": "hk3",
+      "title": "Module đánh giá lỗi và phân tích thất bại",
+      "classification": "ROUTE_TO_ML_AI",
+      "receivingOwner": "ml-data-analysis",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "Model/data-analysis theory belongs to ML/Data Analysis; Python retains implementation prerequisites only."
+    },
+    {
+      "lessonId": "PR38",
+      "legacyStage": "hk3",
+      "title": "Prototype dashboard kết quả nghiên cứu",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "receivingOwner": "python-implementation-context",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "Keep the stable lesson as a Python implementation/reproducibility context, while adjacent theory remains with its owning subject."
+    },
+    {
+      "lessonId": "PR39",
+      "legacyStage": "hk3",
+      "title": "Đóng gói demo nghiên cứu",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "receivingOwner": "oop-software-engineering",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "General software-engineering/process/release theory belongs to Software Engineering; Python may retain language-specific examples."
+    },
+    {
+      "lessonId": "PR40",
+      "legacyStage": "hk3",
+      "title": "Quản lý rủi ro phần mềm trong НИР",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "receivingOwner": "oop-software-engineering",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "General software-engineering/process/release theory belongs to Software Engineering; Python may retain language-specific examples."
+    },
+    {
+      "lessonId": "PR41",
+      "legacyStage": "hk4",
+      "title": "Đóng băng mã nguồn và tag release",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "receivingOwner": "oop-software-engineering",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "General software-engineering/process/release theory belongs to Software Engineering; Python may retain language-specific examples."
+    },
+    {
+      "lessonId": "PR42",
+      "legacyStage": "hk4",
+      "title": "Script chạy lại toàn bộ kết quả",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "receivingOwner": "python-implementation-context",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "Keep the stable lesson as a Python implementation/reproducibility context, while adjacent theory remains with its owning subject."
+    },
+    {
+      "lessonId": "PR43",
+      "legacyStage": "hk4",
+      "title": "Chuẩn hóa thư mục luận văn và artifact",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "receivingOwner": "oop-software-engineering",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "General software-engineering/process/release theory belongs to Software Engineering; Python may retain language-specific examples."
+    },
+    {
+      "lessonId": "PR44",
+      "legacyStage": "hk4",
+      "title": "Demo offline và kế hoạch dự phòng",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "receivingOwner": "oop-software-engineering",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "General software-engineering/process/release theory belongs to Software Engineering; Python may retain language-specific examples."
+    },
+    {
+      "lessonId": "PR45",
+      "legacyStage": "hk4",
+      "title": "Tối ưu nhỏ: runtime, memory và latency",
+      "classification": "KEEP_AS_PYTHON_IMPLEMENTATION_CONTEXT",
+      "receivingOwner": "python-implementation-context",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "Keep the stable lesson as a Python implementation/reproducibility context, while adjacent theory remains with its owning subject."
+    },
+    {
+      "lessonId": "PR46",
+      "legacyStage": "hk4",
+      "title": "Kiểm tra license, citation và nguồn mở",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "receivingOwner": "oop-software-engineering",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "General software-engineering/process/release theory belongs to Software Engineering; Python may retain language-specific examples."
+    },
+    {
+      "lessonId": "PR47",
+      "legacyStage": "hk4",
+      "title": "Slide kỹ thuật: kiến trúc, pipeline, kết quả",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "receivingOwner": "oop-software-engineering",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "General software-engineering/process/release theory belongs to Software Engineering; Python may retain language-specific examples."
+    },
+    {
+      "lessonId": "PR48",
+      "legacyStage": "hk4",
+      "title": "Trả lời phản biện kỹ thuật phần mềm",
+      "classification": "ROUTE_TO_SOFTWARE_ENGINEERING",
+      "receivingOwner": "oop-software-engineering",
+      "compatibilityAction": "PRESERVE_LEGACY_ID_AND_RUNTIME_PROJECTION",
+      "productionDeletionAuthorized": false,
+      "rationale": "General software-engineering/process/release theory belongs to Software Engineering; Python may retain language-specific examples."
+    }
+  ]
+}

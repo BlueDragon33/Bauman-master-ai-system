@@ -1,0 +1,241 @@
+{
+  "schemaVersion": "1.0.0",
+  "subject": "python",
+  "idNamespace": "py.comp",
+  "evidencePolicy": "performance_requires_demonstrable_code_reasoning_or_artifact_evidence_not_route_completion",
+  "stages": [
+    {
+      "id": "foundation",
+      "title": "Foundation — syntax, expressions, type semantics"
+    },
+    {
+      "id": "core",
+      "title": "Core Programming — control flow, functions, collections and state"
+    },
+    {
+      "id": "structured",
+      "title": "Structured Program Design — modules, files, iterators and OOP"
+    },
+    {
+      "id": "robustness",
+      "title": "Robustness — exceptions, testing, debugging and reproducibility"
+    },
+    {
+      "id": "ecosystem",
+      "title": "Python Ecosystem / Data Bridge"
+    },
+    {
+      "id": "transfer",
+      "title": "Engineering Project Transfer"
+    }
+  ],
+  "competencies": [
+    {
+      "id": "py.comp.syntax-expressions",
+      "title": "Syntax and expression fluency",
+      "level": "foundation",
+      "prerequisites": [],
+      "evidence": [
+        "read and explain a short expression",
+        "write a small expression with expected value"
+      ]
+    },
+    {
+      "id": "py.comp.type-semantics",
+      "title": "Data model and type reasoning",
+      "level": "foundation",
+      "prerequisites": [
+        "py.comp.syntax-expressions"
+      ],
+      "evidence": [
+        "predict type/truthiness/equality behavior",
+        "explain mutable versus immutable behavior"
+      ]
+    },
+    {
+      "id": "py.comp.control-flow",
+      "title": "Control-flow reasoning",
+      "level": "core",
+      "prerequisites": [
+        "py.comp.type-semantics"
+      ],
+      "evidence": [
+        "predict branch/loop execution",
+        "write bounded conditional and iterative logic"
+      ]
+    },
+    {
+      "id": "py.comp.functions",
+      "title": "Function decomposition and contracts",
+      "level": "core",
+      "prerequisites": [
+        "py.comp.control-flow"
+      ],
+      "evidence": [
+        "decompose a task into functions",
+        "explain parameters, return values and side effects"
+      ]
+    },
+    {
+      "id": "py.comp.collections-iteration",
+      "title": "Collections and iteration",
+      "level": "core",
+      "prerequisites": [
+        "py.comp.type-semantics",
+        "py.comp.control-flow"
+      ],
+      "evidence": [
+        "choose list/tuple/dict/set appropriately",
+        "iterate and transform collections correctly"
+      ]
+    },
+    {
+      "id": "py.comp.state-mutation",
+      "title": "Name binding, references and mutation",
+      "level": "core",
+      "prerequisites": [
+        "py.comp.type-semantics",
+        "py.comp.collections-iteration"
+      ],
+      "evidence": [
+        "predict aliasing/mutation effects",
+        "distinguish identity from equality where relevant"
+      ]
+    },
+    {
+      "id": "py.comp.exceptions",
+      "title": "Exceptions and error handling",
+      "level": "structured",
+      "prerequisites": [
+        "py.comp.functions",
+        "py.comp.control-flow"
+      ],
+      "evidence": [
+        "diagnose exception flow",
+        "handle only recoverable failures"
+      ]
+    },
+    {
+      "id": "py.comp.modules-imports",
+      "title": "Modules, imports and namespace boundaries",
+      "level": "structured",
+      "prerequisites": [
+        "py.comp.functions"
+      ],
+      "evidence": [
+        "split code into modules",
+        "explain import namespace and side-effect risks"
+      ]
+    },
+    {
+      "id": "py.comp.files-data",
+      "title": "Files and data interchange",
+      "level": "structured",
+      "prerequisites": [
+        "py.comp.collections-iteration",
+        "py.comp.exceptions",
+        "py.comp.modules-imports"
+      ],
+      "evidence": [
+        "read/write text data with context managers",
+        "process JSON/CSV with explicit error handling"
+      ]
+    },
+    {
+      "id": "py.comp.iterators-generators",
+      "title": "Iterables, iterators, generators and comprehensions",
+      "level": "structured",
+      "prerequisites": [
+        "py.comp.collections-iteration",
+        "py.comp.functions"
+      ],
+      "evidence": [
+        "distinguish iterable from iterator",
+        "explain generator state/exhaustion"
+      ]
+    },
+    {
+      "id": "py.comp.oop",
+      "title": "Python object model and OOP basics",
+      "level": "structured",
+      "prerequisites": [
+        "py.comp.functions",
+        "py.comp.state-mutation",
+        "py.comp.modules-imports"
+      ],
+      "evidence": [
+        "design a small class with justified responsibilities",
+        "prefer composition/inheritance appropriately"
+      ]
+    },
+    {
+      "id": "py.comp.typing-dataclasses",
+      "title": "Type hints and dataclasses",
+      "level": "robustness",
+      "prerequisites": [
+        "py.comp.functions",
+        "py.comp.oop"
+      ],
+      "evidence": [
+        "use annotations without treating them as runtime enforcement",
+        "use dataclass when it reduces boilerplate without hiding semantics"
+      ]
+    },
+    {
+      "id": "py.comp.testing-debugging",
+      "title": "Testing and debugging",
+      "level": "robustness",
+      "prerequisites": [
+        "py.comp.functions",
+        "py.comp.exceptions",
+        "py.comp.modules-imports"
+      ],
+      "evidence": [
+        "write behavior-focused tests",
+        "reproduce, isolate and explain a defect"
+      ]
+    },
+    {
+      "id": "py.comp.tooling-reproducibility",
+      "title": "Environment, package and reproducibility literacy",
+      "level": "robustness",
+      "prerequisites": [
+        "py.comp.modules-imports",
+        "py.comp.testing-debugging"
+      ],
+      "evidence": [
+        "describe interpreter/environment/package roles",
+        "reproduce a known project state from declared dependencies"
+      ]
+    },
+    {
+      "id": "py.comp.scientific-data-bridge",
+      "title": "Scientific/data Python bridge",
+      "level": "ecosystem",
+      "prerequisites": [
+        "py.comp.collections-iteration",
+        "py.comp.files-data",
+        "py.comp.tooling-reproducibility"
+      ],
+      "evidence": [
+        "perform a small array/dataframe transformation",
+        "state where statistics/ML/database theory is externally owned"
+      ]
+    },
+    {
+      "id": "py.comp.transfer",
+      "title": "Engineering project transfer",
+      "level": "transfer",
+      "prerequisites": [
+        "py.comp.oop",
+        "py.comp.testing-debugging",
+        "py.comp.tooling-reproducibility",
+        "py.comp.files-data"
+      ],
+      "evidence": [
+        "deliver a reproducible Python project artifact",
+        "explain design, tests, limitations and transfer to research/engineering context"
+      ]
+    }
+  ]
+}

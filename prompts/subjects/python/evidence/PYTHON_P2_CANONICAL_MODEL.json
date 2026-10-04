@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentRevision": "PYTHON02-ACCEPTED-1",
+  "status": "PASS",
+  "subject": "python",
+  "owner": {
+    "academicTruth": "prompts/subjects/python/evidence/PYTHON_P2_CANONICAL_MODEL.json",
+    "runtimeProjection": "subjects/programming/",
+    "rule": "Canonical academic identity is defined here and projected later; the existing Programming runtime is not mutated by PYTHON02."
+  },
+  "targetProgram": {
+    "source": "prompts/curriculum-2026/source/curriculum_official_snapshot.json",
+    "code": "09.04.01/11",
+    "standalonePythonCourseClaimed": false,
+    "role": "prerequisite_and_integration_layer_for_oop_software_data_ml_and_research_work"
+  },
+  "topology": {
+    "academicStages": [
+      "foundation",
+      "core",
+      "structured",
+      "robustness",
+      "ecosystem",
+      "transfer"
+    ],
+    "legacyDeliveryStages": [
+      "vn",
+      "prep",
+      "hk1",
+      "hk2",
+      "hk3",
+      "hk4"
+    ],
+    "legacyStageMeaning": "compatibility/delivery projection, not canonical competency identity",
+    "stableLegacyLessonIds": true
+  },
+  "entityNamespaces": [
+    "py.outcome",
+    "py.comp",
+    "py.concept",
+    "py.construct",
+    "py.semantic",
+    "py.runtime-behavior",
+    "py.example",
+    "py.counterexample",
+    "py.misconception",
+    "py.task",
+    "py.testcase",
+    "py.project",
+    "py.tool",
+    "py.package"
+  ],
+  "evidenceSemantics": {
+    "exposure": "Content was presented/opened.",
+    "progress": "A workflow step or practice interaction was completed.",
+    "performance": "Validated task/code/reasoning evidence was produced under an assessment contract.",
+    "mastery": "Policy projection over accepted performance evidence; never inferred from route completion or quiz score alone."
+  },
+  "versionPolicy": {
+    "supportedPythonMinor": null,
+    "bindingRule": "Do not bind a Python minor version until PYTHON04 runtime contract or authoritative target requirements prove it.",
+    "languageAuthorityOrder": [
+      "official_python_language_reference_and_docs_for_supported_version",
+      "deterministic_supported_runtime_execution",
+      "validated_project_examples",
+      "curated_explanations",
+      "ai_or_tool_suggestions"
+    ],
+    "thirdPartyRule": "Package semantics require package name plus version context and official package documentation."
+  },
+  "migration": {
+    "preserveLegacyIds": true,
+    "preserveLearnerState": true,
+    "deleteLegacyLessonsBeforeReceivingOwnerReady": false,
+    "aliasesDeterministic": true,
+    "runtimeMutationAuthorized": false,
+    "productionMigrationActivated": false,
+    "rollbackRequiredWhenMigrationEventuallyActivates": true
+  },
+  "deliverables": [
+    "prompts/subjects/python/evidence/PYTHON_CURRICULUM_BLUEPRINT.md",
+    "prompts/subjects/python/evidence/PYTHON_COMPETENCY_GRAPH.json",
+    "prompts/subjects/python/evidence/PYTHON_PREREQUISITE_GRAPH.json",
+    "prompts/subjects/python/evidence/PYTHON_CANONICAL_ENTITY_MODEL.md",
+    "prompts/subjects/python/evidence/PYTHON_VERSION_AUTHORITY_POLICY.md",
+    "prompts/subjects/python/evidence/PYTHON_CONTENT_PROVENANCE_POLICY.md",
+    "prompts/subjects/python/evidence/PYTHON_ADJACENT_SUBJECT_BOUNDARY.md",
+    "prompts/subjects/python/evidence/PYTHON03_INPUT_CONTRACT.md",
+    "prompts/subjects/python/evidence/PYTHON_LEGACY_LESSON_OWNERSHIP_MAP.json"
+  ],
+  "downstreamContracts": {
+    "PYTHON03": "May define code-reasoning/debugging/assessment semantics against py.comp and canonical entity IDs; it may not invent runtime authority.",
+    "PYTHON04": "May bind runtime/toolchain/package versions and providers; it must consume PYTHON02 semantics and PYTHON03 evidence contracts.",
+    "PYTHON05": "May author/render projections but cannot become a second curriculum truth owner."
+  },
+  "validationEvidence": {
+    "expectedLegacyLessonCount": 48,
+    "expectedCompetencyCount": 16,
+    "prerequisiteGraphMustBeAcyclic": true,
+    "exactTestedHead": "0b249f986d3e8c86f4e8ac2290f900f1048bb3eb",
+    "developmentFastCiRunId": 37192313375,
+    "universalConstitutionRunId": 37192313724,
+    "runtimeMutation": false,
+    "productionDeployment": false
+  }
+}
