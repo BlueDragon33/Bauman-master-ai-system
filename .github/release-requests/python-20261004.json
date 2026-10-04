@@ -1,0 +1,13 @@
+{
+  "schema": "PYTHON_APPROVED_RELEASE_REQUEST_V1",
+  "releaseId": "python-runtime-2026-10-04",
+  "status": "APPROVED_ONE_TIME",
+  "confirm": "DEPLOY_PRODUCTION",
+  "sourceP6MergeSha": "23e594b7f6a62d45fdad9f2669866f1410d2db6f",
+  "activationMergeSha": "04cf1978198ee90a47dc61698ad70aec011a78bc",
+  "runtimeProfile": "cpython-3.14.8-stdlib-v1",
+  "provider": "cloudflare-container-durable-object-v1",
+  "requirement": "Deploy exact caller SHA to preview; only after exact preview PASS promote same SHA to production and require full production smoke/observation closure.",
+  "approvalBasis": "User explicitly requested merge and publish after prompt completion in this project conversation.",
+  "oneTime": true
+}

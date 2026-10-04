@@ -7,6 +7,12 @@ on:
         description: "Gõ DEPLOY_PRODUCTION để publish Bauman Control + Learning Runtime lên production"
         required: true
         type: string
+  workflow_call:
+    inputs:
+      confirm:
+        description: "Explicit production release confirmation"
+        required: true
+        type: string
 
 permissions:
   contents: read
