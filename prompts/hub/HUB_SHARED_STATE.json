@@ -6,7 +6,7 @@
   "status": "CHAT_COMPLETE",
   "lifecycle": "DATA_TRUTH_RECONCILIATION_ACCEPTED_MERGED",
   "baselineMainSha": "db747b1e6c65e5eb2a28cfd7ea2aeee8e3f9872c",
-  "lastReviewedSha": "c4e5bb676816fac9ee85892725ca1469b3322dda",
+  "lastReviewedSha": "3b541d76b0ee16208a5835073cbce42bf2f0d440",
   "workingBranch": null,
   "canonicalRoutes": [
     "home",
@@ -24,7 +24,8 @@
     "Reviewed exact HUB-TRUTH execution evidence and accepted the Codex result.",
     "Confirmed PR #230 merged without production deployment.",
     "Confirmed packet runtime/QA owners plus main.js/data.js retain identical blobs through main@c4e5bb676816fac9ee85892725ca1469b3322dda.",
-    "Reconciled stale Hub packet/execution/shared-state metadata after merge."
+    "Reconciled stale Hub packet/execution/shared-state metadata after merge.",
+    "Reconciled prompts/PROMPT_REGISTRY.json Hub status from stale READY_FOR_CODEX to CHAT_COMPLETE after confirming no pending Class B work."
   ],
   "findings": [
     {
@@ -71,11 +72,11 @@
   "activePacket": "prompts/hub/CURRENT_WORK_PACKET.json",
   "blockers": [],
   "externalBlockers": [],
-  "nextAction": "No pending HUB-TRUTH Chat or Codex work. On the next Hub continuation, reread Shared State and inspect only diffs after lastReviewedSha before opening new work.",
+  "nextAction": "No pending Hub Chat or Codex work. On the next Hub continuation, reread Shared State and inspect only diffs after lastReviewedSha; open new work only from explicit Hub evidence, not subject internals.",
   "mainSyncStatus": "merged",
   "governanceMergedSha": "6ef5e8814ac841f927f079e18d5062274ee0d847",
   "lastReviewedRuntimeSha": "c4e5bb676816fac9ee85892725ca1469b3322dda",
-  "currentHeadSha": "c4e5bb676816fac9ee85892725ca1469b3322dda",
+  "currentHeadSha": "3b541d76b0ee16208a5835073cbce42bf2f0d440",
   "testedRuntimeHead": "9a2b1e6cae9d602b880181424a4a44016dba70f7",
   "executionResult": "prompts/hub/CURRENT_EXECUTION_RESULT.json",
   "lastExecution": {
