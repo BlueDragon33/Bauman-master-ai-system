@@ -3,8 +3,8 @@
   "domain": "hub",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/hub/chat/HUB_CHAT_MASTER_PROMPT.md",
-  "status": "IN_CODEX",
-  "lifecycle": "HUB_TRUTH_UX_CLEANUP_002_EXECUTING",
+  "status": "CODEX_DONE",
+  "lifecycle": "HUB_TRUTH_UX_CLEANUP_002_PENDING_CHAT_REVIEW",
   "baselineMainSha": "68024789d38f5c1f35d74fe818ad117125feb43f",
   "lastReviewedSha": "3b541d76b0ee16208a5835073cbce42bf2f0d440",
   "workingBranch": "codex/hub-truth-ux-cleanup-002",
@@ -72,12 +72,12 @@
   "activePacket": "prompts/hub/bridge/CURRENT_WORK_PACKET.json",
   "blockers": [],
   "externalBlockers": [],
-  "nextAction": "Complete exact-head Hub-only acceptance; return to Box Chat. Do not merge or deploy.",
+  "nextAction": "Box Chat reviews exact certified branch HEAD, bridge result and evidence; decides ACCEPT/REVISE/BLOCKED. Codex must not merge main or publish production.",
   "mainSyncStatus": "RECONCILED_WITH_FETCHED_CURRENT_MAIN",
   "governanceMergedSha": "6ef5e8814ac841f927f079e18d5062274ee0d847",
   "lastReviewedRuntimeSha": "c4e5bb676816fac9ee85892725ca1469b3322dda",
-  "currentHeadSha": null,
-  "testedRuntimeHead": null,
+  "currentHeadSha": "bf9b9e1f4d5ab97f73caf6ce43642aa27ae8b02b",
+  "testedRuntimeHead": "5023752bb2dfa66012090ff3419a1c58a3128717",
   "executionResult": "prompts/hub/bridge/CURRENT_EXECUTION_RESULT.json",
   "previousExecution": {
     "packetId": "HUB-TRUTH-20261003-001",
@@ -102,5 +102,20 @@
     "productionDeployed": false,
     "classBRemaining": []
   },
-  "originalBaselineMainSha": "ddcc314d0cbbcb61026a5be21fb425ff0f614ba5"
+  "originalBaselineMainSha": "ddcc314d0cbbcb61026a5be21fb425ff0f614ba5",
+  "currentHeadShaRole": "IMPLEMENTATION_HEAD; exact final review HEAD resolved by final-head evidence",
+  "releaseState": "TESTED_NOT_MERGED_NOT_DEPLOYED_PENDING_CHAT_REVIEW",
+  "activeExecution": {
+    "packetId": "HUB-TRUTH-UX-CLEANUP-002",
+    "revision": 3,
+    "result": "prompts/hub/bridge/CURRENT_EXECUTION_RESULT.json",
+    "beforeSha": "68024789d38f5c1f35d74fe818ad117125feb43f",
+    "afterSha": "bf9b9e1f4d5ab97f73caf6ce43642aa27ae8b02b",
+    "testsPassed": 19,
+    "routeViewportChecks": 55,
+    "subjectInternalReads": false,
+    "mainMerged": false,
+    "productionPublished": false,
+    "finalReviewHeadEvidence": "artifacts/hub-packet-verification/final-head-verification.json and git notes --ref=bauman-hub-review show HEAD"
+  }
 }

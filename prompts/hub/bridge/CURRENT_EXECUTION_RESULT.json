@@ -1,22 +1,506 @@
 {
   "schemaVersion": "1.0.0",
-  "packetId": null,
-  "revision": 0,
-  "status": "EMPTY",
-  "beforeSha": null,
-  "afterSha": null,
-  "changedPaths": [],
-  "tests": [],
-  "acceptance": [],
-  "apiCompatibility": [],
-  "boundaryCompliance": {
-    "hubOnly": null,
-    "subjectPromptsUntouched": null,
-    "subjectInternalsUntouched": null,
-    "apiContractOnly": null
+  "packetId": "HUB-TRUTH-UX-CLEANUP-002",
+  "revision": 3,
+  "status": "CODEX_DONE",
+  "workClass": "B",
+  "completedAt": "2026-10-06",
+  "beforeSha": "68024789d38f5c1f35d74fe818ad117125feb43f",
+  "afterSha": "bf9b9e1f4d5ab97f73caf6ce43642aa27ae8b02b",
+  "testedRuntimeHead": "5023752bb2dfa66012090ff3419a1c58a3128717",
+  "workingBranch": "codex/hub-truth-ux-cleanup-002",
+  "shaAccounting": {
+    "afterShaRole": "Reconciled implementation commit; runtime/test blobs equal testedRuntimeHead",
+    "completionCommit": "Metadata-only successor; full 19-test certification runs at its exact HEAD",
+    "finalReviewHeadEvidence": "artifacts/hub-packet-verification/final-head-verification.json and git notes --ref=bauman-hub-review show HEAD",
+    "reason": "A tracked result cannot contain its own future commit hash. Exact final HEAD certification is stored outside the source tree after the completion commit."
   },
-  "defectsFixed": [],
+  "reconciliation": {
+    "beforeSha": "68024789d38f5c1f35d74fe818ad117125feb43f",
+    "packetBaselineIsAncestor": true,
+    "mainAlreadyContains": "HUB-TRUTH-20261003-001 truth cleanup; preserve it",
+    "bootstrapSourceSha": "e607ca350e50d12bc130377966b143bf9325ef9d",
+    "bootstrapPolicyApplied": "Only missing Hub bridge/Codex/entry/schema/UX/audit files transplanted; existing main Constitution and Hub prompt/state authority preserved",
+    "oldBranchMerged": false,
+    "initialMainSha": "ddcc314d0cbbcb61026a5be21fb425ff0f614ba5",
+    "lateMainAdvance": {
+      "sha": "3b541d76b0ee16208a5835073cbce42bf2f0d440",
+      "hubRuntimeAndContractsChanged": false,
+      "hubGovernanceChanged": [
+        "CURRENT_WORK_PACKET.json",
+        "CURRENT_EXECUTION_RESULT.json",
+        "HUB_SHARED_STATE.json"
+      ],
+      "action": "Rebase only fresh implementation commits onto latest main; archive accepted prior packet state and keep new active bridge packet. Never merge old prompt branch."
+    },
+    "latestGovernanceAdvance": {
+      "sha": "68024789d38f5c1f35d74fe818ad117125feb43f",
+      "previousMainSha": "3b541d76b0ee16208a5835073cbce42bf2f0d440",
+      "hubRuntimeAndContractsChanged": false,
+      "hubGovernanceChanged": [
+        "prompts/hub/HUB_SHARED_STATE.json"
+      ],
+      "action": "Rebased only fresh implementation commits; preserved newer lastReviewedSha and classACompleted. Main prompt registry update inherited without editing outside packet."
+    }
+  },
+  "changedPaths": [
+    ".github/workflows/development-fast-ci.yml",
+    ".github/workflows/future-interface-system-ci.yml",
+    "assets/css/hub-primary-pages-v6.css",
+    "assets/js/hub-overview-search-v2.js",
+    "assets/js/hub-primary-pages-v6.js",
+    "assets/js/hub-roadmap-comprehensive-v2.js",
+    "assets/js/hub-safe-shell.js",
+    "assets/js/hub-subject-adapter.js",
+    "assets/js/main.js",
+    "assets/js/schedule-reference-v1.js",
+    "assets/js/subjects-reference-v1.js",
+    "assets/js/thesis-reference-v1.js",
+    "index.html",
+    "prompts/hub/CURRENT_EXECUTION_RESULT.json",
+    "prompts/hub/CURRENT_WORK_PACKET.json",
+    "prompts/hub/HUB_SHARED_STATE.json",
+    "prompts/hub/README.md",
+    "prompts/hub/api/SUBAPP_CONTRACT.schema.json",
+    "prompts/hub/api/SUBAPP_CONTRACT_REGISTRY.json",
+    "prompts/hub/bridge/CURRENT_EXECUTION_RESULT.json",
+    "prompts/hub/bridge/CURRENT_WORK_PACKET.json",
+    "prompts/hub/bridge/HANDOFF_PROTOCOL.md",
+    "prompts/hub/bridge/IMPLEMENTATION_PLAN.md",
+    "prompts/hub/bridge/execution-result.schema.json",
+    "prompts/hub/bridge/history/HUB-TRUTH-20261003-001.packet.json",
+    "prompts/hub/bridge/history/HUB-TRUTH-20261003-001.result.json",
+    "prompts/hub/bridge/work-packet.schema.json",
+    "prompts/hub/chat/CHAT_START.md",
+    "prompts/hub/chat/HUB_C2_PRIMARY_PAGE_UX_CONTRACT.md",
+    "prompts/hub/chat/HUB_CHAT_AUDIT_2026-10-02.md",
+    "prompts/hub/chat/HUB_CHAT_MASTER_PROMPT.md",
+    "prompts/hub/codex/CODEX_START.md",
+    "prompts/hub/codex/HUB_CODEX_MASTER_PROMPT.md",
+    "tests/hub-packet-verify.mjs",
+    "tests/hub-primary-pages-v6-static.mjs",
+    "tests/hub-prompt-boundary-static.mjs",
+    "tests/hub-research-workspace-unit.mjs",
+    "tests/hub-scope-server.mjs",
+    "tests/hub-subject-adapter-unit.mjs",
+    "tests/hub-truth-ux-cleanup-browser.mjs",
+    "tests/thesis-reference-v1-static.mjs"
+  ],
+  "tests": [
+    {
+      "command": "node tests/hub-prompt-boundary-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "5023752bb2dfa66012090ff3419a1c58a3128717",
+      "equivalentImplementationHead": "bf9b9e1f4d5ab97f73caf6ce43642aa27ae8b02b",
+      "log": "artifacts/hub-packet-verification/hub-prompt-boundary-static.mjs.log"
+    },
+    {
+      "command": "node tests/hub-subject-adapter-unit.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "5023752bb2dfa66012090ff3419a1c58a3128717",
+      "equivalentImplementationHead": "bf9b9e1f4d5ab97f73caf6ce43642aa27ae8b02b",
+      "log": "artifacts/hub-packet-verification/hub-subject-adapter-unit.mjs.log"
+    },
+    {
+      "command": "node tests/hub-research-workspace-unit.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "5023752bb2dfa66012090ff3419a1c58a3128717",
+      "equivalentImplementationHead": "bf9b9e1f4d5ab97f73caf6ce43642aa27ae8b02b",
+      "log": "artifacts/hub-packet-verification/hub-research-workspace-unit.mjs.log"
+    },
+    {
+      "command": "node tests/hub-data-truth-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "5023752bb2dfa66012090ff3419a1c58a3128717",
+      "equivalentImplementationHead": "bf9b9e1f4d5ab97f73caf6ce43642aa27ae8b02b",
+      "log": "artifacts/hub-packet-verification/hub-data-truth-static.mjs.log"
+    },
+    {
+      "command": "node tests/subjects-reference-v1-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "5023752bb2dfa66012090ff3419a1c58a3128717",
+      "equivalentImplementationHead": "bf9b9e1f4d5ab97f73caf6ce43642aa27ae8b02b",
+      "log": "artifacts/hub-packet-verification/subjects-reference-v1-static.mjs.log"
+    },
+    {
+      "command": "node tests/thesis-reference-v1-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "5023752bb2dfa66012090ff3419a1c58a3128717",
+      "equivalentImplementationHead": "bf9b9e1f4d5ab97f73caf6ce43642aa27ae8b02b",
+      "log": "artifacts/hub-packet-verification/thesis-reference-v1-static.mjs.log"
+    },
+    {
+      "command": "node tests/schedule-reference-v1-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "5023752bb2dfa66012090ff3419a1c58a3128717",
+      "equivalentImplementationHead": "bf9b9e1f4d5ab97f73caf6ce43642aa27ae8b02b",
+      "log": "artifacts/hub-packet-verification/schedule-reference-v1-static.mjs.log"
+    },
+    {
+      "command": "node tests/hub-primary-pages-v6-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "5023752bb2dfa66012090ff3419a1c58a3128717",
+      "equivalentImplementationHead": "bf9b9e1f4d5ab97f73caf6ce43642aa27ae8b02b",
+      "log": "artifacts/hub-packet-verification/hub-primary-pages-v6-static.mjs.log"
+    },
+    {
+      "command": "node tests/hub-readable-typography-v1-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "5023752bb2dfa66012090ff3419a1c58a3128717",
+      "equivalentImplementationHead": "bf9b9e1f4d5ab97f73caf6ce43642aa27ae8b02b",
+      "log": "artifacts/hub-packet-verification/hub-readable-typography-v1-static.mjs.log"
+    },
+    {
+      "command": "node scripts/runtime-device-gate-regression.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "5023752bb2dfa66012090ff3419a1c58a3128717",
+      "equivalentImplementationHead": "bf9b9e1f4d5ab97f73caf6ce43642aa27ae8b02b",
+      "log": "artifacts/hub-packet-verification/runtime-device-gate-regression.mjs.log"
+    },
+    {
+      "command": "node tests/runtime-access-mode-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "5023752bb2dfa66012090ff3419a1c58a3128717",
+      "equivalentImplementationHead": "bf9b9e1f4d5ab97f73caf6ce43642aa27ae8b02b",
+      "log": "artifacts/hub-packet-verification/runtime-access-mode-static.mjs.log"
+    },
+    {
+      "command": "node tests/runtime-access-mode-behavior.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "5023752bb2dfa66012090ff3419a1c58a3128717",
+      "equivalentImplementationHead": "bf9b9e1f4d5ab97f73caf6ce43642aa27ae8b02b",
+      "log": "artifacts/hub-packet-verification/runtime-access-mode-behavior.mjs.log"
+    },
+    {
+      "command": "node tests/hub-data-truth-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "5023752bb2dfa66012090ff3419a1c58a3128717",
+      "equivalentImplementationHead": "bf9b9e1f4d5ab97f73caf6ce43642aa27ae8b02b",
+      "log": "artifacts/hub-packet-verification/hub-data-truth-browser.mjs.log"
+    },
+    {
+      "command": "node tests/subjects-reference-v1-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "5023752bb2dfa66012090ff3419a1c58a3128717",
+      "equivalentImplementationHead": "bf9b9e1f4d5ab97f73caf6ce43642aa27ae8b02b",
+      "log": "artifacts/hub-packet-verification/subjects-reference-v1-browser.mjs.log"
+    },
+    {
+      "command": "node tests/thesis-reference-v1-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "5023752bb2dfa66012090ff3419a1c58a3128717",
+      "equivalentImplementationHead": "bf9b9e1f4d5ab97f73caf6ce43642aa27ae8b02b",
+      "log": "artifacts/hub-packet-verification/thesis-reference-v1-browser.mjs.log"
+    },
+    {
+      "command": "node tests/schedule-reference-v1-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "5023752bb2dfa66012090ff3419a1c58a3128717",
+      "equivalentImplementationHead": "bf9b9e1f4d5ab97f73caf6ce43642aa27ae8b02b",
+      "log": "artifacts/hub-packet-verification/schedule-reference-v1-browser.mjs.log"
+    },
+    {
+      "command": "node tests/hub-readable-typography-v1-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "5023752bb2dfa66012090ff3419a1c58a3128717",
+      "equivalentImplementationHead": "bf9b9e1f4d5ab97f73caf6ce43642aa27ae8b02b",
+      "log": "artifacts/hub-packet-verification/hub-readable-typography-v1-browser.mjs.log"
+    },
+    {
+      "command": "node tests/hub-premium-responsive-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "5023752bb2dfa66012090ff3419a1c58a3128717",
+      "equivalentImplementationHead": "bf9b9e1f4d5ab97f73caf6ce43642aa27ae8b02b",
+      "log": "artifacts/hub-packet-verification/hub-premium-responsive-browser.mjs.log"
+    },
+    {
+      "command": "node tests/hub-truth-ux-cleanup-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "5023752bb2dfa66012090ff3419a1c58a3128717",
+      "equivalentImplementationHead": "bf9b9e1f4d5ab97f73caf6ce43642aa27ae8b02b",
+      "log": "artifacts/hub-packet-verification/hub-truth-ux-cleanup-browser.mjs.log"
+    }
+  ],
+  "acceptance": [
+    {
+      "id": "AC-01",
+      "criterion": "Implementation branch is created fresh from current main; because prompts/hub/** is absent on main, only the canonical Hub prompt-system files required for this packet are transplanted from work/curriculum-prompt-system-v1. The whole old branch is never merged/rebased/cherry-picked.",
+      "status": "PASS",
+      "evidence": "Fresh codex/hub-truth-ux-cleanup-002 branch; only missing Hub prompt files copied from e607ca350e50d12bc130377966b143bf9325ef9d. Main Constitution preserved; old prompt branch never merged/rebased/cherry-picked."
+    },
+    {
+      "id": "AC-02",
+      "criterion": "Start from current main baseline b6df392c5ab935bed4924b07b9bbe2e95efb2c8e or report and reconcile a newer main before editing.",
+      "status": "PASS",
+      "evidence": "Packet baseline is ancestor; fetched main advanced from ddcc314d0cbbcb61026a5be21fb425ff0f614ba5 to 68024789d38f5c1f35d74fe818ad117125feb43f. Only fresh implementation commits rebased; accepted prior Hub governance preserved in bridge/history."
+    },
+    {
+      "id": "AC-03",
+      "criterion": "Normal Subjects runtime no longer presents fixed 2025 semester/calendar/deadline/note/session/teacher/progress fixtures as current learner facts.",
+      "status": "PASS",
+      "evidence": "Existing main truth cleanup retained. Subjects static/browser tests protect canonical descriptor, Hub schedule and unavailable output; inactive historical fixtures cannot own learner output."
+    },
+    {
+      "id": "AC-04",
+      "criterion": "Subjects cards are built from Hub-owned registered subject descriptors and approved normalized summaries; missing external summary data renders as unavailable rather than fabricated zero/progress.",
+      "status": "PASS",
+      "evidence": "Shared adapter read model drives canonical Subjects cards; strict numeric validation distinguishes unknown from explicit zero. Catalog count comes from Subjects owner."
+    },
+    {
+      "id": "AC-05",
+      "criterion": "Normal learner Subjects UI does not expose direct openSubjectEditor/editorPath authoring access unless a registered explicit authoring capability exists.",
+      "status": "PASS",
+      "evidence": "Learner editor action and openEditor API removed; main authoring path requires explicit registered capability and descriptor."
+    },
+    {
+      "id": "AC-06",
+      "criterion": "Subject launch is routed through a Hub-side launch adapter/descriptor abstraction; legacy mainPath may exist only behind the compatibility adapter and is not consumed directly by page presentation.",
+      "status": "PASS",
+      "evidence": "main launch helpers use resolveLaunch. Legacy learner path is validated inside adapter; browser verifies public launch fixture and disabled unavailable state."
+    },
+    {
+      "id": "AC-07",
+      "criterion": "Hub normalized subject read model distinguishes CURRENT, STALE and UNAVAILABLE and retains provenance/freshness metadata when available.",
+      "status": "PASS",
+      "evidence": "Adapter unit/browser gates cover CURRENT, STALE, UNAVAILABLE, source/asOf, TTL, capability denial and invalid summary status. Progress modal retains stale disclosure."
+    },
+    {
+      "id": "AC-08",
+      "criterion": "Home and Roadmap do not coerce missing subject progress into real 0%; aggregates report partial data coverage and average only approved known values.",
+      "status": "PASS",
+      "evidence": "Home/Roadmap/Overview use coverage-aware approved values; unavailable excluded, true zero retained, partial coverage and stale status visible. Achievements cannot bypass unavailable contract."
+    },
+    {
+      "id": "AC-09",
+      "criterion": "Roadmap curriculum/stage/course data remains Hub-owned and compatible with current study-plan coverage; no subject internals are used.",
+      "status": "PASS",
+      "evidence": "Hub stage/course registry retained; Roadmap projection regression and five-route browser pass without subject internals."
+    },
+    {
+      "id": "AC-10",
+      "criterion": "Schedule day/week/month, priorities, workload and notes remain derived from Hub-owned schedule/local Hub state and do not regress.",
+      "status": "PASS",
+      "evidence": "Schedule static/browser regression passes canonical day/week/month, workload, priorities, notes and approved launch controls."
+    },
+    {
+      "id": "AC-11",
+      "criterion": "Research/Thesis no longer defaults to March/April 2025 tasks, fixed 65% progress, static chapter percentages, sample heatmap, canned notes or canned personalized AI items as live state.",
+      "status": "PASS",
+      "evidence": "Research first-run renders setup, no sample tasks/notes/progress as personal truth. Existing canonical research library remains reference material."
+    },
+    {
+      "id": "AC-12",
+      "criterion": "Unconfigured Research/Thesis renders an explicit empty/setup state and uses Hub-owned research workspace data once configured.",
+      "status": "PASS",
+      "evidence": "Versioned LOCAL_HUB researchWorkspace persists tasks, milestones, notes, HTTPS attachments and work-package status. Reload, migration, incomplete/future restore and authoritative topic tests pass."
+    },
+    {
+      "id": "AC-13",
+      "criterion": "Exactly five primary learner routes remain visible: home, roadmap, subjects, schedule and research; no duplicate primary navigation is introduced.",
+      "status": "PASS",
+      "evidence": "Exactly home/roadmap/subjects/schedule/research visible at every required viewport; 55 navigation/viewport observations."
+    },
+    {
+      "id": "AC-14",
+      "criterion": "Each primary route has one presentation owner; historical compatibility hooks may remain but must not compete by re-rendering the same route after the owner.",
+      "status": "PASS",
+      "evidence": "Owner summaries feed decorators; redundant V6 Roadmap render removed. Settled root mutation observations are zero on all five routes."
+    },
+    {
+      "id": "AC-15",
+      "criterion": "Responsive behavior remains usable at desktop 1366/1440/1920, tablet 744/768/820/1024 and phone 375/390/393/430 widths.",
+      "status": "PASS",
+      "evidence": "55 route/viewport checks at 1366/1440/1920, 744/768/820/1024, 375/390/393/430. No horizontal overflow. Phone Research primary task action remains above fixed navigation."
+    },
+    {
+      "id": "AC-16",
+      "criterion": "Keyboard focus, readable shared typography, contrast semantics and important touch targets remain compliant with the shared UI constitution.",
+      "status": "PASS",
+      "evidence": "Shared dark hero uses on-media white/gold tokens; tested hero contrast lower bound >=4.5. Keyboard primary action has visible 3px outline and 44px height. Existing readable typography browser/static gates pass."
+    },
+    {
+      "id": "AC-17",
+      "criterion": "No file under prompts/subjects/** or subjects/** is read as implementation input, modified, or required for acceptance.",
+      "status": "PASS",
+      "evidence": "Boundary static gate and baseline diff show zero forbidden changes. Hub-only server rejects forbidden subject paths before filesystem reads; subject launch uses synthetic public transport, no private runtime/DOM/storage inspection."
+    },
+    {
+      "id": "AC-18",
+      "criterion": "No new concrete subject endpoint is invented; only registered logical capabilities and existing approved transports/contracts are used.",
+      "status": "PASS",
+      "evidence": "Registry remains empty and default-deny. No invented concrete endpoint; legacy approved transport stays behind adapter."
+    },
+    {
+      "id": "AC-19",
+      "criterion": "Current Device Gate/auth/PWA/offline behavior is not weakened by this learner Hub cleanup.",
+      "status": "PASS_WITH_LIMITATIONS",
+      "evidence": "Device Gate and runtime-access static/behavior regressions pass. Existing auth/service-worker policy files unchanged. Loaded Hub LOCAL_HUB editing offline passes; cold offline reload and subject package PWA are unverified."
+    },
+    {
+      "id": "AC-20",
+      "criterion": "Execution result records exact before/after SHA, changed paths, tests, screenshot/browser evidence summary, acceptance matrix and boundary compliance.",
+      "status": "PASS",
+      "evidence": "Execution result records exact runtime before/after, 41 changed paths, 19 tests, 55 screenshot observations, acceptance/boundary matrices. Metadata-only successor HEAD is certified separately without recursive self-hash claims."
+    },
+    {
+      "id": "AC-21",
+      "criterion": "No production publish occurs until exact implementation SHA passes Chat review.",
+      "status": "PASS",
+      "evidence": "No production publication or main merge. Stop on certified branch HEAD for Box Chat decision."
+    }
+  ],
+  "browserEvidence": {
+    "testedHead": "5023752bb2dfa66012090ff3419a1c58a3128717",
+    "summary": "artifacts/hub-packet-verification/runtime-head-browser-summary.json",
+    "screenshotDirectory": "artifacts/hub-truth-ux-cleanup",
+    "routeViewportChecks": 55,
+    "widths": [
+      1366,
+      1440,
+      1920,
+      744,
+      768,
+      820,
+      1024,
+      375,
+      390,
+      393,
+      430
+    ],
+    "settling": [
+      {
+        "route": "home",
+        "changes": 0
+      },
+      {
+        "route": "roadmap",
+        "changes": 0
+      },
+      {
+        "route": "subjects",
+        "changes": 0
+      },
+      {
+        "route": "schedule",
+        "changes": 0
+      },
+      {
+        "route": "research",
+        "changes": 0
+      }
+    ],
+    "focus": {
+      "active": true,
+      "outline": "solid",
+      "width": 3,
+      "height": 44
+    },
+    "consoleAndPageErrors": [],
+    "httpNetworkErrors": [],
+    "manualScreenshotsReviewed": [
+      "Home desktop",
+      "Subjects tablet",
+      "Research phone",
+      "Roadmap phone"
+    ],
+    "scope": "Hub only; mocked control response and public subject-launch fixture; no live subject internals"
+  },
+  "apiCompatibility": [
+    {
+      "area": "Learner launch",
+      "status": "PASS",
+      "detail": "Existing validated legacy task-query/postMessage transport retained behind resolveLaunch; unsafe/unavailable paths denied."
+    },
+    {
+      "area": "Authoring",
+      "status": "PASS",
+      "detail": "Learner direct editor controls removed; explicit registered authoring capability required."
+    },
+    {
+      "area": "External summaries",
+      "status": "PASS",
+      "detail": "Registered capability/provenance/TTL govern snapshots; missing capability and invalid status unavailable; no-contract legacy approved messages remain compatible."
+    },
+    {
+      "area": "Concrete subject endpoint",
+      "status": "NOT_ADDED",
+      "detail": "Empty registry/default-deny preserved; actual external endpoint availability not asserted."
+    },
+    {
+      "area": "Hub research storage",
+      "status": "PASS",
+      "detail": "Versioned workspace uses existing Hub save; user-created legacy records migrated without fabricated dates, originals retained; future versions read-only."
+    }
+  ],
+  "boundaryCompliance": {
+    "hubOnly": true,
+    "subjectPromptsUntouched": true,
+    "subjectInternalsUntouched": true,
+    "subjectInternalReads": false,
+    "apiContractOnly": true,
+    "forbiddenPathChanges": [],
+    "subjectPrivateStorageInspection": false,
+    "subjectPrivateDomInspection": false,
+    "oldPromptBranchMerged": false,
+    "mainMerged": false,
+    "productionPublished": false,
+    "acceptanceServer": "tests/hub-scope-server.mjs rejects forbidden URLs before filesystem access"
+  },
+  "defectsFixed": [
+    "HUB-DATA-001: retained prior canonical Subjects cleanup; normalized summaries/catalog owner replace remaining coercion and unavailable launch ambiguity.",
+    "HUB-DATA-002: explicit versioned Research workspace; persisted personal tasks/milestones/notes/attachments/work packages; no sample first-run state.",
+    "HUB-DATA-003: Roadmap unknown-as-zero and incomplete aggregate coverage corrected.",
+    "HUB-DATA-004: Home unknown-as-zero, stale disclosure and achievements provenance bypass corrected.",
+    "HUB-DATA-005: Overview uses shared normalized progress records.",
+    "HUB-BOUNDARY-001: approved launches behind adapter; direct learner authoring removed/default-denied.",
+    "HUB-PRESENT-001: decorators consume owner summaries; duplicate Roadmap render and DOM-derived Research truth removed.",
+    "Review: registered subject lacking progress capability may not fall back to legacy summary.",
+    "Review: invalid summary status may not be promoted to CURRENT.",
+    "Review: restored researchWorkspace.topicId owns checklist instead of stale legacy researchTopic.",
+    "Review: Home achievements may not bypass unavailable contract using raw progress.",
+    "Review: progress modal preserves stale provenance/freshness disclosure.",
+    "QA: dark shared hero text contrast, 44px primary targets, phone hero layout and primary task visibility corrected.",
+    "QA: incomplete/future restored workspace and unsafe restored attachment URLs handled without data loss/script links.",
+    "QA: migration of undated user tasks preserves null dates rather than inventing today."
+  ],
+  "verificationHistory": {
+    "offlineHarnessFailure": "An exact-head full run at 16f1b9748b2b1923b7367c09baeff20ef93291e8 passed 18 gates but disconnected in-flight reload resources during intentional offline. Added networkidle before disconnect; assertions unchanged. Focused 390px run passed, then full 19-gate run passed at 5023752bb2dfa66012090ff3419a1c58a3128717",
+    "runtimeBlobEquivalentAfterReconciliation": true,
+    "finalHeadFullRegression": "Certified in final-head-verification.json after metadata commit"
+  },
+  "review": {
+    "method": "Hub-only requesting-code-review subagent",
+    "importantFindings": 5,
+    "resolved": 5,
+    "redGreenVerification": true,
+    "subjectInternalReads": false
+  },
   "blockers": [],
-  "releaseState": "NOT_STARTED",
-  "nextAction": null
+  "limitations": [
+    "Full future-interface-system/development-fast workflows are NOT_RUN locally because their broad gates read forbidden subject internals. Affected Hub/security gates pass; new CI stages are wired, remote CI not claimed.",
+    "Live subject app launch, mastery, endpoints and private runtime are not exercised. Public-contract fixture and approved Hub transport only.",
+    "Offline proof covers local Hub state editing in an already-loaded session. Cold offline reload/service-worker packaging and subject offline packages are NOT_VERIFIED.",
+    "Contrast checks cover changed shared hero/important controls plus existing typography regression, not an exhaustive accessibility certification."
+  ],
+  "releaseState": "TESTED_NOT_MERGED_NOT_DEPLOYED_PENDING_CHAT_REVIEW",
+  "nextAction": "Box Chat reviews exact certified branch HEAD, bridge result and evidence; decides ACCEPT/REVISE/BLOCKED. Codex must not merge main or publish production."
 }

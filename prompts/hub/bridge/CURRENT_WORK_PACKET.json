@@ -2,7 +2,7 @@
   "schemaVersion": "1.0.0",
   "packetId": "HUB-TRUTH-UX-CLEANUP-002",
   "revision": 3,
-  "status": "IN_CODEX",
+  "status": "CODEX_DONE",
   "userIntent": "Human user authorizes continuous Codex Class B execution of HUB-TRUTH-UX-CLEANUP-002 from fetched current main, without inter-phase questions, subject-internal reads/edits, main merge or production publication.",
   "objective": "Clean learner-facing sample/mock truth from Subjects and Research/Thesis, preserve Schedule as Hub-owned canonical planning, distinguish unknown/stale/current subject summaries, converge the five primary pages onto one presentation owner each, and migrate Hub-side subject integration toward registered descriptor/capability/launch adapters while preserving legacy compatibility behind the adapter.",
   "targetArea": "Bauman Hub five-page runtime truth, presentation ownership, and Hub-side subject integration boundary",
@@ -318,5 +318,13 @@
       ],
       "action": "Rebased only fresh implementation commits; preserved newer lastReviewedSha and classACompleted. Main prompt registry update inherited without editing outside packet."
     }
+  },
+  "execution": {
+    "result": "prompts/hub/bridge/CURRENT_EXECUTION_RESULT.json",
+    "beforeSha": "68024789d38f5c1f35d74fe818ad117125feb43f",
+    "afterSha": "bf9b9e1f4d5ab97f73caf6ce43642aa27ae8b02b",
+    "testedRuntimeHead": "5023752bb2dfa66012090ff3419a1c58a3128717",
+    "releaseState": "TESTED_NOT_MERGED_NOT_DEPLOYED_PENDING_CHAT_REVIEW",
+    "finalReviewHeadEvidence": "artifacts/hub-packet-verification/final-head-verification.json and git notes --ref=bauman-hub-review show HEAD"
   }
 }
