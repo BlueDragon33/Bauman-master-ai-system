@@ -23,7 +23,7 @@
   ],
   "needsRevalidation": [],
   "lastValidatedSha": "c420d2d9bb876ab0be2b14cff58a323537903110",
-  "currentHeadSha": "f9b9428a6839f2ec838f0e46ce6c57e2bea5c098",
+  "currentHeadSha": "c4e5bb676816fac9ee85892725ca1469b3322dda",
   "evidence": [
     "prompts/subjects/python/evidence/PYTHON_P1_EXECUTIVE_SUMMARY.md",
     "prompts/subjects/python/evidence/PYTHON_CURRENT_ARCHITECTURE_MAP.md",
@@ -132,9 +132,9 @@
     "Approved one-time release r3 run 37216104758: authorization PASS; Control preview PASS; Python Docker image build PASS; Cloudflare Containers /containers/me permission failure; production skipped"
   ],
   "blockers": [
-    "External release credential blocker reconfirmed by exact-main r3 run 37216104758: current Cloudflare deployment API token cannot access /accounts/<account>/containers/me during Learning Runtime preview deployment. Repository authorization and container image build passed. Production was not attempted."
+    "External release credential blocker remains: the Cloudflare deployment API token used by Bauman preview/production lacks account-scoped Containers write access required by Wrangler for /accounts/<account>/containers/me. Release r3 authorization, Control preview, and Python container image build passed; production was skipped."
   ],
-  "nextAction": "Update the Cloudflare deployment API token used by the Bauman preview/production GitHub environments with the required account-scoped Workers Containers management permission while retaining existing Workers/D1 permissions. Then create a fresh add-only exact-main release request and rerun preview -> verification -> confirmed production -> production smoke. Do not begin the next subject until publish passes.",
+  "nextAction": "Release r4 is prepared on branch release/python-20261005-r4-main and must remain unmerged until the Cloudflare API token used by both bauman-preview and bauman-production has account-scoped Containers write access while retaining existing Workers/D1 access. After the credential is corrected, merge the r4 PR; the add-only request will automatically run exact-merge-SHA preview -> confirmed production -> smoke/closure. Do not resume Algorithms ALG03 until Python publication closes.",
   "notes": [
     "Actual learner runtime is subjects/programming/, not subjects/python/.",
     "Current Programming package mixes Python with Algorithms, Database, ML tooling and Software Engineering.",
@@ -168,6 +168,8 @@
     "Release r2 at 70f4fcb150bd9dc677e93570990afbc7aa5a47b9 exposed a repository-side shallow-checkout authorization defect before preview.",
     "PR #269 fixed release authorization with fetch-depth 0 and passed Release Activation, Development Fast CI, and Universal Constitution Compliance.",
     "Release r3 at f9b9428a6839f2ec838f0e46ce6c57e2bea5c098 passed authorization and Control preview deployment; its Python 3.14.8 container image built successfully, then Wrangler failed at Cloudflare /accounts/<account>/containers/me due the external deployment credential permission. Production was skipped.",
-    "Prompt sequencing remains ONE_SUBJECT_AT_A_TIME; Algorithms is next in the normalized subject index after Python, but must not start until Python publication closes successfully."
+    "Prompt sequencing remains ONE_SUBJECT_AT_A_TIME; Algorithms is next in the normalized subject index after Python, but must not start until Python publication closes successfully.",
+    "2026-10-05: release r4 preparation is rebased onto governance-correct main c4e5bb676816fac9ee85892725ca1469b3322dda and uses .github/release-requests/python-20261005-r4.json with a matching one-time release workflow binding.",
+    "Cloudflare documentation identifies account-scoped Containers Write/Edit as the permission required to manage Containers; existing Workers/D1 permissions must be retained."
   ]
 }
