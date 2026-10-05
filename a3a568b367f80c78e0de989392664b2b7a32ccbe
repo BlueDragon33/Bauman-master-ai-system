@@ -6,7 +6,7 @@
   "finalReviewHead": "a3a568b367f80c78e0de989392664b2b7a32ccbe",
   "testedRuntimeHead": "bf9b9e1f4d5ab97f73caf6ce43642aa27ae8b02b",
   "runtimeRegression": {
-    "head": "bf9b9e1f4d5ab97f73caf6ce43642aa27ae8b02b",
+    "head": "5023752bb2dfa66012090ff3419a1c58a3128717",
     "testsPassed": 19,
     "summary": "artifacts/hub-packet-verification/runtime-head-summary.json"
   },
@@ -25,108 +25,134 @@
       "log": "artifacts/hub-packet-verification/final-head-full-regression.log"
     }
   ],
-  "staticAndUnitTests": [
-    {
-      "command": "node tests/hub-prompt-boundary-static.mjs",
-      "exitCode": 0,
-      "status": "PASS"
-    },
-    {
-      "command": "node tests/hub-subject-adapter-unit.mjs",
-      "exitCode": 0,
-      "status": "PASS"
-    },
-    {
-      "command": "node tests/hub-research-workspace-unit.mjs",
-      "exitCode": 0,
-      "status": "PASS"
-    },
-    {
-      "command": "node tests/hub-data-truth-static.mjs",
-      "exitCode": 0,
-      "status": "PASS"
-    },
-    {
-      "command": "node tests/subjects-reference-v1-static.mjs",
-      "exitCode": 0,
-      "status": "PASS"
-    },
-    {
-      "command": "node tests/thesis-reference-v1-static.mjs",
-      "exitCode": 0,
-      "status": "PASS"
-    },
-    {
-      "command": "node tests/schedule-reference-v1-static.mjs",
-      "exitCode": 0,
-      "status": "PASS"
-    },
-    {
-      "command": "node tests/hub-primary-pages-v6-static.mjs",
-      "exitCode": 0,
-      "status": "PASS"
-    },
-    {
-      "command": "node tests/hub-readable-typography-v1-static.mjs",
-      "exitCode": 0,
-      "status": "PASS"
-    },
-    {
-      "command": "node scripts/runtime-device-gate-regression.mjs",
-      "exitCode": 0,
-      "status": "PASS"
-    },
-    {
-      "command": "node tests/runtime-access-mode-static.mjs",
-      "exitCode": 0,
-      "status": "PASS"
-    },
-    {
-      "command": "node tests/runtime-access-mode-behavior.mjs",
-      "exitCode": 0,
-      "status": "PASS"
-    },
-    {
-      "command": "node tests/hub-data-truth-browser.mjs",
-      "exitCode": 0,
-      "status": "PASS"
-    },
-    {
-      "command": "node tests/subjects-reference-v1-browser.mjs",
-      "exitCode": 0,
-      "status": "PASS"
-    },
-    {
-      "command": "node tests/thesis-reference-v1-browser.mjs",
-      "exitCode": 0,
-      "status": "PASS"
-    },
-    {
-      "command": "node tests/schedule-reference-v1-browser.mjs",
-      "exitCode": 0,
-      "status": "PASS"
-    },
-    {
-      "command": "node tests/hub-readable-typography-v1-browser.mjs",
-      "exitCode": 0,
-      "status": "PASS"
-    },
-    {
-      "command": "node tests/hub-premium-responsive-browser.mjs",
-      "exitCode": 0,
-      "status": "PASS"
-    },
-    {
-      "command": "node tests/hub-truth-ux-cleanup-browser.mjs",
-      "exitCode": 0,
-      "status": "PASS"
-    }
-  ],
   "routeViewportChecks": 55,
   "browserSummary": "artifacts/hub-truth-ux-cleanup/summary.json",
   "forbiddenPathChanges": [],
   "releaseState": "TESTED_NOT_MERGED_NOT_DEPLOYED_PENDING_CHAT_REVIEW",
   "productionPublished": false,
   "mainMerged": false,
-  "workingTreeClean": true
+  "workingTreeClean": true,
+  "implementationAfterSha": "bf9b9e1f4d5ab97f73caf6ce43642aa27ae8b02b",
+  "tests": [
+    {
+      "command": "node tests/hub-prompt-boundary-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "a3a568b367f80c78e0de989392664b2b7a32ccbe"
+    },
+    {
+      "command": "node tests/hub-subject-adapter-unit.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "a3a568b367f80c78e0de989392664b2b7a32ccbe"
+    },
+    {
+      "command": "node tests/hub-research-workspace-unit.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "a3a568b367f80c78e0de989392664b2b7a32ccbe"
+    },
+    {
+      "command": "node tests/hub-data-truth-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "a3a568b367f80c78e0de989392664b2b7a32ccbe"
+    },
+    {
+      "command": "node tests/subjects-reference-v1-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "a3a568b367f80c78e0de989392664b2b7a32ccbe"
+    },
+    {
+      "command": "node tests/thesis-reference-v1-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "a3a568b367f80c78e0de989392664b2b7a32ccbe"
+    },
+    {
+      "command": "node tests/schedule-reference-v1-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "a3a568b367f80c78e0de989392664b2b7a32ccbe"
+    },
+    {
+      "command": "node tests/hub-primary-pages-v6-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "a3a568b367f80c78e0de989392664b2b7a32ccbe"
+    },
+    {
+      "command": "node tests/hub-readable-typography-v1-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "a3a568b367f80c78e0de989392664b2b7a32ccbe"
+    },
+    {
+      "command": "node scripts/runtime-device-gate-regression.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "a3a568b367f80c78e0de989392664b2b7a32ccbe"
+    },
+    {
+      "command": "node tests/runtime-access-mode-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "a3a568b367f80c78e0de989392664b2b7a32ccbe"
+    },
+    {
+      "command": "node tests/runtime-access-mode-behavior.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "a3a568b367f80c78e0de989392664b2b7a32ccbe"
+    },
+    {
+      "command": "node tests/hub-data-truth-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "a3a568b367f80c78e0de989392664b2b7a32ccbe"
+    },
+    {
+      "command": "node tests/subjects-reference-v1-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "a3a568b367f80c78e0de989392664b2b7a32ccbe"
+    },
+    {
+      "command": "node tests/thesis-reference-v1-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "a3a568b367f80c78e0de989392664b2b7a32ccbe"
+    },
+    {
+      "command": "node tests/schedule-reference-v1-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "a3a568b367f80c78e0de989392664b2b7a32ccbe"
+    },
+    {
+      "command": "node tests/hub-readable-typography-v1-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "a3a568b367f80c78e0de989392664b2b7a32ccbe"
+    },
+    {
+      "command": "node tests/hub-premium-responsive-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "a3a568b367f80c78e0de989392664b2b7a32ccbe"
+    },
+    {
+      "command": "node tests/hub-truth-ux-cleanup-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "testedHead": "a3a568b367f80c78e0de989392664b2b7a32ccbe"
+    }
+  ],
+  "certifiedAt": "2026-10-05T17:45:19.999Z",
+  "finalHeadFullRegression": {
+    "head": "a3a568b367f80c78e0de989392664b2b7a32ccbe",
+    "testsPassed": 19,
+    "summary": "artifacts/hub-packet-verification/summary.json"
+  }
 }
