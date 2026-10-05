@@ -3,7 +3,7 @@
   "subject": "algorithms",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/subjects/algorithms/ALG_MASTER_PROMPT.md",
-  "status": "BLOCKED",
+  "status": "ALG02_PASS",
   "activeModule": "ALG03",
   "sequence": [
     "ALG01",
@@ -60,7 +60,7 @@
     "Upstream sequencing blocker: Python is the preceding subject under SUBJECT_PROMPT_INDEX.json executionRule=ONE_SUBJECT_AT_A_TIME and remains PYTHON06_PASS_RC_HARDENED_RELEASE_BLOCKED_EXTERNAL until publication passes.",
     "External Python release credential blocker: Cloudflare deployment token cannot access the account-scoped Workers Containers endpoint /accounts/<account>/containers/me; production was not attempted."
   ],
-  "nextAction": "Do not advance or merge ALG03 while Python publication remains open. Preserve ALG01-ALG02 as completed evidence and keep PR #273 draft. Resume ALG03 only after Python exact-main preview -> production -> smoke/closure passes and Python PROJECT_STATE releases the sequencing gate.",
+  "nextAction": "Execution is gated: do not advance or merge ALG03 while Python publication remains open. Preserve ALG01-ALG02 as completed evidence and keep PR #273 draft. Resume ALG03 only after Python exact-main preview -> production -> smoke/closure passes and Python PROJECT_STATE releases the sequencing gate.",
   "notes": [
     "ALG01 is audit-only; no current learner runtime/content/state behavior was changed.",
     "Actual Algorithms scope is distributed across Programming PR02/PR10/PR11, P4 prerequisite data, and adjacent Math discrete/graph foundations.",
@@ -78,5 +78,7 @@
     "ALG02 terminal PASS metadata tail is governance-only and must re-pass final PR-head checks before merge.",
     "2026-10-05 governance reconciliation: Algorithms work had advanced to ALG02 while Python publication remained externally blocked. Existing ALG01-ALG02 evidence is preserved, but ALG03 is now frozen to restore ONE_SUBJECT_AT_A_TIME sequencing.",
     "PR #273 is intentionally draft while this upstream sequencing blocker remains."
-  ]
+  ],
+  "executionGate": "BLOCKED",
+  "blockedBySubject": "python"
 }
