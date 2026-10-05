@@ -6,38 +6,31 @@
   "bridgeProtocol": "prompts/hub/bridge/HANDOFF_PROTOCOL.md",
   "apiBoundary": "prompts/hub/api/HUB_SUBAPP_API_BOUNDARY.md",
   "currentBranch": "work/curriculum-prompt-system-v1",
-  "currentHeadSha": "5bd02a9cca8ebac6463d677523539f5376476333",
-  "lastChatReviewSha": "b6df392c5ab935bed4924b07b9bbe2e95efb2c8e",
+  "currentHeadSha": "7a64ebf954d480bd511251490c8c03aca15e8be1",
+  "lastChatReviewSha": "ddcc314d0cbbcb61026a5be21fb425ff0f614ba5",
   "lastCodexValidatedSha": null,
   "activeWorkPacketId": "HUB-TRUTH-UX-CLEANUP-002",
-  "activeWorkPacketRevision": 3,
-  "lifecycleStatus": "WORK_SPLIT_REDEFINED",
+  "activeWorkPacketRevision": 4,
+  "lifecycleStatus": "READY_FOR_CODEX_DELTA",
   "lastAcceptedPacketId": null,
   "blockers": [],
   "notes": [
-    "Hub work does not load prompts/subjects/**.",
-    "Current runtime baseline reviewed is main@b6df392c5ab935bed4924b07b9bbe2e95efb2c8e.",
-    "Continuous Chat planning is complete through C9 and consolidated into HUB-TRUTH-UX-CLEANUP-002 revision 3.",
-    "Current main still lacks prompts/hub/**; packet C0 therefore performs a minimal Hub-only prompt-system transplant onto a fresh branch from current main before runtime edits.",
-    "Known truth defects are locked in the packet: Subjects reference 2025/fallback data, Research/Thesis mock 2025/fixed progress, Home/Roadmap unknown-as-zero, direct learner editor/path coupling, and decorator-side duplicate truth calculations.",
-    "Exactly five learner routes remain canonical: home, roadmap, subjects, schedule, research.",
-    "Schedule remains the Hub-owned planning reference; Subjects and Research/Thesis require major truth cleanup.",
-    "Target subject integration remains descriptor -> capabilities -> launch adapter -> normalized Hub read model; legacy mainPath/editorPath may survive only behind compatibility adapters.",
-    "User requested continuous operation without routine checkpoint questions. Resume from the active packet/state directly.",
-    "Work split revised: normal Chat now owns careful Class-A execution; Codex is reserved for Class-B deep repository work.",
-    "Current HUB-TRUTH-UX-CLEANUP-002 remains Class B because it spans coupled runtime owners, normalized adapters, responsive/browser QA and repeated test/fix loops."
+    "Hub work does not load prompts/subjects/** or subject internals.",
+    "Parallel Chat audit verified PR #230 merged at c43dfd115283973b8e83a0b0e3d89eafcf8eb6b0 and its truth/runtime files remain unchanged through main@ddcc314d0cbbcb61026a5be21fb425ff0f614ba5.",
+    "The previous C0 bootstrap and broad truth cleanup are no longer required on current main.",
+    "Active packet revision 4 is narrowed to the remaining Class-B delta: generic subject launch/read adapter, learner editor/authoring capability gating, presentation-owner convergence, and exact-head regression.",
+    "Current-main fast baseline workflows observed: Universal Constitution Compliance SUCCESS, Russian Reference UI Gate SUCCESS, Development Fast CI SUCCESS.",
+    "Direct learner-facing editor access remains in assets/js/main.js and assets/js/subjects-reference-v1.js; legacy mainPath/editorPath transport remains exposed to presentation.",
+    "Do not redo merged PR #230 truth work unless current-main evidence proves regression.",
+    "User requested Chat to work in parallel with Codex on non-conflicting Class-A audit/review tasks."
   ],
-  "lastArchitectureChange": "Reclassified Bauman Hub workflow into Class A (Chat careful/light execution), Class B (Codex deep repository execution), and Class C (external authority).",
+  "lastArchitectureChange": "Parallel Chat audit reduced HUB-TRUTH-UX-CLEANUP-002 to revision 4: merged truth cleanup is accepted as current-main baseline; Codex now owns only the remaining launch/authoring/owner-convergence delta.",
   "executionMode": {
-    "mode": "CLASSIFIED_DUAL_PLANE",
-    "classifyBeforeWork": true,
-    "classes": {
-      "A": "Chat executes directly, slowly and carefully, for small deterministic Hub-only work.",
-      "B": "Codex executes deep/coupled/runtime/test-loop work from an approved packet; Chat reviews.",
-      "C": "Stop only for genuine external authority/blocker."
-    },
-    "continuousWithinPlane": true,
-    "noRoutineCheckpointQuestions": true
+    "mode": "PARALLEL_DUAL_PLANE",
+    "chat": "Read-only/current-main audit, architecture/acceptance refinement, baseline classification and final review; avoid editing Codex runtime branch.",
+    "codex": "Implement/test the revision-4 Class-B delta on a fresh branch from latest main.",
+    "noRoutineCheckpointQuestions": true,
+    "avoidConcurrentFileEdits": true
   },
   "workSplit": "prompts/hub/WORK_SPLIT_CHAT_CODEX.md"
 }
