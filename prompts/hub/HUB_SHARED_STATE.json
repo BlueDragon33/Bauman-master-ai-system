@@ -5,8 +5,8 @@
   "masterPrompt": "prompts/hub/chat/HUB_CHAT_MASTER_PROMPT.md",
   "status": "IN_CODEX",
   "lifecycle": "HUB_TRUTH_UX_CLEANUP_002_EXECUTING",
-  "baselineMainSha": "3b541d76b0ee16208a5835073cbce42bf2f0d440",
-  "lastReviewedSha": "c4e5bb676816fac9ee85892725ca1469b3322dda",
+  "baselineMainSha": "68024789d38f5c1f35d74fe818ad117125feb43f",
+  "lastReviewedSha": "3b541d76b0ee16208a5835073cbce42bf2f0d440",
   "workingBranch": "codex/hub-truth-ux-cleanup-002",
   "canonicalRoutes": [
     "home",
@@ -24,7 +24,8 @@
     "Reviewed exact HUB-TRUTH execution evidence and accepted the Codex result.",
     "Confirmed PR #230 merged without production deployment.",
     "Confirmed packet runtime/QA owners plus main.js/data.js retain identical blobs through main@c4e5bb676816fac9ee85892725ca1469b3322dda.",
-    "Reconciled stale Hub packet/execution/shared-state metadata after merge."
+    "Reconciled stale Hub packet/execution/shared-state metadata after merge.",
+    "Reconciled prompts/PROMPT_REGISTRY.json Hub status from stale READY_FOR_CODEX to CHAT_COMPLETE after confirming no pending Class B work."
   ],
   "findings": [
     {
@@ -72,7 +73,7 @@
   "blockers": [],
   "externalBlockers": [],
   "nextAction": "Complete exact-head Hub-only acceptance; return to Box Chat. Do not merge or deploy.",
-  "mainSyncStatus": "FRESH_BRANCH_FROM_CURRENT_MAIN",
+  "mainSyncStatus": "RECONCILED_WITH_FETCHED_CURRENT_MAIN",
   "governanceMergedSha": "6ef5e8814ac841f927f079e18d5062274ee0d847",
   "lastReviewedRuntimeSha": "c4e5bb676816fac9ee85892725ca1469b3322dda",
   "currentHeadSha": null,

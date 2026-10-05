@@ -292,7 +292,7 @@
     "publishProduction": false
   },
   "reconciliation": {
-    "beforeSha": "3b541d76b0ee16208a5835073cbce42bf2f0d440",
+    "beforeSha": "68024789d38f5c1f35d74fe818ad117125feb43f",
     "packetBaselineIsAncestor": true,
     "mainAlreadyContains": "HUB-TRUTH-20261003-001 truth cleanup; preserve it",
     "bootstrapSourceSha": "e607ca350e50d12bc130377966b143bf9325ef9d",
@@ -308,6 +308,15 @@
         "HUB_SHARED_STATE.json"
       ],
       "action": "Rebase only fresh implementation commits onto latest main; archive accepted prior packet state and keep new active bridge packet. Never merge old prompt branch."
+    },
+    "latestGovernanceAdvance": {
+      "sha": "68024789d38f5c1f35d74fe818ad117125feb43f",
+      "previousMainSha": "3b541d76b0ee16208a5835073cbce42bf2f0d440",
+      "hubRuntimeAndContractsChanged": false,
+      "hubGovernanceChanged": [
+        "prompts/hub/HUB_SHARED_STATE.json"
+      ],
+      "action": "Rebased only fresh implementation commits; preserved newer lastReviewedSha and classACompleted. Main prompt registry update inherited without editing outside packet."
     }
   }
 }

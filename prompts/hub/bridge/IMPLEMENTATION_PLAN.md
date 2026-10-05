@@ -16,3 +16,5 @@ Review focus: invalid numeric values; stale external snapshots; disabled/unsafe 
 - [ ] Evidence: exact before/after runtime SHA, commands and exit codes, acceptance/boundary matrix and blockers; review diff, commit, retest exact HEAD; preserve result and state in bridge for Chat review.
 
 Late reconciliation: main advanced to 3b541d76b0ee16208a5835073cbce42bf2f0d440 during validation. Hub runtime/contracts unchanged; accepted prior packet governance preserved in history. Fresh implementation rebased onto this main; final beforeSha is this reconciled baseline. No old prompt branch merge/rebase/cherry-pick.
+
+Final main reconciliation: governance-only main@68024789d38f5c1f35d74fe818ad117125feb43f preserved; Hub runtime/contracts/tests unchanged. Exact full regression passed at 5023752bb2dfa66012090ff3419a1c58a3128717 before rebase. Blob identity is checked and full acceptance will run again at final review HEAD.
