@@ -20,6 +20,7 @@ Start order:
 4. prompts/hub/api/HUB_SUBAPP_API_BOUNDARY.md
 5. prompts/hub/chat/HUB_CHAT_MASTER_PROMPT.md
 6. prompts/hub/HUB_SHARED_STATE.json
-7. prompts/hub/CURRENT_WORK_PACKET.json only when the state says a Codex packet is active.
+7. prompts/hub/bridge/CURRENT_WORK_PACKET.json only when the state says a Codex packet is active.
 
 Do not scan subject internals to solve Hub work. Do not create a second Constitution or another Hub Master Prompt.
+Codex entry: `prompts/hub/codex/CODEX_START.md`. Review execution evidence at `prompts/hub/bridge/CURRENT_EXECUTION_RESULT.json`. Root CURRENT_* files are compatibility redirects; prior packet/result evidence is retained in `bridge/history/`.

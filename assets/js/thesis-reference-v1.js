@@ -117,7 +117,7 @@ function toggleAI(id){if(ui.aiDone.has(id))ui.aiDone.delete(id);else ui.aiDone.a
 function toggleUpcoming(){ui.upcomingExpanded=!ui.upcomingExpanded;saveUI();render()}
 function openTask(id){ui.detailId=id;render()}
 function closeTask(){ui.detailId='';render()}
-function openCreate(){ui.taskOpen=true;render()}
+function openCreate(){if(!canEditWorkspace())return;ui.taskOpen=true;render()}
 function closeCreate(){ui.taskOpen=false;render()}
 function createTask(){
   var root=document.getElementById('page-research');
@@ -127,8 +127,8 @@ function createTask(){
   rows.push({id:'t'+Date.now(),day:Number(day&&day.value)||0,title:title.value.trim().slice(0,80),start:start&&start.value||'09:00',end:end&&end.value||'10:00',tone:tone&&tone.value||'blue',detail:'Nhiệm vụ được thêm từ Tab Luận văn.'});
   writeTasks(rows);ui.taskOpen=false;render();toastSafe('Đã thêm nhiệm vụ luận văn.');
 }
-function toggleNote(id,done){var notes=readNotes(),n=notes.find(function(x){return x.id===id});if(n)n.done=!!done;writeNotes(notes);render()}
-function addNote(){
+function toggleNote(id,done){if(!canEditWorkspace())return;var notes=readNotes(),n=notes.find(function(x){return x.id===id});if(n)n.done=!!done;writeNotes(notes);render()}
+function addNote(){if(!canEditWorkspace())return;
   var text=window.prompt('Nhập ghi chú / nhắc việc:');
   if(!text||!text.trim())return;
   var date=window.prompt('Ngày / thời hạn:','Hôm nay')||'Hôm nay';
@@ -236,6 +236,38 @@ function createModal(){
    retained as design provenance only and are excluded from active learner data. */
 function pad2(n){return String(n).padStart(2,'0')}
 function isoDate(d){return d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate())}
+function canEditWorkspace(){if(workspace().unsupported){toastSafe('Phiên bản workspace chưa được hỗ trợ; dữ liệu được giữ nguyên.');return false}return true}
+function persistWorkspace(){try{if(typeof save==='function')save()}catch(e){toastSafe('Không lưu được workspace Hub.')}}
+function workspace(){
+  var s=typeof state!=='undefined'&&state?state:{};
+  if(s.researchWorkspace&&s.researchWorkspace.version!==1)return {version:s.researchWorkspace.version,unsupported:true,configured:false,topicId:null,tasks:[],notes:[],milestones:[],attachments:[],workPackages:[]};
+  if(s.researchWorkspace&&s.researchWorkspace.version===1){
+    var existing=s.researchWorkspace;
+    ['tasks','notes','milestones','attachments','workPackages'].forEach(function(key){existing[key]=Array.isArray(existing[key])?existing[key].filter(function(x){return x&&typeof x==='object'&&/^[a-z0-9_-]+$/i.test(x.id||'')}):[]});
+    return existing;
+  }
+  function legacy(key,ids){try{var rows=JSON.parse(localStorage.getItem(key)||'[]');return Array.isArray(rows)?rows.filter(function(x){return x&&x.id&&!ids.has(x.id)}):[]}catch(e){return []}}
+  var tasks=legacy(TASK_KEY,new Set(REFERENCE_TASKS.map(function(x){return x.id}))).map(function(x){return Object.assign({},x,{date:x.date||null,localCreated:true})});
+  var notes=legacy(NOTE_KEY,new Set(DEFAULT_NOTES.map(function(x){return x.id})));
+  s.researchWorkspace={version:1,configured:false,topicId:null,tasks:tasks,notes:notes,milestones:[],attachments:[],workPackages:[],migrationSource:'hub.reference.local.v1'};
+  if(tasks.length||notes.length)persistWorkspace();
+  return s.researchWorkspace;
+}
+function configureWorkspace(){var w=workspace();if(w.unsupported)return toastSafe('Phiên bản workspace chưa được hỗ trợ; dữ liệu được giữ nguyên.');w.configured=true;w.topicId=state.researchTopic||'ugv';persistWorkspace();render()}
+function setupPanel(){
+  var w=workspace();
+  if(w.unsupported)return '<section class="thesis-page__panel" data-truth-status="UNAVAILABLE"><b>Phiên bản workspace chưa được hỗ trợ</b><p>Dữ liệu được giữ nguyên. Các thao tác chỉnh sửa không khả dụng.</p></section>';
+  if(w.configured)return '<section class="thesis-page__panel" data-truth-status="LOCAL_HUB"><div class="thesis-page__panel-head"><b>Workspace LOCAL_HUB</b></div><label>Hướng nghiên cứu <select aria-label="Hướng nghiên cứu" onchange="BAUMAN_THESIS_REF.selectTopic(this.value)">'+Object.keys(RESEARCH_TOPICS).map(function(id){return '<option value="'+esc(id)+'" '+(w.topicId===id?'selected':'')+'>'+esc(RESEARCH_TOPICS[id].title||id)+'</option>'}).join('')+'</select></label></section>';
+  return '<section class="thesis-page__panel" data-research-setup="1" data-truth-status="UNAVAILABLE"><div class="thesis-page__panel-head"><b>Chưa thiết lập workspace nghiên cứu</b></div><p>Chọn hướng nghiên cứu để bắt đầu kế hoạch LOCAL_HUB. Nội dung bên dưới là thư viện tham khảo canonical, chưa phải kế hoạch hay tiến độ cá nhân.</p><button class="thesis-page__button" data-research-configure="1" onclick="BAUMAN_THESIS_REF.configureWorkspace()">Thiết lập workspace</button></section>';
+}
+function selectTopic(id){if(!Object.prototype.hasOwnProperty.call(RESEARCH_TOPICS,id))return;var w=workspace();if(w.unsupported)return;w.topicId=id;w.configured=true;state.researchTopic=id;persistWorkspace();render()}
+function addMilestone(){if(!canEditWorkspace())return;var title=window.prompt('Tên mốc LOCAL_HUB:');if(!title||!title.trim())return;var date=window.prompt('Ngày mục tiêu (YYYY-MM-DD):',isoDate(new Date()));if(!/^\d{4}-\d{2}-\d{2}$/.test(date||''))return toastSafe('Ngày chưa hợp lệ.');workspace().milestones.push({id:'milestone-'+Date.now(),title:title.trim().slice(0,160),date:date,status:'planned'});persistWorkspace();render()}
+function addWorkPackage(){if(!canEditWorkspace())return;var title=window.prompt('Tên chương / gói công việc LOCAL_HUB:');if(!title||!title.trim())return;workspace().workPackages.push({id:'package-'+Date.now(),title:title.trim().slice(0,160),status:'planned'});persistWorkspace();render()}
+function setWorkPackage(id,status){if(!['planned','in_progress','done'].includes(status))return;var item=workspace().workPackages.find(function(x){return x.id===id});if(item){item.status=status;persistWorkspace();render()}}
+function addAttachment(){if(!canEditWorkspace())return;var title=window.prompt('Tên tài liệu LOCAL_HUB:');if(!title||!title.trim())return;var url=window.prompt('Liên kết tài liệu HTTPS:');try{var parsed=new URL(url);if(parsed.protocol!=='https:'||parsed.username||parsed.password)return toastSafe('Cần liên kết HTTPS hợp lệ.')}catch(e){return toastSafe('Liên kết chưa hợp lệ.')}workspace().attachments.push({id:'attachment-'+Date.now(),title:title.trim().slice(0,160),url:parsed.href});persistWorkspace();render()}
+function attachmentUrl(raw){try{var url=new URL(raw);return url.protocol==='https:'&&!url.username&&!url.password?url.href:null}catch(e){return null}}
+function attachmentsPanel(){var w=workspace();return '<section class="thesis-page__panel" data-truth-status="LOCAL_HUB"><div class="thesis-page__panel-head"><b>Tài liệu LOCAL_HUB</b><button class="thesis-page__button" onclick="BAUMAN_THESIS_REF.addAttachment()">Thêm tài liệu</button></div>'+(w.attachments.length?w.attachments.map(function(x){var url=attachmentUrl(x.url);return '<p>'+(url?'<a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">'+esc(x.title)+'</a>':'<span>'+esc(x.title)+' · Liên kết không khả dụng</span>')+'</p>'}).join(''):'<p>Chưa có tài liệu cá nhân.</p>')+'</section>'}
+function workspaceSummary(){var t=topicState(),w=workspace();return {done:t.done,total:t.total,pct:w.configured?t.pct:null,files:w.attachments.length,topic:w.configured?w.topicId:null}}
 function parseDateSafe(v){var m=String(v||'').match(/^(\d{4})-(\d{2})-(\d{2})$/);return m?new Date(+m[1],+m[2]-1,+m[3]):new Date()}
 function mondayOfDate(d){var x=new Date(d),delta=(x.getDay()+6)%7;x.setHours(0,0,0,0);x.setDate(x.getDate()-delta);return x}
 function addDate(d,n){var x=new Date(d);x.setDate(x.getDate()+n);return x}
@@ -249,28 +281,19 @@ function readUI(){
   }catch(e){return {view:'week',month:isoDate(new Date()).slice(0,7),weekOffset:0,filterOpen:false,aiDone:new Set(),detailId:'',taskOpen:false,upcomingExpanded:false}}
 }
 function readTasks(){
-  try{
-    var v=JSON.parse(localStorage.getItem(TASK_KEY)||'[]');
-    if(!Array.isArray(v))return [];
-    var referenceIds=new Set(REFERENCE_TASKS.map(function(x){return x.id}));
-    return v.filter(function(x){return x&&x.id&&!referenceIds.has(x.id)}).map(function(x){
-      if(!x.date&&Number.isInteger(Number(x.day))){var ds=currentDays(),d=ds[Math.max(0,Math.min(6,Number(x.day)))];return Object.assign({},x,{date:d&&d.date,localCreated:true})}
-      return Object.assign({},x,{localCreated:true});
-    });
-  }catch(e){return []}
+  return workspace().tasks;
 }
 function readNotes(){
-  try{
-    var v=JSON.parse(localStorage.getItem(NOTE_KEY)||'[]'),referenceIds=new Set(DEFAULT_NOTES.map(function(x){return x.id}));
-    return Array.isArray(v)?v.filter(function(x){return x&&x.id&&!referenceIds.has(x.id)}):[];
-  }catch(e){return []}
+  return workspace().notes;
 }
+function writeTasks(v){var w=workspace();if(w.unsupported)return;w.tasks=v.slice(0,60);persistWorkspace()}
+function writeNotes(v){var w=workspace();if(w.unsupported)return;w.notes=v.slice(0,24);persistWorkspace()}
 function todayLabel(){var ds=currentDays();return 'Tuần '+ds[0].short+' - '+ds[6].short+'/'+parseDateSafe(ds[6].date).getFullYear()}
 function setMonth(v){ui.month=v||isoDate(new Date()).slice(0,7);saveUI();render()}
 function shiftWeek(n){ui.weekOffset+=Number(n)||0;saveUI();render()}
 function goToday(){ui.weekOffset=0;ui.month=isoDate(new Date()).slice(0,7);saveUI();render()}
 function topicState(){
-  var s=typeof state!=='undefined'&&state?state:{},id=s.researchTopic||'ugv',topic=(typeof RESEARCH_TOPICS!=='undefined'&&RESEARCH_TOPICS[id])||null,keys=['questions','data','hardware','outputs','risks','tasks'],total=0,done=0;
+  var s=typeof state!=='undefined'&&state?state:{},w=workspace(),id=w.configured?w.topicId:(s.researchTopic||'ugv'),topic=(typeof RESEARCH_TOPICS!=='undefined'&&RESEARCH_TOPICS[id])||null,keys=['questions','data','hardware','outputs','risks','tasks'],total=0,done=0;
   if(topic)keys.forEach(function(k){(topic[k]||[]).forEach(function(_,i){total++;if(s.researchChecks&&s.researchChecks[id+'.'+k+'.'+i])done++})});
   return {id:id,topic:topic,total:total,done:done,pct:total?Math.round(done*100/total):null};
 }
@@ -286,7 +309,8 @@ function summaryCard(tone,icon,label,main,sub,desc,kind,ringValue,status){
   return '<article class="thesis-page__summary-card is-'+tone+'" data-truth-status="'+esc(status||'CURRENT')+'"><span class="thesis-page__summary-icon">'+icon+'</span><div><small>'+esc(label)+'</small><b>'+esc(main)+'</b><strong>'+esc(sub)+'</strong><p>'+esc(desc)+'</p></div>'+tail+'</article>';
 }
 function summary(){
-  var t=topicState(),tasks=readTasks(),notes=readNotes(),title=t.topic&&t.topic.title||'Chưa có chủ đề nghiên cứu';
+  var t=topicState(),tasks=readTasks(),notes=readNotes(),w=workspace(),title=w.configured&&t.topic&&t.topic.title||'Chưa thiết lập chủ đề nghiên cứu';
+  if(!w.configured)t={done:0,total:0,pct:null};
   return '<section class="thesis-page__metrics">'+
     summaryCard('blue','▥','Checklist LOCAL_HUB',t.total?(t.done+'/'+t.total+' mục'):'Chưa có dữ liệu',Number.isFinite(t.pct)?t.pct+'%':'—','Không phải điểm số hoặc mastery.','ring',t.pct,'LOCAL_HUB')+
     summaryCard('green','▧','Hướng nghiên cứu',title,t.topic&&t.topic.short||'Chưa có dữ liệu','Nguồn: RESEARCH_TOPICS canonical.','chev',null,t.topic?'CURRENT':'UNAVAILABLE')+
@@ -329,10 +353,12 @@ function miniCalendar(){
   return '<section class="thesis-page__panel thesis-page__mini-calendar"><div class="thesis-page__panel-head"><b>Tháng '+(base.getMonth()+1)+', '+base.getFullYear()+'</b><div><button onclick="BAUMAN_THESIS_REF.setMonth(\''+isoDate(new Date(base.getFullYear(),base.getMonth()-1,1)).slice(0,7)+'\')">‹</button><button onclick="BAUMAN_THESIS_REF.setMonth(\''+isoDate(new Date(base.getFullYear(),base.getMonth()+1,1)).slice(0,7)+'\')">›</button></div></div><div class="thesis-page__mini-week">'+['T2','T3','T4','T5','T6','T7','CN'].map(function(x){return '<span>'+x+'</span>'}).join('')+'</div><div class="thesis-page__mini-grid">'+monthCellsDynamic(base).map(function(d){var key=isoDate(d),out=d.getMonth()!==base.getMonth(),active=key===isoDate(new Date());return '<button class="'+(out?'is-outside ':'')+(active?'is-active':'')+'"><b>'+d.getDate()+'</b>'+(marks[key]?'<i class="is-blue"></i>':'')+'</button>'}).join('')+'</div></section>';
 }
 function milestones(){
-  return '<section class="thesis-page__panel thesis-page__milestones" data-truth-status="UNAVAILABLE"><div class="thesis-page__panel-head"><b>Mốc chính thức</b></div><div class="thesis-page__milestone-list"><p>Chưa có nguồn mốc chính thức được kết nối. Không dùng deadline mẫu.</p></div></section>';
+  var rows=workspace().milestones;
+  return '<section class="thesis-page__panel thesis-page__milestones" data-truth-status="LOCAL_HUB"><div class="thesis-page__panel-head"><b>Mốc LOCAL_HUB</b><button class="thesis-page__button" onclick="BAUMAN_THESIS_REF.addMilestone()">Thêm mốc</button></div><p>Chưa có nguồn mốc chính thức được kết nối. Không dùng deadline mẫu.</p><div class="thesis-page__milestone-list">'+rows.map(function(x){return '<p><b>'+esc(x.title)+'</b> · '+esc(x.date)+' · LOCAL_HUB</p>'}).join('')+'</div></section>';
 }
 function chapterProgress(){
-  return '<section class="thesis-page__panel thesis-page__progress" data-truth-status="UNAVAILABLE"><div class="thesis-page__panel-head"><b>Tiến độ theo chương</b></div><div class="thesis-page__progress-list"><p>Chưa có nguồn canonical cho tiến độ chương; Hub không tự suy ra phần trăm.</p></div></section>';
+  var rows=workspace().workPackages;
+  return '<section class="thesis-page__panel thesis-page__progress" data-truth-status="'+(rows.length?'LOCAL_HUB':'UNAVAILABLE')+'"><div class="thesis-page__panel-head"><b>Chương / gói công việc LOCAL_HUB</b><button class="thesis-page__button" onclick="BAUMAN_THESIS_REF.addWorkPackage()">Thêm gói</button></div><div class="thesis-page__progress-list">'+(rows.length?rows.map(function(x){return '<label>'+esc(x.title)+'<select aria-label="Trạng thái '+esc(x.title)+'" onchange="BAUMAN_THESIS_REF.setWorkPackage(\''+esc(x.id)+'\',this.value)">'+['planned','in_progress','done'].map(function(value){return '<option value="'+value+'" '+(x.status===value?'selected':'')+'>'+({planned:'Đã lên kế hoạch',in_progress:'Đang làm',done:'Đã tự đánh dấu xong'})[value]+'</option>'}).join('')+'</select></label>'}).join(''):'<p>Chưa có nguồn canonical cho tiến độ chương; Hub không tự suy ra phần trăm.</p>')+'</div></section>';
 }
 function heatmap(){
   var ds=currentDays(),tasks=readTasks(),hours=ds.map(function(d){return tasks.filter(function(t){return t.date===d.date}).reduce(function(sum,t){var a=timeMinutes(t.start),b=timeMinutes(t.end);return sum+Math.max(0,b-a)/60},0)});
@@ -343,7 +369,7 @@ function notes(){
   var rows=readNotes();
   return '<section class="thesis-page__panel thesis-page__notes" data-truth-status="LOCAL_HUB"><div class="thesis-page__panel-head"><b>Ghi chú LOCAL_HUB</b><button onclick="BAUMAN_THESIS_REF.addNote()">＋ Thêm mới</button></div><div class="thesis-page__notes-grid">'+(rows.length?rows.map(function(n){return '<label class="'+(n.done?'is-done':'')+'"><input type="checkbox" '+(n.done?'checked':'')+' onchange="BAUMAN_THESIS_REF.toggleNote(\''+esc(n.id)+'\',this.checked)"><span><b>'+esc(n.text)+'</b><small>'+esc(n.date)+'</small></span></label>'}).join(''):'<p>Chưa có ghi chú cá nhân.</p>')+'</div></section>';
 }
-function createTask(){
+function createTask(){if(!canEditWorkspace())return;
   var root=document.getElementById('page-research'),title=root&&root.querySelector('#thesisTaskTitle'),date=root&&root.querySelector('#thesisTaskDate'),start=root&&root.querySelector('#thesisTaskStart'),end=root&&root.querySelector('#thesisTaskEnd'),tone=root&&root.querySelector('#thesisTaskTone');
   if(!title||!title.value.trim())return toastSafe('Hãy nhập tên nhiệm vụ.');
   var rows=readTasks();
@@ -362,7 +388,7 @@ function createModal(){
 function openMilestone(){toastSafe('Chưa có nguồn mốc chính thức được kết nối.')}
 
 
-function toggleCanonicalResearch(key,index,done){
+function toggleCanonicalResearch(key,index,done){if(!canEditWorkspace())return;
   var s=typeof state!=='undefined'&&state?state:null,t=topicState();if(!s||!t.topic)return;
   if(!s.researchChecks)s.researchChecks={};
   s.researchChecks[t.id+'.'+key+'.'+index]=!!done;
@@ -377,7 +403,7 @@ function researchChecklistPanel(){
 
 function render(){
   var host=document.getElementById('page-research');if(!host)return false;
-  host.innerHTML='<div class="thesis-page" data-thesis-reference="'+RELEASE+'">'+header()+summary()+researchChecklistPanel()+'<section class="thesis-page__workspace"><div class="thesis-page__main-column">'+plan()+'<div class="thesis-page__left-bottom">'+chapterProgress()+heatmap()+'</div></div>'+rightRail()+'</section>'+taskDetail()+createModal()+'</div>';
+  host.innerHTML='<div class="thesis-page" data-thesis-reference="'+RELEASE+'">'+header()+setupPanel()+summary()+researchChecklistPanel()+'<section class="thesis-page__workspace"><div class="thesis-page__main-column">'+plan()+'<div class="thesis-page__left-bottom">'+chapterProgress()+heatmap()+'</div>'+attachmentsPanel()+'</div>'+rightRail()+'</section>'+taskDetail()+createModal()+'</div>';
   host.dataset.thesisReference='v1';
   document.body.dataset.hubPrimaryPage='research';
   return true;
@@ -396,6 +422,7 @@ function selfCheck(){
 }
 
 window.BAUMAN_THESIS_REF={
+  workspaceSummary:workspaceSummary,configureWorkspace:configureWorkspace,selectTopic:selectTopic,addMilestone:addMilestone,addWorkPackage:addWorkPackage,setWorkPackage:setWorkPackage,addAttachment:addAttachment,
   release:RELEASE,patch:patch,render:render,selfCheck:selfCheck,setView:setView,setMonth:setMonth,toggleFilter:toggleFilter,clearFilters:clearFilters,shiftWeek:shiftWeek,goToday:goToday,toggleAI:toggleAI,toggleUpcoming:toggleUpcoming,openTask:openTask,closeTask:closeTask,openCreate:openCreate,closeCreate:closeCreate,createTask:createTask,toggleNote:toggleNote,addNote:addNote,openMilestone:openMilestone,toggleCanonicalResearch:toggleCanonicalResearch
 };
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',patch,{once:true});else patch();

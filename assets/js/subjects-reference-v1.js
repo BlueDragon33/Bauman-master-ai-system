@@ -98,7 +98,7 @@ function openSubject(id,mode){
   var label=mode==='docs'?'Mở tài liệu':mode==='tasks'?'Làm bài tập':'Học theo kế hoạch';
   try{return a.openSubjectInPage(id,{learningItem:label})}catch(e){toastSafe('Không mở được môn học.')}
 }
-function openEditor(id){var a=appRef();try{if(a&&typeof a.openSubjectEditor==='function')return a.openSubjectEditor(id)}catch(e){}toastSafe('Khu dữ liệu môn chưa sẵn sàng.')}
+
 function openDeadline(i){var x=DEADLINES[i];if(x)openSubject(x.subjectId,'tasks')}
 function toggleTab(tab){ui.tab=['all','study','exam','done'].includes(tab)?tab:'all';ui.menu='';saveUI();render()}
 function toggleFilter(){ui.filterOpen=!ui.filterOpen;ui.menu='';render()}
@@ -171,7 +171,7 @@ function courseCard(c){
   var p=courseProgress(c),next=nextSessionFor(c.subjectId,c.next),menu=ui.menu===c.key;
   return '<article class="subjects-page__course-card" data-course-key="'+safe(c.key)+'">'+
     '<div class="subjects-page__course-top">'+iconMarkup(c)+'<div class="subjects-page__course-name"><b>'+safe(c.title)+'</b><small title="Tên giảng viên có thể thay đổi">'+safe(teacherFor(c))+'</small></div><span class="subjects-page__status '+statusClass(c)+'">'+safe(c.statusLabel)+'</span><button type="button" class="subjects-page__kebab" onclick="BAUMAN_SUBJECTS_REF.toggleMenu(\''+safe(c.key)+'\')">⋮</button>'+
-    '<div class="subjects-page__course-menu '+(menu?'is-open':'')+'"><button onclick="BAUMAN_SUBJECTS_REF.selectCourse(\''+safe(c.key)+'\')">Mở môn</button><button onclick="BAUMAN_SUBJECTS_REF.editTeacher(\''+safe(c.key)+'\')">✎ Sửa giảng viên</button><button onclick="BAUMAN_SUBJECTS_REF.openEditor(\''+safe(c.subjectId)+'\')">Dữ liệu môn</button>'+(c.custom?'<button class="is-danger" onclick="BAUMAN_SUBJECTS_REF.removeCustom(\''+safe(c.key)+'\')">Xóa khỏi danh sách</button>':'')+'</div></div>'+
+    '<div class="subjects-page__course-menu '+(menu?'is-open':'')+'"><button onclick="BAUMAN_SUBJECTS_REF.selectCourse(\''+safe(c.key)+'\')">Mở môn</button><button onclick="BAUMAN_SUBJECTS_REF.editTeacher(\''+safe(c.key)+'\')">✎ Sửa giảng viên</button>'+(c.custom?'<button class="is-danger" onclick="BAUMAN_SUBJECTS_REF.removeCustom(\''+safe(c.key)+'\')">Xóa khỏi danh sách</button>':'')+'</div></div>'+
     '<div class="subjects-page__course-progress"><span><i class="is-'+safe(c.progressTone)+'" style="--value:'+p+'%"></i></span><b>'+p+'%</b></div>'+
     '<div class="subjects-page__course-meta"><span><i>▤</i>'+safe(c.sessions)+'</span><span><i>▣</i><small>Buổi tiếp theo</small><b>'+safe(next)+'</b></span></div>'+
     '<div class="subjects-page__course-actions"><button class="is-primary" onclick="BAUMAN_SUBJECTS_REF.openSubject(\''+safe(c.subjectId)+'\',\'study\')">▶ Vào môn</button><button onclick="BAUMAN_SUBJECTS_REF.openSubject(\''+safe(c.subjectId)+'\',\'docs\')">▧ Tài liệu</button><button onclick="BAUMAN_SUBJECTS_REF.openSubject(\''+safe(c.subjectId)+'\',\'tasks\')">◫ Bài tập</button></div>'+
@@ -231,7 +231,7 @@ function readNotes(){
   }catch(e){return []}
 }
 function truthProgress(id){
-  var t=window.BAUMAN_HUB_TRUTH,s=stateRef(),map=s&&s.progress||{};
+  var t=(window.BAUMAN_HUB_SUBJECTS||window.BAUMAN_HUB_TRUTH),s=stateRef(),map=s&&s.progress||{};
   if(t)return t.progress(map,id,{source:'hub.state.progress'});
   var has=Object.prototype.hasOwnProperty.call(map,id)&&Number.isFinite(Number(map[id]));
   return {status:has?'CURRENT':'UNAVAILABLE',value:has?clamp(Math.round(Number(map[id])),0,100):null,source:'hub.state.progress'};
@@ -272,8 +272,9 @@ function courseRows(){
   try{if(a&&typeof a.filteredSubjectsForStage==='function')list=a.filteredSubjectsForStage(stage)||[]}catch(e){}
   if(!list.length)list=Object.values(s&&s.subjects||{});
   var canonical=list.map(function(x){
+    var descriptor=window.BAUMAN_HUB_SUBJECTS.read(s,x.id);
     var f=truthProgress(x.id),status=Number.isFinite(f.value)&&f.value>=100?'done':'study';
-    return {key:x.id,subjectId:x.id,title:x.name||x.id,teacher:x.teacher||'',icon:x.icon||'•',tone:subjectTone(x.id),progressTone:subjectTone(x.id),status:status,statusLabel:status==='done'?'Hoàn thành':'Theo lộ trình',truthStatus:f.status,custom:false};
+    return {key:x.id,subjectId:x.id,title:descriptor.displayName,teacher:x.teacher||'',icon:descriptor.icon,tone:subjectTone(x.id),progressTone:subjectTone(x.id),status:status,statusLabel:status==='done'?'Hoàn thành':'Theo lộ trình',truthStatus:f.status,custom:false};
   });
   return canonical.concat(readCustom().map(function(x){return Object.assign({},x,{truthStatus:'LOCAL_HUB',status:x.status||'study',statusLabel:x.statusLabel||'LOCAL_HUB'})}));
 }
@@ -302,20 +303,20 @@ function summary(){
   var known=courseRows().filter(function(x){return !x.custom}).map(function(x){return truthProgress(x.subjectId)}).filter(function(x){return Number.isFinite(x.value)});
   var avg=known.length?Math.round(known.reduce(function(a,b){return a+b.value},0)/known.length):null;
   return '<section class="subjects-page__summary">'+
-    summaryCard('blue','▣','Tổng số môn',allSubjectCount()+' môn canonical',stageSubjectCount()+' môn trong giai đoạn','ring',known.length?'Trung bình các môn có dữ liệu':'Chưa có dữ liệu tiến độ',avg,known.length?'CURRENT':'UNAVAILABLE')+
+    summaryCard('blue','▣','Tổng số môn',allSubjectCount()+' môn canonical',stageSubjectCount()+' môn trong giai đoạn','ring',known.length?known.length+'/'+stageSubjectCount()+' môn có dữ liệu':'Chưa có dữ liệu tiến độ',avg,known.length?(known.length===stageSubjectCount()&&known.every(function(x){return x.status==='CURRENT'})?'CURRENT':'STALE'):'UNAVAILABLE')+
     summaryCard('green','◎','Môn đang chọn',selected.name||selected.title||'Chưa chọn',progressText(f),'arrow','Buổi tiếp theo: '+next,null,f.status)+
     summaryCard('orange','!','Cần ôn',reviews+' mục trong hàng đợi',reviews?'Mở nội dung cần ôn':'Không có mục cần ôn','arrow','Nguồn: reviewQueue của Hub',null,'CURRENT')+
     summaryCard('purple','✦','Gợi ý tự động',reviews?'Có gợi ý từ dữ liệu ôn tập':'Chưa có dữ liệu gợi ý','Không dùng nội dung mẫu','arrow','Chỉ hiển thị khi có nguồn dữ liệu Hub.',null,reviews?'CURRENT':'UNAVAILABLE')+
   '</section>';
 }
 function courseCard(c){
-  var f=c.custom?{status:'LOCAL_HUB',value:null}:truthProgress(c.subjectId),v=Number.isFinite(f.value)?f.value:null,next=nextSessionFor(c.subjectId),menu=ui.menu===c.key;
+  var f=c.custom?{status:'LOCAL_HUB',value:null}:truthProgress(c.subjectId),v=Number.isFinite(f.value)?f.value:null,next=nextSessionFor(c.subjectId),menu=ui.menu===c.key,launch=window.BAUMAN_HUB_SUBJECTS.resolveLaunch(stateRef(),c.subjectId),disabled=launch.status==='CURRENT'?'':'disabled';
   return '<article class="subjects-page__course-card" data-course-key="'+safe(c.key)+'" data-truth-status="'+safe(c.truthStatus||f.status)+'">'+
     '<div class="subjects-page__course-top">'+iconMarkup(c)+'<div class="subjects-page__course-name"><b>'+safe(c.title)+'</b><small>'+safe(teacherFor(c))+'</small></div><span class="subjects-page__status '+statusClass(c)+'">'+safe(c.custom?'LOCAL_HUB':c.statusLabel)+'</span><button type="button" class="subjects-page__kebab" onclick="BAUMAN_SUBJECTS_REF.toggleMenu(\''+safe(c.key)+'\')">⋮</button>'+
-    '<div class="subjects-page__course-menu '+(menu?'is-open':'')+'"><button onclick="BAUMAN_SUBJECTS_REF.selectCourse(\''+safe(c.key)+'\')">Mở môn</button><button onclick="BAUMAN_SUBJECTS_REF.editTeacher(\''+safe(c.key)+'\')">✎ Ghi chú giảng viên LOCAL_HUB</button><button onclick="BAUMAN_SUBJECTS_REF.openEditor(\''+safe(c.subjectId)+'\')">Dữ liệu môn</button>'+(c.custom?'<button class="is-danger" onclick="BAUMAN_SUBJECTS_REF.removeCustom(\''+safe(c.key)+'\')">Xóa khỏi LOCAL_HUB</button>':'')+'</div></div>'+
-    '<div class="subjects-page__course-progress"><span><i class="is-'+safe(c.progressTone||c.tone)+'" style="--value:'+(v===null?0:v)+'%"></i></span><b>'+(v===null?'—':v+'%')+'</b></div>'+
+    '<div class="subjects-page__course-menu '+(menu?'is-open':'')+'"><button onclick="BAUMAN_SUBJECTS_REF.selectCourse(\''+safe(c.key)+'\')">Mở môn</button><button onclick="BAUMAN_SUBJECTS_REF.editTeacher(\''+safe(c.key)+'\')">✎ Ghi chú giảng viên LOCAL_HUB</button>'+(c.custom?'<button class="is-danger" onclick="BAUMAN_SUBJECTS_REF.removeCustom(\''+safe(c.key)+'\')">Xóa khỏi LOCAL_HUB</button>':'')+'</div></div>'+
+    '<div class="subjects-page__course-progress"><span><i class="is-'+safe(c.progressTone||c.tone)+'" style="--value:'+(v===null?0:v)+'%"></i></span><b>'+(v===null?'—':v+'%')+'</b><small>'+safe(f.status==='STALE'?'Chưa đồng bộ · '+(f.asOf||'Chưa có thời điểm'):(f.status==='UNAVAILABLE'?'Chưa có dữ liệu':''))+'</small></div>'+
     '<div class="subjects-page__course-meta"><span><i>▤</i>'+safe(sessionLabel(c.subjectId))+'</span><span><i>▣</i><small>Buổi tiếp theo</small><b>'+safe(next)+'</b></span></div>'+
-    '<div class="subjects-page__course-actions"><button class="is-primary" onclick="BAUMAN_SUBJECTS_REF.openSubject(\''+safe(c.subjectId)+'\',\'study\')">▶ Vào môn</button><button onclick="BAUMAN_SUBJECTS_REF.openSubject(\''+safe(c.subjectId)+'\',\'docs\')">▧ Tài liệu</button><button onclick="BAUMAN_SUBJECTS_REF.openSubject(\''+safe(c.subjectId)+'\',\'tasks\')">◫ Bài tập</button></div>'+
+    '<div class="subjects-page__course-actions"><button class="is-primary" '+disabled+' onclick="BAUMAN_SUBJECTS_REF.openSubject(\''+safe(c.subjectId)+'\',\'study\')">▶ Vào môn</button><button '+disabled+' onclick="BAUMAN_SUBJECTS_REF.openSubject(\''+safe(c.subjectId)+'\',\'docs\')">▧ Tài liệu</button><button '+disabled+' onclick="BAUMAN_SUBJECTS_REF.openSubject(\''+safe(c.subjectId)+'\',\'tasks\')">◫ Bài tập</button>'+(disabled?'<small>Chưa có capability mở môn khả dụng.</small>':'')+'</div>'+
   '</article>';
 }
 function aiItems(){
@@ -394,9 +395,10 @@ function selfCheck(){
 }
 
 window.BAUMAN_SUBJECTS_REF={
+  catalogSummary:function(){var rows=courseRows();return {subjectCount:rows.filter(function(x){return !x.custom}).length,localCount:rows.filter(function(x){return x.custom}).length}},
   release:RELEASE,patch:patch,render:render,selfCheck:selfCheck,
   toggleTab:toggleTab,toggleFilter:toggleFilter,toggleMenu:toggleMenu,filterCourse:filterCourse,clearFilter:clearFilter,setSemester:setSemester,
-  openSubject:openSubject,openEditor:openEditor,selectCourse:selectCourse,openDeadline:openDeadline,toggleAI:toggleAI,shiftCalendar:shiftCalendar,
+  openSubject:openSubject,selectCourse:selectCourse,openDeadline:openDeadline,toggleAI:toggleAI,shiftCalendar:shiftCalendar,
   toggleNote:toggleNote,addNote:addNote,removeCustom:removeCustom,editTeacher:editTeacher,teacherFor:teacherFor,openAddCourse:openAddCourse,closeAddCourse:closeAddCourse,submitAddCourse:submitAddCourse,scrollCourses:scrollCourses
 };
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',patch,{once:true});else patch();

@@ -65,6 +65,12 @@ jobs:
       - name: Subjects reference static
         run: node tests/subjects-reference-v1-static.mjs
 
+      - name: Hub subject adapter and research workspace regression
+        run: |
+          node --check assets/js/hub-subject-adapter.js
+          node tests/hub-subject-adapter-unit.mjs
+          node tests/hub-research-workspace-unit.mjs
+
       - name: Python P1 forensic static
         run: node tests/python-p1-forensic-static.mjs
 

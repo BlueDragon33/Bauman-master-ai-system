@@ -28,9 +28,9 @@ assert.ok(js.includes('function topicState()'),'canonical research-topic project
 assert.ok(js.includes('function researchChecklistPanel()'),'canonical research checklist panel missing');
 assert.ok(js.includes('data-research-check="1"'),'canonical checklist evidence marker missing');
 assert.ok(js.includes('toggleCanonicalResearch'),'canonical checklist interaction missing');
-assert.ok(js.includes("return Array.isArray(v)?v.filter"),'persisted reference task/note filtering missing');
-assert.ok(js.includes("referenceIds=new Set(DEFAULT_NOTES"),'reference notes must be filtered from local state');
-assert.ok(js.includes("var referenceIds=new Set(REFERENCE_TASKS"),'reference tasks must be filtered from local state');
+assert.ok(js.includes("rows.filter(function(x){return x&&x.id&&!ids.has(x.id)}"),'migration must exclude known sample IDs');
+assert.ok(js.includes("legacy(NOTE_KEY,new Set(DEFAULT_NOTES"),'reference notes must be filtered during migration');
+assert.ok(js.includes("legacy(TASK_KEY,new Set(REFERENCE_TASKS"),'reference tasks must be filtered during migration');
 assert.ok(js.includes('Không dùng nhiệm vụ mẫu.'),'active Thesis summary must reject sample tasks');
 assert.ok(js.includes('Chưa có capability AI luận văn được xác nhận'),'AI panel must fail honestly when capability is unavailable');
 assert.ok(js.includes('Chưa có nguồn mốc chính thức được kết nối'),'official milestone panel must remain unavailable without a source');
@@ -54,4 +54,6 @@ assert.ok(css.includes('grid-template-columns:1fr 1.08fr'),'lower-left progress/
 assert.ok(js.includes("'+notes()+'</aside>'"),'notes must stay in the right rail');
 assert.ok(css.includes('@media(max-width:820px)'),'thesis responsive gate missing');
 
+assert.ok(js.includes('state')&&js.includes('researchWorkspace'),'workspace must be in canonical Hub state');
+assert.ok(js.includes('data-research-setup'),'empty setup state is required');
 console.log('THESIS_REFERENCE_V1_STATIC_PASS');

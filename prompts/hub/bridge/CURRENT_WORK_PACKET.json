@@ -1,0 +1,302 @@
+{
+  "schemaVersion": "1.0.0",
+  "packetId": "HUB-TRUTH-UX-CLEANUP-002",
+  "revision": 3,
+  "status": "IN_CODEX",
+  "userIntent": "Continue Bauman Hub continuously in Chat control plane, skip Codex execution for now, and prepare one complete Hub-only implementation packet without touching subject prompts or subject-app internals.",
+  "objective": "Clean learner-facing sample/mock truth from Subjects and Research/Thesis, preserve Schedule as Hub-owned canonical planning, distinguish unknown/stale/current subject summaries, converge the five primary pages onto one presentation owner each, and migrate Hub-side subject integration toward registered descriptor/capability/launch adapters while preserving legacy compatibility behind the adapter.",
+  "targetArea": "Bauman Hub five-page runtime truth, presentation ownership, and Hub-side subject integration boundary",
+  "baselineSha": "b6df392c5ab935bed4924b07b9bbe2e95efb2c8e",
+  "allowedPaths": [
+    "index.html",
+    "assets/js/main.js",
+    "assets/js/hub-safe-shell.js",
+    "assets/js/hub-premium-v2.js",
+    "assets/js/hub-overview-search-v2.js",
+    "assets/js/hub-roadmap-comprehensive-v2.js",
+    "assets/js/hub-primary-pages-v6.js",
+    "assets/js/subjects-reference-v1.js",
+    "assets/js/schedule-reference-v1.js",
+    "assets/js/thesis-reference-v1.js",
+    "assets/js/hub-subject-*.js",
+    "assets/css/hub-*.css",
+    "assets/css/subjects-reference-v1.css",
+    "assets/css/schedule-reference-v1.css",
+    "assets/css/thesis-reference-v1.css",
+    "platform/ui/**",
+    "tests/*hub*",
+    "tests/subjects-reference-v1-*.mjs",
+    "tests/schedule-reference-*.mjs",
+    "tests/thesis-reference-*.mjs",
+    ".github/workflows/future-interface-system-ci.yml",
+    ".github/workflows/development-fast-ci.yml",
+    "prompts/hub/**"
+  ],
+  "forbiddenPaths": [
+    "prompts/subjects/**",
+    "subjects/**",
+    "subject-app private runtime/database/content/assessment/mastery internals",
+    "subject-app localStorage/IndexedDB/private DOM inspection",
+    "production deployment secrets or credentials",
+    "control-service mutations unrelated to this Hub learner UX cleanup"
+  ],
+  "requiredContracts": [
+    "prompts/CONSTITUTION.md",
+    "prompts/hub/HUB_SCOPE_BOUNDARY.md",
+    "prompts/hub/api/HUB_SUBAPP_API_BOUNDARY.md",
+    "prompts/hub/chat/HUB_C2_PRIMARY_PAGE_UX_CONTRACT.md",
+    "prompts/hub/chat/HUB_CHAT_AUDIT_2026-10-02.md",
+    "control/application-management.contract.json",
+    "control/study-plan-coverage.json",
+    "docs/UI_CONTRAST_CONSTITUTION.md"
+  ],
+  "acceptanceCriteria": [
+    "Implementation branch is created fresh from current main; because prompts/hub/** is absent on main, only the canonical Hub prompt-system files required for this packet are transplanted from work/curriculum-prompt-system-v1. The whole old branch is never merged/rebased/cherry-picked.",
+    "Start from current main baseline b6df392c5ab935bed4924b07b9bbe2e95efb2c8e or report and reconcile a newer main before editing.",
+    "Normal Subjects runtime no longer presents fixed 2025 semester/calendar/deadline/note/session/teacher/progress fixtures as current learner facts.",
+    "Subjects cards are built from Hub-owned registered subject descriptors and approved normalized summaries; missing external summary data renders as unavailable rather than fabricated zero/progress.",
+    "Normal learner Subjects UI does not expose direct openSubjectEditor/editorPath authoring access unless a registered explicit authoring capability exists.",
+    "Subject launch is routed through a Hub-side launch adapter/descriptor abstraction; legacy mainPath may exist only behind the compatibility adapter and is not consumed directly by page presentation.",
+    "Hub normalized subject read model distinguishes CURRENT, STALE and UNAVAILABLE and retains provenance/freshness metadata when available.",
+    "Home and Roadmap do not coerce missing subject progress into real 0%; aggregates report partial data coverage and average only approved known values.",
+    "Roadmap curriculum/stage/course data remains Hub-owned and compatible with current study-plan coverage; no subject internals are used.",
+    "Schedule day/week/month, priorities, workload and notes remain derived from Hub-owned schedule/local Hub state and do not regress.",
+    "Research/Thesis no longer defaults to March/April 2025 tasks, fixed 65% progress, static chapter percentages, sample heatmap, canned notes or canned personalized AI items as live state.",
+    "Unconfigured Research/Thesis renders an explicit empty/setup state and uses Hub-owned research workspace data once configured.",
+    "Exactly five primary learner routes remain visible: home, roadmap, subjects, schedule and research; no duplicate primary navigation is introduced.",
+    "Each primary route has one presentation owner; historical compatibility hooks may remain but must not compete by re-rendering the same route after the owner.",
+    "Responsive behavior remains usable at desktop 1366/1440/1920, tablet 744/768/820/1024 and phone 375/390/393/430 widths.",
+    "Keyboard focus, readable shared typography, contrast semantics and important touch targets remain compliant with the shared UI constitution.",
+    "No file under prompts/subjects/** or subjects/** is read as implementation input, modified, or required for acceptance.",
+    "No new concrete subject endpoint is invented; only registered logical capabilities and existing approved transports/contracts are used.",
+    "Current Device Gate/auth/PWA/offline behavior is not weakened by this learner Hub cleanup.",
+    "Execution result records exact before/after SHA, changed paths, tests, screenshot/browser evidence summary, acceptance matrix and boundary compliance.",
+    "No production publish occurs until exact implementation SHA passes Chat review."
+  ],
+  "testPlan": [
+    "Verify prompts/hub/** exists on the implementation branch after the minimal transplant and all referenced Hub entry/bridge/schema files resolve without reading prompts/subjects/**.",
+    "Static scan Subjects and Research/Thesis learner runtime for fixed 2025 fixture truth, fallbackProgress and other demo/reference defaults that can render as current facts.",
+    "Static/browser test that missing progress produces an unavailable state and is not rendered as 0% unless explicit evidence says 0.",
+    "Static/browser test that stale summary renders stale provenance/freshness state.",
+    "Static test that Subjects learner presentation does not call openSubjectEditor or consume editorPath directly.",
+    "Static/browser test for launch adapter behavior including available and unavailable subject launch states.",
+    "Roadmap test for partial progress coverage and no unknown-as-zero aggregation.",
+    "Schedule regression tests for day/week/month, planning controls, notes, priorities, upcoming items and subject launch handoff.",
+    "Research/Thesis tests for empty first-run state, Hub-owned task/milestone/note persistence, and absence of fixed mock progress.",
+    "Five-route navigation browser regression.",
+    "Responsive browser/screenshots at required desktop/tablet/phone widths with no horizontal page overflow or overlapping primary controls.",
+    "Accessibility checks for keyboard reachability, visible focus, text labels and truth-state text independent of color.",
+    "Run existing future-interface-system, development-fast, subjects-reference, schedule-reference and thesis-reference gates affected by the diff.",
+    "Diff-scope check proving zero changes under prompts/subjects/** and subjects/**.",
+    "Return exact HEAD SHA and explicit statement of Device Gate/auth/PWA/offline regression status."
+  ],
+  "releasePolicy": "IMPLEMENTATION_MAY_BE_PREPARED_AND_TESTED_ON_A_FRESH_BRANCH_FROM_CURRENT_MAIN; DO_NOT_MERGE_OR_PUBLISH UNTIL NORMAL CHAT REVIEWS AND ACCEPTS THE EXACT HEAD SHA. USER HAS CURRENTLY DEFERRED CODEX EXECUTION.",
+  "rollbackNotes": "Keep the change additive and adapter-first. If regression occurs, revert the Hub cleanup commits only; preserve current main curriculum/control changes and all subject-app state.",
+  "externalBlockers": [],
+  "chatPlanCompleted": [
+    "HUB-C1",
+    "HUB-C2",
+    "HUB-C3",
+    "HUB-C4",
+    "HUB-C5",
+    "HUB-C6",
+    "HUB-C7",
+    "HUB-C8",
+    "HUB-C9"
+  ],
+  "routeOwners": {
+    "home": {
+      "owner": "assets/js/hub-safe-shell.js",
+      "decorators": [
+        "assets/js/hub-overview-search-v2.js",
+        "assets/js/hub-reference-precision-v5.js"
+      ],
+      "rule": "Home truth and progress states are owned by the dashboard owner; decorators may not invent or overwrite academic truth."
+    },
+    "roadmap": {
+      "owner": "assets/js/hub-roadmap-comprehensive-v2.js",
+      "decorators": [
+        "assets/js/hub-primary-pages-v6.js"
+      ],
+      "rule": "Roadmap owns stage/course projection and partial progress aggregation."
+    },
+    "subjects": {
+      "owner": "assets/js/subjects-reference-v1.js",
+      "decorators": [
+        "assets/js/hub-primary-pages-v6.js",
+        "assets/js/hub-overview-search-v2.js"
+      ],
+      "rule": "Subjects owner renders descriptor/read-model truth; decorators may only add presentation chrome or search/capability summaries."
+    },
+    "schedule": {
+      "owner": "assets/js/schedule-reference-v1.js",
+      "decorators": [
+        "assets/js/hub-primary-pages-v6.js"
+      ],
+      "rule": "Schedule remains the canonical Hub planning owner."
+    },
+    "research": {
+      "owner": "assets/js/thesis-reference-v1.js",
+      "decorators": [
+        "assets/js/hub-primary-pages-v6.js"
+      ],
+      "rule": "Research owner renders Hub research workspace state; decorators may not compute fake completion."
+    }
+  },
+  "knownDefects": [
+    {
+      "id": "HUB-DATA-001",
+      "path": "assets/js/subjects-reference-v1.js",
+      "evidence": "17 occurrences of 2025 and 15 fallbackProgress references on current main scan",
+      "requiredFix": "Replace learner-facing fixtures with Hub descriptor/schedule/read-model data or explicit unavailable state."
+    },
+    {
+      "id": "HUB-DATA-002",
+      "path": "assets/js/thesis-reference-v1.js",
+      "evidence": "29 occurrences of 2025 and fixed 65% presentation values on current main scan",
+      "requiredFix": "Replace mock first-run plan/progress with an explicit unconfigured Hub research workspace."
+    },
+    {
+      "id": "HUB-DATA-003",
+      "path": "assets/js/hub-roadmap-comprehensive-v2.js",
+      "evidence": "subject progress helper coerces missing progress to zero",
+      "requiredFix": "Use known/unknown progress records and coverage-aware aggregation."
+    },
+    {
+      "id": "HUB-DATA-004",
+      "path": "assets/js/hub-safe-shell.js",
+      "evidence": "dashboard progress helper clamps missing values to numeric zero and overall averages all registered subjects",
+      "requiredFix": "Render unavailable/stale/current truth and compute aggregate only from known values with coverage."
+    },
+    {
+      "id": "HUB-DATA-005",
+      "path": "assets/js/hub-overview-search-v2.js",
+      "evidence": "home summary coerces missing progress to zero",
+      "requiredFix": "Use the same Hub truth-state helper as Home owner."
+    },
+    {
+      "id": "HUB-BOUNDARY-001",
+      "path": "assets/js/main.js",
+      "evidence": "mainPath/editorPath remain in state and openSubjectEditor remains callable",
+      "requiredFix": "Introduce Hub launch/read adapters; keep legacy paths behind compatibility adapter; remove learner-page direct editor action."
+    },
+    {
+      "id": "HUB-PRESENT-001",
+      "path": "assets/js/hub-primary-pages-v6.js",
+      "evidence": "decorator computes subject progress with numeric fallback and research checklist percent from rendered checkboxes",
+      "requiredFix": "Decorate only using normalized owner truth-state; do not create independent academic truth."
+    }
+  ],
+  "truthStateModel": {
+    "states": [
+      "CURRENT",
+      "STALE",
+      "UNAVAILABLE",
+      "LOCAL_HUB"
+    ],
+    "unknownIsZero": false,
+    "aggregationRule": "Aggregate only numeric values with approved provenance; expose knownCount/totalCount coverage and never treat unavailable subjects as zero.",
+    "staleRule": "Last-known external summary may display only with stale/freshness indication when allowed by provenance/TTL.",
+    "localRule": "Hub notes/plans are clearly local Hub state and never presented as external subject evidence."
+  },
+  "implementationPhases": [
+    {
+      "phase": "C0",
+      "name": "Hub Prompt System bootstrap onto fresh current-main branch",
+      "work": [
+        "create fresh branch from current main",
+        "transplant only prompts/hub/** control-plane files needed for this packet",
+        "preserve prompts/CONSTITUTION.md from main",
+        "do not bring prompts/subjects/** or unrelated prompt archives",
+        "validate Chat/Codex entries and bridge schemas before runtime edits"
+      ]
+    },
+    {
+      "phase": "C5",
+      "name": "Subjects truth cleanup",
+      "work": [
+        "derive cards from Hub registered descriptors",
+        "derive next session from Hub schedule",
+        "remove live use of 2025 fixtures/fallback progress/example teachers",
+        "remove learner direct editor action",
+        "derive calendar/deadline/workload from Hub data or show unavailable"
+      ]
+    },
+    {
+      "phase": "C6",
+      "name": "Research/Thesis workspace truth cleanup",
+      "work": [
+        "define Hub-owned researchWorkspace state",
+        "render explicit unconfigured first-run state",
+        "persist user tasks/milestones/notes/attachments as Hub data",
+        "derive chapter/work-package progress only from configured state",
+        "remove mock 2025 plan and fixed percentages"
+      ]
+    },
+    {
+      "phase": "C7",
+      "name": "Shared subject adapter and progress truth model",
+      "work": [
+        "add normalized subject read model helper",
+        "add launch adapter wrapping legacy path transport",
+        "normalize current/stale/unavailable",
+        "make Home/Roadmap/Subjects consume shared truth",
+        "hide legacy transport details from page renderers"
+      ]
+    },
+    {
+      "phase": "C8",
+      "name": "Presentation owner convergence",
+      "work": [
+        "keep one renderer per five primary routes",
+        "restrict V6/overview/reference scripts to decoration/search only",
+        "remove duplicate truth calculations in decorators",
+        "preserve shared BUI shell and responsive contract"
+      ]
+    },
+    {
+      "phase": "C9",
+      "name": "QA hardening",
+      "work": [
+        "truth-state static/browser tests",
+        "five-route regression",
+        "schedule regression",
+        "responsive screenshots",
+        "accessibility checks",
+        "forbidden-path diff check",
+        "Device Gate/auth/PWA/offline regression statement"
+      ]
+    }
+  ],
+  "bootstrapPolicy": {
+    "sourcePromptBranch": "work/curriculum-prompt-system-v1",
+    "implementationBase": "main",
+    "implementationBaseSha": "b6df392c5ab935bed4924b07b9bbe2e95efb2c8e",
+    "rule": "Create a fresh implementation branch from current main. Copy only prompts/hub/** required for Hub control/bridge plus minimal Hub registry/entry references if needed. Never merge/rebase/cherry-pick the whole prompt-system branch and never copy prompts/subjects/**.",
+    "mainPromptState": "prompts/CONSTITUTION.md exists on main, but prompts/hub/** does not yet exist on main."
+  },
+  "workClass": "B",
+  "dispatchReason": "Coupled Hub runtime cleanup across multiple page owners, normalized subject adapter/read-model architecture, compatibility handling, responsive/browser verification, and repeated test/fix loops materially benefit from Codex.",
+  "executionPlane": "CODEX",
+  "chatResponsibilities": [
+    "Preserve architecture and truth-state invariants",
+    "Review exact Codex evidence",
+    "Decide ACCEPT/REVISE/BLOCKED"
+  ],
+  "executionAuthorization": {
+    "source": "Human user instruction in current Codex chat",
+    "class": "B",
+    "executionApproved": true,
+    "date": "2026-10-06",
+    "mergeMain": false,
+    "publishProduction": false
+  },
+  "reconciliation": {
+    "beforeSha": "ddcc314d0cbbcb61026a5be21fb425ff0f614ba5",
+    "packetBaselineIsAncestor": true,
+    "mainAlreadyContains": "HUB-TRUTH-20261003-001 truth cleanup; preserve it",
+    "bootstrapSourceSha": "e607ca350e50d12bc130377966b143bf9325ef9d",
+    "bootstrapPolicyApplied": "Only missing Hub bridge/Codex/entry/schema/UX/audit files transplanted; existing main Constitution and Hub prompt/state authority preserved",
+    "oldBranchMerged": false
+  }
+}

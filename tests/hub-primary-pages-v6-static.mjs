@@ -35,7 +35,9 @@ assert.ok(!search.includes('setTimeout(install,1200)'),'Overview/search still pe
 assert.ok(!search.includes('setTimeout(compactHome,0)'),'Home observer still defers layout mutation to a later paint');
 assert.ok(!search.includes('setTimeout(compactSubjectCapability,0)'),'Subject capability observer still defers layout mutation to a later paint');
 assert.ok(pages.includes("truth?truth.progress"),'Subjects V6 hero must preserve progress truth state');
-assert.ok(pages.includes("input[data-research-check=\"1\"]"),'Research V6 metrics must count only canonical checklist evidence');
+assert.ok(pages.includes('BAUMAN_THESIS_REF?.workspaceSummary'),'Research chrome must consume owner summary');
+assert.ok(!pages.includes('checks.filter'),'Research chrome may not calculate checklist truth from DOM');
+assert.ok(!pages.includes('BAUMAN_HUB_ROADMAP_V4?.render?.()'),'Roadmap decorator may not rerender owner');
 assert.ok(pages.includes("checklist LOCAL_HUB"),'Research checklist must be labeled LOCAL_HUB');
 
 console.log('HUB_PRIMARY_PAGES_V6_STATIC_PASS');

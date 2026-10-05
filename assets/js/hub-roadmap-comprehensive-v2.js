@@ -10,7 +10,7 @@
   const qa=(s,r=document)=>[...r.querySelectorAll(s)];
   const D=()=>window.BAUMAN_DATA||{stages:[],semesters:[],subjects:[],courses:[]};
   const S=()=>window.state||{subjects:{},progress:{},schedule:{entries:{}},reviewQueue:[]};
-  const T=()=>window.BAUMAN_HUB_TRUTH||null;
+  const T=()=>(window.BAUMAN_HUB_SUBJECTS||window.BAUMAN_HUB_TRUTH)||null;
   const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
   const clamp=v=>Math.max(0,Math.min(100,Math.round(Number(v))));
   const avg=xs=>{const known=(xs||[]).filter(v=>Number.isFinite(v));return known.length?Math.round(known.reduce((a,b)=>a+b,0)/known.length):null};
@@ -107,7 +107,7 @@
           '<div><h3>'+esc(p.title)+'</h3><p>'+esc(p.subtitle)+'</p><span class="hub-rm-stage-period">'+esc(phasePeriod(p))+'</span></div>'+
           (current?'<span class="hub-rm-stage-check">✓</span>':'')+
         '</div>'+
-        '<div class="hub-rm-stage-progress" data-truth-status="'+esc(progress.status)+'"><i><u style="width:'+(pct===null?0:pct)+'%"></u></i><b>'+fieldLabel(progress)+'</b></div>'+
+        '<div class="hub-rm-stage-progress" data-truth-status="'+esc(progress.status)+'"><i><u style="width:'+(pct===null?0:pct)+'%"></u></i><b>'+fieldLabel(progress)+'</b><small>'+esc(progress.knownCount+'/'+progress.totalCount+' môn có dữ liệu'+(progress.status==='STALE'?' · Chưa đồng bộ / chưa đầy đủ':''))+'</small></div>'+
         '<small>Môn học chính trong giai đoạn:</small>'+
         '<div class="hub-rm-stage-subjects">'+phaseSubjectChips(p)+'</div>'+
         (i<PHASES.length-1?'<span class="hub-rm-stage-arrow">›</span>':'')+

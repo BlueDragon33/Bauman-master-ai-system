@@ -15,7 +15,7 @@ Read only in this order unless evidence requires more:
 4. prompts/hub/api/HUB_SUBAPP_API_BOUNDARY.md
 5. this file
 6. prompts/hub/HUB_SHARED_STATE.json
-7. CURRENT_WORK_PACKET.json / CURRENT_EXECUTION_RESULT.json and direct owner/runtime/tests only when required.
+7. prompts/hub/bridge/CURRENT_WORK_PACKET.json / prompts/hub/bridge/CURRENT_EXECUTION_RESULT.json and direct owner/runtime/tests only when required.
 
 Do not scan the whole repository by habit.
 

@@ -227,7 +227,7 @@ function upcoming(){
   return '<section class="schedule-ref__panel schedule-ref__upcoming"><div class="schedule-ref__panel-head"><b>Sắp tới</b><button type="button" onclick="BAUMAN_SCHEDULE_REF.toggleUpcoming()">'+(ui.upcomingExpanded?'Thu gọn':'Xem tất cả →')+'</button></div><div class="schedule-ref__upcoming-list">'+(list.length?list.map(function(x){var k=priorityKey(x.entry),m=priorityMeta(k);return '<button type="button" class="is-priority-'+k+'" data-priority="'+k+'" onclick="BAUMAN_SCHEDULE_REF.openSlot(\''+esc(x.date)+'\',\''+esc(x.slotId)+'\')"><span class="schedule-ref__upcoming-icon is-priority-'+k+'">▣</span><div><b>'+esc(subjectName(x.entry.subjectId))+'</b><small>'+esc(x.entry.learningItem||x.entry.label||'Học theo lịch')+'</small></div><em title="'+esc(m.label)+'">'+short(x.dt)+'</em></button>'}).join(''):'<p>Không có phiên học sắp tới trong phạm vi hiện tại.</p>')+'</div></section>';
 }
 function progressPanel(){
-  var truth=window.BAUMAN_HUB_TRUTH;
+  var truth=(window.BAUMAN_HUB_SUBJECTS||window.BAUMAN_HUB_TRUTH);
   var rows=Object.values(subjects()).map(function(s){
     var f=truth?truth.progress((typeof state!=='undefined'&&state.progress)||{},s.id,{source:'hub.state.progress'}):null;
     if(!f){

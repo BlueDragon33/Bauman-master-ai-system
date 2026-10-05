@@ -5,6 +5,13 @@ on:
     branches: [main]
     paths:
       - "platform/ui/**"
+      - "assets/js/hub-*.js"
+      - "assets/css/hub-*.css"
+      - "assets/js/subjects-reference-v1.js"
+      - "assets/js/thesis-reference-v1.js"
+      - "tests/hub-truth-ux-cleanup-browser.mjs"
+      - "tests/hub-subject-adapter-unit.mjs"
+      - "tests/hub-research-workspace-unit.mjs"
       - "index.html"
       - "subjects/**/*.html"
       - "tests/future-interface-system-*.mjs"
@@ -49,6 +56,14 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/future-interface-system
         run: node tests/future-interface-system-browser.mjs
+      - name: Hub truth UX packet acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/future-interface-system/hub-truth-ux
+        run: |
+          node tests/hub-subject-adapter-unit.mjs
+          node tests/hub-research-workspace-unit.mjs
+          node tests/hub-truth-ux-cleanup-browser.mjs
       - name: Upload visual evidence
         if: always()
         uses: actions/upload-artifact@v4

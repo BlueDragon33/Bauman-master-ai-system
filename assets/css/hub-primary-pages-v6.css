@@ -32,6 +32,16 @@ body[data-hub-primary-pages="v6"] .page.active{min-width:0;animation:none!import
 .hub-v6-kpi b{display:block;font-size:21px;line-height:1.1;color:#eef5fb}
 .hub-v6-kpi small{display:block;margin-top:5px;color:#8091a5;font-size:10px;text-transform:uppercase;letter-spacing:.08em}
 
+/* Shared dark chrome uses the media semantics even inside light route workspaces. */
+body[data-hub-primary-pages="v6"] .hub-v6-hero :is(h2,b){color:var(--bui-text-on-media)!important}
+body[data-hub-primary-pages="v6"] .hub-v6-hero :is(p,small){color:var(--bui-text-on-media-secondary)!important}
+body[data-hub-primary-pages="v6"] .hub-v6-hero p{font-size:var(--hub-readable-body,16px)}
+body[data-hub-primary-pages="v6"] .hub-v6-kpi small{font-size:var(--hub-readable-small,14px)}
+body[data-hub-primary-pages="v6"] #page-home .hub-safe-overall :is(p,b){color:var(--bui-text-on-media)!important}
+body[data-hub-primary-pages="v6"] :is(#page-subjects,#page-research) :is(.subjects-page__course-actions,.subjects-page__header-actions,.thesis-page__header-actions,.thesis-page__panel-head) button,
+body[data-hub-primary-pages="v6"] [data-research-configure]{min-height:44px!important}
+body[data-hub-primary-pages="v6"] :is(#page-subjects,#page-research) :is(button,a,input,select):focus-visible{outline:3px solid var(--bui-color-primary);outline-offset:3px}
+
 /* Subjects */
 body[data-hub-primary-pages="v6"] #page-subjects .canva-subjects-page{display:flex;flex-direction:column;gap:18px}
 body[data-hub-primary-pages="v6"] #page-subjects .subject-stage-toolbar{
@@ -188,4 +198,10 @@ body[data-hub-primary-pages="v6"] .page>.hub-v6-hero+*:first-of-type{margin-top:
 @media(max-width:560px){
   body[data-hub-primary-pages="v6"] #page-subjects .subject-list{grid-template-columns:1fr}
   .hub-v6-kpi{min-width:96px}
+}
+@media(max-width:560px){
+  body[data-hub-primary-pages="v6"] .hub-v6-kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  body[data-hub-primary-pages="v6"] .hub-v6-kpi{min-width:0;padding:10px}
+  body[data-hub-primary-pages="v6"] .hub-v6-hero p{display:none}
+  body[data-hub-primary-pages="v6"] .hub-v6-kpi small{overflow-wrap:anywhere}
 }

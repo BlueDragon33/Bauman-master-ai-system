@@ -1,0 +1,36 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+const source=fs.readFileSync('assets/js/thesis-reference-v1.js','utf8');
+function runtime(state={},stored={}){
+ const context={window:{},state,RESEARCH_TOPICS:{ugv:{title:'Hub topic',tasks:['Canonical task']}},Date,URL,Set,save:()=>{},document:{readyState:'loading',addEventListener:()=>{},getElementById:()=>null},localStorage:{getItem:key=>stored[key]||null,setItem:(key,v)=>stored[key]=v}};
+ vm.createContext(context);vm.runInContext(source,context);return context;
+}
+const fresh=runtime();
+assert.equal(fresh.window.BAUMAN_THESIS_REF.workspaceSummary().pct,null,'unconfigured reference library is not personal progress');
+assert.equal(fresh.state.researchWorkspace.configured,false);
+fresh.window.BAUMAN_THESIS_REF.configureWorkspace();
+assert.equal(fresh.state.researchWorkspace.configured,true);
+const stored={'bauman_thesis_reference_tasks_v1':JSON.stringify([{id:'t01',title:'Sample'},{id:'mine',title:'User work',day:2}]),'bauman_thesis_reference_notes_v1':JSON.stringify([{id:'n1',text:'Sample'},{id:'local-note',text:'My note'}])};
+const migrated=runtime({},stored);migrated.window.BAUMAN_THESIS_REF.workspaceSummary();
+assert.equal(migrated.state.researchWorkspace.tasks.length,1);
+assert.equal(migrated.state.researchWorkspace.tasks[0].id,'mine');
+assert.equal(migrated.state.researchWorkspace.tasks[0].date,null,'migration may not invent a current date for an undated task');
+assert.equal(migrated.state.researchWorkspace.notes[0].id,'local-note');
+assert.equal(JSON.parse(stored.bauman_thesis_reference_tasks_v1).length,2,'legacy originals remain intact');
+const partial=runtime({researchWorkspace:{version:1,configured:true,topicId:'ugv'}});
+assert.doesNotThrow(()=>partial.window.BAUMAN_THESIS_REF.workspaceSummary(),'partially restored workspace must normalize missing collections');
+assert.equal(partial.state.researchWorkspace.tasks.length,0);
+const future=runtime({researchWorkspace:{version:2,configured:true,tasks:[{id:'new',title:'Future state'}]}});
+future.window.BAUMAN_THESIS_REF.workspaceSummary();
+assert.equal(future.state.researchWorkspace.version,2,'unsupported future version must be preserved');
+future.window.BAUMAN_THESIS_REF.configureWorkspace();
+assert.equal(future.state.researchWorkspace.tasks[0].id,'new','unsupported state is read-only');
+const malicious=runtime({researchWorkspace:{version:1,configured:true,topicId:'ugv',attachments:[{id:'link',title:'Unsafe link',url:'javascript:alert(1)'}]}});
+const host={dataset:{},innerHTML:''};malicious.document.getElementById=id=>id==='page-research'?host:null;malicious.document.body={dataset:{}};
+malicious.window.BAUMAN_THESIS_REF.render();
+assert.ok(!host.innerHTML.includes('href="javascript:'),'restored attachment URLs may not execute script');
+const restored=runtime({researchTopic:'ugv',researchWorkspace:{version:1,configured:true,topicId:'usv'}});
+restored.RESEARCH_TOPICS.usv={title:'USV Hub topic',tasks:['A','B']};
+assert.equal(restored.window.BAUMAN_THESIS_REF.workspaceSummary().total,2,'restored workspace topic owns the checklist');
+console.log('HUB_RESEARCH_WORKSPACE_UNIT_PASS');

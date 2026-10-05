@@ -30,16 +30,17 @@
     const stage=s.subjectStage||'prepare';
     const subjectCards=qa('.subject-card',host);
     const courseCards=qa('.subject-course-list .course',host);
-    const truth=window.BAUMAN_HUB_TRUTH;
+    const catalog=window.BAUMAN_SUBJECTS_REF?.catalogSummary?.();
+    const truth=(window.BAUMAN_HUB_SUBJECTS||window.BAUMAN_HUB_TRUTH);
     const progress=truth?truth.progress(s.progress||{},current.id,{source:'hub.state.progress'}):{status:Object.prototype.hasOwnProperty.call(s.progress||{},current.id)?'CURRENT':'UNAVAILABLE',value:Object.prototype.hasOwnProperty.call(s.progress||{},current.id)?pct(s.progress[current.id]):null};
     prependHero(host,hero({
       eyebrow:'Learning workspace',
       title:'Môn học & năng lực',
       description:'Chọn đúng môn theo giai đoạn, nhìn nhiệm vụ gần nhất và vào thẳng không gian học tập mà không qua thêm lớp điều hướng.',
       kpis:[
-        {value:subjectCards.length,label:'môn ở giai đoạn'},
-        {value:courseCards.length,label:'khối nội dung đang thấy'},
-        {value:Number.isFinite(progress.value)?`${progress.value}%`:'—',label:progress.status==='UNAVAILABLE'?'chưa có dữ liệu tiến độ':'tiến độ môn chọn'},
+        {value:catalog?.subjectCount??subjectCards.length,label:'môn ở giai đoạn'},
+        {value:catalog?.localCount??courseCards.length,label:catalog?'mục LOCAL_HUB':'khối nội dung đang thấy'},
+        {value:Number.isFinite(progress.value)?`${progress.value}%`:'—',label:progress.status==='UNAVAILABLE'?'chưa có dữ liệu tiến độ':progress.status==='STALE'?'chưa đồng bộ':'tiến độ môn chọn'},
         {value:String(stage).toUpperCase(),label:'giai đoạn'}
       ]
     }));
@@ -72,18 +73,15 @@
   function decorateResearch(){
     const host=q('#page-research .thesis-page')||q('#page-research .canva-research-page');
     if(!host)return false;
-    const checks=qa('input[data-research-check="1"]',host);
-    const done=checks.filter(x=>x.checked).length;
-    const progress=checks.length?Math.round(done*100/checks.length):null;
-    const files=qa('.file-pill',host).length;
-    const topic=S().researchTopic||'ugv';
+    const summary=window.BAUMAN_THESIS_REF?.workspaceSummary?.()||{done:0,total:0,pct:null,files:0,topic:null};
+    const done=summary.done,progress=summary.pct,files=summary.files,topic=summary.topic||'Chưa thiết lập';
     prependHero(host,hero({
       eyebrow:'НИР · ВКР workspace',
       title:'Nghiên cứu & luận văn',
       description:'Theo dõi câu hỏi nghiên cứu, dữ liệu, phần cứng, rủi ro và mốc НИР → ВКР trong cùng một không gian làm việc.',
       kpis:[
-        {value:`${done}/${checks.length}`,label:'việc hoàn thành'},
-        {value:Number.isFinite(progress)?`${progress}%`:'—',label:checks.length?'checklist LOCAL_HUB':'chưa có checklist LOCAL_HUB'},
+        {value:`${done}/${summary.total}`,label:'checklist LOCAL_HUB'},
+        {value:Number.isFinite(progress)?`${progress}%`:'—',label:summary.total?'checklist LOCAL_HUB':'chưa có checklist LOCAL_HUB'},
         {value:files,label:'tệp đính kèm'},
         {value:String(topic).toUpperCase(),label:'hướng nghiên cứu'}
       ]
@@ -100,7 +98,6 @@
       window.BAUMAN_HUB_REFERENCE_V5?.apply?.();
       document.body.dataset.hubPrimaryPage='home';
     }else if(pageId==='roadmap'){
-      window.BAUMAN_HUB_ROADMAP_V4?.render?.();
       window.BAUMAN_HUB_REFERENCE_V5?.apply?.();
       document.body.dataset.hubPrimaryPage='roadmap';
     }else if(pageId==='subjects')decorateSubjects();

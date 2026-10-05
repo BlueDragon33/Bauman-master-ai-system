@@ -10,7 +10,7 @@ const safe=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'
 const S=()=>typeof state!=='undefined'&&state?state:{};
 const D=()=>typeof DATA!=='undefined'&&DATA?DATA:(window.BAUMAN_DATA||{});
 const A=()=>typeof app!=='undefined'?app:null;
-const T=()=>window.BAUMAN_HUB_TRUTH||null;
+const T=()=>(window.BAUMAN_HUB_SUBJECTS||window.BAUMAN_HUB_TRUTH)||null;
 const saveState=()=>{try{if(typeof save==='function')save()}catch{}};
 const closeSearch=()=>{try{if(typeof closeModal==='function')closeModal()}catch{}};
 const normalize=text=>String(text??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d').replace(/Đ/g,'D').toLowerCase().replace(/[^a-z0-9\u0400-\u04ff]+/g,' ').trim();
