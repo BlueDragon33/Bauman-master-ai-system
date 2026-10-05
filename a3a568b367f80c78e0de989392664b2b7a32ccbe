@@ -1,0 +1,132 @@
+{
+  "packetId": "HUB-TRUTH-UX-CLEANUP-002",
+  "status": "CODEX_DONE",
+  "beforeSha": "68024789d38f5c1f35d74fe818ad117125feb43f",
+  "afterSha": "a3a568b367f80c78e0de989392664b2b7a32ccbe",
+  "finalReviewHead": "a3a568b367f80c78e0de989392664b2b7a32ccbe",
+  "testedRuntimeHead": "bf9b9e1f4d5ab97f73caf6ce43642aa27ae8b02b",
+  "runtimeRegression": {
+    "head": "bf9b9e1f4d5ab97f73caf6ce43642aa27ae8b02b",
+    "testsPassed": 19,
+    "summary": "artifacts/hub-packet-verification/runtime-head-summary.json"
+  },
+  "runtimeAndTestsByteIdentical": true,
+  "metadataOnlyPaths": [
+    "prompts/hub/HUB_SHARED_STATE.json",
+    "prompts/hub/bridge/CURRENT_EXECUTION_RESULT.json",
+    "prompts/hub/bridge/CURRENT_WORK_PACKET.json",
+    "prompts/hub/bridge/IMPLEMENTATION_PLAN.md"
+  ],
+  "finalHeadChecks": [
+    {
+      "command": "node tests/hub-packet-verify.mjs --browser",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-packet-verification/final-head-full-regression.log"
+    }
+  ],
+  "staticAndUnitTests": [
+    {
+      "command": "node tests/hub-prompt-boundary-static.mjs",
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "command": "node tests/hub-subject-adapter-unit.mjs",
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "command": "node tests/hub-research-workspace-unit.mjs",
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "command": "node tests/hub-data-truth-static.mjs",
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "command": "node tests/subjects-reference-v1-static.mjs",
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "command": "node tests/thesis-reference-v1-static.mjs",
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "command": "node tests/schedule-reference-v1-static.mjs",
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "command": "node tests/hub-primary-pages-v6-static.mjs",
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "command": "node tests/hub-readable-typography-v1-static.mjs",
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "command": "node scripts/runtime-device-gate-regression.mjs",
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "command": "node tests/runtime-access-mode-static.mjs",
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "command": "node tests/runtime-access-mode-behavior.mjs",
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "command": "node tests/hub-data-truth-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "command": "node tests/subjects-reference-v1-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "command": "node tests/thesis-reference-v1-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "command": "node tests/schedule-reference-v1-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "command": "node tests/hub-readable-typography-v1-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "command": "node tests/hub-premium-responsive-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS"
+    },
+    {
+      "command": "node tests/hub-truth-ux-cleanup-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS"
+    }
+  ],
+  "routeViewportChecks": 55,
+  "browserSummary": "artifacts/hub-truth-ux-cleanup/summary.json",
+  "forbiddenPathChanges": [],
+  "releaseState": "TESTED_NOT_MERGED_NOT_DEPLOYED_PENDING_CHAT_REVIEW",
+  "productionPublished": false,
+  "mainMerged": false,
+  "workingTreeClean": true
+}
