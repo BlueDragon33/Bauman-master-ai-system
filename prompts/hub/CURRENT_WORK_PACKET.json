@@ -1,7 +1,7 @@
 {
   "packetId": "HUB-TRUTH-20261003-001",
-  "revision": 3,
-  "status": "IN_PROGRESS",
+  "revision": 4,
+  "status": "ACCEPTED_MERGED",
   "userIntent": "Continue the Bauman Hub carefully and continuously; fix all Chat-owned work first, then hand off only the runtime work that genuinely requires Codex.",
   "objective": "Remove mock/stale learner-facing truth from the five Hub primary routes, introduce explicit data-truth handling for missing/stale/local values, and rewrite regression so it protects truth rather than reference samples.",
   "baselinePolicy": {
@@ -218,5 +218,20 @@
         "Do not ignore 4xx/5xx responses, non-abort failures, other JSON assets, or aborts outside the explicit reload window."
       ]
     }
-  ]
+  ],
+  "chatReview": {
+    "decision": "ACCEPTED",
+    "reviewedAt": "2026-10-06",
+    "reviewedMainSha": "c4e5bb676816fac9ee85892725ca1469b3322dda",
+    "testedRuntimeHead": "9a2b1e6cae9d602b880181424a4a44016dba70f7",
+    "workflowRunId": 37113655419,
+    "workflowConclusion": "success",
+    "testedHeadToPrHead": "metadata-only: prompts/hub/CURRENT_EXECUTION_RESULT.json and prompts/hub/HUB_SHARED_STATE.json",
+    "prNumber": 230,
+    "mergeCommitSha": "c43dfd115283973b8e83a0b0e3d89eafcf8eb6b0",
+    "mergedAt": "2026-10-03T09:55:36Z",
+    "postMergeRegressionCheck": "All packet runtime/QA owners plus assets/js/main.js and assets/js/data.js retain identical blob SHAs from merge commit through reviewed main.",
+    "forbiddenPathCheck": "PR #230 changed no subjects/**, prompts/subjects/**, control-service/**, cloudflare/** or production deployment configuration.",
+    "productionDeployed": false
+  }
 }

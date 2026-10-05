@@ -2,7 +2,7 @@
   "schemaVersion": "1.0.0",
   "packetId": "HUB-TRUTH-20261003-001",
   "packetRevision": 3,
-  "status": "EXECUTION_COMPLETE_PENDING_CHAT_REVIEW",
+  "status": "ACCEPTED_MERGED",
   "branch": "codex/hub-truth-20261003-001",
   "baseBranch": "main",
   "beforeSha": "4bd4adf0137bf9dc8e15b55f538a6286a0a020d3",
@@ -139,6 +139,20 @@
     "productionDeployPerformed": false,
     "primaryRoutesChanged": false
   },
-  "releaseState": "NOT_DEPLOYED_PRODUCTION",
-  "mergeRecommendation": "ACCEPT_IF_CHAT_REVIEW_CONFIRMS_METADATA_ONLY_FOLLOWUP_AND_ALLOWED_PATH_DIFF"
+  "releaseState": "MERGED_NOT_DEPLOYED_PRODUCTION",
+  "mergeRecommendation": "ACCEPTED_AND_MERGED",
+  "chatReview": {
+    "decision": "ACCEPTED",
+    "reviewedAt": "2026-10-06",
+    "reviewedMainSha": "c4e5bb676816fac9ee85892725ca1469b3322dda",
+    "exactTestedHead": "9a2b1e6cae9d602b880181424a4a44016dba70f7",
+    "exactWorkflowRunId": 37113655419,
+    "exactWorkflowConclusion": "success",
+    "metadataOnlyAfterTestedHead": true,
+    "prNumber": 230,
+    "prHeadSha": "7a0eb31e200221c52cfa7ffec6e84c980ef08f0a",
+    "mergeCommitSha": "c43dfd115283973b8e83a0b0e3d89eafcf8eb6b0",
+    "mergedAt": "2026-10-03T09:55:36Z",
+    "runtimeAndQaBlobsUnchangedThroughReviewedMain": true
+  }
 }

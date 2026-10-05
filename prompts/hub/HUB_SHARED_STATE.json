@@ -3,11 +3,11 @@
   "domain": "hub",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/hub/chat/HUB_CHAT_MASTER_PROMPT.md",
-  "status": "READY_FOR_CHAT_REVIEW",
-  "lifecycle": "DATA_TRUTH_RECONCILIATION_EXECUTED",
+  "status": "CHAT_COMPLETE",
+  "lifecycle": "DATA_TRUTH_RECONCILIATION_ACCEPTED_MERGED",
   "baselineMainSha": "db747b1e6c65e5eb2a28cfd7ea2aeee8e3f9872c",
-  "lastReviewedSha": "db747b1e6c65e5eb2a28cfd7ea2aeee8e3f9872c",
-  "workingBranch": "codex/hub-truth-20261003-001",
+  "lastReviewedSha": "c4e5bb676816fac9ee85892725ca1469b3322dda",
+  "workingBranch": null,
   "canonicalRoutes": [
     "home",
     "roadmap",
@@ -20,7 +20,11 @@
     "Materialized Hub-specific prompt/governance authority under prompts/hub.",
     "Locked CURRENT/STALE/UNAVAILABLE/LOCAL_HUB data-truth semantics.",
     "Locked Hub↔Subject public-contract boundary.",
-    "Audited current primary-page owner/decorator layers and targeted regression tests."
+    "Audited current primary-page owner/decorator layers and targeted regression tests.",
+    "Reviewed exact HUB-TRUTH execution evidence and accepted the Codex result.",
+    "Confirmed PR #230 merged without production deployment.",
+    "Confirmed packet runtime/QA owners plus main.js/data.js retain identical blobs through main@c4e5bb676816fac9ee85892725ca1469b3322dda.",
+    "Reconciled stale Hub packet/execution/shared-state metadata after merge."
   ],
   "findings": [
     {
@@ -28,45 +32,50 @@
       "severity": "high",
       "class": "B",
       "area": "subjects",
-      "summary": "Subjects reference UI promotes hard-coded reference teachers, March 2025 dates, session counts and fallback progress as learner-facing truth when canonical values are missing."
+      "summary": "Subjects reference UI promotes hard-coded reference teachers, March 2025 dates, session counts and fallback progress as learner-facing truth when canonical values are missing.",
+      "status": "FIXED_MERGED"
     },
     {
       "id": "HUB-TRUTH-002",
       "severity": "high",
       "class": "B",
       "area": "research",
-      "summary": "Thesis/Research reference UI seeds a March 2025 reference week, tasks, milestones, chapter percentages, heatmap and 65% KPI and replaces the canonical research renderer."
+      "summary": "Thesis/Research reference UI seeds a March 2025 reference week, tasks, milestones, chapter percentages, heatmap and 65% KPI and replaces the canonical research renderer.",
+      "status": "FIXED_MERGED"
     },
     {
       "id": "HUB-TRUTH-003",
       "severity": "high",
       "class": "B",
       "area": "tests",
-      "summary": "Existing Subjects and Thesis browser/static tests assert reference sample counts/copy, so regression currently protects mock/stale learner-facing output."
+      "summary": "Existing Subjects and Thesis browser/static tests assert reference sample counts/copy, so regression currently protects mock/stale learner-facing output.",
+      "status": "FIXED_MERGED"
     },
     {
       "id": "HUB-TRUTH-004",
       "severity": "medium",
       "class": "B",
       "area": "home-roadmap-schedule",
-      "summary": "Several Hub projections coerce missing progress to numeric zero rather than an explicit unavailable/stale state."
+      "summary": "Several Hub projections coerce missing progress to numeric zero rather than an explicit unavailable/stale state.",
+      "status": "FIXED_MERGED"
     },
     {
       "id": "HUB-TRUTH-005",
       "severity": "medium",
       "class": "B",
       "area": "research",
-      "summary": "Presentation code derives research progress from local checklist/UI state; it must remain LOCAL_HUB and must not imply subject mastery or assessment."
+      "summary": "Presentation code derives research progress from local checklist/UI state; it must remain LOCAL_HUB and must not imply subject mastery or assessment.",
+      "status": "FIXED_MERGED"
     }
   ],
   "activePacket": "prompts/hub/CURRENT_WORK_PACKET.json",
   "blockers": [],
   "externalBlockers": [],
-  "nextAction": "Chat reviews CURRENT_EXECUTION_RESULT.json and testedRuntimeHead evidence. If accepted, mark packet/state ACCEPTED_PENDING_MERGE and merge PR #230 without production deployment.",
-  "mainSyncStatus": "in_main",
+  "nextAction": "No pending HUB-TRUTH Chat or Codex work. On the next Hub continuation, reread Shared State and inspect only diffs after lastReviewedSha before opening new work.",
+  "mainSyncStatus": "merged",
   "governanceMergedSha": "6ef5e8814ac841f927f079e18d5062274ee0d847",
-  "lastReviewedRuntimeSha": "db747b1e6c65e5eb2a28cfd7ea2aeee8e3f9872c",
-  "currentHeadSha": "5329fcbfe32e3da9b1ae9f626ecb09247f170737",
+  "lastReviewedRuntimeSha": "c4e5bb676816fac9ee85892725ca1469b3322dda",
+  "currentHeadSha": "c4e5bb676816fac9ee85892725ca1469b3322dda",
   "testedRuntimeHead": "9a2b1e6cae9d602b880181424a4a44016dba70f7",
   "executionResult": "prompts/hub/CURRENT_EXECUTION_RESULT.json",
   "lastExecution": {
@@ -75,8 +84,22 @@
     "beforeSha": "4bd4adf0137bf9dc8e15b55f538a6286a0a020d3",
     "testedRuntimeHead": "9a2b1e6cae9d602b880181424a4a44016dba70f7",
     "workflowRunId": 37113655419,
-    "result": "PASS",
+    "result": "PASS_ACCEPTED_MERGED",
     "productionDeployed": false,
     "externalBaselineFailure": "Cloudflare Workers Build also fails on base main; outside packet."
+  },
+  "packetMergeSha": "c43dfd115283973b8e83a0b0e3d89eafcf8eb6b0",
+  "activePacketStatus": "ACCEPTED_MERGED",
+  "chatReview": {
+    "decision": "ACCEPTED",
+    "reviewedAt": "2026-10-06",
+    "reviewedMainSha": "c4e5bb676816fac9ee85892725ca1469b3322dda",
+    "testedRuntimeHead": "9a2b1e6cae9d602b880181424a4a44016dba70f7",
+    "workflowRunId": 37113655419,
+    "workflowConclusion": "success",
+    "prNumber": 230,
+    "mergeCommitSha": "c43dfd115283973b8e83a0b0e3d89eafcf8eb6b0",
+    "productionDeployed": false,
+    "classBRemaining": []
   }
 }
