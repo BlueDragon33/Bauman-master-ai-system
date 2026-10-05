@@ -2,6 +2,11 @@ name: Bauman Cloudflare Preview Deploy
 
 on:
   workflow_dispatch:
+    inputs:
+      permission_check_only:
+        description: "Read-only Cloudflare token/account/Containers diagnostics; no deployment"
+        type: boolean
+        default: false
   workflow_call:
 
 permissions:
@@ -12,7 +17,37 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  token-permissions:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.permission_check_only }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    strategy:
+      fail-fast: false
+      matrix:
+        environment: [bauman-preview, bauman-production]
+    environment: ${{ matrix.environment }}
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      BAUMAN_DIAGNOSTIC_ENVIRONMENT: ${{ matrix.environment }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - name: Read-only token and Containers API checks
+        run: node .github/scripts/cloudflare-token-diagnostic.mjs
+      - name: Upload sanitized permission evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cloudflare-token-diagnostic-${{ matrix.environment }}-${{ github.run_id }}
+          path: artifacts/cloudflare-token-diagnostic
+          if-no-files-found: warn
+          retention-days: 7
+
   deploy-preview:
+    if: ${{ github.event_name != 'workflow_dispatch' || !inputs.permission_check_only }}
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     environment: bauman-preview
