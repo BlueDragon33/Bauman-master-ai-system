@@ -3,7 +3,7 @@
   "packetId": "HUB-TRUTH-UX-CLEANUP-002",
   "revision": 3,
   "status": "IN_CODEX",
-  "userIntent": "Continue Bauman Hub continuously in Chat control plane, skip Codex execution for now, and prepare one complete Hub-only implementation packet without touching subject prompts or subject-app internals.",
+  "userIntent": "Human user authorizes continuous Codex Class B execution of HUB-TRUTH-UX-CLEANUP-002 from fetched current main, without inter-phase questions, subject-internal reads/edits, main merge or production publication.",
   "objective": "Clean learner-facing sample/mock truth from Subjects and Research/Thesis, preserve Schedule as Hub-owned canonical planning, distinguish unknown/stale/current subject summaries, converge the five primary pages onto one presentation owner each, and migrate Hub-side subject integration toward registered descriptor/capability/launch adapters while preserving legacy compatibility behind the adapter.",
   "targetArea": "Bauman Hub five-page runtime truth, presentation ownership, and Hub-side subject integration boundary",
   "baselineSha": "b6df392c5ab935bed4924b07b9bbe2e95efb2c8e",
@@ -90,7 +90,7 @@
     "Diff-scope check proving zero changes under prompts/subjects/** and subjects/**.",
     "Return exact HEAD SHA and explicit statement of Device Gate/auth/PWA/offline regression status."
   ],
-  "releasePolicy": "IMPLEMENTATION_MAY_BE_PREPARED_AND_TESTED_ON_A_FRESH_BRANCH_FROM_CURRENT_MAIN; DO_NOT_MERGE_OR_PUBLISH UNTIL NORMAL CHAT REVIEWS AND ACCEPTS THE EXACT HEAD SHA. USER HAS CURRENTLY DEFERRED CODEX EXECUTION.",
+  "releasePolicy": "AUTHORIZED_CODEX_EXECUTION_FROM_CURRENT_MAIN; stop at exact tested HEAD for Box Chat review. Do not merge main or publish production.",
   "rollbackNotes": "Keep the change additive and adapter-first. If regression occurs, revert the Hub cleanup commits only; preserve current main curriculum/control changes and all subject-app state.",
   "externalBlockers": [],
   "chatPlanCompleted": [
@@ -292,11 +292,22 @@
     "publishProduction": false
   },
   "reconciliation": {
-    "beforeSha": "ddcc314d0cbbcb61026a5be21fb425ff0f614ba5",
+    "beforeSha": "3b541d76b0ee16208a5835073cbce42bf2f0d440",
     "packetBaselineIsAncestor": true,
     "mainAlreadyContains": "HUB-TRUTH-20261003-001 truth cleanup; preserve it",
     "bootstrapSourceSha": "e607ca350e50d12bc130377966b143bf9325ef9d",
     "bootstrapPolicyApplied": "Only missing Hub bridge/Codex/entry/schema/UX/audit files transplanted; existing main Constitution and Hub prompt/state authority preserved",
-    "oldBranchMerged": false
+    "oldBranchMerged": false,
+    "initialMainSha": "ddcc314d0cbbcb61026a5be21fb425ff0f614ba5",
+    "lateMainAdvance": {
+      "sha": "3b541d76b0ee16208a5835073cbce42bf2f0d440",
+      "hubRuntimeAndContractsChanged": false,
+      "hubGovernanceChanged": [
+        "CURRENT_WORK_PACKET.json",
+        "CURRENT_EXECUTION_RESULT.json",
+        "HUB_SHARED_STATE.json"
+      ],
+      "action": "Rebase only fresh implementation commits onto latest main; archive accepted prior packet state and keep new active bridge packet. Never merge old prompt branch."
+    }
   }
 }
