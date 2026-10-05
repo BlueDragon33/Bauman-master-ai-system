@@ -1,0 +1,15 @@
+{
+  "schema": "PYTHON_APPROVED_RELEASE_REQUEST_V1",
+  "releaseId": "python-runtime-2026-10-05-r4",
+  "status": "APPROVED_ONE_TIME",
+  "confirm": "DEPLOY_PRODUCTION",
+  "sourceP6MergeSha": "23e594b7f6a62d45fdad9f2669866f1410d2db6f",
+  "activationMergeSha": "04cf1978198ee90a47dc61698ad70aec011a78bc",
+  "failedReleaseSha": "f9b9428a6839f2ec838f0e46ce6c57e2bea5c098",
+  "retryReason": "Retry only after the Cloudflare deployment API token has account-scoped Containers write access. Release r3 authorization, Control preview, and Python 3.14.8 container image build passed; Learning Runtime preview failed at /accounts/<account>/containers/me and production was skipped.",
+  "runtimeProfile": "cpython-3.14.8-stdlib-v1",
+  "provider": "cloudflare-container-durable-object-v1",
+  "requirement": "Deploy the exact merge SHA to preview; only after exact preview PASS promote that same SHA to production and require full production smoke/observation closure.",
+  "approvalBasis": "User explicitly requested continuous execution and automatic merge/publish after prompt-compliant gates, stopping only for external credentials or other deep intervention.",
+  "oneTime": true
+}
