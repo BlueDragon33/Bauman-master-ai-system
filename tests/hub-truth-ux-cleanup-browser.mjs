@@ -63,6 +63,9 @@ try{
  assert.equal(await page.evaluate(()=>state.researchWorkspace.milestones[0].title),'My milestone');
  assert.equal(await page.evaluate(()=>state.researchWorkspace.workPackages[0].status),'done');
  assert.equal(await page.locator('a[href="https://example.org/paper"]').count(),1);
+ // This acceptance covers an already-loaded Hub. Finish reload resource requests
+ // before intentionally disconnecting; pending loads are not local editing failures.
+ await page.waitForLoadState('networkidle');
  await context.setOffline(true);
  await page.evaluate(()=>{window.prompt=()=> 'Offline Hub note';BAUMAN_THESIS_REF.addNote()});
  assert.ok((await page.locator('.thesis-page__notes').textContent()).includes('Offline Hub note'),'local planning remains usable offline in the loaded Hub');
