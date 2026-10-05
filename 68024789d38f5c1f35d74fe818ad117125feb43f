@@ -1,0 +1,163 @@
+{
+  "task": "Resume blocked Python Containers release",
+  "sourceMainSha": "68024789d38f5c1f35d74fe818ad117125feb43f",
+  "pinnedRef": "codex/python-token-resume-20261006",
+  "hubReviewHeadUnchanged": "a3a568b367f80c78e0de989392664b2b7a32ccbe",
+  "authorization": {
+    "currentUserRequest": "Verify current small-limit-6a6b permissions and continue the blocked task",
+    "priorHumanReleaseAuthorization": "Chốt kiến trúc runtime: finish prompt, merge and publish before reporting completion",
+    "threadId": "6ac228fe-e118-83ec-bd5e-caad0aea7787"
+  },
+  "token": {
+    "name": "small-limit-6a6b",
+    "status": "Active",
+    "permissions": [
+      "Workers Containers Write",
+      "Workers Admin",
+      "D1 Write"
+    ],
+    "resourceScope": "Entire current Cloudflare account",
+    "verifiedVia": "Live authenticated Cloudflare token list and permission policy detail",
+    "credentialValueReadOrCopied": false,
+    "tokenRecreated": false,
+    "githubSecretsRotated": false
+  },
+  "previousBlockedRun": 37216104758,
+  "previewRun": 37351600452,
+  "productionRun": null,
+  "releaseState": "BLOCKED_WORKERS_PAID_REQUIRED",
+  "checkedAt": "2026-10-05T18:00:20.905Z",
+  "diagnosticHead": "c10d61a74f18c8ee7a9b2872b5725ae7dfeec326",
+  "diagnosticRun": 37352152128,
+  "effectiveCredentialChecks": [
+    {
+      "checkedAt": "2026-10-05T17:56:23.624Z",
+      "sourceSha": "c10d61a74f18c8ee7a9b2872b5725ae7dfeec326",
+      "environment": "bauman-preview",
+      "accountMatchesDashboard": true,
+      "credentialValueLogged": false,
+      "remoteMutations": false,
+      "checks": [
+        {
+          "name": "accountTokenVerify",
+          "method": "GET",
+          "endpoint": "/accounts/[ACCOUNT]/tokens/verify",
+          "httpStatus": 200,
+          "success": true,
+          "errors": [],
+          "resultShape": "object",
+          "tokenMatchesNamedDashboardToken": true,
+          "tokenStatus": "active"
+        },
+        {
+          "name": "containersIdentity",
+          "method": "GET",
+          "endpoint": "/accounts/[ACCOUNT]/containers/me",
+          "httpStatus": 401,
+          "success": false,
+          "errors": [
+            {
+              "code": 1000,
+              "message": "{\"error\":\"Unauthorized: You do not have access to Cloudflare Containers. Deploying containers requires the Workers Paid plan. Upgrade your plan at https://dash.cloudflare.com/?to=/:account/workers/plans\"}"
+            }
+          ],
+          "resultShape": "absent"
+        },
+        {
+          "name": "workersRead",
+          "method": "GET",
+          "endpoint": "/accounts/[ACCOUNT]/workers/scripts",
+          "httpStatus": 200,
+          "success": true,
+          "errors": [],
+          "resultShape": "array"
+        },
+        {
+          "name": "d1Read",
+          "method": "GET",
+          "endpoint": "/accounts/[ACCOUNT]/d1/database",
+          "httpStatus": 200,
+          "success": true,
+          "errors": [],
+          "resultShape": "array"
+        }
+      ]
+    },
+    {
+      "checkedAt": "2026-10-05T17:56:23.454Z",
+      "sourceSha": "c10d61a74f18c8ee7a9b2872b5725ae7dfeec326",
+      "environment": "bauman-production",
+      "accountMatchesDashboard": true,
+      "credentialValueLogged": false,
+      "remoteMutations": false,
+      "checks": [
+        {
+          "name": "accountTokenVerify",
+          "method": "GET",
+          "endpoint": "/accounts/[ACCOUNT]/tokens/verify",
+          "httpStatus": 200,
+          "success": true,
+          "errors": [],
+          "resultShape": "object",
+          "tokenMatchesNamedDashboardToken": true,
+          "tokenStatus": "active"
+        },
+        {
+          "name": "containersIdentity",
+          "method": "GET",
+          "endpoint": "/accounts/[ACCOUNT]/containers/me",
+          "httpStatus": 401,
+          "success": false,
+          "errors": [
+            {
+              "code": 1000,
+              "message": "{\"error\":\"Unauthorized: You do not have access to Cloudflare Containers. Deploying containers requires the Workers Paid plan. Upgrade your plan at https://dash.cloudflare.com/?to=/:account/workers/plans\"}"
+            }
+          ],
+          "resultShape": "absent"
+        },
+        {
+          "name": "workersRead",
+          "method": "GET",
+          "endpoint": "/accounts/[ACCOUNT]/workers/scripts",
+          "httpStatus": 200,
+          "success": true,
+          "errors": [],
+          "resultShape": "array"
+        },
+        {
+          "name": "d1Read",
+          "method": "GET",
+          "endpoint": "/accounts/[ACCOUNT]/d1/database",
+          "httpStatus": 200,
+          "success": true,
+          "errors": [],
+          "resultShape": "array"
+        }
+      ]
+    }
+  ],
+  "rootCause": "Containers entitlement unavailable: Workers Paid plan is required. Both current GitHub environment secrets match the active named dashboard token and account.",
+  "previewResult": {
+    "controlDeploy": "PASS",
+    "d1Migration": "PASS",
+    "containerBuild": "PASS",
+    "learningRuntimeDeploy": "FAIL",
+    "runId": 37351600452
+  },
+  "productionResult": {
+    "dispatched": false,
+    "mutated": false,
+    "reason": "Exact preview Runtime gate not passed"
+  },
+  "nextAction": "User activates Workers Paid on the existing account; rerun read-only token diagnostic to verify entitlement, then Preview and Production at a fresh pinned current-main SHA. No new token required.",
+  "defaultDeployPathChanged": false,
+  "diagnosticRemoteMutations": false,
+  "localChecks": [
+    "node --check diagnostic script PASS",
+    "Missing-credential guard exits before API calls PASS",
+    "git diff --check PASS"
+  ],
+  "subjectPathsModified": false,
+  "hubBranchMerged": false
+}
