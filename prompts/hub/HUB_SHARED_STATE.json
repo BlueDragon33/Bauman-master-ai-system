@@ -171,7 +171,7 @@
     "doNotReexecute": true
   },
   "promptControlP0": {
-    "status": "IN_PROGRESS_ON_GOVERNANCE_BRANCH",
+    "status": "IMPLEMENTED_VALIDATION_PENDING_CI",
     "branch": "work/prompt-p0-hardening-20261006",
     "baseMainSha": "1b834db5a34de5d730ee73adf7440da3f06fcedb",
     "runtimeScopeChanged": false,
@@ -180,6 +180,10 @@
       "prompt/runtime review SHA split",
       "packet/result/state consistency",
       "prompt-control validator + CI"
-    ]
+    ],
+    "localInvariantCheck": "PASS",
+    "localInvariantErrors": 0,
+    "validator": "scripts/validate-prompt-control-center.mjs",
+    "workflow": ".github/workflows/prompt-control-center-ci.yml"
   }
 }
