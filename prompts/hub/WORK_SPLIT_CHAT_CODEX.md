@@ -1,19 +1,54 @@
 # HUB WORK SPLIT — CHAT / CODEX / USER
+## Default allocation: Chat 90–95% · Codex 5–10% maximum
+
+This split inherits `prompts/constitution/DEPENDENCY_INDEPENDENCE_POLICY.md`.
 
 ## Class A — Chat owns
-Chat handles clear, low-risk Hub work that is normally confined to one or two files and can be verified by static inspection or diff: architecture audit, UX/data-truth audit, ownership/source-of-truth mapping, copy, metadata, prompt/state, acceptance criteria, test design and small root-cause fixes that do not require runtime debugging.
+Chat is the default executor. It handles architecture audit, ownership/source-of-truth mapping, provider selection, prompt/state, GitHub/CI/log review, test design, small/medium implementation, workflow/config, release reasoning and root-cause fixes whenever the available tools can do the work safely.
 
-Loop: inspect → understand root cause → smallest safe edit → reread → diff/invariant check → continue.
+Chat must try the ordinary path first. Code existing in the task is not by itself a reason to invoke Codex.
 
-## Class B — Codex owns
-Use Codex for tightly coupled runtime changes across 3+ files, deep refactors, normalized shared adapters/read models, migration/backward compatibility, browser/E2E/responsive verification, build/CI/PWA/offline/auth/security/performance work, or repeated implement→run→debug→retest loops.
+Loop: inspect → root cause → canonical owner → smallest safe edit → targeted test → regression → evidence → continue.
 
-When Class B is found, Chat must record defect/evidence/invariants in one CURRENT_WORK_PACKET.json, continue every independent Class A task, and hand off only after Chat scope is exhausted.
+## Class B — Codex deep specialist
+Codex is limited to the deepest 5–10% after Chat has narrowed the work package.
+
+Use Codex only for work such as:
+- deep multi-file runtime refactor;
+- complex sandbox/WASM/runtime integration;
+- concurrency/race/state-machine work;
+- difficult schema/data migration;
+- large browser/E2E harness;
+- repeated implement→run→debug→retest loops unavailable to normal Chat tooling.
+
+Every Codex handoff must include exact SHA, root cause/hypothesis, canonical owner, allowed files, forbidden scope, required tests, acceptance criteria, evidence and stop condition.
 
 ## Class C — real external blocker
-Only an external requirement can stop the whole flow: OAuth/user interaction, unavailable credentials/secrets, missing release authority, destructive action requiring explicit approval, unavailable external capability, a Constitution prohibition, or a Hub↔Subject boundary violation.
+Only a real external requirement may stop the flow:
+- OAuth/user interaction;
+- unavailable credential/secret;
+- irreversible/destructive action;
+- paid-plan approval;
+- unavailable external capability after local/free alternatives are exhausted;
+- Constitution prohibition;
+- real cross-domain boundary conflict.
 
-A Class C blocker in one branch of work does not block independent Class A work.
+A Class C blocker in one branch does not block independent Chat-owned work.
+
+## Infrastructure rule
+Provider choice follows:
+`browser/local → WASM/Workers → local runtime → optional user-owned sync → free managed → paid managed`.
+
+Paid/vendor-specific infrastructure is optional unless a proven capability requirement says otherwise.
+
+## Manual action rule
+Prefer one exact PowerShell/GitHub CLI command over UI clicking when practical. Never ask the user to paste secrets into chat.
 
 ## Merge/release
-Compilation alone is not PASS. Runtime Class B work must pass targeted static + browser regression before merge. Production publication remains a separate explicit release gate.
+Compilation alone is not PASS. Release target must be explicit:
+- LOCAL_STABLE
+- SYNC_STABLE
+- PUBLISHED_STABLE
+- MANAGED_PRODUCTION_STABLE
+
+Do not force managed production when local/offline satisfies the actual requirement.
