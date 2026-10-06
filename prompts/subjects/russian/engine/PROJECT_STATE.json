@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "1.0.0",
+  "track": "russian-engine",
+  "parentDomain": "russian",
+  "authority": {
+    "repositoryConstitution": ".blueprint/constitution-adoption.json",
+    "sharedConstitution": "prompts/CONSTITUTION.md",
+    "russianMasterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
+    "engineOrchestrator": "prompts/subjects/russian/engine/RE00_ENGINE_ORCHESTRATOR.md"
+  },
+  "status": "PROMPT_FOUNDATION_ONLY",
+  "implementationAuthorized": false,
+  "activeWorkPackage": "RE00",
+  "sequence": [
+    "RE00",
+    "RE01",
+    "RE02",
+    "RE03",
+    "RE04",
+    "RE05",
+    "RE06",
+    "RE07",
+    "RE08",
+    "RE09"
+  ],
+  "completedPromptDefinitions": [
+    "RE00",
+    "RE01",
+    "RE02",
+    "RE03",
+    "RE04",
+    "RE05",
+    "RE06",
+    "RE07",
+    "RE08",
+    "RE09"
+  ],
+  "completedImplementationPackages": [],
+  "targetInternalLevels": 100,
+  "learningNorthStar": "RUSSIAN_FIRST_MEANING_FIRST_CONTEXT_FIRST_TRANSLATION_LAST",
+  "defaultWriteScope": [
+    "prompts/subjects/russian/engine/**",
+    "subjects/russian/engine/**",
+    "subjects/russian/docs/engine/**"
+  ],
+  "outsideWriteDefault": "FORBIDDEN",
+  "firstImplementationCandidate": "RE01 contract design followed by a minimal RE02 grounded listen-and-act vertical slice",
+  "commercialReadiness": {
+    "mode": "ARCHITECTURE_READY_NOT_BACKEND_REQUIRED",
+    "defaultInfrastructure": "LOCAL_OFFLINE_FREE_FIRST",
+    "multiUserPath": [
+      "single-local-profile",
+      "multi-local-profile",
+      "optional-account-sync-adapter",
+      "managed-multi-user-service-when-justified"
+    ]
+  },
+  "blockers": [],
+  "nextAction": "Review and accept prompt foundation. Then baseline current Russian runtime and execute RE01 without modifying unrelated Russian App code."
+}
