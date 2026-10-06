@@ -57,10 +57,10 @@
     "Universal Constitution Compliance run 37217275435: SUCCESS on ALG02 head"
   ],
   "blockers": [
-    "Upstream sequencing blocker: Python is the preceding subject under SUBJECT_PROMPT_INDEX.json executionRule=ONE_SUBJECT_AT_A_TIME and remains PYTHON06_PASS_RC_HARDENED_RELEASE_BLOCKED_EXTERNAL until publication passes.",
-    "External Python release credential blocker: Cloudflare deployment token cannot access the account-scoped Workers Containers endpoint /accounts/<account>/containers/me; production was not attempted."
+    "Upstream sequencing blocker: Python is the preceding subject under SUBJECT_PROMPT_INDEX.json executionRule=ONE_SUBJECT_AT_A_TIME and now requires selective PYTHON04-PYTHON06 revalidation under the repo-wide local-first dependency policy.",
+    "Algorithms may resume only after Python reaches LOCAL_STABLE on the new provider-neutral local/browser runtime profile."
   ],
-  "nextAction": "Execution is gated: do not advance or merge ALG03 while Python publication remains open. Preserve ALG01-ALG02 as completed evidence and keep PR #273 draft. Resume ALG03 only after Python exact-main preview -> production -> smoke/closure passes and Python PROJECT_STATE releases the sequencing gate.",
+  "nextAction": "Keep PR #273 draft. Resume ALG03 only after Python completes local-first PYTHON04 -> PYTHON05 -> PYTHON06 revalidation and closes LOCAL_STABLE. Cloudflare/managed-container publication is optional and no longer a sequencing prerequisite.",
   "notes": [
     "ALG01 is audit-only; no current learner runtime/content/state behavior was changed.",
     "Actual Algorithms scope is distributed across Programming PR02/PR10/PR11, P4 prerequisite data, and adjacent Math discrete/graph foundations.",
@@ -77,7 +77,8 @@
     "ALG02 exact tested implementation head 3aabbeaa0cd64a12ed0e73967837eadd913165f4 passed canonical, ALG01 regression, P4 integrity, Development Fast and Universal Constitution checks.",
     "ALG02 terminal PASS metadata tail is governance-only and must re-pass final PR-head checks before merge.",
     "2026-10-05 governance reconciliation: Algorithms work had advanced to ALG02 while Python publication remained externally blocked. Existing ALG01-ALG02 evidence is preserved, but ALG03 is now frozen to restore ONE_SUBJECT_AT_A_TIME sequencing.",
-    "PR #273 is intentionally draft while this upstream sequencing blocker remains."
+    "PR #273 is intentionally draft while this upstream sequencing blocker remains.",
+    "2026-10-06 dependency policy supersedes the former Cloudflare Containers credential blocker. Algorithms remains sequencing-blocked by Python runtime revalidation, not by any paid cloud provider."
   ],
   "executionGate": "BLOCKED",
   "blockedBySubject": "python"
