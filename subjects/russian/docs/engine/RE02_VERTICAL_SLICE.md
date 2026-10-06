@@ -1,6 +1,6 @@
 # Russian Engine RE02 — Grounded Semantic Immersion Vertical Slice
 
-State: VALIDATING
+State: **PASS**
 
 ## Purpose
 
@@ -104,14 +104,21 @@ No `APP_INTEGRATION_REQUIRED` action is executed in RE02.
 - `subjects/russian/engine/acquisition/grounded-scene-runtime.mjs`
 - `subjects/russian/engine/tests/test-re02-grounded-scene.mjs`
 
-## Exit gate
+## Validation
 
-RE02 becomes PASS only when the vertical slice proves:
+Executed against the branch implementation: **11/11 checks PASS**.
+
+Proven:
 - Russian-only default stimulus;
-- meaningful action;
-- consequence;
-- observation evidence;
+- meaningful object action;
+- wrong action does not create success mutation;
+- observation evidence records failure/success honestly;
 - bounded support escalation;
-- translation only at last support tier;
-- transfer to a changed scene;
-- no Engine mastery mutation.
+- translation remains hidden until support level 10;
+- successful Scene A yields a changed transfer Scene B;
+- transfer can succeed independently at support level 0;
+- Engine evidence remains non-authoritative.
+
+## Exit
+
+**RE02 PASS.**
