@@ -1,6 +1,6 @@
 # Russian Engine RE01 — Forensic Architecture Baseline
 
-State: VALIDATING
+State: **PASS**
 
 Track: Russian Engine
 
@@ -116,13 +116,26 @@ Future RE09 integration will need an explicit minimal app allowlist before loadi
 - `subjects/russian/engine/public/contracts.mjs`
 - `subjects/russian/engine/public/facade.mjs`
 - JSON schemas under `subjects/russian/engine/schemas/`
-- `subjects/russian/scripts/test-re01-engine-contracts.mjs`
+- `subjects/russian/engine/tests/test-re01-contracts.mjs`
 - `subjects/russian/docs/engine/RE01_ARCHITECTURE_CONTRACT.json`
 
-## Exit requirement
+## Validation result
 
-RE01 may become PASS only after:
-- contract test executes successfully;
-- no app/runtime file outside Engine/test/docs scope changed;
-- Engine evidence cannot claim mastery;
-- facade works with injected ports and no mandatory network/backend.
+RE01 contract harness executed against the branch implementation and passed all 9 checks.
+
+Verified:
+- valid Experience/Interaction/Evidence/LearnerSnapshot contracts;
+- facade port injection;
+- offline/no-AI capability projection;
+- deterministic attempt identity;
+- explicit rejection of Engine-side `masteryGranted`;
+- support-level bounds;
+- no mandatory network/backend.
+
+The test file is kept inside `subjects/russian/engine/tests/` so RE01 remains inside the Engine boundary.
+
+## Exit
+
+**RE01 PASS.**
+
+No Russian App runtime integration is performed. Next active work package: RE02 grounded semantic immersion vertical slice.
