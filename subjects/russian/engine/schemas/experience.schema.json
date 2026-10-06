@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bauman:russian-engine:experience:v1",
+  "title": "Russian Engine Experience V1",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "experienceId",
+    "type",
+    "targetCompetencies",
+    "contentRevision",
+    "stimulus",
+    "action",
+    "supportPolicy",
+    "evidencePolicy",
+    "difficulty"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "RUSSIAN_ENGINE_EXPERIENCE_V1"},
+    "experienceId": {"type": "string", "minLength": 1},
+    "type": {"type": "string", "minLength": 1},
+    "targetCompetencies": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "contentRevision": {"type": "string", "minLength": 1},
+    "stimulus": {"type": "object"},
+    "action": {"type": "object"},
+    "supportPolicy": {
+      "type": "object",
+      "properties": {
+        "maxLevel": {"type": "integer", "minimum": 0, "maximum": 10}
+      }
+    },
+    "evidencePolicy": {"type": "object"},
+    "difficulty": {"type": "object"}
+  },
+  "additionalProperties": true
+}
