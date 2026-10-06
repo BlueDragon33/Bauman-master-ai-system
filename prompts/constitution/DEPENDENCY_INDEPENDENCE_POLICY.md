@@ -5,6 +5,10 @@ Repository: `BlueDragon33/Bauman-master-ai-system`
 
 Status: CANONICAL SHARED POLICY
 
+Universal Constitution: `blueprint-os:universal-century-grade@1.2.0`
+
+Required project dependency budget: `prompts/constitution/DEPENDENCY_BUDGET.json`
+
 Authority:
 1. `.blueprint/constitution-adoption.json`
 2. `prompts/CONSTITUTION.md`
