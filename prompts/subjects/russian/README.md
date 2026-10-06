@@ -46,3 +46,27 @@ Supporting files:
 - RUSSIAN_OLD_TO_NEW_MAP.md
 - EXECUTION_CHEAT_SHEET.md
 - STATUS.md
+
+---
+
+## Russian Engine execution track
+
+A dedicated Russian Engine planning/execution track now lives under:
+
+`prompts/subjects/russian/engine/`
+
+Start Russian Engine work with:
+
+1. `RUSSIAN_MASTER_PROMPT.md`
+2. `PROJECT_STATE.json`
+3. `engine/README.md`
+4. `engine/RE00_ENGINE_ORCHESTRATOR.md`
+5. `engine/PROJECT_STATE.json`
+6. `engine/RE_OWNER_ROUTER.json`
+7. the active `RE0x` work package
+8. only the RU owners and shared Constitution clauses routed for that package.
+
+This is not a new domain/master prompt. It is an isolated implementation track for the existing Russian domain.
+
+Current Engine state is prompt-foundation only; runtime implementation requires an explicit next execution step.
+
