@@ -1,6 +1,6 @@
 # Russian Engine RE03 — Data-Driven 100-Level Catalog
 
-State: VALIDATING
+State: **PASS**
 
 ## Result
 
@@ -69,13 +69,21 @@ No `if level === 1 ... level === 100` implementation exists.
 - `subjects/russian/engine/progression/level-catalog.mjs`
 - `subjects/russian/engine/tests/test-re03-level-catalog.mjs`
 
+## Validation
+
+Executed against the branch catalog/runtime: **14/14 checks PASS**.
+
+Validated:
+- exactly 100 ordered unique levels;
+- 10 bands × 10 levels;
+- all competency references exist in RU02;
+- exactly 10 transfer/retention milestone levels;
+- RL001 and RL100 boundaries;
+- data-driven next-level, band and competency queries;
+- RU04/C4 promotion authority on every level;
+- click/time-only completion rejected on every level;
+- zero official CEFR/certification claims.
+
 ## Exit
 
-RE03 PASS requires the catalog validator to prove:
-- exactly 100 ordered unique IDs;
-- 10 bands × 10 levels;
-- all competency refs exist in RU02;
-- 10 transfer/retention milestones;
-- RU04/C4 promotion authority;
-- no official CEFR claim;
-- data-driven lookup/next/band/competency queries.
+**RE03 PASS.**
