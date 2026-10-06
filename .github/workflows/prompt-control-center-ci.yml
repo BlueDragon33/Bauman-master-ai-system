@@ -1,0 +1,31 @@
+name: Prompt Control Center CI
+
+on:
+  pull_request:
+    paths:
+      - 'prompts/**'
+      - 'scripts/validate-prompt-control-center.mjs'
+      - '.github/workflows/prompt-control-center-ci.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'prompts/**'
+      - 'scripts/validate-prompt-control-center.mjs'
+      - '.github/workflows/prompt-control-center-ci.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-prompts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate Prompt Control Center
+        run: node scripts/validate-prompt-control-center.mjs
