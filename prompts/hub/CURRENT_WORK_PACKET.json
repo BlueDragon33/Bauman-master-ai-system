@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
   "packetId": "HUB-STORAGE-20261006-001",
-  "revision": 3,
+  "revision": 4,
   "status": "READY_FOR_CODEX",
   "userIntent": "Continue Bauman Hub continuously under the current Prompt System; keep the core local/offline/free-first and preserve learner truth while removing fragile localStorage dependency for canonical personal data.",
   "objective": "Introduce one normalized Hub personal-data storage facade with IndexedDB as the primary local canonical store, deterministic legacy migration, complete portable backup/restore, and compatibility-safe migration for Hub learner/auth/academic/scheduler/research data while keeping UI-only preferences lightweight.",
@@ -107,6 +107,18 @@
         "The resulting {name,mime,typeLabel,content,addedAt} object is appended under state.researchFiles[itemId] and persisted with the full Hub state.",
         "Research file input accepts video/* as well as JSON/HTML, so attachment payloads can be materially larger than ordinary structured state."
       ]
+    },
+    {
+      "id": "HUB-STORAGE-007",
+      "severity": "critical",
+      "class": "B",
+      "area": "per-user-isolation",
+      "summary": "The canonical Hub state and multiple LOCAL_HUB sidecar stores are global browser keys rather than user-scoped. main.js reads the global state before auth and does not reload a separate state after login, so multiple local/managed users can observe or overwrite the same progress, schedule, research and journal data.",
+      "evidence": [
+        "assets/js/main.js defines one global KEY='bauman_main_all_phases_subjects_v1' and executes let state=readState() before auth.init().",
+        "auth.login() changes CURRENT_USER_KEY and renders the app but does not load a user-scoped Hub state.",
+        "Schedule notes, Subjects notes/custom/teacher overrides and Research tasks/notes also use global localStorage keys without a user namespace."
+      ]
     }
   ],
   "compliantExistingPatterns": [
@@ -131,7 +143,12 @@
     "Primary routes remain exactly Home, Roadmap, Subjects, Schedule, Research.",
     "Research attachment payloads must not remain embedded in the monolithic Hub state record after migration. Store binary payloads in a dedicated IndexedDB attachment/blob store behind the same Hub personal-data facade; keep stable metadata/reference records in structured state.",
     "Use IndexedDB Blob storage first; do not add OPFS unless tests prove a capability gap. Attachment write failure/quota exhaustion must not create dangling metadata or corrupt prior attachments.",
-    "Versioned backup/restore must preserve research attachment payload bytes, MIME type, filename and item association; ordinary backup must not silently omit attachment bodies."
+    "Versioned backup/restore must preserve research attachment payload bytes, MIME type, filename and item association; ordinary backup must not silently omit attachment bodies.",
+    "Canonical/personal Hub data must be namespaced by an existing authoritative user scope. Do not invent a new external identity service. Managed mode uses the existing managed identity/access boundary; standalone mode uses the existing local account identity.",
+    "Resolve user scope before loading/rendering that user's canonical Hub state. Switching/login/logout must not reuse the previous user's in-memory state.",
+    "Legacy global learner data must be claimed/migrated deterministically to one resolved user scope only; it must never be duplicated into every account.",
+    "Cross-user reads/writes are forbidden for progress, schedule, journal, reports, research, diagnostics, scheduler transactions and LOCAL_HUB sidecars.",
+    "Global account registry/credential records are structurally separate from per-user learning data; ordinary learner backup exports only the selected user's portable learning/profile data and excludes credential verifier material."
   ],
   "targetArchitecture": {
     "chain": "Hub runtime → Personal Data Facade → IndexedDB provider → optional export/import → optional future sync adapters",
@@ -145,6 +162,14 @@
       "legacyMigration": "decode existing Data URL payloads transactionally; write blob first, then commit metadata/reference; retain legacy source until parity succeeds",
       "exportImport": "portable backup includes attachment payloads and restores exact association/name/MIME/content",
       "failureBehavior": "quota/write failure surfaces an explicit error and leaves previous canonical state recoverable"
+    },
+    "userIsolation": {
+      "scopeResolution": "resolve an existing authoritative managed or standalone user identity before canonical personal-data load",
+      "storageNamespace": "all canonical/personal/evidence records keyed or partitioned by stable userScopeId",
+      "startup": "storage facade opens -> identity scope resolves -> user migration/load completes -> in-memory state initializes -> primary app render begins",
+      "accountSwitch": "flush current user's pending writes, clear in-memory personal projections, resolve next user scope, then load/render next user's state",
+      "legacyGlobalMigration": "assign legacy global data to the resolved migration owner once; mark migration ownership/version transactionally; never clone the same legacy dataset to additional users",
+      "backup": "export/import is scoped to one selected user and excludes credential verifiers by default"
     }
   },
   "exactOwners": [
@@ -224,6 +249,7 @@
     "P1 — Reconfirm exact current main; inspect only changed allowed-path owners since this packet baseline and avoid conflicts.",
     "P2 — Add one shared async Hub personal-data facade with schema/versioning and IndexedDB provider. Do not duplicate Device Gate DB semantics unless a shared lower-level helper is genuinely reusable.",
     "P3 — Bootstrap main state through the facade before app render; preserve synchronous consumer behavior through an initialized in-memory state, not by treating localStorage as canonical.",
+    "P3.1 — Per-user isolation: resolve managed/standalone user scope before canonical state load; partition main state, academic evidence, scheduler transactions and LOCAL_HUB sidecars by userScopeId; make login/account switch reload isolated in-memory state; migrate legacy global data exactly once to a single resolved owner.",
     "P4 — Migrate standalone users/current identity compatibility safely. Keep Device Gate/App Manager authority unchanged. Remove credential verifier material from ordinary learner backup.",
     "P5 — Move academic diagnostic, scheduler preview and transaction stores behind the facade while preserving per-user scope, fingerprints, Apply/Rollback and legacy migration behavior.",
     "P6 — Move Schedule/Subjects/Research LOCAL_HUB notes/tasks/custom/teacher data behind the facade. Preserve truth-safe filters so reference samples are never promoted.",
@@ -253,7 +279,13 @@
     "A legacy research attachment Data URL migrates without byte/MIME/name loss and remains openable after reload.",
     "Backup/restore round-trip includes research attachment payloads and associations; no attachment body is silently dropped.",
     "Simulated attachment-store quota/write failure does not commit dangling attachment metadata and does not destroy the previous recoverable state.",
-    "Direct localStorage use remaining after migration is limited to the explicitly classified preference-only keys; canonical/evidence/transaction/personal-data keys do not remain direct localStorage owners."
+    "Direct localStorage use remaining after migration is limited to the explicitly classified preference-only keys; canonical/evidence/transaction/personal-data keys do not remain direct localStorage owners.",
+    "Two distinct standalone users can maintain different progress/schedule/research/journal/LOCAL_HUB data in the same browser without cross-user leakage.",
+    "Managed identity and standalone identity each resolve a deterministic user scope using existing authority; no new external identity service or invented provider is introduced.",
+    "On login/account switch, the prior user's in-memory personal state is not rendered or writable under the next user.",
+    "Legacy global data is migrated to one resolved user exactly once and is not replicated into subsequent user namespaces.",
+    "Academic diagnostics, scheduler preview/transactions, Schedule notes, Subjects custom/notes/teacher overrides and Research tasks/notes all preserve per-user isolation after migration.",
+    "A user-scoped backup exports/restores only that user's portable learner data and attachments and excludes credential verifier material."
   ],
   "requiredTests": [
     "New hub-personal-storage static contract test.",
@@ -271,7 +303,11 @@
     "Attachment migration browser fixture: legacy Data URL researchFiles → IndexedDB Blob store → reload/open exact payload.",
     "Attachment backup/restore round-trip preserving filename/MIME/item association/content.",
     "Attachment write/quota failure atomicity test.",
-    "Static storage-owner allowlist test proving remaining direct localStorage access is only the explicit preference-only set."
+    "Static storage-owner allowlist test proving remaining direct localStorage access is only the explicit preference-only set.",
+    "Multi-user isolation browser test: user A and user B create distinct progress/schedule/research/journal/notes; switch accounts and prove zero bleed in both directions.",
+    "Legacy global-state ownership migration test: seed old global keys, migrate as user A, then create/login user B and prove legacy data is not cloned.",
+    "Managed-vs-standalone scope resolution regression using existing access-mode fixtures.",
+    "User-scoped backup/restore test proving another user's data and credential verifier fields are absent."
   ],
   "regressionMatrix": {
     "home": [
@@ -314,7 +350,10 @@
       "standalone user store",
       "managed App Manager compatibility",
       "Device Gate unchanged",
-      "no credential verifier in ordinary backup"
+      "no credential verifier in ordinary backup",
+      "per-user canonical learning-state namespace",
+      "account-switch state unload/reload",
+      "legacy global-data single-owner migration"
     ],
     "portability": [
       "versioned export",
@@ -333,11 +372,12 @@
     "HUB-STORAGE-003",
     "HUB-STORAGE-004",
     "HUB-STORAGE-005",
-    "HUB-STORAGE-006"
+    "HUB-STORAGE-006",
+    "HUB-STORAGE-007"
   ],
   "stopCondition": "Codex stops after exact-head LOCAL_STABLE static + browser + whole-system evidence is green and CURRENT_EXECUTION_RESULT.json is written, or records a genuine blocker. Do not deploy production.",
   "executionState": "NOT_STARTED",
-  "governanceRevisionReason": "Chat Class-A storage preflight: storage taxonomy clarified, current-main branch base refreshed, and research attachment payload handling added. Runtime implementation scope remains Class B.",
+  "governanceRevisionReason": "Chat Class-A storage preflight completed: current-main rebaseline, explicit storage taxonomy, binary attachment handling, and per-user personal-data isolation. Runtime implementation remains Class B.",
   "historyPolicy": "Completed packets are historical evidence and must not be re-executed implicitly. Only this CURRENT_WORK_PACKET is active while Shared State names the same packet id/revision/status.",
   "storageTaxonomy": {
     "canonicalPersonalData": [
