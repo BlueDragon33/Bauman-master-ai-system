@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bauman:russian-engine:evidence:v1",
+  "title": "Russian Engine Observation Evidence V1",
+  "description": "Observation evidence only. RU04/C4 retain mastery authority.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "evidenceId",
+    "attemptId",
+    "experienceId",
+    "competencyIds",
+    "observationType",
+    "result",
+    "provider",
+    "supportLevel"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "RUSSIAN_ENGINE_EVIDENCE_V1"},
+    "evidenceId": {"type": "string", "minLength": 1},
+    "attemptId": {"type": "string", "minLength": 1},
+    "experienceId": {"type": "string", "minLength": 1},
+    "competencyIds": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "observationType": {"type": "string", "minLength": 1},
+    "result": {"type": "object"},
+    "provider": {"type": "object"},
+    "supportLevel": {"type": "integer", "minimum": 0, "maximum": 10},
+    "authoritative": {"const": false}
+  },
+  "not": {
+    "anyOf": [
+      {"required": ["mastery"]},
+      {"required": ["masteryDecision"]},
+      {"required": ["masteryGranted"]},
+      {"required": ["officialScore"]},
+      {"required": ["stageUnlocked"]},
+      {"required": ["levelGranted"]},
+      {"required": ["credentialGranted"]}
+    ]
+  },
+  "additionalProperties": true
+}
