@@ -8,9 +8,9 @@
     "russianMasterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
     "engineOrchestrator": "prompts/subjects/russian/engine/RE00_ENGINE_ORCHESTRATOR.md"
   },
-  "status": "RE03_PASS_RE04_ACTIVE",
+  "status": "RE04_PASS_RE05_READY",
   "implementationAuthorized": true,
-  "activeWorkPackage": "RE04",
+  "activeWorkPackage": "RE05",
   "sequence": [
     "RE00",
     "RE01",
@@ -38,7 +38,8 @@
   "completedImplementationPackages": [
     "RE01",
     "RE02",
-    "RE03"
+    "RE03",
+    "RE04"
   ],
   "targetInternalLevels": 100,
   "learningNorthStar": "RUSSIAN_FIRST_MEANING_FIRST_CONTEXT_FIRST_TRANSLATION_LAST",
@@ -60,5 +61,5 @@
     ]
   },
   "blockers": [],
-  "nextAction": "Execute RE04: build the first canonical-reference knowledge graph/content runtime inside subjects/russian/engine/**, reusing RU02/RU03 owners by stable reference and avoiding duplicated linguistic truth. No general Russian App integration until RE09 explicit allowlist."
+  "nextAction": "Execute RE05 by adapting the existing RussianAudioEngine, RussianSpeechRecognitionAdapter and RussianRecordingEngine through Engine provider ports. Do not create a duplicate speech owner; first add capability adapters/tests inside subjects/russian/engine/**, then only integrate through RE09."
 }
