@@ -47,3 +47,8 @@ A new session should be able to continue from:
 `Chat Entry + Constitution + Registry + active subject README/Master Prompt + state + routed clauses + diff when repository work is requested`.
 
 Chat history is supplementary, not authoritative project state.
+
+
+## Prompt control validation
+
+When prompt governance changes, run `node scripts/validate-prompt-control-center.mjs` before merge. A prompt change is not complete if Registry paths are broken, a domain has competing Master Prompt authority, or Shared State / active packet / execution result disagree on packet identity, revision or lifecycle.
