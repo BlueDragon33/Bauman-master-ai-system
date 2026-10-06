@@ -131,18 +131,24 @@ async function approvedFlow(browser){
   });
   must(/Quota/.test(atomicFailure.error),'Apply write failure must surface');must(atomicFailure.memorySame&&atomicFailure.durableSame&&atomicFailure.historySame,'Failed Apply must preserve memory, durable schedule and transaction history atomically');assert.equal(atomicFailure.inert,false);ok('apply_quota_atomicity');
 
+  const installPublicReportRace=()=>{
+    const original=IDBDatabase.prototype.transaction;
+    IDBDatabase.prototype.transaction=function(stores,mode,...rest){const tx=original.call(this,stores,mode,...rest);if(mode==='readwrite'&&Array.isArray(stores)&&stores.includes('records')&&stores.includes('attachments')){IDBDatabase.prototype.transaction=original;queueMicrotask(()=>receiveSubjectProgress({subjectId:'math',type:'BAUMAN_SUBJECT_PROGRESS'}))}return tx};
+  };
+  await page.evaluate(installPublicReportRace);
   const firstApply=await page.evaluate(async()=>{
     const ap=window.BAUMAN_ACADEMIC_SCHEDULER_APPLY_2026,pv=window.BAUMAN_ACADEMIC_SCHEDULER_PREVIEW_2026,p=pv.readStoredPreview();
     const manualBefore=JSON.stringify(window.state.schedule.entries['2026-10-05|afternoon']);
     const externalBefore=JSON.stringify(window.state.schedule.entries['2026-10-06|morning1']);
     let unconfirmedError='';try{await ap.applyApprovedPreview()}catch(e){unconfirmedError=String(e?.message||e)}
-    const tx=await ap.applyApprovedPreview({confirmed:true});
+    const tx=await ap.applyApprovedPreview({confirmed:true});await window.BAUMAN_HUB_PERSONAL_STORE.flush();
     const changed=tx.changedKeys.map(key=>({key,entry:window.state.schedule.entries[key],expected:tx.entriesAfter[key]}));
-    return {tx,changed,manualPreserved:manualBefore===JSON.stringify(window.state.schedule.entries['2026-10-05|afternoon']),externalPreserved:externalBefore===JSON.stringify(window.state.schedule.entries['2026-10-06|morning1']),previewStale:pv.previewIsStale(p),unconfirmedError,history:ap.transactionHistory()};
+    return {tx,changed,durable:window.BAUMAN_HUB_PERSONAL_STORE.get('bauman_main_all_phases_subjects_v1'),manualPreserved:manualBefore===JSON.stringify(window.state.schedule.entries['2026-10-05|afternoon']),externalPreserved:externalBefore===JSON.stringify(window.state.schedule.entries['2026-10-06|morning1']),previewStale:pv.previewIsStale(p),unconfirmedError,history:ap.transactionHistory()};
   });
   must(/xác nhận/i.test(firstApply.unconfirmedError),'Programmatic Apply without confirmed:true must fail');
   assert.equal(firstApply.tx.status,'applied');must(firstApply.tx.changedKeys.length===preview.proposed,'Transaction changed-key count must match preview');must(firstApply.manualPreserved&&firstApply.externalPreserved,'Apply changed manual/external protected entries');must(firstApply.previewStale,'Applied preview must become stale after schedule mutation');must(firstApply.changed.every(x=>x.entry?.source==='academic_applied'&&x.entry?.academic2026?.transactionId===firstApply.tx.id&&JSON.stringify(x.entry)===JSON.stringify(x.expected)),'Applied entries must exactly match transaction entriesAfter and carry transaction id');must(firstApply.history.some(x=>x.id===firstApply.tx.id&&x.status==='applied'),'Applied transaction must persist in history');
   ok('transactional_apply',JSON.stringify({id:firstApply.tx.id,changed:firstApply.tx.changedKeys.length}));
+  must(firstApply.tx.changedKeys.every(key=>firstApply.durable.schedule.entries[key]?.academic2026?.transactionId===firstApply.tx.id),'Public report during Apply must not undo durable schedule');must(firstApply.durable.subjectReports.math.length>0,'Public report during Apply must persist');ok('apply_public_report_race');
 
   const rollbackFailure=await page.evaluate(async()=>{
     const store=window.BAUMAN_HUB_PERSONAL_STORE,ap=window.BAUMAN_ACADEMIC_SCHEDULER_APPLY_2026;
@@ -153,15 +159,17 @@ async function approvedFlow(browser){
   });
   must(/AbortError/.test(rollbackFailure.error),'Rollback failure must surface');must(rollbackFailure.memorySame&&rollbackFailure.durableSame&&rollbackFailure.historySame,'Failed Rollback must preserve schedule and active history atomically');ok('rollback_abort_atomicity');
 
+  await page.evaluate(installPublicReportRace);
   const firstRollback=await page.evaluate(async()=>{
     const ap=window.BAUMAN_ACADEMIC_SCHEDULER_APPLY_2026,tx=ap.latestActiveTransaction();
     let unconfirmedError='';try{await ap.rollbackLatest()}catch(e){unconfirmedError=String(e?.message||e)}
-    const row=await ap.rollbackLatest({confirmed:true});
+    const row=await ap.rollbackLatest({confirmed:true});await window.BAUMAN_HUB_PERSONAL_STORE.flush();
     const restored=tx.changedKeys.map(key=>({key,current:window.state.schedule.entries[key]??null,expected:tx.entriesBefore[key]??null}));
-    return {row,restored,fingerprint:ap.scheduleFingerprint(),expectedFingerprint:tx.beforeFingerprint,unconfirmedError,history:ap.transactionHistory()};
+    return {row,restored,durable:window.BAUMAN_HUB_PERSONAL_STORE.get('bauman_main_all_phases_subjects_v1'),fingerprint:ap.scheduleFingerprint(),expectedFingerprint:tx.beforeFingerprint,unconfirmedError,history:ap.transactionHistory()};
   });
   must(/xác nhận/i.test(firstRollback.unconfirmedError),'Rollback without confirmed:true must fail');assert.equal(firstRollback.row.status,'rolled_back');assert.equal(firstRollback.fingerprint,firstRollback.expectedFingerprint);must(firstRollback.restored.every(x=>JSON.stringify(x.current)===JSON.stringify(x.expected)),'Rollback must restore/delete each changed slot exactly');must(firstRollback.history.some(x=>x.id===firstApply.tx.id&&x.status==='rolled_back'),'Rolled-back transaction status must persist');
   ok('transactional_rollback');
+  must(firstRollback.restored.every(x=>JSON.stringify(firstRollback.durable.schedule.entries[x.key]??null)===JSON.stringify(x.expected)),'Public report during Rollback must not undo durable rollback');must(firstRollback.durable.subjectReports.math.length>=2,'Public report during Rollback must persist');ok('rollback_public_report_race');
 
   const rollbackGuard=await page.evaluate(async()=>{
     const pv=window.BAUMAN_ACADEMIC_SCHEDULER_PREVIEW_2026,ap=window.BAUMAN_ACADEMIC_SCHEDULER_APPLY_2026;

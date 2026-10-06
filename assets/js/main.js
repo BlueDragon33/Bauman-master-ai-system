@@ -96,7 +96,7 @@ function normalizeState(raw){
   return out;
 }
 function readState(){return normalizeState(window.BAUMAN_HUB_PERSONAL_STORE.get(KEY,{}))}
-function save(){return window.BAUMAN_HUB_PERSONAL_STORE.set(KEY,state)}
+function save(){const pending=window.BAUMAN_HUB_SCHEDULE_TRANSACTION;if(pending){const write=pending.finished.then(()=>save());write.catch(()=>{});return write}return window.BAUMAN_HUB_PERSONAL_STORE.set(KEY,state)}
 let state=defaultState();
 window.BAUMAN_HUB_PERSONAL_READY=window.BAUMAN_HUB_PERSONAL_STORE.initialize().catch(error=>{
   if(!window.BAUMAN_HUB_PERSONAL_STORE.readOnly)throw error;
@@ -376,7 +376,7 @@ const app={
   admin(){if(!auth.isAdmin())return;const users=readUsers();$('page-admin').innerHTML=`<div class="section-head"><div><h2>Quản trị</h2><p>Thêm người học và chỉnh đường dẫn môn học.</p></div></div><div class="admin-grid"><div class="panel"><h3>Tạo tài khoản người học</h3><input id="newUserName" class="field" placeholder="Tên" style="width:100%;margin-bottom:8px"><input id="newUserEmail" class="field" placeholder="Email" style="width:100%;margin-bottom:8px"><input id="newUserPass" class="field" placeholder="Mật khẩu" style="width:100%;margin-bottom:8px"><button class="btn primary" data-action="save-user">Thêm người học</button><div class="course-list" style="margin-top:12px">${users.map(u=>`<div class="course"><b>${esc(u.name)}</b><p>${esc(u.email)} · ${esc(u.role)}</p></div>`).join('')}</div></div><div class="panel"><h3>Đường dẫn môn học</h3>${Object.values(state.subjects).map(s=>`<div class="course"><b>${esc(s.name)}</b><input class="field" value="${esc(s.mainPath||'')}" onchange="state.subjects['${s.id}'].mainPath=this.value;save()" style="width:100%;margin-top:7px" placeholder="subjects/.../index.html"><input class="field" value="${esc(s.editorPath||'')}" onchange="state.subjects['${s.id}'].editorPath=this.value;save()" style="width:100%;margin-top:7px" placeholder="subjects/.../editor.html"></div>`).join('')}</div></div>`},
   async saveUser(){const name=$('newUserName').value.trim(),email=$('newUserEmail').value.trim().toLowerCase(),password=$('newUserPass').value.trim();if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))return toast('Cần email hợp lệ');if(password.length<8)return toast('Mật khẩu cần ít nhất 8 ký tự');const users=readUsers();if(users.some(u=>String(u.email).toLowerCase()===email))return toast('Email đã tồn tại');users.push({name:name||email,email,...await passwordRecord(password),role:'user'});saveUsers(users);this.admin();toast('Đã thêm người học')},
   async exportBackup(){try{if(!window.BAUMAN_HUB_PERSONAL_STORE.readOnly)await save();const bundle=await window.BAUMAN_HUB_PERSONAL_STORE.exportBundle();const blob=new Blob([JSON.stringify(bundle,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='bauman_main_backup.json';a.click();URL.revokeObjectURL(a.href);closeProfileMenu();return bundle}catch{toast('Không tạo được sao lưu. Dữ liệu hiện tại vẫn được giữ.')}},
-  async importBackup(file){if(!file)return;try{const data=JSON.parse(await file.text());await window.BAUMAN_HUB_PERSONAL_STORE.importBundle(data,{normalizeState});toast('Đã khôi phục');location.reload()}catch{toast('Không khôi phục được sao lưu. Dữ liệu hiện tại vẫn được giữ.')}}
+  async importBackup(file){if(!file)return;try{const data=JSON.parse(await file.text());await window.BAUMAN_HUB_PERSONAL_STORE.importBundle(data,{normalizeState,allowEmptyStandaloneProfileRecovery:true});toast('Đã khôi phục');location.reload()}catch{toast('Không khôi phục được sao lưu. Dữ liệu hiện tại vẫn được giữ.')}}
 };
 const RESEARCH_LABELS={questions:'Câu hỏi nghiên cứu',data:'Dữ liệu cần thu',hardware:'Linh kiện / phần cứng',outputs:'Đầu ra mong muốn',risks:'Rủi ro cần kiểm soát',tasks:'Việc nên làm ngay'};
 const RESEARCH_TOPICS={
@@ -505,6 +505,8 @@ function finiteProgressNumber(value){
  const n=Number(value);return Number.isFinite(n)?n:null;
 }
 function receiveSubjectProgress(report={}){
+ const pending=window.BAUMAN_HUB_SCHEDULE_TRANSACTION;
+ if(pending){pending.finished.then(()=>receiveSubjectProgress(report));return true;}
  const subjectId=report.subjectId||report.subject||state.activeTask?.subjectId;
  if(!subjectId||!state.subjects[subjectId])return false;
  const activeTaskId=String(state.activeTask?.taskId||state.activeTask?.missionId||''),reportTaskId=String(report.taskId||report.missionId||'');

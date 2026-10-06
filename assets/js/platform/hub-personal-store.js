@@ -203,35 +203,47 @@ function requireReady(){if(!ready)throw new Error('Kho dữ liệu Hub chưa s�
 function get(key,fallback=null){if(!ready&&!readOnly)requireReady();return clone(Object.hasOwn(cache,key)?cache[key]:fallback)}
 function set(key,value){
   requireReady();value=canonicalValue(key,value,scopeId);
-  const scope=scopeId,epoch=generation,version=++writeVersion;keyVersions[key]=version;cache[key]=clone(value);
+  const scope=scopeId,epoch=generation,version=++writeVersion,prior=clone(cache[key]??null);keyVersions[key]=version;cache[key]=clone(value);
   return enqueue(async()=>{
-    try{await transaction(['records'],'readwrite',tx=>tx.objectStore('records').put({id:recordId(scope,key),scopeId:scope,key,schemaVersion:SCHEMA_VERSION,value}));if(generation===epoch){committedCache[key]=clone(value);delete writeFailures[key]}if(!Object.keys(writeFailures).length)report('READY');return clone(value)}
+    try{await writeAtomic(scope,{[key]:value},[],{[key]:prior});if(generation===epoch){committedCache[key]=clone(value);delete writeFailures[key]}if(!Object.keys(writeFailures).length)report('READY');return clone(value)}
     catch(error){if(generation===epoch){writeFailures[key]=error;if(keyVersions[key]===version){if(committedCache[key]===undefined)delete cache[key];else cache[key]=clone(committedCache[key])}}throw error}
   });
 }
 async function flush(){await chain;const error=Object.values(writeFailures)[0];if(error)throw error}
+function writeAtomic(scope,values,blobs,expected,nextProfile,sourceGuard){
+  return new Promise((resolve,reject)=>{
+      const tx=db.transaction(nextProfile?['records','attachments','meta']:['records','attachments'],'readwrite');let error;
+      tx.oncomplete=resolve;tx.onabort=()=>reject(error||tx.error||new DOMException('Aborted','AbortError'));tx.onerror=()=>{};
+      const records=tx.objectStore('records'),checks=Object.entries(expected).map(([key,value])=>({scope,key,value}));
+      if(sourceGuard)for(const [key,value] of Object.entries(sourceGuard.values))checks.push({scope:sourceGuard.scope,key,value});
+      let remaining=checks.length;
+      const write=()=>{
+        try{
+          for(const row of blobs){if(row.scopeId!==scope)throw new Error('Attachment scope mismatch');tx.objectStore('attachments').put(row)}
+          for(const [key,value] of Object.entries(values))records.put({id:recordId(scope,key),scopeId:scope,key,schemaVersion:SCHEMA_VERSION,value});
+          if(nextProfile)tx.objectStore('meta').put({id:'current-profile',schemaVersion:SCHEMA_VERSION,value:nextProfile});
+          if(values[MAIN]){
+            const referenced=new Set(Object.values(values[MAIN].researchFiles||{}).flat().map(file=>file.attachmentId));
+            const cursor=tx.objectStore('attachments').openCursor();
+            cursor.onsuccess=()=>{const row=cursor.result;if(!row)return;if(row.value.scopeId===scope&&!referenced.has(row.value.attachmentId))row.delete();row.continue()};
+          }
+        }catch(err){error=err;tx.abort()}
+      };
+      if(!remaining)write();
+      for(const check of checks){const req=records.get(recordId(check.scope,check.key));req.onsuccess=()=>{
+        if(error)return;
+        if(JSON.stringify(req.result?.value??null)!==JSON.stringify(check.value??null)){error=new Error('Dữ liệu đã thay đổi ở tab khác. Hãy tải lại trước khi tiếp tục.');tx.abort();return}
+        if(--remaining===0)write();
+      }}
+    });
+}
 function commit(changes,{blobs=[],expected={}}={}){
   requireReady();const scope=scopeId,epoch=generation;
   const values=Object.fromEntries(Object.entries(changes).map(([key,value])=>[key,canonicalValue(key,value,scope)]));
   const versions=Object.fromEntries(Object.keys(values).map(key=>[key,keyVersions[key]]));
   return enqueue(async()=>{
-    await new Promise((resolve,reject)=>{
-      const tx=db.transaction(['records','attachments'],'readwrite');let error;
-      tx.oncomplete=resolve;tx.onabort=()=>reject(error||tx.error||new DOMException('Aborted','AbortError'));tx.onerror=()=>{};
-      const records=tx.objectStore('records'),keys=Object.keys(expected);let remaining=keys.length;
-      const write=()=>{
-        try{
-          for(const row of blobs){if(row.scopeId!==scope)throw new Error('Attachment scope mismatch');tx.objectStore('attachments').put(row)}
-          for(const [key,value] of Object.entries(values))records.put({id:recordId(scope,key),scopeId:scope,key,schemaVersion:SCHEMA_VERSION,value});
-        }catch(err){error=err;tx.abort()}
-      };
-      if(!remaining)write();
-      for(const key of keys){const req=records.get(recordId(scope,key));req.onsuccess=()=>{
-        if(error)return;
-        if(JSON.stringify(req.result?.value??null)!==JSON.stringify(expected[key]??null)){error=new Error('Dữ liệu đã thay đổi ở tab khác. Hãy tải lại trước khi tiếp tục.');tx.abort();return}
-        if(--remaining===0)write();
-      }}
-    });
+    const guarded={...Object.fromEntries(Object.keys(values).map(key=>[key,committedCache[key]??null])),...expected};
+    await writeAtomic(scope,values,blobs,guarded);
     if(generation===epoch)for(const [key,value] of Object.entries(values)){committedCache[key]=clone(value);delete writeFailures[key];if(versions[key]===keyVersions[key])cache[key]=clone(value)}if(!Object.keys(writeFailures).length)report('READY');return clone(values);
   });
 }
@@ -272,13 +284,31 @@ async function exportBundle(){
     let binary='';for(let i=0;i<bytes.length;i+=32768)binary+=String.fromCharCode(...bytes.subarray(i,i+32768));
     attachments.push({attachmentId:file.attachmentId,mime:blob.type,size:blob.size,sha256:await digest(blob),base64:btoa(binary)});
   }
-  return {schema:'bauman-hub-personal-backup',version:SCHEMA_VERSION,scopeId,exportedAt:new Date().toISOString(),records,attachments};
+  return {schema:'bauman-hub-personal-backup',version:SCHEMA_VERSION,scopeId,profile:safeProfile(profile),exportedAt:new Date().toISOString(),records,attachments};
 }
-async function importBundle(bundle,{normalizeState}={}){
+function pristineDefaultScope(){
+  if(managed()||scopeId!==DEFAULT_PROFILE.email||accounts.length)return false;
+  for(const [key,value] of Object.entries(cache)){
+    if(key===MAIN){
+      for(const name of ['progress','subjectReports','subjectCapabilities','subjectRouteReceipts','researchChecks','researchFiles'])if(Object.keys(value[name]||{}).length)return false;
+      if(value.deepStudyJournal?.entries?.length||value.activity?.length||value.reviewQueue?.length||value.activeTask)return false;
+      if(Object.values(value.schedule?.entries||{}).some(entry=>!['auto','review'].includes(entry.source)))return false;
+    }else if(ACADEMIC_KEYS.has(key)){
+      for(const user of Object.values(value.users||{}))if(Object.keys(user.gateDiagnostics||{}).length||user.preview||user.transactions?.length)return false;
+    }else if(Array.isArray(value)?value.length:Object.keys(value).length)return false;
+  }
+  return true;
+}
+async function importBundle(bundle,{normalizeState,allowEmptyStandaloneProfileRecovery=false}={}){
   requireReady();await flush();
-  const scope=scopeId;let values,blobs=[];
+  let scope=scopeId,values,blobs=[],recoveryProfile=null;
   if(bundle?.schema==='bauman-hub-personal-backup'){
-    if(bundle.version!==SCHEMA_VERSION||bundle.scopeId!==scope||!object(bundle.records)||!Array.isArray(bundle.attachments))throw new Error('Backup version/profile is incompatible');
+    if(bundle.version!==SCHEMA_VERSION||!object(bundle.records)||!Array.isArray(bundle.attachments))throw new Error('Backup version/profile is incompatible');
+    if(bundle.scopeId!==scope){
+      const incoming=safeProfile(bundle.profile);
+      if(!allowEmptyStandaloneProfileRecovery||!incoming||incoming.managedBy||incoming.email!==bundle.scopeId||!pristineDefaultScope()||Object.keys(await loadScope(incoming.email)).length)throw new Error('Backup profile is incompatible');
+      scope=incoming.email;recoveryProfile=incoming;
+    }
     values=Object.fromEntries(Object.entries(bundle.records).map(([key,value])=>[key,sanitize(key,redact(value),scope)]));
     const ids=new Set();
     for(const row of bundle.attachments){
@@ -301,6 +331,16 @@ async function importBundle(bundle,{normalizeState}={}){
   // Portable restore replaces this scope's complete personal dataset. Missing
   // sidecars in legacy bundles retain their existing recoverable data.
   if(bundle.schema==='bauman-hub-personal-backup')for(const key of KEYS)if(!(key in values))values[key]=ARRAY_KEYS.has(key)?[]:{};
+  if(recoveryProfile){
+    const guarded=Object.fromEntries(Object.keys(values).map(key=>[key,null]));
+    return enqueue(async()=>{
+      if(!pristineDefaultScope())throw new Error('Hub đã có dữ liệu cá nhân; không đổi profile khi khôi phục.');
+      const canonical=Object.fromEntries(Object.entries(values).map(([key,value])=>[key,canonicalValue(key,value,scope)]));
+      const sourceGuard={scope:scopeId,values:Object.fromEntries(KEYS.map(key=>[key,committedCache[key]??null]))};
+      await writeAtomic(scope,canonical,blobs,guarded,recoveryProfile,sourceGuard);
+      profile=recoveryProfile;scopeId=scope;cache=clone(canonical);committedCache=clone(canonical);keyVersions={};writeFailures={};generation++;report('READY');return clone(canonical);
+    });
+  }
   return commit(values,{blobs,expected:{[MAIN]:get(MAIN,null)}});
 }
 window.BAUMAN_HUB_PERSONAL_STORE=Object.freeze({

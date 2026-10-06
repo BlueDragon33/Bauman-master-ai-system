@@ -64,7 +64,13 @@
   }
 
   let transactionBusy=false;
-  function transactionGuard(){if(transactionBusy)throw new Error('Academic transaction đang được lưu.');transactionBusy=true;const root=document.getElementById('appRoot');if(root)root.inert=true;return ()=>{transactionBusy=false;if(root)root.inert=false}}
+  function transactionGuard(){
+    if(transactionBusy)throw new Error('Academic transaction đang được lưu.');
+    transactionBusy=true;const root=document.getElementById('appRoot'),wasInert=root?.inert;
+    let finish;const pending={finished:new Promise(resolve=>{finish=resolve})};window.BAUMAN_HUB_SCHEDULE_TRANSACTION=pending;
+    if(root)root.inert=true;
+    return ()=>{transactionBusy=false;if(root)root.inert=wasInert;if(window.BAUMAN_HUB_SCHEDULE_TRANSACTION===pending)delete window.BAUMAN_HUB_SCHEDULE_TRANSACTION;finish()};
+  }
   async function applyApprovedPreview(options={}){
     if(options.confirmed!==true)throw new Error('Apply yêu cầu xác nhận rõ ràng của người dùng.');
     const release=transactionGuard();

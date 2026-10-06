@@ -97,7 +97,36 @@ try{
     return{bytes,name:file.name,mime:file.mime,restoredTx,legacyProgress:legacy.progress.math,body,credentialsSame:credentialsBefore===JSON.stringify(s.getAccounts())};
   });
   assert.deepEqual(portable,{bytes:[0,1,255,128],name:'clip.mp4',mime:'video/mp4',restoredTx:'tx-A',legacyProgress:23,body:'{}',credentialsSame:true});checks.push('binary video exact bytes / transaction backup parity / legacy import excludes credentials');
+  const retention=await page.evaluate(async()=>{
+    const s=window.BAUMAN_HUB_PERSONAL_STORE;for(let i=0;i<9;i++)await s.addResearchAttachment('retained',new File([String(i)],`${i}.json`,{type:'application/json'}));
+    const main=s.get('bauman_main_all_phases_subjects_v1'),refs=Object.values(main.researchFiles).flat().map(x=>x.attachmentId);
+    const db=await new Promise((resolve,reject)=>{const r=indexedDB.open('bauman-hub-personal');r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error)});
+    const rows=await new Promise((resolve,reject)=>{const r=db.transaction('attachments').objectStore('attachments').getAll();r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error)});db.close();
+    return{visible:main.researchFiles.retained.length,orphans:rows.filter(x=>x.scopeId===s.scopeId&&!refs.includes(x.attachmentId)).length};
+  });
+  assert.deepEqual(retention,{visible:8,orphans:0},'Evicted or replaced attachment references must release their scoped binary payloads');checks.push('bounded attachment retention / scoped orphan cleanup');
+  const secondTab=await context.newPage();
+  await secondTab.route('**/storage-fixture',route=>route.fulfill({contentType:'text/html',body:'<!doctype html><meta name="bauman-access-mode" content="standalone"><script src="/assets/js/platform/hub-personal-store.js"></script>'}));
+  await secondTab.goto(new URL('storage-fixture',BASE).href);await secondTab.evaluate(()=>window.BAUMAN_HUB_PERSONAL_STORE.initialize());
+  await page.evaluate(async()=>{const s=window.BAUMAN_HUB_PERSONAL_STORE,key='bauman_main_all_phases_subjects_v1',main=s.get(key);main.progress.math=24;await s.set(key,main)});
+  const staleWrite=await secondTab.evaluate(async()=>{const s=window.BAUMAN_HUB_PERSONAL_STORE,key='bauman_main_all_phases_subjects_v1',main=s.get(key);main.progress.math=99;let rejected=false;try{await s.set(key,main)}catch{rejected=true}await s.initialize();return{rejected,progress:s.get(key).progress.math}});
+  assert.deepEqual(staleWrite,{rejected:true,progress:24},'A stale tab must reject rather than overwrite newer canonical data');await secondTab.close();checks.push('two tabs reject stale canonical writes / reload retains newer data');
   await context.close();
+
+  const freshContext=await browser.newContext(),freshPage=await freshContext.newPage();
+  await freshPage.goto(BASE);await freshPage.waitForFunction(()=>document.documentElement.dataset.hubPersonalReady==='true');
+  const freshRestore=await freshPage.evaluate(async bundle=>{
+    const s=window.BAUMAN_HUB_PERSONAL_STORE,before=s.scopeId,note='bauman_schedule_reference_notes_v1';
+    await s.set(note,[{id:'existing',text:'Keep'}]);let populatedRejected=false;try{await s.importBundle(bundle,{allowEmptyStandaloneProfileRecovery:true})}catch{populatedRejected=true}
+    const kept=s.get(note)[0].text;await s.set(note,[]);
+    const corrupt=structuredClone(bundle);corrupt.attachments[0].sha256='invalid';let invalidRejected=false;try{await s.importBundle(corrupt,{allowEmptyStandaloneProfileRecovery:true})}catch{invalidRejected=true}
+    const invalidScopeUnchanged=s.scopeId===before;
+    let restored=false,error='';try{await s.importBundle(bundle,{allowEmptyStandaloneProfileRecovery:true});restored=true}catch(e){error=String(e)}
+    return{before,populatedRejected,kept,invalidRejected,invalidScopeUnchanged,restored,error,scope:s.scopeId,progress:s.get('bauman_main_all_phases_subjects_v1',{}).progress?.math};
+  },migration.bundle);
+  assert.equal(freshRestore.restored,true,'Portable recovery must restore an existing backed-up profile on a fresh standalone Hub');assert.equal(freshRestore.scope,'a@example.com');assert.equal(freshRestore.progress,0);
+  assert.equal(freshRestore.populatedRejected,true);assert.equal(freshRestore.kept,'Keep');assert.equal(freshRestore.invalidRejected,true);assert.equal(freshRestore.invalidScopeUnchanged,true);
+  await freshPage.reload();await freshPage.waitForFunction(()=>document.documentElement.dataset.hubPersonalReady==='true');assert.equal(await freshPage.evaluate(()=>auth.current.email),'a@example.com');await freshContext.close();checks.push('clean standalone browser restores backed-up existing profile without account-switch UI');
 
   const unavailable=await fixture();
   const unavailableResult=await unavailable.page.evaluate(async()=>{
