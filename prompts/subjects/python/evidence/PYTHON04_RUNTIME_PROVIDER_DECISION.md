@@ -1,8 +1,10 @@
 # PYTHON04 RUNTIME PROVIDER DECISION
 
-Status: **ACCEPTED FOR IMPLEMENTATION — SERVER/CONTAINER SANDBOX**
+Status: **SUPERSEDED AS CANONICAL DEFAULT — PRESERVED AS OPTIONAL MANAGED-PROVIDER EVIDENCE**
 
 Decision date: 2026-10-04
+
+Superseded on 2026-10-06 by `PYTHON04_LOCAL_FIRST_PROVIDER_DECISION.md` under Universal Constitution 1.2.0. The implementation/evidence below remains valid for the optional managed-sandbox profile, but Cloudflare Containers no longer block `LOCAL_STABLE`.
 
 Baseline main SHA: `1622aa591fc0ded12c0659caf42e38d21b051487`
 
