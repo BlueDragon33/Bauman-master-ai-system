@@ -12,7 +12,7 @@ The repository-level authority remains:
 
 Current adopted policy at the baseline used to create this structure:
 - policyId: `blueprint-os:universal-century-grade`
-- policyVersion: `1.1.0`
+- policyVersion: `1.2.0`
 - blueprintLevel: `B4`
 - enforcementMode: `enforced`
 - evidenceAuthority: `canonical-quality-gates`
@@ -39,6 +39,7 @@ Requirements:
 - default to LOCAL-FIRST · OFFLINE-FIRST · FREE-FIRST · PORTABLE before optional cloud;
 - recurring paid infrastructure requires explicit user approval and a documented local/free fallback analysis;
 - external providers must sit behind replaceable adapters/capabilities and must not become canonical learner-data truth;
+- inherit the Universal Constitution 1.2 pillar `operational-sovereignty-dependency-minimization` and require a dependency budget for significant external services;
 - canonical user data must remain exportable and recoverable without a single vendor;
 - Google Drive/Sheets/Apps Script may be optional user-owned sync/backup bridges, never mandatory core truth;
 - ChatGPT is the preferred interactive AI assistant; a separate model API must not become a hidden core requirement without explicit scope;
