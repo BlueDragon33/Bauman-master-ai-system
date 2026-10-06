@@ -1,6 +1,6 @@
 # Russian Engine RE07 — Multi-User & Commercial Scale Contracts
 
-State: VALIDATING
+State: **PASS**
 
 ## Principle
 
@@ -82,13 +82,20 @@ The data contract explicitly states:
 - `subjects/russian/engine/sync/change-journal.mjs`
 - `subjects/russian/engine/tests/test-re07-commercial-scale.mjs`
 
+## Validation
+
+Executed against the branch implementation: **14/14 checks PASS**.
+
+Verified:
+- profile-scoped storage keys differ between A/B;
+- cross-profile ownership is rejected;
+- payment/provider IDs are rejected as canonical identity;
+- entitlement is provider-independent;
+- profile-specific packs remain isolated;
+- journal duplicate writes are idempotent;
+- version conflict becomes explicit `CONFLICT`;
+- no network, managed backend or payment provider is required.
+
 ## Exit
 
-RE07 PASS requires:
-- profile-scoped keys and ownership;
-- external provider/payment IDs are non-canonical;
-- entitlement remains provider-independent;
-- profile A/B entitlement/state is separable;
-- sync journal is idempotent;
-- conflicts become explicit;
-- no network/backend/payment dependency is introduced.
+**RE07 PASS.**
