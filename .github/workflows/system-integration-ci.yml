@@ -67,6 +67,8 @@ jobs:
         run: node tests/hub-primary-pages-v6-static.mjs
       - name: Validate Hub data-truth contract
         run: node tests/hub-data-truth-static.mjs
+      - name: Validate Hub personal storage ownership
+        run: node tests/hub-personal-storage-static.mjs
       - name: Validate scoped Schedule reference UI
         run: node tests/schedule-reference-v1-static.mjs
       - name: Validate scoped Subjects reference UI
@@ -367,6 +369,16 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/system-browser
         run: node tests/system-browser-acceptance.mjs
+      - name: Run Hub personal storage failure and portability acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/hub-personal-storage
+        run: node tests/hub-personal-storage-browser.mjs
+      - name: Run Hub public-boundary integration
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/hub-public-boundary
+        run: node tests/system-browser-acceptance.mjs --hub-only
       - name: Run Foundation identity persistence browser acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
@@ -501,6 +513,17 @@ jobs:
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-browser
           BAUMAN_E2E_EXPECT_PLATFORM_ACCESS: "1"
         run: node tests/system-browser-acceptance.mjs
+      - name: Run packaged Hub personal storage acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-hub-personal-storage
+        run: node tests/hub-personal-storage-browser.mjs
+      - name: Run packaged Hub public-boundary integration
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-hub-public-boundary
+          BAUMAN_E2E_EXPECT_PLATFORM_ACCESS: "1"
+        run: node tests/system-browser-acceptance.mjs --hub-only
       - name: Run packaged Foundation identity persistence acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
@@ -611,6 +634,10 @@ jobs:
           name: whole-system-browser-${{ github.run_id }}
           path: |
             artifacts/system-browser
+            artifacts/hub-personal-storage
+            artifacts/hub-public-boundary
+            artifacts/chatgpt-site-hub-personal-storage
+            artifacts/chatgpt-site-hub-public-boundary
             artifacts/foundation-identity-persistence
             artifacts/foundation-identity-projection
             artifacts/foundation-canonical-context

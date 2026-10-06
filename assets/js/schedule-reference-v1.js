@@ -104,8 +104,8 @@ function progress(){
 }
 function readView(){try{var v=localStorage.getItem(VIEW_KEY);return ['day','week','month'].indexOf(v)>=0?v:'week'}catch(e){return 'week'}}
 function saveView(){try{localStorage.setItem(VIEW_KEY,ui.view)}catch(e){}}
-function readNotes(){try{var v=JSON.parse(localStorage.getItem(NOTE_KEY)||'[]');return Array.isArray(v)?v.slice(0,16):[]}catch(e){return []}}
-function writeNotes(v){try{localStorage.setItem(NOTE_KEY,JSON.stringify(v.slice(0,16)))}catch(e){}}
+function readNotes(){var v=window.BAUMAN_HUB_PERSONAL_STORE.get(NOTE_KEY,[]);return Array.isArray(v)?v.slice(0,16):[]}
+function writeNotes(v){return window.BAUMAN_HUB_PERSONAL_STORE.set(NOTE_KEY,v.slice(0,16))}
 function saveState(){try{if(typeof save==='function')save()}catch(e){}}
 function toastSafe(msg){try{if(typeof toast==='function')toast(msg)}catch(e){}}
 function readAccepted(){try{var v=JSON.parse(localStorage.getItem(SUGGESTION_KEY)||'[]');return new Set(Array.isArray(v)?v.slice(0,16):[])}catch(e){return new Set()}}

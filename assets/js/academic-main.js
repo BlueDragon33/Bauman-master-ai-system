@@ -26,10 +26,10 @@
   let academicStore=null;
 
   function currentUserScope(){
-    try{const u=JSON.parse(localStorage.getItem(CURRENT_USER_KEY)||'null');return String(u?.email||'anonymous').toLowerCase()}catch{return 'anonymous'}
+    return window.BAUMAN_HUB_PERSONAL_STORE.scopeId;
   }
   function academicReportMeta(items=[]){
-    let user=null;try{user=JSON.parse(localStorage.getItem(CURRENT_USER_KEY)||'null')}catch{/* anonymous */}
+    const user=window.BAUMAN_HUB_PERSONAL_STORE.currentUser();
     const learner=String(user?.name||user?.email||'Người học').trim()||'Người học';
     const email=String(user?.email||'').trim();
     const generated=new Date().toLocaleString('vi-VN',{hour12:false});
@@ -37,17 +37,17 @@
     return '<div class="academic2026-report-meta">'+base.map(([label,value])=>'<span><b>'+h(label)+':</b> '+h(value||'—')+'</span>').join('')+'</div>';
   }
   function blankStore(){return {schema:'bauman_academic_diagnostic_store_v1',version:'PASS13C',users:{}}}
-  function persistStore(){try{localStorage.setItem(DIAGNOSTIC_STORAGE_KEY,JSON.stringify(academicStore||blankStore()));return true}catch(err){console.warn('Academic diagnostic storage failed:',err);return false}}
+  function persistStore(){return window.BAUMAN_HUB_PERSONAL_STORE.set(DIAGNOSTIC_STORAGE_KEY,academicStore||blankStore())}
   function migrateLegacyDiagnostics(){
     const scope=currentUserScope();if(academicStore?.users?.[scope]?.migrationChecked)return;
     academicStore.users[scope]=academicStore.users[scope]&&typeof academicStore.users[scope]==='object'?academicStore.users[scope]:{};
     const user=academicStore.users[scope];user.gateDiagnostics=user.gateDiagnostics&&typeof user.gateDiagnostics==='object'?user.gateDiagnostics:{};
-    try{const main=JSON.parse(localStorage.getItem(MAIN_STORAGE_KEY)||'null');const legacy=main?.academic2026?.gateDiagnostics;if(legacy&&typeof legacy==='object')for(const [gateId,value] of Object.entries(legacy))if(user.gateDiagnostics[gateId]==null)user.gateDiagnostics[gateId]=value}catch{/* no legacy state */}
+    const main=window.BAUMAN_HUB_PERSONAL_STORE.get(MAIN_STORAGE_KEY,{}),legacy=main?.academic2026?.gateDiagnostics;if(legacy&&typeof legacy==='object')for(const [gateId,value] of Object.entries(legacy))if(user.gateDiagnostics[gateId]==null)user.gateDiagnostics[gateId]=value;
     user.migrationChecked=true;persistStore();
   }
   function readStore(){
     if(academicStore)return academicStore;
-    try{const parsed=JSON.parse(localStorage.getItem(DIAGNOSTIC_STORAGE_KEY)||'null');academicStore=parsed&&typeof parsed==='object'?parsed:blankStore()}catch{academicStore=blankStore()}
+    const parsed=window.BAUMAN_HUB_PERSONAL_STORE.get(DIAGNOSTIC_STORAGE_KEY,null);academicStore=parsed&&typeof parsed==='object'?parsed:blankStore();
     if(!academicStore.users||typeof academicStore.users!=='object')academicStore.users={};academicStore.version='PASS13C';migrateLegacyDiagnostics();return academicStore;
   }
   function userAcademicState(){const store=readStore(),scope=currentUserScope();store.users[scope]=store.users[scope]&&typeof store.users[scope]==='object'?store.users[scope]:{};const u=store.users[scope];u.gateDiagnostics=u.gateDiagnostics&&typeof u.gateDiagnostics==='object'?u.gateDiagnostics:{};return u}
@@ -94,7 +94,7 @@
 
   function legacyStageId(){
     const direct=window.state?.schedule?.autoStage;if(STAGE_MAP[direct])return direct;
-    try{const main=JSON.parse(localStorage.getItem(MAIN_STORAGE_KEY)||'null'),saved=main?.schedule?.autoStage;if(STAGE_MAP[saved])return saved}catch{/* fallback */}
+    const main=window.BAUMAN_HUB_PERSONAL_STORE.get(MAIN_STORAGE_KEY,{}),saved=main?.schedule?.autoStage;if(STAGE_MAP[saved])return saved;
     return 'prepare';
   }
   function currentStageId(){return STAGE_MAP[legacyStageId()]||'before_stankin'}
@@ -160,12 +160,12 @@
     return {stageId,mutationEnabled:SCHEDULER_MUTATION_ENABLED,mode:'advice_only',legacyTargetScore:legacyTarget||null,academicReadyMinimum,targetBelowAcademicReady:legacyTarget>0&&legacyTarget<academicReadyMinimum,plan:activeRepairPlan(stageId).map(x=>({gateId:x.gateId,homeSubject:x.gate?.homeSubject||'',action:x.action,routeIds:(x.repairRoutes||[]).map(r=>r.id),affectedCourseIds:x.threatCourses.map(c=>c.id),stopBroadRemediation:x.broadStop}))};
   }
 
-  function recordDiagnostic(gateId,payload){
+  async function recordDiagnostic(gateId,payload){
     const gate=gateById(gateId);if(!gate)throw new Error(`Unknown gate ${gateId}`);const D0=Number(payload?.D0),D1=Number(payload?.D1),D2=Number(payload?.D2),critical=Number(payload?.criticalMisconceptions);
     if(![D0,D1,D2].every(n=>Number.isFinite(n)&&n>=0&&n<=100))throw new Error('D0/D1/D2 phải là số từ 0 đến 100.');if(!Number.isInteger(critical)||critical<0)throw new Error('Critical misconception phải là số nguyên từ 0 trở lên.');
-    const allowedNodes=new Set((packByGate(gateId)?.nodes||[]).map(n=>n.id)),failedNodeIds=uniq(payload?.failedNodeIds).filter(id=>allowedNodes.has(id)),u=userAcademicState();u.gateDiagnostics[gateId]={D0,D1,D2,criticalMisconceptions:critical,failedNodeIds,assessedAt:new Date().toISOString(),source:'diagnostic_result'};if(!persistStore())throw new Error('Không lưu được diagnostic vào localStorage.');return gateState(gate);
+    const before=structuredClone(readStore()),allowedNodes=new Set((packByGate(gateId)?.nodes||[]).map(n=>n.id)),failedNodeIds=uniq(payload?.failedNodeIds).filter(id=>allowedNodes.has(id)),u=userAcademicState();u.gateDiagnostics[gateId]={D0,D1,D2,criticalMisconceptions:critical,failedNodeIds,assessedAt:new Date().toISOString(),source:'diagnostic_result'};try{await persistStore()}catch(err){academicStore=before;throw err}return gateState(gate);
   }
-  function clearDiagnostic(gateId){const u=userAcademicState();delete u.gateDiagnostics[gateId];persistStore();return gateState(gateById(gateId))}
+  async function clearDiagnostic(gateId){const before=structuredClone(readStore()),u=userAcademicState();delete u.gateDiagnostics[gateId];try{await persistStore()}catch(err){academicStore=before;throw err}return gateState(gateById(gateId))}
 
   function stateBadge(s){const score=s.score==null?'':` · ${h(s.score)}%`;return `<span class="academic2026-state ${h(s.id)}">${h(s.label)}${score}</span>`}
   function riskBadge(r){return `<span class="academic2026-risk ${h(r.id)}">${h(r.label)}</span>`}
@@ -200,8 +200,8 @@
     const g=gateById(id);if(!g)return;const st=gateState(g),pack=packByGate(id),activation=gateActivation(id),intervention=gateIntervention(id),targetNote=Number(g.target)<90?`Gate target nội bộ ${g.target}%, nhưng READY toàn hệ thống vẫn cần ≥90% + D1≥85 + 0 critical misconception.`:'READY cần ≥90% + D1≥85 + 0 critical misconception.';
     modal(`${g.id} · ${g.name}`,`<div class="academic2026-modal-grid"><section class="academic2026-modal-card"><h4>Trạng thái</h4>${stateBadge(st)}<p>Mục tiêu gate: <b>${h(g.target)}%</b></p><p>${h(targetNote)}</p><p>Activation: <b>${h(activation.label)}</b> · ${h(currentStageId())}</p><p>Hành động: <b>${h(intervention.actionLabel)}</b></p>${st.score!=null?`<p>D0 ${h(st.diag.d0)} · D1 ${h(st.diag.d1)} · D2 ${h(st.diag.d2)} · critical ${h(st.diag.critical)}</p>`:''}</section><section class="academic2026-modal-card"><h4>Nội dung cần làm được</h4><ul>${(g.topics||[]).map(x=>`<li>${h(x)}</li>`).join('')}</ul><h4 style="margin-top:12px">Môn bị ảnh hưởng trong horizon</h4><p>${intervention.threatCourses.length?intervention.threatCourses.map(c=>`<button class="academic2026-tag" onclick="openOfficialCourse2026('${h(c.id)}')">${h(c.id)}</button>`).join(' '):'—'}</p><h4 style="margin-top:12px">Repair routing</h4>${repairSummary(g)}</section>${diagnosticForm(g,st,pack)}</div><p class="academic2026-note">Đây là prerequisite về năng lực do Hub suy ra, không phải điều kiện hành chính chính thức của Bauman.</p>`);
   }
-  function saveDiagnosticFromModal(id){try{const get=x=>document.getElementById(x)?.value,failed=String(get('academicDiagFailedNodes')||'').split(',').map(x=>x.trim()).filter(Boolean),st=recordDiagnostic(id,{D0:get('academicDiagD0'),D1:get('academicDiagD1'),D2:get('academicDiagD2'),criticalMisconceptions:get('academicDiagCritical'),failedNodeIds:failed});refreshPanels();openGate(id);if(typeof window.toast==='function')window.toast(`Đã lưu ${id}: ${st.label}`)}catch(err){alert(err.message||String(err))}}
-  function clearDiagnosticFromModal(id){if(!window.confirm('Xóa kết quả diagnostic của '+id+'? Thao tác này không thể hoàn tác.'))return;clearDiagnostic(id);refreshPanels();openGate(id)}
+  async function saveDiagnosticFromModal(id){try{const get=x=>document.getElementById(x)?.value,failed=String(get('academicDiagFailedNodes')||'').split(',').map(x=>x.trim()).filter(Boolean),st=await recordDiagnostic(id,{D0:get('academicDiagD0'),D1:get('academicDiagD1'),D2:get('academicDiagD2'),criticalMisconceptions:get('academicDiagCritical'),failedNodeIds:failed});refreshPanels();openGate(id);if(typeof window.toast==='function')window.toast(`Đã lưu ${id}: ${st.label}`)}catch(err){alert(err.message||String(err))}}
+  async function clearDiagnosticFromModal(id){if(!window.confirm('Xóa kết quả diagnostic của '+id+'? Thao tác này không thể hoàn tác.'))return;try{await clearDiagnostic(id);refreshPanels();openGate(id)}catch(err){alert(err.message||String(err))}}
   function openPrereqOverview(){const rows=allGates().map(g=>{const st=gateState(g),act=gateActivation(g.id);return `<div class="academic2026-prereq-row"><button onclick="openAcademicGate('${h(g.id)}')"><b>${h(g.id)}</b></button><button onclick="openAcademicGate('${h(g.id)}')"><strong>${h(g.name)}</strong><small>${h(g.homeSubject)} · ${h(act.label)} · target ${h(g.target)}%</small></button>${stateBadge(st)}</div>`}).join('');modal('Prerequisite Assurance · IU5 2026',`<div class="academic2026-prereq-list">${rows}</div><p class="academic2026-note">UNASSESSED là hợp lệ. MASTERED mới STOP remediation rộng; scheduler chưa được phép tự sửa lịch.</p>`)}
   function openCourse(id){
     const course=officialById(id);if(!course)return;const dep=dependencyFor(id),ready=courseReadiness(id),risk=courseRisk(id),critical=dep.critical||[],support=dep.support||[];
@@ -210,7 +210,7 @@
 
   async function fetchJson(url){const r=await fetch(url,{cache:'no-cache'});if(!r.ok)throw new Error(`${url} HTTP ${r.status}`);return r.json()}
   async function load(){
-    try{const [curriculum,prereq,manifest]=await Promise.all([fetchJson(CURRICULUM_URL),fetchJson(PREREQ_URL),fetchJson(PACK_MANIFEST_URL)]);window.BAUMAN_CURRICULUM_2026=curriculum;window.BAUMAN_PREREQ_2026=prereq;const results=await Promise.allSettled((manifest.packs||[]).map(async row=>[row.gateId,await fetchJson(row.path)])),packs={};for(const result of results)if(result.status==='fulfilled'){const [gateId,pack]=result.value;if(pack?.gateId===gateId)packs[gateId]=pack}window.BAUMAN_PREREQ_PACKS_2026=Object.freeze(packs);readStore();patchApp();console.info(VERSION,{curriculum:curriculum.version,prereq:prereq.version,packs:Object.keys(packs).length,storage:DIAGNOSTIC_STORAGE_KEY,schedulerMutation:SCHEDULER_MUTATION_ENABLED})}catch(err){console.warn('Academic 2026 runtime disabled safely:',err)}
+    try{await window.BAUMAN_HUB_PERSONAL_READY;const [curriculum,prereq,manifest]=await Promise.all([fetchJson(CURRICULUM_URL),fetchJson(PREREQ_URL),fetchJson(PACK_MANIFEST_URL)]);window.BAUMAN_CURRICULUM_2026=curriculum;window.BAUMAN_PREREQ_2026=prereq;const results=await Promise.allSettled((manifest.packs||[]).map(async row=>[row.gateId,await fetchJson(row.path)])),packs={};for(const result of results)if(result.status==='fulfilled'){const [gateId,pack]=result.value;if(pack?.gateId===gateId)packs[gateId]=pack}window.BAUMAN_PREREQ_PACKS_2026=Object.freeze(packs);readStore();patchApp();console.info(VERSION,{curriculum:curriculum.version,prereq:prereq.version,packs:Object.keys(packs).length,storage:DIAGNOSTIC_STORAGE_KEY,schedulerMutation:SCHEDULER_MUTATION_ENABLED})}catch(err){console.warn('Academic 2026 runtime disabled safely:',err)}
   }
 
   function printAcademicReport(title){

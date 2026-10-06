@@ -31,7 +31,8 @@ assert.ok(js.includes("function truthProgress(id)"),'truth-aware subject progres
 assert.ok(js.includes("a.filteredSubjectsForStage"),'active course rows must derive from canonical stage subjects');
 assert.ok(js.includes("return canonical.concat(readCustom()"),'LOCAL_HUB custom rows must remain separate from canonical rows');
 assert.ok(js.includes("return 'Chưa có dữ liệu giảng viên'"),'missing lecturer must remain unavailable');
-assert.ok(js.includes("var v=JSON.parse(localStorage.getItem(NOTES_KEY)||'[]')"),'notes must not seed reference defaults');
+assert.ok(js.includes('var v=window.BAUMAN_HUB_PERSONAL_STORE.get(NOTES_KEY,[])'),'notes must read personal data with an empty fallback');
+assert.ok(js.includes('!legacy.has(x.id)'),'notes must keep filtering reference sample IDs');
 assert.ok(js.includes("Dữ liệu được đọc từ Hub canonical"),'canonical data disclosure missing');
 assert.ok(js.includes("Không dùng nội dung mẫu"),'sample-data prohibition missing from active Subjects copy');
 assert.ok(js.includes("data-truth-status"),'Subjects truth-state markers missing');

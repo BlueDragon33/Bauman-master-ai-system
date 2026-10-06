@@ -29,10 +29,12 @@ let observer=null;
 function deviceAccess(){return document.documentElement.dataset.baumanDeviceAccess||'unknown'}
 function deviceAllowed(){return standaloneRuntime()||ALLOWED_DEVICE_ACCESS.has(deviceAccess())}
 function clearCredentialStore(){
-  try{localStorage.removeItem(USERS_KEY)}catch{}
+  // Managed access never consumes or destroys standalone credential records.
+  // They are owned separately by the personal-data facade.
+  return window.BAUMAN_HUB_PERSONAL_STORE?.ready;
 }
 function persistManagedScope(){
-  try{localStorage.setItem(CURRENT_USER_KEY,JSON.stringify(PROFILE))}catch{}
+  if(window.BAUMAN_HUB_PERSONAL_STORE?.ready)window.BAUMAN_HUB_PERSONAL_STORE.setCurrentUser(PROFILE);
 }
 function decorateManagedProfile(){
   const role=q('currentUserRole');
@@ -57,7 +59,7 @@ function syncAccess(){
     const screen=q('authScreen');
     if(screen){screen.classList.add('hidden');screen.setAttribute('aria-hidden','true')}
     const root=q('appRoot');
-    if(root)root.classList.remove('hidden');
+    if(root&&(window.BAUMAN_HUB_PERSONAL_STORE?.ready||window.BAUMAN_HUB_PERSONAL_STORE?.readOnly))root.classList.remove('hidden');
     return true;
   }
   document.documentElement.dataset.baumanHubAccess='app-manager';
@@ -74,7 +76,7 @@ function syncAccess(){
   const screen=q('authScreen');
   if(screen){screen.classList.add('hidden');screen.setAttribute('aria-hidden','true')}
   const root=q('appRoot');
-  if(root)root.classList.toggle('hidden',!deviceAllowed());
+  if(root)root.classList.toggle('hidden',!deviceAllowed()||!(window.BAUMAN_HUB_PERSONAL_STORE?.ready||window.BAUMAN_HUB_PERSONAL_STORE?.readOnly));
 
   if(typeof auth!=='undefined'&&deviceAllowed()){
     try{auth.render?.()}catch{}
@@ -117,8 +119,8 @@ function selfCheck(){
   const screen=q('authScreen'),root=q('appRoot');
   let credentialStorePresent=false,managedScopeStored=false;
   try{
-    credentialStorePresent=Boolean(localStorage.getItem(USERS_KEY));
-    const stored=JSON.parse(localStorage.getItem(CURRENT_USER_KEY)||'null');
+    credentialStorePresent=window.BAUMAN_HUB_PERSONAL_STORE?.ready?window.BAUMAN_HUB_PERSONAL_STORE.getAccounts().length>0:false;
+    const stored=window.BAUMAN_HUB_PERSONAL_STORE?.currentUser();
     managedScopeStored=stored?.managedBy==='app-manager'&&stored?.email===PROFILE.email;
   }catch{}
   const standalone=standaloneRuntime();
@@ -141,5 +143,6 @@ function selfCheck(){
 }
 
 window.BAUMAN_APP_MANAGER_ACCESS={release:RELEASE,profile:{...PROFILE},sync:syncAccess,selfCheck};
+window.addEventListener('hub-personal-store-status',event=>{if(event.detail.state==='READY')syncAccess()});
 install();
 })();

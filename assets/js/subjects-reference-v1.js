@@ -64,12 +64,12 @@ function readUI(){
 function saveUI(){
   try{localStorage.setItem(UI_KEY,JSON.stringify({tab:ui.tab,semester:ui.semester,calendarOffset:ui.calendarOffset,aiDone:Array.from(ui.aiDone)}))}catch(e){}
 }
-function readNotes(){try{var v=JSON.parse(localStorage.getItem(NOTES_KEY)||'null');return Array.isArray(v)?v:DEFAULT_NOTES.map(function(x){return Object.assign({},x)});}catch(e){return DEFAULT_NOTES.map(function(x){return Object.assign({},x)})}}
-function writeNotes(v){try{localStorage.setItem(NOTES_KEY,JSON.stringify(v.slice(0,16)))}catch(e){}}
-function readCustom(){try{var v=JSON.parse(localStorage.getItem(CUSTOM_KEY)||'[]');return Array.isArray(v)?v.slice(0,4):[]}catch(e){return []}}
-function writeCustom(v){try{localStorage.setItem(CUSTOM_KEY,JSON.stringify(v.slice(0,4)))}catch(e){}}
-function readTeacherOverrides(){try{var v=JSON.parse(localStorage.getItem(TEACHER_KEY)||'{}');return v&&typeof v==='object'&&!Array.isArray(v)?v:{}}catch(e){return {}}}
-function writeTeacherOverrides(v){try{localStorage.setItem(TEACHER_KEY,JSON.stringify(v&&typeof v==='object'?v:{}))}catch(e){}}
+function readNotes(){return window.BAUMAN_HUB_PERSONAL_STORE.get(NOTES_KEY,[])}
+function writeNotes(v){return window.BAUMAN_HUB_PERSONAL_STORE.set(NOTES_KEY,v.slice(0,16))}
+function readCustom(){var v=window.BAUMAN_HUB_PERSONAL_STORE.get(CUSTOM_KEY,[]);return Array.isArray(v)?v.slice(0,4):[]}
+function writeCustom(v){return window.BAUMAN_HUB_PERSONAL_STORE.set(CUSTOM_KEY,v.slice(0,4))}
+function readTeacherOverrides(){return window.BAUMAN_HUB_PERSONAL_STORE.get(TEACHER_KEY,{})}
+function writeTeacherOverrides(v){return window.BAUMAN_HUB_PERSONAL_STORE.set(TEACHER_KEY,v&&typeof v==='object'?v:{})}
 function teacherFor(c){var v=readTeacherOverrides(),name=v[c.key];return String(name||c.teacher||'GV: Chưa cập nhật')}
 function editTeacher(key){
   var c=courseRows().find(function(x){return x.key===key});if(!c)return;
@@ -226,7 +226,7 @@ function readUI(){
 }
 function readNotes(){
   try{
-    var v=JSON.parse(localStorage.getItem(NOTES_KEY)||'[]'),legacy=new Set(DEFAULT_NOTES.map(function(x){return x.id}));
+    var v=window.BAUMAN_HUB_PERSONAL_STORE.get(NOTES_KEY,[]),legacy=new Set(DEFAULT_NOTES.map(function(x){return x.id}));
     return Array.isArray(v)?v.filter(function(x){return x&&x.id&&!legacy.has(x.id)}):[];
   }catch(e){return []}
 }

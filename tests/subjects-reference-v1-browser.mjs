@@ -123,7 +123,7 @@ try{
   },firstKey);
   const editedTeacher=await page.textContent('#page-subjects [data-course-key="'+firstKey+'"] .subjects-page__course-name small');
   assert.equal(editedTeacher,'GV: PGS. TS. Nguyễn Văn A','LOCAL_HUB lecturer override was not rendered');
-  const teacherStore=await page.evaluate(()=>JSON.parse(localStorage.getItem('bauman_subjects_reference_teacher_overrides_v1')||'{}'));
+  const teacherStore=await page.evaluate(async()=>{await window.BAUMAN_HUB_PERSONAL_STORE.flush();return window.BAUMAN_HUB_PERSONAL_STORE.get('bauman_subjects_reference_teacher_overrides_v1',{})});
   assert.equal(teacherStore[firstKey],'GV: PGS. TS. Nguyễn Văn A','LOCAL_HUB lecturer override was not persisted');
 
   const calendarBefore=await page.textContent('#page-subjects .subjects-page__calendar .subjects-page__panel-head>b');
