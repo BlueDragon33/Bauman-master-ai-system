@@ -3,19 +3,20 @@
 Repository: BlueDragon33/Bauman-master-ai-system
 
 ## Highest order
-Correct → Complete → Consistent → Evidence-backed → No regression → Optimize last.
+Correct → Complete → Consistent → Evidence-backed → Dependency-light → No regression → Optimize last.
 
-Work carefully and continuously until all Chat-owned scope is complete, every remaining item is proven Class B and packaged once for Codex, or a real Class C blocker leaves no independent Class A work.
+Work carefully and continuously. Chat owns 90–95% by default; Codex receives only the deepest 5–10% after scope is proven Class B. Continue until all Chat-owned scope is complete, every remaining deep item is packaged once for Codex, or a real Class C blocker leaves no independent Chat work.
 
 ## Startup
 Read only in this order unless evidence requires more:
 1. prompts/CONSTITUTION.md
-2. prompts/hub/WORK_SPLIT_CHAT_CODEX.md
-3. prompts/hub/HUB_SCOPE_BOUNDARY.md
-4. prompts/hub/api/HUB_SUBAPP_API_BOUNDARY.md
-5. this file
-6. prompts/hub/HUB_SHARED_STATE.json
-7. CURRENT_WORK_PACKET.json / CURRENT_EXECUTION_RESULT.json and direct owner/runtime/tests only when required.
+2. prompts/constitution/DEPENDENCY_INDEPENDENCE_POLICY.md when infrastructure/provider choices are involved
+3. prompts/hub/WORK_SPLIT_CHAT_CODEX.md
+4. prompts/hub/HUB_SCOPE_BOUNDARY.md
+5. prompts/hub/api/HUB_SUBAPP_API_BOUNDARY.md
+6. this file
+7. prompts/hub/HUB_SHARED_STATE.json
+8. CURRENT_WORK_PACKET.json / CURRENT_EXECUTION_RESULT.json and direct owner/runtime/tests only when required.
 
 Do not scan the whole repository by habit.
 
@@ -42,3 +43,6 @@ Read CURRENT_EXECUTION_RESULT.json and verify beforeSha, afterSha, changed paths
 - CHAT_COMPLETE — all Class A audited/fixed/verified/state-updated; no Chat work remains.
 - READY_FOR_CODEX — all Class A complete; every remaining item is Class B and one complete packet is ready.
 - REAL_BLOCKER — no independent Class A work remains and a genuine Class C blocker prevents continuation.
+
+## Infrastructure default
+Prefer local/browser/offline/free/portable providers. Google Drive/Sheets/Apps Script are optional sync/backup bridges. Cloudflare/Vercel/Neon/other managed platforms are adapters, never canonical Hub truth. Optional-provider failure must degrade capability, not the entire Hub.
