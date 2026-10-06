@@ -1,8 +1,10 @@
 # PYTHON04 RUNTIME PROVIDER DECISION
 
-Status: **ACCEPTED FOR IMPLEMENTATION — SERVER/CONTAINER SANDBOX**
+Status: **SUPERSEDED AS CANONICAL DEFAULT — PRESERVED AS OPTIONAL MANAGED-PROVIDER EVIDENCE**
 
 Decision date: 2026-10-04
+
+Superseded on 2026-10-06 by `PYTHON04_LOCAL_FIRST_PROVIDER_DECISION.md` under Universal Constitution 1.2.0. The implementation/evidence below remains valid for the optional managed-sandbox profile, but Cloudflare Containers no longer block `LOCAL_STABLE`.
 
 Baseline main SHA: `1622aa591fc0ded12c0659caf42e38d21b051487`
 
@@ -16,7 +18,7 @@ Learner execution remains: **DISABLED UNTIL GOLDEN FIXTURES PASS**
 
 ## Decision
 
-PYTHON04 will use a server/container sandbox as the canonical execution authority for learner Python.
+Historical 2026-10-04 decision: PYTHON04 selected a server/container sandbox as the canonical execution authority for learner Python at that time. Under Constitution 1.2, this is no longer the default; it is retained as an optional managed-sandbox provider.
 
 The existing Cloudflare Worker remains the control plane. It authenticates the learner, validates task/run identity, selects the runtime profile, starts/routes the sandbox, applies policy, receives bounded results, and persists only validated evidence.
 
@@ -28,7 +30,7 @@ Python executes inside an isolated Cloudflare Sandbox Container. Official assess
 
 This subject requires real CPython behavior, filesystem semantics, public/hidden tests, NumPy/Pandas-capable environments, bounded resource execution, reproducible images and a private grading boundary.
 
-A browser runtime is not the canonical provider because official hidden tests and full package/toolchain semantics must remain outside the learner client.
+Historical rationale: a browser runtime was not selected as the canonical provider because official hidden tests and full package/toolchain semantics were required outside the learner client. Constitution 1.2 now separates offline/local practice from high-assurance/private evaluation and permits multiple provider profiles.
 
 An external runner is not the canonical provider because the project already uses Cloudflare and adding a second execution vendor would create avoidable auth, availability, secret-management and observability boundaries.
 
@@ -126,7 +128,7 @@ All fixtures in `PYTHON_RUNTIME_GOLDEN_FIXTURES.json` must pass, including:
 
 The provider must also pass the existing `tests/python-p4-runtime-security-contract.mjs` gate and any new provider-specific integration tests.
 
-## Rejected as canonical runtime
+## Historical provider comparison (superseded as default)
 
 ### Browser sandbox
 

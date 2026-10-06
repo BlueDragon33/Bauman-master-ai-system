@@ -1,0 +1,162 @@
+{
+  "schemaVersion": "1.0.0",
+  "project": "BlueDragon33/Bauman-master-ai-system",
+  "constitutionPolicy": "blueprint-os:universal-century-grade@1.2.0",
+  "authority": "prompts/constitution/DEPENDENCY_INDEPENDENCE_POLICY.md",
+  "defaultPrinciple": "LOCAL_FIRST_OFFLINE_FIRST_FREE_FIRST_PROVIDER_REPLACEABLE",
+  "canonicalDataRule": "Learner/content/mastery state is not owned by an external provider; external services are adapters/projections unless explicitly justified.",
+  "dependencies": [
+    {
+      "id": "browser-local-runtime",
+      "provider": "Browser / user device",
+      "runtimeClass": "LOCAL_CORE",
+      "costClass": "local-free",
+      "purpose": [
+        "core learner UI",
+        "offline-capable study",
+        "local practice runtimes",
+        "local durable state"
+      ],
+      "dataBoundary": "user-controlled device/browser",
+      "canonicalState": "allowed where domain contract assigns local canonical ownership",
+      "degradedBehavior": "core baseline; no provider degradation",
+      "exportPath": [
+        "JSON/JSONL",
+        "SQLite/ZIP/content packs where applicable"
+      ],
+      "replacementPath": "browser/local implementation can evolve behind capability/storage facades",
+      "reviewTrigger": "capability cannot meet correctness/security/performance contract"
+    },
+    {
+      "id": "chatgpt",
+      "provider": "ChatGPT",
+      "runtimeClass": "OPTIONAL_INTELLIGENCE",
+      "costClass": "user-selected",
+      "purpose": [
+        "analysis",
+        "tutoring",
+        "authoring assistance",
+        "project orchestration"
+      ],
+      "dataBoundary": "explicit user/connector interactions only",
+      "canonicalState": "forbidden by default",
+      "degradedBehavior": "non-AI learning, content, progress and local tooling remain usable",
+      "exportPath": [
+        "repository prompts",
+        "portable project artifacts"
+      ],
+      "replacementPath": "other AI provider or non-AI workflow",
+      "reviewTrigger": "AI becomes required for basic non-AI product operation"
+    },
+    {
+      "id": "github",
+      "provider": "GitHub",
+      "runtimeClass": "OPTIONAL_PUBLISH",
+      "costClass": "free-or-user-plan",
+      "purpose": [
+        "source control",
+        "review",
+        "CI evidence",
+        "release provenance"
+      ],
+      "dataBoundary": "source/evidence; not mutable learner database",
+      "canonicalState": "source/version history only",
+      "degradedBehavior": "checked-out application/runtime continues; CI/review unavailable until service returns",
+      "exportPath": [
+        "git clone/mirror",
+        "release artifacts"
+      ],
+      "replacementPath": "any Git-compatible forge/self-hosted remote",
+      "reviewTrigger": "runtime begins depending on GitHub APIs for core learner state"
+    },
+    {
+      "id": "cloudflare-workers-d1",
+      "provider": "Cloudflare Workers / D1",
+      "runtimeClass": "OPTIONAL_PUBLISH",
+      "costClass": "free-tier-or-paid-optional",
+      "purpose": [
+        "hosted preview/public runtime",
+        "managed control plane",
+        "optional remote persistence"
+      ],
+      "dataBoundary": "only data explicitly assigned to managed release profiles",
+      "canonicalState": "not required for LOCAL_STABLE",
+      "degradedBehavior": "LOCAL_STABLE remains usable; hosted/sync-only capability may be unavailable",
+      "exportPath": [
+        "D1 export/SQL where used",
+        "portable application data exports"
+      ],
+      "replacementPath": "local/server adapter or another managed provider",
+      "reviewTrigger": "managed hosting becomes mandatory for core personal learning"
+    },
+    {
+      "id": "cloudflare-containers",
+      "provider": "Cloudflare Containers",
+      "runtimeClass": "OPTIONAL_REMOTE_COMPUTE",
+      "costClass": "paid-optional",
+      "purpose": [
+        "high-fidelity isolated CPython",
+        "private hidden-test execution when explicitly selected"
+      ],
+      "dataBoundary": "ephemeral code/test execution; no platform secrets in sandbox",
+      "canonicalState": "forbidden; execution provider only",
+      "degradedBehavior": "browser/WASM and local CPython paths remain available according to task assurance level",
+      "exportPath": [
+        "runtime profile/image definition",
+        "golden fixtures",
+        "normalized evidence contract"
+      ],
+      "replacementPath": "local isolated CPython or another sandbox provider behind same provider contract",
+      "reviewTrigger": "provider cost/availability/security changes or local provider reaches parity"
+    },
+    {
+      "id": "google-drive-sync",
+      "provider": "Google Drive",
+      "runtimeClass": "OPTIONAL_SYNC",
+      "costClass": "free-tier-or-user-plan",
+      "purpose": [
+        "backup",
+        "cross-device file sync",
+        "portable learner artifacts/content packs"
+      ],
+      "dataBoundary": "user-authorized scoped files only",
+      "canonicalState": "remote projection/backup, not sole learner-state truth",
+      "degradedBehavior": "local state remains available and queues sync work",
+      "exportPath": [
+        "native files",
+        "JSON/ZIP/content packs"
+      ],
+      "replacementPath": "local export/import or another storage adapter",
+      "reviewTrigger": "Drive becomes required for app startup or sole copy of canonical state",
+      "status": "planned-optional"
+    },
+    {
+      "id": "google-apps-script",
+      "provider": "Google Apps Script",
+      "runtimeClass": "OPTIONAL_SYNC",
+      "costClass": "free-tier-or-user-plan",
+      "purpose": [
+        "lightweight Drive/Sheets coordination while user PC is offline"
+      ],
+      "dataBoundary": "least-privilege scoped sync payloads; no raw platform secrets",
+      "canonicalState": "forbidden",
+      "degradedBehavior": "local operation continues; sync/coordination waits",
+      "exportPath": [
+        "portable sync journal/protocol"
+      ],
+      "replacementPath": "another lightweight sync adapter or local/manual sync",
+      "reviewTrigger": "throughput/security requirements exceed lightweight bridge",
+      "status": "planned-optional"
+    }
+  ],
+  "acceptance": {
+    "localStableRequires": [
+      "no mandatory recurring paid provider",
+      "core learner journey usable without managed backend where capability permits",
+      "portable data/export path",
+      "optional providers fail without corrupting local state",
+      "provider-specific code isolated behind adapters/capabilities"
+    ],
+    "productionAuthority": "separate-explicit-release-gate"
+  }
+}

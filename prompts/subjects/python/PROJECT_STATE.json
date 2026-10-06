@@ -133,7 +133,9 @@
     "Universal Constitution Compliance run 37209771631: SUCCESS on hardening head",
     "Approved one-time release r2 run 37215938779: FAILED in authorization due shallow checkout; preview/production skipped",
     "PR #269 merged at f9b9428a6839f2ec838f0e46ce6c57e2bea5c098; full-history release authorization fix + r3 request",
-    "Approved one-time release r3 run 37216104758: authorization PASS; Control preview PASS; Python Docker image build PASS; Cloudflare Containers /containers/me permission failure; production skipped"
+    "Approved one-time release r3 run 37216104758: authorization PASS; Control preview PASS; Python Docker image build PASS; Cloudflare Containers /containers/me permission failure; production skipped",
+    "prompts/subjects/python/evidence/PYTHON04_LOCAL_FIRST_PROVIDER_DECISION.md",
+    "prompts/constitution/DEPENDENCY_BUDGET.json"
   ],
   "blockers": [],
   "nextAction": "Migrate Python execution behind the existing provider facade to a local-first stack: browser/WASM practice runtime first, local desktop CPython contract for full-runtime/high-assurance tasks, and keep the existing Cloudflare Container provider optional. Revalidate PYTHON04 -> PYTHON05 -> PYTHON06 selectively and close at LOCAL_STABLE before resuming Algorithms.",
@@ -174,7 +176,9 @@
     "2026-10-06 architecture policy changed repo-wide to LOCAL-FIRST / OFFLINE-FIRST / FREE-FIRST / OPTIONAL CLOUD. This invalidates the prior assumption that Cloudflare Containers must be the canonical Python release path.",
     "Existing Cloudflare Container implementation and its passing P4/P5/P6 evidence are preserved as optional-provider evidence; they are not deleted or treated as failed work.",
     "PYTHON01-PYTHON03 academic/assessment authority remains accepted; only runtime/product/RC layers PYTHON04-PYTHON06 require selective revalidation.",
-    "Google Drive/Sheets/Apps Script may later provide optional sync/backup bridges but are not Python runtime truth or a prerequisite for LOCAL_STABLE."
+    "Google Drive/Sheets/Apps Script may later provide optional sync/backup bridges but are not Python runtime truth or a prerequisite for LOCAL_STABLE.",
+    "Universal Constitution 1.2.0 is now the repository authority. Python runtime migration is governed by the operational-sovereignty-dependency-minimization pillar and the project dependency budget.",
+    "PYTHON04_RUNTIME_PROVIDER_DECISION.md is preserved as historical optional Cloudflare-managed-provider evidence; PYTHON04_LOCAL_FIRST_PROVIDER_DECISION.md is the canonical default provider decision."
   ],
   "executionGate": "LOCAL_FIRST_PROVIDER_MIGRATION",
   "requiredReleaseProfile": "LOCAL_STABLE",

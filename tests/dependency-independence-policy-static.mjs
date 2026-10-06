@@ -4,8 +4,10 @@ import fs from "node:fs";
 const read = p => fs.readFileSync(p, "utf8");
 const json = p => JSON.parse(read(p));
 
+const adoption = json(".blueprint/constitution-adoption.json");
 const constitution = read("prompts/CONSTITUTION.md");
 const dependency = read("prompts/constitution/DEPENDENCY_INDEPENDENCE_POLICY.md");
+const dependencyBudget = json("prompts/constitution/DEPENDENCY_BUDGET.json");
 const execution = read("prompts/EXECUTION_PROTOCOL.md");
 const registry = json("prompts/PROMPT_REGISTRY.json");
 const subjectIndex = json("prompts/subjects/SUBJECT_PROMPT_INDEX.json");
@@ -13,11 +15,43 @@ const releaseAnnex = read("prompts/constitution/C3_RELEASE_ANNEX_SHARED.md");
 const workSplit = read("prompts/hub/WORK_SPLIT_CHAT_CODEX.md");
 const pyMaster = read("prompts/subjects/python/PYTHON_MASTER_PROMPT.md");
 const py04 = read("prompts/subjects/python/PYTHON04_RUNTIME_TOOLCHAIN_DATA_AI_INTELLIGENCE.md");
+const pyProviderDecision = read("prompts/subjects/python/evidence/PYTHON04_LOCAL_FIRST_PROVIDER_DECISION.md");
+const pyProviderDecisionLegacy = read("prompts/subjects/python/evidence/PYTHON04_RUNTIME_PROVIDER_DECISION.md");
 const pyState = json("prompts/subjects/python/PROJECT_STATE.json");
 const pyPacket = json("prompts/subjects/python/CURRENT_WORK_PACKET.json");
 const algState = json("prompts/subjects/algorithms/PROJECT_STATE.json");
 
 assert.match(constitution,/DEPENDENCY_INDEPENDENCE_POLICY\.md/);
+
+assert.equal(adoption.policyVersion,"1.2.0");
+assert.ok(
+  adoption.inheritedPillars.includes("operational-sovereignty-dependency-minimization"),
+  "Constitution 1.2 sovereignty pillar must be inherited"
+);
+assert.deepEqual(adoption.disabledPillars,[]);
+assert.deepEqual(adoption.constitutionalWaivers,[]);
+
+assert.equal(registry.dependencyBudget,"prompts/constitution/DEPENDENCY_BUDGET.json");
+assert.equal(dependencyBudget.constitutionPolicy,"blueprint-os:universal-century-grade@1.2.0");
+assert.equal(dependencyBudget.defaultPrinciple,"LOCAL_FIRST_OFFLINE_FIRST_FREE_FIRST_PROVIDER_REPLACEABLE");
+
+const byId = new Map(dependencyBudget.dependencies.map(item => [item.id,item]));
+assert.equal(byId.get("browser-local-runtime")?.runtimeClass,"LOCAL_CORE");
+assert.equal(byId.get("chatgpt")?.runtimeClass,"OPTIONAL_INTELLIGENCE");
+assert.equal(byId.get("cloudflare-containers")?.costClass,"paid-optional");
+assert.equal(byId.get("cloudflare-containers")?.canonicalState,"forbidden; execution provider only");
+assert.equal(byId.get("google-drive-sync")?.runtimeClass,"OPTIONAL_SYNC");
+assert.equal(byId.get("google-apps-script")?.runtimeClass,"OPTIONAL_SYNC");
+assert.equal(dependencyBudget.acceptance.productionAuthority,"separate-explicit-release-gate");
+
+assert.match(pyProviderDecision,/CANONICAL DEFAULT FOR CONSTITUTION 1\.2/);
+assert.match(pyProviderDecision,/browser\/WASM runtime/);
+assert.match(pyProviderDecision,/local desktop CPython/);
+assert.match(pyProviderDecision,/optional managed sandbox\/container/);
+assert.match(pyProviderDecision,/No paid managed provider is required for `LOCAL_STABLE`/);
+assert.match(pyProviderDecisionLegacy,/SUPERSEDED AS CANONICAL DEFAULT/);
+assert.match(pyProviderDecisionLegacy,/optional managed-sandbox provider/);
+
 assert.match(constitution,/LOCAL-FIRST/);
 assert.match(constitution,/OFFLINE-FIRST/);
 assert.match(constitution,/FREE-FIRST/);
