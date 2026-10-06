@@ -9,9 +9,10 @@ All project/subject prompts inherit the same authority chain:
 
 1. repository-enforced Blueprint OS adoption: `.blueprint/constitution-adoption.json`;
 2. this prompt Constitution: `prompts/CONSTITUTION.md`;
-3. the domain/subject Master Prompt;
-4. module/work-package prompt;
-5. evidence and current state.
+3. shared dependency policy when infrastructure/provider decisions are involved: `prompts/constitution/DEPENDENCY_INDEPENDENCE_POLICY.md`;
+4. the domain/subject Master Prompt;
+5. module/work-package prompt;
+6. evidence and current state.
 
 A lower layer may specialize its domain. It may not contradict a higher layer.
 
@@ -66,3 +67,12 @@ All three modes use the same Constitution, Master Prompt, router and PROJECT_STA
 - Curriculum 2026 — canonical shell-building prompt system.
 
 Original/backup ZIP packages remain under `prompt-archives/` for provenance and recovery. They are not simultaneous execution authority.
+
+
+## Infrastructure default
+
+The repo-wide default is **LOCAL-FIRST · OFFLINE-FIRST · FREE-FIRST · PORTABLE · OPTIONAL CLOUD**. Managed services are adapters, not canonical truth. Google Drive/Sheets/Apps Script may be used as optional user-owned sync/backup bridges. Recurring paid infrastructure requires explicit user approval and a documented local/free alternative analysis.
+
+## Work allocation
+
+Default engineering split is **Chat 90–95% / Codex 5–10% maximum**. Chat owns orchestration, audit, prompt/state, GitHub/CI, small/medium implementation and release reasoning. Codex is reserved for deep runtime/refactor/migration/E2E work packages.
