@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
   "packetId": "HUB-STORAGE-20261006-001",
-  "packetRevision": 4,
+  "packetRevision": 5,
   "status": "AWAITING_CODEX_EXECUTION",
   "baselineMainSha": "19db67bc0975e6fc0c4af0a31111ad3b30e6bfe7",
   "releaseTarget": "LOCAL_STABLE",
@@ -30,6 +30,7 @@
       "HUB-STORAGE-006",
       "HUB-STORAGE-007"
     ],
-    "multiUserIsolationReviewed": true
+    "multiUserIsolationReviewed": true,
+    "identityScopePolicy": "EXISTING_PROFILE_AUTHORITY_ONLY_NO_NEW_MULTIUSER"
   }
 }
