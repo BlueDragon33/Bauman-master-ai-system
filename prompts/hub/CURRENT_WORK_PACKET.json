@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
   "packetId": "HUB-STORAGE-20261006-001",
-  "revision": 2,
+  "revision": 5,
   "status": "READY_FOR_CODEX",
   "userIntent": "Continue Bauman Hub continuously under the current Prompt System; keep the core local/offline/free-first and preserve learner truth while removing fragile localStorage dependency for canonical personal data.",
   "objective": "Introduce one normalized Hub personal-data storage facade with IndexedDB as the primary local canonical store, deterministic legacy migration, complete portable backup/restore, and compatibility-safe migration for Hub learner/auth/academic/scheduler/research data while keeping UI-only preferences lightweight.",
@@ -21,7 +21,7 @@
     "doNotReexecute": true
   },
   "baselinePolicy": {
-    "mainSha": "2951cc86378056456110abedffe305c8f99d0c42",
+    "mainSha": "19db67bc0975e6fc0c4af0a31111ad3b30e6bfe7",
     "constitution": "prompts/CONSTITUTION.md",
     "dependencyPolicy": "prompts/constitution/DEPENDENCY_INDEPENDENCE_POLICY.md",
     "hubMasterPrompt": "prompts/hub/HUB_MASTER_PROMPT.md",
@@ -32,7 +32,10 @@
       "UNAVAILABLE",
       "LOCAL_HUB"
     ],
-    "promptGovernanceObservedMainSha": "1b834db5a34de5d730ee73adf7440da3f06fcedb"
+    "promptGovernanceObservedMainSha": "1b834db5a34de5d730ee73adf7440da3f06fcedb",
+    "branchBaseMainSha": "19db67bc0975e6fc0c4af0a31111ad3b30e6bfe7",
+    "runtimeContentBaselineSha": "2951cc86378056456110abedffe305c8f99d0c42",
+    "reconciliationNote": "No Hub runtime/allowed-path files changed between runtimeContentBaselineSha and branchBaseMainSha; intervening changes are Prompt Control governance only."
   },
   "findings": [
     {
@@ -92,6 +95,31 @@
         "assets/js/subjects-reference-v1.js NOTES_KEY/CUSTOM_KEY/TEACHER_KEY store learner-created/local overrides.",
         "assets/js/thesis-reference-v1.js TASK_KEY/NOTE_KEY store LOCAL_HUB research tasks and notes."
       ]
+    },
+    {
+      "id": "HUB-STORAGE-006",
+      "severity": "high",
+      "class": "B",
+      "area": "research-attachments",
+      "summary": "Research attachments are read as Data URLs and embedded directly inside state.researchFiles, including video payloads. This couples potentially large binary content to the monolithic state record and risks quota/memory pressure during migration and backup.",
+      "evidence": [
+        "assets/js/main.js handleResearchFile() uses FileReader.readAsDataURL(file).",
+        "The resulting {name,mime,typeLabel,content,addedAt} object is appended under state.researchFiles[itemId] and persisted with the full Hub state.",
+        "Research file input accepts video/* as well as JSON/HTML, so attachment payloads can be materially larger than ordinary structured state."
+      ]
+    },
+    {
+      "id": "HUB-STORAGE-007",
+      "severity": "high",
+      "class": "B",
+      "area": "identity-scope-partitioning",
+      "summary": "Canonical Hub state and LOCAL_HUB sidecars are currently global browser keys loaded before auth/profile resolution. The new store must be scope-aware so personal data is never accidentally shared across distinct existing profiles, but this packet must not invent a new multi-user/auth model.",
+      "evidence": [
+        "assets/js/main.js defines one global KEY='bauman_main_all_phases_subjects_v1' and executes let state=readState() before auth.init().",
+        "assets/js/app-manager-managed-access.js currently provides a fixed compatibility PROFILE (app-manager@bauman.local) rather than a general per-person identity service.",
+        "Standalone mode defaults to the existing local profile; this packet does not authorize a new account-switch UX.",
+        "Schedule notes, Subjects notes/custom/teacher overrides and Research tasks/notes also use unscoped browser keys."
+      ]
     }
   ],
   "compliantExistingPatterns": [
@@ -113,14 +141,38 @@
     "Ordinary learner backup must not silently export passwordHash/passwordSalt/legacy plaintext password. If credential export is supported, it requires a separate explicit secure contract.",
     "No subject-private DB/localStorage/IndexedDB/DOM reads. No edits under subjects/** or prompts/subjects/**.",
     "No Cloudflare/Vercel/Neon/Google service becomes required for LOCAL_STABLE.",
-    "Primary routes remain exactly Home, Roadmap, Subjects, Schedule, Research."
+    "Primary routes remain exactly Home, Roadmap, Subjects, Schedule, Research.",
+    "Research attachment payloads must not remain embedded in the monolithic Hub state record after migration. Store binary payloads in a dedicated IndexedDB attachment/blob store behind the same Hub personal-data facade; keep stable metadata/reference records in structured state.",
+    "Use IndexedDB Blob storage first; do not add OPFS unless tests prove a capability gap. Attachment write failure/quota exhaustion must not create dangling metadata or corrupt prior attachments.",
+    "Versioned backup/restore must preserve research attachment payload bytes, MIME type, filename and item association; ordinary backup must not silently omit attachment bodies.",
+    "The personal-data facade must support an explicit scopeId derived only from existing identity/profile authority. Do not invent a new identity provider, multi-user UX or account-switch feature.",
+    "Managed mode may use the existing App Manager compatibility profile scope unless an already-declared stronger identity is available; standalone mode uses the existing local profile/default scope.",
+    "Resolve the existing profile scope before loading canonical personal data. If a distinct existing scope is supplied, previous in-memory personal state must not leak into it.",
+    "Legacy global data is migrated exactly once to the currently resolved existing profile scope; do not clone the same legacy dataset into every future scope.",
+    "The global account/credential compatibility store remains structurally separate from learner data. Ordinary learner backup excludes credential verifier material."
   ],
   "targetArchitecture": {
     "chain": "Hub runtime → Personal Data Facade → IndexedDB provider → optional export/import → optional future sync adapters",
     "canonicalLocalOwner": "shared Hub personal-data facade under assets/js/platform/",
     "preferences": "small non-critical UI preferences may remain localStorage",
     "identity": "runtime/current-user accessor must not require localStorage as canonical auth state",
-    "migration": "legacy keys → validate/filter → transactional IndexedDB write → parity check → mark migrated → retain legacy fallback until safe cleanup release"
+    "migration": "legacy keys → validate/filter → transactional IndexedDB write → parity check → mark migrated → retain legacy fallback until safe cleanup release",
+    "binaryAttachments": {
+      "structuredState": "researchFiles stores metadata/reference only",
+      "payloadStore": "dedicated IndexedDB Blob/object store owned by the Hub personal-data facade",
+      "legacyMigration": "decode existing Data URL payloads transactionally; write blob first, then commit metadata/reference; retain legacy source until parity succeeds",
+      "exportImport": "portable backup includes attachment payloads and restores exact association/name/MIME/content",
+      "failureBehavior": "quota/write failure surfaces an explicit error and leaves previous canonical state recoverable"
+    },
+    "userIsolation": {
+      "scopeResolution": "derive scopeId from existing managed/standalone profile authority only; no new auth or account-switch product surface",
+      "managedMode": "use the existing managed compatibility profile scope unless an already-declared stronger identity exists",
+      "standaloneMode": "use the existing local/default profile scope; do not activate legacy hidden multi-user flows",
+      "storageNamespace": "canonical/personal/evidence records are partitionable by scopeId even if today's product normally uses one scope per runtime",
+      "startup": "open facade -> resolve existing profile scope -> migrate/load that scope -> initialize in-memory state -> render",
+      "legacyGlobalMigration": "assign legacy global data to the current resolved scope once and record migration ownership/version transactionally",
+      "backup": "export/import one resolved profile scope; credential verifier material is excluded by default"
+    }
   },
   "exactOwners": [
     "assets/js/main.js — canonical Hub state + standalone local user compatibility + backup/restore",
@@ -184,22 +236,26 @@
     "bauman_academic_2026_schedule_transactions_v1",
     "Schedule NOTE_KEY payload",
     "Subjects NOTES_KEY/CUSTOM_KEY/TEACHER_KEY payloads",
-    "Research TASK_KEY/NOTE_KEY payloads"
+    "Research TASK_KEY/NOTE_KEY payloads",
+    "state.researchFiles legacy Data URL attachment payloads"
   ],
   "retainAsPreference": [
+    "bauman_schedule_reference_view_v1 — Schedule selected day/week/month view",
+    "bauman_schedule_reference_suggestions_v2 — accepted/dismissed suggestion acknowledgement only; not canonical schedule state",
+    "bauman_subjects_reference_ui_v1 — tab/semester/calendarOffset/aiDone presentation state",
+    "bauman_thesis_reference_ui_v1 — view/month/weekOffset/upcomingExpanded/aiDone presentation state",
     "Roadmap expansion/filter state",
-    "Schedule selected day/week/month view when not carrying learner notes/evidence",
-    "Subjects tab/semester/calendar presentation state",
-    "Research view/month/week presentation state",
     "Hub appearance/detail/background/density preferences"
   ],
   "implementationPhases": [
     "P1 — Reconfirm exact current main; inspect only changed allowed-path owners since this packet baseline and avoid conflicts.",
     "P2 — Add one shared async Hub personal-data facade with schema/versioning and IndexedDB provider. Do not duplicate Device Gate DB semantics unless a shared lower-level helper is genuinely reusable.",
     "P3 — Bootstrap main state through the facade before app render; preserve synchronous consumer behavior through an initialized in-memory state, not by treating localStorage as canonical.",
+    "P3.1 — Scope-aware personal store: resolve the existing managed/standalone profile scope before canonical load; partition personal/evidence stores by scopeId; migrate legacy global data once to the current scope. Do not add new multi-user/auth UI.",
     "P4 — Migrate standalone users/current identity compatibility safely. Keep Device Gate/App Manager authority unchanged. Remove credential verifier material from ordinary learner backup.",
     "P5 — Move academic diagnostic, scheduler preview and transaction stores behind the facade while preserving per-user scope, fingerprints, Apply/Rollback and legacy migration behavior.",
     "P6 — Move Schedule/Subjects/Research LOCAL_HUB notes/tasks/custom/teacher data behind the facade. Preserve truth-safe filters so reference samples are never promoted.",
+    "P6.1 — Research attachments: migrate legacy state.researchFiles Data URL bodies into a dedicated IndexedDB Blob/object store behind the same facade; structured state keeps stable attachment references/metadata only; preserve atomicity and quota-safe failure behavior.",
     "P7 — Replace backup/restore with a versioned portable bundle covering all canonical/local Hub personal data. Add deterministic round-trip validation and legacy import.",
     "P8 — Add migration interruption/retry, real-zero/unavailable, offline reload, managed/standalone auth, academic transaction and backup round-trip browser/static tests.",
     "P9 — Run targeted + whole-system regression at one exact SHA; write CURRENT_EXECUTION_RESULT.json. Do not deploy production."
@@ -220,7 +276,17 @@
     "Ordinary learner backup contains no passwordHash, passwordSalt, passwordIterations or legacy plaintext password fields.",
     "No subject-private path/state access is introduced.",
     "Desktop/mobile/offline browser acceptance has no console/page errors or horizontal overflow.",
-    "LOCAL_STABLE is achieved at one exact tested SHA; production remains NOT_DEPLOYED."
+    "LOCAL_STABLE is achieved at one exact tested SHA; production remains NOT_DEPLOYED.",
+    "Research attachment payloads are not embedded in the monolithic canonical Hub state after migration; structured state keeps stable references/metadata and binary payloads live in the dedicated IndexedDB attachment store.",
+    "A legacy research attachment Data URL migrates without byte/MIME/name loss and remains openable after reload.",
+    "Backup/restore round-trip includes research attachment payloads and associations; no attachment body is silently dropped.",
+    "Simulated attachment-store quota/write failure does not commit dangling attachment metadata and does not destroy the previous recoverable state.",
+    "Direct localStorage use remaining after migration is limited to the explicitly classified preference-only keys; canonical/evidence/transaction/personal-data keys do not remain direct localStorage owners.",
+    "The facade resolves a deterministic scopeId from the existing runtime profile authority without introducing a new identity provider or multi-user UI.",
+    "Managed compatibility mode and standalone mode each load/write only their resolved profile scope; tests may inject two existing scope IDs at provider level to prove partitioning without exposing a new account-switch feature.",
+    "Legacy global data is migrated once to the current resolved scope and is not automatically cloned to another injected scope.",
+    "Academic diagnostics, scheduler preview/transactions, Schedule notes, Subjects local overrides and Research local data all use the same resolved profile scope.",
+    "A profile-scoped backup exports/restores only that scope's learner data and attachments and excludes credential verifier material."
   ],
   "requiredTests": [
     "New hub-personal-storage static contract test.",
@@ -234,7 +300,15 @@
     "schedule/subjects/thesis static + browser truth regressions.",
     "hub-data-truth static + browser.",
     "hub-premium-responsive browser.",
-    "system-browser-acceptance / packaged whole-system gate as currently required by CI."
+    "system-browser-acceptance / packaged whole-system gate as currently required by CI.",
+    "Attachment migration browser fixture: legacy Data URL researchFiles → IndexedDB Blob store → reload/open exact payload.",
+    "Attachment backup/restore round-trip preserving filename/MIME/item association/content.",
+    "Attachment write/quota failure atomicity test.",
+    "Static storage-owner allowlist test proving remaining direct localStorage access is only the explicit preference-only set.",
+    "Scope partition provider/browser test: inject two existing profile scope IDs and prove canonical/personal records do not bleed, without adding account-switch UI.",
+    "Legacy global-state ownership test: seed old global keys, migrate under scope A, then initialize scope B and prove legacy data is not cloned.",
+    "Managed compatibility profile + standalone local profile resolution regression using existing access-mode/managed-access behavior.",
+    "Profile-scoped backup/restore test proving another injected scope's data and credential verifier fields are absent."
   ],
   "regressionMatrix": {
     "home": [
@@ -262,7 +336,11 @@
     "research": [
       "checklist/files metadata migration",
       "LOCAL_HUB task/note migration",
-      "no sample promotion"
+      "no sample promotion",
+      "attachment payload migration to dedicated binary store",
+      "attachment reload/open",
+      "attachment backup/restore",
+      "quota/write failure atomicity"
     ],
     "academic": [
       "diagnostic evidence migration",
@@ -273,7 +351,11 @@
       "standalone user store",
       "managed App Manager compatibility",
       "Device Gate unchanged",
-      "no credential verifier in ordinary backup"
+      "no credential verifier in ordinary backup",
+      "scope-aware canonical personal store using existing profile authority",
+      "managed compatibility profile unchanged",
+      "standalone local profile unchanged",
+      "legacy global-data single-scope migration"
     ],
     "portability": [
       "versioned export",
@@ -291,10 +373,33 @@
     "HUB-STORAGE-002",
     "HUB-STORAGE-003",
     "HUB-STORAGE-004",
-    "HUB-STORAGE-005"
+    "HUB-STORAGE-005",
+    "HUB-STORAGE-006",
+    "HUB-STORAGE-007"
   ],
   "stopCondition": "Codex stops after exact-head LOCAL_STABLE static + browser + whole-system evidence is green and CURRENT_EXECUTION_RESULT.json is written, or records a genuine blocker. Do not deploy production.",
   "executionState": "NOT_STARTED",
-  "governanceRevisionReason": "P0 prompt-control hardening only: canonical Hub master/mode entries, state freshness semantics, and packet/result consistency. No runtime scope or acceptance behavior changed.",
-  "historyPolicy": "Completed packets are historical evidence and must not be re-executed implicitly. Only this CURRENT_WORK_PACKET is active while Shared State names the same packet id/revision/status."
+  "governanceRevisionReason": "Chat Class-A storage preflight finalized: current-main rebaseline, storage taxonomy, binary attachment handling, and scope-aware personal-data partitioning using existing identity authority only. No new multi-user/auth feature is authorized.",
+  "historyPolicy": "Completed packets are historical evidence and must not be re-executed implicitly. Only this CURRENT_WORK_PACKET is active while Shared State names the same packet id/revision/status.",
+  "storageTaxonomy": {
+    "canonicalPersonalData": [
+      "bauman_main_all_phases_subjects_v1 main Hub learner state",
+      "academic diagnostics",
+      "scheduler preview and Apply/Rollback transaction history",
+      "Schedule LOCAL_HUB notes",
+      "Subjects LOCAL_HUB notes/custom rows/teacher overrides",
+      "Research LOCAL_HUB tasks/notes",
+      "standalone local user records excluding ordinary backup credential export",
+      "research attachment payloads and metadata"
+    ],
+    "preferenceOnlyMayRemainLocalStorage": [
+      "bauman_schedule_reference_view_v1",
+      "bauman_schedule_reference_suggestions_v2 — acknowledgement/UI state only; accepting a suggestion currently does not mutate canonical schedule",
+      "bauman_subjects_reference_ui_v1 — tab/semester/calendar/aiDone presentation state only",
+      "bauman_thesis_reference_ui_v1 — view/month/week/upcoming/aiDone presentation state only",
+      "Roadmap open/filter presentation state",
+      "Hub wallpaper/density/detail presentation state"
+    ],
+    "nonCanonicalSessionIdentity": "Current-user/session selection must not be treated as canonical auth truth or included in ordinary learner backup."
+  }
 }
