@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "RUSSIAN_ENGINE_GROUNDED_SCENES_FIXTURE_V1",
+  "status": "FIXTURE_NONCANONICAL_PENDING_RU03",
+  "purpose": "RE02 deterministic semantic-immersion vertical slice only",
+  "translationDefault": "hidden",
+  "scenes": [
+    {
+      "sceneId": "grounded-give-ball-a",
+      "transferGroup": "give-object-001",
+      "contentRevision": "re02-fixture-r1",
+      "targetCompetencies": ["RU-COMP-SEMANTIC-GROUNDING"],
+      "stimulus": {
+        "language": "ru",
+        "audioText": "Дай мяч.",
+        "speechStyle": "careful-native"
+      },
+      "world": {
+        "speakerRole": "requester",
+        "recipientRole": "requester",
+        "objects": [
+          {"id": "ball", "visual": {"kind": "symbol", "value": "⚽"}},
+          {"id": "book", "visual": {"kind": "symbol", "value": "📕"}},
+          {"id": "cup", "visual": {"kind": "symbol", "value": "☕"}}
+        ]
+      },
+      "expectedAction": {
+        "kind": "select-object",
+        "objectId": "ball",
+        "semanticRelation": "request-object"
+      },
+      "successConsequence": {
+        "kind": "world-state-change",
+        "mutation": "requester-receives-object",
+        "objectId": "ball"
+      },
+      "supportPolicy": {
+        "maxLevel": 10,
+        "translationDefault": "hidden"
+      }
+    },
+    {
+      "sceneId": "grounded-give-book-b",
+      "transferGroup": "give-object-001",
+      "contentRevision": "re02-fixture-r1",
+      "targetCompetencies": ["RU-COMP-SEMANTIC-GROUNDING"],
+      "stimulus": {
+        "language": "ru",
+        "audioText": "Дай книгу.",
+        "speechStyle": "careful-native"
+      },
+      "world": {
+        "speakerRole": "requester",
+        "recipientRole": "requester",
+        "objects": [
+          {"id": "cup", "visual": {"kind": "symbol", "value": "☕"}},
+          {"id": "book", "visual": {"kind": "symbol", "value": "📕"}},
+          {"id": "ball", "visual": {"kind": "symbol", "value": "⚽"}}
+        ]
+      },
+      "expectedAction": {
+        "kind": "select-object",
+        "objectId": "book",
+        "semanticRelation": "request-object"
+      },
+      "successConsequence": {
+        "kind": "world-state-change",
+        "mutation": "requester-receives-object",
+        "objectId": "book"
+      },
+      "supportPolicy": {
+        "maxLevel": 10,
+        "translationDefault": "hidden"
+      }
+    }
+  ]
+}
