@@ -1,34 +1,87 @@
 {
-  "packetId": "PYTHON-RELEASE-20261004-002",
+  "packetId": "PYTHON-LOCAL-FIRST-20261006-001",
   "revision": 1,
-  "status": "BLOCKED_EXTERNAL_CLOUDFLARE_CONTAINER_PERMISSION",
-  "workClass": "SHARED_C3_RELEASE",
+  "status": "READY_FOR_CHAT_IMPLEMENTATION",
+  "workClass": "PYTHON04_06_SELECTIVE_REVALIDATION",
   "repository": "BlueDragon33/Bauman-master-ai-system",
-  "activeModule": "SHARED_C3_RELEASE",
-  "acceptedHardeningHead": "c420d2d9bb876ab0be2b14cff58a323537903110",
-  "objective": "Publish the exact hardened Python runtime revision through shared preview-first release after the external Cloudflare Containers token permission is corrected.",
-  "completed": [
-    "PYTHON01-PYTHON06 PASS",
-    "Release activation merged",
-    "Canonical task competency IDs and authoring projection hardened",
-    "Client request abort propagates through Worker -> Durable Object fetch -> container cleanup",
-    "Late/stale learner results quarantined",
-    "P4/P5/P6 and focused hardening acceptance PASS"
+  "activeModule": "PYTHON04",
+  "objective": "Replace the cloud-container-only release assumption with a provider-neutral local-first Python execution stack while preserving existing accepted Cloudflare Container evidence as an optional provider.",
+  "authority": [
+    "prompts/CONSTITUTION.md",
+    "prompts/constitution/DEPENDENCY_INDEPENDENCE_POLICY.md",
+    "prompts/subjects/python/PYTHON_MASTER_PROMPT.md",
+    "prompts/subjects/python/PYTHON04_RUNTIME_TOOLCHAIN_DATA_AI_INTELLIGENCE.md"
   ],
-  "blocker": {
-    "type": "EXTERNAL_CREDENTIAL_PERMISSION",
-    "failedRunId": 37209439349,
-    "failedStage": "preview / Deploy Learning Runtime preview",
-    "endpoint": "/accounts/<account>/containers/me",
-    "currentEvidence": "Control preview deployment succeeded; container-enabled Learning Runtime deployment failed at Cloudflare Containers API; production was skipped.",
-    "requiredAction": "Update the CLOUDFLARE_API_TOKEN used by bauman-preview and bauman-production to include Workers Containers Write / Containers Edit for the target Cloudflare account."
-  },
-  "retryPlan": [
-    "Use the final merged main SHA, not the failed 8c57f346 release SHA.",
-    "Run deploy-bauman-preview.yml on main and require exact revision + pythonExecutionEnabled + cpython-3.14.8-stdlib-v1 read-back.",
-    "Only after preview success run deploy-bauman-production.yml with confirm=DEPLOY_PRODUCTION on the exact same main SHA.",
-    "Require Python production smoke plus existing Russian/Math/control release closure gates.",
-    "On any failure, do not claim STABLE; keep production at prior known-good revision."
+  "preservedEvidence": [
+    "PYTHON01-PYTHON03 accepted academic/assessment authority",
+    "existing Cloudflare Container CPython 3.14.8 provider implementation",
+    "passing P4/P5/P6 container/provider/browser acceptance evidence",
+    "request-abort and stale-result hardening"
   ],
-  "releasePolicy": "No production retry until the Cloudflare Containers permission is corrected and exact merged-main preview succeeds."
+  "migrationTargets": [
+    {
+      "id": "browser-wasm",
+      "priority": 1,
+      "purpose": "interactive practice, offline learning, fast local execution",
+      "requirements": [
+        "provider facade compatibility",
+        "Web Worker isolation",
+        "timeout/cancel",
+        "bounded output",
+        "runtime identity",
+        "offline asset/cache policy",
+        "honest package support",
+        "no hidden-test confidentiality claim"
+      ]
+    },
+    {
+      "id": "local-desktop-cpython",
+      "priority": 2,
+      "purpose": "full CPython/native-package/high-assurance local tasks",
+      "requirements": [
+        "explicit local provider contract",
+        "isolated workspace",
+        "resource limits",
+        "network/filesystem policy",
+        "structured results",
+        "optional trusted hidden evaluation"
+      ]
+    },
+    {
+      "id": "managed-container",
+      "priority": 3,
+      "purpose": "optional stronger shared isolation or remote execution",
+      "status": "retain optional",
+      "requirement": "must not block LOCAL_STABLE"
+    }
+  ],
+  "chatOwned": [
+    "architecture and provider contracts",
+    "state/prompt updates",
+    "repository inventory",
+    "small/medium provider facade edits",
+    "tests/CI/release-profile updates",
+    "GitHub orchestration and review"
+  ],
+  "codexOnlyIfNeeded": [
+    "deep WASM runtime integration across many files",
+    "complex sandbox cancellation/memory isolation",
+    "large browser E2E harness or worker lifecycle debugging"
+  ],
+  "acceptance": [
+    "core Python learner journey works without paid credentials",
+    "browser/local provider reports exact runtime identity",
+    "offline path is real where declared",
+    "existing assessment authority is preserved",
+    "optional container provider can be disabled without corrupting learner state",
+    "PYTHON04, PYTHON05 and PYTHON06 targeted regressions PASS",
+    "release closes at LOCAL_STABLE"
+  ],
+  "stopConditions": [
+    "requires new OAuth consent or secret",
+    "destructive migration",
+    "browser/WASM cannot satisfy a required Python capability and local desktop provider also cannot",
+    "root cause requires architecture beyond the allowed provider boundary"
+  ],
+  "nextAction": "Chat performs provider inventory and selects/implements the smallest browser/WASM provider behind the existing facade. Do not invoke Codex until a deep integration blocker is proven."
 }
