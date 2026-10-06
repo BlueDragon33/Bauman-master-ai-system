@@ -8,9 +8,9 @@
     "russianMasterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
     "engineOrchestrator": "prompts/subjects/russian/engine/RE00_ENGINE_ORCHESTRATOR.md"
   },
-  "status": "RE04_PASS_RE05_READY",
+  "status": "RE05_PASS_RE06_ACTIVE",
   "implementationAuthorized": true,
-  "activeWorkPackage": "RE05",
+  "activeWorkPackage": "RE06",
   "sequence": [
     "RE00",
     "RE01",
@@ -39,7 +39,8 @@
     "RE01",
     "RE02",
     "RE03",
-    "RE04"
+    "RE04",
+    "RE05"
   ],
   "targetInternalLevels": 100,
   "learningNorthStar": "RUSSIAN_FIRST_MEANING_FIRST_CONTEXT_FIRST_TRANSLATION_LAST",
@@ -61,5 +62,5 @@
     ]
   },
   "blockers": [],
-  "nextAction": "Execute RE05 by adapting the existing RussianAudioEngine, RussianSpeechRecognitionAdapter and RussianRecordingEngine through Engine provider ports. Do not create a duplicate speech owner; first add capability adapters/tests inside subjects/russian/engine/**, then only integrate through RE09."
+  "nextAction": "Execute RE06 as a pure profile-scoped learner projection and adaptive recommendation layer over evidence. Do not create a second mastery/SRS/planner writer; use derived projections and adapter seams only until RE09."
 }
