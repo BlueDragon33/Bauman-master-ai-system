@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
   "packetId": "HUB-STORAGE-20261006-001",
-  "packetRevision": 1,
+  "packetRevision": 2,
   "status": "AWAITING_CODEX_EXECUTION",
   "baselineMainSha": "2951cc86378056456110abedffe305c8f99d0c42",
   "releaseTarget": "LOCAL_STABLE",
@@ -11,6 +11,12 @@
     "packetId": "HUB-TRUTH-20261003-001",
     "status": "ACCEPTED_MERGED",
     "mergeSha": "c43dfd115283973b8e83a0b0e3d89eafcf8eb6b0",
-    "testedRuntimeHead": "9a2b1e6cae9d602b880181424a4a44016dba70f7"
-  }
+    "testedRuntimeHead": "9a2b1e6cae9d602b880181424a4a44016dba70f7",
+    "packetRevision": 4,
+    "executedRevision": 3,
+    "doNotReexecute": true
+  },
+  "promptGovernanceObservedMainSha": "1b834db5a34de5d730ee73adf7440da3f06fcedb",
+  "expectedPacketStatus": "READY_FOR_CODEX",
+  "executionState": "NOT_STARTED"
 }

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.4.0",
+  "schemaVersion": "1.5.0",
   "project": "BlueDragon33/Bauman-master-ai-system",
   "canonicalPromptRoot": "prompts",
   "constitution": "prompts/CONSTITUTION.md",
@@ -12,13 +12,16 @@
       "label": "Bauman Master Hub",
       "implementationScope": "Hub primary learner routes: Home, Roadmap, Subjects, Schedule, Research / НИР & Luận văn",
       "readme": "prompts/hub/README.md",
-      "masterPrompt": "prompts/hub/chat/HUB_CHAT_MASTER_PROMPT.md",
+      "masterPrompt": "prompts/hub/HUB_MASTER_PROMPT.md",
       "state": "prompts/hub/HUB_SHARED_STATE.json",
       "workSplit": "prompts/hub/WORK_SPLIT_CHAT_CODEX.md",
       "scopeBoundary": "prompts/hub/HUB_SCOPE_BOUNDARY.md",
       "subappBoundary": "prompts/hub/api/HUB_SUBAPP_API_BOUNDARY.md",
       "workPacket": "prompts/hub/CURRENT_WORK_PACKET.json",
-      "status": "READY_FOR_CODEX"
+      "status": "READY_FOR_CODEX",
+      "chatStart": "prompts/hub/chat/CHAT_START.md",
+      "codexStart": "prompts/hub/codex/CODEX_START.md",
+      "executionResult": "prompts/hub/CURRENT_EXECUTION_RESULT.json"
     },
     {
       "id": "russian",
