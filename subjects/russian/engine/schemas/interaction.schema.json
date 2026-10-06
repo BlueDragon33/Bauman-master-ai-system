@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bauman:russian-engine:interaction:v1",
+  "title": "Russian Engine Interaction V1",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "interactionId",
+    "attemptId",
+    "experienceId",
+    "actionType",
+    "payload",
+    "support",
+    "timing"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "RUSSIAN_ENGINE_INTERACTION_V1"},
+    "interactionId": {"type": "string", "minLength": 1},
+    "attemptId": {"type": "string", "minLength": 1},
+    "experienceId": {"type": "string", "minLength": 1},
+    "actionType": {"type": "string", "minLength": 1},
+    "payload": {"type": "object"},
+    "support": {
+      "type": "object",
+      "properties": {
+        "level": {"type": "integer", "minimum": 0, "maximum": 10}
+      }
+    },
+    "timing": {
+      "type": "object",
+      "properties": {
+        "responseMs": {"type": "number", "minimum": 0}
+      }
+    }
+  },
+  "additionalProperties": true
+}
