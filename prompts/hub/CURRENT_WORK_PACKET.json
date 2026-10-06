@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
   "packetId": "HUB-STORAGE-20261006-001",
-  "revision": 1,
+  "revision": 2,
   "status": "READY_FOR_CODEX",
   "userIntent": "Continue Bauman Hub continuously under the current Prompt System; keep the core local/offline/free-first and preserve learner truth while removing fragile localStorage dependency for canonical personal data.",
   "objective": "Introduce one normalized Hub personal-data storage facade with IndexedDB as the primary local canonical store, deterministic legacy migration, complete portable backup/restore, and compatibility-safe migration for Hub learner/auth/academic/scheduler/research data while keeping UI-only preferences lightweight.",
@@ -14,20 +14,25 @@
   "previousAcceptedPacket": {
     "packetId": "HUB-TRUTH-20261003-001",
     "status": "ACCEPTED_MERGED",
-    "mergeSha": "c43dfd115283973b8e83a0b0e3d89eafcf8eb6b0"
+    "mergeSha": "c43dfd115283973b8e83a0b0e3d89eafcf8eb6b0",
+    "packetRevision": 4,
+    "executedRevision": 3,
+    "testedRuntimeHead": "9a2b1e6cae9d602b880181424a4a44016dba70f7",
+    "doNotReexecute": true
   },
   "baselinePolicy": {
     "mainSha": "2951cc86378056456110abedffe305c8f99d0c42",
     "constitution": "prompts/CONSTITUTION.md",
     "dependencyPolicy": "prompts/constitution/DEPENDENCY_INDEPENDENCE_POLICY.md",
-    "hubMasterPrompt": "prompts/hub/chat/HUB_CHAT_MASTER_PROMPT.md",
+    "hubMasterPrompt": "prompts/hub/HUB_MASTER_PROMPT.md",
     "releaseProfile": "LOCAL_STABLE",
     "truthStates": [
       "CURRENT",
       "STALE",
       "UNAVAILABLE",
       "LOCAL_HUB"
-    ]
+    ],
+    "promptGovernanceObservedMainSha": "1b834db5a34de5d730ee73adf7440da3f06fcedb"
   },
   "findings": [
     {
@@ -288,5 +293,8 @@
     "HUB-STORAGE-004",
     "HUB-STORAGE-005"
   ],
-  "stopCondition": "Codex stops after exact-head LOCAL_STABLE static + browser + whole-system evidence is green and CURRENT_EXECUTION_RESULT.json is written, or records a genuine blocker. Do not deploy production."
+  "stopCondition": "Codex stops after exact-head LOCAL_STABLE static + browser + whole-system evidence is green and CURRENT_EXECUTION_RESULT.json is written, or records a genuine blocker. Do not deploy production.",
+  "executionState": "NOT_STARTED",
+  "governanceRevisionReason": "P0 prompt-control hardening only: canonical Hub master/mode entries, state freshness semantics, and packet/result consistency. No runtime scope or acceptance behavior changed.",
+  "historyPolicy": "Completed packets are historical evidence and must not be re-executed implicitly. Only this CURRENT_WORK_PACKET is active while Shared State names the same packet id/revision/status."
 }
