@@ -8,9 +8,9 @@
     "russianMasterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
     "engineOrchestrator": "prompts/subjects/russian/engine/RE00_ENGINE_ORCHESTRATOR.md"
   },
-  "status": "RE06_PASS_RE07_ACTIVE",
+  "status": "RE07_PASS_RE08_ACTIVE",
   "implementationAuthorized": true,
-  "activeWorkPackage": "RE07",
+  "activeWorkPackage": "RE08",
   "sequence": [
     "RE00",
     "RE01",
@@ -41,7 +41,8 @@
     "RE03",
     "RE04",
     "RE05",
-    "RE06"
+    "RE06",
+    "RE07"
   ],
   "targetInternalLevels": 100,
   "learningNorthStar": "RUSSIAN_FIRST_MEANING_FIRST_CONTEXT_FIRST_TRANSLATION_LAST",
@@ -63,5 +64,5 @@
     ]
   },
   "blockers": [],
-  "nextAction": "Execute RE07 as provider-independent profile, entitlement and sync-journal contracts inside subjects/russian/engine/**. Do not implement a payment provider, managed backend or general app auth in Russian Engine."
+  "nextAction": "Execute RE08 Engine quality gate: validate 100-level scale, contract integrity, no forbidden arbitrary eval, privacy defaults, provider-failure separation and boundary confinement. Keep release/integration separate."
 }
