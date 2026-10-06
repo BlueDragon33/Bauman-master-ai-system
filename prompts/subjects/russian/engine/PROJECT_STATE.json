@@ -8,9 +8,9 @@
     "russianMasterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
     "engineOrchestrator": "prompts/subjects/russian/engine/RE00_ENGINE_ORCHESTRATOR.md"
   },
-  "status": "RE01_PASS_RE02_ACTIVE",
+  "status": "RE03_PASS_RE04_ACTIVE",
   "implementationAuthorized": true,
-  "activeWorkPackage": "RE02",
+  "activeWorkPackage": "RE04",
   "sequence": [
     "RE00",
     "RE01",
@@ -36,7 +36,9 @@
     "RE09"
   ],
   "completedImplementationPackages": [
-    "RE01"
+    "RE01",
+    "RE02",
+    "RE03"
   ],
   "targetInternalLevels": 100,
   "learningNorthStar": "RUSSIAN_FIRST_MEANING_FIRST_CONTEXT_FIRST_TRANSLATION_LAST",
@@ -58,5 +60,5 @@
     ]
   },
   "blockers": [],
-  "nextAction": "Implement the minimal RE02 grounded listen-and-act deterministic scene entirely inside subjects/russian/engine/**, validate experience -> interaction -> evidence, and do not integrate into the general Russian App until RE09 explicit allowlist."
+  "nextAction": "Execute RE04: build the first canonical-reference knowledge graph/content runtime inside subjects/russian/engine/**, reusing RU02/RU03 owners by stable reference and avoiding duplicated linguistic truth. No general Russian App integration until RE09 explicit allowlist."
 }
