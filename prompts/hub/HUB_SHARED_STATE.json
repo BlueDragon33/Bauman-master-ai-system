@@ -3,10 +3,10 @@
   "domain": "hub",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/hub/chat/HUB_CHAT_MASTER_PROMPT.md",
-  "status": "CHAT_COMPLETE",
-  "lifecycle": "DATA_TRUTH_RECONCILIATION_ACCEPTED_MERGED",
+  "status": "READY_FOR_CODEX",
+  "lifecycle": "DEPENDENCY_INDEPENDENCE_STORAGE_REVALIDATION_READY",
   "baselineMainSha": "db747b1e6c65e5eb2a28cfd7ea2aeee8e3f9872c",
-  "lastReviewedSha": "3b541d76b0ee16208a5835073cbce42bf2f0d440",
+  "lastReviewedSha": "2951cc86378056456110abedffe305c8f99d0c42",
   "workingBranch": null,
   "canonicalRoutes": [
     "home",
@@ -25,7 +25,13 @@
     "Confirmed PR #230 merged without production deployment.",
     "Confirmed packet runtime/QA owners plus main.js/data.js retain identical blobs through main@c4e5bb676816fac9ee85892725ca1469b3322dda.",
     "Reconciled stale Hub packet/execution/shared-state metadata after merge.",
-    "Reconciled prompts/PROMPT_REGISTRY.json Hub status from stale READY_FOR_CODEX to CHAT_COMPLETE after confirming no pending Class B work."
+    "Reconciled prompts/PROMPT_REGISTRY.json Hub status from stale READY_FOR_CODEX to CHAT_COMPLETE after confirming no pending Class B work.",
+    "Revalidated Hub against the new Dependency Independence Policy after shared Constitution/Execution Protocol changes.",
+    "Audited all Hub scripts loaded by index.html for localStorage/IndexedDB/provider coupling without reading subject internals.",
+    "Confirmed Device Gate already uses IndexedDB/sessionStorage and runtime-config remains provider-neutral/local-capable.",
+    "Classified UI-only localStorage preferences separately from canonical/local learner data.",
+    "Identified incomplete backup portability and ordinary backup exposure of standalone credential verifier material.",
+    "Packaged all remaining deep storage migration work into HUB-STORAGE-20261006-001."
   ],
   "findings": [
     {
@@ -67,40 +73,82 @@
       "area": "research",
       "summary": "Presentation code derives research progress from local checklist/UI state; it must remain LOCAL_HUB and must not imply subject mastery or assessment.",
       "status": "FIXED_MERGED"
+    },
+    {
+      "id": "HUB-STORAGE-001",
+      "severity": "high",
+      "class": "B",
+      "area": "canonical-personal-data",
+      "summary": "Full Hub learner state is stored in localStorage despite the new local canonical storage policy.",
+      "status": "PACKAGED_FOR_CODEX"
+    },
+    {
+      "id": "HUB-STORAGE-002",
+      "severity": "high",
+      "class": "B",
+      "area": "academic-evidence-and-scheduler",
+      "summary": "Academic diagnostics and scheduler preview/transaction history use direct localStorage and require migration behind one storage facade.",
+      "status": "PACKAGED_FOR_CODEX"
+    },
+    {
+      "id": "HUB-STORAGE-003",
+      "severity": "high",
+      "class": "B",
+      "area": "backup-portability",
+      "summary": "Current backup omits sidecar Hub stores and is not a complete portable recovery bundle.",
+      "status": "PACKAGED_FOR_CODEX"
+    },
+    {
+      "id": "HUB-STORAGE-004",
+      "severity": "medium",
+      "class": "B",
+      "area": "local-auth-identity",
+      "summary": "Standalone credential/current-user compatibility uses localStorage and ordinary backup includes PBKDF2 verifier material.",
+      "status": "PACKAGED_FOR_CODEX"
+    },
+    {
+      "id": "HUB-STORAGE-005",
+      "severity": "medium",
+      "class": "B",
+      "area": "local-hub-notes-and-tasks",
+      "summary": "Schedule/Subjects/Research LOCAL_HUB personal data lives in separate localStorage keys outside the canonical backup path.",
+      "status": "PACKAGED_FOR_CODEX"
     }
   ],
   "activePacket": "prompts/hub/CURRENT_WORK_PACKET.json",
   "blockers": [],
   "externalBlockers": [],
-  "nextAction": "No pending Hub Chat or Codex work. On the next Hub continuation, reread Shared State and inspect only diffs after lastReviewedSha; open new work only from explicit Hub evidence, not subject internals.",
-  "mainSyncStatus": "merged",
+  "nextAction": "Codex executes HUB-STORAGE-20261006-001 from exact current main after rechecking allowed-path diffs. Target LOCAL_STABLE only; no production deployment. After Codex writes CURRENT_EXECUTION_RESULT.json, Chat reviews exact SHA/evidence and concludes ACCEPTED, REVISE or BLOCKED.",
+  "mainSyncStatus": "governance_ready",
   "governanceMergedSha": "6ef5e8814ac841f927f079e18d5062274ee0d847",
-  "lastReviewedRuntimeSha": "c4e5bb676816fac9ee85892725ca1469b3322dda",
-  "currentHeadSha": "3b541d76b0ee16208a5835073cbce42bf2f0d440",
+  "lastReviewedRuntimeSha": "2951cc86378056456110abedffe305c8f99d0c42",
+  "currentHeadSha": "2951cc86378056456110abedffe305c8f99d0c42",
   "testedRuntimeHead": "9a2b1e6cae9d602b880181424a4a44016dba70f7",
   "executionResult": "prompts/hub/CURRENT_EXECUTION_RESULT.json",
   "lastExecution": {
-    "packetId": "HUB-TRUTH-20261003-001",
-    "packetRevision": 3,
-    "beforeSha": "4bd4adf0137bf9dc8e15b55f538a6286a0a020d3",
-    "testedRuntimeHead": "9a2b1e6cae9d602b880181424a4a44016dba70f7",
-    "workflowRunId": 37113655419,
-    "result": "PASS_ACCEPTED_MERGED",
-    "productionDeployed": false,
-    "externalBaselineFailure": "Cloudflare Workers Build also fails on base main; outside packet."
+    "packetId": "HUB-STORAGE-20261006-001",
+    "packetRevision": 1,
+    "beforeSha": "2951cc86378056456110abedffe305c8f99d0c42",
+    "testedRuntimeHead": null,
+    "workflowRunId": null,
+    "result": "AWAITING_CODEX_EXECUTION",
+    "productionDeployed": false
   },
   "packetMergeSha": "c43dfd115283973b8e83a0b0e3d89eafcf8eb6b0",
-  "activePacketStatus": "ACCEPTED_MERGED",
+  "activePacketStatus": "READY_FOR_CODEX",
   "chatReview": {
-    "decision": "ACCEPTED",
+    "decision": "READY_FOR_CODEX",
     "reviewedAt": "2026-10-06",
-    "reviewedMainSha": "c4e5bb676816fac9ee85892725ca1469b3322dda",
-    "testedRuntimeHead": "9a2b1e6cae9d602b880181424a4a44016dba70f7",
-    "workflowRunId": 37113655419,
-    "workflowConclusion": "success",
-    "prNumber": 230,
-    "mergeCommitSha": "c43dfd115283973b8e83a0b0e3d89eafcf8eb6b0",
+    "reviewedMainSha": "2951cc86378056456110abedffe305c8f99d0c42",
+    "trigger": "DEPENDENCY_INDEPENDENCE_POLICY",
     "productionDeployed": false,
-    "classBRemaining": []
+    "releaseTarget": "LOCAL_STABLE",
+    "classBRemaining": [
+      "HUB-STORAGE-001",
+      "HUB-STORAGE-002",
+      "HUB-STORAGE-003",
+      "HUB-STORAGE-004",
+      "HUB-STORAGE-005"
+    ]
   }
 }
