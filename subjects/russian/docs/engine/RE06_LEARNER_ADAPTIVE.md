@@ -1,6 +1,6 @@
 # Russian Engine RE06 — Learner Projection & Adaptive Recommendation
 
-State: VALIDATING
+State: **PASS**
 
 ## Principle
 
@@ -75,12 +75,20 @@ This is an architectural prerequisite for later multi-user scale.
 - `subjects/russian/engine/learner/adaptive-recommender.mjs`
 - `subjects/russian/engine/tests/test-re06-learner-adaptive.mjs`
 
+## Validation
+
+Executed against the branch implementation: **14/14 checks PASS**.
+
+Verified:
+- deterministic learner projection;
+- explicit profile A/B isolation;
+- provider outage creates no learner review debt;
+- independent and supported observations stay separate;
+- observed failure and high-support dependency produce different review reasons;
+- adaptive recommendations are explainable;
+- transfer milestone produces a transfer probe, not mastery;
+- all recommendations keep `masteryMutation:false`.
+
 ## Exit
 
-RE06 PASS requires:
-- deterministic projection;
-- profile isolation;
-- infrastructure failure excluded from learner review debt;
-- independent vs supported performance preserved;
-- adaptive recommendation explainable;
-- no mastery/SRS/planner canonical write.
+**RE06 PASS.**
