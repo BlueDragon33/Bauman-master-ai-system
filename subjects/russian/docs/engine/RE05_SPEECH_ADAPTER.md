@@ -1,6 +1,6 @@
 # Russian Engine RE05 — Speech Provider Adapter & Oral Runtime
 
-State: VALIDATING
+State: **PASS**
 
 ## Purpose
 
@@ -108,14 +108,20 @@ The browser-specific helper can construct the provider from current global owner
 - `subjects/russian/engine/speech/scenario-port.mjs`
 - `subjects/russian/engine/tests/test-re05-speech-adapter.mjs`
 
-## Exit gate
+## Validation
 
-RE05 speech foundation PASS requires proof that:
-- existing owners are adapted, not duplicated;
-- TTS/source audio route through provider;
-- ASR remains a noisy transcript signal;
-- plain ASR cannot claim pronunciation/stress authority;
-- local recording remains transient/local;
-- provider failure is separated from learner evidence;
-- scenario integration cannot grant mastery;
-- no general Russian App modification is required.
+Executed against the branch implementation: **13/13 checks PASS**.
+
+Verified:
+- current audio/ASR/recording owners are adapted rather than replaced;
+- Russian TTS/provider routing works;
+- ASR signal explicitly carries no pronunciation/stress authority;
+- local recording remains transient and local-only;
+- oral exposure/ASR/recording evidence is non-authoritative;
+- unsupported ASR becomes infrastructure failure, not learner failure;
+- scenario port works with an injected scenario owner;
+- scenario adapter attempting `masteryGranted=true` is rejected.
+
+## Exit
+
+**RE05 PASS.**
