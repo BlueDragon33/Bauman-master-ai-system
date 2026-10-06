@@ -3,11 +3,11 @@
   "domain": "hub",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/hub/HUB_MASTER_PROMPT.md",
-  "status": "READY_FOR_CODEX",
-  "lifecycle": "DEPENDENCY_INDEPENDENCE_STORAGE_REVALIDATION_READY",
+  "status": "CHAT_REVIEW",
+  "lifecycle": "STORAGE_IMPLEMENTED_PENDING_CHAT_AND_FULL_SYSTEM_GATE",
   "baselineMainSha": "2951cc86378056456110abedffe305c8f99d0c42",
   "lastReviewedSha": "19db67bc0975e6fc0c4af0a31111ad3b30e6bfe7",
-  "workingBranch": null,
+  "workingBranch": "codex/hub-storage-20261006-001",
   "canonicalRoutes": [
     "home",
     "roadmap",
@@ -89,7 +89,7 @@
       "class": "B",
       "area": "canonical-personal-data",
       "summary": "Full Hub learner state is stored in localStorage despite the new local canonical storage policy.",
-      "status": "PACKAGED_FOR_CODEX"
+      "status": "FIXED_TESTED_PENDING_CHAT_ACCEPTANCE"
     },
     {
       "id": "HUB-STORAGE-002",
@@ -97,7 +97,7 @@
       "class": "B",
       "area": "academic-evidence-and-scheduler",
       "summary": "Academic diagnostics and scheduler preview/transaction history use direct localStorage and require migration behind one storage facade.",
-      "status": "PACKAGED_FOR_CODEX"
+      "status": "FIXED_TESTED_PENDING_CHAT_ACCEPTANCE"
     },
     {
       "id": "HUB-STORAGE-003",
@@ -105,7 +105,7 @@
       "class": "B",
       "area": "backup-portability",
       "summary": "Current backup omits sidecar Hub stores and is not a complete portable recovery bundle.",
-      "status": "PACKAGED_FOR_CODEX"
+      "status": "FIXED_TESTED_PENDING_CHAT_ACCEPTANCE"
     },
     {
       "id": "HUB-STORAGE-004",
@@ -113,7 +113,7 @@
       "class": "B",
       "area": "local-auth-identity",
       "summary": "Standalone credential/current-user compatibility uses localStorage and ordinary backup includes PBKDF2 verifier material.",
-      "status": "PACKAGED_FOR_CODEX"
+      "status": "FIXED_TESTED_PENDING_CHAT_ACCEPTANCE"
     },
     {
       "id": "HUB-STORAGE-005",
@@ -121,7 +121,7 @@
       "class": "B",
       "area": "local-hub-notes-and-tasks",
       "summary": "Schedule/Subjects/Research LOCAL_HUB personal data lives in separate localStorage keys outside the canonical backup path.",
-      "status": "PACKAGED_FOR_CODEX"
+      "status": "FIXED_TESTED_PENDING_CHAT_ACCEPTANCE"
     },
     {
       "id": "HUB-STORAGE-006",
@@ -129,7 +129,7 @@
       "class": "B",
       "area": "research-attachments",
       "summary": "Research attachment bodies are embedded as Data URLs in state.researchFiles and require a dedicated binary IndexedDB store plus migration/backup tests.",
-      "status": "PACKAGED_FOR_CODEX"
+      "status": "FIXED_TESTED_PENDING_CHAT_ACCEPTANCE"
     },
     {
       "id": "HUB-STORAGE-007",
@@ -137,30 +137,39 @@
       "class": "B",
       "area": "identity-scope-partitioning",
       "summary": "Global browser keys require scope-aware storage using existing managed/standalone profile authority; no new multi-user/auth feature is authorized.",
-      "status": "PACKAGED_FOR_CODEX"
+      "status": "FIXED_TESTED_PENDING_CHAT_ACCEPTANCE"
     }
   ],
   "activePacket": "prompts/hub/CURRENT_WORK_PACKET.json",
-  "blockers": [],
+  "blockers": [
+    {
+      "id": "FULL_SYSTEM_GATE_SCOPE_CONFLICT",
+      "type": "EVIDENCE_GATE",
+      "runtimeBlocked": false,
+      "details": "Full real-subject system/package acceptance is not asserted; Chat must dispose of the scope conflict or obtain evidence under an authorized broader gate."
+    }
+  ],
   "externalBlockers": [],
-  "nextAction": "Codex executes HUB-STORAGE-20261006-001 r5 from current main. Chat preflight is complete: storage taxonomy, binary attachment migration, and scope-aware storage using existing identity authority are locked. Do not invent new multi-user/auth UI. Target LOCAL_STABLE only; no production deployment.",
-  "mainSyncStatus": "governance_ready",
+  "nextAction": "Box Chat reviews exact implementation/evidence HEAD, migration/recovery/concurrency rulings, and disposition of the full-system scope conflict. No main merge or production deployment.",
+  "mainSyncStatus": "rebased_on_latest_observed_main",
   "governanceMergedSha": "6ef5e8814ac841f927f079e18d5062274ee0d847",
-  "lastReviewedRuntimeSha": "2951cc86378056456110abedffe305c8f99d0c42",
-  "currentHeadSha": "19db67bc0975e6fc0c4af0a31111ad3b30e6bfe7",
-  "testedRuntimeHead": "9a2b1e6cae9d602b880181424a4a44016dba70f7",
+  "lastReviewedRuntimeSha": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269",
+  "currentHeadSha": "63566556b8cfbec41957a25607b0c49dba1a6037",
+  "testedRuntimeHead": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269",
   "executionResult": "prompts/hub/CURRENT_EXECUTION_RESULT.json",
   "lastExecution": {
     "packetId": "HUB-STORAGE-20261006-001",
     "packetRevision": 5,
-    "beforeSha": "19db67bc0975e6fc0c4af0a31111ad3b30e6bfe7",
-    "testedRuntimeHead": null,
+    "beforeSha": "dec98df4812298ddafba459383850c3889563d6a",
+    "afterSha": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269",
+    "reconciledMainSha": "63566556b8cfbec41957a25607b0c49dba1a6037",
+    "testedRuntimeHead": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269",
     "workflowRunId": null,
-    "result": "AWAITING_CODEX_EXECUTION",
+    "result": "CODEX_DONE",
     "productionDeployed": false
   },
   "packetMergeSha": "c43dfd115283973b8e83a0b0e3d89eafcf8eb6b0",
-  "activePacketStatus": "READY_FOR_CODEX",
+  "activePacketStatus": "CHAT_REVIEW",
   "chatReview": {
     "decision": "READY_FOR_CODEX",
     "reviewedAt": "2026-10-06",
@@ -183,8 +192,8 @@
   "chatStart": "prompts/hub/chat/CHAT_START.md",
   "codexStart": "prompts/hub/codex/CODEX_START.md",
   "lastPromptReviewSha": "19db67bc0975e6fc0c4af0a31111ad3b30e6bfe7",
-  "lastRuntimeReviewSha": "2951cc86378056456110abedffe305c8f99d0c42",
-  "observedMainSha": "19db67bc0975e6fc0c4af0a31111ad3b30e6bfe7",
+  "lastRuntimeReviewSha": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269",
+  "observedMainSha": "63566556b8cfbec41957a25607b0c49dba1a6037",
   "currentHeadSemantics": "last observed main SHA at prompt-governance review; not a self-referential state-file commit SHA",
   "activePacketId": "HUB-STORAGE-20261006-001",
   "activePacketRevision": 5,
@@ -221,5 +230,14 @@
       "dependencyIndependence": "SUCCESS"
     },
     "exactHeadPolicy": "Every later prompt-governance commit retriggers Prompt Control Center CI; merge only when the final PR head is green."
+  },
+  "releaseState": {
+    "status": "HUB_LOCAL_VALIDATED_PENDING_CHAT_AND_FULL_SYSTEM_GATE",
+    "hubLocalValidated": true,
+    "fullSystemValidated": false,
+    "chatReviewRequired": true,
+    "productionDeployed": false,
+    "mainMerged": false,
+    "branchKept": true
   }
 }

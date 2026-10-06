@@ -2,7 +2,7 @@
   "schemaVersion": "1.0.0",
   "packetId": "HUB-STORAGE-20261006-001",
   "revision": 5,
-  "status": "READY_FOR_CODEX",
+  "status": "CHAT_REVIEW",
   "userIntent": "Continue Bauman Hub continuously under the current Prompt System; keep the core local/offline/free-first and preserve learner truth while removing fragile localStorage dependency for canonical personal data.",
   "objective": "Introduce one normalized Hub personal-data storage facade with IndexedDB as the primary local canonical store, deterministic legacy migration, complete portable backup/restore, and compatibility-safe migration for Hub learner/auth/academic/scheduler/research data while keeping UI-only preferences lightweight.",
   "trigger": {
@@ -368,17 +368,9 @@
   "rollbackNotes": "Keep all legacy localStorage canonical-data keys untouched until the IndexedDB write, schema validation and parity check succeed. On failure, continue reading the legacy source and surface migration status; never clear learner data. Production is outside scope.",
   "externalBlockers": [],
   "classARemaining": [],
-  "classBRemaining": [
-    "HUB-STORAGE-001",
-    "HUB-STORAGE-002",
-    "HUB-STORAGE-003",
-    "HUB-STORAGE-004",
-    "HUB-STORAGE-005",
-    "HUB-STORAGE-006",
-    "HUB-STORAGE-007"
-  ],
+  "classBRemaining": [],
   "stopCondition": "Codex stops after exact-head LOCAL_STABLE static + browser + whole-system evidence is green and CURRENT_EXECUTION_RESULT.json is written, or records a genuine blocker. Do not deploy production.",
-  "executionState": "NOT_STARTED",
+  "executionState": "COMPLETE_WITH_BOUNDARY_GATE_PENDING",
   "governanceRevisionReason": "Chat Class-A storage preflight finalized: current-main rebaseline, storage taxonomy, binary attachment handling, and scope-aware personal-data partitioning using existing identity authority only. No new multi-user/auth feature is authorized.",
   "historyPolicy": "Completed packets are historical evidence and must not be re-executed implicitly. Only this CURRENT_WORK_PACKET is active while Shared State names the same packet id/revision/status.",
   "storageTaxonomy": {
@@ -401,5 +393,12 @@
       "Hub wallpaper/density/detail presentation state"
     ],
     "nonCanonicalSessionIdentity": "Current-user/session selection must not be treated as canonical auth truth or included in ordinary learner backup."
+  },
+  "executionSummary": {
+    "beforeSha": "dec98df4812298ddafba459383850c3889563d6a",
+    "afterSha": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269",
+    "reconciledMainSha": "63566556b8cfbec41957a25607b0c49dba1a6037",
+    "gate": "Allowed Hub static/browser/public-contract/package PASS; default private-subject gate pending separate scope",
+    "productionDeployed": false
   }
 }
