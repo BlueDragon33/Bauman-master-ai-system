@@ -1,9 +1,9 @@
 {
   "schemaVersion": "1.0.0",
   "packetId": "HUB-STORAGE-20261006-001",
-  "packetRevision": 2,
+  "packetRevision": 3,
   "status": "AWAITING_CODEX_EXECUTION",
-  "baselineMainSha": "2951cc86378056456110abedffe305c8f99d0c42",
+  "baselineMainSha": "19db67bc0975e6fc0c4af0a31111ad3b30e6bfe7",
   "releaseTarget": "LOCAL_STABLE",
   "productionDeployed": false,
   "expectedResult": "Codex must replace this placeholder with exact before/after SHA, changed paths, migration evidence, targeted/browser/whole-system test evidence, boundary verification, rollback status and remaining blockers.",
@@ -18,5 +18,13 @@
   },
   "promptGovernanceObservedMainSha": "1b834db5a34de5d730ee73adf7440da3f06fcedb",
   "expectedPacketStatus": "READY_FOR_CODEX",
-  "executionState": "NOT_STARTED"
+  "executionState": "NOT_STARTED",
+  "runtimeContentBaselineSha": "2951cc86378056456110abedffe305c8f99d0c42",
+  "preflight": {
+    "chatClassA": "COMPLETE",
+    "runtimeDiffFromContentBaseline": "NONE",
+    "storageInventoryReviewed": true,
+    "newFinding": "HUB-STORAGE-006",
+    "localStoragePreferenceClassificationLocked": true
+  }
 }
