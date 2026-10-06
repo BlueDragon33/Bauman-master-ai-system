@@ -47,3 +47,10 @@ Read:
 6. active packet/result
 
 Do not scan subject internals to solve Hub work. Do not create a second Constitution or competing Hub Master Prompt.
+
+
+## Packet history
+
+Only `prompts/hub/CURRENT_WORK_PACKET.json` may be active. Accepted historical packet summaries live under `prompts/hub/history/` and must set `doNotReexecute=true`.
+
+Prompt-control consistency is checked by `node scripts/validate-prompt-control-center.mjs` and the Prompt Control Center CI workflow.
