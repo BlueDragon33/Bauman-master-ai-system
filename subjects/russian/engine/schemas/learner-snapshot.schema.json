@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bauman:russian-engine:learner-snapshot:v1",
+  "title": "Russian Engine Learner Snapshot V1",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "profileId",
+    "capabilities",
+    "reviewDue",
+    "progression"
+  ],
+  "properties": {
+    "schemaVersion": {"const": "RUSSIAN_ENGINE_LEARNER_SNAPSHOT_V1"},
+    "profileId": {"type": "string", "minLength": 1},
+    "capabilities": {"type": "object"},
+    "reviewDue": {"type": "array"},
+    "progression": {
+      "type": "object",
+      "properties": {
+        "internalLevel": {"type": "integer", "minimum": 1, "maximum": 100}
+      }
+    }
+  },
+  "additionalProperties": true
+}
