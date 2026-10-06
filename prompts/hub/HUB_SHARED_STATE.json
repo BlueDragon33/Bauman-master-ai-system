@@ -31,7 +31,11 @@
     "Confirmed Device Gate already uses IndexedDB/sessionStorage and runtime-config remains provider-neutral/local-capable.",
     "Classified UI-only localStorage preferences separately from canonical/local learner data.",
     "Identified incomplete backup portability and ordinary backup exposure of standalone credential verifier material.",
-    "Packaged all remaining deep storage migration work into HUB-STORAGE-20261006-001."
+    "Packaged all remaining deep storage migration work into HUB-STORAGE-20261006-001.",
+    "P0 Prompt Control hardening completed: canonical Hub Master Prompt + Chat/Codex START entries.",
+    "P0 state freshness completed: prompt review SHA and runtime review SHA are tracked separately.",
+    "P0 packet lifecycle completed: active storage packet/result/state aligned at r2 and prior truth packet archived doNotReexecute.",
+    "P0 validator completed: Prompt Control Center CI validates registry paths, authority uniqueness, state/packet/result consistency, subject-index alignment and history locks."
   ],
   "findings": [
     {
@@ -171,7 +175,7 @@
     "doNotReexecute": true
   },
   "promptControlP0": {
-    "status": "IMPLEMENTED_VALIDATION_PENDING_CI",
+    "status": "COMPLETE_VALIDATED",
     "branch": "work/prompt-p0-hardening-20261006",
     "baseMainSha": "1b834db5a34de5d730ee73adf7440da3f06fcedb",
     "runtimeScopeChanged": false,
@@ -184,6 +188,15 @@
     "localInvariantCheck": "PASS",
     "localInvariantErrors": 0,
     "validator": "scripts/validate-prompt-control-center.mjs",
-    "workflow": ".github/workflows/prompt-control-center-ci.yml"
+    "workflow": ".github/workflows/prompt-control-center-ci.yml",
+    "firstCiEvidence": {
+      "testedHead": "24440c6e0b1111feb35088cfbc05036ef19a9a0b",
+      "promptControlRunId": 37475095872,
+      "promptControl": "SUCCESS",
+      "constitution": "SUCCESS",
+      "developmentFast": "SUCCESS",
+      "dependencyIndependence": "SUCCESS"
+    },
+    "exactHeadPolicy": "Every later prompt-governance commit retriggers Prompt Control Center CI; merge only when the final PR head is green."
   }
 }
