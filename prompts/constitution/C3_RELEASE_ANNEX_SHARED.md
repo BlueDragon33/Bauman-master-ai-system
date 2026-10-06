@@ -13,7 +13,7 @@ A subject RC must declare the minimum release profile it actually requires. Do n
 
 ---
 
-# 0. RELEASE PROFILES
+# RELEASE PROFILES
 
 Exactly one target profile is primary for a release:
 
@@ -35,7 +35,7 @@ A subject may be complete at LOCAL_STABLE if managed infrastructure is not intri
 
 ---
 
-# 1. ENTRY
+# 0. ENTRY
 
 Require exact:
 
@@ -56,7 +56,7 @@ For managed targets also require exact environment/account/project/database iden
 
 ---
 
-# 2. PREFLIGHT
+# 1. PREFLIGHT
 
 For every profile verify:
 
@@ -83,7 +83,7 @@ An optional provider outage must not invalidate LOCAL_STABLE unless the local co
 
 ---
 
-# 3. BACKUP / MIGRATION
+# 2. BACKUP / MIGRATION
 
 If persistent canonical data changes:
 
@@ -102,7 +102,7 @@ Forward-only migration must be marked explicitly.
 
 ---
 
-# 4. DEPLOY / MATERIALIZE / PROMOTE
+# 3. DEPLOY / PROMOTE
 
 ## LOCAL_STABLE
 Materialize the exact accepted local/browser package.
@@ -127,7 +127,7 @@ Deployment/materialization success is not release success.
 
 ---
 
-# 5. ACTIVATE
+# 4. ACTIVATE
 
 Follow the RC compatibility order for:
 
@@ -145,9 +145,9 @@ Verify each material mutation before continuing.
 
 ---
 
-# 6. TARGET IDENTITY
+# 5. PRODUCTION IDENTITY
 
-After activation/materialization, read back actual identity appropriate to the target:
+Historical heading name retained for router compatibility. For every release profile, read back actual target identity appropriate to the selected profile:
 
 - build/release ID;
 - content snapshot;
@@ -162,7 +162,7 @@ Unexplained mismatch = drift = FAIL/BLOCK until resolved.
 
 ---
 
-# 7. GLOBAL SMOKE
+# 6. GLOBAL SMOKE
 
 Always verify:
 
@@ -187,7 +187,7 @@ For MANAGED_PRODUCTION_STABLE additionally verify full auth/security/remote pers
 
 ---
 
-# 8. OBSERVE
+# 7. OBSERVE
 
 Observe signals appropriate to the target:
 
@@ -206,7 +206,7 @@ Low traffic requires synthetic/manual checks; silence alone is weak evidence.
 
 ---
 
-# 9. STOP CONDITIONS
+# 8. STOP CONDITIONS
 
 Stop rollout progression immediately for credible unresolved:
 
@@ -228,7 +228,7 @@ Optional provider failure does not block LOCAL_STABLE when the local core remain
 
 ---
 
-# 10. CONTAINMENT / ROLLBACK
+# 9. CONTAINMENT / ROLLBACK
 
 Choose the smallest safe recovery:
 
@@ -247,7 +247,7 @@ Provider rollback must not destroy canonical local data.
 
 ---
 
-# 11. STABLE CLOSURE
+# 10. STABLE CLOSURE
 
 Declare the selected profile stable only when:
 
