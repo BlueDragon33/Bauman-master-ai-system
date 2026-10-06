@@ -34,11 +34,12 @@ For a new ordinary ChatGPT chat, ChatGPT Work session, or Codex session, load on
 
 1. `prompts/CHAT_ENTRY.md`;
 2. `prompts/CONSTITUTION.md`;
-3. `prompts/PROMPT_REGISTRY.json`;
-4. the active subject `README.md` + Master Prompt;
-5. that subject's `PROJECT_STATE.json`;
-6. only the C1–C4 clauses named by its router;
-7. repository diff/tests/evidence only when repository execution is actually requested.
+3. `prompts/constitution/DEPENDENCY_INDEPENDENCE_POLICY.md` when provider/storage/runtime/sync decisions are involved;
+4. `prompts/PROMPT_REGISTRY.json`;
+5. the active subject `README.md` + Master Prompt;
+6. that subject's `PROJECT_STATE.json`;
+7. only the C1–C4 clauses named by its router;
+8. repository diff/tests/evidence only when repository execution is actually requested.
 
 Do not rescan the entire repository unless the state, SHA, owner map, or architecture is stale/invalid.
 
