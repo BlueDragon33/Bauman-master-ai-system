@@ -66,14 +66,30 @@ Avoid lesson components directly spawning ad hoc interpreters.
 
 # 4. PROVIDER TYPES
 
-Possible providers:
+Provider choice inherits the shared dependency-independence policy.
 
-- browser sandbox;
-- server sandbox;
-- external runner;
-- local desktop integration.
+Default priority:
 
-PYTHON01 evidence determines actual provider(s).
+1. browser/WASM sandbox for interactive practice and offline learning;
+2. local desktop CPython/sandbox for full-runtime/native-package tasks;
+3. optional managed server/container sandbox for stronger shared isolation;
+4. external runner only as contingency.
+
+A managed cloud container is an optional provider, not canonical Python truth.
+
+Each provider must declare:
+- runtime identity/version;
+- offline capability;
+- package capability;
+- filesystem/network boundary;
+- isolation strength;
+- hidden-test confidentiality level;
+- resource limits;
+- fallback behavior.
+
+Browser/WASM execution must not claim hidden-test confidentiality that browser-visible code cannot provide.
+
+PYTHON01 evidence determines what exists; PYTHON04 selects providers according to current policy and capability evidence.
 
 ---
 
@@ -395,9 +411,9 @@ Generated artifacts need safe content type/name.
 
 # 34. OFFLINE EXECUTION
 
-If browser-local runtime exists, define what works offline.
+A browser/local execution path is the preferred baseline for personal learning. Define exactly what works offline and cache the runtime/assets where practical.
 
-If no offline interpreter exists, provide honest fallback:
+If no offline interpreter exists for a specific capability, provide honest fallback:
 
 - reading;
 - tracing;
@@ -629,7 +645,9 @@ PASS when:
 7. tests/debug providers return structured results;
 8. package environments are reproducible enough for evidence;
 9. AI is bounded and grounded in runtime evidence;
-10. offline/failure fallback is honest.
+10. offline/failure fallback is honest;
+11. at least one accepted local/browser or local-desktop provider supports the core Python learning path without recurring paid credentials;
+12. optional managed providers can be disabled without corrupting canonical learner state.
 
 ---
 
@@ -649,4 +667,4 @@ FAIL if:
 
 # 56. FINAL PRINCIPLE
 
-**RUN UNTRUSTED CODE SAFELY, AND TREAT EVERY TOOL AS A PROVIDER — NOT AS THE OWNER OF PYTHON TRUTH.**
+**RUN UNTRUSTED CODE SAFELY, KEEP THE CORE LOCAL-CAPABLE, AND TREAT EVERY TOOL/CLOUD SERVICE AS A REPLACEABLE PROVIDER — NOT AS THE OWNER OF PYTHON TRUTH.**
