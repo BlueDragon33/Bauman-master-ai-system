@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bauman:russian-engine:level-catalog:v1",
+  "title": "Russian Engine 100-Level Catalog V1",
+  "type": "object",
+  "required": ["schemaVersion","status","contentRevision","levelCount","bandCount","levels"],
+  "properties": {
+    "schemaVersion": {"const": "RUSSIAN_ENGINE_LEVEL_CATALOG_V1"},
+    "levelCount": {"const": 100},
+    "bandCount": {"const": 10},
+    "levels": {
+      "type": "array",
+      "minItems": 100,
+      "maxItems": 100,
+      "items": {
+        "type": "object",
+        "required": ["id","sequenceIndex","band","title","targetCompetencies","difficulty","promotion","progression","officialMapping"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^RL\\d{3}$"},
+          "sequenceIndex": {"type": "integer", "minimum": 1, "maximum": 100},
+          "band": {"type": "integer", "minimum": 1, "maximum": 10},
+          "targetCompetencies": {"type": "array", "minItems": 1},
+          "officialMapping": {
+            "type": "object",
+            "properties": {
+              "certified": {"const": false}
+            }
+          }
+        }
+      }
+    }
+  }
+}
