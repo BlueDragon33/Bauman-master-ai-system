@@ -39,7 +39,8 @@
     "Storage preflight revalidated current main: no Hub runtime files changed since runtime baseline 2951cc8.",
     "Classified all direct localStorage uses loaded by the Hub: canonical/personal/evidence stores vs preference-only keys.",
     "Added HUB-STORAGE-006 for research attachment Data URL payload migration to a dedicated IndexedDB binary store and backup/quota tests.",
-    "Confirmed main Hub state is currently global and loaded before auth; added critical HUB-STORAGE-007 for per-user isolation and single-owner legacy migration."
+    "Confirmed main Hub state is currently global and loaded before auth; added critical HUB-STORAGE-007 for per-user isolation and single-owner legacy migration.",
+    "Refined HUB-STORAGE-007 to existing-profile scope partitioning only after verifying managed mode uses a fixed App Manager compatibility profile; no new multi-user/auth feature is authorized."
   ],
   "findings": [
     {
@@ -132,17 +133,17 @@
     },
     {
       "id": "HUB-STORAGE-007",
-      "severity": "critical",
+      "severity": "high",
       "class": "B",
-      "area": "per-user-isolation",
-      "summary": "Canonical Hub state and LOCAL_HUB sidecars are global browser keys loaded before auth, so multiple users are not isolated.",
+      "area": "identity-scope-partitioning",
+      "summary": "Global browser keys require scope-aware storage using existing managed/standalone profile authority; no new multi-user/auth feature is authorized.",
       "status": "PACKAGED_FOR_CODEX"
     }
   ],
   "activePacket": "prompts/hub/CURRENT_WORK_PACKET.json",
   "blockers": [],
   "externalBlockers": [],
-  "nextAction": "Codex executes HUB-STORAGE-20261006-001 r4 from current main. Chat preflight is complete: storage taxonomy, binary attachment migration, and per-user canonical-data isolation are locked. Target LOCAL_STABLE only; no production deployment.",
+  "nextAction": "Codex executes HUB-STORAGE-20261006-001 r5 from current main. Chat preflight is complete: storage taxonomy, binary attachment migration, and scope-aware storage using existing identity authority are locked. Do not invent new multi-user/auth UI. Target LOCAL_STABLE only; no production deployment.",
   "mainSyncStatus": "governance_ready",
   "governanceMergedSha": "6ef5e8814ac841f927f079e18d5062274ee0d847",
   "lastReviewedRuntimeSha": "2951cc86378056456110abedffe305c8f99d0c42",
@@ -151,7 +152,7 @@
   "executionResult": "prompts/hub/CURRENT_EXECUTION_RESULT.json",
   "lastExecution": {
     "packetId": "HUB-STORAGE-20261006-001",
-    "packetRevision": 4,
+    "packetRevision": 5,
     "beforeSha": "19db67bc0975e6fc0c4af0a31111ad3b30e6bfe7",
     "testedRuntimeHead": null,
     "workflowRunId": null,
@@ -186,7 +187,7 @@
   "observedMainSha": "19db67bc0975e6fc0c4af0a31111ad3b30e6bfe7",
   "currentHeadSemantics": "last observed main SHA at prompt-governance review; not a self-referential state-file commit SHA",
   "activePacketId": "HUB-STORAGE-20261006-001",
-  "activePacketRevision": 4,
+  "activePacketRevision": 5,
   "lastAcceptedPacket": {
     "packetId": "HUB-TRUTH-20261003-001",
     "packetRevision": 4,
