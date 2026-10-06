@@ -2,11 +2,11 @@
   "schemaVersion": "1.0.0",
   "domain": "hub",
   "constitution": "prompts/CONSTITUTION.md",
-  "masterPrompt": "prompts/hub/chat/HUB_CHAT_MASTER_PROMPT.md",
+  "masterPrompt": "prompts/hub/HUB_MASTER_PROMPT.md",
   "status": "READY_FOR_CODEX",
   "lifecycle": "DEPENDENCY_INDEPENDENCE_STORAGE_REVALIDATION_READY",
-  "baselineMainSha": "db747b1e6c65e5eb2a28cfd7ea2aeee8e3f9872c",
-  "lastReviewedSha": "2951cc86378056456110abedffe305c8f99d0c42",
+  "baselineMainSha": "2951cc86378056456110abedffe305c8f99d0c42",
+  "lastReviewedSha": "1b834db5a34de5d730ee73adf7440da3f06fcedb",
   "workingBranch": null,
   "canonicalRoutes": [
     "home",
@@ -122,12 +122,12 @@
   "mainSyncStatus": "governance_ready",
   "governanceMergedSha": "6ef5e8814ac841f927f079e18d5062274ee0d847",
   "lastReviewedRuntimeSha": "2951cc86378056456110abedffe305c8f99d0c42",
-  "currentHeadSha": "2951cc86378056456110abedffe305c8f99d0c42",
+  "currentHeadSha": "1b834db5a34de5d730ee73adf7440da3f06fcedb",
   "testedRuntimeHead": "9a2b1e6cae9d602b880181424a4a44016dba70f7",
   "executionResult": "prompts/hub/CURRENT_EXECUTION_RESULT.json",
   "lastExecution": {
     "packetId": "HUB-STORAGE-20261006-001",
-    "packetRevision": 1,
+    "packetRevision": 2,
     "beforeSha": "2951cc86378056456110abedffe305c8f99d0c42",
     "testedRuntimeHead": null,
     "workflowRunId": null,
@@ -149,6 +149,37 @@
       "HUB-STORAGE-003",
       "HUB-STORAGE-004",
       "HUB-STORAGE-005"
+    ],
+    "promptReviewedMainSha": "1b834db5a34de5d730ee73adf7440da3f06fcedb",
+    "runtimeReviewedMainSha": "2951cc86378056456110abedffe305c8f99d0c42"
+  },
+  "chatStart": "prompts/hub/chat/CHAT_START.md",
+  "codexStart": "prompts/hub/codex/CODEX_START.md",
+  "lastPromptReviewSha": "1b834db5a34de5d730ee73adf7440da3f06fcedb",
+  "lastRuntimeReviewSha": "2951cc86378056456110abedffe305c8f99d0c42",
+  "observedMainSha": "1b834db5a34de5d730ee73adf7440da3f06fcedb",
+  "currentHeadSemantics": "last observed main SHA at prompt-governance review; not a self-referential state-file commit SHA",
+  "activePacketId": "HUB-STORAGE-20261006-001",
+  "activePacketRevision": 2,
+  "lastAcceptedPacket": {
+    "packetId": "HUB-TRUTH-20261003-001",
+    "packetRevision": 4,
+    "executedRevision": 3,
+    "status": "ACCEPTED_MERGED",
+    "mergeSha": "c43dfd115283973b8e83a0b0e3d89eafcf8eb6b0",
+    "testedRuntimeHead": "9a2b1e6cae9d602b880181424a4a44016dba70f7",
+    "doNotReexecute": true
+  },
+  "promptControlP0": {
+    "status": "IN_PROGRESS_ON_GOVERNANCE_BRANCH",
+    "branch": "work/prompt-p0-hardening-20261006",
+    "baseMainSha": "1b834db5a34de5d730ee73adf7440da3f06fcedb",
+    "runtimeScopeChanged": false,
+    "items": [
+      "canonical Hub master + Chat/Codex start entries",
+      "prompt/runtime review SHA split",
+      "packet/result/state consistency",
+      "prompt-control validator + CI"
     ]
   }
 }
