@@ -77,3 +77,12 @@ The repo-wide default is **LOCAL-FIRST · OFFLINE-FIRST · FREE-FIRST · PORTABL
 ## Work allocation
 
 Default engineering split is **Chat 90–95% / Codex 5–10% maximum**. Chat owns orchestration, audit, prompt/state, GitHub/CI, small/medium implementation and release reasoning. Codex is reserved for deep runtime/refactor/migration/E2E work packages.
+
+
+## Prompt Control Center validation
+
+Any change under `prompts/**` must keep Registry, mode entries, state, active packet and execution result consistent. Run:
+
+`node scripts/validate-prompt-control-center.mjs`
+
+The same check is enforced by `.github/workflows/prompt-control-center-ci.yml`.
