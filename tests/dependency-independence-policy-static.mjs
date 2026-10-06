@@ -52,6 +52,9 @@ assert.match(workSplit,/Codex 5–10% maximum/);
 for (const profile of ["LOCAL_STABLE","SYNC_STABLE","PUBLISHED_STABLE","MANAGED_PRODUCTION_STABLE"]) {
   assert.ok(releaseAnnex.includes(profile), "release annex missing "+profile);
 }
+for (const legacyClause of ["# 0. ENTRY","# 5. PRODUCTION IDENTITY","# 7. OBSERVE"]) {
+  assert.ok(releaseAnnex.includes(legacyClause), "release annex must preserve routed legacy clause anchor "+legacyClause);
+}
 assert.match(releaseAnnex,/Do not force managed cloud production/);
 assert.match(releaseAnnex,/Optional provider failure does not block LOCAL_STABLE/);
 

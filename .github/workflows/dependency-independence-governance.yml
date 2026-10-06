@@ -41,3 +41,5 @@ jobs:
           node-version: "22.13.0"
       - name: Validate local-first dependency independence policy
         run: node tests/dependency-independence-policy-static.mjs
+      - name: Preserve Russian Constitution router compatibility
+        run: node subjects/russian/scripts/validate-constitution-router.mjs
