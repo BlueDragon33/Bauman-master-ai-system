@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.0.0",
+  "schemaVersion": "1.1.0",
   "executionRule": "ONE_SUBJECT_AT_A_TIME",
   "sharedConstitution": "prompts/constitution/",
   "subjects": [
@@ -157,5 +157,17 @@
       "canonicalRoot": "prompts/subjects/nir-vkr-integration/",
       "status": "CANONICAL_EXTRACTED"
     }
-  ]
+  ],
+  "globalDependencyPolicy": "prompts/constitution/DEPENDENCY_INDEPENDENCE_POLICY.md",
+  "infrastructureDefault": "LOCAL_FIRST_OFFLINE_FIRST_FREE_FIRST",
+  "releaseProfiles": [
+    "LOCAL_STABLE",
+    "SYNC_STABLE",
+    "PUBLISHED_STABLE",
+    "MANAGED_PRODUCTION_STABLE"
+  ],
+  "workAllocation": {
+    "chat": "90-95%",
+    "codex": "5-10% max"
+  }
 }
