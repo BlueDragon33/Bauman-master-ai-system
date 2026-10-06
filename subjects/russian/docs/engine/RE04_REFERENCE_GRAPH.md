@@ -1,6 +1,6 @@
 # Russian Engine RE04 — Reference Knowledge Graph & Content Runtime
 
-State: VALIDATING
+State: **PASS**
 
 ## Design decision
 
@@ -70,11 +70,18 @@ This preserves lazy/chunk-aware architecture.
 - `subjects/russian/engine/knowledge/reference-graph.mjs`
 - `subjects/russian/engine/tests/test-re04-reference-graph.mjs`
 
+## Validation
+
+Executed against current Engine graph plus existing canonical grammar/scenario owners: **10/10 checks PASS**.
+
+Validated:
+- 11 graph nodes and 9 edges;
+- no dangling canonical refs;
+- two experience sources for one semantic concept;
+- two canonical repair-scenario dependencies;
+- GR006 canonical dependency resolves;
+- canonical-ref nodes copy zero Russian text.
+
 ## Exit
 
-RE04 PASS requires:
-- all graph refs resolve;
-- no duplicate/dangling nodes;
-- same semantic concept can return multiple experience sources;
-- canonical dependencies resolve by reference;
-- zero copied canonical Russian text inside canonical-ref nodes.
+**RE04 PASS.**
