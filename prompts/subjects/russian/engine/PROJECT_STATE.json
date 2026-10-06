@@ -8,9 +8,9 @@
     "russianMasterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
     "engineOrchestrator": "prompts/subjects/russian/engine/RE00_ENGINE_ORCHESTRATOR.md"
   },
-  "status": "PROMPT_FOUNDATION_ONLY",
-  "implementationAuthorized": false,
-  "activeWorkPackage": "RE00",
+  "status": "RE01_PASS_RE02_ACTIVE",
+  "implementationAuthorized": true,
+  "activeWorkPackage": "RE02",
   "sequence": [
     "RE00",
     "RE01",
@@ -35,7 +35,9 @@
     "RE08",
     "RE09"
   ],
-  "completedImplementationPackages": [],
+  "completedImplementationPackages": [
+    "RE01"
+  ],
   "targetInternalLevels": 100,
   "learningNorthStar": "RUSSIAN_FIRST_MEANING_FIRST_CONTEXT_FIRST_TRANSLATION_LAST",
   "defaultWriteScope": [
@@ -56,5 +58,5 @@
     ]
   },
   "blockers": [],
-  "nextAction": "Review and accept prompt foundation. Then baseline current Russian runtime and execute RE01 without modifying unrelated Russian App code."
+  "nextAction": "Implement the minimal RE02 grounded listen-and-act deterministic scene entirely inside subjects/russian/engine/**, validate experience -> interaction -> evidence, and do not integrate into the general Russian App until RE09 explicit allowlist."
 }
