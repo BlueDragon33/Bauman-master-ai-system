@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
   "kind": "RUSSIAN_ENGINE_RE01_ARCHITECTURE_CONTRACT",
-  "state": "VALIDATING",
+  "state": "PASS",
   "apiVersion": "1.0.0",
   "parentAuthorities": [
     "prompts/CONSTITUTION.md",
@@ -39,5 +39,12 @@
     "requiresRE09Allowlist": true
   },
   "networkRequirement": "NONE",
-  "nextVerticalSlice": "RE02 grounded listen-and-act deterministic scene"
+  "nextVerticalSlice": "RE02 grounded listen-and-act deterministic scene",
+  "validation": {
+    "harness": "subjects/russian/engine/tests/test-re01-contracts.mjs",
+    "checks": 9,
+    "result": "PASS",
+    "masteryMutationBlocked": true,
+    "mandatoryNetwork": false
+  }
 }
