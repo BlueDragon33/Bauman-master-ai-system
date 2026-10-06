@@ -1,0 +1,4454 @@
+{
+  "schemaVersion": "RUSSIAN_ENGINE_LEVEL_CATALOG_V1",
+  "status": "ARCHITECTURE_DATA_NOT_OFFICIAL_CEFR_MAPPING",
+  "contentRevision": "re03-level-catalog-r1",
+  "sourceAuthorities": [
+    "subjects/russian/docs/ru02/RUSSIAN_RU02_CURRICULUM_CANONICAL_MODEL.json",
+    "prompts/subjects/russian/engine/RE03_100_LEVEL_COMPETENCY_LADDER.md"
+  ],
+  "levelCount": 100,
+  "bandCount": 10,
+  "rule": "Level is a progression view; canonical mastery remains competency/evidence based.",
+  "levels": [
+    {
+      "id": "RL001",
+      "sequenceIndex": 1,
+      "band": 1,
+      "bandName": "Sound & Grounded Meaning",
+      "title": "Attend to Russian sound and speaker turn",
+      "goal": "Attend to Russian sound and speaker turn",
+      "targetCompetencies": [
+        "COMP-RU-PHON",
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-REC"
+      ],
+      "contentPools": [
+        "foundation-grounded"
+      ],
+      "difficulty": {
+        "speechTarget": "careful-native",
+        "responseMode": "grounded-closed",
+        "supportCeiling": 10,
+        "semanticComplexity": 1,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": null,
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL002",
+      "sequenceIndex": 2,
+      "band": 1,
+      "bandName": "Sound & Grounded Meaning",
+      "title": "Distinguish a first set of highly contrasting sounds and words",
+      "goal": "Distinguish a first set of highly contrasting sounds and words",
+      "targetCompetencies": [
+        "COMP-RU-PHON",
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-REC"
+      ],
+      "contentPools": [
+        "foundation-grounded"
+      ],
+      "difficulty": {
+        "speechTarget": "careful-native",
+        "responseMode": "grounded-closed",
+        "supportCeiling": 10,
+        "semanticComplexity": 1,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL001",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL003",
+      "sequenceIndex": 3,
+      "band": 1,
+      "bandName": "Sound & Grounded Meaning",
+      "title": "Map familiar visible objects to Russian audio",
+      "goal": "Map familiar visible objects to Russian audio",
+      "targetCompetencies": [
+        "COMP-RU-PHON",
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-REC"
+      ],
+      "contentPools": [
+        "foundation-grounded"
+      ],
+      "difficulty": {
+        "speechTarget": "careful-native",
+        "responseMode": "grounded-closed",
+        "supportCeiling": 10,
+        "semanticComplexity": 1,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL002",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL004",
+      "sequenceIndex": 4,
+      "band": 1,
+      "bandName": "Sound & Grounded Meaning",
+      "title": "Map simple actions to Russian commands",
+      "goal": "Map simple actions to Russian commands",
+      "targetCompetencies": [
+        "COMP-RU-PHON",
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-REC"
+      ],
+      "contentPools": [
+        "foundation-grounded"
+      ],
+      "difficulty": {
+        "speechTarget": "careful-native",
+        "responseMode": "grounded-closed",
+        "supportCeiling": 10,
+        "semanticComplexity": 1,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL003",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL005",
+      "sequenceIndex": 5,
+      "band": 1,
+      "bandName": "Sound & Grounded Meaning",
+      "title": "Follow one-step object/action instructions",
+      "goal": "Follow one-step object/action instructions",
+      "targetCompetencies": [
+        "COMP-RU-PHON",
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-REC"
+      ],
+      "contentPools": [
+        "foundation-grounded"
+      ],
+      "difficulty": {
+        "speechTarget": "careful-native",
+        "responseMode": "grounded-closed",
+        "supportCeiling": 10,
+        "semanticComplexity": 1,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL004",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL006",
+      "sequenceIndex": 6,
+      "band": 1,
+      "bandName": "Sound & Grounded Meaning",
+      "title": "Identify people and basic roles from context",
+      "goal": "Identify people and basic roles from context",
+      "targetCompetencies": [
+        "COMP-RU-PHON",
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-REC"
+      ],
+      "contentPools": [
+        "foundation-grounded"
+      ],
+      "difficulty": {
+        "speechTarget": "careful-native",
+        "responseMode": "grounded-closed",
+        "supportCeiling": 10,
+        "semanticComplexity": 1,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL005",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL007",
+      "sequenceIndex": 7,
+      "band": 1,
+      "bandName": "Sound & Grounded Meaning",
+      "title": "Understand basic acceptance/refusal from context",
+      "goal": "Understand basic acceptance/refusal from context",
+      "targetCompetencies": [
+        "COMP-RU-PHON",
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-REC"
+      ],
+      "contentPools": [
+        "foundation-grounded"
+      ],
+      "difficulty": {
+        "speechTarget": "careful-native",
+        "responseMode": "grounded-closed",
+        "supportCeiling": 10,
+        "semanticComplexity": 1,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL006",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL008",
+      "sequenceIndex": 8,
+      "band": 1,
+      "bandName": "Sound & Grounded Meaning",
+      "title": "Imitate short high-frequency chunks with intelligible rhythm",
+      "goal": "Imitate short high-frequency chunks with intelligible rhythm",
+      "targetCompetencies": [
+        "COMP-RU-PHON",
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-REC"
+      ],
+      "contentPools": [
+        "foundation-grounded"
+      ],
+      "difficulty": {
+        "speechTarget": "careful-native",
+        "responseMode": "grounded-closed",
+        "supportCeiling": 10,
+        "semanticComplexity": 1,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL007",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL009",
+      "sequenceIndex": 9,
+      "band": 1,
+      "bandName": "Sound & Grounded Meaning",
+      "title": "Respond to repeated routine prompts without translation",
+      "goal": "Respond to repeated routine prompts without translation",
+      "targetCompetencies": [
+        "COMP-RU-PHON",
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-REC"
+      ],
+      "contentPools": [
+        "foundation-grounded"
+      ],
+      "difficulty": {
+        "speechTarget": "careful-native",
+        "responseMode": "grounded-closed",
+        "supportCeiling": 10,
+        "semanticComplexity": 1,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL008",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL010",
+      "sequenceIndex": 10,
+      "band": 1,
+      "bandName": "Sound & Grounded Meaning",
+      "title": "Complete a tiny Russian-only grounded scene",
+      "goal": "Complete a tiny Russian-only grounded scene",
+      "targetCompetencies": [
+        "COMP-RU-PHON",
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-REC"
+      ],
+      "contentPools": [
+        "foundation-grounded"
+      ],
+      "difficulty": {
+        "speechTarget": "careful-native",
+        "responseMode": "grounded-closed",
+        "supportCeiling": 10,
+        "semanticComplexity": 1,
+        "transferRequired": true
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "delayed-retention",
+          "unseen-transfer"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL009",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": true,
+        "transferGate": true
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL011",
+      "sequenceIndex": 11,
+      "band": 2,
+      "bandName": "Concrete World & Action Chunks",
+      "title": "Expand concrete object categories",
+      "goal": "Expand concrete object categories",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-REC",
+        "COMP-RU-VOC-PROD"
+      ],
+      "contentPools": [
+        "concrete-world"
+      ],
+      "difficulty": {
+        "speechTarget": "careful-native",
+        "responseMode": "grounded-closed",
+        "supportCeiling": 9,
+        "semanticComplexity": 2,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL010",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL012",
+      "sequenceIndex": 12,
+      "band": 2,
+      "bandName": "Concrete World & Action Chunks",
+      "title": "Ground color size and shape",
+      "goal": "Ground color size and shape",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-REC",
+        "COMP-RU-VOC-PROD"
+      ],
+      "contentPools": [
+        "concrete-world"
+      ],
+      "difficulty": {
+        "speechTarget": "careful-native",
+        "responseMode": "grounded-closed",
+        "supportCeiling": 9,
+        "semanticComplexity": 2,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL011",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL013",
+      "sequenceIndex": 13,
+      "band": 2,
+      "bandName": "Concrete World & Action Chunks",
+      "title": "Ground possession and person association",
+      "goal": "Ground possession and person association",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-REC",
+        "COMP-RU-VOC-PROD"
+      ],
+      "contentPools": [
+        "concrete-world"
+      ],
+      "difficulty": {
+        "speechTarget": "careful-native",
+        "responseMode": "grounded-closed",
+        "supportCeiling": 9,
+        "semanticComplexity": 2,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL012",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL014",
+      "sequenceIndex": 14,
+      "band": 2,
+      "bandName": "Concrete World & Action Chunks",
+      "title": "Ground location through action",
+      "goal": "Ground location through action",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-REC",
+        "COMP-RU-VOC-PROD"
+      ],
+      "contentPools": [
+        "concrete-world"
+      ],
+      "difficulty": {
+        "speechTarget": "careful-native",
+        "responseMode": "grounded-closed",
+        "supportCeiling": 9,
+        "semanticComplexity": 2,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL013",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL015",
+      "sequenceIndex": 15,
+      "band": 2,
+      "bandName": "Concrete World & Action Chunks",
+      "title": "Ground movement toward and away in scenes",
+      "goal": "Ground movement toward and away in scenes",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-REC",
+        "COMP-RU-VOC-PROD"
+      ],
+      "contentPools": [
+        "concrete-world"
+      ],
+      "difficulty": {
+        "speechTarget": "careful-native",
+        "responseMode": "grounded-closed",
+        "supportCeiling": 9,
+        "semanticComplexity": 2,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL014",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL016",
+      "sequenceIndex": 16,
+      "band": 2,
+      "bandName": "Concrete World & Action Chunks",
+      "title": "Understand small quantities in context",
+      "goal": "Understand small quantities in context",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-REC",
+        "COMP-RU-VOC-PROD"
+      ],
+      "contentPools": [
+        "concrete-world"
+      ],
+      "difficulty": {
+        "speechTarget": "careful-native",
+        "responseMode": "grounded-closed",
+        "supportCeiling": 9,
+        "semanticComplexity": 2,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL015",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL017",
+      "sequenceIndex": 17,
+      "band": 2,
+      "bandName": "Concrete World & Action Chunks",
+      "title": "Use simple wants and needs chunks",
+      "goal": "Use simple wants and needs chunks",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-REC",
+        "COMP-RU-VOC-PROD"
+      ],
+      "contentPools": [
+        "concrete-world"
+      ],
+      "difficulty": {
+        "speechTarget": "careful-native",
+        "responseMode": "grounded-closed",
+        "supportCeiling": 9,
+        "semanticComplexity": 2,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL016",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL018",
+      "sequenceIndex": 18,
+      "band": 2,
+      "bandName": "Concrete World & Action Chunks",
+      "title": "Understand core action families through consequence",
+      "goal": "Understand core action families through consequence",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-REC",
+        "COMP-RU-VOC-PROD"
+      ],
+      "contentPools": [
+        "concrete-world"
+      ],
+      "difficulty": {
+        "speechTarget": "careful-native",
+        "responseMode": "grounded-closed",
+        "supportCeiling": 9,
+        "semanticComplexity": 2,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL017",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL019",
+      "sequenceIndex": 19,
+      "band": 2,
+      "bandName": "Concrete World & Action Chunks",
+      "title": "Resolve semantic contrasts under clear speech",
+      "goal": "Resolve semantic contrasts under clear speech",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-REC",
+        "COMP-RU-VOC-PROD"
+      ],
+      "contentPools": [
+        "concrete-world"
+      ],
+      "difficulty": {
+        "speechTarget": "careful-native",
+        "responseMode": "grounded-closed",
+        "supportCeiling": 9,
+        "semanticComplexity": 2,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL018",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL020",
+      "sequenceIndex": 20,
+      "band": 2,
+      "bandName": "Concrete World & Action Chunks",
+      "title": "Complete a multi-turn concrete routine without native-language text",
+      "goal": "Complete a multi-turn concrete routine without native-language text",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-REC",
+        "COMP-RU-VOC-PROD"
+      ],
+      "contentPools": [
+        "concrete-world"
+      ],
+      "difficulty": {
+        "speechTarget": "careful-native",
+        "responseMode": "grounded-closed",
+        "supportCeiling": 9,
+        "semanticComplexity": 2,
+        "transferRequired": true
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "delayed-retention",
+          "unseen-transfer"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL019",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": true,
+        "transferGate": true
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL021",
+      "sequenceIndex": 21,
+      "band": 3,
+      "bandName": "Routine Personal Interaction",
+      "title": "Use greetings and leave-taking as chunks",
+      "goal": "Use greetings and leave-taking as chunks",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-PROD",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "routine-personal"
+      ],
+      "difficulty": {
+        "speechTarget": "clear-native",
+        "responseMode": "guided-open",
+        "supportCeiling": 8,
+        "semanticComplexity": 3,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL020",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL022",
+      "sequenceIndex": 22,
+      "band": 3,
+      "bandName": "Routine Personal Interaction",
+      "title": "Exchange name and identity",
+      "goal": "Exchange name and identity",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-PROD",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "routine-personal"
+      ],
+      "difficulty": {
+        "speechTarget": "clear-native",
+        "responseMode": "guided-open",
+        "supportCeiling": 8,
+        "semanticComplexity": 3,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL021",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL023",
+      "sequenceIndex": 23,
+      "band": 3,
+      "bandName": "Routine Personal Interaction",
+      "title": "Refer to family and familiar people",
+      "goal": "Refer to family and familiar people",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-PROD",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "routine-personal"
+      ],
+      "difficulty": {
+        "speechTarget": "clear-native",
+        "responseMode": "guided-open",
+        "supportCeiling": 8,
+        "semanticComplexity": 3,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL022",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL024",
+      "sequenceIndex": 24,
+      "band": 3,
+      "bandName": "Routine Personal Interaction",
+      "title": "Request and respond around food and drink",
+      "goal": "Request and respond around food and drink",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-PROD",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "routine-personal"
+      ],
+      "difficulty": {
+        "speechTarget": "clear-native",
+        "responseMode": "guided-open",
+        "supportCeiling": 8,
+        "semanticComplexity": 3,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL023",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL025",
+      "sequenceIndex": 25,
+      "band": 3,
+      "bandName": "Routine Personal Interaction",
+      "title": "Handle basic time-of-day routines",
+      "goal": "Handle basic time-of-day routines",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-PROD",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "routine-personal"
+      ],
+      "difficulty": {
+        "speechTarget": "clear-native",
+        "responseMode": "guided-open",
+        "supportCeiling": 8,
+        "semanticComplexity": 3,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL024",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL026",
+      "sequenceIndex": 26,
+      "band": 3,
+      "bandName": "Routine Personal Interaction",
+      "title": "Express simple likes and dislikes",
+      "goal": "Express simple likes and dislikes",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-PROD",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "routine-personal"
+      ],
+      "difficulty": {
+        "speechTarget": "clear-native",
+        "responseMode": "guided-open",
+        "supportCeiling": 8,
+        "semanticComplexity": 3,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL025",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL027",
+      "sequenceIndex": 27,
+      "band": 3,
+      "bandName": "Routine Personal Interaction",
+      "title": "Handle possession request and permission routines",
+      "goal": "Handle possession request and permission routines",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-PROD",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "routine-personal"
+      ],
+      "difficulty": {
+        "speechTarget": "clear-native",
+        "responseMode": "guided-open",
+        "supportCeiling": 8,
+        "semanticComplexity": 3,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL026",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL028",
+      "sequenceIndex": 28,
+      "band": 3,
+      "bandName": "Routine Personal Interaction",
+      "title": "Follow two-step spoken instructions",
+      "goal": "Follow two-step spoken instructions",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-PROD",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "routine-personal"
+      ],
+      "difficulty": {
+        "speechTarget": "clear-native",
+        "responseMode": "guided-open",
+        "supportCeiling": 8,
+        "semanticComplexity": 3,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL027",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL029",
+      "sequenceIndex": 29,
+      "band": 3,
+      "bandName": "Routine Personal Interaction",
+      "title": "Sustain short question-answer chains",
+      "goal": "Sustain short question-answer chains",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-PROD",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "routine-personal"
+      ],
+      "difficulty": {
+        "speechTarget": "clear-native",
+        "responseMode": "guided-open",
+        "supportCeiling": 8,
+        "semanticComplexity": 3,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL028",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL030",
+      "sequenceIndex": 30,
+      "band": 3,
+      "bandName": "Routine Personal Interaction",
+      "title": "Sustain a predictable Russian-only interaction with low support",
+      "goal": "Sustain a predictable Russian-only interaction with low support",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-PROD",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "routine-personal"
+      ],
+      "difficulty": {
+        "speechTarget": "clear-native",
+        "responseMode": "guided-open",
+        "supportCeiling": 8,
+        "semanticComplexity": 3,
+        "transferRequired": true
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "delayed-retention",
+          "unseen-transfer"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL029",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": true,
+        "transferGate": true
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL031",
+      "sequenceIndex": 31,
+      "band": 4,
+      "bandName": "Survival & Repair",
+      "title": "Ask where something is",
+      "goal": "Ask where something is",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "survival-russia"
+      ],
+      "difficulty": {
+        "speechTarget": "clear-native",
+        "responseMode": "guided-open",
+        "supportCeiling": 7,
+        "semanticComplexity": 4,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL030",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL032",
+      "sequenceIndex": 32,
+      "band": 4,
+      "bandName": "Survival & Repair",
+      "title": "Understand simple directions",
+      "goal": "Understand simple directions",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "survival-russia"
+      ],
+      "difficulty": {
+        "speechTarget": "clear-native",
+        "responseMode": "guided-open",
+        "supportCeiling": 7,
+        "semanticComplexity": 4,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL031",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL033",
+      "sequenceIndex": 33,
+      "band": 4,
+      "bandName": "Survival & Repair",
+      "title": "Handle numbers and prices in purchase context",
+      "goal": "Handle numbers and prices in purchase context",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "survival-russia"
+      ],
+      "difficulty": {
+        "speechTarget": "clear-native",
+        "responseMode": "guided-open",
+        "supportCeiling": 7,
+        "semanticComplexity": 4,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL032",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL034",
+      "sequenceIndex": 34,
+      "band": 4,
+      "bandName": "Survival & Repair",
+      "title": "Handle destination and basic transport interaction",
+      "goal": "Handle destination and basic transport interaction",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "survival-russia"
+      ],
+      "difficulty": {
+        "speechTarget": "clear-native",
+        "responseMode": "guided-open",
+        "supportCeiling": 7,
+        "semanticComplexity": 4,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL033",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL035",
+      "sequenceIndex": 35,
+      "band": 4,
+      "bandName": "Survival & Repair",
+      "title": "Handle basic dormitory interaction",
+      "goal": "Handle basic dormitory interaction",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "survival-russia"
+      ],
+      "difficulty": {
+        "speechTarget": "clear-native",
+        "responseMode": "guided-open",
+        "supportCeiling": 7,
+        "semanticComplexity": 4,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL034",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL036",
+      "sequenceIndex": 36,
+      "band": 4,
+      "bandName": "Survival & Repair",
+      "title": "Handle basic university request",
+      "goal": "Handle basic university request",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "survival-russia"
+      ],
+      "difficulty": {
+        "speechTarget": "clear-native",
+        "responseMode": "guided-open",
+        "supportCeiling": 7,
+        "semanticComplexity": 4,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL035",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL037",
+      "sequenceIndex": 37,
+      "band": 4,
+      "bandName": "Survival & Repair",
+      "title": "Request repetition or slower speech",
+      "goal": "Request repetition or slower speech",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "survival-russia"
+      ],
+      "difficulty": {
+        "speechTarget": "clear-native",
+        "responseMode": "guided-open",
+        "supportCeiling": 7,
+        "semanticComplexity": 4,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL036",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL038",
+      "sequenceIndex": 38,
+      "band": 4,
+      "bandName": "Survival & Repair",
+      "title": "State non-understanding and ask clarification",
+      "goal": "State non-understanding and ask clarification",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "survival-russia"
+      ],
+      "difficulty": {
+        "speechTarget": "clear-native",
+        "responseMode": "guided-open",
+        "supportCeiling": 7,
+        "semanticComplexity": 4,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL037",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL039",
+      "sequenceIndex": 39,
+      "band": 4,
+      "bandName": "Survival & Repair",
+      "title": "Confirm critical information",
+      "goal": "Confirm critical information",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "survival-russia"
+      ],
+      "difficulty": {
+        "speechTarget": "clear-native",
+        "responseMode": "guided-open",
+        "supportCeiling": 7,
+        "semanticComplexity": 4,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL038",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL040",
+      "sequenceIndex": 40,
+      "band": 4,
+      "bandName": "Survival & Repair",
+      "title": "Complete a survival scenario including a repair turn",
+      "goal": "Complete a survival scenario including a repair turn",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "survival-russia"
+      ],
+      "difficulty": {
+        "speechTarget": "clear-native",
+        "responseMode": "guided-open",
+        "supportCeiling": 7,
+        "semanticComplexity": 4,
+        "transferRequired": true
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair",
+          "delayed-retention",
+          "unseen-transfer"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL039",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": true,
+        "transferGate": true
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL041",
+      "sequenceIndex": 41,
+      "band": 5,
+      "bandName": "Natural Connected Speech Bridge",
+      "title": "Recognize known chunks at normal speed",
+      "goal": "Recognize known chunks at normal speed",
+      "targetCompetencies": [
+        "COMP-RU-PHON",
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "connected-speech"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "semi-open",
+        "supportCeiling": 6,
+        "semanticComplexity": 5,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL040",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL042",
+      "sequenceIndex": 42,
+      "band": 5,
+      "bandName": "Natural Connected Speech Bridge",
+      "title": "Tolerate common vowel reduction in known words",
+      "goal": "Tolerate common vowel reduction in known words",
+      "targetCompetencies": [
+        "COMP-RU-PHON",
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "connected-speech"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "semi-open",
+        "supportCeiling": 6,
+        "semanticComplexity": 5,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL041",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL043",
+      "sequenceIndex": 43,
+      "band": 5,
+      "bandName": "Natural Connected Speech Bridge",
+      "title": "Recognize devoicing and assimilation effects in familiar language",
+      "goal": "Recognize devoicing and assimilation effects in familiar language",
+      "targetCompetencies": [
+        "COMP-RU-PHON",
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "connected-speech"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "semi-open",
+        "supportCeiling": 6,
+        "semanticComplexity": 5,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL042",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL044",
+      "sequenceIndex": 44,
+      "band": 5,
+      "bandName": "Natural Connected Speech Bridge",
+      "title": "Use word stress reliably in core active vocabulary",
+      "goal": "Use word stress reliably in core active vocabulary",
+      "targetCompetencies": [
+        "COMP-RU-PHON",
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "connected-speech"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "semi-open",
+        "supportCeiling": 6,
+        "semanticComplexity": 5,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL043",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL045",
+      "sequenceIndex": 45,
+      "band": 5,
+      "bandName": "Natural Connected Speech Bridge",
+      "title": "Follow short connected instructions without transcript",
+      "goal": "Follow short connected instructions without transcript",
+      "targetCompetencies": [
+        "COMP-RU-PHON",
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "connected-speech"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "semi-open",
+        "supportCeiling": 6,
+        "semanticComplexity": 5,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL044",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL046",
+      "sequenceIndex": 46,
+      "band": 5,
+      "bandName": "Natural Connected Speech Bridge",
+      "title": "Handle moderate speaker variation",
+      "goal": "Handle moderate speaker variation",
+      "targetCompetencies": [
+        "COMP-RU-PHON",
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "connected-speech"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "semi-open",
+        "supportCeiling": 6,
+        "semanticComplexity": 5,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL045",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL047",
+      "sequenceIndex": 47,
+      "band": 5,
+      "bandName": "Natural Connected Speech Bridge",
+      "title": "Shadow phrase rhythm without losing meaning",
+      "goal": "Shadow phrase rhythm without losing meaning",
+      "targetCompetencies": [
+        "COMP-RU-PHON",
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "connected-speech"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "semi-open",
+        "supportCeiling": 6,
+        "semanticComplexity": 5,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL046",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL048",
+      "sequenceIndex": 48,
+      "band": 5,
+      "bandName": "Natural Connected Speech Bridge",
+      "title": "Reduce response latency in routine dialogue",
+      "goal": "Reduce response latency in routine dialogue",
+      "targetCompetencies": [
+        "COMP-RU-PHON",
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "connected-speech"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "semi-open",
+        "supportCeiling": 6,
+        "semanticComplexity": 5,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL047",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL049",
+      "sequenceIndex": 49,
+      "band": 5,
+      "bandName": "Natural Connected Speech Bridge",
+      "title": "Understand gist with one unfamiliar non-critical item",
+      "goal": "Understand gist with one unfamiliar non-critical item",
+      "targetCompetencies": [
+        "COMP-RU-PHON",
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "connected-speech"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "semi-open",
+        "supportCeiling": 6,
+        "semanticComplexity": 5,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL048",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL050",
+      "sequenceIndex": 50,
+      "band": 5,
+      "bandName": "Natural Connected Speech Bridge",
+      "title": "Complete a normal-speed familiar scenario without automatic translation",
+      "goal": "Complete a normal-speed familiar scenario without automatic translation",
+      "targetCompetencies": [
+        "COMP-RU-PHON",
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "connected-speech"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "semi-open",
+        "supportCeiling": 6,
+        "semanticComplexity": 5,
+        "transferRequired": true
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair",
+          "delayed-retention",
+          "unseen-transfer"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL049",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": true,
+        "transferGate": true
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL051",
+      "sequenceIndex": 51,
+      "band": 6,
+      "bandName": "Social Meaning & Narrative",
+      "title": "Describe current activity",
+      "goal": "Describe current activity",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-PROD",
+        "COMP-RU-GRAM-PROD",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "social-narrative"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open-short",
+        "supportCeiling": 5,
+        "semanticComplexity": 6,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL050",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL052",
+      "sequenceIndex": 52,
+      "band": 6,
+      "bandName": "Social Meaning & Narrative",
+      "title": "Describe recent simple events",
+      "goal": "Describe recent simple events",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-PROD",
+        "COMP-RU-GRAM-PROD",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "social-narrative"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open-short",
+        "supportCeiling": 5,
+        "semanticComplexity": 6,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL051",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL053",
+      "sequenceIndex": 53,
+      "band": 6,
+      "bandName": "Social Meaning & Narrative",
+      "title": "Express plan and intention",
+      "goal": "Express plan and intention",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-PROD",
+        "COMP-RU-GRAM-PROD",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "social-narrative"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open-short",
+        "supportCeiling": 5,
+        "semanticComplexity": 6,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL052",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL054",
+      "sequenceIndex": 54,
+      "band": 6,
+      "bandName": "Social Meaning & Narrative",
+      "title": "Compare people objects and choices",
+      "goal": "Compare people objects and choices",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-PROD",
+        "COMP-RU-GRAM-PROD",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "social-narrative"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open-short",
+        "supportCeiling": 5,
+        "semanticComplexity": 6,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL053",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL055",
+      "sequenceIndex": 55,
+      "band": 6,
+      "bandName": "Social Meaning & Narrative",
+      "title": "Explain simple reasons",
+      "goal": "Explain simple reasons",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-PROD",
+        "COMP-RU-GRAM-PROD",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "social-narrative"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open-short",
+        "supportCeiling": 5,
+        "semanticComplexity": 6,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL054",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL056",
+      "sequenceIndex": 56,
+      "band": 6,
+      "bandName": "Social Meaning & Narrative",
+      "title": "Understand a short personal story",
+      "goal": "Understand a short personal story",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-PROD",
+        "COMP-RU-GRAM-PROD",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "social-narrative"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open-short",
+        "supportCeiling": 5,
+        "semanticComplexity": 6,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL055",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL057",
+      "sequenceIndex": 57,
+      "band": 6,
+      "bandName": "Social Meaning & Narrative",
+      "title": "Retell gist using known Russian",
+      "goal": "Retell gist using known Russian",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-PROD",
+        "COMP-RU-GRAM-PROD",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "social-narrative"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open-short",
+        "supportCeiling": 5,
+        "semanticComplexity": 6,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL056",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL058",
+      "sequenceIndex": 58,
+      "band": 6,
+      "bandName": "Social Meaning & Narrative",
+      "title": "Handle misunderstanding and self-correction",
+      "goal": "Handle misunderstanding and self-correction",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-PROD",
+        "COMP-RU-GRAM-PROD",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "social-narrative"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open-short",
+        "supportCeiling": 5,
+        "semanticComplexity": 6,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL057",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL059",
+      "sequenceIndex": 59,
+      "band": 6,
+      "bandName": "Social Meaning & Narrative",
+      "title": "Maintain several conversational turns on a familiar topic",
+      "goal": "Maintain several conversational turns on a familiar topic",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-PROD",
+        "COMP-RU-GRAM-PROD",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "social-narrative"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open-short",
+        "supportCeiling": 5,
+        "semanticComplexity": 6,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL058",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL060",
+      "sequenceIndex": 60,
+      "band": 6,
+      "bandName": "Social Meaning & Narrative",
+      "title": "Produce a short spontaneous narrative with understandable sequence",
+      "goal": "Produce a short spontaneous narrative with understandable sequence",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-VOC-PROD",
+        "COMP-RU-GRAM-PROD",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT"
+      ],
+      "contentPools": [
+        "social-narrative"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open-short",
+        "supportCeiling": 5,
+        "semanticComplexity": 6,
+        "transferRequired": true
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair",
+          "delayed-retention",
+          "unseen-transfer"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL059",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": true,
+        "transferGate": true
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL061",
+      "sequenceIndex": 61,
+      "band": 7,
+      "bandName": "Independent Daily & University Life",
+      "title": "Handle service or administrative confirmation",
+      "goal": "Handle service or administrative confirmation",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT",
+        "COMP-RU-READ",
+        "COMP-RU-WRITE"
+      ],
+      "contentPools": [
+        "university-life"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open",
+        "supportCeiling": 4,
+        "semanticComplexity": 7,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL060",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL062",
+      "sequenceIndex": 62,
+      "band": 7,
+      "bandName": "Independent Daily & University Life",
+      "title": "Discuss university schedule and deadlines",
+      "goal": "Discuss university schedule and deadlines",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT",
+        "COMP-RU-READ",
+        "COMP-RU-WRITE"
+      ],
+      "contentPools": [
+        "university-life"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open",
+        "supportCeiling": 4,
+        "semanticComplexity": 7,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL061",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL063",
+      "sequenceIndex": 63,
+      "band": 7,
+      "bandName": "Independent Daily & University Life",
+      "title": "Ask teachers or classmates for clarification",
+      "goal": "Ask teachers or classmates for clarification",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT",
+        "COMP-RU-READ",
+        "COMP-RU-WRITE"
+      ],
+      "contentPools": [
+        "university-life"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open",
+        "supportCeiling": 4,
+        "semanticComplexity": 7,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL062",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL064",
+      "sequenceIndex": 64,
+      "band": 7,
+      "bandName": "Independent Daily & University Life",
+      "title": "Understand assignment instructions",
+      "goal": "Understand assignment instructions",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT",
+        "COMP-RU-READ",
+        "COMP-RU-WRITE"
+      ],
+      "contentPools": [
+        "university-life"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open",
+        "supportCeiling": 4,
+        "semanticComplexity": 7,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL063",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL065",
+      "sequenceIndex": 65,
+      "band": 7,
+      "bandName": "Independent Daily & University Life",
+      "title": "Explain a practical problem",
+      "goal": "Explain a practical problem",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT",
+        "COMP-RU-READ",
+        "COMP-RU-WRITE"
+      ],
+      "contentPools": [
+        "university-life"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open",
+        "supportCeiling": 4,
+        "semanticComplexity": 7,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL064",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL066",
+      "sequenceIndex": 66,
+      "band": 7,
+      "bandName": "Independent Daily & University Life",
+      "title": "Handle familiar voice interaction without visual grounding",
+      "goal": "Handle familiar voice interaction without visual grounding",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT",
+        "COMP-RU-READ",
+        "COMP-RU-WRITE"
+      ],
+      "contentPools": [
+        "university-life"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open",
+        "supportCeiling": 4,
+        "semanticComplexity": 7,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL065",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL067",
+      "sequenceIndex": 67,
+      "band": 7,
+      "bandName": "Independent Daily & University Life",
+      "title": "Take useful short notes from speech",
+      "goal": "Take useful short notes from speech",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT",
+        "COMP-RU-READ",
+        "COMP-RU-WRITE"
+      ],
+      "contentPools": [
+        "university-life"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open",
+        "supportCeiling": 4,
+        "semanticComplexity": 7,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL066",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL068",
+      "sequenceIndex": 68,
+      "band": 7,
+      "bandName": "Independent Daily & University Life",
+      "title": "Summarize short informational text or audio",
+      "goal": "Summarize short informational text or audio",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT",
+        "COMP-RU-READ",
+        "COMP-RU-WRITE"
+      ],
+      "contentPools": [
+        "university-life"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open",
+        "supportCeiling": 4,
+        "semanticComplexity": 7,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL067",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL069",
+      "sequenceIndex": 69,
+      "band": 7,
+      "bandName": "Independent Daily & University Life",
+      "title": "Participate in familiar small-group discussion",
+      "goal": "Participate in familiar small-group discussion",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT",
+        "COMP-RU-READ",
+        "COMP-RU-WRITE"
+      ],
+      "contentPools": [
+        "university-life"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open",
+        "supportCeiling": 4,
+        "semanticComplexity": 7,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL068",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL070",
+      "sequenceIndex": 70,
+      "band": 7,
+      "bandName": "Independent Daily & University Life",
+      "title": "Resolve an unfamiliar bounded university-life scenario using repair",
+      "goal": "Resolve an unfamiliar bounded university-life scenario using repair",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-INTERACT",
+        "COMP-RU-READ",
+        "COMP-RU-WRITE"
+      ],
+      "contentPools": [
+        "university-life"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open",
+        "supportCeiling": 4,
+        "semanticComplexity": 7,
+        "transferRequired": true
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair",
+          "delayed-retention",
+          "unseen-transfer"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL069",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": true,
+        "transferGate": true
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL071",
+      "sequenceIndex": 71,
+      "band": 8,
+      "bandName": "Academic & Technical Russian",
+      "title": "Recognize academic classroom discourse markers",
+      "goal": "Recognize academic classroom discourse markers",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-READ",
+        "COMP-RU-WRITE",
+        "COMP-RU-ACADEMIC",
+        "COMP-RU-TECH"
+      ],
+      "contentPools": [
+        "academic-technical"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open-technical",
+        "supportCeiling": 4,
+        "semanticComplexity": 8,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL070",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL072",
+      "sequenceIndex": 72,
+      "band": 8,
+      "bandName": "Academic & Technical Russian",
+      "title": "Follow structured technical explanation with visuals",
+      "goal": "Follow structured technical explanation with visuals",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-READ",
+        "COMP-RU-WRITE",
+        "COMP-RU-ACADEMIC",
+        "COMP-RU-TECH"
+      ],
+      "contentPools": [
+        "academic-technical"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open-technical",
+        "supportCeiling": 4,
+        "semanticComplexity": 8,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL071",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL073",
+      "sequenceIndex": 73,
+      "band": 8,
+      "bandName": "Academic & Technical Russian",
+      "title": "Define a familiar technical concept in simple Russian",
+      "goal": "Define a familiar technical concept in simple Russian",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-READ",
+        "COMP-RU-WRITE",
+        "COMP-RU-ACADEMIC",
+        "COMP-RU-TECH"
+      ],
+      "contentPools": [
+        "academic-technical"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open-technical",
+        "supportCeiling": 4,
+        "semanticComplexity": 8,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL072",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL074",
+      "sequenceIndex": 74,
+      "band": 8,
+      "bandName": "Academic & Technical Russian",
+      "title": "Explain process and sequence",
+      "goal": "Explain process and sequence",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-READ",
+        "COMP-RU-WRITE",
+        "COMP-RU-ACADEMIC",
+        "COMP-RU-TECH"
+      ],
+      "contentPools": [
+        "academic-technical"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open-technical",
+        "supportCeiling": 4,
+        "semanticComplexity": 8,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL073",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL075",
+      "sequenceIndex": 75,
+      "band": 8,
+      "bandName": "Academic & Technical Russian",
+      "title": "Compare methods and options",
+      "goal": "Compare methods and options",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-READ",
+        "COMP-RU-WRITE",
+        "COMP-RU-ACADEMIC",
+        "COMP-RU-TECH"
+      ],
+      "contentPools": [
+        "academic-technical"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open-technical",
+        "supportCeiling": 4,
+        "semanticComplexity": 8,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL074",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL076",
+      "sequenceIndex": 76,
+      "band": 8,
+      "bandName": "Academic & Technical Russian",
+      "title": "Understand condition cause and result in technical speech",
+      "goal": "Understand condition cause and result in technical speech",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-READ",
+        "COMP-RU-WRITE",
+        "COMP-RU-ACADEMIC",
+        "COMP-RU-TECH"
+      ],
+      "contentPools": [
+        "academic-technical"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open-technical",
+        "supportCeiling": 4,
+        "semanticComplexity": 8,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL075",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL077",
+      "sequenceIndex": 77,
+      "band": 8,
+      "bandName": "Academic & Technical Russian",
+      "title": "Ask precise academic clarification",
+      "goal": "Ask precise academic clarification",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-READ",
+        "COMP-RU-WRITE",
+        "COMP-RU-ACADEMIC",
+        "COMP-RU-TECH"
+      ],
+      "contentPools": [
+        "academic-technical"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open-technical",
+        "supportCeiling": 4,
+        "semanticComplexity": 8,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL076",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL078",
+      "sequenceIndex": 78,
+      "band": 8,
+      "bandName": "Academic & Technical Russian",
+      "title": "Present a short technical explanation",
+      "goal": "Present a short technical explanation",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-READ",
+        "COMP-RU-WRITE",
+        "COMP-RU-ACADEMIC",
+        "COMP-RU-TECH"
+      ],
+      "contentPools": [
+        "academic-technical"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open-technical",
+        "supportCeiling": 4,
+        "semanticComplexity": 8,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL077",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL079",
+      "sequenceIndex": 79,
+      "band": 8,
+      "bandName": "Academic & Technical Russian",
+      "title": "Read and discuss an adapted technical passage",
+      "goal": "Read and discuss an adapted technical passage",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-READ",
+        "COMP-RU-WRITE",
+        "COMP-RU-ACADEMIC",
+        "COMP-RU-TECH"
+      ],
+      "contentPools": [
+        "academic-technical"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open-technical",
+        "supportCeiling": 4,
+        "semanticComplexity": 8,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL078",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL080",
+      "sequenceIndex": 80,
+      "band": 8,
+      "bandName": "Academic & Technical Russian",
+      "title": "Complete a technical problem-discussion scenario with evidence-based explanation",
+      "goal": "Complete a technical problem-discussion scenario with evidence-based explanation",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-READ",
+        "COMP-RU-WRITE",
+        "COMP-RU-ACADEMIC",
+        "COMP-RU-TECH"
+      ],
+      "contentPools": [
+        "academic-technical"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open-technical",
+        "supportCeiling": 4,
+        "semanticComplexity": 8,
+        "transferRequired": true
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair",
+          "delayed-retention",
+          "unseen-transfer"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL079",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": true,
+        "transferGate": true
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL081",
+      "sequenceIndex": 81,
+      "band": 9,
+      "bandName": "Research & Professional Production",
+      "title": "Summarize source claims accurately",
+      "goal": "Summarize source claims accurately",
+      "targetCompetencies": [
+        "COMP-RU-READ",
+        "COMP-RU-WRITE",
+        "COMP-RU-SPEAK",
+        "COMP-RU-ACADEMIC",
+        "COMP-RU-TECH",
+        "COMP-RU-RESEARCH"
+      ],
+      "contentPools": [
+        "research-production"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open-research",
+        "supportCeiling": 3,
+        "semanticComplexity": 9,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL080",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL082",
+      "sequenceIndex": 82,
+      "band": 9,
+      "bandName": "Research & Professional Production",
+      "title": "Distinguish claim evidence and opinion",
+      "goal": "Distinguish claim evidence and opinion",
+      "targetCompetencies": [
+        "COMP-RU-READ",
+        "COMP-RU-WRITE",
+        "COMP-RU-SPEAK",
+        "COMP-RU-ACADEMIC",
+        "COMP-RU-TECH",
+        "COMP-RU-RESEARCH"
+      ],
+      "contentPools": [
+        "research-production"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open-research",
+        "supportCeiling": 3,
+        "semanticComplexity": 9,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL081",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL083",
+      "sequenceIndex": 83,
+      "band": 9,
+      "bandName": "Research & Professional Production",
+      "title": "Describe data and result trends",
+      "goal": "Describe data and result trends",
+      "targetCompetencies": [
+        "COMP-RU-READ",
+        "COMP-RU-WRITE",
+        "COMP-RU-SPEAK",
+        "COMP-RU-ACADEMIC",
+        "COMP-RU-TECH",
+        "COMP-RU-RESEARCH"
+      ],
+      "contentPools": [
+        "research-production"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open-research",
+        "supportCeiling": 3,
+        "semanticComplexity": 9,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL082",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL084",
+      "sequenceIndex": 84,
+      "band": 9,
+      "bandName": "Research & Professional Production",
+      "title": "Explain method and procedure",
+      "goal": "Explain method and procedure",
+      "targetCompetencies": [
+        "COMP-RU-READ",
+        "COMP-RU-WRITE",
+        "COMP-RU-SPEAK",
+        "COMP-RU-ACADEMIC",
+        "COMP-RU-TECH",
+        "COMP-RU-RESEARCH"
+      ],
+      "contentPools": [
+        "research-production"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open-research",
+        "supportCeiling": 3,
+        "semanticComplexity": 9,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL083",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL085",
+      "sequenceIndex": 85,
+      "band": 9,
+      "bandName": "Research & Professional Production",
+      "title": "State limitation and uncertainty",
+      "goal": "State limitation and uncertainty",
+      "targetCompetencies": [
+        "COMP-RU-READ",
+        "COMP-RU-WRITE",
+        "COMP-RU-SPEAK",
+        "COMP-RU-ACADEMIC",
+        "COMP-RU-TECH",
+        "COMP-RU-RESEARCH"
+      ],
+      "contentPools": [
+        "research-production"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open-research",
+        "supportCeiling": 3,
+        "semanticComplexity": 9,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL084",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL086",
+      "sequenceIndex": 86,
+      "band": 9,
+      "bandName": "Research & Professional Production",
+      "title": "Connect sources without fabricating support",
+      "goal": "Connect sources without fabricating support",
+      "targetCompetencies": [
+        "COMP-RU-READ",
+        "COMP-RU-WRITE",
+        "COMP-RU-SPEAK",
+        "COMP-RU-ACADEMIC",
+        "COMP-RU-TECH",
+        "COMP-RU-RESEARCH"
+      ],
+      "contentPools": [
+        "research-production"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open-research",
+        "supportCeiling": 3,
+        "semanticComplexity": 9,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL085",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL087",
+      "sequenceIndex": 87,
+      "band": 9,
+      "bandName": "Research & Professional Production",
+      "title": "Present a structured research update",
+      "goal": "Present a structured research update",
+      "targetCompetencies": [
+        "COMP-RU-READ",
+        "COMP-RU-WRITE",
+        "COMP-RU-SPEAK",
+        "COMP-RU-ACADEMIC",
+        "COMP-RU-TECH",
+        "COMP-RU-RESEARCH"
+      ],
+      "contentPools": [
+        "research-production"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open-research",
+        "supportCeiling": 3,
+        "semanticComplexity": 9,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL086",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL088",
+      "sequenceIndex": 88,
+      "band": 9,
+      "bandName": "Research & Professional Production",
+      "title": "Answer follow-up questions under mild pressure",
+      "goal": "Answer follow-up questions under mild pressure",
+      "targetCompetencies": [
+        "COMP-RU-READ",
+        "COMP-RU-WRITE",
+        "COMP-RU-SPEAK",
+        "COMP-RU-ACADEMIC",
+        "COMP-RU-TECH",
+        "COMP-RU-RESEARCH"
+      ],
+      "contentPools": [
+        "research-production"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open-research",
+        "supportCeiling": 3,
+        "semanticComplexity": 9,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL087",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL089",
+      "sequenceIndex": 89,
+      "band": 9,
+      "bandName": "Research & Professional Production",
+      "title": "Repair or rephrase a misunderstood technical answer",
+      "goal": "Repair or rephrase a misunderstood technical answer",
+      "targetCompetencies": [
+        "COMP-RU-READ",
+        "COMP-RU-WRITE",
+        "COMP-RU-SPEAK",
+        "COMP-RU-ACADEMIC",
+        "COMP-RU-TECH",
+        "COMP-RU-RESEARCH"
+      ],
+      "contentPools": [
+        "research-production"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open-research",
+        "supportCeiling": 3,
+        "semanticComplexity": 9,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL088",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL090",
+      "sequenceIndex": 90,
+      "band": 9,
+      "bandName": "Research & Professional Production",
+      "title": "Conduct a bounded research or technical discussion with sustained coherence",
+      "goal": "Conduct a bounded research or technical discussion with sustained coherence",
+      "targetCompetencies": [
+        "COMP-RU-READ",
+        "COMP-RU-WRITE",
+        "COMP-RU-SPEAK",
+        "COMP-RU-ACADEMIC",
+        "COMP-RU-TECH",
+        "COMP-RU-RESEARCH"
+      ],
+      "contentPools": [
+        "research-production"
+      ],
+      "difficulty": {
+        "speechTarget": "normal-native",
+        "responseMode": "open-research",
+        "supportCeiling": 3,
+        "semanticComplexity": 9,
+        "transferRequired": true
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair",
+          "delayed-retention",
+          "unseen-transfer"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL089",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": true,
+        "transferGate": true
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL091",
+      "sequenceIndex": 91,
+      "band": 10,
+      "bandName": "High-Autonomy Russian",
+      "title": "Follow extended native speech with selective note-taking",
+      "goal": "Follow extended native speech with selective note-taking",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-READ",
+        "COMP-RU-WRITE",
+        "COMP-RU-INTERACT",
+        "COMP-RU-ACADEMIC",
+        "COMP-RU-TECH",
+        "COMP-RU-RESEARCH"
+      ],
+      "contentPools": [
+        "high-autonomy"
+      ],
+      "difficulty": {
+        "speechTarget": "natural-variable",
+        "responseMode": "open-extended",
+        "supportCeiling": 2,
+        "semanticComplexity": 10,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL090",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL092",
+      "sequenceIndex": 92,
+      "band": 10,
+      "bandName": "High-Autonomy Russian",
+      "title": "Adapt register between peer staff and academic contexts",
+      "goal": "Adapt register between peer staff and academic contexts",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-READ",
+        "COMP-RU-WRITE",
+        "COMP-RU-INTERACT",
+        "COMP-RU-ACADEMIC",
+        "COMP-RU-TECH",
+        "COMP-RU-RESEARCH"
+      ],
+      "contentPools": [
+        "high-autonomy"
+      ],
+      "difficulty": {
+        "speechTarget": "natural-variable",
+        "responseMode": "open-extended",
+        "supportCeiling": 2,
+        "semanticComplexity": 10,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL091",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL093",
+      "sequenceIndex": 93,
+      "band": 10,
+      "bandName": "High-Autonomy Russian",
+      "title": "Handle fast multi-speaker discussion in familiar domains",
+      "goal": "Handle fast multi-speaker discussion in familiar domains",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-READ",
+        "COMP-RU-WRITE",
+        "COMP-RU-INTERACT",
+        "COMP-RU-ACADEMIC",
+        "COMP-RU-TECH",
+        "COMP-RU-RESEARCH"
+      ],
+      "contentPools": [
+        "high-autonomy"
+      ],
+      "difficulty": {
+        "speechTarget": "natural-variable",
+        "responseMode": "open-extended",
+        "supportCeiling": 2,
+        "semanticComplexity": 10,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL092",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL094",
+      "sequenceIndex": 94,
+      "band": 10,
+      "bandName": "High-Autonomy Russian",
+      "title": "Infer some unfamiliar vocabulary from context",
+      "goal": "Infer some unfamiliar vocabulary from context",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-READ",
+        "COMP-RU-WRITE",
+        "COMP-RU-INTERACT",
+        "COMP-RU-ACADEMIC",
+        "COMP-RU-TECH",
+        "COMP-RU-RESEARCH"
+      ],
+      "contentPools": [
+        "high-autonomy"
+      ],
+      "difficulty": {
+        "speechTarget": "natural-variable",
+        "responseMode": "open-extended",
+        "supportCeiling": 2,
+        "semanticComplexity": 10,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL093",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL095",
+      "sequenceIndex": 95,
+      "band": 10,
+      "bandName": "High-Autonomy Russian",
+      "title": "Maintain meaning while reformulating",
+      "goal": "Maintain meaning while reformulating",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-READ",
+        "COMP-RU-WRITE",
+        "COMP-RU-INTERACT",
+        "COMP-RU-ACADEMIC",
+        "COMP-RU-TECH",
+        "COMP-RU-RESEARCH"
+      ],
+      "contentPools": [
+        "high-autonomy"
+      ],
+      "difficulty": {
+        "speechTarget": "natural-variable",
+        "responseMode": "open-extended",
+        "supportCeiling": 2,
+        "semanticComplexity": 10,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL094",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL096",
+      "sequenceIndex": 96,
+      "band": 10,
+      "bandName": "High-Autonomy Russian",
+      "title": "Present complex technical or research content with controlled structure",
+      "goal": "Present complex technical or research content with controlled structure",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-READ",
+        "COMP-RU-WRITE",
+        "COMP-RU-INTERACT",
+        "COMP-RU-ACADEMIC",
+        "COMP-RU-TECH",
+        "COMP-RU-RESEARCH"
+      ],
+      "contentPools": [
+        "high-autonomy"
+      ],
+      "difficulty": {
+        "speechTarget": "natural-variable",
+        "responseMode": "open-extended",
+        "supportCeiling": 2,
+        "semanticComplexity": 10,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL095",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL097",
+      "sequenceIndex": 97,
+      "band": 10,
+      "bandName": "High-Autonomy Russian",
+      "title": "Defend a choice or method under challenging questions",
+      "goal": "Defend a choice or method under challenging questions",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-READ",
+        "COMP-RU-WRITE",
+        "COMP-RU-INTERACT",
+        "COMP-RU-ACADEMIC",
+        "COMP-RU-TECH",
+        "COMP-RU-RESEARCH"
+      ],
+      "contentPools": [
+        "high-autonomy"
+      ],
+      "difficulty": {
+        "speechTarget": "natural-variable",
+        "responseMode": "open-extended",
+        "supportCeiling": 2,
+        "semanticComplexity": 10,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL096",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL098",
+      "sequenceIndex": 98,
+      "band": 10,
+      "bandName": "High-Autonomy Russian",
+      "title": "Synthesize information across several sources or speakers",
+      "goal": "Synthesize information across several sources or speakers",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-READ",
+        "COMP-RU-WRITE",
+        "COMP-RU-INTERACT",
+        "COMP-RU-ACADEMIC",
+        "COMP-RU-TECH",
+        "COMP-RU-RESEARCH"
+      ],
+      "contentPools": [
+        "high-autonomy"
+      ],
+      "difficulty": {
+        "speechTarget": "natural-variable",
+        "responseMode": "open-extended",
+        "supportCeiling": 2,
+        "semanticComplexity": 10,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL097",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL099",
+      "sequenceIndex": 99,
+      "band": 10,
+      "bandName": "High-Autonomy Russian",
+      "title": "Operate for an extended session primarily in Russian with minimal support",
+      "goal": "Operate for an extended session primarily in Russian with minimal support",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-READ",
+        "COMP-RU-WRITE",
+        "COMP-RU-INTERACT",
+        "COMP-RU-ACADEMIC",
+        "COMP-RU-TECH",
+        "COMP-RU-RESEARCH"
+      ],
+      "contentPools": [
+        "high-autonomy"
+      ],
+      "difficulty": {
+        "speechTarget": "natural-variable",
+        "responseMode": "open-extended",
+        "supportCeiling": 2,
+        "semanticComplexity": 10,
+        "transferRequired": false
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL098",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": false,
+        "transferGate": false
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    },
+    {
+      "id": "RL100",
+      "sequenceIndex": 100,
+      "band": 10,
+      "bandName": "High-Autonomy Russian",
+      "title": "Demonstrate high autonomous transfer across target life study and research domains",
+      "goal": "Demonstrate high autonomous transfer across target life study and research domains",
+      "targetCompetencies": [
+        "COMP-RU-LISTEN",
+        "COMP-RU-SPEAK",
+        "COMP-RU-READ",
+        "COMP-RU-WRITE",
+        "COMP-RU-INTERACT",
+        "COMP-RU-ACADEMIC",
+        "COMP-RU-TECH",
+        "COMP-RU-RESEARCH"
+      ],
+      "contentPools": [
+        "high-autonomy"
+      ],
+      "difficulty": {
+        "speechTarget": "natural-variable",
+        "responseMode": "open-extended",
+        "supportCeiling": 2,
+        "semanticComplexity": 10,
+        "transferRequired": true
+      },
+      "promotion": {
+        "authority": "RU04/C4",
+        "policyRef": "RUSSIAN_ENGINE_LEVEL_PROMOTION_POLICY_PENDING_RU04",
+        "requiredEvidence": [
+          "independent-performance",
+          "production",
+          "interaction-or-repair",
+          "delayed-retention",
+          "unseen-transfer"
+        ],
+        "clickOrTimeCompletionAccepted": false
+      },
+      "progression": {
+        "previousLevel": "RL099",
+        "diagnosticSkipAllowed": true,
+        "retentionGate": true,
+        "transferGate": true
+      },
+      "officialMapping": {
+        "cefr": null,
+        "certified": false
+      }
+    }
+  ]
+}
