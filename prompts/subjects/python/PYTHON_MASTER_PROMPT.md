@@ -35,12 +35,13 @@ It owns:
 
 Every Python module must comply with relevant clauses from:
 
+- `prompts/constitution/DEPENDENCY_INDEPENDENCE_POLICY.md` for provider/runtime/storage choices;
 - C1 — Extensible Platform Architecture;
 - C2 — Future Professional UI/UX;
 - C3 — Professional QA + Auto-Fix;
 - C4 — Real Learning & Outcome System.
 
-Production additionally consumes the shared production release procedure / C3 release annex.
+Release additionally consumes the shared C3 release annex and must declare the minimum required profile: LOCAL_STABLE, SYNC_STABLE, PUBLISHED_STABLE or MANAGED_PRODUCTION_STABLE. Python must not require managed cloud merely because one provider implementation exists.
 
 Python may specialize the global system only where programming/runtime semantics require it.
 
@@ -418,6 +419,8 @@ Default first-build order:
 
 After foundation exists, use selective revalidation instead of always restarting from PYTHON01.
 
+Provider/runtime selection follows the shared dependency ladder. Default Python execution priority is browser/WASM → local desktop CPython → optional managed sandbox → external contingency. A paid managed container is never canonical Python truth.
+
 ---
 
 # 20. PROMPT ARCHITECTURE COMPLETION
@@ -430,4 +433,5 @@ Python prompt architecture is complete when:
 - runtime/toolchain/sandbox has a dedicated owner;
 - UI/authoring reuse shared systems;
 - Python-specific acceptance reaches exact RC handoff;
-- production stays shared.
+- release stays shared and may close at LOCAL_STABLE when the accepted capability contract does not require managed infrastructure;
+- optional cloud providers can be unavailable without making Python learning unusable.

@@ -9,14 +9,15 @@ Do not ask the user to re-upload a prompt ZIP when canonical prompt files alread
 Read in this order:
 
 1. `prompts/CONSTITUTION.md`
-2. `prompts/PROMPT_REGISTRY.json`
-3. `prompts/constitution/README.md`
-4. active subject `README.md`
-5. active subject Master Prompt
-6. active subject `PROJECT_STATE.json`
-7. active module prompt
-8. only the constitution clauses named by the subject router
-9. current diff/evidence only if repository execution is requested
+2. `prompts/constitution/DEPENDENCY_INDEPENDENCE_POLICY.md` when infrastructure/storage/sync/runtime/provider choices are involved
+3. `prompts/PROMPT_REGISTRY.json`
+4. `prompts/constitution/README.md`
+5. active subject `README.md`
+6. active subject Master Prompt
+7. active subject `PROJECT_STATE.json`
+8. active module prompt
+9. only the constitution clauses named by the subject router
+10. current diff/evidence only if repository execution is requested
 
 ## Modes
 
@@ -34,3 +35,10 @@ No mode is allowed to create a second Constitution or a competing Master Prompt.
 ## Token rule
 
 Never load every subject and every Constitution file by default. Load the active subject + routed clauses + current state first; broaden only when evidence requires it.
+
+## Global operating defaults
+
+- Chat owns 90–95% of work; Codex is limited to the deepest 5–10% after Chat narrows the work package.
+- Prefer local/browser/offline/free/portable providers before managed cloud.
+- Treat Google Drive/Sheets/Apps Script as optional sync/backup bridges, not mandatory canonical runtime.
+- Prefer exact CLI commands over manual GitHub UI actions when practical.

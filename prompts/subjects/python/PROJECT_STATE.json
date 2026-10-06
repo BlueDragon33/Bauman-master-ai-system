@@ -3,8 +3,8 @@
   "subject": "python",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/subjects/python/PYTHON_MASTER_PROMPT.md",
-  "status": "PYTHON06_PASS_RC_HARDENED_RELEASE_BLOCKED_EXTERNAL",
-  "activeModule": "SHARED_C3_RELEASE",
+  "status": "PYTHON06_PASS_NEEDS_REVALIDATION_LOCAL_FIRST_PROVIDER",
+  "activeModule": "PYTHON04",
   "sequence": [
     "PYTHON01",
     "PYTHON02",
@@ -21,7 +21,11 @@
     "PYTHON05",
     "PYTHON06"
   ],
-  "needsRevalidation": [],
+  "needsRevalidation": [
+    "PYTHON04",
+    "PYTHON05",
+    "PYTHON06"
+  ],
   "lastValidatedSha": "c420d2d9bb876ab0be2b14cff58a323537903110",
   "currentHeadSha": "f9b9428a6839f2ec838f0e46ce6c57e2bea5c098",
   "evidence": [
@@ -131,10 +135,8 @@
     "PR #269 merged at f9b9428a6839f2ec838f0e46ce6c57e2bea5c098; full-history release authorization fix + r3 request",
     "Approved one-time release r3 run 37216104758: authorization PASS; Control preview PASS; Python Docker image build PASS; Cloudflare Containers /containers/me permission failure; production skipped"
   ],
-  "blockers": [
-    "External release credential blocker reconfirmed by exact-main r3 run 37216104758: current Cloudflare deployment API token cannot access /accounts/<account>/containers/me during Learning Runtime preview deployment. Repository authorization and container image build passed. Production was not attempted."
-  ],
-  "nextAction": "Update the Cloudflare deployment API token used by the Bauman preview/production GitHub environments with the required account-scoped Workers Containers management permission while retaining existing Workers/D1 permissions. Then create a fresh add-only exact-main release request and rerun preview -> verification -> confirmed production -> production smoke. Do not begin the next subject until publish passes.",
+  "blockers": [],
+  "nextAction": "Migrate Python execution behind the existing provider facade to a local-first stack: browser/WASM practice runtime first, local desktop CPython contract for full-runtime/high-assurance tasks, and keep the existing Cloudflare Container provider optional. Revalidate PYTHON04 -> PYTHON05 -> PYTHON06 selectively and close at LOCAL_STABLE before resuming Algorithms.",
   "notes": [
     "Actual learner runtime is subjects/programming/, not subjects/python/.",
     "Current Programming package mixes Python with Algorithms, Database, ML tooling and Software Engineering.",
@@ -168,6 +170,17 @@
     "Release r2 at 70f4fcb150bd9dc677e93570990afbc7aa5a47b9 exposed a repository-side shallow-checkout authorization defect before preview.",
     "PR #269 fixed release authorization with fetch-depth 0 and passed Release Activation, Development Fast CI, and Universal Constitution Compliance.",
     "Release r3 at f9b9428a6839f2ec838f0e46ce6c57e2bea5c098 passed authorization and Control preview deployment; its Python 3.14.8 container image built successfully, then Wrangler failed at Cloudflare /accounts/<account>/containers/me due the external deployment credential permission. Production was skipped.",
-    "Prompt sequencing remains ONE_SUBJECT_AT_A_TIME; Algorithms is next in the normalized subject index after Python, but must not start until Python publication closes successfully."
+    "Prompt sequencing remains ONE_SUBJECT_AT_A_TIME; Algorithms is next in the normalized subject index after Python, but must not start until Python publication closes successfully.",
+    "2026-10-06 architecture policy changed repo-wide to LOCAL-FIRST / OFFLINE-FIRST / FREE-FIRST / OPTIONAL CLOUD. This invalidates the prior assumption that Cloudflare Containers must be the canonical Python release path.",
+    "Existing Cloudflare Container implementation and its passing P4/P5/P6 evidence are preserved as optional-provider evidence; they are not deleted or treated as failed work.",
+    "PYTHON01-PYTHON03 academic/assessment authority remains accepted; only runtime/product/RC layers PYTHON04-PYTHON06 require selective revalidation.",
+    "Google Drive/Sheets/Apps Script may later provide optional sync/backup bridges but are not Python runtime truth or a prerequisite for LOCAL_STABLE."
+  ],
+  "executionGate": "LOCAL_FIRST_PROVIDER_MIGRATION",
+  "requiredReleaseProfile": "LOCAL_STABLE",
+  "optionalReleaseProfiles": [
+    "SYNC_STABLE",
+    "PUBLISHED_STABLE",
+    "MANAGED_PRODUCTION_STABLE"
   ]
 }

@@ -35,6 +35,13 @@ before modifying Core.
 A new subject, resource, PDF, URL, assessment type or add-on should increasingly require registration/configuration rather than a Core rewrite.
 
 Requirements:
+- inherit `prompts/constitution/DEPENDENCY_INDEPENDENCE_POLICY.md` for infrastructure/provider choices;
+- default to LOCAL-FIRST · OFFLINE-FIRST · FREE-FIRST · PORTABLE before optional cloud;
+- recurring paid infrastructure requires explicit user approval and a documented local/free fallback analysis;
+- external providers must sit behind replaceable adapters/capabilities and must not become canonical learner-data truth;
+- canonical user data must remain exportable and recoverable without a single vendor;
+- Google Drive/Sheets/Apps Script may be optional user-owned sync/backup bridges, never mandatory core truth;
+- ChatGPT is the preferred interactive AI assistant; a separate model API must not become a hidden core requirement without explicit scope;
 - canonical owners;
 - stable IDs;
 - versioned contracts;
@@ -138,6 +145,10 @@ If it passes three and breaks one, it is not done.
 
 # COMMON EXECUTION RULES
 
+Default work allocation: Chat handles 90–95% of planning, audit, repository reasoning, small/medium edits, CI/log review and release orchestration; Codex is reserved for the deepest 5–10% runtime/refactor/migration work that Chat has already narrowed to a precise work package.
+
+Infrastructure decision default: browser/local → WebAssembly/Workers → local desktop/runtime → optional user-owned sync → managed free tier → paid managed service. Skipping lower-dependency tiers requires evidence.
+
 1. Inspect before modify.
 2. Architecture before implementation.
 3. Dependency before roadmap.
@@ -192,6 +203,7 @@ This umbrella Constitution defines the shared authority model and non-negotiable
 Detailed clause-level sources are canonical under:
 
 - `prompts/constitution/C1_EXTENSIBLE_PLATFORM_ARCHITECTURE.md`
+- `prompts/constitution/DEPENDENCY_INDEPENDENCE_POLICY.md`
 - `prompts/constitution/C2_FUTURE_PROFESSIONAL_UI_UX.md`
 - `prompts/constitution/C3_PROFESSIONAL_QA_AUTO_FIX.md`
 - `prompts/constitution/C4_REAL_LEARNING_OUTCOME_SYSTEM.md`

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "1.3.0",
+  "schemaVersion": "1.4.0",
   "project": "BlueDragon33/Bauman-master-ai-system",
   "canonicalPromptRoot": "prompts",
   "constitution": "prompts/CONSTITUTION.md",
@@ -277,5 +277,20 @@
     "Do not make prompt execution Codex-only; ordinary ChatGPT chat and Work use the same canonical prompt state."
   ],
   "chatEntry": "prompts/CHAT_ENTRY.md",
-  "constitutionLibrary": "prompts/constitution/"
+  "constitutionLibrary": "prompts/constitution/",
+  "dependencyPolicy": "prompts/constitution/DEPENDENCY_INDEPENDENCE_POLICY.md",
+  "infrastructureMigrationPlan": "prompts/INFRASTRUCTURE_INDEPENDENCE_MIGRATION_PLAN.md",
+  "defaultInfrastructureProfile": "LOCAL_OFFLINE_FREE_FIRST",
+  "workAllocation": {
+    "chatPercent": "90-95",
+    "codexPercent": "5-10",
+    "rule": "CHAT_FIRST_CODEX_DEEP_ONLY"
+  },
+  "releaseProfiles": [
+    "LOCAL_STABLE",
+    "SYNC_STABLE",
+    "PUBLISHED_STABLE",
+    "MANAGED_PRODUCTION_STABLE"
+  ],
+  "providerRule": "External providers are replaceable adapters; recurring paid infrastructure requires explicit user approval."
 }
