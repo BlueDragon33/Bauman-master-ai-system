@@ -116,7 +116,7 @@ export function bootstrapRussianEngine(windowLike=globalThis?.window){
     const feature=url.searchParams.get('ruEngine');
     shouldRequest=['grounded-v1','beta-v1'].includes(feature);
     integration.betaRequested=feature==='beta-v1';
-    integration.enabled=shouldRequest;
+    integration.enabled=integration.betaRequested;
     integration.mode=integration.betaRequested?'BETA_LEARNING_LOOP':(shouldRequest?'GROUNDED_OPT_IN':'PASSIVE_BRIDGE');
   }catch(_){}
 
