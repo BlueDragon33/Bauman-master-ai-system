@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "RUSSIAN_ENGINE_RE25_ALLOWLIST_V1",
+  "state": "AWAITING_USER_AUTHORIZATION",
+  "validatedImplementationHead": "e49a4aee54b2edb7b5a6f253e424b7d3b09bf2fa",
+  "rolloutState": "OPT_IN_FLAG",
+  "defaultEnabled": false,
+  "allowedOutsideEngineWrites": [
+    {
+      "path": "subjects/russian/assets/adaptive-planner.js",
+      "purpose": "Add explicit Engine candidate-source seam while preserving RussianAdaptivePlanner as final planner authority.",
+      "forbidden": [
+        "manualOverride impersonation",
+        "mastery writes",
+        "stage unlock",
+        "default-on rollout"
+      ]
+    },
+    {
+      "path": "subjects/russian/sw.js",
+      "purpose": "Precache only newly browser-loaded Engine integration modules required for true-offline parity after candidate-source seam activation.",
+      "forbidden": [
+        "unrelated cache rewrite",
+        "removing existing offline assets",
+        "default-on rollout"
+      ]
+    }
+  ],
+  "allOtherOutsideEngineWrites": "FORBIDDEN",
+  "rollback": "Remove/disable Engine candidate source registration and revert added Engine integration precache entries; existing planner and app behavior remains canonical.",
+  "authorizationRequired": true
+}
