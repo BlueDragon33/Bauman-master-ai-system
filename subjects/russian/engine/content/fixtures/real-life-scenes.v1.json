@@ -1,1 +1,998 @@
-{}
+{
+  "schemaVersion": "RUSSIAN_ENGINE_GROUNDED_SCENE_CATALOG_V2",
+  "status": "FIXTURE_NONCANONICAL_PENDING_RU03",
+  "purpose": "Phase 6 real-life Russian-world fixture pack",
+  "translationDefault": "hidden",
+  "scenes": [
+    {
+      "sceneId": "rl-01-room",
+      "revision": "real-life-v1-r1",
+      "status": "FIXTURE_NONCANONICAL_PENDING_RU03",
+      "setting": "room",
+      "transferGroup": "objects-basic",
+      "targetCompetencies": [
+        "RU-COMP-SEMANTIC-GROUNDING"
+      ],
+      "semanticTargets": [
+        "request-object"
+      ],
+      "requiredCapabilities": [
+        "audio",
+        "visual"
+      ],
+      "stimulus": {
+        "language": "ru",
+        "audioText": "Дай мяч.",
+        "speechStyle": "careful-native"
+      },
+      "world": {
+        "speakerRole": "requester",
+        "recipientRole": "learner",
+        "objects": [
+          {
+            "id": "ball",
+            "visual": {
+              "kind": "symbol",
+              "value": "⚽"
+            },
+            "accessibilityLabel": "ball"
+          },
+          {
+            "id": "book",
+            "visual": {
+              "kind": "symbol",
+              "value": "📕"
+            },
+            "accessibilityLabel": "book"
+          },
+          {
+            "id": "cup",
+            "visual": {
+              "kind": "symbol",
+              "value": "☕"
+            },
+            "accessibilityLabel": "cup"
+          }
+        ]
+      },
+      "expectedAction": {
+        "kind": "select-object",
+        "objectId": "ball",
+        "semanticRelation": "request-object"
+      },
+      "successConsequence": {
+        "kind": "world-state-change",
+        "mutation": "semantic-target-confirmed",
+        "objectId": "ball"
+      },
+      "supportPolicy": {
+        "maxLevel": 10,
+        "translationDefault": "hidden"
+      }
+    },
+    {
+      "sceneId": "rl-02-room",
+      "revision": "real-life-v1-r1",
+      "status": "FIXTURE_NONCANONICAL_PENDING_RU03",
+      "setting": "room",
+      "transferGroup": "objects-basic",
+      "targetCompetencies": [
+        "RU-COMP-SEMANTIC-GROUNDING"
+      ],
+      "semanticTargets": [
+        "request-object"
+      ],
+      "requiredCapabilities": [
+        "audio",
+        "visual"
+      ],
+      "stimulus": {
+        "language": "ru",
+        "audioText": "Дай книгу.",
+        "speechStyle": "careful-native"
+      },
+      "world": {
+        "speakerRole": "requester",
+        "recipientRole": "learner",
+        "objects": [
+          {
+            "id": "book",
+            "visual": {
+              "kind": "symbol",
+              "value": "📕"
+            },
+            "accessibilityLabel": "book"
+          },
+          {
+            "id": "ball",
+            "visual": {
+              "kind": "symbol",
+              "value": "⚽"
+            },
+            "accessibilityLabel": "ball"
+          },
+          {
+            "id": "cup",
+            "visual": {
+              "kind": "symbol",
+              "value": "☕"
+            },
+            "accessibilityLabel": "cup"
+          }
+        ]
+      },
+      "expectedAction": {
+        "kind": "select-object",
+        "objectId": "book",
+        "semanticRelation": "request-object"
+      },
+      "successConsequence": {
+        "kind": "world-state-change",
+        "mutation": "semantic-target-confirmed",
+        "objectId": "book"
+      },
+      "supportPolicy": {
+        "maxLevel": 10,
+        "translationDefault": "hidden"
+      }
+    },
+    {
+      "sceneId": "rl-03-room",
+      "revision": "real-life-v1-r1",
+      "status": "FIXTURE_NONCANONICAL_PENDING_RU03",
+      "setting": "room",
+      "transferGroup": "find-object",
+      "targetCompetencies": [
+        "RU-COMP-SEMANTIC-GROUNDING"
+      ],
+      "semanticTargets": [
+        "locate-object"
+      ],
+      "requiredCapabilities": [
+        "audio",
+        "visual"
+      ],
+      "stimulus": {
+        "language": "ru",
+        "audioText": "Где чашка?",
+        "speechStyle": "careful-native"
+      },
+      "world": {
+        "speakerRole": "requester",
+        "recipientRole": "learner",
+        "objects": [
+          {
+            "id": "cup",
+            "visual": {
+              "kind": "symbol",
+              "value": "☕"
+            },
+            "accessibilityLabel": "cup"
+          },
+          {
+            "id": "book",
+            "visual": {
+              "kind": "symbol",
+              "value": "📕"
+            },
+            "accessibilityLabel": "book"
+          },
+          {
+            "id": "ball",
+            "visual": {
+              "kind": "symbol",
+              "value": "⚽"
+            },
+            "accessibilityLabel": "ball"
+          }
+        ]
+      },
+      "expectedAction": {
+        "kind": "select-object",
+        "objectId": "cup",
+        "semanticRelation": "locate-object"
+      },
+      "successConsequence": {
+        "kind": "world-state-change",
+        "mutation": "semantic-target-confirmed",
+        "objectId": "cup"
+      },
+      "supportPolicy": {
+        "maxLevel": 10,
+        "translationDefault": "hidden"
+      }
+    },
+    {
+      "sceneId": "rl-04-shop",
+      "revision": "real-life-v1-r1",
+      "status": "FIXTURE_NONCANONICAL_PENDING_RU03",
+      "setting": "shop",
+      "transferGroup": "find-food",
+      "targetCompetencies": [
+        "RU-COMP-SEMANTIC-GROUNDING"
+      ],
+      "semanticTargets": [
+        "locate-object"
+      ],
+      "requiredCapabilities": [
+        "audio",
+        "visual"
+      ],
+      "stimulus": {
+        "language": "ru",
+        "audioText": "Где хлеб?",
+        "speechStyle": "careful-native"
+      },
+      "world": {
+        "speakerRole": "requester",
+        "recipientRole": "learner",
+        "objects": [
+          {
+            "id": "bread",
+            "visual": {
+              "kind": "symbol",
+              "value": "🍞"
+            },
+            "accessibilityLabel": "bread"
+          },
+          {
+            "id": "water",
+            "visual": {
+              "kind": "symbol",
+              "value": "💧"
+            },
+            "accessibilityLabel": "water"
+          },
+          {
+            "id": "milk",
+            "visual": {
+              "kind": "symbol",
+              "value": "🥛"
+            },
+            "accessibilityLabel": "milk"
+          }
+        ]
+      },
+      "expectedAction": {
+        "kind": "select-object",
+        "objectId": "bread",
+        "semanticRelation": "locate-object"
+      },
+      "successConsequence": {
+        "kind": "world-state-change",
+        "mutation": "semantic-target-confirmed",
+        "objectId": "bread"
+      },
+      "supportPolicy": {
+        "maxLevel": 10,
+        "translationDefault": "hidden"
+      }
+    },
+    {
+      "sceneId": "rl-05-shop",
+      "revision": "real-life-v1-r1",
+      "status": "FIXTURE_NONCANONICAL_PENDING_RU03",
+      "setting": "shop",
+      "transferGroup": "request-food",
+      "targetCompetencies": [
+        "RU-COMP-SEMANTIC-GROUNDING"
+      ],
+      "semanticTargets": [
+        "request-object"
+      ],
+      "requiredCapabilities": [
+        "audio",
+        "visual"
+      ],
+      "stimulus": {
+        "language": "ru",
+        "audioText": "Дай воду.",
+        "speechStyle": "careful-native"
+      },
+      "world": {
+        "speakerRole": "requester",
+        "recipientRole": "learner",
+        "objects": [
+          {
+            "id": "water",
+            "visual": {
+              "kind": "symbol",
+              "value": "💧"
+            },
+            "accessibilityLabel": "water"
+          },
+          {
+            "id": "bread",
+            "visual": {
+              "kind": "symbol",
+              "value": "🍞"
+            },
+            "accessibilityLabel": "bread"
+          },
+          {
+            "id": "milk",
+            "visual": {
+              "kind": "symbol",
+              "value": "🥛"
+            },
+            "accessibilityLabel": "milk"
+          }
+        ]
+      },
+      "expectedAction": {
+        "kind": "select-object",
+        "objectId": "water",
+        "semanticRelation": "request-object"
+      },
+      "successConsequence": {
+        "kind": "world-state-change",
+        "mutation": "semantic-target-confirmed",
+        "objectId": "water"
+      },
+      "supportPolicy": {
+        "maxLevel": 10,
+        "translationDefault": "hidden"
+      }
+    },
+    {
+      "sceneId": "rl-06-shop",
+      "revision": "real-life-v1-r1",
+      "status": "FIXTURE_NONCANONICAL_PENDING_RU03",
+      "setting": "shop",
+      "transferGroup": "find-food",
+      "targetCompetencies": [
+        "RU-COMP-SEMANTIC-GROUNDING"
+      ],
+      "semanticTargets": [
+        "locate-object"
+      ],
+      "requiredCapabilities": [
+        "audio",
+        "visual"
+      ],
+      "stimulus": {
+        "language": "ru",
+        "audioText": "Где молоко?",
+        "speechStyle": "careful-native"
+      },
+      "world": {
+        "speakerRole": "requester",
+        "recipientRole": "learner",
+        "objects": [
+          {
+            "id": "milk",
+            "visual": {
+              "kind": "symbol",
+              "value": "🥛"
+            },
+            "accessibilityLabel": "milk"
+          },
+          {
+            "id": "bread",
+            "visual": {
+              "kind": "symbol",
+              "value": "🍞"
+            },
+            "accessibilityLabel": "bread"
+          },
+          {
+            "id": "water",
+            "visual": {
+              "kind": "symbol",
+              "value": "💧"
+            },
+            "accessibilityLabel": "water"
+          }
+        ]
+      },
+      "expectedAction": {
+        "kind": "select-object",
+        "objectId": "milk",
+        "semanticRelation": "locate-object"
+      },
+      "successConsequence": {
+        "kind": "world-state-change",
+        "mutation": "semantic-target-confirmed",
+        "objectId": "milk"
+      },
+      "supportPolicy": {
+        "maxLevel": 10,
+        "translationDefault": "hidden"
+      }
+    },
+    {
+      "sceneId": "rl-07-metro",
+      "revision": "real-life-v1-r1",
+      "status": "FIXTURE_NONCANONICAL_PENDING_RU03",
+      "setting": "metro",
+      "transferGroup": "transport-item",
+      "targetCompetencies": [
+        "RU-COMP-SEMANTIC-GROUNDING"
+      ],
+      "semanticTargets": [
+        "locate-object"
+      ],
+      "requiredCapabilities": [
+        "audio",
+        "visual"
+      ],
+      "stimulus": {
+        "language": "ru",
+        "audioText": "Где билет?",
+        "speechStyle": "careful-native"
+      },
+      "world": {
+        "speakerRole": "requester",
+        "recipientRole": "learner",
+        "objects": [
+          {
+            "id": "ticket",
+            "visual": {
+              "kind": "symbol",
+              "value": "🎫"
+            },
+            "accessibilityLabel": "ticket"
+          },
+          {
+            "id": "map",
+            "visual": {
+              "kind": "symbol",
+              "value": "🗺️"
+            },
+            "accessibilityLabel": "map"
+          },
+          {
+            "id": "metro",
+            "visual": {
+              "kind": "symbol",
+              "value": "🚇"
+            },
+            "accessibilityLabel": "metro"
+          }
+        ]
+      },
+      "expectedAction": {
+        "kind": "select-object",
+        "objectId": "ticket",
+        "semanticRelation": "locate-object"
+      },
+      "successConsequence": {
+        "kind": "world-state-change",
+        "mutation": "semantic-target-confirmed",
+        "objectId": "ticket"
+      },
+      "supportPolicy": {
+        "maxLevel": 10,
+        "translationDefault": "hidden"
+      }
+    },
+    {
+      "sceneId": "rl-08-metro",
+      "revision": "real-life-v1-r1",
+      "status": "FIXTURE_NONCANONICAL_PENDING_RU03",
+      "setting": "metro",
+      "transferGroup": "transport-item",
+      "targetCompetencies": [
+        "RU-COMP-SEMANTIC-GROUNDING"
+      ],
+      "semanticTargets": [
+        "locate-object"
+      ],
+      "requiredCapabilities": [
+        "audio",
+        "visual"
+      ],
+      "stimulus": {
+        "language": "ru",
+        "audioText": "Где карта?",
+        "speechStyle": "careful-native"
+      },
+      "world": {
+        "speakerRole": "requester",
+        "recipientRole": "learner",
+        "objects": [
+          {
+            "id": "map",
+            "visual": {
+              "kind": "symbol",
+              "value": "🗺️"
+            },
+            "accessibilityLabel": "map"
+          },
+          {
+            "id": "ticket",
+            "visual": {
+              "kind": "symbol",
+              "value": "🎫"
+            },
+            "accessibilityLabel": "ticket"
+          },
+          {
+            "id": "metro",
+            "visual": {
+              "kind": "symbol",
+              "value": "🚇"
+            },
+            "accessibilityLabel": "metro"
+          }
+        ]
+      },
+      "expectedAction": {
+        "kind": "select-object",
+        "objectId": "map",
+        "semanticRelation": "locate-object"
+      },
+      "successConsequence": {
+        "kind": "world-state-change",
+        "mutation": "semantic-target-confirmed",
+        "objectId": "map"
+      },
+      "supportPolicy": {
+        "maxLevel": 10,
+        "translationDefault": "hidden"
+      }
+    },
+    {
+      "sceneId": "rl-09-metro",
+      "revision": "real-life-v1-r1",
+      "status": "FIXTURE_NONCANONICAL_PENDING_RU03",
+      "setting": "metro",
+      "transferGroup": "transport-place",
+      "targetCompetencies": [
+        "RU-COMP-SEMANTIC-GROUNDING"
+      ],
+      "semanticTargets": [
+        "locate-object"
+      ],
+      "requiredCapabilities": [
+        "audio",
+        "visual"
+      ],
+      "stimulus": {
+        "language": "ru",
+        "audioText": "Где метро?",
+        "speechStyle": "careful-native"
+      },
+      "world": {
+        "speakerRole": "requester",
+        "recipientRole": "learner",
+        "objects": [
+          {
+            "id": "metro",
+            "visual": {
+              "kind": "symbol",
+              "value": "🚇"
+            },
+            "accessibilityLabel": "metro"
+          },
+          {
+            "id": "ticket",
+            "visual": {
+              "kind": "symbol",
+              "value": "🎫"
+            },
+            "accessibilityLabel": "ticket"
+          },
+          {
+            "id": "map",
+            "visual": {
+              "kind": "symbol",
+              "value": "🗺️"
+            },
+            "accessibilityLabel": "map"
+          }
+        ]
+      },
+      "expectedAction": {
+        "kind": "select-object",
+        "objectId": "metro",
+        "semanticRelation": "locate-object"
+      },
+      "successConsequence": {
+        "kind": "world-state-change",
+        "mutation": "semantic-target-confirmed",
+        "objectId": "metro"
+      },
+      "supportPolicy": {
+        "maxLevel": 10,
+        "translationDefault": "hidden"
+      }
+    },
+    {
+      "sceneId": "rl-10-dorm",
+      "revision": "real-life-v1-r1",
+      "status": "FIXTURE_NONCANONICAL_PENDING_RU03",
+      "setting": "dorm",
+      "transferGroup": "dorm-item",
+      "targetCompetencies": [
+        "RU-COMP-SEMANTIC-GROUNDING"
+      ],
+      "semanticTargets": [
+        "locate-object"
+      ],
+      "requiredCapabilities": [
+        "audio",
+        "visual"
+      ],
+      "stimulus": {
+        "language": "ru",
+        "audioText": "Где ключ?",
+        "speechStyle": "careful-native"
+      },
+      "world": {
+        "speakerRole": "requester",
+        "recipientRole": "learner",
+        "objects": [
+          {
+            "id": "key",
+            "visual": {
+              "kind": "symbol",
+              "value": "🔑"
+            },
+            "accessibilityLabel": "key"
+          },
+          {
+            "id": "door",
+            "visual": {
+              "kind": "symbol",
+              "value": "🚪"
+            },
+            "accessibilityLabel": "door"
+          },
+          {
+            "id": "shower",
+            "visual": {
+              "kind": "symbol",
+              "value": "🚿"
+            },
+            "accessibilityLabel": "shower"
+          }
+        ]
+      },
+      "expectedAction": {
+        "kind": "select-object",
+        "objectId": "key",
+        "semanticRelation": "locate-object"
+      },
+      "successConsequence": {
+        "kind": "world-state-change",
+        "mutation": "semantic-target-confirmed",
+        "objectId": "key"
+      },
+      "supportPolicy": {
+        "maxLevel": 10,
+        "translationDefault": "hidden"
+      }
+    },
+    {
+      "sceneId": "rl-11-dorm",
+      "revision": "real-life-v1-r1",
+      "status": "FIXTURE_NONCANONICAL_PENDING_RU03",
+      "setting": "dorm",
+      "transferGroup": "dorm-place",
+      "targetCompetencies": [
+        "RU-COMP-SEMANTIC-GROUNDING"
+      ],
+      "semanticTargets": [
+        "locate-object"
+      ],
+      "requiredCapabilities": [
+        "audio",
+        "visual"
+      ],
+      "stimulus": {
+        "language": "ru",
+        "audioText": "Где комната?",
+        "speechStyle": "careful-native"
+      },
+      "world": {
+        "speakerRole": "requester",
+        "recipientRole": "learner",
+        "objects": [
+          {
+            "id": "door",
+            "visual": {
+              "kind": "symbol",
+              "value": "🚪"
+            },
+            "accessibilityLabel": "door"
+          },
+          {
+            "id": "key",
+            "visual": {
+              "kind": "symbol",
+              "value": "🔑"
+            },
+            "accessibilityLabel": "key"
+          },
+          {
+            "id": "shower",
+            "visual": {
+              "kind": "symbol",
+              "value": "🚿"
+            },
+            "accessibilityLabel": "shower"
+          }
+        ]
+      },
+      "expectedAction": {
+        "kind": "select-object",
+        "objectId": "door",
+        "semanticRelation": "locate-object"
+      },
+      "successConsequence": {
+        "kind": "world-state-change",
+        "mutation": "semantic-target-confirmed",
+        "objectId": "door"
+      },
+      "supportPolicy": {
+        "maxLevel": 10,
+        "translationDefault": "hidden"
+      }
+    },
+    {
+      "sceneId": "rl-12-dorm",
+      "revision": "real-life-v1-r1",
+      "status": "FIXTURE_NONCANONICAL_PENDING_RU03",
+      "setting": "dorm",
+      "transferGroup": "dorm-place",
+      "targetCompetencies": [
+        "RU-COMP-SEMANTIC-GROUNDING"
+      ],
+      "semanticTargets": [
+        "locate-object"
+      ],
+      "requiredCapabilities": [
+        "audio",
+        "visual"
+      ],
+      "stimulus": {
+        "language": "ru",
+        "audioText": "Где душ?",
+        "speechStyle": "careful-native"
+      },
+      "world": {
+        "speakerRole": "requester",
+        "recipientRole": "learner",
+        "objects": [
+          {
+            "id": "shower",
+            "visual": {
+              "kind": "symbol",
+              "value": "🚿"
+            },
+            "accessibilityLabel": "shower"
+          },
+          {
+            "id": "door",
+            "visual": {
+              "kind": "symbol",
+              "value": "🚪"
+            },
+            "accessibilityLabel": "door"
+          },
+          {
+            "id": "key",
+            "visual": {
+              "kind": "symbol",
+              "value": "🔑"
+            },
+            "accessibilityLabel": "key"
+          }
+        ]
+      },
+      "expectedAction": {
+        "kind": "select-object",
+        "objectId": "shower",
+        "semanticRelation": "locate-object"
+      },
+      "successConsequence": {
+        "kind": "world-state-change",
+        "mutation": "semantic-target-confirmed",
+        "objectId": "shower"
+      },
+      "supportPolicy": {
+        "maxLevel": 10,
+        "translationDefault": "hidden"
+      }
+    },
+    {
+      "sceneId": "rl-13-university",
+      "revision": "real-life-v1-r1",
+      "status": "FIXTURE_NONCANONICAL_PENDING_RU03",
+      "setting": "university",
+      "transferGroup": "university-place",
+      "targetCompetencies": [
+        "RU-COMP-SEMANTIC-GROUNDING"
+      ],
+      "semanticTargets": [
+        "locate-object"
+      ],
+      "requiredCapabilities": [
+        "audio",
+        "visual"
+      ],
+      "stimulus": {
+        "language": "ru",
+        "audioText": "Где аудитория?",
+        "speechStyle": "careful-native"
+      },
+      "world": {
+        "speakerRole": "requester",
+        "recipientRole": "learner",
+        "objects": [
+          {
+            "id": "classroom",
+            "visual": {
+              "kind": "symbol",
+              "value": "🏫"
+            },
+            "accessibilityLabel": "classroom"
+          },
+          {
+            "id": "library",
+            "visual": {
+              "kind": "symbol",
+              "value": "📚"
+            },
+            "accessibilityLabel": "library"
+          },
+          {
+            "id": "notebook",
+            "visual": {
+              "kind": "symbol",
+              "value": "📓"
+            },
+            "accessibilityLabel": "notebook"
+          }
+        ]
+      },
+      "expectedAction": {
+        "kind": "select-object",
+        "objectId": "classroom",
+        "semanticRelation": "locate-object"
+      },
+      "successConsequence": {
+        "kind": "world-state-change",
+        "mutation": "semantic-target-confirmed",
+        "objectId": "classroom"
+      },
+      "supportPolicy": {
+        "maxLevel": 10,
+        "translationDefault": "hidden"
+      }
+    },
+    {
+      "sceneId": "rl-14-university",
+      "revision": "real-life-v1-r1",
+      "status": "FIXTURE_NONCANONICAL_PENDING_RU03",
+      "setting": "university",
+      "transferGroup": "university-place",
+      "targetCompetencies": [
+        "RU-COMP-SEMANTIC-GROUNDING"
+      ],
+      "semanticTargets": [
+        "locate-object"
+      ],
+      "requiredCapabilities": [
+        "audio",
+        "visual"
+      ],
+      "stimulus": {
+        "language": "ru",
+        "audioText": "Где библиотека?",
+        "speechStyle": "careful-native"
+      },
+      "world": {
+        "speakerRole": "requester",
+        "recipientRole": "learner",
+        "objects": [
+          {
+            "id": "library",
+            "visual": {
+              "kind": "symbol",
+              "value": "📚"
+            },
+            "accessibilityLabel": "library"
+          },
+          {
+            "id": "classroom",
+            "visual": {
+              "kind": "symbol",
+              "value": "🏫"
+            },
+            "accessibilityLabel": "classroom"
+          },
+          {
+            "id": "notebook",
+            "visual": {
+              "kind": "symbol",
+              "value": "📓"
+            },
+            "accessibilityLabel": "notebook"
+          }
+        ]
+      },
+      "expectedAction": {
+        "kind": "select-object",
+        "objectId": "library",
+        "semanticRelation": "locate-object"
+      },
+      "successConsequence": {
+        "kind": "world-state-change",
+        "mutation": "semantic-target-confirmed",
+        "objectId": "library"
+      },
+      "supportPolicy": {
+        "maxLevel": 10,
+        "translationDefault": "hidden"
+      }
+    },
+    {
+      "sceneId": "rl-15-university",
+      "revision": "real-life-v1-r1",
+      "status": "FIXTURE_NONCANONICAL_PENDING_RU03",
+      "setting": "university",
+      "transferGroup": "study-item",
+      "targetCompetencies": [
+        "RU-COMP-SEMANTIC-GROUNDING"
+      ],
+      "semanticTargets": [
+        "request-object"
+      ],
+      "requiredCapabilities": [
+        "audio",
+        "visual"
+      ],
+      "stimulus": {
+        "language": "ru",
+        "audioText": "Дай тетрадь.",
+        "speechStyle": "careful-native"
+      },
+      "world": {
+        "speakerRole": "requester",
+        "recipientRole": "learner",
+        "objects": [
+          {
+            "id": "notebook",
+            "visual": {
+              "kind": "symbol",
+              "value": "📓"
+            },
+            "accessibilityLabel": "notebook"
+          },
+          {
+            "id": "library",
+            "visual": {
+              "kind": "symbol",
+              "value": "📚"
+            },
+            "accessibilityLabel": "library"
+          },
+          {
+            "id": "classroom",
+            "visual": {
+              "kind": "symbol",
+              "value": "🏫"
+            },
+            "accessibilityLabel": "classroom"
+          }
+        ]
+      },
+      "expectedAction": {
+        "kind": "select-object",
+        "objectId": "notebook",
+        "semanticRelation": "request-object"
+      },
+      "successConsequence": {
+        "kind": "world-state-change",
+        "mutation": "semantic-target-confirmed",
+        "objectId": "notebook"
+      },
+      "supportPolicy": {
+        "maxLevel": 10,
+        "translationDefault": "hidden"
+      }
+    }
+  ]
+}
