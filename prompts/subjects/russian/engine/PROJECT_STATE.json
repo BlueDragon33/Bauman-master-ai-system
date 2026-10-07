@@ -8,7 +8,7 @@
     "russianMasterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
     "engineOrchestrator": "prompts/subjects/russian/engine/RE00_ENGINE_ORCHESTRATOR.md"
   },
-  "status": "PHASE4_RE25_APPLIED_VALIDATING",
+  "status": "PHASE4_RE21_RE25_PASS_READY_FOR_MERGE",
   "implementationAuthorized": true,
   "activeWorkPackage": "RE25",
   "sequence": [
@@ -91,7 +91,8 @@
     "RE21",
     "RE22",
     "RE23",
-    "RE24"
+    "RE24",
+    "RE25"
   ],
   "targetInternalLevels": 100,
   "learningNorthStar": "RUSSIAN_FIRST_MEANING_FIRST_CONTEXT_FIRST_TRANSLATION_LAST",
@@ -113,7 +114,7 @@
     ]
   },
   "blockers": [],
-  "nextAction": "Validate exact-head RE25 source, packaged, offline, planner regression and whole-system gates. If PASS, close Phase 4 and continue without user interruption unless direct GitHub intervention is required.",
+  "nextAction": "Run exact-head CI on this Phase 4 closing commit. If green and GitHub allows automated merge, merge PR #291 to main and continue Phase 5 without user interruption.",
   "re09Validation": {
     "exactHead": "297cfaabea853b059d8e7f4576db192d498056d4",
     "gates": {
@@ -186,7 +187,7 @@
     "mainVerifiedIdentical": true
   },
   "phase4Validation": {
-    "implementationHead": "e49a4aee54b2edb7b5a6f253e424b7d3b09bf2fa",
+    "implementationHead": "d29e94a8680dd72601bcaaae7c17cdf32d50058e",
     "workflows": {
       "developmentFastCi": "PASS",
       "russianEngineIsolatedSuite": "PASS",
@@ -201,11 +202,15 @@
       "groundedSource": "PASS",
       "groundedPackaged": "PASS",
       "offlineShellSource": "PASS",
-      "offlineShellPackaged": "PASS"
+      "offlineShellPackaged": "PASS",
+      "wholeSystem": "PASS"
     },
-    "re25Allowlist": [
-      "subjects/russian/assets/adaptive-planner.js",
-      "subjects/russian/sw.js"
-    ]
+    "re25": {
+      "plannerCandidateSourceSeam": "PASS",
+      "manualOverrideImpersonationBlocked": true,
+      "externalPriorityBounded": true,
+      "plannerAuthority": "RussianAdaptivePlanner",
+      "rollout": "OPT_IN_FLAG"
+    }
   }
 }
