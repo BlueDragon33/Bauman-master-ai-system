@@ -8,9 +8,9 @@
     "russianMasterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
     "engineOrchestrator": "prompts/subjects/russian/engine/RE00_ENGINE_ORCHESTRATOR.md"
   },
-  "status": "RE05_PASS_RE06_ACTIVE",
+  "status": "RE06_PASS_RE07_ACTIVE",
   "implementationAuthorized": true,
-  "activeWorkPackage": "RE06",
+  "activeWorkPackage": "RE07",
   "sequence": [
     "RE00",
     "RE01",
@@ -40,7 +40,8 @@
     "RE02",
     "RE03",
     "RE04",
-    "RE05"
+    "RE05",
+    "RE06"
   ],
   "targetInternalLevels": 100,
   "learningNorthStar": "RUSSIAN_FIRST_MEANING_FIRST_CONTEXT_FIRST_TRANSLATION_LAST",
@@ -62,5 +63,5 @@
     ]
   },
   "blockers": [],
-  "nextAction": "Execute RE06 inside subjects/russian/engine/**: derive a multidimensional learner snapshot and next-action recommendation from Engine/RU04 evidence without becoming the authoritative mastery writer. Preserve explainability, support dependency and review semantics."
+  "nextAction": "Execute RE07 as provider-neutral product abstractions only: profile scope, entitlement/content-pack availability, optional sync journal and export/delete contracts. Do not add billing vendor code, remote auth or mandatory backend."
 }
