@@ -39,6 +39,13 @@ export function bootstrapRussianEngine(windowLike=globalThis?.window){
     mode:'PASSIVE_BRIDGE',
     inspection:copy(inspection),
     speechProvider:null,
+    grounded:{
+      requested:false,
+      state:'OFF',
+      mounted:false,
+      controller:null,
+      error:null
+    },
     error:null
   };
 
@@ -58,6 +65,13 @@ export function bootstrapRussianEngine(windowLike=globalThis?.window){
     mode:integration.mode,
     inspection:copy(integration.inspection),
     capabilities:integration.speechProvider?.capabilities?.()||null,
+    grounded:{
+      requested:integration.grounded.requested,
+      state:integration.grounded.state,
+      mounted:integration.grounded.mounted,
+      error:integration.grounded.error,
+      status:integration.grounded.controller?.status?.()||null
+    },
     error:integration.error
   });
 
@@ -71,6 +85,37 @@ export function bootstrapRussianEngine(windowLike=globalThis?.window){
   });
 
   windowLike.RussianEngineIntegration=bridge;
+
+  let shouldRequest=false;
+  try{
+    const url=new URL(windowLike.location?.href||'');
+    shouldRequest=url.searchParams.get('ruEngine')==='grounded-v1';
+  }catch(_){}
+
+  if(shouldRequest){
+    integration.grounded.requested=true;
+    integration.grounded.state='LOADING';
+    import('./grounded-experience.js')
+      .then(module=>module.mountGroundedExperience({
+        windowLike,
+        documentLike:windowLike.document,
+        fetchFn:windowLike.fetch?.bind(windowLike)||globalThis.fetch,
+        speechProvider:integration.speechProvider
+      }))
+      .then(controller=>{
+        integration.grounded.controller=controller?.mounted?controller:null;
+        integration.grounded.mounted=controller?.mounted===true;
+        integration.grounded.state=controller?.mounted===true?'READY':'SKIPPED';
+        integration.grounded.error=controller?.mounted===true?null:String(controller?.reason||'not-mounted');
+        windowLike.dispatchEvent?.(new CustomEvent('russian-engine:grounded-ready',{detail:publicView()}));
+      })
+      .catch(error=>{
+        integration.grounded.state='ERROR';
+        integration.grounded.error=String(error?.message||error);
+        windowLike.dispatchEvent?.(new CustomEvent('russian-engine:grounded-error',{detail:publicView()}));
+      });
+  }
+
   return publicView();
 }
 
