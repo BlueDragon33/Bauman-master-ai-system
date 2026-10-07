@@ -21,6 +21,7 @@ function ensureStyle(documentLike){
   const style=documentLike.createElement('style');
   style.dataset.reGroundedStyle='1';
   style.textContent=`
+    .re-grounded-host{width:min(100%,1120px);margin:0 auto}
     .re-grounded{margin:18px 0 28px;padding:22px;border:1px solid color-mix(in srgb,currentColor 12%,transparent);border-radius:24px;background:color-mix(in srgb,Canvas 96%,transparent);box-shadow:0 14px 42px rgba(0,0,0,.07)}
     .re-grounded__top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
     .re-grounded__eyebrow{font-size:12px;letter-spacing:.14em;font-weight:800;opacity:.62}
@@ -78,8 +79,19 @@ export async function mountGroundedExperience({
   if(!shouldEnableGroundedSlice(windowLike.location))return {mounted:false,reason:'feature-flag-off'};
   if(documentLike.querySelector('[data-russian-engine-grounded="1"]'))return {mounted:true,reason:'already-mounted'};
 
-  const host=documentLike.getElementById('view')||documentLike.querySelector('main')||documentLike.body;
-  if(!host)return {mounted:false,reason:'host-missing'};
+  const view=documentLike.getElementById('view');
+  const stableParent=view?.parentNode||documentLike.querySelector('.ru-main')||documentLike.querySelector('main')||documentLike.body;
+  if(!stableParent)return {mounted:false,reason:'host-missing'};
+
+  let host=documentLike.getElementById('russianEngineExperienceHost');
+  if(!host){
+    host=documentLike.createElement('div');
+    host.id='russianEngineExperienceHost';
+    host.className='re-grounded-host';
+    host.dataset.russianEngineHost='1';
+    if(view&&view.parentNode===stableParent)stableParent.insertBefore(host,view);
+    else stableParent.prepend(host);
+  }
 
   ensureStyle(documentLike);
   const fixture=await loadGroundedFixture(fetchFn);
@@ -182,6 +194,7 @@ export async function mountGroundedExperience({
     evidence:()=>copy(evidence),
     unmount(){
       section.remove();
+      if(host.childElementCount===0)host.remove();
       return true;
     }
   };
