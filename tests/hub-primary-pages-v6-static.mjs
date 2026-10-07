@@ -25,8 +25,8 @@ assert.ok(css.includes('#page-subjects'),'Subjects V6 styling missing');
 assert.ok(css.includes('#page-schedule'),'Schedule V6 styling missing');
 assert.ok(css.includes('#page-research'),'Research V6 styling missing');
 assert.ok(css.includes('.page.active{min-width:0;animation:none!important;transform:none!important}'),'V6 must disable the legacy 4px route-entry transform');
-assert.ok(css.includes('.hub-v6-hero h2{')&&css.includes('color:#eef5fb'),'V6 dark hero title must own a readable light foreground');
-assert.ok(css.includes('.hub-v6-hero p{')&&css.includes('color:#c0cede'),'V6 dark hero description must own a readable light foreground');
+assert.match(css,/\.hub-v6-hero h2\{[^}]*color:#eef5fb/,'V6 dark hero title must own a readable light foreground');
+assert.match(css,/\.hub-v6-hero p\{[^}]*color:#c0cede/,'V6 dark hero description must own a readable light foreground');
 
 assert.ok(!nav.includes('attempts<20'),'Primary navigation still performs delayed polling reflows');
 assert.ok(!shell.includes('setTimeout(ensureAll,350)'),'Safe shell still performs delayed 350ms startup reflow');
