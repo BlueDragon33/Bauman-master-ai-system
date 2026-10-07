@@ -195,6 +195,16 @@ export async function mountGroundedExperience({
           if(next)status.insertAdjacentHTML('beforeend','<button type="button" class="re-grounded__next" data-re-next>Tiếp tục →</button>');
           else status.insertAdjacentHTML('beforeend','<span>Готово</span>');
         }
+        try{
+          windowLike.RussianEngineIntegration?.publishPlannerCandidates?.([{
+            id:'engine:grounded-followup:'+scene.sceneId,
+            label:'Củng cố nghe sau bài Russian Engine',
+            skill:'listening',
+            reason:'continue_path',
+            route:{view:'media'},
+            priority:520
+          }]);
+        }catch(_){};
         section.querySelector('[data-re-next]')?.addEventListener('click',()=>{
           const next=transferCount===0?nextTransferScene(scenes,scene):null;
           if(!next)return;
