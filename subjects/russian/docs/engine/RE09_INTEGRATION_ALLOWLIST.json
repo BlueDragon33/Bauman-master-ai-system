@@ -1,6 +1,6 @@
 {
   "schemaVersion": "RUSSIAN_ENGINE_RE09_ALLOWLIST_V1",
-  "state": "APPLIED_WITH_MIME_FIX_PENDING_EXACT_HEAD_VALIDATION",
+  "state": "APPLIED_PENDING_EXACT_HEAD_VALIDATION",
   "engineHeadRequired": "EXACT_HEAD_GREEN_CI",
   "purpose": "Load a passive Russian Engine browser bridge without changing learner behavior or UI.",
   "allowedExistingAppWrites": [
@@ -45,12 +45,14 @@
   ],
   "appliedAppCommit": "9bf4f14655cace9623dee46eea491888eb9ad8e3",
   "appliedExistingAppWrites": [
-    "subjects/russian/index.html"
+    "subjects/russian/index.html",
+    "subjects/russian/sw.js"
   ],
   "appliedOfflineFixCommit": "9b1aa0226225d791ec51ad7d37c566e6975beeb0",
   "appliedMimeFix": "Browser-loaded Engine modules use .js extension because repository browser-test server serves .mjs as application/octet-stream.",
   "browserModules": [
     "subjects/russian/engine/integration/browser-bootstrap.js",
     "subjects/russian/engine/speech/legacy-speech-provider.js"
-  ]
+  ],
+  "exactHead": "a8f6ac547a2d26c7bf4ea7f44cb6c9fe2c7c2f09"
 }
