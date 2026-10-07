@@ -8,9 +8,9 @@
     "russianMasterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
     "engineOrchestrator": "prompts/subjects/russian/engine/RE00_ENGINE_ORCHESTRATOR.md"
   },
-  "status": "RE09_MIME_FIX_VALIDATING",
+  "status": "RE05_PASS_RE06_ACTIVE",
   "implementationAuthorized": true,
-  "activeWorkPackage": "RE09",
+  "activeWorkPackage": "RE06",
   "sequence": [
     "RE00",
     "RE01",
@@ -40,10 +40,7 @@
     "RE02",
     "RE03",
     "RE04",
-    "RE05",
-    "RE06",
-    "RE07",
-    "RE08"
+    "RE05"
   ],
   "targetInternalLevels": 100,
   "learningNorthStar": "RUSSIAN_FIRST_MEANING_FIRST_CONTEXT_FIRST_TRANSLATION_LAST",
@@ -65,5 +62,5 @@
     ]
   },
   "blockers": [],
-  "nextAction": "Revalidate exact post-MIME-fix HEAD. Require Russian Reference UI, Future Interface, Development Fast, Whole System Integration, Prompt Control and Universal Constitution gates green. Then mark RE09 passive integration PASS."
+  "nextAction": "Execute RE06 inside subjects/russian/engine/**: derive a multidimensional learner snapshot and next-action recommendation from Engine/RU04 evidence without becoming the authoritative mastery writer. Preserve explainability, support dependency and review semantics."
 }
