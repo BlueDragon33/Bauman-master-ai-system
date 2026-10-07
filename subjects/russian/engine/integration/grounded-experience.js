@@ -4,6 +4,8 @@ import {
   nextTransferScene,
   shouldEnableGroundedSlice
 } from './grounded-browser-model.js';
+import {selectNextGroundedScene} from '../adaptive/scene-selector.mjs';
+import {validateGroundedSceneCatalogV2} from '../content/scene-schema-v2.mjs';
 
 const copy=value=>{
   if(typeof structuredClone==='function')return structuredClone(value);
@@ -24,13 +26,16 @@ export function selectGroundedCatalogUrl(locationLike){
   }catch(_){return FIXTURE_URL}
 }
 
-export function selectInitialGroundedScene(scenes,locationLike){
-  const rows=Array.isArray(scenes)?scenes:[];
-  let setting='';
+export function readGroundedSetting(locationLike){
   try{
     const url=new URL(locationLike?.href||String(locationLike||''),'https://local.invalid/');
-    setting=String(url.searchParams.get('ruSetting')||'').trim();
-  }catch(_){}
+    return String(url.searchParams.get('ruSetting')||'').trim();
+  }catch(_){return ''}
+}
+
+export function selectInitialGroundedScene(scenes,locationLike){
+  const rows=Array.isArray(scenes)?scenes:[];
+  const setting=readGroundedSetting(locationLike);
   return (setting?rows.find(x=>String(x?.setting||'')===setting):null)||rows[0]||null;
 }
 
@@ -152,12 +157,36 @@ export async function mountGroundedExperience({
   const catalogUrl=selectGroundedCatalogUrl(windowLike.location);
   const fixture=await loadGroundedFixture(fetchFn,catalogUrl);
   const scenes=fixture.scenes;
-  let scene=selectInitialGroundedScene(scenes,windowLike.location);
+  const realLife=catalogUrl===REAL_LIFE_URL;
+  if(realLife){
+    const validation=validateGroundedSceneCatalogV2(fixture);
+    if(!validation.ok)throw new Error('Real-life grounded catalog invalid: '+validation.errors.join('; '));
+  }
+  const desiredSetting=readGroundedSetting(windowLike.location);
+  const capabilities={audio:typeof speechProvider?.playStimulus==='function',visual:true};
+  const selectorScenes=realLife&&desiredSetting
+    ? scenes.filter(item=>String(item?.setting||'')===desiredSetting)
+    : scenes;
+  let selectorReason=realLife?'new-content':'legacy-initial';
+  let scene;
+  if(realLife){
+    const selected=selectNextGroundedScene({
+      scenes:selectorScenes,
+      desiredSetting,
+      capabilities
+    });
+    scene=selected.scene;
+    selectorReason=selected.reason;
+  }else{
+    scene=selectInitialGroundedScene(scenes,windowLike.location);
+  }
   if(!scene)return {mounted:false,reason:'scene-missing'};
   let supportLevel=0;
   let transferCount=0;
   let attemptSequence=0;
   const evidence=[];
+  const completedSceneIds=[];
+  const recentObservations=[];
 
   const section=documentLike.createElement('section');
   section.className='re-grounded';
@@ -203,7 +232,13 @@ export async function mountGroundedExperience({
         attemptId:'RE09S1-'+(++attemptSequence)
       });
       evidence.push(copy(result.evidence));
-      try{windowLike.RussianEngineIntegration?.submitObservation?.(result.evidence,{contentRevision:'grounded-v1',mode:'practice'});}catch(_){};
+      recentObservations.push({
+        sceneId:scene.sceneId,
+        success:result.success===true,
+        supportLevel:Number(result.evidence?.supportLevel)||0,
+        providerFailure:false
+      });
+      try{windowLike.RussianEngineIntegration?.submitObservation?.(result.evidence,{contentRevision:realLife?'real-life-v1':'grounded-v1',mode:'practice'});}catch(_){};
       const status=section.querySelector('[data-re-status]');
       const receiver=section.querySelector('[data-re-receiver]');
       if(result.success){
@@ -212,13 +247,35 @@ export async function mountGroundedExperience({
         if(status){
           status.dataset.state='success';
           status.innerHTML='<span>✓</span>';
-          const next=transferCount===0?nextTransferScene(scenes,scene):null;
-          if(next)status.insertAdjacentHTML('beforeend','<button type="button" class="re-grounded__next" data-re-next>Tiếp tục →</button>');
-          else status.insertAdjacentHTML('beforeend','<span>Готово</span>');
+          let next=null;
+          if(realLife){
+            if(!completedSceneIds.includes(scene.sceneId))completedSceneIds.push(scene.sceneId);
+            const selected=selectNextGroundedScene({
+              scenes:selectorScenes,
+              completedSceneIds,
+              recentObservations,
+              desiredSetting,
+              capabilities
+            });
+            next=selected.scene?.sceneId===scene.sceneId&&selected.reason==='catalog-cycle'?null:selected.scene;
+            selectorReason=selected.reason;
+          }else{
+            next=transferCount===0?nextTransferScene(scenes,scene):null;
+          }
+          if(next){
+            status.dataset.nextSceneId=next.sceneId;
+            status.insertAdjacentHTML('beforeend','<button type="button" class="re-grounded__next" data-re-next>Tiếp tục →</button>');
+          }else status.insertAdjacentHTML('beforeend','<span>Готово</span>');
         }
 
         section.querySelector('[data-re-next]')?.addEventListener('click',()=>{
-          const next=transferCount===0?nextTransferScene(scenes,scene):null;
+          let next=null;
+          if(realLife){
+            const nextSceneId=status?.dataset?.nextSceneId||'';
+            next=selectorScenes.find(item=>item.sceneId===nextSceneId)||null;
+          }else{
+            next=transferCount===0?nextTransferScene(scenes,scene):null;
+          }
           if(!next)return;
           scene=next;supportLevel=0;transferCount++;render();
         },{once:true});
@@ -246,7 +303,9 @@ export async function mountGroundedExperience({
     status:()=>({
       sceneId:scene.sceneId,
       setting:scene.setting||null,
-      catalog:catalogUrl===REAL_LIFE_URL?'real-life-v1':'grounded-v1',
+      catalog:realLife?'real-life-v1':'grounded-v1',
+      selectorReason,
+      completedSceneCount:completedSceneIds.length,
       supportLevel,
       supportStep:GROUNDED_SUPPORT_STEPS[supportLevel],
       transferCount,

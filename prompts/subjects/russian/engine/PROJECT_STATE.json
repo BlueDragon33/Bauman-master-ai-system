@@ -8,7 +8,7 @@
     "russianMasterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
     "engineOrchestrator": "prompts/subjects/russian/engine/RE00_ENGINE_ORCHESTRATOR.md"
   },
-  "status": "PHASE6_RE31_RE35_VALIDATING",
+  "status": "PHASE6_RE26_RE35_PASS_READY_FOR_MERGE",
   "implementationAuthorized": true,
   "activeWorkPackage": "RE35",
   "sequence": [
@@ -112,7 +112,17 @@
     "RE22",
     "RE23",
     "RE24",
-    "RE25"
+    "RE25",
+    "RE26",
+    "RE27",
+    "RE28",
+    "RE29",
+    "RE30",
+    "RE31",
+    "RE32",
+    "RE33",
+    "RE34",
+    "RE35"
   ],
   "targetInternalLevels": 100,
   "learningNorthStar": "RUSSIAN_FIRST_MEANING_FIRST_CONTEXT_FIRST_TRANSLATION_LAST",
@@ -134,7 +144,7 @@
     ]
   },
   "blockers": [],
-  "nextAction": "Validate Phase 6 scene schema, 15-scene real-life pack, adaptive selector and generic renderer. Keep all new Russian content fixture-noncanonical and rollout OPT_IN_FLAG.",
+  "nextAction": "Run exact-head CI on the Phase 5/6 closing commit. If green, merge PR #300 automatically under standing user authorization. Then begin canonical review preparation; do not promote FIXTURE_NONCANONICAL_PENDING_RU03 content without an RU03-authorized human review decision.",
   "re09Validation": {
     "exactHead": "297cfaabea853b059d8e7f4576db192d498056d4",
     "gates": {
@@ -237,5 +247,32 @@
     "pr": 291,
     "mergeCommit": "ffd1db07a7fd121aede14a08fceab6a9d0698235",
     "mainVerifiedIdentical": true
+  },
+  "phase5Validation": {
+    "exactHead": "73b57888f2d549316f9943ff67e0d10d6e941662",
+    "browserEvidenceDelivery": "PASS",
+    "durableOutbox": "PASS",
+    "evidenceDrivenPlanner": "PASS",
+    "privacyPersistenceAudit": "PASS",
+    "sourcePackagedOfflineRegression": "PASS"
+  },
+  "phase6Validation": {
+    "exactHead": "73b57888f2d549316f9943ff67e0d10d6e941662",
+    "sceneSchemaV2": "PASS",
+    "realLifeSceneCount": 15,
+    "settings": [
+      "room",
+      "shop",
+      "metro",
+      "dorm",
+      "university"
+    ],
+    "adaptiveSelector": "PASS",
+    "adaptiveSelectorIntegratedIntoRenderer": true,
+    "sourceGroundedBrowser": "PASS",
+    "packagedGroundedBrowser": "PASS",
+    "trueOffline": "PASS",
+    "rollout": "OPT_IN_FLAG",
+    "canonicalPromotion": false
   }
 }
