@@ -1,0 +1,206 @@
+{
+  "schemaVersion": "RUSSIAN_ENGINE_CONVERSATION_PACK_V2",
+  "status": "FIXTURE_NONCANONICAL_PENDING_RU03",
+  "worlds": [
+    {
+      "worldId": "CW-DORM-V2",
+      "setting": "dorm",
+      "goal": {
+        "id": "dorm-first-contact",
+        "kind": "social-coordination"
+      },
+      "roles": [
+        "learner",
+        "roommate"
+      ],
+      "startNode": "hello",
+      "facts": {
+        "location": "dorm-room",
+        "relationship": "first-meeting"
+      },
+      "nodes": {
+        "hello": {
+          "partnerText": "Здравствуйте. Вы новый сосед?",
+          "functions": [
+            {
+              "id": "greet-confirm",
+              "learnerText": "Здравствуйте. Да."
+            }
+          ],
+          "next": [
+            "pass"
+          ]
+        },
+        "pass": {
+          "partnerText": "Покажите, пожалуйста, пропуск.",
+          "functions": [
+            {
+              "id": "show-pass",
+              "learnerText": "Вот, пожалуйста."
+            }
+          ],
+          "repairOptions": [
+            "ask-repeat",
+            "ask-slower"
+          ],
+          "next": [
+            "done"
+          ]
+        },
+        "done": {
+          "completion": true
+        }
+      }
+    },
+    {
+      "worldId": "CW-SHOP-V2",
+      "setting": "shop",
+      "goal": {
+        "id": "buy-basic-item",
+        "kind": "transaction"
+      },
+      "roles": [
+        "learner",
+        "seller"
+      ],
+      "startNode": "ask",
+      "facts": {
+        "location": "shop",
+        "relationship": "customer-seller"
+      },
+      "nodes": {
+        "ask": {
+          "partnerText": "Здравствуйте. Что вам?",
+          "functions": [
+            {
+              "id": "request-water",
+              "learnerText": "Воду, пожалуйста."
+            }
+          ],
+          "next": [
+            "more"
+          ]
+        },
+        "more": {
+          "partnerText": "Ещё что-нибудь?",
+          "functions": [
+            {
+              "id": "finish-order",
+              "learnerText": "Нет, спасибо."
+            }
+          ],
+          "repairOptions": [
+            "ask-repeat",
+            "ask-slower"
+          ],
+          "next": [
+            "done"
+          ]
+        },
+        "done": {
+          "completion": true
+        }
+      }
+    },
+    {
+      "worldId": "CW-METRO-V2",
+      "setting": "metro",
+      "goal": {
+        "id": "ticket-and-direction",
+        "kind": "transport-coordination"
+      },
+      "roles": [
+        "learner",
+        "staff"
+      ],
+      "startNode": "ticket",
+      "facts": {
+        "location": "metro",
+        "relationship": "passenger-staff"
+      },
+      "nodes": {
+        "ticket": {
+          "partnerText": "Ваш билет, пожалуйста.",
+          "functions": [
+            {
+              "id": "show-ticket",
+              "learnerText": "Вот билет."
+            }
+          ],
+          "next": [
+            "direction"
+          ]
+        },
+        "direction": {
+          "partnerText": "Вам на синюю линию.",
+          "functions": [
+            {
+              "id": "confirm-direction",
+              "learnerText": "Понятно, спасибо."
+            }
+          ],
+          "repairOptions": [
+            "ask-repeat",
+            "ask-slower"
+          ],
+          "next": [
+            "done"
+          ]
+        },
+        "done": {
+          "completion": true
+        }
+      }
+    },
+    {
+      "worldId": "CW-UNIVERSITY-V2",
+      "setting": "university",
+      "goal": {
+        "id": "find-class",
+        "kind": "academic-coordination"
+      },
+      "roles": [
+        "learner",
+        "student"
+      ],
+      "startNode": "class",
+      "facts": {
+        "location": "university",
+        "relationship": "student-student"
+      },
+      "nodes": {
+        "class": {
+          "partnerText": "Вы на занятие?",
+          "functions": [
+            {
+              "id": "confirm-class",
+              "learnerText": "Да, на занятие."
+            }
+          ],
+          "next": [
+            "room"
+          ]
+        },
+        "room": {
+          "partnerText": "Аудитория на втором этаже.",
+          "functions": [
+            {
+              "id": "confirm-room",
+              "learnerText": "Спасибо, понял."
+            }
+          ],
+          "repairOptions": [
+            "ask-repeat",
+            "ask-slower"
+          ],
+          "next": [
+            "done"
+          ]
+        },
+        "done": {
+          "completion": true
+        }
+      }
+    }
+  ]
+}
