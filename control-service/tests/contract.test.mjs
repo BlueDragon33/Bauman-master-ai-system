@@ -229,3 +229,34 @@ test("Bauman Control root is a human-safe redirect to the learning runtime", asy
   assert.match(preview, /Response\.redirect\(/);
   assert.match(preview, /BAUMAN_APP_ORIGIN_NOT_CONFIGURED/);
 });
+
+
+test("Bauman publishes Universal auto-approval without inventing auto-block", async () => {
+  const automation = await source("../src/automation-contract.ts");
+  assert.match(automation, /schema: "application-management\.contract\/v1"/);
+  assert.match(automation, /\/api\/application-management\/contract/);
+  assert.match(automation, /deviceAutoApproval: true/);
+  assert.match(automation, /deviceAutoBlockPending: false/);
+  assert.match(automation, /automationIdempotentCommands: true/);
+  assert.match(automation, /automationOptimisticConcurrency: true/);
+  assert.match(automation, /automation: "\/api\/control\/automation"/);
+});
+
+test("Bauman Universal automation checks replay before optimistic concurrency and reads back", async () => {
+  const automation = await source("../src/automation-contract.ts");
+  const priorIndex = automation.indexOf("const prior = await automationCommandRow(database, commandId)");
+  const currentIndex = automation.indexOf("const current = await readAutomation(database)", priorIndex);
+  assert.ok(priorIndex >= 0 && currentIndex > priorIndex);
+  assert.match(automation.slice(priorIndex, currentIndex), /replayed: true/);
+  assert.match(automation, /WHERE id=1 AND revision=\?/);
+  assert.match(automation, /AUTOMATION_STATE_CONFLICT/);
+  assert.match(automation, /AUTOMATION_READBACK_MISMATCH/);
+  assert.match(automation, /COMMAND_ID_PAYLOAD_MISMATCH/);
+});
+
+test("Bauman legacy automation payload remains supported beside Universal operation", async () => {
+  const automation = await source("../src/automation-contract.ts");
+  assert.match(automation, /payload\.operation === "set-device-automation"/);
+  assert.match(automation, /executeUniversalAutomation/);
+  assert.match(automation, /writeAutomation/);
+});

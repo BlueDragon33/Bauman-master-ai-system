@@ -4,7 +4,7 @@ Use this protocol for every durable Bauman prompt in ordinary ChatGPT chat, Chat
 
 ## Start
 1. Read `prompts/CONSTITUTION.md`.
-2. Read `prompts/constitution/DEPENDENCY_INDEPENDENCE_POLICY.md` when infrastructure/storage/sync/runtime/provider choices are involved.
+2. Read `prompts/constitution/DEPENDENCY_INDEPENDENCE_POLICY.md` and `prompts/DEPENDENCY_BUDGET.json` when infrastructure/storage/sync/runtime/provider choices are involved.
 3. Read `prompts/PROMPT_REGISTRY.json`.
 4. Load only the active Master Prompt + state.
 5. If repository execution is requested, resolve current branch/HEAD and compare against last validated SHA.

@@ -8,9 +8,9 @@
     "russianMasterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
     "engineOrchestrator": "prompts/subjects/russian/engine/RE00_ENGINE_ORCHESTRATOR.md"
   },
-  "status": "PHASE2_RE10_RE15_PASS_AWAITING_MERGE_AUTHORIZATION",
+  "status": "PHASE3_RE16_RE20_PASS_AWAITING_MERGE_AUTHORIZATION",
   "implementationAuthorized": true,
-  "activeWorkPackage": "RE15",
+  "activeWorkPackage": "RE20",
   "sequence": [
     "RE00",
     "RE01",
@@ -27,7 +27,12 @@
     "RE12",
     "RE13",
     "RE14",
-    "RE15"
+    "RE15",
+    "RE16",
+    "RE17",
+    "RE18",
+    "RE19",
+    "RE20"
   ],
   "completedPromptDefinitions": [
     "RE00",
@@ -39,7 +44,18 @@
     "RE06",
     "RE07",
     "RE08",
-    "RE09"
+    "RE09",
+    "RE10",
+    "RE11",
+    "RE12",
+    "RE13",
+    "RE14",
+    "RE15",
+    "RE16",
+    "RE17",
+    "RE18",
+    "RE19",
+    "RE20"
   ],
   "completedImplementationPackages": [
     "RE01",
@@ -56,7 +72,12 @@
     "RE12",
     "RE13",
     "RE14",
-    "RE15"
+    "RE15",
+    "RE16",
+    "RE17",
+    "RE18",
+    "RE19",
+    "RE20"
   ],
   "targetInternalLevels": 100,
   "learningNorthStar": "RUSSIAN_FIRST_MEANING_FIRST_CONTEXT_FIRST_TRANSLATION_LAST",
@@ -78,9 +99,9 @@
     ]
   },
   "blockers": [
-    "USER_AUTHORIZATION_REQUIRED_FOR_MERGE"
+    "USER_AUTHORIZATION_REQUIRED_FOR_MERGE_PR_288"
   ],
-  "nextAction": "User intervention required: authorize merge of Draft PR #285 into main. Do not merge or publish without explicit authorization. Grounded learner-facing slice remains opt-in via ?ruEngine=grounded-v1.",
+  "nextAction": "User authorization required to merge Draft PR #288 into main. Do not enable Russian Engine beyond OPT_IN_FLAG and do not publish/production without separate authorization.",
   "re09Validation": {
     "exactHead": "297cfaabea853b059d8e7f4576db192d498056d4",
     "gates": {
@@ -114,6 +135,37 @@
       "groundedPackaged": "PASS",
       "offlineShell": "PASS",
       "wholeSystem": "PASS"
+    }
+  },
+  "phase2Merge": {
+    "pr": 285,
+    "mergeCommit": "a3a0e09f7bea7a23178dc41ab0c5a319f879b83d",
+    "mainVerifiedIdentical": true
+  },
+  "phase3Validation": {
+    "implementationHead": "dfc4bdfb1aaa55352b7a275c3eeec52fe8b9aa93",
+    "manualChecks": "24/24 PASS",
+    "workflows": {
+      "developmentFastCi": "PASS",
+      "russianReferenceUi": "PASS",
+      "promptControlCenter": "PASS",
+      "universalConstitution": "PASS",
+      "wholeSystemIntegration": "PASS",
+      "futureInterface": "NOT_REQUIRED"
+    },
+    "scopeProof": {
+      "futureInterface": "Phase 3 changes only prompts/subjects/russian/engine/**, subjects/russian/engine/** and subjects/russian/docs/engine/**; no UI or browser-loaded runtime changed."
+    },
+    "browser": {
+      "groundedSource": "PASS",
+      "groundedPackaged": "PASS",
+      "offlineShell": "PASS",
+      "wholeSystem": "PASS"
+    },
+    "rollout": {
+      "state": "OPT_IN_FLAG",
+      "defaultEnabled": false,
+      "productionClaim": false
     }
   }
 }

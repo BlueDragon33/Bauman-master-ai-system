@@ -2,6 +2,16 @@ name: Bauman Control Service CI
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "control-service/**"
+      - ".github/workflows/control-service-ci.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "control-service/**"
+      - ".github/workflows/control-service-ci.yml"
 
 jobs:
   verify:
