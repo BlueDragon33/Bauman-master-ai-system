@@ -101,9 +101,29 @@ try{
   assert.equal(finalState.evidenceCount,10);
   assert.equal(finalState.transferCount,1);
 
-  const engineStorageKeys=await page.evaluate(()=>Object.keys(localStorage).filter(key=>/engine|grounded/i.test(key)));
-  assert.deepEqual(engineStorageKeys,[],'Prepared slice must not persist a parallel Engine learner store');
+  const enginePersistence=await page.evaluate(()=>{
+    const keys=Object.keys(localStorage).filter(key=>/engine|grounded/i.test(key)).sort();
+    const outboxKey='bauman_russian_engine_evidence_outbox_v1';
+    let outbox=null;
+    try{outbox=JSON.parse(localStorage.getItem(outboxKey)||'null')}catch(_){}
+    return {keys,outbox};
+  });
+  assert.deepEqual(
+    enginePersistence.keys,
+    ['bauman_russian_engine_evidence_outbox_v1'],
+    'Grounded slice may persist only the structured Engine evidence outbox'
+  );
+  assert.equal(enginePersistence.outbox?.schema,'RUSSIAN_ENGINE_BROWSER_EVIDENCE_RUNTIME_V1');
+  assert.equal(Array.isArray(enginePersistence.outbox?.rows),true);
+  assert.equal(enginePersistence.outbox.rows.length,10,'Every grounded observation must remain auditable');
+  assert.equal(enginePersistence.outbox.rows.every(row=>row.state==='DELIVERED'),true,'Delivered observations should be acknowledged');
+  const persistedText=JSON.stringify(enginePersistence.outbox);
+  for(const forbidden of ['rawAudio','audioBlob','microphoneStream','mediaStream','paymentCustomerId','billingProviderId','providerPrivateId']){
+    assert.equal(persistedText.includes(forbidden),false,'Forbidden persisted field: '+forbidden);
+  }
+  assert.equal(enginePersistence.keys.some(key=>/learner|mastery/i.test(key)),false,'Engine must not persist a parallel learner/mastery store');
 
+  const engineStorageKeys=enginePersistence.keys;
   await page.screenshot({path:path.join(OUT,'grounded-s1-final.png'),fullPage:true});
   fs.writeFileSync(path.join(OUT,'grounded-s1-evidence.json'),JSON.stringify({
     url:flaggedUrl,
@@ -123,7 +143,8 @@ try{
     transcriptLate:true,
     translationInvented:false,
     transfer:true,
-    noPersistentEngineStore:true,
+    structuredEvidenceOutboxOnly:true,
+    noParallelLearnerMasteryStore:true,
     screenshot:path.join(OUT,'grounded-s1-final.png')
   }));
 }finally{

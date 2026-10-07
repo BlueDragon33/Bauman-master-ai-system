@@ -320,6 +320,61 @@
       ],
       "purpose": "explicit cross-boundary app integration allowlist gate",
       "crossBoundaryWrite": "EXPLICIT_ALLOWLIST_REQUIRED"
+    },
+    "RE26": {
+      "owners": [
+        "RU04",
+        "RU08"
+      ],
+      "constitution": [
+        "C1",
+        "C3",
+        "C4"
+      ],
+      "purpose": "browser evidence delivery into existing RU04 owner"
+    },
+    "RE27": {
+      "owners": [
+        "RU04",
+        "RU08"
+      ],
+      "constitution": [
+        "C1",
+        "C3"
+      ],
+      "purpose": "durable local outbox for Engine observations"
+    },
+    "RE28": {
+      "owners": [
+        "RU04",
+        "RU08"
+      ],
+      "constitution": [
+        "C3",
+        "C4"
+      ],
+      "purpose": "evidence-driven planner feedback"
+    },
+    "RE29": {
+      "owners": [
+        "RU08"
+      ],
+      "constitution": [
+        "C1",
+        "C3"
+      ],
+      "purpose": "runtime privacy and persistence audit"
+    },
+    "RE30": {
+      "owners": [
+        "RU08"
+      ],
+      "constitution": [
+        "C1",
+        "C3",
+        "C4"
+      ],
+      "purpose": "Phase 5 integrated evidence acceptance gate"
     }
   }
 }
