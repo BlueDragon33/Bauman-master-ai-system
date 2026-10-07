@@ -1,0 +1,167 @@
+{
+  "schemaVersion": "1.0.0",
+  "project": "BlueDragon33/Bauman-master-ai-system",
+  "constitutionPolicy": "blueprint-os:universal-century-grade@1.2.0",
+  "defaultPrinciple": "LOCAL_FIRST_OFFLINE_CAPABLE_FREE_OPEN_PREFERRED_PROVIDER_REPLACEABLE",
+  "canonicalDataRule": "Curriculum, assessment, mastery, learner state, content packs and release evidence remain provider-independent canonical data. External services are adapters unless explicitly classified otherwise.",
+  "dependencies": [
+    {
+      "id": "browser-local-runtime",
+      "provider": "Browser/PWA + Web Workers + IndexedDB/OPFS",
+      "runtimeClass": "LOCAL_CORE",
+      "costClass": "local-free",
+      "purpose": [
+        "core learner shell",
+        "offline content",
+        "practice",
+        "local progress/evidence",
+        "export/import"
+      ],
+      "dataBoundary": "user device/browser profile",
+      "canonicalState": "allowed for learner-local state with versioned schema and export path",
+      "degradedBehavior": "baseline path",
+      "exportPath": [
+        "versioned JSON/content packs",
+        "portable local backup"
+      ],
+      "replacementPath": "equivalent browser/local runtime preserving contracts"
+    },
+    {
+      "id": "chatgpt",
+      "provider": "ChatGPT",
+      "runtimeClass": "OPTIONAL_INTELLIGENCE",
+      "costClass": "user-selected",
+      "purpose": [
+        "tutoring",
+        "analysis",
+        "authoring assistance",
+        "planning"
+      ],
+      "dataBoundary": "user-explicit context only",
+      "canonicalState": "forbidden for curriculum truth, mastery truth, assessment truth or sole durable learner state",
+      "degradedBehavior": "core learning, practice, progress and exports continue without AI",
+      "exportPath": [
+        "explicitly saved artifacts only"
+      ],
+      "replacementPath": "non-AI workflows or another advisory provider"
+    },
+    {
+      "id": "github",
+      "provider": "GitHub",
+      "runtimeClass": "OPTIONAL_PUBLISH",
+      "costClass": "free-or-user-plan",
+      "purpose": [
+        "source",
+        "review",
+        "CI",
+        "release provenance"
+      ],
+      "dataBoundary": "source/evidence only",
+      "canonicalState": "source/version authority only; not mutable learner database",
+      "degradedBehavior": "checked-out local system remains usable",
+      "exportPath": [
+        "git clone/mirror"
+      ],
+      "replacementPath": "Git-compatible forge"
+    },
+    {
+      "id": "cloudflare-workers-d1",
+      "provider": "Cloudflare Workers / D1",
+      "runtimeClass": "OPTIONAL_PUBLISH",
+      "costClass": "free-tier-or-paid-optional",
+      "purpose": [
+        "preview/managed hosting",
+        "optional remote state adapter"
+      ],
+      "dataBoundary": "explicitly modeled provider-specific runtime state only",
+      "canonicalState": "must remain exportable and replaceable",
+      "degradedBehavior": "local learner core remains usable; hosted/remote-only features unavailable",
+      "exportPath": [
+        "D1/SQL export",
+        "portable app exports"
+      ],
+      "replacementPath": "local storage or another managed adapter"
+    },
+    {
+      "id": "cloudflare-containers-python",
+      "provider": "Cloudflare Containers",
+      "runtimeClass": "OPTIONAL_PUBLISH",
+      "costClass": "paid-optional",
+      "purpose": [
+        "optional high-fidelity managed CPython execution"
+      ],
+      "dataBoundary": "submitted code/test fixtures required for that execution only",
+      "canonicalState": "forbidden as the sole Python learning runtime",
+      "degradedBehavior": "browser/WASM or local CPython provider remains available for supported tasks",
+      "exportPath": [
+        "source code",
+        "provider-neutral execution request/result contract"
+      ],
+      "replacementPath": "browser Python/WASM or local desktop CPython provider",
+      "status": "demoted-from-mandatory"
+    },
+    {
+      "id": "google-drive",
+      "provider": "Google Drive",
+      "runtimeClass": "OPTIONAL_SYNC",
+      "costClass": "free-tier-or-user-plan",
+      "purpose": [
+        "optional user-controlled backup/sync of content packs, progress snapshots and exports"
+      ],
+      "dataBoundary": "user-selected Bauman files/snapshots only",
+      "canonicalState": "forbidden as sole learner/curriculum/mastery authority",
+      "degradedBehavior": "local app remains usable; sync deferred",
+      "exportPath": [
+        "native files",
+        "versioned JSON/ZIP"
+      ],
+      "replacementPath": "local file backup or another storage adapter",
+      "status": "planned-optional"
+    },
+    {
+      "id": "google-sheets",
+      "provider": "Google Sheets",
+      "runtimeClass": "OPTIONAL_SYNC",
+      "costClass": "free-tier-or-user-plan",
+      "purpose": [
+        "optional human-readable planning/reporting projections"
+      ],
+      "dataBoundary": "non-secret low-risk projection only",
+      "canonicalState": "forbidden for mastery, credentials, private keys, session tokens or transactional learner truth",
+      "degradedBehavior": "reporting projection unavailable only",
+      "exportPath": [
+        "CSV/XLSX/JSON"
+      ],
+      "replacementPath": "local reports/export",
+      "status": "planned-optional"
+    },
+    {
+      "id": "google-apps-script",
+      "provider": "Google Apps Script",
+      "runtimeClass": "OPTIONAL_SYNC",
+      "costClass": "free-tier-or-user-plan",
+      "purpose": [
+        "optional thin sync/coordination bridge"
+      ],
+      "dataBoundary": "least-privilege sanitized payloads",
+      "canonicalState": "forbidden",
+      "degradedBehavior": "queue/manual sync; local core remains available",
+      "exportPath": [
+        "portable sync journal/protocol"
+      ],
+      "replacementPath": "another webhook/sync adapter",
+      "status": "planned-optional"
+    }
+  ],
+  "acceptance": {
+    "sovereigntyGateRequires": [
+      "core learner routes remain usable without paid cloud infrastructure",
+      "curriculum/mastery/assessment truth is provider-independent",
+      "learner data is exportable and recoverable",
+      "optional provider outage disables only that optional capability",
+      "Google integration is optional and replaceable",
+      "managed paid Python execution is optional unless a specific capability gap is explicitly approved"
+    ],
+    "productionAuthority": "separate-explicit-release-gate"
+  }
+}
