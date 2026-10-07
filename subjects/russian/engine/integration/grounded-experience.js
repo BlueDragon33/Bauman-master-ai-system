@@ -15,6 +15,24 @@ const esc=value=>String(value??'').replace(/[&<>"']/g,char=>({
 }[char]));
 
 const FIXTURE_URL=new URL('../content/fixtures/grounded-scenes.v1.json',import.meta.url);
+const REAL_LIFE_URL=new URL('../content/fixtures/real-life-scenes.v1.json',import.meta.url);
+
+export function selectGroundedCatalogUrl(locationLike){
+  try{
+    const url=new URL(locationLike?.href||String(locationLike||''),'https://local.invalid/');
+    return url.searchParams.get('ruWorld')==='real-life-v1'?REAL_LIFE_URL:FIXTURE_URL;
+  }catch(_){return FIXTURE_URL}
+}
+
+export function selectInitialGroundedScene(scenes,locationLike){
+  const rows=Array.isArray(scenes)?scenes:[];
+  let setting='';
+  try{
+    const url=new URL(locationLike?.href||String(locationLike||''),'https://local.invalid/');
+    setting=String(url.searchParams.get('ruSetting')||'').trim();
+  }catch(_){}
+  return (setting?rows.find(x=>String(x?.setting||'')===setting):null)||rows[0]||null;
+}
 
 
 function objectVisualMarkup(item,{compact=false}={}){
@@ -98,8 +116,8 @@ function supportText(level){
   ][Math.max(0,Math.min(10,Number(level)||0))];
 }
 
-export async function loadGroundedFixture(fetchFn=globalThis.fetch){
-  const response=await fetchFn(FIXTURE_URL);
+export async function loadGroundedFixture(fetchFn=globalThis.fetch,sourceUrl=FIXTURE_URL){
+  const response=await fetchFn(sourceUrl);
   if(!response?.ok)throw new Error('Unable to load grounded scene fixture');
   const data=await response.json();
   if(!Array.isArray(data?.scenes)||!data.scenes.length)throw new Error('Grounded scene fixture has no scenes');
@@ -131,9 +149,11 @@ export async function mountGroundedExperience({
   }
 
   ensureStyle(documentLike);
-  const fixture=await loadGroundedFixture(fetchFn);
+  const catalogUrl=selectGroundedCatalogUrl(windowLike.location);
+  const fixture=await loadGroundedFixture(fetchFn,catalogUrl);
   const scenes=fixture.scenes;
-  let scene=scenes[0];
+  let scene=selectInitialGroundedScene(scenes,windowLike.location);
+  if(!scene)return {mounted:false,reason:'scene-missing'};
   let supportLevel=0;
   let transferCount=0;
   let attemptSequence=0;
@@ -225,6 +245,8 @@ export async function mountGroundedExperience({
     schema:'RUSSIAN_ENGINE_GROUNDED_BROWSER_EXPERIENCE_V1',
     status:()=>({
       sceneId:scene.sceneId,
+      setting:scene.setting||null,
+      catalog:catalogUrl===REAL_LIFE_URL?'real-life-v1':'grounded-v1',
       supportLevel,
       supportStep:GROUNDED_SUPPORT_STEPS[supportLevel],
       transferCount,
