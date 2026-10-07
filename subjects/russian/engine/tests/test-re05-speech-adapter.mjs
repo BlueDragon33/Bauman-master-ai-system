@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {createLegacySpeechProvider,SPEECH_PROVIDER_STATUS} from '../speech/legacy-speech-provider.mjs';
+import {createLegacySpeechProvider,SPEECH_PROVIDER_STATUS} from '../speech/legacy-speech-provider.js';
 import {createOralSessionRuntime} from '../speech/oral-session-runtime.mjs';
 import {createScenarioPort} from '../speech/scenario-port.mjs';
 
