@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "RUSSIAN_ENGINE_RE24_ALLOWLIST_V1",
+  "state": "AUTHORIZED_WITHIN_PHASE4",
+  "purpose": "Cache the new opt-in live owner integration module for true-offline parity.",
+  "allowedExistingAppWrites": [
+    "subjects/russian/sw.js"
+  ],
+  "forbiddenExistingAppWrites": [
+    "subjects/russian/index.html",
+    "subjects/russian/assets/assessment-mastery.js",
+    "subjects/russian/assets/adaptive-planner.js",
+    "subjects/russian/assets/core.js",
+    "subjects/russian/assets/learning-state.js"
+  ],
+  "constraints": [
+    "No UI change",
+    "No default-on change",
+    "No mastery/planner owner logic change",
+    "Only cache revision bump and precache entry for Engine live-owner module"
+  ]
+}
