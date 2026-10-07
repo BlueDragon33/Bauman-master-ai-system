@@ -8,9 +8,9 @@
     "russianMasterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
     "engineOrchestrator": "prompts/subjects/russian/engine/RE00_ENGINE_ORCHESTRATOR.md"
   },
-  "status": "PHASE6_RE31_RE35_VALIDATING",
+  "status": "PHASE7_RE36_RE40_VALIDATING",
   "implementationAuthorized": true,
-  "activeWorkPackage": "RE35",
+  "activeWorkPackage": "RE40",
   "sequence": [
     "RE00",
     "RE01",
@@ -47,7 +47,12 @@
     "RE32",
     "RE33",
     "RE34",
-    "RE35"
+    "RE35",
+    "RE36",
+    "RE37",
+    "RE38",
+    "RE39",
+    "RE40"
   ],
   "completedPromptDefinitions": [
     "RE00",
@@ -85,7 +90,12 @@
     "RE32",
     "RE33",
     "RE34",
-    "RE35"
+    "RE35",
+    "RE36",
+    "RE37",
+    "RE38",
+    "RE39",
+    "RE40"
   ],
   "completedImplementationPackages": [
     "RE01",
@@ -134,7 +144,7 @@
     ]
   },
   "blockers": [],
-  "nextAction": "Validate Phase 6 scene schema, 15-scene real-life pack, adaptive selector and generic renderer. Keep all new Russian content fixture-noncanonical and rollout OPT_IN_FLAG.",
+  "nextAction": "Validate Phase 7 four-scenario conversation runtime, listening ladder, repair and speaking-signal honesty. Keep rollout OPT_IN_FLAG.",
   "re09Validation": {
     "exactHead": "297cfaabea853b059d8e7f4576db192d498056d4",
     "gates": {
