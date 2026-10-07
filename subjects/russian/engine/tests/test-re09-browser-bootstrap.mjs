@@ -1,3 +1,4 @@
+import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import {inspectLegacyOwners,bootstrapRussianEngine} from '../integration/browser-bootstrap.mjs';
 
@@ -54,10 +55,17 @@ assert.equal(bridge.schema,'RUSSIAN_ENGINE_BROWSER_BOOTSTRAP_V1');
 assert.equal(bridge.status().ready,true);
 assert.equal(bridge.getSpeechProvider().schema,'RUSSIAN_ENGINE_LEGACY_SPEECH_PROVIDER_V1');
 
+const indexHtml=fs.readFileSync(new URL('../../index.html',import.meta.url),'utf8');
+const integrationTag='<script type="module" src="engine/integration/browser-bootstrap.mjs"></script>';
+const indexIntegrationTagCount=indexHtml.split(integrationTag).length-1;
+assert.equal(indexIntegrationTagCount,1,'Russian Engine bootstrap must be loaded exactly once');
+assert(indexHtml.indexOf('assets/speech-interaction-engine.js')<indexHtml.indexOf(integrationTag),'bootstrap must load after legacy speech owner declaration');
+
 console.log(JSON.stringify({
   ok:true,
   passiveBridge:true,
   existingOwnerMutation:false,
   uiMutation:false,
-  learnerStateMutation:false
+  learnerStateMutation:false,
+  indexIntegrationTagCount
 }));
