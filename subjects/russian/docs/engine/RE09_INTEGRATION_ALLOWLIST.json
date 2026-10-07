@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "RUSSIAN_ENGINE_RE09_ALLOWLIST_V1",
+  "state": "PREPARED_NOT_APPLIED",
+  "engineHeadRequired": "EXACT_HEAD_GREEN_CI",
+  "purpose": "Load a passive Russian Engine browser bridge without changing learner behavior or UI.",
+  "allowedExistingAppWrites": [
+    "subjects/russian/index.html"
+  ],
+  "allowedNewIntegrationFiles": [],
+  "forbidden": [
+    "subjects/russian/assets/core.js",
+    "subjects/russian/assets/assessment-mastery.js",
+    "subjects/russian/assets/adaptive-planner.js",
+    "subjects/russian/assets/learning-state.js",
+    "subjects/russian/assets/speech-interaction-engine.js",
+    "subjects/russian/assets/speaking-coach.js",
+    "general navigation",
+    "global design system",
+    "auth",
+    "storage migration",
+    "production configuration"
+  ],
+  "plannedChange": {
+    "path": "subjects/russian/index.html",
+    "change": "Add one type=module script loading engine/integration/browser-bootstrap.mjs after existing Russian runtime scripts.",
+    "behavior": "PASSIVE_BRIDGE",
+    "uiChange": false,
+    "learnerStateWrite": false,
+    "masteryWrite": false,
+    "featureEnable": false
+  },
+  "rollback": "Remove the single module script tag from subjects/russian/index.html.",
+  "preconditions": [
+    "RE01-RE08 PASS",
+    "exact-head repository CI green",
+    "browser bootstrap test PASS"
+  ]
+}
