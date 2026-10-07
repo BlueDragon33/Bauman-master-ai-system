@@ -8,7 +8,7 @@
     "russianMasterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
     "engineOrchestrator": "prompts/subjects/russian/engine/RE00_ENGINE_ORCHESTRATOR.md"
   },
-  "status": "RE09_OFFLINE_FIX_VALIDATING",
+  "status": "RE09_MIME_FIX_VALIDATING",
   "implementationAuthorized": true,
   "activeWorkPackage": "RE09",
   "sequence": [
@@ -65,5 +65,5 @@
     ]
   },
   "blockers": [],
-  "nextAction": "Revalidate exact post-offline-fix HEAD. Require Russian Reference UI offline audit and all shared gates green. If PASS, mark RE09 passive integration PASS; learner-facing Engine UI remains a later allowlist expansion."
+  "nextAction": "Revalidate exact post-MIME-fix HEAD. Require Russian Reference UI, Future Interface, Development Fast, Whole System Integration, Prompt Control and Universal Constitution gates green. Then mark RE09 passive integration PASS."
 }
