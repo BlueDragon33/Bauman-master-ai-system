@@ -1,6 +1,6 @@
 # Russian Engine Phase 5 — Evidence-integrated learner runtime
 
-State: VALIDATING
+State: **PASS**
 
 ## RE26 — Browser evidence delivery
 Grounded browser observations are delivered through the existing RussianAssessmentMastery APIs only.
@@ -25,3 +25,24 @@ Persistence explicitly rejects raw audio, media streams, provider-private IDs an
 ## RE30 — Acceptance
 Phase 5 PASS requires Engine isolated tests plus source/packaged/offline regression.
 Rollout remains OPT_IN_FLAG.
+
+
+## Exact-head validation
+
+Validated implementation HEAD:
+
+`73b57888f2d549316f9943ff67e0d10d6e941662`
+
+Evidence:
+- Development Fast CI: **PASS**;
+- Russian Engine isolated suite: **PASS**;
+- Universal Constitution Compliance: **PASS**;
+- Russian Reference UI Gate: **PASS**;
+- Whole System Integration Gate: **PASS**;
+- Russian Engine grounded source browser acceptance: **PASS**;
+- Russian Engine grounded packaged browser acceptance: **PASS**;
+- Russian true-offline source + packaged acceptance: **PASS**;
+- Russian P1 source + packaged acceptance: **PASS**;
+- whole-system packaged browser regression: **PASS**.
+
+**RE26–RE30 PASS.**
