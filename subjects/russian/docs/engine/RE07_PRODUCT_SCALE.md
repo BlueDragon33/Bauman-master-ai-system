@@ -1,6 +1,6 @@
 # Russian Engine RE07 — Product / Multi-user Scale Abstractions
 
-State: VALIDATING
+State: **PASS**
 
 ## Purpose
 
@@ -47,11 +47,20 @@ single local profile
 → optional account/sync adapter
 → managed multi-user service when justified
 
-## Exit gate
+## Validation
 
-PASS when:
-- profile isolation is proven;
-- provider/billing IDs cannot become canonical learner identity;
-- entitlement is provider-neutral;
-- duplicate sync journal writes are idempotent;
-- no mandatory backend or billing dependency is introduced.
+Executed against the branch implementation: **18/18 checks PASS**.
+
+Verified:
+- profile A/B storage-key isolation;
+- provider/payment IDs rejected as canonical learner identity;
+- entitlement lookup is provider-neutral;
+- unavailable packs fail cleanly as not-entitled;
+- change journal duplicate IDs are idempotent;
+- pending/synced state works;
+- sync/provider IDs remain outside canonical identity;
+- no mandatory backend or billing dependency exists.
+
+## Exit
+
+**RE07 PASS.**
