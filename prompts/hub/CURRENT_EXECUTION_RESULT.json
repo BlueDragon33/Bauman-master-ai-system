@@ -42,7 +42,14 @@
     "allowedRuntimeChangesFromMain": "NONE",
     "activePacket": "UNCHANGED_r5",
     "action": "New Codex branch preserves prior branch; all 3 completed local commits rebased onto current main. Shared CI merge retained upstream Russian Engine steps. No subject paths edited or inspected.",
-    "implementationRepeated": false
+    "implementationRepeated": false,
+    "observedMainAfterBranchFork": "efb01eac7044cebc0b59fc74b559ab61a6e79ec9",
+    "postForkChangedPaths": [
+      "prompts/DEPENDENCY_BUDGET.json",
+      "prompts/EXECUTION_PROTOCOL.md"
+    ],
+    "postForkOwnedRuntimeAndPacketChanges": "NONE",
+    "postForkPolicyReview": "Read updated execution protocol and dependency budget from main; existing browser/IndexedDB/local-free/exportable design satisfies LOCAL_CORE. Fork remains exact beforeSha a3a0e09f; PR remains mergeable, no force push or main merge."
   },
   "tests": [
     {
@@ -482,9 +489,49 @@
     "defaultGate": "tests/system-browser-acceptance.mjs",
     "reason": "Required default system-browser-acceptance and full production-style subject package assertions read subject-private storage/DOM. CODEX_START/API boundary forbids those reads for this r5 Hub packet. Public fixtures pass but are explicitly not full real-subject evidence.",
     "hubAffectedIntegration": "PASS",
-    "fullPackagedRealSubjectIntegration": "PENDING_SEPARATE_AUTHORITY_OR_EXISTING_CI_EVIDENCE"
+    "fullPackagedRealSubjectIntegration": "PENDING_SEPARATE_AUTHORITY_OR_EXISTING_CI_EVIDENCE",
+    "ci": {
+      "status": "FAIL",
+      "headSha": "b5b1ae8fd97d61112dbd020113e0bba209b88f62",
+      "runId": 37587498606,
+      "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37587498606",
+      "staticJob": "FAIL_AT_LEGACY_DSJ_ASSERTIONS",
+      "browserSystemAcceptance": "SKIPPED_BY_FAILED_STATIC_PREREQUISITE",
+      "russianAcceptance": "SKIPPED_BY_FAILED_STATIC_PREREQUISITE",
+      "localReproduction": {
+        "command": "node scripts/validate-deep-study-journal-v1.js",
+        "exitCode": 1,
+        "errors": [
+          "Backup must continue serializing whole learner state",
+          "Restore must continue normalizing imported learner state"
+        ]
+      },
+      "otherChecks": "Prompt Control, Universal Constitution, Development Fast, Dependency Independence, Subjects Reference, Thesis Reference, Readable Typography and Future Interface CI reported SUCCESS"
+    }
   },
   "blockers": [
+    {
+      "id": "CI_LEGACY_DSJ_VALIDATOR_OUTSIDE_ALLOWLIST",
+      "type": "CROSS_DOMAIN_TEST_CONTRACT",
+      "runtimeBlocked": false,
+      "path": "scripts/validate-deep-study-journal-v1.js",
+      "lines": [
+        15,
+        16
+      ],
+      "ciRunId": 37587498606,
+      "ciUrl": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37587498606",
+      "testedCiHead": "b5b1ae8fd97d61112dbd020113e0bba209b88f62",
+      "step": "Validate Deep Study Journal boundaries",
+      "command": "node scripts/validate-deep-study-journal-v1.js",
+      "status": "FAIL_REPRODUCED_LOCALLY",
+      "errors": [
+        "Backup must continue serializing whole learner state",
+        "Restore must continue normalizing imported learner state"
+      ],
+      "rootCause": "Validator matches legacy implementation strings JSON.stringify({state,users:readUsers()}) and state=normalizeState(data.state). The r5 facade now exports a versioned scoped bundle without account verifiers and normalizes inside importBundle. Complete DSJ backup/restore browser assertions pass.",
+      "resolution": "Update the validator contract under its owner/allowlist authority, preserving all DSJ invariants and checking the facade/versioned backup; then rerun the original system CI. Do not reintroduce ordinary credential export or add inert strings to obtain PASS."
+    },
     {
       "id": "FULL_SYSTEM_GATE_SCOPE_CONFLICT",
       "type": "CROSS_DOMAIN_EVIDENCE_GATE",
@@ -602,7 +649,11 @@
     "branch": "codex/hub-storage-20261007-materialize",
     "sourceRuntimeAndTestBlobsUnchanged": true,
     "upstreamSharedCIAdditionsPreserved": true,
-    "remoteRequirement": "Push this branch plus execution result, verify exact remote SHA/file contents, then open an unmerged draft PR into main."
+    "remoteRequirement": "Push this branch plus execution result, verify exact remote SHA/file contents, then open an unmerged draft PR into main.",
+    "prNumber": 289,
+    "prUrl": "https://github.com/BlueDragon33/Bauman-master-ai-system/pull/289",
+    "initialPushedHead": "b5b1ae8fd97d61112dbd020113e0bba209b88f62",
+    "githubBranchAndResultExist": true
   },
   "targetedTests": [
     {
@@ -896,7 +947,25 @@
       "status": "NOT_RUN_BOUNDARY_CONFLICT"
     },
     "originalCIGatesPreserved": true,
-    "fullSystemPassClaimed": false
+    "fullSystemPassClaimed": false,
+    "ci": {
+      "status": "FAIL",
+      "headSha": "b5b1ae8fd97d61112dbd020113e0bba209b88f62",
+      "runId": 37587498606,
+      "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37587498606",
+      "staticJob": "FAIL_AT_LEGACY_DSJ_ASSERTIONS",
+      "browserSystemAcceptance": "SKIPPED_BY_FAILED_STATIC_PREREQUISITE",
+      "russianAcceptance": "SKIPPED_BY_FAILED_STATIC_PREREQUISITE",
+      "localReproduction": {
+        "command": "node scripts/validate-deep-study-journal-v1.js",
+        "exitCode": 1,
+        "errors": [
+          "Backup must continue serializing whole learner state",
+          "Restore must continue normalizing imported learner state"
+        ]
+      },
+      "otherChecks": "Prompt Control, Universal Constitution, Development Fast, Dependency Independence, Subjects Reference, Thesis Reference, Readable Typography and Future Interface CI reported SUCCESS"
+    }
   },
   "releaseStateDetail": {
     "target": "LOCAL_STABLE",
@@ -904,11 +973,20 @@
     "hubLocalValidated": true,
     "fullSystemValidated": false,
     "blockerIds": [
+      "CI_LEGACY_DSJ_VALIDATOR_OUTSIDE_ALLOWLIST",
       "FULL_SYSTEM_GATE_SCOPE_CONFLICT"
     ],
     "reviewRequired": true,
     "productionDeployed": false,
     "mainMerged": false
   },
-  "mainMerged": false
+  "mainMerged": false,
+  "additionalCITests": [
+    {
+      "command": "node scripts/validate-deep-study-journal-v1.js",
+      "status": "FAIL",
+      "headSha": "b5b1ae8fd97d61112dbd020113e0bba209b88f62",
+      "ownerOutsidePacket": true
+    }
+  ]
 }

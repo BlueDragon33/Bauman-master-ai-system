@@ -143,6 +143,28 @@
   "activePacket": "prompts/hub/CURRENT_WORK_PACKET.json",
   "blockers": [
     {
+      "id": "CI_LEGACY_DSJ_VALIDATOR_OUTSIDE_ALLOWLIST",
+      "type": "CROSS_DOMAIN_TEST_CONTRACT",
+      "runtimeBlocked": false,
+      "path": "scripts/validate-deep-study-journal-v1.js",
+      "lines": [
+        15,
+        16
+      ],
+      "ciRunId": 37587498606,
+      "ciUrl": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37587498606",
+      "testedCiHead": "b5b1ae8fd97d61112dbd020113e0bba209b88f62",
+      "step": "Validate Deep Study Journal boundaries",
+      "command": "node scripts/validate-deep-study-journal-v1.js",
+      "status": "FAIL_REPRODUCED_LOCALLY",
+      "errors": [
+        "Backup must continue serializing whole learner state",
+        "Restore must continue normalizing imported learner state"
+      ],
+      "rootCause": "Validator matches legacy implementation strings JSON.stringify({state,users:readUsers()}) and state=normalizeState(data.state). The r5 facade now exports a versioned scoped bundle without account verifiers and normalizes inside importBundle. Complete DSJ backup/restore browser assertions pass.",
+      "resolution": "Update the validator contract under its owner/allowlist authority, preserving all DSJ invariants and checking the facade/versioned backup; then rerun the original system CI. Do not reintroduce ordinary credential export or add inert strings to obtain PASS."
+    },
+    {
       "id": "FULL_SYSTEM_GATE_SCOPE_CONFLICT",
       "type": "CROSS_DOMAIN_EVIDENCE_GATE",
       "runtimeBlocked": false,
@@ -151,11 +173,11 @@
     }
   ],
   "externalBlockers": [],
-  "nextAction": "Review the GitHub materialization PR at its exact tested HEAD; resolve only the full-system evidence boundary. Do not merge or deploy production.",
+  "nextAction": "Review PR #289 and its exact runtime/evidence heads. Class A must update the legacy DSJ validator under its own authority, then obtain the original full-system gate evidence; keep this PR unmerged and production undeployed.",
   "mainSyncStatus": "rebased_on_current_main",
   "governanceMergedSha": "6ef5e8814ac841f927f079e18d5062274ee0d847",
   "lastReviewedRuntimeSha": "6112ba88784038e4ab1b81642657ac0d79ab143d",
-  "currentHeadSha": "a3a0e09f7bea7a23178dc41ab0c5a319f879b83d",
+  "currentHeadSha": "efb01eac7044cebc0b59fc74b559ab61a6e79ec9",
   "testedRuntimeHead": "6112ba88784038e4ab1b81642657ac0d79ab143d",
   "executionResult": "prompts/hub/CURRENT_EXECUTION_RESULT.json",
   "lastExecution": {
@@ -166,7 +188,27 @@
     "reconciledMainSha": "a3a0e09f7bea7a23178dc41ab0c5a319f879b83d",
     "testedRuntimeHead": "6112ba88784038e4ab1b81642657ac0d79ab143d",
     "result": "IMPLEMENTATION_REVALIDATED_RELEASE_BLOCKED",
-    "productionDeployed": false
+    "productionDeployed": false,
+    "prNumber": 289,
+    "prUrl": "https://github.com/BlueDragon33/Bauman-master-ai-system/pull/289",
+    "ci": {
+      "status": "FAIL",
+      "headSha": "b5b1ae8fd97d61112dbd020113e0bba209b88f62",
+      "runId": 37587498606,
+      "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37587498606",
+      "staticJob": "FAIL_AT_LEGACY_DSJ_ASSERTIONS",
+      "browserSystemAcceptance": "SKIPPED_BY_FAILED_STATIC_PREREQUISITE",
+      "russianAcceptance": "SKIPPED_BY_FAILED_STATIC_PREREQUISITE",
+      "localReproduction": {
+        "command": "node scripts/validate-deep-study-journal-v1.js",
+        "exitCode": 1,
+        "errors": [
+          "Backup must continue serializing whole learner state",
+          "Restore must continue normalizing imported learner state"
+        ]
+      },
+      "otherChecks": "Prompt Control, Universal Constitution, Development Fast, Dependency Independence, Subjects Reference, Thesis Reference, Readable Typography and Future Interface CI reported SUCCESS"
+    }
   },
   "packetMergeSha": "c43dfd115283973b8e83a0b0e3d89eafcf8eb6b0",
   "activePacketStatus": "BLOCKED",
@@ -193,7 +235,7 @@
   "codexStart": "prompts/hub/codex/CODEX_START.md",
   "lastPromptReviewSha": "19db67bc0975e6fc0c4af0a31111ad3b30e6bfe7",
   "lastRuntimeReviewSha": "6112ba88784038e4ab1b81642657ac0d79ab143d",
-  "observedMainSha": "a3a0e09f7bea7a23178dc41ab0c5a319f879b83d",
+  "observedMainSha": "efb01eac7044cebc0b59fc74b559ab61a6e79ec9",
   "currentHeadSemantics": "last observed main SHA at prompt-governance review; not a self-referential state-file commit SHA",
   "activePacketId": "HUB-STORAGE-20261006-001",
   "activePacketRevision": 5,
@@ -238,6 +280,7 @@
     "hubLocalValidated": true,
     "fullSystemValidated": false,
     "blockerIds": [
+      "CI_LEGACY_DSJ_VALIDATOR_OUTSIDE_ALLOWLIST",
       "FULL_SYSTEM_GATE_SCOPE_CONFLICT"
     ],
     "reviewRequired": true,
