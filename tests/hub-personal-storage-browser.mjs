@@ -8,6 +8,21 @@ const OUT=process.env.BAUMAN_E2E_ARTIFACT_DIR||'artifacts/hub-storage/browser';
 fs.mkdirSync(OUT,{recursive:true});
 const checks=[];
 const browser=await chromium.launch({headless:true,...(process.env.BAUMAN_CHROME_PATH?{executablePath:process.env.BAUMAN_CHROME_PATH}:{})});
+async function approvedDeviceFixture(page){
+  // Exercise managed packages through their declared Device Gate API; never
+  // force a runtime access flag or substitute a standalone identity for managed.
+  const deviceId='d'.repeat(64),deviceCode='BM-STORAGE-E2E';
+  const cors={'access-control-allow-origin':'*','access-control-allow-methods':'GET,POST,OPTIONS','access-control-allow-headers':'content-type,authorization','cache-control':'no-store'};
+  await page.route('http://127.0.0.1:3003/**',async route=>{
+    if(route.request().method()==='OPTIONS')return route.fulfill({status:204,headers:cors,body:''});
+    const path=new URL(route.request().url()).pathname,headers={...cors,'content-type':'application/json'};
+    const send=body=>route.fulfill({status:200,headers,body:JSON.stringify(body)});
+    if(path==='/api/device/register'||path==='/api/device/status'||path==='/api/device/heartbeat')return send({device:{deviceId,deviceCode,status:'approved'}});
+    if(path==='/api/device/challenge')return send({challengeId:'storage-e2e',signingInput:`storage-e2e:${deviceId}`});
+    if(path==='/api/device/verify')return send({sessionToken:'bm1.storage-e2e',expiresAt:Date.now()+3600000,device:{deviceId,deviceCode,status:'approved'}});
+    return route.fulfill({status:404,headers,body:'{}'});
+  });
+}
 async function fixture(){
   const context=await browser.newContext();
   const page=await context.newPage();
@@ -113,8 +128,34 @@ try{
   assert.deepEqual(staleWrite,{rejected:true,progress:24},'A stale tab must reject rather than overwrite newer canonical data');await secondTab.close();checks.push('two tabs reject stale canonical writes / reload retains newer data');
   await context.close();
 
-  const freshContext=await browser.newContext(),freshPage=await freshContext.newPage();
+  let freshContext=await browser.newContext(),freshPage=await freshContext.newPage();
+  await approvedDeviceFixture(freshPage);
   await freshPage.goto(BASE);await freshPage.waitForFunction(()=>document.documentElement.dataset.hubPersonalReady==='true');
+  const managedRoot=await freshPage.evaluate(()=>document.querySelector('meta[name="bauman-access-mode"]')?.content==='managed');
+  if(managedRoot){
+    const managedRestore=await freshPage.evaluate(async bundle=>{
+      const s=window.BAUMAN_HUB_PERSONAL_STORE,key='bauman_main_all_phases_subjects_v1',note='bauman_schedule_reference_notes_v1',before=s.scopeId;
+      const main=s.get(key);main.progress.math=37;await s.set(key,main);await s.set(note,[{id:'managed-note',text:'Keep managed'}]);
+      let crossScopeRejected=false;try{await s.importBundle(bundle,{allowEmptyStandaloneProfileRecovery:true})}catch{crossScopeRejected=true}
+      const kept=s.get(note)[0].text,own=await s.exportBundle();await s.set(note,[]);await s.importBundle(own);
+      return{before,scope:s.scopeId,crossScopeRejected,kept,restoredNote:s.get(note)[0].text,progress:s.get(key).progress.math,profile:s.currentUser()};
+    },migration.bundle);
+    assert.equal(managedRestore.crossScopeRejected,true,'Managed backup restore must never adopt an unrelated standalone identity');
+    assert.equal(managedRestore.scope,managedRestore.before);assert.equal(managedRestore.profile.managedBy,'app-manager');
+    assert.equal(managedRestore.kept,'Keep managed');assert.equal(managedRestore.restoredNote,'Keep managed');assert.equal(managedRestore.progress,37);
+    checks.push('managed package rejects cross-profile adoption / same-scope backup round-trip retains data and authority');
+    await freshContext.close();freshContext=await browser.newContext();freshPage=await freshContext.newPage();
+    await approvedDeviceFixture(freshPage);
+    // Exercise standalone portability as well, using the same packaged assets
+    // in an explicitly standalone Hub HTML fixture, without changing the package.
+    await freshPage.route(BASE,async route=>{
+      const response=await route.fetch(),html=await response.text();
+      assert.ok(html.includes('content="managed"'),'Managed package fixture must declare its access mode');
+      await route.fulfill({response,body:html.replace(/(<meta name="bauman-access-mode" content=")[^"]*(">)/,'$1standalone$2')});
+    });
+    await freshPage.goto(BASE);await freshPage.waitForFunction(()=>document.documentElement.dataset.hubPersonalReady==='true');
+    assert.equal(await freshPage.evaluate(()=>document.querySelector('meta[name="bauman-access-mode"]').content),'standalone');
+  }
   const freshRestore=await freshPage.evaluate(async bundle=>{
     const s=window.BAUMAN_HUB_PERSONAL_STORE,before=s.scopeId,note='bauman_schedule_reference_notes_v1';
     await s.set(note,[{id:'existing',text:'Keep'}]);let populatedRejected=false;try{await s.importBundle(bundle,{allowEmptyStandaloneProfileRecovery:true})}catch{populatedRejected=true}
@@ -176,6 +217,7 @@ try{
   assert.ok(!JSON.stringify(isolation.backup).includes('private-other@example.com'),'Backup must never include another profile even in a legacy-shaped academic record');assert.equal(isolation.embeddedRejected,true,'Canonical record must not accept embedded binary payloads');checks.push('scoped writes / binary state invariant');
   await retry.context.close();
   const recoveryContext=await browser.newContext(),recoveryPage=await recoveryContext.newPage(),recoveryErrors=[];
+  await approvedDeviceFixture(recoveryPage);
   recoveryPage.on('pageerror',e=>recoveryErrors.push(String(e)));
   await recoveryPage.addInitScript(()=>{
     localStorage.setItem('bauman_main_all_phases_subjects_v1',JSON.stringify({progress:{math:42}}));
@@ -184,11 +226,24 @@ try{
   });
   await recoveryPage.goto(BASE);
   await recoveryPage.waitForFunction(()=>document.documentElement.dataset.hubPersonalReady==='true');
+  await recoveryPage.waitForFunction(()=>!document.getElementById('appRoot').classList.contains('hidden'));
   const recovered=await recoveryPage.evaluate(()=>({progress:state.progress.math,readOnly:window.BAUMAN_HUB_PERSONAL_STORE.readOnly,shown:!document.getElementById('appRoot').classList.contains('hidden'),inert:document.getElementById('appRoot').inert,banner:!document.getElementById('hubPersonalStorageStatus').hidden}));
   assert.deepEqual(recovered,{progress:42,readOnly:true,shown:true,inert:true,banner:true});assert.deepEqual(recoveryErrors,[]);
   await recoveryContext.close();checks.push('real Hub migration failure / read-only recovery / visible status / no reset');
   const hubContext=await browser.newContext({viewport:{width:1440,height:900}}),hubPage=await hubContext.newPage(),hubErrors=[];
-  hubPage.on('pageerror',e=>hubErrors.push(String(e)));hubPage.on('console',m=>{if(m.type()==='error')hubErrors.push(m.text())});
+  let externalProvidersOffline=false;
+  const expectedOfflineRequests=[],expectedOfflineConsole=[];
+  await approvedDeviceFixture(hubPage);
+  hubPage.on('pageerror',e=>hubErrors.push(String(e)));
+  hubPage.on('requestfailed',request=>{
+    if(externalProvidersOffline&&new URL(request.url()).origin!==new URL(BASE).origin&&request.failure()?.errorText==='net::ERR_INTERNET_DISCONNECTED')expectedOfflineRequests.push(request.url());
+  });
+  hubPage.on('console',message=>{
+    if(message.type()!=='error')return;
+    const url=message.location().url;
+    if(externalProvidersOffline&&url&&new URL(url).origin!==new URL(BASE).origin&&message.text().includes('net::ERR_INTERNET_DISCONNECTED'))expectedOfflineConsole.push({url,text:message.text()});
+    else hubErrors.push(message.text());
+  });
   await hubPage.addInitScript(()=>{
     if(window.top!==window)return;
     localStorage.setItem('bauman_current_user_fullcode_v1',JSON.stringify({email:'learner@example.com',name:'Learner',role:'admin'}));
@@ -216,6 +271,7 @@ try{
   await hubPage.evaluate(()=>closeModal());
   // Offline means the local runtime remains available while every external
   // provider is unreachable. No subject or external-provider data is accessed.
+  externalProvidersOffline=true;
   await hubPage.route('**/*',route=>new URL(route.request().url()).origin===new URL(BASE).origin?route.continue():route.abort('internetdisconnected'));
   await hubPage.reload();await hubPage.waitForFunction(()=>document.documentElement.dataset.hubPersonalReady==='true');
   assert.equal(await hubPage.evaluate(()=>state.progress.math),0);
@@ -226,8 +282,10 @@ try{
   }
   await hubPage.setViewportSize({width:390,height:844});
   for(const route of ['home','roadmap','subjects','schedule','research']){await hubPage.evaluate(route=>app.page(route,false),route);assert.ok(await hubPage.evaluate(()=>document.documentElement.scrollWidth<=document.documentElement.clientWidth+1),`Mobile overflow: ${route}`)}
-  assert.deepEqual(hubErrors,[]);await hubPage.screenshot({path:path.join(OUT,'storage-mobile-research.png'),fullPage:true});
+  assert.deepEqual(hubErrors,[]);
+  for(const error of expectedOfflineConsole)assert.ok(expectedOfflineRequests.includes(error.url),'Only a confirmed deliberately aborted external request may explain offline console output');
+  await hubPage.screenshot({path:path.join(OUT,'storage-mobile-research.png'),fullPage:true});
   await hubContext.close();checks.push('real Hub complete migration / portable restore / binary open / five routes desktop-mobile / offline local reload');
-  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',head:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),checks},null,2));
+  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',head:execFileSync('git',['rev-parse','HEAD'],{encoding:'utf8'}).trim(),checks,expectedOfflineRequests,expectedOfflineConsole},null,2));
   console.log('HUB_PERSONAL_STORAGE_BROWSER_PASS '+checks.length);
 }finally{await browser.close()}
