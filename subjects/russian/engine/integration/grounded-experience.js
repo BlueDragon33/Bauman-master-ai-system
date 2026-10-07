@@ -142,12 +142,12 @@ export async function mountGroundedExperience({
         if(status){
           status.dataset.state='success';
           status.innerHTML='<span>✓</span>';
-          const next=nextTransferScene(scenes,scene);
+          const next=transferCount===0?nextTransferScene(scenes,scene):null;
           if(next)status.insertAdjacentHTML('beforeend','<button type="button" class="re-grounded__next" data-re-next>Tiếp tục →</button>');
           else status.insertAdjacentHTML('beforeend','<span>Готово</span>');
         }
         section.querySelector('[data-re-next]')?.addEventListener('click',()=>{
-          const next=nextTransferScene(scenes,scene);
+          const next=transferCount===0?nextTransferScene(scenes,scene):null;
           if(!next)return;
           scene=next;supportLevel=0;transferCount++;render();
         },{once:true});
