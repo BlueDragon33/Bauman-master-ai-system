@@ -61,13 +61,19 @@ const indexIntegrationTagCount=indexHtml.split(integrationTag).length-1;
 const sw=fs.readFileSync(new URL('../../sw.js',import.meta.url),'utf8');
 const offlineShellHasBootstrap=sw.includes("'./engine/integration/browser-bootstrap.js'");
 const offlineShellHasSpeechProvider=sw.includes("'./engine/speech/legacy-speech-provider.js'");
-const offlineCacheVersionBumped=/russian-app-shell-v13-engine-js-module-mime/.test(sw);
+const offlineShellHasGroundedModel=sw.includes("'./engine/integration/grounded-browser-model.js'");
+const offlineShellHasGroundedExperience=sw.includes("'./engine/integration/grounded-experience.js'");
+const offlineShellHasGroundedFixture=sw.includes("'./engine/content/fixtures/grounded-scenes.v1.json'");
+const offlineCacheVersionBumped=/russian-app-shell-v\d+-engine-/.test(sw);
 
 assert.equal(indexIntegrationTagCount,1,'Russian Engine bootstrap must be loaded exactly once');
 assert(indexHtml.indexOf('assets/speech-interaction-engine.js')<indexHtml.indexOf(integrationTag),'bootstrap must load after legacy speech owner declaration');
 assert.equal(offlineShellHasBootstrap,true,'offline shell must cache Engine bootstrap');
 assert.equal(offlineShellHasSpeechProvider,true,'offline shell must cache bootstrap dependency');
-assert.equal(offlineCacheVersionBumped,true,'offline shell cache version must bump for Engine bridge');
+assert.equal(offlineShellHasGroundedModel,true,'offline shell must cache grounded browser model');
+assert.equal(offlineShellHasGroundedExperience,true,'offline shell must cache grounded browser experience');
+assert.equal(offlineShellHasGroundedFixture,true,'offline shell must cache grounded scene fixture');
+assert.equal(offlineCacheVersionBumped,true,'offline shell cache version must use an Engine cache revision');
 
 console.log(JSON.stringify({
   ok:true,
@@ -78,5 +84,8 @@ console.log(JSON.stringify({
   indexIntegrationTagCount,
   offlineShellHasBootstrap,
   offlineShellHasSpeechProvider,
+  offlineShellHasGroundedModel,
+  offlineShellHasGroundedExperience,
+  offlineShellHasGroundedFixture,
   offlineCacheVersionBumped
 }));
