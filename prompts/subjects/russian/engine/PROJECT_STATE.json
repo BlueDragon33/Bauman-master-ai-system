@@ -8,9 +8,9 @@
     "russianMasterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
     "engineOrchestrator": "prompts/subjects/russian/engine/RE00_ENGINE_ORCHESTRATOR.md"
   },
-  "status": "RE07_PASS_RE08_ACTIVE",
+  "status": "RE08_PASS_RE09_PRECHECK",
   "implementationAuthorized": true,
-  "activeWorkPackage": "RE08",
+  "activeWorkPackage": "RE09",
   "sequence": [
     "RE00",
     "RE01",
@@ -42,7 +42,8 @@
     "RE04",
     "RE05",
     "RE06",
-    "RE07"
+    "RE07",
+    "RE08"
   ],
   "targetInternalLevels": 100,
   "learningNorthStar": "RUSSIAN_FIRST_MEANING_FIRST_CONTEXT_FIRST_TRANSLATION_LAST",
@@ -64,5 +65,5 @@
     ]
   },
   "blockers": [],
-  "nextAction": "Execute RE08 Engine quality gate: validate 100-level scale, contract integrity, no forbidden arbitrary eval, privacy defaults, provider-failure separation and boundary confinement. Keep release/integration separate."
+  "nextAction": "Run exact-head repository CI precheck. If green, execute RE09 with an explicit minimal allowlist only; preserve current UI/runtime behavior and use a feature-gated bridge."
 }
