@@ -146,6 +146,47 @@ try{
     renderedSettings.push({setting,sceneId:state.sceneId,spoken});
   }
 
+  const conversationSettings=[];
+  for(const setting of ['dorm','shop','metro','university']){
+    const convUrl=new URL(
+      'subjects/russian/index.html?ruEngine=conversation-v1&ruScenario='+encodeURIComponent(setting),
+      BASE
+    ).href;
+    await page.goto(convUrl,{waitUntil:'domcontentloaded',timeout:30000});
+    await page.waitForFunction(()=>window.RussianEngineIntegration?.status?.().conversation?.state==='READY',null,{timeout:15000});
+    const startStatus=await page.evaluate(()=>window.RussianEngineIntegration.status().conversation.status);
+    assert.equal(startStatus.setting,setting);
+    assert.equal(startStatus.completed,false);
+    assert.equal(await page.locator('[data-russian-engine-grounded="1"]').count(),0);
+    assert.equal(await page.locator('[data-russian-engine-conversation-card="1"]').count(),1);
+    assert.equal(await page.locator('.re-conv__transcript').count(),0);
+
+    await page.locator('[data-re-rate="0.7"]').click();
+    await page.waitForFunction(()=>window.__RE_TTS?.count>=1);
+    let tts=await page.evaluate(()=>window.__RE_TTS.last);
+    assert.equal(tts.rate,.7);
+    assert.match(tts.text,/[А-Яа-яЁё]/);
+
+    await page.locator('[data-re-transcript]').click();
+    assert.equal(await page.locator('.re-conv__transcript').count(),1);
+
+    await page.locator('[data-re-function]').first().click();
+    await page.waitForTimeout(30);
+    assert.equal(await page.locator('[data-re-repair="ask-slower"]').count(),1);
+    await page.locator('[data-re-repair="ask-slower"]').click();
+    await page.waitForTimeout(30);
+    tts=await page.evaluate(()=>window.__RE_TTS.last);
+    assert.equal(tts.rate,.7);
+
+    await page.locator('[data-re-function]').first().click();
+    await page.waitForFunction(()=>window.RussianEngineIntegration.status().conversation.status.completed===true);
+    const done=await page.evaluate(()=>window.RussianEngineIntegration.status().conversation.status);
+    assert.equal(done.completed,true);
+    assert.equal(done.repairCount,1);
+    assert.equal(done.evidenceCount,2);
+    conversationSettings.push(setting);
+  }
+
   await page.screenshot({path:path.join(OUT,'grounded-s1-final.png'),fullPage:true});
   fs.writeFileSync(path.join(OUT,'grounded-s1-evidence.json'),JSON.stringify({
     url:flaggedUrl,
@@ -169,6 +210,7 @@ try{
     structuredEvidenceOutboxOnly:true,
     noParallelLearnerMasteryStore:true,
     realLifeSettingsRendered:renderedSettings.length,
+    conversationScenariosRendered:conversationSettings.length,
     screenshot:path.join(OUT,'grounded-s1-final.png')
   }));
 }finally{
