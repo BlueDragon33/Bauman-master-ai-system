@@ -3,11 +3,11 @@
   "domain": "hub",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/hub/HUB_MASTER_PROMPT.md",
-  "status": "READY_FOR_CODEX",
-  "lifecycle": "SUBJECT_INTEGRATION_R1_READY_FOR_CODEX",
+  "status": "IN_CODEX",
+  "lifecycle": "SUBJECT_INTEGRATION_R1_IN_CODEX",
   "baselineMainSha": "2951cc86378056456110abedffe305c8f99d0c42",
   "lastReviewedSha": "19db67bc0975e6fc0c4af0a31111ad3b30e6bfe7",
-  "workingBranch": null,
+  "workingBranch": "codex/hub-subject-integration-20261007",
   "canonicalRoutes": [
     "home",
     "roadmap",
@@ -215,7 +215,7 @@
   "mainSyncStatus": "merged_current_main_into_existing_pr_branch",
   "governanceMergedSha": "6ef5e8814ac841f927f079e18d5062274ee0d847",
   "lastReviewedRuntimeSha": "5e5a6eacf7b807b3ecad636a4c735899c7ec9963",
-  "currentHeadSha": "23973e7106b9ac511f91c523d8f8bffd07c17530",
+  "currentHeadSha": "84215c8b1ec32a29dd9f72291060418ad292d575",
   "testedRuntimeHead": "5e5a6eacf7b807b3ecad636a4c735899c7ec9963",
   "executionResult": "prompts/hub/CURRENT_EXECUTION_RESULT.json",
   "lastExecution": {
@@ -228,7 +228,7 @@
     "productionDeployed": false
   },
   "packetMergeSha": "c43dfd115283973b8e83a0b0e3d89eafcf8eb6b0",
-  "activePacketStatus": "READY_FOR_CODEX",
+  "activePacketStatus": "IN_CODEX",
   "chatReview": {
     "decision": "READY_FOR_CODEX",
     "reviewedAt": "2026-10-07",
@@ -247,7 +247,7 @@
   "codexStart": "prompts/hub/codex/CODEX_START.md",
   "lastPromptReviewSha": "23973e7106b9ac511f91c523d8f8bffd07c17530",
   "lastRuntimeReviewSha": "23973e7106b9ac511f91c523d8f8bffd07c17530",
-  "observedMainSha": "23973e7106b9ac511f91c523d8f8bffd07c17530",
+  "observedMainSha": "ffd1db07a7fd121aede14a08fceab6a9d0698235",
   "currentHeadSemantics": "last observed main SHA at prompt-governance review; not a self-referential state-file commit SHA",
   "activePacketId": "HUB-SUBJECT-INTEGRATION-20261007-001",
   "activePacketRevision": 1,
@@ -286,7 +286,7 @@
     },
     "exactHeadPolicy": "Every later prompt-governance commit retriggers Prompt Control Center CI; merge only when the final PR head is green."
   },
-  "releaseState": "NOT_STARTED",
+  "releaseState": "IN_PROGRESS",
   "releaseStateDetail": {
     "target": "LOCAL_STABLE",
     "implementationComplete": false,
@@ -295,10 +295,12 @@
     "productionDeployed": false,
     "mainMerged": false
   },
-  "fullSystemValidated": true,
+  "fullSystemValidated": false,
   "productionDeployed": false,
-  "reconciledMainSha": "e87d901aebd58d834991a45c87ee1a98189f2852",
+  "reconciledMainSha": "ffd1db07a7fd121aede14a08fceab6a9d0698235",
   "previousHead": "1fd7113966dea498f2887892cabda24f31e4d390",
   "finalHead": "5e5a6eacf7b807b3ecad636a4c735899c7ec9963",
-  "finalHeadSemantics": "Exact latest-main merge HEAD with all 19 scoped Hub suites and all 9 GitHub workflows PASS. The subsequent JSON-only completion commit is independently revalidated and its exact finalHead is sealed on that commit in refs/notes/hub-storage-materialization and PR #289. Committed JSON cannot contain its own commit hash."
+  "finalHeadSemantics": "Exact latest-main merge HEAD with all 19 scoped Hub suites and all 9 GitHub workflows PASS. The subsequent JSON-only completion commit is independently revalidated and its exact finalHead is sealed on that commit in refs/notes/hub-storage-materialization and PR #289. Committed JSON cannot contain its own commit hash.",
+  "beforeSha": "ffd1db07a7fd121aede14a08fceab6a9d0698235",
+  "initialObservedMainSha": "84215c8b1ec32a29dd9f72291060418ad292d575"
 }

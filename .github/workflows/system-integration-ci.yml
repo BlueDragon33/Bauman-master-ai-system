@@ -69,6 +69,8 @@ jobs:
         run: node tests/hub-data-truth-static.mjs
       - name: Validate Hub personal storage ownership
         run: node tests/hub-personal-storage-static.mjs
+      - name: Validate Hub subject descriptor and learner boundary
+        run: node tests/hub-subject-integration-static.mjs
       - name: Validate scoped Schedule reference UI
         run: node tests/schedule-reference-v1-static.mjs
       - name: Validate scoped Subjects reference UI
@@ -374,6 +376,16 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/hub-personal-storage
         run: node tests/hub-personal-storage-browser.mjs
+      - name: Run Hub subject launch and configuration migration acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/hub-subject-integration
+        run: node tests/hub-subject-integration-browser.mjs
+      - name: Run Hub application configuration failure and retry acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/hub-subject-config
+        run: node tests/hub-subject-config-browser.mjs
       - name: Run Hub public-boundary integration
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
@@ -539,6 +551,18 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-foundation-canonical-context
         run: node tests/foundation-canonical-context-browser.mjs
+      - name: Run packaged Hub subject launch and configuration migration acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-hub-subject-integration
+          BAUMAN_E2E_EXPECT_PLATFORM_ACCESS: "1"
+        run: node tests/hub-subject-integration-browser.mjs
+      - name: Run packaged Hub application configuration failure and retry acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-hub-subject-config
+          BAUMAN_E2E_EXPECT_PLATFORM_ACCESS: "1"
+        run: node tests/hub-subject-config-browser.mjs
       - name: Run packaged Subjects reference acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/

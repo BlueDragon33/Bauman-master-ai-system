@@ -176,8 +176,8 @@ try{
   await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'));
   explicitReloadInProgress=false;
 
-  const unsafeRejected=await page.evaluate(()=>{const old=window.state.subjects.ai.mainPath;window.state.subjects.ai.mainPath='javascript:alert(1)';document.getElementById('studyRoot').innerHTML='';window.app.openSubjectInPage('ai');const rejected=!document.getElementById('subjectFrame');window.state.subjects.ai.mainPath=old;return rejected});
-  assert.ok(unsafeRejected,'Unsafe subject route was accepted');
+  const unsafeRejected=await page.evaluate(()=>{window.state.subjects.ai.mainPath='javascript:alert(1)';document.getElementById('studyRoot').innerHTML='';window.app.openSubjectInPage('ai');const frame=document.getElementById('subjectFrame');const target=frame&&new URL(frame.src);delete window.state.subjects.ai.mainPath;return !!target&&['http:','https:'].includes(target.protocol)&&target.pathname==='/subjects/ai/index.html'});
+  assert.ok(unsafeRejected,'Unsafe learner input replaced the application-owned launch target');
   const protectedRoute=await page.evaluate(()=>{window.app.page('home',false);const previous=window.state.page;const user=window.auth.current;window.auth.current={...user,role:'user'};window.app.page('admin');const rejected=window.state.page===previous;window.auth.current=user;return rejected});
   assert.ok(protectedRoute,'Non-admin session entered the admin route');
 

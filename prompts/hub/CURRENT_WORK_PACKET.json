@@ -2,8 +2,8 @@
   "schemaVersion": "1.0.0",
   "packetId": "HUB-SUBJECT-INTEGRATION-20261007-001",
   "revision": 1,
-  "status": "READY_FOR_CODEX",
-  "executionState": "NOT_STARTED",
+  "status": "IN_CODEX",
+  "executionState": "IN_PROGRESS",
   "workClass": "B",
   "executionPlane": "CODEX",
   "userIntent": "Continue Bauman Hub after accepted storage r5. Remove raw subject transport/config leakage from learner state and presentation while preserving existing public Hub↔Subject behavior and current storage guarantees.",
@@ -155,7 +155,8 @@
     "scripts/validate-system-integration.mjs",
     ".github/workflows/system-integration-ci.yml",
     "prompts/hub/**",
-    "prompts/PROMPT_REGISTRY.json"
+    "prompts/PROMPT_REGISTRY.json",
+    "assets/js/planning-main.js"
   ],
   "forbiddenPaths": [
     "subjects/**",
@@ -253,5 +254,11 @@
   ],
   "releasePolicy": "NO_PRODUCTION_DEPLOY. Codex stops at exact-head LOCAL_STABLE pending Chat review. No merge to main until Chat ACCEPT.",
   "stopCondition": "CODEX_DONE_PENDING_CHAT_REVIEW with all acceptance criteria green, or a genuine blocker with exact path/test/log evidence.",
-  "blockers": []
+  "blockers": [],
+  "scopeReconciliation": {
+    "additionalPath": "assets/js/planning-main.js",
+    "authority": "Direct user approval 2026-10-07",
+    "reason": "Existing mission owner overrides app launch actions; adapter delegation must preserve the original planning mission/bridge behavior.",
+    "subjectBoundaryUnchanged": true
+  }
 }
