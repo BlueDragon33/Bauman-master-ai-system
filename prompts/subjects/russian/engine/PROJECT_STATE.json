@@ -8,9 +8,9 @@
     "russianMasterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
     "engineOrchestrator": "prompts/subjects/russian/engine/RE00_ENGINE_ORCHESTRATOR.md"
   },
-  "status": "PHASE6_RE26_RE35_PASS_READY_FOR_MERGE",
+  "status": "PHASE7_ACTIVE_RE36",
   "implementationAuthorized": true,
-  "activeWorkPackage": "RE35",
+  "activeWorkPackage": "RE36",
   "sequence": [
     "RE00",
     "RE01",
@@ -47,7 +47,12 @@
     "RE32",
     "RE33",
     "RE34",
-    "RE35"
+    "RE35",
+    "RE36",
+    "RE37",
+    "RE38",
+    "RE39",
+    "RE40"
   ],
   "completedPromptDefinitions": [
     "RE00",
@@ -85,7 +90,12 @@
     "RE32",
     "RE33",
     "RE34",
-    "RE35"
+    "RE35",
+    "RE36",
+    "RE37",
+    "RE38",
+    "RE39",
+    "RE40"
   ],
   "completedImplementationPackages": [
     "RE01",
@@ -144,7 +154,7 @@
     ]
   },
   "blockers": [],
-  "nextAction": "Run exact-head CI on the Phase 5/6 closing commit. If green, merge PR #300 automatically under standing user authorization. Then begin canonical review preparation; do not promote FIXTURE_NONCANONICAL_PENDING_RU03 content without an RU03-authorized human review decision.",
+  "nextAction": "Execute RE36-RE39 engineering inside Engine scope, produce review queue for all 15 real-life scenes, then stop at RE40 HUMAN_REVIEW_REQUIRED. Do not create RU03 APPROVE decisions automatically.",
   "re09Validation": {
     "exactHead": "297cfaabea853b059d8e7f4576db192d498056d4",
     "gates": {
@@ -274,5 +284,10 @@
     "trueOffline": "PASS",
     "rollout": "OPT_IN_FLAG",
     "canonicalPromotion": false
+  },
+  "phase6Merge": {
+    "pr": 300,
+    "mergeCommit": "32b409f1acc265e662d202396cedd08b06af728d",
+    "mainVerifiedIdentical": true
   }
 }
