@@ -57,9 +57,19 @@ assert.equal(bridge.getSpeechProvider().schema,'RUSSIAN_ENGINE_LEGACY_SPEECH_PRO
 
 const indexHtml=fs.readFileSync(new URL('../../index.html',import.meta.url),'utf8');
 const integrationTag='<script type="module" src="engine/integration/browser-bootstrap.mjs"></script>';
-const indexIntegrationTagCount=indexHtml.split(integrationTag).length-1;
+const indexIntegrationTagCount,
+  offlineShellHasBootstrap,
+  offlineShellHasSpeechProvider,
+  offlineCacheVersionBumped=indexHtml.split(integrationTag).length-1;
+const sw=fs.readFileSync(new URL('../../sw.js',import.meta.url),'utf8');
+const offlineShellHasBootstrap=sw.includes("'./engine/integration/browser-bootstrap.mjs'");
+const offlineShellHasSpeechProvider=sw.includes("'./engine/speech/legacy-speech-provider.mjs'");
+const offlineCacheVersionBumped=/russian-app-shell-v12-engine-passive-bridge/.test(sw);
 assert.equal(indexIntegrationTagCount,1,'Russian Engine bootstrap must be loaded exactly once');
 assert(indexHtml.indexOf('assets/speech-interaction-engine.js')<indexHtml.indexOf(integrationTag),'bootstrap must load after legacy speech owner declaration');
+assert.equal(offlineShellHasBootstrap,true,'offline shell must cache Engine bootstrap');
+assert.equal(offlineShellHasSpeechProvider,true,'offline shell must cache bootstrap dependency');
+assert.equal(offlineCacheVersionBumped,true,'offline shell cache version must bump for Engine bridge');
 
 console.log(JSON.stringify({
   ok:true,
