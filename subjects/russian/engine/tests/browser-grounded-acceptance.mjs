@@ -124,12 +124,35 @@ try{
   assert.equal(enginePersistence.keys.some(key=>/learner|mastery/i.test(key)),false,'Engine must not persist a parallel learner/mastery store');
 
   const engineStorageKeys=enginePersistence.keys;
+
+  const renderedSettings=[];
+  for(const setting of ['room','shop','metro','dorm','university']){
+    const worldUrl=new URL(
+      'subjects/russian/index.html?ruEngine=grounded-v1&ruWorld=real-life-v1&ruSetting='+encodeURIComponent(setting),
+      BASE
+    ).href;
+    await page.goto(worldUrl,{waitUntil:'domcontentloaded',timeout:30000});
+    await page.waitForSelector('[data-russian-engine-grounded="1"]',{timeout:15000});
+    await page.waitForFunction(()=>window.RussianEngineIntegration?.status?.().grounded?.state==='READY',null,{timeout:15000});
+    const state=await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status);
+    assert.equal(state.catalog,'real-life-v1');
+    assert.equal(state.setting,setting);
+    assert.equal(await page.locator('[data-russian-engine-grounded="1"] [data-re-object]').count(),3);
+    assert.equal(await page.locator('[data-russian-engine-grounded="1"] .re-grounded__transcript').count(),0);
+    await page.locator('[data-russian-engine-grounded="1"] [data-re-listen]').click();
+    await page.waitForFunction(()=>window.__RE_TTS?.count>=1);
+    const spoken=await page.evaluate(()=>window.__RE_TTS?.last?.text||'');
+    assert.match(spoken,/[А-Яа-яЁё]/,'Real-life setting must deliver Russian audio text');
+    renderedSettings.push({setting,sceneId:state.sceneId,spoken});
+  }
+
   await page.screenshot({path:path.join(OUT,'grounded-s1-final.png'),fullPage:true});
   fs.writeFileSync(path.join(OUT,'grounded-s1-evidence.json'),JSON.stringify({
     url:flaggedUrl,
     integration:await page.evaluate(()=>window.RussianEngineIntegration.status()),
     tts:await page.evaluate(()=>window.__RE_TTS),
     engineStorageKeys,
+    renderedSettings,
     errors
   },null,2));
 
@@ -145,6 +168,7 @@ try{
     transfer:true,
     structuredEvidenceOutboxOnly:true,
     noParallelLearnerMasteryStore:true,
+    realLifeSettingsRendered:renderedSettings.length,
     screenshot:path.join(OUT,'grounded-s1-final.png')
   }));
 }finally{
