@@ -6,7 +6,8 @@
   "allowedExistingAppWrites": [
     "subjects/russian/index.html",
     "subjects/russian/sw.js",
-    ".github/workflows/development-fast-ci.yml"
+    ".github/workflows/development-fast-ci.yml",
+    ".github/workflows/system-integration-ci.yml"
   ],
   "allowedNewIntegrationFiles": [],
   "forbidden": [
@@ -44,6 +45,14 @@
       "learnerStateWrite": false,
       "masteryWrite": false,
       "runtimeChange": false
+    },
+    {
+      "path": ".github/workflows/system-integration-ci.yml",
+      "change": "Run feature-flagged Russian Engine grounded browser acceptance against source and packaged runtime.",
+      "uiChange": false,
+      "learnerStateWrite": false,
+      "masteryWrite": false,
+      "runtimeChange": false
     }
   ],
   "rollback": "Remove the module script tag from subjects/russian/index.html and revert the Engine bridge entries/cache-version bump in subjects/russian/sw.js.",
@@ -64,5 +73,27 @@
     "subjects/russian/engine/speech/legacy-speech-provider.js"
   ],
   "exactHead": "a8f6ac547a2d26c7bf4ea7f44cb6c9fe2c7c2f09",
-  "validationCoverage": "ENGINE_TEST_SUITE_REQUIRED_ON_FAST_CI"
+  "validationCoverage": "ENGINE_TEST_SUITE_REQUIRED_ON_FAST_CI",
+  "s1": {
+    "id": "RE09-S1",
+    "state": "AUTHORIZED_FEATURE_FLAG_ONLY",
+    "featureFlag": "?ruEngine=grounded-v1",
+    "defaultEnabled": false,
+    "allowedExistingRuntimeWrites": [
+      "subjects/russian/sw.js"
+    ],
+    "engineOwnedWrites": [
+      "subjects/russian/engine/integration/browser-bootstrap.js",
+      "subjects/russian/engine/integration/grounded-browser-model.js",
+      "subjects/russian/engine/integration/grounded-experience.js",
+      "subjects/russian/engine/content/fixtures/grounded-scenes.v1.json"
+    ],
+    "guarantees": [
+      "No flag means no grounded-slice DOM mutation",
+      "No learner-state write",
+      "No mastery/SRS/planner write",
+      "Observation evidence remains in memory only",
+      "Rollback by removing conditional loader and cache entries"
+    ]
+  }
 }
