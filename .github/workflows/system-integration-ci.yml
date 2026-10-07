@@ -161,6 +161,7 @@ jobs:
           node --check tests/russian-ru08-journeys-browser.mjs
           node --check tests/russian-ru08-author-browser.mjs
           node --check subjects/russian/engine/tests/browser-grounded-acceptance.mjs
+          node --check subjects/russian/engine/tests/browser-beta-learning-loop-acceptance.mjs
       - name: Start Russian P1 source runtime
         run: |
           python3 -m http.server 4175 --bind 127.0.0.1 > /tmp/russian-p1-source-http.log 2>&1 &
@@ -190,6 +191,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-engine-grounded-source
         run: node subjects/russian/engine/tests/browser-grounded-acceptance.mjs
+      - name: Run Russian Engine beta learning-loop acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-engine-beta-source
+        run: node subjects/russian/engine/tests/browser-beta-learning-loop-acceptance.mjs
       - name: Run Russian handwriting acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
@@ -274,6 +280,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-engine-grounded-package
         run: node subjects/russian/engine/tests/browser-grounded-acceptance.mjs
+      - name: Run packaged Russian Engine beta learning-loop acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-engine-beta-package
+        run: node subjects/russian/engine/tests/browser-beta-learning-loop-acceptance.mjs
       - name: Run packaged Russian handwriting acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
@@ -316,6 +327,7 @@ jobs:
             artifacts/russian-p4-assessment-source
             artifacts/russian-p1-future-ui-source
             artifacts/russian-engine-grounded-source
+            artifacts/russian-engine-beta-source
             artifacts/russian-p1-handwriting-source
             artifacts/russian-p1-capability-hub-source
             artifacts/russian-p1-deeplink-source
@@ -329,6 +341,7 @@ jobs:
             artifacts/russian-p4-assessment-package
             artifacts/russian-p1-future-ui-package
             artifacts/russian-engine-grounded-package
+            artifacts/russian-engine-beta-package
             artifacts/russian-p1-handwriting-package
             artifacts/russian-p1-deeplink-package
             artifacts/russian-p1-route-receipt-package

@@ -1,5 +1,6 @@
 import {createBrowserLegacySpeechProvider} from '../speech/legacy-speech-provider.js';
 import {createBrowserPlannerSource} from './browser-planner-source.js';
+import {openOrResumeBrowserSession} from './browser-session.js';
 
 const copy=value=>{
   if(typeof structuredClone==='function')return structuredClone(value);
@@ -42,6 +43,8 @@ export function bootstrapRussianEngine(windowLike=globalThis?.window){
     speechProvider:null,
     plannerSource:null,
     plannerSourceStatus:{attached:false,reason:'not-initialized'},
+    session:null,
+    betaRequested:false,
     grounded:{
       requested:false,
       state:'OFF',
@@ -75,6 +78,8 @@ export function bootstrapRussianEngine(windowLike=globalThis?.window){
       reason:integration.plannerSourceStatus?.reason||null,
       candidateCount:integration.plannerSource?.getCandidates?.().length||0
     },
+    session:integration.session?.snapshot?.()||null,
+    betaRequested:integration.betaRequested,
     grounded:{
       requested:integration.grounded.requested,
       state:integration.grounded.state,
@@ -108,8 +113,28 @@ export function bootstrapRussianEngine(windowLike=globalThis?.window){
   let shouldRequest=false;
   try{
     const url=new URL(windowLike.location?.href||'');
-    shouldRequest=url.searchParams.get('ruEngine')==='grounded-v1';
+    const feature=url.searchParams.get('ruEngine');
+    shouldRequest=['grounded-v1','beta-v1'].includes(feature);
+    integration.betaRequested=feature==='beta-v1';
+    integration.enabled=integration.betaRequested;
+    integration.mode=integration.betaRequested?'BETA_LEARNING_LOOP':(shouldRequest?'GROUNDED_OPT_IN':'PASSIVE_BRIDGE');
   }catch(_){}
+
+  if(integration.betaRequested){
+    try{
+      integration.session=openOrResumeBrowserSession({
+        windowLike,
+        storage:windowLike.localStorage,
+        profileId:windowLike.RussianEngineProfileId||'default',
+        experienceId:'RE-BETA-GROUNDED',
+        contentRevision:'beta-v1',
+        capabilities:integration.speechProvider?.capabilities?.()||{}
+      });
+      integration.session.retryPending().catch(()=>{});
+    }catch(error){
+      integration.error=String(error?.message||error);
+    }
+  }
 
   if(shouldRequest){
     integration.grounded.requested=true;
@@ -119,7 +144,9 @@ export function bootstrapRussianEngine(windowLike=globalThis?.window){
         windowLike,
         documentLike:windowLike.document,
         fetchFn:windowLike.fetch?.bind(windowLike)||globalThis.fetch,
-        speechProvider:integration.speechProvider
+        speechProvider:integration.speechProvider,
+        onEvidence:integration.betaRequested?(evidence=>integration.session?.recordObservation?.(evidence)):null,
+        onComplete:integration.betaRequested?(()=>integration.session?.complete?.()):null
       }))
       .then(controller=>{
         integration.grounded.controller=controller?.mounted?controller:null;

@@ -8,9 +8,9 @@
     "russianMasterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
     "engineOrchestrator": "prompts/subjects/russian/engine/RE00_ENGINE_ORCHESTRATOR.md"
   },
-  "status": "PHASE4_RE21_RE25_PASS_READY_FOR_MERGE",
+  "status": "PHASE5_RE26_RE30_VALIDATING",
   "implementationAuthorized": true,
-  "activeWorkPackage": "RE25",
+  "activeWorkPackage": "RE30",
   "sequence": [
     "RE00",
     "RE01",
@@ -37,7 +37,12 @@
     "RE22",
     "RE23",
     "RE24",
-    "RE25"
+    "RE25",
+    "RE26",
+    "RE27",
+    "RE28",
+    "RE29",
+    "RE30"
   ],
   "completedPromptDefinitions": [
     "RE00",
@@ -65,7 +70,12 @@
     "RE22",
     "RE23",
     "RE24",
-    "RE25"
+    "RE25",
+    "RE26",
+    "RE27",
+    "RE28",
+    "RE29",
+    "RE30"
   ],
   "completedImplementationPackages": [
     "RE01",
@@ -92,7 +102,11 @@
     "RE22",
     "RE23",
     "RE24",
-    "RE25"
+    "RE25",
+    "RE26",
+    "RE27",
+    "RE28",
+    "RE29"
   ],
   "targetInternalLevels": 100,
   "learningNorthStar": "RUSSIAN_FIRST_MEANING_FIRST_CONTEXT_FIRST_TRANSLATION_LAST",
@@ -114,7 +128,7 @@
     ]
   },
   "blockers": [],
-  "nextAction": "Run exact-head CI on this Phase 4 closing commit. If green and GitHub allows automated merge, merge PR #291 to main and continue Phase 5 without user interruption.",
+  "nextAction": "Validate Phase 5 exact head, including dedicated source and packaged beta learning-loop browser acceptance. Keep beta opt-in only.",
   "re09Validation": {
     "exactHead": "297cfaabea853b059d8e7f4576db192d498056d4",
     "gates": {
@@ -212,5 +226,10 @@
       "plannerAuthority": "RussianAdaptivePlanner",
       "rollout": "OPT_IN_FLAG"
     }
+  },
+  "phase4Merge": {
+    "pr": 291,
+    "mergeCommit": "ffd1db07a7fd121aede14a08fceab6a9d0698235",
+    "mainVerifiedIdentical": true
   }
 }
