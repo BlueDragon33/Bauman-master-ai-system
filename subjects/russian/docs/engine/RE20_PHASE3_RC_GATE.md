@@ -14,13 +14,15 @@ Required implementation packages:
 - RE18;
 - RE19.
 
-Required repository workflows:
+Repository workflow evidence:
 - Development Fast CI;
 - Russian Reference UI;
-- Future Interface;
+- Future Interface when impacted;
 - Prompt Control Center;
 - Universal Constitution;
 - Whole System Integration.
+
+A path-scoped workflow may be recorded as `NOT_REQUIRED` only with an explicit non-empty scope proof. A missing run without scope proof is still FAIL.
 
 Required browser evidence:
 - grounded source;
