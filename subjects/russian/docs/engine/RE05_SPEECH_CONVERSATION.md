@@ -1,6 +1,6 @@
 # Russian Engine RE05 — Existing Speech Adapter & Conversation Runtime
 
-State: VALIDATING
+State: **PASS**
 
 ## Core decision
 
@@ -83,12 +83,20 @@ No current Russian app file is modified.
 
 RE09 remains required before wiring the adapter/facade into browser UI.
 
-## Exit gate
+## Validation
 
-RE05 PASS requires:
-- existing speech owners adapted, not duplicated;
-- ASR confidence not presented as pronunciation authority;
-- recording remains transient/local by default;
+Executed against the branch implementation: **15/15 checks PASS**.
+
+Verified:
+- existing speech owners are adapted, not duplicated;
+- Russian playback forces `ru-RU`;
+- ASR result remains non-authoritative;
+- provider confidence is labeled recognition-only;
+- no pronunciation mastery claim is emitted;
+- recording remains transient/local;
 - deterministic scenario repair works;
-- scenario completion remains practice evidence only;
-- no Engine mastery write.
+- goal completion emits an observation event only.
+
+## Exit
+
+**RE05 PASS.**
