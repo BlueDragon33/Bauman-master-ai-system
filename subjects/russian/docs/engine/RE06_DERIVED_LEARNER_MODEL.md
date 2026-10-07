@@ -1,6 +1,6 @@
 # Russian Engine RE06 — Derived Learner Model & Adaptive Recommendation
 
-State: VALIDATING
+State: **PASS**
 
 ## Boundary
 
@@ -49,12 +49,19 @@ Existing `RussianAdaptivePlanner` remains the current planner owner.
 
 RE06 stays isolated until RE09 defines the adapter/migration boundary.
 
-## Exit gate
+## Validation
 
-PASS when:
-- learner dimensions remain asymmetric;
-- support dependency affects estimates;
-- review outranks new content;
-- weak skills can trigger remediation;
-- milestones trigger transfer;
-- model writes no mastery.
+Executed against the branch implementation: **11/11 checks PASS**.
+
+Verified:
+- semantic comprehension and speaking remain asymmetric;
+- support dependency affects the derived estimate;
+- low speaking evidence triggers remediation;
+- due review outranks new content;
+- milestone triggers transfer;
+- strong state can introduce the next experience;
+- derived snapshot contains no mastery field.
+
+## Exit
+
+**RE06 PASS.**
