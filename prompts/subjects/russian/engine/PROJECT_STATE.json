@@ -8,9 +8,9 @@
     "russianMasterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
     "engineOrchestrator": "prompts/subjects/russian/engine/RE00_ENGINE_ORCHESTRATOR.md"
   },
-  "status": "PHASE3_RE16_RE20_PASS_AWAITING_MERGE_AUTHORIZATION",
+  "status": "PHASE4_ACTIVE_RE21",
   "implementationAuthorized": true,
-  "activeWorkPackage": "RE20",
+  "activeWorkPackage": "RE21",
   "sequence": [
     "RE00",
     "RE01",
@@ -32,7 +32,12 @@
     "RE17",
     "RE18",
     "RE19",
-    "RE20"
+    "RE20",
+    "RE21",
+    "RE22",
+    "RE23",
+    "RE24",
+    "RE25"
   ],
   "completedPromptDefinitions": [
     "RE00",
@@ -55,7 +60,12 @@
     "RE17",
     "RE18",
     "RE19",
-    "RE20"
+    "RE20",
+    "RE21",
+    "RE22",
+    "RE23",
+    "RE24",
+    "RE25"
   ],
   "completedImplementationPackages": [
     "RE01",
@@ -98,10 +108,8 @@
       "managed-multi-user-service-when-justified"
     ]
   },
-  "blockers": [
-    "USER_AUTHORIZATION_REQUIRED_FOR_MERGE_PR_288"
-  ],
-  "nextAction": "User authorization required to merge Draft PR #288 into main. Do not enable Russian Engine beyond OPT_IN_FLAG and do not publish/production without separate authorization.",
+  "blockers": [],
+  "nextAction": "Execute RE21-RE25 inside Engine scope. Keep rollout OPT_IN_FLAG. No general Russian app file writes, no default-on, no production publish.",
   "re09Validation": {
     "exactHead": "297cfaabea853b059d8e7f4576db192d498056d4",
     "gates": {
@@ -167,5 +175,10 @@
       "defaultEnabled": false,
       "productionClaim": false
     }
+  },
+  "phase3Merge": {
+    "pr": 288,
+    "mergeCommit": "e87d901aebd58d834991a45c87ee1a98189f2852",
+    "mainVerifiedIdentical": true
   }
 }
