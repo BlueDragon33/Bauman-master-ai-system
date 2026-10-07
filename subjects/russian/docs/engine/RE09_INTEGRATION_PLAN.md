@@ -80,3 +80,22 @@ Once integrated and browser-validated:
 will be the first learner-facing Engine slice.
 
 That later UI change requires a separate explicit RE09 allowlist expansion.
+
+
+## Offline regression found and fixed
+
+Post-integration Russian Reference UI Gate found:
+
+`Index runtime refs missing from offline shell: ./engine/integration/browser-bootstrap.mjs`
+
+This was a valid regression signal.
+
+Correction:
+- expand RE09 existing-file allowlist to include `subjects/russian/sw.js`;
+- bump shell cache to `russian-app-shell-v12-engine-passive-bridge`;
+- precache `./engine/integration/browser-bootstrap.mjs`;
+- precache its transitive module dependency `./engine/speech/legacy-speech-provider.mjs`.
+
+The second file is included proactively because a module cached without its static import dependency would still fail in a true offline launch.
+
+No UI, mastery, planner, learner-state or speech-owner implementation changed.
