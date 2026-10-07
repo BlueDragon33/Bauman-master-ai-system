@@ -6,13 +6,25 @@ const workflows=Object.fromEntries(PHASE3_REQUIRED.workflows.map(x=>[x,'PASS']))
 const browser=Object.fromEntries(PHASE3_REQUIRED.browser.map(x=>[x,'PASS']));
 
 const rc=evaluatePhase3Rc({
- packages,workflows,browser,
+ packages,
+ workflows:{...workflows,futureInterface:'NOT_REQUIRED'},
+ browser,
+ scopeProof:{futureInterface:'No UI or browser-loaded runtime changed in Phase 3.'},
  rollout:{state:'OPT_IN_FLAG',productAuthorization:false,releaseAnnexPass:false}
 });
 assert.equal(rc.ok,true);
 assert.equal(rc.rcReady,true);
 assert.equal(rc.productionClaim,false);
 assert.equal(rc.defaultOnClaim,false);
+
+const missingScopeProof=evaluatePhase3Rc({
+ packages,
+ workflows:{...workflows,futureInterface:'NOT_REQUIRED'},
+ browser,
+ rollout:{state:'OPT_IN_FLAG'}
+});
+assert.equal(missingScopeProof.ok,false);
+assert(missingScopeProof.errors.some(x=>x.includes('futureInterface')));
 
 const missing=evaluatePhase3Rc({
  packages:{...packages,RE17:'FAIL'},workflows,browser,
