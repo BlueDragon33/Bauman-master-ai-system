@@ -1,6 +1,6 @@
 {
   "schemaVersion": "RUSSIAN_ENGINE_RE09_ALLOWLIST_V1",
-  "state": "APPLIED_PENDING_EXACT_HEAD_VALIDATION",
+  "state": "PASS",
   "engineHeadRequired": "EXACT_HEAD_GREEN_CI",
   "purpose": "Load a passive Russian Engine browser bridge without changing learner behavior or UI.",
   "allowedExistingAppWrites": [
@@ -95,5 +95,15 @@
       "Observation evidence remains in memory only",
       "Rollback by removing conditional loader and cache entries"
     ]
-  }
+  },
+  "validationHead": "297cfaabea853b059d8e7f4576db192d498056d4",
+  "exactHeadGates": [
+    "Whole System Integration Gate",
+    "Future Interface System CI",
+    "Universal Constitution Compliance",
+    "Russian Reference UI Gate",
+    "Prompt Control Center CI",
+    "Development Fast CI"
+  ],
+  "defaultFeatureEnabled": false
 }
