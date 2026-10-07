@@ -57,10 +57,13 @@ assert.equal(source.detach(planner),true);
 assert.equal(planner.listCandidateSources().includes('russian-engine'),false);
 
 const sw=fs.readFileSync(new URL('../../sw.js',import.meta.url),'utf8');
-assert(sw.includes("russian-app-shell-v19-engine-world-runtime"));
+assert(sw.includes("russian-app-shell-v20-engine-conversation-runtime"));
 assert(sw.includes("./engine/integration/browser-planner-source.js"));
 assert(sw.includes("./engine/integration/browser-evidence-runtime.js"));
 assert(sw.includes("./engine/content/fixtures/real-life-scenes.v1.json"));
+assert(sw.includes("./engine/conversation/browser-conversation-model.js"));
+assert(sw.includes("./engine/integration/conversation-experience.js"));
+assert(sw.includes("./engine/content/fixtures/conversation-worlds.v2.json"));
 
 console.log(JSON.stringify({
   ok:true,
