@@ -1,6 +1,6 @@
 {
   "schemaVersion": "RUSSIAN_ENGINE_RE25_ALLOWLIST_V1",
-  "state": "AWAITING_USER_AUTHORIZATION",
+  "state": "AUTHORIZED_APPLIED_VALIDATING",
   "validatedImplementationHead": "e49a4aee54b2edb7b5a6f253e424b7d3b09bf2fa",
   "rolloutState": "OPT_IN_FLAG",
   "defaultEnabled": false,
@@ -27,5 +27,16 @@
   ],
   "allOtherOutsideEngineWrites": "FORBIDDEN",
   "rollback": "Remove/disable Engine candidate source registration and revert added Engine integration precache entries; existing planner and app behavior remains canonical.",
-  "authorizationRequired": true
+  "authorizationRequired": true,
+  "authorizationSource": "User granted standing consent for non-manual GitHub-executable work in chat; stop only when direct user GitHub intervention is required.",
+  "appliedOutsideEngineWrites": [
+    "subjects/russian/assets/adaptive-planner.js",
+    "subjects/russian/sw.js"
+  ],
+  "appliedEngineWrites": [
+    "subjects/russian/engine/integration/browser-planner-source.js",
+    "subjects/russian/engine/integration/browser-bootstrap.js",
+    "subjects/russian/engine/integration/grounded-experience.js",
+    "subjects/russian/engine/tests/test-re25-planner-seam.mjs"
+  ]
 }
