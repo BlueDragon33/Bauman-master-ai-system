@@ -63,6 +63,7 @@ const offlineShellHasBootstrap=sw.includes("'./engine/integration/browser-bootst
 const offlineShellHasSpeechProvider=sw.includes("'./engine/speech/legacy-speech-provider.js'");
 const offlineShellHasGroundedModel=sw.includes("'./engine/integration/grounded-browser-model.js'");
 const offlineShellHasGroundedExperience=sw.includes("'./engine/integration/grounded-experience.js'");
+const offlineShellHasLiveOwnerIntegration=sw.includes("'./engine/integration/live-owner-integration.js'");
 const offlineShellHasGroundedFixture=sw.includes("'./engine/content/fixtures/grounded-scenes.v1.json'");
 const offlineCacheVersionBumped=/russian-app-shell-v\d+-engine-/.test(sw);
 
@@ -72,6 +73,7 @@ assert.equal(offlineShellHasBootstrap,true,'offline shell must cache Engine boot
 assert.equal(offlineShellHasSpeechProvider,true,'offline shell must cache bootstrap dependency');
 assert.equal(offlineShellHasGroundedModel,true,'offline shell must cache grounded browser model');
 assert.equal(offlineShellHasGroundedExperience,true,'offline shell must cache grounded browser experience');
+assert.equal(offlineShellHasLiveOwnerIntegration,true,'offline shell must cache live owner integration');
 assert.equal(offlineShellHasGroundedFixture,true,'offline shell must cache grounded scene fixture');
 assert.equal(offlineCacheVersionBumped,true,'offline shell cache version must use an Engine cache revision');
 
@@ -86,6 +88,7 @@ console.log(JSON.stringify({
   offlineShellHasSpeechProvider,
   offlineShellHasGroundedModel,
   offlineShellHasGroundedExperience,
+  offlineShellHasLiveOwnerIntegration,
   offlineShellHasGroundedFixture,
   offlineCacheVersionBumped
 }));
