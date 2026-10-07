@@ -2,9 +2,9 @@
   "schemaVersion": "1.0.0",
   "packetId": "HUB-STORAGE-20261006-001",
   "packetRevision": 5,
-  "status": "CODEX_DONE_PENDING_CHAT_REVIEW",
-  "executionState": "LOCAL_STABLE_PENDING_CHAT_REVIEW",
-  "expectedPacketStatus": "CODEX_DONE_PENDING_CHAT_REVIEW",
+  "status": "ACCEPTED_MERGED",
+  "executionState": "ACCEPTED_MERGED",
+  "expectedPacketStatus": "ACCEPTED_MERGED",
   "beforeSha": "1fd7113966dea498f2887892cabda24f31e4d390",
   "afterSha": "5e5a6eacf7b807b3ecad636a4c735899c7ec9963",
   "testedRuntimeHead": "5e5a6eacf7b807b3ecad636a4c735899c7ec9963",
@@ -1938,7 +1938,7 @@
     }
   },
   "releaseStateDetail": "Accepted storage r5 preserved; latest-main merge revalidated with the complete original GitHub Whole System Integration Gate. Draft PR #289 awaits Box Chat review of reconciliation.",
-  "mainMerged": false,
+  "mainMerged": true,
   "additionalCITests": [
     {
       "command": "node scripts/validate-deep-study-journal-v1.js",
@@ -4063,5 +4063,7 @@
       }
     ],
     "checkedAt": "2026-10-07T12:09:31.830Z"
-  }
+  },
+  "mergeSha": "ec970ccfa23b54944754fff3afdee3b796155f87",
+  "finalPrHead": "a6fb3842dd207fda3de1aa2bae9ac45ffb0260ff"
 }

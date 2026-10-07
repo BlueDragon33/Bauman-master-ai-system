@@ -2,7 +2,7 @@
   "schemaVersion": "1.0.0",
   "packetId": "HUB-STORAGE-20261006-001",
   "revision": 5,
-  "status": "CODEX_DONE_PENDING_CHAT_REVIEW",
+  "status": "ACCEPTED_MERGED",
   "userIntent": "Continue Bauman Hub continuously under the current Prompt System; keep the core local/offline/free-first and preserve learner truth while removing fragile localStorage dependency for canonical personal data.",
   "objective": "Introduce one normalized Hub personal-data storage facade with IndexedDB as the primary local canonical store, deterministic legacy migration, complete portable backup/restore, and compatibility-safe migration for Hub learner/auth/academic/scheduler/research data while keeping UI-only preferences lightweight.",
   "trigger": {
@@ -371,7 +371,7 @@
   "classARemaining": [],
   "classBRemaining": [],
   "stopCondition": "Codex stops after exact-head LOCAL_STABLE static + browser + whole-system evidence is green and CURRENT_EXECUTION_RESULT.json is written, or records a genuine blocker. Do not deploy production.",
-  "executionState": "IMPLEMENTATION_COMPLETE_REVALIDATED_RELEASE_BLOCKED",
+  "executionState": "ACCEPTED_MERGED",
   "governanceRevisionReason": "Chat Class-A storage preflight finalized: current-main rebaseline, storage taxonomy, binary attachment handling, and scope-aware personal-data partitioning using existing identity authority only. No new multi-user/auth feature is authorized.",
   "historyPolicy": "Completed packets are historical evidence and must not be re-executed implicitly. Only this CURRENT_WORK_PACKET is active while Shared State names the same packet id/revision/status.",
   "storageTaxonomy": {
@@ -417,5 +417,10 @@
     "implementationReexecuted": false,
     "storageRuntimeRefactored": false,
     "githubActionsAuthority": "Existing full-system workflow may execute its subject tests; Codex reads status/log/result only."
-  }
+  },
+  "doNotReexecute": true,
+  "acceptedMergeSha": "ec970ccfa23b54944754fff3afdee3b796155f87",
+  "acceptedTestedHead": "a6fb3842dd207fda3de1aa2bae9ac45ffb0260ff",
+  "closedAt": "2026-10-07",
+  "chatDecision": "ACCEPTED"
 }
