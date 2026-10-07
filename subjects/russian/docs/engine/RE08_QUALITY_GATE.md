@@ -90,3 +90,21 @@ Negative tests:
 **RE08 ENGINE QUALITY GATE PASS.**
 
 Shared repository CI must still be checked on the exact branch HEAD before RE09 integration.
+
+
+## Independent exact-branch revalidation
+
+Re-run on the current branch after RE07/RE08 materialization:
+
+- positive gate: **PASS**;
+- levels: 100;
+- bands: 10;
+- graph nodes: 11;
+- canonical refs: 3;
+- failure cases: 18;
+- Engine source files scanned: 10;
+- warnings: 0;
+- privacy negative test (`rawVoiceDefault=COLLECT`): correctly **FAIL**;
+- security negative test (injected `eval()`): correctly **FAIL**.
+
+This confirms the gate is not a declaration-only PASS.
