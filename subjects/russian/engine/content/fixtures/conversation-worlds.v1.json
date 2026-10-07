@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "RUSSIAN_ENGINE_CONVERSATION_WORLD_FIXTURE_V1",
+  "status": "FIXTURE_NONCANONICAL_PENDING_RU03",
+  "worlds": [
+    {
+      "worldId": "CW-DORM-001",
+      "roles": ["learner","roommate"],
+      "goal": {"id":"coordinate-room-introduction","kind":"social-coordination"},
+      "facts": {"location":"dorm-room","relationship":"first-meeting"},
+      "startNode": "hello",
+      "nodes": {
+        "hello": {"next":["fast-turn"],"functions":["greet","introduce-self"]},
+        "fast-turn": {
+          "unexpected":"roommate-speaks-too-fast",
+          "repairOptions":["ask-repeat","ask-slower"],
+          "next":["coordinate"]
+        },
+        "coordinate": {"functions":["confirm-understanding"],"next":["close"]},
+        "close": {"completion":true}
+      }
+    }
+  ]
+}
