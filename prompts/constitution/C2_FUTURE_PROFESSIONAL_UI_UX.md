@@ -462,6 +462,22 @@ dark focus
 Dark Mode phải sử dụng lâu không mỏi mắt.
 
 ==================================================
+XVI-A. MANDATORY TEXT/BACKGROUND CONTRAST GATE
+==================================================
+
+Applies to the entire Bauman learner shell and every current or future sub-application inheriting C2, on desktop, mobile, light/dark/academic themes, including hover, focus, selected, disabled, loading and error states.
+
+- A dark/black/photographic/gradient surface MUST explicitly own legible on-dark foreground tokens for every heading, body paragraph, number, KPI, caption, label, icon and control. Prefer calm near-white text over dark-on-dark. Alternatively use a genuinely light-enough scrim/surface and dark text; do not mix strategies in one component.
+- A light surface MUST use contrast-safe dark foreground tokens. Do not inherit an unrelated global heading/paragraph color into an inverted card/hero.
+- WCAG 2.2 AA minimum measured contrast is 4.5:1 for normal text, 3:1 for large text (at least 24 px normal or about 18.7 px bold), and 3:1 for meaningful non-text UI boundaries/icons. Disabled controls may be exempt only when correctly semantically disabled; still preserve discernibility when practical.
+- Calculate contrast from the rendered/computed foreground against the actual final/composited background (including images, gradients and opacity); sample worst-case locations or provide a deterministic scrim. Test across themes and responsive sizes, including 390 px.
+- Use shared semantic surface/foreground token pairs with component-owned variants. CSS cascade, late-loading style sheets and legacy !important rules must not break the pair. Resolve conflicting owner rules; narrowly scoped compatibility fixes may be used when removing legacy rules would cause unrelated regressions.
+- A static CSS rule or screenshot looking correct is NOT enough: browser regression MUST assert the rendered foreground/background contrast for headings, descriptions, KPIs, captions and interactive states. A failing contrast gate blocks merge/release; never weaken a faulty test to turn it green.
+- No neon, blinding white regions, or excessive decoration is necessary to meet contrast. Contrast and reading comfort take priority over styling novelty.
+
+This rule is a mandatory project C2 acceptance requirement, not a declaration that every existing sub-application has already passed. Existing and future UI owners must be checked and migrated with honest evidence.
+
+==================================================
 XVII. TYPOGRAPHY
 ==================================================
 
