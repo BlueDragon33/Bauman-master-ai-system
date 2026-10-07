@@ -8,9 +8,9 @@
     "russianMasterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
     "engineOrchestrator": "prompts/subjects/russian/engine/RE00_ENGINE_ORCHESTRATOR.md"
   },
-  "status": "PHASE5_ACTIVE_RE26",
+  "status": "PHASE5_RE26_RE30_VALIDATING",
   "implementationAuthorized": true,
-  "activeWorkPackage": "RE26",
+  "activeWorkPackage": "RE30",
   "sequence": [
     "RE00",
     "RE01",
@@ -102,7 +102,11 @@
     "RE22",
     "RE23",
     "RE24",
-    "RE25"
+    "RE25",
+    "RE26",
+    "RE27",
+    "RE28",
+    "RE29"
   ],
   "targetInternalLevels": 100,
   "learningNorthStar": "RUSSIAN_FIRST_MEANING_FIRST_CONTEXT_FIRST_TRANSLATION_LAST",
@@ -124,7 +128,7 @@
     ]
   },
   "blockers": [],
-  "nextAction": "Execute RE26-RE30 on Phase 5 branch. Keep Engine opt-in/internal beta only; do not default-on.",
+  "nextAction": "Validate Phase 5 exact head, including dedicated source and packaged beta learning-loop browser acceptance. Keep beta opt-in only.",
   "re09Validation": {
     "exactHead": "297cfaabea853b059d8e7f4576db192d498056d4",
     "gates": {
