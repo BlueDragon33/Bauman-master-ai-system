@@ -2,16 +2,16 @@
   "schemaVersion": "1.0.0",
   "packetId": "HUB-STORAGE-20261006-001",
   "packetRevision": 5,
-  "status": "CODEX_DONE",
-  "executionState": "COMPLETE_WITH_BOUNDARY_GATE_PENDING",
-  "expectedPacketStatus": "CHAT_REVIEW",
-  "beforeSha": "dec98df4812298ddafba459383850c3889563d6a",
-  "afterSha": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269",
-  "testedRuntimeHead": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269",
-  "afterShaSemantics": "Exact implementation HEAD with all 16 affected Hub + 2 scoped packaged gates green. A later evidence-only commit carries this JSON; its exact tested HEAD is sealed in the local certificate and refs/notes/bauman-hub-storage without self-referential hashes.",
-  "branch": "codex/hub-storage-20261006-001",
+  "status": "BLOCKED",
+  "executionState": "IMPLEMENTATION_COMPLETE_REVALIDATED_RELEASE_BLOCKED",
+  "expectedPacketStatus": "BLOCKED",
+  "beforeSha": "a3a0e09f7bea7a23178dc41ab0c5a319f879b83d",
+  "afterSha": "6112ba88784038e4ab1b81642657ac0d79ab143d",
+  "testedRuntimeHead": "6112ba88784038e4ab1b81642657ac0d79ab143d",
+  "afterShaSemantics": "Exact reconciled implementation commit with 16 targeted/regression suites and 2 Hub-package suites PASS. A subsequent evidence-only commit updates these JSON files. Its separately tested GitHub PR HEAD/certificate is recorded in the PR description and refs/notes/hub-storage-materialization; no self-referential commit hash is claimed.",
+  "branch": "codex/hub-storage-20261007-materialize",
   "baselineMainSha": "19db67bc0975e6fc0c4af0a31111ad3b30e6bfe7",
-  "reconciledMainSha": "63566556b8cfbec41957a25607b0c49dba1a6037",
+  "reconciledMainSha": "a3a0e09f7bea7a23178dc41ab0c5a319f879b83d",
   "changedPaths": [
     ".github/workflows/system-integration-ci.yml",
     "assets/js/academic-main.js",
@@ -37,125 +37,141 @@
     "tests/system-browser-acceptance.mjs"
   ],
   "reconciliation": {
-    "originalMainSha": "dec98df4812298ddafba459383850c3889563d6a",
-    "latestMainSha": "63566556b8cfbec41957a25607b0c49dba1a6037",
-    "allowedRuntimeChangesSinceOriginal": "NONE",
-    "activePacketChange": "NONE_r5",
-    "action": "Rebased own implementation commits; preserved upstream Constitution1.2 and dependencyBudget registry field; no subject internals read",
-    "incomingUpstreamSubjectPromptChanges": "Inherited main ancestry only; no agent edits relative to reconciled main"
+    "originalLocalBase": "63566556b8cfbec41957a25607b0c49dba1a6037",
+    "currentMainSha": "a3a0e09f7bea7a23178dc41ab0c5a319f879b83d",
+    "allowedRuntimeChangesFromMain": "NONE",
+    "activePacket": "UNCHANGED_r5",
+    "action": "New Codex branch preserves prior branch; all 3 completed local commits rebased onto current main. Shared CI merge retained upstream Russian Engine steps. No subject paths edited or inspected.",
+    "implementationRepeated": false
   },
   "tests": [
     {
       "test": "tests/hub-personal-storage-static.mjs",
       "exitCode": 0,
       "status": "PASS",
-      "log": "artifacts/hub-storage/hub-personal-storage-static.log",
-      "testedHead": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269"
+      "log": "artifacts/hub-storage/materialized-runtime-hub-personal-storage-static.log",
+      "command": "node tests/hub-personal-storage-static.mjs",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "test": "tests/runtime-access-mode-static.mjs",
       "exitCode": 0,
       "status": "PASS",
-      "log": "artifacts/hub-storage/runtime-access-mode-static.log",
-      "testedHead": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269"
+      "log": "artifacts/hub-storage/materialized-runtime-runtime-access-mode-static.log",
+      "command": "node tests/runtime-access-mode-static.mjs",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "test": "tests/runtime-access-mode-behavior.mjs",
       "exitCode": 0,
       "status": "PASS",
-      "log": "artifacts/hub-storage/runtime-access-mode-behavior.log",
-      "testedHead": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269"
+      "log": "artifacts/hub-storage/materialized-runtime-runtime-access-mode-behavior.log",
+      "command": "node tests/runtime-access-mode-behavior.mjs",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "test": "tests/schedule-reference-v1-static.mjs",
       "exitCode": 0,
       "status": "PASS",
-      "log": "artifacts/hub-storage/schedule-reference-v1-static.log",
-      "testedHead": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269"
+      "log": "artifacts/hub-storage/materialized-runtime-schedule-reference-v1-static.log",
+      "command": "node tests/schedule-reference-v1-static.mjs",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "test": "tests/subjects-reference-v1-static.mjs",
       "exitCode": 0,
       "status": "PASS",
-      "log": "artifacts/hub-storage/subjects-reference-v1-static.log",
-      "testedHead": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269"
+      "log": "artifacts/hub-storage/materialized-runtime-subjects-reference-v1-static.log",
+      "command": "node tests/subjects-reference-v1-static.mjs",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "test": "tests/thesis-reference-v1-static.mjs",
       "exitCode": 0,
       "status": "PASS",
-      "log": "artifacts/hub-storage/thesis-reference-v1-static.log",
-      "testedHead": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269"
+      "log": "artifacts/hub-storage/materialized-runtime-thesis-reference-v1-static.log",
+      "command": "node tests/thesis-reference-v1-static.mjs",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "test": "tests/hub-data-truth-static.mjs",
       "exitCode": 0,
       "status": "PASS",
-      "log": "artifacts/hub-storage/hub-data-truth-static.log",
-      "testedHead": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269"
+      "log": "artifacts/hub-storage/materialized-runtime-hub-data-truth-static.log",
+      "command": "node tests/hub-data-truth-static.mjs",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "test": "tests/hub-personal-storage-browser.mjs",
       "exitCode": 0,
       "status": "PASS",
-      "log": "artifacts/hub-storage/hub-personal-storage-browser.log",
-      "testedHead": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269"
+      "log": "artifacts/hub-storage/materialized-runtime-hub-personal-storage-browser.log",
+      "command": "node tests/hub-personal-storage-browser.mjs",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "test": "tests/academic-browser-acceptance-13e.mjs",
       "exitCode": 0,
       "status": "PASS",
-      "log": "artifacts/hub-storage/academic-browser-acceptance-13e.log",
-      "testedHead": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269"
+      "log": "artifacts/hub-storage/materialized-runtime-academic-browser-acceptance-13e.log",
+      "command": "node tests/academic-browser-acceptance-13e.mjs",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "test": "tests/deep-study-journal-browser.mjs",
       "exitCode": 0,
       "status": "PASS",
-      "log": "artifacts/hub-storage/deep-study-journal-browser.log",
-      "testedHead": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269"
+      "log": "artifacts/hub-storage/materialized-runtime-deep-study-journal-browser.log",
+      "command": "node tests/deep-study-journal-browser.mjs",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "test": "tests/schedule-reference-v1-browser.mjs",
       "exitCode": 0,
       "status": "PASS",
-      "log": "artifacts/hub-storage/schedule-reference-v1-browser.log",
-      "testedHead": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269"
+      "log": "artifacts/hub-storage/materialized-runtime-schedule-reference-v1-browser.log",
+      "command": "node tests/schedule-reference-v1-browser.mjs",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "test": "tests/subjects-reference-v1-browser.mjs",
       "exitCode": 0,
       "status": "PASS",
-      "log": "artifacts/hub-storage/subjects-reference-v1-browser.log",
-      "testedHead": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269"
+      "log": "artifacts/hub-storage/materialized-runtime-subjects-reference-v1-browser.log",
+      "command": "node tests/subjects-reference-v1-browser.mjs",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "test": "tests/thesis-reference-v1-browser.mjs",
       "exitCode": 0,
       "status": "PASS",
-      "log": "artifacts/hub-storage/thesis-reference-v1-browser.log",
-      "testedHead": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269"
+      "log": "artifacts/hub-storage/materialized-runtime-thesis-reference-v1-browser.log",
+      "command": "node tests/thesis-reference-v1-browser.mjs",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "test": "tests/hub-data-truth-browser.mjs",
       "exitCode": 0,
       "status": "PASS",
-      "log": "artifacts/hub-storage/hub-data-truth-browser.log",
-      "testedHead": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269"
+      "log": "artifacts/hub-storage/materialized-runtime-hub-data-truth-browser.log",
+      "command": "node tests/hub-data-truth-browser.mjs",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "test": "tests/hub-premium-responsive-browser.mjs",
       "exitCode": 0,
       "status": "PASS",
-      "log": "artifacts/hub-storage/hub-premium-responsive-browser.log",
-      "testedHead": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269"
+      "log": "artifacts/hub-storage/materialized-runtime-hub-premium-responsive-browser.log",
+      "command": "node tests/hub-premium-responsive-browser.mjs",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "test": "tests/system-browser-acceptance.mjs --hub-only",
       "exitCode": 0,
       "status": "PASS",
-      "log": "artifacts/hub-storage/system-browser-acceptance.log",
-      "testedHead": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269"
+      "log": "artifacts/hub-storage/materialized-runtime-system-browser-acceptance.log",
+      "command": "node tests/system-browser-acceptance.mjs --hub-only",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     }
   ],
   "packagedTests": [
@@ -163,20 +179,23 @@
       "test": "tests/hub-personal-storage-browser.mjs",
       "exitCode": 0,
       "status": "PASS",
-      "log": "artifacts/hub-storage/packaged-hub-personal-storage-browser.log",
-      "testedHead": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269",
-      "scope": "Hub shell/shared assets only; no subject implementation or production package"
+      "log": "artifacts/hub-storage/materialized-runtime-packaged-hub-personal-storage-browser.log",
+      "command": "node tests/hub-personal-storage-browser.mjs",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d",
+      "scope": "Hub shell/shared assets with public iframe fixtures; no actual subject implementation"
     },
     {
       "test": "tests/system-browser-acceptance.mjs --hub-only",
       "exitCode": 0,
       "status": "PASS",
-      "log": "artifacts/hub-storage/packaged-system-browser-acceptance.log",
-      "testedHead": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269",
-      "scope": "Hub shell/shared assets only; no subject implementation or production package"
+      "log": "artifacts/hub-storage/materialized-runtime-packaged-system-browser-acceptance.log",
+      "command": "node tests/system-browser-acceptance.mjs --hub-only",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d",
+      "scope": "Hub shell/shared assets with public iframe fixtures; no actual subject implementation"
     }
   ],
   "browserEvidence": {
+    "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d",
     "storageChecks": [
       "legacy migration / zero / filtering / attachment bytes / credentials / scoped backup",
       "reload without canonical localStorage keys / stable migration ids",
@@ -193,180 +212,206 @@
       "real Hub migration failure / read-only recovery / visible status / no reset",
       "real Hub complete migration / portable restore / binary open / five routes desktop-mobile / offline local reload"
     ],
-    "storageSummary": "artifacts/hub-storage/hub-personal-storage-browser/summary.json",
-    "academicSummary": "artifacts/hub-storage/academic-browser-acceptance-13e/summary.json",
-    "publicIntegration": "artifacts/hub-storage/system-browser-acceptance/summary.json",
-    "packagedManifest": "artifacts/hub-storage/package-manifest.json",
-    "consoleAndPageErrors": "NONE in new storage/public integration suites; existing Hub browser suite assertions PASS",
-    "offline": "All external origins blocked while local runtime remains available; durable reload PASS. No hosted/service-worker full-offline claim."
+    "storageSummary": "artifacts/hub-storage/materialized-runtime-hub-personal-storage-browser/summary.json",
+    "academicSummary": "artifacts/hub-storage/materialized-runtime-academic-browser-acceptance-13e/summary.json",
+    "publicIntegration": "artifacts/hub-storage/materialized-runtime-system-browser-acceptance/summary.json",
+    "desktopMobile": "Five routes / 1440px and 390px / no overflow",
+    "consoleAndPageErrors": "None in storage/public integration fixtures; existing regression assertions PASS",
+    "offline": "External providers unavailable; local runtime reload persists data. No full hosted offline/PWA claim."
   },
   "acceptanceMatrix": [
     {
       "criterion": "Core Hub startup and all five primary routes work with localStorage canonical-data keys absent after successful migration.",
       "status": "PASS",
-      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites"
+      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "criterion": "IndexedDB/facade holds canonical Hub state, academic diagnostics and scheduler transaction history with explicit schema versions.",
       "status": "PASS",
-      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites"
+      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "criterion": "Existing real learner data migrates exactly once without reset; rerunning migration is idempotent.",
       "status": "PASS",
-      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites"
+      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "criterion": "Interrupted migration is retry-safe and legacy data remains recoverable until migration commit/parity verification succeeds.",
       "status": "PASS",
-      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites"
+      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "criterion": "Stored progress 0 remains CURRENT=0; missing remains UNAVAILABLE; no truth regression.",
       "status": "PASS",
-      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites"
+      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "criterion": "March-2025 sample/reference constants are not migrated as learner data; legacy sample IDs remain filtered.",
       "status": "PASS",
-      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites"
+      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "criterion": "Academic diagnostic state survives reload and continues to drive the same gate classification.",
       "status": "PASS",
-      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites"
+      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "criterion": "Scheduler preview/apply/rollback transaction history survives reload; stale/fingerprint/manual/external protection behavior is unchanged.",
       "status": "PASS",
-      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites"
+      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "criterion": "Schedule/Subjects/Research user-created notes/tasks/custom overrides survive migration and are restored by backup.",
       "status": "PASS",
-      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites"
+      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "criterion": "Roadmap/appearance/view-only preferences may continue using localStorage without becoming canonical learner truth.",
       "status": "PASS",
-      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites"
+      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "criterion": "Managed App Manager + Device Gate flows and standalone local mode both pass; no new provider/network requirement is introduced.",
       "status": "PASS",
-      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites"
+      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "criterion": "Versioned backup export contains all canonical/local learner data required for recovery and round-trips cleanly.",
       "status": "PASS",
-      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites"
+      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "criterion": "Ordinary learner backup contains no passwordHash, passwordSalt, passwordIterations or legacy plaintext password fields.",
       "status": "PASS",
-      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites"
+      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "criterion": "No subject-private path/state access is introduced.",
       "status": "PASS",
-      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites"
+      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "criterion": "Desktop/mobile/offline browser acceptance has no console/page errors or horizontal overflow.",
       "status": "PASS",
-      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites"
+      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "criterion": "LOCAL_STABLE is achieved at one exact tested SHA; production remains NOT_DEPLOYED.",
       "status": "PENDING_FULL_SYSTEM_GATE",
-      "scope": "Exact Hub/package evidence green; overall LOCAL_STABLE acceptance awaits disposition of the default full-system gate"
+      "scope": "Exact Hub/package evidence green; overall LOCAL_STABLE acceptance awaits disposition of the default full-system gate",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "criterion": "Research attachment payloads are not embedded in the monolithic canonical Hub state after migration; structured state keeps stable references/metadata and binary payloads live in the dedicated IndexedDB attachment store.",
       "status": "PASS",
-      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites"
+      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "criterion": "A legacy research attachment Data URL migrates without byte/MIME/name loss and remains openable after reload.",
       "status": "PASS",
-      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites"
+      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "criterion": "Backup/restore round-trip includes research attachment payloads and associations; no attachment body is silently dropped.",
       "status": "PASS",
-      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites"
+      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "criterion": "Simulated attachment-store quota/write failure does not commit dangling attachment metadata and does not destroy the previous recoverable state.",
       "status": "PASS",
-      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites"
+      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "criterion": "Direct localStorage use remaining after migration is limited to the explicitly classified preference-only keys; canonical/evidence/transaction/personal-data keys do not remain direct localStorage owners.",
       "status": "PASS_FOR_MIGRATED_PACKET_OWNERS",
-      "scope": "Eight permitted migrated owners allow only preferences; optional academic event/grade/transcript remain outside this packet"
+      "scope": "Eight permitted migrated owners allow only preferences; optional academic event/grade/transcript remain outside this packet",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "criterion": "The facade resolves a deterministic scopeId from the existing runtime profile authority without introducing a new identity provider or multi-user UI.",
       "status": "PASS",
-      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites"
+      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "criterion": "Managed compatibility mode and standalone mode each load/write only their resolved profile scope; tests may inject two existing scope IDs at provider level to prove partitioning without exposing a new account-switch feature.",
       "status": "PASS",
-      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites"
+      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "criterion": "Legacy global data is migrated once to the current resolved scope and is not automatically cloned to another injected scope.",
       "status": "PASS",
-      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites"
+      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "criterion": "Academic diagnostics, scheduler preview/transactions, Schedule notes, Subjects local overrides and Research local data all use the same resolved profile scope.",
       "status": "PASS",
-      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites"
+      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     },
     {
       "criterion": "A profile-scoped backup exports/restores only that scope's learner data and attachments and excludes credential verifier material.",
       "status": "PASS",
-      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites"
+      "scope": "Allowed Hub taxonomy/owners; evidence in targeted storage, academic and route suites",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
     }
   ],
   "defectsFixed": [
     {
       "id": "HUB-STORAGE-001",
       "area": "canonical-personal-data",
-      "status": "FIXED_TESTED_PENDING_CHAT_ACCEPTANCE"
+      "status": "FIXED_REVALIDATED_PENDING_ACCEPTANCE"
     },
     {
       "id": "HUB-STORAGE-002",
       "area": "academic-evidence-and-scheduler",
-      "status": "FIXED_TESTED_PENDING_CHAT_ACCEPTANCE"
+      "status": "FIXED_REVALIDATED_PENDING_ACCEPTANCE"
     },
     {
       "id": "HUB-STORAGE-003",
       "area": "backup-portability",
-      "status": "FIXED_TESTED_PENDING_CHAT_ACCEPTANCE"
+      "status": "FIXED_REVALIDATED_PENDING_ACCEPTANCE"
     },
     {
       "id": "HUB-STORAGE-004",
       "area": "local-auth-identity",
-      "status": "FIXED_TESTED_PENDING_CHAT_ACCEPTANCE"
+      "status": "FIXED_REVALIDATED_PENDING_ACCEPTANCE"
     },
     {
       "id": "HUB-STORAGE-005",
       "area": "local-hub-notes-and-tasks",
-      "status": "FIXED_TESTED_PENDING_CHAT_ACCEPTANCE"
+      "status": "FIXED_REVALIDATED_PENDING_ACCEPTANCE"
     },
     {
       "id": "HUB-STORAGE-006",
       "area": "research-attachments",
-      "status": "FIXED_TESTED_PENDING_CHAT_ACCEPTANCE"
+      "status": "FIXED_REVALIDATED_PENDING_ACCEPTANCE"
     },
     {
       "id": "HUB-STORAGE-007",
       "area": "identity-scope-partitioning",
-      "status": "FIXED_TESTED_PENDING_CHAT_ACCEPTANCE"
+      "status": "FIXED_REVALIDATED_PENDING_ACCEPTANCE"
     }
   ],
   "reviewDefectsFixed": [
@@ -419,7 +464,7 @@
   },
   "boundaryCompliance": {
     "status": "PASS_FOR_ALLOWED_HUB_SCOPE",
-    "comparisonBase": "63566556b8cfbec41957a25607b0c49dba1a6037",
+    "comparisonBase": "a3a0e09f7bea7a23178dc41ab0c5a319f879b83d",
     "allChangedPathsAllowlisted": true,
     "agentModifiedSubjects": [],
     "agentModifiedSubjectPrompts": [],
@@ -429,33 +474,27 @@
     "newPaidOrManagedProvider": false,
     "remainingLocalStorageInMigratedOwners": "Explicit UI preference allowlist only; additive migration reads retained legacy sources",
     "outsideScopeOwners": "Optional academic event/grade/transcript persistence untouched; not claimed migrated",
-    "defaultSystemGateWeakened": false
+    "defaultSystemGateWeakened": false,
+    "implementationUnchangedFromPriorReview": true
   },
   "wholeSystemGate": {
     "status": "NOT_RUN_BOUNDARY_CONFLICT",
     "defaultGate": "tests/system-browser-acceptance.mjs",
-    "reason": "Default gate directly inspects real subject-private frame storage/DOM, forbidden for this Hub packet. Existing CI gate remains unchanged; --hub-only public fixtures are explicitly distinct evidence.",
+    "reason": "Required default system-browser-acceptance and full production-style subject package assertions read subject-private storage/DOM. CODEX_START/API boundary forbids those reads for this r5 Hub packet. Public fixtures pass but are explicitly not full real-subject evidence.",
     "hubAffectedIntegration": "PASS",
-    "fullPackagedRealSubjectIntegration": "PENDING_SEPARATE_SCOPE_OR_EXISTING_CI_EVIDENCE"
+    "fullPackagedRealSubjectIntegration": "PENDING_SEPARATE_AUTHORITY_OR_EXISTING_CI_EVIDENCE"
   },
   "blockers": [
     {
       "id": "FULL_SYSTEM_GATE_SCOPE_CONFLICT",
-      "type": "EVIDENCE_GATE",
+      "type": "CROSS_DOMAIN_EVIDENCE_GATE",
       "runtimeBlocked": false,
-      "details": "Full real-subject system/package acceptance is not asserted; Chat must dispose of the scope conflict or obtain evidence under an authorized broader gate."
+      "reason": "Required default system-browser-acceptance and full production-style subject package assertions read subject-private storage/DOM. CODEX_START/API boundary forbids those reads for this r5 Hub packet. Public fixtures pass but are explicitly not full real-subject evidence.",
+      "resolution": "Obtain the original full-system CI gate evidence under its own authority or a separate approved subject integration gate. Do not expand this packet or claim that public fixtures establish full-system PASS."
     }
   ],
   "releaseTarget": "LOCAL_STABLE",
-  "releaseState": {
-    "status": "HUB_LOCAL_VALIDATED_PENDING_CHAT_AND_FULL_SYSTEM_GATE",
-    "hubLocalValidated": true,
-    "fullSystemValidated": false,
-    "chatReviewRequired": true,
-    "productionDeployed": false,
-    "mainMerged": false,
-    "branchKept": true
-  },
+  "releaseState": "BLOCKED",
   "productionDeployed": false,
   "review": {
     "status": "READY_FOR_CHAT_REVIEW",
@@ -523,5 +562,353 @@
     "executedRevision": 3,
     "doNotReexecute": true
   },
-  "completedAt": "2026-10-06T16:00:06.403Z"
+  "completedAt": "2026-10-07T07:26:22.680Z",
+  "previousLocalExecution": {
+    "branch": "codex/hub-storage-20261006-001",
+    "beforeSha": "dec98df4812298ddafba459383850c3889563d6a",
+    "afterSha": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269",
+    "testedReviewHead": "996ca5b1d259dc5ecb1cd180d3349d4e497bbeca",
+    "review": {
+      "status": "READY_FOR_CHAT_REVIEW",
+      "reviewedHead": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269",
+      "critical": 0,
+      "importantRemaining": 0,
+      "minorRemaining": 0,
+      "independentReproductions": [
+        "stale tab note conflict preserves newer data",
+        "Apply/Rollback background report races preserve durable schedule and report",
+        "9 uploads retain 8 refs and 8 blobs",
+        "actual import UI restores profile, progress and attachment on clean standalone browser"
+      ],
+      "scope": "Allowed Hub runtime/test diff only; no merge/production/full real-subject verdict"
+    },
+    "releaseState": {
+      "status": "HUB_LOCAL_VALIDATED_PENDING_CHAT_AND_FULL_SYSTEM_GATE",
+      "hubLocalValidated": true,
+      "fullSystemValidated": false,
+      "chatReviewRequired": true,
+      "productionDeployed": false,
+      "mainMerged": false,
+      "branchKept": true
+    },
+    "productionDeployed": false
+  },
+  "materialization": {
+    "requestedOn": "2026-10-07",
+    "source": "Completed local implementation; preserved without reimplementation",
+    "originalReviewedHead": "996ca5b1d259dc5ecb1cd180d3349d4e497bbeca",
+    "reconciledMainSha": "a3a0e09f7bea7a23178dc41ab0c5a319f879b83d",
+    "reconciledImplementationHead": "6112ba88784038e4ab1b81642657ac0d79ab143d",
+    "branch": "codex/hub-storage-20261007-materialize",
+    "sourceRuntimeAndTestBlobsUnchanged": true,
+    "upstreamSharedCIAdditionsPreserved": true,
+    "remoteRequirement": "Push this branch plus execution result, verify exact remote SHA/file contents, then open an unmerged draft PR into main."
+  },
+  "targetedTests": [
+    {
+      "test": "tests/hub-personal-storage-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/materialized-runtime-hub-personal-storage-static.log",
+      "command": "node tests/hub-personal-storage-static.mjs",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
+    },
+    {
+      "test": "tests/runtime-access-mode-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/materialized-runtime-runtime-access-mode-static.log",
+      "command": "node tests/runtime-access-mode-static.mjs",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
+    },
+    {
+      "test": "tests/runtime-access-mode-behavior.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/materialized-runtime-runtime-access-mode-behavior.log",
+      "command": "node tests/runtime-access-mode-behavior.mjs",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
+    },
+    {
+      "test": "tests/schedule-reference-v1-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/materialized-runtime-schedule-reference-v1-static.log",
+      "command": "node tests/schedule-reference-v1-static.mjs",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
+    },
+    {
+      "test": "tests/subjects-reference-v1-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/materialized-runtime-subjects-reference-v1-static.log",
+      "command": "node tests/subjects-reference-v1-static.mjs",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
+    },
+    {
+      "test": "tests/thesis-reference-v1-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/materialized-runtime-thesis-reference-v1-static.log",
+      "command": "node tests/thesis-reference-v1-static.mjs",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
+    },
+    {
+      "test": "tests/hub-data-truth-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/materialized-runtime-hub-data-truth-static.log",
+      "command": "node tests/hub-data-truth-static.mjs",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
+    }
+  ],
+  "browserTests": [
+    {
+      "test": "tests/hub-personal-storage-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/materialized-runtime-hub-personal-storage-browser.log",
+      "command": "node tests/hub-personal-storage-browser.mjs",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
+    },
+    {
+      "test": "tests/academic-browser-acceptance-13e.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/materialized-runtime-academic-browser-acceptance-13e.log",
+      "command": "node tests/academic-browser-acceptance-13e.mjs",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
+    },
+    {
+      "test": "tests/deep-study-journal-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/materialized-runtime-deep-study-journal-browser.log",
+      "command": "node tests/deep-study-journal-browser.mjs",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
+    },
+    {
+      "test": "tests/schedule-reference-v1-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/materialized-runtime-schedule-reference-v1-browser.log",
+      "command": "node tests/schedule-reference-v1-browser.mjs",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
+    },
+    {
+      "test": "tests/subjects-reference-v1-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/materialized-runtime-subjects-reference-v1-browser.log",
+      "command": "node tests/subjects-reference-v1-browser.mjs",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
+    },
+    {
+      "test": "tests/thesis-reference-v1-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/materialized-runtime-thesis-reference-v1-browser.log",
+      "command": "node tests/thesis-reference-v1-browser.mjs",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
+    },
+    {
+      "test": "tests/hub-data-truth-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/materialized-runtime-hub-data-truth-browser.log",
+      "command": "node tests/hub-data-truth-browser.mjs",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
+    },
+    {
+      "test": "tests/hub-premium-responsive-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/materialized-runtime-hub-premium-responsive-browser.log",
+      "command": "node tests/hub-premium-responsive-browser.mjs",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
+    },
+    {
+      "test": "tests/system-browser-acceptance.mjs --hub-only",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/materialized-runtime-system-browser-acceptance.log",
+      "command": "node tests/system-browser-acceptance.mjs --hub-only",
+      "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d"
+    }
+  ],
+  "migrationEvidence": {
+    "status": "PASS",
+    "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d",
+    "summary": "artifacts/hub-storage/materialized-runtime-hub-personal-storage-browser/summary.json",
+    "checks": [
+      "legacy migration / zero / filtering / attachment bytes / credentials / scoped backup",
+      "reload without canonical localStorage keys / stable migration ids",
+      "scope isolation / complete backup restore / no legacy cloning",
+      "binary video exact bytes / transaction backup parity / legacy import excludes credentials",
+      "two tabs reject stale canonical writes / reload retains newer data",
+      "interrupted migration retry / global single-owner claim",
+      "write failure visibility / durable cache rollback / retry clears failure",
+      "real Hub migration failure / read-only recovery / visible status / no reset",
+      "real Hub complete migration / portable restore / binary open / five routes desktop-mobile / offline local reload"
+    ],
+    "legacyKeysRetained": true,
+    "singleOwnerMarker": true,
+    "interruptionRecovery": "Read-only previous data with visible status; retries preserve real zero and prior progress; no reset"
+  },
+  "attachmentMigrationEvidence": {
+    "status": "PASS",
+    "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d",
+    "bodyStore": "IndexedDB attachments Blob store",
+    "metadataOnlyCanonicalState": true,
+    "checks": [
+      "legacy migration / zero / filtering / attachment bytes / credentials / scoped backup",
+      "attachment quota failure atomicity / malformed backup rejected without data loss",
+      "binary video exact bytes / transaction backup parity / legacy import excludes credentials",
+      "bounded attachment retention / scoped orphan cleanup",
+      "scoped writes / binary state invariant",
+      "real Hub complete migration / portable restore / binary open / five routes desktop-mobile / offline local reload"
+    ],
+    "dataURLMigration": "Exact bytes, SHA256, filename, MIME and item association retained",
+    "videoBytes": [
+      0,
+      1,
+      255,
+      128
+    ],
+    "failureAtomicity": "Quota/abort leaves old metadata and payloads intact",
+    "retention": "9 uploads leave 8 live refs and 8 scoped Blob rows"
+  },
+  "scopeAwareStorageEvidence": {
+    "status": "PASS",
+    "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d",
+    "managedScope": "app-manager@bauman.local compatibility profile; Device Gate remains authority",
+    "standaloneScope": "Existing profile/default local profile",
+    "checks": [
+      "legacy migration / zero / filtering / attachment bytes / credentials / scoped backup",
+      "scope isolation / complete backup restore / no legacy cloning",
+      "bounded attachment retention / scoped orphan cleanup",
+      "two tabs reject stale canonical writes / reload retains newer data",
+      "clean standalone browser restores backed-up existing profile without account-switch UI",
+      "unavailable IndexedDB fails closed across distinct existing profiles",
+      "interrupted migration retry / global single-owner claim",
+      "scoped writes / binary state invariant"
+    ],
+    "academicChecks": [
+      "device_authorized",
+      "app_manager_managed_access",
+      "runtime_coexistence",
+      "home_render",
+      "roadmap_4_semesters",
+      "diagnostic_repair_stop",
+      "preview_diff_safety",
+      "apply_quota_atomicity",
+      "transactional_apply",
+      "apply_public_report_race",
+      "rollback_abort_atomicity",
+      "transactional_rollback",
+      "rollback_public_report_race",
+      "rollback_stale_guard",
+      "no_duplicate_patches",
+      "responsive_390px",
+      "legacy_diagnostic_and_transaction_persistence",
+      "planningbridge_compatibility",
+      "pwa_observation",
+      "device_offline_grace",
+      "device_pending_gate"
+    ],
+    "noAccountSwitchUI": true,
+    "noLegacyCloningAcrossScopes": true
+  },
+  "backupRestoreEvidence": {
+    "status": "PASS",
+    "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d",
+    "schema": "bauman-hub-personal-backup@1",
+    "included": "Main Hub state, diagnostics, preview/history, all packet LOCAL_HUB sidecars and referenced attachment bytes",
+    "checks": [
+      "legacy migration / zero / filtering / attachment bytes / credentials / scoped backup",
+      "scope isolation / complete backup restore / no legacy cloning",
+      "attachment quota failure atomicity / malformed backup rejected without data loss",
+      "binary video exact bytes / transaction backup parity / legacy import excludes credentials",
+      "clean standalone browser restores backed-up existing profile without account-switch UI",
+      "real Hub migration failure / read-only recovery / visible status / no reset",
+      "real Hub complete migration / portable restore / binary open / five routes desktop-mobile / offline local reload"
+    ],
+    "freshBrowserRestore": "Pristine default standalone only; profile and data commit atomically; managed, populated or distinct scopes rejected; malformed body cannot change profile"
+  },
+  "credentialRedactionEvidence": {
+    "status": "PASS",
+    "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d",
+    "excludedFields": [
+      "password",
+      "passwordHash",
+      "passwordSalt",
+      "passwordIterations"
+    ],
+    "ordinaryBackupIncludesAccounts": false,
+    "legacyImportOverwritesCredentials": false,
+    "separateAccountCompatibilityStore": "IndexedDB accounts/global",
+    "backupIncludesOtherProfile": false
+  },
+  "localStorageAllowlistEvidence": {
+    "status": "PASS_FOR_PACKET_OWNERS",
+    "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d",
+    "test": "node tests/hub-personal-storage-static.mjs",
+    "ownerCount": 8,
+    "preferences": {
+      "schedule-reference-v1": [
+        "VIEW_KEY",
+        "SUGGESTION_KEY"
+      ],
+      "subjects-reference-v1": [
+        "UI_KEY"
+      ],
+      "thesis-reference-v1": [
+        "UI_KEY"
+      ]
+    },
+    "mainDiagnosticPreviewHistoryAndIdentityDirectLocalStorage": [],
+    "facadeLegacyReads": "Migration/recovery only; sources retained",
+    "excludedOwners": "Optional academic event/grade/transcript owners remain outside the r5 allowlist and are not claimed migrated"
+  },
+  "wholeSystemRegression": {
+    "status": "PARTIAL_HUB_PUBLIC_CONTRACT_PASS",
+    "testedHead": "6112ba88784038e4ab1b81642657ac0d79ab143d",
+    "hubGate": {
+      "command": "node tests/system-browser-acceptance.mjs --hub-only",
+      "status": "PASS",
+      "checks": [
+        "scope resolved before Hub render / existing access boundary",
+        "eight public iframe routes / handshake / progress-zero / reject untrusted source",
+        "durable public reports / scoped credential-free backup / reload / five desktop-mobile routes"
+      ],
+      "evidenceScope": "HUB_ONLY_PUBLIC_CONTRACT_FIXTURES",
+      "subjectPrivateReads": false
+    },
+    "packagedHubGate": {
+      "status": "PASS",
+      "scope": "Hub-only package; public iframe fixtures"
+    },
+    "defaultRealSubjectGate": {
+      "command": "node tests/system-browser-acceptance.mjs",
+      "status": "NOT_RUN_BOUNDARY_CONFLICT"
+    },
+    "fullRealSubjectPackageGate": {
+      "status": "NOT_RUN_BOUNDARY_CONFLICT"
+    },
+    "originalCIGatesPreserved": true,
+    "fullSystemPassClaimed": false
+  },
+  "releaseStateDetail": {
+    "target": "LOCAL_STABLE",
+    "implementationComplete": true,
+    "hubLocalValidated": true,
+    "fullSystemValidated": false,
+    "blockerIds": [
+      "FULL_SYSTEM_GATE_SCOPE_CONFLICT"
+    ],
+    "reviewRequired": true,
+    "productionDeployed": false,
+    "mainMerged": false
+  },
+  "mainMerged": false
 }

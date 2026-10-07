@@ -3,11 +3,11 @@
   "domain": "hub",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/hub/HUB_MASTER_PROMPT.md",
-  "status": "CHAT_REVIEW",
-  "lifecycle": "STORAGE_IMPLEMENTED_PENDING_CHAT_AND_FULL_SYSTEM_GATE",
+  "status": "BLOCKED",
+  "lifecycle": "MATERIALIZED_HUB_STORAGE_PENDING_FULL_SYSTEM_EVIDENCE",
   "baselineMainSha": "2951cc86378056456110abedffe305c8f99d0c42",
   "lastReviewedSha": "19db67bc0975e6fc0c4af0a31111ad3b30e6bfe7",
-  "workingBranch": "codex/hub-storage-20261006-001",
+  "workingBranch": "codex/hub-storage-20261007-materialize",
   "canonicalRoutes": [
     "home",
     "roadmap",
@@ -144,32 +144,32 @@
   "blockers": [
     {
       "id": "FULL_SYSTEM_GATE_SCOPE_CONFLICT",
-      "type": "EVIDENCE_GATE",
+      "type": "CROSS_DOMAIN_EVIDENCE_GATE",
       "runtimeBlocked": false,
-      "details": "Full real-subject system/package acceptance is not asserted; Chat must dispose of the scope conflict or obtain evidence under an authorized broader gate."
+      "reason": "Required default system-browser-acceptance and full production-style subject package assertions read subject-private storage/DOM. CODEX_START/API boundary forbids those reads for this r5 Hub packet. Public fixtures pass but are explicitly not full real-subject evidence.",
+      "resolution": "Obtain the original full-system CI gate evidence under its own authority or a separate approved subject integration gate. Do not expand this packet or claim that public fixtures establish full-system PASS."
     }
   ],
   "externalBlockers": [],
-  "nextAction": "Box Chat reviews exact implementation/evidence HEAD, migration/recovery/concurrency rulings, and disposition of the full-system scope conflict. No main merge or production deployment.",
-  "mainSyncStatus": "rebased_on_latest_observed_main",
+  "nextAction": "Review the GitHub materialization PR at its exact tested HEAD; resolve only the full-system evidence boundary. Do not merge or deploy production.",
+  "mainSyncStatus": "rebased_on_current_main",
   "governanceMergedSha": "6ef5e8814ac841f927f079e18d5062274ee0d847",
-  "lastReviewedRuntimeSha": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269",
-  "currentHeadSha": "63566556b8cfbec41957a25607b0c49dba1a6037",
-  "testedRuntimeHead": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269",
+  "lastReviewedRuntimeSha": "6112ba88784038e4ab1b81642657ac0d79ab143d",
+  "currentHeadSha": "a3a0e09f7bea7a23178dc41ab0c5a319f879b83d",
+  "testedRuntimeHead": "6112ba88784038e4ab1b81642657ac0d79ab143d",
   "executionResult": "prompts/hub/CURRENT_EXECUTION_RESULT.json",
   "lastExecution": {
     "packetId": "HUB-STORAGE-20261006-001",
     "packetRevision": 5,
-    "beforeSha": "dec98df4812298ddafba459383850c3889563d6a",
-    "afterSha": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269",
-    "reconciledMainSha": "63566556b8cfbec41957a25607b0c49dba1a6037",
-    "testedRuntimeHead": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269",
-    "workflowRunId": null,
-    "result": "CODEX_DONE",
+    "beforeSha": "a3a0e09f7bea7a23178dc41ab0c5a319f879b83d",
+    "afterSha": "6112ba88784038e4ab1b81642657ac0d79ab143d",
+    "reconciledMainSha": "a3a0e09f7bea7a23178dc41ab0c5a319f879b83d",
+    "testedRuntimeHead": "6112ba88784038e4ab1b81642657ac0d79ab143d",
+    "result": "IMPLEMENTATION_REVALIDATED_RELEASE_BLOCKED",
     "productionDeployed": false
   },
   "packetMergeSha": "c43dfd115283973b8e83a0b0e3d89eafcf8eb6b0",
-  "activePacketStatus": "CHAT_REVIEW",
+  "activePacketStatus": "BLOCKED",
   "chatReview": {
     "decision": "READY_FOR_CODEX",
     "reviewedAt": "2026-10-06",
@@ -192,8 +192,8 @@
   "chatStart": "prompts/hub/chat/CHAT_START.md",
   "codexStart": "prompts/hub/codex/CODEX_START.md",
   "lastPromptReviewSha": "19db67bc0975e6fc0c4af0a31111ad3b30e6bfe7",
-  "lastRuntimeReviewSha": "c4b0b7028c5540a2c694b8e14cea3be1e68f6269",
-  "observedMainSha": "63566556b8cfbec41957a25607b0c49dba1a6037",
+  "lastRuntimeReviewSha": "6112ba88784038e4ab1b81642657ac0d79ab143d",
+  "observedMainSha": "a3a0e09f7bea7a23178dc41ab0c5a319f879b83d",
   "currentHeadSemantics": "last observed main SHA at prompt-governance review; not a self-referential state-file commit SHA",
   "activePacketId": "HUB-STORAGE-20261006-001",
   "activePacketRevision": 5,
@@ -231,13 +231,17 @@
     },
     "exactHeadPolicy": "Every later prompt-governance commit retriggers Prompt Control Center CI; merge only when the final PR head is green."
   },
-  "releaseState": {
-    "status": "HUB_LOCAL_VALIDATED_PENDING_CHAT_AND_FULL_SYSTEM_GATE",
+  "releaseState": "BLOCKED",
+  "releaseStateDetail": {
+    "target": "LOCAL_STABLE",
+    "implementationComplete": true,
     "hubLocalValidated": true,
     "fullSystemValidated": false,
-    "chatReviewRequired": true,
+    "blockerIds": [
+      "FULL_SYSTEM_GATE_SCOPE_CONFLICT"
+    ],
+    "reviewRequired": true,
     "productionDeployed": false,
-    "mainMerged": false,
-    "branchKept": true
+    "mainMerged": false
   }
 }
