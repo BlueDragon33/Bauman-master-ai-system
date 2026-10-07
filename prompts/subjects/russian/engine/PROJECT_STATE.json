@@ -8,9 +8,9 @@
     "russianMasterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
     "engineOrchestrator": "prompts/subjects/russian/engine/RE00_ENGINE_ORCHESTRATOR.md"
   },
-  "status": "PHASE4_ACTIVE_RE21",
+  "status": "PHASE4_RE21_RE24_PASS_RE25_AWAITING_CROSS_BOUNDARY_AUTHORIZATION",
   "implementationAuthorized": true,
-  "activeWorkPackage": "RE21",
+  "activeWorkPackage": "RE25",
   "sequence": [
     "RE00",
     "RE01",
@@ -87,7 +87,11 @@
     "RE17",
     "RE18",
     "RE19",
-    "RE20"
+    "RE20",
+    "RE21",
+    "RE22",
+    "RE23",
+    "RE24"
   ],
   "targetInternalLevels": 100,
   "learningNorthStar": "RUSSIAN_FIRST_MEANING_FIRST_CONTEXT_FIRST_TRANSLATION_LAST",
@@ -108,8 +112,10 @@
       "managed-multi-user-service-when-justified"
     ]
   },
-  "blockers": [],
-  "nextAction": "Execute RE21-RE24 inside Engine scope, then stop at RE25 before any cross-boundary Russian app write.",
+  "blockers": [
+    "USER_AUTHORIZATION_REQUIRED_FOR_RE25_CROSS_BOUNDARY_ALLOWLIST"
+  ],
+  "nextAction": "User authorization required for RE25 cross-boundary writes to exactly subjects/russian/assets/adaptive-planner.js and subjects/russian/sw.js. No other outside-Engine file is authorized. Keep rollout OPT_IN_FLAG.",
   "re09Validation": {
     "exactHead": "297cfaabea853b059d8e7f4576db192d498056d4",
     "gates": {
@@ -180,5 +186,28 @@
     "pr": 288,
     "mergeCommit": "e87d901aebd58d834991a45c87ee1a98189f2852",
     "mainVerifiedIdentical": true
+  },
+  "phase4Validation": {
+    "implementationHead": "e49a4aee54b2edb7b5a6f253e424b7d3b09bf2fa",
+    "workflows": {
+      "developmentFastCi": "PASS",
+      "russianEngineIsolatedSuite": "PASS",
+      "universalConstitution": "PASS",
+      "promptControlCenter": "PASS",
+      "russianReferenceUi": "PASS",
+      "wholeSystemIntegration": "PASS"
+    },
+    "browser": {
+      "russianP1Source": "PASS",
+      "russianP1Packaged": "PASS",
+      "groundedSource": "PASS",
+      "groundedPackaged": "PASS",
+      "offlineShellSource": "PASS",
+      "offlineShellPackaged": "PASS"
+    },
+    "re25Allowlist": [
+      "subjects/russian/assets/adaptive-planner.js",
+      "subjects/russian/sw.js"
+    ]
   }
 }
