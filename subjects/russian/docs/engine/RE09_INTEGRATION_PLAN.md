@@ -9,7 +9,7 @@ Pre-integration exact-head repository gates passed 5/5 before the allowlisted wr
 Applied app write:
 - `subjects/russian/index.html`
 - commit: `9bf4f14655cace9623dee46eea491888eb9ad8e3`
-- one module tag loads `engine/integration/browser-bootstrap.mjs`.
+- one module tag loads `engine/integration/browser-bootstrap.js`.
 
 No other existing Russian App runtime file was modified by the integration step.
 
@@ -28,7 +28,7 @@ Only one existing app file may be modified:
 Planned modification:
 load
 
-`engine/integration/browser-bootstrap.mjs`
+`engine/integration/browser-bootstrap.js`
 
 as a module after the existing Russian runtime owners have been declared.
 
@@ -86,16 +86,35 @@ That later UI change requires a separate explicit RE09 allowlist expansion.
 
 Post-integration Russian Reference UI Gate found:
 
-`Index runtime refs missing from offline shell: ./engine/integration/browser-bootstrap.mjs`
+`Index runtime refs missing from offline shell: ./engine/integration/browser-bootstrap.js`
 
 This was a valid regression signal.
 
 Correction:
 - expand RE09 existing-file allowlist to include `subjects/russian/sw.js`;
-- bump shell cache to `russian-app-shell-v12-engine-passive-bridge`;
-- precache `./engine/integration/browser-bootstrap.mjs`;
-- precache its transitive module dependency `./engine/speech/legacy-speech-provider.mjs`.
+- bump shell cache to `russian-app-shell-v13-engine-js-module-mime`;
+- precache `./engine/integration/browser-bootstrap.js`;
+- precache its transitive module dependency `./engine/speech/legacy-speech-provider.js`.
 
 The second file is included proactively because a module cached without its static import dependency would still fail in a true offline launch.
 
 No UI, mastery, planner, learner-state or speech-owner implementation changed.
+
+
+## Browser module MIME regression found and fixed
+
+Whole System browser acceptance exposed:
+
+`Failed to load module script ... MIME type application/octet-stream`
+
+Root cause:
+the repository browser-test HTTP server does not serve `.mjs` with a JavaScript module MIME type.
+
+Correction:
+- browser bootstrap is `engine/integration/browser-bootstrap.js`;
+- browser speech provider dependency is `engine/speech/legacy-speech-provider.js`;
+- offline shell references the `.js` modules;
+- cache version is `russian-app-shell-v13-engine-js-module-mime`;
+- superseded browser `.mjs` files are removed after references are migrated.
+
+No Engine semantics, UI, learner state, mastery, planner or speech-owner behavior changes.
