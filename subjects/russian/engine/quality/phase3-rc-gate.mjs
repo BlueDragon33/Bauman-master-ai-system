@@ -24,13 +24,16 @@ const REQUIRED_BROWSER=[
   'wholeSystem'
 ];
 
-export function evaluatePhase3Rc({packages={},workflows={},browser={},rollout={}}={}){
+export function evaluatePhase3Rc({packages={},workflows={},browser={},rollout={},scopeProof={}}={}){
   const errors=[];
   for(const id of REQUIRED_PACKAGES){
     if(packages?.[id]!=='PASS')errors.push(id+' not PASS');
   }
   for(const id of REQUIRED_WORKFLOWS){
-    if(workflows?.[id]!=='PASS')errors.push('workflow '+id+' not PASS');
+    const status=workflows?.[id];
+    if(status==='PASS')continue;
+    if(status==='NOT_REQUIRED'&&clean(scopeProof?.[id]))continue;
+    errors.push('workflow '+id+' not PASS or scope-proven NOT_REQUIRED');
   }
   for(const id of REQUIRED_BROWSER){
     if(browser?.[id]!=='PASS')errors.push('browser '+id+' not PASS');
