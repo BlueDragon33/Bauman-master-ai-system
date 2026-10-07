@@ -1,5 +1,5 @@
 'use strict';
-const CACHE='russian-app-shell-v14-engine-grounded-s1';
+const CACHE='russian-app-shell-v15-engine-grounded-stable-host';
 const DATA_CACHE='russian-learning-data-v1';
 const SHELL=[
   './','./index.html','./manifest.webmanifest','../shared/host-bridge.js',
