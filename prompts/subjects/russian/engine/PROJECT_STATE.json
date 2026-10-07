@@ -8,7 +8,7 @@
     "russianMasterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
     "engineOrchestrator": "prompts/subjects/russian/engine/RE00_ENGINE_ORCHESTRATOR.md"
   },
-  "status": "RE09_INTEGRATED_VALIDATING",
+  "status": "RE09_OFFLINE_FIX_VALIDATING",
   "implementationAuthorized": true,
   "activeWorkPackage": "RE09",
   "sequence": [
@@ -65,5 +65,5 @@
     ]
   },
   "blockers": [],
-  "nextAction": "Validate the passive browser bridge on the exact post-integration HEAD. Require shared CI green and verify subjects/russian/index.html loads the Engine bootstrap exactly once after existing speech owners. Then mark RE09 PASS; do not yet enable learner-facing Engine UI."
+  "nextAction": "Revalidate exact post-offline-fix HEAD. Require Russian Reference UI offline audit and all shared gates green. If PASS, mark RE09 passive integration PASS; learner-facing Engine UI remains a later allowlist expansion."
 }
