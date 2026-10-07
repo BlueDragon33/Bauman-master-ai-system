@@ -8,7 +8,7 @@
     "russianMasterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
     "engineOrchestrator": "prompts/subjects/russian/engine/RE00_ENGINE_ORCHESTRATOR.md"
   },
-  "status": "RE08_PASS_RE09_READY_NOT_AUTHORIZED",
+  "status": "RE09_APPLIED_VALIDATING",
   "implementationAuthorized": true,
   "activeWorkPackage": "RE09",
   "sequence": [
@@ -65,5 +65,5 @@
     ]
   },
   "blockers": [],
-  "nextAction": "Prepare RE09 integration allowlist and strangler plan only. Do not modify general Russian App files until an explicit RE09 cross-boundary allowlist is recorded as authorized."
+  "nextAction": "Wait only for exact-head CI evidence already running; if Whole System Integration and Future Interface pass on head a8f6ac547a2d26c7bf4ea7f44cb6c9fe2c7c2f09, mark RE09 PASS. Do not merge or publish from RE09."
 }
