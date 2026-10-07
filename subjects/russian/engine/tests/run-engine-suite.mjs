@@ -1,15 +1,12 @@
-const tests=[
-  'test-re01-contracts.mjs',
-  'test-re02-grounded-scene.mjs',
-  'test-re03-level-catalog.mjs',
-  'test-re04-reference-graph.mjs',
-  'test-re05-speech-adapter.mjs',
-  'test-re06-learner-adaptive.mjs',
-  'test-re07-commercial-scale.mjs',
-  'test-re08-quality-gate.mjs',
-  'test-re09-browser-bootstrap.mjs',
-  'test-re09s1-grounded-browser-model.mjs'
-];
+import fs from 'node:fs';
+
+const directory=new URL('.',import.meta.url);
+const tests=fs.readdirSync(directory)
+  .filter(file=>/^test-re\d.*\.mjs$/i.test(file))
+  .filter(file=>file!=='run-engine-suite.mjs')
+  .sort((a,b)=>a.localeCompare(b,undefined,{numeric:true,sensitivity:'base'}));
+
+if(!tests.length)throw new Error('Russian Engine suite discovered no tests');
 
 for(const file of tests){
   await import(new URL(file,import.meta.url));
@@ -17,6 +14,8 @@ for(const file of tests){
 
 console.log(JSON.stringify({
   ok:true,
-  suite:'RUSSIAN_ENGINE_FAST_SUITE_V1',
-  tests:tests.length
+  suite:'RUSSIAN_ENGINE_FAST_SUITE_V2',
+  discovery:'test-re*.mjs',
+  tests:tests.length,
+  files:tests
 }));
