@@ -1,6 +1,17 @@
 # Russian Engine RE09 — Minimal App Integration Plan
 
-State: PREPARED · NOT YET APPLIED
+State: **APPLIED · VALIDATING**
+
+## Applied change
+
+Pre-integration exact-head repository gates passed 5/5 before the allowlisted write.
+
+Applied app write:
+- `subjects/russian/index.html`
+- commit: `9bf4f14655cace9623dee46eea491888eb9ad8e3`
+- one module tag loads `engine/integration/browser-bootstrap.mjs`.
+
+No other existing Russian App runtime file was modified by the integration step.
 
 ## Goal
 
