@@ -1,5 +1,6 @@
 import {createBrowserLegacySpeechProvider} from '../speech/legacy-speech-provider.js';
 import {createBrowserPlannerSource} from './browser-planner-source.js';
+import {createBrowserEvidenceRuntime} from './browser-evidence-runtime.js';
 
 const copy=value=>{
   if(typeof structuredClone==='function')return structuredClone(value);
@@ -42,6 +43,7 @@ export function bootstrapRussianEngine(windowLike=globalThis?.window){
     speechProvider:null,
     plannerSource:null,
     plannerSourceStatus:{attached:false,reason:'not-initialized'},
+    evidenceRuntime:null,
     grounded:{
       requested:false,
       state:'OFF',
@@ -57,6 +59,8 @@ export function bootstrapRussianEngine(windowLike=globalThis?.window){
       integration.speechProvider=createBrowserLegacySpeechProvider(windowLike);
       integration.plannerSource=createBrowserPlannerSource();
       integration.plannerSourceStatus=integration.plannerSource.attach(windowLike.RussianAdaptivePlanner);
+      integration.evidenceRuntime=createBrowserEvidenceRuntime({windowLike,plannerSource:integration.plannerSource});
+      integration.evidenceRuntime.retryPending();
       integration.ready=true;
     }catch(error){
       integration.error=String(error?.message||error);
@@ -70,6 +74,7 @@ export function bootstrapRussianEngine(windowLike=globalThis?.window){
     mode:integration.mode,
     inspection:copy(integration.inspection),
     capabilities:integration.speechProvider?.capabilities?.()||null,
+    evidenceRuntime:integration.evidenceRuntime?.audit?.()||null,
     plannerSource:{
       attached:integration.plannerSourceStatus?.attached===true,
       reason:integration.plannerSourceStatus?.reason||null,
@@ -100,6 +105,18 @@ export function bootstrapRussianEngine(windowLike=globalThis?.window){
     },
     clearPlannerCandidates(){
       return integration.plannerSource?.clear?.()||false;
+    },
+    submitObservation(observation,meta={}){
+      if(!integration.evidenceRuntime)throw new Error('Russian Engine evidence runtime is not ready');
+      const result=integration.evidenceRuntime.submit(observation,meta);
+      windowLike.dispatchEvent?.(new CustomEvent('russian-engine:evidence-delivery',{detail:{delivered:result.delivered===true,state:result.row?.state||null}}));
+      return result;
+    },
+    retryPendingEvidence(){
+      return integration.evidenceRuntime?.retryPending?.()||[];
+    },
+    evidenceAudit(){
+      return integration.evidenceRuntime?.audit?.()||null;
     }
   });
 
