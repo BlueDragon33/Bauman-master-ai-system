@@ -110,7 +110,9 @@ export async function mountGroundedExperience({
   windowLike=globalThis.window,
   documentLike=globalThis.document,
   fetchFn=globalThis.fetch,
-  speechProvider=null
+  speechProvider=null,
+  onEvidence=null,
+  onComplete=null
 }={}){
   if(!windowLike||!documentLike)return {mounted:false,reason:'browser-unavailable'};
   if(!shouldEnableGroundedSlice(windowLike.location))return {mounted:false,reason:'feature-flag-off'};
@@ -183,15 +185,16 @@ export async function mountGroundedExperience({
         attemptId:'RE09S1-'+(++attemptSequence)
       });
       evidence.push(copy(result.evidence));
+      if(typeof onEvidence==='function')Promise.resolve(onEvidence(copy(result.evidence),copy(result))).catch(()=>{});
       const status=section.querySelector('[data-re-status]');
       const receiver=section.querySelector('[data-re-receiver]');
       if(result.success){
         const chosen=(scene.world?.objects||[]).find(item=>item.id===result.expectedObjectId);
+        const next=transferCount===0?nextTransferScene(scenes,scene):null;
         if(receiver)receiver.innerHTML=objectVisualMarkup(chosen,{compact:true})+'<small>✓</small>';
         if(status){
           status.dataset.state='success';
           status.innerHTML='<span>✓</span>';
-          const next=transferCount===0?nextTransferScene(scenes,scene):null;
           if(next)status.insertAdjacentHTML('beforeend','<button type="button" class="re-grounded__next" data-re-next>Tiếp tục →</button>');
           else status.insertAdjacentHTML('beforeend','<span>Готово</span>');
         }
@@ -205,8 +208,8 @@ export async function mountGroundedExperience({
             priority:520
           }]);
         }catch(_){};
+        if(!next&&typeof onComplete==='function')Promise.resolve(onComplete({sceneId:scene.sceneId,evidence:copy(evidence)})).catch(()=>{});
         section.querySelector('[data-re-next]')?.addEventListener('click',()=>{
-          const next=transferCount===0?nextTransferScene(scenes,scene):null;
           if(!next)return;
           scene=next;supportLevel=0;transferCount++;render();
         },{once:true});
