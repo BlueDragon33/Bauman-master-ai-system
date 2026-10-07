@@ -1,6 +1,6 @@
 # Russian Engine Phase 4 — Integration Hub
 
-State: **RE21–RE24 PASS · RE25 AWAITING AUTHORIZATION**
+State: **RE21–RE25 PASS**
 
 ## RE21
 Integration transaction hub composes RE17 + RE18 without becoming mastery/planner authority.
@@ -93,4 +93,24 @@ Engine cannot impersonate `manual_override`.
 External candidate priority is bounded below canonical due/manual-owner priorities.
 Rollout remains `OPT_IN_FLAG`.
 
-State: **APPLIED · VALIDATING**.
+State: **PASS**.
+
+
+## RE25 PASS evidence
+
+Validated implementation HEAD: `d29e94a8680dd72601bcaaae7c17cdf32d50058e`.
+
+All required repository gates PASS, including:
+- Russian Engine isolated suite;
+- Russian Reference UI;
+- source + packaged Russian P1;
+- source + packaged grounded slice;
+- source + packaged true-offline shell;
+- whole-system browser regression.
+
+Cross-boundary writes remained exactly within the approved allowlist.
+
+RussianAdaptivePlanner remains final plan authority.
+Rollout remains `OPT_IN_FLAG`.
+
+**RE25 PASS.**
