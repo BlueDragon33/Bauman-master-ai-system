@@ -34,12 +34,14 @@ export function openOrResumeBrowserSession({
 
   function persist(){
     state.updatedAt=Date.now();
-    storage?.setItem?.(key,JSON.stringify(state));
+    try{storage?.setItem?.(key,JSON.stringify(state));return {ok:true}}
+    catch(error){state.storageError=String(error?.message||error);return {ok:false,infrastructureFailure:true,error:state.storageError}}
   }
   persist();
 
   async function recordObservation(observation,{mode='practice'}={}){
-    state.evidence.push(copy(observation));persist();
+    if(!state.evidence.some(x=>x?.evidenceId&&x.evidenceId===observation?.evidenceId))state.evidence.push(copy(observation));
+    persist();
     const queued=pipeline.submit(observation,{mode});
     const delivery=queued?.ok?await pipeline.flush():[];
     return {queued,delivery,metrics:deriveLearnerMetrics(state.evidence)};
