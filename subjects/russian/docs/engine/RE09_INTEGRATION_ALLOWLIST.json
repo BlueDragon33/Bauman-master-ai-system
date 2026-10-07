@@ -1,6 +1,6 @@
 {
   "schemaVersion": "RUSSIAN_ENGINE_RE09_ALLOWLIST_V1",
-  "state": "PREPARED_NOT_APPLIED",
+  "state": "APPLIED_PENDING_EXACT_HEAD_VALIDATION",
   "engineHeadRequired": "EXACT_HEAD_GREEN_CI",
   "purpose": "Load a passive Russian Engine browser bridge without changing learner behavior or UI.",
   "allowedExistingAppWrites": [
@@ -34,5 +34,9 @@
     "RE01-RE08 PASS",
     "exact-head repository CI green",
     "browser bootstrap test PASS"
+  ],
+  "appliedAppCommit": "9bf4f14655cace9623dee46eea491888eb9ad8e3",
+  "appliedExistingAppWrites": [
+    "subjects/russian/index.html"
   ]
 }
