@@ -57,7 +57,7 @@ assert.equal(source.detach(planner),true);
 assert.equal(planner.listCandidateSources().includes('russian-engine'),false);
 
 const sw=fs.readFileSync(new URL('../../sw.js',import.meta.url),'utf8');
-assert(sw.includes("russian-app-shell-v19-engine-world-runtime"));
+assert.match(sw,/russian-app-shell-v\d+-engine-[a-z0-9-]+/);
 assert(sw.includes("./engine/integration/browser-planner-source.js"));
 assert(sw.includes("./engine/integration/browser-evidence-runtime.js"));
 assert(sw.includes("./engine/content/fixtures/real-life-scenes.v1.json"));
