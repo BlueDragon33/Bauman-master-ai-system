@@ -8,9 +8,9 @@
     "russianMasterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
     "engineOrchestrator": "prompts/subjects/russian/engine/RE00_ENGINE_ORCHESTRATOR.md"
   },
-  "status": "RE09_APPLIED_VALIDATING",
+  "status": "RE09_PASS_PHASE2_READY",
   "implementationAuthorized": true,
-  "activeWorkPackage": "RE09",
+  "activeWorkPackage": "RE10",
   "sequence": [
     "RE00",
     "RE01",
@@ -21,7 +21,13 @@
     "RE06",
     "RE07",
     "RE08",
-    "RE09"
+    "RE09",
+    "RE10",
+    "RE11",
+    "RE12",
+    "RE13",
+    "RE14",
+    "RE15"
   ],
   "completedPromptDefinitions": [
     "RE00",
@@ -43,7 +49,8 @@
     "RE05",
     "RE06",
     "RE07",
-    "RE08"
+    "RE08",
+    "RE09"
   ],
   "targetInternalLevels": 100,
   "learningNorthStar": "RUSSIAN_FIRST_MEANING_FIRST_CONTEXT_FIRST_TRANSLATION_LAST",
@@ -65,5 +72,22 @@
     ]
   },
   "blockers": [],
-  "nextAction": "Wait only for exact-head CI evidence already running; if Whole System Integration and Future Interface pass on head a8f6ac547a2d26c7bf4ea7f44cb6c9fe2c7c2f09, mark RE09 PASS. Do not merge or publish from RE09."
+  "nextAction": "Begin Phase 2 RE10 inside Engine scope: build a richer grounded-world semantic runtime/content authoring layer while keeping the existing feature-flagged S1 isolated and disabled by default. Do not merge, publish, or enable by default without explicit user authorization.",
+  "re09Validation": {
+    "exactHead": "297cfaabea853b059d8e7f4576db192d498056d4",
+    "gates": {
+      "wholeSystem": "PASS",
+      "futureInterface": "PASS",
+      "constitution": "PASS",
+      "russianReferenceUi": "PASS",
+      "promptControlCenter": "PASS",
+      "developmentFastCi": "PASS"
+    },
+    "learnerFacingSlice": {
+      "featureFlag": "?ruEngine=grounded-v1",
+      "defaultEnabled": false,
+      "browserAcceptance": "PASS",
+      "packagedAcceptance": "PASS"
+    }
+  }
 }
