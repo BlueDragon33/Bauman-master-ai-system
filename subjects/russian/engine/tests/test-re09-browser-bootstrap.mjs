@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
-import {inspectLegacyOwners,bootstrapRussianEngine} from '../integration/browser-bootstrap.mjs';
+import {inspectLegacyOwners,bootstrapRussianEngine} from '../integration/browser-bootstrap.js';
 
 const missing=inspectLegacyOwners({});
 assert.equal(missing.ready,false);
@@ -56,15 +56,13 @@ assert.equal(bridge.status().ready,true);
 assert.equal(bridge.getSpeechProvider().schema,'RUSSIAN_ENGINE_LEGACY_SPEECH_PROVIDER_V1');
 
 const indexHtml=fs.readFileSync(new URL('../../index.html',import.meta.url),'utf8');
-const integrationTag='<script type="module" src="engine/integration/browser-bootstrap.mjs"></script>';
-const indexIntegrationTagCount,
-  offlineShellHasBootstrap,
-  offlineShellHasSpeechProvider,
-  offlineCacheVersionBumped=indexHtml.split(integrationTag).length-1;
+const integrationTag='<script type="module" src="engine/integration/browser-bootstrap.js"></script>';
+const indexIntegrationTagCount=indexHtml.split(integrationTag).length-1;
 const sw=fs.readFileSync(new URL('../../sw.js',import.meta.url),'utf8');
-const offlineShellHasBootstrap=sw.includes("'./engine/integration/browser-bootstrap.mjs'");
-const offlineShellHasSpeechProvider=sw.includes("'./engine/speech/legacy-speech-provider.mjs'");
-const offlineCacheVersionBumped=/russian-app-shell-v12-engine-passive-bridge/.test(sw);
+const offlineShellHasBootstrap=sw.includes("'./engine/integration/browser-bootstrap.js'");
+const offlineShellHasSpeechProvider=sw.includes("'./engine/speech/legacy-speech-provider.js'");
+const offlineCacheVersionBumped=/russian-app-shell-v13-engine-js-module-mime/.test(sw);
+
 assert.equal(indexIntegrationTagCount,1,'Russian Engine bootstrap must be loaded exactly once');
 assert(indexHtml.indexOf('assets/speech-interaction-engine.js')<indexHtml.indexOf(integrationTag),'bootstrap must load after legacy speech owner declaration');
 assert.equal(offlineShellHasBootstrap,true,'offline shell must cache Engine bootstrap');
@@ -77,5 +75,8 @@ console.log(JSON.stringify({
   existingOwnerMutation:false,
   uiMutation:false,
   learnerStateMutation:false,
-  indexIntegrationTagCount
+  indexIntegrationTagCount,
+  offlineShellHasBootstrap,
+  offlineShellHasSpeechProvider,
+  offlineCacheVersionBumped
 }));
