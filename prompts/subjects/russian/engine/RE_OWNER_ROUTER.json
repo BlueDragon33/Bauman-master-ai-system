@@ -261,6 +261,61 @@
         "C4"
       ],
       "purpose": "Phase 3 RC and rollout gate"
+    },
+    "RE21": {
+      "owners": [
+        "RU04",
+        "RU08"
+      ],
+      "constitution": [
+        "C3",
+        "C4"
+      ],
+      "purpose": "live opt-in RU04 owner binding"
+    },
+    "RE22": {
+      "owners": [
+        "RU04"
+      ],
+      "constitution": [
+        "C1",
+        "C3",
+        "C4"
+      ],
+      "purpose": "live planner compatibility and candidate surface"
+    },
+    "RE23": {
+      "owners": [
+        "RU08"
+      ],
+      "constitution": [
+        "C1",
+        "C3"
+      ],
+      "purpose": "live integration observability and rollback"
+    },
+    "RE24": {
+      "owners": [
+        "RU08"
+      ],
+      "constitution": [
+        "C2",
+        "C3",
+        "C4"
+      ],
+      "purpose": "source/packaged browser acceptance for live owner integration"
+    },
+    "RE25": {
+      "owners": [
+        "RU08"
+      ],
+      "constitution": [
+        "C1",
+        "C2",
+        "C3",
+        "C4"
+      ],
+      "purpose": "Phase 4 opt-in RC gate"
     }
   }
 }
