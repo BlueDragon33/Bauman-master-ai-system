@@ -13,6 +13,7 @@
     return {...defaultState(),...x,schema:SCHEMA,manualOverrides:Array.isArray(x?.manualOverrides)?x.manualOverrides:[]};
   }
   let state=read();
+  const candidateSources=new Map();
   function write(){
     state.updatedAt=new Date().toISOString();
     try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));return true}catch(e){console.warn('Russian personalization save failed',e);return false}
@@ -86,6 +87,36 @@
       skill,reason:REASONS.SKILL_BALANCE,route:skillRoute[skill],priority:300-i,source:'skill-balance'
     }));
   }
+  function registerCandidateSource(sourceId,producer){
+    const id=clean(sourceId);
+    if(!id||typeof producer!=='function')return false;
+    candidateSources.set(id,producer);
+    return true;
+  }
+  function unregisterCandidateSource(sourceId){return candidateSources.delete(clean(sourceId))}
+  function listCandidateSources(){return [...candidateSources.keys()].sort()}
+  function externalCandidates(options={}){
+    const out=[];
+    const context={
+      mode:clean(options.mode||state.mode)||'normal',
+      stage:clean(readCore().stage)||'vn',
+      assessment:copy(assessmentSnapshot()),
+      learning:copy(learningSnapshot()),
+      vocab:copy(vocabSnapshot())
+    };
+    for(const [sourceId,producer] of [...candidateSources.entries()].sort((a,b)=>a[0].localeCompare(b[0]))){
+      let rows=[];
+      try{rows=producer(copy(context))}catch(e){console.warn('Russian planner candidate source failed',sourceId,e);continue}
+      if(!Array.isArray(rows))continue;
+      for(const raw of rows.slice(0,20)){
+        const t=normalizeTask({...raw,source:clean(raw?.source)||sourceId});
+        if(t.reason===REASONS.MANUAL_OVERRIDE)continue;
+        t.priority=Math.max(0,Math.min(899,Number(t.priority)||0));
+        out.push(t);
+      }
+    }
+    return dedupe(out);
+  }
   function activeOverrides(){
     const now=Date.now();
     return state.manualOverrides.filter(x=>!x.expiresAt||Date.parse(x.expiresAt)>now).map((x,i)=>normalizeTask({...x,reason:REASONS.MANUAL_OVERRIDE,priority:1100-i,source:'manual-override'}));
@@ -109,13 +140,14 @@
     const vocab=dueVocab().slice(0,2);
     const weaknesses=weaknessTasks().slice(0,2);
     const continuing=continueTask().slice(0,1);
-    const base=dedupe([...overrides,...due,...vocab,...weaknesses,...continuing]);
+    const external=externalCandidates(options).slice(0,3);
+    const base=dedupe([...overrides,...due,...vocab,...weaknesses,...continuing,...external]);
     const balanced=balanceTasks(base);
     const tasks=dedupe([...base,...balanced]).sort((a,b)=>b.priority-a.priority||a.id.localeCompare(b.id));
     return {
       schema:SCHEMA,algorithmVersion:state.algorithmVersion,mode,maxItems,
       stage:clean(readCore().stage)||'vn',
-      generatedFrom:{assessment:window.RussianAssessmentMastery?.schema||null,learning:window.RussianLearningState?.schema||null,vocab:window.RussianVocabSrs?.schema||null},
+      generatedFrom:{assessment:window.RussianAssessmentMastery?.schema||null,learning:window.RussianLearningState?.schema||null,vocab:window.RussianVocabSrs?.schema||null,candidateSources:listCandidateSources()},
       tasks:tasks.slice(0,maxItems).map(x=>({...x,reasonLabel:reasonLabels[x.reason]||x.reason}))
     };
   }
@@ -126,5 +158,5 @@
     state.manualOverrides=[...state.manualOverrides.filter(x=>x.id!==row.id),row].slice(-50);write();return copy(row);
   }
   function clearExpiredOverrides(){const now=Date.now(),before=state.manualOverrides.length;state.manualOverrides=state.manualOverrides.filter(x=>!x.expiresAt||Date.parse(x.expiresAt)>now);if(state.manualOverrides.length!==before)write();return before-state.manualOverrides.length}
-  window.RussianAdaptivePlanner={schema:SCHEMA,storageKey:STORAGE_KEY,reasons:REASONS,buildPlan,explain,setMode,setManualOverride,clearExpiredOverrides,getState:()=>copy(state),refresh(){state=read();return copy(state)}};
+  window.RussianAdaptivePlanner={schema:SCHEMA,storageKey:STORAGE_KEY,reasons:REASONS,buildPlan,explain,setMode,setManualOverride,clearExpiredOverrides,registerCandidateSource,unregisterCandidateSource,listCandidateSources,getState:()=>copy(state),refresh(){state=read();return copy(state)}};
 })();

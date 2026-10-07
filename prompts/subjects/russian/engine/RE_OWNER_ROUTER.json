@@ -261,6 +261,65 @@
         "C4"
       ],
       "purpose": "Phase 3 RC and rollout gate"
+    },
+    "RE21": {
+      "owners": [
+        "RU04",
+        "RU08"
+      ],
+      "constitution": [
+        "C1",
+        "C3",
+        "C4"
+      ],
+      "purpose": "integration transaction hub"
+    },
+    "RE22": {
+      "owners": [
+        "RU04",
+        "RU08"
+      ],
+      "constitution": [
+        "C1",
+        "C3",
+        "C4"
+      ],
+      "purpose": "durable observation outbox"
+    },
+    "RE23": {
+      "owners": [
+        "RU03",
+        "RU08"
+      ],
+      "constitution": [
+        "C1",
+        "C3"
+      ],
+      "purpose": "active content pack resolver"
+    },
+    "RE24": {
+      "owners": [
+        "RU04",
+        "RU08"
+      ],
+      "constitution": [
+        "C1",
+        "C3",
+        "C4"
+      ],
+      "purpose": "read-only app owner compatibility dry run"
+    },
+    "RE25": {
+      "owners": [
+        "RU08"
+      ],
+      "constitution": [
+        "C1",
+        "C3",
+        "C4"
+      ],
+      "purpose": "explicit cross-boundary app integration allowlist gate",
+      "crossBoundaryWrite": "EXPLICIT_ALLOWLIST_REQUIRED"
     }
   }
 }

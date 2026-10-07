@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "RUSSIAN_ENGINE_RE25_ALLOWLIST_V1",
+  "state": "PASS",
+  "validatedImplementationHead": "e49a4aee54b2edb7b5a6f253e424b7d3b09bf2fa",
+  "rolloutState": "OPT_IN_FLAG",
+  "defaultEnabled": false,
+  "allowedOutsideEngineWrites": [
+    {
+      "path": "subjects/russian/assets/adaptive-planner.js",
+      "purpose": "Add explicit Engine candidate-source seam while preserving RussianAdaptivePlanner as final planner authority.",
+      "forbidden": [
+        "manualOverride impersonation",
+        "mastery writes",
+        "stage unlock",
+        "default-on rollout"
+      ]
+    },
+    {
+      "path": "subjects/russian/sw.js",
+      "purpose": "Precache only newly browser-loaded Engine integration modules required for true-offline parity after candidate-source seam activation.",
+      "forbidden": [
+        "unrelated cache rewrite",
+        "removing existing offline assets",
+        "default-on rollout"
+      ]
+    }
+  ],
+  "allOtherOutsideEngineWrites": "FORBIDDEN",
+  "rollback": "Remove/disable Engine candidate source registration and revert added Engine integration precache entries; existing planner and app behavior remains canonical.",
+  "authorizationRequired": true,
+  "authorizationSource": "User granted standing consent for non-manual GitHub-executable work in chat; stop only when direct user GitHub intervention is required.",
+  "appliedOutsideEngineWrites": [
+    "subjects/russian/assets/adaptive-planner.js",
+    "subjects/russian/sw.js"
+  ],
+  "appliedEngineWrites": [
+    "subjects/russian/engine/integration/browser-planner-source.js",
+    "subjects/russian/engine/integration/browser-bootstrap.js",
+    "subjects/russian/engine/integration/grounded-experience.js",
+    "subjects/russian/engine/tests/test-re25-planner-seam.mjs"
+  ],
+  "validationHead": "d29e94a8680dd72601bcaaae7c17cdf32d50058e",
+  "validation": {
+    "developmentFastCi": "PASS",
+    "russianEngineIsolatedSuite": "PASS",
+    "russianReferenceUi": "PASS",
+    "wholeSystemIntegration": "PASS",
+    "russianP1SourceAndPackaged": "PASS",
+    "offlineSourceAndPackaged": "PASS"
+  }
+}

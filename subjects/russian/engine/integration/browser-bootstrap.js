@@ -1,4 +1,5 @@
 import {createBrowserLegacySpeechProvider} from '../speech/legacy-speech-provider.js';
+import {createBrowserPlannerSource} from './browser-planner-source.js';
 
 const copy=value=>{
   if(typeof structuredClone==='function')return structuredClone(value);
@@ -39,6 +40,8 @@ export function bootstrapRussianEngine(windowLike=globalThis?.window){
     mode:'PASSIVE_BRIDGE',
     inspection:copy(inspection),
     speechProvider:null,
+    plannerSource:null,
+    plannerSourceStatus:{attached:false,reason:'not-initialized'},
     grounded:{
       requested:false,
       state:'OFF',
@@ -52,6 +55,8 @@ export function bootstrapRussianEngine(windowLike=globalThis?.window){
   if(inspection.ready){
     try{
       integration.speechProvider=createBrowserLegacySpeechProvider(windowLike);
+      integration.plannerSource=createBrowserPlannerSource();
+      integration.plannerSourceStatus=integration.plannerSource.attach(windowLike.RussianAdaptivePlanner);
       integration.ready=true;
     }catch(error){
       integration.error=String(error?.message||error);
@@ -65,6 +70,11 @@ export function bootstrapRussianEngine(windowLike=globalThis?.window){
     mode:integration.mode,
     inspection:copy(integration.inspection),
     capabilities:integration.speechProvider?.capabilities?.()||null,
+    plannerSource:{
+      attached:integration.plannerSourceStatus?.attached===true,
+      reason:integration.plannerSourceStatus?.reason||null,
+      candidateCount:integration.plannerSource?.getCandidates?.().length||0
+    },
     grounded:{
       requested:integration.grounded.requested,
       state:integration.grounded.state,
@@ -81,6 +91,15 @@ export function bootstrapRussianEngine(windowLike=globalThis?.window){
     getSpeechProvider(){
       if(!integration.ready)throw new Error('Russian Engine speech provider is not ready');
       return integration.speechProvider;
+    },
+    publishPlannerCandidates(rows){
+      if(!integration.plannerSource)throw new Error('Russian Engine planner source is not ready');
+      const result=integration.plannerSource.publish(rows);
+      windowLike.dispatchEvent?.(new CustomEvent('russian-engine:planner-candidates',{detail:{count:result.length}}));
+      return result;
+    },
+    clearPlannerCandidates(){
+      return integration.plannerSource?.clear?.()||false;
     }
   });
 
