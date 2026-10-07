@@ -46,6 +46,11 @@ export function bootstrapRussianEngine(windowLike=globalThis?.window){
       controller:null,
       error:null
     },
+    liveOwner:{
+      active:false,
+      controller:null,
+      error:null
+    },
     error:null
   };
 
@@ -72,6 +77,12 @@ export function bootstrapRussianEngine(windowLike=globalThis?.window){
       error:integration.grounded.error,
       status:integration.grounded.controller?.status?.()||null
     },
+    liveOwner:{
+      active:integration.liveOwner.active,
+      error:integration.liveOwner.error,
+      status:integration.liveOwner.controller?.status?.()||null,
+      planner:integration.liveOwner.controller?.plannerStatus?.()||null
+    },
     error:integration.error
   });
 
@@ -81,6 +92,15 @@ export function bootstrapRussianEngine(windowLike=globalThis?.window){
     getSpeechProvider(){
       if(!integration.ready)throw new Error('Russian Engine speech provider is not ready');
       return integration.speechProvider;
+    },
+    liveOwnerStatus(){
+      return integration.liveOwner.controller?.status?.()||null;
+    },
+    plannerStatus(){
+      return integration.liveOwner.controller?.plannerStatus?.()||{ok:false,errors:['live-owner-inactive']};
+    },
+    plannerCandidates(input={}){
+      return integration.liveOwner.controller?.plannerCandidates?.(input)||{ok:false,candidates:[],errors:['live-owner-inactive']};
     }
   });
 
@@ -95,13 +115,25 @@ export function bootstrapRussianEngine(windowLike=globalThis?.window){
   if(shouldRequest){
     integration.grounded.requested=true;
     integration.grounded.state='LOADING';
-    import('./grounded-experience.js')
-      .then(module=>module.mountGroundedExperience({
-        windowLike,
-        documentLike:windowLike.document,
-        fetchFn:windowLike.fetch?.bind(windowLike)||globalThis.fetch,
-        speechProvider:integration.speechProvider
-      }))
+    Promise.all([
+      import('./grounded-experience.js'),
+      import('./live-owner-integration.js')
+    ])
+      .then(([groundedModule,liveModule])=>{
+        integration.liveOwner.controller=liveModule.createLiveOwnerIntegration(windowLike);
+        integration.liveOwner.active=true;
+        return groundedModule.mountGroundedExperience({
+          windowLike,
+          documentLike:windowLike.document,
+          fetchFn:windowLike.fetch?.bind(windowLike)||globalThis.fetch,
+          speechProvider:integration.speechProvider,
+          onEvidence:payload=>integration.liveOwner.controller.applyObservation({
+            observation:payload?.evidence,
+            contentRevision:payload?.scene?.contentRevision||'',
+            mode:'practice'
+          })
+        });
+      })
       .then(controller=>{
         integration.grounded.controller=controller?.mounted?controller:null;
         integration.grounded.mounted=controller?.mounted===true;
@@ -112,6 +144,7 @@ export function bootstrapRussianEngine(windowLike=globalThis?.window){
       .catch(error=>{
         integration.grounded.state='ERROR';
         integration.grounded.error=String(error?.message||error);
+        integration.liveOwner.error=String(error?.message||error);
         windowLike.dispatchEvent?.(new CustomEvent('russian-engine:grounded-error',{detail:publicView()}));
       });
   }

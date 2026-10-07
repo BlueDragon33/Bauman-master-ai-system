@@ -42,6 +42,10 @@ try{
   await page.waitForSelector('body.ru-future-ui',{timeout:15000});
   await page.waitForTimeout(250);
   assert.equal(await page.locator('[data-russian-engine-grounded="1"]').count(),0,'Grounded slice must remain off without feature flag');
+  const plainOwnerState=await page.evaluate(()=>window.RussianAssessmentMastery?.exportState?.()||{attempts:{},evidence:{},mastery:{}});
+  assert.equal(Object.values(plainOwnerState.attempts||{}).filter(x=>String(x?.assessmentId||'').startsWith('ENGINE::')).length,0,'Feature-off must not create Engine RU04 attempts');
+  assert.equal(Object.values(plainOwnerState.evidence||{}).filter(x=>String(x?.evidenceId||'').startsWith('RU04::RE09S1')).length,0,'Feature-off must not create Engine RU04 evidence');
+  assert.equal(await page.evaluate(()=>window.RussianEngineIntegration?.status?.().liveOwner?.active??false),false,'Feature-off must not activate live owner integration');
 
   const flaggedUrl=new URL('subjects/russian/index.html?ruEngine=grounded-v1',BASE).href;
   await page.goto(flaggedUrl,{waitUntil:'domcontentloaded',timeout:30000});
@@ -59,6 +63,35 @@ try{
   assert.equal(integration.grounded.requested,true);
   assert.equal(integration.grounded.mounted,true);
   assert.equal(integration.grounded.status.supportLevel,0);
+  assert.equal(integration.liveOwner.active,true,'Feature-on must activate live owner integration');
+  assert.equal(integration.liveOwner.status.assessmentOwnerPresent,true);
+  assert.equal(integration.liveOwner.planner.ok,true,'Existing RussianAdaptivePlanner must be compatible');
+
+  const plannerNonInterference=await page.evaluate(()=>{
+    const planner=window.RussianAdaptivePlanner;
+    const beforeBuild=planner?.buildPlan;
+    const beforeExplain=planner?.explain;
+    const beforeOverride=planner?.setManualOverride;
+    const proposal=window.RussianEngineIntegration?.plannerCandidates?.({
+      snapshot:{reviewDue:[]},
+      recommendation:{kind:'introduce',experienceId:'EXP-BROWSER'},
+      experiences:[{experienceId:'EXP-BROWSER',label:'Browser candidate',skill:'interaction',route:{view:'dialogue'},requiredCapabilities:[]}],
+      capabilities:{},
+      revision:'browser-r1'
+    });
+    return {
+      proposalOk:proposal?.ok===true,
+      candidateCount:proposal?.candidates?.length||0,
+      sameBuild:planner?.buildPlan===beforeBuild,
+      sameExplain:planner?.explain===beforeExplain,
+      sameOverride:planner?.setManualOverride===beforeOverride
+    };
+  });
+  assert.equal(plannerNonInterference.proposalOk,true);
+  assert.equal(plannerNonInterference.candidateCount,1);
+  assert.equal(plannerNonInterference.sameBuild,true);
+  assert.equal(plannerNonInterference.sameExplain,true);
+  assert.equal(plannerNonInterference.sameOverride,true);
 
   await slice.locator('[data-re-listen]').click();
   await page.waitForFunction(()=>window.__RE_TTS?.count>=1);
@@ -100,6 +133,31 @@ try{
   const finalState=await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status);
   assert.equal(finalState.evidenceCount,10);
   assert.equal(finalState.transferCount,1);
+  assert.equal(finalState.integrationEventCount,10);
+  assert.equal(finalState.lastIntegration?.ok,true);
+
+  const ownerProof=await page.evaluate(()=>{
+    const state=window.RussianAssessmentMastery?.exportState?.()||{attempts:{},evidence:{},mastery:{},stageGates:{}};
+    const engineAttempts=Object.values(state.attempts||{}).filter(x=>String(x?.assessmentId||'').startsWith('ENGINE::RE02-EXP-'));
+    const engineEvidence=Object.values(state.evidence||{}).filter(x=>String(x?.evidenceId||'').startsWith('RU04::RE09S1'));
+    const live=window.RussianEngineIntegration?.liveOwnerStatus?.();
+    return {
+      attemptCount:engineAttempts.length,
+      evidenceCount:engineEvidence.length,
+      authoritativeCount:engineEvidence.filter(x=>x?.authoritative===true).length,
+      masteryKeys:Object.keys(state.mastery||{}),
+      stageGateKeys:Object.keys(state.stageGates||{}),
+      live,
+      diagnosticText:JSON.stringify(live||{})
+    };
+  });
+  assert.equal(ownerProof.attemptCount,10,'Each grounded observation must append a RU04 attempt');
+  assert.equal(ownerProof.evidenceCount,10,'Each grounded observation must append non-authoritative RU04 evidence');
+  assert.equal(ownerProof.authoritativeCount,0,'Engine evidence must remain non-authoritative');
+  assert.deepEqual(ownerProof.masteryKeys,[],'Engine observation must not grant mastery');
+  assert.deepEqual(ownerProof.stageGateKeys,[],'Engine observation must not write stage gates');
+  assert.equal(ownerProof.live.ru04BundlesApplied,10);
+  assert.equal(ownerProof.diagnosticText.includes('Дай мяч.'),false,'Diagnostics must not contain transcript content');
 
   const engineStorageKeys=await page.evaluate(()=>Object.keys(localStorage).filter(key=>/engine|grounded/i.test(key)));
   assert.deepEqual(engineStorageKeys,[],'Prepared slice must not persist a parallel Engine learner store');
@@ -123,6 +181,10 @@ try{
     transcriptLate:true,
     translationInvented:false,
     transfer:true,
+    liveRu04Evidence:true,
+    masteryGranted:false,
+    plannerPatched:false,
+    featureOffWrites:false,
     noPersistentEngineStore:true,
     screenshot:path.join(OUT,'grounded-s1-final.png')
   }));

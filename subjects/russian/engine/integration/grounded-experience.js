@@ -110,7 +110,8 @@ export async function mountGroundedExperience({
   windowLike=globalThis.window,
   documentLike=globalThis.document,
   fetchFn=globalThis.fetch,
-  speechProvider=null
+  speechProvider=null,
+  onEvidence=null
 }={}){
   if(!windowLike||!documentLike)return {mounted:false,reason:'browser-unavailable'};
   if(!shouldEnableGroundedSlice(windowLike.location))return {mounted:false,reason:'feature-flag-off'};
@@ -138,6 +139,7 @@ export async function mountGroundedExperience({
   let transferCount=0;
   let attemptSequence=0;
   const evidence=[];
+  const integrationEvents=[];
 
   const section=documentLike.createElement('section');
   section.className='re-grounded';
@@ -183,6 +185,29 @@ export async function mountGroundedExperience({
         attemptId:'RE09S1-'+(++attemptSequence)
       });
       evidence.push(copy(result.evidence));
+      try{
+        if(typeof onEvidence==='function'){
+          const integrationResult=onEvidence({
+            evidence:copy(result.evidence),
+            scene:{
+              sceneId:scene.sceneId,
+              contentRevision:String(scene.contentRevision||'')
+            }
+          });
+          if(integrationResult&&typeof integrationResult==='object'){
+            integrationEvents.push({
+              ok:integrationResult.ok===true,
+              applied:integrationResult.applied===true,
+              duplicate:integrationResult.duplicate===true,
+              reason:String(integrationResult.reason||'')
+            });
+            if(integrationEvents.length>50)integrationEvents.splice(0,integrationEvents.length-50);
+          }
+        }
+      }catch(_error){
+        integrationEvents.push({ok:false,applied:false,duplicate:false,reason:'evidence-sink-threw'});
+        if(integrationEvents.length>50)integrationEvents.splice(0,integrationEvents.length-50);
+      }
       const status=section.querySelector('[data-re-status]');
       const receiver=section.querySelector('[data-re-receiver]');
       if(result.success){
@@ -226,9 +251,12 @@ export async function mountGroundedExperience({
       supportLevel,
       supportStep:GROUNDED_SUPPORT_STEPS[supportLevel],
       transferCount,
-      evidenceCount:evidence.length
+      evidenceCount:evidence.length,
+      integrationEventCount:integrationEvents.length,
+      lastIntegration:integrationEvents.length?copy(integrationEvents[integrationEvents.length-1]):null
     }),
     evidence:()=>copy(evidence),
+    integration:()=>copy(integrationEvents),
     unmount(){
       section.remove();
       if(host.childElementCount===0)host.remove();
