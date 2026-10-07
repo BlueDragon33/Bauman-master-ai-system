@@ -15,7 +15,7 @@ RE05 adds an Engine-side adapter contract only.
 
 ## Provider boundary
 
-`legacy-speech-provider.mjs` can wrap the three existing owners.
+`legacy-speech-provider.js` can wrap the three existing owners.
 
 The provider exposes:
 - capability status;
@@ -103,7 +103,7 @@ The browser-specific helper can construct the provider from current global owner
 
 ## Files
 
-- `subjects/russian/engine/speech/legacy-speech-provider.mjs`
+- `subjects/russian/engine/speech/legacy-speech-provider.js`
 - `subjects/russian/engine/speech/oral-session-runtime.mjs`
 - `subjects/russian/engine/speech/scenario-port.mjs`
 - `subjects/russian/engine/tests/test-re05-speech-adapter.mjs`
