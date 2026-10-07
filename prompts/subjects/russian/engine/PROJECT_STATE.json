@@ -8,7 +8,7 @@
     "russianMasterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
     "engineOrchestrator": "prompts/subjects/russian/engine/RE00_ENGINE_ORCHESTRATOR.md"
   },
-  "status": "PHASE4_RE21_RE24_PASS_RE25_AWAITING_CROSS_BOUNDARY_AUTHORIZATION",
+  "status": "PHASE4_RE25_APPLIED_VALIDATING",
   "implementationAuthorized": true,
   "activeWorkPackage": "RE25",
   "sequence": [
@@ -112,10 +112,8 @@
       "managed-multi-user-service-when-justified"
     ]
   },
-  "blockers": [
-    "USER_AUTHORIZATION_REQUIRED_FOR_RE25_CROSS_BOUNDARY_ALLOWLIST"
-  ],
-  "nextAction": "User authorization required for RE25 cross-boundary writes to exactly subjects/russian/assets/adaptive-planner.js and subjects/russian/sw.js. No other outside-Engine file is authorized. Keep rollout OPT_IN_FLAG.",
+  "blockers": [],
+  "nextAction": "Validate exact-head RE25 source, packaged, offline, planner regression and whole-system gates. If PASS, close Phase 4 and continue without user interruption unless direct GitHub intervention is required.",
   "re09Validation": {
     "exactHead": "297cfaabea853b059d8e7f4576db192d498056d4",
     "gates": {
