@@ -258,16 +258,86 @@ try{
     await page.waitForFunction(id=>!!document.querySelector(`#page-${id} .hub-v6-hero`),id,{timeout:10000});
     const before=await page.evaluate(id=>{
       const page=document.getElementById(`page-${id}`);
-      const hero=page?.querySelector('.hub-v6-hero')?.getBoundingClientRect();
+      const heroEl=page?.querySelector('.hub-v6-hero');
+      const hero=heroEl?.getBoundingClientRect();
       const first=page?.querySelector('.hub-v6-hero + *')?.getBoundingClientRect();
-      return {booting:document.body.classList.contains('hub-ui-booting'),hero:hero?{x:hero.x,y:hero.y,w:hero.width,h:hero.height}:null,first:first?{x:first.x,y:first.y,w:first.width,h:first.height}:null};
+      const title=heroEl?.querySelector('h2');
+      const copy=heroEl?.querySelector('p');
+      const eyebrow=heroEl?.querySelector('.hub-v6-eyebrow');
+      const kpiValue=heroEl?.querySelector('.hub-v6-kpi b');
+      const kpiLabel=heroEl?.querySelector('.hub-v6-kpi small');
+      const luminance=value=>{
+        const rgb=(String(value).match(/\d+(?:\.\d+)?/g)||[]).slice(0,3).map(Number);
+        if(rgb.length!==3)return 0;
+        const normalized=/^\s*color\(srgb\s/i.test(String(value));
+        const lin=rgb.map(v=>{v/=normalized?1:255;return v<=.04045?v/12.92:Math.pow((v+.055)/1.055,2.4)});
+        return .2126*lin[0]+.7152*lin[1]+.0722*lin[2];
+      };
+      const titleColor=title?getComputedStyle(title).color:'';
+      const copyColor=copy?getComputedStyle(copy).color:'';
+      const eyebrowColor=eyebrow?getComputedStyle(eyebrow).color:'';
+      const kpiValueColor=kpiValue?getComputedStyle(kpiValue).color:'';
+      const kpiLabelColor=kpiLabel?getComputedStyle(kpiLabel).color:'';
+      // Worst-case conservative dark-hero sample. Assert computed colors, not declared CSS.
+      const darkHeroLuminance=luminance('rgb(41, 53, 65)');
+      const ratio=value=>{
+        const l=luminance(value);
+        return value?(Math.max(l,darkHeroLuminance)+.05)/(Math.min(l,darkHeroLuminance)+.05):null;
+      };
+      return {
+        booting:document.body.classList.contains('hub-ui-booting'),
+        heroCount:page?.querySelectorAll('.hub-v6-hero').length||0,
+        hero:hero?{x:hero.x,y:hero.y,w:hero.width,h:hero.height}:null,
+        first:first?{x:first.x,y:first.y,w:first.width,h:first.height}:null,
+        titleColor,copyColor,eyebrowColor,kpiValueColor,kpiLabelColor,
+        titleContrast:ratio(titleColor),copyContrast:ratio(copyColor),
+        eyebrowContrast:ratio(eyebrowColor),kpiValueContrast:ratio(kpiValueColor),kpiLabelContrast:ratio(kpiLabelColor)
+      };
     },id);
+    assert.equal(before.heroCount,1,`${id}: V6 hero must render exactly once`);
+    assert.ok(before.titleContrast>=3,`${id}: V6 hero large title contrast ${before.titleContrast} (${before.titleColor}) is below 3:1`);
+    assert.ok(before.copyContrast>=4.5,`${id}: V6 hero description contrast ${before.copyContrast} (${before.copyColor}) is below 4.5:1`);
+    if(before.eyebrowContrast!==null)assert.ok(before.eyebrowContrast>=4.5,`${id}: V6 hero eyebrow contrast is below 4.5:1 (${before.eyebrowColor})`);
+    if(before.kpiValueContrast!==null)assert.ok(before.kpiValueContrast>=3,`${id}: V6 hero KPI value contrast is below 3:1 (${before.kpiValueColor})`);
+    if(before.kpiLabelContrast!==null)assert.ok(before.kpiLabelContrast>=4.5,`${id}: V6 hero KPI label contrast is below 4.5:1 (${before.kpiLabelColor})`);
     await page.waitForTimeout(1450);
     const after=await page.evaluate(id=>{
       const page=document.getElementById(`page-${id}`);
-      const hero=page?.querySelector('.hub-v6-hero')?.getBoundingClientRect();
+      const heroEl=page?.querySelector('.hub-v6-hero');
+      const hero=heroEl?.getBoundingClientRect();
       const first=page?.querySelector('.hub-v6-hero + *')?.getBoundingClientRect();
-      return {booting:document.body.classList.contains('hub-ui-booting'),hero:hero?{x:hero.x,y:hero.y,w:hero.width,h:hero.height}:null,first:first?{x:first.x,y:first.y,w:first.width,h:first.height}:null};
+      const title=heroEl?.querySelector('h2');
+      const copy=heroEl?.querySelector('p');
+      const eyebrow=heroEl?.querySelector('.hub-v6-eyebrow');
+      const kpiValue=heroEl?.querySelector('.hub-v6-kpi b');
+      const kpiLabel=heroEl?.querySelector('.hub-v6-kpi small');
+      const luminance=value=>{
+        const rgb=(String(value).match(/\d+(?:\.\d+)?/g)||[]).slice(0,3).map(Number);
+        if(rgb.length!==3)return 0;
+        const normalized=/^\s*color\(srgb\s/i.test(String(value));
+        const lin=rgb.map(v=>{v/=normalized?1:255;return v<=.04045?v/12.92:Math.pow((v+.055)/1.055,2.4)});
+        return .2126*lin[0]+.7152*lin[1]+.0722*lin[2];
+      };
+      const titleColor=title?getComputedStyle(title).color:'';
+      const copyColor=copy?getComputedStyle(copy).color:'';
+      const eyebrowColor=eyebrow?getComputedStyle(eyebrow).color:'';
+      const kpiValueColor=kpiValue?getComputedStyle(kpiValue).color:'';
+      const kpiLabelColor=kpiLabel?getComputedStyle(kpiLabel).color:'';
+      // Worst-case conservative dark-hero sample. Assert computed colors, not declared CSS.
+      const darkHeroLuminance=luminance('rgb(41, 53, 65)');
+      const ratio=value=>{
+        const l=luminance(value);
+        return value?(Math.max(l,darkHeroLuminance)+.05)/(Math.min(l,darkHeroLuminance)+.05):null;
+      };
+      return {
+        booting:document.body.classList.contains('hub-ui-booting'),
+        heroCount:page?.querySelectorAll('.hub-v6-hero').length||0,
+        hero:hero?{x:hero.x,y:hero.y,w:hero.width,h:hero.height}:null,
+        first:first?{x:first.x,y:first.y,w:first.width,h:first.height}:null,
+        titleColor,copyColor,eyebrowColor,kpiValueColor,kpiLabelColor,
+        titleContrast:ratio(titleColor),copyContrast:ratio(copyColor),
+        eyebrowContrast:ratio(eyebrowColor),kpiValueContrast:ratio(kpiValueColor),kpiLabelContrast:ratio(kpiLabelColor)
+      };
     },id);
     assert.equal(before.booting,false,`${id}: boot guard remained active`);
     assert.deepEqual(after,before,`${id}: layout changed after delayed enhancement window`);
