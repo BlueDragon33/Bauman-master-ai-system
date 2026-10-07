@@ -320,6 +320,65 @@
       ],
       "purpose": "explicit cross-boundary app integration allowlist gate",
       "crossBoundaryWrite": "EXPLICIT_ALLOWLIST_REQUIRED"
+    },
+    "RE26": {
+      "owners": [
+        "RU04",
+        "RU08"
+      ],
+      "constitution": [
+        "C1",
+        "C3",
+        "C4"
+      ],
+      "purpose": "browser evidence delivery pipeline"
+    },
+    "RE27": {
+      "owners": [
+        "RU04",
+        "RU08"
+      ],
+      "constitution": [
+        "C1",
+        "C3"
+      ],
+      "purpose": "durable profile-scoped browser outbox"
+    },
+    "RE28": {
+      "owners": [
+        "RU04"
+      ],
+      "constitution": [
+        "C3",
+        "C4"
+      ],
+      "purpose": "privacy-preserving learner metrics projection"
+    },
+    "RE29": {
+      "owners": [
+        "RU02",
+        "RU04",
+        "RU05",
+        "RU08"
+      ],
+      "constitution": [
+        "C1",
+        "C3",
+        "C4"
+      ],
+      "purpose": "resumable engine learning session orchestrator"
+    },
+    "RE30": {
+      "owners": [
+        "RU08"
+      ],
+      "constitution": [
+        "C1",
+        "C2",
+        "C3",
+        "C4"
+      ],
+      "purpose": "internal beta coherent-loop acceptance gate"
     }
   }
 }
