@@ -1,6 +1,6 @@
 {
   "schemaVersion": "RUSSIAN_ENGINE_RE25_ALLOWLIST_V1",
-  "state": "AUTHORIZED_APPLIED_VALIDATING",
+  "state": "PASS",
   "validatedImplementationHead": "e49a4aee54b2edb7b5a6f253e424b7d3b09bf2fa",
   "rolloutState": "OPT_IN_FLAG",
   "defaultEnabled": false,
@@ -38,5 +38,14 @@
     "subjects/russian/engine/integration/browser-bootstrap.js",
     "subjects/russian/engine/integration/grounded-experience.js",
     "subjects/russian/engine/tests/test-re25-planner-seam.mjs"
-  ]
+  ],
+  "validationHead": "d29e94a8680dd72601bcaaae7c17cdf32d50058e",
+  "validation": {
+    "developmentFastCi": "PASS",
+    "russianEngineIsolatedSuite": "PASS",
+    "russianReferenceUi": "PASS",
+    "wholeSystemIntegration": "PASS",
+    "russianP1SourceAndPackaged": "PASS",
+    "offlineSourceAndPackaged": "PASS"
+  }
 }
