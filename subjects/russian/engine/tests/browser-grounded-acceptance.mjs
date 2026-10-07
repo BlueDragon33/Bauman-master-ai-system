@@ -137,6 +137,7 @@ try{
     const state=await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status);
     assert.equal(state.catalog,'real-life-v1');
     assert.equal(state.setting,setting);
+    assert.equal(state.selectorReason,'new-in-setting');
     assert.equal(await page.locator('[data-russian-engine-grounded="1"] [data-re-object]').count(),3);
     assert.equal(await page.locator('[data-russian-engine-grounded="1"] .re-grounded__transcript').count(),0);
     await page.locator('[data-russian-engine-grounded="1"] [data-re-listen]').click();
@@ -145,6 +146,25 @@ try{
     assert.match(spoken,/[А-Яа-яЁё]/,'Real-life setting must deliver Russian audio text');
     renderedSettings.push({setting,sceneId:state.sceneId,spoken});
   }
+
+  const adaptiveRoomUrl=new URL(
+    'subjects/russian/index.html?ruEngine=grounded-v1&ruWorld=real-life-v1&ruSetting=room',
+    BASE
+  ).href;
+  await page.goto(adaptiveRoomUrl,{waitUntil:'domcontentloaded',timeout:30000});
+  await page.waitForSelector('[data-russian-engine-grounded="1"]',{timeout:15000});
+  await page.waitForFunction(()=>window.RussianEngineIntegration?.status?.().grounded?.state==='READY',null,{timeout:15000});
+  const adaptiveStart=await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status);
+  assert.equal(adaptiveStart.sceneId,'rl-01-room');
+  assert.equal(adaptiveStart.selectorReason,'new-in-setting');
+  await page.locator('[data-russian-engine-grounded="1"] [data-re-object="ball"]').click();
+  await page.waitForSelector('[data-russian-engine-grounded="1"] [data-re-next]');
+  await page.locator('[data-russian-engine-grounded="1"] [data-re-next]').click();
+  await page.waitForFunction(()=>window.RussianEngineIntegration?.status?.().grounded?.status?.sceneId==='rl-02-room',null,{timeout:15000});
+  const adaptiveTransfer=await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status);
+  assert.equal(adaptiveTransfer.selectorReason,'unseen-transfer');
+  assert.equal(adaptiveTransfer.completedSceneCount,1);
+  assert.equal(adaptiveTransfer.supportLevel,0);
 
   await page.screenshot({path:path.join(OUT,'grounded-s1-final.png'),fullPage:true});
   fs.writeFileSync(path.join(OUT,'grounded-s1-evidence.json'),JSON.stringify({
@@ -169,6 +189,7 @@ try{
     structuredEvidenceOutboxOnly:true,
     noParallelLearnerMasteryStore:true,
     realLifeSettingsRendered:renderedSettings.length,
+    adaptiveSelectorIntegrated:true,
     screenshot:path.join(OUT,'grounded-s1-final.png')
   }));
 }finally{
