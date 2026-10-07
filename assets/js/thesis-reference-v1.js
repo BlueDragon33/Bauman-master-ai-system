@@ -101,10 +101,10 @@ function readUI(){
 function saveUI(){
   try{localStorage.setItem(UI_KEY,JSON.stringify({view:ui.view,month:ui.month,weekOffset:ui.weekOffset,aiDone:Array.from(ui.aiDone),upcomingExpanded:ui.upcomingExpanded}))}catch(e){}
 }
-function readTasks(){try{var v=JSON.parse(localStorage.getItem(TASK_KEY)||'null');return Array.isArray(v)?v:REFERENCE_TASKS.map(function(x){return Object.assign({},x)});}catch(e){return REFERENCE_TASKS.map(function(x){return Object.assign({},x)})}}
-function writeTasks(v){try{localStorage.setItem(TASK_KEY,JSON.stringify(v.slice(0,60)))}catch(e){}}
-function readNotes(){try{var v=JSON.parse(localStorage.getItem(NOTE_KEY)||'null');return Array.isArray(v)?v:DEFAULT_NOTES.map(function(x){return Object.assign({},x)});}catch(e){return DEFAULT_NOTES.map(function(x){return Object.assign({},x)})}}
-function writeNotes(v){try{localStorage.setItem(NOTE_KEY,JSON.stringify(v.slice(0,24)))}catch(e){}}
+function readTasks(){return window.BAUMAN_HUB_PERSONAL_STORE.get(TASK_KEY,[])}
+function writeTasks(v){return window.BAUMAN_HUB_PERSONAL_STORE.set(TASK_KEY,v.slice(0,60))}
+function readNotes(){return window.BAUMAN_HUB_PERSONAL_STORE.get(NOTE_KEY,[])}
+function writeNotes(v){return window.BAUMAN_HUB_PERSONAL_STORE.set(NOTE_KEY,v.slice(0,24))}
 function timeMinutes(v){var m=String(v||'').match(/(\d{1,2}):(\d{2})/);return m?Number(m[1])*60+Number(m[2]):0}
 function todayLabel(){return 'Tuần 10/03 - 16/03/2025'}
 function setView(view){ui.view=['week','month','gantt','list'].includes(view)?view:'week';saveUI();render()}
@@ -250,7 +250,7 @@ function readUI(){
 }
 function readTasks(){
   try{
-    var v=JSON.parse(localStorage.getItem(TASK_KEY)||'[]');
+    var v=window.BAUMAN_HUB_PERSONAL_STORE.get(TASK_KEY,[]);
     if(!Array.isArray(v))return [];
     var referenceIds=new Set(REFERENCE_TASKS.map(function(x){return x.id}));
     return v.filter(function(x){return x&&x.id&&!referenceIds.has(x.id)}).map(function(x){
@@ -261,7 +261,7 @@ function readTasks(){
 }
 function readNotes(){
   try{
-    var v=JSON.parse(localStorage.getItem(NOTE_KEY)||'[]'),referenceIds=new Set(DEFAULT_NOTES.map(function(x){return x.id}));
+    var v=window.BAUMAN_HUB_PERSONAL_STORE.get(NOTE_KEY,[]),referenceIds=new Set(DEFAULT_NOTES.map(function(x){return x.id}));
     return Array.isArray(v)?v.filter(function(x){return x&&x.id&&!referenceIds.has(x.id)}):[];
   }catch(e){return []}
 }

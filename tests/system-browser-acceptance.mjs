@@ -66,6 +66,59 @@ async function openSubject(page,id){
   return frame;
 }
 
+// Storage packet boundary: exercise the Hub against public message fixtures.
+// The default whole-system gate below remains independent and unchanged.
+async function hubPublicBoundaryAcceptance(){
+  const browser=await chromium.launch({headless:true,...(process.env.BAUMAN_CHROME_PATH?{executablePath:process.env.BAUMAN_CHROME_PATH}:{})});
+  const result={status:'RUNNING',scope:'HUB_ONLY_PUBLIC_CONTRACT_FIXTURES',subjectPrivateReads:false,checks:[],pageErrors:[],consoleErrors:[],httpErrors:[]};
+  try{
+    const context=await browser.newContext({viewport:{width:1440,height:900}}),page=await context.newPage();
+    await mockControl(page);
+    await page.route('**/subjects/*/index.html**',route=>{
+      const id=new URL(route.request().url()).pathname.split('/')[2];
+      assert.ok(SUBJECTS.includes(id));
+      return route.fulfill({contentType:'text/html; charset=utf-8',body:`<!doctype html><title>Public contract fixture</title><script>const subjectId=${JSON.stringify(id)};addEventListener('message',event=>{if(event.source!==parent||event.origin!==location.origin)return;if(event.data?.type==='BAUMAN_ASSIGN_TASK')parent.postMessage({type:'BAUMAN_SUBJECT_PROGRESS',subjectId,taskId:event.data.taskId||event.data.task?.taskId,percent:0,total:0,correct:0,completed:false},location.origin)});parent.postMessage({type:'BAUMAN_SUBJECT_READY',subjectId},location.origin);</script>`});
+    });
+    page.on('pageerror',error=>result.pageErrors.push(String(error)));
+    page.on('console',message=>{if(message.type()==='error')result.consoleErrors.push(message.text())});
+    page.on('response',response=>{if(response.status()>=400)result.httpErrors.push(`${response.status()} ${response.url()}`)});
+    await page.goto(BASE);await page.waitForFunction(()=>document.documentElement.dataset.hubPersonalReady==='true');
+    await page.waitForFunction(()=>window.BAUMAN_APP_MANAGER_ACCESS?.selfCheck?.().ready===true);
+    const mode=await page.evaluate(()=>window.BAUMAN_DEVICE_ACCESS_BOUNDARY);
+    assert.equal(mode.platformAuthorized,EXPECT_PLATFORM_ACCESS);
+    result.checks.push('scope resolved before Hub render / existing access boundary');
+    for(const id of SUBJECTS){
+      await page.evaluate(id=>app.openSubjectInPage(id),id);
+      await page.waitForFunction(id=>(state.subjectReports[id]||[]).some(report=>report.percent===0),id);
+      const report=await page.evaluate(id=>state.subjectReports[id].at(-1),id);
+      assert.equal(report.subjectId,id);assert.equal(report.percent,0);assert.equal(report.taskAccepted,true);
+      await page.evaluate(()=>window.BAUMAN_HUB_PERSONAL_STORE.flush());
+    }
+    const forged=await page.evaluate(async()=>{const before=(state.subjectReports.math||[]).length;window.postMessage({type:'BAUMAN_SUBJECT_PROGRESS',subjectId:'math',percent:100,completed:true},location.origin);await new Promise(resolve=>setTimeout(resolve,50));return{before,after:(state.subjectReports.math||[]).length}});
+    assert.equal(forged.before,forged.after);result.checks.push('eight public iframe routes / handshake / progress-zero / reject untrusted source');
+    const backup=await page.evaluate(()=>window.BAUMAN_HUB_PERSONAL_STORE.exportBundle());
+    assert.ok(backup.scopeId);assert.equal(Object.keys(backup.records.bauman_main_all_phases_subjects_v1.subjectReports).length>=8,true);
+    assert.ok(!/"password(?:Hash|Salt|Iterations)?"/.test(JSON.stringify(backup)));
+    await page.reload();await page.waitForFunction(()=>document.documentElement.dataset.hubPersonalReady==='true');
+    assert.equal(await page.evaluate(()=>state.subjectReports.math.at(-1).percent),0);
+    for(const width of [1440,390]){
+      await page.setViewportSize({width,height:900});
+      for(const route of ['home','roadmap','subjects','schedule','research']){
+        await page.evaluate(route=>app.page(route,false),route);
+        assert.equal(await page.locator(`#page-${route}.active`).count(),1);
+        assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),`${route}/${width}: overflow`);
+      }
+    }
+    result.checks.push('durable public reports / scoped credential-free backup / reload / five desktop-mobile routes');
+    assert.deepEqual(result.pageErrors,[]);assert.deepEqual(result.consoleErrors,[]);assert.deepEqual(result.httpErrors,[]);
+    await page.screenshot({path:path.join(OUT,'hub-public-mobile-research.png'),fullPage:true});await context.close();result.status='PASS';
+    console.log('HUB_PUBLIC_BOUNDARY_INTEGRATION_PASS');
+  }catch(error){result.status='FAIL';result.error=String(error.stack||error);process.exitCode=1;console.error(result.error)}
+  finally{await browser.close();fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify(result,null,2))}
+}
+if(process.argv.includes('--hub-only')){
+  await hubPublicBoundaryAcceptance();
+}else{
 let browser;
 try{
   browser=await chromium.launch({headless:true,...(process.env.BAUMAN_CHROME_PATH?{executablePath:process.env.BAUMAN_CHROME_PATH}:{})});
@@ -296,3 +349,4 @@ try{
   fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify(summary,null,2));
   console.error('SYSTEM_BROWSER_ACCEPTANCE_FAIL');console.error(summary.error);process.exitCode=1;
 }finally{if(browser)await browser.close()}
+}

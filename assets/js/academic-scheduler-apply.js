@@ -10,7 +10,7 @@
   const clone=x=>x==null?x:JSON.parse(JSON.stringify(x));
   const h=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 
-  function currentUserScope(){try{const u=JSON.parse(localStorage.getItem(CURRENT_USER_KEY)||'null');return String(u?.email||'anonymous').toLowerCase()}catch{return 'anonymous'}}
+  function currentUserScope(){return window.BAUMAN_HUB_PERSONAL_STORE.scopeId}
   function stableValue(value){
     if(Array.isArray(value))return value.map(stableValue);
     if(value&&typeof value==='object')return Object.fromEntries(Object.keys(value).sort().map(k=>[k,stableValue(value[k])]));
@@ -19,14 +19,14 @@
   function sameValue(a,b){return JSON.stringify(stableValue(a))===JSON.stringify(stableValue(b))}
   function stableEntries(entries){return Object.fromEntries(Object.entries(entries||{}).sort(([a],[b])=>a.localeCompare(b)).map(([k,v])=>[k,v]))}
   function fnv1a(text){let hash=0x811c9dc5;for(let i=0;i<text.length;i++){hash^=text.charCodeAt(i);hash=Math.imul(hash,0x01000193)}return (hash>>>0).toString(16).padStart(8,'0')}
-  function scheduleFingerprint(){const s=window.state?.schedule||{};return fnv1a(JSON.stringify({autoStage:s.autoStage||'',autoFrom:s.autoFrom||'',autoTo:s.autoTo||'',targetScore:Number(s.targetScore)||null,entries:stableEntries(s.entries||{})}))}
+  function scheduleFingerprint(entries){const s=window.state?.schedule||{};return fnv1a(JSON.stringify({autoStage:s.autoStage||'',autoFrom:s.autoFrom||'',autoTo:s.autoTo||'',targetScore:Number(s.targetScore)||null,entries:stableEntries(entries||s.entries||{})}))}
   function previewRuntime(){return window.BAUMAN_ACADEMIC_SCHEDULER_PREVIEW_2026||null}
   function readPreview(){return previewRuntime()?.readStoredPreview?.()||null}
 
   function blankTxStore(){return {schema:'bauman_academic_schedule_transaction_store_v1',version:'PASS13F',users:{}}}
-  function readTxStore(){try{const x=JSON.parse(localStorage.getItem(TX_STORAGE_KEY)||'null');return x&&typeof x==='object'?x:blankTxStore()}catch{return blankTxStore()}}
+  function readTxStore(){return window.BAUMAN_HUB_PERSONAL_STORE.get(TX_STORAGE_KEY,blankTxStore())}
   function userTxState(store=readTxStore()){store.version='PASS13F';store.users=store.users&&typeof store.users==='object'?store.users:{};const scope=currentUserScope();store.users[scope]=store.users[scope]&&typeof store.users[scope]==='object'?store.users[scope]:{transactions:[]};store.users[scope].transactions=Array.isArray(store.users[scope].transactions)?store.users[scope].transactions:[];return {store,scope,user:store.users[scope]}}
-  function persistTxStore(store){localStorage.setItem(TX_STORAGE_KEY,JSON.stringify(store));return true}
+  function persistTxStore(store){return window.BAUMAN_HUB_PERSONAL_STORE.set(TX_STORAGE_KEY,store)}
   function transactionHistory(){const {user}=userTxState();return clone(user.transactions||[])}
   function latestActiveTransaction(){const rows=transactionHistory().filter(x=>x.status==='applied');return rows.at(-1)||null}
   function makeTransactionId(){return globalThis.crypto?.randomUUID?.()||`academic-${Date.now()}-${Math.random().toString(36).slice(2,9)}`}
@@ -63,45 +63,57 @@
     return {...proposed,source:'academic_applied',academic2026:{...(proposed.academic2026||{}),transactionId,previewGeneratedAt:change.previewGeneratedAt||null,appliedAt,explicitUserApply:true}};
   }
 
-  function applyApprovedPreview(options={}){
+  let transactionBusy=false;
+  function transactionGuard(){
+    if(transactionBusy)throw new Error('Academic transaction đang được lưu.');
+    transactionBusy=true;const root=document.getElementById('appRoot'),wasInert=root?.inert;
+    let finish;const pending={finished:new Promise(resolve=>{finish=resolve})};window.BAUMAN_HUB_SCHEDULE_TRANSACTION=pending;
+    if(root)root.inert=true;
+    return ()=>{transactionBusy=false;if(root)root.inert=wasInert;if(window.BAUMAN_HUB_SCHEDULE_TRANSACTION===pending)delete window.BAUMAN_HUB_SCHEDULE_TRANSACTION;finish()};
+  }
+  async function applyApprovedPreview(options={}){
     if(options.confirmed!==true)throw new Error('Apply yêu cầu xác nhận rõ ràng của người dùng.');
+    const release=transactionGuard();
+    try{
+    const personal=window.BAUMAN_HUB_PERSONAL_STORE;await personal.flush();
     const {preview,changes}=validatePreviewForApply(),transactionId=makeTransactionId(),appliedAt=new Date().toISOString(),beforeFingerprint=scheduleFingerprint(),beforeEntries=clone(window.state.schedule.entries),nextEntries=clone(beforeEntries),entriesBefore={},entriesAfter={};
     for(const change of changes){
       entriesBefore[change.key]=clone(change.current||null);
       const applied=buildAppliedEntry({...change,previewGeneratedAt:preview.generatedAt},transactionId,appliedAt);
       nextEntries[change.key]=applied;entriesAfter[change.key]=clone(applied);
     }
-    const rollbackToBefore=()=>{window.state.schedule.entries=clone(beforeEntries);try{saveMain()}catch{/* preserve best-effort rollback */}};
-    try{
-      window.state.schedule.entries=nextEntries;saveMain();
-      const afterFingerprint=scheduleFingerprint();
+      const afterFingerprint=scheduleFingerprint(nextEntries);
       if(afterFingerprint===beforeFingerprint)throw new Error('Apply không tạo thay đổi fingerprint như kỳ vọng.');
       const tx={schema:'bauman_academic_schedule_transaction_v1',version:'PASS13F',id:transactionId,status:'applied',previewGeneratedAt:preview.generatedAt,stageId:preview.stageId,appliedAt,beforeFingerprint,afterFingerprint,changedKeys:changes.map(x=>x.key),entriesBefore,entriesAfter,manualExternalPreserved:Number(preview.summary?.manualOrExternalPreserved||0),requiresExactAfterFingerprintForRollback:true};
+      const beforeStore=personal.get(TX_STORAGE_KEY,null),beforeMain=personal.get('bauman_main_all_phases_subjects_v1',null);
       const {store,user}=userTxState();user.transactions.push(tx);user.transactions=user.transactions.slice(-20);
-      try{persistTxStore(store)}catch(err){rollbackToBefore();throw new Error(`Không lưu được transaction; lịch đã rollback: ${err.message||err}`)}
+      const nextMain={...clone(window.state),schedule:{...clone(window.state.schedule),entries:nextEntries}};
+      await personal.commit({'bauman_main_all_phases_subjects_v1':nextMain,[TX_STORAGE_KEY]:store},{expected:{'bauman_main_all_phases_subjects_v1':beforeMain,[TX_STORAGE_KEY]:beforeStore}});
+      window.state.schedule.entries=nextEntries;
       refreshUi();return clone(tx);
-    }catch(err){
-      if(scheduleFingerprint()!==beforeFingerprint)rollbackToBefore();
-      throw err;
-    }
+    }finally{release()}
   }
 
-  function rollbackLatest(options={}){
+  async function rollbackLatest(options={}){
     if(options.confirmed!==true)throw new Error('Rollback yêu cầu xác nhận rõ ràng của người dùng.');
+    const release=transactionGuard();
+    try{
+    const personal=window.BAUMAN_HUB_PERSONAL_STORE;await personal.flush();
     const tx=latestActiveTransaction();if(!tx)throw new Error('Không có Academic transaction đang active để rollback.');
     const currentFingerprint=scheduleFingerprint();if(currentFingerprint!==tx.afterFingerprint)throw new Error('Không thể rollback: lịch đã thay đổi sau Apply. Hãy xử lý thay đổi mới trước.');
     const beforeRollbackEntries=clone(window.state.schedule.entries),nextEntries=clone(beforeRollbackEntries);
     for(const key of tx.changedKeys||[]){const original=tx.entriesBefore?.[key];if(original==null)delete nextEntries[key];else nextEntries[key]=clone(original)}
-    const restoreApplied=()=>{window.state.schedule.entries=clone(beforeRollbackEntries);try{saveMain()}catch{/* best effort */}};
-    try{
-      window.state.schedule.entries=nextEntries;saveMain();
-      const restoredFingerprint=scheduleFingerprint();if(restoredFingerprint!==tx.beforeFingerprint)throw new Error('Rollback verification failed: fingerprint không trở về baseline.');
-      const {store,user}=userTxState();const row=user.transactions.find(x=>x.id===tx.id);if(row){row.status='rolled_back';row.rolledBackAt=new Date().toISOString();row.rollbackFingerprint=restoredFingerprint}persistTxStore(store);refreshUi();return clone(row||tx);
-    }catch(err){restoreApplied();throw err}
+      const restoredFingerprint=scheduleFingerprint(nextEntries);if(restoredFingerprint!==tx.beforeFingerprint)throw new Error('Rollback verification failed: fingerprint không trở về baseline.');
+      const beforeStore=personal.get(TX_STORAGE_KEY,null),beforeMain=personal.get('bauman_main_all_phases_subjects_v1',null);
+      const {store,user}=userTxState();const row=user.transactions.find(x=>x.id===tx.id);if(row){row.status='rolled_back';row.rolledBackAt=new Date().toISOString();row.rollbackFingerprint=restoredFingerprint}
+      const nextMain={...clone(window.state),schedule:{...clone(window.state.schedule),entries:nextEntries}};
+      await personal.commit({'bauman_main_all_phases_subjects_v1':nextMain,[TX_STORAGE_KEY]:store},{expected:{'bauman_main_all_phases_subjects_v1':beforeMain,[TX_STORAGE_KEY]:beforeStore}});
+      window.state.schedule.entries=nextEntries;refreshUi();return clone(row||tx);
+    }finally{release()}
   }
 
-  function applyFromUi(){try{if(!confirm('Apply các thay đổi Academic 2026 trong preview vào lịch? Manual/external slot vẫn được bảo vệ và có transaction rollback.'))return null;const tx=applyApprovedPreview({confirmed:true});if(typeof window.toast==='function')window.toast(`Đã Apply ${tx.changedKeys.length} slot · có thể rollback`);return tx}catch(err){alert(err.message||String(err));return null}}
-  function rollbackFromUi(){try{if(!confirm('Rollback transaction Academic gần nhất? Chỉ thực hiện nếu lịch chưa bị thay đổi sau Apply.'))return null;const tx=rollbackLatest({confirmed:true});if(typeof window.toast==='function')window.toast('Đã rollback lịch Academic về baseline');return tx}catch(err){alert(err.message||String(err));return null}}
+  async function applyFromUi(){try{if(!confirm('Apply các thay đổi Academic 2026 trong preview vào lịch? Manual/external slot vẫn được bảo vệ và có transaction rollback.'))return null;const tx=await applyApprovedPreview({confirmed:true});if(typeof window.toast==='function')window.toast(`Đã Apply ${tx.changedKeys.length} slot · có thể rollback`);return tx}catch(err){alert(err.message||String(err));return null}}
+  async function rollbackFromUi(){try{if(!confirm('Rollback transaction Academic gần nhất? Chỉ thực hiện nếu lịch chưa bị thay đổi sau Apply.'))return null;const tx=await rollbackLatest({confirmed:true});if(typeof window.toast==='function')window.toast('Đã rollback lịch Academic về baseline');return tx}catch(err){alert(err.message||String(err));return null}}
 
   function renderControls(){
     const host=document.querySelector('[data-academic13d="preview"]');if(!host)return;

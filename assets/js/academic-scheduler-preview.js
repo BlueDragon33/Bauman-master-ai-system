@@ -25,15 +25,15 @@
   function parseDate(s){const m=String(s||'').match(/^(\d{4})-(\d{2})-(\d{2})/);return m?new Date(+m[1],+m[2]-1,+m[3]):new Date()}
   function addDays(s,n){const d=parseDate(s);d.setDate(d.getDate()+n);return iso(d)}
   function mondayOf(s){const d=parseDate(s),off=(d.getDay()+6)%7;d.setDate(d.getDate()-off);return iso(d)}
-  function currentUserScope(){try{const u=JSON.parse(localStorage.getItem(CURRENT_USER_KEY)||'null');return String(u?.email||'anonymous').toLowerCase()}catch{return 'anonymous'}}
+  function currentUserScope(){return window.BAUMAN_HUB_PERSONAL_STORE.scopeId}
   function stableEntries(entries){return Object.fromEntries(Object.entries(entries||{}).sort(([a],[b])=>a.localeCompare(b)).map(([k,v])=>[k,v]))}
   function fnv1a(text){let hash=0x811c9dc5;for(let i=0;i<text.length;i++){hash^=text.charCodeAt(i);hash=Math.imul(hash,0x01000193)}return (hash>>>0).toString(16).padStart(8,'0')}
   function scheduleFingerprint(){const s=window.state?.schedule||{};return fnv1a(JSON.stringify({autoStage:s.autoStage||'',autoFrom:s.autoFrom||'',autoTo:s.autoTo||'',targetScore:Number(s.targetScore)||null,entries:stableEntries(s.entries||{})}))}
 
-  function readPreviewStore(){try{const x=JSON.parse(localStorage.getItem(PREVIEW_STORAGE_KEY)||'null');return x&&typeof x==='object'?x:{schema:'bauman_academic_schedule_preview_store_v1',version:'PASS13D',users:{}}}catch{return {schema:'bauman_academic_schedule_preview_store_v1',version:'PASS13D',users:{}}}}
-  function writeStoredPreview(preview){const store=readPreviewStore();store.version='PASS13D';store.users=store.users&&typeof store.users==='object'?store.users:{};store.users[currentUserScope()]={preview:clone(preview)};localStorage.setItem(PREVIEW_STORAGE_KEY,JSON.stringify(store));return preview}
+  function readPreviewStore(){return window.BAUMAN_HUB_PERSONAL_STORE.get(PREVIEW_STORAGE_KEY,{schema:'bauman_academic_schedule_preview_store_v1',version:'PASS13D',users:{}})}
+  function writeStoredPreview(preview){const store=readPreviewStore();store.version='PASS13D';store.users=store.users&&typeof store.users==='object'?store.users:{};store.users[currentUserScope()]={preview:clone(preview)};window.BAUMAN_HUB_PERSONAL_STORE.set(PREVIEW_STORAGE_KEY,store);return preview}
   function readStoredPreview(){const store=readPreviewStore();return store.users?.[currentUserScope()]?.preview||null}
-  function discardStoredPreview(){const store=readPreviewStore();if(store.users?.[currentUserScope()])delete store.users[currentUserScope()];localStorage.setItem(PREVIEW_STORAGE_KEY,JSON.stringify(store));return true}
+  function discardStoredPreview(){const store=readPreviewStore();if(store.users?.[currentUserScope()])delete store.users[currentUserScope()];window.BAUMAN_HUB_PERSONAL_STORE.set(PREVIEW_STORAGE_KEY,store);return true}
 
   function academicRuntime(){return window.BAUMAN_ACADEMIC_2026_RUNTIME||null}
   function stageId(){return academicRuntime()?.currentStageId?.()||'before_stankin'}

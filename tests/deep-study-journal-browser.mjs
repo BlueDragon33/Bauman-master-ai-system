@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
-import {chromium} from 'playwright';
+const {chromium}=await import(process.env.BAUMAN_PLAYWRIGHT_MODULE||'playwright');
 
 const BASE=process.env.BAUMAN_E2E_BASE_URL||'http://127.0.0.1:4173/';
 const EXPECT_PLATFORM_ACCESS=process.env.BAUMAN_E2E_EXPECT_PLATFORM_ACCESS==='1';
@@ -21,7 +21,7 @@ async function mockControl(page){
     return route.fulfill({status:404,headers,body:'{}'});
   });
 }
-const browser=await chromium.launch({headless:true});
+const browser=await chromium.launch({headless:true,...(process.env.BAUMAN_CHROME_PATH?{executablePath:process.env.BAUMAN_CHROME_PATH}:{})});
 try{
   const context=await browser.newContext({viewport:{width:1440,height:1000}}),page=await context.newPage();
   await mockControl(page);
@@ -72,9 +72,11 @@ try{
   assert.equal(after.self.progressMutation,false);
   assert.equal(after.self.noSeparateStorage,true);
 
+  await page.evaluate(()=>window.BAUMAN_HUB_PERSONAL_STORE.flush());
   await page.reload({waitUntil:'domcontentloaded'});
   await page.waitForFunction(expected=>document.documentElement.dataset.baumanDeviceAccess===expected,expectedDeviceState,{timeout:15000});
   await page.waitForFunction(()=>Boolean(window.BAUMAN_DEEP_STUDY_JOURNAL_V1),null,{timeout:10000});
+  await page.waitForFunction(()=>document.documentElement.dataset.hubPersonalReady==='true',null,{timeout:10000});
   assert.equal(await page.evaluate(()=>window.state.deepStudyJournal.entries.length),1,'DSJ learner-state entry did not persist');
 
   await page.setViewportSize({width:390,height:844});

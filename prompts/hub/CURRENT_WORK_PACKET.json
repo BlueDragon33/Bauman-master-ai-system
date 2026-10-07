@@ -2,7 +2,7 @@
   "schemaVersion": "1.0.0",
   "packetId": "HUB-STORAGE-20261006-001",
   "revision": 5,
-  "status": "READY_FOR_CODEX",
+  "status": "CODEX_DONE_PENDING_CHAT_REVIEW",
   "userIntent": "Continue Bauman Hub continuously under the current Prompt System; keep the core local/offline/free-first and preserve learner truth while removing fragile localStorage dependency for canonical personal data.",
   "objective": "Introduce one normalized Hub personal-data storage facade with IndexedDB as the primary local canonical store, deterministic legacy migration, complete portable backup/restore, and compatibility-safe migration for Hub learner/auth/academic/scheduler/research data while keeping UI-only preferences lightweight.",
   "trigger": {
@@ -217,7 +217,8 @@
     "prompts/hub/CURRENT_WORK_PACKET.json",
     "prompts/hub/CURRENT_EXECUTION_RESULT.json",
     "prompts/hub/HUB_SHARED_STATE.json",
-    "prompts/PROMPT_REGISTRY.json"
+    "prompts/PROMPT_REGISTRY.json",
+    "scripts/validate-deep-study-journal-v1.js"
   ],
   "forbiddenPaths": [
     "subjects/**",
@@ -368,17 +369,9 @@
   "rollbackNotes": "Keep all legacy localStorage canonical-data keys untouched until the IndexedDB write, schema validation and parity check succeed. On failure, continue reading the legacy source and surface migration status; never clear learner data. Production is outside scope.",
   "externalBlockers": [],
   "classARemaining": [],
-  "classBRemaining": [
-    "HUB-STORAGE-001",
-    "HUB-STORAGE-002",
-    "HUB-STORAGE-003",
-    "HUB-STORAGE-004",
-    "HUB-STORAGE-005",
-    "HUB-STORAGE-006",
-    "HUB-STORAGE-007"
-  ],
+  "classBRemaining": [],
   "stopCondition": "Codex stops after exact-head LOCAL_STABLE static + browser + whole-system evidence is green and CURRENT_EXECUTION_RESULT.json is written, or records a genuine blocker. Do not deploy production.",
-  "executionState": "NOT_STARTED",
+  "executionState": "IMPLEMENTATION_COMPLETE_REVALIDATED_RELEASE_BLOCKED",
   "governanceRevisionReason": "Chat Class-A storage preflight finalized: current-main rebaseline, storage taxonomy, binary attachment handling, and scope-aware personal-data partitioning using existing identity authority only. No new multi-user/auth feature is authorized.",
   "historyPolicy": "Completed packets are historical evidence and must not be re-executed implicitly. Only this CURRENT_WORK_PACKET is active while Shared State names the same packet id/revision/status.",
   "storageTaxonomy": {
@@ -401,5 +394,28 @@
       "Hub wallpaper/density/detail presentation state"
     ],
     "nonCanonicalSessionIdentity": "Current-user/session selection must not be treated as canonical auth truth or included in ordinary learner backup."
+  },
+  "executionSummary": {
+    "beforeSha": "a3a0e09f7bea7a23178dc41ab0c5a319f879b83d",
+    "afterSha": "6112ba88784038e4ab1b81642657ac0d79ab143d",
+    "reconciledMainSha": "a3a0e09f7bea7a23178dc41ab0c5a319f879b83d",
+    "branch": "codex/hub-storage-20261007-materialize",
+    "gate": "19 scoped Hub suites PASS; original full-system gate 37614613965 PASS on exact correction/evidence HEAD",
+    "releaseState": "LOCAL_STABLE",
+    "productionDeployed": false,
+    "previousHead": "79353c7d99b45fdf2b5001ebd11490125380b05f",
+    "finalHead": "afb31a2e231c96113b89cf32e89041a4fd2dfd88",
+    "status": "LOCAL_STABLE_PENDING_CHAT_REVIEW",
+    "fullSystemValidated": true,
+    "remainingBlocker": null
+  },
+  "lifecycle": "LOCAL_STABLE_PENDING_CHAT_REVIEW",
+  "releaseState": "LOCAL_STABLE",
+  "fullSystemValidated": true,
+  "correctionAuthority": {
+    "additionalPath": "scripts/validate-deep-study-journal-v1.js",
+    "implementationReexecuted": false,
+    "storageRuntimeRefactored": false,
+    "githubActionsAuthority": "Existing full-system workflow may execute its subject tests; Codex reads status/log/result only."
   }
 }
