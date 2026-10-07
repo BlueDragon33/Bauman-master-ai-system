@@ -1,0 +1,149 @@
+{
+  "schemaVersion": "RUSSIAN_ENGINE_KNOWLEDGE_GRAPH_V1",
+  "status": "ENGINE_REFERENCE_GRAPH_DRAFT",
+  "contentRevision": "re04-reference-graph-r1",
+  "rules": [
+    "Canonical Russian text/facts remain in RU02/RU03-owned datasets",
+    "Graph canonical-ref nodes store references and trust metadata, not copied linguistic truth",
+    "Engine semantic concept nodes are architecture metadata, not linguistic authority"
+  ],
+  "nodes": [
+    {
+      "id": "SEM-REQUEST-OBJECT",
+      "kind": "semantic-concept",
+      "authorityStatus": "ENGINE_DRAFT_METADATA"
+    },
+    {
+      "id": "SEM-NEED-REQUEST-PERMISSION",
+      "kind": "semantic-concept",
+      "authorityStatus": "ENGINE_DRAFT_METADATA"
+    },
+    {
+      "id": "SEM-REPAIR-COMMUNICATION",
+      "kind": "semantic-concept",
+      "authorityStatus": "ENGINE_DRAFT_METADATA"
+    },
+    {
+      "id": "REF-GRAMMAR-GR006",
+      "kind": "canonical-ref",
+      "entityType": "GrammarConcept",
+      "authorityStatus": "PARTIAL",
+      "canonicalRef": {
+        "ownerPath": "subjects/russian/data/grammar.json",
+        "id": "GR006"
+      }
+    },
+    {
+      "id": "REF-SCENARIO-ADMIN-RECEPTION",
+      "kind": "canonical-ref",
+      "entityType": "DialogueScenario",
+      "authorityStatus": "PARTIAL",
+      "canonicalRef": {
+        "ownerPath": "subjects/russian/data/scenario-registry.json",
+        "id": "P11-ADMIN-RECEPTION"
+      }
+    },
+    {
+      "id": "REF-SCENARIO-LIFE-ROOMMATE",
+      "kind": "canonical-ref",
+      "entityType": "DialogueScenario",
+      "authorityStatus": "PARTIAL",
+      "canonicalRef": {
+        "ownerPath": "subjects/russian/data/scenario-registry.json",
+        "id": "P11-LIFE-ROOMMATE"
+      }
+    },
+    {
+      "id": "FIXTURE-SCENE-GIVE-BALL",
+      "kind": "engine-content-ref",
+      "authorityStatus": "FIXTURE_NONCANONICAL",
+      "contentRef": {
+        "ownerPath": "subjects/russian/engine/content/fixtures/grounded-scenes.v1.json",
+        "id": "grounded-give-ball-a"
+      }
+    },
+    {
+      "id": "FIXTURE-SCENE-GIVE-BOOK",
+      "kind": "engine-content-ref",
+      "authorityStatus": "FIXTURE_NONCANONICAL",
+      "contentRef": {
+        "ownerPath": "subjects/russian/engine/content/fixtures/grounded-scenes.v1.json",
+        "id": "grounded-give-book-b"
+      }
+    },
+    {
+      "id": "LEVEL-RL017",
+      "kind": "level-ref",
+      "authorityStatus": "ENGINE_PROGRESSION_METADATA",
+      "contentRef": {
+        "ownerPath": "subjects/russian/engine/content/levels/levels.v1.json",
+        "id": "RL017"
+      }
+    },
+    {
+      "id": "LEVEL-RL037",
+      "kind": "level-ref",
+      "authorityStatus": "ENGINE_PROGRESSION_METADATA",
+      "contentRef": {
+        "ownerPath": "subjects/russian/engine/content/levels/levels.v1.json",
+        "id": "RL037"
+      }
+    },
+    {
+      "id": "LEVEL-RL040",
+      "kind": "level-ref",
+      "authorityStatus": "ENGINE_PROGRESSION_METADATA",
+      "contentRef": {
+        "ownerPath": "subjects/russian/engine/content/levels/levels.v1.json",
+        "id": "RL040"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "LEVEL-RL017",
+      "relation": "TARGETS",
+      "to": "SEM-NEED-REQUEST-PERMISSION"
+    },
+    {
+      "from": "LEVEL-RL037",
+      "relation": "TARGETS",
+      "to": "SEM-REPAIR-COMMUNICATION"
+    },
+    {
+      "from": "LEVEL-RL040",
+      "relation": "TARGETS",
+      "to": "SEM-REPAIR-COMMUNICATION"
+    },
+    {
+      "from": "REF-GRAMMAR-GR006",
+      "relation": "SUPPORTS",
+      "to": "SEM-NEED-REQUEST-PERMISSION"
+    },
+    {
+      "from": "REF-SCENARIO-ADMIN-RECEPTION",
+      "relation": "TRAINS",
+      "to": "SEM-REPAIR-COMMUNICATION"
+    },
+    {
+      "from": "REF-SCENARIO-LIFE-ROOMMATE",
+      "relation": "TRAINS",
+      "to": "SEM-REPAIR-COMMUNICATION"
+    },
+    {
+      "from": "FIXTURE-SCENE-GIVE-BALL",
+      "relation": "TRAINS",
+      "to": "SEM-REQUEST-OBJECT"
+    },
+    {
+      "from": "FIXTURE-SCENE-GIVE-BOOK",
+      "relation": "TRAINS",
+      "to": "SEM-REQUEST-OBJECT"
+    },
+    {
+      "from": "SEM-REQUEST-OBJECT",
+      "relation": "RELATED_TO",
+      "to": "SEM-NEED-REQUEST-PERMISSION"
+    }
+  ]
+}

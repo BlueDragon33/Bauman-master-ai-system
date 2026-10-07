@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "RUSSIAN_ENGINE_GRAMMAR_DISCOVERY_FIXTURE_V1",
+  "status": "FIXTURE_NONCANONICAL_PENDING_RU03",
+  "units": [
+    {
+      "unitId": "GD-FIXTURE-ACC-FEM-001",
+      "canonicalGrammarRef": "RU03:GRAMMAR:ACCUSATIVE-FEMININE:PENDING",
+      "authorityStatus": "FIXTURE_NONCANONICAL",
+      "exposures": [
+        {"context":"see-person","surface":"Я вижу Машу."},
+        {"context":"know-person","surface":"Я знаю Анну."},
+        {"context":"love-person","surface":"Я люблю маму."}
+      ],
+      "contrasts": [
+        {"base":"Маша","contextual":"Машу"},
+        {"base":"Анна","contextual":"Анну"}
+      ],
+      "discoveryPrompt": "Что меняется в имени после действия?",
+      "explanationRef": "RU03:GRAMMAR:ACCUSATIVE-FEMININE:EXPLANATION:PENDING",
+      "transfer": {"base":"Нина","expectedPattern":"Нину"}
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "schemaVersion": "RUSSIAN_ENGINE_RE09_ALLOWLIST_V1",
+  "state": "PASS",
+  "engineHeadRequired": "EXACT_HEAD_GREEN_CI",
+  "purpose": "Load a passive Russian Engine browser bridge without changing learner behavior or UI.",
+  "allowedExistingAppWrites": [
+    "subjects/russian/index.html",
+    "subjects/russian/sw.js",
+    ".github/workflows/development-fast-ci.yml",
+    ".github/workflows/system-integration-ci.yml"
+  ],
+  "allowedNewIntegrationFiles": [],
+  "forbidden": [
+    "subjects/russian/assets/core.js",
+    "subjects/russian/assets/assessment-mastery.js",
+    "subjects/russian/assets/adaptive-planner.js",
+    "subjects/russian/assets/learning-state.js",
+    "subjects/russian/assets/speech-interaction-engine.js",
+    "subjects/russian/assets/speaking-coach.js",
+    "general navigation",
+    "global design system",
+    "auth",
+    "storage migration",
+    "production configuration"
+  ],
+  "plannedChange": [
+    {
+      "path": "subjects/russian/index.html",
+      "change": "Load engine/integration/browser-bootstrap.js once as passive module bridge.",
+      "uiChange": false,
+      "learnerStateWrite": false,
+      "masteryWrite": false
+    },
+    {
+      "path": "subjects/russian/sw.js",
+      "change": "Bump Russian shell cache and precache browser-bootstrap.js plus its legacy-speech-provider.js dependency.",
+      "uiChange": false,
+      "learnerStateWrite": false,
+      "masteryWrite": false
+    },
+    {
+      "path": ".github/workflows/development-fast-ci.yml",
+      "change": "Add Russian Engine syntax checks and one isolated Engine test-suite step to close CI coverage gap.",
+      "uiChange": false,
+      "learnerStateWrite": false,
+      "masteryWrite": false,
+      "runtimeChange": false
+    },
+    {
+      "path": ".github/workflows/system-integration-ci.yml",
+      "change": "Run feature-flagged Russian Engine grounded browser acceptance against source and packaged runtime.",
+      "uiChange": false,
+      "learnerStateWrite": false,
+      "masteryWrite": false,
+      "runtimeChange": false
+    }
+  ],
+  "rollback": "Remove the module script tag from subjects/russian/index.html and revert the Engine bridge entries/cache-version bump in subjects/russian/sw.js.",
+  "preconditions": [
+    "RE01-RE08 PASS",
+    "exact-head repository CI green",
+    "browser bootstrap test PASS"
+  ],
+  "appliedAppCommit": "9bf4f14655cace9623dee46eea491888eb9ad8e3",
+  "appliedExistingAppWrites": [
+    "subjects/russian/index.html",
+    "subjects/russian/sw.js"
+  ],
+  "appliedOfflineFixCommit": "9b1aa0226225d791ec51ad7d37c566e6975beeb0",
+  "appliedMimeFix": "Browser-loaded Engine modules use .js extension because repository browser-test server serves .mjs as application/octet-stream.",
+  "browserModules": [
+    "subjects/russian/engine/integration/browser-bootstrap.js",
+    "subjects/russian/engine/speech/legacy-speech-provider.js"
+  ],
+  "exactHead": "a8f6ac547a2d26c7bf4ea7f44cb6c9fe2c7c2f09",
+  "validationCoverage": "ENGINE_TEST_SUITE_REQUIRED_ON_FAST_CI",
+  "s1": {
+    "id": "RE09-S1",
+    "state": "AUTHORIZED_FEATURE_FLAG_ONLY",
+    "featureFlag": "?ruEngine=grounded-v1",
+    "defaultEnabled": false,
+    "allowedExistingRuntimeWrites": [
+      "subjects/russian/sw.js"
+    ],
+    "engineOwnedWrites": [
+      "subjects/russian/engine/integration/browser-bootstrap.js",
+      "subjects/russian/engine/integration/grounded-browser-model.js",
+      "subjects/russian/engine/integration/grounded-experience.js",
+      "subjects/russian/engine/content/fixtures/grounded-scenes.v1.json"
+    ],
+    "guarantees": [
+      "No flag means no grounded-slice DOM mutation",
+      "No learner-state write",
+      "No mastery/SRS/planner write",
+      "Observation evidence remains in memory only",
+      "Rollback by removing conditional loader and cache entries"
+    ]
+  },
+  "validationHead": "297cfaabea853b059d8e7f4576db192d498056d4",
+  "exactHeadGates": [
+    "Whole System Integration Gate",
+    "Future Interface System CI",
+    "Universal Constitution Compliance",
+    "Russian Reference UI Gate",
+    "Prompt Control Center CI",
+    "Development Fast CI"
+  ],
+  "defaultFeatureEnabled": false
+}

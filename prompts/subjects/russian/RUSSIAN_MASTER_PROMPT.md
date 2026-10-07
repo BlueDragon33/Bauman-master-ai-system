@@ -381,3 +381,41 @@ It is:
 `dependency-aware revalidation`.
 
 **ONE RESPONSIBILITY · ONE OWNER · LOAD ONLY WHAT CHANGED.**
+
+---
+
+# 15. RUSSIAN ENGINE EXECUTION TRACK
+
+Russian Engine is an isolated implementation track inside the existing Russian domain.
+
+Canonical entry:
+
+- `prompts/subjects/russian/engine/README.md`
+- `prompts/subjects/russian/engine/RE00_ENGINE_ORCHESTRATOR.md`
+- `prompts/subjects/russian/engine/PROJECT_STATE.json`
+- `prompts/subjects/russian/engine/RE_OWNER_ROUTER.json`
+
+Russian Engine is NOT a second Russian Master Prompt and NOT a second Constitution.
+
+Its RE00–RE09 work packages are subordinate execution tracks that must route every decision back to the canonical RU01–RU08 owners and C1–C4 authority.
+
+Default Engine implementation boundary:
+
+`subjects/russian/engine/**`
+
+Default outside write:
+
+`FORBIDDEN`
+
+Reading the general Russian app is allowed when required to understand integration. Modification outside Engine scope requires an explicit RE09 allowlist or another explicit authorized work packet.
+
+The Engine target is a data-driven, Russian-first learning runtime capable of supporting 100 internal progression levels without 100 hardcoded code layers.
+
+Learning north star:
+
+`RUSSIAN FIRST · MEANING FIRST · CONTEXT FIRST · TRANSLATION LAST`
+
+Commercial/multi-user readiness must follow C1 dependency independence: local/offline/free-first and provider abstractions before managed infrastructure.
+
+The current existence of the Engine prompt track does not by itself authorize implementation or invalidate the existing RU08 PASS state. Engine implementation state is maintained separately under `prompts/subjects/russian/engine/PROJECT_STATE.json`.
+

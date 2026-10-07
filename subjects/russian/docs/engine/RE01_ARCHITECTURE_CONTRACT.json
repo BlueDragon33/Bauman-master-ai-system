@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_ENGINE_RE01_ARCHITECTURE_CONTRACT",
+  "state": "PASS",
+  "apiVersion": "1.0.0",
+  "parentAuthorities": [
+    "prompts/CONSTITUTION.md",
+    "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
+    "prompts/subjects/russian/RU02_CURRICULUM_CANONICAL_MODEL.md",
+    "prompts/subjects/russian/RU04_ASSESSMENT_MASTERY_ADAPTIVE.md",
+    "prompts/subjects/russian/RU08_AUTHORING_INTEGRATION_ACCEPTANCE.md"
+  ],
+  "publicBoundary": "subjects/russian/engine/public/",
+  "contracts": {
+    "experience": "RUSSIAN_ENGINE_EXPERIENCE_V1",
+    "interaction": "RUSSIAN_ENGINE_INTERACTION_V1",
+    "evidence": "RUSSIAN_ENGINE_EVIDENCE_V1",
+    "learnerSnapshot": "RUSSIAN_ENGINE_LEARNER_SNAPSHOT_V1"
+  },
+  "invariants": [
+    "Engine evidence is observation-only and non-authoritative",
+    "RU04/C4 retain mastery authority",
+    "No mandatory remote API/backend",
+    "No general Russian App write in RE01",
+    "No duplicate speech/mastery/SRS/planner owner",
+    "100 levels must remain data-driven",
+    "Provider failures must not become learner failures"
+  ],
+  "existingOwnersToAdaptLater": {
+    "mastery": "window.RussianAssessmentMastery",
+    "planner": "window.RussianAdaptivePlanner",
+    "learningState": "window.RussianLearningState",
+    "audio": "window.RussianAudioEngine",
+    "speechRecognition": "window.RussianSpeechRecognitionAdapter",
+    "recording": "window.RussianRecordingEngine"
+  },
+  "integration": {
+    "current": "NONE",
+    "requiresRE09Allowlist": true
+  },
+  "networkRequirement": "NONE",
+  "nextVerticalSlice": "RE02 grounded listen-and-act deterministic scene",
+  "validation": {
+    "harness": "subjects/russian/engine/tests/test-re01-contracts.mjs",
+    "checks": 9,
+    "result": "PASS",
+    "masteryMutationBlocked": true,
+    "mandatoryNetwork": false
+  }
+}

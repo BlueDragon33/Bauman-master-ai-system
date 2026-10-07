@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "RUSSIAN_ENGINE_CONTENT_PACK_V1",
+  "packId": "fixture-core-grounded",
+  "revision": "r1",
+  "commercial": false,
+  "items": [
+    {
+      "id": "PACK-ITEM-001",
+      "levelRange": "RL001-RL010",
+      "competencies": ["COMP-RU-LISTEN","COMP-RU-INTERACT"],
+      "semanticTargets": ["SEM-REQUEST-OBJECT"],
+      "linguisticRefs": ["FIXTURE:DAI-MYACH"],
+      "translationPolicy": {"defaultVisible": false},
+      "supportPolicy": {"maxLevel": 10},
+      "evidencePolicy": {"observationType": "grounded-semantic-comprehension"},
+      "provenance": {"status": "FIXTURE_NONCANONICAL"},
+      "canonical": false,
+      "media": [
+        {
+          "id": "VIS-BALL-001",
+          "kind": "vector",
+          "commercialUseAllowed": true,
+          "accessibilityFallback": "ball object visual"
+        }
+      ]
+    }
+  ]
+}

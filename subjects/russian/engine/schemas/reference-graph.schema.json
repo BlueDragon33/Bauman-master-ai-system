@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bauman:russian-engine:knowledge-graph:v1",
+  "title": "Russian Engine Reference Knowledge Graph V1",
+  "type": "object",
+  "required": ["schemaVersion","contentRevision","nodes","edges"],
+  "properties": {
+    "schemaVersion": {"const": "RUSSIAN_ENGINE_KNOWLEDGE_GRAPH_V1"},
+    "nodes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id","kind","authorityStatus"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "kind": {"enum": ["semantic-concept","canonical-ref","engine-content-ref","level-ref"]},
+          "canonicalRef": {
+            "type": "object",
+            "required": ["ownerPath","id"]
+          },
+          "contentRef": {
+            "type": "object",
+            "required": ["ownerPath","id"]
+          }
+        }
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["from","relation","to"]
+      }
+    }
+  }
+}

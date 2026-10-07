@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "RUSSIAN_ENGINE_COMMERCIAL_CONTRACT_V1",
+  "status": "ARCHITECTURE_ONLY_NO_PROVIDER",
+  "identity": {
+    "canonical": "internal-profile-id",
+    "externalAccountIds": "adapter-metadata-only",
+    "paymentCustomerIds": "never-canonical-learning-identity"
+  },
+  "entitlement": {
+    "owner": "platform-adapter",
+    "engineUsage": "read-only capability/pack availability",
+    "billingInsideEngine": false
+  },
+  "productStages": [
+    "single-local-profile",
+    "multi-local-profile",
+    "optional-account-sync-adapter",
+    "managed-multi-user-service-when-justified"
+  ],
+  "contentPacks": [
+    "core-foundation",
+    "survival-russia",
+    "university-life",
+    "academic-technical",
+    "research",
+    "optional-specialty"
+  ],
+  "dataRights": {
+    "exportRequired": true,
+    "deleteControlRequired": true,
+    "subscriptionChangeMayDeleteLearningEvidence": false,
+    "providerFailureMayCorruptLearningEvidence": false
+  },
+  "sync": {
+    "model": "local-state-change-journal-optional-sync-adapter",
+    "idempotentWritesRequired": true,
+    "conflictDetectionRequired": true,
+    "silentNewerOverwriteForbidden": true
+  },
+  "analytics": {
+    "separateFromLearningEvidence": true,
+    "rawVoiceDefault": "DO_NOT_COLLECT",
+    "consentAware": true
+  },
+  "backend": {
+    "mandatoryNow": false,
+    "paymentProviderMandatoryNow": false,
+    "managedDatabaseMandatoryNow": false
+  }
+}

@@ -38,6 +38,10 @@ jobs:
             subjects/shared/host-bridge.js
             subjects/russian/assets/core.js
             subjects/russian/assets/russian-future-ui.js
+            subjects/russian/engine/integration/browser-bootstrap.js
+            subjects/russian/engine/speech/legacy-speech-provider.js
+            subjects/russian/engine/integration/grounded-browser-model.js
+            subjects/russian/engine/integration/grounded-experience.js
             scripts/prepare-cloudflare-preview.mjs
             scripts/list-study-plan-runtime-routes.mjs
             cloudflare/runtime-worker-python.mjs
@@ -52,6 +56,9 @@ jobs:
               node --check "$file"
             fi
           done
+
+      - name: Russian Engine isolated suite
+        run: node subjects/russian/engine/tests/run-engine-suite.mjs
 
       - name: Runtime device gate regression
         run: node scripts/runtime-device-gate-regression.mjs

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "RUSSIAN_ENGINE_FAILURE_MATRIX_V1",
+  "requiredCases": [
+    "invalid-contract",
+    "missing-content-ref",
+    "duplicate-level-id",
+    "provider-audio-unavailable",
+    "provider-asr-unavailable",
+    "microphone-denied",
+    "recording-error",
+    "provider-signal-without-pronunciation-authority",
+    "profile-isolation-violation",
+    "sync-conflict",
+    "duplicate-journal-write",
+    "entitlement-unavailable",
+    "translation-leak-before-support-ceiling",
+    "engine-mastery-mutation-attempt",
+    "scenario-mastery-mutation-attempt",
+    "unsupported-schema-version",
+    "large-level-catalog",
+    "offline-no-ai-path"
+  ]
+}

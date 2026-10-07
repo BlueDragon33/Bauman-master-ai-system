@@ -1,0 +1,119 @@
+{
+  "schemaVersion": "1.0.0",
+  "track": "russian-engine",
+  "parentDomain": "russian",
+  "authority": {
+    "repositoryConstitution": ".blueprint/constitution-adoption.json",
+    "sharedConstitution": "prompts/CONSTITUTION.md",
+    "russianMasterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
+    "engineOrchestrator": "prompts/subjects/russian/engine/RE00_ENGINE_ORCHESTRATOR.md"
+  },
+  "status": "PHASE2_RE10_RE15_PASS_AWAITING_MERGE_AUTHORIZATION",
+  "implementationAuthorized": true,
+  "activeWorkPackage": "RE15",
+  "sequence": [
+    "RE00",
+    "RE01",
+    "RE02",
+    "RE03",
+    "RE04",
+    "RE05",
+    "RE06",
+    "RE07",
+    "RE08",
+    "RE09",
+    "RE10",
+    "RE11",
+    "RE12",
+    "RE13",
+    "RE14",
+    "RE15"
+  ],
+  "completedPromptDefinitions": [
+    "RE00",
+    "RE01",
+    "RE02",
+    "RE03",
+    "RE04",
+    "RE05",
+    "RE06",
+    "RE07",
+    "RE08",
+    "RE09"
+  ],
+  "completedImplementationPackages": [
+    "RE01",
+    "RE02",
+    "RE03",
+    "RE04",
+    "RE05",
+    "RE06",
+    "RE07",
+    "RE08",
+    "RE09",
+    "RE10",
+    "RE11",
+    "RE12",
+    "RE13",
+    "RE14",
+    "RE15"
+  ],
+  "targetInternalLevels": 100,
+  "learningNorthStar": "RUSSIAN_FIRST_MEANING_FIRST_CONTEXT_FIRST_TRANSLATION_LAST",
+  "defaultWriteScope": [
+    "prompts/subjects/russian/engine/**",
+    "subjects/russian/engine/**",
+    "subjects/russian/docs/engine/**"
+  ],
+  "outsideWriteDefault": "FORBIDDEN",
+  "firstImplementationCandidate": "RE01 contract design followed by a minimal RE02 grounded listen-and-act vertical slice",
+  "commercialReadiness": {
+    "mode": "ARCHITECTURE_READY_NOT_BACKEND_REQUIRED",
+    "defaultInfrastructure": "LOCAL_OFFLINE_FREE_FIRST",
+    "multiUserPath": [
+      "single-local-profile",
+      "multi-local-profile",
+      "optional-account-sync-adapter",
+      "managed-multi-user-service-when-justified"
+    ]
+  },
+  "blockers": [
+    "USER_AUTHORIZATION_REQUIRED_FOR_MERGE"
+  ],
+  "nextAction": "User intervention required: authorize merge of Draft PR #285 into main. Do not merge or publish without explicit authorization. Grounded learner-facing slice remains opt-in via ?ruEngine=grounded-v1.",
+  "re09Validation": {
+    "exactHead": "297cfaabea853b059d8e7f4576db192d498056d4",
+    "gates": {
+      "wholeSystem": "PASS",
+      "futureInterface": "PASS",
+      "constitution": "PASS",
+      "russianReferenceUi": "PASS",
+      "promptControlCenter": "PASS",
+      "developmentFastCi": "PASS"
+    },
+    "learnerFacingSlice": {
+      "featureFlag": "?ruEngine=grounded-v1",
+      "defaultEnabled": false,
+      "browserAcceptance": "PASS",
+      "packagedAcceptance": "PASS"
+    }
+  },
+  "phase2Validation": {
+    "exactHead": "c6eb0bab4435c295325412a477452aadffafe66c",
+    "manualChecks": "31/31 PASS",
+    "workflows": {
+      "universalConstitution": "PASS",
+      "promptControlCenter": "PASS",
+      "developmentFastCi": "PASS",
+      "russianReferenceUi": "PASS",
+      "futureInterface": "PASS",
+      "wholeSystemIntegration": "PASS"
+    },
+    "browser": {
+      "groundedSource": "PASS",
+      "groundedPackaged": "PASS",
+      "offlineShell": "PASS",
+      "wholeSystem": "PASS"
+    }
+  }
+}

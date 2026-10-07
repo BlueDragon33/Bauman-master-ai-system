@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "RUSSIAN_ENGINE_GROUNDED_WORLD_CATALOG_V1",
+  "status": "ENGINE_FIXTURE_NONCANONICAL_PENDING_RU03",
+  "contentRevision": "re10-world-r1",
+  "worlds": [
+    {
+      "worldId": "WORLD-ROOM-001",
+      "transferGroup": "room-object-action",
+      "entities": [
+        {"id":"ball","kind":"object","visual":{"kind":"symbol","value":"⚽"},"properties":["round"]},
+        {"id":"book","kind":"object","visual":{"kind":"symbol","value":"📕"},"properties":["readable"]},
+        {"id":"cup","kind":"object","visual":{"kind":"symbol","value":"☕"},"properties":["container"]},
+        {"id":"table","kind":"location","visual":{"kind":"surface","value":"table"}},
+        {"id":"requester","kind":"person","role":"requester"}
+      ],
+      "relations": [
+        {"subject":"ball","relation":"AT","object":"table"},
+        {"subject":"book","relation":"AT","object":"table"},
+        {"subject":"cup","relation":"AT","object":"table"}
+      ],
+      "experiences": [
+        {
+          "experienceId":"WORLD-ROOM-001-GIVE-BALL",
+          "type":"listen-act",
+          "stimulus":{"language":"ru","audioText":"Дай мяч.","speechStyle":"careful-native"},
+          "goal":{"kind":"transfer-object","objectId":"ball","toEntityId":"requester"},
+          "targetCompetencies":["COMP-RU-LISTEN","COMP-RU-INTERACT"]
+        },
+        {
+          "experienceId":"WORLD-ROOM-001-GIVE-BOOK",
+          "type":"listen-act",
+          "stimulus":{"language":"ru","audioText":"Дай книгу.","speechStyle":"careful-native"},
+          "goal":{"kind":"transfer-object","objectId":"book","toEntityId":"requester"},
+          "targetCompetencies":["COMP-RU-LISTEN","COMP-RU-INTERACT"]
+        },
+        {
+          "experienceId":"WORLD-ROOM-001-PUT-CUP",
+          "type":"listen-act",
+          "stimulus":{"language":"ru","audioText":"Поставь чашку на стол.","speechStyle":"careful-native"},
+          "goal":{"kind":"place-object","objectId":"cup","locationId":"table"},
+          "targetCompetencies":["COMP-RU-LISTEN","COMP-RU-INTERACT"]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,209 @@
+{
+  "schemaVersion": "1.0.0",
+  "track": "russian-engine",
+  "parentMaster": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
+  "sharedConstitution": "prompts/CONSTITUTION.md",
+  "rule": "RE_WORK_PACKAGES_ARE_EXECUTION_TRACKS_NOT_PARALLEL_AUTHORITIES",
+  "defaultOutsideWrite": "FORBIDDEN",
+  "routes": {
+    "RE00": {
+      "owners": [
+        "RU00"
+      ],
+      "constitution": [
+        "C1",
+        "C3",
+        "C4"
+      ],
+      "purpose": "orchestration, scope and hard boundary"
+    },
+    "RE01": {
+      "owners": [
+        "RU02",
+        "RU08"
+      ],
+      "constitution": [
+        "C1",
+        "C3",
+        "C4"
+      ],
+      "purpose": "architecture, public contracts and scale boundary"
+    },
+    "RE02": {
+      "owners": [
+        "RU02",
+        "RU03",
+        "RU05",
+        "RU07"
+      ],
+      "constitution": [
+        "C2",
+        "C3",
+        "C4"
+      ],
+      "purpose": "semantic immersion and acquisition"
+    },
+    "RE03": {
+      "owners": [
+        "RU02",
+        "RU04"
+      ],
+      "constitution": [
+        "C3",
+        "C4"
+      ],
+      "purpose": "100-level competency ladder and evidence-gated promotion"
+    },
+    "RE04": {
+      "owners": [
+        "RU02",
+        "RU03",
+        "RU08"
+      ],
+      "constitution": [
+        "C1",
+        "C3",
+        "C4"
+      ],
+      "purpose": "knowledge graph and content runtime"
+    },
+    "RE05": {
+      "owners": [
+        "RU03",
+        "RU04",
+        "RU05",
+        "RU07"
+      ],
+      "constitution": [
+        "C2",
+        "C3",
+        "C4"
+      ],
+      "purpose": "listening, speech, pronunciation and conversation"
+    },
+    "RE06": {
+      "owners": [
+        "RU04"
+      ],
+      "constitution": [
+        "C1",
+        "C3",
+        "C4"
+      ],
+      "purpose": "learner model, adaptive progression and review"
+    },
+    "RE07": {
+      "owners": [
+        "RU08"
+      ],
+      "constitution": [
+        "C1",
+        "C2",
+        "C3",
+        "C4"
+      ],
+      "purpose": "multi-user, product and commercial scale"
+    },
+    "RE08": {
+      "owners": [
+        "RU08"
+      ],
+      "constitution": [
+        "C1",
+        "C2",
+        "C3",
+        "C4"
+      ],
+      "purpose": "QA, security, privacy, performance and resilience"
+    },
+    "RE09": {
+      "owners": [
+        "RU08"
+      ],
+      "constitution": [
+        "C1",
+        "C2",
+        "C3",
+        "C4"
+      ],
+      "purpose": "explicit app integration, migration and acceptance",
+      "crossBoundaryWrite": "EXPLICIT_ALLOWLIST_REQUIRED"
+    },
+    "RE10": {
+      "owners": [
+        "RU02",
+        "RU03",
+        "RU05",
+        "RU08"
+      ],
+      "constitution": [
+        "C1",
+        "C3",
+        "C4"
+      ],
+      "purpose": "grounded world runtime and semantic action/consequence"
+    },
+    "RE11": {
+      "owners": [
+        "RU03",
+        "RU04",
+        "RU05"
+      ],
+      "constitution": [
+        "C3",
+        "C4"
+      ],
+      "purpose": "natural listening ladder"
+    },
+    "RE12": {
+      "owners": [
+        "RU03",
+        "RU04",
+        "RU05"
+      ],
+      "constitution": [
+        "C3",
+        "C4"
+      ],
+      "purpose": "pronunciation lab and honest acoustic evidence"
+    },
+    "RE13": {
+      "owners": [
+        "RU03",
+        "RU04",
+        "RU05",
+        "RU07"
+      ],
+      "constitution": [
+        "C1",
+        "C3",
+        "C4"
+      ],
+      "purpose": "stateful conversation world"
+    },
+    "RE14": {
+      "owners": [
+        "RU02",
+        "RU03",
+        "RU04"
+      ],
+      "constitution": [
+        "C3",
+        "C4"
+      ],
+      "purpose": "grammar discovery through contextual pattern learning"
+    },
+    "RE15": {
+      "owners": [
+        "RU03",
+        "RU08"
+      ],
+      "constitution": [
+        "C1",
+        "C3",
+        "C4"
+      ],
+      "purpose": "authoring and commercial content QA"
+    }
+  }
+}
