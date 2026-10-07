@@ -51,6 +51,13 @@ export function bootstrapRussianEngine(windowLike=globalThis?.window){
       controller:null,
       error:null
     },
+    conversation:{
+      requested:false,
+      state:'OFF',
+      mounted:false,
+      controller:null,
+      error:null
+    },
     error:null
   };
 
@@ -87,6 +94,13 @@ export function bootstrapRussianEngine(windowLike=globalThis?.window){
       error:integration.grounded.error,
       status:integration.grounded.controller?.status?.()||null
     },
+    conversation:{
+      requested:integration.conversation.requested,
+      state:integration.conversation.state,
+      mounted:integration.conversation.mounted,
+      error:integration.conversation.error,
+      status:integration.conversation.controller?.status?.()||null
+    },
     error:integration.error
   });
 
@@ -122,13 +136,13 @@ export function bootstrapRussianEngine(windowLike=globalThis?.window){
 
   windowLike.RussianEngineIntegration=bridge;
 
-  let shouldRequest=false;
+  let requestedMode='';
   try{
     const url=new URL(windowLike.location?.href||'');
-    shouldRequest=url.searchParams.get('ruEngine')==='grounded-v1';
+    requestedMode=String(url.searchParams.get('ruEngine')||'');
   }catch(_){}
 
-  if(shouldRequest){
+  if(requestedMode==='grounded-v1'){
     integration.grounded.requested=true;
     integration.grounded.state='LOADING';
     import('./grounded-experience.js')
@@ -149,6 +163,30 @@ export function bootstrapRussianEngine(windowLike=globalThis?.window){
         integration.grounded.state='ERROR';
         integration.grounded.error=String(error?.message||error);
         windowLike.dispatchEvent?.(new CustomEvent('russian-engine:grounded-error',{detail:publicView()}));
+      });
+  }
+
+  if(requestedMode==='conversation-v1'){
+    integration.conversation.requested=true;
+    integration.conversation.state='LOADING';
+    import('./conversation-experience.js')
+      .then(module=>module.mountConversationExperience({
+        windowLike,
+        documentLike:windowLike.document,
+        fetchFn:windowLike.fetch?.bind(windowLike)||globalThis.fetch,
+        speechProvider:integration.speechProvider
+      }))
+      .then(controller=>{
+        integration.conversation.controller=controller?.mounted?controller:null;
+        integration.conversation.mounted=controller?.mounted===true;
+        integration.conversation.state=controller?.mounted===true?'READY':'SKIPPED';
+        integration.conversation.error=controller?.mounted===true?null:String(controller?.reason||'not-mounted');
+        windowLike.dispatchEvent?.(new CustomEvent('russian-engine:conversation-ready',{detail:publicView()}));
+      })
+      .catch(error=>{
+        integration.conversation.state='ERROR';
+        integration.conversation.error=String(error?.message||error);
+        windowLike.dispatchEvent?.(new CustomEvent('russian-engine:conversation-error',{detail:publicView()}));
       });
   }
 
