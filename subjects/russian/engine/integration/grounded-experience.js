@@ -16,6 +16,39 @@ const esc=value=>String(value??'').replace(/[&<>"']/g,char=>({
 
 const FIXTURE_URL=new URL('../content/fixtures/grounded-scenes.v1.json',import.meta.url);
 
+
+function objectVisualMarkup(item,{compact=false}={}){
+  const id=String(item?.id||'').trim();
+  const cls=compact?'re-grounded__visual is-compact':'re-grounded__visual';
+  if(id==='cup')return `<svg class="${cls}" viewBox="0 0 120 120" aria-hidden="true">
+    <path d="M28 46h55v30c0 15-11 25-27 25S28 91 28 76V46Z" fill="currentColor" fill-opacity=".055" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M83 54h7c12 0 18 7 18 16s-6 16-18 16h-8" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+    <path d="M24 103h71" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+    <path d="M43 35c-5-7 5-10 0-17M61 35c-5-7 5-10 0-17M79 35c-5-7 5-10 0-17" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" opacity=".55"/>
+  </svg>`;
+  if(id==='book')return `<svg class="${cls}" viewBox="0 0 120 120" aria-hidden="true">
+    <rect x="25" y="19" width="70" height="84" rx="9" fill="currentColor" fill-opacity=".055" stroke="currentColor" stroke-width="5"/>
+    <path d="M42 20v82M51 39h30M51 53h30M51 67h25" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" opacity=".72"/>
+    <path d="M31 28h5v65h-5" fill="none" stroke="currentColor" stroke-width="3" opacity=".45"/>
+  </svg>`;
+  if(id==='ball')return `<svg class="${cls}" viewBox="0 0 120 120" aria-hidden="true">
+    <circle cx="60" cy="60" r="42" fill="currentColor" fill-opacity=".035" stroke="currentColor" stroke-width="5"/>
+    <path d="m60 40 13 9-5 16H52l-5-16 13-9Z" fill="currentColor" fill-opacity=".18" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M60 40V18M47 49 28 38M73 49l19-11M52 65 39 83M68 65l13 18M39 83l-18-2M81 83l18-2" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+  </svg>`;
+  return `<span class="re-grounded__fallback-symbol" aria-hidden="true">${esc(item?.visual?.value||'□')}</span>`;
+}
+
+function requesterMarkup(){
+  return `<svg class="re-grounded__requester" viewBox="0 0 150 150" aria-hidden="true">
+    <circle cx="88" cy="36" r="19" fill="currentColor" fill-opacity=".06" stroke="currentColor" stroke-width="4"/>
+    <path d="M63 117c1-33 9-51 26-51s26 18 27 51" fill="currentColor" fill-opacity=".045" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+    <path d="M73 78 51 91 27 84" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M27 84 18 78M27 84l-9 6" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="14" cy="84" r="4" fill="currentColor" opacity=".55"/>
+  </svg>`;
+}
+
 function ensureStyle(documentLike){
   if(documentLike.querySelector('[data-re-grounded-style="1"]'))return;
   const style=documentLike.createElement('style');
@@ -28,11 +61,15 @@ function ensureStyle(documentLike){
     .re-grounded__listen{min-width:112px;min-height:44px;border:0;border-radius:999px;padding:0 18px;font:inherit;font-weight:750;cursor:pointer}
     .re-grounded__scene{display:grid;grid-template-columns:minmax(0,1fr) 170px;gap:18px;align-items:stretch}
     .re-grounded__objects{display:grid;grid-template-columns:repeat(3,minmax(92px,1fr));gap:14px}
-    .re-grounded__object{min-height:150px;border:1px solid color-mix(in srgb,currentColor 12%,transparent);border-radius:22px;background:Canvas;font-size:58px;cursor:pointer;transition:transform .16s ease,box-shadow .16s ease}
+    .re-grounded__object{min-height:142px;border:1px solid color-mix(in srgb,currentColor 12%,transparent);border-radius:22px;background:Canvas;color:inherit;display:grid;place-items:center;cursor:pointer;transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease}
+    .re-grounded__visual{width:82px;height:82px;display:block}
+    .re-grounded__visual.is-compact{width:72px;height:72px}
+    .re-grounded__fallback-symbol{font-size:52px;line-height:1}
     .re-grounded__object:hover,.re-grounded__object:focus-visible{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.08);outline:none}
     .re-grounded__object.is-hint{outline:3px solid currentColor;outline-offset:3px}
     .re-grounded__object.is-wrong{animation:reGroundedShake .25s linear 1}
-    .re-grounded__receiver{border:1px dashed color-mix(in srgb,currentColor 20%,transparent);border-radius:22px;display:grid;place-items:center;min-height:150px;font-size:54px;position:relative}
+    .re-grounded__receiver{border:1px dashed color-mix(in srgb,currentColor 20%,transparent);border-radius:22px;display:grid;place-items:center;min-height:142px;position:relative;color:color-mix(in srgb,currentColor 76%,transparent)}
+    .re-grounded__requester{width:108px;height:108px;display:block}
     .re-grounded__receiver small{position:absolute;bottom:12px;font-size:12px;opacity:.55}
     .re-grounded__status{min-height:42px;display:flex;align-items:center;gap:10px;margin-top:16px;font-weight:700}
     .re-grounded__status[data-state="success"]{font-size:22px}
@@ -120,7 +157,7 @@ export async function mountGroundedExperience({
   const render=()=>{
     const objects=(scene.world?.objects||[]).map((item,index)=>`
       <button type="button" class="re-grounded__object" data-re-object="${esc(item.id)}" aria-label="Lựa chọn ${index+1}">
-        <span aria-hidden="true">${esc(item.visual?.value||'□')}</span>
+        ${objectVisualMarkup(item)}
       </button>
     `).join('');
     section.innerHTML=`
@@ -130,7 +167,7 @@ export async function mountGroundedExperience({
       </div>
       <div class="re-grounded__scene">
         <div class="re-grounded__objects">${objects}</div>
-        <div class="re-grounded__receiver" data-re-receiver><span aria-hidden="true">🫴</span><small>●</small></div>
+        <div class="re-grounded__receiver" data-re-receiver>${requesterMarkup()}<small>●</small></div>
       </div>
       <div class="re-grounded__status" data-re-status aria-live="polite"></div>
       <div class="re-grounded__support" data-re-support>${supportLevel?supportText(supportLevel):''}</div>
@@ -150,7 +187,7 @@ export async function mountGroundedExperience({
       const receiver=section.querySelector('[data-re-receiver]');
       if(result.success){
         const chosen=(scene.world?.objects||[]).find(item=>item.id===result.expectedObjectId);
-        if(receiver)receiver.innerHTML='<span aria-hidden="true">'+esc(chosen?.visual?.value||'✓')+'</span><small>✓</small>';
+        if(receiver)receiver.innerHTML=objectVisualMarkup(chosen,{compact:true})+'<small>✓</small>';
         if(status){
           status.dataset.state='success';
           status.innerHTML='<span>✓</span>';
