@@ -118,3 +118,20 @@ Correction:
 - superseded browser `.mjs` files are removed after references are migrated.
 
 No Engine semantics, UI, learner state, mastery, planner or speech-owner behavior changes.
+
+
+## RE09 PASS evidence
+
+Exact validated HEAD: `297cfaabea853b059d8e7f4576db192d498056d4`
+
+All required repository gates PASS on that exact HEAD:
+- Whole System Integration Gate;
+- Future Interface System CI;
+- Universal Constitution Compliance;
+- Russian Reference UI Gate;
+- Prompt Control Center CI;
+- Development Fast CI.
+
+The feature-flagged grounded slice is included in source and packaged browser acceptance. Default behavior remains unchanged without `?ruEngine=grounded-v1`.
+
+**RE09 PASS.**
