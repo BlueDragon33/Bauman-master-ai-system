@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "RUSSIAN_ENGINE_RE09_INTEGRATION_PLAN",
+  "status": "READY_NOT_AUTHORIZED",
+  "strategy": "STRANGLER_MINIMAL_VERTICAL_SLICE",
+  "engineHeadBoundary": "subjects/russian/engine/**",
+  "candidateFirstSlice": "grounded-listen-and-act",
+  "crossBoundaryWrite": {
+    "authorized": false,
+    "allowlist": []
+  },
+  "candidateAppFilesForFutureExplicitAllowlist": [
+    {
+      "path": "subjects/russian/index.html",
+      "reason": "load a minimal Engine integration adapter only if no safer existing loader seam is available"
+    },
+    {
+      "path": "subjects/russian/assets/core.js",
+      "reason": "only if required to route one feature-flagged experience; direct broad edits remain forbidden"
+    }
+  ],
+  "preferredIntegration": {
+    "newAdapterPath": "subjects/russian/engine/integration/browser-adapter.mjs",
+    "featureFlag": "russian-engine-grounded-v1",
+    "defaultEnabled": false,
+    "legacyPathRemainsAvailable": true
+  },
+  "migrationRules": [
+    "No learner-state reset",
+    "No replacement of RussianAssessmentMastery",
+    "No replacement of RussianAdaptivePlanner",
+    "No replacement of RussianAudioEngine/RussianSpeechRecognitionAdapter/RussianRecordingEngine",
+    "No hardcoded RL001-RL100 logic in app UI",
+    "No production claim from RE09"
+  ],
+  "acceptanceBeforeEnable": [
+    "existing Russian UI still loads",
+    "legacy learning routes remain functional",
+    "Engine slice can be disabled by one flag",
+    "Engine evidence cannot write mastery",
+    "offline path remains valid",
+    "no duplicate learner evidence"
+  ]
+}
