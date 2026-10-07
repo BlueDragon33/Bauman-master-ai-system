@@ -13,7 +13,6 @@
   "baselineMainSha": "19db67bc0975e6fc0c4af0a31111ad3b30e6bfe7",
   "reconciledMainSha": "a3a0e09f7bea7a23178dc41ab0c5a319f879b83d",
   "changedPaths": [
-    "prompts/PROMPT_REGISTRY.json",
     "prompts/hub/CURRENT_EXECUTION_RESULT.json",
     "prompts/hub/CURRENT_WORK_PACKET.json",
     "prompts/hub/HUB_SHARED_STATE.json",
@@ -1204,7 +1203,6 @@
   "correctedRuntimeHead": "459e01d79f703104e143f89fb2cdd718b24581a1",
   "finalHeadSemantics": "Exact failed full-system evidence HEAD with all 19 scoped Hub suites PASS and storage/test/runtime blobs unchanged from the successful correction ancestor. Subsequent blocked-evidence-only review commit is independently verified and identified by PR #289 and refs/notes/hub-storage-materialization; JSON cannot contain its own commit hash.",
   "correctionChangedPaths": [
-    "prompts/PROMPT_REGISTRY.json",
     "prompts/hub/CURRENT_EXECUTION_RESULT.json",
     "prompts/hub/CURRENT_WORK_PACKET.json",
     "prompts/hub/HUB_SHARED_STATE.json",
@@ -1825,5 +1823,13 @@
         }
       ]
     }
+  ],
+  "correctionTouchedPaths": [
+    "prompts/PROMPT_REGISTRY.json",
+    "prompts/hub/CURRENT_EXECUTION_RESULT.json",
+    "prompts/hub/CURRENT_WORK_PACKET.json",
+    "prompts/hub/HUB_SHARED_STATE.json",
+    "scripts/validate-deep-study-journal-v1.js",
+    "tests/hub-personal-storage-browser.mjs"
   ]
 }
