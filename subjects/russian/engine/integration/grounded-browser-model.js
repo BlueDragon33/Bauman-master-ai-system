@@ -69,7 +69,7 @@ export function nextTransferScene(scenes,currentScene){
 export function shouldEnableGroundedSlice(locationLike){
   try{
     const url=new URL(locationLike?.href||String(locationLike||''),'https://local.invalid/');
-    return url.searchParams.get('ruEngine')==='grounded-v1';
+    return ['grounded-v1','beta-v1'].includes(url.searchParams.get('ruEngine'));
   }catch(_){
     return false;
   }
