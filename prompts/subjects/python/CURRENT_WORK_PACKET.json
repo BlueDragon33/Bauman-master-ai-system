@@ -1,7 +1,7 @@
 {
   "packetId": "PYTHON-LOCAL-FIRST-20261006-001",
-  "revision": 1,
-  "status": "READY_FOR_CHAT_IMPLEMENTATION",
+  "revision": 2,
+  "status": "READY_FOR_CODEX_DEEP_IMPLEMENTATION",
   "workClass": "PYTHON04_06_SELECTIVE_REVALIDATION",
   "repository": "BlueDragon33/Bauman-master-ai-system",
   "activeModule": "PYTHON04",
@@ -83,5 +83,66 @@
     "browser/WASM cannot satisfy a required Python capability and local desktop provider also cannot",
     "root cause requires architecture beyond the allowed provider boundary"
   ],
-  "nextAction": "Chat performs provider inventory and selects/implements the smallest browser/WASM provider behind the existing facade. Do not invoke Codex until a deep integration blocker is proven."
+  "nextAction": "Codex executes only codexWorkPackage on branch python/local-first-browser-provider-20261007. Chat reviews diff/evidence afterward and owns merge/state/release decisions.",
+  "currentExactSha": "63566556b8cfbec41957a25607b0c49dba1a6037",
+  "codexWorkPackage": {
+    "goal": "Implement the smallest real self-hosted browser/WASM Python execution provider behind the existing BAUMAN_PYTHON_PRODUCT facade so run/public-test practice can work locally/offline without paid cloud credentials, while preserving the existing Cloudflare Container provider as an optional high-fidelity provider.",
+    "rootCause": "The learner product is currently network-only: python-product-integration.js routes all run/test/submit/runtime actions to /api/python/* and python-lab.js disables execution whenever navigator.onLine is false. This conflicts with Constitution 1.2 and the accepted local-first provider decision.",
+    "canonicalOwner": "PYTHON04 runtime/provider layer projected through subjects/programming Python product integration; PYTHON05 may receive only the minimum UI/product changes needed to expose truthful provider/offline behavior.",
+    "allowedFiles": [
+      "subjects/programming/assets/python-product-integration.js",
+      "subjects/programming/assets/python-lab.js",
+      "subjects/programming/subject-manifest.json",
+      "subjects/programming/subject-manifest.js",
+      "subjects/programming/code-lab.html",
+      "sw.js",
+      "app.webmanifest",
+      "subjects/programming/assets/** new Python browser provider/worker/runtime files",
+      "scripts/** only if required for deterministic vendoring/build of self-hosted WASM runtime assets",
+      "tests/python-p4-*.mjs new/targeted local-provider tests",
+      "tests/python-p5-product-contract.mjs",
+      "tests/python-p5-product-browser.mjs",
+      "tests/python-p6-browser.mjs"
+    ],
+    "forbiddenScope": [
+      "PYTHON01-PYTHON03 curriculum, canonical entities, assessment truth, mastery rules or learner-state ownership",
+      "Deleting or weakening cloudflare/python-sandbox-provider.mjs or cloudflare/runtime-worker-python.mjs",
+      "Changing hidden tests so they execute in the browser",
+      "Making Google Drive/Sheets/Apps Script part of Python execution",
+      "Production deployment, release merge, or STABLE claims",
+      "Adding a mandatory paid/CDN runtime dependency"
+    ],
+    "implementationRules": [
+      "Use a provider-neutral router behind BAUMAN_PYTHON_PRODUCT.invoke.",
+      "Browser provider must execute in a Web Worker or equivalent isolated worker boundary.",
+      "Run and public tests may use browser/WASM when the task/profile is supported; submit with hidden tests remains trusted-provider-only.",
+      "Offline Run/Test must remain usable after required self-hosted runtime assets are cached/available; do not claim offline if runtime still requires a public CDN.",
+      "Cancellation must terminate/recycle the worker or otherwise prove execution cannot continue after cancel.",
+      "Enforce bounded execution time and bounded stdout/stderr; unsupported semantics/packages must fail explicitly.",
+      "Expose exact browser runtime identity/profile and capability limitations.",
+      "Do not expose hidden expected values or hidden test material to the browser.",
+      "Preserve existing Cloudflare Container behavior and tests as optional-provider evidence."
+    ],
+    "requiredTests": [
+      "Targeted browser-provider static/contract test",
+      "Worker execution golden fixtures: canonical solution, equivalent alternate solution, wrong solution",
+      "Timeout/cancel regression",
+      "Output-limit regression",
+      "Offline/no-network Run + public-test journey",
+      "Unsupported capability/package fails honestly",
+      "Existing python-p4 provider tests remain green",
+      "Updated python-p5 product contract/browser tests",
+      "Targeted python-p6 browser regression"
+    ],
+    "acceptanceCriteria": [
+      "No paid/cloud credential is needed for supported Run/Public Test practice.",
+      "Offline Run/Public Test works from self-hosted/cached assets for the declared browser profile.",
+      "Submit/hidden evaluation remains outside browser and clearly reports trusted-provider requirement.",
+      "Runtime identity is exact and provider-specific but not learner-state identity.",
+      "Existing Cloudflare managed provider remains intact and optional.",
+      "No PYTHON01-PYTHON03 semantic owner changes.",
+      "Targeted P4/P5/P6 regressions pass on the exact implementation head."
+    ],
+    "stopCondition": "Stop and return BLOCKED_BY_SCOPE if a safe browser/WASM provider cannot be implemented without altering PYTHON01-PYTHON03 truth, exposing hidden tests, requiring a mandatory CDN/paid service, or changing unrelated architecture. Do not broaden scope."
+  }
 }
