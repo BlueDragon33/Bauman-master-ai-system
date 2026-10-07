@@ -1,6 +1,6 @@
 # Russian Engine Phase 4 — Integration Hub
 
-State: VALIDATING
+State: **RE21–RE24 PASS · RE25 AWAITING AUTHORIZATION**
 
 ## RE21
 Integration transaction hub composes RE17 + RE18 without becoming mastery/planner authority.
@@ -32,3 +32,43 @@ The expected minimum cross-boundary allowlist is:
 Additional outside files are forbidden unless fresh evidence proves they are necessary.
 
 Rollout remains OPT_IN_FLAG.
+
+
+## Exact-head validation
+
+Validated implementation HEAD:
+
+`e49a4aee54b2edb7b5a6f253e424b7d3b09bf2fa`
+
+Evidence:
+- Development Fast CI: **PASS**;
+- Russian Engine isolated auto-discovered suite: **PASS**;
+- Universal Constitution Compliance: **PASS**;
+- Prompt Control Center CI: **PASS**;
+- Russian Reference UI Gate: **PASS**;
+- Whole System Integration Gate: **PASS**;
+- Russian P1 source browser acceptance: **PASS**;
+- packaged Russian P1 browser acceptance: **PASS**;
+- Russian Engine grounded slice source + packaged acceptance: **PASS**;
+- Russian true-offline shell source + packaged acceptance: **PASS**.
+
+## RE25 authorization boundary
+
+No outside-Engine write has occurred.
+
+Exact requested cross-boundary allowlist:
+
+1. `subjects/russian/assets/adaptive-planner.js`
+   - add an explicit registered candidate-source seam;
+   - preserve `RussianAdaptivePlanner` as final planner owner;
+   - do not use or impersonate `manualOverride`;
+   - candidate sources are read-only inputs to `buildPlan()`.
+
+2. `subjects/russian/sw.js`
+   - precache only the newly browser-loaded Engine integration modules needed by the approved seam;
+   - preserve existing offline behavior and cache policy;
+   - no unrelated service-worker rewrite.
+
+Any additional outside-Engine file remains forbidden without new evidence + authorization.
+
+Rollout remains `OPT_IN_FLAG`.
