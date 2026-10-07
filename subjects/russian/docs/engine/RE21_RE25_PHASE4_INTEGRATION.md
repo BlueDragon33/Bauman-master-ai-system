@@ -72,3 +72,25 @@ Exact requested cross-boundary allowlist:
 Any additional outside-Engine file remains forbidden without new evidence + authorization.
 
 Rollout remains `OPT_IN_FLAG`.
+
+
+## RE25 applied implementation
+
+Authorization policy from the user permits continued execution unless direct user intervention on GitHub is required.
+
+Applied outside-Engine writes are exactly:
+- `subjects/russian/assets/adaptive-planner.js`;
+- `subjects/russian/sw.js`.
+
+Applied Engine-side integration:
+- browser planner source registry adapter;
+- bootstrap attachment;
+- grounded-success follow-up candidate publication;
+- RE25 regression test.
+
+Planner authority remains `RussianAdaptivePlanner`.
+Engine cannot impersonate `manual_override`.
+External candidate priority is bounded below canonical due/manual-owner priorities.
+Rollout remains `OPT_IN_FLAG`.
+
+State: **APPLIED · VALIDATING**.
