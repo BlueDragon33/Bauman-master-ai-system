@@ -1,0 +1,298 @@
+{
+  "schemaVersion": "1.0.0",
+  "packetId": "HUB-STORAGE-20261006-001",
+  "packetRevision": 5,
+  "verifiedAt": "2026-10-07T07:39:45.280Z",
+  "branch": "codex/hub-storage-20261007-materialize",
+  "prNumber": 289,
+  "prUrl": "https://github.com/BlueDragon33/Bauman-master-ai-system/pull/289",
+  "beforeSha": "a3a0e09f7bea7a23178dc41ab0c5a319f879b83d",
+  "afterSha": "79353c7d99b45fdf2b5001ebd11490125380b05f",
+  "runtimeAfterSha": "6112ba88784038e4ab1b81642657ac0d79ab143d",
+  "afterShaSemantics": "Exact final pushed and tested PR HEAD; execution result afterSha identifies its tested implementation ancestor because committed JSON cannot contain its own commit hash.",
+  "changedPaths": [
+    ".github/workflows/system-integration-ci.yml",
+    "assets/js/academic-main.js",
+    "assets/js/academic-scheduler-apply.js",
+    "assets/js/academic-scheduler-preview.js",
+    "assets/js/app-manager-managed-access.js",
+    "assets/js/main.js",
+    "assets/js/platform/hub-personal-store.js",
+    "assets/js/schedule-reference-v1.js",
+    "assets/js/subjects-reference-v1.js",
+    "assets/js/thesis-reference-v1.js",
+    "index.html",
+    "prompts/PROMPT_REGISTRY.json",
+    "prompts/hub/CURRENT_EXECUTION_RESULT.json",
+    "prompts/hub/CURRENT_WORK_PACKET.json",
+    "prompts/hub/HUB_SHARED_STATE.json",
+    "tests/academic-browser-acceptance-13e.mjs",
+    "tests/deep-study-journal-browser.mjs",
+    "tests/hub-personal-storage-browser.mjs",
+    "tests/hub-personal-storage-static.mjs",
+    "tests/subjects-reference-v1-browser.mjs",
+    "tests/subjects-reference-v1-static.mjs",
+    "tests/system-browser-acceptance.mjs"
+  ],
+  "sourceTests": {
+    "head": "79353c7d99b45fdf2b5001ebd11490125380b05f",
+    "tests": [
+      {
+        "test": "tests/hub-personal-storage-static.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/materialized-sealed-hub-personal-storage-static.log"
+      },
+      {
+        "test": "tests/runtime-access-mode-static.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/materialized-sealed-runtime-access-mode-static.log"
+      },
+      {
+        "test": "tests/runtime-access-mode-behavior.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/materialized-sealed-runtime-access-mode-behavior.log"
+      },
+      {
+        "test": "tests/schedule-reference-v1-static.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/materialized-sealed-schedule-reference-v1-static.log"
+      },
+      {
+        "test": "tests/subjects-reference-v1-static.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/materialized-sealed-subjects-reference-v1-static.log"
+      },
+      {
+        "test": "tests/thesis-reference-v1-static.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/materialized-sealed-thesis-reference-v1-static.log"
+      },
+      {
+        "test": "tests/hub-data-truth-static.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/materialized-sealed-hub-data-truth-static.log"
+      },
+      {
+        "test": "tests/hub-personal-storage-browser.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/materialized-sealed-hub-personal-storage-browser.log"
+      },
+      {
+        "test": "tests/academic-browser-acceptance-13e.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/materialized-sealed-academic-browser-acceptance-13e.log"
+      },
+      {
+        "test": "tests/deep-study-journal-browser.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/materialized-sealed-deep-study-journal-browser.log"
+      },
+      {
+        "test": "tests/schedule-reference-v1-browser.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/materialized-sealed-schedule-reference-v1-browser.log"
+      },
+      {
+        "test": "tests/subjects-reference-v1-browser.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/materialized-sealed-subjects-reference-v1-browser.log"
+      },
+      {
+        "test": "tests/thesis-reference-v1-browser.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/materialized-sealed-thesis-reference-v1-browser.log"
+      },
+      {
+        "test": "tests/hub-data-truth-browser.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/materialized-sealed-hub-data-truth-browser.log"
+      },
+      {
+        "test": "tests/hub-premium-responsive-browser.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/materialized-sealed-hub-premium-responsive-browser.log"
+      },
+      {
+        "test": "tests/system-browser-acceptance.mjs --hub-only",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/materialized-sealed-system-browser-acceptance.log"
+      }
+    ]
+  },
+  "packagedTests": {
+    "head": "79353c7d99b45fdf2b5001ebd11490125380b05f",
+    "tests": [
+      {
+        "test": "tests/hub-personal-storage-browser.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/materialized-sealed-packaged-hub-personal-storage-browser.log"
+      },
+      {
+        "test": "tests/system-browser-acceptance.mjs --hub-only",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/materialized-sealed-packaged-system-browser-acceptance.log"
+      }
+    ]
+  },
+  "syntax": {
+    "status": "PASS",
+    "count": 16,
+    "files": [
+      "assets/js/academic-main.js",
+      "assets/js/academic-scheduler-apply.js",
+      "assets/js/academic-scheduler-preview.js",
+      "assets/js/app-manager-managed-access.js",
+      "assets/js/main.js",
+      "assets/js/platform/hub-personal-store.js",
+      "assets/js/schedule-reference-v1.js",
+      "assets/js/subjects-reference-v1.js",
+      "assets/js/thesis-reference-v1.js",
+      "tests/academic-browser-acceptance-13e.mjs",
+      "tests/deep-study-journal-browser.mjs",
+      "tests/hub-personal-storage-browser.mjs",
+      "tests/hub-personal-storage-static.mjs",
+      "tests/subjects-reference-v1-browser.mjs",
+      "tests/subjects-reference-v1-static.mjs",
+      "tests/system-browser-acceptance.mjs"
+    ]
+  },
+  "boundaryCompliance": {
+    "status": "PASS",
+    "evidence": "HUB_GOVERNANCE_AND_BOUNDARY_PASS 22 paths",
+    "noSubjectChanges": true,
+    "subjectInternalsRead": false,
+    "implementationReexecuted": false,
+    "runtimeAndTestsUnchangedFromPriorLocalImplementation": true,
+    "runtimeAndTestsUnchangedFromReconciledCandidate": true
+  },
+  "wholeSystemRegression": {
+    "status": "FAIL",
+    "ciRuns": [
+      {
+        "id": 37588513789,
+        "name": "Universal Constitution Compliance",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37588513789"
+      },
+      {
+        "id": 37588513090,
+        "name": "Whole System Integration Gate",
+        "status": "completed",
+        "conclusion": "failure",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37588513090"
+      },
+      {
+        "id": 37588513290,
+        "name": "Prompt Control Center CI",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37588513290"
+      },
+      {
+        "id": 37588512973,
+        "name": "Development Fast CI",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37588512973"
+      },
+      {
+        "id": 37588512908,
+        "name": "Dependency Independence Governance",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37588512908"
+      },
+      {
+        "id": 37588512910,
+        "name": "Future Interface System CI",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37588512910"
+      },
+      {
+        "id": 37588512980,
+        "name": "Thesis Reference CI",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37588512980"
+      },
+      {
+        "id": 37588512979,
+        "name": "Subjects Reference CI",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37588512979"
+      },
+      {
+        "id": 37588512954,
+        "name": "Readable Typography CI",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37588512954"
+      }
+    ],
+    "wholeSystemGate": {
+      "id": 37588513090,
+      "name": "Whole System Integration Gate",
+      "status": "completed",
+      "conclusion": "failure",
+      "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37588513090"
+    },
+    "failedStep": "Validate Deep Study Journal boundaries",
+    "browserSystemAcceptance": "SKIPPED",
+    "russianAcceptance": "SKIPPED",
+    "localReproduction": {
+      "exitCode": 1,
+      "output": "DEEP_STUDY_JOURNAL_V1_FAIL (2)\n- Backup must continue serializing whole learner state\n- Restore must continue normalizing imported learner state\n"
+    },
+    "validatorOutsideR5AllowedPaths": true
+  },
+  "githubVerification": {
+    "verifiedAt": "2026-10-07T07:38:43.824Z",
+    "head": "79353c7d99b45fdf2b5001ebd11490125380b05f",
+    "branch": "codex/hub-storage-20261007-materialize",
+    "remoteSha": "79353c7d99b45fdf2b5001ebd11490125380b05f",
+    "prNumber": 289,
+    "prUrl": "https://github.com/BlueDragon33/Bauman-master-ai-system/pull/289",
+    "prState": "open",
+    "draft": true,
+    "merged": false,
+    "files": [
+      {
+        "path": "prompts/hub/CURRENT_EXECUTION_RESULT.json",
+        "blobSha": "d101a763c03ea59a13dd6531ed537e1a0653445a",
+        "verified": true
+      },
+      {
+        "path": "prompts/hub/HUB_SHARED_STATE.json",
+        "blobSha": "b89ad8356bfa47005e6573c659216e445936cc18",
+        "verified": true
+      }
+    ]
+  },
+  "releaseState": "BLOCKED",
+  "productionDeployment": false,
+  "mainMerged": false,
+  "workingTreeClean": true,
+  "evidenceFile": "prompts/hub/CURRENT_EXECUTION_RESULT.json",
+  "gitNoteRef": "refs/notes/hub-storage-materialization"
+}
