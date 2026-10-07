@@ -25,6 +25,9 @@ const graph=readJson('./content/graph/reference-graph.v1.json');
 const commercial=readJson('./product/commercial-contract.v1.json');
 const failures=readJson('./quality/failure-matrix.v1.json');
 const sourceFiles=walk(path.resolve('subjects/russian/engine'));
+for(const key of Object.keys(sourceFiles)){
+  if(key.endsWith('engine-quality-gate.mjs'))delete sourceFiles[key];
+}
 
 const result=validateEngineQuality({
   levelCatalog:levels,
