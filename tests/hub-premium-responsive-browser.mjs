@@ -258,16 +258,53 @@ try{
     await page.waitForFunction(id=>!!document.querySelector(`#page-${id} .hub-v6-hero`),id,{timeout:10000});
     const before=await page.evaluate(id=>{
       const page=document.getElementById(`page-${id}`);
-      const hero=page?.querySelector('.hub-v6-hero')?.getBoundingClientRect();
+      const heroEl=page?.querySelector('.hub-v6-hero');
+      const hero=heroEl?.getBoundingClientRect();
       const first=page?.querySelector('.hub-v6-hero + *')?.getBoundingClientRect();
-      return {booting:document.body.classList.contains('hub-ui-booting'),hero:hero?{x:hero.x,y:hero.y,w:hero.width,h:hero.height}:null,first:first?{x:first.x,y:first.y,w:first.width,h:first.height}:null};
+      const title=heroEl?.querySelector('h2');
+      const copy=heroEl?.querySelector('p');
+      const luminance=value=>{
+        const rgb=(String(value).match(/[\\d.]+/g)||[]).slice(0,3).map(Number);
+        if(rgb.length!==3)return 0;
+        const lin=rgb.map(v=>{v/=255;return v<=.04045?v/12.92:Math.pow((v+.055)/1.055,2.4)});
+        return .2126*lin[0]+.7152*lin[1]+.0722*lin[2];
+      };
+      const titleColor=title?getComputedStyle(title).color:'';
+      const copyColor=copy?getComputedStyle(copy).color:'';
+      return {
+        booting:document.body.classList.contains('hub-ui-booting'),
+        heroCount:page?.querySelectorAll('.hub-v6-hero').length||0,
+        hero:hero?{x:hero.x,y:hero.y,w:hero.width,h:hero.height}:null,
+        first:first?{x:first.x,y:first.y,w:first.width,h:first.height}:null,
+        titleColor,copyColor,titleLuminance:luminance(titleColor),copyLuminance:luminance(copyColor)
+      };
     },id);
+    assert.equal(before.heroCount,1,`${id}: V6 hero must render exactly once`);
+    assert.ok(before.titleLuminance>.80,`${id}: dark V6 hero title contrast is too low (${before.titleColor})`);
+    assert.ok(before.copyLuminance>.45,`${id}: dark V6 hero description contrast is too low (${before.copyColor})`);
     await page.waitForTimeout(1450);
     const after=await page.evaluate(id=>{
       const page=document.getElementById(`page-${id}`);
-      const hero=page?.querySelector('.hub-v6-hero')?.getBoundingClientRect();
+      const heroEl=page?.querySelector('.hub-v6-hero');
+      const hero=heroEl?.getBoundingClientRect();
       const first=page?.querySelector('.hub-v6-hero + *')?.getBoundingClientRect();
-      return {booting:document.body.classList.contains('hub-ui-booting'),hero:hero?{x:hero.x,y:hero.y,w:hero.width,h:hero.height}:null,first:first?{x:first.x,y:first.y,w:first.width,h:first.height}:null};
+      const title=heroEl?.querySelector('h2');
+      const copy=heroEl?.querySelector('p');
+      const luminance=value=>{
+        const rgb=(String(value).match(/[\\d.]+/g)||[]).slice(0,3).map(Number);
+        if(rgb.length!==3)return 0;
+        const lin=rgb.map(v=>{v/=255;return v<=.04045?v/12.92:Math.pow((v+.055)/1.055,2.4)});
+        return .2126*lin[0]+.7152*lin[1]+.0722*lin[2];
+      };
+      const titleColor=title?getComputedStyle(title).color:'';
+      const copyColor=copy?getComputedStyle(copy).color:'';
+      return {
+        booting:document.body.classList.contains('hub-ui-booting'),
+        heroCount:page?.querySelectorAll('.hub-v6-hero').length||0,
+        hero:hero?{x:hero.x,y:hero.y,w:hero.width,h:hero.height}:null,
+        first:first?{x:first.x,y:first.y,w:first.width,h:first.height}:null,
+        titleColor,copyColor,titleLuminance:luminance(titleColor),copyLuminance:luminance(copyColor)
+      };
     },id);
     assert.equal(before.booting,false,`${id}: boot guard remained active`);
     assert.deepEqual(after,before,`${id}: layout changed after delayed enhancement window`);
