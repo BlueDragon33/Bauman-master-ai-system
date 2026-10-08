@@ -44,7 +44,7 @@ function spatialItems(pack){
       utteranceKind:'instruction',textRu:scene.russianDraft,worldId:scene.worldId,worldLabelVi:ctx?.world?.nameVi||null,situationVi:null,
       declaredSpeakerRole:scene.speakerRole,speakerRole:roles.speakerRole,recipientRole:roles.recipientRole,roleResolution:roles.roleResolution,
       register:scene.register,expectedAction:a,expectedVisual:visual(ctx,target),audio:audio(scene.audioAuthority),
-      structuralIssues:Object.freeze([...roles.issues,'NO_IMMUTABLE_AUDIO','NO_HUMAN_REVIEW'])
+      structuralIssues:Object.freeze([...roles.issues,'VN_CONTEXT_NOT_REVISION_BOUND','NO_IMMUTABLE_AUDIO','NO_HUMAN_REVIEW'])
     });
   });
 }
@@ -102,7 +102,7 @@ export function buildReviewInventory({spatial,dialogues,spatialRaw='',dialoguesR
 export function buildReviewPackets(inventory){
   const packets=inventory.items.map(x=>Object.freeze({
     itemId:x.itemId,sourceSceneId:x.sourceSceneId,sourceRevision:x.sourceRevision,utteranceKind:x.utteranceKind,textRu:x.textRu,situationVi:x.situationVi,
-    worldId:x.worldId,speakerRole:x.speakerRole,recipientRole:x.recipientRole,register:x.register,expectedAction:x.expectedAction,expectedVisual:x.expectedVisual,
+    worldId:x.worldId,speakerRole:x.speakerRole,recipientRole:x.recipientRole,register:x.register,expectedAction:x.expectedAction,expectedVisual:x.expectedVisual,roleResolution:x.roleResolution,structuralIssues:x.structuralIssues,
     textFingerprint:x.textFingerprint,audioFingerprint:x.audioFingerprint,reviewFingerprint:x.reviewFingerprint,
     requiredReviews:['TEXT','AUDIO'],allowedDecisions:['APPROVE','CHANGES_REQUESTED','REJECT'],reviewerAuthorityRequired:'HUMAN_RU03',status:'PENDING_EXTERNAL_REVIEW'
   }));
