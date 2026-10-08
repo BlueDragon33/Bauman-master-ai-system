@@ -22,6 +22,8 @@ export function evaluateGroundedSelection({scene,selectedObjectId,supportLevel=0
   if(!expected)throw new Error('scene expectedAction.objectId is required');
   const before=clampSupport(supportLevel);
   const success=selected===expected;
+  // A noncanonical icon tap cannot prove that a learner located a place.
+  const locationPreview=scene?.status==='FIXTURE_NONCANONICAL_PENDING_RU03'&&scene?.expectedAction?.semanticRelation==='locate-object'&&scene?.expectedAction?.kind==='select-object';
   const after=success?before:Math.min(10,before+1);
 
   return Object.freeze({
@@ -48,8 +50,8 @@ export function evaluateGroundedSelection({scene,selectedObjectId,supportLevel=0
       evidenceId:['RE09S1',clean(attemptId)||'ATT',scene.sceneId,String(Date.now())].join(':'),
       attemptId:clean(attemptId),
       experienceId:'RE02-EXP-'+scene.sceneId,
-      competencyIds:Array.isArray(scene.targetCompetencies)?[...scene.targetCompetencies]:[],
-      observationType:'grounded-semantic-comprehension',
+      competencyIds:locationPreview?[]:(Array.isArray(scene.targetCompetencies)?[...scene.targetCompetencies]:[]),
+      observationType:locationPreview?'visual-noun-association-preview':'grounded-semantic-comprehension',
       result:{success,selectedObjectId:selected,expectedObjectId:expected},
       supportLevel:before,
       authoritative:false,
