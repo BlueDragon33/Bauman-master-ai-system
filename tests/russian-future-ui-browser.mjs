@@ -61,6 +61,19 @@ try{
     });
   });
 
+  // An overview upgrade must not schedule vocabulary rendering in the background.
+  const offscreenSrsRefreshes=await page.evaluate(()=>{
+    const owner=window.RussianVocabSrs;
+    if(!owner||typeof owner.refresh!=='function')return -1;
+    const original=owner.refresh;
+    let calls=0;
+    owner.refresh=()=>{calls++;};
+    try{window.RUSSIAN_FUTURE_UI.upgrade();}
+    finally{owner.refresh=original;}
+    return calls;
+  });
+  assert.equal(offscreenSrsRefreshes,0,'Overview upgrade must not refresh the offscreen vocabulary SRS');
+
   const idleMutationCount=await page.evaluate(async()=>{
     const root=document.querySelector('.ru-app-shell');
     let count=0;

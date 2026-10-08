@@ -10,6 +10,7 @@ assert.equal(handoff.reviewerCount,0);
 assert.equal(handoff.state,'EXTERNAL_REVIEWER_REQUIRED');
 assert.equal(handoff.audioReady,false);
 assert.equal(handoff.canonicalPublicationReady,false);
+assert.equal(handoff.entries.every(x=>x.decisionTemplate.decision===null),true,'draft decisions must not preselect APPROVE');
 
 const item=inventory.items[0];
 const baseDecision={
@@ -35,11 +36,17 @@ const textRegistry={
     authority:'HUMAN_RU03',
     reviewerType:'HUMAN',
     status:'ACTIVE',
+    authorizationEvidence:{status:'VERIFIED',reference:'TEST_FIXTURE_ONLY',verifiedBy:'test-harness',verifiedAt:'2026-10-08T00:00:00Z'},
     qualifications:['RUSSIAN_TEXT']
   }]
 };
 assert.equal(validateReviewerRegistry(textRegistry).ok,true);
 assert.equal(validateExternalReviewDecision(item,baseDecision,{registry:textRegistry}).ok,true,'authorized exact TEXT decision should pass structure');
+
+const noEvidenceRegistry=structuredClone(textRegistry);
+delete noEvidenceRegistry.reviewers[0].authorizationEvidence;
+assert.equal(validateReviewerRegistry(noEvidenceRegistry).ok,false,'unverified qualifications are insufficient');
+assert.equal(validateExternalReviewDecision(item,baseDecision,{registry:noEvidenceRegistry}).ok,false);
 
 const aiRegistry={
   schema:'RUSSIAN_ENGINE_RU03_REVIEWERS_V1',
@@ -49,6 +56,7 @@ const aiRegistry={
     authority:'HUMAN_RU03',
     reviewerType:'AI',
     status:'ACTIVE',
+    authorizationEvidence:{status:'VERIFIED',reference:'TEST_FIXTURE_ONLY',verifiedBy:'test-harness',verifiedAt:'2026-10-08T00:00:00Z'},
     qualifications:['RUSSIAN_TEXT']
   }]
 };
@@ -62,6 +70,7 @@ const audioRegistry={
     authority:'HUMAN_RU03',
     reviewerType:'HUMAN',
     status:'ACTIVE',
+    authorizationEvidence:{status:'VERIFIED',reference:'TEST_FIXTURE_ONLY',verifiedBy:'test-harness',verifiedAt:'2026-10-08T00:00:00Z'},
     qualifications:['RUSSIAN_TEXT','RUSSIAN_AUDIO']
   }]
 };
