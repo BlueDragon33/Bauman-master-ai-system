@@ -42,7 +42,7 @@ function addStyle(doc){
    '.re44__edges{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}',
    '.re44__node{position:absolute;transform:translate(-50%,-50%);padding:6px;min-height:56px;min-width:72px;max-width:120px;border:1px solid color-mix(in srgb,currentColor 24%,transparent);border-radius:10px;background:Canvas;color:inherit;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px}',
    '.re44__node:focus-visible,.re44__node.is-correct{outline:3px solid currentColor;outline-offset:3px}',
-   '.re44__symbol{font-size:20px;font-weight:800},
+   '.re44__symbol{font-size:20px;font-weight:800}',
    '.re44__symbol.is-word{font-size:13px;line-height:1.05;letter-spacing:-.02em}',
    '.re44__name{font-size:11px;font-weight:650;text-align:center;line-height:1.15}',
    '.re44__feedback{font-size:14px;font-weight:700;min-height:28px;margin:11px 0}',
