@@ -30,6 +30,9 @@ assert.equal(notebook.expectedAction.toNodeId,'classmate');
 const shower=inventory.items.find(x=>x.itemId==='dialogue:repair-dorm-shower:reply');
 assert.equal(shower.textRu,'Душевая в конце коридора справа.');
 assert.equal(shower.advisory.decision,'REVISED_CANDIDATE');
+assert.equal(shower.sourceRevision,'repair-dialogues-ai-draft-r4');
+assert.equal(shower.situationVi.directionHint,'Quản lý cho biết phòng tắm ở cuối hành lang, bên phải.');
+assert.equal(shower.situationVi.directionHint.includes('rẽ phải'),false);
 assert.equal(shower.expectedVisual.nodeId,'shower-room');
 
 const oldNotebook=oldInventory.items.find(x=>x.itemId===notebook.itemId);
@@ -68,6 +71,7 @@ console.log(JSON.stringify({
   changedReviewFingerprintsFromRE47:43,
   correctedNotebookRecipient:true,
   correctedDormLocationAdverb:true,
+  reviewPacketBindsVietnameseDirection:true,
   zeroImmutableAudio:true,
   oldApprovalsStale:true,
   promotionReady:false
