@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import {buildRe49ReviewInventory,buildRe49ReviewPackets} from './re49-review-packets-r4.mjs';
-import {verifyReviewDecision} from './re45-review-core.mjs';
+import {verifyAuthorizedReviewDecision} from './re45-review-core.mjs';
 
 const arr=v=>Array.isArray(v)?v:[];
 const txt=v=>String(v??'').trim();
@@ -22,6 +22,7 @@ export function validateReviewerRegistry(registry){
     if(reviewer?.status!=='ACTIVE')errors.push(id+': status');
     const q=new Set(arr(reviewer?.qualifications));
     if(!q.has('RUSSIAN_TEXT')&&!q.has('RUSSIAN_AUDIO'))errors.push(id+': qualification');
+    if(reviewer?.authorizationEvidence?.status!=='VERIFIED'||!txt(reviewer?.authorizationEvidence?.reference)||!txt(reviewer?.authorizationEvidence?.verifiedBy)||!txt(reviewer?.authorizationEvidence?.verifiedAt))errors.push(id+': independent credential evidence');
   }
   return Object.freeze({ok:errors.length===0,errors,reviewerCount:arr(registry?.reviewers).length});
 }
@@ -31,22 +32,9 @@ function reviewerFor(registry,id){
 }
 
 export function validateExternalReviewDecision(item,decision,{registry=loadReviewerRegistry()}={}){
-  const errors=[];
-  const reg=validateReviewerRegistry(registry);
-  if(!reg.ok)errors.push(...reg.errors);
-  if(!txt(decision?.decisionId))errors.push('decisionId required');
-  if(decision?.reviewerType!=='HUMAN')errors.push('reviewerType must be HUMAN');
-  if(!txt(decision?.decidedAt))errors.push('decidedAt required');
-  const reviewer=reviewerFor(registry,decision?.reviewerId);
-  if(!reviewer)errors.push('reviewer is not authorized');
-  if(reviewer){
-    if(reviewer.authority!=='HUMAN_RU03'||reviewer.status!=='ACTIVE')errors.push('reviewer authorization invalid');
-    const qualifications=new Set(arr(reviewer.qualifications));
-    if(decision?.scope==='TEXT'&&!qualifications.has('RUSSIAN_TEXT'))errors.push('reviewer lacks RUSSIAN_TEXT qualification');
-    if(decision?.scope==='AUDIO'&&!qualifications.has('RUSSIAN_AUDIO'))errors.push('reviewer lacks RUSSIAN_AUDIO qualification');
-  }
-  const core=verifyReviewDecision(item,decision);
-  if(!core.ok)errors.push(...core.errors);
+  const validation=validateReviewerRegistry(registry);
+  const authorized=verifyAuthorizedReviewDecision(item,decision,registry);
+  const errors=[...validation.errors,...authorized.errors];
   return Object.freeze({ok:errors.length===0,errors});
 }
 
@@ -83,7 +71,7 @@ export function buildExternalReviewHandoff({inventory=buildRe49ReviewInventory()
         decisionId:'',
         itemId:item.itemId,
         scope:'TEXT',
-        decision:'APPROVE',
+        decision:null,
         reviewerAuthority:'HUMAN_RU03',
         reviewerType:'HUMAN',
         reviewerId:'',
