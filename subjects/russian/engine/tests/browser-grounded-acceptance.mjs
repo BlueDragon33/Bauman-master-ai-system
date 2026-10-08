@@ -240,6 +240,18 @@ try{
   assert.equal(afterSpatialStore,beforeSpatialStore,'RE43 unreviewed candidate must never be delivered to RU04');
   assert.equal((await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status)).evidenceCount,0);
 
+  // RE55: the opt-in preview must not teach superseded notebook wording.
+  await spatial.locator('[data-re-spatial-setting]').selectOption('university');
+  await spatial.locator('[data-re-spatial-node="auditorium-12"]').click();
+  await spatial.locator('[data-re-spatial-next]').click();
+  await spatial.locator('[data-re-spatial-node="library"]').click();
+  await spatial.locator('[data-re-spatial-next]').click();
+  assert.equal((await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status)).sceneId,'rl-15-university');
+  assert.equal(await spatial.locator('[data-re-spatial-script]').isVisible(),false);
+  await spatial.locator('[data-re-spatial-script-toggle]').click();
+  assert.equal(await spatial.locator('[data-re-spatial-script]').innerText(),'Передай мне, пожалуйста, тетрадь.');
+  assert.equal((await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status)).masteryMutation,false);
+
   // RE44: simulated polite stranger conversation, repetition and slower repair; never authoritative speech scoring.
   const dialogueUrl=new URL(
     'subjects/russian/index.html?ruEngine=grounded-v1&ruWorld=spatial-r2-candidate&ruDialog=repair-v1',
@@ -285,6 +297,17 @@ try{
   await dialog.locator('[data-re44-scene]').selectOption('1');
   assert.equal((await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status)).sceneId,'repair-metro-entrance');
   assert.match(await dialog.innerText(),/lối xuống tàu điện/);
+
+  // RE55: dorm preview must use the corrected Russian spatial statement AND matching Vietnamese meaning.
+  await dialog.locator('[data-re44-scene]').selectOption('2');
+  assert.equal((await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status)).sceneId,'repair-dorm-shower');
+  await dialog.locator('[data-re44-shadow]').click();
+  await dialog.locator('[data-re44-shadow]').click();
+  await dialog.locator('[data-re44-show-script]').click();
+  assert.equal(await dialog.locator('[data-re44-script]').innerText(),'Душевая в конце коридора справа.');
+  await dialog.locator('[data-re44-advance]').click();
+  assert.match(await dialog.locator('[data-re44-hint]').innerText(),/ở cuối hành lang, bên phải/);
+  assert.equal((await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status)).evidenceCount,0);
 
   const adaptiveRoomUrl=new URL(
     'subjects/russian/index.html?ruEngine=grounded-v1&ruWorld=real-life-v1&ruSetting=room',
