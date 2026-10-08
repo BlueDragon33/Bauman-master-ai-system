@@ -15,6 +15,24 @@ const LABEL=Object.freeze({
  'dialogue-intent':'Luyện câu đề nghị lịch sự'
 });
 const SETTINGS=Object.freeze({room:'Phòng sinh hoạt',shop:'Cửa hàng',metro:'Metro',dorm:'Ký túc xá',university:'Trường đại học'});
+// Vietnamese scenario intentions are scaffolding, not verified word-for-word translations.
+const INTENT_VI=Object.freeze({
+  'rl-01-room':'Người bạn nhờ bạn đưa quả bóng.',
+  'rl-02-room':'Người bạn nhờ bạn đưa sách.',
+  'rl-03-room':'Cần tìm vị trí chiếc cốc.',
+  'rl-04-shop':'Hỏi nhân viên cửa hàng nơi bán bánh mì.',
+  'rl-05-shop':'Bạn là khách và muốn mua một chai nước bằng lời đề nghị lịch sự.',
+  'rl-06-shop':'Hỏi nhân viên chỗ để sữa.',
+  'rl-07-metro':'Hỏi nơi có thể mua vé đi metro.',
+  'rl-08-metro':'Tìm sơ đồ các tuyến metro, không phải thẻ đi tàu.',
+  'rl-09-metro':'Đang ở ngoài phố, cần tìm lối xuống ga metro.',
+  'rl-10-dorm':'Tìm chìa khóa phòng ở ký túc xá.',
+  'rl-11-dorm':'Hỏi nơi có phòng số 12, không phải một cánh cửa bất kỳ.',
+  'rl-12-dorm':'Hỏi nhân viên vị trí phòng tắm chung.',
+  'rl-13-university':'Hỏi tìm phòng học số 12, không phải cả tòa trường.',
+  'rl-14-university':'Hỏi tìm vị trí thư viện.',
+  'rl-15-university':'Nhờ bạn học chuyển quyển vở.'
+});
 export function spatialCandidateLocation(locationLike){
   try{
     const url=new URL(locationLike?.href||String(locationLike||''),'https://local.invalid/');
@@ -144,7 +162,7 @@ export async function mountSpatialCandidateExperience({
       '<button type="button" class="re-spatial__control" data-re-spatial-slow>▶ Nghe chậm</button>',
       '<button type="button" class="re-spatial__control" data-re-spatial-help-toggle aria-expanded="false">Gợi ý (VI)</button>',
       '<button type="button" class="re-spatial__control" data-re-spatial-script-toggle aria-expanded="false">Xem chữ Nga</button></div>',
-      '<p class="re-spatial__help" data-re-spatial-help hidden>Nghe và quan sát các vị trí bằng tiếng Việt. ',
+      '<p class="re-spatial__help" data-re-spatial-help hidden><strong>Mục đích tình huống:</strong> '+esc(INTENT_VI[scene.sceneId]||'Quan sát, nghe và chọn vị trí.')+' Đây là gợi ý tiếng Việt, không phải bản dịch Nga được kiểm định. ',
       isTalk?'Đây là tình huống mua một chai nước: nghe lời yêu cầu rồi tập nhại. Không chấm phát âm.':scene.expectedAction.kind==='handover-object'?'Bước 1: chọn nơi có vật. Bước 2: chọn người nhận.':'Chọn một vị trí trên sơ đồ; không chỉ nhận biết biểu tượng đồ vật.',
       ' Câu nháp và giọng máy chưa được người Nga kiểm duyệt.</p>',
       '<p class="re-spatial__script" data-re-spatial-script hidden lang="ru">'+esc(scene.russianDraft)+'</p>',
