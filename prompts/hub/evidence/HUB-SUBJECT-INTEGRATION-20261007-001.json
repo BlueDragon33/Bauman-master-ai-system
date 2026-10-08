@@ -1,0 +1,409 @@
+{
+  "packetId": "HUB-SUBJECT-INTEGRATION-20261007-001",
+  "revision": 1,
+  "beforeSha": "5924b72ff600dc0798369362ced83356550f2095",
+  "testedRuntimeHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429",
+  "releaseState": "BLOCKED",
+  "localSuites": [
+    {
+      "test": "tests/hub-subject-integration-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-reconciled-source-hub-subject-integration-static.log",
+      "group": "integration-reconciled-source-",
+      "testedHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429"
+    },
+    {
+      "test": "tests/hub-subject-integration-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-reconciled-source-hub-subject-integration-browser.log",
+      "group": "integration-reconciled-source-",
+      "testedHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429"
+    },
+    {
+      "test": "tests/hub-subject-config-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-reconciled-source-hub-subject-config-browser.log",
+      "group": "integration-reconciled-source-",
+      "testedHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429"
+    },
+    {
+      "test": "tests/hub-personal-storage-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-reconciled-source-hub-personal-storage-static.log",
+      "group": "integration-reconciled-source-",
+      "testedHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429"
+    },
+    {
+      "test": "tests/runtime-access-mode-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-reconciled-source-runtime-access-mode-static.log",
+      "group": "integration-reconciled-source-",
+      "testedHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429"
+    },
+    {
+      "test": "tests/runtime-access-mode-behavior.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-reconciled-source-runtime-access-mode-behavior.log",
+      "group": "integration-reconciled-source-",
+      "testedHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429"
+    },
+    {
+      "test": "tests/schedule-reference-v1-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-reconciled-source-schedule-reference-v1-static.log",
+      "group": "integration-reconciled-source-",
+      "testedHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429"
+    },
+    {
+      "test": "tests/subjects-reference-v1-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-reconciled-source-subjects-reference-v1-static.log",
+      "group": "integration-reconciled-source-",
+      "testedHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429"
+    },
+    {
+      "test": "tests/thesis-reference-v1-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-reconciled-source-thesis-reference-v1-static.log",
+      "group": "integration-reconciled-source-",
+      "testedHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429"
+    },
+    {
+      "test": "tests/hub-data-truth-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-reconciled-source-hub-data-truth-static.log",
+      "group": "integration-reconciled-source-",
+      "testedHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429"
+    },
+    {
+      "test": "tests/hub-personal-storage-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-reconciled-source-hub-personal-storage-browser.log",
+      "group": "integration-reconciled-source-",
+      "testedHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429"
+    },
+    {
+      "test": "tests/academic-browser-acceptance-13e.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-reconciled-source-academic-browser-acceptance-13e.log",
+      "group": "integration-reconciled-source-",
+      "testedHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429"
+    },
+    {
+      "test": "tests/deep-study-journal-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-reconciled-source-deep-study-journal-browser.log",
+      "group": "integration-reconciled-source-",
+      "testedHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429"
+    },
+    {
+      "test": "tests/schedule-reference-v1-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-reconciled-source-schedule-reference-v1-browser.log",
+      "group": "integration-reconciled-source-",
+      "testedHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429"
+    },
+    {
+      "test": "tests/subjects-reference-v1-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-reconciled-source-subjects-reference-v1-browser.log",
+      "group": "integration-reconciled-source-",
+      "testedHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429"
+    },
+    {
+      "test": "tests/thesis-reference-v1-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-reconciled-source-thesis-reference-v1-browser.log",
+      "group": "integration-reconciled-source-",
+      "testedHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429"
+    },
+    {
+      "test": "tests/hub-data-truth-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-reconciled-source-hub-data-truth-browser.log",
+      "group": "integration-reconciled-source-",
+      "testedHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429"
+    },
+    {
+      "test": "tests/hub-premium-responsive-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-reconciled-source-hub-premium-responsive-browser.log",
+      "group": "integration-reconciled-source-",
+      "testedHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429"
+    },
+    {
+      "test": "tests/system-browser-acceptance.mjs --hub-only",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-reconciled-source-system-browser-acceptance.log",
+      "group": "integration-reconciled-source-",
+      "testedHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429"
+    },
+    {
+      "test": "tests/hub-subject-integration-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-reconciled-package-hub-subject-integration-browser.log",
+      "group": "integration-reconciled-package-",
+      "testedHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429"
+    },
+    {
+      "test": "tests/hub-subject-config-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-reconciled-package-hub-subject-config-browser.log",
+      "group": "integration-reconciled-package-",
+      "testedHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429"
+    },
+    {
+      "test": "tests/hub-personal-storage-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-reconciled-package-hub-personal-storage-browser.log",
+      "group": "integration-reconciled-package-",
+      "testedHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429"
+    },
+    {
+      "test": "tests/system-browser-acceptance.mjs --hub-only",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-reconciled-package-system-browser-acceptance.log",
+      "group": "integration-reconciled-package-",
+      "testedHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429"
+    },
+    {
+      "test": "tests/hub-subject-integration-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-reconciled-managed-hub-subject-integration-browser.log",
+      "group": "integration-reconciled-managed-",
+      "testedHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429"
+    },
+    {
+      "test": "tests/hub-subject-config-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-reconciled-managed-hub-subject-config-browser.log",
+      "group": "integration-reconciled-managed-",
+      "testedHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429"
+    },
+    {
+      "test": "tests/hub-personal-storage-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-reconciled-managed-hub-personal-storage-browser.log",
+      "group": "integration-reconciled-managed-",
+      "testedHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429"
+    },
+    {
+      "test": "tests/system-browser-acceptance.mjs --hub-only",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-reconciled-managed-boundary-system-browser-acceptance.log",
+      "group": "integration-reconciled-managed-boundary-",
+      "testedHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429"
+    }
+  ],
+  "storageChecks": [
+    "legacy migration / zero / filtering / attachment bytes / credentials / scoped backup",
+    "reload without canonical localStorage keys / stable migration ids",
+    "scope isolation / complete backup restore / no legacy cloning",
+    "attachment quota failure atomicity / malformed backup rejected without data loss",
+    "binary video exact bytes / transaction backup parity / legacy import excludes credentials",
+    "bounded attachment retention / scoped orphan cleanup",
+    "two tabs reject stale canonical writes / reload retains newer data",
+    "clean standalone browser restores backed-up existing profile without account-switch UI",
+    "unavailable IndexedDB fails closed across distinct existing profiles",
+    "interrupted migration retry / global single-owner claim",
+    "write failure visibility / durable cache rollback / retry clears failure",
+    "scoped writes / binary state invariant",
+    "real Hub migration failure / read-only recovery / visible status / no reset",
+    "real Hub complete migration / portable restore / binary open / five routes desktop-mobile / offline local reload"
+  ],
+  "configChecks": [
+    "slow real IndexedDB config open preserves resolved admin/learner role visibility and keeps launches unavailable until initialization",
+    "application config write failure preserves original scoped legacy override and learner progress while backup remains config-free",
+    "retry transfers original IndexedDB override after legacy localStorage source removal and commits cleaned learner state",
+    "concurrent admin tabs merge unrelated fields atomically instead of overwriting cached config"
+  ],
+  "launchChecks": [
+    "legacy custom overrides migrated once to device config; learner zero/priority preserved; durable state and backup exclude transport",
+    "adapter in-Hub launch retains task query, ready handshake and task handoff",
+    "adapter tab launch retains declared target",
+    "missing/unsafe/credentialed/unknown targets are UNAVAILABLE without navigation",
+    "Home continue, Schedule mission context, reference Subjects, mentor and global search preserve adapter launch",
+    "canonical and reference learner surfaces contain no direct editor",
+    "portable restore cannot alter device config or restore raw transport",
+    "second profile does not clone/overwrite the global config; non-admin config/editor access denied"
+  ],
+  "ci": {
+    "headSha": "ce4ce81152a1b35ba8fefaf24419cd497b671429",
+    "checkedAt": "2026-10-08T00:39:34.996Z",
+    "allWorkflowsGreen": false,
+    "workflowCount": 9,
+    "runs": [
+      {
+        "id": 37708648685,
+        "name": "Universal Constitution Compliance",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "headSha": "ce4ce81152a1b35ba8fefaf24419cd497b671429",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37708648685"
+      },
+      {
+        "id": 37708648090,
+        "name": "Development Fast CI",
+        "status": "completed",
+        "conclusion": "failure",
+        "attempt": 1,
+        "headSha": "ce4ce81152a1b35ba8fefaf24419cd497b671429",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37708648090"
+      },
+      {
+        "id": 37708648120,
+        "name": "Prompt Control Center CI",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "headSha": "ce4ce81152a1b35ba8fefaf24419cd497b671429",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37708648120"
+      },
+      {
+        "id": 37708648102,
+        "name": "Dependency Independence Governance",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "headSha": "ce4ce81152a1b35ba8fefaf24419cd497b671429",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37708648102"
+      },
+      {
+        "id": 37708648052,
+        "name": "Subjects Reference CI",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "headSha": "ce4ce81152a1b35ba8fefaf24419cd497b671429",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37708648052"
+      },
+      {
+        "id": 37708648190,
+        "name": "Readable Typography CI",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "headSha": "ce4ce81152a1b35ba8fefaf24419cd497b671429",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37708648190"
+      },
+      {
+        "id": 37708648091,
+        "name": "Whole System Integration Gate",
+        "status": "completed",
+        "conclusion": "failure",
+        "attempt": 1,
+        "headSha": "ce4ce81152a1b35ba8fefaf24419cd497b671429",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37708648091"
+      },
+      {
+        "id": 37708648057,
+        "name": "Thesis Reference CI",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "headSha": "ce4ce81152a1b35ba8fefaf24419cd497b671429",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37708648057"
+      },
+      {
+        "id": 37708648137,
+        "name": "Future Interface System CI",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "headSha": "ce4ce81152a1b35ba8fefaf24419cd497b671429",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37708648137"
+      }
+    ],
+    "wholeSystemGate": {
+      "runId": 37708648091,
+      "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37708648091",
+      "headSha": "ce4ce81152a1b35ba8fefaf24419cd497b671429",
+      "status": "completed",
+      "conclusion": "failure",
+      "jobs": [
+        {
+          "id": 113089005111,
+          "name": "validate-system-integration",
+          "conclusion": "failure",
+          "steps": [
+            {
+              "name": "Validate Russian capability deep link",
+              "conclusion": "failure"
+            }
+          ]
+        },
+        {
+          "id": 113089079256,
+          "name": "browser-system-acceptance",
+          "conclusion": "skipped",
+          "steps": []
+        },
+        {
+          "id": 113089079865,
+          "name": "russian-p1-browser-acceptance",
+          "conclusion": "skipped",
+          "steps": []
+        }
+      ]
+    }
+  },
+  "blockers": [
+    {
+      "id": "HUB-INTEGRATION-CI-BOUNDARY-001",
+      "type": "FORBIDDEN_SUBJECT_OWNED_VALIDATOR_CONTRACT",
+      "owner": "Subject public-contract validator owner",
+      "path": "subjects/russian/scripts/validate-capability-deeplink.mjs",
+      "line": 13,
+      "error": "Capability route query view missing",
+      "evidence": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37708648091",
+      "explanation": "Original CI rejects moving launch-query implementation from main into the Hub Launch Adapter. Actual public routeView/routeTab/routeLesson/capabilityBand/query and task handoff are verified by Hub static/browser tests. The failing validator is inside explicitly forbidden subjects/**; it was not read or edited. Requires the validator owner to align the source contract without reducing coverage.",
+      "ordinaryRuntimeTestFailure": false,
+      "canFixWithinAuthorizedHubPaths": false
+    },
+    {
+      "id": "HUB-INTEGRATION-CI-BOUNDARY-002",
+      "type": "PUBLIC_HUB_TEST_SCOPE_AUTHORIZATION_PENDING",
+      "paths": [
+        "tests/entrepreneurship-subject-static.mjs",
+        "tests/russian-capability-continue-static.mjs"
+      ],
+      "errors": [
+        "Entrepreneurship runtime path missing from main hub",
+        "Main separate-tab launch must preserve only same-subject capability route"
+      ],
+      "evidence": [
+        "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37708648090",
+        "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37625775428"
+      ],
+      "explanation": "These existing Hub assertions require obsolete implementation locations in main.js. Semantic target and same-subject tab-context regressions already pass in the new Hub suite. Scoped authorization to align only these assertions is pending; neither test has been changed or removed."
+    }
+  ]
+}

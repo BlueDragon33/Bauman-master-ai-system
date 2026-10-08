@@ -2,8 +2,8 @@
   "schemaVersion": "1.0.0",
   "packetId": "HUB-SUBJECT-INTEGRATION-20261007-001",
   "revision": 1,
-  "status": "IN_CODEX",
-  "executionState": "IN_PROGRESS",
+  "status": "BLOCKED",
+  "executionState": "BLOCKED",
   "workClass": "B",
   "executionPlane": "CODEX",
   "userIntent": "Continue Bauman Hub after accepted storage r5. Remove raw subject transport/config leakage from learner state and presentation while preserving existing public Hub↔Subject behavior and current storage guarantees.",
@@ -255,7 +255,37 @@
   ],
   "releasePolicy": "NO_PRODUCTION_DEPLOY. Codex stops at exact-head LOCAL_STABLE pending Chat review. No merge to main until Chat ACCEPT.",
   "stopCondition": "CODEX_DONE_PENDING_CHAT_REVIEW with all acceptance criteria green, or a genuine blocker with exact path/test/log evidence.",
-  "blockers": [],
+  "blockers": [
+    {
+      "id": "HUB-INTEGRATION-CI-BOUNDARY-001",
+      "type": "FORBIDDEN_SUBJECT_OWNED_VALIDATOR_CONTRACT",
+      "owner": "Subject public-contract validator owner",
+      "path": "subjects/russian/scripts/validate-capability-deeplink.mjs",
+      "line": 13,
+      "error": "Capability route query view missing",
+      "evidence": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37708648091",
+      "explanation": "Original CI rejects moving launch-query implementation from main into the Hub Launch Adapter. Actual public routeView/routeTab/routeLesson/capabilityBand/query and task handoff are verified by Hub static/browser tests. The failing validator is inside explicitly forbidden subjects/**; it was not read or edited. Requires the validator owner to align the source contract without reducing coverage.",
+      "ordinaryRuntimeTestFailure": false,
+      "canFixWithinAuthorizedHubPaths": false
+    },
+    {
+      "id": "HUB-INTEGRATION-CI-BOUNDARY-002",
+      "type": "PUBLIC_HUB_TEST_SCOPE_AUTHORIZATION_PENDING",
+      "paths": [
+        "tests/entrepreneurship-subject-static.mjs",
+        "tests/russian-capability-continue-static.mjs"
+      ],
+      "errors": [
+        "Entrepreneurship runtime path missing from main hub",
+        "Main separate-tab launch must preserve only same-subject capability route"
+      ],
+      "evidence": [
+        "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37708648090",
+        "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37625775428"
+      ],
+      "explanation": "These existing Hub assertions require obsolete implementation locations in main.js. Semantic target and same-subject tab-context regressions already pass in the new Hub suite. Scoped authorization to align only these assertions is pending; neither test has been changed or removed."
+    }
+  ],
   "scopeReconciliation": {
     "additionalPath": "assets/js/planning-main.js",
     "authority": "Direct user approval 2026-10-07",

@@ -3,8 +3,8 @@
   "domain": "hub",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/hub/HUB_MASTER_PROMPT.md",
-  "status": "IN_CODEX",
-  "lifecycle": "SUBJECT_INTEGRATION_R1_IN_CODEX",
+  "status": "BLOCKED",
+  "lifecycle": "SUBJECT_INTEGRATION_R1_BOUNDARY_BLOCKED",
   "baselineMainSha": "2951cc86378056456110abedffe305c8f99d0c42",
   "lastReviewedSha": "19db67bc0975e6fc0c4af0a31111ad3b30e6bfe7",
   "workingBranch": "codex/hub-subject-integration-20261007",
@@ -154,7 +154,7 @@
         "Admin UI edits state.subjects[id].mainPath/editorPath and persists with save().",
         "Storage r5 now correctly treats main Hub state as scoped personal learner data, making this ownership mismatch explicit."
       ],
-      "status": "PACKAGED_FOR_CODEX"
+      "status": "FIXED_LOCAL_REVALIDATED_CI_BOUNDARY_BLOCKED"
     },
     {
       "id": "HUB-INTEGRATION-002",
@@ -167,7 +167,7 @@
         "assets/js/subjects-reference-v1.js course menus render 'Dữ liệu môn' -> openEditor() -> app.openSubjectEditor().",
         "No explicit public authoring capability is required before these learner-facing actions are shown."
       ],
-      "status": "PACKAGED_FOR_CODEX"
+      "status": "FIXED_LOCAL_REVALIDATED_CI_BOUNDARY_BLOCKED"
     },
     {
       "id": "HUB-INTEGRATION-003",
@@ -180,7 +180,7 @@
         "Home/mentor/schedule/reference layers call app.openSubjectInPage directly.",
         "The canonical Hub contract requires Descriptor → Capability → Launch Adapter → Normalized Hub Read Model."
       ],
-      "status": "PACKAGED_FOR_CODEX"
+      "status": "FIXED_LOCAL_REVALIDATED_CI_BOUNDARY_BLOCKED"
     },
     {
       "id": "HUB-INTEGRATION-004",
@@ -192,7 +192,7 @@
         "Admin UI historically allowed direct path editing.",
         "Storage r5 can now partition learner data by profile, but application launch config should not become one copy per learner scope."
       ],
-      "status": "PACKAGED_FOR_CODEX"
+      "status": "FIXED_LOCAL_REVALIDATED_CI_BOUNDARY_BLOCKED"
     },
     {
       "id": "HUB-INTEGRATION-005",
@@ -205,30 +205,92 @@
         "subjects-reference-v1 launches through app.openSubjectInPage.",
         "hub-primary-pages-v6 decorates Subjects/Schedule/Research and wraps existing renderers."
       ],
-      "status": "PACKAGED_FOR_CODEX"
+      "status": "FIXED_LOCAL_REVALIDATED_CI_BOUNDARY_BLOCKED"
     }
   ],
   "activePacket": "prompts/hub/CURRENT_WORK_PACKET.json",
-  "blockers": [],
-  "externalBlockers": [],
-  "nextAction": "Codex executes HUB-SUBJECT-INTEGRATION-20261007-001 r1 from latest main. Preserve accepted storage r5. Do not touch subject-private paths or deploy production.",
-  "mainSyncStatus": "merged_current_main_into_existing_pr_branch",
+  "blockers": [
+    {
+      "id": "HUB-INTEGRATION-CI-BOUNDARY-001",
+      "type": "FORBIDDEN_SUBJECT_OWNED_VALIDATOR_CONTRACT",
+      "owner": "Subject public-contract validator owner",
+      "path": "subjects/russian/scripts/validate-capability-deeplink.mjs",
+      "line": 13,
+      "error": "Capability route query view missing",
+      "evidence": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37708648091",
+      "explanation": "Original CI rejects moving launch-query implementation from main into the Hub Launch Adapter. Actual public routeView/routeTab/routeLesson/capabilityBand/query and task handoff are verified by Hub static/browser tests. The failing validator is inside explicitly forbidden subjects/**; it was not read or edited. Requires the validator owner to align the source contract without reducing coverage.",
+      "ordinaryRuntimeTestFailure": false,
+      "canFixWithinAuthorizedHubPaths": false
+    },
+    {
+      "id": "HUB-INTEGRATION-CI-BOUNDARY-002",
+      "type": "PUBLIC_HUB_TEST_SCOPE_AUTHORIZATION_PENDING",
+      "paths": [
+        "tests/entrepreneurship-subject-static.mjs",
+        "tests/russian-capability-continue-static.mjs"
+      ],
+      "errors": [
+        "Entrepreneurship runtime path missing from main hub",
+        "Main separate-tab launch must preserve only same-subject capability route"
+      ],
+      "evidence": [
+        "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37708648090",
+        "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37625775428"
+      ],
+      "explanation": "These existing Hub assertions require obsolete implementation locations in main.js. Semantic target and same-subject tab-context regressions already pass in the new Hub suite. Scoped authorization to align only these assertions is pending; neither test has been changed or removed."
+    }
+  ],
+  "externalBlockers": [
+    {
+      "id": "HUB-INTEGRATION-CI-BOUNDARY-001",
+      "type": "FORBIDDEN_SUBJECT_OWNED_VALIDATOR_CONTRACT",
+      "owner": "Subject public-contract validator owner",
+      "path": "subjects/russian/scripts/validate-capability-deeplink.mjs",
+      "line": 13,
+      "error": "Capability route query view missing",
+      "evidence": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37708648091",
+      "explanation": "Original CI rejects moving launch-query implementation from main into the Hub Launch Adapter. Actual public routeView/routeTab/routeLesson/capabilityBand/query and task handoff are verified by Hub static/browser tests. The failing validator is inside explicitly forbidden subjects/**; it was not read or edited. Requires the validator owner to align the source contract without reducing coverage.",
+      "ordinaryRuntimeTestFailure": false,
+      "canFixWithinAuthorizedHubPaths": false
+    },
+    {
+      "id": "HUB-INTEGRATION-CI-BOUNDARY-002",
+      "type": "PUBLIC_HUB_TEST_SCOPE_AUTHORIZATION_PENDING",
+      "paths": [
+        "tests/entrepreneurship-subject-static.mjs",
+        "tests/russian-capability-continue-static.mjs"
+      ],
+      "errors": [
+        "Entrepreneurship runtime path missing from main hub",
+        "Main separate-tab launch must preserve only same-subject capability route"
+      ],
+      "evidence": [
+        "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37708648090",
+        "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37625775428"
+      ],
+      "explanation": "These existing Hub assertions require obsolete implementation locations in main.js. Semantic target and same-subject tab-context regressions already pass in the new Hub suite. Scoped authorization to align only these assertions is pending; neither test has been changed or removed."
+    }
+  ],
+  "nextAction": "Align the old CI source-location contracts through authorized Hub test edits and the Subject validator owner, then rerun the unchanged complete Whole System Integration Gate on exact HEAD. Do not merge/deploy.",
+  "mainSyncStatus": "REBASED_ON_LATEST_MAIN",
   "governanceMergedSha": "6ef5e8814ac841f927f079e18d5062274ee0d847",
   "lastReviewedRuntimeSha": "5e5a6eacf7b807b3ecad636a4c735899c7ec9963",
-  "currentHeadSha": "84215c8b1ec32a29dd9f72291060418ad292d575",
-  "testedRuntimeHead": "5e5a6eacf7b807b3ecad636a4c735899c7ec9963",
+  "currentHeadSha": "ce4ce81152a1b35ba8fefaf24419cd497b671429",
+  "testedRuntimeHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429",
   "executionResult": "prompts/hub/CURRENT_EXECUTION_RESULT.json",
   "lastExecution": {
     "packetId": "HUB-SUBJECT-INTEGRATION-20261007-001",
     "packetRevision": 1,
-    "beforeSha": null,
-    "afterSha": null,
-    "testedRuntimeHead": null,
-    "result": "AWAITING_CODEX_EXECUTION",
+    "beforeSha": "5924b72ff600dc0798369362ced83356550f2095",
+    "afterSha": "ce4ce81152a1b35ba8fefaf24419cd497b671429",
+    "testedRuntimeHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429",
+    "result": "BLOCKED",
+    "releaseState": "BLOCKED",
+    "fullSystemValidated": false,
     "productionDeployed": false
   },
   "packetMergeSha": "c43dfd115283973b8e83a0b0e3d89eafcf8eb6b0",
-  "activePacketStatus": "IN_CODEX",
+  "activePacketStatus": "BLOCKED",
   "chatReview": {
     "decision": "READY_FOR_CODEX",
     "reviewedAt": "2026-10-07",
@@ -286,10 +348,11 @@
     },
     "exactHeadPolicy": "Every later prompt-governance commit retriggers Prompt Control Center CI; merge only when the final PR head is green."
   },
-  "releaseState": "IN_PROGRESS",
+  "releaseState": "BLOCKED",
   "releaseStateDetail": {
     "target": "LOCAL_STABLE",
-    "implementationComplete": false,
+    "implementationComplete": true,
+    "localRegressionValidated": true,
     "fullSystemValidated": false,
     "reviewRequired": true,
     "productionDeployed": false,
@@ -299,8 +362,8 @@
   "productionDeployed": false,
   "reconciledMainSha": "5924b72ff600dc0798369362ced83356550f2095",
   "previousHead": "1fd7113966dea498f2887892cabda24f31e4d390",
-  "finalHead": "5e5a6eacf7b807b3ecad636a4c735899c7ec9963",
-  "finalHeadSemantics": "Exact latest-main merge HEAD with all 19 scoped Hub suites and all 9 GitHub workflows PASS. The subsequent JSON-only completion commit is independently revalidated and its exact finalHead is sealed on that commit in refs/notes/hub-storage-materialization and PR #289. Committed JSON cannot contain its own commit hash.",
+  "finalHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429",
+  "finalHeadSemantics": "Exact tested runtime implementation commit. This evidence-only completion commit cannot embed its own SHA. Its independently tested final HEAD and pushed JSON blob hashes are attached in refs/notes/hub-subject-integration and PR #295 without modifying that HEAD. CI remains explicitly BLOCKED.",
   "beforeSha": "5924b72ff600dc0798369362ced83356550f2095",
   "initialObservedMainSha": "84215c8b1ec32a29dd9f72291060418ad292d575",
   "reconciliationHistory": [
