@@ -12,7 +12,7 @@ For each scene: Vietnamese situation orientation → optional Russian audio repl
 ## Phase 7 findings now protected in code
 
 - Original 15 r1 scene sentences, review packets and fingerprints remain untouched.
-- All 15 scenes are labelled **preview pending human linguistic review** in the opt-in grounded experience.
+- All 15 r1 scenes retain **pending human linguistic review** status. Five high-risk scenes (`rl-05`, `rl-08`, `rl-09`, `rl-11`, `rl-13`) are **quarantined from selection** in the opt-in preview: impolite shop request, ambiguous metro map, metro setting mismatch, room-versus-door mismatch, and university building-versus-auditorium image. The other 10 show a review-pending warning in Vietnamese help.
 - 11 `locate-object + select-object` interactions are **icon-recognition preview only**. A successful icon selection may highlight the icon, but must not transfer it to the speaker; it must not be delivered as competence/mastery evidence to RU04.
 - The other four `request-object` scenes retain their existing practice flow but are NOT certified as appropriate Russian register. User sees a review-pending notice.
 - Legacy `grounded-scenes.v1.json` and default-off feature-flag behavior stay unchanged. Do not create a parallel learner record.
