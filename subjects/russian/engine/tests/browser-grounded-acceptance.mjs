@@ -216,6 +216,26 @@ try{
   assert.match(await spatial.locator('[data-re-spatial-feedback]').innerText(),/Chưa đúng vị trí/);
   await spatial.locator('[data-re-spatial-node="room-12"]').click();
   assert.match(await spatial.locator('[data-re-spatial-feedback]').innerText(),/Đúng vị trí/);
+  // RE43: handover requires choosing the storage position and then the person.
+  await spatial.locator('[data-re-spatial-setting]').selectOption('room');
+  assert.equal((await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status)).sceneId,'rl-01-room');
+  await spatial.locator('[data-re-spatial-node="book-shelf"]').click();
+  assert.match(await spatial.locator('[data-re-spatial-feedback]').innerText(),/Chưa phải vị trí/);
+  await spatial.locator('[data-re-spatial-node="ball-rack"]').click();
+  assert.match(await spatial.locator('[data-re-spatial-feedback]').innerText(),/Bây giờ chọn người nhận/);
+  await spatial.locator('[data-re-spatial-node="cup-table"]').click();
+  assert.match(await spatial.locator('[data-re-spatial-feedback]').innerText(),/Chưa đúng người nhận/);
+  await spatial.locator('[data-re-spatial-node="peer"]').click();
+  assert.match(await spatial.locator('[data-re-spatial-feedback]').innerText(),/trao đúng vật/);
+
+  // RE43: a stranger/customer scenario is not a fake automatic voice grade.
+  await spatial.locator('[data-re-spatial-setting]').selectOption('shop');
+  await spatial.locator('[data-re-spatial-node="bread-aisle"]').click();
+  await spatial.locator('[data-re-spatial-next]').click();
+  assert.equal((await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status)).sceneId,'rl-05-shop');
+  assert.match(await spatial.locator('[data-re-spatial-feedback]').innerText(),/Chưa có chấm phát âm/);
+  await spatial.locator('[data-re-spatial-node="bottle-shelf"]').click();
+  assert.match(await spatial.locator('[data-re-spatial-feedback]').innerText(),/chưa kiểm tra giọng nói/);
   const afterSpatialStore=await page.evaluate(()=>JSON.parse(localStorage.getItem('bauman_russian_engine_evidence_outbox_v1')||'{"rows":[]}').rows.length);
   assert.equal(afterSpatialStore,beforeSpatialStore,'RE43 unreviewed candidate must never be delivered to RU04');
   assert.equal((await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status)).evidenceCount,0);
