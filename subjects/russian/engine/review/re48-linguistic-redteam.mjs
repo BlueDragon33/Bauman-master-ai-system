@@ -16,6 +16,8 @@ const PATCHES=Object.freeze({
       field:'reply',
       from:'Душевая в конце коридора, направо.',
       to:'Душевая в конце коридора справа.',
+      hintFrom:'Quản lý hướng dẫn đi cuối hành lang rồi rẽ phải.',
+      hintTo:'Quản lý cho biết phòng tắm ở cuối hành lang, bên phải.',
       rationaleVi:'«направо» là hướng chuyển động (sang phải), còn câu hiện tại mô tả vị trí. «справа» khớp nghĩa vị trí và đơn giản hơn cho A0.'
     })
   })
@@ -31,7 +33,7 @@ export function buildRe48Candidate({base=loadReviewableCandidates()}={}){
 
   const spatial=clone(base.spatial),dialogues=clone(base.dialogues);
   const nextSpatialRevision='real-life-r4-ai-candidate-1';
-  const nextDialogueRevision='repair-dialogues-ai-draft-r3';
+  const nextDialogueRevision='repair-dialogues-ai-draft-r4';
 
   const s=spatial.scenes.find(x=>x.sceneId==='rl-15-university');
   const sp=PATCHES.spatial['rl-15-university'];
@@ -51,8 +53,10 @@ export function buildRe48Candidate({base=loadReviewableCandidates()}={}){
   const d=dialogues.scenes.find(x=>x.sceneId==='repair-dorm-shower');
   const dp=PATCHES.dialogues['repair-dorm-shower'];
   if(!d||d.surface?.[dp.field]!==dp.from)fail('dorm reply old text drift');
+  if(d.vn?.replyHint!==dp.hintFrom)fail('dorm Vietnamese spatial hint drift');
   if(d.targetNodeId!=='shower-room'||d.turnRoles?.reply?.speakerRole!=='dorm-administrator'||d.turnRoles?.reply?.recipientRole!=='learner')fail('dorm reply context drift');
   d.surface[dp.field]=dp.to;
+  d.vn.replyHint=dp.hintTo;
   dialogues.revision=nextDialogueRevision;
   dialogues.status='AI_DRAFT_PENDING_RU03';
   dialogues.humanApproval=false;
@@ -90,9 +94,10 @@ export function validateRe48Candidate(candidate){
   if(s?.expectedAction?.toNodeId!=='classmate')errors.push('rl-15 semantics');
   const d=candidate?.dialogues?.scenes?.find(x=>x.sceneId==='repair-dorm-shower');
   if(d?.surface?.reply!=='Душевая в конце коридора справа.')errors.push('dorm correction');
+  if(d?.vn?.replyHint!=='Quản lý cho biết phòng tắm ở cuối hành lang, bên phải.')errors.push('dorm Vietnamese hint');
   if(d?.targetNodeId!=='shower-room')errors.push('dorm target');
   if(candidate?.spatial?.revision!=='real-life-r4-ai-candidate-1')errors.push('spatial revision');
   if(candidate?.spatial?.scenes?.some(x=>x.revision!==candidate.spatial.revision))errors.push('spatial scene revision drift');
-  if(candidate?.dialogues?.revision!=='repair-dialogues-ai-draft-r3')errors.push('dialogue revision');
+  if(candidate?.dialogues?.revision!=='repair-dialogues-ai-draft-r4')errors.push('dialogue revision');
   return Object.freeze({ok:errors.length===0,errors,canonicalPublicationReady:false});
 }
