@@ -1,5 +1,5 @@
 'use strict';
-const CACHE='russian-app-shell-v24-preview-speech-gate';
+const CACHE='russian-app-shell-v24-engine-preview-speech-gate';
 const DATA_CACHE='russian-learning-data-v1';
 const SHELL=[
   './','./index.html','./manifest.webmanifest','../shared/host-bridge.js',
