@@ -70,7 +70,8 @@ assert.equal(readiness.counts.linguistic_review_pending,43);
 assert.equal(readiness.promotionReady,false);
 
 const oneText=buildReadinessReport(inventory,[newTextApproval]);
-assert.equal(oneText.entries.find(x=>x.itemId===newFirst.itemId).status,'audio_review_pending');
+assert.equal(oneText.entries.find(x=>x.itemId===newFirst.itemId).status,'linguistic_review_pending','unregistered synthetic reviewer cannot approve content');
+assert.equal(oneText.entries.find(x=>x.itemId===newFirst.itemId).unauthorizedDecisionCount,1);
 assert.equal(oneText.promotionReady,false);
 
 console.log(JSON.stringify({
