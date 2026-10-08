@@ -1,0 +1,584 @@
+{
+  "schema": "RUSSIAN_ENGINE_SPATIAL_CANDIDATE_V1",
+  "status": "AI_DRAFT_NONCANONICAL",
+  "sourceFixture": "real-life-v1-r1",
+  "revision": "real-life-r2-ai-candidate-1",
+  "humanApproval": false,
+  "worlds": [
+    {
+      "worldId": "room",
+      "nameVi": "Phòng sinh hoạt",
+      "nodes": [
+        {
+          "nodeId": "entry",
+          "x": 12,
+          "y": 55,
+          "labelVi": "Lối vào",
+          "visualType": "doorway"
+        },
+        {
+          "nodeId": "ball-rack",
+          "x": 35,
+          "y": 25,
+          "labelVi": "Kệ bóng",
+          "visualType": "shelf"
+        },
+        {
+          "nodeId": "book-shelf",
+          "x": 67,
+          "y": 25,
+          "labelVi": "Kệ sách",
+          "visualType": "bookcase"
+        },
+        {
+          "nodeId": "cup-table",
+          "x": 65,
+          "y": 70,
+          "labelVi": "Bàn có cốc",
+          "visualType": "table"
+        },
+        {
+          "nodeId": "peer",
+          "x": 31,
+          "y": 72,
+          "labelVi": "Bạn cùng phòng",
+          "visualType": "person"
+        }
+      ],
+      "edges": [
+        {
+          "from": "entry",
+          "to": "ball-rack",
+          "walkable": true
+        },
+        {
+          "from": "ball-rack",
+          "to": "book-shelf",
+          "walkable": true
+        },
+        {
+          "from": "book-shelf",
+          "to": "cup-table",
+          "walkable": true
+        },
+        {
+          "from": "cup-table",
+          "to": "peer",
+          "walkable": true
+        }
+      ]
+    },
+    {
+      "worldId": "shop",
+      "nameVi": "Cửa hàng",
+      "nodes": [
+        {
+          "nodeId": "entrance",
+          "x": 10,
+          "y": 70,
+          "labelVi": "Cửa vào",
+          "visualType": "entrance"
+        },
+        {
+          "nodeId": "bread-aisle",
+          "x": 37,
+          "y": 27,
+          "labelVi": "Kệ bánh mì",
+          "visualType": "shelf"
+        },
+        {
+          "nodeId": "milk-fridge",
+          "x": 75,
+          "y": 27,
+          "labelVi": "Tủ mát sữa",
+          "visualType": "fridge"
+        },
+        {
+          "nodeId": "bottle-shelf",
+          "x": 72,
+          "y": 65,
+          "labelVi": "Kệ nước đóng chai",
+          "visualType": "shelf"
+        },
+        {
+          "nodeId": "counter",
+          "x": 37,
+          "y": 70,
+          "labelVi": "Quầy bán hàng",
+          "visualType": "counter"
+        }
+      ],
+      "edges": [
+        {
+          "from": "entrance",
+          "to": "bread-aisle",
+          "walkable": true
+        },
+        {
+          "from": "bread-aisle",
+          "to": "milk-fridge",
+          "walkable": true
+        },
+        {
+          "from": "milk-fridge",
+          "to": "bottle-shelf",
+          "walkable": true
+        },
+        {
+          "from": "bottle-shelf",
+          "to": "counter",
+          "walkable": true
+        }
+      ]
+    },
+    {
+      "worldId": "metro",
+      "nameVi": "Ngoài phố và ga metro",
+      "nodes": [
+        {
+          "nodeId": "street",
+          "x": 10,
+          "y": 70,
+          "labelVi": "Vỉa hè",
+          "visualType": "street"
+        },
+        {
+          "nodeId": "station-entrance",
+          "x": 28,
+          "y": 24,
+          "labelVi": "Lối xuống metro",
+          "visualType": "stairs"
+        },
+        {
+          "nodeId": "ticket-machine",
+          "x": 54,
+          "y": 24,
+          "labelVi": "Máy bán vé",
+          "visualType": "machine"
+        },
+        {
+          "nodeId": "metro-route-map",
+          "x": 80,
+          "y": 24,
+          "labelVi": "Sơ đồ tuyến metro",
+          "visualType": "map-board"
+        },
+        {
+          "nodeId": "platform",
+          "x": 75,
+          "y": 70,
+          "labelVi": "Sân ga",
+          "visualType": "platform"
+        }
+      ],
+      "edges": [
+        {
+          "from": "street",
+          "to": "station-entrance",
+          "walkable": true
+        },
+        {
+          "from": "station-entrance",
+          "to": "ticket-machine",
+          "walkable": true
+        },
+        {
+          "from": "ticket-machine",
+          "to": "metro-route-map",
+          "walkable": true
+        },
+        {
+          "from": "metro-route-map",
+          "to": "platform",
+          "walkable": true
+        }
+      ]
+    },
+    {
+      "worldId": "dorm",
+      "nameVi": "Ký túc xá",
+      "nodes": [
+        {
+          "nodeId": "lobby",
+          "x": 12,
+          "y": 72,
+          "labelVi": "Sảnh ký túc",
+          "visualType": "lobby"
+        },
+        {
+          "nodeId": "key-desk",
+          "x": 38,
+          "y": 72,
+          "labelVi": "Bàn có chìa khóa",
+          "visualType": "desk"
+        },
+        {
+          "nodeId": "corridor",
+          "x": 50,
+          "y": 44,
+          "labelVi": "Hành lang",
+          "visualType": "corridor"
+        },
+        {
+          "nodeId": "room-12",
+          "x": 77,
+          "y": 25,
+          "labelVi": "Phòng số 12",
+          "visualType": "numbered-room"
+        },
+        {
+          "nodeId": "shower-room",
+          "x": 82,
+          "y": 72,
+          "labelVi": "Phòng tắm chung",
+          "visualType": "shower-room"
+        }
+      ],
+      "edges": [
+        {
+          "from": "lobby",
+          "to": "key-desk",
+          "walkable": true
+        },
+        {
+          "from": "key-desk",
+          "to": "corridor",
+          "walkable": true
+        },
+        {
+          "from": "corridor",
+          "to": "room-12",
+          "walkable": true
+        },
+        {
+          "from": "room-12",
+          "to": "shower-room",
+          "walkable": true
+        }
+      ]
+    },
+    {
+      "worldId": "university",
+      "nameVi": "Khu giảng đường",
+      "nodes": [
+        {
+          "nodeId": "entrance",
+          "x": 10,
+          "y": 72,
+          "labelVi": "Lối vào",
+          "visualType": "entrance"
+        },
+        {
+          "nodeId": "corridor",
+          "x": 40,
+          "y": 48,
+          "labelVi": "Hành lang",
+          "visualType": "corridor"
+        },
+        {
+          "nodeId": "auditorium-12",
+          "x": 77,
+          "y": 24,
+          "labelVi": "Phòng học số 12",
+          "visualType": "lecture-room"
+        },
+        {
+          "nodeId": "library",
+          "x": 78,
+          "y": 72,
+          "labelVi": "Thư viện",
+          "visualType": "library"
+        },
+        {
+          "nodeId": "classmate",
+          "x": 32,
+          "y": 23,
+          "labelVi": "Bạn học",
+          "visualType": "person"
+        },
+        {
+          "nodeId": "notebook-desk",
+          "x": 51,
+          "y": 24,
+          "labelVi": "Bàn có vở",
+          "visualType": "desk"
+        }
+      ],
+      "edges": [
+        {
+          "from": "entrance",
+          "to": "corridor",
+          "walkable": true
+        },
+        {
+          "from": "corridor",
+          "to": "auditorium-12",
+          "walkable": true
+        },
+        {
+          "from": "auditorium-12",
+          "to": "library",
+          "walkable": true
+        },
+        {
+          "from": "library",
+          "to": "classmate",
+          "walkable": true
+        },
+        {
+          "from": "classmate",
+          "to": "notebook-desk",
+          "walkable": true
+        }
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "sceneId": "rl-01-room",
+      "revision": "real-life-r2-ai-candidate-1",
+      "status": "AI_DRAFT_PENDING_RU03",
+      "worldId": "room",
+      "speakerRole": "peer",
+      "register": "familiar",
+      "russianDraft": "Дай, пожалуйста, мяч.",
+      "expectedAction": {
+        "kind": "handover-object",
+        "targetId": "ball",
+        "fromNodeId": "ball-rack",
+        "toNodeId": "peer"
+      },
+      "textAuthority": "NONE",
+      "audioAuthority": "NONE",
+      "humanApproval": false
+    },
+    {
+      "sceneId": "rl-02-room",
+      "revision": "real-life-r2-ai-candidate-1",
+      "status": "AI_DRAFT_PENDING_RU03",
+      "worldId": "room",
+      "speakerRole": "peer",
+      "register": "familiar",
+      "russianDraft": "Дай мне, пожалуйста, книгу.",
+      "expectedAction": {
+        "kind": "handover-object",
+        "targetId": "book",
+        "fromNodeId": "book-shelf",
+        "toNodeId": "peer"
+      },
+      "textAuthority": "NONE",
+      "audioAuthority": "NONE",
+      "humanApproval": false
+    },
+    {
+      "sceneId": "rl-03-room",
+      "revision": "real-life-r2-ai-candidate-1",
+      "status": "AI_DRAFT_PENDING_RU03",
+      "worldId": "room",
+      "speakerRole": "peer",
+      "register": "familiar",
+      "russianDraft": "Где чашка?",
+      "expectedAction": {
+        "kind": "point-to-location",
+        "targetId": "cup-table"
+      },
+      "textAuthority": "NONE",
+      "audioAuthority": "NONE",
+      "humanApproval": false
+    },
+    {
+      "sceneId": "rl-04-shop",
+      "revision": "real-life-r2-ai-candidate-1",
+      "status": "AI_DRAFT_PENDING_RU03",
+      "worldId": "shop",
+      "speakerRole": "shop-staff",
+      "register": "polite-stranger",
+      "russianDraft": "Подскажите, пожалуйста, где хлеб?",
+      "expectedAction": {
+        "kind": "point-to-location",
+        "targetId": "bread-aisle"
+      },
+      "textAuthority": "NONE",
+      "audioAuthority": "NONE",
+      "humanApproval": false
+    },
+    {
+      "sceneId": "rl-05-shop",
+      "revision": "real-life-r2-ai-candidate-1",
+      "status": "AI_DRAFT_PENDING_RU03",
+      "worldId": "shop",
+      "speakerRole": "learner-customer",
+      "register": "polite-stranger",
+      "russianDraft": "Можно бутылку воды, пожалуйста?",
+      "expectedAction": {
+        "kind": "dialogue-intent",
+        "targetId": "request-bottled-water"
+      },
+      "textAuthority": "NONE",
+      "audioAuthority": "NONE",
+      "humanApproval": false
+    },
+    {
+      "sceneId": "rl-06-shop",
+      "revision": "real-life-r2-ai-candidate-1",
+      "status": "AI_DRAFT_PENDING_RU03",
+      "worldId": "shop",
+      "speakerRole": "shop-staff",
+      "register": "polite-stranger",
+      "russianDraft": "Подскажите, пожалуйста, где молоко?",
+      "expectedAction": {
+        "kind": "point-to-location",
+        "targetId": "milk-fridge"
+      },
+      "textAuthority": "NONE",
+      "audioAuthority": "NONE",
+      "humanApproval": false
+    },
+    {
+      "sceneId": "rl-07-metro",
+      "revision": "real-life-r2-ai-candidate-1",
+      "status": "AI_DRAFT_PENDING_RU03",
+      "worldId": "metro",
+      "speakerRole": "station-staff",
+      "register": "polite-stranger",
+      "russianDraft": "Подскажите, пожалуйста, где купить билет?",
+      "expectedAction": {
+        "kind": "point-to-location",
+        "targetId": "ticket-machine"
+      },
+      "textAuthority": "NONE",
+      "audioAuthority": "NONE",
+      "humanApproval": false
+    },
+    {
+      "sceneId": "rl-08-metro",
+      "revision": "real-life-r2-ai-candidate-1",
+      "status": "AI_DRAFT_PENDING_RU03",
+      "worldId": "metro",
+      "speakerRole": "station-staff",
+      "register": "polite-stranger",
+      "russianDraft": "Подскажите, пожалуйста, где схема метро?",
+      "expectedAction": {
+        "kind": "point-to-location",
+        "targetId": "metro-route-map"
+      },
+      "textAuthority": "NONE",
+      "audioAuthority": "NONE",
+      "humanApproval": false
+    },
+    {
+      "sceneId": "rl-09-metro",
+      "revision": "real-life-r2-ai-candidate-1",
+      "status": "AI_DRAFT_PENDING_RU03",
+      "worldId": "metro",
+      "speakerRole": "passerby",
+      "register": "polite-stranger",
+      "russianDraft": "Подскажите, пожалуйста, где вход в метро?",
+      "expectedAction": {
+        "kind": "point-to-location",
+        "targetId": "station-entrance"
+      },
+      "textAuthority": "NONE",
+      "audioAuthority": "NONE",
+      "humanApproval": false
+    },
+    {
+      "sceneId": "rl-10-dorm",
+      "revision": "real-life-r2-ai-candidate-1",
+      "status": "AI_DRAFT_PENDING_RU03",
+      "worldId": "dorm",
+      "speakerRole": "roommate",
+      "register": "familiar",
+      "russianDraft": "Где ключ от комнаты?",
+      "expectedAction": {
+        "kind": "point-to-location",
+        "targetId": "key-desk"
+      },
+      "textAuthority": "NONE",
+      "audioAuthority": "NONE",
+      "humanApproval": false
+    },
+    {
+      "sceneId": "rl-11-dorm",
+      "revision": "real-life-r2-ai-candidate-1",
+      "status": "AI_DRAFT_PENDING_RU03",
+      "worldId": "dorm",
+      "speakerRole": "dorm-administrator",
+      "register": "polite-stranger",
+      "russianDraft": "Подскажите, пожалуйста, где комната номер двенадцать?",
+      "expectedAction": {
+        "kind": "point-to-location",
+        "targetId": "room-12"
+      },
+      "textAuthority": "NONE",
+      "audioAuthority": "NONE",
+      "humanApproval": false
+    },
+    {
+      "sceneId": "rl-12-dorm",
+      "revision": "real-life-r2-ai-candidate-1",
+      "status": "AI_DRAFT_PENDING_RU03",
+      "worldId": "dorm",
+      "speakerRole": "dorm-administrator",
+      "register": "polite-stranger",
+      "russianDraft": "Подскажите, пожалуйста, где душевая?",
+      "expectedAction": {
+        "kind": "point-to-location",
+        "targetId": "shower-room"
+      },
+      "textAuthority": "NONE",
+      "audioAuthority": "NONE",
+      "humanApproval": false
+    },
+    {
+      "sceneId": "rl-13-university",
+      "revision": "real-life-r2-ai-candidate-1",
+      "status": "AI_DRAFT_PENDING_RU03",
+      "worldId": "university",
+      "speakerRole": "university-staff",
+      "register": "polite-stranger",
+      "russianDraft": "Подскажите, пожалуйста, где аудитория номер двенадцать?",
+      "expectedAction": {
+        "kind": "point-to-location",
+        "targetId": "auditorium-12"
+      },
+      "textAuthority": "NONE",
+      "audioAuthority": "NONE",
+      "humanApproval": false
+    },
+    {
+      "sceneId": "rl-14-university",
+      "revision": "real-life-r2-ai-candidate-1",
+      "status": "AI_DRAFT_PENDING_RU03",
+      "worldId": "university",
+      "speakerRole": "university-staff",
+      "register": "polite-stranger",
+      "russianDraft": "Подскажите, пожалуйста, где библиотека?",
+      "expectedAction": {
+        "kind": "point-to-location",
+        "targetId": "library"
+      },
+      "textAuthority": "NONE",
+      "audioAuthority": "NONE",
+      "humanApproval": false
+    },
+    {
+      "sceneId": "rl-15-university",
+      "revision": "real-life-r2-ai-candidate-1",
+      "status": "AI_DRAFT_PENDING_RU03",
+      "worldId": "university",
+      "speakerRole": "classmate",
+      "register": "familiar",
+      "russianDraft": "Передай, пожалуйста, тетрадь.",
+      "expectedAction": {
+        "kind": "handover-object",
+        "targetId": "notebook",
+        "fromNodeId": "notebook-desk",
+        "toNodeId": "classmate"
+      },
+      "textAuthority": "NONE",
+      "audioAuthority": "NONE",
+      "humanApproval": false
+    }
+  ]
+}
