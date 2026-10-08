@@ -72,6 +72,20 @@ export function buildRe49ReviewInventory({candidate=buildRe48Candidate(),advisor
   const valid=validateRe48Candidate(candidate);
   if(!valid.ok)throw new Error('RE49 candidate invalid: '+valid.errors.join('; '));
   if(advisory?.schema!=='RUSSIAN_ENGINE_RE49_AI_EDITORIAL_ADVISORY_V1'||advisory?.status!=='AI_ADVISORY_ONLY'||advisory?.humanApproval!==false)throw new Error('RE49 advisory authority invalid');
+  // Editorial advice is revision-bound evidence, never a reusable authorization.
+  // Reject an apparently well-formed advisory from any other candidate revision.
+  const source=advisory.sourceCandidate;
+  if(source?.spatialRevision!==candidate.spatial.revision||
+     source?.dialogueRevision!==candidate.dialogues.revision||
+     source?.candidateFingerprint!==fingerprint(candidate)){
+    throw new Error('RE49 advisory source candidate fingerprint mismatch');
+  }
+  const notebook=candidate.spatial.scenes.find(x=>x.sceneId==='rl-15-university');
+  const shower=candidate.dialogues.scenes.find(x=>x.sceneId==='repair-dorm-shower');
+  if(advisory.spatial?.['rl-15-university']?.acceptedDraft!==notebook?.russianDraft||
+     advisory.dialogues?.['repair-dorm-shower']?.turns?.reply?.acceptedDraft!==shower?.surface?.reply){
+    throw new Error('RE49 advisory accepted draft does not match candidate text');
+  }
   const wi=worldIndex(candidate.spatial),items=[];
 
   for(const scene of arr(candidate.spatial.scenes)){
