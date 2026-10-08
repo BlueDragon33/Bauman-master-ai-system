@@ -142,6 +142,15 @@ export async function mountGroundedExperience({
 }={}){
   if(!windowLike||!documentLike)return {mounted:false,reason:'browser-unavailable'};
   if(!shouldEnableGroundedSlice(windowLike.location))return {mounted:false,reason:'feature-flag-off'};
+  // Candidate preview requires an explicit second opt-in. Never replace default lessons.
+  try{
+    const flag=new URL(windowLike.location?.href||'https://local.invalid/');
+    if(flag.searchParams.get('ruWorld')==='spatial-r2-candidate'){
+      const {mountSpatialCandidateExperience}=await import('./spatial-candidate-experience.js');
+      return mountSpatialCandidateExperience({windowLike,documentLike,fetchFn,speechProvider});
+    }
+  }catch(_){/* keep existing grounded feature path */}
+
   if(documentLike.querySelector('[data-russian-engine-grounded="1"]'))return {mounted:true,reason:'already-mounted'};
 
   const view=documentLike.getElementById('view');
