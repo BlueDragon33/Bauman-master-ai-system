@@ -267,12 +267,74 @@
       "line": 20,
       "error": "math: missing from main pathMap",
       "relatedLegacyAssertion": "main editorMap",
-      "runId": 37749637756,
-      "evidence": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37749637756",
-      "testedHead": "36eec622ab313800e7da02b13981c2e0de26afdc",
+      "runId": 37750275066,
+      "evidence": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37750275066",
+      "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7",
       "ordinaryRuntimeTestFailure": false,
       "canFixWithinAuthorizedPaths": false,
       "explanation": "Root static test still requires raw launch/editor configuration ownership in main.js. Latest direct human authorization permits only two named root tests and requires evidence before changing any other assertion. No Study-plan edit or assertion removal; no Subject source workaround."
+    },
+    {
+      "id": "HUB-INTEGRATION-CI-SCOPE-CAPABILITY-READINESS",
+      "type": "OUTSIDE_CURRENT_TWO_TEST_SCOPE",
+      "paths": [
+        "tests/russian-capability-deeplink-browser.mjs",
+        "tests/russian-capability-continue-browser.mjs"
+      ],
+      "failureLocations": [
+        {
+          "attempt": 1,
+          "path": "tests/russian-capability-continue-browser.mjs",
+          "line": 53
+        },
+        {
+          "attempt": 2,
+          "path": "tests/russian-capability-deeplink-browser.mjs",
+          "line": 44
+        }
+      ],
+      "error": "Capability snapshot wait timed out after launch before Hub config readiness",
+      "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7",
+      "runId": 37750274849,
+      "evidence": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37750274849",
+      "ordinaryRuntimeTestFailure": false,
+      "canFixWithinAuthorizedPaths": false,
+      "rootCause": "Access readiness reflects personal/device access before independent Hub launch config initialization. Original capability browser tests call launch at that earlier gate; no iframe can supply a capability snapshot. Waiting for Hub personal/config readiness before launch succeeds.",
+      "publicFixtureEvidence": {
+        "status": "REPRODUCED",
+        "subjectSourceReads": 0,
+        "subjectRequestsIntercepted": true,
+        "early": {
+          "accessReady": true,
+          "personalFacadeReady": true,
+          "hubReady": false,
+          "configStatus": "UNAVAILABLE",
+          "launchResult": {
+            "status": "UNAVAILABLE",
+            "subjectId": "russian",
+            "source": "HUB_APPLICATION_CONFIG",
+            "reason": "Môn học chưa có cấu hình mở hợp lệ."
+          },
+          "hasFrame": false
+        },
+        "afterInitialization": {
+          "configStatus": "CURRENT",
+          "hasFrame": false
+        },
+        "retry": {
+          "launchResult": {
+            "status": "CURRENT",
+            "subjectId": "russian",
+            "source": "HUB_APPLICATION_CONFIG",
+            "reason": null,
+            "taskId": "russian::p1::2026-10-08::morning1"
+          },
+          "hasFrame": true
+        },
+        "explanation": "Access readiness reflects personal/device access before independent Hub launch config initialization. Original capability browser tests call launch at that earlier gate; no iframe can supply a capability snapshot. Waiting for Hub personal/config readiness before launch succeeds."
+      },
+      "proposedBoundedAlignment": "Wait for hubPersonalReady/config readiness before the initial launch; preserve every capability/task/progress assertion. These two browser test paths are outside the latest human authorization; no edit applied.",
+      "subjectSourceReads": 0
     }
   ],
   "scopeReconciliation": {
