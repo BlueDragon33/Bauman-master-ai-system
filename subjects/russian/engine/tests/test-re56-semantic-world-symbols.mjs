@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import {SPATIAL_SYMBOLS,symbolForSpatialType} from '../integration/spatial-node-symbols.mjs';
 const spatial=JSON.parse(fs.readFileSync(new URL('../content/fixtures/real-life-spatial.r2-ai-proposal.json',import.meta.url),'utf8'));
 const types=new Set(spatial.worlds.flatMap(w=>w.nodes.map(node=>node.visualType)));
-assert.equal(types.size,19);
+assert.equal(types.size,20);
 for(const type of types){
   assert.equal(typeof SPATIAL_SYMBOLS[type],'string','symbol missing for '+type);
   assert.notEqual(symbolForSpatialType(type),'▢','no fallback for grounded semantic node '+type);
