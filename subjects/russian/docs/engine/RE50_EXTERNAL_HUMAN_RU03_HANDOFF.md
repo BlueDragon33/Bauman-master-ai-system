@@ -29,3 +29,8 @@ It is intentionally empty. No reviewer has been invented or silently authorized.
 3. Record decisions against the exact RE49 fingerprints. Any content/audio change invalidates the affected decision.
 
 The learner is not expected to perform this linguistic review. Engineering must remain fail-closed until real reviewer evidence exists.
+
+
+## Exact engineering base
+
+RE50 is validated only against merged RE49 main `c000818a2bdd0aa273aa1a444fcb1a436494a1bf`. Any later content revision requires fresh packet fingerprints and a fresh handoff before reviewer decisions are accepted.
