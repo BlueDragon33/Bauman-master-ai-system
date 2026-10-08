@@ -215,8 +215,8 @@
   "mainSyncStatus": "RECONCILED_LATEST_MAIN",
   "governanceMergedSha": "6ef5e8814ac841f927f079e18d5062274ee0d847",
   "lastReviewedRuntimeSha": "5e5a6eacf7b807b3ecad636a4c735899c7ec9963",
-  "currentHeadSha": "cd5046933c00605b00b461a1d651f7022cab70aa",
-  "testedRuntimeHead": "cd5046933c00605b00b461a1d651f7022cab70aa",
+  "currentHeadSha": "5671da8f6d442ceac76123ae355bddd4815dfd1e",
+  "testedRuntimeHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e",
   "executionResult": "prompts/hub/CURRENT_EXECUTION_RESULT.json",
   "lastExecution": {
     "packetId": "HUB-SUBJECT-INTEGRATION-20261007-001",
@@ -272,7 +272,7 @@
   "codexStart": "prompts/hub/codex/CODEX_START.md",
   "lastPromptReviewSha": "23973e7106b9ac511f91c523d8f8bffd07c17530",
   "lastRuntimeReviewSha": "cd5046933c00605b00b461a1d651f7022cab70aa",
-  "observedMainSha": "6e312312c6161d4b37795c311653840f5139a9f7",
+  "observedMainSha": "2b19d2e9b50d98b29c8a2381b5cbcf8c831aad36",
   "currentHeadSemantics": "Exact fully tested implementation/assertion predecessor HEAD. The evidence-only completion commit is independently revalidated; its exact final HEAD, fresh CI and remote JSON blob IDs are sealed in refs/notes/hub-subject-integration and PR #295, avoiding a self-referential commit SHA.",
   "activePacketId": "HUB-SUBJECT-INTEGRATION-20261007-001",
   "activePacketRevision": 1,
@@ -325,11 +325,11 @@
   },
   "fullSystemValidated": true,
   "productionDeployed": false,
-  "reconciledMainSha": "6e312312c6161d4b37795c311653840f5139a9f7",
-  "previousHead": "cccdcf8d9267799508ef0feead4a459f2ed8bf53",
-  "finalHead": "cd5046933c00605b00b461a1d651f7022cab70aa",
+  "reconciledMainSha": "2b19d2e9b50d98b29c8a2381b5cbcf8c831aad36",
+  "previousHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e",
+  "finalHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e",
   "finalHeadSemantics": "Exact fully tested implementation/assertion predecessor HEAD. The evidence-only completion commit is independently revalidated; its exact final HEAD, fresh CI and remote JSON blob IDs are sealed in refs/notes/hub-subject-integration and PR #295, avoiding a self-referential commit SHA.",
-  "beforeSha": "6e312312c6161d4b37795c311653840f5139a9f7",
+  "beforeSha": "2b19d2e9b50d98b29c8a2381b5cbcf8c831aad36",
   "initialObservedMainSha": "84215c8b1ec32a29dd9f72291060418ad292d575",
   "reconciliationHistory": [
     "84215c8b1ec32a29dd9f72291060418ad292d575",
@@ -347,6 +347,22 @@
       "previousGreenHead": "cccdcf8d9267799508ef0feead4a459f2ed8bf53",
       "method": "Rebase without conflicts; only upstream Subject doc filename and Git object identity inspected, no content reads; runtime/tests unchanged",
       "at": "2026-10-08T09:39:33.027Z"
+    },
+    {
+      "mainSha": "2b19d2e9b50d98b29c8a2381b5cbcf8c831aad36",
+      "previousGreenHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e",
+      "mergedHead": "104d902f040d634b26199ef55ac6c32811bb42c7",
+      "method": "Merge latest main into the Codex PR branch without conflicts; Hub runtime/tests/workflows unchanged. Inherited Subject file names and object identities checked without content reads.",
+      "inheritedSubjectPaths": [
+        "subjects/russian/docs/engine/RE41_ZERO_RUSSIAN_A0_SAFETY_BRIDGE.md",
+        "subjects/russian/engine/integration/beginner-scene-guide.js",
+        "subjects/russian/engine/integration/grounded-browser-model.js",
+        "subjects/russian/engine/integration/grounded-experience.js",
+        "subjects/russian/engine/tests/browser-grounded-acceptance.mjs",
+        "subjects/russian/engine/tests/test-re41-a0-safe-practice.mjs",
+        "subjects/russian/sw.js"
+      ],
+      "at": "2026-10-08T09:56:25.839Z"
     }
   ],
   "previousBoundaryBlockers": [
@@ -408,7 +424,7 @@
       "historicalApprovedValidatorBlobPreserved": true
     }
   },
-  "afterSha": "cd5046933c00605b00b461a1d651f7022cab70aa",
+  "afterSha": "5671da8f6d442ceac76123ae355bddd4815dfd1e",
   "latestScopeInstruction": {
     "authority": "Direct human approval to resolve both remaining blockers, 2026-10-08",
     "paths": [
@@ -423,7 +439,7 @@
     "noCoverageReduction": true,
     "noTimeoutIncrease": true
   },
-  "lastUpdatedAt": "2026-10-08T09:48:57.638Z",
+  "lastUpdatedAt": "2026-10-08T09:56:25.839Z",
   "resolvedScopeBlockers": [
     {
       "id": "HUB-INTEGRATION-CI-SCOPE-STUDY-PLAN",
@@ -509,5 +525,21 @@
       "resolvedHead": "cd5046933c00605b00b461a1d651f7022cab70aa",
       "resolvedAt": "2026-10-08T09:48:57.638Z"
     }
-  ]
+  ],
+  "latestMainReconciliation": {
+    "mainSha": "2b19d2e9b50d98b29c8a2381b5cbcf8c831aad36",
+    "previousGreenHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e",
+    "mergedHead": "104d902f040d634b26199ef55ac6c32811bb42c7",
+    "method": "Merge latest main into the Codex PR branch without conflicts; Hub runtime/tests/workflows unchanged. Inherited Subject file names and object identities checked without content reads.",
+    "inheritedSubjectPaths": [
+      "subjects/russian/docs/engine/RE41_ZERO_RUSSIAN_A0_SAFETY_BRIDGE.md",
+      "subjects/russian/engine/integration/beginner-scene-guide.js",
+      "subjects/russian/engine/integration/grounded-browser-model.js",
+      "subjects/russian/engine/integration/grounded-experience.js",
+      "subjects/russian/engine/tests/browser-grounded-acceptance.mjs",
+      "subjects/russian/engine/tests/test-re41-a0-safe-practice.mjs",
+      "subjects/russian/sw.js"
+    ],
+    "at": "2026-10-08T09:56:25.839Z"
+  }
 }

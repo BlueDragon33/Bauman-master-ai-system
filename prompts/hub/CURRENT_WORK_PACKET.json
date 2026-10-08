@@ -314,8 +314,8 @@
     "additionalPreviouslyAuthorizedOwner": "tests/system-browser-acceptance.mjs",
     "reason": "Fix ordinary CI failure inside already allowed system-browser test; no new path authorization added"
   },
-  "observedMainSha": "6e312312c6161d4b37795c311653840f5139a9f7",
-  "reconciledMainSha": "6e312312c6161d4b37795c311653840f5139a9f7",
+  "observedMainSha": "2b19d2e9b50d98b29c8a2381b5cbcf8c831aad36",
+  "reconciledMainSha": "2b19d2e9b50d98b29c8a2381b5cbcf8c831aad36",
   "previousScopeInstructions": [
     {
       "authority": "Direct human instruction 2026-10-08: exactly two root test files; Hub launch/config ownership assertions only",
@@ -416,9 +416,9 @@
       "resolvedAt": "2026-10-08T09:48:57.638Z"
     }
   ],
-  "lastUpdatedAt": "2026-10-08T09:39:33.027Z",
-  "previousHead": "cccdcf8d9267799508ef0feead4a459f2ed8bf53",
-  "beforeSha": "6e312312c6161d4b37795c311653840f5139a9f7",
+  "lastUpdatedAt": "2026-10-08T09:56:25.839Z",
+  "previousHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e",
+  "beforeSha": "2b19d2e9b50d98b29c8a2381b5cbcf8c831aad36",
   "reconciliationHistory": [
     {
       "mainSha": "6e312312c6161d4b37795c311653840f5139a9f7",
@@ -426,6 +426,22 @@
       "previousGreenHead": "cccdcf8d9267799508ef0feead4a459f2ed8bf53",
       "method": "Rebase without conflicts; only upstream Subject doc filename and Git object identity inspected, no content reads; runtime/tests unchanged",
       "at": "2026-10-08T09:39:33.027Z"
+    },
+    {
+      "mainSha": "2b19d2e9b50d98b29c8a2381b5cbcf8c831aad36",
+      "previousGreenHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e",
+      "mergedHead": "104d902f040d634b26199ef55ac6c32811bb42c7",
+      "method": "Merge latest main into the Codex PR branch without conflicts; Hub runtime/tests/workflows unchanged. Inherited Subject file names and object identities checked without content reads.",
+      "inheritedSubjectPaths": [
+        "subjects/russian/docs/engine/RE41_ZERO_RUSSIAN_A0_SAFETY_BRIDGE.md",
+        "subjects/russian/engine/integration/beginner-scene-guide.js",
+        "subjects/russian/engine/integration/grounded-browser-model.js",
+        "subjects/russian/engine/integration/grounded-experience.js",
+        "subjects/russian/engine/tests/browser-grounded-acceptance.mjs",
+        "subjects/russian/engine/tests/test-re41-a0-safe-practice.mjs",
+        "subjects/russian/sw.js"
+      ],
+      "at": "2026-10-08T09:56:25.839Z"
     }
   ]
 }
