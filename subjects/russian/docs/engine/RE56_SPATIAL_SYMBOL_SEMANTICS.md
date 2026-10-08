@@ -10,3 +10,7 @@ One shared local visual map for 19 existing visual types, used by both previews.
 
 ## Tests and limits
 All 19 types must be covered, five critical ambiguous pairs must have distinct symbols, both preview renderers must consume the same mapping, and offline SW must precache it. Test full existing opt-in source/packaged browser suite. Symbols aid comprehension but DO NOT establish Russian linguistic/audio quality; human RU03 and canonical release remain separate blocked gates.
+
+## Exact base and validation boundary
+
+RE56 is based on merged RE55 main `6d5d955dd1e5a49b79aec33990e12c6931f050d5`. All four workflows must be re-run for RE56 exact head against that merged base; old stacked-branch results are not sufficient. This is engineering-only preview icon semantics, not native-Russian verification.
