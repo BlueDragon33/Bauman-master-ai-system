@@ -1,16 +1,13 @@
 import {validateSpatialCandidate,evaluateSpatialCandidateAction} from '../world/spatial-candidate-runtime.mjs';
 import {createPreviewSpeechGate} from './preview-speech-gate.mjs';
+import {symbolForSpatialType} from './spatial-node-symbols.mjs';
 import {applyPreviewSpatialDraft} from '../review/re55-shared-draft-corrections.mjs';
 
 const CATALOG_URL=new URL('../content/fixtures/real-life-spatial.r2-ai-proposal.json',import.meta.url);
 const arr=x=>Array.isArray(x)?x:[];
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const coord=x=>Number.isFinite(x)?Math.min(100,Math.max(0,x)):0;
-const ICON=Object.freeze({
- doorway:'🚪',shelf:'▥',bookcase:'📚',table:'▤',person:'●',entrance:'↪',
- fridge:'▣',counter:'▤',street:'━━',stairs:'⇲',machine:'▣','map-board':'▦',
- platform:'═',lobby:'▤',desk:'▤',corridor:'→','numbered-room':'12','shower-room':'🚿','lecture-room':'12'
-});
+
 const LABEL=Object.freeze({
  'point-to-location':'Chọn đúng nơi trên sơ đồ',
  'handover-object':'Tìm đồ vật rồi chuyển tới người nhận',
@@ -158,7 +155,7 @@ export async function mountSpatialCandidateExperience({
       const a=byId.get(e.from),b=byId.get(e.to);
       return a&&b?'<line x1="'+coord(a.x)+'" y1="'+coord(a.y)+'" x2="'+coord(b.x)+'" y2="'+coord(b.y)+'" stroke="currentColor" stroke-width=".5" opacity=".3"/>':'';
     }).join('');
-    const nodes=world.nodes.map(n=>'<button type="button" class="re-spatial__node" style="left:'+coord(n.x)+'%;top:'+coord(n.y)+'%" data-re-spatial-node="'+esc(n.nodeId)+'" aria-label="Vị trí: '+esc(n.labelVi)+'"><span class="re-spatial__symbol" aria-hidden="true">'+esc(ICON[n.visualType]||'▢')+'</span><span class="re-spatial__place">'+esc(n.labelVi)+'</span></button>').join('');
+    const nodes=world.nodes.map(n=>'<button type="button" class="re-spatial__node" style="left:'+coord(n.x)+'%;top:'+coord(n.y)+'%" data-re-spatial-node="'+esc(n.nodeId)+'" aria-label="Vị trí: '+esc(n.labelVi)+'"><span class="re-spatial__symbol" aria-hidden="true">'+esc(symbolForSpatialType(n.visualType))+'</span><span class="re-spatial__place">'+esc(n.labelVi)+'</span></button>').join('');
     const options=worlds.map(w=>'<option value="'+esc(w.worldId)+'"'+(w.worldId===setting?' selected':'')+'>'+esc(SETTINGS[w.worldId]||w.nameVi)+'</option>').join('');
     const isTalk=scene.expectedAction.kind==='dialogue-intent';
     section.innerHTML=[

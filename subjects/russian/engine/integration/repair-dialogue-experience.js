@@ -2,12 +2,13 @@ import {validateRepairDialogueCandidate,advanceRepairDialogueDraft} from '../con
 import {validateSpatialCandidate} from '../world/spatial-candidate-runtime.mjs';
 import {applyPreviewDialogueDraft} from '../review/re55-shared-draft-corrections.mjs';
 import {createPreviewSpeechGate} from './preview-speech-gate.mjs';
+import {symbolForSpatialType} from './spatial-node-symbols.mjs';
 
 const DIALOGUE_URL=new URL('../content/fixtures/repair-dialogues.r1-ai-proposal.json',import.meta.url);
 const WORLD_URL=new URL('../content/fixtures/real-life-spatial.r2-ai-proposal.json',import.meta.url);
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const clamp=x=>Number.isFinite(x)?Math.min(100,Math.max(0,x)):0;
-const ICON=Object.freeze({doorway:'🚪',shelf:'▥',bookcase:'📚',table:'▤',person:'●',entrance:'↪',fridge:'▣',counter:'▤',street:'━━',stairs:'⇲',machine:'▣','map-board':'▦',platform:'═',lobby:'▤',desk:'▤',corridor:'→','numbered-room':'12','shower-room':'🚿','lecture-room':'12'});
+
 const PHASE_HINT=Object.freeze({
   greet:'Mở lời lịch sự với người lạ.',
   request:'Hỏi đúng nhu cầu, không dùng mệnh lệnh với người lạ.',
@@ -111,7 +112,7 @@ export async function mountRepairDialogueExperience({
       const a=nodesById.get(e.from),b=nodesById.get(e.to);
       return a&&b?'<line x1="'+clamp(a.x)+'" y1="'+clamp(a.y)+'" x2="'+clamp(b.x)+'" y2="'+clamp(b.y)+'" stroke="currentColor" opacity=".27" stroke-width=".5"/>':'';
     }).join('');
-    const nodes=w.nodes.map(n=>'<button type="button" class="re44__node" style="left:'+clamp(n.x)+'%;top:'+clamp(n.y)+'%" data-re44-node="'+esc(n.nodeId)+'" aria-label="Vị trí: '+esc(n.labelVi)+'"><span class="re44__symbol" aria-hidden="true">'+esc(ICON[n.visualType]||'▢')+'</span><span class="re44__name">'+esc(n.labelVi)+'</span></button>').join('');
+    const nodes=w.nodes.map(n=>'<button type="button" class="re44__node" style="left:'+clamp(n.x)+'%;top:'+clamp(n.y)+'%" data-re44-node="'+esc(n.nodeId)+'" aria-label="Vị trí: '+esc(n.labelVi)+'"><span class="re44__symbol" aria-hidden="true">'+esc(symbolForSpatialType(n.visualType))+'</span><span class="re44__name">'+esc(n.labelVi)+'</span></button>').join('');
     const options=pack.scenes.map((entry,i)=>'<option value="'+i+'"'+(i===sceneIndex?' selected':'')+'>'+esc(entry.vn.setting)+'</option>').join('');
     const hint=phase==='greet'?s.vn.greeting:phase==='request'?s.vn.request:phase==='listen'?s.vn.reply:phase==='locate'?s.vn.replyHint:phase==='thank'?s.vn.thank:phase==='repair'?'Bạn có thể xin người kia nhắc lại hoặc nói chậm.':'Mô phỏng kết thúc.';
     section.innerHTML=[
