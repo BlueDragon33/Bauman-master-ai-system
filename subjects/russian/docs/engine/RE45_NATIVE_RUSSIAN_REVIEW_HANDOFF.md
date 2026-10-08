@@ -3,6 +3,8 @@
 **Authority:** RU03 HUMAN ONLY.  
 **Current state:** HUMAN_REVIEW_REQUIRED. **0/19 approvals. Not canonically published.**
 
+RE41/RE42/RE43/RE44 engineering revisions are on `main`; RE44 was merged as PR #311 (`15f2c2ed`). This RE45 review handoff adds **no automatic content approval**, no default activation and no production speech model.
+
 ## Context and responsibility
 
 The learner starts from zero Russian. It is **not** the learner's job to know the language, judge grammar, confirm polite idioms, detect wrongly mapped objects or certify TTS accuracy. The engineering team produces reviewable candidates; a competent independent Russian-speaking human checks and signs **the exact sentences, speaker roles, meaning, visuals and audio**. Neither the assistant nor an automated test may impersonate that reviewer.
