@@ -59,7 +59,8 @@ assert.equal(readiness.promotionReady,false,'zero external review must fail clos
 
 const oneTextApproved=buildReadinessReport(inventory,[{...baseDecision,reviewerAuthority:'HUMAN_RU03'}]);
 assert.equal(oneTextApproved.promotionReady,false);
-assert.equal(oneTextApproved.entries.find(x=>x.itemId===first.itemId).status,'audio_review_pending');
+assert.equal(oneTextApproved.entries.find(x=>x.itemId===first.itemId).status,'linguistic_review_pending','a synthetic self-claim cannot imply an authorized text review');
+assert.equal(oneTextApproved.entries.find(x=>x.itemId===first.itemId).unauthorizedDecisionCount,1);
 
 console.log(JSON.stringify({
   ok:true,items:inventory.itemCount,structuralFindings:inventory.structuralFindings.length,roleSemanticConflicts:inventory.structuralFindings.filter(x=>x.code==='ROLE_FIELD_SEMANTICS_CONFLICT').length,
