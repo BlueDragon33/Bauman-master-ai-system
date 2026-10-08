@@ -36,5 +36,33 @@ assert.equal(Object.keys(tabCalls[1].context).length,0,'Other-subject tab launch
 assert.equal(Object.keys(tabCalls[2].context).length,0,'Non-capability task must not route the separate tab through a capability gap');
 assert.ok(planning.includes("window.capabilityContextFromTask?.(window.state.activeTask,id)||{}"),'PlanningBridge separate-tab override must preserve only same-subject capability route');
 assert.ok(planning.includes("if(id!=='russian')window.clearPendingCapabilityIntent?.()"),'PlanningBridge subject switch must clear pending Russian capability intent');
+for(const presentation of [main,planning]){
+assert.doesNotMatch(presentation,/\.mainPath|\.editorPath|subjects\/russian\/(?:index|editor)\.html/,'Presentation must not own raw Russian launch URLs');
+assert.ok(presentation.includes('BAUMAN_HUB_SUBJECT_LAUNCH.launchInHub'),'Hub/Planning handoff must use the shared adapter');
+assert.ok(presentation.includes('BAUMAN_HUB_SUBJECT_LAUNCH.launchInTab'),'Tab handoff must use the shared adapter');
+}
+const launchSource=fs.readFileSync('assets/js/platform/hub-subject-launch.js','utf8');
+assert.ok(launchSource.includes('window.BAUMAN_HUB_SUBJECT_CONFIG.getDescriptor(id)'),'Adapter must resolve the canonical Hub config descriptor');
+assert.doesNotMatch(launchSource,/\b(?:fetch|XMLHttpRequest|importScripts)\s*\(|\bimport\s*(?:\(|[\s{*])|subject-manifest|\/data\/|\/assets\//,'Adapter must not load Subject internals');
+const transportCalls=[],descriptorReads=[];
+const descriptorWindow={BAUMAN_HUB_SUBJECT_CONFIG:{getDescriptor(id){descriptorReads.push(id);return id==='russian'?{subjectId:id,source:'HUB_APPLICATION_CONFIG',authoring:null,launch:{transport:'iframe',target:'https://subject.example/russian?existing=keep'}}:null}}};
+vm.runInNewContext(launchSource,{window:descriptorWindow,URL,location:{href:'https://hub.example/index.html',origin:'https://hub.example'}});
+const launchAdapter=descriptorWindow.BAUMAN_HUB_SUBJECT_LAUNCH;
+launchAdapter.bind({buildTask:(id,context)=>({subjectId:id,taskId:'capability-task',...context}),recordLaunch(){},renderInHub:(descriptor,url)=>transportCalls.push({mode:'hub',descriptor,url}),openTab:url=>transportCalls.push({mode:'tab',url}),notify(){}});
+for(const mode of ['launchInHub','launchInTab'])assert.equal(launchAdapter[mode]('russian',tabCalls[0].context).status,'CURRENT');
+assert.equal(transportCalls[0].descriptor.authoring,null);
+assert.equal(transportCalls[0].descriptor.source,'HUB_APPLICATION_CONFIG');
+for(const call of transportCalls){
+const url=new URL(call.url);
+assert.equal(url.origin,'https://subject.example','Adapter must use the declared descriptor target');
+assert.equal(url.searchParams.get('existing'),'keep');
+assert.equal(url.searchParams.get('routeView'),'learning');
+assert.equal(url.searchParams.get('routeTab'),'practice');
+assert.equal(url.searchParams.get('routeLesson'),'public-lesson');
+assert.equal(url.searchParams.get('capabilityBand'),'A1');
+assert.equal(url.searchParams.get('protocol'),'planning-v3');
+assert.equal(url.searchParams.get('taskId'),'capability-task');
+}
+assert.ok(descriptorReads.every(id=>id==='russian'),'Every launch must resolve its same-subject descriptor through the canonical owner');
 assert.doesNotMatch(main,/capabilityContinueContext[\s\S]{0,500}state\.progress\s*=/,'continue helper must not synthesize progress');
 console.log('RUSSIAN_CAPABILITY_CONTINUE_GATE=PASS');

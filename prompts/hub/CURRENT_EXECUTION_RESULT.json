@@ -6,7 +6,7 @@
   "executionState": "IN_PROGRESS",
   "expectedPacketStatus": "IN_CODEX",
   "baselineMainSha": "23973e7106b9ac511f91c523d8f8bffd07c17530",
-  "beforeSha": "5924b72ff600dc0798369362ced83356550f2095",
+  "beforeSha": "c4a1467bfa3db28df8ac5dcc55ca40b0046aca2e",
   "afterSha": null,
   "testedRuntimeHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429",
   "branch": "codex/hub-subject-integration-20261007",
@@ -286,13 +286,19 @@
     "mergeSha": "ec970ccfa23b54944754fff3afdee3b796155f87",
     "doNotReexecute": true
   },
-  "observedMainSha": "5924b72ff600dc0798369362ced83356550f2095",
-  "reconciledMainSha": "5924b72ff600dc0798369362ced83356550f2095",
+  "observedMainSha": "c4a1467bfa3db28df8ac5dcc55ca40b0046aca2e",
+  "reconciledMainSha": "c4a1467bfa3db28df8ac5dcc55ca40b0046aca2e",
   "initialObservedMainSha": "84215c8b1ec32a29dd9f72291060418ad292d575",
   "reconciliationHistory": [
     "84215c8b1ec32a29dd9f72291060418ad292d575",
     "ffd1db07a7fd121aede14a08fceab6a9d0698235",
-    "5924b72ff600dc0798369362ced83356550f2095"
+    "5924b72ff600dc0798369362ced83356550f2095",
+    {
+      "mainSha": "c4a1467bfa3db28df8ac5dcc55ca40b0046aca2e",
+      "previousHead": "a8412cf4dd9bae28f2c8c60277c545b30f936212",
+      "method": "Rebase without conflicts; only upstream changed path names inspected; no Subject source reads",
+      "at": "2026-10-08T08:24:25.068Z"
+    }
   ],
   "finalHead": null,
   "afterShaSemantics": "Exact tested runtime implementation commit. This evidence-only completion commit cannot embed its own SHA. Its independently tested final HEAD and pushed JSON blob hashes are attached in refs/notes/hub-subject-integration and PR #295 without modifying that HEAD. CI remains explicitly BLOCKED.",
@@ -975,7 +981,7 @@
   "productionDeploymentState": "NOT_DEPLOYED",
   "mainMerged": false,
   "completedAt": null,
-  "lastUpdatedAt": "2026-10-08T00:41:01.043Z",
+  "lastUpdatedAt": "2026-10-08T08:24:25.068Z",
   "exactHeadCertificate": {
     "ref": "refs/notes/hub-subject-integration",
     "prNumber": 295
@@ -1038,5 +1044,102 @@
     "subjectRuntimeReadsAuthorized": false,
     "subjectRuntimeEditsAuthorized": false,
     "privateStateOrDOMReadsAuthorized": false
+  },
+  "previousHead": "a8412cf4dd9bae28f2c8c60277c545b30f936212",
+  "latestScopeInstruction": {
+    "authority": "Direct human instruction 2026-10-08: exactly two root test files; Hub launch/config ownership assertions only",
+    "paths": [
+      "tests/russian-capability-continue-static.mjs",
+      "tests/entrepreneurship-subject-static.mjs"
+    ],
+    "noNewSubjectReadsOrEdits": true,
+    "noSubjectLogicChanges": true,
+    "noCoverageReduction": true,
+    "otherAssertionFailures": "Record evidence first; do not expand scope",
+    "historicalApprovedValidatorBlobPreserved": true
+  },
+  "scopeAssertionRevalidation": {
+    "status": "PASS_WORKTREE",
+    "tests": {
+      "head": "abeb6a45c1175422877150c6e5da93d28cc84b85",
+      "scope": "Two explicitly authorized Hub launch/config sections only; original Subject assertions retained and exercised by original remote CI",
+      "subjectReads": 0,
+      "results": [
+        {
+          "file": "tests/russian-capability-continue-static.mjs",
+          "status": "PASS"
+        },
+        {
+          "file": "tests/entrepreneurship-subject-static.mjs",
+          "status": "PASS"
+        }
+      ]
+    },
+    "negativeProof": {
+      "status": "PASS",
+      "subjectReads": 0,
+      "mutations": [
+        {
+          "file": "tests/russian-capability-continue-static.mjs",
+          "mutation": "presentation-raw-path",
+          "rejected": true,
+          "message": "Presentation must not own raw Russian launch URLs"
+        },
+        {
+          "file": "tests/russian-capability-continue-static.mjs",
+          "mutation": "internal-dependency",
+          "rejected": true,
+          "message": "Adapter must not load Subject internals"
+        },
+        {
+          "file": "tests/russian-capability-continue-static.mjs",
+          "mutation": "wrong-config-target",
+          "rejected": true,
+          "message": "Adapter must use the declared descriptor target\n+ actual - expected\n\n+ 'https://wrong.example'\n- 'https://subject.example'\n           ^\n"
+        },
+        {
+          "file": "tests/russian-capability-continue-static.mjs",
+          "mutation": "lost-task-query",
+          "rejected": true,
+          "message": "Expected values to be strictly equal:\n\nnull !== 'learning'\n"
+        },
+        {
+          "file": "tests/entrepreneurship-subject-static.mjs",
+          "mutation": "presentation-raw-path",
+          "rejected": true,
+          "message": "Presentation must not own raw launch/config URLs"
+        },
+        {
+          "file": "tests/entrepreneurship-subject-static.mjs",
+          "mutation": "internal-dependency",
+          "rejected": true,
+          "message": "Config/launch owners must not load Subject implementation or private configuration"
+        },
+        {
+          "file": "tests/entrepreneurship-subject-static.mjs",
+          "mutation": "wrong-config-target",
+          "rejected": true,
+          "message": "Entrepreneurship runtime path missing from Hub application config\n+ actual - expected\n\n+ 'subjects/entrepreneurship/wrong.html'\n- 'subjects/entrepreneurship/index.html'\n                             ^\n"
+        },
+        {
+          "file": "tests/entrepreneurship-subject-static.mjs",
+          "mutation": "lost-task-query",
+          "rejected": true,
+          "message": "Expected values to be strictly equal:\n+ actual - expected\n\n+ null\n- 'entrepreneurship'\n"
+        }
+      ]
+    },
+    "noSubjectReads": true,
+    "originalSubjectAssertionPrefixUnchanged": true
+  },
+  "pendingOutsideScopeEvidence": {
+    "path": "tests/study-plan-runtime-integration-static.mjs",
+    "line": 20,
+    "error": "math: missing from main pathMap",
+    "previousHead": "a8412cf4dd9bae28f2c8c60277c545b30f936212",
+    "runId": 37731847215,
+    "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37731847215",
+    "revalidationPending": true,
+    "authorization": false
   }
 }

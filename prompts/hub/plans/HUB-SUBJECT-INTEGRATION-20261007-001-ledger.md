@@ -34,3 +34,8 @@ Ruling: align the three source-location assertions to actual Hub config/adapter 
 
 Resume root-test scope: human authorized all same-pattern Hub assertions in tests/*-subject-static.mjs. Inventory found only Ergonomics and Mivar in addition to already aligned Entrepreneurship. Both Hub checks RED→GREEN; original Subject assertions unchanged.
 Test synchronization fix: original full system browser FAILED on initial AI frame resources aborted by immediate fixture teardown. Wait for the injected canonical launch load/network completion before changing route; do not ignore/filter request failures or weaken assertions. Hub-only retest PASS; original remote full gate required.
+
+Latest scope ruling (2026-10-08T08:24:25.068Z): human authorizes exactly Russian capability continue and Entrepreneurship root-test Hub assertions in this phase. No further subjects/** or prompts/subjects/** reads/edits; historical approved validator blob retained using object-ID comparison only. Other failed assertions require evidence before any scope expansion.
+Reconciliation: main c4a1467bfa3db28df8ac5dcc55ca40b0046aca2e; branch rebased without conflicts, storage implementation preserved. Only upstream path names inspected.
+Two-test verification: canonical config/descriptor/capability readiness, shared adapter Hub/tab launch, query preservation, raw presentation path prohibition and no direct Subject-internal loader dependency PASS. Eight in-memory negative probes reject raw path leakage, internal source loading, wrong target and lost task query; no Subject source read. Original Subject assertion prefix unchanged.
+Outstanding outside scope: Study-plan static legacy main pathMap/editorMap assertions; no edit, fresh reconciled CI required.
