@@ -314,8 +314,8 @@
     "additionalPreviouslyAuthorizedOwner": "tests/system-browser-acceptance.mjs",
     "reason": "Fix ordinary CI failure inside already allowed system-browser test; no new path authorization added"
   },
-  "observedMainSha": "c4a1467bfa3db28df8ac5dcc55ca40b0046aca2e",
-  "reconciledMainSha": "c4a1467bfa3db28df8ac5dcc55ca40b0046aca2e",
+  "observedMainSha": "6e312312c6161d4b37795c311653840f5139a9f7",
+  "reconciledMainSha": "6e312312c6161d4b37795c311653840f5139a9f7",
   "previousScopeInstructions": [
     {
       "authority": "Direct human instruction 2026-10-08: exactly two root test files; Hub launch/config ownership assertions only",
@@ -412,6 +412,16 @@
       "authorizedAt": "2026-10-08T09:17:51.553Z"
     }
   ],
-  "lastUpdatedAt": "2026-10-08T09:17:51.553Z",
-  "previousHead": "5744851f9ac4cb27aee781c5fb8b7d29472d1059"
+  "lastUpdatedAt": "2026-10-08T09:39:33.027Z",
+  "previousHead": "cccdcf8d9267799508ef0feead4a459f2ed8bf53",
+  "beforeSha": "6e312312c6161d4b37795c311653840f5139a9f7",
+  "reconciliationHistory": [
+    {
+      "mainSha": "6e312312c6161d4b37795c311653840f5139a9f7",
+      "rebasedHead": "2c3522089308a5982a32ed45ebfc9dc34b08c424",
+      "previousGreenHead": "cccdcf8d9267799508ef0feead4a459f2ed8bf53",
+      "method": "Rebase without conflicts; only upstream Subject doc filename and Git object identity inspected, no content reads; runtime/tests unchanged",
+      "at": "2026-10-08T09:39:33.027Z"
+    }
+  ]
 }

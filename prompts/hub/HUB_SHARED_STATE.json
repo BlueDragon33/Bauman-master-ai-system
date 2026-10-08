@@ -280,7 +280,7 @@
   "codexStart": "prompts/hub/codex/CODEX_START.md",
   "lastPromptReviewSha": "23973e7106b9ac511f91c523d8f8bffd07c17530",
   "lastRuntimeReviewSha": "36eec622ab313800e7da02b13981c2e0de26afdc",
-  "observedMainSha": "c4a1467bfa3db28df8ac5dcc55ca40b0046aca2e",
+  "observedMainSha": "6e312312c6161d4b37795c311653840f5139a9f7",
   "currentHeadSemantics": "Exact implementation and approved assertion HEAD tested locally and in original GitHub CI. This evidence-only commit is independently revalidated; its exact final HEAD and pushed JSON blob IDs are sealed in refs/notes/hub-subject-integration and PR #295 to avoid a self-referential commit SHA.",
   "activePacketId": "HUB-SUBJECT-INTEGRATION-20261007-001",
   "activePacketRevision": 1,
@@ -333,11 +333,11 @@
   },
   "fullSystemValidated": false,
   "productionDeployed": false,
-  "reconciledMainSha": "c4a1467bfa3db28df8ac5dcc55ca40b0046aca2e",
-  "previousHead": "5744851f9ac4cb27aee781c5fb8b7d29472d1059",
+  "reconciledMainSha": "6e312312c6161d4b37795c311653840f5139a9f7",
+  "previousHead": "cccdcf8d9267799508ef0feead4a459f2ed8bf53",
   "finalHead": null,
   "finalHeadSemantics": "Exact implementation and approved assertion HEAD tested locally and in original GitHub CI. This evidence-only commit is independently revalidated; its exact final HEAD and pushed JSON blob IDs are sealed in refs/notes/hub-subject-integration and PR #295 to avoid a self-referential commit SHA.",
-  "beforeSha": "c4a1467bfa3db28df8ac5dcc55ca40b0046aca2e",
+  "beforeSha": "6e312312c6161d4b37795c311653840f5139a9f7",
   "initialObservedMainSha": "84215c8b1ec32a29dd9f72291060418ad292d575",
   "reconciliationHistory": [
     "84215c8b1ec32a29dd9f72291060418ad292d575",
@@ -348,6 +348,13 @@
       "previousHead": "a8412cf4dd9bae28f2c8c60277c545b30f936212",
       "method": "Rebase without conflicts; only upstream changed path names inspected; no Subject source reads",
       "at": "2026-10-08T08:24:25.068Z"
+    },
+    {
+      "mainSha": "6e312312c6161d4b37795c311653840f5139a9f7",
+      "rebasedHead": "2c3522089308a5982a32ed45ebfc9dc34b08c424",
+      "previousGreenHead": "cccdcf8d9267799508ef0feead4a459f2ed8bf53",
+      "method": "Rebase without conflicts; only upstream Subject doc filename and Git object identity inspected, no content reads; runtime/tests unchanged",
+      "at": "2026-10-08T09:39:33.027Z"
     }
   ],
   "previousBoundaryBlockers": [
@@ -424,7 +431,7 @@
     "noCoverageReduction": true,
     "noTimeoutIncrease": true
   },
-  "lastUpdatedAt": "2026-10-08T09:17:51.553Z",
+  "lastUpdatedAt": "2026-10-08T09:39:33.027Z",
   "resolvedScopeBlockers": [
     {
       "id": "HUB-INTEGRATION-CI-SCOPE-STUDY-PLAN",
