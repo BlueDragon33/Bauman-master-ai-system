@@ -178,6 +178,11 @@ try{
 
   const unsafeRejected=await page.evaluate(()=>{window.state.subjects.ai.mainPath='javascript:alert(1)';document.getElementById('studyRoot').innerHTML='';window.app.openSubjectInPage('ai');const frame=document.getElementById('subjectFrame');const target=frame&&new URL(frame.src);delete window.state.subjects.ai.mainPath;return !!target&&['http:','https:'].includes(target.protocol)&&target.pathname==='/subjects/ai/index.html'});
   assert.ok(unsafeRejected,'Unsafe learner input replaced the application-owned launch target');
+  // This injection now performs a valid canonical launch. Finish that
+  // navigation before the next route deliberately removes its iframe.
+  const injectionFrame=await (await page.locator('#subjectFrame').elementHandle()).contentFrame();
+  await injectionFrame.waitForURL(url=>url.pathname==='/subjects/ai/index.html',{waitUntil:'load'});
+  await page.waitForLoadState('networkidle');
   const protectedRoute=await page.evaluate(()=>{window.app.page('home',false);const previous=window.state.page;const user=window.auth.current;window.auth.current={...user,role:'user'};window.app.page('admin');const rejected=window.state.page===previous;window.auth.current=user;return rejected});
   assert.ok(protectedRoute,'Non-admin session entered the admin route');
 

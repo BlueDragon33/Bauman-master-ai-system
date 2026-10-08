@@ -160,7 +160,9 @@
     "assets/js/hub-premium-v2.js",
     "tests/entrepreneurship-subject-static.mjs",
     "tests/russian-capability-continue-static.mjs",
-    "subjects/russian/scripts/validate-capability-deeplink.mjs"
+    "subjects/russian/scripts/validate-capability-deeplink.mjs",
+    "tests/ergonomics-subject-static.mjs",
+    "tests/mivar-subject-static.mjs"
   ],
   "forbiddenPaths": [
     "subjects/**",
@@ -282,6 +284,16 @@
       "subjectRuntimeReadsAuthorized": false,
       "subjectRuntimeEditsAuthorized": false,
       "privateStateOrDOMReadsAuthorized": false
+    },
+    "rootSubjectStaticHubAssertions": {
+      "authority": "Direct human approval through question reply 2026-10-08: Cho phép các assertion Hub trong nhóm root static test này",
+      "pattern": "tests/*-subject-static.mjs",
+      "changedFiles": [
+        "tests/entrepreneurship-subject-static.mjs",
+        "tests/ergonomics-subject-static.mjs",
+        "tests/mivar-subject-static.mjs"
+      ],
+      "limit": "Only Hub owner/path assertions. All Subject assertions and original workflow commands retained."
     }
   }
 }

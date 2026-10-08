@@ -31,3 +31,6 @@ Task 5: boundary blocked — original validator in forbidden subjects/** require
 
 Resume: direct human approval 2026-10-08 grants precisely the two named root tests and one public validator exception. No Subject runtime/internal file authorization.
 Ruling: align the three source-location assertions to actual Hub config/adapter owners and strengthen them with VM behavior checks — direct human scope exception — risk if wrong: contract coverage weakens; all Subject assertion text and every original CI step retained, three Hub checks watched RED→GREEN.
+
+Resume root-test scope: human authorized all same-pattern Hub assertions in tests/*-subject-static.mjs. Inventory found only Ergonomics and Mivar in addition to already aligned Entrepreneurship. Both Hub checks RED→GREEN; original Subject assertions unchanged.
+Test synchronization fix: original full system browser FAILED on initial AI frame resources aborted by immediate fixture teardown. Wait for the injected canonical launch load/network completion before changing route; do not ignore/filter request failures or weaken assertions. Hub-only retest PASS; original remote full gate required.
