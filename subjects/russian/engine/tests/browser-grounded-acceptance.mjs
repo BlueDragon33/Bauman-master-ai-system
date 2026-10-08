@@ -193,6 +193,7 @@ try{
   const beforeSpatialStore=await page.evaluate(()=>JSON.parse(localStorage.getItem('bauman_russian_engine_evidence_outbox_v1')||'{"rows":[]}').rows.length);
   await spatial.locator('[data-re-spatial-help-toggle]').click();
   assert.equal(await spatial.locator('[data-re-spatial-help]').isVisible(),true);
+  assert.match(await spatial.locator('[data-re-spatial-help]').innerText(),/Hỏi nơi có thể mua vé đi metro/);
   await spatial.locator('[data-re-spatial-play]').click();
   await page.waitForFunction(()=>window.__RE_TTS?.count>0);
   assert.match((await page.evaluate(()=>window.__RE_TTS?.last?.text||'')),/где купить билет/);
