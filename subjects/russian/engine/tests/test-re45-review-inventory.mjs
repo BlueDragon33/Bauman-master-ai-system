@@ -10,6 +10,7 @@ assert.deepEqual(inventory.items.map(x=>x.reviewFingerprint),again.items.map(x=>
 assert.equal(inventory.items.every(x=>x.audioFingerprint===null),true,'browser TTS has no immutable reviewed audio');
 assert.equal(inventory.items.every(x=>x.canonicalPublicationReady===false),true);
 assert.equal(inventory.structuralFindings.filter(x=>x.code==='ROLE_FIELD_SEMANTICS_CONFLICT').length,9,'nine polite spatial lines expose speaker/addressee schema ambiguity');
+assert.equal(inventory.structuralFindings.filter(x=>x.code==='VN_CONTEXT_NOT_REVISION_BOUND').length,15,'all 15 spatial Vietnamese hints currently live outside the revision-bound candidate pack');
 assert.ok(inventory.duplicateTextGroups.length>=5,'reused phrases must be reported, not silently collapsed');
 
 assert.equal(fingerprint({b:2,a:1}),fingerprint({a:1,b:2}),'object key order must not alter fingerprint');
@@ -61,7 +62,7 @@ assert.equal(oneTextApproved.promotionReady,false);
 assert.equal(oneTextApproved.entries.find(x=>x.itemId===first.itemId).status,'audio_review_pending');
 
 console.log(JSON.stringify({
-  ok:true,items:inventory.itemCount,roleSemanticConflicts:inventory.structuralFindings.length,
+  ok:true,items:inventory.itemCount,structuralFindings:inventory.structuralFindings.length,roleSemanticConflicts:inventory.structuralFindings.filter(x=>x.code==='ROLE_FIELD_SEMANTICS_CONFLICT').length,
   duplicateTextGroups:inventory.duplicateTextGroups.length,zeroImmutableAudio:true,
   tamperAndStaleDecisionRejection:true,promotionReady:false
 }));
