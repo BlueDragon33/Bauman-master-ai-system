@@ -80,6 +80,11 @@ export async function mountSpatialCandidateExperience({
 }={}){
   const opts=spatialCandidateLocation(windowLike?.location);
   if(!opts.enabled)return {mounted:false,reason:'preview-flag-off'};
+  // RE44 is a third explicit opt-in: no Russian draft dialogue in default learning.
+  if(new URL(windowLike.location?.href||'https://local.invalid/').searchParams.get('ruDialog')==='repair-v1'){
+    const {mountRepairDialogueExperience}=await import('./repair-dialogue-experience.js');
+    return mountRepairDialogueExperience({windowLike,documentLike,fetchFn,speechProvider});
+  }
   if(!windowLike||!documentLike)return {mounted:false,reason:'browser-unavailable'};
   if(documentLike.querySelector('[data-re-spatial-candidate]'))return {mounted:true,reason:'already-mounted'};
   const view=documentLike.getElementById('view');
