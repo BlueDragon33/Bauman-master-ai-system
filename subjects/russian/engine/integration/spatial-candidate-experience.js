@@ -1,4 +1,5 @@
 import {validateSpatialCandidate,evaluateSpatialCandidateAction} from '../world/spatial-candidate-runtime.mjs';
+import {createPreviewSpeechGate} from './preview-speech-gate.mjs';
 
 const CATALOG_URL=new URL('../content/fixtures/real-life-spatial.r2-ai-proposal.json',import.meta.url);
 const arr=x=>Array.isArray(x)?x:[];
@@ -98,6 +99,7 @@ export async function mountSpatialCandidateExperience({
   const worlds=arr(pack.worlds);
   let setting=worlds.some(w=>w.worldId===opts.setting)?opts.setting:worlds[0].worldId;
   let index=0,attempts=0,completions=0,phase='select',pickedFrom='';
+  const speechGate=createPreviewSpeechGate({playStimulus:input=>speechProvider?.playStimulus?.(input)});
   const host=documentLike.createElement('div');
   host.className='re-spatial-host';
   host.dataset.russianEngineHost='1';
@@ -113,12 +115,11 @@ export async function mountSpatialCandidateExperience({
   const getScenes=()=>arr(pack.scenes).filter(s=>s.worldId===setting);
   const getScene=()=>getScenes()[index];
   const getWorld=()=>worlds.find(w=>w.worldId===setting);
-  const reset=()=>{phase='select';pickedFrom=''};
+  const reset=()=>{speechGate.invalidate();phase='select';pickedFrom=''};
   const setFeedback=text=>{const p=section.querySelector('[data-re-spatial-feedback]');if(p)p.textContent=text};
   const mark=(id,cls)=>{for(const e of section.querySelectorAll('[data-re-spatial-node]'))if(e.dataset.reSpatialNode===id)e.classList.add(cls)};
   function play(rate){
-    if(typeof speechProvider?.playStimulus!=='function')return {started:false};
-    return speechProvider.playStimulus({audioText:getScene().russianDraft,sourceType:'TTS_FALLBACK',rate});
+    return speechGate.play({audioText:getScene().russianDraft,rate});
   }
   function choose(id){
     const scene=getScene(),action=scene.expectedAction;
@@ -181,10 +182,10 @@ export async function mountSpatialCandidateExperience({
     const help=section.querySelector('[data-re-spatial-help]');
     const script=section.querySelector('[data-re-spatial-script]');
     section.querySelector('[data-re-spatial-play]').addEventListener('click',()=>{
-      const result=play(1);if(!result?.started)setFeedback('Âm thanh máy hiện không sẵn sàng. Có thể mở chữ Nga hoặc thử lại.');
+      void play(1).then(result=>{if(!result.started&&!['busy','duplicate','stale','disposed'].includes(result.reason))setFeedback('Âm thanh máy hiện không sẵn sàng. Có thể mở chữ Nga hoặc thử lại.');});
     });
     section.querySelector('[data-re-spatial-slow]').addEventListener('click',()=>{
-      const result=play(.75);if(!result?.started)setFeedback('Không thể phát âm thanh lúc này.');
+      void play(.75).then(result=>{if(!result.started&&!['busy','duplicate','stale','disposed'].includes(result.reason))setFeedback('Không thể phát âm thanh lúc này.');});
     });
     section.querySelector('[data-re-spatial-help-toggle]').addEventListener('click',event=>{
       help.hidden=!help.hidden;event.currentTarget.setAttribute('aria-expanded',String(!help.hidden));
@@ -211,6 +212,6 @@ export async function mountSpatialCandidateExperience({
       evidenceCount:0,attemptCount:attempts,completedPreviewCount:completions
     }),
     evidence:()=>[],
-    unmount(){section.remove();if(!host.childElementCount)host.remove();return true}
+    unmount(){speechGate.dispose();section.remove();if(!host.childElementCount)host.remove();return true}
   };
 }
