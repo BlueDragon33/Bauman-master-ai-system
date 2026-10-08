@@ -73,6 +73,8 @@ jobs:
         run: node tests/schedule-reference-v1-static.mjs
       - name: Validate scoped Subjects reference UI
         run: node tests/subjects-reference-v1-static.mjs
+      - name: Block duplicate Subjects renderers and legacy fixtures
+        run: node tests/hub-subjects-debt-regression.mjs
       - name: Validate scoped Thesis reference UI
         run: node tests/thesis-reference-v1-static.mjs
       - name: Validate deployment propagation fail-closed helper
