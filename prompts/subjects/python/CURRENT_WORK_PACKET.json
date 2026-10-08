@@ -1,6 +1,6 @@
 {
   "packetId": "PYTHON-LOCAL-FIRST-20261006-001",
-  "revision": 1,
+  "revision": 2,
   "status": "READY_FOR_CHAT_IMPLEMENTATION",
   "workClass": "PYTHON04_06_SELECTIVE_REVALIDATION",
   "repository": "BlueDragon33/Bauman-master-ai-system",
@@ -83,5 +83,69 @@
     "browser/WASM cannot satisfy a required Python capability and local desktop provider also cannot",
     "root cause requires architecture beyond the allowed provider boundary"
   ],
-  "nextAction": "Chat performs provider inventory and selects/implements the smallest browser/WASM provider behind the existing facade. Do not invoke Codex until a deep integration blocker is proven."
+  "nextAction": "Chat owns the task. Because a deep WASM runtime blocker is now proven, Codex may execute only codexEscalation on a fresh branch from currentExactSha. Chat must review the exact diff and evidence afterward; merge/release/state authority remains with Chat.",
+  "currentExactSha": "3632928b3915bdc38504dd072c10dba5881d94ea",
+  "deepBlockerEvidence": {
+    "proven": true,
+    "class": "DEEP_WASM_RUNTIME_INTEGRATION",
+    "observed": [
+      "subjects/programming/assets/python-product-integration.js routes run/test/submit/runtime to /api/python/* and returns OFFLINE_EXECUTION_UNAVAILABLE when navigator.onLine is false.",
+      "subjects/programming/assets/python-lab.js disables Run/Test/Submit whenever navigator.onLine is false.",
+      "subjects/programming has no service worker/PWA runtime owner; only Math and Russian currently ship subject service workers.",
+      "No self-hosted browser/WASM Python runtime assets are present on current main.",
+      "LOCAL_STABLE therefore requires a new worker/runtime/cache lifecycle plus targeted P4/P5/P6 browser/security regressions, which crosses multiple runtime files and asset lifecycle boundaries."
+    ],
+    "conclusion": "This satisfies the repository's codexOnlyIfNeeded criterion for deep WASM runtime integration. Chat remains orchestrator and must review all resulting diff/evidence."
+  },
+  "codexEscalation": {
+    "allowed": true,
+    "shareBudget": "5-10% maximum",
+    "goal": "Implement only the browser/WASM local-practice provider and minimum provider-neutral routing required for supported offline Run/Public Test practice.",
+    "baselineSha": "3632928b3915bdc38504dd072c10dba5881d94ea",
+    "canonicalOwner": "PYTHON04 runtime/provider layer projected through subjects/programming; PYTHON05 only for minimum truthful UI/offline behavior.",
+    "allowedFiles": [
+      "subjects/programming/assets/python-product-integration.js",
+      "subjects/programming/assets/python-lab.js",
+      "subjects/programming/subject-manifest.json",
+      "subjects/programming/subject-manifest.js",
+      "subjects/programming/code-lab.html",
+      "subjects/programming/assets/** new browser-provider/worker files",
+      "subjects/programming/** service worker or offline runtime files only if required by the provider",
+      "scripts/** only for deterministic vendoring/build of self-hosted WASM runtime assets",
+      "tests/python-p4-*.mjs targeted/new local-provider tests",
+      "tests/python-p5-product-contract.mjs",
+      "tests/python-p5-product-browser.mjs",
+      "tests/python-p6-browser.mjs"
+    ],
+    "forbiddenScope": [
+      "PYTHON01-PYTHON03 curriculum, canonical entities, mastery or assessment truth",
+      "deleting or weakening existing Cloudflare Container provider/evidence",
+      "moving hidden tests or expected values into the browser",
+      "Google Drive/Sheets/Apps Script as Python execution runtime",
+      "mandatory public CDN or paid runtime dependency",
+      "production deployment, merge, LOCAL_STABLE claim, Algorithms work"
+    ],
+    "requiredArchitecture": [
+      "BAUMAN_PYTHON_PRODUCT.invoke remains the learner-facing facade",
+      "browser provider executes in an isolated Web Worker or equivalent worker boundary",
+      "self-hosted or deterministically vendored runtime assets; no runtime CDN requirement",
+      "Run and public Test may use browser provider when supported",
+      "Submit/hidden evaluation remains trusted-provider-only",
+      "cancel must terminate/recycle browser execution",
+      "bounded execution time and bounded stdout/stderr",
+      "exact runtime/provider identity and explicit unsupported-capability failures",
+      "offline Run/Public Test only claimed when required runtime assets are locally available"
+    ],
+    "requiredTests": [
+      "browser-provider contract/static test",
+      "canonical/equivalent/wrong golden execution fixtures",
+      "timeout/cancel/output-limit regressions",
+      "unsupported package/capability honest failure",
+      "true offline Run + public Test journey",
+      "existing Cloudflare P4 provider regressions",
+      "updated P5 product contract/browser",
+      "targeted P6 browser regression"
+    ],
+    "stopCondition": "Return BLOCKED_BY_SCOPE if the implementation requires PYTHON01-PYTHON03 truth changes, browser-visible hidden tests, mandatory CDN/paid runtime, destructive learner-state migration, or unrelated platform redesign."
+  }
 }
