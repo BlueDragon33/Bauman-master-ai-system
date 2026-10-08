@@ -13,3 +13,5 @@ A targeted professional QA pass found a cross-language semantic contradiction in
 Implementation is non-destructive: the r1 dialogue fixture, original RE46 overlay and default runtime remain unchanged. The derived reviewable dialogue revision advances from `repair-dialogues-ai-draft-r3` to `repair-dialogues-ai-draft-r4`; any earlier REVIEW fingerprints are stale. The RE49 reviewer packet now binds the exact scene's `replyHint` in `situationVi.directionHint` for all dialogue replies, so semantic mismatches cannot be hidden from reviewer context. Tests assert the exact Russian/Vietnamese location meaning.
 
 This is **AI_ADVISORY_ONLY**, NOT a qualified human Russian TEXT or AUDIO approval, and it does not enable RE44 candidate in regular learning, claim phonetic mastery, write RU04 or publish Production.
+
+Engineering dependency: RE51 merged main `b9ec90104f6593956061e217e16ba4259a90a7bc`. Re-run the four required workflows on this exact RE52 head before an ordinary engineering merge.
