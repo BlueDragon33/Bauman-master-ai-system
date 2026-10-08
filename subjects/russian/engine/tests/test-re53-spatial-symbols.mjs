@@ -35,5 +35,5 @@ for(const source of [a,b]){
 }
 const sw=fs.readFileSync(new URL('../../sw.js',import.meta.url),'utf8');
 assert.ok(sw.includes('./engine/integration/spatial-node-symbols.js'),'semantic owner must be cached offline');
-assert.ok(sw.includes('russian-app-shell-v24-semantic-node-symbols'),'SW cache must invalidate old symbols');
+assert.ok(sw.includes('russian-app-shell-v24-engine-semantic-node-symbols'),'SW cache must invalidate old symbols');
 console.log(JSON.stringify({ok:true,semanticsVerified:6,sharedOwner:true,offlineCached:true,masteryUnchanged:true}));
