@@ -38,6 +38,7 @@ try{
   await page.waitForFunction(expected=>document.documentElement.dataset.baumanDeviceAccess===expected,expectedDeviceState,{timeout:30000});
   await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'),null,{timeout:30000});
   await page.waitForFunction(()=>!!window.BAUMAN_HUB_SAFE?.selfCheck,null,{timeout:15000});
+  await page.waitForFunction(()=>document.documentElement.dataset.hubPersonalReady==='true'&&window.BAUMAN_HUB_SUBJECT_CONFIG?.ready===true,null,{timeout:30000});
 
   // First open obtains the real compact capability snapshot from Russian.
   await page.evaluate(()=>window.app?.openSubjectInPage?.('russian'));

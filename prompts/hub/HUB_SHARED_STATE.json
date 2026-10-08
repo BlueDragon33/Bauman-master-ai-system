@@ -3,8 +3,8 @@
   "domain": "hub",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/hub/HUB_MASTER_PROMPT.md",
-  "status": "BLOCKED",
-  "lifecycle": "SUBJECT_INTEGRATION_R1_OUTSIDE_TWO_TEST_SCOPE",
+  "status": "IN_CODEX",
+  "lifecycle": "SUBJECT_INTEGRATION_R1_FINAL_BLOCKER_ALIGNMENT",
   "baselineMainSha": "2951cc86378056456110abedffe305c8f99d0c42",
   "lastReviewedSha": "19db67bc0975e6fc0c4af0a31111ad3b30e6bfe7",
   "workingBranch": "codex/hub-subject-integration-20261007",
@@ -209,163 +209,9 @@
     }
   ],
   "activePacket": "prompts/hub/CURRENT_WORK_PACKET.json",
-  "blockers": [
-    {
-      "id": "HUB-INTEGRATION-CI-SCOPE-STUDY-PLAN",
-      "type": "OUTSIDE_CURRENT_TWO_TEST_SCOPE",
-      "path": "tests/study-plan-runtime-integration-static.mjs",
-      "line": 20,
-      "error": "math: missing from main pathMap",
-      "relatedLegacyAssertion": "main editorMap",
-      "runId": 37750275066,
-      "evidence": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37750275066",
-      "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7",
-      "ordinaryRuntimeTestFailure": false,
-      "canFixWithinAuthorizedPaths": false,
-      "explanation": "Root static test still requires raw launch/editor configuration ownership in main.js. Latest direct human authorization permits only two named root tests and requires evidence before changing any other assertion. No Study-plan edit or assertion removal; no Subject source workaround."
-    },
-    {
-      "id": "HUB-INTEGRATION-CI-SCOPE-CAPABILITY-READINESS",
-      "type": "OUTSIDE_CURRENT_TWO_TEST_SCOPE",
-      "paths": [
-        "tests/russian-capability-deeplink-browser.mjs",
-        "tests/russian-capability-continue-browser.mjs"
-      ],
-      "failureLocations": [
-        {
-          "attempt": 1,
-          "path": "tests/russian-capability-continue-browser.mjs",
-          "line": 53
-        },
-        {
-          "attempt": 2,
-          "path": "tests/russian-capability-deeplink-browser.mjs",
-          "line": 44
-        }
-      ],
-      "error": "Capability snapshot wait timed out after launch before Hub config readiness",
-      "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7",
-      "runId": 37750274849,
-      "evidence": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37750274849",
-      "ordinaryRuntimeTestFailure": false,
-      "canFixWithinAuthorizedPaths": false,
-      "rootCause": "Access readiness reflects personal/device access before independent Hub launch config initialization. Original capability browser tests call launch at that earlier gate; no iframe can supply a capability snapshot. Waiting for Hub personal/config readiness before launch succeeds.",
-      "publicFixtureEvidence": {
-        "status": "REPRODUCED",
-        "subjectSourceReads": 0,
-        "subjectRequestsIntercepted": true,
-        "early": {
-          "accessReady": true,
-          "personalFacadeReady": true,
-          "hubReady": false,
-          "configStatus": "UNAVAILABLE",
-          "launchResult": {
-            "status": "UNAVAILABLE",
-            "subjectId": "russian",
-            "source": "HUB_APPLICATION_CONFIG",
-            "reason": "Môn học chưa có cấu hình mở hợp lệ."
-          },
-          "hasFrame": false
-        },
-        "afterInitialization": {
-          "configStatus": "CURRENT",
-          "hasFrame": false
-        },
-        "retry": {
-          "launchResult": {
-            "status": "CURRENT",
-            "subjectId": "russian",
-            "source": "HUB_APPLICATION_CONFIG",
-            "reason": null,
-            "taskId": "russian::p1::2026-10-08::morning1"
-          },
-          "hasFrame": true
-        },
-        "explanation": "Access readiness reflects personal/device access before independent Hub launch config initialization. Original capability browser tests call launch at that earlier gate; no iframe can supply a capability snapshot. Waiting for Hub personal/config readiness before launch succeeds."
-      },
-      "proposedBoundedAlignment": "Wait for hubPersonalReady/config readiness before the initial launch; preserve every capability/task/progress assertion. These two browser test paths are outside the latest human authorization; no edit applied.",
-      "subjectSourceReads": 0
-    }
-  ],
-  "externalBlockers": [
-    {
-      "id": "HUB-INTEGRATION-CI-SCOPE-STUDY-PLAN",
-      "type": "OUTSIDE_CURRENT_TWO_TEST_SCOPE",
-      "path": "tests/study-plan-runtime-integration-static.mjs",
-      "line": 20,
-      "error": "math: missing from main pathMap",
-      "relatedLegacyAssertion": "main editorMap",
-      "runId": 37750275066,
-      "evidence": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37750275066",
-      "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7",
-      "ordinaryRuntimeTestFailure": false,
-      "canFixWithinAuthorizedPaths": false,
-      "explanation": "Root static test still requires raw launch/editor configuration ownership in main.js. Latest direct human authorization permits only two named root tests and requires evidence before changing any other assertion. No Study-plan edit or assertion removal; no Subject source workaround."
-    },
-    {
-      "id": "HUB-INTEGRATION-CI-SCOPE-CAPABILITY-READINESS",
-      "type": "OUTSIDE_CURRENT_TWO_TEST_SCOPE",
-      "paths": [
-        "tests/russian-capability-deeplink-browser.mjs",
-        "tests/russian-capability-continue-browser.mjs"
-      ],
-      "failureLocations": [
-        {
-          "attempt": 1,
-          "path": "tests/russian-capability-continue-browser.mjs",
-          "line": 53
-        },
-        {
-          "attempt": 2,
-          "path": "tests/russian-capability-deeplink-browser.mjs",
-          "line": 44
-        }
-      ],
-      "error": "Capability snapshot wait timed out after launch before Hub config readiness",
-      "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7",
-      "runId": 37750274849,
-      "evidence": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37750274849",
-      "ordinaryRuntimeTestFailure": false,
-      "canFixWithinAuthorizedPaths": false,
-      "rootCause": "Access readiness reflects personal/device access before independent Hub launch config initialization. Original capability browser tests call launch at that earlier gate; no iframe can supply a capability snapshot. Waiting for Hub personal/config readiness before launch succeeds.",
-      "publicFixtureEvidence": {
-        "status": "REPRODUCED",
-        "subjectSourceReads": 0,
-        "subjectRequestsIntercepted": true,
-        "early": {
-          "accessReady": true,
-          "personalFacadeReady": true,
-          "hubReady": false,
-          "configStatus": "UNAVAILABLE",
-          "launchResult": {
-            "status": "UNAVAILABLE",
-            "subjectId": "russian",
-            "source": "HUB_APPLICATION_CONFIG",
-            "reason": "Môn học chưa có cấu hình mở hợp lệ."
-          },
-          "hasFrame": false
-        },
-        "afterInitialization": {
-          "configStatus": "CURRENT",
-          "hasFrame": false
-        },
-        "retry": {
-          "launchResult": {
-            "status": "CURRENT",
-            "subjectId": "russian",
-            "source": "HUB_APPLICATION_CONFIG",
-            "reason": null,
-            "taskId": "russian::p1::2026-10-08::morning1"
-          },
-          "hasFrame": true
-        },
-        "explanation": "Access readiness reflects personal/device access before independent Hub launch config initialization. Original capability browser tests call launch at that earlier gate; no iframe can supply a capability snapshot. Waiting for Hub personal/config readiness before launch succeeds."
-      },
-      "proposedBoundedAlignment": "Wait for hubPersonalReady/config readiness before the initial launch; preserve every capability/task/progress assertion. These two browser test paths are outside the latest human authorization; no edit applied.",
-      "subjectSourceReads": 0
-    }
-  ],
-  "nextAction": "Box Chat review: retain draft and authorize bounded Hub ownership/readiness assertions in separately named Study-plan and Russian browser harnesses before any scope expansion. No merge/deploy.",
+  "blockers": [],
+  "externalBlockers": [],
+  "nextAction": "Run exact-head targeted/regression and every existing PR workflow; complete only after all green; keep draft, no merge/deploy.",
   "mainSyncStatus": "RECONCILED_LATEST_MAIN",
   "governanceMergedSha": "6ef5e8814ac841f927f079e18d5062274ee0d847",
   "lastReviewedRuntimeSha": "5e5a6eacf7b807b3ecad636a4c735899c7ec9963",
@@ -418,7 +264,7 @@
     }
   },
   "packetMergeSha": "c43dfd115283973b8e83a0b0e3d89eafcf8eb6b0",
-  "activePacketStatus": "BLOCKED",
+  "activePacketStatus": "IN_CODEX",
   "chatReview": {
     "decision": "PENDING_CHAT_REVIEW_WITH_SCOPE_BLOCKER",
     "reviewedAt": "2026-10-07",
@@ -473,7 +319,7 @@
     },
     "exactHeadPolicy": "Every later prompt-governance commit retriggers Prompt Control Center CI; merge only when the final PR head is green."
   },
-  "releaseState": "BLOCKED",
+  "releaseState": "IN_PROGRESS",
   "releaseStateDetail": {
     "target": "LOCAL_STABLE",
     "implementationComplete": true,
@@ -488,8 +334,8 @@
   "fullSystemValidated": false,
   "productionDeployed": false,
   "reconciledMainSha": "c4a1467bfa3db28df8ac5dcc55ca40b0046aca2e",
-  "previousHead": "a8412cf4dd9bae28f2c8c60277c545b30f936212",
-  "finalHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7",
+  "previousHead": "5744851f9ac4cb27aee781c5fb8b7d29472d1059",
+  "finalHead": null,
   "finalHeadSemantics": "Exact implementation and approved assertion HEAD tested locally and in original GitHub CI. This evidence-only commit is independently revalidated; its exact final HEAD and pushed JSON blob IDs are sealed in refs/notes/hub-subject-integration and PR #295 to avoid a self-referential commit SHA.",
   "beforeSha": "c4a1467bfa3db28df8ac5dcc55ca40b0046aca2e",
   "initialObservedMainSha": "84215c8b1ec32a29dd9f72291060418ad292d575",
@@ -535,7 +381,7 @@
       "explanation": "These existing Hub assertions require obsolete implementation locations in main.js. Semantic target and same-subject tab-context regressions already pass in the new Hub suite. Scoped authorization to align only these assertions is pending; neither test has been changed or removed."
     }
   ],
-  "executionState": "BLOCKED_OUTSIDE_TWO_TEST_SCOPE",
+  "executionState": "IN_PROGRESS",
   "authorizedPublicContractTestException": {
     "authority": "Direct human approval: cho phép, 2026-10-08, following explicit request naming all three files",
     "paths": [
@@ -565,16 +411,100 @@
   },
   "afterSha": "cdae7cb9195859af07447fd4076ef960dfea0ad7",
   "latestScopeInstruction": {
-    "authority": "Direct human instruction 2026-10-08: exactly two root test files; Hub launch/config ownership assertions only",
+    "authority": "Direct human approval to resolve both remaining blockers, 2026-10-08",
     "paths": [
-      "tests/russian-capability-continue-static.mjs",
-      "tests/entrepreneurship-subject-static.mjs"
+      "tests/study-plan-runtime-integration-static.mjs",
+      "tests/russian-capability-deeplink-browser.mjs",
+      "tests/russian-capability-continue-browser.mjs"
     ],
+    "changes": "Study-plan Hub ownership assertions only; add Hub personal/config readiness before Russian initial launch, preserve every existing assertion/timeout",
     "noNewSubjectReadsOrEdits": true,
-    "noSubjectLogicChanges": true,
+    "noSubjectPrivateStateOrDOMReads": true,
+    "noLaunchAdapterReimplementation": true,
     "noCoverageReduction": true,
-    "otherAssertionFailures": "Record evidence first; do not expand scope",
-    "historicalApprovedValidatorBlobPreserved": true
+    "noTimeoutIncrease": true
   },
-  "lastUpdatedAt": "2026-10-08T08:41:46.805Z"
+  "lastUpdatedAt": "2026-10-08T09:17:51.553Z",
+  "resolvedScopeBlockers": [
+    {
+      "id": "HUB-INTEGRATION-CI-SCOPE-STUDY-PLAN",
+      "type": "OUTSIDE_CURRENT_TWO_TEST_SCOPE",
+      "path": "tests/study-plan-runtime-integration-static.mjs",
+      "line": 20,
+      "error": "math: missing from main pathMap",
+      "relatedLegacyAssertion": "main editorMap",
+      "runId": 37750275066,
+      "evidence": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37750275066",
+      "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7",
+      "ordinaryRuntimeTestFailure": false,
+      "canFixWithinAuthorizedPaths": false,
+      "explanation": "Root static test still requires raw launch/editor configuration ownership in main.js. Latest direct human authorization permits only two named root tests and requires evidence before changing any other assertion. No Study-plan edit or assertion removal; no Subject source workaround.",
+      "status": "SCOPE_AUTHORIZED_ALIGNMENT_IMPLEMENTED_PENDING_EXACT_HEAD_CI",
+      "authorizedAt": "2026-10-08T09:17:51.553Z"
+    },
+    {
+      "id": "HUB-INTEGRATION-CI-SCOPE-CAPABILITY-READINESS",
+      "type": "OUTSIDE_CURRENT_TWO_TEST_SCOPE",
+      "paths": [
+        "tests/russian-capability-deeplink-browser.mjs",
+        "tests/russian-capability-continue-browser.mjs"
+      ],
+      "failureLocations": [
+        {
+          "attempt": 1,
+          "path": "tests/russian-capability-continue-browser.mjs",
+          "line": 53
+        },
+        {
+          "attempt": 2,
+          "path": "tests/russian-capability-deeplink-browser.mjs",
+          "line": 44
+        }
+      ],
+      "error": "Capability snapshot wait timed out after launch before Hub config readiness",
+      "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7",
+      "runId": 37750274849,
+      "evidence": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37750274849",
+      "ordinaryRuntimeTestFailure": false,
+      "canFixWithinAuthorizedPaths": false,
+      "rootCause": "Access readiness reflects personal/device access before independent Hub launch config initialization. Original capability browser tests call launch at that earlier gate; no iframe can supply a capability snapshot. Waiting for Hub personal/config readiness before launch succeeds.",
+      "publicFixtureEvidence": {
+        "status": "REPRODUCED",
+        "subjectSourceReads": 0,
+        "subjectRequestsIntercepted": true,
+        "early": {
+          "accessReady": true,
+          "personalFacadeReady": true,
+          "hubReady": false,
+          "configStatus": "UNAVAILABLE",
+          "launchResult": {
+            "status": "UNAVAILABLE",
+            "subjectId": "russian",
+            "source": "HUB_APPLICATION_CONFIG",
+            "reason": "Môn học chưa có cấu hình mở hợp lệ."
+          },
+          "hasFrame": false
+        },
+        "afterInitialization": {
+          "configStatus": "CURRENT",
+          "hasFrame": false
+        },
+        "retry": {
+          "launchResult": {
+            "status": "CURRENT",
+            "subjectId": "russian",
+            "source": "HUB_APPLICATION_CONFIG",
+            "reason": null,
+            "taskId": "russian::p1::2026-10-08::morning1"
+          },
+          "hasFrame": true
+        },
+        "explanation": "Access readiness reflects personal/device access before independent Hub launch config initialization. Original capability browser tests call launch at that earlier gate; no iframe can supply a capability snapshot. Waiting for Hub personal/config readiness before launch succeeds."
+      },
+      "proposedBoundedAlignment": "Wait for hubPersonalReady/config readiness before the initial launch; preserve every capability/task/progress assertion. These two browser test paths are outside the latest human authorization; no edit applied.",
+      "subjectSourceReads": 0,
+      "status": "SCOPE_AUTHORIZED_ALIGNMENT_IMPLEMENTED_PENDING_EXACT_HEAD_CI",
+      "authorizedAt": "2026-10-08T09:17:51.553Z"
+    }
+  ]
 }
