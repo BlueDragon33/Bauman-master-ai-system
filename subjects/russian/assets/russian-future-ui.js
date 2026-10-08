@@ -407,7 +407,8 @@
   function upgrade(){
     scheduled=false;upgradeBrand();upgradeOverview();upgradeTabIntro();bind();
     window.RussianContentContract?.enhance?.();
-    window.RussianVocabSrs?.refresh?.();
+    // Refresh vocabulary UI only when the vocabulary view is active; avoid idle DOM churn.
+    if(currentView()==='vocab')window.RussianVocabSrs?.refresh?.();
   }
   function schedule(){
     if(scheduled)return;scheduled=true;requestAnimationFrame(upgrade);
