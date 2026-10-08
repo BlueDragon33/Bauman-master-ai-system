@@ -240,6 +240,52 @@ try{
   assert.equal(afterSpatialStore,beforeSpatialStore,'RE43 unreviewed candidate must never be delivered to RU04');
   assert.equal((await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status)).evidenceCount,0);
 
+  // RE44: simulated polite stranger conversation, repetition and slower repair; never authoritative speech scoring.
+  const dialogueUrl=new URL(
+    'subjects/russian/index.html?ruEngine=grounded-v1&ruWorld=spatial-r2-candidate&ruDialog=repair-v1',
+    BASE
+  ).href;
+  await page.goto(dialogueUrl,{waitUntil:'domcontentloaded',timeout:30000});
+  await page.waitForSelector('[data-re44-experience="1"]',{timeout:15000});
+  await page.waitForFunction(()=>window.RussianEngineIntegration?.status?.().grounded?.state==='READY',null,{timeout:15000});
+  const dialog=page.locator('[data-re44-experience="1"]');
+  assert.equal((await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status)).sceneId,'repair-shop-milk');
+  assert.match(await dialog.innerText(),/Bạn muốn hỏi nhân viên nơi bán sữa/);
+  assert.equal(await dialog.locator('[data-re44-script]').isVisible(),false);
+  const dialogStoreBefore=await page.evaluate(()=>JSON.parse(localStorage.getItem('bauman_russian_engine_evidence_outbox_v1')||'{"rows":[]}').rows.length);
+  await dialog.locator('[data-re44-play]').click();
+  await page.waitForFunction(()=>window.__RE_TTS?.last?.text==='Здравствуйте.');
+  await dialog.locator('[data-re44-shadow]').click();
+  assert.equal((await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status)).phase,'request');
+  await dialog.locator('[data-re44-shadow]').click();
+  assert.equal((await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status)).phase,'listen');
+  await dialog.locator('[data-re44-repeat]').click();
+  assert.equal((await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status)).phase,'repair');
+  await dialog.locator('[data-re44-play]').click();
+  await page.waitForFunction(()=>window.__RE_TTS?.last?.text==='Повторите, пожалуйста.');
+  await dialog.locator('[data-re44-shadow]').click();
+  assert.equal((await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status)).repairCount,1);
+  await dialog.locator('[data-re44-slower]').click();
+  await dialog.locator('[data-re44-play]').click();
+  await page.waitForFunction(()=>window.__RE_TTS?.last?.text==='Говорите, пожалуйста, помедленнее.');
+  await dialog.locator('[data-re44-shadow]').click();
+  await dialog.locator('[data-re44-advance]').click();
+  assert.equal((await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status)).phase,'locate');
+  await dialog.locator('[data-re44-node="counter"]').click();
+  assert.match(await dialog.locator('[data-re44-feedback]').innerText(),/Chưa đúng vị trí/);
+  assert.equal((await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status)).phase,'locate');
+  await dialog.locator('[data-re44-node="milk-fridge"]').click();
+  assert.equal((await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status)).phase,'thank');
+  await dialog.locator('[data-re44-shadow]').click();
+  assert.equal((await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status)).phase,'done');
+  assert.match(await dialog.locator('[data-re44-feedback]').innerText(),/không có chấm điểm/);
+  const dialogStoreAfter=await page.evaluate(()=>JSON.parse(localStorage.getItem('bauman_russian_engine_evidence_outbox_v1')||'{"rows":[]}').rows.length);
+  assert.equal(dialogStoreAfter,dialogStoreBefore,'unreviewed dialogue cannot write RU04 evidence');
+  assert.equal((await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status)).evidenceCount,0);
+  await dialog.locator('[data-re44-scene]').selectOption('1');
+  assert.equal((await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status)).sceneId,'repair-metro-entrance');
+  assert.match(await dialog.innerText(),/lối xuống tàu điện/);
+
   const adaptiveRoomUrl=new URL(
     'subjects/russian/index.html?ruEngine=grounded-v1&ruWorld=real-life-v1&ruSetting=room',
     BASE

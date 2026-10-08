@@ -1,0 +1,106 @@
+{
+  "schema": "RUSSIAN_ENGINE_REPAIR_DIALOGUES_AI_DRAFT_V1",
+  "revision": "repair-dialogues-ai-draft-r1",
+  "status": "AI_DRAFT_PENDING_RU03",
+  "languageAuthority": "NONE",
+  "audioAuthority": "NONE",
+  "humanApproval": false,
+  "repair": {
+    "repeat": "Повторите, пожалуйста.",
+    "slower": "Говорите, пожалуйста, помедленнее."
+  },
+  "scenes": [
+    {
+      "sceneId": "repair-shop-milk",
+      "worldId": "shop",
+      "targetNodeId": "milk-fridge",
+      "speakerRole": "shop-staff",
+      "register": "polite-stranger",
+      "surface": {
+        "greet": "Здравствуйте.",
+        "request": "Подскажите, пожалуйста, где молоко?",
+        "reply": "Молоко в холодильнике справа.",
+        "thanks": "Спасибо.",
+        "closing": "Пожалуйста."
+      },
+      "vn": {
+        "setting": "Cửa hàng tạp hóa",
+        "purpose": "Bạn muốn hỏi nhân viên nơi bán sữa.",
+        "replyHint": "Người bán cho biết sữa ở tủ mát bên phải.",
+        "greeting": "Bạn mở lời chào với nhân viên.",
+        "request": "Bạn lịch sự hỏi vị trí sữa.",
+        "reply": "Nghe nhân viên chỉ nơi đặt sữa.",
+        "thank": "Bạn cảm ơn sau khi tìm được vị trí."
+      }
+    },
+    {
+      "sceneId": "repair-metro-entrance",
+      "worldId": "metro",
+      "targetNodeId": "station-entrance",
+      "speakerRole": "passerby",
+      "register": "polite-stranger",
+      "surface": {
+        "greet": "Здравствуйте.",
+        "request": "Подскажите, пожалуйста, где вход в метро?",
+        "reply": "Вход в метро справа, дальше по улице.",
+        "thanks": "Спасибо.",
+        "closing": "Пожалуйста."
+      },
+      "vn": {
+        "setting": "Trên phố gần ga metro",
+        "purpose": "Bạn đang ngoài phố, cần hỏi người qua đường lối xuống tàu điện.",
+        "replyHint": "Người qua đường nói lối vào ở bên phải, đi thêm một đoạn trên phố.",
+        "greeting": "Bạn chào người qua đường.",
+        "request": "Bạn lịch sự hỏi lối vào metro.",
+        "reply": "Nghe người qua đường hướng dẫn lối vào.",
+        "thank": "Bạn cảm ơn họ."
+      }
+    },
+    {
+      "sceneId": "repair-dorm-shower",
+      "worldId": "dorm",
+      "targetNodeId": "shower-room",
+      "speakerRole": "dorm-administrator",
+      "register": "polite-stranger",
+      "surface": {
+        "greet": "Здравствуйте.",
+        "request": "Подскажите, пожалуйста, где душевая?",
+        "reply": "Душевая в конце коридора, направо.",
+        "thanks": "Спасибо.",
+        "closing": "Пожалуйста."
+      },
+      "vn": {
+        "setting": "Quầy trực ký túc xá",
+        "purpose": "Bạn hỏi quản lý ký túc xá phòng tắm chung ở đâu.",
+        "replyHint": "Quản lý hướng dẫn đi cuối hành lang rồi rẽ phải.",
+        "greeting": "Bạn chào người trực ký túc.",
+        "request": "Bạn hỏi vị trí phòng tắm chung.",
+        "reply": "Nghe hướng dẫn tìm phòng tắm.",
+        "thank": "Bạn cảm ơn người quản lý."
+      }
+    },
+    {
+      "sceneId": "repair-university-room",
+      "worldId": "university",
+      "targetNodeId": "auditorium-12",
+      "speakerRole": "university-staff",
+      "register": "polite-stranger",
+      "surface": {
+        "greet": "Здравствуйте.",
+        "request": "Подскажите, пожалуйста, где аудитория номер двенадцать?",
+        "reply": "Аудитория номер двенадцать справа по коридору.",
+        "thanks": "Спасибо.",
+        "closing": "Пожалуйста."
+      },
+      "vn": {
+        "setting": "Trong khu giảng đường",
+        "purpose": "Bạn hỏi nhân viên tìm phòng học số 12.",
+        "replyHint": "Nhân viên nói phòng số 12 ở bên phải dọc hành lang.",
+        "greeting": "Bạn chào nhân viên.",
+        "request": "Bạn hỏi vị trí phòng học số 12.",
+        "reply": "Nghe hướng dẫn đến giảng đường.",
+        "thank": "Bạn cảm ơn họ."
+      }
+    }
+  ]
+}
