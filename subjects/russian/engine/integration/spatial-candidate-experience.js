@@ -1,5 +1,6 @@
 import {validateSpatialCandidate,evaluateSpatialCandidateAction} from '../world/spatial-candidate-runtime.mjs';
 import {createPreviewSpeechGate} from './preview-speech-gate.mjs';
+import {applyPreviewSpatialDraft} from '../review/re55-shared-draft-corrections.mjs';
 
 const CATALOG_URL=new URL('../content/fixtures/real-life-spatial.r2-ai-proposal.json',import.meta.url);
 const arr=x=>Array.isArray(x)?x:[];
@@ -93,9 +94,10 @@ export async function mountSpatialCandidateExperience({
   if(!target)return {mounted:false,reason:'host-missing'};
   const response=await fetchFn(CATALOG_URL);
   if(!response?.ok)throw new Error('RE43 candidate proposal unavailable');
-  const pack=await response.json();
-  const check=validateSpatialCandidate(pack);
+  const sourcePack=await response.json();
+  const check=validateSpatialCandidate(sourcePack);
   if(!check.ok)throw new Error('RE43 proposal invalid: '+check.errors.join('; '));
+  const pack=applyPreviewSpatialDraft(sourcePack);
   const worlds=arr(pack.worlds);
   let setting=worlds.some(w=>w.worldId===opts.setting)?opts.setting:worlds[0].worldId;
   let index=0,attempts=0,completions=0,phase='select',pickedFrom='';
