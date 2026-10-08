@@ -2,7 +2,7 @@
 
 Spec: `prompts/hub/CURRENT_WORK_PACKET.json`, HUB-SUBJECT-INTEGRATION-20261007-001 r1.
 Execute inline with superpowers:executing-plans, TDD, and one fresh whole-branch review.
-Before SHA: ffd1db07a7fd121aede14a08fceab6a9d0698235. Initial observed main: 84215c8b1ec32a29dd9f72291060418ad292d575.
+Before SHA: 5924b72ff600dc0798369362ced83356550f2095. Initial observed main: 84215c8b1ec32a29dd9f72291060418ad292d575.
 
 Goal: separate application launch/editor configuration from personal learner data while preserving declared public launch/task/capability contracts and accepted storage r5.
 Architecture: a Hub-owned descriptor/config module keeps device-global configuration in IndexedDB independently of the unchanged personal database schema. A launch adapter consumes safe descriptors and existing Hub task/render callbacks. Compatibility wrappers preserve existing callers. No subject files or APIs are inspected or invented.
@@ -50,7 +50,7 @@ Tech: existing browser JavaScript, IndexedDB, Node and Playwright; no new depend
 - [ ] Run targeted and full Hub local source/package/managed regressions; run the original full-system gate on GitHub.
 
 ### Task 5: Review and exact-head evidence
-- [ ] Fresh whole-branch review restricted to allowed Hub files, followed by RED/GREEN fixes for material findings.
+- [x] Fresh whole-branch review restricted to allowed Hub files, followed by RED/GREEN fixes for material findings.
 - [ ] Update result/state, packet/registry lifecycle consistency and all acceptance evidence.
 - [ ] Validate exact final code and completion HEAD locally and on GitHub; record exact SHA through the existing non-self-referential evidence convention.
 - [ ] Stop pending Chat review; keep any review PR draft; no main merge/deploy.

@@ -80,7 +80,6 @@
     window.state.planningMissions[mission.missionId]=mission; safeSave();
     return mission;
   }
-  function taskQuery(path,task){return window.BaumanSubjectRuntime?.withTaskQuery?.(path,task)||''}
   function send(win,task){return window.BaumanSubjectRuntime?.sendTaskToSubject?.(win,task)||false}
   function trusted(event){return window.BaumanSubjectRuntime?.trustedSubjectEvent?.(event)===true}
   function routeSummary(plan){const sessions=plan?.sessions||plan?.plan?.sessions||[];if(!sessions.length)return '';const first=sessions[0], tests=sessions.filter(s=>s.officialTest).length, reviews=sessions.filter(s=>s.sessionKind==='review_consolidation').length;return `${sessions.length} buổi · ${plan.totalMinutes||sessions.reduce((a,x)=>a+Number(x.minutes||0),0)} phút · ${tests} kiểm tra · ${reviews} ôn củng cố · buổi đầu: ${first.phase||first.sessionKind||'orientation'}`}
@@ -94,7 +93,7 @@
     app.openSubjectInPage=function(id,context={}){if(id!=='russian')window.clearPendingCapabilityIntent?.();return window.BAUMAN_HUB_SUBJECT_LAUNCH.launchInHub(id,context)};
     app.openSubjectTab=function(id){return window.BAUMAN_HUB_SUBJECT_LAUNCH.launchInTab(id,window.capabilityContextFromTask?.(window.state.activeTask,id)||{})};
     window.BAUMAN_HUB_SUBJECT_LAUNCH.bind({
-      buildTask:buildPlanningMission,taskURL:taskQuery,notify:message=>window.toast?.(message),
+      buildTask:buildPlanningMission,notify:message=>window.toast?.(message),
       recordLaunch(id,task){window.state.lastStudy={subjectId:id};window.state.activeTask=task;safeSave()},
       openTab(src){window.open(src,'_blank','noopener')},
       renderInHub(descriptor,src,task){const p=planFor(descriptor.subjectId,task.courseId,task.missionId);$('studyRoot').innerHTML=`<div class="study-viewer"><div class="study-head"><div><h2>${h(descriptor.name)}</h2><small>Mission từ Main: ${h(task.target)} · ${task.durationDays} ngày · ${task.sessions.reduce((a,x)=>a+Number(x.minutes||0),0)} phút · hạn ${h(task.deadline)}</small>${p?`<div class="pb-plan-strip">${h(routeSummary(p))}</div>`:''}</div><div class="tools"><button class="btn" data-action="close-study">Đóng</button><button class="btn" onclick="app.openSubjectTab('${descriptor.subjectId}')">Mở tab riêng</button></div></div><iframe id="subjectFrame" src="${h(src)}"></iframe></div>`;const iframe=$('subjectFrame');if(iframe)iframe.addEventListener('load',()=>send(iframe.contentWindow,task))}

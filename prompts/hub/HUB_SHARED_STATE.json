@@ -247,7 +247,7 @@
   "codexStart": "prompts/hub/codex/CODEX_START.md",
   "lastPromptReviewSha": "23973e7106b9ac511f91c523d8f8bffd07c17530",
   "lastRuntimeReviewSha": "23973e7106b9ac511f91c523d8f8bffd07c17530",
-  "observedMainSha": "ffd1db07a7fd121aede14a08fceab6a9d0698235",
+  "observedMainSha": "5924b72ff600dc0798369362ced83356550f2095",
   "currentHeadSemantics": "last observed main SHA at prompt-governance review; not a self-referential state-file commit SHA",
   "activePacketId": "HUB-SUBJECT-INTEGRATION-20261007-001",
   "activePacketRevision": 1,
@@ -297,10 +297,15 @@
   },
   "fullSystemValidated": false,
   "productionDeployed": false,
-  "reconciledMainSha": "ffd1db07a7fd121aede14a08fceab6a9d0698235",
+  "reconciledMainSha": "5924b72ff600dc0798369362ced83356550f2095",
   "previousHead": "1fd7113966dea498f2887892cabda24f31e4d390",
   "finalHead": "5e5a6eacf7b807b3ecad636a4c735899c7ec9963",
   "finalHeadSemantics": "Exact latest-main merge HEAD with all 19 scoped Hub suites and all 9 GitHub workflows PASS. The subsequent JSON-only completion commit is independently revalidated and its exact finalHead is sealed on that commit in refs/notes/hub-storage-materialization and PR #289. Committed JSON cannot contain its own commit hash.",
-  "beforeSha": "ffd1db07a7fd121aede14a08fceab6a9d0698235",
-  "initialObservedMainSha": "84215c8b1ec32a29dd9f72291060418ad292d575"
+  "beforeSha": "5924b72ff600dc0798369362ced83356550f2095",
+  "initialObservedMainSha": "84215c8b1ec32a29dd9f72291060418ad292d575",
+  "reconciliationHistory": [
+    "84215c8b1ec32a29dd9f72291060418ad292d575",
+    "ffd1db07a7fd121aede14a08fceab6a9d0698235",
+    "5924b72ff600dc0798369362ced83356550f2095"
+  ]
 }

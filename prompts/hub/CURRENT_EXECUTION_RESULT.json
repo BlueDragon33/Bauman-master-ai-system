@@ -6,7 +6,7 @@
   "executionState": "IN_PROGRESS",
   "expectedPacketStatus": "IN_CODEX",
   "baselineMainSha": "23973e7106b9ac511f91c523d8f8bffd07c17530",
-  "beforeSha": "ffd1db07a7fd121aede14a08fceab6a9d0698235",
+  "beforeSha": "5924b72ff600dc0798369362ced83356550f2095",
   "afterSha": null,
   "testedRuntimeHead": null,
   "branch": "codex/hub-subject-integration-20261007",
@@ -22,7 +22,12 @@
     "mergeSha": "ec970ccfa23b54944754fff3afdee3b796155f87",
     "doNotReexecute": true
   },
-  "observedMainSha": "ffd1db07a7fd121aede14a08fceab6a9d0698235",
-  "reconciledMainSha": "ffd1db07a7fd121aede14a08fceab6a9d0698235",
-  "initialObservedMainSha": "84215c8b1ec32a29dd9f72291060418ad292d575"
+  "observedMainSha": "5924b72ff600dc0798369362ced83356550f2095",
+  "reconciledMainSha": "5924b72ff600dc0798369362ced83356550f2095",
+  "initialObservedMainSha": "84215c8b1ec32a29dd9f72291060418ad292d575",
+  "reconciliationHistory": [
+    "84215c8b1ec32a29dd9f72291060418ad292d575",
+    "ffd1db07a7fd121aede14a08fceab6a9d0698235",
+    "5924b72ff600dc0798369362ced83356550f2095"
+  ]
 }

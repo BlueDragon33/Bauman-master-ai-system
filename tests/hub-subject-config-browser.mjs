@@ -8,6 +8,27 @@ fs.mkdirSync(OUT,{recursive:true});
 const MAIN='bauman_main_all_phases_subjects_v1',checks=[];
 const browser=await chromium.launch({headless:true,...(process.env.BAUMAN_CHROME_PATH?{executablePath:process.env.BAUMAN_CHROME_PATH}:{})});
 try{
+ for(const role of ['admin','user']){
+  const delayed=await browser.newContext(),p=await delayed.newPage();
+  if(process.env.BAUMAN_E2E_EXPECT_PLATFORM_ACCESS==='1')await delayed.route(BASE,r=>r.fulfill({contentType:'text/html',body:fs.readFileSync('index.html','utf8')}));
+  await delayed.route('**/subjects/**',r=>r.fulfill({body:'Public fixture'}));
+  await p.addInitScript(role=>{
+   localStorage.setItem('bauman_current_user_fullcode_v1',JSON.stringify({email:role+'@fixture.local',name:role,role}));
+   const open=indexedDB.open.bind(indexedDB);
+   indexedDB.open=(...args)=>{
+    const request=open(...args);if(args[0]!=='bauman-hub-application')return request;
+    return new Proxy(request,{get:(target,key)=>Reflect.get(target,key,target),set(target,key,value){target[key]=key==='onsuccess'?event=>setTimeout(()=>value.call(target,event),1200):value;return true}});
+   };
+  },role);
+  await p.goto(BASE);await p.waitForFunction(()=>BAUMAN_APP_MANAGER_ACCESS.selfCheck().ready);
+  const early=await p.evaluate(()=>({access:BAUMAN_APP_MANAGER_ACCESS.selfCheck(),profile:BAUMAN_HUB_PERSONAL_STORE.currentUser(),configStatus:BAUMAN_HUB_SUBJECT_CONFIG.status,launch:BAUMAN_HUB_SUBJECT_LAUNCH.getLaunchState('math').status}));
+  assert.equal(early.profile.role,role);assert.equal(early.configStatus,'UNAVAILABLE');assert.equal(early.launch,'UNAVAILABLE');
+  assert.equal(early.access.localAdminVisible,role==='admin','Resolved standalone role must render before access readiness exposes controls during slow config initialization');
+  await p.waitForFunction(()=>document.documentElement.dataset.hubPersonalReady==='true');
+  if(role==='user')assert.equal(await p.evaluate(async()=>{try{await BAUMAN_HUB_SUBJECT_CONFIG.setOverride('math',{entry:'forbidden.html'});return false}catch{return true}}),true);
+  await delayed.close();
+ }
+ checks.push('slow real IndexedDB config open preserves resolved admin/learner role visibility and keeps launches unavailable until initialization');
  const context=await browser.newContext(),page=await context.newPage();
  if(process.env.BAUMAN_E2E_EXPECT_PLATFORM_ACCESS==='1')await context.route(BASE,r=>r.fulfill({contentType:'text/html',body:fs.readFileSync('index.html','utf8')}));
  await context.route('**/subjects/**',r=>r.fulfill({contentType:'text/html',body:'<!doctype html><title>Unused public fixture</title>'}));

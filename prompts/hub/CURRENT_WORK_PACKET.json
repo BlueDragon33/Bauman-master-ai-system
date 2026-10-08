@@ -156,7 +156,8 @@
     ".github/workflows/system-integration-ci.yml",
     "prompts/hub/**",
     "prompts/PROMPT_REGISTRY.json",
-    "assets/js/planning-main.js"
+    "assets/js/planning-main.js",
+    "assets/js/hub-premium-v2.js"
   ],
   "forbiddenPaths": [
     "subjects/**",
@@ -259,6 +260,12 @@
     "additionalPath": "assets/js/planning-main.js",
     "authority": "Direct user approval 2026-10-07",
     "reason": "Existing mission owner overrides app launch actions; adapter delegation must preserve the original planning mission/bridge behavior.",
-    "subjectBoundaryUnchanged": true
+    "subjectBoundaryUnchanged": true,
+    "additionalCaller": {
+      "path": "assets/js/hub-premium-v2.js",
+      "authority": "Direct user instruction 2026-10-08: discover and normalize other Hub-owned callers",
+      "evidence": "Dormant presentation module still copied raw launch path into lastStudy; normalized to subject choice only. Not loaded by current index. No planning logic or subject owner changes."
+    },
+    "singleLaunchOwner": "Hub Launch Adapter owns launch URL validation/query construction; main public runtime compatibility helpers delegate to it; planning only supplies existing mission/handoff callbacks."
   }
 }
