@@ -171,6 +171,54 @@ try{
   assert.equal(afterPreviewRows,beforePreviewRows,'an icon-only location cannot be sent to RU04');
   assert.equal((await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status)).evidenceCount,1,'practice-only local observation should remain auditable');
 
+  // RE43: interactive r2 candidate is double-opt-in only, has spatial labels, and never writes RU04 evidence.
+  const spatialUrl=new URL(
+    'subjects/russian/index.html?ruEngine=grounded-v1&ruWorld=spatial-r2-candidate&ruSetting=metro',
+    BASE
+  ).href;
+  await page.goto(spatialUrl,{waitUntil:'domcontentloaded',timeout:30000});
+  await page.waitForSelector('[data-re-spatial-candidate="1"]',{timeout:15000});
+  await page.waitForFunction(()=>window.RussianEngineIntegration?.status?.().grounded?.state==='READY',null,{timeout:15000});
+  const spatial=page.locator('[data-re-spatial-candidate="1"]');
+  const firstSpatial=await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status);
+  assert.equal(firstSpatial.catalog,'spatial-r2-candidate');
+  assert.equal(firstSpatial.sceneId,'rl-07-metro');
+  assert.equal(firstSpatial.evidenceCount,0);
+  assert.equal(firstSpatial.masteryMutation,false);
+  assert.equal(await spatial.locator('[data-re-spatial-script]').isVisible(),false);
+  assert.equal(await spatial.locator('[data-re-spatial-help]').isVisible(),false);
+  assert.equal(await spatial.locator('[data-re-spatial-node="station-entrance"]').count(),1);
+  assert.equal(await spatial.locator('[data-re-spatial-node="metro-route-map"]').count(),1);
+  assert.equal(await spatial.locator('[data-re-spatial-node="ticket-machine"]').count(),1);
+  const beforeSpatialStore=await page.evaluate(()=>JSON.parse(localStorage.getItem('bauman_russian_engine_evidence_outbox_v1')||'{"rows":[]}').rows.length);
+  await spatial.locator('[data-re-spatial-help-toggle]').click();
+  assert.equal(await spatial.locator('[data-re-spatial-help]').isVisible(),true);
+  await spatial.locator('[data-re-spatial-play]').click();
+  await page.waitForFunction(()=>window.__RE_TTS?.count>0);
+  assert.match((await page.evaluate(()=>window.__RE_TTS?.last?.text||'')),/где купить билет/);
+  await spatial.locator('[data-re-spatial-node="metro-route-map"]').click();
+  assert.match(await spatial.locator('[data-re-spatial-feedback]').innerText(),/Chưa đúng vị trí/);
+  await spatial.locator('[data-re-spatial-node="ticket-machine"]').click();
+  assert.match(await spatial.locator('[data-re-spatial-feedback]').innerText(),/Đúng vị trí/);
+  assert.equal(await spatial.locator('[data-re-spatial-node="ticket-machine"].is-correct').count(),1);
+  assert.equal(await spatial.locator('[data-re-spatial-next]').isVisible(),true);
+  await spatial.locator('[data-re-spatial-next]').click();
+  assert.equal((await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status)).sceneId,'rl-08-metro');
+  await spatial.locator('[data-re-spatial-node="metro-route-map"]').click();
+  assert.match(await spatial.locator('[data-re-spatial-feedback]').innerText(),/Đúng vị trí/);
+  await spatial.locator('[data-re-spatial-setting]').selectOption('dorm');
+  assert.equal((await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status)).sceneId,'rl-10-dorm');
+  await spatial.locator('[data-re-spatial-node="key-desk"]').click();
+  await spatial.locator('[data-re-spatial-next]').click();
+  assert.equal((await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status)).sceneId,'rl-11-dorm');
+  await spatial.locator('[data-re-spatial-node="corridor"]').click();
+  assert.match(await spatial.locator('[data-re-spatial-feedback]').innerText(),/Chưa đúng vị trí/);
+  await spatial.locator('[data-re-spatial-node="room-12"]').click();
+  assert.match(await spatial.locator('[data-re-spatial-feedback]').innerText(),/Đúng vị trí/);
+  const afterSpatialStore=await page.evaluate(()=>JSON.parse(localStorage.getItem('bauman_russian_engine_evidence_outbox_v1')||'{"rows":[]}').rows.length);
+  assert.equal(afterSpatialStore,beforeSpatialStore,'RE43 unreviewed candidate must never be delivered to RU04');
+  assert.equal((await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status)).evidenceCount,0);
+
   const adaptiveRoomUrl=new URL(
     'subjects/russian/index.html?ruEngine=grounded-v1&ruWorld=real-life-v1&ruSetting=room',
     BASE
