@@ -1,0 +1,1001 @@
+{
+  "schemaVersion": "RUSSIAN_ENGINE_SCENE_REVIEW_QUEUE_V1",
+  "source": "subjects/russian/engine/content/fixtures/real-life-scenes.v1.json",
+  "sourceCatalogRevision": "real-life-v1-r1",
+  "authority": "RU03",
+  "state": "HUMAN_REVIEW_REQUIRED",
+  "autoApproved": 0,
+  "total": 15,
+  "packets": [
+    {
+      "schemaVersion": "RUSSIAN_ENGINE_SCENE_REVIEW_PACKET_V1",
+      "sceneId": "rl-01-room",
+      "revision": "real-life-v1-r1",
+      "fingerprint": "fnv1a32-e005c18e",
+      "currentStatus": "FIXTURE_NONCANONICAL_PENDING_RU03",
+      "setting": "room",
+      "transferGroup": "objects-basic",
+      "exactRussian": "Дай мяч.",
+      "speechStyle": "careful-native",
+      "semanticTargets": [
+        "request-object"
+      ],
+      "targetCompetencies": [
+        "RU-COMP-SEMANTIC-GROUNDING"
+      ],
+      "expectedAction": {
+        "kind": "select-object",
+        "objectId": "ball",
+        "semanticRelation": "request-object"
+      },
+      "worldObjects": [
+        {
+          "id": "ball",
+          "accessibilityLabel": "ball",
+          "visual": {
+            "kind": "symbol",
+            "value": "⚽"
+          }
+        },
+        {
+          "id": "book",
+          "accessibilityLabel": "book",
+          "visual": {
+            "kind": "symbol",
+            "value": "📕"
+          }
+        },
+        {
+          "id": "cup",
+          "accessibilityLabel": "cup",
+          "visual": {
+            "kind": "symbol",
+            "value": "☕"
+          }
+        }
+      ],
+      "requiredCapabilities": [
+        "audio",
+        "visual"
+      ],
+      "provenance": {
+        "source": "subjects/russian/engine/content/fixtures/real-life-scenes.v1.json",
+        "status": "FIXTURE_NONCANONICAL_PENDING_RU03"
+      },
+      "proposedCanonicalRef": "RU03:SCENE:rl-01-room:real-life-v1-r1",
+      "reviewQuestions": [
+        "Is the Russian utterance grammatically correct for the intended meaning?",
+        "Is the utterance natural and appropriate for the stated setting/register?",
+        "Does it unambiguously match the expected learner action and semantic target?",
+        "Are spelling, punctuation, stress-sensitive wording and accepted variants acceptable?",
+        "Should any wording/variant be changed before canonical publication?"
+      ],
+      "linguisticCorrectness": "REVIEW_REQUIRED",
+      "reviewDecision": null
+    },
+    {
+      "schemaVersion": "RUSSIAN_ENGINE_SCENE_REVIEW_PACKET_V1",
+      "sceneId": "rl-02-room",
+      "revision": "real-life-v1-r1",
+      "fingerprint": "fnv1a32-6c1ad0b8",
+      "currentStatus": "FIXTURE_NONCANONICAL_PENDING_RU03",
+      "setting": "room",
+      "transferGroup": "objects-basic",
+      "exactRussian": "Дай книгу.",
+      "speechStyle": "careful-native",
+      "semanticTargets": [
+        "request-object"
+      ],
+      "targetCompetencies": [
+        "RU-COMP-SEMANTIC-GROUNDING"
+      ],
+      "expectedAction": {
+        "kind": "select-object",
+        "objectId": "book",
+        "semanticRelation": "request-object"
+      },
+      "worldObjects": [
+        {
+          "id": "book",
+          "accessibilityLabel": "book",
+          "visual": {
+            "kind": "symbol",
+            "value": "📕"
+          }
+        },
+        {
+          "id": "ball",
+          "accessibilityLabel": "ball",
+          "visual": {
+            "kind": "symbol",
+            "value": "⚽"
+          }
+        },
+        {
+          "id": "cup",
+          "accessibilityLabel": "cup",
+          "visual": {
+            "kind": "symbol",
+            "value": "☕"
+          }
+        }
+      ],
+      "requiredCapabilities": [
+        "audio",
+        "visual"
+      ],
+      "provenance": {
+        "source": "subjects/russian/engine/content/fixtures/real-life-scenes.v1.json",
+        "status": "FIXTURE_NONCANONICAL_PENDING_RU03"
+      },
+      "proposedCanonicalRef": "RU03:SCENE:rl-02-room:real-life-v1-r1",
+      "reviewQuestions": [
+        "Is the Russian utterance grammatically correct for the intended meaning?",
+        "Is the utterance natural and appropriate for the stated setting/register?",
+        "Does it unambiguously match the expected learner action and semantic target?",
+        "Are spelling, punctuation, stress-sensitive wording and accepted variants acceptable?",
+        "Should any wording/variant be changed before canonical publication?"
+      ],
+      "linguisticCorrectness": "REVIEW_REQUIRED",
+      "reviewDecision": null
+    },
+    {
+      "schemaVersion": "RUSSIAN_ENGINE_SCENE_REVIEW_PACKET_V1",
+      "sceneId": "rl-03-room",
+      "revision": "real-life-v1-r1",
+      "fingerprint": "fnv1a32-d5055953",
+      "currentStatus": "FIXTURE_NONCANONICAL_PENDING_RU03",
+      "setting": "room",
+      "transferGroup": "find-object",
+      "exactRussian": "Где чашка?",
+      "speechStyle": "careful-native",
+      "semanticTargets": [
+        "locate-object"
+      ],
+      "targetCompetencies": [
+        "RU-COMP-SEMANTIC-GROUNDING"
+      ],
+      "expectedAction": {
+        "kind": "select-object",
+        "objectId": "cup",
+        "semanticRelation": "locate-object"
+      },
+      "worldObjects": [
+        {
+          "id": "cup",
+          "accessibilityLabel": "cup",
+          "visual": {
+            "kind": "symbol",
+            "value": "☕"
+          }
+        },
+        {
+          "id": "book",
+          "accessibilityLabel": "book",
+          "visual": {
+            "kind": "symbol",
+            "value": "📕"
+          }
+        },
+        {
+          "id": "ball",
+          "accessibilityLabel": "ball",
+          "visual": {
+            "kind": "symbol",
+            "value": "⚽"
+          }
+        }
+      ],
+      "requiredCapabilities": [
+        "audio",
+        "visual"
+      ],
+      "provenance": {
+        "source": "subjects/russian/engine/content/fixtures/real-life-scenes.v1.json",
+        "status": "FIXTURE_NONCANONICAL_PENDING_RU03"
+      },
+      "proposedCanonicalRef": "RU03:SCENE:rl-03-room:real-life-v1-r1",
+      "reviewQuestions": [
+        "Is the Russian utterance grammatically correct for the intended meaning?",
+        "Is the utterance natural and appropriate for the stated setting/register?",
+        "Does it unambiguously match the expected learner action and semantic target?",
+        "Are spelling, punctuation, stress-sensitive wording and accepted variants acceptable?",
+        "Should any wording/variant be changed before canonical publication?"
+      ],
+      "linguisticCorrectness": "REVIEW_REQUIRED",
+      "reviewDecision": null
+    },
+    {
+      "schemaVersion": "RUSSIAN_ENGINE_SCENE_REVIEW_PACKET_V1",
+      "sceneId": "rl-04-shop",
+      "revision": "real-life-v1-r1",
+      "fingerprint": "fnv1a32-f38b7b81",
+      "currentStatus": "FIXTURE_NONCANONICAL_PENDING_RU03",
+      "setting": "shop",
+      "transferGroup": "find-food",
+      "exactRussian": "Где хлеб?",
+      "speechStyle": "careful-native",
+      "semanticTargets": [
+        "locate-object"
+      ],
+      "targetCompetencies": [
+        "RU-COMP-SEMANTIC-GROUNDING"
+      ],
+      "expectedAction": {
+        "kind": "select-object",
+        "objectId": "bread",
+        "semanticRelation": "locate-object"
+      },
+      "worldObjects": [
+        {
+          "id": "bread",
+          "accessibilityLabel": "bread",
+          "visual": {
+            "kind": "symbol",
+            "value": "🍞"
+          }
+        },
+        {
+          "id": "water",
+          "accessibilityLabel": "water",
+          "visual": {
+            "kind": "symbol",
+            "value": "💧"
+          }
+        },
+        {
+          "id": "milk",
+          "accessibilityLabel": "milk",
+          "visual": {
+            "kind": "symbol",
+            "value": "🥛"
+          }
+        }
+      ],
+      "requiredCapabilities": [
+        "audio",
+        "visual"
+      ],
+      "provenance": {
+        "source": "subjects/russian/engine/content/fixtures/real-life-scenes.v1.json",
+        "status": "FIXTURE_NONCANONICAL_PENDING_RU03"
+      },
+      "proposedCanonicalRef": "RU03:SCENE:rl-04-shop:real-life-v1-r1",
+      "reviewQuestions": [
+        "Is the Russian utterance grammatically correct for the intended meaning?",
+        "Is the utterance natural and appropriate for the stated setting/register?",
+        "Does it unambiguously match the expected learner action and semantic target?",
+        "Are spelling, punctuation, stress-sensitive wording and accepted variants acceptable?",
+        "Should any wording/variant be changed before canonical publication?"
+      ],
+      "linguisticCorrectness": "REVIEW_REQUIRED",
+      "reviewDecision": null
+    },
+    {
+      "schemaVersion": "RUSSIAN_ENGINE_SCENE_REVIEW_PACKET_V1",
+      "sceneId": "rl-05-shop",
+      "revision": "real-life-v1-r1",
+      "fingerprint": "fnv1a32-72375cb9",
+      "currentStatus": "FIXTURE_NONCANONICAL_PENDING_RU03",
+      "setting": "shop",
+      "transferGroup": "request-food",
+      "exactRussian": "Дай воду.",
+      "speechStyle": "careful-native",
+      "semanticTargets": [
+        "request-object"
+      ],
+      "targetCompetencies": [
+        "RU-COMP-SEMANTIC-GROUNDING"
+      ],
+      "expectedAction": {
+        "kind": "select-object",
+        "objectId": "water",
+        "semanticRelation": "request-object"
+      },
+      "worldObjects": [
+        {
+          "id": "water",
+          "accessibilityLabel": "water",
+          "visual": {
+            "kind": "symbol",
+            "value": "💧"
+          }
+        },
+        {
+          "id": "bread",
+          "accessibilityLabel": "bread",
+          "visual": {
+            "kind": "symbol",
+            "value": "🍞"
+          }
+        },
+        {
+          "id": "milk",
+          "accessibilityLabel": "milk",
+          "visual": {
+            "kind": "symbol",
+            "value": "🥛"
+          }
+        }
+      ],
+      "requiredCapabilities": [
+        "audio",
+        "visual"
+      ],
+      "provenance": {
+        "source": "subjects/russian/engine/content/fixtures/real-life-scenes.v1.json",
+        "status": "FIXTURE_NONCANONICAL_PENDING_RU03"
+      },
+      "proposedCanonicalRef": "RU03:SCENE:rl-05-shop:real-life-v1-r1",
+      "reviewQuestions": [
+        "Is the Russian utterance grammatically correct for the intended meaning?",
+        "Is the utterance natural and appropriate for the stated setting/register?",
+        "Does it unambiguously match the expected learner action and semantic target?",
+        "Are spelling, punctuation, stress-sensitive wording and accepted variants acceptable?",
+        "Should any wording/variant be changed before canonical publication?"
+      ],
+      "linguisticCorrectness": "REVIEW_REQUIRED",
+      "reviewDecision": null
+    },
+    {
+      "schemaVersion": "RUSSIAN_ENGINE_SCENE_REVIEW_PACKET_V1",
+      "sceneId": "rl-06-shop",
+      "revision": "real-life-v1-r1",
+      "fingerprint": "fnv1a32-13656e46",
+      "currentStatus": "FIXTURE_NONCANONICAL_PENDING_RU03",
+      "setting": "shop",
+      "transferGroup": "find-food",
+      "exactRussian": "Где молоко?",
+      "speechStyle": "careful-native",
+      "semanticTargets": [
+        "locate-object"
+      ],
+      "targetCompetencies": [
+        "RU-COMP-SEMANTIC-GROUNDING"
+      ],
+      "expectedAction": {
+        "kind": "select-object",
+        "objectId": "milk",
+        "semanticRelation": "locate-object"
+      },
+      "worldObjects": [
+        {
+          "id": "milk",
+          "accessibilityLabel": "milk",
+          "visual": {
+            "kind": "symbol",
+            "value": "🥛"
+          }
+        },
+        {
+          "id": "bread",
+          "accessibilityLabel": "bread",
+          "visual": {
+            "kind": "symbol",
+            "value": "🍞"
+          }
+        },
+        {
+          "id": "water",
+          "accessibilityLabel": "water",
+          "visual": {
+            "kind": "symbol",
+            "value": "💧"
+          }
+        }
+      ],
+      "requiredCapabilities": [
+        "audio",
+        "visual"
+      ],
+      "provenance": {
+        "source": "subjects/russian/engine/content/fixtures/real-life-scenes.v1.json",
+        "status": "FIXTURE_NONCANONICAL_PENDING_RU03"
+      },
+      "proposedCanonicalRef": "RU03:SCENE:rl-06-shop:real-life-v1-r1",
+      "reviewQuestions": [
+        "Is the Russian utterance grammatically correct for the intended meaning?",
+        "Is the utterance natural and appropriate for the stated setting/register?",
+        "Does it unambiguously match the expected learner action and semantic target?",
+        "Are spelling, punctuation, stress-sensitive wording and accepted variants acceptable?",
+        "Should any wording/variant be changed before canonical publication?"
+      ],
+      "linguisticCorrectness": "REVIEW_REQUIRED",
+      "reviewDecision": null
+    },
+    {
+      "schemaVersion": "RUSSIAN_ENGINE_SCENE_REVIEW_PACKET_V1",
+      "sceneId": "rl-07-metro",
+      "revision": "real-life-v1-r1",
+      "fingerprint": "fnv1a32-69b16b08",
+      "currentStatus": "FIXTURE_NONCANONICAL_PENDING_RU03",
+      "setting": "metro",
+      "transferGroup": "transport-item",
+      "exactRussian": "Где билет?",
+      "speechStyle": "careful-native",
+      "semanticTargets": [
+        "locate-object"
+      ],
+      "targetCompetencies": [
+        "RU-COMP-SEMANTIC-GROUNDING"
+      ],
+      "expectedAction": {
+        "kind": "select-object",
+        "objectId": "ticket",
+        "semanticRelation": "locate-object"
+      },
+      "worldObjects": [
+        {
+          "id": "ticket",
+          "accessibilityLabel": "ticket",
+          "visual": {
+            "kind": "symbol",
+            "value": "🎫"
+          }
+        },
+        {
+          "id": "map",
+          "accessibilityLabel": "map",
+          "visual": {
+            "kind": "symbol",
+            "value": "🗺️"
+          }
+        },
+        {
+          "id": "metro",
+          "accessibilityLabel": "metro",
+          "visual": {
+            "kind": "symbol",
+            "value": "🚇"
+          }
+        }
+      ],
+      "requiredCapabilities": [
+        "audio",
+        "visual"
+      ],
+      "provenance": {
+        "source": "subjects/russian/engine/content/fixtures/real-life-scenes.v1.json",
+        "status": "FIXTURE_NONCANONICAL_PENDING_RU03"
+      },
+      "proposedCanonicalRef": "RU03:SCENE:rl-07-metro:real-life-v1-r1",
+      "reviewQuestions": [
+        "Is the Russian utterance grammatically correct for the intended meaning?",
+        "Is the utterance natural and appropriate for the stated setting/register?",
+        "Does it unambiguously match the expected learner action and semantic target?",
+        "Are spelling, punctuation, stress-sensitive wording and accepted variants acceptable?",
+        "Should any wording/variant be changed before canonical publication?"
+      ],
+      "linguisticCorrectness": "REVIEW_REQUIRED",
+      "reviewDecision": null
+    },
+    {
+      "schemaVersion": "RUSSIAN_ENGINE_SCENE_REVIEW_PACKET_V1",
+      "sceneId": "rl-08-metro",
+      "revision": "real-life-v1-r1",
+      "fingerprint": "fnv1a32-7f63153c",
+      "currentStatus": "FIXTURE_NONCANONICAL_PENDING_RU03",
+      "setting": "metro",
+      "transferGroup": "transport-item",
+      "exactRussian": "Где карта?",
+      "speechStyle": "careful-native",
+      "semanticTargets": [
+        "locate-object"
+      ],
+      "targetCompetencies": [
+        "RU-COMP-SEMANTIC-GROUNDING"
+      ],
+      "expectedAction": {
+        "kind": "select-object",
+        "objectId": "map",
+        "semanticRelation": "locate-object"
+      },
+      "worldObjects": [
+        {
+          "id": "map",
+          "accessibilityLabel": "map",
+          "visual": {
+            "kind": "symbol",
+            "value": "🗺️"
+          }
+        },
+        {
+          "id": "ticket",
+          "accessibilityLabel": "ticket",
+          "visual": {
+            "kind": "symbol",
+            "value": "🎫"
+          }
+        },
+        {
+          "id": "metro",
+          "accessibilityLabel": "metro",
+          "visual": {
+            "kind": "symbol",
+            "value": "🚇"
+          }
+        }
+      ],
+      "requiredCapabilities": [
+        "audio",
+        "visual"
+      ],
+      "provenance": {
+        "source": "subjects/russian/engine/content/fixtures/real-life-scenes.v1.json",
+        "status": "FIXTURE_NONCANONICAL_PENDING_RU03"
+      },
+      "proposedCanonicalRef": "RU03:SCENE:rl-08-metro:real-life-v1-r1",
+      "reviewQuestions": [
+        "Is the Russian utterance grammatically correct for the intended meaning?",
+        "Is the utterance natural and appropriate for the stated setting/register?",
+        "Does it unambiguously match the expected learner action and semantic target?",
+        "Are spelling, punctuation, stress-sensitive wording and accepted variants acceptable?",
+        "Should any wording/variant be changed before canonical publication?"
+      ],
+      "linguisticCorrectness": "REVIEW_REQUIRED",
+      "reviewDecision": null
+    },
+    {
+      "schemaVersion": "RUSSIAN_ENGINE_SCENE_REVIEW_PACKET_V1",
+      "sceneId": "rl-09-metro",
+      "revision": "real-life-v1-r1",
+      "fingerprint": "fnv1a32-52333be0",
+      "currentStatus": "FIXTURE_NONCANONICAL_PENDING_RU03",
+      "setting": "metro",
+      "transferGroup": "transport-place",
+      "exactRussian": "Где метро?",
+      "speechStyle": "careful-native",
+      "semanticTargets": [
+        "locate-object"
+      ],
+      "targetCompetencies": [
+        "RU-COMP-SEMANTIC-GROUNDING"
+      ],
+      "expectedAction": {
+        "kind": "select-object",
+        "objectId": "metro",
+        "semanticRelation": "locate-object"
+      },
+      "worldObjects": [
+        {
+          "id": "metro",
+          "accessibilityLabel": "metro",
+          "visual": {
+            "kind": "symbol",
+            "value": "🚇"
+          }
+        },
+        {
+          "id": "ticket",
+          "accessibilityLabel": "ticket",
+          "visual": {
+            "kind": "symbol",
+            "value": "🎫"
+          }
+        },
+        {
+          "id": "map",
+          "accessibilityLabel": "map",
+          "visual": {
+            "kind": "symbol",
+            "value": "🗺️"
+          }
+        }
+      ],
+      "requiredCapabilities": [
+        "audio",
+        "visual"
+      ],
+      "provenance": {
+        "source": "subjects/russian/engine/content/fixtures/real-life-scenes.v1.json",
+        "status": "FIXTURE_NONCANONICAL_PENDING_RU03"
+      },
+      "proposedCanonicalRef": "RU03:SCENE:rl-09-metro:real-life-v1-r1",
+      "reviewQuestions": [
+        "Is the Russian utterance grammatically correct for the intended meaning?",
+        "Is the utterance natural and appropriate for the stated setting/register?",
+        "Does it unambiguously match the expected learner action and semantic target?",
+        "Are spelling, punctuation, stress-sensitive wording and accepted variants acceptable?",
+        "Should any wording/variant be changed before canonical publication?"
+      ],
+      "linguisticCorrectness": "REVIEW_REQUIRED",
+      "reviewDecision": null
+    },
+    {
+      "schemaVersion": "RUSSIAN_ENGINE_SCENE_REVIEW_PACKET_V1",
+      "sceneId": "rl-10-dorm",
+      "revision": "real-life-v1-r1",
+      "fingerprint": "fnv1a32-1a2e5372",
+      "currentStatus": "FIXTURE_NONCANONICAL_PENDING_RU03",
+      "setting": "dorm",
+      "transferGroup": "dorm-item",
+      "exactRussian": "Где ключ?",
+      "speechStyle": "careful-native",
+      "semanticTargets": [
+        "locate-object"
+      ],
+      "targetCompetencies": [
+        "RU-COMP-SEMANTIC-GROUNDING"
+      ],
+      "expectedAction": {
+        "kind": "select-object",
+        "objectId": "key",
+        "semanticRelation": "locate-object"
+      },
+      "worldObjects": [
+        {
+          "id": "key",
+          "accessibilityLabel": "key",
+          "visual": {
+            "kind": "symbol",
+            "value": "🔑"
+          }
+        },
+        {
+          "id": "door",
+          "accessibilityLabel": "door",
+          "visual": {
+            "kind": "symbol",
+            "value": "🚪"
+          }
+        },
+        {
+          "id": "shower",
+          "accessibilityLabel": "shower",
+          "visual": {
+            "kind": "symbol",
+            "value": "🚿"
+          }
+        }
+      ],
+      "requiredCapabilities": [
+        "audio",
+        "visual"
+      ],
+      "provenance": {
+        "source": "subjects/russian/engine/content/fixtures/real-life-scenes.v1.json",
+        "status": "FIXTURE_NONCANONICAL_PENDING_RU03"
+      },
+      "proposedCanonicalRef": "RU03:SCENE:rl-10-dorm:real-life-v1-r1",
+      "reviewQuestions": [
+        "Is the Russian utterance grammatically correct for the intended meaning?",
+        "Is the utterance natural and appropriate for the stated setting/register?",
+        "Does it unambiguously match the expected learner action and semantic target?",
+        "Are spelling, punctuation, stress-sensitive wording and accepted variants acceptable?",
+        "Should any wording/variant be changed before canonical publication?"
+      ],
+      "linguisticCorrectness": "REVIEW_REQUIRED",
+      "reviewDecision": null
+    },
+    {
+      "schemaVersion": "RUSSIAN_ENGINE_SCENE_REVIEW_PACKET_V1",
+      "sceneId": "rl-11-dorm",
+      "revision": "real-life-v1-r1",
+      "fingerprint": "fnv1a32-c784dfb4",
+      "currentStatus": "FIXTURE_NONCANONICAL_PENDING_RU03",
+      "setting": "dorm",
+      "transferGroup": "dorm-place",
+      "exactRussian": "Где комната?",
+      "speechStyle": "careful-native",
+      "semanticTargets": [
+        "locate-object"
+      ],
+      "targetCompetencies": [
+        "RU-COMP-SEMANTIC-GROUNDING"
+      ],
+      "expectedAction": {
+        "kind": "select-object",
+        "objectId": "door",
+        "semanticRelation": "locate-object"
+      },
+      "worldObjects": [
+        {
+          "id": "door",
+          "accessibilityLabel": "door",
+          "visual": {
+            "kind": "symbol",
+            "value": "🚪"
+          }
+        },
+        {
+          "id": "key",
+          "accessibilityLabel": "key",
+          "visual": {
+            "kind": "symbol",
+            "value": "🔑"
+          }
+        },
+        {
+          "id": "shower",
+          "accessibilityLabel": "shower",
+          "visual": {
+            "kind": "symbol",
+            "value": "🚿"
+          }
+        }
+      ],
+      "requiredCapabilities": [
+        "audio",
+        "visual"
+      ],
+      "provenance": {
+        "source": "subjects/russian/engine/content/fixtures/real-life-scenes.v1.json",
+        "status": "FIXTURE_NONCANONICAL_PENDING_RU03"
+      },
+      "proposedCanonicalRef": "RU03:SCENE:rl-11-dorm:real-life-v1-r1",
+      "reviewQuestions": [
+        "Is the Russian utterance grammatically correct for the intended meaning?",
+        "Is the utterance natural and appropriate for the stated setting/register?",
+        "Does it unambiguously match the expected learner action and semantic target?",
+        "Are spelling, punctuation, stress-sensitive wording and accepted variants acceptable?",
+        "Should any wording/variant be changed before canonical publication?"
+      ],
+      "linguisticCorrectness": "REVIEW_REQUIRED",
+      "reviewDecision": null
+    },
+    {
+      "schemaVersion": "RUSSIAN_ENGINE_SCENE_REVIEW_PACKET_V1",
+      "sceneId": "rl-12-dorm",
+      "revision": "real-life-v1-r1",
+      "fingerprint": "fnv1a32-bdb5ec0b",
+      "currentStatus": "FIXTURE_NONCANONICAL_PENDING_RU03",
+      "setting": "dorm",
+      "transferGroup": "dorm-place",
+      "exactRussian": "Где душ?",
+      "speechStyle": "careful-native",
+      "semanticTargets": [
+        "locate-object"
+      ],
+      "targetCompetencies": [
+        "RU-COMP-SEMANTIC-GROUNDING"
+      ],
+      "expectedAction": {
+        "kind": "select-object",
+        "objectId": "shower",
+        "semanticRelation": "locate-object"
+      },
+      "worldObjects": [
+        {
+          "id": "shower",
+          "accessibilityLabel": "shower",
+          "visual": {
+            "kind": "symbol",
+            "value": "🚿"
+          }
+        },
+        {
+          "id": "door",
+          "accessibilityLabel": "door",
+          "visual": {
+            "kind": "symbol",
+            "value": "🚪"
+          }
+        },
+        {
+          "id": "key",
+          "accessibilityLabel": "key",
+          "visual": {
+            "kind": "symbol",
+            "value": "🔑"
+          }
+        }
+      ],
+      "requiredCapabilities": [
+        "audio",
+        "visual"
+      ],
+      "provenance": {
+        "source": "subjects/russian/engine/content/fixtures/real-life-scenes.v1.json",
+        "status": "FIXTURE_NONCANONICAL_PENDING_RU03"
+      },
+      "proposedCanonicalRef": "RU03:SCENE:rl-12-dorm:real-life-v1-r1",
+      "reviewQuestions": [
+        "Is the Russian utterance grammatically correct for the intended meaning?",
+        "Is the utterance natural and appropriate for the stated setting/register?",
+        "Does it unambiguously match the expected learner action and semantic target?",
+        "Are spelling, punctuation, stress-sensitive wording and accepted variants acceptable?",
+        "Should any wording/variant be changed before canonical publication?"
+      ],
+      "linguisticCorrectness": "REVIEW_REQUIRED",
+      "reviewDecision": null
+    },
+    {
+      "schemaVersion": "RUSSIAN_ENGINE_SCENE_REVIEW_PACKET_V1",
+      "sceneId": "rl-13-university",
+      "revision": "real-life-v1-r1",
+      "fingerprint": "fnv1a32-a501bbf6",
+      "currentStatus": "FIXTURE_NONCANONICAL_PENDING_RU03",
+      "setting": "university",
+      "transferGroup": "university-place",
+      "exactRussian": "Где аудитория?",
+      "speechStyle": "careful-native",
+      "semanticTargets": [
+        "locate-object"
+      ],
+      "targetCompetencies": [
+        "RU-COMP-SEMANTIC-GROUNDING"
+      ],
+      "expectedAction": {
+        "kind": "select-object",
+        "objectId": "classroom",
+        "semanticRelation": "locate-object"
+      },
+      "worldObjects": [
+        {
+          "id": "classroom",
+          "accessibilityLabel": "classroom",
+          "visual": {
+            "kind": "symbol",
+            "value": "🏫"
+          }
+        },
+        {
+          "id": "library",
+          "accessibilityLabel": "library",
+          "visual": {
+            "kind": "symbol",
+            "value": "📚"
+          }
+        },
+        {
+          "id": "notebook",
+          "accessibilityLabel": "notebook",
+          "visual": {
+            "kind": "symbol",
+            "value": "📓"
+          }
+        }
+      ],
+      "requiredCapabilities": [
+        "audio",
+        "visual"
+      ],
+      "provenance": {
+        "source": "subjects/russian/engine/content/fixtures/real-life-scenes.v1.json",
+        "status": "FIXTURE_NONCANONICAL_PENDING_RU03"
+      },
+      "proposedCanonicalRef": "RU03:SCENE:rl-13-university:real-life-v1-r1",
+      "reviewQuestions": [
+        "Is the Russian utterance grammatically correct for the intended meaning?",
+        "Is the utterance natural and appropriate for the stated setting/register?",
+        "Does it unambiguously match the expected learner action and semantic target?",
+        "Are spelling, punctuation, stress-sensitive wording and accepted variants acceptable?",
+        "Should any wording/variant be changed before canonical publication?"
+      ],
+      "linguisticCorrectness": "REVIEW_REQUIRED",
+      "reviewDecision": null
+    },
+    {
+      "schemaVersion": "RUSSIAN_ENGINE_SCENE_REVIEW_PACKET_V1",
+      "sceneId": "rl-14-university",
+      "revision": "real-life-v1-r1",
+      "fingerprint": "fnv1a32-dd06be39",
+      "currentStatus": "FIXTURE_NONCANONICAL_PENDING_RU03",
+      "setting": "university",
+      "transferGroup": "university-place",
+      "exactRussian": "Где библиотека?",
+      "speechStyle": "careful-native",
+      "semanticTargets": [
+        "locate-object"
+      ],
+      "targetCompetencies": [
+        "RU-COMP-SEMANTIC-GROUNDING"
+      ],
+      "expectedAction": {
+        "kind": "select-object",
+        "objectId": "library",
+        "semanticRelation": "locate-object"
+      },
+      "worldObjects": [
+        {
+          "id": "library",
+          "accessibilityLabel": "library",
+          "visual": {
+            "kind": "symbol",
+            "value": "📚"
+          }
+        },
+        {
+          "id": "classroom",
+          "accessibilityLabel": "classroom",
+          "visual": {
+            "kind": "symbol",
+            "value": "🏫"
+          }
+        },
+        {
+          "id": "notebook",
+          "accessibilityLabel": "notebook",
+          "visual": {
+            "kind": "symbol",
+            "value": "📓"
+          }
+        }
+      ],
+      "requiredCapabilities": [
+        "audio",
+        "visual"
+      ],
+      "provenance": {
+        "source": "subjects/russian/engine/content/fixtures/real-life-scenes.v1.json",
+        "status": "FIXTURE_NONCANONICAL_PENDING_RU03"
+      },
+      "proposedCanonicalRef": "RU03:SCENE:rl-14-university:real-life-v1-r1",
+      "reviewQuestions": [
+        "Is the Russian utterance grammatically correct for the intended meaning?",
+        "Is the utterance natural and appropriate for the stated setting/register?",
+        "Does it unambiguously match the expected learner action and semantic target?",
+        "Are spelling, punctuation, stress-sensitive wording and accepted variants acceptable?",
+        "Should any wording/variant be changed before canonical publication?"
+      ],
+      "linguisticCorrectness": "REVIEW_REQUIRED",
+      "reviewDecision": null
+    },
+    {
+      "schemaVersion": "RUSSIAN_ENGINE_SCENE_REVIEW_PACKET_V1",
+      "sceneId": "rl-15-university",
+      "revision": "real-life-v1-r1",
+      "fingerprint": "fnv1a32-85a21296",
+      "currentStatus": "FIXTURE_NONCANONICAL_PENDING_RU03",
+      "setting": "university",
+      "transferGroup": "study-item",
+      "exactRussian": "Дай тетрадь.",
+      "speechStyle": "careful-native",
+      "semanticTargets": [
+        "request-object"
+      ],
+      "targetCompetencies": [
+        "RU-COMP-SEMANTIC-GROUNDING"
+      ],
+      "expectedAction": {
+        "kind": "select-object",
+        "objectId": "notebook",
+        "semanticRelation": "request-object"
+      },
+      "worldObjects": [
+        {
+          "id": "notebook",
+          "accessibilityLabel": "notebook",
+          "visual": {
+            "kind": "symbol",
+            "value": "📓"
+          }
+        },
+        {
+          "id": "library",
+          "accessibilityLabel": "library",
+          "visual": {
+            "kind": "symbol",
+            "value": "📚"
+          }
+        },
+        {
+          "id": "classroom",
+          "accessibilityLabel": "classroom",
+          "visual": {
+            "kind": "symbol",
+            "value": "🏫"
+          }
+        }
+      ],
+      "requiredCapabilities": [
+        "audio",
+        "visual"
+      ],
+      "provenance": {
+        "source": "subjects/russian/engine/content/fixtures/real-life-scenes.v1.json",
+        "status": "FIXTURE_NONCANONICAL_PENDING_RU03"
+      },
+      "proposedCanonicalRef": "RU03:SCENE:rl-15-university:real-life-v1-r1",
+      "reviewQuestions": [
+        "Is the Russian utterance grammatically correct for the intended meaning?",
+        "Is the utterance natural and appropriate for the stated setting/register?",
+        "Does it unambiguously match the expected learner action and semantic target?",
+        "Are spelling, punctuation, stress-sensitive wording and accepted variants acceptable?",
+        "Should any wording/variant be changed before canonical publication?"
+      ],
+      "linguisticCorrectness": "REVIEW_REQUIRED",
+      "reviewDecision": null
+    }
+  ]
+}

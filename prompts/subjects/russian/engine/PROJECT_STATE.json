@@ -8,9 +8,9 @@
     "russianMasterPrompt": "prompts/subjects/russian/RUSSIAN_MASTER_PROMPT.md",
     "engineOrchestrator": "prompts/subjects/russian/engine/RE00_ENGINE_ORCHESTRATOR.md"
   },
-  "status": "PHASE6_RE26_RE35_PASS_READY_FOR_MERGE",
+  "status": "PHASE7_ENGINEERING_PASS_HUMAN_REVIEW_REQUIRED",
   "implementationAuthorized": true,
-  "activeWorkPackage": "RE35",
+  "activeWorkPackage": "RE40",
   "sequence": [
     "RE00",
     "RE01",
@@ -47,7 +47,12 @@
     "RE32",
     "RE33",
     "RE34",
-    "RE35"
+    "RE35",
+    "RE36",
+    "RE37",
+    "RE38",
+    "RE39",
+    "RE40"
   ],
   "completedPromptDefinitions": [
     "RE00",
@@ -85,7 +90,12 @@
     "RE32",
     "RE33",
     "RE34",
-    "RE35"
+    "RE35",
+    "RE36",
+    "RE37",
+    "RE38",
+    "RE39",
+    "RE40"
   ],
   "completedImplementationPackages": [
     "RE01",
@@ -122,7 +132,12 @@
     "RE32",
     "RE33",
     "RE34",
-    "RE35"
+    "RE35",
+    "RE36",
+    "RE37",
+    "RE38",
+    "RE39",
+    "RE40"
   ],
   "targetInternalLevels": 100,
   "learningNorthStar": "RUSSIAN_FIRST_MEANING_FIRST_CONTEXT_FIRST_TRANSLATION_LAST",
@@ -143,8 +158,10 @@
       "managed-multi-user-service-when-justified"
     ]
   },
-  "blockers": [],
-  "nextAction": "Run exact-head CI on the Phase 5/6 closing commit. If green, merge PR #300 automatically under standing user authorization. Then begin canonical review preparation; do not promote FIXTURE_NONCANONICAL_PENDING_RU03 content without an RU03-authorized human review decision.",
+  "blockers": [
+    "RU03_HUMAN_LINGUISTIC_REVIEW_REQUIRED_FOR_15_SCENES"
+  ],
+  "nextAction": "Deep human intervention required: an RU03-authorized HUMAN reviewer must review the 15-scene queue in subjects/russian/docs/engine/RE40_HUMAN_REVIEW_QUEUE.md and record APPROVE / CHANGES_REQUESTED / REJECT decisions bound to exact revision and fingerprint. Do not auto-approve or compile canonical scenes before those decisions exist.",
   "re09Validation": {
     "exactHead": "297cfaabea853b059d8e7f4576db192d498056d4",
     "gates": {
@@ -274,5 +291,26 @@
     "trueOffline": "PASS",
     "rollout": "OPT_IN_FLAG",
     "canonicalPromotion": false
+  },
+  "phase6Merge": {
+    "pr": 300,
+    "mergeCommit": "32b409f1acc265e662d202396cedd08b06af728d",
+    "mainVerifiedIdentical": true
+  },
+  "phase7Validation": {
+    "implementationHead": "c73ed54332835eadc485cbe9416b15294ae45757",
+    "reviewPackets": 15,
+    "structuralPreflight": "PASS",
+    "autoApproved": 0,
+    "aiApprovalBlocked": true,
+    "humanDecisionRevisionBound": true,
+    "staleDecisionBlocked": true,
+    "sourceFixtureImmutable": true,
+    "engineering": "PASS",
+    "humanReview": "REQUIRED",
+    "approved": 0,
+    "pending": 15,
+    "canonicalPublicationReady": false,
+    "rollout": "OPT_IN_FLAG"
   }
 }
