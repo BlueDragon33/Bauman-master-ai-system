@@ -30,27 +30,36 @@ export function buildRe48Candidate({base=loadReviewableCandidates()}={}){
   if(base.dialogues.revision!=='repair-dialogues-ai-draft-r2')fail('unexpected dialogue base revision');
 
   const spatial=clone(base.spatial),dialogues=clone(base.dialogues);
+  const nextSpatialRevision='real-life-r4-ai-candidate-1';
+  const nextDialogueRevision='repair-dialogues-ai-draft-r3';
+
   const s=spatial.scenes.find(x=>x.sceneId==='rl-15-university');
   const sp=PATCHES.spatial['rl-15-university'];
   if(!s||s.russianDraft!==sp.from)fail('rl-15 old text drift');
   if(s.utteranceSpeakerRole!=='classmate'||s.utteranceRecipientRole!=='learner')fail('rl-15 roles drift');
   if(s.expectedAction?.kind!=='handover-object'||s.expectedAction?.toNodeId!=='classmate')fail('rl-15 action drift');
   s.russianDraft=sp.to;
-  s.revision='real-life-r4-ai-candidate-1';
-  s.status='AI_DRAFT_PENDING_RU03';
-  spatial.revision='real-life-r4-ai-candidate-1';
+  spatial.revision=nextSpatialRevision;
   spatial.status='AI_DRAFT_PENDING_RU03';
   spatial.humanApproval=false;
+  for(const scene of spatial.scenes){
+    scene.revision=nextSpatialRevision;
+    scene.status='AI_DRAFT_PENDING_RU03';
+    scene.humanApproval=false;
+  }
 
   const d=dialogues.scenes.find(x=>x.sceneId==='repair-dorm-shower');
   const dp=PATCHES.dialogues['repair-dorm-shower'];
   if(!d||d.surface?.[dp.field]!==dp.from)fail('dorm reply old text drift');
   if(d.targetNodeId!=='shower-room'||d.turnRoles?.reply?.speakerRole!=='dorm-administrator'||d.turnRoles?.reply?.recipientRole!=='learner')fail('dorm reply context drift');
   d.surface[dp.field]=dp.to;
-  d.status='AI_DRAFT_PENDING_RU03';
-  dialogues.revision='repair-dialogues-ai-draft-r3';
+  dialogues.revision=nextDialogueRevision;
   dialogues.status='AI_DRAFT_PENDING_RU03';
   dialogues.humanApproval=false;
+  for(const scene of dialogues.scenes){
+    scene.status='AI_DRAFT_PENDING_RU03';
+    scene.humanApproval=false;
+  }
 
   return Object.freeze({
     schema:'RUSSIAN_ENGINE_RE48_LINGUISTIC_REDTEAM_CANDIDATE_V1',
@@ -83,6 +92,7 @@ export function validateRe48Candidate(candidate){
   if(d?.surface?.reply!=='Душевая в конце коридора справа.')errors.push('dorm correction');
   if(d?.targetNodeId!=='shower-room')errors.push('dorm target');
   if(candidate?.spatial?.revision!=='real-life-r4-ai-candidate-1')errors.push('spatial revision');
+  if(candidate?.spatial?.scenes?.some(x=>x.revision!==candidate.spatial.revision))errors.push('spatial scene revision drift');
   if(candidate?.dialogues?.revision!=='repair-dialogues-ai-draft-r3')errors.push('dialogue revision');
   return Object.freeze({ok:errors.length===0,errors,canonicalPublicationReady:false});
 }
