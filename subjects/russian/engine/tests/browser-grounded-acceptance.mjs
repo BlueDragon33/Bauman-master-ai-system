@@ -147,6 +147,30 @@ try{
     renderedSettings.push({setting,sceneId:state.sceneId,spoken});
   }
 
+  // Pre-A0 contract: Vietnamese help is optional; an icon click cannot certify a location.
+  const metroPreviewUrl=new URL(
+    'subjects/russian/index.html?ruEngine=grounded-v1&ruWorld=real-life-v1&ruSetting=metro',
+    BASE
+  ).href;
+  await page.goto(metroPreviewUrl,{waitUntil:'domcontentloaded',timeout:30000});
+  await page.waitForSelector('[data-russian-engine-grounded="1"]',{timeout:15000});
+  await page.waitForFunction(()=>window.RussianEngineIntegration?.status?.().grounded?.state==='READY',null,{timeout:15000});
+  const metroPreview=page.locator('[data-russian-engine-grounded="1"]');
+  assert.match(await metroPreview.innerText(),/Bối cảnh: Tàu điện ngầm/);
+  assert.equal(await metroPreview.locator('[data-re-a0-detail]').isVisible(),false);
+  await metroPreview.locator('[data-re-a0-help]').click();
+  assert.equal(await metroPreview.locator('[data-re-a0-detail]').isVisible(),true);
+  assert.match(await metroPreview.locator('[data-re-a0-detail]').innerText(),/KHÔNG có nghĩa/);
+  const beforePreviewRows=await page.evaluate(()=>JSON.parse(localStorage.getItem('bauman_russian_engine_evidence_outbox_v1')||'{"rows":[]}').rows.length);
+  assert.equal((await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status)).sceneId,'rl-07-metro');
+  await metroPreview.locator('[data-re-object="ticket"]').click();
+  assert.match(await metroPreview.locator('[data-re-status]').innerText(),/chưa kiểm tra vị trí/);
+  assert.equal(await metroPreview.locator('[data-re-receiver] .re-grounded__requester').count(),1,'a location icon must not transfer to a person');
+  assert.equal(await metroPreview.locator('[data-re-object="ticket"].is-recognized').count(),1,'location icon recognition must be highlighted');
+  const afterPreviewRows=await page.evaluate(()=>JSON.parse(localStorage.getItem('bauman_russian_engine_evidence_outbox_v1')||'{"rows":[]}').rows.length);
+  assert.equal(afterPreviewRows,beforePreviewRows,'an icon-only location cannot be sent to RU04');
+  assert.equal((await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status)).evidenceCount,1,'practice-only local observation should remain auditable');
+
   const adaptiveRoomUrl=new URL(
     'subjects/russian/index.html?ruEngine=grounded-v1&ruWorld=real-life-v1&ruSetting=room',
     BASE
