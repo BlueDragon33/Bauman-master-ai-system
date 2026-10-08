@@ -1,5 +1,6 @@
 import {validateRepairDialogueCandidate,advanceRepairDialogueDraft} from '../conversation/repair-dialogue-candidate.mjs';
 import {validateSpatialCandidate} from '../world/spatial-candidate-runtime.mjs';
+import {createPreviewSpeechGate} from './preview-speech-gate.mjs';
 
 const DIALOGUE_URL=new URL('../content/fixtures/repair-dialogues.r1-ai-proposal.json',import.meta.url);
 const WORLD_URL=new URL('../content/fixtures/real-life-spatial.r2-ai-proposal.json',import.meta.url);
@@ -78,6 +79,7 @@ export async function mountRepairDialogueExperience({
   host.appendChild(section);
   addStyle(documentLike);
   let sceneIndex=0,state={phase:'greet',repairCount:0,repairMode:null},attempts=0;
+  const speechGate=createPreviewSpeechGate({playStimulus:input=>speechProvider?.playStimulus?.(input)});
   const scene=()=>pack.scenes[sceneIndex];
   const world=()=>worldPack.worlds.find(w=>w.worldId===scene().worldId);
   function currentUtterance(){
@@ -88,14 +90,14 @@ export async function mountRepairDialogueExperience({
     return scene().surface[state.phase]||'';
   }
   function play(rate=1){
-    if(typeof speechProvider?.playStimulus!=='function')return {started:false};
-    return speechProvider.playStimulus({audioText:currentUtterance(),sourceType:'TTS_FALLBACK',rate});
+    return speechGate.play({audioText:currentUtterance(),rate});
   }
   function feedback(value){
     const el=section.querySelector('[data-re44-feedback]');if(el)el.textContent=value;
   }
   function advance(action,nodeId){
     attempts++;
+    speechGate.invalidate();
     const result=advanceRepairDialogueDraft({state,scene:scene(),action,nodeId});
     state=result.state;
     render(result);
@@ -139,10 +141,14 @@ export async function mountRepairDialogueExperience({
     ].join('');
     section.querySelector('[data-re44-scene]').addEventListener('change',event=>{
       const n=Number(event.currentTarget.value);if(!Number.isInteger(n)||n<0||n>=pack.scenes.length)return;
-      sceneIndex=n;state={phase:'greet',repairCount:0,repairMode:null};render();
+      speechGate.invalidate();sceneIndex=n;state={phase:'greet',repairCount:0,repairMode:null};render();
     });
-    section.querySelector('[data-re44-play]').addEventListener('click',()=>{const r=play();if(!r?.started)feedback('Âm thanh chưa sẵn sàng. Có thể xem bản nháp chữ Nga khi cần.')});
-    section.querySelector('[data-re44-slow]').addEventListener('click',()=>{const r=play(.7);if(!r?.started)feedback('Không thể phát âm thanh chậm lúc này.')});
+    section.querySelector('[data-re44-play]').addEventListener('click',()=>{
+      void play().then(r=>{if(!r.started&&!['busy','duplicate','stale','disposed'].includes(r.reason))feedback('Âm thanh chưa sẵn sàng. Có thể xem bản nháp chữ Nga khi cần.');});
+    });
+    section.querySelector('[data-re44-slow]').addEventListener('click',()=>{
+      void play(.7).then(r=>{if(!r.started&&!['busy','duplicate','stale','disposed'].includes(r.reason))feedback('Không thể phát âm thanh chậm lúc này.');});
+    });
     section.querySelector('[data-re44-show-script]').addEventListener('click',event=>{
       const node=section.querySelector('[data-re44-script]');node.hidden=!node.hidden;
       event.currentTarget.setAttribute('aria-expanded',String(!node.hidden));
@@ -152,7 +158,7 @@ export async function mountRepairDialogueExperience({
     section.querySelector('[data-re44-slower]').addEventListener('click',()=>advance('repair-slower'));
     section.querySelector('[data-re44-advance]').addEventListener('click',()=>advance('advance'));
     section.querySelector('[data-re44-next]').addEventListener('click',()=>{
-      sceneIndex=(sceneIndex+1)%pack.scenes.length;state={phase:'greet',repairCount:0,repairMode:null};render();
+      speechGate.invalidate();sceneIndex=(sceneIndex+1)%pack.scenes.length;state={phase:'greet',repairCount:0,repairMode:null};render();
     });
     for(const node of section.querySelectorAll('[data-re44-node]'))node.addEventListener('click',()=>{
       if(state.phase==='locate')advance('locate',node.dataset.re44Node);
@@ -165,6 +171,6 @@ export async function mountRepairDialogueExperience({
     status:()=>({sceneId:scene().sceneId,setting:scene().worldId,catalog:'repair-dialogue-ai-draft',phase:state.phase,
       repairCount:state.repairCount,previewOnly:true,evidenceCount:0,masteryMutation:false,canonicalPublicationReady:false,attemptCount:attempts}),
     evidence:()=>[],
-    unmount(){section.remove();if(!host.childElementCount)host.remove();return true}
+    unmount(){speechGate.dispose();section.remove();if(!host.childElementCount)host.remove();return true}
   };
 }
