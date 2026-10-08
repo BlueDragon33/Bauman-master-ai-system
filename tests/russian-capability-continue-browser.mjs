@@ -121,12 +121,12 @@ try{
  const progressAfterReview=await page.evaluate(()=>Number(state.progress?.russian||0));
  assert.equal(progressAfterReview,progressBefore,'Capability navigation and review heartbeat must not mutate canonical progress');
 
- await page.evaluate(empty=>{
+ await page.evaluate(async empty=>{
   app.closeStudy();
   localStorage.setItem('bauman_russian_learning_state_v1',JSON.stringify(empty));
   state.lastStudy={subjectId:'russian',path:'subjects/russian/index.html'};
   state.subjectCapabilities.russian={schema:'RUSSIAN_CAPABILITY_BRIDGE_V1',subjectId:'russian',currentBand:{id:'R0',reviewDue:0},nextGap:{lessonId:'R04',step:'check',route:{view:'learning',learnTab:'review',lessonId:'R04'}},stageExit:{reviewDue:0}};
-  save();
+  await Promise.resolve(save());
  },emptyLearningState());
  await page.reload({waitUntil:'domcontentloaded',timeout:30000});
   await page.waitForFunction(expected=>document.documentElement.dataset.baumanDeviceAccess===expected,expectedDeviceState,{timeout:30000});
