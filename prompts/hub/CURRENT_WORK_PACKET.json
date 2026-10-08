@@ -314,8 +314,8 @@
     "additionalPreviouslyAuthorizedOwner": "tests/system-browser-acceptance.mjs",
     "reason": "Fix ordinary CI failure inside already allowed system-browser test; no new path authorization added"
   },
-  "observedMainSha": "2b19d2e9b50d98b29c8a2381b5cbcf8c831aad36",
-  "reconciledMainSha": "2b19d2e9b50d98b29c8a2381b5cbcf8c831aad36",
+  "observedMainSha": "89c3292c2432b33ea0740e0014d56aa135185449",
+  "reconciledMainSha": "89c3292c2432b33ea0740e0014d56aa135185449",
   "previousScopeInstructions": [
     {
       "authority": "Direct human instruction 2026-10-08: exactly two root test files; Hub launch/config ownership assertions only",
@@ -416,9 +416,9 @@
       "resolvedAt": "2026-10-08T09:48:57.638Z"
     }
   ],
-  "lastUpdatedAt": "2026-10-08T09:56:25.839Z",
-  "previousHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e",
-  "beforeSha": "2b19d2e9b50d98b29c8a2381b5cbcf8c831aad36",
+  "lastUpdatedAt": "2026-10-08T10:03:08.294Z",
+  "previousHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6",
+  "beforeSha": "89c3292c2432b33ea0740e0014d56aa135185449",
   "reconciliationHistory": [
     {
       "mainSha": "6e312312c6161d4b37795c311653840f5139a9f7",
@@ -442,6 +442,19 @@
         "subjects/russian/sw.js"
       ],
       "at": "2026-10-08T09:56:25.839Z"
+    },
+    {
+      "mainSha": "89c3292c2432b33ea0740e0014d56aa135185449",
+      "previousGreenHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6",
+      "mergedHead": "dce6086b772fae4fa588f6b03bec91ab17b78cba",
+      "method": "Merge latest main into the Codex PR branch without conflicts; Hub runtime/tests/workflows unchanged. Inherited Subject file names and object identities checked without content reads.",
+      "inheritedSubjectPaths": [
+        "subjects/russian/docs/engine/RE42_SPATIAL_MEANINGFUL_WORLD_CANDIDATE.md",
+        "subjects/russian/engine/content/fixtures/real-life-spatial.r2-ai-proposal.json",
+        "subjects/russian/engine/tests/test-re42-spatial-candidate.mjs",
+        "subjects/russian/engine/world/spatial-candidate-runtime.mjs"
+      ],
+      "at": "2026-10-08T10:03:08.294Z"
     }
   ]
 }

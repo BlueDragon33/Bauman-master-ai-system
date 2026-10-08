@@ -215,8 +215,8 @@
   "mainSyncStatus": "RECONCILED_LATEST_MAIN",
   "governanceMergedSha": "6ef5e8814ac841f927f079e18d5062274ee0d847",
   "lastReviewedRuntimeSha": "5e5a6eacf7b807b3ecad636a4c735899c7ec9963",
-  "currentHeadSha": "5671da8f6d442ceac76123ae355bddd4815dfd1e",
-  "testedRuntimeHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e",
+  "currentHeadSha": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6",
+  "testedRuntimeHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6",
   "executionResult": "prompts/hub/CURRENT_EXECUTION_RESULT.json",
   "lastExecution": {
     "packetId": "HUB-SUBJECT-INTEGRATION-20261007-001",
@@ -272,7 +272,7 @@
   "codexStart": "prompts/hub/codex/CODEX_START.md",
   "lastPromptReviewSha": "23973e7106b9ac511f91c523d8f8bffd07c17530",
   "lastRuntimeReviewSha": "cd5046933c00605b00b461a1d651f7022cab70aa",
-  "observedMainSha": "2b19d2e9b50d98b29c8a2381b5cbcf8c831aad36",
+  "observedMainSha": "89c3292c2432b33ea0740e0014d56aa135185449",
   "currentHeadSemantics": "Exact fully tested implementation/assertion predecessor HEAD. The evidence-only completion commit is independently revalidated; its exact final HEAD, fresh CI and remote JSON blob IDs are sealed in refs/notes/hub-subject-integration and PR #295, avoiding a self-referential commit SHA.",
   "activePacketId": "HUB-SUBJECT-INTEGRATION-20261007-001",
   "activePacketRevision": 1,
@@ -325,11 +325,11 @@
   },
   "fullSystemValidated": true,
   "productionDeployed": false,
-  "reconciledMainSha": "2b19d2e9b50d98b29c8a2381b5cbcf8c831aad36",
-  "previousHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e",
-  "finalHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e",
+  "reconciledMainSha": "89c3292c2432b33ea0740e0014d56aa135185449",
+  "previousHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6",
+  "finalHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6",
   "finalHeadSemantics": "Exact fully tested implementation/assertion predecessor HEAD. The evidence-only completion commit is independently revalidated; its exact final HEAD, fresh CI and remote JSON blob IDs are sealed in refs/notes/hub-subject-integration and PR #295, avoiding a self-referential commit SHA.",
-  "beforeSha": "2b19d2e9b50d98b29c8a2381b5cbcf8c831aad36",
+  "beforeSha": "89c3292c2432b33ea0740e0014d56aa135185449",
   "initialObservedMainSha": "84215c8b1ec32a29dd9f72291060418ad292d575",
   "reconciliationHistory": [
     "84215c8b1ec32a29dd9f72291060418ad292d575",
@@ -363,6 +363,19 @@
         "subjects/russian/sw.js"
       ],
       "at": "2026-10-08T09:56:25.839Z"
+    },
+    {
+      "mainSha": "89c3292c2432b33ea0740e0014d56aa135185449",
+      "previousGreenHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6",
+      "mergedHead": "dce6086b772fae4fa588f6b03bec91ab17b78cba",
+      "method": "Merge latest main into the Codex PR branch without conflicts; Hub runtime/tests/workflows unchanged. Inherited Subject file names and object identities checked without content reads.",
+      "inheritedSubjectPaths": [
+        "subjects/russian/docs/engine/RE42_SPATIAL_MEANINGFUL_WORLD_CANDIDATE.md",
+        "subjects/russian/engine/content/fixtures/real-life-spatial.r2-ai-proposal.json",
+        "subjects/russian/engine/tests/test-re42-spatial-candidate.mjs",
+        "subjects/russian/engine/world/spatial-candidate-runtime.mjs"
+      ],
+      "at": "2026-10-08T10:03:08.294Z"
     }
   ],
   "previousBoundaryBlockers": [
@@ -424,7 +437,7 @@
       "historicalApprovedValidatorBlobPreserved": true
     }
   },
-  "afterSha": "5671da8f6d442ceac76123ae355bddd4815dfd1e",
+  "afterSha": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6",
   "latestScopeInstruction": {
     "authority": "Direct human approval to resolve both remaining blockers, 2026-10-08",
     "paths": [
@@ -439,7 +452,7 @@
     "noCoverageReduction": true,
     "noTimeoutIncrease": true
   },
-  "lastUpdatedAt": "2026-10-08T09:56:25.839Z",
+  "lastUpdatedAt": "2026-10-08T10:03:08.294Z",
   "resolvedScopeBlockers": [
     {
       "id": "HUB-INTEGRATION-CI-SCOPE-STUDY-PLAN",
@@ -527,19 +540,16 @@
     }
   ],
   "latestMainReconciliation": {
-    "mainSha": "2b19d2e9b50d98b29c8a2381b5cbcf8c831aad36",
-    "previousGreenHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e",
-    "mergedHead": "104d902f040d634b26199ef55ac6c32811bb42c7",
+    "mainSha": "89c3292c2432b33ea0740e0014d56aa135185449",
+    "previousGreenHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6",
+    "mergedHead": "dce6086b772fae4fa588f6b03bec91ab17b78cba",
     "method": "Merge latest main into the Codex PR branch without conflicts; Hub runtime/tests/workflows unchanged. Inherited Subject file names and object identities checked without content reads.",
     "inheritedSubjectPaths": [
-      "subjects/russian/docs/engine/RE41_ZERO_RUSSIAN_A0_SAFETY_BRIDGE.md",
-      "subjects/russian/engine/integration/beginner-scene-guide.js",
-      "subjects/russian/engine/integration/grounded-browser-model.js",
-      "subjects/russian/engine/integration/grounded-experience.js",
-      "subjects/russian/engine/tests/browser-grounded-acceptance.mjs",
-      "subjects/russian/engine/tests/test-re41-a0-safe-practice.mjs",
-      "subjects/russian/sw.js"
+      "subjects/russian/docs/engine/RE42_SPATIAL_MEANINGFUL_WORLD_CANDIDATE.md",
+      "subjects/russian/engine/content/fixtures/real-life-spatial.r2-ai-proposal.json",
+      "subjects/russian/engine/tests/test-re42-spatial-candidate.mjs",
+      "subjects/russian/engine/world/spatial-candidate-runtime.mjs"
     ],
-    "at": "2026-10-08T09:56:25.839Z"
+    "at": "2026-10-08T10:03:08.294Z"
   }
 }

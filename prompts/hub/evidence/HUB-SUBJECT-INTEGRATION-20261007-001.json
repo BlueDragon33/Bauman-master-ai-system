@@ -1,8 +1,8 @@
 {
   "packetId": "HUB-SUBJECT-INTEGRATION-20261007-001",
   "revision": 1,
-  "beforeSha": "2b19d2e9b50d98b29c8a2381b5cbcf8c831aad36",
-  "testedRuntimeHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e",
+  "beforeSha": "89c3292c2432b33ea0740e0014d56aa135185449",
+  "testedRuntimeHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6",
   "releaseState": "LOCAL_STABLE",
   "fullSystemValidated": true,
   "localSuites": [
@@ -12,7 +12,7 @@
       "status": "PASS",
       "log": "artifacts/hub-storage/integration-stable-source-hub-subject-integration-static.log",
       "group": "source",
-      "testedHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e"
+      "testedHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6"
     },
     {
       "test": "tests/hub-subject-integration-browser.mjs",
@@ -20,7 +20,7 @@
       "status": "PASS",
       "log": "artifacts/hub-storage/integration-stable-source-hub-subject-integration-browser.log",
       "group": "source",
-      "testedHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e"
+      "testedHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6"
     },
     {
       "test": "tests/hub-subject-config-browser.mjs",
@@ -28,7 +28,7 @@
       "status": "PASS",
       "log": "artifacts/hub-storage/integration-stable-source-hub-subject-config-browser.log",
       "group": "source",
-      "testedHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e"
+      "testedHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6"
     },
     {
       "test": "tests/hub-personal-storage-static.mjs",
@@ -36,7 +36,7 @@
       "status": "PASS",
       "log": "artifacts/hub-storage/integration-stable-source-hub-personal-storage-static.log",
       "group": "source",
-      "testedHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e"
+      "testedHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6"
     },
     {
       "test": "tests/runtime-access-mode-static.mjs",
@@ -44,7 +44,7 @@
       "status": "PASS",
       "log": "artifacts/hub-storage/integration-stable-source-runtime-access-mode-static.log",
       "group": "source",
-      "testedHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e"
+      "testedHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6"
     },
     {
       "test": "tests/runtime-access-mode-behavior.mjs",
@@ -52,7 +52,7 @@
       "status": "PASS",
       "log": "artifacts/hub-storage/integration-stable-source-runtime-access-mode-behavior.log",
       "group": "source",
-      "testedHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e"
+      "testedHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6"
     },
     {
       "test": "tests/schedule-reference-v1-static.mjs",
@@ -60,7 +60,7 @@
       "status": "PASS",
       "log": "artifacts/hub-storage/integration-stable-source-schedule-reference-v1-static.log",
       "group": "source",
-      "testedHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e"
+      "testedHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6"
     },
     {
       "test": "tests/subjects-reference-v1-static.mjs",
@@ -68,7 +68,7 @@
       "status": "PASS",
       "log": "artifacts/hub-storage/integration-stable-source-subjects-reference-v1-static.log",
       "group": "source",
-      "testedHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e"
+      "testedHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6"
     },
     {
       "test": "tests/thesis-reference-v1-static.mjs",
@@ -76,7 +76,7 @@
       "status": "PASS",
       "log": "artifacts/hub-storage/integration-stable-source-thesis-reference-v1-static.log",
       "group": "source",
-      "testedHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e"
+      "testedHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6"
     },
     {
       "test": "tests/hub-data-truth-static.mjs",
@@ -84,7 +84,7 @@
       "status": "PASS",
       "log": "artifacts/hub-storage/integration-stable-source-hub-data-truth-static.log",
       "group": "source",
-      "testedHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e"
+      "testedHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6"
     },
     {
       "test": "tests/hub-personal-storage-browser.mjs",
@@ -92,7 +92,7 @@
       "status": "PASS",
       "log": "artifacts/hub-storage/integration-stable-source-hub-personal-storage-browser.log",
       "group": "source",
-      "testedHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e"
+      "testedHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6"
     },
     {
       "test": "tests/academic-browser-acceptance-13e.mjs",
@@ -100,7 +100,7 @@
       "status": "PASS",
       "log": "artifacts/hub-storage/integration-stable-source-academic-browser-acceptance-13e.log",
       "group": "source",
-      "testedHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e"
+      "testedHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6"
     },
     {
       "test": "tests/deep-study-journal-browser.mjs",
@@ -108,7 +108,7 @@
       "status": "PASS",
       "log": "artifacts/hub-storage/integration-stable-source-deep-study-journal-browser.log",
       "group": "source",
-      "testedHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e"
+      "testedHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6"
     },
     {
       "test": "tests/schedule-reference-v1-browser.mjs",
@@ -116,7 +116,7 @@
       "status": "PASS",
       "log": "artifacts/hub-storage/integration-stable-source-schedule-reference-v1-browser.log",
       "group": "source",
-      "testedHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e"
+      "testedHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6"
     },
     {
       "test": "tests/subjects-reference-v1-browser.mjs",
@@ -124,7 +124,7 @@
       "status": "PASS",
       "log": "artifacts/hub-storage/integration-stable-source-subjects-reference-v1-browser.log",
       "group": "source",
-      "testedHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e"
+      "testedHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6"
     },
     {
       "test": "tests/thesis-reference-v1-browser.mjs",
@@ -132,7 +132,7 @@
       "status": "PASS",
       "log": "artifacts/hub-storage/integration-stable-source-thesis-reference-v1-browser.log",
       "group": "source",
-      "testedHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e"
+      "testedHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6"
     },
     {
       "test": "tests/hub-data-truth-browser.mjs",
@@ -140,30 +140,15 @@
       "status": "PASS",
       "log": "artifacts/hub-storage/integration-stable-source-hub-data-truth-browser.log",
       "group": "source",
-      "testedHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e"
+      "testedHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6"
     },
     {
       "test": "tests/hub-premium-responsive-browser.mjs",
       "exitCode": 0,
       "status": "PASS",
-      "log": "artifacts/hub-storage/integration-stable-retry-hub-premium-responsive-browser.log",
-      "attempts": [
-        {
-          "test": "tests/hub-premium-responsive-browser.mjs",
-          "exitCode": 1,
-          "status": "FAIL",
-          "log": "artifacts/hub-storage/integration-stable-source-hub-premium-responsive-browser.log"
-        },
-        {
-          "test": "tests/hub-premium-responsive-browser.mjs",
-          "exitCode": 0,
-          "status": "PASS",
-          "log": "artifacts/hub-storage/integration-stable-retry-hub-premium-responsive-browser.log"
-        }
-      ],
-      "retryReason": "Unchanged test/runtime: initial check sampled the detail control during asynchronous home replacement and delayed safe-shell repair. Original assertions preserved; previous failed evidence retained.",
+      "log": "artifacts/hub-storage/integration-stable-source-hub-premium-responsive-browser.log",
       "group": "source",
-      "testedHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e"
+      "testedHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6"
     },
     {
       "test": "tests/system-browser-acceptance.mjs --hub-only",
@@ -171,7 +156,7 @@
       "status": "PASS",
       "log": "artifacts/hub-storage/integration-stable-source-system-browser-acceptance.log",
       "group": "source",
-      "testedHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e"
+      "testedHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6"
     },
     {
       "test": "tests/russian-capability-continue-static.mjs",
@@ -179,7 +164,7 @@
       "status": "PASS",
       "log": "artifacts/hub-storage/integration-stable-source-russian-capability-continue-static.log",
       "group": "source",
-      "testedHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e"
+      "testedHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6"
     },
     {
       "test": "tests/hub-subject-integration-browser.mjs",
@@ -187,7 +172,7 @@
       "status": "PASS",
       "log": "artifacts/hub-storage/integration-stable-package-hub-subject-integration-browser.log",
       "group": "package",
-      "testedHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e"
+      "testedHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6"
     },
     {
       "test": "tests/hub-subject-config-browser.mjs",
@@ -195,7 +180,7 @@
       "status": "PASS",
       "log": "artifacts/hub-storage/integration-stable-package-hub-subject-config-browser.log",
       "group": "package",
-      "testedHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e"
+      "testedHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6"
     },
     {
       "test": "tests/hub-personal-storage-browser.mjs",
@@ -203,7 +188,7 @@
       "status": "PASS",
       "log": "artifacts/hub-storage/integration-stable-package-hub-personal-storage-browser.log",
       "group": "package",
-      "testedHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e"
+      "testedHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6"
     },
     {
       "test": "tests/system-browser-acceptance.mjs --hub-only",
@@ -211,7 +196,7 @@
       "status": "PASS",
       "log": "artifacts/hub-storage/integration-stable-package-system-browser-acceptance.log",
       "group": "package",
-      "testedHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e"
+      "testedHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6"
     },
     {
       "test": "tests/hub-subject-integration-browser.mjs",
@@ -219,7 +204,7 @@
       "status": "PASS",
       "log": "artifacts/hub-storage/integration-stable-managed-hub-subject-integration-browser.log",
       "group": "managed",
-      "testedHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e"
+      "testedHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6"
     },
     {
       "test": "tests/hub-subject-config-browser.mjs",
@@ -227,7 +212,7 @@
       "status": "PASS",
       "log": "artifacts/hub-storage/integration-stable-managed-hub-subject-config-browser.log",
       "group": "managed",
-      "testedHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e"
+      "testedHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6"
     },
     {
       "test": "tests/hub-personal-storage-browser.mjs",
@@ -235,7 +220,7 @@
       "status": "PASS",
       "log": "artifacts/hub-storage/integration-stable-managed-hub-personal-storage-browser.log",
       "group": "managed",
-      "testedHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e"
+      "testedHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6"
     },
     {
       "test": "tests/system-browser-acceptance.mjs --hub-only",
@@ -243,7 +228,7 @@
       "status": "PASS",
       "log": "artifacts/hub-storage/integration-stable-managed-boundary-system-browser-acceptance.log",
       "group": "managed-boundary",
-      "testedHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e"
+      "testedHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6"
     }
   ],
   "storageChecks": [
@@ -430,124 +415,124 @@
     "completeOriginalScriptsPassedRemotely": true
   },
   "ci": {
-    "headSha": "5671da8f6d442ceac76123ae355bddd4815dfd1e",
-    "checkedAt": "2026-10-08T09:55:15.316Z",
+    "headSha": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6",
+    "checkedAt": "2026-10-08T10:03:07.804Z",
     "allWorkflowsGreen": true,
     "workflowCount": 10,
     "runs": [
       {
-        "id": 37759292475,
-        "name": "Prompt Control Center CI",
-        "status": "completed",
-        "conclusion": "success",
-        "attempt": 1,
-        "headSha": "5671da8f6d442ceac76123ae355bddd4815dfd1e",
-        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37759292475"
-      },
-      {
-        "id": 37759292474,
-        "name": "Dependency Independence Governance",
-        "status": "completed",
-        "conclusion": "success",
-        "attempt": 1,
-        "headSha": "5671da8f6d442ceac76123ae355bddd4815dfd1e",
-        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37759292474"
-      },
-      {
-        "id": 37759292448,
-        "name": "Development Fast CI",
-        "status": "completed",
-        "conclusion": "success",
-        "attempt": 1,
-        "headSha": "5671da8f6d442ceac76123ae355bddd4815dfd1e",
-        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37759292448"
-      },
-      {
-        "id": 37759292477,
-        "name": "Russian Reference UI Gate",
-        "status": "completed",
-        "conclusion": "success",
-        "attempt": 1,
-        "headSha": "5671da8f6d442ceac76123ae355bddd4815dfd1e",
-        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37759292477"
-      },
-      {
-        "id": 37759292538,
-        "name": "Subjects Reference CI",
-        "status": "completed",
-        "conclusion": "success",
-        "attempt": 1,
-        "headSha": "5671da8f6d442ceac76123ae355bddd4815dfd1e",
-        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37759292538"
-      },
-      {
-        "id": 37759293177,
+        "id": 37760131932,
         "name": "Universal Constitution Compliance",
         "status": "completed",
         "conclusion": "success",
         "attempt": 1,
-        "headSha": "5671da8f6d442ceac76123ae355bddd4815dfd1e",
-        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37759293177"
+        "headSha": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37760131932"
       },
       {
-        "id": 37759292447,
-        "name": "Readable Typography CI",
+        "id": 37760131159,
+        "name": "Russian Reference UI Gate",
         "status": "completed",
         "conclusion": "success",
         "attempt": 1,
-        "headSha": "5671da8f6d442ceac76123ae355bddd4815dfd1e",
-        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37759292447"
+        "headSha": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37760131159"
       },
       {
-        "id": 37759292548,
+        "id": 37760131092,
+        "name": "Development Fast CI",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "headSha": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37760131092"
+      },
+      {
+        "id": 37760131095,
+        "name": "Dependency Independence Governance",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "headSha": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37760131095"
+      },
+      {
+        "id": 37760131199,
+        "name": "Prompt Control Center CI",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "headSha": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37760131199"
+      },
+      {
+        "id": 37760131089,
         "name": "Thesis Reference CI",
         "status": "completed",
         "conclusion": "success",
         "attempt": 1,
-        "headSha": "5671da8f6d442ceac76123ae355bddd4815dfd1e",
-        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37759292548"
+        "headSha": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37760131089"
       },
       {
-        "id": 37759292655,
+        "id": 37760131261,
+        "name": "Subjects Reference CI",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "headSha": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37760131261"
+      },
+      {
+        "id": 37760131126,
+        "name": "Readable Typography CI",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "headSha": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37760131126"
+      },
+      {
+        "id": 37760131180,
         "name": "Future Interface System CI",
         "status": "completed",
         "conclusion": "success",
         "attempt": 2,
-        "headSha": "5671da8f6d442ceac76123ae355bddd4815dfd1e",
-        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37759292655"
+        "headSha": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37760131180"
       },
       {
-        "id": 37759292531,
+        "id": 37760131096,
         "name": "Whole System Integration Gate",
         "status": "completed",
         "conclusion": "success",
         "attempt": 1,
-        "headSha": "5671da8f6d442ceac76123ae355bddd4815dfd1e",
-        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37759292531"
+        "headSha": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37760131096"
       }
     ],
     "wholeSystemGate": {
-      "runId": 37759292531,
-      "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37759292531",
-      "headSha": "5671da8f6d442ceac76123ae355bddd4815dfd1e",
+      "runId": 37760131096,
+      "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37760131096",
+      "headSha": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6",
       "status": "completed",
       "conclusion": "success",
       "jobs": [
         {
-          "id": 113251497099,
+          "id": 113254243041,
           "name": "validate-system-integration",
           "conclusion": "success",
           "steps": []
         },
         {
-          "id": 113251606186,
-          "name": "browser-system-acceptance",
+          "id": 113254356222,
+          "name": "russian-p1-browser-acceptance",
           "conclusion": "success",
           "steps": []
         },
         {
-          "id": 113251606260,
-          "name": "russian-p1-browser-acceptance",
+          "id": 113254356259,
+          "name": "browser-system-acceptance",
           "conclusion": "success",
           "steps": []
         }
@@ -591,19 +576,16 @@
   },
   "blockers": [],
   "latestMainReconciliation": {
-    "mainSha": "2b19d2e9b50d98b29c8a2381b5cbcf8c831aad36",
-    "previousGreenHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e",
-    "mergedHead": "104d902f040d634b26199ef55ac6c32811bb42c7",
+    "mainSha": "89c3292c2432b33ea0740e0014d56aa135185449",
+    "previousGreenHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6",
+    "mergedHead": "dce6086b772fae4fa588f6b03bec91ab17b78cba",
     "method": "Merge latest main into the Codex PR branch without conflicts; Hub runtime/tests/workflows unchanged. Inherited Subject file names and object identities checked without content reads.",
     "inheritedSubjectPaths": [
-      "subjects/russian/docs/engine/RE41_ZERO_RUSSIAN_A0_SAFETY_BRIDGE.md",
-      "subjects/russian/engine/integration/beginner-scene-guide.js",
-      "subjects/russian/engine/integration/grounded-browser-model.js",
-      "subjects/russian/engine/integration/grounded-experience.js",
-      "subjects/russian/engine/tests/browser-grounded-acceptance.mjs",
-      "subjects/russian/engine/tests/test-re41-a0-safe-practice.mjs",
-      "subjects/russian/sw.js"
+      "subjects/russian/docs/engine/RE42_SPATIAL_MEANINGFUL_WORLD_CANDIDATE.md",
+      "subjects/russian/engine/content/fixtures/real-life-spatial.r2-ai-proposal.json",
+      "subjects/russian/engine/tests/test-re42-spatial-candidate.mjs",
+      "subjects/russian/engine/world/spatial-candidate-runtime.mjs"
     ],
-    "at": "2026-10-08T09:56:25.839Z"
+    "at": "2026-10-08T10:03:08.294Z"
   }
 }
