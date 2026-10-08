@@ -17,6 +17,7 @@ assert.equal(candidate.spatial.scenes.find(x=>x.sceneId==='rl-15-university').ru
 assert.equal(candidate.dialogues.scenes.find(x=>x.sceneId==='repair-dorm-shower').surface.reply,'Душевая в конце коридора справа.');
 assert.equal(candidate.spatial.scenes.find(x=>x.sceneId==='rl-15-university').expectedAction.toNodeId,'classmate');
 assert.equal(candidate.dialogues.scenes.find(x=>x.sceneId==='repair-dorm-shower').targetNodeId,'shower-room');
+assert.equal(candidate.spatial.scenes.every(x=>x.revision===candidate.spatial.revision),true,'every spatial scene revision must match pack revision');
 assert.equal(fingerprint(candidate),fingerprint(again),'RE48 output must be deterministic');
 
 const tampered=structuredClone(base);
@@ -28,6 +29,7 @@ console.log(JSON.stringify({
   corrections:2,
   rl15RecipientDisambiguated:true,
   dormLocationAdverbCorrected:true,
+  revisionsAligned:true,
   deterministic:true,
   humanApproval:false,
   canonicalPublicationReady:false
