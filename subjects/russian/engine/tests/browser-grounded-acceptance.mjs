@@ -190,6 +190,10 @@ try{
   assert.equal(await spatial.locator('[data-re-spatial-node="station-entrance"]').count(),1);
   assert.equal(await spatial.locator('[data-re-spatial-node="metro-route-map"]').count(),1);
   assert.equal(await spatial.locator('[data-re-spatial-node="ticket-machine"]').count(),1);
+  assert.equal((await spatial.locator('[data-re-spatial-node="metro-route-map"] .re-spatial__symbol').innerText()).trim(),'SƠ ĐỒ');
+  assert.equal((await spatial.locator('[data-re-spatial-node="station-entrance"] .re-spatial__symbol').innerText()).trim(),'Ⓜ');
+  assert.equal((await spatial.locator('[data-re-spatial-node="ticket-machine"] .re-spatial__symbol').innerText()).trim(),'VÉ');
+  assert.match(await spatial.locator('[data-re-spatial-node="metro-route-map"]').getAttribute('aria-label'),/Sơ đồ tuyến metro/);
   const beforeSpatialStore=await page.evaluate(()=>JSON.parse(localStorage.getItem('bauman_russian_engine_evidence_outbox_v1')||'{"rows":[]}').rows.length);
   await spatial.locator('[data-re-spatial-help-toggle]').click();
   assert.equal(await spatial.locator('[data-re-spatial-help]').isVisible(),true);
@@ -209,6 +213,8 @@ try{
   assert.match(await spatial.locator('[data-re-spatial-feedback]').innerText(),/Đúng vị trí/);
   await spatial.locator('[data-re-spatial-setting]').selectOption('dorm');
   assert.equal((await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status)).sceneId,'rl-10-dorm');
+  assert.equal((await spatial.locator('[data-re-spatial-node="room-12"] .re-spatial__symbol').innerText()).trim(),'P.12');
+  assert.equal((await spatial.locator('[data-re-spatial-node="shower-room"] .re-spatial__symbol').innerText()).trim(),'P.TẮM');
   await spatial.locator('[data-re-spatial-node="key-desk"]').click();
   await spatial.locator('[data-re-spatial-next]').click();
   assert.equal((await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status)).sceneId,'rl-11-dorm');
@@ -249,6 +255,12 @@ try{
   await page.waitForSelector('[data-re44-experience="1"]',{timeout:15000});
   await page.waitForFunction(()=>window.RussianEngineIntegration?.status?.().grounded?.state==='READY',null,{timeout:15000});
   const dialog=page.locator('[data-re44-experience="1"]');
+  assert.equal((await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status)).sceneId,'repair-shop-milk');
+  await dialog.locator('[data-re44-scene]').selectOption('2');
+  assert.equal((await dialog.locator('[data-re44-node="shower-room"] .re44__symbol').innerText()).trim(),'P.TẮM');
+  await dialog.locator('[data-re44-scene]').selectOption('3');
+  assert.equal((await dialog.locator('[data-re44-node="auditorium-12"] .re44__symbol').innerText()).trim(),'A.12');
+  await dialog.locator('[data-re44-scene]').selectOption('0');
   assert.equal((await page.evaluate(()=>window.RussianEngineIntegration.status().grounded.status)).sceneId,'repair-shop-milk');
   assert.match(await dialog.innerText(),/Bạn muốn hỏi nhân viên nơi bán sữa/);
   assert.equal(await dialog.locator('[data-re44-script]').isVisible(),false);
