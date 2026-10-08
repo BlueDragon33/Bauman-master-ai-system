@@ -29,7 +29,7 @@ function spatialSituation(scene){
 }
 function dialogueSituation(scene,field){
   const key={greet:'greeting',request:'request',reply:'reply',thanks:'thank',closing:'thank'}[field];
-  return {setting:scene.vn.setting,purpose:scene.vn.purpose,turnHint:scene.vn[key]||scene.vn.purpose,...(field==='reply'?{directionHint:scene.vn.replyHint}:{} )};
+  return {setting:scene.vn.setting,purpose:scene.vn.purpose,turnHint:scene.vn[key]||scene.vn.purpose,...(field==='reply'?{directionHint:scene.vn.replyHint}:{})};
 }
 function dialogueAction(scene,field){
   if(field==='request')return {kind:'dialogue-intent',targetNodeId:scene.targetNodeId};
