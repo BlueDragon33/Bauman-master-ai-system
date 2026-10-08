@@ -1,27 +1,8 @@
 import {fingerprint} from './re45-review-core.mjs';
 import {loadReviewableCandidates,validateReviewableCandidates} from './re46-reviewable-candidate.mjs';
+import {DRAFT_LINGUISTIC_PATCHES as PATCHES} from './re55-shared-draft-corrections.mjs';
 
 const clone=v=>structuredClone(v);
-
-const PATCHES=Object.freeze({
-  spatial:Object.freeze({
-    'rl-15-university':Object.freeze({
-      from:'Передай, пожалуйста, тетрадь.',
-      to:'Передай мне, пожалуйста, тетрадь.',
-      rationaleVi:'Lời nhờ phải khớp hành động đưa quyển vở cho chính người đang nói. Thêm «мне» loại bỏ mơ hồ người nhận và phù hợp hơn cho người học A0.'
-    })
-  }),
-  dialogues:Object.freeze({
-    'repair-dorm-shower':Object.freeze({
-      field:'reply',
-      from:'Душевая в конце коридора, направо.',
-      to:'Душевая в конце коридора справа.',
-      hintFrom:'Quản lý hướng dẫn đi cuối hành lang rồi rẽ phải.',
-      hintTo:'Quản lý cho biết phòng tắm ở cuối hành lang, bên phải.',
-      rationaleVi:'«направо» là hướng chuyển động (sang phải), còn câu hiện tại mô tả vị trí. «справа» khớp nghĩa vị trí và đơn giản hơn cho A0.'
-    })
-  })
-});
 
 function fail(message){throw new Error('RE48 '+message)}
 
