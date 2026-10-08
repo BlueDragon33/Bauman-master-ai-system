@@ -1,0 +1,3053 @@
+{
+  "schemaVersion": "1.0.0",
+  "packetId": "HUB-SUBJECT-INTEGRATION-20261007-001",
+  "packetRevision": 1,
+  "status": "CODEX_DONE_PENDING_CHAT_REVIEW",
+  "executionState": "LOCAL_STABLE_PENDING_CHAT_REVIEW",
+  "expectedPacketStatus": "CODEX_DONE_PENDING_CHAT_REVIEW",
+  "baselineMainSha": "23973e7106b9ac511f91c523d8f8bffd07c17530",
+  "beforeSha": "89c3292c2432b33ea0740e0014d56aa135185449",
+  "afterSha": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4",
+  "testedRuntimeHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4",
+  "branch": "codex/hub-subject-integration-20261007",
+  "changedPaths": [
+    ".github/workflows/system-integration-ci.yml",
+    "assets/js/hub-premium-v2.js",
+    "assets/js/main.js",
+    "assets/js/planning-main.js",
+    "assets/js/platform/hub-personal-store.js",
+    "assets/js/platform/hub-subject-config.js",
+    "assets/js/platform/hub-subject-launch.js",
+    "assets/js/subjects-reference-v1.js",
+    "index.html",
+    "prompts/PROMPT_REGISTRY.json",
+    "prompts/hub/CURRENT_EXECUTION_RESULT.json",
+    "prompts/hub/CURRENT_WORK_PACKET.json",
+    "prompts/hub/HUB_SHARED_STATE.json",
+    "prompts/hub/evidence/HUB-SUBJECT-INTEGRATION-20261007-001.json",
+    "prompts/hub/plans/HUB-SUBJECT-INTEGRATION-20261007-001-ledger.md",
+    "prompts/hub/plans/HUB-SUBJECT-INTEGRATION-20261007-001.md",
+    "subjects/russian/scripts/validate-capability-deeplink.mjs",
+    "tests/entrepreneurship-subject-static.mjs",
+    "tests/ergonomics-subject-static.mjs",
+    "tests/hub-subject-config-browser.mjs",
+    "tests/hub-subject-integration-browser.mjs",
+    "tests/hub-subject-integration-static.mjs",
+    "tests/mivar-subject-static.mjs",
+    "tests/russian-capability-continue-browser.mjs",
+    "tests/russian-capability-continue-static.mjs",
+    "tests/russian-capability-deeplink-browser.mjs",
+    "tests/study-plan-runtime-integration-static.mjs",
+    "tests/system-browser-acceptance.mjs"
+  ],
+  "defectsFixed": [
+    {
+      "id": "HUB-INTEGRATION-001",
+      "status": "FIXED_REVALIDATED",
+      "verification": "Targeted local and original full source/package/Russian acceptance PASS on exact reconciled HEAD"
+    },
+    {
+      "id": "HUB-INTEGRATION-002",
+      "status": "FIXED_REVALIDATED",
+      "verification": "Targeted local and original full source/package/Russian acceptance PASS on exact reconciled HEAD"
+    },
+    {
+      "id": "HUB-INTEGRATION-003",
+      "status": "FIXED_REVALIDATED",
+      "verification": "Targeted local and original full source/package/Russian acceptance PASS on exact reconciled HEAD"
+    },
+    {
+      "id": "HUB-INTEGRATION-004",
+      "status": "FIXED_REVALIDATED",
+      "verification": "Targeted local and original full source/package/Russian acceptance PASS on exact reconciled HEAD"
+    },
+    {
+      "id": "HUB-INTEGRATION-005",
+      "status": "FIXED_REVALIDATED",
+      "verification": "Targeted local and original full source/package/Russian acceptance PASS on exact reconciled HEAD"
+    }
+  ],
+  "tests": [
+    {
+      "test": "tests/hub-subject-integration-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-stable-source-hub-subject-integration-static.log",
+      "group": "integration-stable-source-",
+      "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4"
+    },
+    {
+      "test": "tests/hub-subject-integration-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-stable-source-hub-subject-integration-browser.log",
+      "group": "integration-stable-source-",
+      "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4"
+    },
+    {
+      "test": "tests/hub-subject-config-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-stable-source-hub-subject-config-browser.log",
+      "group": "integration-stable-source-",
+      "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4"
+    },
+    {
+      "test": "tests/hub-personal-storage-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-stable-source-hub-personal-storage-static.log",
+      "group": "integration-stable-source-",
+      "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4"
+    },
+    {
+      "test": "tests/runtime-access-mode-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-stable-source-runtime-access-mode-static.log",
+      "group": "integration-stable-source-",
+      "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4"
+    },
+    {
+      "test": "tests/runtime-access-mode-behavior.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-stable-source-runtime-access-mode-behavior.log",
+      "group": "integration-stable-source-",
+      "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4"
+    },
+    {
+      "test": "tests/schedule-reference-v1-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-stable-source-schedule-reference-v1-static.log",
+      "group": "integration-stable-source-",
+      "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4"
+    },
+    {
+      "test": "tests/subjects-reference-v1-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-stable-source-subjects-reference-v1-static.log",
+      "group": "integration-stable-source-",
+      "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4"
+    },
+    {
+      "test": "tests/thesis-reference-v1-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-stable-source-thesis-reference-v1-static.log",
+      "group": "integration-stable-source-",
+      "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4"
+    },
+    {
+      "test": "tests/hub-data-truth-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-stable-source-hub-data-truth-static.log",
+      "group": "integration-stable-source-",
+      "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4"
+    },
+    {
+      "test": "tests/hub-personal-storage-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-stable-source-hub-personal-storage-browser.log",
+      "group": "integration-stable-source-",
+      "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4"
+    },
+    {
+      "test": "tests/academic-browser-acceptance-13e.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-stable-source-academic-browser-acceptance-13e.log",
+      "group": "integration-stable-source-",
+      "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4"
+    },
+    {
+      "test": "tests/deep-study-journal-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-stable-source-deep-study-journal-browser.log",
+      "group": "integration-stable-source-",
+      "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4"
+    },
+    {
+      "test": "tests/schedule-reference-v1-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-stable-source-schedule-reference-v1-browser.log",
+      "group": "integration-stable-source-",
+      "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4"
+    },
+    {
+      "test": "tests/subjects-reference-v1-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-stable-source-subjects-reference-v1-browser.log",
+      "group": "integration-stable-source-",
+      "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4"
+    },
+    {
+      "test": "tests/thesis-reference-v1-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-stable-source-thesis-reference-v1-browser.log",
+      "group": "integration-stable-source-",
+      "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4"
+    },
+    {
+      "test": "tests/hub-data-truth-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-stable-source-hub-data-truth-browser.log",
+      "group": "integration-stable-source-",
+      "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4"
+    },
+    {
+      "test": "tests/hub-premium-responsive-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-stable-source-hub-premium-responsive-browser.log",
+      "group": "integration-stable-source-",
+      "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4"
+    },
+    {
+      "test": "tests/system-browser-acceptance.mjs --hub-only",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-stable-source-system-browser-acceptance.log",
+      "group": "integration-stable-source-",
+      "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4"
+    },
+    {
+      "test": "tests/russian-capability-continue-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-stable-source-russian-capability-continue-static.log",
+      "group": "integration-stable-source-",
+      "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4"
+    },
+    {
+      "test": "tests/hub-subject-integration-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-stable-package-hub-subject-integration-browser.log",
+      "group": "integration-stable-package-",
+      "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4"
+    },
+    {
+      "test": "tests/hub-subject-config-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-stable-package-hub-subject-config-browser.log",
+      "group": "integration-stable-package-",
+      "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4"
+    },
+    {
+      "test": "tests/hub-personal-storage-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-stable-package-hub-personal-storage-browser.log",
+      "group": "integration-stable-package-",
+      "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4"
+    },
+    {
+      "test": "tests/system-browser-acceptance.mjs --hub-only",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-stable-package-system-browser-acceptance.log",
+      "group": "integration-stable-package-",
+      "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4"
+    },
+    {
+      "test": "tests/hub-subject-integration-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-stable-managed-hub-subject-integration-browser.log",
+      "group": "integration-stable-managed-",
+      "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4"
+    },
+    {
+      "test": "tests/hub-subject-config-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-stable-managed-hub-subject-config-browser.log",
+      "group": "integration-stable-managed-",
+      "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4"
+    },
+    {
+      "test": "tests/hub-personal-storage-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-stable-managed-hub-personal-storage-browser.log",
+      "group": "integration-stable-managed-",
+      "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4"
+    },
+    {
+      "test": "tests/system-browser-acceptance.mjs --hub-only",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-stable-managed-boundary-system-browser-acceptance.log",
+      "group": "integration-stable-managed-boundary-",
+      "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4"
+    }
+  ],
+  "blockers": [],
+  "releaseState": "LOCAL_STABLE",
+  "productionDeployed": false,
+  "previousAcceptedExecution": {
+    "packetId": "HUB-STORAGE-20261006-001",
+    "packetRevision": 5,
+    "mergeSha": "ec970ccfa23b54944754fff3afdee3b796155f87",
+    "doNotReexecute": true
+  },
+  "observedMainSha": "89c3292c2432b33ea0740e0014d56aa135185449",
+  "reconciledMainSha": "89c3292c2432b33ea0740e0014d56aa135185449",
+  "initialObservedMainSha": "84215c8b1ec32a29dd9f72291060418ad292d575",
+  "reconciliationHistory": [
+    "84215c8b1ec32a29dd9f72291060418ad292d575",
+    "ffd1db07a7fd121aede14a08fceab6a9d0698235",
+    "5924b72ff600dc0798369362ced83356550f2095",
+    {
+      "mainSha": "c4a1467bfa3db28df8ac5dcc55ca40b0046aca2e",
+      "previousHead": "a8412cf4dd9bae28f2c8c60277c545b30f936212",
+      "method": "Rebase without conflicts; only upstream changed path names inspected; no Subject source reads",
+      "at": "2026-10-08T08:24:25.068Z"
+    },
+    {
+      "mainSha": "6e312312c6161d4b37795c311653840f5139a9f7",
+      "rebasedHead": "2c3522089308a5982a32ed45ebfc9dc34b08c424",
+      "previousGreenHead": "cccdcf8d9267799508ef0feead4a459f2ed8bf53",
+      "method": "Rebase without conflicts; only upstream Subject doc filename and Git object identity inspected, no content reads; runtime/tests unchanged",
+      "at": "2026-10-08T09:39:33.027Z"
+    },
+    {
+      "mainSha": "2b19d2e9b50d98b29c8a2381b5cbcf8c831aad36",
+      "previousGreenHead": "5671da8f6d442ceac76123ae355bddd4815dfd1e",
+      "mergedHead": "104d902f040d634b26199ef55ac6c32811bb42c7",
+      "method": "Merge latest main into the Codex PR branch without conflicts; Hub runtime/tests/workflows unchanged. Inherited Subject file names and object identities checked without content reads.",
+      "inheritedSubjectPaths": [
+        "subjects/russian/docs/engine/RE41_ZERO_RUSSIAN_A0_SAFETY_BRIDGE.md",
+        "subjects/russian/engine/integration/beginner-scene-guide.js",
+        "subjects/russian/engine/integration/grounded-browser-model.js",
+        "subjects/russian/engine/integration/grounded-experience.js",
+        "subjects/russian/engine/tests/browser-grounded-acceptance.mjs",
+        "subjects/russian/engine/tests/test-re41-a0-safe-practice.mjs",
+        "subjects/russian/sw.js"
+      ],
+      "at": "2026-10-08T09:56:25.839Z"
+    },
+    {
+      "mainSha": "89c3292c2432b33ea0740e0014d56aa135185449",
+      "previousGreenHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6",
+      "mergedHead": "dce6086b772fae4fa588f6b03bec91ab17b78cba",
+      "method": "Merge latest main into the Codex PR branch without conflicts; Hub runtime/tests/workflows unchanged. Inherited Subject file names and object identities checked without content reads.",
+      "inheritedSubjectPaths": [
+        "subjects/russian/docs/engine/RE42_SPATIAL_MEANINGFUL_WORLD_CANDIDATE.md",
+        "subjects/russian/engine/content/fixtures/real-life-spatial.r2-ai-proposal.json",
+        "subjects/russian/engine/tests/test-re42-spatial-candidate.mjs",
+        "subjects/russian/engine/world/spatial-candidate-runtime.mjs"
+      ],
+      "at": "2026-10-08T10:03:08.294Z"
+    }
+  ],
+  "finalHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4",
+  "afterShaSemantics": "Exact independently retested final draft PR HEAD including completion metadata; this Git note attaches without changing HEAD.",
+  "finalHeadSemantics": "Exact fully tested implementation/assertion predecessor HEAD. The evidence-only completion commit is independently revalidated; its exact final HEAD, fresh CI and remote JSON blob IDs are sealed in refs/notes/hub-subject-integration and PR #295, avoiding a self-referential commit SHA.",
+  "prNumber": 295,
+  "prUrl": "https://github.com/BlueDragon33/Bauman-master-ai-system/pull/295",
+  "targetedTests": [
+    {
+      "test": "tests/hub-subject-integration-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-resolved-source-hub-subject-integration-static.log",
+      "group": "integration-resolved-source-",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa"
+    },
+    {
+      "test": "tests/hub-subject-integration-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-resolved-source-hub-subject-integration-browser.log",
+      "group": "integration-resolved-source-",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa"
+    },
+    {
+      "test": "tests/hub-subject-config-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-resolved-source-hub-subject-config-browser.log",
+      "group": "integration-resolved-source-",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa"
+    },
+    {
+      "test": "tests/hub-personal-storage-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-resolved-source-hub-personal-storage-static.log",
+      "group": "integration-resolved-source-",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa"
+    },
+    {
+      "test": "tests/hub-personal-storage-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-resolved-source-hub-personal-storage-browser.log",
+      "group": "integration-resolved-source-",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa"
+    },
+    {
+      "test": "tests/russian-capability-continue-static.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-resolved-source-russian-capability-continue-static.log",
+      "group": "integration-resolved-source-",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa"
+    },
+    {
+      "test": "tests/hub-subject-integration-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-resolved-package-hub-subject-integration-browser.log",
+      "group": "integration-resolved-package-",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa"
+    },
+    {
+      "test": "tests/hub-subject-config-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-resolved-package-hub-subject-config-browser.log",
+      "group": "integration-resolved-package-",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa"
+    },
+    {
+      "test": "tests/hub-personal-storage-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-resolved-package-hub-personal-storage-browser.log",
+      "group": "integration-resolved-package-",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa"
+    },
+    {
+      "test": "tests/hub-subject-integration-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-resolved-managed-hub-subject-integration-browser.log",
+      "group": "integration-resolved-managed-",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa"
+    },
+    {
+      "test": "tests/hub-subject-config-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-resolved-managed-hub-subject-config-browser.log",
+      "group": "integration-resolved-managed-",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa"
+    },
+    {
+      "test": "tests/hub-personal-storage-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-resolved-managed-hub-personal-storage-browser.log",
+      "group": "integration-resolved-managed-",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa"
+    }
+  ],
+  "browserTests": [
+    {
+      "test": "tests/hub-subject-integration-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-resolved-source-hub-subject-integration-browser.log",
+      "group": "integration-resolved-source-",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa"
+    },
+    {
+      "test": "tests/hub-subject-config-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-resolved-source-hub-subject-config-browser.log",
+      "group": "integration-resolved-source-",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa"
+    },
+    {
+      "test": "tests/hub-personal-storage-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-resolved-source-hub-personal-storage-browser.log",
+      "group": "integration-resolved-source-",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa"
+    },
+    {
+      "test": "tests/academic-browser-acceptance-13e.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-resolved-source-academic-browser-acceptance-13e.log",
+      "group": "integration-resolved-source-",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa"
+    },
+    {
+      "test": "tests/deep-study-journal-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-resolved-source-deep-study-journal-browser.log",
+      "group": "integration-resolved-source-",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa"
+    },
+    {
+      "test": "tests/schedule-reference-v1-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-resolved-source-schedule-reference-v1-browser.log",
+      "group": "integration-resolved-source-",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa"
+    },
+    {
+      "test": "tests/subjects-reference-v1-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-resolved-source-subjects-reference-v1-browser.log",
+      "group": "integration-resolved-source-",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa"
+    },
+    {
+      "test": "tests/thesis-reference-v1-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-resolved-source-thesis-reference-v1-browser.log",
+      "group": "integration-resolved-source-",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa"
+    },
+    {
+      "test": "tests/hub-data-truth-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-resolved-source-hub-data-truth-browser.log",
+      "group": "integration-resolved-source-",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa"
+    },
+    {
+      "test": "tests/hub-premium-responsive-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-resolved-source-hub-premium-responsive-browser.log",
+      "group": "integration-resolved-source-",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa"
+    },
+    {
+      "test": "tests/system-browser-acceptance.mjs --hub-only",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-resolved-source-system-browser-acceptance.log",
+      "group": "integration-resolved-source-",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa"
+    },
+    {
+      "test": "tests/hub-subject-integration-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-resolved-package-hub-subject-integration-browser.log",
+      "group": "integration-resolved-package-",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa"
+    },
+    {
+      "test": "tests/hub-subject-config-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-resolved-package-hub-subject-config-browser.log",
+      "group": "integration-resolved-package-",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa"
+    },
+    {
+      "test": "tests/hub-personal-storage-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-resolved-package-hub-personal-storage-browser.log",
+      "group": "integration-resolved-package-",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa"
+    },
+    {
+      "test": "tests/system-browser-acceptance.mjs --hub-only",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-resolved-package-system-browser-acceptance.log",
+      "group": "integration-resolved-package-",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa"
+    },
+    {
+      "test": "tests/hub-subject-integration-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-resolved-managed-hub-subject-integration-browser.log",
+      "group": "integration-resolved-managed-",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa"
+    },
+    {
+      "test": "tests/hub-subject-config-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-resolved-managed-hub-subject-config-browser.log",
+      "group": "integration-resolved-managed-",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa"
+    },
+    {
+      "test": "tests/hub-personal-storage-browser.mjs",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-resolved-managed-hub-personal-storage-browser.log",
+      "group": "integration-resolved-managed-",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa"
+    },
+    {
+      "test": "tests/system-browser-acceptance.mjs --hub-only",
+      "exitCode": 0,
+      "status": "PASS",
+      "log": "artifacts/hub-storage/integration-resolved-managed-boundary-system-browser-acceptance.log",
+      "group": "integration-resolved-managed-boundary-",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa"
+    }
+  ],
+  "localRegression": {
+    "status": "PASS",
+    "suiteCount": 28,
+    "groups": [
+      {
+        "name": "integration-stable-source-",
+        "count": 20,
+        "status": "PASS",
+        "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4"
+      },
+      {
+        "name": "integration-stable-package-",
+        "count": 4,
+        "status": "PASS",
+        "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4"
+      },
+      {
+        "name": "integration-stable-managed-",
+        "count": 3,
+        "status": "PASS",
+        "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4"
+      },
+      {
+        "name": "integration-stable-managed-boundary-",
+        "count": 1,
+        "status": "PASS",
+        "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4"
+      }
+    ],
+    "boundedHubChecks": {
+      "head": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4",
+      "subjectSourceReads": 0,
+      "subjectPrivateStateOrDOMReads": 0,
+      "results": [
+        {
+          "test": "tests/study-plan-runtime-integration-static.mjs",
+          "status": "PASS",
+          "scope": "Actual Hub ownership assertions with all canonical Hub subject IDs; Subject assets/assertions exercised by unchanged remote CI only"
+        },
+        {
+          "test": "tests/russian-capability-deeplink-browser.mjs",
+          "status": "PASS",
+          "scope": "Actual startup gate with real delayed config IndexedDB and intercepted public launch fixture; no Subject private state/DOM",
+          "actual": {
+            "personalReady": true,
+            "configReady": true,
+            "result": {
+              "status": "CURRENT",
+              "subjectId": "russian",
+              "source": "HUB_APPLICATION_CONFIG",
+              "reason": null,
+              "taskId": "russian::p1::2026-10-08::morning1"
+            },
+            "hasFrame": true
+          }
+        },
+        {
+          "test": "tests/russian-capability-continue-browser.mjs",
+          "status": "PASS",
+          "scope": "Actual startup gate with real delayed config IndexedDB and intercepted public launch fixture; no Subject private state/DOM",
+          "actual": {
+            "personalReady": true,
+            "configReady": true,
+            "result": {
+              "status": "CURRENT",
+              "subjectId": "russian",
+              "source": "HUB_APPLICATION_CONFIG",
+              "reason": null,
+              "taskId": "russian::p1::2026-10-08::morning1"
+            },
+            "hasFrame": true
+          }
+        }
+      ]
+    }
+  },
+  "dsjValidatorEvidence": {
+    "status": "PASS",
+    "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4",
+    "validatorChanged": false
+  },
+  "migrationEvidence": {
+    "status": "PASS",
+    "database": "bauman-hub-application v1 / configuration",
+    "independentFromPersonalDatabase": true,
+    "legacyCustomOverridePreserved": true,
+    "globalAtomicClaim": true,
+    "configTransferBeforeLearnerCleanup": true,
+    "failureRetryAndConcurrencyChecks": [
+      "slow real IndexedDB config open preserves resolved admin/learner role visibility and keeps launches unavailable until initialization",
+      "application config write failure preserves original scoped legacy override and learner progress while backup remains config-free",
+      "retry transfers original IndexedDB override after legacy localStorage source removal and commits cleaned learner state",
+      "concurrent admin tabs merge unrelated fields atomically instead of overwriting cached config"
+    ],
+    "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4",
+    "revalidated": true
+  },
+  "rollbackEvidence": {
+    "status": "PASS",
+    "summary": "Failed config transaction retains original scoped override and learner progress; recovery export does not overwrite it. Retry works after removing the old localStorage source. Existing legacy rollback sources are retained."
+  },
+  "storagePreservation": {
+    "acceptedPacket": "HUB-STORAGE-20261006-001 r5",
+    "acceptedMergeSha": "ec970ccfa23b54944754fff3afdee3b796155f87",
+    "pr289Modified": false,
+    "architectureReimplemented": false,
+    "personalDatabaseSchemaChanged": false,
+    "originalRegressionChecks": [
+      "legacy migration / zero / filtering / attachment bytes / credentials / scoped backup",
+      "reload without canonical localStorage keys / stable migration ids",
+      "scope isolation / complete backup restore / no legacy cloning",
+      "attachment quota failure atomicity / malformed backup rejected without data loss",
+      "binary video exact bytes / transaction backup parity / legacy import excludes credentials",
+      "bounded attachment retention / scoped orphan cleanup",
+      "two tabs reject stale canonical writes / reload retains newer data",
+      "clean standalone browser restores backed-up existing profile without account-switch UI",
+      "unavailable IndexedDB fails closed across distinct existing profiles",
+      "interrupted migration retry / global single-owner claim",
+      "write failure visibility / durable cache rollback / retry clears failure",
+      "scoped writes / binary state invariant",
+      "real Hub migration failure / read-only recovery / visible status / no reset",
+      "real Hub complete migration / portable restore / binary open / five routes desktop-mobile / offline local reload"
+    ],
+    "status": "PASS"
+  },
+  "attachmentMigrationEvidence": {
+    "status": "PASS",
+    "checks": [
+      "legacy migration / zero / filtering / attachment bytes / credentials / scoped backup",
+      "attachment quota failure atomicity / malformed backup rejected without data loss",
+      "binary video exact bytes / transaction backup parity / legacy import excludes credentials",
+      "bounded attachment retention / scoped orphan cleanup",
+      "scoped writes / binary state invariant",
+      "real Hub complete migration / portable restore / binary open / five routes desktop-mobile / offline local reload"
+    ],
+    "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4",
+    "revalidated": true
+  },
+  "scopeAwareStorageEvidence": {
+    "status": "PASS",
+    "checks": [
+      "legacy migration / zero / filtering / attachment bytes / credentials / scoped backup",
+      "scope isolation / complete backup restore / no legacy cloning",
+      "bounded attachment retention / scoped orphan cleanup",
+      "two tabs reject stale canonical writes / reload retains newer data",
+      "clean standalone browser restores backed-up existing profile without account-switch UI",
+      "unavailable IndexedDB fails closed across distinct existing profiles",
+      "scoped writes / binary state invariant"
+    ],
+    "testDeviceConfigNotCloned": "second profile does not clone/overwrite the global config; non-admin config/editor access denied",
+    "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4",
+    "revalidated": true
+  },
+  "backupRestoreEvidence": {
+    "status": "PASS",
+    "checks": [
+      "legacy migration / zero / filtering / attachment bytes / credentials / scoped backup",
+      "scope isolation / complete backup restore / no legacy cloning",
+      "attachment quota failure atomicity / malformed backup rejected without data loss",
+      "binary video exact bytes / transaction backup parity / legacy import excludes credentials",
+      "clean standalone browser restores backed-up existing profile without account-switch UI",
+      "real Hub complete migration / portable restore / binary open / five routes desktop-mobile / offline local reload"
+    ],
+    "configCannotBeRestoredFromLearnerBackup": true,
+    "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4",
+    "revalidated": true
+  },
+  "credentialRedactionEvidence": {
+    "status": "PASS",
+    "checks": [
+      "legacy migration / zero / filtering / attachment bytes / credentials / scoped backup",
+      "scope isolation / complete backup restore / no legacy cloning",
+      "attachment quota failure atomicity / malformed backup rejected without data loss",
+      "binary video exact bytes / transaction backup parity / legacy import excludes credentials"
+    ],
+    "URLCredentialsRejected": true,
+    "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4",
+    "revalidated": true
+  },
+  "localStorageAllowlistEvidence": {
+    "status": "PASS",
+    "command": "node tests/hub-personal-storage-static.mjs",
+    "sourceReloadWithoutCanonicalKeys": "reload without canonical localStorage keys / stable migration ids",
+    "applicationConfigIsIndexedDB": true,
+    "testedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4",
+    "revalidated": true
+  },
+  "launchEvidence": {
+    "status": "PASS",
+    "checks": [
+      "legacy custom overrides migrated once to device config; learner zero/priority preserved; durable state and backup exclude transport",
+      "adapter in-Hub launch retains task query, ready handshake and task handoff",
+      "adapter tab launch retains declared target",
+      "missing/unsafe/credentialed/unknown targets are UNAVAILABLE without navigation",
+      "Home continue, Schedule mission context, reference Subjects, mentor and global search preserve adapter launch",
+      "canonical and reference learner surfaces contain no direct editor",
+      "portable restore cannot alter device config or restore raw transport",
+      "second profile does not clone/overwrite the global config; non-admin config/editor access denied"
+    ],
+    "uniqueTransportOwner": "assets/js/platform/hub-subject-launch.js",
+    "planningOnlyProvidesMissionAndHandoff": true,
+    "mainPublicCompatibilityHelpersDelegate": true,
+    "authoringCapability": null,
+    "allHubJavaScriptRawPathReadsOutsideConfigAndMigrationOwner": 0
+  },
+  "review": {
+    "status": "IMPORTANT_FIXED_RED_GREEN",
+    "reviewer": "/root/integration_final_review",
+    "model": "gpt-6-astra",
+    "critical": 0,
+    "important": 1,
+    "fixed": 1,
+    "minor": 0,
+    "finding": "Config I/O delayed resolved standalone role rendering after access-ready publication",
+    "test": "hub-subject-config-browser: delayed real IndexedDB admin/user startup",
+    "secondReviewRequested": false
+  },
+  "acceptanceMatrix": [
+    {
+      "id": 1,
+      "criterion": "Exact latest-main beforeSha and final tested afterSha are recorded.",
+      "status": "PASS",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa",
+      "evidence": "Targeted static/browser, scoped ownership/readiness proof and original full CI PASS"
+    },
+    {
+      "id": 2,
+      "criterion": "No runtime/presentation code outside the Hub descriptor/config adapter reads raw mainPath/editorPath for learner launch.",
+      "status": "PASS",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa",
+      "evidence": "Targeted static/browser, scoped ownership/readiness proof and original full CI PASS"
+    },
+    {
+      "id": 3,
+      "criterion": "Ordinary scoped learner backup contains no mainPath/editorPath application configuration.",
+      "status": "PASS",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa",
+      "evidence": "Targeted static/browser, scoped ownership/readiness proof and original full CI PASS"
+    },
+    {
+      "id": 4,
+      "criterion": "Legacy custom launch overrides are preserved once in Hub application/device config and are not cloned across learner scopes.",
+      "status": "PASS",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa",
+      "evidence": "Targeted static/browser, scoped ownership/readiness proof and original full CI PASS"
+    },
+    {
+      "id": 5,
+      "criterion": "Canonical Subjects learner UI contains no direct 'Dữ liệu môn'/openSubjectEditor action by default.",
+      "status": "PASS",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa",
+      "evidence": "Targeted static/browser, scoped ownership/readiness proof and original full CI PASS"
+    },
+    {
+      "id": 6,
+      "criterion": "Reference Subjects learner UI contains no direct editor action by default.",
+      "status": "PASS",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa",
+      "evidence": "Targeted static/browser, scoped ownership/readiness proof and original full CI PASS"
+    },
+    {
+      "id": 7,
+      "criterion": "No authoring capability is invented from editor path/file existence.",
+      "status": "PASS",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa",
+      "evidence": "Targeted static/browser, scoped ownership/readiness proof and original full CI PASS"
+    },
+    {
+      "id": 8,
+      "criterion": "Launch with a valid descriptor works in-Hub and in-tab through the adapter.",
+      "status": "PASS",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa",
+      "evidence": "Targeted static/browser, scoped ownership/readiness proof and original full CI PASS"
+    },
+    {
+      "id": 9,
+      "criterion": "Missing/invalid launch config produces explicit UNAVAILABLE/clear UI feedback without reading subject internals.",
+      "status": "PASS",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa",
+      "evidence": "Targeted static/browser, scoped ownership/readiness proof and original full CI PASS"
+    },
+    {
+      "id": 10,
+      "criterion": "Schedule launch, Home continue, mentor/search subject launch and reference Subjects launch continue to work.",
+      "status": "PASS",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa",
+      "evidence": "Targeted static/browser, scoped ownership/readiness proof and original full CI PASS"
+    },
+    {
+      "id": 11,
+      "criterion": "Iframe/postMessage task handoff and capability request/route receipt remain green.",
+      "status": "PASS",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa",
+      "evidence": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37758196372"
+    },
+    {
+      "id": 12,
+      "criterion": "Storage r5 migration, scoped backup/restore, credential redaction and research attachments remain green.",
+      "status": "PASS",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa",
+      "evidence": "Targeted static/browser, scoped ownership/readiness proof and original full CI PASS"
+    },
+    {
+      "id": 13,
+      "criterion": "Exactly five primary learner routes remain unchanged.",
+      "status": "PASS",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa",
+      "evidence": "Targeted static/browser, scoped ownership/readiness proof and original full CI PASS"
+    },
+    {
+      "id": 14,
+      "criterion": "No subject-private file/state access is introduced.",
+      "status": "PASS",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa",
+      "evidence": "Targeted static/browser, scoped ownership/readiness proof and original full CI PASS"
+    },
+    {
+      "id": 15,
+      "criterion": "No new Subject-path reads or edits; preserve only the historical explicitly approved public-validator blob, with its original Subject assertions unchanged.",
+      "status": "PASS",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa",
+      "evidence": "Targeted static/browser, scoped ownership/readiness proof and original full CI PASS"
+    },
+    {
+      "id": 16,
+      "criterion": "Whole System Integration Gate original workflow passes on exact final head.",
+      "status": "PASS",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa",
+      "evidence": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37758196372"
+    },
+    {
+      "id": 17,
+      "criterion": "Release target is LOCAL_STABLE only; production remains NOT_DEPLOYED.",
+      "status": "PASS",
+      "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa",
+      "evidence": "Targeted static/browser, scoped ownership/readiness proof and original full CI PASS"
+    }
+  ],
+  "wholeSystemRegression": {
+    "status": "PASS",
+    "fullSystemPassClaimed": true,
+    "allRequiredCiGreen": true,
+    "originalWorkflowSteps": 97,
+    "additiveSteps": 5,
+    "noTestsRemoved": true,
+    "noOriginalCommandsReduced": true,
+    "ci": {
+      "runId": 37760910656,
+      "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37760910656",
+      "headSha": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4",
+      "status": "completed",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "id": 113256799339,
+          "name": "validate-system-integration",
+          "conclusion": "success",
+          "steps": [
+            {
+              "number": 1,
+              "name": "Set up job",
+              "conclusion": "success"
+            },
+            {
+              "number": 2,
+              "name": "Run actions/checkout@v4",
+              "conclusion": "success"
+            },
+            {
+              "number": 3,
+              "name": "Run actions/setup-node@v4",
+              "conclusion": "success"
+            },
+            {
+              "number": 4,
+              "name": "Validate Hub, subject packages, bridge and locked Math runtime",
+              "conclusion": "success"
+            },
+            {
+              "number": 5,
+              "name": "Validate Russian capability Hub consumer",
+              "conclusion": "success"
+            },
+            {
+              "number": 6,
+              "name": "Validate Russian future reference UI",
+              "conclusion": "success"
+            },
+            {
+              "number": 7,
+              "name": "Validate Russian capability deep link",
+              "conclusion": "success"
+            },
+            {
+              "number": 8,
+              "name": "Validate Russian capability route receipt",
+              "conclusion": "success"
+            },
+            {
+              "number": 9,
+              "name": "Validate Russian capability-aware continue",
+              "conclusion": "success"
+            },
+            {
+              "number": 10,
+              "name": "Validate subject progress report contract",
+              "conclusion": "success"
+            },
+            {
+              "number": 11,
+              "name": "Validate Deep Study Journal boundaries",
+              "conclusion": "success"
+            },
+            {
+              "number": 12,
+              "name": "Validate stable V6 primary-page shell",
+              "conclusion": "success"
+            },
+            {
+              "number": 13,
+              "name": "Validate Hub data-truth contract",
+              "conclusion": "success"
+            },
+            {
+              "number": 14,
+              "name": "Validate Hub personal storage ownership",
+              "conclusion": "success"
+            },
+            {
+              "number": 15,
+              "name": "Validate Hub subject descriptor and learner boundary",
+              "conclusion": "success"
+            },
+            {
+              "number": 16,
+              "name": "Validate scoped Schedule reference UI",
+              "conclusion": "success"
+            },
+            {
+              "number": 17,
+              "name": "Validate scoped Subjects reference UI",
+              "conclusion": "success"
+            },
+            {
+              "number": 18,
+              "name": "Validate scoped Thesis reference UI",
+              "conclusion": "success"
+            },
+            {
+              "number": 19,
+              "name": "Validate deployment propagation fail-closed helper",
+              "conclusion": "success"
+            },
+            {
+              "number": 20,
+              "name": "Parse changed runtime JavaScript",
+              "conclusion": "success"
+            },
+            {
+              "number": 39,
+              "name": "Post Run actions/setup-node@v4",
+              "conclusion": "success"
+            },
+            {
+              "number": 40,
+              "name": "Post Run actions/checkout@v4",
+              "conclusion": "success"
+            },
+            {
+              "number": 41,
+              "name": "Complete job",
+              "conclusion": "success"
+            }
+          ]
+        },
+        {
+          "id": 113256928118,
+          "name": "russian-p1-browser-acceptance",
+          "conclusion": "success",
+          "steps": [
+            {
+              "number": 1,
+              "name": "Set up job",
+              "conclusion": "success"
+            },
+            {
+              "number": 2,
+              "name": "Run actions/checkout@v4",
+              "conclusion": "success"
+            },
+            {
+              "number": 3,
+              "name": "Run actions/setup-node@v4",
+              "conclusion": "success"
+            },
+            {
+              "number": 4,
+              "name": "Install Playwright Chromium for Russian P1",
+              "conclusion": "success"
+            },
+            {
+              "number": 5,
+              "name": "Start Russian P1 source runtime",
+              "conclusion": "success"
+            },
+            {
+              "number": 6,
+              "name": "Run Russian P1 11-viewport forensic audit",
+              "conclusion": "success"
+            },
+            {
+              "number": 7,
+              "name": "Run Russian P4 assessment mastery acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 8,
+              "name": "Run Russian Future UI route acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 9,
+              "name": "Run Russian Engine grounded slice acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 10,
+              "name": "Run Russian handwriting acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 11,
+              "name": "Run Russian capability Hub acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 12,
+              "name": "Run Russian capability deep-link acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 13,
+              "name": "Run Russian capability route-receipt acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 14,
+              "name": "Run Russian capability-aware continue acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 15,
+              "name": "Run Russian true-offline shell acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 16,
+              "name": "Run Russian handwriting listen-write acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 17,
+              "name": "Run Russian RU08 representative learner journeys",
+              "conclusion": "success"
+            },
+            {
+              "number": 18,
+              "name": "Run Russian RU08 author journey",
+              "conclusion": "success"
+            },
+            {
+              "number": 19,
+              "name": "Materialize Russian P1 packaged runtime",
+              "conclusion": "success"
+            },
+            {
+              "number": 20,
+              "name": "Start Russian P1 packaged runtime",
+              "conclusion": "success"
+            },
+            {
+              "number": 21,
+              "name": "Run packaged Russian P1 11-viewport forensic audit",
+              "conclusion": "success"
+            },
+            {
+              "number": 22,
+              "name": "Run packaged Russian P4 assessment mastery acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 23,
+              "name": "Run packaged Russian Future UI acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 24,
+              "name": "Run packaged Russian Engine grounded slice acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 25,
+              "name": "Run packaged Russian handwriting acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 26,
+              "name": "Run packaged Russian deep-link acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 27,
+              "name": "Run packaged Russian route-receipt acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 28,
+              "name": "Run packaged Russian true-offline shell acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 29,
+              "name": "Run packaged Russian RU08 representative learner journeys",
+              "conclusion": "success"
+            },
+            {
+              "number": 30,
+              "name": "Run packaged Russian RU08 author journey",
+              "conclusion": "success"
+            },
+            {
+              "number": 31,
+              "name": "Upload Russian P1 browser evidence",
+              "conclusion": "success"
+            },
+            {
+              "number": 32,
+              "name": "Show Russian P1 server logs on failure",
+              "conclusion": "skipped"
+            },
+            {
+              "number": 63,
+              "name": "Post Run actions/setup-node@v4",
+              "conclusion": "success"
+            },
+            {
+              "number": 64,
+              "name": "Post Run actions/checkout@v4",
+              "conclusion": "success"
+            },
+            {
+              "number": 65,
+              "name": "Complete job",
+              "conclusion": "success"
+            }
+          ]
+        },
+        {
+          "id": 113256928148,
+          "name": "browser-system-acceptance",
+          "conclusion": "success",
+          "steps": [
+            {
+              "number": 1,
+              "name": "Set up job",
+              "conclusion": "success"
+            },
+            {
+              "number": 2,
+              "name": "Run actions/checkout@v4",
+              "conclusion": "success"
+            },
+            {
+              "number": 3,
+              "name": "Run actions/setup-node@v4",
+              "conclusion": "success"
+            },
+            {
+              "number": 4,
+              "name": "Install Playwright Chromium",
+              "conclusion": "success"
+            },
+            {
+              "number": 5,
+              "name": "Start local runtime",
+              "conclusion": "success"
+            },
+            {
+              "number": 6,
+              "name": "Run whole-system browser acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 7,
+              "name": "Run Hub personal storage failure and portability acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 8,
+              "name": "Run Hub subject launch and configuration migration acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 9,
+              "name": "Run Hub application configuration failure and retry acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 10,
+              "name": "Run Hub public-boundary integration",
+              "conclusion": "success"
+            },
+            {
+              "number": 11,
+              "name": "Run Foundation identity persistence browser acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 12,
+              "name": "Run Foundation canonical projection browser acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 13,
+              "name": "Run Foundation canonical context browser acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 14,
+              "name": "Run Math Study Command Center browser acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 15,
+              "name": "Run Math learner journey browser acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 16,
+              "name": "Run Hub V2 responsive acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 17,
+              "name": "Run Hub data-truth browser acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 18,
+              "name": "Run Russian P1 forensic browser audit",
+              "conclusion": "success"
+            },
+            {
+              "number": 19,
+              "name": "Run scoped Schedule reference browser acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 20,
+              "name": "Run scoped Subjects reference browser acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 21,
+              "name": "Run scoped Thesis reference browser acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 22,
+              "name": "Run Russian Handwriting Recognition Acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 23,
+              "name": "Run Ready Russian Handwriting Authority Offline Acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 24,
+              "name": "Run Russian capability Hub acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 25,
+              "name": "Run Russian capability deep-link acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 26,
+              "name": "Run Russian capability route receipt acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 27,
+              "name": "Run Russian capability-aware continue acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 28,
+              "name": "Run subject progress contract acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 29,
+              "name": "Run Deep Study Journal browser acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 30,
+              "name": "Run Russian true-offline shell acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 31,
+              "name": "Run Russian handwriting listen-write acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 32,
+              "name": "Run Russian future UI acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 33,
+              "name": "Materialize owner-private ChatGPT Site package",
+              "conclusion": "success"
+            },
+            {
+              "number": 34,
+              "name": "Start packaged ChatGPT Site runtime",
+              "conclusion": "success"
+            },
+            {
+              "number": 35,
+              "name": "Run packaged ChatGPT Site browser acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 36,
+              "name": "Run packaged Hub personal storage acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 37,
+              "name": "Run packaged Hub public-boundary integration",
+              "conclusion": "success"
+            },
+            {
+              "number": 38,
+              "name": "Run packaged Foundation identity persistence acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 39,
+              "name": "Run packaged Foundation canonical projection acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 40,
+              "name": "Run packaged Foundation canonical context acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 41,
+              "name": "Run packaged Hub subject launch and configuration migration acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 42,
+              "name": "Run packaged Hub application configuration failure and retry acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 43,
+              "name": "Run packaged Subjects reference acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 44,
+              "name": "Run packaged Thesis reference acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 45,
+              "name": "Run Packaged Russian Handwriting Recognition Acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 46,
+              "name": "Run Packaged Ready Russian Handwriting Authority Offline Acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 47,
+              "name": "Run packaged Hub V2 responsive acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 48,
+              "name": "Run packaged Hub data-truth browser acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 49,
+              "name": "Run packaged Russian capability Hub acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 50,
+              "name": "Run packaged Russian capability deep-link acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 51,
+              "name": "Run packaged Russian capability route receipt acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 52,
+              "name": "Run packaged Russian capability-aware continue acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 53,
+              "name": "Run packaged subject progress contract acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 54,
+              "name": "Run packaged Deep Study Journal browser acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 55,
+              "name": "Run packaged Russian true-offline shell acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 56,
+              "name": "Run packaged Russian handwriting listen-write acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 57,
+              "name": "Run packaged Russian future UI acceptance",
+              "conclusion": "success"
+            },
+            {
+              "number": 58,
+              "name": "Show server log on failure",
+              "conclusion": "skipped"
+            },
+            {
+              "number": 59,
+              "name": "Upload browser evidence",
+              "conclusion": "success"
+            },
+            {
+              "number": 117,
+              "name": "Post Run actions/setup-node@v4",
+              "conclusion": "success"
+            },
+            {
+              "number": 118,
+              "name": "Post Run actions/checkout@v4",
+              "conclusion": "success"
+            },
+            {
+              "number": 119,
+              "name": "Complete job",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "allCi": [
+    {
+      "id": 37760910530,
+      "name": "Prompt Control Center CI",
+      "status": "completed",
+      "conclusion": "success",
+      "attempt": 1,
+      "headSha": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4",
+      "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37760910530"
+    },
+    {
+      "id": 37760912029,
+      "name": "Universal Constitution Compliance",
+      "status": "completed",
+      "conclusion": "success",
+      "attempt": 1,
+      "headSha": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4",
+      "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37760912029"
+    },
+    {
+      "id": 37760910609,
+      "name": "Dependency Independence Governance",
+      "status": "completed",
+      "conclusion": "success",
+      "attempt": 1,
+      "headSha": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4",
+      "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37760910609"
+    },
+    {
+      "id": 37760910546,
+      "name": "Development Fast CI",
+      "status": "completed",
+      "conclusion": "success",
+      "attempt": 1,
+      "headSha": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4",
+      "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37760910546"
+    },
+    {
+      "id": 37760910536,
+      "name": "Russian Reference UI Gate",
+      "status": "completed",
+      "conclusion": "success",
+      "attempt": 1,
+      "headSha": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4",
+      "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37760910536"
+    },
+    {
+      "id": 37760910727,
+      "name": "Subjects Reference CI",
+      "status": "completed",
+      "conclusion": "success",
+      "attempt": 1,
+      "headSha": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4",
+      "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37760910727"
+    },
+    {
+      "id": 37760910513,
+      "name": "Future Interface System CI",
+      "status": "completed",
+      "conclusion": "success",
+      "attempt": 1,
+      "headSha": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4",
+      "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37760910513"
+    },
+    {
+      "id": 37760910512,
+      "name": "Thesis Reference CI",
+      "status": "completed",
+      "conclusion": "success",
+      "attempt": 1,
+      "headSha": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4",
+      "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37760910512"
+    },
+    {
+      "id": 37760910656,
+      "name": "Whole System Integration Gate",
+      "status": "completed",
+      "conclusion": "success",
+      "attempt": 1,
+      "headSha": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4",
+      "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37760910656"
+    },
+    {
+      "id": 37760910503,
+      "name": "Readable Typography CI",
+      "status": "completed",
+      "conclusion": "success",
+      "attempt": 1,
+      "headSha": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4",
+      "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37760910503"
+    }
+  ],
+  "fullSystemValidated": true,
+  "boundaryCompliance": {
+    "status": "PASS_WITH_HISTORICAL_AUTHORIZED_VALIDATOR_EXCEPTION",
+    "comparisonBase": "6e312312c6161d4b37795c311653840f5139a9f7",
+    "allAgentChangedPathsAllowlisted": true,
+    "subjectsChanges": 1,
+    "subjectPromptChanges": 0,
+    "subjectPrivateFileReads": false,
+    "subjectPrivateStateOrDOMReads": false,
+    "publicFixturesOnlyLocally": true,
+    "originalRemoteGateExecutedWithItsRequiredCoverage": true,
+    "noSubjectApiInvented": true,
+    "productionDeployed": false,
+    "mainMerged": false,
+    "subjectValidatorException": "subjects/russian/scripts/validate-capability-deeplink.mjs",
+    "subjectRuntimeChanges": 0,
+    "verifiedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4",
+    "historicalSubjectValidatorOnly": [
+      "subjects/russian/scripts/validate-capability-deeplink.mjs"
+    ],
+    "currentPhaseSubjectReads": 0,
+    "currentPhaseSubjectEdits": 0,
+    "historicalValidatorBlobUnchanged": true,
+    "masteryContentAssessmentPrivateStorageChanges": false,
+    "publicRootHarnessReadForFailureDiagnosis": [
+      "tests/russian-capability-deeplink-browser.mjs",
+      "tests/russian-capability-continue-browser.mjs"
+    ],
+    "currentPhaseComparisonBase": "5744851f9ac4cb27aee781c5fb8b7d29472d1059",
+    "currentPhaseSubjectPromptEdits": 0,
+    "currentPhaseRuntimeEdits": 0,
+    "currentPhaseWorkflowEdits": 0,
+    "allCurrentPhaseChangedTestsAuthorized": true,
+    "allOriginalNonOwnershipAssertionsPreserved": true,
+    "noTimeoutIncrease": true
+  },
+  "releaseTarget": "LOCAL_STABLE",
+  "productionDeploymentState": "NOT_DEPLOYED",
+  "mainMerged": false,
+  "completedAt": "2026-10-08T09:48:57.638Z",
+  "lastUpdatedAt": "2026-10-08T10:03:08.294Z",
+  "exactHeadCertificate": {
+    "ref": "refs/notes/hub-subject-integration",
+    "prNumber": 295
+  },
+  "failureHistory": [
+    {
+      "head": "29dbd47598397060953725ff327af40b8e945632",
+      "test": "hub-premium-responsive-browser",
+      "failure": "Access.ready preceded standalone admin metadata during config I/O",
+      "resolution": "Reproduced with delayed real IDB open; smallest main.js role render fix; original responsive suite PASS on reconciled head"
+    },
+    {
+      "head": "ce4ce81152a1b35ba8fefaf24419cd497b671429",
+      "status": "CI_CONTRACT_ALIGNMENT_BLOCKED",
+      "runtimeRegressionFailure": false,
+      "subjectSourceInspected": false,
+      "gateUrl": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37708648091"
+    },
+    {
+      "head": "36eec622ab313800e7da02b13981c2e0de26afdc",
+      "test": "local managed admin fixtures",
+      "cause": "Operator used BAUMAN_E2E_EXPECT_PLATFORM instead of documented BAUMAN_E2E_EXPECT_PLATFORM_ACCESS",
+      "resolution": "Correct invocation; all three same-head managed package suites PASS; no tracked code/test change",
+      "originalRun": {
+        "head": "36eec622ab313800e7da02b13981c2e0de26afdc",
+        "tests": [
+          {
+            "test": "tests/hub-subject-integration-browser.mjs",
+            "exitCode": 1,
+            "status": "FAIL",
+            "log": "artifacts/hub-storage/integration-scope-managed-hub-subject-integration-browser.log"
+          },
+          {
+            "test": "tests/hub-subject-config-browser.mjs",
+            "exitCode": 1,
+            "status": "FAIL",
+            "log": "artifacts/hub-storage/integration-scope-managed-hub-subject-config-browser.log"
+          },
+          {
+            "test": "tests/hub-personal-storage-browser.mjs",
+            "exitCode": 0,
+            "status": "PASS",
+            "log": "artifacts/hub-storage/integration-scope-managed-hub-personal-storage-browser.log"
+          }
+        ]
+      }
+    },
+    {
+      "head": "cdae7cb9195859af07447fd4076ef960dfea0ad7",
+      "runId": 37750274849,
+      "firstAttempt": "continue snapshot timeout",
+      "failedJobRerun": "deeplink snapshot timeout",
+      "sameHeadNoImplementationEdits": true,
+      "rootCause": "Access readiness reflects personal/device access before independent Hub launch config initialization. Original capability browser tests call launch at that earlier gate; no iframe can supply a capability snapshot. Waiting for Hub personal/config readiness before launch succeeds.",
+      "subjectReads": 0
+    },
+    {
+      "head": "95d9d2084aa33f562f641015a2d36aa0ba470524",
+      "runId": 37755711849,
+      "test": "tests/system-browser-acceptance.mjs",
+      "error": "Packaged full acceptance: three canonical Hub data requests ERR_ABORTED during deliberate early reload",
+      "resolution": "Wait for Hub personal/config readiness and networkidle before explicit reload; wait for config readiness after reload before canonical injection launch",
+      "redPendingRequests": 4,
+      "greenPendingRequests": 0,
+      "runtimeChanged": false
+    }
+  ],
+  "previousBoundaryBlockers": [
+    {
+      "id": "HUB-INTEGRATION-CI-BOUNDARY-001",
+      "type": "FORBIDDEN_SUBJECT_OWNED_VALIDATOR_CONTRACT",
+      "owner": "Subject public-contract validator owner",
+      "path": "subjects/russian/scripts/validate-capability-deeplink.mjs",
+      "line": 13,
+      "error": "Capability route query view missing",
+      "evidence": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37708648091",
+      "explanation": "Original CI rejects moving launch-query implementation from main into the Hub Launch Adapter. Actual public routeView/routeTab/routeLesson/capabilityBand/query and task handoff are verified by Hub static/browser tests. The failing validator is inside explicitly forbidden subjects/**; it was not read or edited. Requires the validator owner to align the source contract without reducing coverage.",
+      "ordinaryRuntimeTestFailure": false,
+      "canFixWithinAuthorizedHubPaths": false
+    },
+    {
+      "id": "HUB-INTEGRATION-CI-BOUNDARY-002",
+      "type": "PUBLIC_HUB_TEST_SCOPE_AUTHORIZATION_PENDING",
+      "paths": [
+        "tests/entrepreneurship-subject-static.mjs",
+        "tests/russian-capability-continue-static.mjs"
+      ],
+      "errors": [
+        "Entrepreneurship runtime path missing from main hub",
+        "Main separate-tab launch must preserve only same-subject capability route"
+      ],
+      "evidence": [
+        "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37708648090",
+        "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37625775428"
+      ],
+      "explanation": "These existing Hub assertions require obsolete implementation locations in main.js. Semantic target and same-subject tab-context regressions already pass in the new Hub suite. Scoped authorization to align only these assertions is pending; neither test has been changed or removed."
+    }
+  ],
+  "authorizedPublicContractTestException": {
+    "authority": "Direct human approval: cho phép, 2026-10-08, following explicit request naming all three files",
+    "paths": [
+      "tests/entrepreneurship-subject-static.mjs",
+      "tests/russian-capability-continue-static.mjs",
+      "subjects/russian/scripts/validate-capability-deeplink.mjs"
+    ],
+    "subjectPathException": "subjects/russian/scripts/validate-capability-deeplink.mjs",
+    "purpose": "Only Hub contract assertions now inspect the independent config/launch owner; retain all original Subject assertions and CI commands",
+    "subjectRuntimeReadsAuthorized": false,
+    "subjectRuntimeEditsAuthorized": false,
+    "privateStateOrDOMReadsAuthorized": false,
+    "historicalAuthorizationOnly": true,
+    "noFurtherSubjectPathReadsOrEdits": true,
+    "currentPhaseAuthorization": {
+      "authority": "Direct human instruction 2026-10-08: exactly two root test files; Hub launch/config ownership assertions only",
+      "paths": [
+        "tests/russian-capability-continue-static.mjs",
+        "tests/entrepreneurship-subject-static.mjs"
+      ],
+      "noNewSubjectReadsOrEdits": true,
+      "noSubjectLogicChanges": true,
+      "noCoverageReduction": true,
+      "otherAssertionFailures": "Record evidence first; do not expand scope",
+      "historicalApprovedValidatorBlobPreserved": true
+    }
+  },
+  "previousHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6",
+  "latestScopeInstruction": {
+    "authority": "Direct human approval to resolve both remaining blockers, 2026-10-08",
+    "paths": [
+      "tests/study-plan-runtime-integration-static.mjs",
+      "tests/russian-capability-deeplink-browser.mjs",
+      "tests/russian-capability-continue-browser.mjs"
+    ],
+    "changes": "Study-plan Hub ownership assertions only; add Hub personal/config readiness before Russian initial launch, preserve every existing assertion/timeout",
+    "noNewSubjectReadsOrEdits": true,
+    "noSubjectPrivateStateOrDOMReads": true,
+    "noLaunchAdapterReimplementation": true,
+    "noCoverageReduction": true,
+    "noTimeoutIncrease": true
+  },
+  "scopeAssertionRevalidation": {
+    "status": "PASS",
+    "tests": {
+      "head": "cdae7cb9195859af07447fd4076ef960dfea0ad7",
+      "scope": "Two explicitly authorized Hub launch/config sections only; original Subject assertions retained and exercised by original remote CI",
+      "subjectReads": 0,
+      "results": [
+        {
+          "file": "tests/russian-capability-continue-static.mjs",
+          "status": "PASS"
+        },
+        {
+          "file": "tests/entrepreneurship-subject-static.mjs",
+          "status": "PASS"
+        }
+      ]
+    },
+    "negativeProof": {
+      "status": "PASS",
+      "subjectReads": 0,
+      "mutations": [
+        {
+          "file": "tests/russian-capability-continue-static.mjs",
+          "mutation": "presentation-raw-path",
+          "rejected": true,
+          "message": "Presentation must not own raw Russian launch URLs"
+        },
+        {
+          "file": "tests/russian-capability-continue-static.mjs",
+          "mutation": "internal-dependency",
+          "rejected": true,
+          "message": "Adapter must not load Subject internals"
+        },
+        {
+          "file": "tests/russian-capability-continue-static.mjs",
+          "mutation": "wrong-config-target",
+          "rejected": true,
+          "message": "Adapter must use the declared descriptor target\n+ actual - expected\n\n+ 'https://wrong.example'\n- 'https://subject.example'\n           ^\n"
+        },
+        {
+          "file": "tests/russian-capability-continue-static.mjs",
+          "mutation": "lost-task-query",
+          "rejected": true,
+          "message": "Expected values to be strictly equal:\n\nnull !== 'learning'\n"
+        },
+        {
+          "file": "tests/entrepreneurship-subject-static.mjs",
+          "mutation": "presentation-raw-path",
+          "rejected": true,
+          "message": "Presentation must not own raw launch/config URLs"
+        },
+        {
+          "file": "tests/entrepreneurship-subject-static.mjs",
+          "mutation": "internal-dependency",
+          "rejected": true,
+          "message": "Config/launch owners must not load Subject implementation or private configuration"
+        },
+        {
+          "file": "tests/entrepreneurship-subject-static.mjs",
+          "mutation": "wrong-config-target",
+          "rejected": true,
+          "message": "Entrepreneurship runtime path missing from Hub application config\n+ actual - expected\n\n+ 'subjects/entrepreneurship/wrong.html'\n- 'subjects/entrepreneurship/index.html'\n                             ^\n"
+        },
+        {
+          "file": "tests/entrepreneurship-subject-static.mjs",
+          "mutation": "lost-task-query",
+          "rejected": true,
+          "message": "Expected values to be strictly equal:\n+ actual - expected\n\n+ null\n- 'entrepreneurship'\n"
+        }
+      ]
+    },
+    "noSubjectReads": true,
+    "originalSubjectAssertionPrefixUnchanged": true
+  },
+  "pendingOutsideScopeEvidence": {
+    "path": "tests/study-plan-runtime-integration-static.mjs",
+    "line": 20,
+    "error": "math: missing from main pathMap",
+    "previousHead": "a8412cf4dd9bae28f2c8c60277c545b30f936212",
+    "runId": 37749637756,
+    "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37731847215",
+    "revalidationPending": false,
+    "authorization": true,
+    "id": "HUB-INTEGRATION-CI-SCOPE-STUDY-PLAN",
+    "type": "OUTSIDE_CURRENT_TWO_TEST_SCOPE",
+    "relatedLegacyAssertion": "main editorMap",
+    "evidence": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37749637756",
+    "testedHead": "36eec622ab313800e7da02b13981c2e0de26afdc",
+    "ordinaryRuntimeTestFailure": false,
+    "canFixWithinAuthorizedPaths": false,
+    "explanation": "Root static test still requires raw launch/editor configuration ownership in main.js. Latest direct human authorization permits only two named root tests and requires evidence before changing any other assertion. No Study-plan edit or assertion removal; no Subject source workaround.",
+    "status": "RESOLVED",
+    "resolvedHead": "cd5046933c00605b00b461a1d651f7022cab70aa"
+  },
+  "readinessEvidence": {
+    "status": "REPRODUCED",
+    "subjectSourceReads": 0,
+    "subjectRequestsIntercepted": true,
+    "early": {
+      "accessReady": true,
+      "personalFacadeReady": true,
+      "hubReady": false,
+      "configStatus": "UNAVAILABLE",
+      "launchResult": {
+        "status": "UNAVAILABLE",
+        "subjectId": "russian",
+        "source": "HUB_APPLICATION_CONFIG",
+        "reason": "Môn học chưa có cấu hình mở hợp lệ."
+      },
+      "hasFrame": false
+    },
+    "afterInitialization": {
+      "configStatus": "CURRENT",
+      "hasFrame": false
+    },
+    "retry": {
+      "launchResult": {
+        "status": "CURRENT",
+        "subjectId": "russian",
+        "source": "HUB_APPLICATION_CONFIG",
+        "reason": null,
+        "taskId": "russian::p1::2026-10-08::morning1"
+      },
+      "hasFrame": true
+    },
+    "explanation": "Access readiness reflects personal/device access before independent Hub launch config initialization. Original capability browser tests call launch at that earlier gate; no iframe can supply a capability snapshot. Waiting for Hub personal/config readiness before launch succeeds."
+  },
+  "resolvedScopeBlockers": [
+    {
+      "id": "HUB-INTEGRATION-CI-SCOPE-STUDY-PLAN",
+      "type": "OUTSIDE_CURRENT_TWO_TEST_SCOPE",
+      "path": "tests/study-plan-runtime-integration-static.mjs",
+      "line": 20,
+      "error": "math: missing from main pathMap",
+      "relatedLegacyAssertion": "main editorMap",
+      "runId": 37750275066,
+      "evidence": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37750275066",
+      "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7",
+      "ordinaryRuntimeTestFailure": false,
+      "canFixWithinAuthorizedPaths": false,
+      "explanation": "Root static test still requires raw launch/editor configuration ownership in main.js. Latest direct human authorization permits only two named root tests and requires evidence before changing any other assertion. No Study-plan edit or assertion removal; no Subject source workaround.",
+      "status": "RESOLVED_TARGETED_AND_ALL_CI_PASS",
+      "authorizedAt": "2026-10-08T09:17:51.553Z",
+      "resolvedHead": "cd5046933c00605b00b461a1d651f7022cab70aa",
+      "resolvedAt": "2026-10-08T09:48:57.638Z"
+    },
+    {
+      "id": "HUB-INTEGRATION-CI-SCOPE-CAPABILITY-READINESS",
+      "type": "OUTSIDE_CURRENT_TWO_TEST_SCOPE",
+      "paths": [
+        "tests/russian-capability-deeplink-browser.mjs",
+        "tests/russian-capability-continue-browser.mjs"
+      ],
+      "failureLocations": [
+        {
+          "attempt": 1,
+          "path": "tests/russian-capability-continue-browser.mjs",
+          "line": 53
+        },
+        {
+          "attempt": 2,
+          "path": "tests/russian-capability-deeplink-browser.mjs",
+          "line": 44
+        }
+      ],
+      "error": "Capability snapshot wait timed out after launch before Hub config readiness",
+      "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7",
+      "runId": 37750274849,
+      "evidence": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37750274849",
+      "ordinaryRuntimeTestFailure": false,
+      "canFixWithinAuthorizedPaths": false,
+      "rootCause": "Access readiness reflects personal/device access before independent Hub launch config initialization. Original capability browser tests call launch at that earlier gate; no iframe can supply a capability snapshot. Waiting for Hub personal/config readiness before launch succeeds.",
+      "publicFixtureEvidence": {
+        "status": "REPRODUCED",
+        "subjectSourceReads": 0,
+        "subjectRequestsIntercepted": true,
+        "early": {
+          "accessReady": true,
+          "personalFacadeReady": true,
+          "hubReady": false,
+          "configStatus": "UNAVAILABLE",
+          "launchResult": {
+            "status": "UNAVAILABLE",
+            "subjectId": "russian",
+            "source": "HUB_APPLICATION_CONFIG",
+            "reason": "Môn học chưa có cấu hình mở hợp lệ."
+          },
+          "hasFrame": false
+        },
+        "afterInitialization": {
+          "configStatus": "CURRENT",
+          "hasFrame": false
+        },
+        "retry": {
+          "launchResult": {
+            "status": "CURRENT",
+            "subjectId": "russian",
+            "source": "HUB_APPLICATION_CONFIG",
+            "reason": null,
+            "taskId": "russian::p1::2026-10-08::morning1"
+          },
+          "hasFrame": true
+        },
+        "explanation": "Access readiness reflects personal/device access before independent Hub launch config initialization. Original capability browser tests call launch at that earlier gate; no iframe can supply a capability snapshot. Waiting for Hub personal/config readiness before launch succeeds."
+      },
+      "proposedBoundedAlignment": "Wait for hubPersonalReady/config readiness before the initial launch; preserve every capability/task/progress assertion. These two browser test paths are outside the latest human authorization; no edit applied.",
+      "subjectSourceReads": 0,
+      "status": "RESOLVED_TARGETED_AND_ALL_CI_PASS",
+      "authorizedAt": "2026-10-08T09:17:51.553Z",
+      "resolvedHead": "cd5046933c00605b00b461a1d651f7022cab70aa",
+      "resolvedAt": "2026-10-08T09:48:57.638Z"
+    }
+  ],
+  "lastVerifiedExecution": {
+    "head": "5744851f9ac4cb27aee781c5fb8b7d29472d1059",
+    "status": "BLOCKED",
+    "tests": [
+      {
+        "test": "tests/hub-subject-integration-static.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/integration-scope-final-source-hub-subject-integration-static.log",
+        "group": "integration-scope-final-source-",
+        "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7"
+      },
+      {
+        "test": "tests/hub-subject-integration-browser.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/integration-scope-final-source-hub-subject-integration-browser.log",
+        "group": "integration-scope-final-source-",
+        "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7"
+      },
+      {
+        "test": "tests/hub-subject-config-browser.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/integration-scope-final-source-hub-subject-config-browser.log",
+        "group": "integration-scope-final-source-",
+        "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7"
+      },
+      {
+        "test": "tests/hub-personal-storage-static.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/integration-scope-final-source-hub-personal-storage-static.log",
+        "group": "integration-scope-final-source-",
+        "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7"
+      },
+      {
+        "test": "tests/runtime-access-mode-static.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/integration-scope-final-source-runtime-access-mode-static.log",
+        "group": "integration-scope-final-source-",
+        "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7"
+      },
+      {
+        "test": "tests/runtime-access-mode-behavior.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/integration-scope-final-source-runtime-access-mode-behavior.log",
+        "group": "integration-scope-final-source-",
+        "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7"
+      },
+      {
+        "test": "tests/schedule-reference-v1-static.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/integration-scope-final-source-schedule-reference-v1-static.log",
+        "group": "integration-scope-final-source-",
+        "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7"
+      },
+      {
+        "test": "tests/subjects-reference-v1-static.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/integration-scope-final-source-subjects-reference-v1-static.log",
+        "group": "integration-scope-final-source-",
+        "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7"
+      },
+      {
+        "test": "tests/thesis-reference-v1-static.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/integration-scope-final-source-thesis-reference-v1-static.log",
+        "group": "integration-scope-final-source-",
+        "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7"
+      },
+      {
+        "test": "tests/hub-data-truth-static.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/integration-scope-final-source-hub-data-truth-static.log",
+        "group": "integration-scope-final-source-",
+        "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7"
+      },
+      {
+        "test": "tests/hub-personal-storage-browser.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/integration-scope-final-source-hub-personal-storage-browser.log",
+        "group": "integration-scope-final-source-",
+        "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7"
+      },
+      {
+        "test": "tests/academic-browser-acceptance-13e.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/integration-scope-final-source-academic-browser-acceptance-13e.log",
+        "group": "integration-scope-final-source-",
+        "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7"
+      },
+      {
+        "test": "tests/deep-study-journal-browser.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/integration-scope-final-source-deep-study-journal-browser.log",
+        "group": "integration-scope-final-source-",
+        "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7"
+      },
+      {
+        "test": "tests/schedule-reference-v1-browser.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/integration-scope-final-source-schedule-reference-v1-browser.log",
+        "group": "integration-scope-final-source-",
+        "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7"
+      },
+      {
+        "test": "tests/subjects-reference-v1-browser.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/integration-scope-final-source-subjects-reference-v1-browser.log",
+        "group": "integration-scope-final-source-",
+        "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7"
+      },
+      {
+        "test": "tests/thesis-reference-v1-browser.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/integration-scope-final-source-thesis-reference-v1-browser.log",
+        "group": "integration-scope-final-source-",
+        "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7"
+      },
+      {
+        "test": "tests/hub-data-truth-browser.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/integration-scope-final-source-hub-data-truth-browser.log",
+        "group": "integration-scope-final-source-",
+        "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7"
+      },
+      {
+        "test": "tests/hub-premium-responsive-browser.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/integration-scope-final-source-hub-premium-responsive-browser.log",
+        "group": "integration-scope-final-source-",
+        "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7"
+      },
+      {
+        "test": "tests/system-browser-acceptance.mjs --hub-only",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/integration-scope-final-source-system-browser-acceptance.log",
+        "group": "integration-scope-final-source-",
+        "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7"
+      },
+      {
+        "test": "tests/russian-capability-continue-static.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/integration-scope-final-source-russian-capability-continue-static.log",
+        "group": "integration-scope-final-source-",
+        "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7"
+      },
+      {
+        "test": "tests/hub-subject-integration-browser.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/integration-scope-final-package-hub-subject-integration-browser.log",
+        "group": "integration-scope-final-package-",
+        "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7"
+      },
+      {
+        "test": "tests/hub-subject-config-browser.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/integration-scope-final-package-hub-subject-config-browser.log",
+        "group": "integration-scope-final-package-",
+        "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7"
+      },
+      {
+        "test": "tests/hub-personal-storage-browser.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/integration-scope-final-package-hub-personal-storage-browser.log",
+        "group": "integration-scope-final-package-",
+        "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7"
+      },
+      {
+        "test": "tests/system-browser-acceptance.mjs --hub-only",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/integration-scope-final-package-system-browser-acceptance.log",
+        "group": "integration-scope-final-package-",
+        "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7"
+      },
+      {
+        "test": "tests/hub-subject-integration-browser.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/integration-scope-final-managed-hub-subject-integration-browser.log",
+        "group": "integration-scope-final-managed-",
+        "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7"
+      },
+      {
+        "test": "tests/hub-subject-config-browser.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/integration-scope-final-managed-hub-subject-config-browser.log",
+        "group": "integration-scope-final-managed-",
+        "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7"
+      },
+      {
+        "test": "tests/hub-personal-storage-browser.mjs",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/integration-scope-final-managed-hub-personal-storage-browser.log",
+        "group": "integration-scope-final-managed-",
+        "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7"
+      },
+      {
+        "test": "tests/system-browser-acceptance.mjs --hub-only",
+        "exitCode": 0,
+        "status": "PASS",
+        "log": "artifacts/hub-storage/integration-scope-final-managed-boundary-system-browser-acceptance.log",
+        "group": "integration-scope-final-managed-boundary-",
+        "testedHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7"
+      }
+    ],
+    "ci": [
+      {
+        "id": 37750275886,
+        "name": "Universal Constitution Compliance",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "headSha": "cdae7cb9195859af07447fd4076ef960dfea0ad7",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37750275886"
+      },
+      {
+        "id": 37750275058,
+        "name": "Prompt Control Center CI",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "headSha": "cdae7cb9195859af07447fd4076ef960dfea0ad7",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37750275058"
+      },
+      {
+        "id": 37750275066,
+        "name": "Development Fast CI",
+        "status": "completed",
+        "conclusion": "failure",
+        "attempt": 1,
+        "headSha": "cdae7cb9195859af07447fd4076ef960dfea0ad7",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37750275066"
+      },
+      {
+        "id": 37750274845,
+        "name": "Dependency Independence Governance",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "headSha": "cdae7cb9195859af07447fd4076ef960dfea0ad7",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37750274845"
+      },
+      {
+        "id": 37750274757,
+        "name": "Russian Reference UI Gate",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "headSha": "cdae7cb9195859af07447fd4076ef960dfea0ad7",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37750274757"
+      },
+      {
+        "id": 37750274946,
+        "name": "Subjects Reference CI",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "headSha": "cdae7cb9195859af07447fd4076ef960dfea0ad7",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37750274946"
+      },
+      {
+        "id": 37750274771,
+        "name": "Readable Typography CI",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "headSha": "cdae7cb9195859af07447fd4076ef960dfea0ad7",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37750274771"
+      },
+      {
+        "id": 37750274859,
+        "name": "Thesis Reference CI",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "headSha": "cdae7cb9195859af07447fd4076ef960dfea0ad7",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37750274859"
+      },
+      {
+        "id": 37750274793,
+        "name": "Future Interface System CI",
+        "status": "completed",
+        "conclusion": "success",
+        "attempt": 1,
+        "headSha": "cdae7cb9195859af07447fd4076ef960dfea0ad7",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37750274793"
+      },
+      {
+        "id": 37750274849,
+        "name": "Whole System Integration Gate",
+        "status": "completed",
+        "conclusion": "failure",
+        "attempt": 2,
+        "headSha": "cdae7cb9195859af07447fd4076ef960dfea0ad7",
+        "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37750274849"
+      }
+    ]
+  },
+  "blockerAlignment": {
+    "authority": {
+      "authority": "Direct human approval to resolve both remaining blockers, 2026-10-08",
+      "paths": [
+        "tests/study-plan-runtime-integration-static.mjs",
+        "tests/russian-capability-deeplink-browser.mjs",
+        "tests/russian-capability-continue-browser.mjs"
+      ],
+      "changes": "Study-plan Hub ownership assertions only; add Hub personal/config readiness before Russian initial launch, preserve every existing assertion/timeout",
+      "noNewSubjectReadsOrEdits": true,
+      "noSubjectPrivateStateOrDOMReads": true,
+      "noLaunchAdapterReimplementation": true,
+      "noCoverageReduction": true,
+      "noTimeoutIncrease": true
+    },
+    "red": {
+      "head": "5744851f9ac4cb27aee781c5fb8b7d29472d1059",
+      "subjectSourceReads": 0,
+      "subjectPrivateStateOrDOMReads": 0,
+      "results": [
+        {
+          "test": "tests/study-plan-runtime-integration-static.mjs",
+          "status": "FAIL",
+          "error": "math: missing from main pathMap"
+        },
+        {
+          "test": "tests/russian-capability-deeplink-browser.mjs",
+          "status": "FAIL",
+          "error": "Initial launch must wait for Hub personal readiness\n\nfalse !== true\n"
+        },
+        {
+          "test": "tests/russian-capability-continue-browser.mjs",
+          "status": "FAIL",
+          "error": "Initial launch must wait for Hub personal readiness\n\nfalse !== true\n"
+        }
+      ]
+    },
+    "greenWorktree": {
+      "head": "5744851f9ac4cb27aee781c5fb8b7d29472d1059",
+      "subjectSourceReads": 0,
+      "subjectPrivateStateOrDOMReads": 0,
+      "results": [
+        {
+          "test": "tests/study-plan-runtime-integration-static.mjs",
+          "status": "PASS",
+          "scope": "Actual Hub ownership assertions with all canonical Hub subject IDs; Subject assets/assertions exercised by unchanged remote CI only"
+        },
+        {
+          "test": "tests/russian-capability-deeplink-browser.mjs",
+          "status": "PASS",
+          "scope": "Actual startup gate with real delayed config IndexedDB and intercepted public launch fixture; no Subject private state/DOM",
+          "actual": {
+            "personalReady": true,
+            "configReady": true,
+            "result": {
+              "status": "CURRENT",
+              "subjectId": "russian",
+              "source": "HUB_APPLICATION_CONFIG",
+              "reason": null,
+              "taskId": "russian::p1::2026-10-08::morning1"
+            },
+            "hasFrame": true
+          }
+        },
+        {
+          "test": "tests/russian-capability-continue-browser.mjs",
+          "status": "PASS",
+          "scope": "Actual startup gate with real delayed config IndexedDB and intercepted public launch fixture; no Subject private state/DOM",
+          "actual": {
+            "personalReady": true,
+            "configReady": true,
+            "result": {
+              "status": "CURRENT",
+              "subjectId": "russian",
+              "source": "HUB_APPLICATION_CONFIG",
+              "reason": null,
+              "taskId": "russian::p1::2026-10-08::morning1"
+            },
+            "hasFrame": true
+          }
+        }
+      ]
+    },
+    "status": "PASS",
+    "greenExactHead": {
+      "head": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4",
+      "subjectSourceReads": 0,
+      "subjectPrivateStateOrDOMReads": 0,
+      "results": [
+        {
+          "test": "tests/study-plan-runtime-integration-static.mjs",
+          "status": "PASS",
+          "scope": "Actual Hub ownership assertions with all canonical Hub subject IDs; Subject assets/assertions exercised by unchanged remote CI only"
+        },
+        {
+          "test": "tests/russian-capability-deeplink-browser.mjs",
+          "status": "PASS",
+          "scope": "Actual startup gate with real delayed config IndexedDB and intercepted public launch fixture; no Subject private state/DOM",
+          "actual": {
+            "personalReady": true,
+            "configReady": true,
+            "result": {
+              "status": "CURRENT",
+              "subjectId": "russian",
+              "source": "HUB_APPLICATION_CONFIG",
+              "reason": null,
+              "taskId": "russian::p1::2026-10-08::morning1"
+            },
+            "hasFrame": true
+          }
+        },
+        {
+          "test": "tests/russian-capability-continue-browser.mjs",
+          "status": "PASS",
+          "scope": "Actual startup gate with real delayed config IndexedDB and intercepted public launch fixture; no Subject private state/DOM",
+          "actual": {
+            "personalReady": true,
+            "configReady": true,
+            "result": {
+              "status": "CURRENT",
+              "subjectId": "russian",
+              "source": "HUB_APPLICATION_CONFIG",
+              "reason": null,
+              "taskId": "russian::p1::2026-10-08::morning1"
+            },
+            "hasFrame": true
+          }
+        }
+      ]
+    },
+    "scopePreservation": {
+      "status": "PASS",
+      "base": "5744851f9ac4cb27aee781c5fb8b7d29472d1059",
+      "latestMain": "89c3292c2432b33ea0740e0014d56aa135185449",
+      "inheritedSubjectBlobsComparedWithoutReading": true,
+      "inheritedPaths": [
+        "subjects/russian/docs/engine/RE40_AI_LINGUISTIC_PREADVISORY_V1.md",
+        "subjects/russian/docs/engine/RE41_ZERO_RUSSIAN_A0_SAFETY_BRIDGE.md",
+        "subjects/russian/docs/engine/RE42_SPATIAL_MEANINGFUL_WORLD_CANDIDATE.md",
+        "subjects/russian/engine/content/fixtures/real-life-spatial.r2-ai-proposal.json",
+        "subjects/russian/engine/integration/beginner-scene-guide.js",
+        "subjects/russian/engine/integration/grounded-browser-model.js",
+        "subjects/russian/engine/integration/grounded-experience.js",
+        "subjects/russian/engine/tests/browser-grounded-acceptance.mjs",
+        "subjects/russian/engine/tests/test-re41-a0-safe-practice.mjs",
+        "subjects/russian/engine/tests/test-re42-spatial-candidate.mjs",
+        "subjects/russian/engine/world/spatial-candidate-runtime.mjs",
+        "subjects/russian/sw.js"
+      ],
+      "paths": [
+        "tests/russian-capability-continue-browser.mjs",
+        "tests/russian-capability-deeplink-browser.mjs",
+        "tests/study-plan-runtime-integration-static.mjs",
+        "tests/system-browser-acceptance.mjs"
+      ],
+      "allOriginalBrowserAssertionsAndTimeoutsUnchanged": true,
+      "allNonOwnershipStudyPlanAssertionsUnchanged": true,
+      "subjectSourceReads": 0,
+      "subjectEdits": 0,
+      "subjectPromptEdits": 0,
+      "runtimeEdits": 0,
+      "workflowEdits": 0
+    },
+    "completeOriginalScriptsPassedRemotely": true
+  },
+  "reloadSynchronization": {
+    "owner": "tests/system-browser-acceptance.mjs",
+    "alreadyAllowedByPacket": true,
+    "newAllowedPathsAdded": [],
+    "failureHead": "95d9d2084aa33f562f641015a2d36aa0ba470524",
+    "failureRunId": 37755711849,
+    "failure": "Packaged full acceptance: three canonical Hub data requests ERR_ABORTED during deliberate early reload",
+    "rootCause": "Academic Hub data fetch begins after personal readiness; access-only reload can cancel in-flight canonical startup fetches",
+    "change": "Wait for Hub personal/config readiness and networkidle before explicit reload; wait for config readiness after reload before canonical injection launch",
+    "originalAssertionsFiltersAndTimeoutsUnchanged": true,
+    "noNewTimeoutAboveExistingLimit": true,
+    "red": {
+      "status": "FAIL",
+      "scope": "Actual initial full-gate Hub access checks/reload with delayed public Hub data responses; observed academic-after-personal-readiness interleaving; Subject requests intercepted",
+      "subjectSourceReads": 0,
+      "subjectPrivateStateOrDOMReads": 0,
+      "pendingBeforeReload": 4,
+      "opened": [
+        "http://127.0.0.1:4186/assets/data/course-learning-architecture-s1-2026.json",
+        "http://127.0.0.1:4186/assets/data/official-curriculum-iu5-2026.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-registry-iu5-2026.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/manifest-2026.json",
+        "http://127.0.0.1:4186/assets/data/course-learning-architecture-s1-2026.json",
+        "http://127.0.0.1:4186/assets/data/official-curriculum-iu5-2026.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-registry-iu5-2026.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/manifest-2026.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p00-technical-russian.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p01-calculus-foundation.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p02-linear-algebra.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p03-probability-statistics.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p04-discrete-algorithms-data-structures.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p05-python-oop.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p06-database-fundamentals.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p07-linux-os-networks.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p08-software-engineering.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p09-markov-queueing-simulation.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p10-scientific-data-python.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p11-research-foundation.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/j01-information-system-architecture.json"
+      ],
+      "failedRequests": []
+    },
+    "green": {
+      "status": "PASS",
+      "scope": "Actual initial full-gate Hub access checks/reload with delayed public Hub data responses; observed academic-after-personal-readiness interleaving; Subject requests intercepted",
+      "subjectSourceReads": 0,
+      "subjectPrivateStateOrDOMReads": 0,
+      "pendingBeforeReload": 0,
+      "opened": [
+        "http://127.0.0.1:4186/assets/data/course-learning-architecture-s1-2026.json",
+        "http://127.0.0.1:4186/assets/data/official-curriculum-iu5-2026.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-registry-iu5-2026.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/manifest-2026.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p00-technical-russian.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p01-calculus-foundation.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p02-linear-algebra.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p03-probability-statistics.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p04-discrete-algorithms-data-structures.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p05-python-oop.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p06-database-fundamentals.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p07-linux-os-networks.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p08-software-engineering.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p09-markov-queueing-simulation.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p10-scientific-data-python.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p11-research-foundation.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/j01-information-system-architecture.json",
+        "http://127.0.0.1:4186/assets/data/course-learning-architecture-s1-2026.json",
+        "http://127.0.0.1:4186/assets/data/official-curriculum-iu5-2026.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-registry-iu5-2026.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/manifest-2026.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p00-technical-russian.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p01-calculus-foundation.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p02-linear-algebra.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p03-probability-statistics.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p04-discrete-algorithms-data-structures.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p05-python-oop.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p06-database-fundamentals.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p07-linux-os-networks.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p08-software-engineering.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p09-markov-queueing-simulation.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p10-scientific-data-python.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p11-research-foundation.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/j01-information-system-architecture.json"
+      ],
+      "failedRequests": []
+    },
+    "status": "RESOLVED_EXACT_HEAD_FULL_CI_PASS",
+    "testedHead": "cd5046933c00605b00b461a1d651f7022cab70aa",
+    "greenExactHead": {
+      "status": "PASS",
+      "scope": "Actual initial full-gate Hub access checks/reload with delayed public Hub data responses; observed academic-after-personal-readiness interleaving; Subject requests intercepted",
+      "subjectSourceReads": 0,
+      "subjectPrivateStateOrDOMReads": 0,
+      "pendingBeforeReload": 0,
+      "opened": [
+        "http://127.0.0.1:4186/assets/data/course-learning-architecture-s1-2026.json",
+        "http://127.0.0.1:4186/assets/data/official-curriculum-iu5-2026.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-registry-iu5-2026.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/manifest-2026.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p00-technical-russian.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p01-calculus-foundation.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p02-linear-algebra.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p03-probability-statistics.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p04-discrete-algorithms-data-structures.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p05-python-oop.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p06-database-fundamentals.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p07-linux-os-networks.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p08-software-engineering.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p09-markov-queueing-simulation.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p10-scientific-data-python.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p11-research-foundation.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/j01-information-system-architecture.json",
+        "http://127.0.0.1:4186/assets/data/official-curriculum-iu5-2026.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-registry-iu5-2026.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/manifest-2026.json",
+        "http://127.0.0.1:4186/assets/data/course-learning-architecture-s1-2026.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p00-technical-russian.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p01-calculus-foundation.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p02-linear-algebra.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p03-probability-statistics.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p04-discrete-algorithms-data-structures.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p05-python-oop.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p06-database-fundamentals.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p07-linux-os-networks.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p08-software-engineering.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p09-markov-queueing-simulation.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p10-scientific-data-python.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p11-research-foundation.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/j01-information-system-architecture.json"
+      ],
+      "failedRequests": []
+    }
+  },
+  "additionalCiObservation": {
+    "workflow": "Future Interface System CI",
+    "runId": 37758196348,
+    "head": "cd5046933c00605b00b461a1d651f7022cab70aa",
+    "firstAttempt": "FAIL: UI-E5 active content hidden at 390px",
+    "secondAttempt": "PASS: identical HEAD and unchanged original test",
+    "originalTestAndRuntimeUnchangedFromPreviouslyGreenHead": "cccdcf8d9267799508ef0feead4a459f2ed8bf53",
+    "diagnostic": {
+      "head": "cd5046933c00605b00b461a1d651f7022cab70aa",
+      "originalChunkUnchanged": true,
+      "subjectRequestsIntercepted": true,
+      "subjectPrivateStateOrDOMReads": false,
+      "results": [
+        {
+          "iteration": 0,
+          "status": "PASS"
+        },
+        {
+          "iteration": 1,
+          "status": "PASS"
+        },
+        {
+          "iteration": 2,
+          "status": "PASS"
+        },
+        {
+          "iteration": 3,
+          "status": "PASS"
+        },
+        {
+          "iteration": 4,
+          "status": "FAIL",
+          "message": "UI-E5 active content hidden at 768px\n\nfalse !== true\n",
+          "hub": {
+            "ready": "true",
+            "config": true,
+            "pages": [
+              {
+                "id": "page-home",
+                "width": 740,
+                "height": 0,
+                "display": "block"
+              }
+            ]
+          }
+        },
+        {
+          "iteration": 5,
+          "status": "PASS"
+        },
+        {
+          "iteration": 6,
+          "status": "PASS"
+        },
+        {
+          "iteration": 7,
+          "status": "PASS"
+        },
+        {
+          "iteration": 8,
+          "status": "FAIL",
+          "message": "UI-E5 active content hidden at 390px\n\nfalse !== true\n",
+          "hub": {
+            "ready": "true",
+            "config": true,
+            "pages": [
+              {
+                "id": "page-home",
+                "width": 370,
+                "height": 1919.015625,
+                "display": "block"
+              }
+            ]
+          }
+        },
+        {
+          "iteration": 9,
+          "status": "PASS"
+        },
+        {
+          "iteration": 10,
+          "status": "FAIL",
+          "message": "UI-E5 active content hidden at 390px\n\nfalse !== true\n",
+          "hub": {
+            "ready": "true",
+            "config": true,
+            "pages": [
+              {
+                "id": "page-home",
+                "width": 370,
+                "height": 1919.015625,
+                "display": "block"
+              }
+            ]
+          }
+        },
+        {
+          "iteration": 11,
+          "status": "FAIL",
+          "message": "UI-E5 active content hidden at 390px\n\nfalse !== true\n",
+          "hub": {
+            "ready": "true",
+            "config": true,
+            "pages": [
+              {
+                "id": "page-home",
+                "width": 370,
+                "height": 0,
+                "display": "block"
+              }
+            ]
+          }
+        },
+        {
+          "iteration": 12,
+          "status": "PASS"
+        },
+        {
+          "iteration": 13,
+          "status": "PASS"
+        },
+        {
+          "iteration": 14,
+          "status": "PASS"
+        },
+        {
+          "iteration": 15,
+          "status": "PASS"
+        },
+        {
+          "iteration": 16,
+          "status": "PASS"
+        },
+        {
+          "iteration": 17,
+          "status": "FAIL",
+          "message": "UI-E5 active content hidden at 768px\n\nfalse !== true\n",
+          "hub": {
+            "ready": "true",
+            "config": true,
+            "pages": [
+              {
+                "id": "page-home",
+                "width": 740,
+                "height": 1401.078125,
+                "display": "block"
+              }
+            ]
+          }
+        },
+        {
+          "iteration": 18,
+          "status": "PASS"
+        },
+        {
+          "iteration": 19,
+          "status": "PASS"
+        },
+        {
+          "iteration": 20,
+          "status": "PASS"
+        },
+        {
+          "iteration": 21,
+          "status": "FAIL",
+          "message": "UI-E5 active content hidden at 390px\n\nfalse !== true\n",
+          "hub": {
+            "ready": "true",
+            "config": true,
+            "pages": [
+              {
+                "id": "page-home",
+                "width": 370,
+                "height": 1919.015625,
+                "display": "block"
+              }
+            ]
+          }
+        },
+        {
+          "iteration": 22,
+          "status": "FAIL",
+          "message": "UI-E5 active content hidden at 768px\n\nfalse !== true\n",
+          "hub": {
+            "ready": "true",
+            "config": true,
+            "pages": [
+              {
+                "id": "page-home",
+                "width": 740,
+                "height": 0,
+                "display": "block"
+              }
+            ]
+          }
+        },
+        {
+          "iteration": 23,
+          "status": "FAIL",
+          "message": "UI-E5 active content hidden at 768px\n\nfalse !== true\n",
+          "hub": {
+            "ready": "true",
+            "config": true,
+            "pages": [
+              {
+                "id": "page-home",
+                "width": 740,
+                "height": 1401.078125,
+                "display": "block"
+              }
+            ]
+          }
+        },
+        {
+          "iteration": 24,
+          "status": "PASS"
+        }
+      ]
+    },
+    "finding": "Original compact-navigation test can sample the public Hub home at zero height during asynchronous home replacement and delayed shell repair; bounded Hub-only repetition reproduced 8 failures in 25 iterations. Personal/config readiness was true. Original workflow passed on unchanged-SHA rerun.",
+    "scopeDecision": "Evidence recorded; no unauthorized Future Interface test/runtime edits, assertions removed or timeout increased. Intermittent out-of-scope visual timing remains a disclosed observation, not claimed fixed.",
+    "finalHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4",
+    "finalRunId": 37760910513,
+    "finalRunAttempt": 1,
+    "finalWorkflowConclusion": "success",
+    "finalFirstAttempt": "PASS"
+  },
+  "publicContractAlignment": {
+    "status": "PASS",
+    "latestAuthorizedPaths": [
+      "tests/study-plan-runtime-integration-static.mjs",
+      "tests/russian-capability-deeplink-browser.mjs",
+      "tests/russian-capability-continue-browser.mjs"
+    ],
+    "allExistingCapabilityTaskProgressRouteAssertionsUnchanged": true,
+    "allExistingBrowserTimeoutsUnchanged": true,
+    "nonOwnershipStudyPlanAssertionsUnchanged": true,
+    "originalWorkflowCommandsUnchanged": true,
+    "proof": {
+      "status": "PASS",
+      "base": "5744851f9ac4cb27aee781c5fb8b7d29472d1059",
+      "latestMain": "6e312312c6161d4b37795c311653840f5139a9f7",
+      "inheritedSubjectDocBlobComparedWithoutReading": true,
+      "paths": [
+        "tests/russian-capability-continue-browser.mjs",
+        "tests/russian-capability-deeplink-browser.mjs",
+        "tests/study-plan-runtime-integration-static.mjs",
+        "tests/system-browser-acceptance.mjs"
+      ],
+      "allOriginalBrowserAssertionsAndTimeoutsUnchanged": true,
+      "allNonOwnershipStudyPlanAssertionsUnchanged": true,
+      "subjectSourceReads": 0,
+      "subjectEdits": 0,
+      "subjectPromptEdits": 0,
+      "runtimeEdits": 0,
+      "workflowEdits": 0
+    }
+  },
+  "latestMainReconciliation": {
+    "mainSha": "89c3292c2432b33ea0740e0014d56aa135185449",
+    "previousGreenHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6",
+    "mergedHead": "dce6086b772fae4fa588f6b03bec91ab17b78cba",
+    "method": "Merge latest main into the Codex PR branch without conflicts; Hub runtime/tests/workflows unchanged. Inherited Subject file names and object identities checked without content reads.",
+    "inheritedSubjectPaths": [
+      "subjects/russian/docs/engine/RE42_SPATIAL_MEANINGFUL_WORLD_CANDIDATE.md",
+      "subjects/russian/engine/content/fixtures/real-life-spatial.r2-ai-proposal.json",
+      "subjects/russian/engine/tests/test-re42-spatial-candidate.mjs",
+      "subjects/russian/engine/world/spatial-candidate-runtime.mjs"
+    ],
+    "at": "2026-10-08T10:03:08.294Z",
+    "exactValidatedHead": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4",
+    "inheritedSubjectBlobsComparedWithoutReading": true,
+    "inheritedPaths": [
+      "subjects/russian/docs/engine/RE42_SPATIAL_MEANINGFUL_WORLD_CANDIDATE.md",
+      "subjects/russian/engine/content/fixtures/real-life-spatial.r2-ai-proposal.json",
+      "subjects/russian/engine/tests/test-re42-spatial-candidate.mjs",
+      "subjects/russian/engine/world/spatial-candidate-runtime.mjs"
+    ],
+    "scopeProof": {
+      "status": "PASS",
+      "base": "5744851f9ac4cb27aee781c5fb8b7d29472d1059",
+      "latestMain": "89c3292c2432b33ea0740e0014d56aa135185449",
+      "inheritedSubjectBlobsComparedWithoutReading": true,
+      "inheritedPaths": [
+        "subjects/russian/docs/engine/RE40_AI_LINGUISTIC_PREADVISORY_V1.md",
+        "subjects/russian/docs/engine/RE41_ZERO_RUSSIAN_A0_SAFETY_BRIDGE.md",
+        "subjects/russian/docs/engine/RE42_SPATIAL_MEANINGFUL_WORLD_CANDIDATE.md",
+        "subjects/russian/engine/content/fixtures/real-life-spatial.r2-ai-proposal.json",
+        "subjects/russian/engine/integration/beginner-scene-guide.js",
+        "subjects/russian/engine/integration/grounded-browser-model.js",
+        "subjects/russian/engine/integration/grounded-experience.js",
+        "subjects/russian/engine/tests/browser-grounded-acceptance.mjs",
+        "subjects/russian/engine/tests/test-re41-a0-safe-practice.mjs",
+        "subjects/russian/engine/tests/test-re42-spatial-candidate.mjs",
+        "subjects/russian/engine/world/spatial-candidate-runtime.mjs",
+        "subjects/russian/sw.js"
+      ],
+      "paths": [
+        "tests/russian-capability-continue-browser.mjs",
+        "tests/russian-capability-deeplink-browser.mjs",
+        "tests/study-plan-runtime-integration-static.mjs",
+        "tests/system-browser-acceptance.mjs"
+      ],
+      "allOriginalBrowserAssertionsAndTimeoutsUnchanged": true,
+      "allNonOwnershipStudyPlanAssertionsUnchanged": true,
+      "subjectSourceReads": 0,
+      "subjectEdits": 0,
+      "subjectPromptEdits": 0,
+      "runtimeEdits": 0,
+      "workflowEdits": 0
+    }
+  },
+  "finalRevalidationSemantics": "Committed completion evidence names the fully green predecessor. The exact latest-main reconciled physical HEAD is independently revalidated and sealed in the final Git note and PR body before completion is reported.",
+  "certificateSchema": "bauman-hub-subject-integration-exact-head@1",
+  "implementationHead": "c86bb006015c7ccc74c0ab2dd4199f9a13e714d6",
+  "allCiGreen": true,
+  "remoteEvidenceFiles": {
+    "prompts/hub/CURRENT_EXECUTION_RESULT.json": {
+      "gitBlobSha": "40465c5422674e8b14559675d984629c8017165a",
+      "pushed": true
+    },
+    "prompts/hub/HUB_SHARED_STATE.json": {
+      "gitBlobSha": "5af7c1d6948ab4d19cad7decc85cbbd0cac806c4",
+      "pushed": true
+    },
+    "prompts/hub/CURRENT_WORK_PACKET.json": {
+      "gitBlobSha": "960771e0e75e12e24039f804748fc63e9c48ecfc",
+      "pushed": true
+    },
+    "prompts/hub/evidence/HUB-SUBJECT-INTEGRATION-20261007-001.json": {
+      "gitBlobSha": "1012366ed7273c9de388e42bc4d9aa69136d84cd",
+      "pushed": true
+    },
+    "prompts/PROMPT_REGISTRY.json": {
+      "gitBlobSha": "184c913abb1b313db3e41e61ded2bc0505de4685",
+      "pushed": true
+    }
+  },
+  "draft": true,
+  "sealedAt": "2026-10-08T10:10:41.923Z",
+  "currentHeadSha": "df9c06b034c64f2d518cb3bc6b48b987bc5376f4",
+  "observedFinalMainSha": "8dd5f46f34701ef41b20cfc558786ed6137f9426",
+  "lateMainAdvance": {
+    "observedFinalMainSha": "8dd5f46f34701ef41b20cfc558786ed6137f9426",
+    "reconciledMainSha": "89c3292c2432b33ea0740e0014d56aa135185449",
+    "changedPaths": [
+      "subjects/russian/docs/engine/RE43_A0_INTERACTIVE_SPATIAL_PREVIEW.md",
+      "subjects/russian/engine/integration/grounded-experience.js",
+      "subjects/russian/engine/integration/spatial-candidate-experience.js",
+      "subjects/russian/engine/tests/browser-grounded-acceptance.mjs",
+      "subjects/russian/engine/tests/test-re43-spatial-browser-contract.mjs",
+      "subjects/russian/sw.js"
+    ],
+    "hubOwnedPathChanges": [],
+    "subjectContentReads": 0,
+    "policy": "CODEX_START: reconcile only impacted allowed-path changes",
+    "decision": "Preserve exact green HEAD for Chat review; main advanced after final-revalidation preflight with no impacted Hub-owned allowed path. No claim that this HEAD includes the later Subject changes."
+  }
+}
