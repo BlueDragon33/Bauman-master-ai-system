@@ -15,6 +15,9 @@ assert.equal(candidate.corrections.spatial.length,1);
 assert.equal(candidate.corrections.dialogues.length,1);
 assert.equal(candidate.spatial.scenes.find(x=>x.sceneId==='rl-15-university').russianDraft,'Передай мне, пожалуйста, тетрадь.');
 assert.equal(candidate.dialogues.scenes.find(x=>x.sceneId==='repair-dorm-shower').surface.reply,'Душевая в конце коридора справа.');
+assert.equal(candidate.dialogues.revision,'repair-dialogues-ai-draft-r4');
+assert.equal(candidate.dialogues.scenes.find(x=>x.sceneId==='repair-dorm-shower').vn.replyHint,'Quản lý cho biết phòng tắm ở cuối hành lang, bên phải.');
+assert.equal(candidate.dialogues.scenes.find(x=>x.sceneId==='repair-dorm-shower').vn.replyHint.includes('rẽ phải'),false,'location is not a right-turn instruction');
 assert.equal(candidate.spatial.scenes.find(x=>x.sceneId==='rl-15-university').expectedAction.toNodeId,'classmate');
 assert.equal(candidate.dialogues.scenes.find(x=>x.sceneId==='repair-dorm-shower').targetNodeId,'shower-room');
 assert.equal(candidate.spatial.scenes.every(x=>x.revision===candidate.spatial.revision),true,'every spatial scene revision must match pack revision');
@@ -29,6 +32,7 @@ console.log(JSON.stringify({
   corrections:2,
   rl15RecipientDisambiguated:true,
   dormLocationAdverbCorrected:true,
+  VietnameseDirectionalHintAligned:true,
   revisionsAligned:true,
   deterministic:true,
   humanApproval:false,
