@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import vm from 'node:vm';
 
 const root = 'subjects/entrepreneurship';
 for (const relative of [
@@ -63,7 +64,12 @@ assert.ok(data.includes("id:'entrepreneurship'"), 'Entrepreneurship subject miss
 assert.ok(data.includes("id:'c8',stage:'m2',subject:'entrepreneurship'"), 'HK2 entrepreneurship course is not routed to the dedicated subject');
 
 const main = fs.readFileSync('assets/js/main.js', 'utf8');
-assert.ok(main.includes("entrepreneurship:'subjects/entrepreneurship/index.html'"), 'Entrepreneurship runtime path missing from main hub');
-assert.ok(main.includes("entrepreneurship:'subjects/entrepreneurship/editor.html'"), 'Entrepreneurship editor path missing from main hub');
+assert.ok(main.includes('BAUMAN_HUB_SUBJECT_LAUNCH.launchInHub'), 'Main Hub must delegate learner launch to its adapter');
+const configWindow = {BAUMAN_DATA:{subjects:[{id:'entrepreneurship',name:'Entrepreneurship'}]}};
+vm.runInNewContext(fs.readFileSync('assets/js/platform/hub-subject-config.js','utf8'),{window:configWindow,structuredClone});
+const configuration = configWindow.BAUMAN_HUB_SUBJECT_CONFIG.getConfiguration('entrepreneurship');
+assert.equal(configuration.entry,'subjects/entrepreneurship/index.html', 'Entrepreneurship runtime path missing from Hub application config');
+assert.equal(configuration.editor,'subjects/entrepreneurship/editor.html', 'Entrepreneurship admin editor path missing from Hub application config');
+assert.equal(configWindow.BAUMAN_HUB_SUBJECT_CONFIG.getDescriptor('entrepreneurship').authoring,null,'Admin editor path must not imply learner authoring capability');
 
 console.log('ENTREPRENEURSHIP_SUBJECT_STATIC_GATE=PASS');

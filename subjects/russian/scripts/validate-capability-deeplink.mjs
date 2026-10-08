@@ -1,8 +1,10 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import vm from 'node:vm';
 
 const main=fs.readFileSync('assets/js/main.js','utf8');
 const planning=fs.readFileSync('assets/js/planning-main.js','utf8');
+const launch=fs.readFileSync('assets/js/platform/hub-subject-launch.js','utf8');
 const host=fs.readFileSync('subjects/shared/host-bridge.js','utf8');
 const core=fs.readFileSync('subjects/russian/assets/core.js','utf8');
 const hub=fs.readFileSync('assets/js/hub-safe-shell.js','utf8');
@@ -10,9 +12,14 @@ const hub=fs.readFileSync('assets/js/hub-safe-shell.js','utf8');
 assert.ok(main.includes('function compactSubjectRoute'),'Main route sanitizer missing');
 assert.ok(main.includes('function capabilityGapContext'),'Main capability gap context missing');
 assert.ok(main.includes("source:capabilityRoute?'capability-gap':'bauman-main'"),'Capability mission source missing');
-assert.ok(main.includes('routeView:route.view'),'Capability route query view missing');
-assert.ok(main.includes('routeTab:route.learnTab'),'Capability route query tab missing');
-assert.ok(main.includes('routeLesson:route.lessonId'),'Capability route query lesson missing');
+assert.ok(launch.includes('routeView:route.view'),'Capability route query view missing from launch owner');
+assert.ok(launch.includes('routeTab:route.learnTab'),'Capability route query tab missing from launch owner');
+assert.ok(launch.includes('routeLesson:route.lessonId'),'Capability route query lesson missing from launch owner');
+assert.ok(main.includes('return window.BAUMAN_HUB_SUBJECT_LAUNCH.withTaskQuery(path,task)'),'Public runtime query compatibility helper must delegate to the launch owner');
+const queryWindow={};
+vm.runInNewContext(launch,{window:queryWindow,URL,location:{href:'https://hub.example/',origin:'https://hub.example'}});
+const query=new URL(queryWindow.BAUMAN_HUB_SUBJECT_LAUNCH.withTaskQuery('subjects/russian/index.html',{subjectId:'russian',taskId:'public-contract-test',capabilityRoute:{view:'learning',learnTab:'practice',lessonId:'public-lesson'},capabilityBand:'A1'}));
+for(const [key,value] of Object.entries({routeView:'learning',routeTab:'practice',routeLesson:'public-lesson',capabilityBand:'A1',hostOrigin:'https://hub.example',protocol:'planning-v3'}))assert.equal(query.searchParams.get(key),value,'Capability query contract drift: '+key);
 assert.ok(main.includes("openSubjectCapabilityGap(id='russian')"),'Main capability gap launcher missing');
 assert.ok(hub.includes("a.openSubjectCapabilityGap?.('russian')"),'Hub CTA must use capability gap launcher');
 assert.ok(planning.includes("source:base.source==='capability-gap'?'capability-gap':'bauman-main-planning-v3'"),'PlanningBridge must preserve capability-gap provenance');

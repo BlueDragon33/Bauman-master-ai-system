@@ -2,12 +2,12 @@
   "schemaVersion": "1.0.0",
   "packetId": "HUB-SUBJECT-INTEGRATION-20261007-001",
   "packetRevision": 1,
-  "status": "BLOCKED",
-  "executionState": "BLOCKED",
-  "expectedPacketStatus": "BLOCKED",
+  "status": "IN_CODEX",
+  "executionState": "IN_PROGRESS",
+  "expectedPacketStatus": "IN_CODEX",
   "baselineMainSha": "23973e7106b9ac511f91c523d8f8bffd07c17530",
   "beforeSha": "5924b72ff600dc0798369362ced83356550f2095",
-  "afterSha": "ce4ce81152a1b35ba8fefaf24419cd497b671429",
+  "afterSha": null,
   "testedRuntimeHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429",
   "branch": "codex/hub-subject-integration-20261007",
   "changedPaths": [
@@ -277,38 +277,8 @@
       "testedHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429"
     }
   ],
-  "blockers": [
-    {
-      "id": "HUB-INTEGRATION-CI-BOUNDARY-001",
-      "type": "FORBIDDEN_SUBJECT_OWNED_VALIDATOR_CONTRACT",
-      "owner": "Subject public-contract validator owner",
-      "path": "subjects/russian/scripts/validate-capability-deeplink.mjs",
-      "line": 13,
-      "error": "Capability route query view missing",
-      "evidence": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37708648091",
-      "explanation": "Original CI rejects moving launch-query implementation from main into the Hub Launch Adapter. Actual public routeView/routeTab/routeLesson/capabilityBand/query and task handoff are verified by Hub static/browser tests. The failing validator is inside explicitly forbidden subjects/**; it was not read or edited. Requires the validator owner to align the source contract without reducing coverage.",
-      "ordinaryRuntimeTestFailure": false,
-      "canFixWithinAuthorizedHubPaths": false
-    },
-    {
-      "id": "HUB-INTEGRATION-CI-BOUNDARY-002",
-      "type": "PUBLIC_HUB_TEST_SCOPE_AUTHORIZATION_PENDING",
-      "paths": [
-        "tests/entrepreneurship-subject-static.mjs",
-        "tests/russian-capability-continue-static.mjs"
-      ],
-      "errors": [
-        "Entrepreneurship runtime path missing from main hub",
-        "Main separate-tab launch must preserve only same-subject capability route"
-      ],
-      "evidence": [
-        "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37708648090",
-        "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37625775428"
-      ],
-      "explanation": "These existing Hub assertions require obsolete implementation locations in main.js. Semantic target and same-subject tab-context regressions already pass in the new Hub suite. Scoped authorization to align only these assertions is pending; neither test has been changed or removed."
-    }
-  ],
-  "releaseState": "BLOCKED",
+  "blockers": [],
+  "releaseState": "IN_PROGRESS",
   "productionDeployed": false,
   "previousAcceptedExecution": {
     "packetId": "HUB-STORAGE-20261006-001",
@@ -324,7 +294,7 @@
     "ffd1db07a7fd121aede14a08fceab6a9d0698235",
     "5924b72ff600dc0798369362ced83356550f2095"
   ],
-  "finalHead": "ce4ce81152a1b35ba8fefaf24419cd497b671429",
+  "finalHead": null,
   "afterShaSemantics": "Exact tested runtime implementation commit. This evidence-only completion commit cannot embed its own SHA. Its independently tested final HEAD and pushed JSON blob hashes are attached in refs/notes/hub-subject-integration and PR #295 without modifying that HEAD. CI remains explicitly BLOCKED.",
   "finalHeadSemantics": "Exact tested runtime implementation commit. This evidence-only completion commit cannot embed its own SHA. Its independently tested final HEAD and pushed JSON blob hashes are attached in refs/notes/hub-subject-integration and PR #295 without modifying that HEAD. CI remains explicitly BLOCKED.",
   "prNumber": 295,
@@ -989,7 +959,7 @@
     "status": "PASS",
     "comparisonBase": "5924b72ff600dc0798369362ced83356550f2095",
     "allAgentChangedPathsAllowlisted": true,
-    "subjectsChanges": 0,
+    "subjectsChanges": 1,
     "subjectPromptChanges": 0,
     "subjectPrivateFileReads": false,
     "subjectPrivateStateOrDOMReads": false,
@@ -997,7 +967,9 @@
     "originalRemoteGateExecutedWithItsRequiredCoverage": true,
     "noSubjectApiInvented": true,
     "productionDeployed": false,
-    "mainMerged": false
+    "mainMerged": false,
+    "subjectValidatorException": "subjects/russian/scripts/validate-capability-deeplink.mjs",
+    "subjectRuntimeChanges": 0
   },
   "releaseTarget": "LOCAL_STABLE",
   "productionDeploymentState": "NOT_DEPLOYED",
@@ -1022,5 +994,49 @@
       "subjectSourceInspected": false,
       "gateUrl": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37708648091"
     }
-  ]
+  ],
+  "previousBoundaryBlockers": [
+    {
+      "id": "HUB-INTEGRATION-CI-BOUNDARY-001",
+      "type": "FORBIDDEN_SUBJECT_OWNED_VALIDATOR_CONTRACT",
+      "owner": "Subject public-contract validator owner",
+      "path": "subjects/russian/scripts/validate-capability-deeplink.mjs",
+      "line": 13,
+      "error": "Capability route query view missing",
+      "evidence": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37708648091",
+      "explanation": "Original CI rejects moving launch-query implementation from main into the Hub Launch Adapter. Actual public routeView/routeTab/routeLesson/capabilityBand/query and task handoff are verified by Hub static/browser tests. The failing validator is inside explicitly forbidden subjects/**; it was not read or edited. Requires the validator owner to align the source contract without reducing coverage.",
+      "ordinaryRuntimeTestFailure": false,
+      "canFixWithinAuthorizedHubPaths": false
+    },
+    {
+      "id": "HUB-INTEGRATION-CI-BOUNDARY-002",
+      "type": "PUBLIC_HUB_TEST_SCOPE_AUTHORIZATION_PENDING",
+      "paths": [
+        "tests/entrepreneurship-subject-static.mjs",
+        "tests/russian-capability-continue-static.mjs"
+      ],
+      "errors": [
+        "Entrepreneurship runtime path missing from main hub",
+        "Main separate-tab launch must preserve only same-subject capability route"
+      ],
+      "evidence": [
+        "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37708648090",
+        "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37625775428"
+      ],
+      "explanation": "These existing Hub assertions require obsolete implementation locations in main.js. Semantic target and same-subject tab-context regressions already pass in the new Hub suite. Scoped authorization to align only these assertions is pending; neither test has been changed or removed."
+    }
+  ],
+  "authorizedPublicContractTestException": {
+    "authority": "Direct human approval: cho phép, 2026-10-08, following explicit request naming all three files",
+    "paths": [
+      "tests/entrepreneurship-subject-static.mjs",
+      "tests/russian-capability-continue-static.mjs",
+      "subjects/russian/scripts/validate-capability-deeplink.mjs"
+    ],
+    "subjectPathException": "subjects/russian/scripts/validate-capability-deeplink.mjs",
+    "purpose": "Only Hub contract assertions now inspect the independent config/launch owner; retain all original Subject assertions and CI commands",
+    "subjectRuntimeReadsAuthorized": false,
+    "subjectRuntimeEditsAuthorized": false,
+    "privateStateOrDOMReadsAuthorized": false
+  }
 }

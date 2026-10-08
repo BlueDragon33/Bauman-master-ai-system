@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import vm from 'node:vm';
 const main=fs.readFileSync('assets/js/main.js','utf8');
 const planning=fs.readFileSync('assets/js/planning-main.js','utf8');
 assert.ok(main.includes('function capabilityContinueContext'),'capability-aware continue helper missing');
@@ -23,7 +24,16 @@ assert.match(main,/function capabilityGapContext[\s\S]*?if\(reviewDue>0\)return 
 assert.ok(main.includes("if(last.subjectId==='russian')requestFreshCapabilityIntent('russian','continue')"),'continueStudy must request a fresh Russian capability snapshot');
 assert.ok(main.includes("openSubjectCapabilityGap(id='russian'){if(id==='russian')requestFreshCapabilityIntent(id,'capability');return this.openSubjectInPage(id,{})}"),'Capability CTA must refresh before routing');
 assert.ok(main.includes("const task=typeof planner==='function'?planner(subjectId,context):buildLearningTask(subjectId,context)"),'Fresh capability reroute must preserve PlanningBridge when available');
-assert.ok(main.includes('const context=capabilityContextFromTask(state.activeTask,id)||{};const task=buildLearningTask(id,context)'),'Main separate-tab launch must preserve only same-subject capability route');
+assert.ok(main.includes('launchInTab(id,capabilityContextFromTask(state.activeTask,id)||{})'),'Main separate-tab launch must delegate only same-subject capability route to the adapter');
+const routeHelper=main.slice(main.indexOf('function compactSubjectRoute('),main.indexOf('function capabilityGapContext('));
+const contextHelper=main.slice(main.indexOf('function capabilityContextFromTask('),main.indexOf('function capabilityContinueContext('));
+const tabBody=main.match(/openSubjectTab\(id\)\{([^\n]+?)\},\r?\n/)[1];
+const tabCalls=[],tabState={activeTask:{subjectId:'russian',source:'capability-gap',capabilityRoute:{view:'learning',learnTab:'practice',lessonId:'public-lesson'},capabilityBand:'A1'}};
+vm.runInNewContext(`${routeHelper}\n${contextHelper}\nfunction launchTab(id){${tabBody}};launchTab('russian');launchTab('math');state.activeTask.source='bauman-main';launchTab('russian');`,{state:tabState,window:{BAUMAN_HUB_SUBJECT_LAUNCH:{launchInTab:(id,context)=>tabCalls.push({id,context})}}});
+assert.equal(tabCalls[0].context.capabilityRoute.lessonId,'public-lesson');
+assert.equal(tabCalls[0].context.capabilityBand,'A1');
+assert.equal(Object.keys(tabCalls[1].context).length,0,'Other-subject tab launch must not receive the active capability route');
+assert.equal(Object.keys(tabCalls[2].context).length,0,'Non-capability task must not route the separate tab through a capability gap');
 assert.ok(planning.includes("window.capabilityContextFromTask?.(window.state.activeTask,id)||{}"),'PlanningBridge separate-tab override must preserve only same-subject capability route');
 assert.ok(planning.includes("if(id!=='russian')window.clearPendingCapabilityIntent?.()"),'PlanningBridge subject switch must clear pending Russian capability intent');
 assert.doesNotMatch(main,/capabilityContinueContext[\s\S]{0,500}state\.progress\s*=/,'continue helper must not synthesize progress');

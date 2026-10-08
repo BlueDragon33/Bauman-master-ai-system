@@ -10,7 +10,7 @@ Tech: existing browser JavaScript, IndexedDB, Node and Playwright; no new depend
 
 ## Constraints
 
-- No read/edit of subjects/** or prompts/subjects/**; local servers reject both before filesystem access.
+- No read/edit of subjects/** or prompts/subjects/** except the explicitly authorized public-contract validator; no Subject runtime files are read locally. Local servers reject both trees before filesystem access.
 - Preserve accepted storage r5, Device Gate, profile authority, five primary routes and all original CI tests.
 - Portable learner restore must never change application/device configuration.
 - First successful legacy custom-configuration claim is global, atomic and retry-safe; existing explicit device overrides win.

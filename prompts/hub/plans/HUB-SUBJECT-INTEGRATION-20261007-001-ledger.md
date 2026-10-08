@@ -28,3 +28,6 @@ Reconciliation: main advanced to 5924b72ff600dc0798369362ced83356550f2095; inher
 
 Task 4: local complete — ce4ce81152a1b35ba8fefaf24419cd497b671429: 19 source + 4 standalone package + 4 managed Hub-only = 27/27 PASS, DSJ validator PASS. Original full CI is 7/9 workflows PASS, two failed source-location contracts. Original 97 workflow steps retained +5 additive steps.
 Task 5: boundary blocked — original validator in forbidden subjects/** requires old main.js query implementation location. No validator/source workaround, no gate weakening. Pending Hub-test authorization and Subject validator owner alignment; fullSystemValidated=false.
+
+Resume: direct human approval 2026-10-08 grants precisely the two named root tests and one public validator exception. No Subject runtime/internal file authorization.
+Ruling: align the three source-location assertions to actual Hub config/adapter owners and strengthen them with VM behavior checks — direct human scope exception — risk if wrong: contract coverage weakens; all Subject assertion text and every original CI step retained, three Hub checks watched RED→GREEN.

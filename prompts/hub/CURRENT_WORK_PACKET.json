@@ -2,8 +2,8 @@
   "schemaVersion": "1.0.0",
   "packetId": "HUB-SUBJECT-INTEGRATION-20261007-001",
   "revision": 1,
-  "status": "BLOCKED",
-  "executionState": "BLOCKED",
+  "status": "IN_CODEX",
+  "executionState": "IN_PROGRESS",
   "workClass": "B",
   "executionPlane": "CODEX",
   "userIntent": "Continue Bauman Hub after accepted storage r5. Remove raw subject transport/config leakage from learner state and presentation while preserving existing public Hub↔Subject behavior and current storage guarantees.",
@@ -89,7 +89,7 @@
   ],
   "architectureInvariants": [
     "Hub↔Subject integration remains Descriptor → Capability → Launch Adapter → Normalized Hub Read Model.",
-    "Do not read or modify prompts/subjects/** or subjects/** for this Hub-only packet.",
+    "Do not read or modify prompts/subjects/** or subjects/** except the single explicitly authorized public Hub-contract validator subjects/russian/scripts/validate-capability-deeplink.mjs. No Subject runtime/private source reads or edits.",
     "Do not inspect subject-private DB/localStorage/IndexedDB/DOM.",
     "Do not invent a subject endpoint or learner capability.",
     "Application launch configuration is not learner progress/evidence and must not live in scoped personal backup after migration.",
@@ -157,7 +157,10 @@
     "prompts/hub/**",
     "prompts/PROMPT_REGISTRY.json",
     "assets/js/planning-main.js",
-    "assets/js/hub-premium-v2.js"
+    "assets/js/hub-premium-v2.js",
+    "tests/entrepreneurship-subject-static.mjs",
+    "tests/russian-capability-continue-static.mjs",
+    "subjects/russian/scripts/validate-capability-deeplink.mjs"
   ],
   "forbiddenPaths": [
     "subjects/**",
@@ -234,7 +237,7 @@
     "Storage r5 migration, scoped backup/restore, credential redaction and research attachments remain green.",
     "Exactly five primary learner routes remain unchanged.",
     "No subject-private file/state access is introduced.",
-    "No files under subjects/** or prompts/subjects/** are modified.",
+    "No Subject runtime or prompt files are modified; only the explicitly authorized public Hub-contract validator exception may change, with its Subject assertions intact.",
     "Whole System Integration Gate original workflow passes on exact final head.",
     "Release target is LOCAL_STABLE only; production remains NOT_DEPLOYED."
   ],
@@ -251,41 +254,11 @@
     "Public bridge/capability/route receipt regression.",
     "Five-route responsive regression.",
     "Whole System Integration Gate source + packaged acceptance.",
-    "Diff-scope proof: subjects/**=0, prompts/subjects/**=0."
+    "Diff-scope proof: Subject runtime=0, prompts/subjects/**=0; exactly one authorized public-contract validator exception."
   ],
   "releasePolicy": "NO_PRODUCTION_DEPLOY. Codex stops at exact-head LOCAL_STABLE pending Chat review. No merge to main until Chat ACCEPT.",
   "stopCondition": "CODEX_DONE_PENDING_CHAT_REVIEW with all acceptance criteria green, or a genuine blocker with exact path/test/log evidence.",
-  "blockers": [
-    {
-      "id": "HUB-INTEGRATION-CI-BOUNDARY-001",
-      "type": "FORBIDDEN_SUBJECT_OWNED_VALIDATOR_CONTRACT",
-      "owner": "Subject public-contract validator owner",
-      "path": "subjects/russian/scripts/validate-capability-deeplink.mjs",
-      "line": 13,
-      "error": "Capability route query view missing",
-      "evidence": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37708648091",
-      "explanation": "Original CI rejects moving launch-query implementation from main into the Hub Launch Adapter. Actual public routeView/routeTab/routeLesson/capabilityBand/query and task handoff are verified by Hub static/browser tests. The failing validator is inside explicitly forbidden subjects/**; it was not read or edited. Requires the validator owner to align the source contract without reducing coverage.",
-      "ordinaryRuntimeTestFailure": false,
-      "canFixWithinAuthorizedHubPaths": false
-    },
-    {
-      "id": "HUB-INTEGRATION-CI-BOUNDARY-002",
-      "type": "PUBLIC_HUB_TEST_SCOPE_AUTHORIZATION_PENDING",
-      "paths": [
-        "tests/entrepreneurship-subject-static.mjs",
-        "tests/russian-capability-continue-static.mjs"
-      ],
-      "errors": [
-        "Entrepreneurship runtime path missing from main hub",
-        "Main separate-tab launch must preserve only same-subject capability route"
-      ],
-      "evidence": [
-        "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37708648090",
-        "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37625775428"
-      ],
-      "explanation": "These existing Hub assertions require obsolete implementation locations in main.js. Semantic target and same-subject tab-context regressions already pass in the new Hub suite. Scoped authorization to align only these assertions is pending; neither test has been changed or removed."
-    }
-  ],
+  "blockers": [],
   "scopeReconciliation": {
     "additionalPath": "assets/js/planning-main.js",
     "authority": "Direct user approval 2026-10-07",
@@ -296,6 +269,19 @@
       "authority": "Direct user instruction 2026-10-08: discover and normalize other Hub-owned callers",
       "evidence": "Dormant presentation module still copied raw launch path into lastStudy; normalized to subject choice only. Not loaded by current index. No planning logic or subject owner changes."
     },
-    "singleLaunchOwner": "Hub Launch Adapter owns launch URL validation/query construction; main public runtime compatibility helpers delegate to it; planning only supplies existing mission/handoff callbacks."
+    "singleLaunchOwner": "Hub Launch Adapter owns launch URL validation/query construction; main public runtime compatibility helpers delegate to it; planning only supplies existing mission/handoff callbacks.",
+    "publicContractTestException": {
+      "authority": "Direct human approval: cho phép, 2026-10-08, following explicit request naming all three files",
+      "paths": [
+        "tests/entrepreneurship-subject-static.mjs",
+        "tests/russian-capability-continue-static.mjs",
+        "subjects/russian/scripts/validate-capability-deeplink.mjs"
+      ],
+      "subjectPathException": "subjects/russian/scripts/validate-capability-deeplink.mjs",
+      "purpose": "Only Hub contract assertions now inspect the independent config/launch owner; retain all original Subject assertions and CI commands",
+      "subjectRuntimeReadsAuthorized": false,
+      "subjectRuntimeEditsAuthorized": false,
+      "privateStateOrDOMReadsAuthorized": false
+    }
   }
 }
