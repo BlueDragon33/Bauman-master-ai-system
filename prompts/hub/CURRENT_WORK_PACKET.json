@@ -310,7 +310,9 @@
     "noSubjectPrivateStateOrDOMReads": true,
     "noLaunchAdapterReimplementation": true,
     "noCoverageReduction": true,
-    "noTimeoutIncrease": true
+    "noTimeoutIncrease": true,
+    "additionalPreviouslyAuthorizedOwner": "tests/system-browser-acceptance.mjs",
+    "reason": "Fix ordinary CI failure inside already allowed system-browser test; no new path authorization added"
   },
   "observedMainSha": "c4a1467bfa3db28df8ac5dcc55ca40b0046aca2e",
   "reconciledMainSha": "c4a1467bfa3db28df8ac5dcc55ca40b0046aca2e",

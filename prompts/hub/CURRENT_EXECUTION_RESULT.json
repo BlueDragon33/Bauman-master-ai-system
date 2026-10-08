@@ -1868,6 +1868,16 @@
       "sameHeadNoImplementationEdits": true,
       "rootCause": "Access readiness reflects personal/device access before independent Hub launch config initialization. Original capability browser tests call launch at that earlier gate; no iframe can supply a capability snapshot. Waiting for Hub personal/config readiness before launch succeeds.",
       "subjectReads": 0
+    },
+    {
+      "head": "95d9d2084aa33f562f641015a2d36aa0ba470524",
+      "runId": 37755711849,
+      "test": "tests/system-browser-acceptance.mjs",
+      "error": "Packaged full acceptance: three canonical Hub data requests ERR_ABORTED during deliberate early reload",
+      "resolution": "Wait for Hub personal/config readiness and networkidle before explicit reload; wait for config readiness after reload before canonical injection launch",
+      "redPendingRequests": 4,
+      "greenPendingRequests": 0,
+      "runtimeChanged": false
     }
   ],
   "previousBoundaryBlockers": [
@@ -2554,6 +2564,93 @@
           }
         }
       ]
+    }
+  },
+  "reloadSynchronization": {
+    "owner": "tests/system-browser-acceptance.mjs",
+    "alreadyAllowedByPacket": true,
+    "newAllowedPathsAdded": [],
+    "failureHead": "95d9d2084aa33f562f641015a2d36aa0ba470524",
+    "failureRunId": 37755711849,
+    "failure": "Packaged full acceptance: three canonical Hub data requests ERR_ABORTED during deliberate early reload",
+    "rootCause": "Academic Hub data fetch begins after personal readiness; access-only reload can cancel in-flight canonical startup fetches",
+    "change": "Wait for Hub personal/config readiness and networkidle before explicit reload; wait for config readiness after reload before canonical injection launch",
+    "originalAssertionsFiltersAndTimeoutsUnchanged": true,
+    "noNewTimeoutAboveExistingLimit": true,
+    "red": {
+      "status": "FAIL",
+      "scope": "Actual initial full-gate Hub access checks/reload with delayed public Hub data responses; observed academic-after-personal-readiness interleaving; Subject requests intercepted",
+      "subjectSourceReads": 0,
+      "subjectPrivateStateOrDOMReads": 0,
+      "pendingBeforeReload": 4,
+      "opened": [
+        "http://127.0.0.1:4186/assets/data/course-learning-architecture-s1-2026.json",
+        "http://127.0.0.1:4186/assets/data/official-curriculum-iu5-2026.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-registry-iu5-2026.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/manifest-2026.json",
+        "http://127.0.0.1:4186/assets/data/course-learning-architecture-s1-2026.json",
+        "http://127.0.0.1:4186/assets/data/official-curriculum-iu5-2026.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-registry-iu5-2026.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/manifest-2026.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p00-technical-russian.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p01-calculus-foundation.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p02-linear-algebra.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p03-probability-statistics.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p04-discrete-algorithms-data-structures.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p05-python-oop.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p06-database-fundamentals.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p07-linux-os-networks.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p08-software-engineering.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p09-markov-queueing-simulation.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p10-scientific-data-python.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p11-research-foundation.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/j01-information-system-architecture.json"
+      ],
+      "failedRequests": []
+    },
+    "green": {
+      "status": "PASS",
+      "scope": "Actual initial full-gate Hub access checks/reload with delayed public Hub data responses; observed academic-after-personal-readiness interleaving; Subject requests intercepted",
+      "subjectSourceReads": 0,
+      "subjectPrivateStateOrDOMReads": 0,
+      "pendingBeforeReload": 0,
+      "opened": [
+        "http://127.0.0.1:4186/assets/data/course-learning-architecture-s1-2026.json",
+        "http://127.0.0.1:4186/assets/data/official-curriculum-iu5-2026.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-registry-iu5-2026.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/manifest-2026.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p00-technical-russian.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p01-calculus-foundation.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p02-linear-algebra.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p03-probability-statistics.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p04-discrete-algorithms-data-structures.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p05-python-oop.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p06-database-fundamentals.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p07-linux-os-networks.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p08-software-engineering.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p09-markov-queueing-simulation.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p10-scientific-data-python.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p11-research-foundation.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/j01-information-system-architecture.json",
+        "http://127.0.0.1:4186/assets/data/course-learning-architecture-s1-2026.json",
+        "http://127.0.0.1:4186/assets/data/official-curriculum-iu5-2026.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-registry-iu5-2026.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/manifest-2026.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p00-technical-russian.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p01-calculus-foundation.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p02-linear-algebra.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p03-probability-statistics.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p04-discrete-algorithms-data-structures.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p05-python-oop.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p06-database-fundamentals.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p07-linux-os-networks.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p08-software-engineering.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p09-markov-queueing-simulation.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p10-scientific-data-python.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/p11-research-foundation.json",
+        "http://127.0.0.1:4186/assets/data/prerequisite-packs/j01-information-system-architecture.json"
+      ],
+      "failedRequests": []
     }
   }
 }
