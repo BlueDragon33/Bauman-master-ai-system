@@ -70,14 +70,14 @@ export function verifyAuthorizedReviewDecision(item,decision,registry){
   if(decision?.reviewerType!=='HUMAN')errors.push('human reviewer type required');
   if(!txt(decision?.decisionId))errors.push('decision ID required');
   const at=txt(decision?.decidedAt);
-  if(!/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{1,3})?Z$/.test(at)||Number.isNaN(Date.parse(at)))errors.push('valid UTC decision timestamp required');
+  if(!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,3})?Z$/.test(at)||Number.isNaN(Date.parse(at)))errors.push('valid UTC decision timestamp required');
   const matches=arr(registry?.reviewers).filter(r=>r?.reviewerId===decision?.reviewerId);
   if(matches.length!==1)errors.push('registered unique reviewer required');
   if(decision?.scope==='AUDIO'){
     const assetFile=txt(item?.audio?.assetFile);
     // A string that looks like SHA-256 is not evidence that any audio exists.
-    if(item?.audio?.kind!=='RECORDED'||!/[a-f0-9]{64}/.test(item?.audioFingerprint||'')||
-       !/^[a-zA-Z0-9][a-zA-Z0-9._-]*\\.(?:wav|mp3|ogg)$/.test(assetFile)){
+    if(item?.audio?.kind!=='RECORDED'||!/^[a-f0-9]{64}$/.test(item?.audioFingerprint||'')||
+       !/^[a-zA-Z0-9][a-zA-Z0-9._-]*\.(?:wav|mp3|ogg)$/.test(assetFile)){
       errors.push('recorded, immutable audio asset with safe filename required');
     }else{
       try{
