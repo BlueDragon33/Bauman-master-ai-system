@@ -169,8 +169,8 @@ export async function mountGroundedExperience({
   }
   const desiredSetting=readGroundedSetting(windowLike.location);
   const capabilities={audio:typeof speechProvider?.playStimulus==='function',visual:true};
-  const selectorScenes=realLife&&desiredSetting
-    ? scenes.filter(item=>String(item?.setting||'')===desiredSetting)
+  const selectorScenes=realLife
+    ? scenes.filter(item=>(!desiredSetting||String(item?.setting||'')===desiredSetting)&&!describeGroundedSceneForBeginner(item).quarantineReason)
     : scenes;
   let selectorReason=realLife?'new-content':'legacy-initial';
   let scene;
