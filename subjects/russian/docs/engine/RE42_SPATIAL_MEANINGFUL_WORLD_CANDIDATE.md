@@ -1,6 +1,6 @@
 # RE42 — Spatially meaningful Russian real-life worlds (AI candidate)
 
-State: **ENGINEERING_DRAFT · NOT_RU03_APPROVED · NOT_PUBLISHED**. Stacked on RE41 PR #308. Source revision `real-life-v1-r1` is preserved byte-for-byte.
+State: **ENGINEERING_DRAFT · NOT_RU03_APPROVED · NOT_PUBLISHED**. Based on merged RE41 PR #308; this proposal remains isolated and noncanonical. Source revision `real-life-v1-r1` is preserved byte-for-byte.
 
 ## Purpose
 
