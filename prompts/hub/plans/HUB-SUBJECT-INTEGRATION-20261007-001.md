@@ -47,10 +47,10 @@ Tech: existing browser JavaScript, IndexedDB, Node and Playwright; no new depend
 ### Task 4: Regression gates
 - [x] Adapt the existing learner-path injection test to prove configuration independence; add invalid application-target rejection tests.
 - [x] Add new static/browser suites to the original workflow without deleting or reducing any existing steps.
-- [ ] Run targeted and full Hub local source/package/managed regressions; run the original full-system gate on GitHub.
+- [x] Run targeted and full Hub local source/package/managed regressions; run the original full-system gate on GitHub.
 
 ### Task 5: Review and exact-head evidence
 - [x] Fresh whole-branch review restricted to allowed Hub files, followed by RED/GREEN fixes for material findings.
-- [ ] Update result/state, packet/registry lifecycle consistency and all acceptance evidence.
-- [ ] Validate exact final code and completion HEAD locally and on GitHub; record exact SHA through the existing non-self-referential evidence convention.
-- [ ] Stop pending Chat review; keep any review PR draft; no main merge/deploy.
+- [x] Update result/state, packet/registry lifecycle consistency and all acceptance evidence.
+- [x] Validate exact final code and completion HEAD locally and on GitHub; record exact SHA through the existing non-self-referential evidence convention.
+- [x] Stop pending Chat review; keep any review PR draft; no main merge/deploy.

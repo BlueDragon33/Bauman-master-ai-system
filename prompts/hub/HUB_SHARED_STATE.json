@@ -3,8 +3,8 @@
   "domain": "hub",
   "constitution": "prompts/CONSTITUTION.md",
   "masterPrompt": "prompts/hub/HUB_MASTER_PROMPT.md",
-  "status": "IN_CODEX",
-  "lifecycle": "SUBJECT_INTEGRATION_R1_FINAL_BLOCKER_ALIGNMENT",
+  "status": "CODEX_DONE_PENDING_CHAT_REVIEW",
+  "lifecycle": "SUBJECT_INTEGRATION_R1_DONE_PENDING_CHAT_REVIEW",
   "baselineMainSha": "2951cc86378056456110abedffe305c8f99d0c42",
   "lastReviewedSha": "19db67bc0975e6fc0c4af0a31111ad3b30e6bfe7",
   "workingBranch": "codex/hub-subject-integration-20261007",
@@ -154,7 +154,7 @@
         "Admin UI edits state.subjects[id].mainPath/editorPath and persists with save().",
         "Storage r5 now correctly treats main Hub state as scoped personal learner data, making this ownership mismatch explicit."
       ],
-      "status": "FIXED_LOCAL_REVALIDATED_CI_BOUNDARY_BLOCKED"
+      "status": "FIXED_REVALIDATED_PENDING_CHAT_REVIEW"
     },
     {
       "id": "HUB-INTEGRATION-002",
@@ -167,7 +167,7 @@
         "assets/js/subjects-reference-v1.js course menus render 'Dữ liệu môn' -> openEditor() -> app.openSubjectEditor().",
         "No explicit public authoring capability is required before these learner-facing actions are shown."
       ],
-      "status": "FIXED_LOCAL_REVALIDATED_CI_BOUNDARY_BLOCKED"
+      "status": "FIXED_REVALIDATED_PENDING_CHAT_REVIEW"
     },
     {
       "id": "HUB-INTEGRATION-003",
@@ -180,7 +180,7 @@
         "Home/mentor/schedule/reference layers call app.openSubjectInPage directly.",
         "The canonical Hub contract requires Descriptor → Capability → Launch Adapter → Normalized Hub Read Model."
       ],
-      "status": "FIXED_LOCAL_REVALIDATED_CI_BOUNDARY_BLOCKED"
+      "status": "FIXED_REVALIDATED_PENDING_CHAT_REVIEW"
     },
     {
       "id": "HUB-INTEGRATION-004",
@@ -192,7 +192,7 @@
         "Admin UI historically allowed direct path editing.",
         "Storage r5 can now partition learner data by profile, but application launch config should not become one copy per learner scope."
       ],
-      "status": "FIXED_LOCAL_REVALIDATED_CI_BOUNDARY_BLOCKED"
+      "status": "FIXED_REVALIDATED_PENDING_CHAT_REVIEW"
     },
     {
       "id": "HUB-INTEGRATION-005",
@@ -205,58 +205,53 @@
         "subjects-reference-v1 launches through app.openSubjectInPage.",
         "hub-primary-pages-v6 decorates Subjects/Schedule/Research and wraps existing renderers."
       ],
-      "status": "FIXED_LOCAL_REVALIDATED_CI_BOUNDARY_BLOCKED"
+      "status": "FIXED_REVALIDATED_PENDING_CHAT_REVIEW"
     }
   ],
   "activePacket": "prompts/hub/CURRENT_WORK_PACKET.json",
   "blockers": [],
   "externalBlockers": [],
-  "nextAction": "Run exact-head targeted/regression and every existing PR workflow; complete only after all green; keep draft, no merge/deploy.",
+  "nextAction": "Box Chat reviews exact independently tested draft PR #295 completion HEAD sealed in refs/notes/hub-subject-integration. No merge or production deployment.",
   "mainSyncStatus": "RECONCILED_LATEST_MAIN",
   "governanceMergedSha": "6ef5e8814ac841f927f079e18d5062274ee0d847",
   "lastReviewedRuntimeSha": "5e5a6eacf7b807b3ecad636a4c735899c7ec9963",
-  "currentHeadSha": "cdae7cb9195859af07447fd4076ef960dfea0ad7",
-  "testedRuntimeHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7",
+  "currentHeadSha": "cd5046933c00605b00b461a1d651f7022cab70aa",
+  "testedRuntimeHead": "cd5046933c00605b00b461a1d651f7022cab70aa",
   "executionResult": "prompts/hub/CURRENT_EXECUTION_RESULT.json",
   "lastExecution": {
     "packetId": "HUB-SUBJECT-INTEGRATION-20261007-001",
     "packetRevision": 1,
-    "beforeSha": "c4a1467bfa3db28df8ac5dcc55ca40b0046aca2e",
-    "afterSha": "cdae7cb9195859af07447fd4076ef960dfea0ad7",
-    "testedRuntimeHead": "cdae7cb9195859af07447fd4076ef960dfea0ad7",
-    "result": "BLOCKED",
-    "releaseState": "BLOCKED",
-    "fullSystemValidated": false,
-    "wholeSystemGatePassed": false,
-    "allCiGreen": false,
+    "beforeSha": "6e312312c6161d4b37795c311653840f5139a9f7",
+    "afterSha": "cd5046933c00605b00b461a1d651f7022cab70aa",
+    "testedRuntimeHead": "cd5046933c00605b00b461a1d651f7022cab70aa",
+    "result": "CODEX_DONE_PENDING_CHAT_REVIEW",
+    "releaseState": "LOCAL_STABLE",
+    "fullSystemValidated": true,
+    "wholeSystemGatePassed": true,
+    "allCiGreen": true,
     "productionDeployed": false,
     "ci": {
-      "runId": 37750274849,
-      "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37750274849",
-      "headSha": "cdae7cb9195859af07447fd4076ef960dfea0ad7",
+      "runId": 37758196372,
+      "url": "https://github.com/BlueDragon33/Bauman-master-ai-system/actions/runs/37758196372",
+      "headSha": "cd5046933c00605b00b461a1d651f7022cab70aa",
       "status": "completed",
-      "conclusion": "failure",
+      "conclusion": "success",
       "jobs": [
         {
-          "id": 113223325204,
-          "name": "russian-p1-browser-acceptance",
-          "conclusion": "failure",
-          "steps": [
-            {
-              "name": "Run Russian capability deep-link acceptance",
-              "conclusion": "failure"
-            }
-          ]
-        },
-        {
-          "id": 113223325651,
+          "id": 113247889292,
           "name": "validate-system-integration",
           "conclusion": "success",
           "steps": []
         },
         {
-          "id": 113223326459,
+          "id": 113248030916,
           "name": "browser-system-acceptance",
+          "conclusion": "success",
+          "steps": []
+        },
+        {
+          "id": 113248030959,
+          "name": "russian-p1-browser-acceptance",
           "conclusion": "success",
           "steps": []
         }
@@ -264,24 +259,21 @@
     }
   },
   "packetMergeSha": "c43dfd115283973b8e83a0b0e3d89eafcf8eb6b0",
-  "activePacketStatus": "IN_CODEX",
+  "activePacketStatus": "CODEX_DONE_PENDING_CHAT_REVIEW",
   "chatReview": {
-    "decision": "PENDING_CHAT_REVIEW_WITH_SCOPE_BLOCKER",
+    "decision": "PENDING_CHAT_REVIEW",
     "reviewedAt": "2026-10-07",
-    "reviewedMainSha": "c4a1467bfa3db28df8ac5dcc55ca40b0046aca2e",
+    "reviewedMainSha": "6e312312c6161d4b37795c311653840f5139a9f7",
     "productionDeployed": false,
     "releaseTarget": "LOCAL_STABLE",
-    "classBRemaining": [
-      "HUB-INTEGRATION-CI-SCOPE-STUDY-PLAN",
-      "HUB-INTEGRATION-CI-SCOPE-CAPABILITY-READINESS"
-    ]
+    "classBRemaining": []
   },
   "chatStart": "prompts/hub/chat/CHAT_START.md",
   "codexStart": "prompts/hub/codex/CODEX_START.md",
   "lastPromptReviewSha": "23973e7106b9ac511f91c523d8f8bffd07c17530",
-  "lastRuntimeReviewSha": "36eec622ab313800e7da02b13981c2e0de26afdc",
+  "lastRuntimeReviewSha": "cd5046933c00605b00b461a1d651f7022cab70aa",
   "observedMainSha": "6e312312c6161d4b37795c311653840f5139a9f7",
-  "currentHeadSemantics": "Exact implementation and approved assertion HEAD tested locally and in original GitHub CI. This evidence-only commit is independently revalidated; its exact final HEAD and pushed JSON blob IDs are sealed in refs/notes/hub-subject-integration and PR #295 to avoid a self-referential commit SHA.",
+  "currentHeadSemantics": "Exact fully tested implementation/assertion predecessor HEAD. The evidence-only completion commit is independently revalidated; its exact final HEAD, fresh CI and remote JSON blob IDs are sealed in refs/notes/hub-subject-integration and PR #295, avoiding a self-referential commit SHA.",
   "activePacketId": "HUB-SUBJECT-INTEGRATION-20261007-001",
   "activePacketRevision": 1,
   "lastAcceptedPacket": {
@@ -319,24 +311,24 @@
     },
     "exactHeadPolicy": "Every later prompt-governance commit retriggers Prompt Control Center CI; merge only when the final PR head is green."
   },
-  "releaseState": "IN_PROGRESS",
+  "releaseState": "LOCAL_STABLE",
   "releaseStateDetail": {
     "target": "LOCAL_STABLE",
     "implementationComplete": true,
     "localRegressionValidated": true,
-    "wholeSystemGatePassed": false,
-    "allCiGreen": false,
-    "fullSystemValidated": false,
+    "wholeSystemGatePassed": true,
+    "allCiGreen": true,
+    "fullSystemValidated": true,
     "reviewRequired": true,
     "productionDeployed": false,
     "mainMerged": false
   },
-  "fullSystemValidated": false,
+  "fullSystemValidated": true,
   "productionDeployed": false,
   "reconciledMainSha": "6e312312c6161d4b37795c311653840f5139a9f7",
   "previousHead": "cccdcf8d9267799508ef0feead4a459f2ed8bf53",
-  "finalHead": null,
-  "finalHeadSemantics": "Exact implementation and approved assertion HEAD tested locally and in original GitHub CI. This evidence-only commit is independently revalidated; its exact final HEAD and pushed JSON blob IDs are sealed in refs/notes/hub-subject-integration and PR #295 to avoid a self-referential commit SHA.",
+  "finalHead": "cd5046933c00605b00b461a1d651f7022cab70aa",
+  "finalHeadSemantics": "Exact fully tested implementation/assertion predecessor HEAD. The evidence-only completion commit is independently revalidated; its exact final HEAD, fresh CI and remote JSON blob IDs are sealed in refs/notes/hub-subject-integration and PR #295, avoiding a self-referential commit SHA.",
   "beforeSha": "6e312312c6161d4b37795c311653840f5139a9f7",
   "initialObservedMainSha": "84215c8b1ec32a29dd9f72291060418ad292d575",
   "reconciliationHistory": [
@@ -388,7 +380,7 @@
       "explanation": "These existing Hub assertions require obsolete implementation locations in main.js. Semantic target and same-subject tab-context regressions already pass in the new Hub suite. Scoped authorization to align only these assertions is pending; neither test has been changed or removed."
     }
   ],
-  "executionState": "IN_PROGRESS",
+  "executionState": "LOCAL_STABLE_PENDING_CHAT_REVIEW",
   "authorizedPublicContractTestException": {
     "authority": "Direct human approval: cho phép, 2026-10-08, following explicit request naming all three files",
     "paths": [
@@ -416,7 +408,7 @@
       "historicalApprovedValidatorBlobPreserved": true
     }
   },
-  "afterSha": "cdae7cb9195859af07447fd4076ef960dfea0ad7",
+  "afterSha": "cd5046933c00605b00b461a1d651f7022cab70aa",
   "latestScopeInstruction": {
     "authority": "Direct human approval to resolve both remaining blockers, 2026-10-08",
     "paths": [
@@ -431,7 +423,7 @@
     "noCoverageReduction": true,
     "noTimeoutIncrease": true
   },
-  "lastUpdatedAt": "2026-10-08T09:39:33.027Z",
+  "lastUpdatedAt": "2026-10-08T09:48:57.638Z",
   "resolvedScopeBlockers": [
     {
       "id": "HUB-INTEGRATION-CI-SCOPE-STUDY-PLAN",
@@ -446,8 +438,10 @@
       "ordinaryRuntimeTestFailure": false,
       "canFixWithinAuthorizedPaths": false,
       "explanation": "Root static test still requires raw launch/editor configuration ownership in main.js. Latest direct human authorization permits only two named root tests and requires evidence before changing any other assertion. No Study-plan edit or assertion removal; no Subject source workaround.",
-      "status": "SCOPE_AUTHORIZED_ALIGNMENT_IMPLEMENTED_PENDING_EXACT_HEAD_CI",
-      "authorizedAt": "2026-10-08T09:17:51.553Z"
+      "status": "RESOLVED_TARGETED_AND_ALL_CI_PASS",
+      "authorizedAt": "2026-10-08T09:17:51.553Z",
+      "resolvedHead": "cd5046933c00605b00b461a1d651f7022cab70aa",
+      "resolvedAt": "2026-10-08T09:48:57.638Z"
     },
     {
       "id": "HUB-INTEGRATION-CI-SCOPE-CAPABILITY-READINESS",
@@ -510,8 +504,10 @@
       },
       "proposedBoundedAlignment": "Wait for hubPersonalReady/config readiness before the initial launch; preserve every capability/task/progress assertion. These two browser test paths are outside the latest human authorization; no edit applied.",
       "subjectSourceReads": 0,
-      "status": "SCOPE_AUTHORIZED_ALIGNMENT_IMPLEMENTED_PENDING_EXACT_HEAD_CI",
-      "authorizedAt": "2026-10-08T09:17:51.553Z"
+      "status": "RESOLVED_TARGETED_AND_ALL_CI_PASS",
+      "authorizedAt": "2026-10-08T09:17:51.553Z",
+      "resolvedHead": "cd5046933c00605b00b461a1d651f7022cab70aa",
+      "resolvedAt": "2026-10-08T09:48:57.638Z"
     }
   ]
 }

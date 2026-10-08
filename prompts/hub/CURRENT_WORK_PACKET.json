@@ -2,8 +2,8 @@
   "schemaVersion": "1.0.0",
   "packetId": "HUB-SUBJECT-INTEGRATION-20261007-001",
   "revision": 1,
-  "status": "IN_CODEX",
-  "executionState": "IN_PROGRESS",
+  "status": "CODEX_DONE_PENDING_CHAT_REVIEW",
+  "executionState": "LOCAL_STABLE_PENDING_CHAT_REVIEW",
   "workClass": "B",
   "executionPlane": "CODEX",
   "userIntent": "Continue Bauman Hub after accepted storage r5. Remove raw subject transport/config leakage from learner state and presentation while preserving existing public Hub↔Subject behavior and current storage guarantees.",
@@ -344,8 +344,10 @@
       "ordinaryRuntimeTestFailure": false,
       "canFixWithinAuthorizedPaths": false,
       "explanation": "Root static test still requires raw launch/editor configuration ownership in main.js. Latest direct human authorization permits only two named root tests and requires evidence before changing any other assertion. No Study-plan edit or assertion removal; no Subject source workaround.",
-      "status": "SCOPE_AUTHORIZED_ALIGNMENT_IMPLEMENTED_PENDING_EXACT_HEAD_CI",
-      "authorizedAt": "2026-10-08T09:17:51.553Z"
+      "status": "RESOLVED_TARGETED_AND_ALL_CI_PASS",
+      "authorizedAt": "2026-10-08T09:17:51.553Z",
+      "resolvedHead": "cd5046933c00605b00b461a1d651f7022cab70aa",
+      "resolvedAt": "2026-10-08T09:48:57.638Z"
     },
     {
       "id": "HUB-INTEGRATION-CI-SCOPE-CAPABILITY-READINESS",
@@ -408,8 +410,10 @@
       },
       "proposedBoundedAlignment": "Wait for hubPersonalReady/config readiness before the initial launch; preserve every capability/task/progress assertion. These two browser test paths are outside the latest human authorization; no edit applied.",
       "subjectSourceReads": 0,
-      "status": "SCOPE_AUTHORIZED_ALIGNMENT_IMPLEMENTED_PENDING_EXACT_HEAD_CI",
-      "authorizedAt": "2026-10-08T09:17:51.553Z"
+      "status": "RESOLVED_TARGETED_AND_ALL_CI_PASS",
+      "authorizedAt": "2026-10-08T09:17:51.553Z",
+      "resolvedHead": "cd5046933c00605b00b461a1d651f7022cab70aa",
+      "resolvedAt": "2026-10-08T09:48:57.638Z"
     }
   ],
   "lastUpdatedAt": "2026-10-08T09:39:33.027Z",
