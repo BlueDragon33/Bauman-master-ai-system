@@ -1,0 +1,176 @@
+{
+  "schema": "RUSSIAN_ENGINE_RE46_REVIEWABLE_OVERLAY_V1",
+  "status": "AI_DRAFT_PENDING_RU03",
+  "humanApproval": false,
+  "base": {
+    "spatial": {
+      "path": "subjects/russian/engine/content/fixtures/real-life-spatial.r2-ai-proposal.json",
+      "revision": "real-life-r2-ai-candidate-1",
+      "gitBlobSha1": "3e4a8605575300e48207f70574bbaea0b0182b7a"
+    },
+    "dialogues": {
+      "path": "subjects/russian/engine/content/fixtures/repair-dialogues.r1-ai-proposal.json",
+      "revision": "repair-dialogues-ai-draft-r1",
+      "gitBlobSha1": "86b02bf8ea4f7ce12cb1d730bd139637ed0074e1"
+    }
+  },
+  "next": {
+    "spatialRevision": "real-life-r3-ai-candidate-1",
+    "dialogueRevision": "repair-dialogues-ai-draft-r2"
+  },
+  "spatialScenes": {
+    "rl-01-room": {
+      "utteranceSpeakerRole": "peer",
+      "utteranceRecipientRole": "learner",
+      "vn": {
+        "setting": "Phòng sinh hoạt",
+        "purpose": "Người bạn nhờ bạn đưa quả bóng.",
+        "actionHint": "Tìm quả bóng rồi đưa cho bạn cùng phòng."
+      }
+    },
+    "rl-02-room": {
+      "utteranceSpeakerRole": "peer",
+      "utteranceRecipientRole": "learner",
+      "vn": {
+        "setting": "Phòng sinh hoạt",
+        "purpose": "Người bạn nhờ bạn đưa quyển sách.",
+        "actionHint": "Tìm sách rồi đưa cho bạn cùng phòng."
+      }
+    },
+    "rl-03-room": {
+      "utteranceSpeakerRole": "peer",
+      "utteranceRecipientRole": "learner",
+      "vn": {
+        "setting": "Phòng sinh hoạt",
+        "purpose": "Người bạn đang tìm chiếc cốc.",
+        "actionHint": "Nghe câu hỏi rồi chỉ đúng vị trí chiếc cốc."
+      }
+    },
+    "rl-04-shop": {
+      "utteranceSpeakerRole": "learner",
+      "utteranceRecipientRole": "shop-staff",
+      "vn": {
+        "setting": "Cửa hàng",
+        "purpose": "Bạn hỏi nhân viên nơi bán bánh mì.",
+        "actionHint": "Nghe câu hỏi mẫu rồi xác định đúng kệ bánh mì."
+      }
+    },
+    "rl-05-shop": {
+      "utteranceSpeakerRole": "learner-customer",
+      "utteranceRecipientRole": "shop-staff",
+      "vn": {
+        "setting": "Cửa hàng",
+        "purpose": "Bạn muốn mua một chai nước bằng lời đề nghị lịch sự.",
+        "actionHint": "Nghe và tập nói lời đề nghị; chưa chấm phát âm."
+      }
+    },
+    "rl-06-shop": {
+      "utteranceSpeakerRole": "learner",
+      "utteranceRecipientRole": "shop-staff",
+      "vn": {
+        "setting": "Cửa hàng",
+        "purpose": "Bạn hỏi nhân viên chỗ để sữa.",
+        "actionHint": "Nghe câu hỏi rồi chỉ đúng tủ mát có sữa."
+      }
+    },
+    "rl-07-metro": {
+      "utteranceSpeakerRole": "learner",
+      "utteranceRecipientRole": "station-staff",
+      "vn": {
+        "setting": "Khu vực ga metro",
+        "purpose": "Bạn hỏi nơi có thể mua vé đi metro.",
+        "actionHint": "Chỉ đúng máy bán vé, không chọn tấm vé rời."
+      }
+    },
+    "rl-08-metro": {
+      "utteranceSpeakerRole": "learner",
+      "utteranceRecipientRole": "station-staff",
+      "vn": {
+        "setting": "Khu vực ga metro",
+        "purpose": "Bạn hỏi vị trí sơ đồ các tuyến metro.",
+        "actionHint": "Chỉ đúng bảng sơ đồ metro, không nhầm với thẻ đi tàu."
+      }
+    },
+    "rl-09-metro": {
+      "utteranceSpeakerRole": "learner",
+      "utteranceRecipientRole": "passerby",
+      "vn": {
+        "setting": "Ngoài phố gần ga metro",
+        "purpose": "Bạn hỏi người qua đường lối vào metro.",
+        "actionHint": "Chỉ đúng lối xuống ga, không chọn bản đồ hay máy bán vé."
+      }
+    },
+    "rl-10-dorm": {
+      "utteranceSpeakerRole": "roommate",
+      "utteranceRecipientRole": "learner",
+      "vn": {
+        "setting": "Ký túc xá",
+        "purpose": "Bạn cùng phòng đang tìm chìa khóa phòng.",
+        "actionHint": "Nghe câu hỏi rồi chỉ đúng vị trí chìa khóa."
+      }
+    },
+    "rl-11-dorm": {
+      "utteranceSpeakerRole": "learner",
+      "utteranceRecipientRole": "dorm-administrator",
+      "vn": {
+        "setting": "Ký túc xá",
+        "purpose": "Bạn hỏi quản lý vị trí phòng số 12.",
+        "actionHint": "Chỉ đúng phòng số 12, không chọn một cánh cửa bất kỳ."
+      }
+    },
+    "rl-12-dorm": {
+      "utteranceSpeakerRole": "learner",
+      "utteranceRecipientRole": "dorm-administrator",
+      "vn": {
+        "setting": "Ký túc xá",
+        "purpose": "Bạn hỏi quản lý vị trí phòng tắm chung.",
+        "actionHint": "Chỉ đúng phòng tắm chung, không chọn biểu tượng vòi tắm."
+      }
+    },
+    "rl-13-university": {
+      "utteranceSpeakerRole": "learner",
+      "utteranceRecipientRole": "university-staff",
+      "vn": {
+        "setting": "Khu giảng đường",
+        "purpose": "Bạn hỏi nhân viên vị trí phòng học số 12.",
+        "actionHint": "Chỉ đúng phòng học số 12, không chọn cả tòa nhà."
+      }
+    },
+    "rl-14-university": {
+      "utteranceSpeakerRole": "learner",
+      "utteranceRecipientRole": "university-staff",
+      "vn": {
+        "setting": "Khu giảng đường",
+        "purpose": "Bạn hỏi nhân viên vị trí thư viện.",
+        "actionHint": "Chỉ đúng vị trí thư viện trên sơ đồ."
+      }
+    },
+    "rl-15-university": {
+      "utteranceSpeakerRole": "classmate",
+      "utteranceRecipientRole": "learner",
+      "vn": {
+        "setting": "Lớp học",
+        "purpose": "Bạn học nhờ bạn chuyển quyển vở.",
+        "actionHint": "Tìm quyển vở rồi chuyển cho đúng bạn học."
+      }
+    }
+  },
+  "dialogueScenes": {
+    "repair-metro-entrance": {
+      "surface": {
+        "reply": "Вход в метро дальше по улице, справа."
+      },
+      "vn": {
+        "reply": "Nghe hướng dẫn: đi tiếp dọc con phố, lối vào metro ở bên phải."
+      }
+    },
+    "repair-university-room": {
+      "surface": {
+        "reply": "Аудитория номер двенадцать — дальше по коридору, справа."
+      },
+      "vn": {
+        "reply": "Nghe hướng dẫn: phòng học số 12 ở phía trước dọc hành lang, bên phải."
+      }
+    }
+  }
+}
