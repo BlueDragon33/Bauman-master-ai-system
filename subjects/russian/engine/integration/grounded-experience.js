@@ -6,6 +6,7 @@ import {
 } from './grounded-browser-model.js';
 import {selectNextGroundedScene} from '../adaptive/scene-selector.mjs';
 import {validateGroundedSceneCatalogV2} from '../content/scene-schema-v2.mjs';
+import {describeGroundedSceneForBeginner} from './beginner-scene-guide.js';
 
 const copy=value=>{
   if(typeof structuredClone==='function')return structuredClone(value);
@@ -81,6 +82,10 @@ function ensureStyle(documentLike){
     .re-grounded{margin:18px 0 28px;padding:22px;border:1px solid color-mix(in srgb,currentColor 12%,transparent);border-radius:24px;background:color-mix(in srgb,Canvas 96%,transparent);box-shadow:0 14px 42px rgba(0,0,0,.07)}
     .re-grounded__top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
     .re-grounded__eyebrow{font-size:12px;letter-spacing:.14em;font-weight:800;opacity:.62}
+    .re-grounded__a0{font-size:13px;opacity:.85;margin:-4px 0 14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+    .re-grounded__a0 button{background:transparent;border:0;border-bottom:1px solid currentColor;padding:2px 0;cursor:pointer;color:inherit;font:inherit}
+    .re-grounded__a0-detail{margin:-3px 0 14px;font-size:13px;line-height:1.5;max-width:74ch;opacity:.85}
+    .re-grounded__object.is-recognized{outline:3px solid currentColor;outline-offset:3px}
     .re-grounded__listen{min-width:112px;min-height:44px;border:0;border-radius:999px;padding:0 18px;font:inherit;font-weight:750;cursor:pointer}
     .re-grounded__scene{display:grid;grid-template-columns:minmax(0,1fr) 170px;gap:18px;align-items:stretch}
     .re-grounded__objects{display:grid;grid-template-columns:repeat(3,minmax(92px,1fr));gap:14px}
@@ -117,7 +122,7 @@ function supportText(level){
     'RU → RU',
     'АБВ',
     '?',
-    'VI'
+    'VI: mở Trợ giúp'
   ][Math.max(0,Math.min(10,Number(level)||0))];
 }
 
@@ -204,6 +209,7 @@ export async function mountGroundedExperience({
   };
 
   const render=()=>{
+    const guide=describeGroundedSceneForBeginner(scene);
     const objects=(scene.world?.objects||[]).map((item,index)=>`
       <button type="button" class="re-grounded__object" data-re-object="${esc(item.id)}" aria-label="Lựa chọn ${index+1}">
         ${objectVisualMarkup(item)}
@@ -214,6 +220,7 @@ export async function mountGroundedExperience({
         <div><div class="re-grounded__eyebrow">RUSSIAN · LISTEN → UNDERSTAND → ACT</div></div>
         <button type="button" class="re-grounded__listen" data-re-listen aria-label="Nghe câu tiếng Nga">▶ Nghe</button>
       </div>
+      ${realLife?`<div class="re-grounded__a0"><span>Bối cảnh: ${esc(guide.settingLabel)} · ${esc(guide.taskLabel)}</span><button type="button" data-re-a0-help aria-expanded="false">Trợ giúp (VI)</button></div><p class="re-grounded__a0-detail" data-re-a0-detail hidden>${esc(guide.explanation)} ${guide.awaitingReview?'Bài mẫu đang chờ chuyên gia kiểm duyệt; không dùng làm chuẩn phát âm hay cách nói với người lạ.':''}</p>`:''}
       <div class="re-grounded__scene">
         <div class="re-grounded__objects">${objects}</div>
         <div class="re-grounded__receiver" data-re-receiver>${requesterMarkup()}<small>●</small></div>
@@ -224,6 +231,12 @@ export async function mountGroundedExperience({
     `;
 
     section.querySelector('[data-re-listen]')?.addEventListener('click',()=>play(supportLevel>=3?.7:1));
+    section.querySelector('[data-re-a0-help]')?.addEventListener('click',event=>{
+      const detail=section.querySelector('[data-re-a0-detail]');
+      if(!detail)return;
+      detail.hidden=!detail.hidden;
+      event.currentTarget.setAttribute('aria-expanded',String(!detail.hidden));
+    });
     section.querySelectorAll('[data-re-object]').forEach(button=>button.addEventListener('click',()=>{
       const result=evaluateGroundedSelection({
         scene,
@@ -238,15 +251,22 @@ export async function mountGroundedExperience({
         supportLevel:Number(result.evidence?.supportLevel)||0,
         providerFailure:false
       });
-      try{windowLike.RussianEngineIntegration?.submitObservation?.(result.evidence,{contentRevision:realLife?'real-life-v1':'grounded-v1',mode:'practice'});}catch(_){};
+      // Icon recognition has no spatial proof; never deliver it to RU04 as location mastery.
+      if(!guide.locationRecognitionOnly){
+        try{windowLike.RussianEngineIntegration?.submitObservation?.(result.evidence,{contentRevision:realLife?'real-life-v1':'grounded-v1',mode:'practice'});}catch(_){};
+      }
       const status=section.querySelector('[data-re-status]');
       const receiver=section.querySelector('[data-re-receiver]');
       if(result.success){
         const chosen=(scene.world?.objects||[]).find(item=>item.id===result.expectedObjectId);
-        if(receiver)receiver.innerHTML=objectVisualMarkup(chosen,{compact:true})+'<small>✓</small>';
+        if(guide.locationRecognitionOnly){
+          section.querySelector('[data-re-object="'+CSS.escape(result.expectedObjectId)+'"]')?.classList.add('is-recognized');
+        }else if(receiver){
+          receiver.innerHTML=objectVisualMarkup(chosen,{compact:true})+'<small>✓</small>';
+        }
         if(status){
           status.dataset.state='success';
-          status.innerHTML='<span>✓</span>';
+          status.innerHTML=guide.locationRecognitionOnly?'<span>✓ Nhận diện hình · chưa kiểm tra vị trí</span>':'<span>✓</span>';
           let next=null;
           if(realLife){
             if(!completedSceneIds.includes(scene.sceneId))completedSceneIds.push(scene.sceneId);
