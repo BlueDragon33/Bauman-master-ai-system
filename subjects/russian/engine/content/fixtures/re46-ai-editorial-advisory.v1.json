@@ -1,0 +1,65 @@
+{
+  "schema": "RUSSIAN_ENGINE_RE46_AI_EDITORIAL_ADVISORY_V1",
+  "status": "AI_ADVISORY_ONLY",
+  "humanApproval": false,
+  "requiresHumanRU03": true,
+  "spatial": {
+    "rl-01-room": {"decision":"KEEP_WITH_CONTEXT","severity":"NONE","rationaleVi":"Câu yêu cầu tự nhiên giữa bạn bè; пожалуйста làm mềm mệnh lệnh. Phù hợp khi người nói là bạn cùng phòng và người học là người nhận yêu cầu."},
+    "rl-02-room": {"decision":"KEEP_WITH_CONTEXT","severity":"NONE","rationaleVi":"Tự nhiên trong quan hệ thân mật; мне làm rõ người nhận cuốn sách."},
+    "rl-03-room": {"decision":"KEEP","severity":"NONE","rationaleVi":"Где чашка? là câu hỏi tự nhiên khi đang tìm chiếc cốc; bài phải chấm vị trí chứ không chỉ nhận dạng biểu tượng."},
+    "rl-04-shop": {"decision":"KEEP","severity":"NONE","rationaleVi":"Подскажите, пожалуйста, где хлеб? là cách hỏi lịch sự và tự nhiên với nhân viên cửa hàng."},
+    "rl-05-shop": {"decision":"KEEP","severity":"NONE","rationaleVi":"Можно бутылку воды, пожалуйста? là lời gọi mua hàng thông dụng, lịch sự và phù hợp người lạ."},
+    "rl-06-shop": {"decision":"KEEP","severity":"NONE","rationaleVi":"Cách hỏi lịch sự, tự nhiên với nhân viên; mục tiêu phải là nơi đặt sữa."},
+    "rl-07-metro": {"decision":"KEEP","severity":"NONE","rationaleVi":"Подскажите, пожалуйста, где купить билет? tự nhiên khi hỏi nơi mua vé; đáp án phải là máy/quầy bán vé."},
+    "rl-08-metro": {"decision":"KEEP_WITH_CONTEXT","severity":"LOW","rationaleVi":"Câu hiểu và dùng được khi sơ đồ metro là một vật/bảng cụ thể. Phải giữ hình ảnh схема метро tách khỏi thẻ giao thông карта."},
+    "rl-09-metro": {"decision":"KEEP","severity":"NONE","rationaleVi":"Tự nhiên khi người học đang ở ngoài phố và hỏi người qua đường lối vào metro."},
+    "rl-10-dorm": {"decision":"KEEP_WITH_CONTEXT","severity":"NONE","rationaleVi":"Где ключ от комнаты? tự nhiên khi đang tìm chìa khóa phòng cụ thể."},
+    "rl-11-dorm": {"decision":"KEEP","severity":"NONE","rationaleVi":"Câu hỏi phòng số 12 tự nhiên; phải trỏ đúng phòng có số, không đồng nhất комната với дверь."},
+    "rl-12-dorm": {"decision":"KEEP","severity":"NONE","rationaleVi":"душевая chỉ phòng tắm chung và chính xác hơn душ cho bài tìm cơ sở vật chất."},
+    "rl-13-university": {"decision":"KEEP","severity":"NONE","rationaleVi":"Câu hỏi phòng học số 12 tự nhiên trong trường; аудитория phải là phòng học/giảng đường cụ thể."},
+    "rl-14-university": {"decision":"KEEP","severity":"NONE","rationaleVi":"Câu lịch sự, tự nhiên và đủ nghĩa khi hỏi vị trí thư viện."},
+    "rl-15-university": {"decision":"KEEP_WITH_CONTEXT","severity":"LOW","rationaleVi":"Передай, пожалуйста, тетрадь. tự nhiên khi bạn học nhờ chuyển quyển vở đang ở gần; ngữ cảnh hình ảnh phải làm rõ vật và người nhận."}
+  },
+  "dialogues": {
+    "repair-shop-milk": {
+      "turns": {
+        "greet":{"decision":"KEEP","severity":"NONE","rationaleVi":"Здравствуйте. là lời chào lịch sự chuẩn với người lạ."},
+        "request":{"decision":"KEEP","severity":"NONE","rationaleVi":"Lời hỏi lịch sự và tự nhiên với nhân viên cửa hàng."},
+        "reply":{"decision":"KEEP","severity":"NONE","rationaleVi":"Молоко в холодильнике справа. ngắn, rõ và tự nhiên trong hội thoại chỉ vị trí."},
+        "thanks":{"decision":"KEEP","severity":"NONE","rationaleVi":"Спасибо. tự nhiên."},
+        "closing":{"decision":"KEEP","severity":"NONE","rationaleVi":"Пожалуйста. là đáp lời cảm ơn tự nhiên."}
+      }
+    },
+    "repair-metro-entrance": {
+      "turns": {
+        "greet":{"decision":"KEEP","severity":"NONE","rationaleVi":"Lời chào lịch sự phù hợp người qua đường."},
+        "request":{"decision":"KEEP","severity":"NONE","rationaleVi":"Câu hỏi lối vào metro tự nhiên khi đang ở ngoài phố."},
+        "reply":{"decision":"REVISED_CANDIDATE","severity":"MEDIUM","rationaleVi":"Bản cũ Вход в метро справа, дальше по улице đặt hai chỉ dẫn theo trật tự hơi gượng và có thể làm A0 hiểu nhầm. Bản mới đưa hướng đi trước rồi vị trí bên phải.","acceptedDraft":"Вход в метро дальше по улице, справа."},
+        "thanks":{"decision":"KEEP","severity":"NONE","rationaleVi":"Спасибо. tự nhiên."},
+        "closing":{"decision":"KEEP","severity":"NONE","rationaleVi":"Пожалуйста. tự nhiên."}
+      }
+    },
+    "repair-dorm-shower": {
+      "turns": {
+        "greet":{"decision":"KEEP","severity":"NONE","rationaleVi":"Lời chào lịch sự phù hợp quản lý ký túc."},
+        "request":{"decision":"KEEP","severity":"NONE","rationaleVi":"Câu hỏi vị trí phòng tắm chung tự nhiên."},
+        "reply":{"decision":"KEEP","severity":"NONE","rationaleVi":"Душевая в конце коридора, направо. là chỉ dẫn ngắn, tự nhiên và có hành động không gian rõ."},
+        "thanks":{"decision":"KEEP","severity":"NONE","rationaleVi":"Спасибо. tự nhiên."},
+        "closing":{"decision":"KEEP","severity":"NONE","rationaleVi":"Пожалуйста. tự nhiên."}
+      }
+    },
+    "repair-university-room": {
+      "turns": {
+        "greet":{"decision":"KEEP","severity":"NONE","rationaleVi":"Lời chào lịch sự phù hợp nhân viên trường."},
+        "request":{"decision":"KEEP","severity":"NONE","rationaleVi":"Câu hỏi phòng học số 12 tự nhiên."},
+        "reply":{"decision":"REVISED_CANDIDATE","severity":"MEDIUM","rationaleVi":"Bản cũ Аудитория номер двенадцать справа по коридору hiểu được nhưng thứ tự chỉ hướng chưa tự nhiên cho bài A0. Bản mới dùng trình tự đi tiếp dọc hành lang rồi xác định bên phải.","acceptedDraft":"Аудитория номер двенадцать — дальше по коридору, справа."},
+        "thanks":{"decision":"KEEP","severity":"NONE","rationaleVi":"Спасибо. tự nhiên."},
+        "closing":{"decision":"KEEP","severity":"NONE","rationaleVi":"Пожалуйста. tự nhiên."}
+      }
+    }
+  },
+  "repairs": {
+    "repeat":{"decision":"KEEP","severity":"NONE","rationaleVi":"Повторите, пожалуйста. là cách lịch sự, ngắn và hữu ích để yêu cầu nhắc lại."},
+    "slower":{"decision":"KEEP","severity":"NONE","rationaleVi":"Говорите, пожалуйста, помедленнее. tự nhiên và lịch sự; phù hợp để học cách yêu cầu người đối thoại nói chậm hơn."}
+  }
+}
