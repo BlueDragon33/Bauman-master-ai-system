@@ -57,7 +57,7 @@ function ensureStyles(doc){
     '.re-spatial__node:focus-visible{outline:3px solid currentColor;outline-offset:3px}',
     '.re-spatial__node.is-correct{outline:3px solid currentColor;outline-offset:3px}',
     '.re-spatial__node.is-picked{border-width:3px}',
-    '.re-spatial__symbol{font-size:20px;line-height:1.1;font-weight:800},
+    '.re-spatial__symbol{font-size:20px;line-height:1.1;font-weight:800}',
    '.re-spatial__symbol.is-word{font-size:13px;line-height:1.05;letter-spacing:-.02em}',
     '.re-spatial__place{font-size:11px;line-height:1.25;font-weight:650;text-align:center}',
     '.re-spatial__feedback{min-height:32px;font-weight:700;font-size:14px;margin:13px 0 8px}',
