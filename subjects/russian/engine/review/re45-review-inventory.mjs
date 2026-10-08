@@ -25,7 +25,7 @@ function audio(authority){
 }
 function spatialRoles(scene){
   const declared=txt(scene.speakerRole)||'unknown';
-  if(scene.register==='polite-stranger'&&/^Подскажите\b/u.test(txt(scene.russianDraft))&&!/^learner(?:-|$)/.test(declared)){
+  if(scene.register==='polite-stranger'&&/^Подскажите(?:[,\\s]|$)/u.test(txt(scene.russianDraft))&&!/^learner(?:-|$)/.test(declared)){
     return {speakerRole:'learner',recipientRole:declared,roleResolution:'inferred-from-utterance-and-register',issues:['ROLE_FIELD_SEMANTICS_CONFLICT']};
   }
   if(scene.expectedAction?.kind==='dialogue-intent'&&/^learner(?:-|$)/.test(declared)){
