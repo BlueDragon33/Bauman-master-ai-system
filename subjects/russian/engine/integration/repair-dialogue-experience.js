@@ -1,5 +1,6 @@
 import {validateRepairDialogueCandidate,advanceRepairDialogueDraft} from '../conversation/repair-dialogue-candidate.mjs';
 import {validateSpatialCandidate} from '../world/spatial-candidate-runtime.mjs';
+import {applyPreviewDialogueDraft} from '../review/re55-shared-draft-corrections.mjs';
 import {createPreviewSpeechGate} from './preview-speech-gate.mjs';
 
 const DIALOGUE_URL=new URL('../content/fixtures/repair-dialogues.r1-ai-proposal.json',import.meta.url);
@@ -60,10 +61,11 @@ export async function mountRepairDialogueExperience({
   if(documentLike.querySelector('[data-re44-experience]'))return {mounted:true,reason:'already-mounted'};
   const [dialogResponse,worldResponse]=await Promise.all([fetchFn(DIALOGUE_URL),fetchFn(WORLD_URL)]);
   if(!dialogResponse?.ok||!worldResponse?.ok)throw new Error('RE44 draft fixtures unavailable');
-  const [pack,worldPack]=await Promise.all([dialogResponse.json(),worldResponse.json()]);
+  const [sourcePack,worldPack]=await Promise.all([dialogResponse.json(),worldResponse.json()]);
   const spatialCheck=validateSpatialCandidate(worldPack);
-  const check=validateRepairDialogueCandidate(pack,worldPack);
+  const check=validateRepairDialogueCandidate(sourcePack,worldPack);
   if(!spatialCheck.ok||!check.ok)throw new Error('RE44 noncanonical structural preflight failed: '+[...spatialCheck.errors,...check.errors].join('; '));
+  const pack=applyPreviewDialogueDraft(sourcePack);
   const view=documentLike.getElementById('view');
   const parent=view?.parentNode||documentLike.querySelector('.ru-main')||documentLike.querySelector('main')||documentLike.body;
   if(!parent)return {mounted:false,reason:'host-missing'};
