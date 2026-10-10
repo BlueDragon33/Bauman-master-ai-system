@@ -4,6 +4,7 @@
  */
 import {readFileSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
+import {resolve} from 'node:path';
 import {buildRe49ReviewInventory} from './re49-review-packets-r4.mjs';
 import {buildReadinessReport} from './re45-review-core.mjs';
 import {loadReviewerRegistry,validateReviewerRegistry} from './re50-external-review-handoff.mjs';
@@ -83,7 +84,7 @@ export function buildRe57Readiness({state,adoption,inventory,reviewers,decisions
     productionPublished:false
   });
 }
-if(process.argv[1]&&fileURLToPath(import.meta.url)===fileURLToPath(new URL('file://'+process.argv[1]))){
+if(process.argv[1]&&fileURLToPath(import.meta.url)===resolve(process.argv[1])){
   const result=buildRe57Readiness(localRe57Sources());
   console.log(JSON.stringify(result,null,2));
 }
