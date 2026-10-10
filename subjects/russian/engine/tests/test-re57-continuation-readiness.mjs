@@ -35,7 +35,7 @@ assert.throws(()=>buildRe57Readiness(stale),/state is stale/);
 const same=buildRe57Readiness(localRe57Sources());
 assert.deepEqual(report,same,'pure deterministic readiness; no invented metrics');
 
-const handoff=fs.readFileSync(new URL('../../../docs/engine/RE57_WORK_LAST_5_PERCENT_HANDOFF.md',import.meta.url),'utf8');
+const handoff=fs.readFileSync(new URL('../../docs/engine/RE57_WORK_LAST_5_PERCENT_HANDOFF.md',import.meta.url),'utf8');
 for(const phrase of ['PR #98','RU03','Production','Work','exact SHA','5%','STOP']){
   assert.ok(handoff.includes(phrase),'Work handoff missing '+phrase);
 }
