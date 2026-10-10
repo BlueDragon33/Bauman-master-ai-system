@@ -1,10 +1,21 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import vm from 'node:vm';
 
 const contract=JSON.parse(fs.readFileSync('control/application-management.contract.json','utf8'));
 const dataJs=fs.readFileSync('assets/js/data.js','utf8');
 const mainJs=fs.readFileSync('assets/js/main.js','utf8');
+const planningJs=fs.readFileSync('assets/js/planning-main.js','utf8');
+const configWindow={};
+vm.runInNewContext(dataJs,{window:configWindow});
+vm.runInNewContext(fs.readFileSync('assets/js/platform/hub-subject-config.js','utf8'),{window:configWindow,structuredClone});
+vm.runInNewContext(fs.readFileSync('assets/js/platform/hub-subject-launch.js','utf8'),{window:configWindow,URL,location:{href:'https://hub.example/',origin:'https://hub.example'}});
+for(const presentation of [mainJs,planningJs]){
+  assert.doesNotMatch(presentation,/\.mainPath|\.editorPath|\b(?:pathMap|editorMap)\b/,'Hub presentation must not own raw launch/editor configuration');
+  assert.ok(presentation.includes('BAUMAN_HUB_SUBJECT_LAUNCH.launchInHub'),'Hub/planning must delegate in-page launch to the shared adapter');
+  assert.ok(presentation.includes('BAUMAN_HUB_SUBJECT_LAUNCH.launchInTab'),'Hub/planning must delegate tab launch to the shared adapter');
+}
 
 const mapped=[];
 for(const sub of contract.subclients??[]){
@@ -17,14 +28,18 @@ for(const sub of contract.subclients??[]){
   const runtime=(sp.runtimePath||('subjects/'+sub.id+'/')).replace(/^\/+|\/+$/g,'');
   assert.ok(fs.existsSync(path.join(runtime,'index.html')),sub.id+': runtime index missing');
   assert.ok(dataJs.includes("id:'"+sub.id+"'"),sub.id+': missing from BAUMAN_DATA.subjects');
-  assert.ok(mainJs.includes("'"+sub.id+"':'"+runtime+"/index.html'")||mainJs.includes(sub.id+":'"+runtime+"/index.html'"),sub.id+': missing from main pathMap');
+  assert.equal(configWindow.BAUMAN_HUB_SUBJECT_CONFIG.getConfiguration(sub.id)?.entry,runtime+'/index.html',sub.id+': runtime missing from canonical Hub Subject Config');
+  const descriptor=configWindow.BAUMAN_HUB_SUBJECT_LAUNCH.getDescriptor(sub.id);
+  assert.equal(descriptor?.subjectId,sub.id,sub.id+': adapter must resolve the same-subject descriptor');
+  assert.equal(descriptor?.source,'HUB_APPLICATION_CONFIG',sub.id+': descriptor must have the canonical Hub config owner');
+  assert.equal(descriptor?.authoring,null,sub.id+': editor configuration must not imply learner authoring');
 
   if(manifest.editor){
     const editorPath=String(manifest.editor).includes('/')
       ? String(manifest.editor).replace(/^[/]+/, '')
       : path.join(runtime,String(manifest.editor)).replaceAll('\\\\','/');
     assert.ok(fs.existsSync(editorPath),sub.id+': declared editor missing at '+editorPath);
-    assert.ok(mainJs.includes("'"+sub.id+"':'"+editorPath+"'")||mainJs.includes(sub.id+":'"+editorPath+"'"),sub.id+': editor missing from main editorMap');
+    assert.equal(configWindow.BAUMAN_HUB_SUBJECT_CONFIG.getConfiguration(sub.id)?.editor,editorPath.replaceAll('\\','/'),sub.id+': editor missing from canonical Hub Subject Config');
   }
 
   if(Array.isArray(manifest.data)&&manifest.data.length){
