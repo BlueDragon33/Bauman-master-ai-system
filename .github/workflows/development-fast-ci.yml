@@ -96,6 +96,9 @@ jobs:
       - name: Ergonomics subject static
         run: node tests/ergonomics-subject-static.mjs
 
+      - name: AI first module learning sequence
+        run: node tests/ai-first-module-learning-sequence.mjs
+
       - name: Mivar subject static
         run: node tests/mivar-subject-static.mjs
 
