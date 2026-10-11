@@ -3,73 +3,73 @@
     "id": "a_p01_l1",
     "stage": "prepare",
     "moduleId": "a_p01",
-    "title": "Khái niệm cốt lõi · Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric",
-    "description": "Bài e-learning chuyên sâu về Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric trong GĐ1 · Chuẩn bị tại Việt Nam: lý thuyết cốt lõi, dẫn chứng cụ thể, ví dụ có lời giải, mô phỏng, bài tập và kiểm tra.",
+    "title": "Bài 1 · Đặt bài toán ML và kiểm soát rò rỉ dữ liệu telemetry",
+    "description": "Từ log UGV đến bảng dữ liệu có nhãn: nêu rõ đơn vị quan sát, biến đích, đặc trưng được phép dùng và cách chia train/test để tránh data leakage.",
     "kind": "lý thuyết",
     "keyPoints": [
-      "dữ liệu → đặc trưng → mô hình → loss → huấn luyện → metric → error analysis"
+      "Bài toán nhị phân: từ telemetry sẵn có tại thời điểm dự đoán, ước lượng node UGV đang có nguy cơ lỗi hay bình thường.",
+      "Một dòng dữ liệu phải gắn với thời điểm, thiết bị/chuyến chạy, tập đặc trưng đầu vào và nhãn được xác định bằng tiêu chuẩn riêng.",
+      "Không đưa nhãn tương lai, kết quả hậu kiểm hoặc ID rò rỉ sự kiện vào đặc trưng; không chia ngẫu nhiên các cửa sổ từ cùng chuyến chạy vào cả train lẫn test."
     ],
     "tasks": [
-      "Viết lại 5–7 ý chính của Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric bằng lời của bạn.",
-      "Làm ví dụ có input/output/giả thiết/kết quả rõ ràng.",
-      "Chạy mô phỏng liên quan, thay đổi ít nhất 3 tham số và ghi nhận sự khác biệt.",
-      "Làm bài kiểm tra cuối bài; dưới 8/10 thì ôn lại câu sai."
+      "Mô tả một bảng 8 dòng giả lập với timestamp, run_id, nhiệt độ, điện áp, cảnh báo và nhãn lỗi; giải thích loại dữ liệu nào biết được tại thời điểm dự đoán.",
+      "Chỉ ra hai cột có nguy cơ rò rỉ nhãn và lý do loại bỏ; đề xuất chia dữ liệu theo run_id.",
+      "Vẽ sơ đồ problem → raw log → feature table → group split → baseline → evaluation."
     ],
     "eLearning": {
       "lessonContractVersion": "elearning-v1.1",
       "stage": "GĐ1 · Chuẩn bị tại Việt Nam",
-      "moduleTitle": "Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric",
-      "estimatedMinutes": 60,
-      "sourceBasis": "Stanford CS229, Coursera ML/DL, backprop paper, scikit-learn workflow",
+      "moduleTitle": "Bài 1 · Đặt bài toán ML và kiểm soát rò rỉ dữ liệu telemetry",
+      "estimatedMinutes": 45,
+      "sourceBasis": "HỌC LIỆU BỔ TRỢ DO HỆ THỐNG BIÊN TẬP. Không phải đề cương chính thức Bauman. Khái niệm: train/test split, data leakage, confusion matrix, classification metrics, error analysis; người học cần kiểm chứng nguồn giảng viên và dữ liệu thực tế trước khi sử dụng trong học thuật.",
       "objectives": [
-        "Hiểu bản chất của Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric trong môn Machine Learning, Neural Systems và đánh giá mô hình.",
-        "Làm được ví dụ mẫu và giải thích từng bước.",
-        "Tạo artifact học tập có thể xem lại và gửi tiến độ về Main."
+        "Phát biểu được input/output và mốc thời gian dự đoán của bài toán lỗi node.",
+        "Phân biệt nhãn và đặc trưng được quan sát trước nhãn.",
+        "Giải thích vì sao chia theo run_id giúp giảm đánh giá lạc quan do các cửa sổ cùng chuyến bị trộn."
       ],
       "prerequisites": [
-        "Đã đọc mục tiêu module trong Lộ trình.",
-        "Có sổ ghi chú hoặc file notes.md.",
-        "Biết mở tab Mô phỏng/Thực hành mô phỏng."
+        "Đọc được bảng dữ liệu cột/hàng và khái niệm đầu vào/đầu ra.",
+        "Chưa cần viết Python hoặc huấn luyện mô hình."
       ],
-      "whyItMatters": "Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric là mắt xích trong lộ trình Bauman: dữ liệu → đặc trưng → mô hình → loss → huấn luyện → metric → error analysis",
+      "whyItMatters": "Từ log UGV đến bảng dữ liệu có nhãn: nêu rõ đơn vị quan sát, biến đích, đặc trưng được phép dùng và cách chia train/test để tránh data leakage.",
       "coreTheory": [
-        "dữ liệu → đặc trưng → mô hình → loss → huấn luyện → metric → error analysis"
+        "Dữ liệu học có dạng (X, y): X là thuộc tính hiện có lúc dự đoán; y là trạng thái mục tiêu được xác định độc lập.",
+        "Data leakage xảy ra khi đặc trưng chứa thông tin vốn không thể biết khi mô hình phải ra quyết định.",
+        "Các bản ghi gần nhau trong cùng run_id có thể phụ thuộc; chia ngẫu nhiên từng hàng không mô phỏng được chuyến chạy chưa từng thấy."
       ],
-      "coreFormulas": [],
+      "coreFormulas": [
+        "X=(voltage,temperature,warning_count) tại t; y∈{0:bình thường,1:lỗi} trong cửa sổ mục tiêu.",
+        "train_run_ids ∩ test_run_ids = ∅"
+      ],
       "workedExample": {
-        "context": "Dự đoán trạng thái lỗi node UGV; chọn baseline, chia train/test, đọc metric và phân tích lỗi theo module Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric.",
+        "context": "Ví dụ giả lập (không phải dữ liệu UGV thật): R1/R2/R3 có nhiều cửa sổ telemetry; R3 là chuyến giữ lại để kiểm tra. event_closed_at và alarm_confirmed_after_5min chỉ có sau thời điểm quyết định.",
         "steps": [
-          "Xác định bài toán trong bối cảnh: dự đoán trạng thái lỗi/bình thường của node UGV từ telemetry.",
-          "Liệt kê biến đầu vào, đầu ra, đơn vị và giả thiết.",
-          "Áp dụng công thức/quy trình từng bước nhỏ.",
-          "Kiểm tra kết quả bằng trực giác kỹ thuật: dấu, đơn vị, kích thước, giới hạn và rủi ro.",
-          "Lưu kết luận thành artifact JSON/HTML/video."
+          "Xác định thời điểm dự đoán t và nhãn lỗi trong 5 phút sau t; không lấy cột hậu kiểm làm đầu vào.",
+          "Giữ 3 đặc trưng có thể quan sát ở t: voltage_V, temperature_C, warning_count.",
+          "Gán các cửa sổ R1, R2 cho tập xây dựng; chỉ dùng R3 làm tập giữ lại.",
+          "Nếu một cửa sổ R3 lọt vào train, đánh dấu đánh giá bị rò rỉ qua nhóm và chia lại.",
+          "Lưu danh sách cột được phép, mô tả nhãn, cách chia theo run_id và giới hạn của bộ dữ liệu nhỏ."
         ],
-        "answer": "Chạy baseline trước, báo precision/recall/F1, đọc false positive/false negative rồi mới tăng độ phức tạp mô hình."
+        "answer": "Bảng hợp lệ dùng voltage_V/temperature_C/warning_count tại t; không dùng alarm_confirmed_after_5min hoặc event_closed_at; test chạy trên R3 tách khỏi R1/R2. Đây chỉ là ví dụ cấu trúc, chưa chứng minh khả năng phát hiện lỗi thực."
       },
       "guidedPractice": [
         {
           "level": "Dễ",
-          "task": "Tóm tắt Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric bằng 5 gạch đầu dòng và một ví dụ nhỏ.",
-          "expected": "Có khái niệm, input/output và lỗi thường gặp."
+          "task": "Phân loại 6 cột mẫu thành feature/label/hậu kiểm.",
+          "expected": "Giải thích được vì sao alarm_confirmed_after_5min không phải feature."
         },
         {
           "level": "Trung bình",
-          "task": "Làm lại ví dụ với số liệu/tình huống mới.",
-          "expected": "Có bảng tính, code hoặc kết quả mô phỏng."
+          "task": "Đề xuất chia 3 chuyến R1/R2/R3 sao cho không trùng run_id.",
+          "expected": "Có train/test group riêng và mô tả giới hạn mẫu nhỏ."
         },
         {
           "level": "Khá",
-          "task": "Thay đổi một giả thiết và phân tích kết quả.",
-          "expected": "Có so sánh trước/sau và giải thích."
-        },
-        {
-          "level": "Giỏi",
-          "task": "Viết báo cáo mini 1 trang gắn với UGV/USV hoặc học phần Bauman.",
-          "expected": "Có vấn đề, phương pháp, kết quả, giới hạn và bước tiếp theo."
+          "task": "Tìm một ví dụ gây leakage khi chuẩn hóa hoặc chọn đặc trưng trước khi chia dữ liệu.",
+          "expected": "Đề xuất fit bộ chuẩn hóa chỉ trên train."
         }
       ],
-      "simulationLink": "Mở mô phỏng overfit/underfit hoặc backprop.",
+      "simulationLink": "Không bắt buộc có mô phỏng; bài 1 thực hành bằng bảng schema và sơ đồ chia dữ liệu.",
       "commonMistakes": [
         "Chỉ nhìn accuracy.",
         "Dùng mô hình phức tạp trước baseline.",
@@ -77,23 +77,22 @@
       ],
       "checkpointQuestions": [
         {
-          "q": "Input quan trọng nhất của bài 'Khái niệm cốt lõi · Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric' là gì?",
-          "a": "Dữ liệu/biến đầu vào, đơn vị, giả thiết và mục tiêu đầu ra."
+          "q": "Vì sao không được dùng nhãn lỗi xác nhận sau 5 phút làm đặc trưng tại t?",
+          "a": "Vì đó là thông tin tương lai, làm mô hình học từ dữ liệu không tồn tại tại thời điểm dự đoán."
         },
         {
-          "q": "Khi mô phỏng khác dự đoán, cần làm gì?",
-          "a": "Kiểm tra giả thiết, input, đơn vị, khoảng giá trị và log từng bước, không sửa bừa tham số."
+          "q": "Tại sao hai cửa sổ cùng run_id không nên nằm ở train và test?",
+          "a": "Chúng có thể rất giống nhau, khiến điểm test không phản ánh hiệu năng trên chuyến chạy độc lập."
         },
         {
-          "q": "Bằng chứng hoàn thành bài học là gì?",
-          "a": "Artifact có thể xem lại: lời giải HTML/JSON, code, bảng kết quả, ảnh mô phỏng hoặc video giải thích."
+          "q": "Bằng chứng tối thiểu trước khi sang bài 2?",
+          "a": "Có bảng schema, định nghĩa nhãn, danh sách đặc trưng hợp lệ và group split không giao nhau."
         }
       ],
       "masteryCriteria": [
-        "Giải thích được khái niệm cốt lõi mà không đọc chép định nghĩa.",
-        "Làm được ví dụ có input/output rõ ràng.",
-        "Chạy mô phỏng hoặc thực hành, ghi ít nhất 2 nhận xét có số liệu.",
-        "Đạt kiểm tra cuối bài từ 8/10 hoặc hoàn thành ôn lỗi sai."
+        "Nêu được ít nhất 2 nguy cơ leakage đúng bản chất.",
+        "Có bảng dữ liệu và sơ đồ split theo run_id.",
+        "Không tuyên bố mô hình đã hoạt động khi chưa huấn luyện/kiểm chứng."
       ],
       "rubric": [
         {
@@ -120,81 +119,83 @@
         "png",
         "md"
       ],
-      "baumanConnection": "Liên hệ trực tiếp với Machine Learning, Neural Systems và đánh giá mô hình, học phần chính khóa, НИР/ВКР và năng lực đọc tài liệu kỹ thuật.",
-      "reviewIfWrong": "Quay lại Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric, chạy mô phỏng mặc định, làm bài Dễ/Trung bình rồi kiểm tra lại."
+      "baumanConnection": "Kỹ năng nền cho AI/ML và báo cáo НИР/ВКР: kiểm soát dữ liệu, đo metric và không suy kết quả giả lập thành kết quả thật.",
+      "reviewIfWrong": "Đọc lại mốc thời gian dự đoán; với mỗi cột hãy trả lời nó đã tồn tại ở t hay chưa."
     }
   },
   {
     "id": "a_p01_l2",
     "stage": "prepare",
     "moduleId": "a_p01",
-    "title": "Bài tập và mô phỏng · Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric",
-    "description": "Bài e-learning chuyên sâu về Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric trong GĐ1 · Chuẩn bị tại Việt Nam: lý thuyết cốt lõi, dẫn chứng cụ thể, ví dụ có lời giải, mô phỏng, bài tập và kiểm tra.",
+    "title": "Bài 2 · Lập baseline và tính confusion matrix trên tập giữ lại",
+    "description": "Thực hành đánh giá một bộ dự đoán giả lập: nhận biết TP/FP/FN/TN, tự tính precision, recall, F1 và giải thích vì sao accuracy chưa đủ.",
     "kind": "thực hành",
     "keyPoints": [
-      "dữ liệu → đặc trưng → mô hình → loss → huấn luyện → metric → error analysis"
+      "Baseline phải đơn giản và được mô tả trước khi thử mô hình phức tạp; không điều chỉnh bằng kết quả của tập test giữ lại.",
+      "Confusion matrix của lớp lỗi gồm TP, FP, FN, TN với đơn vị là số trường hợp.",
+      "Precision đánh giá tỷ lệ cảnh báo đúng; recall đo tỷ lệ lỗi thực phát hiện được. F1 cân bằng hai tỷ lệ khi đều quan trọng."
     ],
     "tasks": [
-      "Viết lại 5–7 ý chính của Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric bằng lời của bạn.",
-      "Làm ví dụ có input/output/giả thiết/kết quả rõ ràng.",
-      "Chạy mô phỏng liên quan, thay đổi ít nhất 3 tham số và ghi nhận sự khác biệt.",
-      "Làm bài kiểm tra cuối bài; dưới 8/10 thì ôn lại câu sai."
+      "Tự dựng confusion matrix giả lập TP=8, FP=2, FN=4, TN=26 trên 40 trường hợp.",
+      "Tính precision=8/10=0,80; recall=8/12≈0,667; F1=16/22≈0,727; accuracy=34/40=0,85.",
+      "Viết 2 câu giải thích rủi ro bỏ sót 4 lỗi thật (FN) và báo động nhầm 2 lần (FP)."
     ],
     "eLearning": {
       "lessonContractVersion": "elearning-v1.1",
       "stage": "GĐ1 · Chuẩn bị tại Việt Nam",
-      "moduleTitle": "Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric",
+      "moduleTitle": "Bài 2 · Lập baseline và tính confusion matrix trên tập giữ lại",
       "estimatedMinutes": 60,
-      "sourceBasis": "Stanford CS229, Coursera ML/DL, backprop paper, scikit-learn workflow",
+      "sourceBasis": "HỌC LIỆU BỔ TRỢ DO HỆ THỐNG BIÊN TẬP. Không phải đề cương chính thức Bauman. Khái niệm: train/test split, data leakage, confusion matrix, classification metrics, error analysis; người học cần kiểm chứng nguồn giảng viên và dữ liệu thực tế trước khi sử dụng trong học thuật.",
       "objectives": [
-        "Hiểu bản chất của Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric trong môn Machine Learning, Neural Systems và đánh giá mô hình.",
-        "Làm được ví dụ mẫu và giải thích từng bước.",
-        "Tạo artifact học tập có thể xem lại và gửi tiến độ về Main."
+        "Tạo được baseline thử nghiệm với một tập test giữ lại không bị leakage.",
+        "Đọc và tính đúng confusion matrix, precision, recall, F1, accuracy.",
+        "Giải thích được lựa chọn metric theo hậu quả của cảnh báo nhầm và bỏ sót lỗi."
       ],
       "prerequisites": [
-        "Đã đọc mục tiêu module trong Lộ trình.",
-        "Có sổ ghi chú hoặc file notes.md.",
-        "Biết mở tab Mô phỏng/Thực hành mô phỏng."
+        "Hoàn thành a_p01_l1: schema, nhãn và group split đã được xác định.",
+        "Hiểu phân số, tỷ lệ và bốn trạng thái dự đoán đúng/sai."
       ],
-      "whyItMatters": "Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric là mắt xích trong lộ trình Bauman: dữ liệu → đặc trưng → mô hình → loss → huấn luyện → metric → error analysis",
+      "whyItMatters": "Thực hành đánh giá một bộ dự đoán giả lập: nhận biết TP/FP/FN/TN, tự tính precision, recall, F1 và giải thích vì sao accuracy chưa đủ.",
       "coreTheory": [
-        "dữ liệu → đặc trưng → mô hình → loss → huấn luyện → metric → error analysis"
+        "TP: dự đoán lỗi và thực sự lỗi; FP: cảnh báo lỗi nhưng bình thường; FN: bỏ sót lỗi; TN: bình thường được dự đoán bình thường.",
+        "Không chỉ báo cáo accuracy vì một mô hình đoán lớp đa số có thể đạt điểm cao trong bộ dữ liệu mất cân bằng.",
+        "Tập test chỉ dùng để đánh giá sau khi đã chốt pipeline; tùy chỉnh ngưỡng trên test làm kết quả bị lạc quan."
       ],
-      "coreFormulas": [],
+      "coreFormulas": [
+        "precision = TP / (TP + FP) = 8/10 = 0.80",
+        "recall = TP / (TP + FN) = 8/12 ≈ 0.667",
+        "F1 = 2TP / (2TP + FP + FN) = 16/22 ≈ 0.727",
+        "accuracy = (TP + TN) / (TP + FP + FN + TN) = 34/40 = 0.85"
+      ],
       "workedExample": {
-        "context": "Dự đoán trạng thái lỗi node UGV; chọn baseline, chia train/test, đọc metric và phân tích lỗi theo module Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric.",
+        "context": "Bộ 40 kết quả minh họa được giả lập để tính metric; KHÔNG phải kết quả mô hình chạy trên phần cứng UGV hay bộ dữ liệu có thật.",
         "steps": [
-          "Xác định bài toán trong bối cảnh: dự đoán trạng thái lỗi/bình thường của node UGV từ telemetry.",
-          "Liệt kê biến đầu vào, đầu ra, đơn vị và giả thiết.",
-          "Áp dụng công thức/quy trình từng bước nhỏ.",
-          "Kiểm tra kết quả bằng trực giác kỹ thuật: dấu, đơn vị, kích thước, giới hạn và rủi ro.",
-          "Lưu kết luận thành artifact JSON/HTML/video."
+          "Tạo bảng hàng là nhãn thật (lỗi/bình thường), cột là dự đoán (lỗi/bình thường).",
+          "Điền 8 lỗi dự đoán đúng, 4 lỗi bị bỏ sót, 2 bình thường bị cảnh báo và 26 bình thường được nhận diện đúng.",
+          "Kiểm tra tổng = 8+4+2+26=40; số lỗi thật=12; số cảnh báo lỗi=10.",
+          "Tính precision=8/(8+2)=0,80 và recall=8/(8+4)=0,667.",
+          "Tính F1=2·8/(2·8+2+4)=0,727; đối chiếu accuracy=34/40=0,85 và thảo luận rủi ro FN."
         ],
-        "answer": "Chạy baseline trước, báo precision/recall/F1, đọc false positive/false negative rồi mới tăng độ phức tạp mô hình."
+        "answer": "TP=8, FP=2, FN=4, TN=26; precision 80%, recall 66,7%, F1≈72,7%, accuracy 85%. Báo cáo cả 4 chỉ số và 4 lỗi bỏ sót; không gọi dữ liệu giả lập là kết quả đo thực tế."
       },
       "guidedPractice": [
         {
           "level": "Dễ",
-          "task": "Tóm tắt Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric bằng 5 gạch đầu dòng và một ví dụ nhỏ.",
-          "expected": "Có khái niệm, input/output và lỗi thường gặp."
+          "task": "Tính precision và recall cho TP=6, FP=3, FN=2.",
+          "expected": "precision=6/9≈0,667; recall=6/8=0,75."
         },
         {
           "level": "Trung bình",
-          "task": "Làm lại ví dụ với số liệu/tình huống mới.",
-          "expected": "Có bảng tính, code hoặc kết quả mô phỏng."
+          "task": "Giữ TP=8, FN=4, thay FP từ 2 thành 6; tính lại precision.",
+          "expected": "precision giảm từ 0,80 xuống 8/14≈0,571; recall không đổi."
         },
         {
           "level": "Khá",
-          "task": "Thay đổi một giả thiết và phân tích kết quả.",
-          "expected": "Có so sánh trước/sau và giải thích."
-        },
-        {
-          "level": "Giỏi",
-          "task": "Viết báo cáo mini 1 trang gắn với UGV/USV hoặc học phần Bauman.",
-          "expected": "Có vấn đề, phương pháp, kết quả, giới hạn và bước tiếp theo."
+          "task": "Đề xuất metric ưu tiên khi FN có hậu quả lớn hơn FP.",
+          "expected": "Ưu tiên recall và trình bày rõ tỷ lệ cảnh báo nhầm/khả năng phản ứng của người vận hành."
         }
       ],
-      "simulationLink": "Mở mô phỏng overfit/underfit hoặc backprop.",
+      "simulationLink": "Dùng bảng confusion matrix tính thủ công; chỉ mở mô phỏng nếu có dữ liệu và kết quả được kiểm chứng.",
       "commonMistakes": [
         "Chỉ nhìn accuracy.",
         "Dùng mô hình phức tạp trước baseline.",
@@ -202,23 +203,22 @@
       ],
       "checkpointQuestions": [
         {
-          "q": "Input quan trọng nhất của bài 'Bài tập và mô phỏng · Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric' là gì?",
-          "a": "Dữ liệu/biến đầu vào, đơn vị, giả thiết và mục tiêu đầu ra."
+          "q": "Từ TP=8, FP=2, FN=4, recall bằng bao nhiêu?",
+          "a": "8/(8+4)=2/3≈66,7%."
         },
         {
-          "q": "Khi mô phỏng khác dự đoán, cần làm gì?",
-          "a": "Kiểm tra giả thiết, input, đơn vị, khoảng giá trị và log từng bước, không sửa bừa tham số."
+          "q": "Accuracy 85% có chứng minh mô hình an toàn cho UGV không?",
+          "a": "Không; còn 4/12 lỗi thật bị bỏ sót, cần phân tích hậu quả và kiểm chứng độc lập."
         },
         {
-          "q": "Bằng chứng hoàn thành bài học là gì?",
-          "a": "Artifact có thể xem lại: lời giải HTML/JSON, code, bảng kết quả, ảnh mô phỏng hoặc video giải thích."
+          "q": "Có được chỉnh ngưỡng dựa trực tiếp trên test giữ lại không?",
+          "a": "Không; dùng validation cho tuning, giữ test để đánh giá cuối cùng."
         }
       ],
       "masteryCriteria": [
-        "Giải thích được khái niệm cốt lõi mà không đọc chép định nghĩa.",
-        "Làm được ví dụ có input/output rõ ràng.",
-        "Chạy mô phỏng hoặc thực hành, ghi ít nhất 2 nhận xét có số liệu.",
-        "Đạt kiểm tra cuối bài từ 8/10 hoặc hoàn thành ôn lỗi sai."
+        "Tính đúng 4 metric trên ví dụ giả lập.",
+        "Phân biệt TP/FP/FN/TN và hậu quả vận hành.",
+        "Lưu nhãn dữ liệu là ví dụ học tập, không báo như thí nghiệm đã chạy."
       ],
       "rubric": [
         {
@@ -245,81 +245,81 @@
         "png",
         "md"
       ],
-      "baumanConnection": "Liên hệ trực tiếp với Machine Learning, Neural Systems và đánh giá mô hình, học phần chính khóa, НИР/ВКР và năng lực đọc tài liệu kỹ thuật.",
-      "reviewIfWrong": "Quay lại Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric, chạy mô phỏng mặc định, làm bài Dễ/Trung bình rồi kiểm tra lại."
+      "baumanConnection": "Kỹ năng nền cho AI/ML và báo cáo НИР/ВКР: kiểm soát dữ liệu, đo metric và không suy kết quả giả lập thành kết quả thật.",
+      "reviewIfWrong": "Vẽ lại bảng 2×2, xác định hàng là nhãn thật và cột là dự đoán trước khi thay số."
     }
   },
   {
     "id": "a_p01_l3",
     "stage": "prepare",
     "moduleId": "a_p01",
-    "title": "Ứng dụng Bauman, НИР/ВКР · Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric",
-    "description": "Bài e-learning chuyên sâu về Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric trong GĐ1 · Chuẩn bị tại Việt Nam: lý thuyết cốt lõi, dẫn chứng cụ thể, ví dụ có lời giải, mô phỏng, bài tập và kiểm tra.",
+    "title": "Bài 3 · Phân tích lỗi và viết báo cáo ML có thể tái lập",
+    "description": "Kết nối hai bài trước thành một bản báo cáo kỹ thuật: dữ liệu, cách chia, baseline, metric, phân tích FP/FN, giới hạn và cách tái lập thí nghiệm.",
     "kind": "ứng dụng",
     "keyPoints": [
-      "dữ liệu → đặc trưng → mô hình → loss → huấn luyện → metric → error analysis"
+      "Kết luận không chỉ dựa vào một điểm F1; phải kèm số trường hợp, đặc điểm dữ liệu và sai số theo bối cảnh.",
+      "Một báo cáo có thể tái lập cần version dữ liệu, cột đầu vào, nhãn, run_id split, cấu hình model, seed và script thực thi.",
+      "Đánh giá ngoại tuyến không chứng minh an toàn khi triển khai thật; phải nêu rõ nguy cơ drift, cảnh báo giả và giới hạn của mẫu."
     ],
     "tasks": [
-      "Viết lại 5–7 ý chính của Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric bằng lời của bạn.",
-      "Làm ví dụ có input/output/giả thiết/kết quả rõ ràng.",
-      "Chạy mô phỏng liên quan, thay đổi ít nhất 3 tham số và ghi nhận sự khác biệt.",
-      "Làm bài kiểm tra cuối bài; dưới 8/10 thì ôn lại câu sai."
+      "Tạo bảng báo cáo gồm data/version, nhãn, feature, train/validation/test split và cách tránh leakage.",
+      "Dùng số giả lập của bài 2 để mô tả 2 FP, 4 FN và đặt 3 giả thuyết lỗi có thể kiểm chứng.",
+      "Viết kết luận giới hạn: chưa có bộ dữ liệu UGV thực, chưa đo thời gian thực, chưa chạy kiểm định ngoài phân phối."
     ],
     "eLearning": {
       "lessonContractVersion": "elearning-v1.1",
       "stage": "GĐ1 · Chuẩn bị tại Việt Nam",
-      "moduleTitle": "Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric",
-      "estimatedMinutes": 60,
-      "sourceBasis": "Stanford CS229, Coursera ML/DL, backprop paper, scikit-learn workflow",
+      "moduleTitle": "Bài 3 · Phân tích lỗi và viết báo cáo ML có thể tái lập",
+      "estimatedMinutes": 50,
+      "sourceBasis": "HỌC LIỆU BỔ TRỢ DO HỆ THỐNG BIÊN TẬP. Không phải đề cương chính thức Bauman. Khái niệm: train/test split, data leakage, confusion matrix, classification metrics, error analysis; người học cần kiểm chứng nguồn giảng viên và dữ liệu thực tế trước khi sử dụng trong học thuật.",
       "objectives": [
-        "Hiểu bản chất của Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric trong môn Machine Learning, Neural Systems và đánh giá mô hình.",
-        "Làm được ví dụ mẫu và giải thích từng bước.",
-        "Tạo artifact học tập có thể xem lại và gửi tiến độ về Main."
+        "Đọc được bảng metric và quy đổi thành nguy cơ thực tế của false negative/false positive.",
+        "Viết được báo cáo thực nghiệm có baseline, phân chia tập, cấu hình và kết quả phân biệt giả lập với thực đo.",
+        "Đề xuất được một phép thử tiếp theo có giả thuyết và tiêu chí bác bỏ rõ ràng."
       ],
       "prerequisites": [
-        "Đã đọc mục tiêu module trong Lộ trình.",
-        "Có sổ ghi chú hoặc file notes.md.",
-        "Biết mở tab Mô phỏng/Thực hành mô phỏng."
+        "Hoàn thành a_p01_l1 và a_p01_l2.",
+        "Có confusion matrix và phương pháp chia dữ liệu đã ghi lại."
       ],
-      "whyItMatters": "Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric là mắt xích trong lộ trình Bauman: dữ liệu → đặc trưng → mô hình → loss → huấn luyện → metric → error analysis",
+      "whyItMatters": "Kết nối hai bài trước thành một bản báo cáo kỹ thuật: dữ liệu, cách chia, baseline, metric, phân tích FP/FN, giới hạn và cách tái lập thí nghiệm.",
       "coreTheory": [
-        "dữ liệu → đặc trưng → mô hình → loss → huấn luyện → metric → error analysis"
+        "Error analysis: phân nhóm FP/FN theo thiết bị, chuyến chạy, nhiệt độ, thời gian và điều kiện vận hành; không suy nguyên nhân từ một ví dụ.",
+        "Reproducibility: lưu rõ dataset version/hash, config, random seed, môi trường, lệnh chạy, log metric và giới hạn.",
+        "Không dùng mẫu giả lập để suy ra độ tin cậy Production, độ trễ hay khả năng tự hành của robot."
       ],
-      "coreFormulas": [],
+      "coreFormulas": [
+        "report = {problem, data_provenance, split, baseline, confusion_matrix, metrics, limitations, reproducibility}",
+        "error_rate_on_true_faults = FN/(TP+FN) = 4/12 ≈ 0.333 (ví dụ giả lập)"
+      ],
       "workedExample": {
-        "context": "Dự đoán trạng thái lỗi node UGV; chọn baseline, chia train/test, đọc metric và phân tích lỗi theo module Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric.",
+        "context": "Báo cáo thử nghiệm học tập với 40 dự đoán giả lập; nhóm đánh giá muốn biết vì sao còn 4 FN và bước đo nào tiếp theo.",
         "steps": [
-          "Xác định bài toán trong bối cảnh: dự đoán trạng thái lỗi/bình thường của node UGV từ telemetry.",
-          "Liệt kê biến đầu vào, đầu ra, đơn vị và giả thiết.",
-          "Áp dụng công thức/quy trình từng bước nhỏ.",
-          "Kiểm tra kết quả bằng trực giác kỹ thuật: dấu, đơn vị, kích thước, giới hạn và rủi ro.",
-          "Lưu kết luận thành artifact JSON/HTML/video."
+          "Ghi tên bài toán, mốc thời gian dự đoán, nguồn dữ liệu mô phỏng và 3 feature đầu vào.",
+          "Ghi train/validation/test chia theo run_id và công thức tính metric; không bịa train log hoặc seed chưa dùng.",
+          "Trình bày TP=8, FP=2, FN=4, TN=26 và precision=0,80, recall≈0,667, F1≈0,727.",
+          "Lập bảng 4 FN giả lập theo biến đầu vào; đây là giả thuyết, không phải quan sát hệ thống thật.",
+          "Đề xuất thử nghiệm với run_id chưa thấy, dữ liệu có nguồn rõ và đo thêm tỷ lệ FN trước khi nói đến triển khai."
         ],
-        "answer": "Chạy baseline trước, báo precision/recall/F1, đọc false positive/false negative rồi mới tăng độ phức tạp mô hình."
+        "answer": "Một kết luận hợp lệ: trong ví dụ 40 trường hợp giả lập có 4 FN/12 lỗi thật (33,3% bỏ sót); chưa có bằng chứng về hiệu năng UGV thật. Bước tiếp theo là đo trên tập độc lập có truy xuất nguồn và ghi đầy đủ pipeline."
       },
       "guidedPractice": [
         {
           "level": "Dễ",
-          "task": "Tóm tắt Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric bằng 5 gạch đầu dòng và một ví dụ nhỏ.",
-          "expected": "Có khái niệm, input/output và lỗi thường gặp."
+          "task": "Viết đoạn Results 5 câu gồm N, confusion matrix và 3 metric.",
+          "expected": "N=40 và kết quả ghi rõ là giả lập; không nhầm precision với recall."
         },
         {
           "level": "Trung bình",
-          "task": "Làm lại ví dụ với số liệu/tình huống mới.",
-          "expected": "Có bảng tính, code hoặc kết quả mô phỏng."
+          "task": "Viết mục Limitations có ít nhất 3 giới hạn hợp lý.",
+          "expected": "Dữ liệu giả lập, không có runtime/latency, không có kiểm chứng ngoài phân phối."
         },
         {
           "level": "Khá",
-          "task": "Thay đổi một giả thiết và phân tích kết quả.",
-          "expected": "Có so sánh trước/sau và giải thích."
-        },
-        {
-          "level": "Giỏi",
-          "task": "Viết báo cáo mini 1 trang gắn với UGV/USV hoặc học phần Bauman.",
-          "expected": "Có vấn đề, phương pháp, kết quả, giới hạn và bước tiếp theo."
+          "task": "Thiết kế bảng error analysis theo run_id, nhiệt độ, cảnh báo và dự đoán.",
+          "expected": "Đặt câu hỏi có thể đo/bác bỏ; không khẳng định nguyên nhân khi thiếu dữ liệu."
         }
       ],
-      "simulationLink": "Mở mô phỏng overfit/underfit hoặc backprop.",
+      "simulationLink": "Bài 3 dùng báo cáo và bảng lỗi từ bài 1–2; không yêu cầu mô phỏng chưa có thật.",
       "commonMistakes": [
         "Chỉ nhìn accuracy.",
         "Dùng mô hình phức tạp trước baseline.",
@@ -327,23 +327,22 @@
       ],
       "checkpointQuestions": [
         {
-          "q": "Input quan trọng nhất của bài 'Ứng dụng Bauman, НИР/ВКР · Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric' là gì?",
-          "a": "Dữ liệu/biến đầu vào, đơn vị, giả thiết và mục tiêu đầu ra."
+          "q": "Vì sao cần ghi data version và run_id split?",
+          "a": "Để người khác kiểm tra lại đầu vào, quy trình chia và khả năng rò rỉ dữ liệu."
         },
         {
-          "q": "Khi mô phỏng khác dự đoán, cần làm gì?",
-          "a": "Kiểm tra giả thiết, input, đơn vị, khoảng giá trị và log từng bước, không sửa bừa tham số."
+          "q": "Có thể tuyên bố mô hình sẵn sàng vận hành vì F1≈0,727 không?",
+          "a": "Không; số này chỉ từ tình huống giả lập và chưa đo trên thiết bị hay điều kiện thật."
         },
         {
-          "q": "Bằng chứng hoàn thành bài học là gì?",
-          "a": "Artifact có thể xem lại: lời giải HTML/JSON, code, bảng kết quả, ảnh mô phỏng hoặc video giải thích."
+          "q": "Một artifact báo cáo tối thiểu cần gì?",
+          "a": "Vấn đề, nguồn dữ liệu, feature/label, split, baseline, metric, lỗi, giới hạn và hướng tái lập."
         }
       ],
       "masteryCriteria": [
-        "Giải thích được khái niệm cốt lõi mà không đọc chép định nghĩa.",
-        "Làm được ví dụ có input/output rõ ràng.",
-        "Chạy mô phỏng hoặc thực hành, ghi ít nhất 2 nhận xét có số liệu.",
-        "Đạt kiểm tra cuối bài từ 8/10 hoặc hoàn thành ôn lỗi sai."
+        "Báo cáo có đủ nguồn/split/baseline/metric/limitations.",
+        "Nêu chính xác 4 FN/12 lỗi thật trong ví dụ học tập.",
+        "Không trộn dữ liệu giả lập với kết quả thực hoặc thổi phồng độ tin cậy."
       ],
       "rubric": [
         {
@@ -370,8 +369,8 @@
         "png",
         "md"
       ],
-      "baumanConnection": "Liên hệ trực tiếp với Machine Learning, Neural Systems và đánh giá mô hình, học phần chính khóa, НИР/ВКР và năng lực đọc tài liệu kỹ thuật.",
-      "reviewIfWrong": "Quay lại Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric, chạy mô phỏng mặc định, làm bài Dễ/Trung bình rồi kiểm tra lại."
+      "baumanConnection": "Kỹ năng nền cho AI/ML và báo cáo НИР/ВКР: kiểm soát dữ liệu, đo metric và không suy kết quả giả lập thành kết quả thật.",
+      "reviewIfWrong": "Đối chiếu confusion matrix bài 2; bổ sung mục Sources, Limitations và Reproducibility trước khi chốt."
     }
   },
   {
