@@ -92,6 +92,34 @@ assert.ok(contrast.includes('.hub-safe-hero-copy::before'),'UI-E9 hero readabili
 assert.ok(contrast.includes('.bui-dashboard__subject-card'),'UI-E9 dashboard surface hierarchy missing');
 assert.ok(contrast.includes('.bui-mobile-nav'),'UI-E9 compact dock contrast contract missing');
 
+// The old --bui-text-on-accent was #101827, which produced <4.5:1
+// against both blue primary states despite the UI-E9 marker checks passing.
+function wcagLuminance(hex){
+  const channels=[1,3,5].map(i=>parseInt(hex.slice(i,i+2),16)/255)
+    .map(x=>x<=0.04045?x/12.92:((x+0.055)/1.055)**2.4);
+  return channels[0]*0.2126+channels[1]*0.7152+channels[2]*0.0722;
+}
+function wcagRatio(a,b){
+  const x=wcagLuminance(a),y=wcagLuminance(b);
+  return (Math.max(x,y)+0.05)/(Math.min(x,y)+0.05);
+}
+function tokenHex(name){
+  const match=tokens.match(new RegExp('(?:^|\\n)\\s*'+name+':\\s*(#[0-9a-fA-F]{6})','m'));
+  assert.ok(match,'Missing resolvable color token '+name);
+  return match[1];
+}
+const accentColors=[...tokens.matchAll(/--bui-text-on-accent:\s*(#[0-9a-fA-F]{6})/g)].map(x=>x[1]);
+assert.ok(accentColors.length>=2,'Both theme palettes must declare accent foreground');
+for(const fg of accentColors){
+  for(const bg of [tokenHex('--bui-color-primary'),tokenHex('--bui-color-primary-strong')]){
+    assert.ok(wcagRatio(fg,bg)>=4.5,
+      'UI-E9 WCAG AA primary button ratio below 4.5:1: '+JSON.stringify({fg,bg,ratio:wcagRatio(fg,bg)}));
+  }
+}
+assert.ok(contrast.includes('color:var(--bui-text-on-accent)!important'),
+  'Expected primary action contrast to consume the semantically tested accent foreground');
+
+
 for(const file of ['platform/ui/foundations.css','platform/ui/components.css','platform/ui/layouts.css','platform/ui/responsive.css','platform/ui/dashboard.css','platform/ui/device-responsive.css','platform/ui/compact-controls.css','platform/ui/contrast-system.css']){
   const c=fs.readFileSync(file,'utf8');
   const hex=[...c.matchAll(/#[0-9a-fA-F]{3,8}/g)].map(x=>x[0]);
