@@ -23,14 +23,14 @@
       "moduleId": "a_p01",
       "stage": "prepare",
       "difficulty": "easy",
-      "prompt": "Mục tiêu chính của module 'Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric' là gì?",
+      "prompt": "Một hệ thống phải dự đoán lỗi node UGV tại thời điểm t. Đặc trưng nào gây data leakage?",
       "options": [
-        "Problem, data, split, model, metric, report.",
-        "Chỉ đọc tên bài mà không làm sản phẩm",
-        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
-        "Đợi đến cuối khóa mới học"
+        "Điện áp đo tại thời điểm t",
+        "Nhãn xác nhận lỗi 5 phút sau t",
+        "Nhiệt độ đo tại thời điểm t",
+        "Số lần cảnh báo ghi nhận trước t"
       ],
-      "answerIndex": 0,
+      "answerIndex": 1,
       "reviewLesson": "a_p01_l1"
     },
     {
@@ -278,15 +278,15 @@
       "moduleId": "a_p01",
       "stage": "prepare",
       "difficulty": "medium",
-      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric' là gì?",
+      "prompt": "Ví dụ giả lập có TP=8, FP=2, FN=4, TN=26. Recall của lớp lỗi là bao nhiêu?",
       "options": [
-        "Problem, data, split, model, metric, report.",
-        "Chỉ đọc tên bài mà không làm sản phẩm",
-        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
-        "Đợi đến cuối khóa mới học"
+        "8/(8+2)=80%",
+        "(8+26)/40=85%",
+        "8/(8+4)≈66,7%",
+        "16/22≈72,7%"
       ],
-      "answerIndex": 0,
-      "reviewLesson": "a_p01_l1"
+      "answerIndex": 2,
+      "reviewLesson": "a_p01_l2"
     },
     {
       "id": "q_a_p02_v2",
