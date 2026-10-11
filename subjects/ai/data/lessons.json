@@ -204,7 +204,7 @@
       "checkpointQuestions": [
         {
           "q": "Từ TP=8, FP=2, FN=4, recall bằng bao nhiêu?",
-          "a": "8/(8+4)=2/3≈66,7%."
+          "a": "Recall = TP/(TP+FN) = 8/(8+4) = 2/3 ≈ 66,7%; 4 trong 12 lỗi thật vẫn bị bỏ sót."
         },
         {
           "q": "Accuracy 85% có chứng minh mô hình an toàn cho UGV không?",
