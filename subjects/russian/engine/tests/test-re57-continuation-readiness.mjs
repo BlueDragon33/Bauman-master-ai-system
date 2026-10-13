@@ -4,8 +4,8 @@ import {buildRe57Readiness,localRe57Sources,PILOT_INDICATORS} from '../review/re
 
 const inputs=localRe57Sources(),report=buildRe57Readiness(inputs);
 assert.equal(inputs.adoption.policyVersion,'1.2.0');
-assert.equal(report.constitutionalAuthority.proposal13,'DRAFT_NOT_RATIFIED');
-assert.equal(report.constitutionalAuthority.draftPracticeMode,'OBSERVATION_ONLY');
+assert.equal(report.constitutionalAuthority.proposal13,'RATIFIED_IN_SOURCE_CONSUMER_ADOPTION_PENDING');
+assert.equal(report.constitutionalAuthority.draftPracticeMode,'OBSERVATION_ONLY_UNTIL_VERIFIED_CONSUMER_MIGRATION');
 assert.equal(report.engineeringBaseline.lastVerifiedStep,'RE56');
 assert.equal(report.engineeringBaseline.lastMergedMain,'e81d6b20ac7221224ac16ce7804e47ede3822361');
 assert.equal(report.engineeringBaseline.exactHeadCIFromThisCommand,'NOT_VERIFIED');
@@ -40,6 +40,6 @@ for(const phrase of ['PR #98','RU03','Production','Work','exact SHA','5%','STOP'
   assert.ok(handoff.includes(phrase),'Work handoff missing '+phrase);
 }
 assert.ok(!handoff.includes('HUMAN_RU03_APPROVED'));
-console.log(JSON.stringify({ok:true,adoption:'1.2.0',constitutionalDraft13:true,staleStateRejected:true,
+console.log(JSON.stringify({ok:true,adoption:'1.2.0',ratifiedSource13PendingAdoption:true,staleStateRejected:true,
   unregisteredAIReviewerRejected:true,reviewItems:43,approvedText:0,approvedAudio:0,
   pilotMetricsNotFabricated:true,productionPublished:false,workHandoffPrepared:true}));
