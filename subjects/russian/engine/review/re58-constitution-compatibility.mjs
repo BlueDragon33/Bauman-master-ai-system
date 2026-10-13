@@ -21,7 +21,7 @@ export function buildRe58ConstitutionPreflight(sources=localRe57Sources()){
   if(state?.track!=='russian-engine'||state?.activeWorkPackage!=='RE58')
     hardStop('incorrect active work package');
   if(adoption?.policyId!=='blueprint-os:universal-century-grade'||
-     adoption?.policyVersion!=='1.2.0'||adoption?.enforcementMode!=='enforced')
+     adoption?.policyVersion!=='1.3.0'||adoption?.enforcementMode!=='enforced')
     hardStop('consumer adoption source drift; do not auto-publish a policy');
   if(authority?.schema!=='RUSSIAN_ENGINE_CONSTITUTION13_MIGRATION_OBSERVATION_V1'||
      authority?.observedCanonicalSourceRepo!==SRC||
@@ -34,13 +34,13 @@ export function buildRe58ConstitutionPreflight(sources=localRe57Sources()){
   // Do not accept caller-declared "PUBLISHED" or "VERIFIED" as remote authority.
   if(authority.backendPublicationEvidence!=='NOT_VERIFIED'||
      authority.productionAuthority!=='SEPARATE_EXPLICIT_RELEASE_GATE'||
-     state.continuation?.authoritativeConstitution?.consumerMigrationStatus!=='NOT_ADOPTED')
+     state.continuation?.authoritativeConstitution?.consumerMigrationStatus!=='ADOPTION_MANIFEST_UPDATED_AWAITING_EXACT_HEAD_CI')
     hardStop('unverified publication/migration authority claim');
   const ru=buildRe57Readiness(sources);
   if(ru.linguisticReview.totalItems!==43||ru.canonicalPublicationReady!==false)
     hardStop('RE58 expected blocked 43-item Russian review boundary');
   const blockers=[
-    'CANONICAL_SOURCE_ACTIVE_CONSUMER_ADOPTION_STILL_1_2',
+    'CONSUMER_1_3_ADOPTION_MANIFEST_MUST_PASS_EXACT_HEAD_CI',
     'BACKEND_PUBLICATION_EVIDENCE_UNVERIFIED',
     'NO_EXACT_R1_R32_AND_R200_PROJECT_MIGRATION_EVIDENCE',
     'NO_CP01_CP13_TRUSTED_CENTRAL_DEVICE_ACCEPTANCE',
@@ -64,7 +64,8 @@ export function buildRe58ConstitutionPreflight(sources=localRe57Sources()){
       version:adoption.policyVersion,
       enforcement:adoption.enforcementMode,
       releaseAuthority:adoption.productionAuthority,
-      migrated:false
+      manifestUpdated:true,
+      migrationAcceptanceComplete:false
     }),
     subjectProfile:Object.freeze({
       platform:'B4_STRUCTURED',
@@ -87,7 +88,7 @@ export function buildRe58ConstitutionPreflight(sources=localRe57Sources()){
     qualityMetrics:'NOT_MEASURED_FROM_TRUSTED_LIVE_COHORT',
     blockers:Object.freeze(blockers),
     compatibilityReady:false,
-    mayChangeConsumerAdoption:false,
+    mayDeclareConsumerMigrationComplete:false,
     mayGrantCentralDeviceAccess:false,
     canonicalPublicationReady:false,
     productionPublished:false
