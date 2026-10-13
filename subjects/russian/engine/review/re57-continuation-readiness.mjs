@@ -31,7 +31,7 @@ export function buildRe57Readiness({state,adoption,inventory,reviewers,decisions
   if(state.track!=='russian-engine'||!['RE57','RE58'].includes(state.activeWorkPackage))
     throw new Error('RE57 state is stale or wrong track');
   if(adoption.policyId!=='blueprint-os:universal-century-grade'||
-     adoption.policyVersion!=='1.2.0'||adoption.enforcementMode!=='enforced')
+     adoption.policyVersion!=='1.3.0'||adoption.enforcementMode!=='enforced')
     throw new Error('RE57 adopted Constitution drift: verify canonical Blueprint authority before proceeding');
   if(state.continuation?.authoritativeConstitution?.adoptedPolicyVersion!==adoption.policyVersion)
     throw new Error('RE57 continuation/adoption version mismatch');
@@ -59,8 +59,8 @@ export function buildRe57Readiness({state,adoption,inventory,reviewers,decisions
     constitutionalAuthority:Object.freeze({
       effectiveVersion:adoption.policyVersion,
       proposal13:state.continuation?.authoritativeConstitution?.sourceStatus==='RATIFIED_IN_CANONICAL_GIT_MAIN'
-        ?'RATIFIED_IN_SOURCE_CONSUMER_ADOPTION_PENDING':'DRAFT_NOT_RATIFIED',
-      draftPracticeMode:'OBSERVATION_ONLY_UNTIL_VERIFIED_CONSUMER_MIGRATION'
+        ?'RATIFIED_SOURCE_CONSUMER_MANIFEST_1_3_VALIDATION_PENDING':'SOURCE_UNVERIFIED',
+      draftPracticeMode:'NO_LIVE_K1_K5_BASELINE_OR_WORK_UX_CLAIM'
     }),
     linguisticReview:Object.freeze({
       totalItems:inventory.itemCount,
