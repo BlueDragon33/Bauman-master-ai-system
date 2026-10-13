@@ -23,16 +23,16 @@ const algState = json("prompts/subjects/algorithms/PROJECT_STATE.json");
 
 assert.match(constitution,/DEPENDENCY_INDEPENDENCE_POLICY\.md/);
 
-assert.equal(adoption.policyVersion,"1.2.0");
+assert.equal(adoption.policyVersion,"1.3.0");
 assert.ok(
   adoption.inheritedPillars.includes("operational-sovereignty-dependency-minimization"),
-  "Constitution 1.2 sovereignty pillar must be inherited"
+  "Constitution sovereignty pillar must be inherited"
 );
 assert.deepEqual(adoption.disabledPillars,[]);
 assert.deepEqual(adoption.constitutionalWaivers,[]);
 
 assert.equal(registry.dependencyBudget,"prompts/constitution/DEPENDENCY_BUDGET.json");
-assert.equal(dependencyBudget.constitutionPolicy,"blueprint-os:universal-century-grade@1.2.0");
+assert.equal(dependencyBudget.constitutionPolicy,"blueprint-os:universal-century-grade@"+adoption.policyVersion);
 assert.equal(dependencyBudget.defaultPrinciple,"LOCAL_FIRST_OFFLINE_FIRST_FREE_FIRST_PROVIDER_REPLACEABLE");
 
 const byId = new Map(dependencyBudget.dependencies.map(item => [item.id,item]));
