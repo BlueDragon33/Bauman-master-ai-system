@@ -110,10 +110,10 @@ try{
   assert.ok(dims.today&&dims.review&&Math.abs(dims.today.y-dims.review.y)<3,'Today and truthful review status must share the next decision row');
   assert.ok(dims.path&&dims.path.y>dims.today.y,'Compact Learning Path must follow the primary learning actions');
   assert.ok(dims.progress&&dims.progress.y>dims.path.y,'Secondary statistics must appear after the learning path');
-  assert.equal(dims.modules.length,5,'Overview must contain exactly five core module cards');
+  assert.equal(dims.modules.length,8,'Overview must expose exactly eight phone-style app shortcuts');
   const moduleRows=[...new Set(dims.modules.map(x=>Math.round(x.y)))];
-  assert.ok(moduleRows.length>=3,'Five skill cards must wrap to at most two columns instead of one dense five-card row');
-  assert.ok(Math.min(...dims.modules.map(x=>x.w))>450,'Desktop skill cards must remain readable at the canonical two-column width');
+  assert.equal(moduleRows.length,2,'Eight shortcuts must use two balanced four-icon rows on desktop');
+  assert.ok(Math.min(...dims.modules.map(x=>x.w))>=200,'Desktop app icons need readable tap targets in a four-column grid');
   assert.ok(dims.scroll<=dims.vw+2,'Future Russian UI must not horizontally overflow at reference viewport');
 
   const personalReport=page.locator('.rf-personal-report[data-report-scope="learner"]');
@@ -144,10 +144,14 @@ try{
   assert.equal(await personalReport.getAttribute('data-report-evidence-status'),'Đang tích lũy','Learner report must refresh when evidence state changes');
 
   const dashboardText=await page.locator('.rf-dashboard').innerText();
-  for(const label of ['HỌC TIẾP','CẦN ÔN','Hôm nay','5 kỹ năng chính','Video','Nghe & Nói','Luyện chữ','Từ vựng','Ngữ pháp','Learning Path','Khởi động','Âm & chữ','Nghe nói cơ bản','A1','A2 / Dự bị','Tiếng Nga học thuật']){
+  for(const label of ['HỌC TIẾP','CẦN ÔN','Hôm nay','Ứng dụng học tập','Video','Nghe & Nói','Bài học','Luyện chữ','Từ vựng','Ngữ pháp','Hội thoại','Ôn tập','Learning Path','Khởi động','Âm & chữ','Nghe nói cơ bản','A1','A2 / Dự bị','Tiếng Nga học thuật']){
     assert.ok(dashboardText.includes(label),'Overview summary missing '+label);
   }
-  assert.equal(await page.locator('.rf-module-progress').count(),5,'Each core skill card must expose one truthful progress/evidence line');
+  assert.equal(await page.locator('.rf-module-progress').count(),5,'Only five evidence-bearing skill icons may display real learning-state counts');
+  assert.equal(await page.locator('.rf-module-icon svg[aria-hidden="true"]').count(),8,'Each shortcut must have one consistent decorative SVG icon');
+  const iconRoutes=await page.locator('.rf-module-card').evaluateAll(nodes=>nodes.map(node=>({route:JSON.parse(node.dataset.route),name:node.getAttribute('aria-label'),height:node.getBoundingClientRect().height})));
+  assert.ok(iconRoutes.every(x=>x.name&&x.height>=44),'Every app icon must have an accessible name and a 44px-or-taller tap target');
+  assert.deepEqual(iconRoutes.map(x=>x.route.view),['media','learning','learning','writing','vocab','grammar','dialogue','learning'],'Icon grid must reuse all eight existing core routes without a parallel state store');
   assert.equal(await page.locator('.rf-road-step').count(),6,'Overview Learning Path must contain exactly six canonical stages');
   assert.equal(await page.locator('.rf-road-step[aria-current="step"]').count(),1,'Learning Path must expose one current stage');
   assert.match(await page.locator('.rf-review-now').innerText(),/Chưa có nội dung đến hạn\./,'Fresh learner state must not synthesize review work');
@@ -452,7 +456,7 @@ try{
     searchVisible:getComputedStyle(document.querySelector('.ru-global-search-wrap')).display!=='none'
   }));
   assert.ok(mobile.scroll<=mobile.vw+2,'Future UI mobile horizontal overflow after drawer interaction');
-  assert.equal(mobile.modules,5);
+  assert.equal(mobile.modules,8);
   assert.equal(mobile.searchVisible,true);
   await page.screenshot({path:path.join(OUT,'russian-future-overview-mobile.png'),fullPage:true});
 
