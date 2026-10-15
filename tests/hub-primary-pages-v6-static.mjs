@@ -10,7 +10,7 @@ const safeUx=fs.readFileSync('assets/js/hub-safe-ux.js','utf8');
 const search=fs.readFileSync('assets/js/hub-overview-search-v2.js','utf8');
 
 assert.ok(index.includes('hub-ui-booting'),'Hub boot guard is missing');
-assert.ok(index.includes('assets/css/hub-primary-pages-v6.css?v=1'),'V6 page stylesheet is not loaded');
+assert.ok(index.includes('assets/css/hub-primary-pages-v6.css?v=2'),'V6 page stylesheet is not loaded');
 assert.ok(index.includes('assets/js/hub-primary-pages-v6.js?v=1'),'V6 page renderer is not loaded');
 assert.ok(index.includes('assets/js/hub-data-truth.js?v=1'),'Hub truth adapter is not loaded');
 
