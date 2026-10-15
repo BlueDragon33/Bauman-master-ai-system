@@ -43,7 +43,21 @@
     let root=$('#mathUnifiedNav',nav);
     if(!root){ root=document.createElement('div'); root.id='mathUnifiedNav'; root.className='math-unified-nav'; nav.appendChild(root); }
     $('#mathUnifiedSystem')?.remove();
-    root.innerHTML=navHtml();
+    // Replacing the whole navigation on every sync interrupts pointer/keyboard
+    // interaction. Reuse canonical buttons and update only active semantics.
+    const buttons=$(':scope > .math-unified-group > button[data-math-nav]',root);
+    const matches=buttons.length===PRIMARY_ITEMS.length&&buttons.every((button,i)=>button.dataset.mathNav===PRIMARY_ITEMS[i].id);
+    if(!matches){
+      const html=navHtml();
+      if(root.innerHTML!==html)root.innerHTML=html;
+    }else{
+      buttons.forEach((button,i)=>{
+        const selected=PRIMARY_ITEMS[i].id===active;
+        if(button.classList.contains('active')!==selected)button.classList.toggle('active',selected);
+        const current=selected?'page':'false';
+        if(button.getAttribute('aria-current')!==current)button.setAttribute('aria-current',current);
+      });
+    }
   }
 
   let roadmapCache=null;
