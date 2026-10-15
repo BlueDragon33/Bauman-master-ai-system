@@ -33,6 +33,11 @@ const optionalLoader=read('assets/russian-optional-data-loader.js');
 const contentContract=read('assets/content-contract.js');
 const contentContractCss=read('assets/content-contract.css');
 const core=read('assets/core.js');
+must(core.includes('if(final!==true)return; // interim hypotheses cannot become learner transcript evidence'),
+  'Learner core must never turn interim ASR into transcript evidence');
+must(core.includes('chưa kiểm tra âm và trọng âm.') && !core.includes('Rất tốt: nhịp và từ khóa'),
+  'ASR transcript similarity must not claim rhythm/stress quality without acoustic evidence');
+
 // R200 handwriting: a real stroke is required before self-confirming hear_trace.
 // Draft stays in the existing learner state and is capped (no image or secondary store).
 for(const invariant of [
