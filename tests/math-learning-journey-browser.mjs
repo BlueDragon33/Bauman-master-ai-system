@@ -82,6 +82,12 @@ try{
   await page.waitForFunction(id=>window.BAUMAN_MATH_LEARNING_FLOW.selfCheck().lessonId===id,LESSON,{timeout:10000});
   report.checks.lessonOpen=true;
 
+  // Load the assessment source before measuring no-op render behavior:
+  // a valid first-time lesson payload arriving later is not idle DOM churn.
+  await page.evaluate(id=>window.BAUMAN_MATH_LEARNING_FLOW.ensureAssessment(id),LESSON);
+  await page.waitForFunction(id=>window.BAUMAN_MATH_LEARNING_FLOW?.checkSummary?.(id)?.total>0,LESSON,{timeout:10000});
+  await page.waitForTimeout(200);
+
   // Idle learning-flow refresh must not replace an unchanged stepper or note
   // editor, and the content must remain the actual source-driven lesson.
   const steadyStep=await page.evaluate(()=>{
@@ -92,9 +98,6 @@ try{
   });
   assert.ok(steadyStep.present&&steadyStep.same,'Math Learning re-rendered unchanged progress panel');
   report.checks.stableLearningPanel=true;
-
-  await page.evaluate(id=>window.BAUMAN_MATH_LEARNING_FLOW.ensureAssessment(id),LESSON);
-  await page.waitForFunction(id=>window.BAUMAN_MATH_LEARNING_FLOW?.checkSummary?.(id)?.total>0,LESSON,{timeout:10000});
 
   // Journey 3 + 4: visit all source-backed steps, complete Lesson Check with one review item,
   // persist completion only after the gate becomes eligible.
