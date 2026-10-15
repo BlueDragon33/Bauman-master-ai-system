@@ -3673,7 +3673,54 @@ function renderHandwritingExercise(item){
    ${state.handwritingExerciseAttempted&&state.handwritingExerciseReveal?`<div class="hand-exercise-feedback ${esc(result||'')}"><b>${esc(status)}</b><span>Đáp án: <strong lang="ru">${esc(drill.answer)}</strong></span>${drill.hint?`<small>${esc(drill.hint)}</small>`:''}</div>`:'<div class="hand-exercise-hidden-answer">Đáp án được khóa đến sau lần làm đầu tiên.</div>'}
  </section>`;
 }
-function initCanvas(){canvas=$('#writingCanvas'); if(!canvas||canvas.dataset.ready)return; ctx=canvas.getContext('2d'); ctx.lineCap='round';ctx.lineJoin='round'; canvas.dataset.ready='1'; const pos=e=>{const r=canvas.getBoundingClientRect(); return {x:(e.clientX-r.left)*canvas.width/r.width,y:(e.clientY-r.top)*canvas.height/r.height}}; const start=e=>{e.preventDefault(); drawing=true; currentStroke={color:penColor,size:penSize,points:[pos(e)]}; strokes.push(currentStroke); drawCanvas()}; const move=e=>{if(!drawing)return; e.preventDefault(); currentStroke.points.push(pos(e)); drawCanvas()}; const end=()=>{drawing=false;currentStroke=null}; canvas.addEventListener('pointerdown',start); canvas.addEventListener('pointermove',move); window.addEventListener('pointerup',end); canvas.addEventListener('touchstart',e=>e.preventDefault(),{passive:false}); drawCanvas();}
+// One bounded active-letter draft in the canonical learner state; never an image/base64 store.
+function handwritingCanvasDraftId(){
+ const rows=getHandwriting(),item=rows[state.handwritingIndex%Math.max(1,rows.length)]||{};
+ return str(item.id||'').trim();
+}
+function saveHandwritingCanvasDraft(){
+ const id=handwritingCanvasDraftId();
+ const totalPoints=strokes.reduce((n,row)=>n+arr(row?.points).length,0);
+ if(strokes.length>100||totalPoints>9000){
+  const status=$('#saveState');
+  if(status){status.textContent='Nháp viết quá lớn, hãy tải ảnh';status.dataset.localSave='error';}
+  toast('Bản nháp vượt giới hạn an toàn; tải ảnh rồi xóa bớt nét để lưu tiếp.');
+  return false;
+ }
+ const rows=strokes.map(row=>({
+  color:/^#[0-9a-f]{6}$/i.test(str(row.color))?row.color:'#111827',
+  size:Math.max(2,Math.min(18,Number(row.size)||6)),
+  points:arr(row.points).map(p=>({x:Math.round(Number(p.x)||0),y:Math.round(Number(p.y)||0)}))
+ }));
+ const draft=rows.length&&id?{id,strokes:rows}:null;
+ if(draft&&JSON.stringify(draft).length>120000){
+  const status=$('#saveState');
+  if(status){status.textContent='Nháp viết quá lớn, hãy tải ảnh';status.dataset.localSave='error';}
+  toast('Nét viết quá nhiều để lưu an toàn. Hãy tải ảnh rồi giảm số nét.');
+  return false;
+ }
+ state.handwritingCanvasDraft=draft;
+ return save();
+}
+function restoreHandwritingCanvasDraft(){
+ const d=state.handwritingCanvasDraft;
+ if(!d||d.id!==handwritingCanvasDraftId()||!Array.isArray(d.strokes)||d.strokes.length>100)return;
+ let total=0;
+ const rows=[];
+ for(const row of d.strokes){
+  if(!Array.isArray(row?.points))return;
+  total+=row.points.length;
+  if(total>9000)return;
+  const pts=row.points.filter(p=>Number.isFinite(p?.x)&&Number.isFinite(p?.y)&&p.x>=0&&p.x<=2048&&p.y>=0&&p.y<=1180);
+  if(pts.length!==row.points.length)return;
+  rows.push({color:/^#[0-9a-f]{6}$/i.test(str(row.color))?row.color:'#111827',size:Math.max(2,Math.min(18,Number(row.size)||6)),points:pts});
+ }
+ strokes=rows;
+}
+function clearHandwritingCanvasDraft(){
+ strokes=[];state.handwritingCanvasDraft=null;
+}
+function initCanvas(){canvas=$('#writingCanvas'); if(!canvas||canvas.dataset.ready)return; ctx=canvas.getContext('2d'); ctx.lineCap='round';ctx.lineJoin='round'; canvas.dataset.ready='1'; if(!strokes.length)restoreHandwritingCanvasDraft(); const pos=e=>{const r=canvas.getBoundingClientRect(); return {x:(e.clientX-r.left)*canvas.width/r.width,y:(e.clientY-r.top)*canvas.height/r.height}}; const start=e=>{e.preventDefault(); drawing=true; currentStroke={color:penColor,size:penSize,points:[pos(e)]}; strokes.push(currentStroke); drawCanvas()}; const move=e=>{if(!drawing)return; e.preventDefault(); currentStroke.points.push(pos(e)); drawCanvas()}; const end=()=>{if(!drawing)return;drawing=false;currentStroke=null;saveHandwritingCanvasDraft()}; canvas.addEventListener('pointerdown',start); canvas.addEventListener('pointermove',move); window.addEventListener('pointerup',end); canvas.addEventListener('touchstart',e=>e.preventDefault(),{passive:false}); drawCanvas();}
 function drawCanvas(){if(!ctx)return; ctx.clearRect(0,0,canvas.width,canvas.height); drawCanvasGuide(); for(const s of strokes){if(s.points.length<2)continue; ctx.strokeStyle=s.color; ctx.lineWidth=s.size; ctx.beginPath(); ctx.moveTo(s.points[0].x,s.points[0].y); s.points.forEach(p=>ctx.lineTo(p.x,p.y)); ctx.stroke();}}
 function drawCanvasGuide(){
  if(!ctx||!canvas)return;
