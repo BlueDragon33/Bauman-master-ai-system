@@ -1,5 +1,5 @@
 'use strict';
-const CACHE='russian-app-shell-v27-engine-mobile-navigation';
+const CACHE='russian-app-shell-v28-engine-local-save-status';
 const DATA_CACHE='russian-learning-data-v1';
 const SHELL=[
   './','./index.html','./manifest.webmanifest','../shared/host-bridge.js',

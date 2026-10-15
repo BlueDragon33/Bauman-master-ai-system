@@ -199,6 +199,33 @@ try{
 
   assert.equal(await page.evaluate(()=>window.RussianLearningSearch?.isVocabularyLoaded?.()),false,'Large vocabulary dataset must remain unloaded before the learner opens Vocabulary');
 
+  // Local storage is NOT account/server sync. Verify visible truth on success and
+  // simulated quota denial; restore the native storage method before other journeys.
+  assert.doesNotMatch(await page.locator('#saveState').innerText(),/Đã đồng bộ/,'Local save must never claim server synchronization');
+  assert.equal(await page.locator('#saveState').getAttribute('aria-live'),'polite','Storage status must be readable to assistive technology');
+  await page.click('#nav [data-view="media"]');
+  await page.waitForFunction(()=>document.getElementById('saveState')?.dataset.localSave==='saved');
+  assert.equal((await page.locator('#saveState').innerText()).trim(),'Đã lưu trên thiết bị','Successful localStorage write must label its actual destination');
+  await page.evaluate(()=>{
+    const original=Storage.prototype.setItem;
+    window.__ruOriginalSetItem=original;
+    Storage.prototype.setItem=function(name,value){
+      if(name===window.SUBJECT_ADAPTER.storageKey)throw new DOMException('QA quota denial','QuotaExceededError');
+      return original.call(this,name,value);
+    };
+  });
+  await page.click('#nav [data-view="overview"]');
+  await page.waitForFunction(()=>document.getElementById('saveState')?.dataset.localSave==='error');
+  assert.equal((await page.locator('#saveState').innerText()).trim(),'Không thể lưu trên thiết bị','Local storage failure must be shown, not a false success');
+  await page.evaluate(()=>{
+    Storage.prototype.setItem=window.__ruOriginalSetItem;
+    delete window.__ruOriginalSetItem;
+  });
+  await page.click('#nav [data-view="media"]');
+  await page.waitForFunction(()=>document.getElementById('saveState')?.dataset.localSave==='saved');
+  await page.click('#nav [data-view="overview"]');
+  await page.waitForSelector('.rf-dashboard');
+
   const tabs=['media','learning','vocab','grammar','writing'];
   for(const view of tabs){
     await page.click(view==='learning'?'#nav [data-view="learning"][data-learn="practice"]':'#nav [data-view="'+view+'"]');

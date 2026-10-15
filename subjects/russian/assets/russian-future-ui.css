@@ -217,6 +217,8 @@ body.ru-reference-ui.ru-future-ui .modal-close{background:#edf3fb;color:#526984}
  .ru-future-ui .ru-topbar{grid-template-columns:auto minmax(0,1fr) auto!important;height:auto!important;min-height:64px!important;padding:10px 12px!important;gap:8px!important}
  .ru-future-ui .ru-global-search-wrap{min-width:0;height:44px}
  .ru-future-ui .ru-top-actions .status{display:none!important}
+ /* Failed local saves stay visible above the icon dock on narrow devices. */
+ .ru-future-ui .ru-top-actions #saveState:is([data-local-save="error"],[data-local-save="recovery"]){display:inline-flex!important;position:fixed;right:12px;bottom:calc(84px + env(safe-area-inset-bottom));z-index:69;max-width:calc(100vw - 24px);padding:10px 12px;border:1px solid #e8b8b8;border-radius:12px;background:#fff3f0;color:#7b2020;box-shadow:0 8px 25px rgba(65,35,35,.14);white-space:normal;font-size:12px;line-height:1.35;font-weight:700}
  .ru-future-ui .ru-view{padding:18px 14px 36px!important}
  .ru-future-ui .rf-tab-intro{grid-template-columns:1fr;padding:20px 18px}.ru-future-ui .rf-tab-badges{justify-content:flex-start}
  .ru-future-ui .overview-top-only-hero{min-height:230px!important;padding:22px!important}.ru-future-ui .rf-hero h2{font-size:27px!important}.ru-future-ui .rf-hero p{font-size:14px!important}.ru-future-ui .rf-skyline{opacity:.22;width:45%}.ru-future-ui .rf-hero-cta{left:22px;bottom:18px}
