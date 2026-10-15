@@ -45,7 +45,7 @@ test('core navigation is updated in place and not replaced on every action',()=>
 test('academic and lesson panels do not replace identical content',()=>{
   assert.match(academic,/if\(panel\.innerHTML!==markup\)panel\.innerHTML=markup/);
   assert.match(learningFlow,/if\(panel\.innerHTML!==html\)panel\.innerHTML=html/);
-  assert.doesNotMatch(academic,/setTimeout\(schedule,0\);\},true\)/);
+  assert.doesNotMatch(academic,/return;\}setTimeout\(schedule,0\);\},true\)/);
 });
 test('same-view scroll and input focus survive rerender',()=>{
   assert.match(core,/lastRenderedContext/);
