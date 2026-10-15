@@ -12,10 +12,11 @@ const core=source('assets/core.js');
 const future=source('assets/russian-future-ui.js');
 const learningState=source('assets/learning-state.js');
 const learningFlow=source('assets/learning-flow.js');
+const academic=source('assets/academic-language.js');
 const vocab=source('assets/vocab-srs.js');
 const shell=source('sw.js');
 
-for(const [name,js] of Object.entries({core,future,learningState,learningFlow,vocab,shell})){
+for(const [name,js] of Object.entries({core,future,learningState,learningFlow,academic,vocab,shell})){
   test(name+' parses as JavaScript',()=>{
     assert.doesNotThrow(()=>new vm.Script(js,{filename:name+'.js'}));
   });
@@ -25,9 +26,10 @@ test('one canonical core-render signal drives UI projections',()=>{
   assert.match(future,/addEventListener\('russian:core-render',upgrade\)/);
   assert.match(learningState,/addEventListener\('russian:core-render',renderToday\)/);
   assert.match(learningFlow,/addEventListener\('russian:core-render',event=>/);
+  assert.match(academic,/addEventListener\('russian:core-render',schedule\)/);
 });
 test('projections must not watch their own DOM mutations',()=>{
-  for(const [name,js] of Object.entries({future,learningState,learningFlow})){
+  for(const [name,js] of Object.entries({future,learningState,learningFlow,academic})){
     assert.doesNotMatch(js,/new\s+MutationObserver\s*\(/,name+' has a feedback-loop risk');
   }
 });
@@ -39,6 +41,11 @@ test('core navigation is updated in place and not replaced on every action',()=>
   assert.match(core,/const sameNav=existing\.length===PRIMARY_NAV\.length/);
   assert.match(core,/if\(!sameNav\)\{/);
   assert.match(core,/existing\.forEach\(\(b,i\)=>/);
+});
+test('academic and lesson panels do not replace identical content',()=>{
+  assert.match(academic,/if\(panel\.innerHTML!==markup\)panel\.innerHTML=markup/);
+  assert.match(learningFlow,/if\(panel\.innerHTML!==html\)panel\.innerHTML=html/);
+  assert.doesNotMatch(academic,/setTimeout\(schedule,0\);\},true\)/);
 });
 test('same-view scroll and input focus survive rerender',()=>{
   assert.match(core,/lastRenderedContext/);
