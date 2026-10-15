@@ -106,7 +106,9 @@ try{
   assert.ok(dims.view&&dims.view.w<=1122&&dims.view.w>=1080,'Learning content container must stay near the 1120px canonical max-width: '+JSON.stringify({view:dims.view,viewComputed:dims.viewComputed,shell:dims.shellComputed}));
   assert.ok(dims.bodyFont>=15,'Primary learning content must not fall below 15px body text');
   assert.ok(dims.hero&&dims.hero.h>=210&&dims.hero.h<=235,'Overview hero must stay compact enough to expose learner action above the fold');
-  assert.ok(dims.continueCard&&dims.continueCard.y>dims.hero.y&&dims.continueCard.y<dims.hero.b+50,'Continue Learning must follow the compact hero immediately');
+  assert.ok(dims.modules[0]?.y>dims.hero.y&&dims.modules[0]?.y<dims.continueCard.y,'Phone-style launcher must be the first learning section after the hero');
+  assert.ok(dims.continueCard?.y>dims.modules.at(-1)?.y,'Continue Learning must follow the icon grid, not obscure the primary shortcuts');
+  assert.ok(Math.max(...dims.modules.map(x=>x.h))<=145,'Icon shortcuts must remain compact, not rebuild large dashboard cards');
   assert.ok(dims.today&&dims.review&&Math.abs(dims.today.y-dims.review.y)<3,'Today and truthful review status must share the next decision row');
   assert.ok(dims.path&&dims.path.y>dims.today.y,'Compact Learning Path must follow the primary learning actions');
   assert.ok(dims.progress&&dims.progress.y>dims.path.y,'Secondary statistics must appear after the learning path');
@@ -144,11 +146,13 @@ try{
   assert.equal(await personalReport.getAttribute('data-report-evidence-status'),'Đang tích lũy','Learner report must refresh when evidence state changes');
 
   const dashboardText=await page.locator('.rf-dashboard').innerText();
-  for(const label of ['HỌC TIẾP','CẦN ÔN','Hôm nay','Ứng dụng học tập','Video','Nghe & Nói','Bài học','Luyện chữ','Từ vựng','Ngữ pháp','Hội thoại','Ôn tập','Learning Path','Khởi động','Âm & chữ','Nghe nói cơ bản','A1','A2 / Dự bị','Tiếng Nga học thuật']){
+  for(const label of ['HỌC TIẾP','CẦN ÔN','Hôm nay','Ứng dụng học tập','Nghe','Nói','Bài học','Luyện chữ','Từ vựng','Ngữ pháp','Hội thoại','Ôn tập','Learning Path','Khởi động','Âm & chữ','Nghe nói cơ bản','A1','A2 / Dự bị','Tiếng Nga học thuật']){
     assert.ok(dashboardText.includes(label),'Overview summary missing '+label);
   }
   assert.equal(await page.locator('.rf-module-progress').count(),5,'Only five evidence-bearing skill icons may display real learning-state counts');
   assert.equal(await page.locator('.rf-module-icon svg[aria-hidden="true"]').count(),8,'Each shortcut must have one consistent decorative SVG icon');
+  assert.equal(await page.locator('.rf-module-card p').first().evaluate(el=>getComputedStyle(el).display),'none','Icon launchers must not show redundant subtitles');
+  assert.equal(await page.locator('.rf-module-progress').first().evaluate(el=>getComputedStyle(el).display),'none','Activity evidence stays available in the report, not shown as a fake phone-icon score');
   const iconRoutes=await page.locator('.rf-module-card').evaluateAll(nodes=>nodes.map(node=>({route:JSON.parse(node.dataset.route),name:node.getAttribute('aria-label'),height:node.getBoundingClientRect().height})));
   assert.ok(iconRoutes.every(x=>x.name&&x.height>=44),'Every app icon must have an accessible name and a 44px-or-taller tap target');
   assert.deepEqual(iconRoutes.map(x=>x.route.view),['media','learning','learning','writing','vocab','grammar','dialogue','learning'],'Icon grid must reuse all eight existing core routes without a parallel state store');
@@ -457,6 +461,7 @@ try{
   }));
   assert.ok(mobile.scroll<=mobile.vw+2,'Future UI mobile horizontal overflow after drawer interaction');
   assert.equal(mobile.modules,8);
+  assert.ok(await page.locator('.rf-module-card').first().evaluate(el=>el.getBoundingClientRect().height<=125),'Phone launcher remains compact at mobile width');
   assert.equal(mobile.searchVisible,true);
   await page.screenshot({path:path.join(OUT,'russian-future-overview-mobile.png'),fullPage:true});
 
