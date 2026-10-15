@@ -54,10 +54,18 @@ function call(name,fallback,...args){return typeof A[name]==='function'?A[name](
 function save(){
  if(stateRecoveryBlocks[key]){
   console.warn('Russian core state write blocked until explicit recovery decision',stateRecoveryBlocks[key]);
-  const s=$('#saveState'); if(s)s.textContent='Dữ liệu cần phục hồi';
+  const s=$('#saveState'); if(s){s.textContent='Dữ liệu cần phục hồi';s.dataset.localSave='recovery';}
   return false;
  }
- try{localStorage.setItem(key,JSON.stringify(state)); const s=$('#saveState'); if(s)s.textContent='Đã đồng bộ'; return true}catch(e){return false}
+ try{
+  localStorage.setItem(key,JSON.stringify(state));
+  const s=$('#saveState'); if(s){s.textContent='Đã lưu trên thiết bị';s.dataset.localSave='saved';}
+  return true;
+ }catch(e){
+  const s=$('#saveState'); if(s){s.textContent='Không thể lưu trên thiết bị';s.dataset.localSave='error';}
+  console.warn('Russian local state write failed',e?.name||'storage-error');
+  return false;
+ }
 }
 window.RussianCoreStateRecovery={
  status:(keyName=key)=>stateRecoveryBlocks[keyName]||null,
