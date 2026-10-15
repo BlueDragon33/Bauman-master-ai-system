@@ -24,12 +24,16 @@ test('one canonical core-render signal drives UI projections',()=>{
   assert.match(core,/dispatchEvent\(new CustomEvent\('russian:core-render'/);
   assert.match(future,/addEventListener\('russian:core-render',schedule\)/);
   assert.match(learningState,/addEventListener\('russian:core-render',scheduleRenderToday\)/);
-  assert.match(learningFlow,/addEventListener\('russian:core-render',scheduleRender\)/);
+  assert.match(learningFlow,/addEventListener\('russian:core-render',event=>/);
 });
 test('projections must not watch their own DOM mutations',()=>{
   for(const [name,js] of Object.entries({future,learningState,learningFlow})){
     assert.doesNotMatch(js,/new\s+MutationObserver\s*\(/,name+' has a feedback-loop risk');
   }
+});
+test('learning flow consumes the canonical index without an abortable network request',()=>{
+  assert.match(core,/knowledgeIndex:DB\['knowledge-index'\]/);
+  assert.doesNotMatch(learningFlow,/fetch\('data\/knowledge-index\.json'/);
 });
 test('core navigation is updated in place and not replaced on every action',()=>{
   assert.match(core,/const sameNav=existing\.length===PRIMARY_NAV\.length/);
