@@ -67,6 +67,12 @@ must(index.includes('id="russianGlobalSearch"'),'Missing global search');
 must(index.includes('role="combobox"'),'Global search must expose combobox semantics');
 must(index.includes('aria-controls="russianSearchHints"'),'Global search must identify its result list');
 must(index.includes('id="aiBtn"'),'Topbar must retain the core AI Mentor entry point');
+must(!index.includes('Đã đồng bộ')&&!core.includes("s.textContent='Đã đồng bộ'"),'Local-only learner storage must never claim account/server synchronization');
+must(index.includes('data-local-save="pending"')&&index.includes('aria-live="polite"'),'Russian local save must start neutral and announce status changes accessibly');
+for(const token of ["s.dataset.localSave='saved'","s.dataset.localSave='error'","s.dataset.localSave='recovery'",'Đã lưu trên thiết bị','Không thể lưu trên thiết bị']){
+  must(core.includes(token),'Core save status truth contract missing: '+token);
+}
+must(futureCss.includes('#saveState:is([data-local-save="error"],[data-local-save="recovery"])'),'Mobile failed local saves must remain visible above the app dock');
 must(index.includes('role="dialog"'),'Modal must expose dialog semantics');
 must(index.includes('aria-modal="true"'),'Modal must declare aria-modal');
 must(index.includes('aria-label="Đóng hộp thoại"'),'Modal close button must have an accessible name');
