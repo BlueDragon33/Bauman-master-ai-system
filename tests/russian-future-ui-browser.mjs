@@ -469,7 +469,7 @@ try{
   assert.deepEqual(await dock.locator('button').allTextContents(),['Trang chủ','Nghe','Nói','Từ vựng','Thêm'],'Mobile dock must expose five predictable shortcuts');
   assert.equal(await dock.locator('svg[aria-hidden="true"]').count(),5,'Dock icons are decorative, with readable text labels');
   const dockGeometry=await dock.locator('button').evaluateAll(buttons=>buttons.map(button=>({w:button.getBoundingClientRect().width,h:button.getBoundingClientRect().height,bottom:button.getBoundingClientRect().bottom})));
-  assert.ok(dockGeometry.every(x=>x.w>=44&&x.h>=44&&x.bottom<=window.innerHeight+1),'All dock touch targets must remain visible and >=44px');
+  assert.ok(dockGeometry.every(x=>x.w>=44&&x.h>=44&&x.bottom<=(page.viewportSize()?.height||844)+1),'All dock touch targets must remain visible and >=44px');
   assert.equal(await dock.locator('[data-rf-dock="home"]').getAttribute('aria-current'),'page','Home must be the default selected dock route');
   await toggle.click();
   await page.waitForFunction(()=>document.body.classList.contains('rf-sidebar-open'));
