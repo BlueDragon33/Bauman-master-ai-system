@@ -282,6 +282,21 @@ try{
       assert.deepEqual(recorderCapability,{present:true,start:true,stop:true,status:true},'Canonical local recording engine must be available independently from ASR; coach visibility is validated in its speaking-specific gate');
       await page.locator('[data-act="toggle-transcript"]').click();
       await page.waitForSelector('.transcript-listen-first',{state:'visible',timeout:10000});
+      assert.match(await page.locator('[data-act="mark-line-ok"]').first().innerText(),/tự đối chiếu/i,'Manual speaking button must not pose as graded pronunciation');
+      await page.locator('[data-act="mark-line-ok"]').first().click();
+      await page.waitForFunction(()=>/Tự xác nhận/.test(document.querySelector('.v1294-feedback-line b')?.textContent||''),null,{timeout:10000});
+      const manualSpeech=await page.evaluate(()=>{
+        const stored=JSON.parse(localStorage.getItem(window.SUBJECT_ADAPTER.storageKey)||'{}');
+        return Object.values(stored.practiceSpeechResults||{}).find(row=>row?.signalType==='self-confirmation')||null;
+      });
+      assert.ok(manualSpeech&&manualSpeech.manual===true&&manualSpeech.selfConfirmed===true,'Manual attempt must retain self-confirmation provenance');
+      assert.equal(manualSpeech.score,null,'Manual speaking cannot fabricate a pronunciation score');
+      assert.match(await page.locator('.v1294-feedback-line').innerText(),/chưa chấm phát âm|chưa có đánh giá phát âm/i,'Self-confirmed speech must disclose independent review is absent');
+      await page.locator('#nav [data-view="overview"]').first().click();
+      await page.waitForSelector('.rf-module-speak',{state:'visible',timeout:10000});
+      const speakingLabel=await page.locator('.rf-module-speak').getAttribute('aria-label');
+      assert.match(speakingLabel||'',/lượt tự xác nhận/i,'Home speaking icon must label self-reports without calling them external feedback');
+      assert.doesNotMatch(speakingLabel||'',/lượt có phản hồi|điểm phát âm/i,'Home speaking icon cannot present self-assessment as externally graded feedback');
     }
     if(view==='grammar'){
       await page.waitForSelector('.grammar-main-card .grammar-examples-first',{state:'visible',timeout:10000});
