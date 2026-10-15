@@ -22,8 +22,8 @@ for(const [name,js] of Object.entries({core,future,learningState,learningFlow,vo
 }
 test('one canonical core-render signal drives UI projections',()=>{
   assert.match(core,/dispatchEvent\(new CustomEvent\('russian:core-render'/);
-  assert.match(future,/addEventListener\('russian:core-render',schedule\)/);
-  assert.match(learningState,/addEventListener\('russian:core-render',scheduleRenderToday\)/);
+  assert.match(future,/addEventListener\('russian:core-render',upgrade\)/);
+  assert.match(learningState,/addEventListener\('russian:core-render',renderToday\)/);
   assert.match(learningFlow,/addEventListener\('russian:core-render',event=>/);
 });
 test('projections must not watch their own DOM mutations',()=>{
