@@ -63,6 +63,12 @@ test('vocab SRS keeps semantic actions and avoids unrelated whole-page mutation 
   assert.match(vocab,/document\.addEventListener\('click',event=>/);
   assert.match(vocab,/data-ru-srs-rate/);
 });
+test('vocabulary review and speaking links use bounded in-app routing',()=>{
+  assert.match(core,/function handleCoreNavigationRequest\(event\)/);
+  assert.match(core,/addEventListener\('russian:core-navigation-request',handleCoreNavigationRequest\)/);
+  assert.match(vocab,/new CustomEvent\('russian:core-navigation-request'/);
+  assert.doesNotMatch(vocab,/location\.reload\(/);
+});
 test('offline application shell version invalidates old cached scripts',()=>{
   assert.match(shell,/const CACHE='russian-app-shell-v29-engine-ui-render-stability'/);
 });
