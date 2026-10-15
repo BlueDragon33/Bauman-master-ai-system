@@ -314,7 +314,7 @@ must(speechEngine.includes("player.playbackRate=Math.max(.5,Math.min(2,Number(op
 must(speechEngine.includes("u.rate=Math.max(.5,Math.min(1.5,Number(options.rate)||.85))"),'Canonical audio engine must honor TTS playback rate');
 must(!core.includes('info.term,info.meaningRu,info.meaningVi,info.english,info.application'),'Visual inference must not depend on Vietnamese/English meaning fields');
 must(!core.includes('info.term,info.meaningRu,info.meaningVi,info.english,info.visualLabel'),'Dialogue presentation inference must not depend on translated meaning fields');
-must(!/new\\s+MutationObserver\\s*\\(/.test(futureJs),'Canonical Russian presentation runtime must not observe DOM mutations it generates');
+must(!/new\s+MutationObserver\s*\(/.test(futureJs),'Canonical Russian presentation runtime must not observe DOM mutations it generates');
 must(core.includes("window.dispatchEvent(new CustomEvent('russian:core-render'"),'Core must publish a single explicit render lifecycle event');
 must(!fs.existsSync(path.join(root,'assets/russian-reference-ui.css')),'Legacy reference CSS must be removed after consolidation');
 must(!fs.existsSync(path.join(root,'assets/russian-reference-ui-polish.css')),'Legacy polish CSS must be removed after consolidation');
