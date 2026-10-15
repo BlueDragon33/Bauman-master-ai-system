@@ -113,11 +113,23 @@ try{
   assert.ok(savedDraft?.id&&savedDraft.strokes.length===1&&savedDraft.strokes[0].points.length>=2,'Real handwriting stroke must be saved as bounded points');
   const inkedCanvas=await page.locator('#writingCanvas').evaluate(canvas=>canvas.toDataURL());
   assert.notEqual(inkedCanvas,emptyCanvas,'Stroke must materially change drawn canvas');
+  const inkPoint=savedDraft.strokes[0].points[Math.floor(savedDraft.strokes[0].points.length/2)];
+  const inkPixel=await page.locator('#writingCanvas').evaluate((canvas,p)=>{
+    return [...canvas.getContext('2d').getImageData(p.x,p.y,1,1).data].slice(0,3);
+  },inkPoint);
+  assert.ok(inkPixel.every(channel=>channel<125),'Original stroke must place actual dark ink at its recorded point');
   await page.reload({waitUntil:'domcontentloaded',timeout:30000});
   await page.waitForSelector('#writingCanvas[data-ready="1"]',{timeout:15000});
   assert.equal(await page.locator('.hand-exercise-card').getAttribute('data-hand-exercise-kind'),'hear_trace','Selected drill must resume after reload');
-  const restoredCanvas=await page.locator('#writingCanvas').evaluate(canvas=>canvas.toDataURL());
-  assert.equal(restoredCanvas,inkedCanvas,'Saved handwriting strokes must be redrawn on reload without using a separate database');
+  const savedAfterReload=await page.evaluate(()=>{
+    const state=JSON.parse(localStorage.getItem(window.SUBJECT_ADAPTER.storageKey)||'{}');
+    return state.handwritingCanvasDraft||null;
+  });
+  assert.deepEqual(savedAfterReload,savedDraft,'The exact bounded vector draft must survive reload in canonical learner state');
+  const restoredInkPixel=await page.locator('#writingCanvas').evaluate((canvas,p)=>{
+    return [...canvas.getContext('2d').getImageData(p.x,p.y,1,1).data].slice(0,3);
+  },inkPoint);
+  assert.ok(restoredInkPixel.every(channel=>channel<125),'Saved handwriting must actually redraw dark ink after reload, not merely keep metadata');
   await page.click('[data-act="hand-exercise-check"]');
   assert.equal(await page.locator('.hand-exercise-feedback.self').count(),1,'Stroke-based trace can only receive a self-confirmation, not a handwriting recognition score');
   assert.match(await page.locator('.hand-letter-progress').innerText(),/✍ 1/,'Validated manual trace must count as a self-confirmation');
