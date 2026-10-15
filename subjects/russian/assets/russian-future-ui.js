@@ -126,7 +126,7 @@
     document.addEventListener('click',e=>{if(!e.target.closest('.ru-global-search-wrap'))close()});
   }
   function stageLabel(st){
-    const map={vn:['A1','Khởi động'],prep:['A2','Dự bị'],hk1:['B1','Học thuật'],hk2:['B2','Học thuật'],hk3:['C1','Nghiên cứu'],hk4:['C1+','Bảo vệ'],all:['A1→C1','Tổng hợp']};
+    const map={vn:['VN','Khởi động'],prep:['DB','Dự bị'],hk1:['HK1','Học thuật'],hk2:['HK2','Học thuật'],hk3:['HK3','Nghiên cứu'],hk4:['HK4','Bảo vệ'],all:['TOÀN BỘ','Tổng hợp']};
     return map[st.stage||'vn']||map.vn;
   }
   function setText(el,value){if(el&&el.textContent!==value)el.textContent=value}
@@ -281,24 +281,18 @@
     const status=meta?.progress
       ?'<div class="rf-module-progress"><span>Đã ghi nhận</span><b>'+esc(meta.progress)+'</b></div>'
       :'<span class="rf-module-open" aria-hidden="true">Mở hoạt động →</span>';
-    return '<button type="button" class="rf-module-card '+cls+'" data-route=\''+esc(JSON.stringify(route))+'\' aria-label="'+esc(title+' — '+info)+'"><span class="rf-module-icon">'+homeIcon(ico)+'</span><h4>'+esc(title)+'</h4><p>'+esc(info)+'</p>'+status+'</button>';
+    return '<button type="button" class="rf-module-card '+cls+'" data-route=\''+esc(JSON.stringify(route))+'\' aria-label="'+esc(title+' — '+info+(meta?.progress&&meta.progress!=='Chưa có bằng chứng'?' — '+meta.progress:''))+'"><span class="rf-module-icon">'+homeIcon(ico)+'</span><h4>'+esc(title)+'</h4><p>'+esc(info)+'</p>'+status+'</button>';
   }
   function learningPathHtml(st){
-    const flow=learningFlowEvidence();
-    const speechRows=[...Object.values(st.practiceSpeechResults||{}),...Object.values(st.dialogueSpeechResults||{})];
-    const speaking=speechRows.some(x=>Number(x?.score||0)>0||x?.ok===true)||flow.speaking>0;
-    let active=0;
-    if(flow.alphabet>0)active=Math.max(active,1);
-    if(speaking)active=Math.max(active,2);
-    if((st.stage||'vn')==='vn'&&(flow.alphabet>0||speaking||flow.grammar>0))active=Math.max(active,3);
-    if((st.stage||'vn')==='prep')active=4;
-    if(['hk1','hk2','hk3','hk4','all'].includes(st.stage))active=5;
-    const labels=['Khởi động','Âm & chữ','Nghe nói cơ bản','A1','A2 / Dự bị','Tiếng Nga học thuật'];
-    return '<article class="rf-learning-path"><div class="rf-card-head"><div><h4>Learning Path</h4><span>Lộ trình tổng quát, đánh dấu theo evidence và giai đoạn thật</span></div></div><div class="rf-roadmap-track">'+labels.map((label,i)=>'<div class="rf-road-step '+(i<active?'done':i===active?'current':'future')+'" '+(i===active?'aria-current="step"':'')+'><i>'+(i<active?'✓':i+1)+'</i><b>'+esc(label)+'</b></div>').join('')+'</div></article>';
+    // Navigation position only. Opening lessons or changing semester is NOT CEFR attainment.
+    const currentStage=st.stage||'vn';
+    const active=({vn:0,prep:4,hk1:5,hk2:5,hk3:5,hk4:5,all:0})[currentStage]??0;
+    const labels=['Khởi động','Âm & chữ','Nghe nói cơ bản','A1 · mục tiêu','A2 / Dự bị · mục tiêu','Tiếng Nga học thuật'];
+    return '<article class="rf-learning-path"><div class="rf-card-head"><div><h4>Learning Path</h4><span>Vị trí lộ trình theo giai đoạn chọn; không phải chứng nhận trình độ hay thông báo đã đạt kỹ năng.</span></div></div><div class="rf-roadmap-track">'+labels.map((label,i)=>'<div class="rf-road-step '+(i===active?'current':'future')+'" '+(i===active?'aria-current="step"':'')+'><i>'+(i+1)+'</i><b>'+esc(label)+'</b></div>').join('')+'</div></article>';
   }
   function dashboardHtml(){
     const m=metrics(),sl=stageLabel(m.st),skills=skillEvidence(m.st);
-    const pct=Math.max(0,Math.min(100,m.percent));
+    // Do not render an activity-weighted percentage as proficiency or mastery.
     const recent=Array.isArray(m.st.recentAccess)?m.st.recentAccess[0]:null;
     const continueRoute=recent?.view?{view:recent.view,...(recent.view==='learning'?{learnTab:m.st.learnTab||'theory'}:{})}:{view:'media'};
     const continueLabel=recent?.label||'Video mở tai · bắt đầu từ âm thanh';
@@ -308,7 +302,6 @@
       ?'<article class="rf-review-now"><span>CẦN ÔN</span><b>'+dueCount+' mục đến hạn</b><p>'+esc(dueReviews[0]?.label||'Ưu tiên xử lý nội dung đến hạn trước khi học mới.')+'</p><button data-route=\'{"view":"learning","learnTab":"review"}\'>Mở ôn tập →</button></article>'
       :'<article class="rf-review-now is-empty"><span>CẦN ÔN</span><b>Chưa có nội dung đến hạn.</b><p>Khu vực này chỉ hiện số liệu khi Review Queue có evidence thật.</p></article>';
     return '<section class="ru-dashboard-enhancer rf-dashboard" data-ru-dashboard="1">'+
-      '<article class="rf-continue-card"><div><span>HỌC TIẾP</span><h3>'+esc(continueLabel)+'</h3><p>'+(recent?'Quay lại đúng nơi bạn vừa học. Trạng thái và tiến độ hiện tại được giữ nguyên.':'Bắt đầu bằng nghe để làm quen nhịp tiếng Nga trước khi mở rộng sang chữ, từ và ngữ pháp.')+'</p></div><div class="rf-continue-actions"><b>'+pct+'%</b><button data-route=\''+esc(JSON.stringify(continueRoute))+'\'>Tiếp tục học →</button></div></article>'+
       '<div class="rf-module-section" aria-label="Mở hoạt động tiếng Nga"><div class="rf-card-head"><div><h4>Ứng dụng học tập</h4><span>Chọn biểu tượng để bắt đầu · không cần thêm tài khoản</span></div></div><div class="rf-module-grid">'+
         module({view:'media'},'rf-module-listen','listen','Nghe', {...skills.media,info:'Video & âm thanh'})+
         module({view:'learning',learnTab:'practice'},'rf-module-speak','speak','Nói',{...skills.speaking,info:'Nghe & Nói'})+
@@ -319,6 +312,7 @@
         module({view:'dialogue'},'rf-module-dialogue','dialogue','Hội thoại',{info:'Tình huống thực tế'})+
         module({view:'learning',learnTab:'review'},'rf-module-review','review','Ôn tập',{info:dueCount?dueCount+' mục đến hạn':'Xem nội dung cần ôn'})+
       '</div></div>'+
+      '<article class="rf-continue-card"><div><span>HỌC TIẾP</span><h3>'+esc(continueLabel)+'</h3><p>'+(recent?'Quay lại đúng nơi bạn vừa học. Trạng thái và tiến độ hiện tại được giữ nguyên.':'Bắt đầu bằng nghe để làm quen nhịp tiếng Nga trước khi mở rộng sang chữ, từ và ngữ pháp.')+'</p></div><div class="rf-continue-actions"><button data-route=\''+esc(JSON.stringify(continueRoute))+'\'>Tiếp tục học →</button></div></article>'+
       '<div class="rf-today-review-grid">'+
         '<article class="rf-today-plan"><div class="rf-card-head"><div><h4>Hôm nay</h4><span>Tối đa 3 nhiệm vụ, làm được ngay</span></div><button class="rf-link" data-act="route-modal">Xem lịch →</button></div><div class="rf-today-list">'+
           '<div class="rf-today-task"><span>1</span><div><b>Nghe 5 phút</b><small>Nghe trước, chưa mở transcript.</small></div><button data-route=\'{"view":"media"}\'>Nghe</button></div>'+
@@ -329,7 +323,7 @@
       learningPathHtml(m.st)+
       personalReportHtml(m)+
       '<div class="rf-progress-strip">'+
-        '<article class="rf-progress-item"><span class="rf-progress-icon">'+esc(sl[0])+'</span><div class="rf-progress-copy"><span>Giai đoạn</span><b>'+esc(sl[1])+' ('+esc(sl[0])+')</b><i style="--rf-p:'+pct+'%"></i></div></article>'+
+        '<article class="rf-progress-item"><span class="rf-progress-icon">'+esc(sl[0])+'</span><div class="rf-progress-copy"><span>Giai đoạn</span><b>'+esc(sl[1])+' ('+esc(sl[0])+')</b></div></article>'+
         '<article class="rf-progress-item"><span class="rf-progress-icon">✓</span><div class="rf-progress-copy"><span>Đã ôn</span><b>'+m.reviewDone+' câu</b></div></article>'+
         '<article class="rf-progress-item"><span class="rf-progress-icon">◉</span><div class="rf-progress-copy"><span>Đã kiểm tra</span><b>'+m.answered+' / '+m.target+'</b></div></article>'+
         '<article class="rf-progress-item"><span class="rf-progress-icon">★</span><div class="rf-progress-copy"><span>Đề đạt</span><b>'+m.passed+' đề</b></div></article>'+
