@@ -88,14 +88,20 @@ export function createLegacySpeechProvider({
       return recognition.start?.({
         lang: 'ru-RU',
         timeoutMs: options.timeoutMs,
-        onResult: result => options.onSignal?.({
-          kind: 'ASR_TRANSCRIPT_SIGNAL',
-          transcript: clean(result?.transcript),
-          rawConfidence: Number.isFinite(Number(result?.rawConfidence)) ? Number(result.rawConfidence) : null,
-          pronunciationAuthority: false,
-          stressAuthority: false,
-          source: 'RussianSpeechRecognitionAdapter'
-        }),
+        onResult: result => {
+          // Interim Web Speech hypotheses may be displayed by the UI, but must
+          // never enter oral-session evidence or learner evaluation signals.
+          if (result?.final === false || !clean(result?.transcript)) return;
+          const confidence = result?.rawConfidence == null ? NaN : Number(result.rawConfidence);
+          options.onSignal?.({
+            kind: 'ASR_TRANSCRIPT_SIGNAL',
+            transcript: clean(result.transcript),
+            rawConfidence: Number.isFinite(confidence) && confidence >= 0 && confidence <= 1 ? confidence : null,
+            pronunciationAuthority: false,
+            stressAuthority: false,
+            source: 'RussianSpeechRecognitionAdapter'
+          });
+        },
         onUnsupported: result => options.onUnavailable?.({
           status: SPEECH_PROVIDER_STATUS.UNAVAILABLE,
           detail: copy(result)
