@@ -61,6 +61,14 @@ export function buildRu03ReferenceGuide({library = loadRu03ReferenceLibrary()} =
 }
 
 
+// AI-transcribed source-specific pilot norms; independent of the editable evidence claims.
+// These are NOT a human certification. Broader coverage must come from a reviewed, versioned gold set.
+const PILOT_SHOP_WATER_NORMS = Object.freeze({
+  'Можно':'Мо́жно',
+  'бутылку':'буты́лку',
+  'воды':'воды́',
+  'пожалуйста':'пожа́луйста'
+});
 const withoutStress = value => String(value ?? '').normalize('NFD').replace(/\p{M}/gu,'').toLocaleLowerCase('ru');
 export function loadRu03SourceAnchoredPilot() {
   return JSON.parse(fs.readFileSync(new URL('../content/review/ru03-shop-water-pilot.v1.json',import.meta.url),'utf8'));
@@ -80,6 +88,7 @@ export function validateRu03SourceAnchoredPilot(pilot,item,{library=loadRu03Refe
     if(!['DICTIONARY_ATTESTED','LEMMA_STRESS_WITH_MORPHOLOGICAL_INFERENCE'].includes(claim?.method))errors.push('claim evidence method');
     if(!String(item?.textRu??'').toLocaleLowerCase('ru').includes(String(claim?.surface??'').toLocaleLowerCase('ru')))errors.push('surface not present in reviewed item');
     if(withoutStress(claim?.stressMarked)!==withoutStress(claim?.surface))errors.push('stress annotation changes lexical surface');
+    if(pilot?.itemId==='spatial:rl-05-shop:instruction' && PILOT_SHOP_WATER_NORMS[claim?.surface]!==claim?.stressMarked)errors.push('pilot lexical stress differs from curated reference');
     try {
       const url=new URL(claim?.sourceUrl);
       if(url.protocol!=='https:'||url.hostname!=='gramota.ru')errors.push('untrusted lexical citation URL');
