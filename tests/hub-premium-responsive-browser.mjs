@@ -370,7 +370,7 @@ try{
           const selectors={title:'h2',description:'p',eyebrow:'.hub-v6-eyebrow',value:'.hub-v6-kpi b',label:'.hub-v6-kpi small'};
           const color=sel=>getComputedStyle(hero.querySelector(sel)).color;
           const lum=value=>{
-            const nums=(value.match(/\\d+(?:\\.\\d+)?/g)||[]).slice(0,3).map(Number);
+            const nums=(value.match(/\d+(?:\.\d+)?/g)||[]).slice(0,3).map(Number);
             if(nums.length!==3)throw new Error('Cannot read computed CSS color: '+value);
             const linear=nums.map(n=>{
               const x=n/255;return x<=.04045?x/12.92:((x+.055)/1.055)**2.4;
