@@ -87,6 +87,35 @@ try{
   assert.match(letterProgress,/1 lần/);
   assert.match(letterProgress,/✓ 1/);
 
+  // R200: hear_trace cannot self-confirm without a real canvas stroke.
+  await page.click('[data-act="hand-exercise-next"]');
+  assert.equal(await page.locator('.hand-exercise-card').getAttribute('data-hand-exercise-kind'),'hear_trace','Expected deterministic listen → trace drill');
+  await page.click('[data-act="hand-exercise-check"]');
+  assert.equal(await page.locator('.hand-exercise-feedback').count(),0,'Blank canvas cannot reveal the trace answer or self-confirm');
+  assert.match(await page.locator('.hand-letter-progress').innerText(),/1 lần/,'Blank trace must not increment progress');
+  const emptyCanvas=await page.locator('#writingCanvas').evaluate(canvas=>canvas.toDataURL());
+  const traceBox=await page.locator('#writingCanvas').boundingBox();
+  assert.ok(traceBox&&traceBox.width>120&&traceBox.height>120,'Trace canvas must be usable');
+  await page.mouse.move(traceBox.x+Math.min(90,traceBox.width*.2),traceBox.y+Math.min(90,traceBox.height*.2));
+  await page.mouse.down();
+  await page.mouse.move(traceBox.x+Math.min(160,traceBox.width*.6),traceBox.y+Math.min(170,traceBox.height*.6),{steps:12});
+  await page.mouse.up();
+  const savedDraft=await page.evaluate(()=>{
+    const state=JSON.parse(localStorage.getItem(window.SUBJECT_ADAPTER.storageKey)||'{}');
+    return state.handwritingCanvasDraft||null;
+  });
+  assert.ok(savedDraft?.id&&savedDraft.strokes.length===1&&savedDraft.strokes[0].points.length>=2,'Real handwriting stroke must be saved as bounded points');
+  const inkedCanvas=await page.locator('#writingCanvas').evaluate(canvas=>canvas.toDataURL());
+  assert.notEqual(inkedCanvas,emptyCanvas,'Stroke must materially change drawn canvas');
+  await page.reload({waitUntil:'domcontentloaded',timeout:30000});
+  await page.waitForSelector('#writingCanvas[data-ready="1"]',{timeout:15000});
+  assert.equal(await page.locator('.hand-exercise-card').getAttribute('data-hand-exercise-kind'),'hear_trace','Selected drill must resume after reload');
+  const restoredCanvas=await page.locator('#writingCanvas').evaluate(canvas=>canvas.toDataURL());
+  assert.equal(restoredCanvas,inkedCanvas,'Saved handwriting strokes must be redrawn on reload without using a separate database');
+  await page.click('[data-act="hand-exercise-check"]');
+  assert.equal(await page.locator('.hand-exercise-feedback.self').count(),1,'Stroke-based trace can only receive a self-confirmation, not a handwriting recognition score');
+  assert.match(await page.locator('.hand-letter-progress').innerText(),/✍ 1/,'Validated manual trace must count as a self-confirmation');
+
   // S23: canvas remains writable while/after audio interaction.
   await page.click('[data-act="hand-exercise-play"]');
   const canvas=page.locator('#writingCanvas');
