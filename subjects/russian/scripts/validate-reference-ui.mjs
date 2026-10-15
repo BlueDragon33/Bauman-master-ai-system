@@ -258,7 +258,7 @@ must(core.includes("['review','exam'].includes(state.learnTab)&&!DB.tests"),'Tes
 must(core.includes('if(DB.vocab&&state.vocabIndex>=voc.length)'),'Deferred vocabulary must not clamp saved learner progress before data loads');
 must(core.includes('Đang mở bộ từ vựng…'),'Vocabulary lazy-load state must remain learner-readable');
 must(core.includes('const PRIMARY_NAV=A.primaryNav||NAV;'),'Core must separate visible primary navigation from full route registry');
-must(core.includes("$('#nav').innerHTML=PRIMARY_NAV.map"),'Sidebar must render the compact primary navigation');
+must(core.includes('const sameNav=existing.length===PRIMARY_NAV.length')&&core.includes('nav.innerHTML=PRIMARY_NAV.map')&&core.includes('existing.forEach((b,i)=>'),'Sidebar must render and then retain the compact primary navigation without destroying focus');
 must(core.includes('const views=NAV.map'),'Full route registry must remain authoritative for deep-link/state compatibility');
 must(core.includes('class="vocab-progressive-details"'),'Vocabulary advanced content must use progressive disclosure');
 must(core.includes('data-vocab-key='),'Vocabulary card/list must expose a stable source key');
