@@ -156,8 +156,8 @@
   }
   function close(){
     const layer=$('#mathStudyLibrary');layer?.classList.remove('open');layer?.setAttribute('aria-hidden','true');
-    if(lastFocus&&typeof lastFocus.focus==='function')setTimeout(()=>lastFocus.focus(),0);
-    lastFocus=null;
+    const restoreFocus=lastFocus;lastFocus=null;
+    if(restoreFocus&&typeof restoreFocus.focus==='function')setTimeout(()=>restoreFocus.focus(),0);
   }
   function trapFocus(e){
     const layer=$('#mathStudyLibrary');
