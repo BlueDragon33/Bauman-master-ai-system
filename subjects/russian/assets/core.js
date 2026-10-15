@@ -806,6 +806,9 @@ function render(){
   sanitize(); buildShell(); title();
   const fn=({overview:renderOverview,learning:renderLearning,dialogue:renderDialogue,writing:renderWriting,media:renderMedia,vocab:renderVocab,grammar:renderGrammar,mindmap:renderMindmap,storage:renderStorage}[state.view]||renderOverview);
   v.innerHTML=fn();
+  // Commit dependent view projections in the same rendering task, before the
+  // browser paints. This prevents a one-frame blank/progress/intro jump.
+  window.dispatchEvent(new CustomEvent('russian:core-render',{detail:{view:state.view,learnTab:state.learnTab,knowledgeIndex:DB['knowledge-index']||[]}}));
   if(restore){const details=v.querySelectorAll('details');openDetails.forEach(i=>{if(details[i])details[i].open=true});}
   afterRender();
   if(positions){
@@ -819,9 +822,6 @@ function render(){
    if(target){target.focus({preventScroll:true});if(Number.isInteger(focus.start)&&Number.isInteger(focus.end)&&typeof target.setSelectionRange==='function')try{target.setSelectionRange(focus.start,focus.end)}catch(_){}}
   }
   lastRenderedContext=[state.view,state.learnTab].join(':');
-  // Reuse the already loaded canonical knowledge index; consumers must not
-  // start competing fetches during navigation or tab activation.
-  window.dispatchEvent(new CustomEvent('russian:core-render',{detail:{view:state.view,learnTab:state.learnTab,knowledgeIndex:DB['knowledge-index']||[]}}));
  }catch(e){
   console.error('FULL_RENDER_GUARD',e);
   try{
