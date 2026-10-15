@@ -172,8 +172,11 @@
     const ls=lessonState(id),learningState=window.RussianLearningState?.get?.()||{};
     const adaptive=adaptiveNext(ls),sig=JSON.stringify([core.view,core.learnTab,id,ls.steps,flow.updatedAt,learningState.updatedAt,adaptive?.kind,adaptive?.item?.id||'']);
     let panel=document.getElementById('ruLessonFlow');
-    if(!panel){panel=document.createElement('section');panel.id='ruLessonFlow';panel.className='ru-lesson-flow';panel.setAttribute('aria-label','Tiến trình bài học');view.prepend(panel);}
-    if(sig!==lastSig){panel.innerHTML=panelHtml(ls);lastSig=sig;}
+    const isNew=!panel;
+    if(isNew){panel=document.createElement('section');panel.id='ruLessonFlow';panel.className='ru-lesson-flow';panel.setAttribute('aria-label','Tiến trình bài học');view.prepend(panel);}
+    // A full core render can replace #view while the lesson signature stays
+    // unchanged. The new panel must still get its controls and step labels.
+    if(isNew||sig!==lastSig){const html=panelHtml(ls);if(panel.innerHTML!==html)panel.innerHTML=html;lastSig=sig;}
   }
   function click(selector){const el=document.querySelector(selector);if(el){el.click();return true}return false;}
   function after(ms,fn){setTimeout(fn,ms);}
@@ -289,14 +292,15 @@
   },true);
   document.addEventListener('change',event=>{if(event.target?.id==='stageSelect')after(40,scheduleRender);},true);
   window.addEventListener('russian:learning-state',scheduleRender);
-  document.addEventListener('DOMContentLoaded',async()=>{
-    try{
-      const data=await fetch('data/knowledge-index.json').then(r=>r.ok?r.json():[]);
-      knowledge=Array.isArray(data)?data.map(x=>({id:clean(x.id),title:clean(x.title),stage:clean(x.stage)})).filter(x=>x.id):[];
-    }catch(_){knowledge=[];}
+  document.addEventListener('DOMContentLoaded',()=>{
     scheduleRender();
-    const view=document.getElementById('view');
-    if(view)new MutationObserver(scheduleRender).observe(view,{childList:true,subtree:true});
+    // The core has already loaded the required knowledge index. Consume its
+    // canonical snapshot rather than racing an independent fetch with navigation.
+    window.addEventListener('russian:core-render',event=>{
+      const data=event?.detail?.knowledgeIndex;
+      if(Array.isArray(data))knowledge=data.map(x=>({id:clean(x.id),title:clean(x.title),stage:clean(x.stage)})).filter(x=>x.id);
+      renderPanel();
+    });
   });
   window.RussianLearningFlow={
     schema:SCHEMA,
