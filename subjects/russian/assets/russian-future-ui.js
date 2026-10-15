@@ -281,7 +281,7 @@
     const status=meta?.progress
       ?'<div class="rf-module-progress"><span>Đã ghi nhận</span><b>'+esc(meta.progress)+'</b></div>'
       :'<span class="rf-module-open" aria-hidden="true">Mở hoạt động →</span>';
-    return '<button type="button" class="rf-module-card '+cls+'" data-route=\''+esc(JSON.stringify(route))+'\' aria-label="'+esc(title+' — '+info)+'"><span class="rf-module-icon">'+homeIcon(ico)+'</span><h4>'+esc(title)+'</h4><p>'+esc(info)+'</p>'+status+'</button>';
+    return '<button type="button" class="rf-module-card '+cls+'" data-route=\''+esc(JSON.stringify(route))+'\' aria-label="'+esc(title+' — '+info+(meta?.progress&&meta.progress!=='Chưa có bằng chứng'?' — '+meta.progress:''))+'"><span class="rf-module-icon">'+homeIcon(ico)+'</span><h4>'+esc(title)+'</h4><p>'+esc(info)+'</p>'+status+'</button>';
   }
   function learningPathHtml(st){
     const flow=learningFlowEvidence();
@@ -308,7 +308,6 @@
       ?'<article class="rf-review-now"><span>CẦN ÔN</span><b>'+dueCount+' mục đến hạn</b><p>'+esc(dueReviews[0]?.label||'Ưu tiên xử lý nội dung đến hạn trước khi học mới.')+'</p><button data-route=\'{"view":"learning","learnTab":"review"}\'>Mở ôn tập →</button></article>'
       :'<article class="rf-review-now is-empty"><span>CẦN ÔN</span><b>Chưa có nội dung đến hạn.</b><p>Khu vực này chỉ hiện số liệu khi Review Queue có evidence thật.</p></article>';
     return '<section class="ru-dashboard-enhancer rf-dashboard" data-ru-dashboard="1">'+
-      '<article class="rf-continue-card"><div><span>HỌC TIẾP</span><h3>'+esc(continueLabel)+'</h3><p>'+(recent?'Quay lại đúng nơi bạn vừa học. Trạng thái và tiến độ hiện tại được giữ nguyên.':'Bắt đầu bằng nghe để làm quen nhịp tiếng Nga trước khi mở rộng sang chữ, từ và ngữ pháp.')+'</p></div><div class="rf-continue-actions"><b>'+pct+'%</b><button data-route=\''+esc(JSON.stringify(continueRoute))+'\'>Tiếp tục học →</button></div></article>'+
       '<div class="rf-module-section" aria-label="Mở hoạt động tiếng Nga"><div class="rf-card-head"><div><h4>Ứng dụng học tập</h4><span>Chọn biểu tượng để bắt đầu · không cần thêm tài khoản</span></div></div><div class="rf-module-grid">'+
         module({view:'media'},'rf-module-listen','listen','Nghe', {...skills.media,info:'Video & âm thanh'})+
         module({view:'learning',learnTab:'practice'},'rf-module-speak','speak','Nói',{...skills.speaking,info:'Nghe & Nói'})+
@@ -319,6 +318,7 @@
         module({view:'dialogue'},'rf-module-dialogue','dialogue','Hội thoại',{info:'Tình huống thực tế'})+
         module({view:'learning',learnTab:'review'},'rf-module-review','review','Ôn tập',{info:dueCount?dueCount+' mục đến hạn':'Xem nội dung cần ôn'})+
       '</div></div>'+
+      '<article class="rf-continue-card"><div><span>HỌC TIẾP</span><h3>'+esc(continueLabel)+'</h3><p>'+(recent?'Quay lại đúng nơi bạn vừa học. Trạng thái và tiến độ hiện tại được giữ nguyên.':'Bắt đầu bằng nghe để làm quen nhịp tiếng Nga trước khi mở rộng sang chữ, từ và ngữ pháp.')+'</p></div><div class="rf-continue-actions"><b>'+pct+'%</b><button data-route=\''+esc(JSON.stringify(continueRoute))+'\'>Tiếp tục học →</button></div></article>'+
       '<div class="rf-today-review-grid">'+
         '<article class="rf-today-plan"><div class="rf-card-head"><div><h4>Hôm nay</h4><span>Tối đa 3 nhiệm vụ, làm được ngay</span></div><button class="rf-link" data-act="route-modal">Xem lịch →</button></div><div class="rf-today-list">'+
           '<div class="rf-today-task"><span>1</span><div><b>Nghe 5 phút</b><small>Nghe trước, chưa mở transcript.</small></div><button data-route=\'{"view":"media"}\'>Nghe</button></div>'+
