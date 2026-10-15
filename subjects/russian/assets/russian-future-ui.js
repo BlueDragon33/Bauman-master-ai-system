@@ -164,7 +164,16 @@
   function skillEvidence(st){
     const flow=learningFlowEvidence();
     const speechRows=[...Object.values(st.practiceSpeechResults||{}),...Object.values(st.dialogueSpeechResults||{})];
-    const speaking=speechRows.filter(x=>Number(x?.score||0)>0||x?.ok===true).length||flow.speaking;
+    // Provenance first: manual confirmations and ASR transcript matches never certify pronunciation.
+    const selfCount=speechRows.filter(x=>x&&(x.selfConfirmed===true||x.signalType==='self-confirmation'||x.manual===true)).length;
+    const transcriptCount=speechRows.filter(x=>x&&!x.selfConfirmed&&!x.manual&&x.signalType!=='self-confirmation'&&(x.signalType==='asr_transcript_similarity'||x.signalOnly===true||!!x.transcript)).length;
+    const legacyCount=speechRows.filter(x=>x&&!x.selfConfirmed&&!x.manual&&x.signalType!=='self-confirmation'&&x.signalType!=='asr_transcript_similarity'&&x.signalOnly!==true&&!x.transcript).length;
+    const speakingParts=[
+      selfCount?selfCount+' lượt tự xác nhận':'',
+      transcriptCount?transcriptCount+' transcript hỗ trợ':'',
+      legacyCount?legacyCount+' lượt chưa phân loại':''
+    ].filter(Boolean);
+    const speakingStatus=speakingParts.join(' · ')||(flow.speaking?flow.speaking+' lượt tự xác nhận trong bài học':'Chưa có bằng chứng');
     const handwriting=Object.values(st.handwritingListenWriteProgress?.byLetter||{}).filter(x=>x&&typeof x==='object'&&Object.keys(x).length).length;
     const vocabState=window.RussianVocabSrs?.get?.()||{cards:{}};
     const vocabCards=Object.values(vocabState.cards||{}).filter(x=>x&&!x.migratedTo&&Number(x.reviewCount||0)>0).length;
@@ -172,7 +181,7 @@
     const recentMedia=Array.isArray(st.recentAccess)&&st.recentAccess.some(x=>x?.view==='media');
     return {
       media:{progress:recentMedia?'Đã mở gần đây':'Chưa có bằng chứng',info:'Nghe trước, hiểu tình huống'},
-      speaking:{progress:speaking?speaking+' lượt có phản hồi':'Chưa có bằng chứng',info:'Nhại, shadowing, đổi vai'},
+      speaking:{progress:speakingStatus,info:'Tự luyện hoặc nhận transcript hỗ trợ; không phải điểm phát âm'},
       writing:{progress:(handwriting||flow.alphabet)?(handwriting||flow.alphabet)+' lượt luyện':'Chưa có bằng chứng',info:'Nhìn, nghe và viết Cyrillic'},
       vocab:{progress:vocabCards?vocabCards+' thẻ đã tự đánh giá':'Chưa có bằng chứng',info:vocabDue?vocabDue+' thẻ đến hạn':'Hình và ngữ cảnh Nga'},
       grammar:{progress:flow.grammar?flow.grammar+' lượt thực hành':'Chưa có bằng chứng',info:'Ví dụ → pattern → luyện ngay'}
