@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import {buildRu03ReferenceGuide} from '../knowledge/ru03-reference-library.mjs';
 import {buildRe49ReviewInventory,buildRe49ReviewPackets} from './re49-review-packets-r4.mjs';
 import {verifyAuthorizedReviewDecision} from './re45-review-core.mjs';
 
@@ -88,6 +89,7 @@ export function buildExternalReviewHandoff({inventory=buildRe49ReviewInventory()
     schema:'RUSSIAN_ENGINE_RE50_EXTERNAL_REVIEW_HANDOFF_V1',
     state:reg.reviewerCount?'AUTHORIZED_REVIEWER_AVAILABLE':'EXTERNAL_REVIEWER_REQUIRED',
     reviewerRegistrySchema:registry.schema,
+    referenceGuide:buildRu03ReferenceGuide(),
     reviewerCount:reg.reviewerCount,
     itemCount:entries.length,
     entries:Object.freeze(entries),
