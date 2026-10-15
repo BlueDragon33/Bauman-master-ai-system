@@ -90,7 +90,9 @@ export function buildRe49ReviewInventory({candidate=buildRe48Candidate(),advisor
 
   for(const scene of arr(candidate.spatial.scenes)){
     const ctx=wi.get(scene.worldId),a=normalizedAction(scene.expectedAction);
-    const nodeId=a.kind==='handover-object'?a.fromNodeId:a.targetId;
+    const nodeId=a.kind==='handover-object'?a.fromNodeId:(scene.reviewVisualNodeId||a.targetId);
+    if(a.kind==='dialogue-intent'&&!scene.reviewVisualNodeId)throw new Error('RE49 dialogue-intent missing explicit review visual '+scene.sceneId);
+    if(scene.reviewVisualNodeId&&!visual(ctx,nodeId))throw new Error('RE49 invalid review visual '+scene.sceneId);
     const advice=advisory.spatial?.[scene.sceneId];
     if(!advice)throw new Error('RE49 missing spatial advisory '+scene.sceneId);
     items.push(finalizeReviewItem({
