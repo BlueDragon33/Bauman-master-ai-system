@@ -11,7 +11,10 @@ assert.match(worker,/pythonExecutionEnabled/);
 assert.match(worker,/pythonRuntimeProfile/);
 
 const preview=fs.readFileSync(".github/workflows/deploy-bauman-preview.yml","utf8");
-assert.match(preview,/Verify exact preview runtime and Python activation/);
+assert.match(preview,/Verify exact Preview Control, Runtime and Russian learning entry/);
+assert.match(preview,/BAUMAN_EXPECTED_RUNTIME="control-service"/);
+assert.match(preview,/BAUMAN_EXPECTED_RUNTIME="learning-runtime"/);
+assert.match(preview,/BAUMAN_EXPECTED_REVISION="\$GITHUB_SHA"/);
 assert.match(preview,/runtime\.pythonExecutionEnabled !== true/);
 assert.match(preview,/cpython-3\.14\.8-stdlib-v1/);
 

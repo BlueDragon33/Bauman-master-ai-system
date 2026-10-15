@@ -18,6 +18,8 @@ on:
       - "tests/russian-*.mjs"
       - "scripts/prepare-chatgpt-site.mjs"
       - "scripts/prepare-cloudflare-preview.mjs"
+      - ".github/workflows/deploy-bauman-preview.yml"
+      - "tests/live-deploy-control-smoke-static.mjs"
       - ".github/workflows/system-integration-ci.yml"
   pull_request:
     branches: [main]
@@ -35,6 +37,8 @@ on:
       - "tests/russian-*.mjs"
       - "scripts/prepare-chatgpt-site.mjs"
       - "scripts/prepare-cloudflare-preview.mjs"
+      - ".github/workflows/deploy-bauman-preview.yml"
+      - "tests/live-deploy-control-smoke-static.mjs"
       - ".github/workflows/system-integration-ci.yml"
 
 permissions:
@@ -79,6 +83,8 @@ jobs:
         run: node tests/thesis-reference-v1-static.mjs
       - name: Validate deployment propagation fail-closed helper
         run: node scripts/test-deployment-propagation-wait.mjs
+      - name: Validate exact Preview dual-worker smoke contract
+        run: node tests/live-deploy-control-smoke-static.mjs
       - name: Parse changed runtime JavaScript
         run: |
           node --check assets/js/main.js
