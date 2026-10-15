@@ -99,6 +99,15 @@ assert.equal(asrEvidence.result.transcript,'Здравствуйте');
 assert.equal(asrEvidence.result.pronunciationEvaluated,false);
 assert.equal(asrEvidence.result.stressEvaluated,false);
 assert.equal(asrEvidence.authoritative,false);
+lastRecognition.onResult({transcript:'Здравствуйте',rawConfidence:null,final:true});
+const missingConfidence=oral.recognitionEvidence('OS-1',{targetText:'Здравствуйте'});
+assert.equal(missingConfidence.result.rawConfidence,null,'Absent confidence must not be stored as zero');
+assert.equal(missingConfidence.provider.confidence,null,'Absent confidence must not become artificial 0%');
+lastRecognition.onResult({transcript:'Здравствуйте',rawConfidence:0,final:true});
+const zeroConfidence=oral.recognitionEvidence('OS-1',{targetText:'Здравствуйте'});
+assert.equal(zeroConfidence.result.rawConfidence,0,'Actual measured zero recognition confidence must be preserved');
+assert.equal(zeroConfidence.authoritative,false);
+
 
 await oral.startRecording('OS-1');
 const recordingEvidence=oral.recordingEvidence('OS-1');
