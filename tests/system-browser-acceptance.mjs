@@ -270,6 +270,7 @@ try{
       assert.ok(layers.simulation.canonicalOk&&layers.simulation.sampleRecordUsed===false&&layers.simulation.academicWrites===false,'Math Simulation Source policy drift');
       assert.ok(layers.activity.sampleRecordsRendered===false&&layers.activity.academicWrites===false&&layers.activity.newRouteEngine===false,'Math Activity Studio read-only policy drift');
       assert.ok(layers.integration.academicWrites===false&&layers.integration.routeOwnership===false&&layers.integration.mutationObserver===false,'Math Integration Sync ownership drift');
+      if(layers.regression.summary.fail)console.error('MATH_REGRESSION_FAILURE_DETAILS',JSON.stringify(layers.regression.rows.filter(row=>row.state==='fail')));
       assert.equal(layers.regression.summary.fail,0,'Math in-app regression gate reported a failure');
       assert.deepEqual(layers.regression.rows.filter(row=>row.state==='warn').map(row=>row.id),['browser'],'Math in-app regression warnings drift');
       assert.equal(layers.health.summary.fail,0,'Math runtime health reported a failure');
