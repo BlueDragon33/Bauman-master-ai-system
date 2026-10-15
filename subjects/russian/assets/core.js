@@ -800,11 +800,14 @@ function render(){
   const active=document.activeElement;
   const focus=restore&&v.contains(active)&&/^(INPUT|TEXTAREA|SELECT)$/.test(active.tagName)
     ?{id:active.id||'',key:active.dataset.input||'',start:active.selectionStart,end:active.selectionEnd}:null;
+  const openDetails=restore?[...v.querySelectorAll('details')].flatMap((el,i)=>el.open?[i]:[]):[];
   const selectors=['.learn-list','.mode-specific-list','.slidebox','.media-list','.vocab-list-scroll'];
   const positions=restore?{windowY:window.scrollY,mainY:document.querySelector('.ru-main')?.scrollTop||0,viewY:v.scrollTop,inner:selectors.map(selector=>({selector,y:v.querySelector(selector)?.scrollTop||0}))}:null;
   sanitize(); buildShell(); title();
   const fn=({overview:renderOverview,learning:renderLearning,dialogue:renderDialogue,writing:renderWriting,media:renderMedia,vocab:renderVocab,grammar:renderGrammar,mindmap:renderMindmap,storage:renderStorage}[state.view]||renderOverview);
-  v.innerHTML=fn();afterRender();
+  v.innerHTML=fn();
+  if(restore){const details=v.querySelectorAll('details');openDetails.forEach(i=>{if(details[i])details[i].open=true});}
+  afterRender();
   if(positions){
    const main=document.querySelector('.ru-main');if(main)main.scrollTop=positions.mainY;
    v.scrollTop=positions.viewY;
