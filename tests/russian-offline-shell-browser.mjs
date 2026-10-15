@@ -79,7 +79,8 @@ try{
     return {shell,shellVersion,urls:keys.map(x=>new URL(x.url).pathname),dataName,dataUrls:dataKeys.map(x=>new URL(x.url).pathname)};
   });
   assert.match(cached.shell||'',/^russian-app-shell-v[0-9]+(?:-|$)/i,'Russian offline shell cache must use a versioned namespace');
-  assert.ok(cached.shellVersion>=2,`Russian offline shell cache version must remain bumped (got v${cached.shellVersion})`);
+  assert.ok(cached.shellVersion>=27,`Mobile dock shell requires refreshed Russian cache v27+ (got v${cached.shellVersion})`);
+  for(const suffix of ['/subjects/russian/assets/russian-future-ui.js','/subjects/russian/assets/russian-future-ui.css'])assert.ok(cached.urls.some(x=>x.endsWith(suffix)),`Russian mobile app asset missing from offline shell: ${suffix}`);
   assert.equal(cached.dataName,'russian-learning-data-v1');
   assert.ok(cached.dataUrls.some(x=>x.endsWith('/subjects/russian/data/handwriting-listen-write.json')),'offline data cache missing handwriting-listen-write.json');
   for(const suffix of [
