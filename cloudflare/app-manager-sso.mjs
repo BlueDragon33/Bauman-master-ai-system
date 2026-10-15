@@ -69,7 +69,7 @@ export async function handleManagedSso(request,env){
   const target=new URL("/__sso/v2/authorize",ISSUER);
   for(const [name,value]of Object.entries({response_type:"code",client_id:CLIENT,redirect_uri:cfg.callback,
     code_challenge_method:"S256",code_challenge:sha,state}))target.searchParams.set(name,value);
-  const res=Response.redirect(target.href,303);
+  const res=new Response(null,{status:303,headers:{location:target.href}});
   res.headers.set("cache-control","no-store, private");res.headers.set("referrer-policy","no-referrer");
   setCookie(res,FLOW,await seal({kind:"flow",verifier,state,exp:now()+300},cfg.secret),300);
   return res;
@@ -93,14 +93,14 @@ export async function handleManagedSso(request,env){
      v.appManageRole!=="owner"||typeof v.subject!=="string"||v.subject!==v.email||
      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.subject)||!Number.isSafeInteger(v.expiresAt)||
      v.expiresAt<=now()||v.expiresAt>now()+60)return jsonError("SSO_IDENTITY_INVALID",401);
-  const res=Response.redirect(url.origin+"/",303);
+  const res=new Response(null,{status:303,headers:{location:url.origin+"/"}});
   setCookie(res,SESSION,await seal({kind:"session",aud:CLIENT,issuer:ISSUER,sub:v.subject,exp:now()+600},cfg.secret),600);
   setCookie(res,FLOW,"",0);
   res.headers.set("cache-control","no-store, private");return res;
  }
  if(path==="/__sso/logout"){
   if(request.method!=="POST"||request.headers.get("origin")!==url.origin)return jsonError("INVALID_REQUEST",403);
-  const res=Response.redirect(url.origin+"/",303);
+  const res=new Response(null,{status:303,headers:{location:url.origin+"/"}});
   setCookie(res,SESSION,"",0);setCookie(res,FLOW,"",0);res.headers.set("cache-control","no-store, private");
   return res;
  }
