@@ -132,6 +132,13 @@ jobs:
           test -d subjects
           grep -qi '<!doctype html\|<html' index.html
 
+      - name: Managed SSO adapter security regression
+        run: |
+          node --check cloudflare/app-manager-sso.mjs
+          node --check cloudflare/runtime-worker.mjs
+          node --check cloudflare/runtime-worker-python.mjs
+          node --test tests/app-manager-sso.test.mjs
+
       - name: Development mode summary
         run: |
           echo "Development mode: PASS"

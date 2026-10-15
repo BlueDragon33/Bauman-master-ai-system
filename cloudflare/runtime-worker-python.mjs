@@ -11,6 +11,7 @@ import {
   PythonSandbox,
 } from "./python-sandbox-provider.mjs";
 import { pythonTask } from "./python-task-registry.mjs";
+import { hasManagedSsoSession, managedSsoEnabled } from "./app-manager-sso.mjs";
 
 export { PythonSandbox };
 
@@ -272,6 +273,9 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     if (url.pathname.startsWith("/api/python/") || url.pathname.startsWith("/__python/")) {
+      if (managedSsoEnabled(env) && !await hasManagedSsoSession(request,env)) {
+        return json({ok:false,code:"APP_MANAGER_SSO_REQUIRED"},401);
+      }
       return pythonApi(request, env, url);
     }
     return runtime.fetch(request, env, ctx);
