@@ -269,7 +269,13 @@
   }
   function refreshOverviewDashboard(){
     const host=document.querySelector('.overview-v128'),dash=host?.querySelector('[data-ru-dashboard="1"]');if(!host||!dash)return;
-    dash.outerHTML=dashboardHtml();
+    const html=dashboardHtml();
+    // Only replace the dashboard when its data actually changes. Replacing the
+    // same subtree on every learning-state notification resets focus and scroll.
+    if(dash.__rfRenderedHtml===html)return;
+    dash.outerHTML=html;
+    const next=host.querySelector('[data-ru-dashboard="1"]');
+    if(next)next.__rfRenderedHtml=html;
   }
   // Eight fixed, decorative 24px line icons. No external icon package or duplicate router.
   const HOME_ICONS=Object.freeze({
@@ -468,8 +474,10 @@
   function schedule(){
     if(scheduled)return;scheduled=true;requestAnimationFrame(upgrade);
   }
-  const observer=new MutationObserver(schedule);
-  observer.observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:['class']});
+  // The core owns view navigation. A document-wide MutationObserver previously
+  // scheduled a new UI pass on mutations produced by that very pass (including
+  // class changes), causing unnecessary DOM work and visible layout churn.
+  window.addEventListener('russian:core-render',upgrade);
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',schedule,{once:true});else schedule();
   window.RUSSIAN_FUTURE_UI={version:'RUSSIAN_FUTURE_REFERENCE_UI_V1',upgrade,metrics};
 })();
