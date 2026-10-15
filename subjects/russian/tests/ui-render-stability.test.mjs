@@ -46,6 +46,9 @@ test('same-view scroll and input focus survive rerender',()=>{
   assert.match(core,/positions\.inner\.forEach/);
   assert.match(core,/target\.setSelectionRange/);
 });
+test('rerender does not schedule focus theft from an active input',()=>{
+  assert.doesNotMatch(core,/if\(state\.view==='learning'\)\s*setTimeout\(\(\)=>.*?\.focus\(/);
+});
 test('progress panel is recreated when the core replaces its view',()=>{
   assert.match(learningFlow,/const isNew=!panel/);
   assert.match(learningFlow,/if\(isNew\|\|sig!==lastSig\)/);
