@@ -4314,6 +4314,30 @@ function openMiniCheck(lessonId=''){
  if(!id)return;
  state.view='learning';state.learnTab='review';state.reviewLesson=id;state.reviewFilter='all';state.reviewMiniLesson=true;state.reviewIndex=0;state.reviewPage=0;state.reviewAnswer=null;save();render();
 }
+// Small, bounded navigation port for SRS actions outside the core delegated DOM.
+// No page reload, no synthetic click, and no duplicated persistence owner.
+function handleCoreNavigationRequest(event){
+ const route=event?.detail;
+ if(!route||!['vocab','learning'].includes(route.view))return;
+ if(route.view==='vocab'){
+  const nextStage=str(route.vocabStage||state.stage);
+  if(stages().some(x=>x.id===nextStage))state.stage=nextStage;
+  state.view='vocab';state.vocabQuery='';state.vocabTopic='all';state.vocabStatus='all';
+  state.vocabFocusKey=str(route.vocabKey||'').slice(0,180);
+  state.vocabIndex=state.vocabFocusKey?0:Math.max(0,Number(route.vocabIndex)||0);
+  state.vocabPage=Math.floor(state.vocabIndex/(VOCAB_PAGE_SIZE||20));
+  state.vocabFlipped=false;
+ }else{
+  if(route.learnTab!=='practice'||!route.lessonId)return;
+  state.view='learning';state.learnTab='practice';
+  state.lessonId=str(route.lessonId).slice(0,160);
+  state.practiceDialogueId=str(route.practiceDialogueId||'').slice(0,160);
+  state.practiceLineIndex=0;state.practiceGroup='all';state.practiceDifficulty='all';
+ }
+ route.accepted=save();
+ render();
+}
+window.addEventListener('russian:core-navigation-request',handleCoreNavigationRequest);
 window.addEventListener('russian:mini-check',event=>openMiniCheck(event?.detail?.lessonId||''));
 async function init(){loadState(); await loadData(); buildShell(); document.addEventListener('pointerdown',handleMindMapDrag,{passive:true}); document.addEventListener('pointerover',handleMindMapHover,{passive:true}); document.addEventListener('pointerout',handleMindMapHoverOut,{passive:true}); document.addEventListener('dblclick',handleMindMapDoubleClick); document.addEventListener('click',handleClick); document.addEventListener('change',handleChange); document.addEventListener('input',handleInput); document.addEventListener('keydown',handleKeys); window.addEventListener('resize',()=>{if(state.view==='mindmap')requestAnimationFrame(()=>updateMindMapConnectors(document.querySelector('[data-mindmap-canvas=\"1\"]')));},{passive:true}); $('#modalClose').addEventListener('click',closeModal); $('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()}); $('#themeBtn').addEventListener('click',()=>openModal(renderInterfaceModal(),'interface')); $('#aiBtn').addEventListener('click',()=>openModal(renderAiMentor(),'ai')); bridge(); render(); }
 init();
