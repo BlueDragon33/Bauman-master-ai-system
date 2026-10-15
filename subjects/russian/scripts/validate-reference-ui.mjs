@@ -132,7 +132,7 @@ new Function(optionalLoader);
 new Function(contentContract);
 new Function(futureJs);
 must(js.includes("window.SUBJECT_ADAPTER?.storageKey"),'Canonical UI must use adapter storage key');
-must(js.includes('MutationObserver'),'Canonical UI enhancer must follow core renders');
+must(js.includes("window.addEventListener('russian:core-render',schedule)"),'Canonical UI enhancer must follow core-render events');
 must(js.includes("aiQuick:'intro'"),'Command search must expose the existing AI Mentor');
 must(js.includes('function bindSearch()'),'Canonical UI runtime must own command search binding');
 must(js.includes('role="group"'),'Search results must expose grouped result semantics');
@@ -204,7 +204,7 @@ must(futureJs.includes("setText(title,'Tiếng Nga')"),'Future UI must expose Ru
 must(futureJs.includes("function setText(el,value){if(el&&el.textContent!==value)el.textContent=value}"),'Future UI text writes must remain idempotent');
 must(futureJs.includes("quote&&quote.dataset.rfFutureQuote!=='1'"),'Future UI quote render must remain one-shot and observer-safe');
 must(!futureJs.includes('Bauman Hub'),'Future UI must not restore Bauman Hub branding');
-must(futureJs.includes('MutationObserver'),'Future UI must survive core rerenders');
+must(futureJs.includes("window.addEventListener('russian:core-render',schedule)"),'Future UI must survive core rerenders through explicit render lifecycle');
 for(const [name,source] of [['ChatGPT Site',chatgptPackage],['Cloudflare preview',previewPackage]]){
   for(const asset of ['subjects/russian/assets/russian-future-ui.css','subjects/russian/assets/russian-future-ui.js']){
     must(source.includes(asset),`${name} package must require Russian Future UI asset: ${asset}`);
@@ -218,7 +218,7 @@ for(const token of ['RUSSIAN_CONTENT_CONTRACT_V1','normalizeVocab','latin_transl
 }
 must(!contentContract.includes('stressIndex-1'),'Content contract must not infer Russian stress from unknown numeric fields');
 must(!contentContract.includes('Math.random'),'Content contract must not synthesize language metadata');
-must(!contentContract.includes('new MutationObserver'),'Content contract must refresh through the canonical Future UI observer');
+must(!contentContract.includes('new MutationObserver'),'Content contract must refresh through the canonical Future UI lifecycle');
 must(contentContract.includes('enhance,schema'),'Content contract must expose its idempotent enhance hook');
 
 for(const token of ['dialogue-bauman-az.json','deep-speaking-bauman.json','json-array-chunks-v1','chunks/${dataset}/manifest.json','RUSSIAN_OPTIONAL_CHUNKS_V1']){
@@ -314,7 +314,8 @@ must(speechEngine.includes("player.playbackRate=Math.max(.5,Math.min(2,Number(op
 must(speechEngine.includes("u.rate=Math.max(.5,Math.min(1.5,Number(options.rate)||.85))"),'Canonical audio engine must honor TTS playback rate');
 must(!core.includes('info.term,info.meaningRu,info.meaningVi,info.english,info.application'),'Visual inference must not depend on Vietnamese/English meaning fields');
 must(!core.includes('info.term,info.meaningRu,info.meaningVi,info.english,info.visualLabel'),'Dialogue presentation inference must not depend on translated meaning fields');
-must((futureJs.match(/new MutationObserver/g)||[]).length===1,'Canonical Russian presentation runtime must own exactly one MutationObserver');
+must(!/new\\s+MutationObserver\\s*\\(/.test(futureJs),'Canonical Russian presentation runtime must not observe DOM mutations it generates');
+must(core.includes("window.dispatchEvent(new CustomEvent('russian:core-render'"),'Core must publish a single explicit render lifecycle event');
 must(!fs.existsSync(path.join(root,'assets/russian-reference-ui.css')),'Legacy reference CSS must be removed after consolidation');
 must(!fs.existsSync(path.join(root,'assets/russian-reference-ui-polish.css')),'Legacy polish CSS must be removed after consolidation');
 must(!fs.existsSync(path.join(root,'assets/russian-reference-ui.js')),'Legacy reference UI runtime must be removed after consolidation');
