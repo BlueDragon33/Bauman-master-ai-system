@@ -40,7 +40,8 @@ async function quietWindow(page, label) {
     observer.disconnect();
     let core;
     try{core=JSON.parse(localStorage.getItem('bauman_russian_survival_master_v11_clean_skeleton')||'{}')}catch{core={}}
-    return { writes, samples, view: core.view || '', navView: document.querySelector('#nav button.active[data-view]')?.dataset.view || '' };
+    const navView=document.querySelector('#nav button.active[data-view]')?.dataset.view || '';
+    return { writes, samples, view: core.view || navView || 'overview', navView };
   });
   assert.equal(result.missing, undefined, label + ': view is missing');
   assert.ok(result.writes <= 2, label + ': idle DOM kept changing (' + JSON.stringify(result) + ')');
