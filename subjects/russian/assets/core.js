@@ -3470,6 +3470,20 @@ function mediaForm(item={}){
  const cat=A.mediaCategory?.(item)||item.category||item.genre||'';
  return `<div class="modal-body media-form"><h3>${item.id||item.title?'Sửa nguồn Video/Audio':'Thêm Video/Audio'}</h3><datalist id="mediaGroupOptions">${groups.map(g=>`<option value="${esc(g)}"></option>`).join('')}</datalist><div class="form-row"><input class="input" id="mfTitle" placeholder="Tên nội dung" value="${esc(item.title||'')}"><input class="input" id="mfCat" list="mediaGroupOptions" placeholder="Chọn hoặc nhập nhóm học" value="${esc(cat)}"></div><textarea class="textarea" id="mfUrl" placeholder="URL gốc / link mở trực tiếp">${esc(item.url||'')}</textarea><textarea class="textarea" id="mfIframe" placeholder="Iframe embed hoặc URL embed">${esc(item.iframe||'')}</textarea><textarea class="textarea" id="mfPurpose" placeholder="Mục đích/mô tả">${esc(item.purpose||item.summary||'')}</textarea><div class="modal-actions"><button class="btn" data-act="modal-close">Hủy</button><button class="btn primary" data-act="media-save" data-id="${esc(item.id||item.title||'')}">Lưu media</button></div></div>`
 }
+function patchMediaList(){
+ // Filtering an already selected video must not recreate its iframe/player.
+ // Only patch the auxiliary list while the active media ID remains valid.
+ if(state.view!=='media')return false;
+ const current=document.querySelector('#view .media-list');
+ if(!current)return false;
+ const items=getMedia(),active=items.find(x=>String(x.id||x.title)===String(state.mediaId||''));
+ if(!active)return false;
+ const inert=document.createElement('template');inert.innerHTML=renderMedia();
+ const next=inert.content.querySelector('.media-list');if(!next)return false;
+ const y=current.scrollTop;
+ current.replaceChildren(...next.childNodes);current.scrollTop=y;
+ return true;
+}
 function applyInput(el){const k=el.dataset.input; if(!k)return; let v=el.value; if(k==='interfaceTheme'||k==='interfaceDensity'||k==='interfaceMain'){state[k]=v; applyInterface(); save(); if(state.modalType==='interface')openModal(renderInterfaceModal(),'interface'); else render(); return;} if(['dialogueGroup','dialogueDifficulty','practiceGroup','practiceDifficulty','deepSpeakingId','mediaCat','grammarLevel','grammarTrack','mindmapId','vocabTopic','vocabStatus','testLevel','reviewLevel','reviewFilter','reviewLesson','examLevel','examCycle','examPaperLevel','examPaperType','exerciseLevel','storageGroup'].includes(k)){
   if(k==='examCycle'){
    if(v!=='auto'&&!isExamCycleUnlocked(Number(v))){toast('Lượt kiểm tra này chưa mở khóa. Hãy học đủ lịch trình trước.'); v='auto';}
@@ -3488,7 +3502,7 @@ function applyInput(el){const k=el.dataset.input; if(!k)return; let v=el.value; 
    state[k]=v;
   }
   if(k==='testLevel'){state.testIndex=0;state.testAnswer=null;} if(k==='reviewLevel'){state.reviewIndex=0;state.reviewPage=0;state.reviewAnswer=null;state.reviewLesson='all';state.reviewMiniLesson=false;} if(k==='reviewFilter'||k==='reviewLesson'){state.reviewIndex=0;state.reviewPage=0;state.reviewAnswer=null;state.reviewMiniLesson=false;} if(k==='exerciseLevel')state.exerciseIndex=0; if(k==='practiceGroup'||k==='practiceDifficulty'){state.practiceDialogueId='';state.practiceLineIndex=0;} if(k==='dialogueGroup'||k==='dialogueDifficulty'){state.dialogueId='';state.dialogueLineIndex=0;} if(k==='deepSpeakingId'){state.deepSpeakingStep=0;} if(k==='grammarLevel'){state.grammarTrack='all';state.grammarIndex=0;} if(k==='grammarTrack'){state.grammarIndex=0;} if(k==='mindmapId'){state.mindmapNode='';}
- } else {state[k]=v;if(k==='vocabQuery'){state.vocabFocusKey='';state.vocabIndex=0;state.vocabPage=0;}} if(k==='vocabTopic'||k==='vocabStatus'){state.vocabFocusKey='';state.vocabIndex=0;state.vocabPage=0;} save(); render();}
+ } else {state[k]=v;if(k==='vocabQuery'){state.vocabFocusKey='';state.vocabIndex=0;state.vocabPage=0;}} if(k==='vocabTopic'||k==='vocabStatus'){state.vocabFocusKey='';state.vocabIndex=0;state.vocabPage=0;} save(); if(['mediaQuery','mediaCat'].includes(k)&&patchMediaList())return; render();}
 let activeHandwritingAudioKey='';
 function markHandwritingAudioPlaying(key,on){
  activeHandwritingAudioKey=on?key:'';
