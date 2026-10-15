@@ -1772,7 +1772,7 @@ function editDistance(a,b){a=normalizeRuSpeech(a);b=normalizeRuSpeech(b); const 
 function speechSimilarity(said,target){const a=normalizeRuSpeech(said), b=normalizeRuSpeech(target); if(!a||!b)return 0; const charScore=1-(editDistance(a,b)/Math.max(a.length,b.length,1)); const at=new Set(a.split(' ').filter(Boolean)), bt=b.split(' ').filter(Boolean); const hit=bt.filter(x=>at.has(x)).length; const tokenScore=bt.length?hit/bt.length:0; return Math.max(0,Math.min(1,charScore*.55+tokenScore*.45));}
 function speakingResultFor(d,i){return activeSpeechResults()?.[dialogueLineKey(d,i)]||null}
 function speechSupport(){return window.RussianSpeechRecognitionAdapter?.support?.()==='SUPPORTED'}
-function speechFeedback(score){if(score>=86)return 'Rất tốt: nhịp và từ khóa đã khá sát mẫu.'; if(score>=70)return 'Ổn: nói lại một lượt chậm hơn để chắc trọng âm.'; if(score>=45)return 'Chưa vững: nghe chậm, tách từng cụm rồi nhại lại.'; return 'Cần luyện lại: nghe mẫu 2 lần, nói từng nửa câu trước.'}
+function speechFeedback(score){if(score>=86)return 'ASR chép lời gần với câu mẫu; chưa kiểm tra âm và trọng âm.'; if(score>=70)return 'Bản chép lời khá gần mẫu; nghe lại và tự đối chiếu từng từ.'; if(score>=45)return 'Bản chép lời khác mẫu; nghe chậm và nói lại theo từng cụm.'; return 'Bản chép lời còn khác mẫu; nghe mẫu và thử nói từng nửa câu.'}
 function lineTokenHints(text){return normalizeRuSpeech(text).split(' ').filter(Boolean).slice(0,7)}
 function startLineRecording(){
  const adapter=window.RussianSpeechRecognitionAdapter;
@@ -1782,7 +1782,8 @@ function startLineRecording(){
  state.speechRecording=true; save(); render(); toast('Đang nhận dạng tiếng Nga. Transcript chỉ là tín hiệu hỗ trợ...');
  const result=adapter.start({
   lang:'ru-RU',timeoutMs:30000,
-  onResult:({transcript,rawConfidence})=>{
+  onResult:({transcript,rawConfidence,final})=>{
+   if(final!==true)return; // interim hypotheses cannot become learner transcript evidence
    const score=Math.round(speechSimilarity(transcript,target)*100), store=activeSpeechResults();
    const key=dialogueLineKey(d,idx);
    store[key]={score,transcript,target,at:Date.now(),ok:false,signalOnly:true,signalType:'asr_transcript_similarity',confidence:'LIMITED',providerConfidence:rawConfidence??null};

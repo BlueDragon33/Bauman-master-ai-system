@@ -13,46 +13,78 @@
     recognitionState=Ctor?SUPPORT.SUPPORTED:SUPPORT.UNSUPPORTED;
     return recognitionState;
   }
-  function finishRecognition(){
-    clearTimeout(recognitionTimer); recognitionTimer=0;
-    recognition=null;
+  function finishRecognition(current){
+    if(current&&recognition!==current)return false;
+    clearTimeout(recognitionTimer);recognitionTimer=0;
+    recognition=null;return true;
   }
   function stopRecognition(){
-    if(!recognition)return false;
-    try{recognition.stop();return true}catch(_){finishRecognition();return false}
+    const current=recognition;
+    if(!current)return false;
+    try{current.stop();return true}catch(_){finishRecognition(current);return false}
   }
   function cancelRecognition(){
-    if(!recognition)return false;
-    try{recognition.abort?.();}catch(_){}
-    finishRecognition();return true;
+    const current=recognition;
+    if(!current)return false;
+    // Retire the old session before abort: browsers may dispatch synchronous
+    // or delayed result/error/end events for an already-cancelled recognizer.
+    finishRecognition(current);
+    current.onresult=null;current.onerror=null;current.onend=null;
+    try{current.abort?.()}catch(_){}
+    return true;
   }
   function startRecognition(options={}){
     const Ctor=RecognitionCtor();
     if(!Ctor){recognitionState=SUPPORT.UNSUPPORTED;options.onUnsupported?.({support:recognitionState});return {started:false,support:recognitionState}}
     cancelRecognition();
     try{
-      const rec=new Ctor(); recognition=rec; recognitionState=SUPPORT.SUPPORTED;
+      const rec=new Ctor();recognition=rec;recognitionState=SUPPORT.SUPPORTED;
+      let lastFinalTranscript='';
       rec.lang=clean(options.lang)||'ru-RU';
       rec.interimResults=options.interim===true;
       rec.maxAlternatives=Math.max(1,Math.min(5,Number(options.maxAlternatives)||1));
       rec.continuous=options.continuous===true;
       rec.onresult=event=>{
-        const results=[...(event.results||[])];
-        const final=results.map(r=>r?.[0]?.transcript||'').join(' ').trim();
-        options.onResult?.({transcript:final,final:true,support:recognitionState,rawConfidence:Number(results.at(-1)?.[0]?.confidence)||null});
+        if(recognition!==rec)return;
+        const results=Array.from(event?.results||[]);
+        // Web Speech interim hypotheses are NOT a completed spoken answer.
+        const finals=results.filter(row=>row?.isFinal===true&&clean(row?.[0]?.transcript));
+        const finalText=finals.map(row=>clean(row[0].transcript)).join(' ').trim();
+        if(finalText&&finalText!==lastFinalTranscript){
+          lastFinalTranscript=finalText;
+          const reported=finals.at(-1)?.[0]?.confidence;
+          const rawConfidence=reported==null?null:Number(reported);
+          options.onResult?.({
+            transcript:finalText,final:true,support:recognitionState,
+            rawConfidence:Number.isFinite(rawConfidence)&&rawConfidence>=0&&rawConfidence<=1?rawConfidence:null,
+            pronunciationAuthority:false,stressAuthority:false
+          });
+          return;
+        }
+        if(rec.interimResults){
+          const interim=results.filter(row=>row?.isFinal!==true).map(row=>clean(row?.[0]?.transcript)).filter(Boolean).join(' ');
+          if(interim)options.onResult?.({
+            transcript:[finalText,interim].filter(Boolean).join(' ').trim(),
+            final:false,support:recognitionState,rawConfidence:null,
+            pronunciationAuthority:false,stressAuthority:false
+          });
+        }
       };
       rec.onerror=event=>{
+        if(recognition!==rec)return;
         const code=clean(event?.error)||'runtime-error';
         recognitionState=(code==='not-allowed'||code==='service-not-allowed')?SUPPORT.PERMISSION_BLOCKED:SUPPORT.RUNTIME_ERROR;
         options.onError?.({code,message:clean(event?.message),support:recognitionState});
       };
-      rec.onend=()=>{finishRecognition();options.onEnd?.({support:recognitionState})};
+      rec.onend=()=>{if(finishRecognition(rec))options.onEnd?.({support:recognitionState})};
       rec.start();
-      const timeout=Math.max(3000,Math.min(120000,Number(options.timeoutMs)||30000));
-      recognitionTimer=setTimeout(()=>{try{rec.stop()}catch(_){}},timeout);
+      if(recognition===rec){
+        const timeout=Math.max(3000,Math.min(120000,Number(options.timeoutMs)||30000));
+        recognitionTimer=setTimeout(()=>{if(recognition===rec)try{rec.stop()}catch(_){finishRecognition(rec)}},timeout);
+      }
       return {started:true,support:recognitionState};
     }catch(error){
-      finishRecognition();recognitionState=SUPPORT.RUNTIME_ERROR;
+      finishRecognition(recognition);recognitionState=SUPPORT.RUNTIME_ERROR;
       options.onError?.({code:'start-failed',message:clean(error?.message),support:recognitionState});
       return {started:false,support:recognitionState};
     }

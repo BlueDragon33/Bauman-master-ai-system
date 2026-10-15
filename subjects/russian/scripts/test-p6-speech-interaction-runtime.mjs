@@ -36,9 +36,14 @@ let transcript='';
 const started=asr.start({lang:'ru-RU',onResult:x=>transcript=x.transcript});
 assert.equal(started.started,true);
 assert.equal(lastSR.lang,'ru-RU');
-lastSR.onresult?.({results:[[{transcript:'Здравствуйте',confidence:.72}]]});
+const detachedResult=lastSR.onresult;
+lastSR.onresult?.({results:[{0:{transcript:'Здрав...',confidence:.91},isFinal:false}]});
+assert.equal(transcript,'','Interim result must not become a completed spoken answer');
+lastSR.onresult?.({results:[{0:{transcript:'Здравствуйте',confidence:.72},isFinal:true}]});
 assert.equal(transcript,'Здравствуйте');
 asr.cancel();
+detachedResult({results:[{0:{transcript:'stale callback',confidence:.99},isFinal:true}]});
+assert.equal(transcript,'Здравствуйте','Cancelled recognition must reject delayed result callbacks');
 
 const recorder=window.RussianRecordingEngine;
 let stopped=null;
