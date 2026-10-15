@@ -832,7 +832,7 @@ function render(){
   }catch(e2){console.error('RECOVERY_RENDER_FAILED',e2)}
  }
 }
-function afterRender(){clampVisibleState(); if(state.view==='mindmap') requestAnimationFrame(()=>updateMindMapConnectors(document.querySelector('[data-mindmap-canvas=\"1\"]'))); if(state.view==='writing') setTimeout(initCanvas,30); if(state.view==='learning') setTimeout(()=>{const sb=$('.slidebox'); if(sb) sb.focus({preventScroll:true})},30);}
+function afterRender(){clampVisibleState(); if(state.view==='mindmap') requestAnimationFrame(()=>updateMindMapConnectors(document.querySelector('[data-mindmap-canvas=\"1\"]'))); if(state.view==='writing') setTimeout(initCanvas,30); /* Preserve typing focus; learning keyboard shortcuts remain delegated on document. */}
 function toast(m){const t=$('#toast'); t.textContent=m; t.classList.add('show'); clearTimeout(toast.t); toast.t=setTimeout(()=>t.classList.remove('show'),1800)}
 function closeFloatingLearningMenus(){
  try{document.querySelectorAll('.learn-structure-menu[open], .storage-group-menu[open], details[open]').forEach(el=>{
