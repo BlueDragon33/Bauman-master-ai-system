@@ -401,6 +401,70 @@ try{
   }
   console.log('C2_V6_HERO_COMPUTED_CONTRAST_PASS',JSON.stringify(c2HeroAudit));
 
+  // C2 on-dark card audit: Home belongs to a dark panel even under a light
+  // global theme. Verify the browser's computed foreground in all themes.
+  const homeC2Audit=[];
+  for(const width of [1440,390]){
+    await page.setViewportSize({width,height:width===390?844:900});
+    for(const theme of ['academic','paper','night','mint']){
+      await page.evaluate(value=>{
+        const select=document.getElementById('themeSelect');
+        select.value=value;
+        select.dispatchEvent(new Event('change',{bubbles:true}));
+        window.app?.page?.('home',false);
+      },theme);
+      await page.waitForFunction(value=>
+        document.body.dataset.theme===value&&
+        !!document.querySelector('#page-home .hub-safe-continue h2')&&
+        !!document.querySelector('#page-home .hub-safe-subject b'),
+      theme,{timeout:10000});
+      const computed=await page.evaluate(()=>{
+        const nodes={
+          continueTitle:'.hub-safe-continue h2',
+          assistantTitle:'.hub-safe-assistant h2',
+          scheduleTitle:'.hub-safe-schedule h2',
+          overallTitle:'.hub-safe-overall h2',
+          progressValue:'.hub-safe-ring b',
+          subjectTitle:'.hub-safe-subject b',
+          subjectMeta:'.hub-safe-subject small',
+          assistantCopy:'.hub-safe-assistant-intro p'
+        };
+        const foregrounds={};
+        for(const [name,sel] of Object.entries(nodes)){
+          const el=document.querySelector('#page-home '+sel);
+          if(!el)throw Error('Missing dark-card foreground owner: '+sel);
+          foregrounds[name]=getComputedStyle(el).color;
+        }
+        const luminance=value=>{
+          const nums=(value.match(/\d+(?:\.\d+)?/g)||[]).slice(0,3).map(Number);
+          if(nums.length!==3)throw Error('Cannot parse rendered foreground '+value);
+          const channels=nums.map(n=>{
+            const x=n/255;return x<=.04045?x/12.92:((x+.055)/1.055)**2.4;
+          });
+          return .2126*channels[0]+.7152*channels[1]+.0722*channels[2];
+        };
+        const bg=luminance('rgb(57,67,78)'); // conservative bright dark-panel backdrop
+        const ratios=Object.fromEntries(Object.entries(foregrounds).map(([k,v])=>{
+          const lum=luminance(v);return [k,(Math.max(bg,lum)+.05)/(Math.min(bg,lum)+.05)];
+        }));
+        return {foregrounds,ratios,overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth};
+      });
+      const where='home/'+theme+'/'+width;
+      for(const key of ['continueTitle','assistantTitle','scheduleTitle','overallTitle','progressValue','subjectTitle']){
+        assert.equal(computed.foregrounds[key],'rgb(255, 255, 255)',where+': '+key+' is not pure white on dark card');
+      }
+      for(const key of ['subjectMeta','assistantCopy']){
+        assert.ok(computed.ratios[key]>=4.5,where+': '+key+' contrast '+computed.ratios[key]+' below 4.5:1');
+      }
+      assert.ok(computed.overflow<=2,where+': document overflows by '+computed.overflow+'px');
+      homeC2Audit.push({where,...computed});
+      if(width===390&&['academic','paper'].includes(theme)){
+        await page.screenshot({path:path.join(OUT,'c2-home-dark-'+theme+'-390.png'),fullPage:false});
+      }
+    }
+  }
+  console.log('C2_HOME_DARK_SURFACE_COMPUTED_CONTRAST_PASS',JSON.stringify(homeC2Audit));
+
   await page.setViewportSize({width:1920,height:1080});
   await page.evaluate(()=>window.app?.page?.('roadmap',false));
   await page.waitForFunction(()=>document.getElementById('page-roadmap')?.classList.contains('active')===true&&window.BAUMAN_HUB_ROADMAP_V2?.selfCheck?.().active===true,null,{timeout:10000});

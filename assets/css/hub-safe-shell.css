@@ -66,3 +66,30 @@ body[data-hub-density="fit1080"]{--hs-gap:8px}body[data-hub-density="fit1080"] .
 .hub-safe-capability-receipt b{font-size:.78rem}
 .hub-safe-capability-receipt small{font-size:.68rem;opacity:.72;line-height:1.3}
 .hub-safe-capability-receipt.pending{border-color:rgba(244,183,76,.18);background:rgba(244,183,76,.05)}
+
+
+/* Blueprint OS C2 · Home dashboard dark-card foreground ownership.
+   Global canva-contrast-r4 uses dark ink for light surfaces; it must not
+   override this dark surface in academic, paper, mint, or night mode. */
+#appRoot #page-home .hub-safe-card{
+  --hub-home-on-dark-title:#ffffff;
+  --hub-home-on-dark-copy:#f3f7ff;
+  --hub-home-on-dark-meta:#e8effb;
+  color:var(--hub-home-on-dark-copy);
+}
+#appRoot #page-home .hub-safe-card :is(h2,h3,h4,b,strong){
+  color:var(--hub-home-on-dark-title)!important;
+}
+#appRoot #page-home .hub-safe-card :is(p,small,em){
+  color:var(--hub-home-on-dark-meta)!important;
+}
+#appRoot #page-home .hub-safe-subject :is(b,strong){
+  color:#ffffff!important;
+}
+#appRoot #page-home .hub-safe-subject small{
+  color:#e8effb!important;
+}
+/* Keep the intentional warm accent readable on the motivational panel. */
+#appRoot #page-home .hub-safe-card.hub-safe-motivation blockquote small{
+  color:#f4d77b!important;
+}
