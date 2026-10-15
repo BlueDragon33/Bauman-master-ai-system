@@ -44,6 +44,14 @@ export function buildReviewableCandidates({spatialBase,dialogueBase,overlay,spat
     scene.utteranceSpeakerRole=patch.utteranceSpeakerRole;
     scene.utteranceRecipientRole=patch.utteranceRecipientRole;
     scene.vn=clone(patch.vn);
+    // A dialogue-intent is not itself a world node. Keep its reviewer visual
+    // explicitly scene-bound; never guess one from a lexical target.
+    if(patch.reviewVisualNodeId){
+      if(scene.expectedAction?.kind!=='dialogue-intent')fail('review visual override only for dialogue-intent '+scene.sceneId);
+      const world=arr(spatial.worlds).find(w=>w.worldId===scene.worldId);
+      if(!arr(world?.nodes).some(n=>n.nodeId===patch.reviewVisualNodeId))fail('review visual missing from world '+scene.sceneId);
+      scene.reviewVisualNodeId=patch.reviewVisualNodeId;
+    }
     scene.textAuthority='NONE';
     scene.audioAuthority='NONE';
     scene.humanApproval=false;
@@ -88,6 +96,10 @@ export function validateReviewableCandidates({spatial,dialogues}={}){
     if('speakerRole' in scene)errors.push(scene.sceneId+': ambiguous speakerRole retained');
     if(!txt(scene.utteranceSpeakerRole)||!txt(scene.utteranceRecipientRole))errors.push(scene.sceneId+': explicit turn roles missing');
     if(!txt(scene.vn?.setting)||!txt(scene.vn?.purpose)||!txt(scene.vn?.actionHint))errors.push(scene.sceneId+': revision-bound VN context missing');
+    if(scene.reviewVisualNodeId){
+      const world=arr(spatial.worlds).find(w=>w.worldId===scene.worldId);
+      if(scene.expectedAction?.kind!=='dialogue-intent'||!arr(world?.nodes).some(n=>n.nodeId===scene.reviewVisualNodeId))errors.push(scene.sceneId+': invalid review visual');
+    }
     if(scene.textAuthority!=='NONE'||scene.audioAuthority!=='NONE'||scene.humanApproval!==false)errors.push(scene.sceneId+': authority must remain NONE');
     if(!/[А-Яа-яЁё]/u.test(scene.russianDraft||''))errors.push(scene.sceneId+': Russian draft missing');
   }
