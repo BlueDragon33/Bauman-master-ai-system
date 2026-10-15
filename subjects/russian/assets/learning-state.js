@@ -333,7 +333,7 @@
     view?.addEventListener('scroll',schedulePositionSave,{passive:true});
     // Render ownership is explicit: core signals when it has replaced #view.
     // Watching childList here made auxiliary panels chase unrelated DOM changes.
-    window.addEventListener('russian:core-render',scheduleRenderToday);
+    window.addEventListener('russian:core-render',renderToday);
   });
   window.RussianLearningState={
     schema:SCHEMA,
