@@ -43,7 +43,12 @@
     let root=$('#mathUnifiedNav',nav);
     if(!root){ root=document.createElement('div'); root.id='mathUnifiedNav'; root.className='math-unified-nav'; nav.appendChild(root); }
     $('#mathUnifiedSystem')?.remove();
-    root.innerHTML=navHtml();
+    const controls=$(':scope > section > button[data-math-nav]',root);
+    const sameControls=controls.length===PRIMARY_ITEMS.length&&controls.every((node,i)=>node.dataset.mathNav===PRIMARY_ITEMS[i].id);
+    // The runtime synchronizes repeatedly during boot and tab switches. Do
+    // not recreate focused nav buttons or reset their interaction state.
+    if(!sameControls)root.innerHTML=navHtml();
+    else setActive(active);
   }
 
   let roadmapCache=null;
@@ -276,7 +281,8 @@
     if(canonical==='overview'){
       leaveRoadmap(); setActive('overview'); setPageHeader('Tổng quan','Tiếp tục học, mục tiêu hiện tại và các điểm cần ôn.');
       const view=$('#view'); if(view) view.innerHTML='';
-      ($('#mathPremiumDashboard')||$('#mathV2Dashboard')||$('.main'))?.scrollIntoView({behavior:'smooth',block:'start'});
+      // Do not animate the page when users return to Overview. An explicit
+      // learner scroll, not a rerender, should control viewport position.
       return;
     }
     if(canonical==='roadmap'){renderRoadmap();return;}
