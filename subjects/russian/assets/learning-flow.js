@@ -176,7 +176,7 @@
     if(isNew){panel=document.createElement('section');panel.id='ruLessonFlow';panel.className='ru-lesson-flow';panel.setAttribute('aria-label','Tiến trình bài học');view.prepend(panel);}
     // A full core render can replace #view while the lesson signature stays
     // unchanged. The new panel must still get its controls and step labels.
-    if(isNew||sig!==lastSig){panel.innerHTML=panelHtml(ls);lastSig=sig;}
+    if(isNew||sig!==lastSig){const html=panelHtml(ls);if(panel.innerHTML!==html)panel.innerHTML=html;lastSig=sig;}
   }
   function click(selector){const el=document.querySelector(selector);if(el){el.click();return true}return false;}
   function after(ms,fn){setTimeout(fn,ms);}
