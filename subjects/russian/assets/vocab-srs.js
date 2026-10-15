@@ -297,6 +297,10 @@
     if(shouldAbandon(target))abandonActiveDue();
   },true);
   document.addEventListener('keydown',event=>{if(event.key!=='Enter')return;if(event.target?.id==='ruVocabMineInput'){event.preventDefault();mineUser();return;}if(event.target?.id==='ruVocabFlowInput'){event.preventDefault();checkTyped();}},true);
+  // Core has already committed #view when this event fires. Render the seven
+  // learning steps synchronously, so tab controls are complete on first paint
+  // rather than appearing a frame later or depending on a DOM observer.
+  window.addEventListener('russian:core-render',e=>{if(e?.detail?.view==='vocab')render();});
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',scheduleRender,{once:true});else scheduleRender();
   window.RussianVocabSrs={schema:SCHEMA,get:()=>JSON.parse(JSON.stringify(state)),dueCards,scheduledCards,statusForItem,filterItems,rate,openIndex,mineSource,findSpeakingLinks,setFlowMode,refresh:scheduleRender,flow:[...FLOW],gaps:[...GAPS]};
 })();
