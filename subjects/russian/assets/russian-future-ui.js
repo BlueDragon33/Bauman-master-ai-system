@@ -477,7 +477,7 @@
   // The core owns view navigation. A document-wide MutationObserver previously
   // scheduled a new UI pass on mutations produced by that very pass (including
   // class changes), causing unnecessary DOM work and visible layout churn.
-  window.addEventListener('russian:core-render',schedule);
+  window.addEventListener('russian:core-render',upgrade);
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',schedule,{once:true});else schedule();
   window.RUSSIAN_FUTURE_UI={version:'RUSSIAN_FUTURE_REFERENCE_UI_V1',upgrade,metrics};
 })();
