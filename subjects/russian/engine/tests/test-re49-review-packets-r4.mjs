@@ -22,6 +22,12 @@ assert.equal(inventory.items.every(x=>x.audioFingerprint===null),true);
 assert.equal(packets.packets.every(x=>x.status==='PENDING_EXTERNAL_REVIEW'),true);
 assert.equal(packets.packets.every(x=>x.reviewerAuthorityRequired==='HUMAN_RU03'),true);
 
+const water=inventory.items.find(x=>x.itemId==='spatial:rl-05-shop:instruction');
+assert.equal(water.textRu,'Можно бутылку воды, пожалуйста?');
+assert.equal(water.expectedAction.kind,'dialogue-intent','speech action must not be mis-scored as object selection');
+assert.equal(water.expectedVisual.nodeId,'bottle-shelf','review packet must expose the world visual for contextual human approval');
+assert.equal(water.expectedVisual.labelVi,'Kệ nước đóng chai');
+assert.equal(water.audioFingerprint,null,'visual QA is not audio approval');
 const notebook=inventory.items.find(x=>x.itemId==='spatial:rl-15-university:instruction');
 assert.equal(notebook.textRu,'Передай мне, пожалуйста, тетрадь.');
 assert.equal(notebook.advisory.decision,'REVISED_CANDIDATE');
