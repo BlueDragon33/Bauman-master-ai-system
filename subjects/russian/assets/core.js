@@ -3022,14 +3022,23 @@ function renderMedia(){
  const activeTitle=mediaTitle(active)||'Chọn nguồn video/audio';
  const activePurpose=mediaPurpose(active)||'Nghe ngắn, nhại ngay, rồi chuyển sang đối thoại.';
  const cat=mediaCategoryLabel(active);
+ // Source discovery must not impersonate a playable, reviewed audio lesson.
+ const searchSuggestion=!embed&&(active.sourceType==='youtube-search'||active.sourceStatus==='suggestion'||/youtube\.com\/results\?/i.test(url));
+ const interactiveListenRoute=esc(JSON.stringify({view:'learning',learnTab:'practice'}));
+ const primaryListenAction=embed
+   ?'<button class="btn primary media-start-listening" data-act="media-start-listening">▶ Bắt đầu nghe</button>'
+   :'<button class="btn primary" data-route=\''+interactiveListenRoute+'\'>Mở bài nghe tương tác →</button>';
  const tasks=[
   ['01','Trước khi xem','Biết mục tiêu: nghe âm, nhịp và tình huống; chưa cần hiểu từng từ.'],
   ['02','Lượt nghe đầu','Xem/nghe liền mạch, không dừng để tra.'],
   ['03','Lượt nghe lại','Bắt 3-5 cụm ngắn và nhại theo tốc độ thật.'],
   ['04','Sau khi xem','Chuyển sang Nghe & Nói để dùng lại câu vừa nghe.']
  ];
- const openButton=url?`<a class="btn" href="${esc(url)}" target="_blank" rel="noopener">Mở ngoài</a>`:`<button class="btn disabled" disabled>Mở ngoài</button>`;
- const player=embed?`<iframe src="${esc(embed)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`:`<div class="media-empty-player v1256-empty-player"><b>${mediaIcon(active)}</b><h3>${esc(activeTitle)}</h3><p>${esc(url?'Nguồn này nên mở ngoài, sau đó quay lại nói lại.':'Chưa có iframe. Bấm “Sửa nguồn” để thêm link nhúng.')}</p></div>`;
+ const openButton=url?`<a class="btn" href="${esc(url)}" target="_blank" rel="noopener">${searchSuggestion?'Tìm video bên ngoài':'Mở nguồn bên ngoài'}</a>`:`<button class="btn disabled" disabled>Chưa có nguồn bên ngoài</button>`;
+ const unavailableReason=searchSuggestion
+   ?'Đây là gợi ý tìm kiếm, không phải video hoặc âm thanh đã được chọn và xác minh. Bạn có thể tìm nguồn ngoài hoặc mở bài nghe tương tác trong ứng dụng.'
+   :(url?'Nguồn này không có trình phát trong ứng dụng. Mở nguồn ngoài hoặc chọn bài nghe tương tác.':'Chưa có tệp nghe để phát. Bạn có thể mở bài nghe tương tác hoặc bổ sung nguồn trong Dữ liệu.');
+ const player=embed?`<iframe src="${esc(embed)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`:`<div class="media-empty-player v1256-empty-player" role="status"><b>${mediaIcon(active)}</b><h3>${esc(activeTitle)}</h3><p>${esc(unavailableReason)}</p></div>`;
  return `<div class="media-hub step54-media-hub v1256-media-hub">
    <div class="media-layout step54-media-layout v1256-media-layout">
      <aside class="panel media-side step54-media-side v1256-media-side">
@@ -3040,7 +3049,7 @@ function renderMedia(){
      <main class="panel media-main step54-media-main v1256-media-main">
        <header class="v1256-media-topbar">
          <div><span class="chip">${esc(cat)}</span><h3>${esc(activeTitle)}</h3><p>${esc(activePurpose)}</p></div>
-         <div class="step54-media-actions v1256-media-actions"><button class="btn primary media-start-listening" data-act="media-start-listening">▶ Bắt đầu nghe</button>${openButton}<button class="btn" data-act="media-edit" data-media-edit="${esc(active.id||active.title||'')}">Sửa nguồn</button><button class="btn" data-route='${esc(JSON.stringify({view:'learning',learnTab:'practice'}))}'>Nghe xong nói lại →</button></div>
+         <div class="step54-media-actions v1256-media-actions">${primaryListenAction}${openButton}<button class="btn" data-act="media-edit" data-media-edit="${esc(active.id||active.title||'')}">Sửa nguồn</button><button class="btn" data-route='${esc(JSON.stringify({view:'learning',learnTab:'practice'}))}'>Nghe xong nói lại →</button></div>
        </header>
        <section class="step54-player-card v1256-player-card" data-media-listen-target="1" tabindex="-1" aria-label="Trình phát bài nghe"><div class="step54-player v1256-player">${player}</div></section>
        <section class="step54-listening-plan v1256-listening-plan" aria-label="4 bước luyện nghe">${tasks.map(t=>`<article><i>${t[0]}</i><div><b>${esc(t[1])}</b><span>${esc(t[2])}</span></div></article>`).join('')}</section>
