@@ -54,6 +54,11 @@ test('video player uses a stable selected source, not fake playable assets',()=>
   assert.match(core,/media-start-listening/);
   assert.match(core,/Nguồn này không có trình phát trong ứng dụng/);
 });
+test('media filtering retains current embedded player and updates only the playlist',()=>{
+  assert.match(core,/function patchMediaList\(\)/);
+  assert.match(core,/current\.replaceChildren\(\.\.\.next\.childNodes\)/);
+  assert.match(core,/\['mediaQuery','mediaCat'\]\.includes\(k\)&&patchMediaList\(\)/);
+});
 test('vocab SRS keeps semantic actions and avoids unrelated whole-page mutation watches',()=>{
   assert.match(vocab,/document\.addEventListener\('click',event=>/);
   assert.match(vocab,/data-ru-srs-rate/);
