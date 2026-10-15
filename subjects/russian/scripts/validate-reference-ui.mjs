@@ -92,6 +92,9 @@ must(!js.includes('mini-progress'),'Skill cards must not display invented per-sk
 for(const token of ['ru-future-ui','rf-progress-strip','rf-module-grid','rf-learning-path','rf-tab-intro','--rf-sidebar:220px','--rf-sidebar-compact:220px','--rf-content-max:1120px','--rf-reading-max:820px','--rf-card-padding:22px','--rf-section-gap:28px','--rf-font-md:15px','--rf-font-hero:32px','--rf-motion-fast:180ms','grid-template-columns:var(--rf-sidebar) minmax(0,1fr)','display:none!important']) must(futureCss.includes(token),`Future UI CSS missing ${token}`);
 must(futureCss.includes('.rf-module-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))'),'Modern home must show a balanced four-column desktop app-icon launcher');
 must(futureJs.includes('HOME_ICONS')&&futureJs.includes('function homeIcon('),'Modern icon launcher must have reusable decorative inline SVG assets');
+must(futureJs.indexOf("'<div class=\"rf-module-section\"") < futureJs.indexOf("'<article class=\"rf-continue-card\""),'Russian app icons must precede secondary dashboard panels');
+must(futureCss.includes('.rf-module-card p{display:none}')&&futureCss.includes('.rf-module-progress,.ru-future-ui .rf-module-open{display:none}'),'Icon-first layout must hide secondary labels without removing learner evidence');
+must(futureCss.includes('.rf-module-card:focus-visible'),'Keyboard users need visible focus for every app icon');
 must(futureJs.includes("module({view:'dialogue'}")&&futureJs.includes("module({view:'learning',learnTab:'review'}"),'Modern launcher must use canonical dialogue and review routes');
 must(!futureCss.includes('.rf-module-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))'),'Launcher must not force five cramped cards into one desktop row');
 must(futureCss.includes('@media(max-width:1320px){\n .ru-future-ui .ru-app-shell{grid-template-columns:var(--rf-sidebar-compact)'), 'Laptop breakpoint must activate the compact sidebar token at <=1320px');
