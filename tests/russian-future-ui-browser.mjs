@@ -160,7 +160,7 @@ try{
   assert.equal(await page.locator('.rf-road-step[aria-current="step"]').count(),1,'Learning Path must expose one current stage');
   assert.equal(await page.locator('.rf-road-step.done').count(),0,'Selected academic stage or clicked activities must not create fake completed CEFR levels');
   assert.match(await page.locator('.rf-learning-path').innerText(),/không phải chứng nhận trình độ/i,'Learning Path must disclose that it is not proficiency certification');
-  assert.doesNotMatch(await page.locator('.rf-continue-actions').innerText(),/\\d+%/,'Activity-based heuristic percentage must not appear as language mastery');
+  assert.doesNotMatch(await page.locator('.rf-continue-actions').innerText(),/\d+%/,'Activity-based heuristic percentage must not appear as language mastery');
   assert.match(await page.locator('.rf-review-now').innerText(),/Chưa có nội dung đến hạn\./,'Fresh learner state must not synthesize review work');
   assert.equal(await page.locator('.rf-review-now button').count(),0,'Empty Review Queue must not show a fake review CTA');
   assert.equal(await page.locator('#ruLessonFlow').count(),0,'Overview must not duplicate the lesson-detail stepper');
