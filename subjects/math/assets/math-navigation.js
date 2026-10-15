@@ -43,7 +43,7 @@
     let root=$('#mathUnifiedNav',nav);
     if(!root){ root=document.createElement('div'); root.id='mathUnifiedNav'; root.className='math-unified-nav'; nav.appendChild(root); }
     $('#mathUnifiedSystem')?.remove();
-    const controls=$(':scope > section > button[data-math-nav]',root);
+    const controls=Array.from(root.querySelectorAll(':scope > section > button[data-math-nav]'));
     const sameControls=controls.length===PRIMARY_ITEMS.length&&controls.every((node,i)=>node.dataset.mathNav===PRIMARY_ITEMS[i].id);
     // The runtime synchronizes repeatedly during boot and tab switches. Do
     // not recreate focused nav buttons or reset their interaction state.
@@ -387,7 +387,7 @@
     document.addEventListener('keydown',e=>{
       const openLayer=$('#mathCommandPalette.open')||$('#mathFormulaFocus.open');
       if(e.key==='Tab'&&openLayer){
-        const focusable=$('button:not([disabled]),input:not([disabled]),a[href],[tabindex]:not([tabindex="-1"])',openLayer).filter(x=>x.offsetParent!==null);
+        const focusable=Array.from(openLayer.querySelectorAll('button:not([disabled]),input:not([disabled]),a[href],[tabindex]:not([tabindex="-1"])')).filter(x=>x.offsetParent!==null);
         if(focusable.length){
           const first=focusable[0],last=focusable[focusable.length-1];
           if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();return;}
