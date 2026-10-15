@@ -3035,6 +3035,8 @@ function renderMedia(){
   ['04','Sau khi xem','Chuyển sang Nghe & Nói để dùng lại câu vừa nghe.']
  ];
  const openButton=url?`<a class="btn" href="${esc(url)}" target="_blank" rel="noopener">${searchSuggestion?'Tìm video bên ngoài':'Mở nguồn bên ngoài'}</a>`:`<button class="btn disabled" disabled>Chưa có nguồn bên ngoài</button>`;
+ const continueToSpeech=embed?`<button class="btn" data-route='${esc(JSON.stringify({view:'learning',learnTab:'practice'}))}'>Nghe xong nói lại →</button>`:'';
+ const sourceAreaLabel=embed?'Trình phát bài nghe':'Thông tin nguồn nghe chưa có trình phát';
  const unavailableReason=searchSuggestion
    ?'Đây là gợi ý tìm kiếm, không phải video hoặc âm thanh đã được chọn và xác minh. Bạn có thể tìm nguồn ngoài hoặc mở bài nghe tương tác trong ứng dụng.'
    :(url?'Nguồn này không có trình phát trong ứng dụng. Mở nguồn ngoài hoặc chọn bài nghe tương tác.':'Chưa có tệp nghe để phát. Bạn có thể mở bài nghe tương tác hoặc bổ sung nguồn trong Dữ liệu.');
@@ -3042,16 +3044,16 @@ function renderMedia(){
  return `<div class="media-hub step54-media-hub v1256-media-hub">
    <div class="media-layout step54-media-layout v1256-media-layout">
      <aside class="panel media-side step54-media-side v1256-media-side">
-       <div class="v1256-side-head"><span class="chip">Phụ lục</span><h3>Video/Audio</h3><p>Chọn nguồn bên trái, xem/nghe ở khung lớn bên phải.</p></div>
+       <div class="v1256-side-head"><span class="chip">Phụ lục</span><h3>Video/Audio</h3><p>Chọn nguồn nghe: mục có trình phát sẽ nghe tại đây, mục gợi ý tìm kiếm mở ở bên ngoài.</p></div>
        <div class="media-filter-bar step54-media-filter v1256-media-filter"><select class="input" data-input="mediaCat"><option value="all">Tất cả nhóm học</option>${cats.map(c=>`<option value="${esc(c)}" ${state.mediaCat===c?'selected':''}>${esc(c)}</option>`).join('')}</select><input class="input" data-input="mediaQuery" value="${esc(state.mediaQuery||'')}" placeholder="Tìm video/audio..."></div>
        <div class="media-list step54-media-list v1256-media-list">${list.map(m=>`<button class="media-tile step54-media-tile v1256-media-tile ${(active===m)?'active':''}" data-media="${esc(m.id||m.title)}"><div class="thumb media-art"><span>${mediaIcon(m)}</span></div><div><b>${esc(clip(mediaTitle(m),60))}</b><small>${esc(mediaCategoryLabel(m))}</small></div></button>`).join('')||'<div class="note">Chưa có video/audio phù hợp.</div>'}</div>
      </aside>
      <main class="panel media-main step54-media-main v1256-media-main">
        <header class="v1256-media-topbar">
          <div><span class="chip">${esc(cat)}</span><h3>${esc(activeTitle)}</h3><p>${esc(activePurpose)}</p></div>
-         <div class="step54-media-actions v1256-media-actions">${primaryListenAction}${openButton}<button class="btn" data-act="media-edit" data-media-edit="${esc(active.id||active.title||'')}">Sửa nguồn</button><button class="btn" data-route='${esc(JSON.stringify({view:'learning',learnTab:'practice'}))}'>Nghe xong nói lại →</button></div>
+         <div class="step54-media-actions v1256-media-actions">${primaryListenAction}${openButton}<button class="btn" data-act="media-edit" data-media-edit="${esc(active.id||active.title||'')}">Sửa nguồn</button>${continueToSpeech}</div>
        </header>
-       <section class="step54-player-card v1256-player-card" data-media-listen-target="1" tabindex="-1" aria-label="Trình phát bài nghe"><div class="step54-player v1256-player">${player}</div></section>
+       <section class="step54-player-card v1256-player-card" data-media-listen-target="1" tabindex="-1" aria-label="${sourceAreaLabel}"><div class="step54-player v1256-player">${player}</div></section>
        <section class="step54-listening-plan v1256-listening-plan" aria-label="4 bước luyện nghe">${tasks.map(t=>`<article><i>${t[0]}</i><div><b>${esc(t[1])}</b><span>${esc(t[2])}</span></div></article>`).join('')}</section>
      </main>
    </div>
