@@ -59,3 +59,43 @@ export function buildRu03ReferenceGuide({library = loadRu03ReferenceLibrary()} =
     canonicalPublicationReady:false
   });
 }
+
+
+const withoutStress = value => String(value ?? '').normalize('NFD').replace(/\p{M}/gu,'').toLocaleLowerCase('ru');
+export function loadRu03SourceAnchoredPilot() {
+  return JSON.parse(fs.readFileSync(new URL('../content/review/ru03-shop-water-pilot.v1.json',import.meta.url),'utf8'));
+}
+export function validateRu03SourceAnchoredPilot(pilot,item,{library=loadRu03ReferenceLibrary()}={}) {
+  const errors=[];
+  const lib=validateRu03ReferenceLibrary(library);
+  if(!lib.ok)errors.push('reference library invalid');
+  if(pilot?.schema!=='RUSSIAN_ENGINE_RU03_SOURCE_ANCHORED_PILOT_V1')errors.push('pilot schema');
+  if(pilot?.status!=='AI_EVIDENCE_CANDIDATE'||pilot?.humanApproval!==false||pilot?.textAuthority!=='NONE'||pilot?.audioAuthority!=='NONE'||pilot?.canonicalPublicationReady!==false)errors.push('pilot must remain unapproved');
+  if(!item||pilot?.itemId!==item.itemId||pilot?.sourceRevision!==item.sourceRevision||pilot?.textRu!==item.textRu)errors.push('pilot item/revision/text drift');
+  if(pilot?.audio?.status!=='NOT_AUDITED'||pilot?.audio?.immutableSha256!==null)errors.push('audio may not be approved or fingerprinted without recording');
+  if(!Array.isArray(pilot?.claims)||pilot.claims.length<3)errors.push('insufficient lexical claims');
+  const sources=new Set(library?.sources?.filter(x=>x.kind==='NORMATIVE_DICTIONARY' && x.uses.includes('WORD_STRESS')).map(x=>x.sourceId));
+  for(const claim of Array.isArray(pilot?.claims)?pilot.claims:[]) {
+    if(!sources.has(claim?.sourceId))errors.push('non-normative source for word stress');
+    if(!['DICTIONARY_ATTESTED','LEMMA_STRESS_WITH_MORPHOLOGICAL_INFERENCE'].includes(claim?.method))errors.push('claim evidence method');
+    if(!String(item?.textRu??'').toLocaleLowerCase('ru').includes(String(claim?.surface??'').toLocaleLowerCase('ru')))errors.push('surface not present in reviewed item');
+    if(withoutStress(claim?.stressMarked)!==withoutStress(claim?.surface))errors.push('stress annotation changes lexical surface');
+    try {
+      const url=new URL(claim?.sourceUrl);
+      if(url.protocol!=='https:'||url.hostname!=='gramota.ru')errors.push('untrusted lexical citation URL');
+    } catch {errors.push('unparseable lexical citation URL');}
+  }
+  return Object.freeze({ok:errors.length===0,errors,canonicalPublicationReady:false});
+}
+export function buildRu03SourceAnchoredPilot(item,{pilot=loadRu03SourceAnchoredPilot(),library=loadRu03ReferenceLibrary()}={}) {
+  if(item?.itemId!==pilot.itemId)return null;
+  const check=validateRu03SourceAnchoredPilot(pilot,item,{library});
+  if(!check.ok)throw new Error('RU03 pilot invalid: '+check.errors.join('; '));
+  return Object.freeze({
+    status:'AI_EVIDENCE_CANDIDATE', itemId:item.itemId,
+    boundReviewFingerprint:item.reviewFingerprint,
+    lexicalClaims:structuredClone(pilot.claims),
+    unresolved:structuredClone(pilot.unknowns),
+    audioStatus:'NOT_AUDITED', reviewerAuthority:'NONE', canonicalPublicationReady:false
+  });
+}
