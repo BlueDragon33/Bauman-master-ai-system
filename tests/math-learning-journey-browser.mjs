@@ -50,6 +50,16 @@ try{
   assert.equal(stableNav.same,true,'Math primary navigation remounted on no-op refresh');
   report.checks.stableNavNodes=true;
 
+  // Keyboard-accessible command modal is part of the shared Math control surface.
+  // Tab must cycle focusable controls without throwing TypeError from a scalar selector.
+  await page.evaluate(()=>window.BAUMAN_MATH_NAVIGATION.openCommand());
+  await page.locator('#mathCommandPalette.open').waitFor({state:'visible',timeout:10000});
+  await page.keyboard.press('Tab');
+  await page.keyboard.press('Escape');
+  await page.waitForFunction(()=>!document.querySelector('#mathCommandPalette.open'),null,{timeout:5000});
+  assert.deepEqual(report.pageErrors,[],'Math command modal keyboard traversal failed');
+  report.checks.commandFocusTrap=true;
+
   // Journey 1: a learner sees one canonical five-item navigation and can enter Roadmap.
   const nav=await page.locator('#mathUnifiedNav [data-math-nav]').evaluateAll(nodes=>nodes.map(n=>n.textContent.replace(/\s+/g,' ').trim()));
   assert.equal(nav.length,5,'Primary learner navigation must contain exactly five items');
