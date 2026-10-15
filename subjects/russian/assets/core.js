@@ -3576,7 +3576,7 @@ function openAdaptiveHandwriting(){
  state.handwritingIndex=idx;
  state.handwritingSessionMode='review';
  resetHandwritingExerciseResponse(true);
- strokes=[];
+ clearHandwritingCanvasDraft();
  save();render();
 }
 function currentHandwritingExercise(item){
@@ -3602,6 +3602,14 @@ function normalizeHandwritingAnswer(value){
 }
 function handwritingExerciseUsesChoice(drill){return arr(drill?.choices).length>0}
 function handwritingExerciseIsCanvasOnly(drill){return drill?.kind==='hear_trace'}
+function handwritingHasVisibleStroke(){
+ return strokes.some(stroke=>{
+  const pts=arr(stroke?.points);
+  if(pts.length<2)return false;
+  const first=pts[0];
+  return pts.some(point=>Math.hypot(Number(point?.x)-Number(first?.x),Number(point?.y)-Number(first?.y))>=12);
+ });
+}
 function speakHandwritingExercise(item,slow=false){
  const drill=currentHandwritingExercise(item);
  if(!drill?.audioText){toast('Bài này chưa có audio.');return false}
@@ -3616,6 +3624,12 @@ function evaluateHandwritingExercise(item){
  state.handwritingExerciseAttempted=true;
  state.handwritingExerciseReveal=true;
  if(handwritingExerciseIsCanvasOnly(drill)){
+  if(!handwritingHasVisibleStroke()){
+   state.handwritingExerciseAttempted=false;
+   state.handwritingExerciseReveal=false;
+   toast('Hãy tô hoặc viết ít nhất một nét trên bảng trước khi tự đối chiếu.');
+   return;
+  }
    state.handwritingExerciseResult='self';
    recordHandwritingAttempt(item,drill,'self');
    save();render();return;
@@ -3636,7 +3650,7 @@ function moveHandwritingExercise(item,delta){
  if(!drills.length)return;
  state.handwritingExerciseIndex=(Math.max(0,Number(state.handwritingExerciseIndex)||0)+delta+drills.length)%drills.length;
  resetHandwritingExerciseResponse(false);
- strokes=[];
+ clearHandwritingCanvasDraft();
  save();render();
 }
 function renderHandwritingExercise(item){
@@ -3659,7 +3673,54 @@ function renderHandwritingExercise(item){
    ${state.handwritingExerciseAttempted&&state.handwritingExerciseReveal?`<div class="hand-exercise-feedback ${esc(result||'')}"><b>${esc(status)}</b><span>Đáp án: <strong lang="ru">${esc(drill.answer)}</strong></span>${drill.hint?`<small>${esc(drill.hint)}</small>`:''}</div>`:'<div class="hand-exercise-hidden-answer">Đáp án được khóa đến sau lần làm đầu tiên.</div>'}
  </section>`;
 }
-function initCanvas(){canvas=$('#writingCanvas'); if(!canvas||canvas.dataset.ready)return; ctx=canvas.getContext('2d'); ctx.lineCap='round';ctx.lineJoin='round'; canvas.dataset.ready='1'; const pos=e=>{const r=canvas.getBoundingClientRect(); return {x:(e.clientX-r.left)*canvas.width/r.width,y:(e.clientY-r.top)*canvas.height/r.height}}; const start=e=>{e.preventDefault(); drawing=true; currentStroke={color:penColor,size:penSize,points:[pos(e)]}; strokes.push(currentStroke); drawCanvas()}; const move=e=>{if(!drawing)return; e.preventDefault(); currentStroke.points.push(pos(e)); drawCanvas()}; const end=()=>{drawing=false;currentStroke=null}; canvas.addEventListener('pointerdown',start); canvas.addEventListener('pointermove',move); window.addEventListener('pointerup',end); canvas.addEventListener('touchstart',e=>e.preventDefault(),{passive:false}); drawCanvas();}
+// One bounded active-letter draft in the canonical learner state; never an image/base64 store.
+function handwritingCanvasDraftId(){
+ const rows=getHandwriting(),item=rows[state.handwritingIndex%Math.max(1,rows.length)]||{};
+ return str(item.id||'').trim();
+}
+function saveHandwritingCanvasDraft(){
+ const id=handwritingCanvasDraftId();
+ const totalPoints=strokes.reduce((n,row)=>n+arr(row?.points).length,0);
+ if(strokes.length>100||totalPoints>9000){
+  const status=$('#saveState');
+  if(status){status.textContent='Nháp viết quá lớn, hãy tải ảnh';status.dataset.localSave='error';}
+  toast('Bản nháp vượt giới hạn an toàn; tải ảnh rồi xóa bớt nét để lưu tiếp.');
+  return false;
+ }
+ const rows=strokes.map(row=>({
+  color:/^#[0-9a-f]{6}$/i.test(str(row.color))?row.color:'#111827',
+  size:Math.max(2,Math.min(18,Number(row.size)||6)),
+  points:arr(row.points).map(p=>({x:Math.round(Number(p.x)||0),y:Math.round(Number(p.y)||0)}))
+ }));
+ const draft=rows.length&&id?{id,strokes:rows}:null;
+ if(draft&&JSON.stringify(draft).length>120000){
+  const status=$('#saveState');
+  if(status){status.textContent='Nháp viết quá lớn, hãy tải ảnh';status.dataset.localSave='error';}
+  toast('Nét viết quá nhiều để lưu an toàn. Hãy tải ảnh rồi giảm số nét.');
+  return false;
+ }
+ state.handwritingCanvasDraft=draft;
+ return save();
+}
+function restoreHandwritingCanvasDraft(){
+ const d=state.handwritingCanvasDraft;
+ if(!d||d.id!==handwritingCanvasDraftId()||!Array.isArray(d.strokes)||d.strokes.length>100)return;
+ let total=0;
+ const rows=[];
+ for(const row of d.strokes){
+  if(!Array.isArray(row?.points))return;
+  total+=row.points.length;
+  if(total>9000)return;
+  const pts=row.points.filter(p=>Number.isFinite(p?.x)&&Number.isFinite(p?.y)&&p.x>=0&&p.x<=2048&&p.y>=0&&p.y<=1180);
+  if(pts.length!==row.points.length)return;
+  rows.push({color:/^#[0-9a-f]{6}$/i.test(str(row.color))?row.color:'#111827',size:Math.max(2,Math.min(18,Number(row.size)||6)),points:pts});
+ }
+ strokes=rows;
+}
+function clearHandwritingCanvasDraft(){
+ strokes=[];state.handwritingCanvasDraft=null;
+}
+function initCanvas(){canvas=$('#writingCanvas'); if(!canvas||canvas.dataset.ready)return; ctx=canvas.getContext('2d'); ctx.lineCap='round';ctx.lineJoin='round'; canvas.dataset.ready='1'; if(!strokes.length)restoreHandwritingCanvasDraft(); const pos=e=>{const r=canvas.getBoundingClientRect(); return {x:(e.clientX-r.left)*canvas.width/r.width,y:(e.clientY-r.top)*canvas.height/r.height}}; const start=e=>{e.preventDefault(); try{canvas.setPointerCapture?.(e.pointerId)}catch(_){} drawing=true; currentStroke={color:penColor,size:penSize,points:[pos(e)]}; strokes.push(currentStroke); drawCanvas()}; const move=e=>{if(!drawing)return; e.preventDefault(); currentStroke.points.push(pos(e)); drawCanvas()}; const end=()=>{if(!drawing)return;drawing=false;currentStroke=null;saveHandwritingCanvasDraft()}; canvas.addEventListener('pointerdown',start); canvas.addEventListener('pointermove',move); canvas.addEventListener('pointerup',end);canvas.addEventListener('pointercancel',end);canvas.addEventListener('lostpointercapture',end); canvas.addEventListener('touchstart',e=>e.preventDefault(),{passive:false}); drawCanvas();}
 function drawCanvas(){if(!ctx)return; ctx.clearRect(0,0,canvas.width,canvas.height); drawCanvasGuide(); for(const s of strokes){if(s.points.length<2)continue; ctx.strokeStyle=s.color; ctx.lineWidth=s.size; ctx.beginPath(); ctx.moveTo(s.points[0].x,s.points[0].y); s.points.forEach(p=>ctx.lineTo(p.x,p.y)); ctx.stroke();}}
 function drawCanvasGuide(){
  if(!ctx||!canvas)return;
@@ -3707,7 +3768,7 @@ function clearCurrentPracticeLine(){
  if(!strokes.length){toast('Chưa có nét nào để xóa');return;}
  const band=practiceBandForStep(); const before=strokes.length;
  strokes=strokes.filter(s=>{const pts=s.points||[]; if(!pts.length)return true; const y=pts.reduce((sum,p)=>sum+p.y,0)/pts.length; return y<band[0]||y>band[1];});
- drawCanvas(); toast(before===strokes.length?'Không có nét trong dòng luyện hiện tại':'Đã xóa dòng luyện hiện tại');
+ saveHandwritingCanvasDraft();drawCanvas(); toast(before===strokes.length?'Không có nét trong dòng luyện hiện tại':'Đã xóa dòng luyện hiện tại');
 }
 function downloadCanvas(){if(!canvas)return; const a=document.createElement('a'); a.href=canvas.toDataURL('image/png'); a.download='russian_handwriting.png'; a.click();}
 function exportJson(name,data){const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; a.click(); URL.revokeObjectURL(a.href);}
@@ -3874,7 +3935,7 @@ function handleClick(e){
   if(b.dataset.mindmapNode){state.mindmapNode=b.dataset.mindmapNode;save();render();return}
  if(b.dataset.writing){state.writingMode=b.dataset.writing;save();render();return}
  if(b.dataset.handPractice){state.handwritingPractice=b.dataset.handPractice;save();render();return}
- if('handIndex' in b.dataset){state.handwritingIndex=Number(b.dataset.handIndex)||0;state.handwritingStep=0;resetHandwritingExerciseResponse(true);strokes=[]; if(state.modalType==='hand-grid')closeModal(); save();render();return}
+ if('handIndex' in b.dataset){state.handwritingIndex=Number(b.dataset.handIndex)||0;state.handwritingStep=0;resetHandwritingExerciseResponse(true);clearHandwritingCanvasDraft(); if(state.modalType==='hand-grid')closeModal(); save();render();return}
  if('handStep' in b.dataset){state.handwritingStep=Number(b.dataset.handStep)||0;save();render();return}
  if('writeIndex' in b.dataset){state.writingIndex=Number(b.dataset.writeIndex)||0;save();render();return}
  if(b.dataset.penColor){penColor=b.dataset.penColor;toast('Đã đổi màu bút');return}
@@ -4024,11 +4085,11 @@ function handleClick(e){
  if(act==='hand-exercise-prev'){const h=getHandwriting(),item=h[state.handwritingIndex]||{};moveHandwritingExercise(item,-1)}
  if(act==='hand-exercise-next'){const h=getHandwriting(),item=h[state.handwritingIndex]||{};moveHandwritingExercise(item,1)}
  if(act==='hand-adaptive-next')openAdaptiveHandwriting();
- if(act==='prev-hand'){const h=getHandwriting(); state.handwritingIndex=h.length?(state.handwritingIndex-1+h.length)%h.length:0;state.handwritingStep=0;resetHandwritingExerciseResponse(true);strokes=[];save();render()}
- if(act==='next-hand'){const h=getHandwriting(); state.handwritingIndex=h.length?(state.handwritingIndex+1)%h.length:0;state.handwritingStep=0;resetHandwritingExerciseResponse(true);strokes=[];save();render()}
- if(act==='undo-canvas'){strokes.pop();drawCanvas()}
+ if(act==='prev-hand'){const h=getHandwriting(); state.handwritingIndex=h.length?(state.handwritingIndex-1+h.length)%h.length:0;state.handwritingStep=0;resetHandwritingExerciseResponse(true);clearHandwritingCanvasDraft();save();render()}
+ if(act==='next-hand'){const h=getHandwriting(); state.handwritingIndex=h.length?(state.handwritingIndex+1)%h.length:0;state.handwritingStep=0;resetHandwritingExerciseResponse(true);clearHandwritingCanvasDraft();save();render()}
+ if(act==='undo-canvas'){strokes.pop();saveHandwritingCanvasDraft();drawCanvas()}
  if(act==='clear-line'){clearCurrentPracticeLine()}
- if(act==='clear-canvas'){strokes=[];drawCanvas()}
+ if(act==='clear-canvas'){clearHandwritingCanvasDraft();save();drawCanvas()}
  if(act==='toggle-guide'){state.handwritingShowGuide=state.handwritingShowGuide===false;save();drawCanvas();render()}
  if(act==='toggle-lines'){state.handwritingShowLines=state.handwritingShowLines===false;save();drawCanvas();render()}
  if(act==='download-canvas')downloadCanvas();
@@ -4111,11 +4172,11 @@ function handleKeys(e){
  }
  if(state.view==='writing'&&state.writingMode==='handwriting'){
    const h=getHandwriting(), item=h[state.handwritingIndex]||{}, steps=handwritingStrokeSteps(item);
-   if(e.key==='ArrowLeft'){state.handwritingIndex=h.length?(state.handwritingIndex-1+h.length)%h.length:0;state.handwritingStep=0;resetHandwritingExerciseResponse(true);strokes=[];save();render();e.preventDefault();return}
-   if(e.key==='ArrowRight'){state.handwritingIndex=h.length?(state.handwritingIndex+1)%h.length:0;state.handwritingStep=0;resetHandwritingExerciseResponse(true);strokes=[];save();render();e.preventDefault();return}
+   if(e.key==='ArrowLeft'){state.handwritingIndex=h.length?(state.handwritingIndex-1+h.length)%h.length:0;state.handwritingStep=0;resetHandwritingExerciseResponse(true);clearHandwritingCanvasDraft();save();render();e.preventDefault();return}
+   if(e.key==='ArrowRight'){state.handwritingIndex=h.length?(state.handwritingIndex+1)%h.length:0;state.handwritingStep=0;resetHandwritingExerciseResponse(true);clearHandwritingCanvasDraft();save();render();e.preventDefault();return}
    if(e.key==='ArrowUp'){state.handwritingStep=Math.max(0,state.handwritingStep-1);save();render();e.preventDefault();return}
    if(e.key==='ArrowDown'){state.handwritingStep=Math.min(Math.max(0,steps.length-1),state.handwritingStep+1);save();render();e.preventDefault();return}
-   if(e.key==='Backspace'){strokes.pop();drawCanvas();e.preventDefault();return}
+   if(e.key==='Backspace'){strokes.pop();saveHandwritingCanvasDraft();drawCanvas();e.preventDefault();return}
  }
  if(state.view==='vocab'){
    if(e.key==='ArrowLeft'){state.vocabIndex=Math.max(0,state.vocabIndex-1);save();render();e.preventDefault();return}
