@@ -22,6 +22,24 @@ const optionalLoader=read('assets/russian-optional-data-loader.js');
 const contentContract=read('assets/content-contract.js');
 const contentContractCss=read('assets/content-contract.css');
 const core=read('assets/core.js');
+// R200 handwriting: a real stroke is required before self-confirming hear_trace.
+// Draft stays in the existing learner state and is capped (no image or secondary store).
+for(const invariant of [
+  'function handwritingHasVisibleStroke()',
+  'if(!handwritingHasVisibleStroke())',
+  'function saveHandwritingCanvasDraft()',
+  'function restoreHandwritingCanvasDraft()',
+  'function clearHandwritingCanvasDraft()',
+  'state.handwritingCanvasDraft=draft',
+  'totalPoints>9000',
+  'JSON.stringify(draft).length>120000',
+  'canvas.setPointerCapture?.(e.pointerId)',
+  "canvas.addEventListener('pointercancel',end)"
+]){
+  must(core.includes(invariant),'R200 handwriting safety contract missing: '+invariant);
+}
+must(!core.includes("window.addEventListener('pointerup',end)"),'Handwriting canvas must not leak global pointerup listeners after each render');
+
 // R200: learner self-confirmation, recognition transcripts and independently reviewed speech
 // are distinct. Preserve old learner records but never label button clicks as graded speech.
 const learningFlow=read('assets/learning-flow.js');
