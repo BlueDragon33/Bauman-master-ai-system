@@ -412,6 +412,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/math-learning-journey
         run: node tests/math-learning-journey-browser.mjs
+      - name: Verify Math navigation and study panel stability in Chromium
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/math-ui-stability
+        run: node tests/math-ui-stability-browser.mjs
       - name: Run Hub V2 responsive acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
@@ -651,6 +656,7 @@ jobs:
             artifacts/foundation-canonical-context
             artifacts/math-study-command-center
             artifacts/math-learning-journey
+            artifacts/math-ui-stability
             artifacts/hub-premium-responsive
             artifacts/hub-data-truth
             artifacts/schedule-reference-v1
