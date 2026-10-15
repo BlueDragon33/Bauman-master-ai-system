@@ -819,7 +819,9 @@ function render(){
    if(target){target.focus({preventScroll:true});if(Number.isInteger(focus.start)&&Number.isInteger(focus.end)&&typeof target.setSelectionRange==='function')try{target.setSelectionRange(focus.start,focus.end)}catch(_){}}
   }
   lastRenderedContext=[state.view,state.learnTab].join(':');
-  window.dispatchEvent(new CustomEvent('russian:core-render',{detail:{view:state.view,learnTab:state.learnTab}}));
+  // Reuse the already loaded canonical knowledge index; consumers must not
+  // start competing fetches during navigation or tab activation.
+  window.dispatchEvent(new CustomEvent('russian:core-render',{detail:{view:state.view,learnTab:state.learnTab,knowledgeIndex:DB['knowledge-index']||[]}}));
  }catch(e){
   console.error('FULL_RENDER_GUARD',e);
   try{
