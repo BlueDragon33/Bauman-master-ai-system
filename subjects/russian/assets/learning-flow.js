@@ -87,7 +87,7 @@
     if(!s)return {key:'new',label:'Chưa bắt đầu'};
     if(step==='check'&&latestCheckNeedsReview(s))return {key:'review',label:'Cần sửa câu sai'};
     if(step==='check'&&Number(s.correct||0)>0)return {key:'evidence',label:`${s.correct} câu đúng`};
-    if(step==='speaking'&&Number(s.ok||0)>0)return {key:'evidence',label:`${s.ok} câu nói ổn`};
+    if(step==='speaking'&&Number(s.ok||0)>0)return {key:'evidence',label:`${s.ok} lần tự xác nhận luyện nói · chưa chấm phát âm`};
     if(step==='alphabet'&&Number(s.strokeActions||0)>0)return {key:'evidence',label:`${s.strokeActions} lượt luyện nét`};
     if(step==='alphabet'&&Number(s.practiceActions||0)>0)return {key:'opened',label:'Đã thao tác · chưa có nét viết thật'};
     if(step==='speaking'&&Number(s.attempts||0)>0)return {key:'active',label:'Đã thử · chưa xác nhận ổn'};
