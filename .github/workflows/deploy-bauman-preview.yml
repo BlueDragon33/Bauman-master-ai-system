@@ -147,6 +147,33 @@ jobs:
           console.log('Russian Preview entry and current PWA cache identity PASS.');
           NODE
 
+          echo "Checking exact Russian runtime asset contents against this checkout..."
+          while IFS= read -r ASSET_SOURCE; do
+            [[ -n "$ASSET_SOURCE" ]] || continue
+            if [[ ! -f "$ASSET_SOURCE" ]]; then
+              echo "::error::Russian source asset missing: $ASSET_SOURCE"
+              exit 1
+            fi
+            ASSET_OUTPUT="/tmp/bauman-preview-asset-$(printf '%s' "$ASSET_SOURCE" | tr '/' '_')"
+            curl --fail --silent --show-error --max-time 20 \
+              -H 'Cache-Control: no-cache' -H 'Pragma: no-cache' \
+              "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/$ASSET_SOURCE?_bauman_revision_probe=$GITHUB_SHA" > "$ASSET_OUTPUT"
+            SOURCE_SHA="$(sha256sum "$ASSET_SOURCE" | awk '{print $1}')"
+            PREVIEW_SHA="$(sha256sum "$ASSET_OUTPUT" | awk '{print $1}')"
+            if [[ "$SOURCE_SHA" != "$PREVIEW_SHA" ]]; then
+              echo "::error::Russian Preview asset content drift: $ASSET_SOURCE"
+              exit 1
+            fi
+            echo "Russian Preview asset SHA-256 PASS: $ASSET_SOURCE"
+          done <<'RUSSIAN_PREVIEW_ASSETS'
+          subjects/russian/assets/subject-adapter.js
+          subjects/russian/assets/core.js
+          subjects/russian/assets/russian-future-ui.js
+          subjects/russian/assets/russian-future-ui.css
+          subjects/russian/assets/speech-interaction-engine.js
+          subjects/russian/engine/integration/browser-bootstrap.js
+          RUSSIAN_PREVIEW_ASSETS
+
           echo "Preview source-level smoke PASS; authenticated Work W1–W3 and RU03 remain independent."
       - name: Preview summary
         run: |
