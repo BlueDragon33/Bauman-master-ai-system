@@ -22,6 +22,40 @@ const optionalLoader=read('assets/russian-optional-data-loader.js');
 const contentContract=read('assets/content-contract.js');
 const contentContractCss=read('assets/content-contract.css');
 const core=read('assets/core.js');
+// R200: learner self-confirmation, recognition transcripts and independently reviewed speech
+// are distinct. Preserve old learner records but never label button clicks as graded speech.
+const learningFlow=read('assets/learning-flow.js');
+must(core.includes("signalType:'self-confirmation'")&&core.includes('selfConfirmed:true'),'Core must preserve manual confirmation provenance');
+must(core.includes("signalType:'asr_transcript_similarity'")&&core.includes('authoritative:false'),'ASR must remain a non-authoritative transcript signal');
+must(core.includes('✓ Tôi đã tự đối chiếu'),'Manual speaking control must name itself as self-review');
+must(core.includes('câu đã đánh dấu')&&!core.includes('câu đạt ·'),'Speech completion display must not claim graded pronunciation');
+must(core.includes("result.manual?'Tự xác nhận đã luyện")&&core.includes("result.manual?'Tự đánh giá đã được lưu"),'Manual feedback must not use an absent pronunciation score');
+must(learningFlow.includes('lần tự xác nhận luyện nói · chưa chấm phát âm'),'Learning flow must label speaking evidence as self-reported');
+for(const token of ['selfCount','transcriptCount','legacyCount','lượt tự xác nhận','transcript hỗ trợ','lượt chưa phân loại']){
+  must(futureJs.includes(token),'Russian home must distinguish speaking provenance: '+token);
+}
+must(!futureJs.includes("lượt có phản hồi"),'Self-confirmations cannot be called externally scored speaking feedback');
+
+// R200 listening source truth: search suggestions cannot silently become playable lessons.
+const videoSources=JSON.parse(read('data/videos.json'));
+must(Array.isArray(videoSources),'Russian media sources must be an array');
+for(const source of videoSources.filter(x=>x.sourceType==='youtube-search'||x.sourceStatus==='suggestion')){
+  must(source.sourceStatus==='suggestion','Search-only media must be explicitly marked as suggestions');
+  must(!source.iframe,'Search-only media may not advertise a verified embedded player');
+}
+for(const invariant of [
+  'const searchSuggestion=!embed',
+  'const primaryListenAction=embed',
+  'Mở bài nghe tương tác',
+  'Tìm video bên ngoài',
+  'Đây là gợi ý tìm kiếm, không phải video',
+  "const continueToSpeech=embed?",
+  'sourceAreaLabel=embed?'
+]){
+  must(core.includes(invariant),'R200 media truth contract missing: '+invariant);
+}
+
+
 // R200 listening source truth: search suggestions cannot silently become playable lessons.
 const videoSources=JSON.parse(read('data/videos.json'));
 must(Array.isArray(videoSources),'Russian media sources must be an array');
