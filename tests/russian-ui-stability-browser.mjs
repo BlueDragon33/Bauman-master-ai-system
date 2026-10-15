@@ -150,8 +150,9 @@ try {
     return values;
   });
   await verify('Mobile viewport remains usable without horizontal overflow', async () => {
-    await page.setViewportSize({ width: 390, height: 844 });
+    // Navigate while the desktop sidebar is visible; mobile has an off-canvas nav.
     await navigate(page, 'overview');
+    await page.setViewportSize({ width: 390, height: 844 });
     await page.locator('.rf-mobile-dock').waitFor({ state: 'visible' });
     const value = await page.evaluate(() => ({ viewport: innerWidth, scrollWidth: document.documentElement.scrollWidth, dock: document.querySelector('.rf-mobile-dock')?.getBoundingClientRect().width }));
     assert.ok(value.scrollWidth <= value.viewport + 2, 'Mobile page must not horizontally overflow');
