@@ -299,7 +299,7 @@
     window.addEventListener('russian:core-render',event=>{
       const data=event?.detail?.knowledgeIndex;
       if(Array.isArray(data))knowledge=data.map(x=>({id:clean(x.id),title:clean(x.title),stage:clean(x.stage)})).filter(x=>x.id);
-      scheduleRender();
+      renderPanel();
     });
   });
   window.RussianLearningFlow={
