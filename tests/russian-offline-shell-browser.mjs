@@ -6,7 +6,7 @@ const BASE=process.env.BAUMAN_E2E_BASE_URL||'http://127.0.0.1:4173/';
 const OUT=process.env.BAUMAN_E2E_ARTIFACT_DIR||'artifacts/russian-offline-shell';
 const swSource=fs.readFileSync('subjects/russian/sw.js','utf8');
 const expectedShell=swSource.match(/const CACHE='([^']+)'/)?.[1];
-assert.ok(/^russian-app-shell-v\\d+-engine-/.test(expectedShell||''),'Russian Engine shell must declare a versioned cache');
+assert.ok(/^russian-app-shell-v\d+-engine-/.test(expectedShell||''),'Russian Engine shell must declare a versioned cache');
 fs.mkdirSync(OUT,{recursive:true});
 
 async function withTimeout(promise,timeoutMs,label){
