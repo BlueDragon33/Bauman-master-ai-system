@@ -65,26 +65,89 @@ jobs:
       - name: Deploy Learning Runtime preview
         run: npx --yes wrangler@4.147.0 deploy --config wrangler.runtime.preview.jsonc
 
-      - name: Verify exact preview runtime and Python activation
+      - name: Verify exact Preview Control, Runtime and Russian learning entry
         shell: bash
         run: |
           set -euo pipefail
+
+          echo "Checking exact Control preview revision and D1 readiness..."
+          BAUMAN_DEPLOYMENT_URL="$BAUMAN_CONTROL_PREVIEW_ORIGIN/__deployment" \
+          BAUMAN_EXPECTED_REVISION="$GITHUB_SHA" \
+          BAUMAN_EXPECTED_CHANNEL="cloudflare-preview" \
+          BAUMAN_EXPECTED_RUNTIME="control-service" \
+          node scripts/wait-cloudflare-deployment-revision.mjs > /tmp/bauman-preview-control.json
+
+          echo "Checking exact Learning Runtime preview revision..."
           BAUMAN_DEPLOYMENT_URL="$BAUMAN_RUNTIME_PREVIEW_ORIGIN/__deployment" \
           BAUMAN_EXPECTED_REVISION="$GITHUB_SHA" \
           BAUMAN_EXPECTED_CHANNEL="cloudflare-preview" \
           BAUMAN_EXPECTED_RUNTIME="learning-runtime" \
           node scripts/wait-cloudflare-deployment-revision.mjs > /tmp/bauman-preview-runtime.json
+
           node --input-type=module - <<'NODE'
           import fs from 'node:fs';
+          const control = JSON.parse(fs.readFileSync('/tmp/bauman-preview-control.json', 'utf8'));
           const runtime = JSON.parse(fs.readFileSync('/tmp/bauman-preview-runtime.json', 'utf8'));
-          if (!runtime.controlOriginConfigured) throw new Error('Preview runtime control origin is not configured.');
-          if (runtime.pythonExecutionEnabled !== true) throw new Error('Preview Python execution is not enabled.');
-          if (runtime.pythonRuntimeProfile !== 'cpython-3.14.8-stdlib-v1') {
-            throw new Error('Preview Python runtime profile mismatch: ' + String(runtime.pythonRuntimeProfile));
+          if (control.ok !== true || control.databaseReady !== true) throw new Error('Preview Control D1 is not ready for BM device and content-review schemas.');
+          if (control.controlSecretConfigured !== true) throw new Error('Preview Control service secret is not configured.');
+          if (control.applicationManagementOriginConfigured !== true) throw new Error('Preview Application Management origin is not configured.');
+          if (control.appOriginConfigured !== true) throw new Error('Preview Learning Runtime origin is not configured at Control.');
+          if (runtime.ok !== true || runtime.controlOriginConfigured !== true) throw new Error('Preview Runtime → Control origin is not configured.');
+          if (runtime.accessMode !== 'standalone' || runtime.serverSideLearningGate !== false) throw new Error('Preview standalone access-mode contract drifted.');
+          if (runtime.pythonExecutionEnabled !== true || runtime.pythonRuntimeProfile !== 'cpython-3.14.8-stdlib-v1') {
+            throw new Error('Preview Python activation is not available on the exact Runtime revision.');
           }
-          console.log('Exact preview Python release identity PASS.');
+          console.log('Exact Control + Runtime identity and non-secret readiness flags PASS.');
           NODE
 
+          echo "Checking anonymous Control administration remains fail-closed..."
+          CONTROL_STATUS_CODE="$(curl --silent --show-error --max-time 20 \
+            --output /tmp/bauman-preview-anonymous-control.json --write-out '%{http_code}' \
+            "$BAUMAN_CONTROL_PREVIEW_ORIGIN/api/control/status" || true)"
+          if [[ "$CONTROL_STATUS_CODE" != "403" ]]; then
+            echo "::error::Anonymous Preview Control must return HTTP 403; got $CONTROL_STATUS_CODE."
+            exit 1
+          fi
+          node --input-type=module - <<'NODE'
+          import fs from 'node:fs';
+          const payload = JSON.parse(fs.readFileSync('/tmp/bauman-preview-anonymous-control.json', 'utf8'));
+          if (payload.code !== 'CONTROL_TICKET_FORBIDDEN') throw new Error('Preview Control rejected anonymous access with unexpected reason.');
+          console.log('Anonymous Control ticket rejection PASS.');
+          NODE
+
+          echo "Checking live Runtime → Control health link..."
+          curl --fail --silent --show-error --max-time 20 -H 'Cache-Control: no-cache' \
+            "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/__control-link" > /tmp/bauman-preview-control-link.json
+          node --input-type=module - <<'NODE'
+          import fs from 'node:fs';
+          const payload = JSON.parse(fs.readFileSync('/tmp/bauman-preview-control-link.json', 'utf8'));
+          if (payload.ok !== true || payload.controlReachable !== true || payload.controlApplication !== 'bauman-master-ai') {
+            throw new Error('Preview Runtime cannot reach the expected Bauman Control service.');
+          }
+          console.log('Preview Runtime → Control link PASS.');
+          NODE
+
+          echo "Checking Russian learning entry and matching PWA revision..."
+          curl --fail --silent --show-error --max-time 20 -H 'Cache-Control: no-cache' \
+            "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/subjects/russian/index.html?_bauman_revision_probe=$GITHUB_SHA" > /tmp/bauman-preview-russian.html
+          curl --fail --silent --show-error --max-time 20 -H 'Cache-Control: no-cache' \
+            "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/subjects/russian/sw.js?_bauman_revision_probe=$GITHUB_SHA" > /tmp/bauman-preview-russian-sw.js
+          node --input-type=module - <<'NODE'
+          import fs from 'node:fs';
+          const html = fs.readFileSync('/tmp/bauman-preview-russian.html', 'utf8');
+          const liveSw = fs.readFileSync('/tmp/bauman-preview-russian-sw.js', 'utf8');
+          const sourceSw = fs.readFileSync('subjects/russian/sw.js', 'utf8');
+          const expectedCache = sourceSw.match(/^const CACHE='([^']+)'/m)?.[1];
+          if (!html.includes('<title>Tiếng Nga') || !html.includes('assets/russian-future-ui.js') || !html.includes('data-local-save="pending"')) {
+            throw new Error('Preview Russian page is missing its current learner-facing shell.');
+          }
+          if (!expectedCache || !liveSw.includes("const CACHE='" + expectedCache + "'")) {
+            throw new Error('Preview Russian service worker is stale or does not match the checked-out source.');
+          }
+          console.log('Russian Preview entry and current PWA cache identity PASS.');
+          NODE
+
+          echo "Preview source-level smoke PASS; authenticated Work W1–W3 and RU03 remain independent."
       - name: Preview summary
         run: |
           echo "Bauman development preview updated."
