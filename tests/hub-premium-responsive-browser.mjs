@@ -344,6 +344,63 @@ try{
     await page.screenshot({path:path.join(OUT,`primary-v6-${id}.png`),fullPage:true});
   }
 
+  // Blueprint OS C2: dark V6 hero typography is white/bright in EVERY theme,
+  // including paper/mint where the global ink tokens are dark. Computed style
+  // is checked after render, not merely presence of authored CSS declarations.
+  const c2HeroAudit=[];
+  for(const width of [1440,390]){
+    await page.setViewportSize({width,height:width===390?844:900});
+    for(const theme of ['academic','paper','night','mint']){
+      await page.evaluate(value=>{
+        const control=document.getElementById('themeSelect');
+        if(!control||![...control.options].some(opt=>opt.value===value))throw new Error('Missing theme option: '+value);
+        control.value=value;
+        control.dispatchEvent(new Event('change',{bubbles:true}));
+      },theme);
+      await page.waitForFunction(value=>document.body.dataset.theme===value,theme,{timeout:10000});
+      for(const id of ['subjects','schedule','research']){
+        await page.evaluate(key=>window.app?.page?.(key,false),id);
+        await page.waitForFunction(key=>{
+          const root=document.getElementById('page-'+key);
+          return root?.classList.contains('active')&&!!root.querySelector('.hub-v6-hero h2');
+        },id,{timeout:10000});
+        const colors=await page.evaluate(key=>{
+          const root=document.getElementById('page-'+key);
+          const hero=root.querySelector('.hub-v6-hero');
+          const selectors={title:'h2',description:'p',eyebrow:'.hub-v6-eyebrow',value:'.hub-v6-kpi b',label:'.hub-v6-kpi small'};
+          const color=sel=>getComputedStyle(hero.querySelector(sel)).color;
+          const lum=value=>{
+            const nums=(value.match(/\\d+(?:\\.\\d+)?/g)||[]).slice(0,3).map(Number);
+            if(nums.length!==3)throw new Error('Cannot read computed CSS color: '+value);
+            const linear=nums.map(n=>{
+              const x=n/255;return x<=.04045?x/12.92:((x+.055)/1.055)**2.4;
+            });
+            return .2126*linear[0]+.7152*linear[1]+.0722*linear[2];
+          };
+          const background=lum('rgb(57,67,78)'); // brighter-than-rendered dark-hero worst case
+          const foregrounds=Object.fromEntries(Object.entries(selectors).map(([name,sel])=>[name,color(sel)]));
+          const contrasts=Object.fromEntries(Object.entries(foregrounds).map(([name,value])=>{
+            const l=lum(value);return [name,(Math.max(l,background)+.05)/(Math.min(l,background)+.05)];
+          }));
+          return {foregrounds,contrasts,overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth};
+        },id);
+        const where=id+'/'+theme+'/'+width;
+        assert.equal(colors.foregrounds.title,'rgb(255, 255, 255)',where+': title must be pure white on dark hero');
+        assert.equal(colors.foregrounds.value,'rgb(255, 255, 255)',where+': KPI value must be pure white');
+        for(const key of ['description','eyebrow','label']){
+          assert.ok(colors.contrasts[key]>=4.5,where+': '+key+' contrast '+colors.contrasts[key]+' below 4.5:1');
+        }
+        assert.ok(colors.contrasts.title>=3&&colors.contrasts.value>=3,where+': large text below 3:1');
+        assert.ok(colors.overflow<=2,where+': horizontal overflow '+colors.overflow);
+        c2HeroAudit.push({where,...colors});
+        if(width===390&&['academic','night'].includes(theme)){
+          await page.screenshot({path:path.join(OUT,'c2-dark-hero-'+id+'-'+theme+'-390.png'),fullPage:false});
+        }
+      }
+    }
+  }
+  console.log('C2_V6_HERO_COMPUTED_CONTRAST_PASS',JSON.stringify(c2HeroAudit));
+
   await page.setViewportSize({width:1920,height:1080});
   await page.evaluate(()=>window.app?.page?.('roadmap',false));
   await page.waitForFunction(()=>document.getElementById('page-roadmap')?.classList.contains('active')===true&&window.BAUMAN_HUB_ROADMAP_V2?.selfCheck?.().active===true,null,{timeout:10000});
