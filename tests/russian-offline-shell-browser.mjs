@@ -41,9 +41,9 @@ try{
     const stale=await caches.open(old);
     await stale.put('./assets/russian-future-ui.js',new Response('old-russian-v26'));
     const sibling=await caches.open(foreign);
-    await sibling.put('./__retain-foreign-cache',new Response('unrelated-app-retained'));
+    await sibling.put('/__retain-foreign-cache',new Response('unrelated-app-retained'));
     const learning=await caches.open(data);
-    await learning.put('./__retain-learning-data',new Response('user-offline-data-retained'));
+    await learning.put('/__retain-learning-data',new Response('user-offline-data-retained'));
     return {old,foreign,data,keys:await caches.keys()};
   });
   for(const name of [seeded.old,seeded.foreign,seeded.data]){
@@ -72,9 +72,9 @@ try{
   const migration=await page.evaluate(async()=>{
     const keys=await caches.keys();
     const foreign=await caches.open('bauman-other-subject-persist-sentinel-v1');
-    const sibling=await foreign.match('./__retain-foreign-cache');
+    const sibling=await foreign.match('/__retain-foreign-cache');
     const learning=await caches.open('russian-learning-data-v1');
-    const retained=await learning.match('./__retain-learning-data');
+    const retained=await learning.match('/__retain-learning-data');
     return {
       keys,
       previousShellRemoved:!keys.includes('russian-app-shell-v26-engine-semantic-symbols'),
