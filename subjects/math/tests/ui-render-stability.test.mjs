@@ -12,6 +12,7 @@ for(const [name,text] of Object.entries({nav,dashboard,flow})){
   test(name+' is valid JavaScript',()=>assert.doesNotThrow(()=>new vm.Script(text)));
 }
 test('navigation retains DOM button identity during sync',()=>{
+  assert.match(nav,/const buttons=\$\$\(':scope > \.math-unified-group/);
   assert.match(nav,/const matches=buttons\.length===PRIMARY_ITEMS\.length/);
   assert.match(nav,/if\(!matches\)\{/);
   assert.match(nav,/buttons\.forEach\(\(button,i\)=>/);
