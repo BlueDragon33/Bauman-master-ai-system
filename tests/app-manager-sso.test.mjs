@@ -101,7 +101,7 @@ test("runtime preserves Device Gate after SSO and additionally protects Python",
  const p=readFileSync("cloudflare/runtime-worker-python.mjs","utf8");
  assert.match(w,/handleManagedSso\(request,env\)/);
  assert.match(w,/hasManagedSsoSession\(request,env\)/);
- assert.match(w,/validateDeviceSession\(request,controlOrigin,token\)/);
+ assert.match(w,/validateDeviceSession\(request,\s*controlOrigin,\s*token\)/);
  assert.match(p,/APP_MANAGER_SSO_REQUIRED/);
  assert.match(p,/return pythonApi\(request, env, url\)/);
 });
