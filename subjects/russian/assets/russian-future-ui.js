@@ -429,8 +429,8 @@
     }
     if(toggle.dataset.rfDrawerBound==='1')return;
     toggle.dataset.rfDrawerBound='1';
-    const close=(restore=false)=>{document.body.classList.remove('rf-sidebar-open');toggle.setAttribute('aria-expanded','false');if(restore)toggle.focus();};
-    toggle.addEventListener('click',()=>{const open=!document.body.classList.contains('rf-sidebar-open');document.body.classList.toggle('rf-sidebar-open',open);toggle.setAttribute('aria-expanded',open?'true':'false');if(open)sidebar.querySelector('button.active,button,select')?.focus();});
+    const close=(restore=false)=>{document.body.classList.remove('rf-sidebar-open');toggle.setAttribute('aria-expanded','false');syncMobileDock();if(restore)toggle.focus();};
+    toggle.addEventListener('click',()=>{const open=!document.body.classList.contains('rf-sidebar-open');document.body.classList.toggle('rf-sidebar-open',open);toggle.setAttribute('aria-expanded',open?'true':'false');syncMobileDock();if(open)sidebar.querySelector('button.active,button,select')?.focus();});
     scrim.addEventListener('click',()=>close(true));
     sidebar.addEventListener('click',e=>{if(e.target.closest('#nav button[data-view]')&&matchMedia('(max-width:767px)').matches)close(false)});
     document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.body.classList.contains('rf-sidebar-open')){e.preventDefault();close(true)}});
