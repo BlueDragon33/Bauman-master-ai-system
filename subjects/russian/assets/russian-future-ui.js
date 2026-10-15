@@ -271,7 +271,8 @@
     vocab:'<path d="M4 4h15a2 2 0 0 1 2 2v14H6a3 3 0 0 1-3-3V6a2 2 0 0 1 2-2Zm0 13a3 3 0 0 1 3-3h14M8 8h8m-8 3h6"/>',
     grammar:'<rect x="3" y="4" width="18" height="16" rx="3"/><path d="M7 9h10M7 13h7m-7 4h4"/>',
     dialogue:'<path d="M20 12a7 7 0 0 1-7 7H9l-4 3v-5a7 7 0 0 1-2-5 8 8 0 0 1 8-8h2a7 7 0 0 1 7 8Z"/><path d="M8 11h8m-8 4h5"/>',
-    review:'<rect x="4" y="3" width="16" height="18" rx="3"/><path d="m8 9 2 2 4-4m-6 10h8m-8-3h8"/>'
+    review:'<rect x="4" y="3" width="16" height="18" rx="3"/><path d="m8 9 2 2 4-4m-6 10h8m-8-3h8"/>',
+    more:'<path d="M4 7h16M4 12h16M4 17h16"/>'
   });
   function homeIcon(key){
     return '<svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+(HOME_ICONS[key]||HOME_ICONS.lesson)+'</svg>';
@@ -379,6 +380,24 @@
       speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='ru-RU';u.rate=.82;speechSynthesis.speak(u);
     }catch(_){}
   }
+  // Presentation-only mobile navigation: reuse core data-route and the existing drawer.
+  function syncMobileDock(){
+    const dock=document.querySelector('.rf-mobile-dock');if(!dock)return;
+    const active=document.querySelector('#nav button.active[data-view]');
+    const view=active?.dataset.view||'overview',learn=active?.dataset.learn||'';
+    const key=view==='overview'?'home':view==='media'?'listen':view==='learning'&&learn==='practice'?'speak':view==='vocab'?'vocab':'more';
+    const drawerOpen=document.body.classList.contains('rf-sidebar-open');
+    dock.querySelectorAll('button[data-rf-dock]').forEach(button=>{
+      const selected=drawerOpen?button.dataset.rfDock==='more':button.dataset.rfDock===key;
+      if(button.classList.contains('active')!==selected)button.classList.toggle('active',selected);
+      const current=selected&&!drawerOpen&&key!=='more'?'page':null;
+      if(button.getAttribute('aria-current')!==current){
+        if(current)button.setAttribute('aria-current',current);else button.removeAttribute('aria-current');
+      }
+    });
+    const more=dock.querySelector('[data-rf-menu]');
+    if(more&&more.getAttribute('aria-expanded')!==(drawerOpen?'true':'false'))more.setAttribute('aria-expanded',drawerOpen?'true':'false');
+  }
   function upgradeMobileShell(){
     const topbar=document.querySelector('.ru-topbar'),sidebar=document.querySelector('.ru-sidebar');
     if(!topbar||!sidebar)return;
@@ -396,6 +415,18 @@
     }
     let scrim=document.querySelector('.rf-sidebar-scrim');
     if(!scrim){scrim=document.createElement('button');scrim.type='button';scrim.className='rf-sidebar-scrim';scrim.setAttribute('aria-label','Đóng điều hướng học tập');document.body.appendChild(scrim);}
+    let dock=document.querySelector('.rf-mobile-dock');
+    if(!dock){
+      const item=(key,title,route)=>'<button type="button" class="rf-dock-action" data-rf-dock="'+key+'" '+(route?'data-route="'+esc(JSON.stringify(route))+'"':'data-rf-menu="1" aria-controls="'+esc(sidebar.id)+'" aria-expanded="false"')+'><span class="rf-dock-icon">'+homeIcon(key==='home'?'lesson':key==='speak'?'speak':key==='listen'?'listen':key==='vocab'?'vocab':'more')+'</span><span class="rf-dock-label">'+title+'</span></button>';
+      dock=document.createElement('nav');dock.className='rf-mobile-dock';dock.setAttribute('aria-label','Điều hướng nhanh tiếng Nga');
+      dock.innerHTML=item('home','Trang chủ',{view:'overview'})+item('listen','Nghe',{view:'media'})+item('speak','Nói',{view:'learning',learnTab:'practice'})+item('vocab','Từ vựng',{view:'vocab'})+item('more','Thêm');
+      document.body.appendChild(dock);
+    }
+    const more=dock.querySelector('[data-rf-menu]');
+    if(more&&more.dataset.rfMenuBound!=='1'){
+      more.dataset.rfMenuBound='1';
+      more.addEventListener('click',()=>toggle.click());
+    }
     if(toggle.dataset.rfDrawerBound==='1')return;
     toggle.dataset.rfDrawerBound='1';
     const close=(restore=false)=>{document.body.classList.remove('rf-sidebar-open');toggle.setAttribute('aria-expanded','false');if(restore)toggle.focus();};
@@ -420,7 +451,7 @@
   }
   let scheduled=false;
   function upgrade(){
-    scheduled=false;upgradeBrand();upgradeOverview();upgradeTabIntro();bind();
+    scheduled=false;upgradeBrand();upgradeOverview();upgradeTabIntro();bind();syncMobileDock();
     window.RussianContentContract?.enhance?.();
     // Refresh vocabulary UI only when the vocabulary view is active; avoid idle DOM churn.
     if(currentView()==='vocab')window.RussianVocabSrs?.refresh?.();
