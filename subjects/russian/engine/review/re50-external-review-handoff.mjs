@@ -1,5 +1,5 @@
 import fs from 'node:fs';
-import {buildRu03ReferenceGuide} from '../knowledge/ru03-reference-library.mjs';
+import {buildRu03ReferenceGuide,buildRu03SourceAnchoredPilot,loadRu03SourceAnchoredPilot} from '../knowledge/ru03-reference-library.mjs';
 import {buildRe49ReviewInventory,buildRe49ReviewPackets} from './re49-review-packets-r4.mjs';
 import {verifyAuthorizedReviewDecision} from './re45-review-core.mjs';
 
@@ -43,6 +43,7 @@ export function buildExternalReviewHandoff({inventory=buildRe49ReviewInventory()
   const reg=validateReviewerRegistry(registry);
   if(!reg.ok)throw new Error('RE50 reviewer registry invalid: '+reg.errors.join('; '));
   const byId=new Map(packets.packets.map(x=>[x.itemId,x]));
+  const evidencePilot=loadRu03SourceAnchoredPilot();
   const entries=inventory.items.map(item=>{
     const packet=byId.get(item.itemId);
     if(!packet)throw new Error('RE50 packet missing '+item.itemId);
@@ -62,6 +63,7 @@ export function buildExternalReviewHandoff({inventory=buildRe49ReviewInventory()
       audioFingerprint:item.audioFingerprint,
       reviewFingerprint:item.reviewFingerprint,
       requiredReviews:['TEXT','AUDIO'],
+      sourceAnchoredPilot:item.itemId===evidencePilot.itemId?buildRu03SourceAnchoredPilot(item,{pilot:evidencePilot}):null,
       reviewQuestions:Object.freeze([
         'TEXT: Is the exact Russian natural, grammatical, pragmatically appropriate and semantically matched to this scene?',
         'TEXT: Is this suitable as a safe beginner default for the specified speaker/recipient/register?',
