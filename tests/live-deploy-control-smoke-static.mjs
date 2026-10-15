@@ -73,6 +73,27 @@ for(const token of [
 ]){
   assert.ok(preview.includes(token),'Preview workflow missing fail-closed smoke: '+token);
 }
+// Verify deployment asset parity rather than relying on HTML markers or SW cache version
+// while the edge may still serve old CSS/JS bytes.
+for(const marker of [
+  'Checking exact Russian runtime asset contents against this checkout...',
+  "done <<'RUSSIAN_PREVIEW_ASSETS'",
+  'SOURCE_SHA="$(sha256sum "$ASSET_SOURCE"',
+  'PREVIEW_SHA="$(sha256sum "$ASSET_OUTPUT"',
+  'if [[ "$SOURCE_SHA" != "$PREVIEW_SHA" ]]',
+  'Russian Preview asset content drift: $ASSET_SOURCE',
+  'BAUMAN_RUNTIME_PREVIEW_ORIGIN/$ASSET_SOURCE?_bauman_revision_probe=$GITHUB_SHA',
+  "echo \"Russian Preview asset SHA-256 PASS: $ASSET_SOURCE\""
+])assert.ok(preview.includes(marker),'Preview must compare actual served asset bytes: '+marker);
+for(const asset of [
+  'subjects/russian/assets/subject-adapter.js',
+  'subjects/russian/assets/core.js',
+  'subjects/russian/assets/russian-future-ui.js',
+  'subjects/russian/assets/russian-future-ui.css',
+  'subjects/russian/assets/speech-interaction-engine.js',
+  'subjects/russian/engine/integration/browser-bootstrap.js'
+])assert.ok(preview.includes(asset),'Preview digest must include learner/runtime asset: '+asset);
+
 assert(!preview.includes('environment: bauman-production'),'Preview must not use the Production environment');
 assert(!/^\s+push:/m.test(preview),'Preview deploy cannot auto-run on push');
 assert(!/^\s+pull_request:/m.test(preview),'Preview deploy cannot auto-run on PR');
