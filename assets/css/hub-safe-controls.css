@@ -61,6 +61,9 @@ body.canva-main-v2 .hub-safe-preserved-label button span{margin-left:6px;color:#
 
 /* Appearance panel becomes a compact premium control center instead of a stack of plain selects. */
 body.canva-main-v2 .appearance-menu{
+  --bui-text-primary:var(--bui-on-dark-title);
+  --bui-text-secondary:var(--bui-on-dark-muted);
+
   width:min(430px,calc(100vw - 24px))!important;
   max-height:min(760px,calc(100dvh - 90px));
   overflow:auto;
@@ -81,7 +84,7 @@ body.canva-main-v2 .appearance-menu .profile-line .field{
   padding:7px 9px!important;
   border-radius:9px!important;
   background:#0d1c2e!important;
-  border:1px solid #29445f!important;
+  border:1px solid #7893ae!important;
   color:#e6eef8!important;
 }
 body.canva-main-v2 .hub-safe-appearance-quick{
@@ -120,9 +123,9 @@ body.canva-main-v2 .hub-safe-preset-grid button b{font-size:11px;white-space:now
 body.canva-main-v2 .hub-safe-preset-grid button small{font-size:9px;color:#8fa7c2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 /* Paper preset keeps the controls legible instead of inheriting the dark-menu text colors. */
-body.canva-main-v2[data-theme="paper"] .appearance-menu{background:#fff9ee!important;border-color:#d7c8ad!important;color:#241c13!important}
+body.canva-main-v2[data-theme="paper"] .appearance-menu{--bui-text-primary:var(--bui-on-light-title);--bui-text-secondary:var(--bui-on-light-muted);background:#fff9ee!important;border-color:#d7c8ad!important;color:#241c13!important}
 body.canva-main-v2[data-theme="paper"] .appearance-menu .profile-line{background:#f7efe1!important;border-color:#decfb7!important;color:#665846!important}
-body.canva-main-v2[data-theme="paper"] .appearance-menu .profile-line .field{background:#fffdf8!important;border-color:#d9c8aa!important;color:#2a2118!important}
+body.canva-main-v2[data-theme="paper"] .appearance-menu .profile-line .field{background:#fffdf8!important;border-color:#7c6d56!important;color:#2a2118!important}
 body.canva-main-v2[data-theme="paper"] .hub-safe-appearance-quick{border-top-color:#ddceb5}
 body.canva-main-v2[data-theme="paper"] .hub-safe-appearance-quick>div:first-child b{color:#2a2118}
 body.canva-main-v2[data-theme="paper"] .hub-safe-appearance-quick>div:first-child span{color:#766957}

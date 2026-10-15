@@ -361,7 +361,7 @@ jobs:
       - name: Install Playwright Chromium
         run: |
           printf '{"private":true,"type":"module"}\n' > package.json
-          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npm install --no-save --no-audit --no-fund playwright@1.55.0 pngjs@7.0.0
           npx playwright install --with-deps chromium
       - name: Start local runtime
         run: |
@@ -417,6 +417,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/hub-premium-responsive
         run: node tests/hub-premium-responsive-browser.mjs
+      - name: Audit Hub computed contrast across five routes, four themes and three viewports
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/hub-computed-contrast-source
+        run: node tests/hub-computed-contrast-browser.mjs
       - name: Run Hub data-truth browser acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
@@ -573,6 +578,11 @@ jobs:
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-hub-responsive
           BAUMAN_E2E_EXPECT_PLATFORM_ACCESS: "1"
         run: node tests/hub-premium-responsive-browser.mjs
+      - name: Audit packaged Hub computed contrast across five routes, four themes and three viewports
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/hub-computed-contrast-packaged
+        run: node tests/hub-computed-contrast-browser.mjs
       - name: Run packaged Hub data-truth browser acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
@@ -652,6 +662,8 @@ jobs:
             artifacts/math-study-command-center
             artifacts/math-learning-journey
             artifacts/hub-premium-responsive
+            artifacts/hub-computed-contrast-source
+            artifacts/hub-computed-contrast-packaged
             artifacts/hub-data-truth
             artifacts/schedule-reference-v1
             artifacts/russian-handwriting-recognition

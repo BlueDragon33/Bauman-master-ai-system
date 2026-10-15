@@ -26,7 +26,7 @@ html[data-bauman-ui="future-v1"] :where(p,small,label,li,td,th){line-height:1.5}
 html[data-bauman-ui="future-v1"] :where(p,small){color:var(--bui-text-secondary)}
 html[data-bauman-ui="future-v1"] :where(button,input,select,textarea){font:inherit}
 html[data-bauman-ui="future-v1"] :where(button,[role="button"],a,input,select,textarea):focus-visible{
-  outline:3px solid color-mix(in srgb,var(--bui-color-primary) 35%,transparent);
+  outline:3px solid var(--bui-focus-ring);
   outline-offset:2px;
 }
 html[data-bauman-ui="future-v1"] :where(button,[role="button"],a){-webkit-tap-highlight-color:transparent}

@@ -2,6 +2,19 @@
    Scoped strictly to #page-subjects. No global shell/sidebar/topbar/theme overrides. */
 
 #page-subjects .subjects-page{
+  /* This component owns a light workspace in every surrounding theme. */
+  --bui-focus-ring:#1557b0;
+  --bui-text-primary:var(--bui-on-light-title);
+  --bui-text-secondary:var(--bui-on-light-body);
+  --bui-text-tertiary:var(--bui-on-light-muted);
+  --bui-text-placeholder:var(--bui-on-light-muted);
+  --cc-ink:var(--bui-on-light-body);
+  --cc-ink-strong:var(--bui-on-light-title);
+  --cc-muted:var(--bui-on-light-muted);
+  --cc-surface:#ffffff;
+  --cc-surface-2:#f1f5fa;
+  --cc-line:#718096;
+
   --sp-blue:#1769f6;
   --sp-blue-2:#2b7af3;
   --sp-ink:#14213d;
@@ -55,14 +68,14 @@
 #page-subjects .subjects-page__select,
 #page-subjects .subjects-page__button{
   height:39px;
-  border:1px solid #dce4ef;
+  border:1px solid var(--bui-border-strong);
   border-radius:8px;
   background:#fff;
   color:#364867;
   padding:0 12px;
   font-size:11px;
   font-weight:700;
-  outline:0;
+
 }
 #page-subjects .subjects-page__select{min-width:174px}
 #page-subjects .subjects-page__button{
@@ -178,10 +191,10 @@
   line-height:1.2;
 }
 #page-subjects .subjects-page__summary-card.is-orange b,
-#page-subjects .subjects-page__summary-card.is-orange strong{color:#d84e2f}
+#page-subjects .subjects-page__summary-card.is-orange strong{color:#a43820}
 #page-subjects .subjects-page__summary-card p{
   margin:4px 0 0;
-  color:#667794;
+  color:#52637c;
   font-size:8.5px;
   line-height:1.28;
 }
@@ -221,7 +234,7 @@
 #page-subjects .subjects-page__list-head{
   min-height:43px;
   display:grid;
-  grid-template-columns:auto minmax(280px,1fr) auto;
+  grid-template-columns:minmax(0,1fr) auto;
   gap:10px;
   align-items:center;
   border-bottom:1px solid #e9eef5;
@@ -235,12 +248,12 @@
   width:25px;height:25px;border-radius:7px;display:grid;place-items:center;background:#e7f0ff;color:var(--sp-blue);font-size:12px;
 }
 #page-subjects .subjects-page__list-title b{font-size:12.5px}
-#page-subjects .subjects-page__tabs{display:flex;align-items:center;gap:3px;min-width:0}
+#page-subjects .subjects-page__tabs{display:flex;align-items:center;gap:3px;min-width:0;grid-column:1/-1;grid-row:2;flex-wrap:wrap}
 #page-subjects .subjects-page__tabs button{
   height:29px;padding:0 9px;border:1px solid #e0e7f0;border-radius:6px;background:#fff;color:#5f6f89;font-size:8.5px;font-weight:700;white-space:nowrap;
 }
 #page-subjects .subjects-page__tabs button.is-active{background:var(--sp-blue);border-color:var(--sp-blue);color:#fff;box-shadow:0 3px 8px rgba(23,105,246,.14)}
-#page-subjects .subjects-page__list-actions{display:flex;align-items:center;gap:7px}
+#page-subjects .subjects-page__list-actions{grid-column:2;grid-row:1;display:flex;align-items:center;gap:7px}
 #page-subjects .subjects-page__list-actions span{
   height:29px;display:flex;align-items:center;padding:0 9px;border:1px solid #e0e7f0;border-radius:6px;color:#5c6d87;font-size:8.5px;white-space:nowrap;
 }
@@ -273,7 +286,7 @@
 #page-subjects .subjects-page__course-icon{
   width:42px;height:42px;border-radius:10px;display:grid;place-items:center;font-size:17px;font-weight:900;
 }
-#page-subjects .subjects-page__course-icon.is-blue{background:#e2efff;color:#2a6fd8}
+#page-subjects .subjects-page__course-icon.is-blue{background:#e2efff;color:#1557b0}
 #page-subjects .subjects-page__course-icon.is-violet{background:#eee6ff;color:#7654d7}
 #page-subjects .subjects-page__course-icon.is-green{background:#ddf6ea;color:#20a668}
 #page-subjects .subjects-page__course-icon.is-orange{background:#fff0e4;color:#ed713c}
@@ -284,7 +297,7 @@
   display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;line-height:1.15;color:#17213c;
 }
 #page-subjects .subjects-page__course-name small{
-  display:block;margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:8.5px;color:#687994;
+  display:block;margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:8.5px;color:var(--bui-on-light-muted);
 }
 #page-subjects .subjects-page__status{
   min-width:64px;
@@ -292,7 +305,7 @@
   display:inline-flex;align-items:center;justify-content:center;
   padding:0 8px;border-radius:999px;font-size:8px;font-weight:800;white-space:nowrap;
 }
-#page-subjects .subjects-page__status.is-study{background:#def6e9;color:#23875b}
+#page-subjects .subjects-page__status.is-study{background:#def6e9;color:#17643f}
 #page-subjects .subjects-page__status.is-exam{background:#fff0dd;color:#da6b2d}
 #page-subjects .subjects-page__status.is-review{background:#eee5ff;color:#7454d5}
 #page-subjects .subjects-page__kebab{
@@ -330,7 +343,7 @@
 #page-subjects .subjects-page__course-meta i{font-style:normal;color:#355f9f;font-size:10px}
 #page-subjects .subjects-page__course-meta small,
 #page-subjects .subjects-page__course-meta b{grid-column:2;display:block;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-#page-subjects .subjects-page__course-meta small{font-size:7.2px;color:#7c8ba0}
+#page-subjects .subjects-page__course-meta small{font-size:7.2px;color:var(--bui-on-light-muted)}
 #page-subjects .subjects-page__course-meta b{font-size:7.8px;color:#60728f}
 #page-subjects .subjects-page__course-actions{
   display:grid;grid-template-columns:1.06fr 1fr 1fr;gap:6px;
@@ -342,7 +355,7 @@
   background:var(--sp-blue);border-color:var(--sp-blue);color:#fff;
 }
 #page-subjects .subjects-page__empty{
-  grid-column:1/-1;min-height:120px;display:grid;place-items:center;color:#738299;font-size:11px;
+  grid-column:1/-1;min-height:120px;display:grid;place-items:center;color:var(--bui-on-light-muted);font-size:11px;
 }
 
 #page-subjects .subjects-page__right-rail{display:grid;gap:9px;min-width:0}
@@ -363,7 +376,7 @@
   width:24px;height:24px;border-radius:7px;display:grid;place-items:center;background:#eee8ff;color:#775ce0;
 }
 #page-subjects .subjects-page__panel-head em{
-  font-style:normal;background:#4e83ef;color:#fff;border-radius:5px;padding:2px 6px;font-size:7px;font-weight:800;
+  font-style:normal;background:#215ebc;color:#fff;border-radius:5px;padding:2px 6px;font-size:7px;font-weight:800;
 }
 #page-subjects .subjects-page__ai-intro{
   min-height:48px;display:grid;grid-template-columns:34px minmax(0,1fr);gap:7px;align-items:center;padding:7px 9px;background:#edf4ff;
@@ -389,13 +402,13 @@
 #page-subjects .subjects-page__calendar-week,
 #page-subjects .subjects-page__calendar-grid{display:grid;grid-template-columns:repeat(7,1fr)}
 #page-subjects .subjects-page__calendar-week{padding:5px 7px 0}
-#page-subjects .subjects-page__calendar-week span{text-align:center;font-size:6.7px;font-weight:800;color:#71819a}
+#page-subjects .subjects-page__calendar-week span{text-align:center;font-size:6.7px;font-weight:800;color:#52637c}
 #page-subjects .subjects-page__calendar-grid{padding:3px 7px 7px}
 #page-subjects .subjects-page__calendar-grid button{
   height:21px;position:relative;border:0;border-radius:5px;background:transparent;color:#455a78;font-size:7px;padding:0;
 }
-#page-subjects .subjects-page__calendar-grid button.is-outside{opacity:.3}
-#page-subjects .subjects-page__calendar-grid button.is-active{background:#2d73e7;color:#fff}
+#page-subjects .subjects-page__calendar-grid button.is-outside{opacity:1;color:var(--bui-on-light-muted)}
+#page-subjects .subjects-page__calendar-grid button.is-active{background:#215ebc;color:#fff;--bui-text-primary:var(--bui-on-dark-title)}
 #page-subjects .subjects-page__calendar-grid button i{
   position:absolute;left:50%;bottom:1px;transform:translateX(-50%);width:3px;height:3px;border-radius:50%;
 }
@@ -417,13 +430,13 @@
 #page-subjects .subjects-page__deadline-icon.is-rose{background:#ffe6eb;color:#e95271}
 #page-subjects .subjects-page__deadline-icon.is-blue{background:#e6f0ff;color:#2f73e7}
 #page-subjects .subjects-page__deadline-list b{display:block;font-size:7.6px;line-height:1.1}
-#page-subjects .subjects-page__deadline-list small{display:block;margin-top:2px;font-size:6.6px;color:#7a8aa0}
+#page-subjects .subjects-page__deadline-list small{display:block;margin-top:2px;font-size:6.6px;color:var(--bui-on-light-muted)}
 #page-subjects .subjects-page__deadline-list em{
   font-style:normal;padding:3px 5px;border-radius:999px;font-size:6.4px;white-space:nowrap;
 }
 #page-subjects .subjects-page__deadline-list em.is-orange{background:#fff0df;color:#d56a25}
 #page-subjects .subjects-page__deadline-list em.is-rose{background:#ffe5ea;color:#d94d68}
-#page-subjects .subjects-page__deadline-list em.is-blue{background:#e7f0ff;color:#2b69cf}
+#page-subjects .subjects-page__deadline-list em.is-blue{background:#e7f0ff;color:#215ebc}
 
 #page-subjects .subjects-page__footer{
   display:grid;
@@ -441,7 +454,7 @@
 #page-subjects .subjects-page__progress-list>div>span:first-child>i{
   width:14px;height:14px;border-radius:4px;display:grid;place-items:center;font-style:normal;font-size:6px;font-weight:800;
 }
-#page-subjects .subjects-page__progress-list i.is-blue{background:#e4efff;color:#2e72d8}
+#page-subjects .subjects-page__progress-list i.is-blue{background:#e4efff;color:#1557b0}
 #page-subjects .subjects-page__progress-list i.is-violet{background:#eee7ff;color:#7657d9}
 #page-subjects .subjects-page__progress-list i.is-green{background:#dff6ea;color:#22a368}
 #page-subjects .subjects-page__progress-list i.is-orange{background:#fff0e2;color:#e87539}
@@ -465,7 +478,7 @@
   display:grid;grid-template-columns:62px repeat(7,1fr);gap:3px;align-items:center;
 }
 #page-subjects .subjects-page__heat-grid>b,
-#page-subjects .subjects-page__heat-grid>span{font-size:6.5px;text-align:center;color:#708097}
+#page-subjects .subjects-page__heat-grid>span{font-size:6.5px;text-align:center;color:#52637c}
 #page-subjects .subjects-page__heat-grid>span{text-align:left}
 #page-subjects .subjects-page__heat-grid>i,
 #page-subjects .subjects-page__heat-legend i{height:16px;border-radius:4px;background:#eaf2fc}
@@ -478,7 +491,7 @@
 #page-subjects .subjects-page__heat-grid i.l4,
 #page-subjects .subjects-page__heat-legend i.l4{background:#2d73df}
 #page-subjects .subjects-page__heat-legend{display:grid;gap:3px;align-content:start}
-#page-subjects .subjects-page__heat-legend span{display:flex;align-items:center;gap:4px;font-size:6.2px;color:#6e7f96;white-space:nowrap}
+#page-subjects .subjects-page__heat-legend span{display:flex;align-items:center;gap:4px;font-size:6.2px;color:#52637c;white-space:nowrap}
 #page-subjects .subjects-page__heat-legend i{width:10px;height:10px}
 
 #page-subjects .subjects-page__notes-list{display:grid;gap:1px;padding:6px 9px 7px}
@@ -500,8 +513,8 @@
 #page-subjects .subjects-page__modal>div:first-child button{border:0;background:transparent;font-size:20px;color:#63738a}
 #page-subjects .subjects-page__modal label{display:grid;gap:4px;margin-top:10px;color:#52637e;font-size:9px;font-weight:800}
 #page-subjects .subjects-page__modal input,
-#page-subjects .subjects-page__modal select{height:36px;border:1px solid #dce4ef;border-radius:7px;padding:0 9px;color:#273955;background:#fff;font-size:10px}
-#page-subjects .subjects-page__modal p{margin:10px 0 0;color:#77879b;font-size:8px;line-height:1.4}
+#page-subjects .subjects-page__modal select{height:36px;border:1px solid var(--bui-border-strong);border-radius:7px;padding:0 9px;color:#273955;background:#fff;font-size:10px}
+#page-subjects .subjects-page__modal p{margin:10px 0 0;color:var(--bui-on-light-muted);font-size:8px;line-height:1.4}
 #page-subjects .subjects-page__modal-actions{display:flex;justify-content:flex-end;gap:7px;margin-top:12px}
 #page-subjects .subjects-page__modal-actions button{height:32px;padding:0 12px;border:1px solid #dce4ef;border-radius:7px;background:#fff;color:#445570;font-size:9px;font-weight:800}
 #page-subjects .subjects-page__modal-actions button.is-primary{background:var(--sp-blue);border-color:var(--sp-blue);color:#fff}

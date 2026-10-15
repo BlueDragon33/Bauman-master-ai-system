@@ -23,6 +23,16 @@
   --bui-surface-elevated:#ffffff;
   --bui-surface-overlay:rgba(255,255,255,.96);
 
+  /* Surface pairs remain stable when the surrounding theme changes. */
+  --bui-focus-ring:#1557b0;
+  --bui-on-dark-surface:#07111e;
+  --bui-on-dark-title:#ffffff;
+  --bui-on-dark-body:#f3f7ff;
+  --bui-on-dark-muted:#d4dfeb;
+  --bui-on-light-title:#14243b;
+  --bui-on-light-body:#31465f;
+  --bui-on-light-muted:#52637c;
+
   /* typography */
   --bui-text-primary:#172033;
   --bui-text-secondary:#4f5f75;
@@ -105,6 +115,7 @@ body[data-theme="night"],
 body[data-theme="academic"],
 body[data-theme="mint"],
 body[data-ui-theme="dark"]{
+  --bui-focus-ring:#f7d57a;
   --bui-surface-canvas:#07101a;
   --bui-surface-primary:#0d1a28;
   --bui-surface-secondary:#13263a;
