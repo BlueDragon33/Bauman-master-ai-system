@@ -184,14 +184,19 @@
   function openIndex(index,markDue=false,card=null){
     const target=Math.max(0,Number(index)||0),core=readCore(),item=card||{};
     const activeKey=clean(item.key)||legacyKeyFor(target);
-    if((core.view||'')==='vocab'&&!core.vocabQuery&&!core.vocabFocusKey){
-      const visible=document.querySelector(`[data-vocab-stage-index="${target}"]`);
-      if(visible){visible.click();if(markDue)sessionStorage.setItem(ACTIVE_DUE_KEY,activeKey);return;}
+    // A due-card request must enter Review, not be reset to Discover by a
+    // synthetic list click. Cross-stage due cards must use canonical routing.
+    if(!markDue&&(core.view||'')==='vocab'&&!core.vocabQuery&&!core.vocabFocusKey&&(!item.stage||item.stage===core.stage)){
+      const visible=document.querySelector(`button[data-vocab][data-vocab-stage-index="${target}"]`);
+      if(visible){visible.click();return;}
     }
     const detail={view:'vocab',vocabStage:clean(item.stage)||core.stage||'vn',vocabKey:clean(item.sourceId),vocabIndex:clean(item.sourceId)?0:target,accepted:false};
     window.dispatchEvent(new CustomEvent('russian:core-navigation-request',{detail}));
     if(!detail.accepted){setNotice('Không chuyển được sang thẻ này. Hãy kiểm tra trạng thái lưu học tập.');return;}
-    if(markDue)sessionStorage.setItem(ACTIVE_DUE_KEY,activeKey);
+    if(markDue){
+      try{sessionStorage.setItem(ACTIVE_DUE_KEY,activeKey);}catch(error){console.warn('Cannot record active SRS review session',error);}
+      setFlowMode('review');
+    }
   }
   function openNextDue(){const item=dueCards()[0];if(!item){setNotice('Hiện không có thẻ nào đến hạn.');return;}openIndex(item.stageIndex??item.index,true,item);}
   async function loadVocabItem(index){
