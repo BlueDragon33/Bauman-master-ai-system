@@ -56,6 +56,16 @@ assert.equal(signal.kind,'ASR_TRANSCRIPT_SIGNAL');
 assert.equal(signal.transcript,'Привет');
 assert.equal(signal.pronunciationAuthority,false);
 assert.equal(signal.stressAuthority,false);
+const lastFinalSignal=signal;
+lastRecognition.onResult({transcript:'При...',rawConfidence:.91,final:false});
+assert.equal(signal,lastFinalSignal,'Interim ASR hypotheses must not reach oral evidence');
+lastRecognition.onResult({transcript:'Привет',rawConfidence:0,final:true});
+assert.equal(signal.rawConfidence,0,'A valid zero ASR confidence value must remain zero');
+lastRecognition.onResult({transcript:'Привет',rawConfidence:null,final:true});
+assert.equal(signal.rawConfidence,null,'Unknown ASR confidence must remain unknown, not zero');
+assert.equal(signal.pronunciationAuthority,false);
+assert.equal(signal.stressAuthority,false);
+
 
 let recordingResult=null;
 const rec=await provider.startRecording({onStop:x=>recordingResult=x});
