@@ -338,7 +338,7 @@
     $$('[data-formula-index]',index).forEach(b=>b.addEventListener('click',()=>renderFormulaFocus(Number(b.dataset.formulaIndex)||0)));
   }
   function openFormulaFocus(){ formulaFocus=document.activeElement;renderFormulaFocus(0);const layer=$('#mathFormulaFocus');layer?.classList.add('open');layer?.setAttribute('aria-hidden','false');setTimeout(()=>$('.math-formula-close',layer)?.focus(),20); }
-  function closeFormulaFocus(){ const layer=$('#mathFormulaFocus');layer?.classList.remove('open');layer?.setAttribute('aria-hidden','true');if(formulaFocus&&typeof formulaFocus.focus==='function')setTimeout(()=>formulaFocus.focus(),0);formulaFocus=null; }
+  function closeFormulaFocus(){ const layer=$('#mathFormulaFocus');layer?.classList.remove('open');layer?.setAttribute('aria-hidden','true');const restoreFocus=formulaFocus;formulaFocus=null;if(restoreFocus&&typeof restoreFocus.focus==='function')setTimeout(()=>restoreFocus.focus(),0); }
 
   function ensureCommand(){
     if($('#mathCommandPalette')) return;
@@ -362,7 +362,7 @@
     $$('[data-command-route]',host).forEach(b=>b.addEventListener('click',()=>{const id=b.dataset.commandRoute;closeCommand();route(id);}));
   }
   function openCommand(){ ensureCommand();commandFocus=document.activeElement;renderCommandList();const layer=$('#mathCommandPalette');layer?.classList.add('open');layer?.setAttribute('aria-hidden','false'); const s=$('#mathCommandSearch'); if(s){s.value='';s.focus();renderCommandList();} }
-  function closeCommand(){ const layer=$('#mathCommandPalette');layer?.classList.remove('open');layer?.setAttribute('aria-hidden','true');if(commandFocus&&typeof commandFocus.focus==='function')setTimeout(()=>commandFocus.focus(),0);commandFocus=null; }
+  function closeCommand(){ const layer=$('#mathCommandPalette');layer?.classList.remove('open');layer?.setAttribute('aria-hidden','true');const restoreFocus=commandFocus;commandFocus=null;if(restoreFocus&&typeof restoreFocus.focus==='function')setTimeout(()=>restoreFocus.focus(),0); }
 
   function syncFromRuntime(){
     if(document.body.classList.contains('math-roadmap-active')){setActive('roadmap');return;}
