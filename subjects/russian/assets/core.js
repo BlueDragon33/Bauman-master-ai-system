@@ -768,15 +768,55 @@ function handwritingListenWriteFor(item){
 }
 function getWriting(){return byStage(call('getWriting',[],DB))}
 function title(){const primary=PRIMARY_NAV.find(n=>n[0]===state.view&&(!n[3]||n[3]===state.learnTab)); const route=primary||NAV.find(n=>n[0]===state.view); $('#pageTitle').textContent=route?route[2]:'Tổng quan'; const ui=A.ui||{}; const subs={overview:ui.overviewSubtitle,learning:(state.learnTab==='practice'?ui.dialogueSubtitle:ui.learningSubtitle),dialogue:ui.dialogueSubtitle,writing:ui.writingSubtitle,media:ui.mediaSubtitle,vocab:ui.vocabSubtitle,grammar:ui.grammarSubtitle,mindmap:ui.mindmapSubtitle,storage:ui.storageSubtitle}; $('#pageSub').textContent=subs[state.view]||ui.subtitle||''}
-function buildShell(){ applyInterface(); $('#subjectLogo').textContent=A.ui?.logo||'Я'; $('#subjectTitle').textContent=A.ui?.title||'Tiếng Nga Bauman'; $('#subjectSubtitle').textContent=A.ui?.subtitle||''; $('#coreLabel').textContent=A.ui?.coreLabel||'V12.82 LEARNING INTEGRITY FINAL'; $('#stageLabel').textContent=A.ui?.stageLabel||'Giai đoạn'; $('#stageSelect').innerHTML=stages().map(s=>`<option value="${esc(s.id)}">${esc(s.title)}</option>`).join(''); $('#stageSelect').value=state.stage; $('#nav').innerHTML=PRIMARY_NAV.map(n=>`<button data-view="${esc(n[0])}"${n[3]?` data-learn="${esc(n[3])}"`:''} class="${state.view===n[0]&&(!n[3]||state.learnTab===n[3])?'active':''}"><b>${n[1]}</b><span>${esc(n[2])}</span></button>`).join(''); const tb=$('#themeBtn'); if(tb){tb.textContent='☀️ Giao diện';tb.classList.add('theme-light-button');} }
+function buildShell(){
+ applyInterface();
+ const setText=(id,value)=>{const el=$('#'+id);if(el&&el.textContent!==value)el.textContent=value};
+ setText('subjectLogo',A.ui?.logo||'Я');
+ // One canonical label owner prevents core and future-ui from repainting each other.
+ setText('subjectTitle','Tiếng Nga');
+ setText('subjectSubtitle','Nghe • Nói • Đọc • Viết');
+ setText('coreLabel','TIẾNG NGA · HỌC MỖI NGÀY');
+ setText('stageLabel',A.ui?.stageLabel||'Giai đoạn');
+ const stage=$('#stageSelect'),options=stages().map(s=>`<option value="${esc(s.id)}">${esc(s.title)}</option>`).join('');
+ if(stage.__ruOptionsHtml!==options){stage.innerHTML=options;stage.__ruOptionsHtml=options;}
+ if(stage.value!==state.stage)stage.value=state.stage;
+ const nav=$('#nav'),existing=[...nav.querySelectorAll(':scope > button[data-view]')];
+ const sameNav=existing.length===PRIMARY_NAV.length&&existing.every((b,i)=>b.dataset.view===PRIMARY_NAV[i][0]&&(b.dataset.learn||'')===(PRIMARY_NAV[i][3]||''));
+ if(!sameNav){
+  nav.innerHTML=PRIMARY_NAV.map(n=>`<button data-view="${esc(n[0])}"${n[3]?` data-learn="${esc(n[3])}"`:''} class="${state.view===n[0]&&(!n[3]||state.learnTab===n[3])?'active':''}"><b>${n[1]}</b><span>${esc(n[2])}</span></button>`).join('');
+ }else{
+  existing.forEach((b,i)=>{const n=PRIMARY_NAV[i],active=state.view===n[0]&&(!n[3]||state.learnTab===n[3]);if(b.classList.contains('active')!==active)b.classList.toggle('active',active);});
+ }
+ const tb=$('#themeBtn');if(tb){if(tb.textContent!=='☀️ Giao diện')tb.textContent='☀️ Giao diện';tb.classList.add('theme-light-button');}
+}
 function trackAccess(view,label){state.recentAccess=arr(state.recentAccess); const item={view:view||state.view,label:label||NAV.find(n=>n[0]===view)?.[2]||view||'Mục học',stage:state.stage,at:new Date().toLocaleString('vi-VN')}; state.recentAccess=[item,...state.recentAccess.filter(x=>x.view!==item.view||x.stage!==item.stage)].slice(0,6)}
 function setView(v,learnTab=''){trackAccess(v);state.view=v; if(v==='learning'){if(learnTab&&LEARN_TABS.map(x=>x[0]).includes(learnTab))state.learnTab=learnTab; else if(!LEARN_TABS.map(x=>x[0]).includes(state.learnTab))state.learnTab='theory';} save(); render()}
+let lastRenderedContext='';
 function render(){
  try{
+  const v=$('#view');if(!v)throw new Error('Không tìm thấy vùng #view');
+  const context=[state.view,state.learnTab].join(':');
+  const restore=context===lastRenderedContext;
+  const active=document.activeElement;
+  const focus=restore&&v.contains(active)&&/^(INPUT|TEXTAREA|SELECT)$/.test(active.tagName)
+    ?{id:active.id||'',key:active.dataset.input||'',start:active.selectionStart,end:active.selectionEnd}:null;
+  const selectors=['.learn-list','.mode-specific-list','.slidebox','.media-list','.vocab-list-scroll'];
+  const positions=restore?{windowY:window.scrollY,mainY:document.querySelector('.ru-main')?.scrollTop||0,viewY:v.scrollTop,inner:selectors.map(selector=>({selector,y:v.querySelector(selector)?.scrollTop||0}))}:null;
   sanitize(); buildShell(); title();
   const fn=({overview:renderOverview,learning:renderLearning,dialogue:renderDialogue,writing:renderWriting,media:renderMedia,vocab:renderVocab,grammar:renderGrammar,mindmap:renderMindmap,storage:renderStorage}[state.view]||renderOverview);
-  const v=$('#view'); if(!v)throw new Error('Không tìm thấy vùng #view');
-  v.innerHTML=fn(); afterRender();
+  v.innerHTML=fn();afterRender();
+  if(positions){
+   const main=document.querySelector('.ru-main');if(main)main.scrollTop=positions.mainY;
+   v.scrollTop=positions.viewY;
+   positions.inner.forEach(({selector,y})=>{const el=v.querySelector(selector);if(el&&el.scrollTop!==y)el.scrollTop=y});
+   if(Math.abs(window.scrollY-positions.windowY)>1)window.scrollTo({top:positions.windowY,behavior:'instant'});
+  }
+  if(focus){
+   const target=[...v.querySelectorAll('input,textarea,select')].find(el=>focus.key?el.dataset.input===focus.key:(focus.id&&el.id===focus.id));
+   if(target){target.focus({preventScroll:true});if(Number.isInteger(focus.start)&&Number.isInteger(focus.end)&&typeof target.setSelectionRange==='function')try{target.setSelectionRange(focus.start,focus.end)}catch(_){}}
+  }
+  lastRenderedContext=[state.view,state.learnTab].join(':');
+  window.dispatchEvent(new CustomEvent('russian:core-render',{detail:{view:state.view,learnTab:state.learnTab}}));
  }catch(e){
   console.error('FULL_RENDER_GUARD',e);
   try{
