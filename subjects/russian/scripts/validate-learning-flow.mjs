@@ -6,6 +6,7 @@ const read=p=>fs.readFileSync(path.join(root,p),'utf8');
 const must=(cond,msg)=>{if(!cond)throw new Error(msg)};
 const index=read('index.html');
 const js=read('assets/learning-flow.js');
+const core=read('assets/core.js');
 const state=read('assets/learning-state.js');
 const css=read('assets/learning-flow.css');
 const stateCss=read('assets/learning-state.css');
@@ -16,7 +17,9 @@ must(index.indexOf('assets/learning-flow.js')<index.indexOf('assets/russian-futu
 new Function(js);
 new Function(state);
 
-for(const token of ['RUSSIAN_LEARNING_FLOW_V2','CORE_STEPS','hasMeaningfulEvidence','data-ru-flow-step','reviewLesson','check-review',"provenance:'stage_support'",'RussianLearningState?.recordReviewResult','knowledge-index.json'])must(js.includes(token),`Learning flow missing V2 contract: ${token}`);
+for(const token of ['RUSSIAN_LEARNING_FLOW_V2','CORE_STEPS','hasMeaningfulEvidence','data-ru-flow-step','reviewLesson','check-review',"provenance:'stage_support'",'RussianLearningState?.recordReviewResult'])must(js.includes(token),`Learning flow missing V2 contract: ${token}`);
+must(js.includes('event?.detail?.knowledgeIndex')&&core.includes("knowledgeIndex:DB['knowledge-index']"),'Learning flow must consume the canonical knowledge index from core renders');
+must(!js.includes("fetch('data/knowledge-index.json'"),'Learning flow must not independently fetch an already loaded required dataset');
 for(const token of ['RUSSIAN_LEARNING_STATE_V2','reviewHistory','capturePosition','restoreResumePosition','recordReviewResult','resolveReview','snoozeReview','data-ru-review-snooze'])must(state.includes(token),`Learning state missing V2 contract: ${token}`);
 for(const step of ['theory','speaking','vocab','grammar','exercises','check'])must(js.includes(`${step}:`),`Learning flow missing step: ${step}`);
 for(const step of ['theory','speaking','exercises','check'])must(js.includes(`'${step}'`),`Learning flow missing core evidence step: ${step}`);
