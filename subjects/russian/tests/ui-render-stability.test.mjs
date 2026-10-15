@@ -59,5 +59,5 @@ test('vocab SRS keeps semantic actions and avoids unrelated whole-page mutation 
   assert.match(vocab,/data-ru-srs-rate/);
 });
 test('offline application shell version invalidates old cached scripts',()=>{
-  assert.match(shell,/const CACHE='russian-app-shell-v29-ui-render-stability'/);
+  assert.match(shell,/const CACHE='russian-app-shell-v29-engine-ui-render-stability'/);
 });
