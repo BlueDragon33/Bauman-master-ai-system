@@ -45,7 +45,7 @@
     $('#mathUnifiedSystem')?.remove();
     // Replacing the whole navigation on every sync interrupts pointer/keyboard
     // interaction. Reuse canonical buttons and update only active semantics.
-    const buttons=$(':scope > .math-unified-group > button[data-math-nav]',root);
+    const buttons=$$(':scope > .math-unified-group > button[data-math-nav]',root);
     const matches=buttons.length===PRIMARY_ITEMS.length&&buttons.every((button,i)=>button.dataset.mathNav===PRIMARY_ITEMS[i].id);
     if(!matches){
       const html=navHtml();
