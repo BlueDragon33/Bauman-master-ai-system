@@ -292,15 +292,15 @@
   },true);
   document.addEventListener('change',event=>{if(event.target?.id==='stageSelect')after(40,scheduleRender);},true);
   window.addEventListener('russian:learning-state',scheduleRender);
-  document.addEventListener('DOMContentLoaded',async()=>{
-    try{
-      const data=await fetch('data/knowledge-index.json').then(r=>r.ok?r.json():[]);
-      knowledge=Array.isArray(data)?data.map(x=>({id:clean(x.id),title:clean(x.title),stage:clean(x.stage)})).filter(x=>x.id):[];
-    }catch(_){knowledge=[];}
+  document.addEventListener('DOMContentLoaded',()=>{
     scheduleRender();
-    // Rendering #view is owned by core.js; observing this subtree also observes
-    // our own progress-panel insertion and creates redundant repaint cycles.
-    window.addEventListener('russian:core-render',scheduleRender);
+    // The core has already loaded the required knowledge index. Consume its
+    // canonical snapshot rather than racing an independent fetch with navigation.
+    window.addEventListener('russian:core-render',event=>{
+      const data=event?.detail?.knowledgeIndex;
+      if(Array.isArray(data))knowledge=data.map(x=>({id:clean(x.id),title:clean(x.title),stage:clean(x.stage)})).filter(x=>x.id);
+      scheduleRender();
+    });
   });
   window.RussianLearningFlow={
     schema:SCHEMA,
