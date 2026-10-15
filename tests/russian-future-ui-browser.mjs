@@ -443,6 +443,7 @@ try{
     assert.ok(responsive[width].reportColumns.split(' ').filter(Boolean).length>=2,'Personal report must remain at least two columns at '+width+'px');
     assert.ok(responsive[width].sidebarW>=216&&responsive[width].sidebarW<=224,'Desktop/tablet sidebar must remain within 216–224px at '+width+'px');
     assert.equal(responsive[width].drawerToggleVisible,false,'Drawer toggle must stay hidden at '+width+'px');
+    assert.equal(await page.locator('.rf-mobile-dock').isVisible(),false,'Bottom app dock must stay hidden at tablet/desktop '+width+'px');
   }
 
   await page.setViewportSize({width:390,height:844});
@@ -462,12 +463,38 @@ try{
   assert.equal(mobileBefore.expanded,'false','Mobile drawer ARIA state must start collapsed');
   assert.equal(mobileBefore.sidebarPosition,'fixed','Mobile navigation must use an off-canvas drawer');
   assert.equal(mobileBefore.reportColumns.split(' ').filter(Boolean).length,1,'Personal report must collapse to one column on 390px mobile');
+  const dock=page.locator('.rf-mobile-dock');
+  await dock.waitFor({state:'visible',timeout:5000});
+  assert.equal(await page.locator('.rf-mobile-dock').count(),1,'Mobile dock must be created only once');
+  assert.deepEqual(await dock.locator('button').allTextContents(),['Trang chủ','Nghe','Nói','Từ vựng','Thêm'],'Mobile dock must expose five predictable shortcuts');
+  assert.equal(await dock.locator('svg[aria-hidden="true"]').count(),5,'Dock icons are decorative, with readable text labels');
+  const dockGeometry=await dock.locator('button').evaluateAll(buttons=>buttons.map(button=>({w:button.getBoundingClientRect().width,h:button.getBoundingClientRect().height,bottom:button.getBoundingClientRect().bottom})));
+  assert.ok(dockGeometry.every(x=>x.w>=44&&x.h>=44&&x.bottom<=(page.viewportSize()?.height||844)+1),'All dock touch targets must remain visible and >=44px');
+  assert.equal(await dock.locator('[data-rf-dock="home"]').getAttribute('aria-current'),'page','Home must be the default selected dock route');
   await toggle.click();
   await page.waitForFunction(()=>document.body.classList.contains('rf-sidebar-open'));
   assert.equal(await toggle.getAttribute('aria-expanded'),'true','Opening drawer must update aria-expanded');
   await page.keyboard.press('Escape');
   await page.waitForFunction(()=>!document.body.classList.contains('rf-sidebar-open'));
   assert.equal(await page.evaluate(()=>document.activeElement?.classList.contains('rf-sidebar-toggle')),true,'Escape must restore focus to drawer toggle');
+  for(const [key,view,learn] of [['listen','media',''],['speak','learning','practice'],['vocab','vocab',''],['home','overview','']]){
+    await dock.locator('[data-rf-dock="'+key+'"]').click();
+    await page.waitForFunction(([v,l])=>[...document.querySelectorAll('#nav button.active[data-view]')].some(b=>b.dataset.view===v&&(!l||b.dataset.learn===l)),[view,learn],{timeout:10000});
+    await page.waitForFunction(id=>document.querySelector('.rf-mobile-dock [data-rf-dock="'+id+'"]')?.getAttribute('aria-current')==='page',key,{timeout:5000});
+  }
+  await dock.locator('[data-rf-menu]').click();
+  await page.waitForFunction(()=>document.body.classList.contains('rf-sidebar-open'));
+  assert.equal(await dock.locator('[data-rf-menu]').getAttribute('aria-expanded'),'true','More button must expose its drawer-open state');
+  await page.keyboard.press('Escape');
+  await page.waitForFunction(()=>!document.body.classList.contains('rf-sidebar-open'));
+  await page.setViewportSize({width:320,height:720});
+  const narrow=await page.evaluate(()=>({vw:innerWidth,scroll:document.documentElement.scrollWidth,dock:document.querySelector('.rf-mobile-dock')?.getBoundingClientRect().width,items:document.querySelectorAll('.rf-mobile-dock button').length}));
+  assert.equal(narrow.items,5,'Narrow phone must preserve navigation shortcuts');
+  assert.ok(narrow.scroll<=narrow.vw+2&&narrow.dock<=narrow.vw+1,'320px phone must not horizontally overflow');
+  await page.setViewportSize({width:390,height:844});
+  await page.waitForSelector('.rf-dashboard');
+  const repeatedDock=await page.evaluate(()=>{const before=document.querySelector('.rf-mobile-dock');window.RUSSIAN_FUTURE_UI.upgrade();return{same:before===document.querySelector('.rf-mobile-dock'),count:document.querySelectorAll('.rf-mobile-dock').length}});
+  assert.deepEqual(repeatedDock,{same:true,count:1},'Repeated presentation updates must not append or duplicate navigation');
   const mobile=await page.evaluate(()=>({
     scroll:document.documentElement.scrollWidth,
     vw:innerWidth,

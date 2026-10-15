@@ -300,3 +300,27 @@ body.theme-dark .ru-future-ui .grammar-pattern-strip{background:#0f2441;border-c
 @media(max-width:760px){.ru-future-ui .grammar-examples-first>div:last-child{grid-template-columns:1fr}.ru-future-ui .grammar-concept-details .grammar-core-grid{grid-template-columns:1fr}}
 
 @media(max-width:360px){.ru-future-ui .rf-module-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Mobile app dock · same canonical Future UI owner (no second design system). */
+.ru-future-ui .rf-mobile-dock{display:none}
+@media(max-width:767px){
+  body.ru-future-ui .rf-mobile-dock{
+    position:fixed;inset:auto 0 0;z-index:60;display:grid;
+    grid-template-columns:repeat(5,minmax(0,1fr));align-items:center;gap:3px;
+    min-height:70px;padding:6px max(7px,env(safe-area-inset-right)) calc(6px + env(safe-area-inset-bottom)) max(7px,env(safe-area-inset-left));
+    background:rgba(255,255,255,.96);border-top:1px solid #dbe6f5;
+    box-shadow:0 -9px 24px rgba(32,61,98,.08);backdrop-filter:blur(18px);
+  }
+  body.ru-future-ui .ru-main{padding-bottom:calc(78px + env(safe-area-inset-bottom))}
+  body.ru-future-ui .rf-dock-action{
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+    min-width:0;min-height:52px;padding:5px 1px;border:0;border-radius:14px;
+    background:transparent;color:#5f7391;cursor:pointer;font-family:inherit;
+  }
+  body.ru-future-ui .rf-dock-icon{width:30px;height:27px;display:grid;place-items:center;border-radius:10px}
+  body.ru-future-ui .rf-dock-icon svg{width:22px;height:22px}
+  body.ru-future-ui .rf-dock-label{font-size:11px;line-height:1.25;font-weight:700;white-space:nowrap}
+  body.ru-future-ui .rf-dock-action.active{color:#235fcb;background:#edf4ff}
+  body.ru-future-ui .rf-dock-action:focus-visible{outline:2px solid #2e64df;outline-offset:-2px}
+}
+@media print{.ru-future-ui .rf-mobile-dock{display:none!important}}

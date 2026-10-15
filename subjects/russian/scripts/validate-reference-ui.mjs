@@ -123,6 +123,12 @@ for(const token of ['@media(max-width:767px)','rf-sidebar-toggle','rf-sidebar-sc
   must(futureCss.includes(token),`PASS 2 mobile drawer contract missing: ${token}`);
 }
 must(futureJs.includes('function upgradeMobileShell'),'PASS 2 mobile shell runtime missing');
+must(futureJs.includes('function syncMobileDock')&&futureJs.includes("dock.innerHTML=item('home'"),'Mobile dock must use the existing Future UI presenter');
+must(futureJs.includes("item('speak','Nói',{view:'learning',learnTab:'practice'})")&&futureJs.includes("item('more','Thêm')"),'Dock must reuse canonical speaking route and existing navigation drawer');
+must(futureCss.includes('.rf-mobile-dock')&&futureCss.includes('env(safe-area-inset-bottom)'),'Mobile dock must preserve safe-area insets');
+must(futureCss.includes('.rf-dock-action:focus-visible')&&futureCss.includes('min-height:52px'),'Dock must preserve accessible focus and touch targets');
+must(!futureJs.includes('rf-mobile-dock-storage'),'Mobile dock must not introduce a shadow learner state');
+
 must(futureJs.includes("aria-controls',sidebar.id")&&futureJs.includes("aria-expanded','false'"),'Mobile drawer toggle must expose ARIA state');
 must(futureJs.includes("e.key==='Escape'&&document.body.classList.contains('rf-sidebar-open')"),'Mobile drawer must close with Escape');
 for(const token of ['.density-compact .view{max-width:1420px}','.density-wide .view{max-width:1740px}','body.density-wide .view{max-width:1680px!important}','body.main-balanced .view{max-width:1500px','body.main-focus .view{max-width:1420px','.view{max-width:1720px!important','.app{grid-template-columns:340px minmax(0,1fr)!important']){
