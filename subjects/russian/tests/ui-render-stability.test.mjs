@@ -84,5 +84,5 @@ test('vocabulary review and speaking links use bounded in-app routing',()=>{
   assert.doesNotMatch(vocab,/location\.reload\(/);
 });
 test('offline application shell version invalidates old cached scripts',()=>{
-  assert.match(shell,/const CACHE='russian-app-shell-v29-engine-ui-render-stability'/);
+  assert.match(shell,/const CACHE='russian-app-shell-v30-engine-asr-ui-stability'/);
 });
