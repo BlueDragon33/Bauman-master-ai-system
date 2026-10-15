@@ -94,8 +94,14 @@ try{
   assert.equal(await page.locator('.hand-exercise-feedback').count(),0,'Blank canvas cannot reveal the trace answer or self-confirm');
   assert.match(await page.locator('.hand-letter-progress').innerText(),/1 lần/,'Blank trace must not increment progress');
   const emptyCanvas=await page.locator('#writingCanvas').evaluate(canvas=>canvas.toDataURL());
+  await page.locator('#writingCanvas').scrollIntoViewIfNeeded();
   const traceBox=await page.locator('#writingCanvas').boundingBox();
   assert.ok(traceBox&&traceBox.width>120&&traceBox.height>120,'Trace canvas must be usable');
+  const hit=await page.evaluate(({x,y})=>{
+    const el=document.elementFromPoint(x,y);
+    return el?.id||el?.closest?.('canvas')?.id||'';
+  },{x:traceBox.x+Math.min(90,traceBox.width*.2),y:traceBox.y+Math.min(90,traceBox.height*.2)});
+  assert.equal(hit,'writingCanvas','Simulated handwriting must target visible canvas rather than an offscreen point');
   await page.mouse.move(traceBox.x+Math.min(90,traceBox.width*.2),traceBox.y+Math.min(90,traceBox.height*.2));
   await page.mouse.down();
   await page.mouse.move(traceBox.x+Math.min(160,traceBox.width*.6),traceBox.y+Math.min(170,traceBox.height*.6),{steps:12});
