@@ -151,6 +151,32 @@ try {
     await quietWindow(page, 'Vocabulary');
     return { sevenSteps: flow, flashcardToggled: true };
   });
+  await verify('Due vocabulary card opens exact Review mode without page reload', async () => {
+    await page.evaluate(() => window.RussianVocabSrs.setFlowMode('review'));
+    await page.locator('#ruVocabSrs [data-ru-srs-rate="forgot"]').waitFor({ state: 'visible', timeout: 10000 });
+    const initial = await page.evaluate(() => ({
+      key: document.querySelector('.vocab-card-panel')?.dataset.vocabKey || '',
+      navigationCount: performance.getEntriesByType('navigation').length,
+      contentId: document.querySelector('.vocab-card-panel')?.dataset.vocabSourceIndex || '',
+    }));
+    assert.ok(initial.key, 'Review must begin on a real card with a source key');
+    await page.locator('#ruVocabSrs [data-ru-srs-rate="forgot"]').click();
+    await page.waitForFunction(() => window.RussianVocabSrs?.dueCards?.().length > 0, null, { timeout: 10000 });
+    const due = await page.evaluate(() => window.RussianVocabSrs.dueCards()[0]);
+    await page.locator('#ruVocabSrs [data-ru-srs-open-due]').click();
+    await page.waitForFunction(() => document.querySelector('#ruVocabSrs .ru-vocab-rating') && window.RussianVocabSrs?.get?.().flowMode === 'review', null, { timeout: 12000 });
+    const reviewed = await page.evaluate(() => ({
+      key: document.querySelector('.vocab-card-panel')?.dataset.vocabKey || '',
+      flowMode: window.RussianVocabSrs?.get?.().flowMode,
+      navCount: performance.getEntriesByType('navigation').length,
+      activeDue: document.querySelector('#ruVocabSrs header p')?.textContent?.includes('đang ôn thẻ đến hạn') || false,
+    }));
+    assert.equal(reviewed.key, due.sourceId || initial.key, 'Due card must preserve its canonical source identity');
+    assert.equal(reviewed.flowMode, 'review', 'Opening an overdue card must enter Review, not Discover');
+    assert.equal(reviewed.activeDue, true, 'The active due review marker must appear');
+    assert.equal(reviewed.navCount, initial.navigationCount, 'Opening due review must not reload the page');
+    return { reviewMode: reviewed.flowMode, activeDue: true, noReload: true };
+  });
   await verify('Repeated navigation among all four reported tabs does not create idle DOM churn', async () => {
     const values = [];
     for (let cycle = 0; cycle < 2; cycle++) {
