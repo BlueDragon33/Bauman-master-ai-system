@@ -30,23 +30,26 @@ try{
   page.on('pageerror',e=>errors.push(String(e?.stack||e)));
   page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
 
-  // Seed a realistic v26 cache namespace BEFORE Russian scripts can register v27.
+  // Seed previous v26 and v27 shell caches BEFORE the v28 Service Worker installs.
   // This tests genuine browser CacheStorage activation and cross-subject isolation,
   // not a claim that an already-deployed Production device was upgraded.
   await page.goto(new URL('subjects/russian/assets/russian.css',BASE).href,{waitUntil:'domcontentloaded',timeout:30000});
   const seeded=await page.evaluate(async()=>{
     const old='russian-app-shell-v26-engine-semantic-symbols';
+    const previous='russian-app-shell-v27-engine-mobile-navigation';
     const foreign='bauman-other-subject-persist-sentinel-v1';
     const data='russian-learning-data-v1';
     const stale=await caches.open(old);
     await stale.put('./assets/russian-future-ui.js',new Response('old-russian-v26'));
+    const prior=await caches.open(previous);
+    await prior.put('./assets/core.js',new Response('stale-russian-v27'));
     const sibling=await caches.open(foreign);
     await sibling.put('/__retain-foreign-cache',new Response('unrelated-app-retained'));
     const learning=await caches.open(data);
     await learning.put('/__retain-learning-data',new Response('user-offline-data-retained'));
-    return {old,foreign,data,keys:await caches.keys()};
+    return {old,previous,foreign,data,keys:await caches.keys()};
   });
-  for(const name of [seeded.old,seeded.foreign,seeded.data]){
+  for(const name of [seeded.old,seeded.previous,seeded.foreign,seeded.data]){
     assert.ok(seeded.keys.includes(name),'Pre-activation CacheStorage fixture missing: '+name);
   }
 
@@ -67,8 +70,8 @@ try{
   assert.ok(swReadiness.registrations.some(x=>x.active==='activated'),'Russian service-worker registration has no activated worker');
   assert.equal(swReadiness.precacheReport?.schema,'RUSSIAN_SW_PRECACHE_REPORT_V1','Russian service-worker precache report is unavailable');
   assert.deepEqual(swReadiness.precacheReport?.failed||[],[],'Russian service-worker precache still has failed assets after authenticated repair');
-  // The v27 activation must remove only obsolete Russian shell versions.
-  await page.waitForFunction(async()=>!(await caches.keys()).includes('russian-app-shell-v26-engine-semantic-symbols'),null,{timeout:15000});
+  // The v28 activation must remove only obsolete Russian shell versions.
+  await page.waitForFunction(async()=>!(await caches.keys()).some(key=>['russian-app-shell-v26-engine-semantic-symbols','russian-app-shell-v27-engine-mobile-navigation'].includes(key)),null,{timeout:15000});
   const migration=await page.evaluate(async()=>{
     const keys=await caches.keys();
     const foreign=await caches.open('bauman-other-subject-persist-sentinel-v1');
@@ -77,14 +80,14 @@ try{
     const retained=await learning.match('/__retain-learning-data');
     return {
       keys,
-      previousShellRemoved:!keys.includes('russian-app-shell-v26-engine-semantic-symbols'),
-      newShellPresent:keys.includes('russian-app-shell-v27-engine-mobile-navigation'),
+      previousShellRemoved:!keys.includes('russian-app-shell-v26-engine-semantic-symbols')&&!keys.includes('russian-app-shell-v27-engine-mobile-navigation'),
+      newShellPresent:keys.includes('russian-app-shell-v28-engine-local-save-status'),
       siblingCachePreserved:keys.includes('bauman-other-subject-persist-sentinel-v1')&&(await sibling?.text())==='unrelated-app-retained',
       learningCachePreserved:keys.includes('russian-learning-data-v1')&&(await retained?.text())==='user-offline-data-retained'
     };
   });
-  assert.equal(migration.previousShellRemoved,true,'v26 shell must be removed after v27 activation');
-  assert.equal(migration.newShellPresent,true,'v27 shell must be installed');
+  assert.equal(migration.previousShellRemoved,true,'v26/v27 shells must be removed after v28 activation');
+  assert.equal(migration.newShellPresent,true,'v28 shell must be installed');
   assert.equal(migration.siblingCachePreserved,true,'Russian SW must not remove unrelated application caches');
   assert.equal(migration.learningCachePreserved,true,'Russian SW must not remove learner offline data cache');
   await page.waitForFunction(()=>!!navigator.serviceWorker.controller,null,{timeout:15000});
@@ -119,7 +122,7 @@ try{
     return {shell,shellVersion,urls:keys.map(x=>new URL(x.url).pathname),dataName,dataUrls:dataKeys.map(x=>new URL(x.url).pathname)};
   });
   assert.match(cached.shell||'',/^russian-app-shell-v[0-9]+(?:-|$)/i,'Russian offline shell cache must use a versioned namespace');
-  assert.ok(cached.shellVersion>=27,`Mobile dock shell requires refreshed Russian cache v27+ (got v${cached.shellVersion})`);
+  assert.ok(cached.shellVersion>=28,`Local-save UI requires refreshed Russian cache v28+ (got v${cached.shellVersion})`);
   for(const suffix of ['/subjects/russian/assets/russian-future-ui.js','/subjects/russian/assets/russian-future-ui.css'])assert.ok(cached.urls.some(x=>x.endsWith(suffix)),`Russian mobile app asset missing from offline shell: ${suffix}`);
   assert.equal(cached.dataName,'russian-learning-data-v1');
   assert.ok(cached.dataUrls.some(x=>x.endsWith('/subjects/russian/data/handwriting-listen-write.json')),'offline data cache missing handwriting-listen-write.json');
@@ -146,7 +149,9 @@ try{
     identityBootstrap:!!window.BaumanFoundationIdentityBootstrap,
     identityReport:window.BAUMAN_FOUNDATION_IDENTITY_REPORT,
     capability:window.RussianCapabilityProgression?.currentBand?.()?.id||'',
-    appShell:!!document.querySelector('.ru-app-shell')
+    appShell:!!document.querySelector('.ru-app-shell'),
+    saveLabel:document.getElementById('saveState')?.textContent||'',
+    saveStatus:document.getElementById('saveState')?.dataset.localSave||''
   }));
   assert.equal(offline.online,false);
   assert.equal(offline.identityRuntime,true);
@@ -154,10 +159,12 @@ try{
   assert.notEqual(offline.identityReport?.status,'unavailable','Foundation identity registry/runtime must remain available offline');
   assert.ok(/^R[0-4]$/.test(offline.capability));
   assert.equal(offline.appShell,true);
+  assert.doesNotMatch(offline.saveLabel,/Đã đồng bộ/,'Offline app must not falsely claim server sync');
+  assert.ok(['pending','saved','error','recovery'].includes(offline.saveStatus),'Offline app must render the new truthful local-save status contract');
   assert.deepEqual(errors,[],'offline Russian reload emitted console/page errors');
 
   await page.screenshot({path:path.join(OUT,'russian-offline-reload.png'),fullPage:true});
-  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',cachedFoundation:true,offline,simulatedCacheMigration:{from:'v26',to:'v27',previousShellRemoved:migration.previousShellRemoved,siblingCachePreserved:migration.siblingCachePreserved,learningCachePreserved:migration.learningCachePreserved}},null,2));
+  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',cachedFoundation:true,offline,simulatedCacheMigration:{from:'v26/v27',to:'v28',previousShellRemoved:migration.previousShellRemoved,siblingCachePreserved:migration.siblingCachePreserved,learningCachePreserved:migration.learningCachePreserved}},null,2));
   console.log('Russian offline shell browser acceptance PASS');
 }finally{
   await browser?.close();
