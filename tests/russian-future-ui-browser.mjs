@@ -237,16 +237,28 @@ try{
         tasks:[...document.querySelectorAll('.step54-listening-plan article')].map(x=>x.textContent||''),
         speakRoute:document.querySelector('.v1256-media-actions [data-route]')?.dataset.route||'',
         startLabel:document.querySelector('[data-act="media-start-listening"]')?.textContent?.trim()||'',
+        sourceNotice:document.querySelector('.media-empty-player')?.textContent||'',
+        practiceRoute:document.querySelector('.v1256-media-actions .btn.primary[data-route]')?.dataset.route||'',
+        searchAction:document.querySelector('.v1256-media-actions a[target="_blank"]')?.textContent?.trim()||'',
+        playableCount:document.querySelectorAll('[data-media-listen-target="1"] iframe,[data-media-listen-target="1"] audio,[data-media-listen-target="1"] video').length,
         planHeight:document.querySelector('.step54-listening-plan')?.getBoundingClientRect().height||0
       }));
       assert.equal(mediaFlow.tasks.length,4,'Video learning flow must keep four bounded steps');
       for(const label of ['Trước khi xem','Lượt nghe đầu','Lượt nghe lại','Sau khi xem'])assert.equal(mediaFlow.tasks.some(x=>x.includes(label)),true,'Video flow missing '+label);
       assert.match(mediaFlow.speakRoute,/"view":"learning"/,'Video must link into the core Nghe & Nói learning route');
       assert.match(mediaFlow.speakRoute,/"learnTab":"practice"/,'Video must enter the speaking practice tab directly');
-      assert.match(mediaFlow.startLabel,/Bắt đầu nghe/,'Video above-the-fold must expose a clear start-listening CTA');
+      assert.equal(mediaFlow.playableCount,0,'Default YouTube search suggestion is not an embedded lesson');
+      assert.equal(mediaFlow.startLabel,'','Search-only sources must not offer a fake Start Listening player action');
+      assert.match(mediaFlow.sourceNotice,/gợi ý tìm kiếm, không phải video hoặc âm thanh đã được chọn/i,'Unverified search results must disclose non-playability');
+      assert.match(mediaFlow.searchAction,/Tìm video bên ngoài/,'Search-only source must offer an honest external discovery action');
+      assert.match(mediaFlow.practiceRoute,/"view":"learning"/,'Primary Listen action must open an existing practice route');
+      assert.match(mediaFlow.practiceRoute,/"learnTab":"practice"/,'Primary Listen action must open the listening-speaking practice tab');
       assert.ok(mediaFlow.planHeight<120,'Four-step Video flow must remain a compact guide instead of four dashboard cards');
-      await page.locator('[data-act="media-start-listening"]').click();
-      assert.equal(await page.evaluate(()=>Boolean(document.activeElement?.closest?.('[data-media-listen-target="1"]')||document.activeElement?.matches?.('[data-media-listen-target="1"]'))),true,'Start-listening CTA must move focus into the player in one action');
+      await page.locator('.v1256-media-actions .btn.primary[data-route]').click();
+      await page.waitForSelector('#view > .rf-tab-intro[data-view="learning"]',{timeout:10000});
+      assert.ok(await page.locator('[data-act="speak-line"]').count()>0,'One-tap listening practice must expose an existing audio/playback control');
+      await page.click('#nav [data-view="media"]');
+      await page.waitForSelector('.step54-listening-plan',{state:'visible',timeout:10000});
     }
     if(view==='learning'){
       await page.waitForSelector('.transcript-listen-first',{state:'visible',timeout:10000});

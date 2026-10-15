@@ -17,6 +17,25 @@ const optionalLoader=read('assets/russian-optional-data-loader.js');
 const contentContract=read('assets/content-contract.js');
 const contentContractCss=read('assets/content-contract.css');
 const core=read('assets/core.js');
+// R200 listening source truth: search suggestions cannot silently become playable lessons.
+const videoSources=JSON.parse(read('data/videos.json'));
+must(Array.isArray(videoSources),'Russian media sources must be an array');
+for(const source of videoSources.filter(x=>x.sourceType==='youtube-search'||x.sourceStatus==='suggestion')){
+  must(source.sourceStatus==='suggestion','Search-only media must be explicitly marked as suggestions');
+  must(!source.iframe,'Search-only media may not advertise a verified embedded player');
+}
+for(const invariant of [
+  'const searchSuggestion=!embed',
+  'const primaryListenAction=embed',
+  'Mở bài nghe tương tác',
+  'Tìm video bên ngoài',
+  'Đây là gợi ý tìm kiếm, không phải video',
+  "const continueToSpeech=embed?",
+  'sourceAreaLabel=embed?'
+]){
+  must(core.includes(invariant),'R200 media truth contract missing: '+invariant);
+}
+
 const coreCss=read('assets/core.css');
 const adapter=read('assets/subject-adapter.js');
 const chatgptPackage=fs.readFileSync(path.resolve('scripts/prepare-chatgpt-site.mjs'),'utf8');
