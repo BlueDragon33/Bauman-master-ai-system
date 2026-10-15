@@ -295,8 +295,9 @@
       knowledge=Array.isArray(data)?data.map(x=>({id:clean(x.id),title:clean(x.title),stage:clean(x.stage)})).filter(x=>x.id):[];
     }catch(_){knowledge=[];}
     scheduleRender();
-    const view=document.getElementById('view');
-    if(view)new MutationObserver(scheduleRender).observe(view,{childList:true,subtree:true});
+    // Rendering #view is owned by core.js; observing this subtree also observes
+    // our own progress-panel insertion and creates redundant repaint cycles.
+    window.addEventListener('russian:core-render',scheduleRender);
   });
   window.RussianLearningFlow={
     schema:SCHEMA,
