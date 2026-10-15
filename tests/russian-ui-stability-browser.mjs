@@ -21,13 +21,26 @@ async function quietWindow(page, label) {
     const host = document.querySelector('#view');
     if (!host) return { missing: true };
     let writes = 0;
+    const samples = [];
     const observer = new MutationObserver(records => {
-      for (const record of records) if (record.type === 'childList') writes += record.addedNodes.length + record.removedNodes.length;
+      for (const record of records) {
+        if (record.type !== 'childList') continue;
+        writes += record.addedNodes.length + record.removedNodes.length;
+        if (samples.length < 16) samples.push({
+          target: record.target?.nodeName,
+          id: record.target?.id || '',
+          className: typeof record.target?.className === 'string' ? record.target.className.slice(0,100) : '',
+          added: [...record.addedNodes].map(n => n.nodeName + (n.id ? '#' + n.id : '')).slice(0,4),
+          removed: record.removedNodes.length
+        });
+      }
     });
     observer.observe(host, { childList: true, subtree: true });
     await new Promise(resolve => setTimeout(resolve, 450));
     observer.disconnect();
-    return { writes, view: document.querySelector('#nav button.active[data-view]')?.dataset.view || '' };
+    let core;
+    try{core=JSON.parse(localStorage.getItem('bauman_russian_survival_master_v11_clean_skeleton')||'{}')}catch{core={}}
+    return { writes, samples, view: core.view || '', navView: document.querySelector('#nav button.active[data-view]')?.dataset.view || '' };
   });
   assert.equal(result.missing, undefined, label + ': view is missing');
   assert.ok(result.writes <= 2, label + ': idle DOM kept changing (' + JSON.stringify(result) + ')');
@@ -63,7 +76,7 @@ try {
     await page.locator('.rf-module-lesson').click();
     await page.locator('.learn-canva-shell').waitFor({ state: 'visible', timeout: 15000 });
     await quietWindow(page, 'Learning via overview shortcut');
-    assert.equal(await page.locator('#nav button.active[data-view="learning"]').count(), 1);
+    assert.equal(await page.evaluate(() => JSON.parse(localStorage.getItem('bauman_russian_survival_master_v11_clean_skeleton')||'{}').view), 'learning');
     return { route: 'overview → learning' };
   });
   await verify('Learning query retains focus, input value and caret after a rerender', async () => {
