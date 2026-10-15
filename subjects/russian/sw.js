@@ -1,5 +1,5 @@
 'use strict';
-const CACHE='russian-app-shell-v26-engine-semantic-symbols';
+const CACHE='russian-app-shell-v27-mobile-navigation';
 const DATA_CACHE='russian-learning-data-v1';
 const SHELL=[
   './','./index.html','./manifest.webmanifest','../shared/host-bridge.js',
@@ -40,7 +40,7 @@ async function cacheShellWithRetry(){
   return report;
 }
 self.addEventListener('install',event=>{event.waitUntil(cacheShellWithRetry().then(()=>self.skipWaiting()));});
-self.addEventListener('activate',event=>{event.waitUntil(Promise.all([caches.keys().then(keys=>Promise.all(keys.filter(k=>![CACHE,DATA_CACHE].includes(k)).map(k=>caches.delete(k)))),self.clients.claim()]));});
+self.addEventListener('activate',event=>{event.waitUntil(Promise.all([caches.keys().then(keys=>Promise.all(keys.filter(k=>/^russian-app-shell-v[0-9]+(?:-|$)/i.test(k)&&k!==CACHE).map(k=>caches.delete(k)))),self.clients.claim()]));});
 self.addEventListener('fetch',event=>{
   const req=event.request;if(req.method!=='GET')return;
   const url=new URL(req.url);if(url.origin!==self.location.origin)return;
