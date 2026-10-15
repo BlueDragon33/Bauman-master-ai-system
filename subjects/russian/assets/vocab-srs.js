@@ -188,8 +188,10 @@
       const visible=document.querySelector(`[data-vocab-stage-index="${target}"]`);
       if(visible){visible.click();if(markDue)sessionStorage.setItem(ACTIVE_DUE_KEY,activeKey);return;}
     }
-    const next={...core,view:'vocab',stage:clean(item.stage)||core.stage||'vn',vocabFocusKey:clean(item.sourceId),vocabQuery:'',vocabIndex:clean(item.sourceId)?0:target,vocabPage:clean(item.sourceId)?0:Math.floor(target/20),vocabFlipped:false};
-    try{localStorage.setItem(CORE_KEY,JSON.stringify(next));if(markDue)sessionStorage.setItem(ACTIVE_DUE_KEY,activeKey);location.reload();}catch(e){console.warn('Cannot open vocab index',e)}
+    const detail={view:'vocab',vocabStage:clean(item.stage)||core.stage||'vn',vocabKey:clean(item.sourceId),vocabIndex:clean(item.sourceId)?0:target,accepted:false};
+    window.dispatchEvent(new CustomEvent('russian:core-navigation-request',{detail}));
+    if(!detail.accepted){setNotice('Không chuyển được sang thẻ này. Hãy kiểm tra trạng thái lưu học tập.');return;}
+    if(markDue)sessionStorage.setItem(ACTIVE_DUE_KEY,activeKey);
   }
   function openNextDue(){const item=dueCards()[0];if(!item){setNotice('Hiện không có thẻ nào đến hạn.');return;}openIndex(item.stageIndex??item.index,true,item);}
   async function loadVocabItem(index){
@@ -230,8 +232,10 @@
   }
   function openSpeaking(id){
     const meta=currentMeta(),key=meta.key,card=stableCard(meta),match=(card.speakingMatches||[]).find(x=>x.id===id);if(!match)return;
-    const core=readCore(), next={...core,view:'learning',learnTab:'practice',lessonId:match.lessonId,practiceDialogueId:match.id,practiceLineIndex:0,practiceGroup:'all',practiceDifficulty:'all'};
-    try{localStorage.setItem(CORE_KEY,JSON.stringify(next));window.RussianLearningState?.setResume?.({view:'learning',learnTab:'practice',lessonId:match.lessonId,practiceDialogueId:match.id,practiceLineIndex:0},'vocab_exact_seed');location.reload();}catch(e){console.warn('Cannot open speaking match',e)}
+    const detail={view:'learning',learnTab:'practice',lessonId:match.lessonId,practiceDialogueId:match.id,accepted:false};
+    window.dispatchEvent(new CustomEvent('russian:core-navigation-request',{detail}));
+    if(!detail.accepted){setNotice('Không mở được bài nghe/nói liên kết. Hãy thử lại.');return;}
+    window.RussianLearningState?.setResume?.({view:'learning',learnTab:'practice',lessonId:match.lessonId,practiceDialogueId:match.id,practiceLineIndex:0},'vocab_exact_seed');
   }
   function esc(v){return clean(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
   function cardStatus(card){if(!card?.reviewCount)return 'Chưa tự đánh giá';return `${card.reviewCount} lượt tự đánh giá · ${formatDue(card.dueAt)}`;}
