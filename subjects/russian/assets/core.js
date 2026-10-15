@@ -3602,6 +3602,14 @@ function normalizeHandwritingAnswer(value){
 }
 function handwritingExerciseUsesChoice(drill){return arr(drill?.choices).length>0}
 function handwritingExerciseIsCanvasOnly(drill){return drill?.kind==='hear_trace'}
+function handwritingHasVisibleStroke(){
+ return strokes.some(stroke=>{
+  const pts=arr(stroke?.points);
+  if(pts.length<2)return false;
+  const first=pts[0];
+  return pts.some(point=>Math.hypot(Number(point?.x)-Number(first?.x),Number(point?.y)-Number(first?.y))>=12);
+ });
+}
 function speakHandwritingExercise(item,slow=false){
  const drill=currentHandwritingExercise(item);
  if(!drill?.audioText){toast('Bài này chưa có audio.');return false}
@@ -3616,6 +3624,12 @@ function evaluateHandwritingExercise(item){
  state.handwritingExerciseAttempted=true;
  state.handwritingExerciseReveal=true;
  if(handwritingExerciseIsCanvasOnly(drill)){
+  if(!handwritingHasVisibleStroke()){
+   state.handwritingExerciseAttempted=false;
+   state.handwritingExerciseReveal=false;
+   toast('Hãy tô hoặc viết ít nhất một nét trên bảng trước khi tự đối chiếu.');
+   return;
+  }
    state.handwritingExerciseResult='self';
    recordHandwritingAttempt(item,drill,'self');
    save();render();return;
