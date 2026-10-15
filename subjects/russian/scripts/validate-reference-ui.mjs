@@ -132,7 +132,7 @@ new Function(optionalLoader);
 new Function(contentContract);
 new Function(futureJs);
 must(js.includes("window.SUBJECT_ADAPTER?.storageKey"),'Canonical UI must use adapter storage key');
-must(js.includes("window.addEventListener('russian:core-render',schedule)"),'Canonical UI enhancer must follow core-render events');
+must(js.includes("window.addEventListener('russian:core-render',upgrade)"),'Canonical UI enhancer must follow core-render events');
 must(js.includes("aiQuick:'intro'"),'Command search must expose the existing AI Mentor');
 must(js.includes('function bindSearch()'),'Canonical UI runtime must own command search binding');
 must(js.includes('role="group"'),'Search results must expose grouped result semantics');
@@ -204,7 +204,7 @@ must(futureJs.includes("setText(title,'Tiếng Nga')"),'Future UI must expose Ru
 must(futureJs.includes("function setText(el,value){if(el&&el.textContent!==value)el.textContent=value}"),'Future UI text writes must remain idempotent');
 must(futureJs.includes("quote&&quote.dataset.rfFutureQuote!=='1'"),'Future UI quote render must remain one-shot and observer-safe');
 must(!futureJs.includes('Bauman Hub'),'Future UI must not restore Bauman Hub branding');
-must(futureJs.includes("window.addEventListener('russian:core-render',schedule)"),'Future UI must survive core rerenders through explicit render lifecycle');
+must(futureJs.includes("window.addEventListener('russian:core-render',upgrade)"),'Future UI must survive core rerenders through explicit render lifecycle');
 for(const [name,source] of [['ChatGPT Site',chatgptPackage],['Cloudflare preview',previewPackage]]){
   for(const asset of ['subjects/russian/assets/russian-future-ui.css','subjects/russian/assets/russian-future-ui.js']){
     must(source.includes(asset),`${name} package must require Russian Future UI asset: ${asset}`);
