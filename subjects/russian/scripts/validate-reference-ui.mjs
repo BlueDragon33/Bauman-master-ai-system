@@ -13,10 +13,22 @@ const futureCss=css;
 const futureJs=read('assets/russian-future-ui.js');
 const sw=read('sw.js');
 const shellVersion=sw.match(/const CACHE='russian-app-shell-v([0-9]+)-/);
-must(shellVersion&&Number(shellVersion[1])>=32,'Late microphone permissions require a fresh Russian offline shell v32 or later');
+must(shellVersion&&Number(shellVersion[1])>=33,'Single-owner listening playback requires a fresh Russian offline shell v33 or later');
 must(sw.includes("keys.filter(k=>/^russian-app-shell-v[0-9]+(?:-|$)/i.test(k)&&k!==CACHE)"),'Russian SW may only purge its own obsolete shell caches');
 for(const asset of ['./assets/russian-future-ui.css','./assets/russian-future-ui.js'])must(sw.includes(asset),'Russian offline shell missing updated icon asset '+asset);
 const speechEngine=read('assets/speech-interaction-engine.js');
+for(const invariant of [
+  'let playbackEpoch=0, activeUtterance=null, activePlayer=null;',
+  'function cancelPlayback()',
+  'if(epoch!==playbackEpoch||activePlayer!==player)return;',
+  'if(epoch!==playbackEpoch||activeUtterance!==u)return;',
+  'if(player){try{player.pause?.()}catch(_){}',
+  'if(nav){cancelPlayback();cancelRecognition();',
+  "window.addEventListener('pagehide',()=>{cancelPlayback();",
+  'speak,playSource,cancel:cancelPlayback'
+]){
+  must(speechEngine.includes(invariant),'Russian listening audio session owner missing: '+invariant);
+}
 for(const invariant of [
   'let recordingEpoch=0, permissionPending=false;',
   'if(permissionPending||recorder)return',
