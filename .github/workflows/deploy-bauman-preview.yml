@@ -47,6 +47,12 @@ jobs:
             fi
           done
 
+      - name: Validate Containers preflight contract (offline)
+        run: node --test tests/cloudflare-containers-preflight.test.mjs
+
+      - name: Verify Cloudflare Containers access before remote mutations
+        run: node scripts/check-cloudflare-containers-preflight.mjs
+
       - name: Install Control dependencies
         working-directory: control-service
         run: npm ci --no-audit --no-fund
