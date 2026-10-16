@@ -9,6 +9,10 @@ const obj = x => x !== null && typeof x === 'object' && !Array.isArray(x);
 const hex = x => /^[a-f0-9]{64}$/.test(clean(x));
 const iso = x => typeof x === 'string' && !Number.isNaN(Date.parse(x)) && new Date(x).toISOString() === x;
 const unique = a => new Set(a).size === a.length;
+const exactlyOne = (collection, predicate) => {
+  const matches = rows(collection).filter(predicate);
+  return matches.length === 1 ? matches[0] : null;
+};
 const isHttps = x => {
   try { const u = new URL(x); return u.protocol === 'https:' && !u.username && !u.password; }
   catch { return false; }
@@ -36,7 +40,7 @@ export function widgetLexicalPayload(item) {
 function reviewerAuthorized(registry, reviewerId) {
   if (registry?.schema !== 'RUSSIAN_ENGINE_RU03_REVIEWERS_V1' ||
       registry?.state !== 'VERIFIED_HUMAN_REVIEWERS') return false;
-  const reviewer = rows(registry.reviewers).find(r => r.id === reviewerId);
+  const reviewer = exactlyOne(registry.reviewers, r => r.id === reviewerId);
   return reviewer?.type === 'HUMAN' &&
     reviewer?.authority === 'RU03' &&
     reviewer?.status === 'ACTIVE' &&
@@ -68,14 +72,14 @@ function validated(item, context) {
   if (syllables > 1 && !/[\u0301]/u.test(lex.stressMarked)) return null;
 
   const fingerprint = sha256({ ...lex, sourceRefs: item.sourceRefs });
-  const release = rows(context.publications?.entries).find(r =>
+  const release = exactlyOne(context.publications?.entries, r =>
     r.contentId === lex.contentId && r.revision === lex.revision);
   if (context.publications?.schema !== 'RUSSIAN_WIDGET_PUBLICATION_REGISTRY_V1' ||
       release?.state !== 'PUBLISHED_REFERENCE' ||
       release?.contentSha256 !== fingerprint ||
       release?.withdrawn === true || clean(release?.supersededByRevision)) return null;
 
-  const review = rows(context.decisions?.decisions).find(d =>
+  const review = exactlyOne(context.decisions?.decisions, d =>
     d.contentId === lex.contentId && d.revision === lex.revision &&
     d.senseId === lex.senseId);
   if (context.decisions?.schemaVersion !== 'RUSSIAN_ENGINE_HUMAN_REVIEW_DECISIONS_V1' ||
@@ -85,7 +89,7 @@ function validated(item, context) {
       !REQUIRED_SCOPES.every(s => rows(review.scopes).includes(s)) ||
       !reviewerAuthorized(context.reviewers, review.reviewerId)) return null;
 
-  const right = rows(context.rights?.entries).find(r =>
+  const right = exactlyOne(context.rights?.entries, r =>
     r.contentId === lex.contentId && r.revision === lex.revision &&
     r.senseId === lex.senseId);
   if (context.rights?.schema !== 'RUSSIAN_WIDGET_RIGHTS_V1' ||
@@ -115,8 +119,8 @@ export function buildRussianWidgetDeck({
 } = {}) {
   if (!iso(generatedAt)) throw new Error('generatedAt must be explicit ISO-8601');
   if (!Array.isArray(candidates)) throw new TypeError('candidates must be an array');
-  const ids = candidates.map(x => clean(x?.contentId) + '@' + clean(x?.revision));
-  if (!unique(ids)) throw new Error('duplicate candidate revision: fail closed');
+  const ids = candidates.map(x => clean(x?.contentId));
+  if (!unique(ids)) throw new Error('duplicate contentId or competing revisions: fail closed');
   const context = {publications, reviewers, decisions, rights};
   const items = candidates.map(x => validated(x, context)).filter(Boolean)
     .sort((a,b) => a.contentId.localeCompare(b.contentId) || a.revision.localeCompare(b.revision));
