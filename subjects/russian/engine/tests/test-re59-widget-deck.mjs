@@ -129,3 +129,16 @@ test('finite offline lifetime is explicit, not an endlessly cached review decisi
   assert.equal(deck.expiresAt,'2026-10-23T12:00:00.000Z');
   assert(Date.parse(deck.expiresAt)>Date.parse(deck.generatedAt));
 });
+
+test('Bauman-owned versioned JSON schema declares the consumer surface', () => {
+  const schema = JSON.parse(readFileSync(new URL('../mobile/widget-deck.schema.json',import.meta.url),'utf8'));
+  const deck = buildRussianWidgetDeck(syntheticCase());
+  assert.equal(schema.$id,'bauman:russian:widget-deck:v1');
+  assert.equal(schema.properties.schemaVersion.const,deck.schemaVersion);
+  assert.deepEqual(schema.required.filter(key=>!(key in deck)),[]);
+  assert.deepEqual(Object.keys(deck).filter(key=>!(key in schema.properties)),[]);
+  assert.equal(schema.properties.expiresAt.format,'date-time');
+  assert.equal(schema.properties.productionReleaseAuthorized.const,false);
+  assert.equal(schema.properties.learnerMasteryAuthority.const,false);
+  assert.deepEqual(schema.properties.items.items.required.filter(key=>!(key in deck.items[0])),[]);
+});
