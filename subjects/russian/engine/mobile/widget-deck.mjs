@@ -58,6 +58,25 @@ function approvedAudio(item, approval, rights) {
       !clean(rights?.audioLicenseRef)) return null;
   return { url: audio.url, sha256: audio.sha256, licenseRef: rights.audioLicenseRef };
 }
+function validStressMarkup(text, marked) {
+  const source = text.normalize('NFD');
+  const rendered = marked.normalize('NFD');
+  if (rendered.replace(/\u0301/g, '') !== source) return false;
+  const markedWords = marked.normalize('NFC').split(/[\s\-]+/u);
+  for (const word of markedWords) {
+    if (!/[А-Яа-яЁё]/u.test(word)) continue;
+    const accents = [...word.matchAll(/\u0301/gu)];
+    if (accents.length > 1) return false;
+    const decomposed = word.normalize('NFD');
+    const marks = [...decomposed.matchAll(/\u0301/gu)];
+    if (marks.some(match => !/[аеёиоуыэюя]/iu.test(decomposed[match.index - 1] ?? ''))) return false;
+    const syllables = (word.match(/[аеёиоуыэюя]/giu) ?? []).length;
+    if (syllables > 1 && marks.length === 0 && !/[ёЁ]/u.test(word)) return false;
+    if (marks.length && /[ёЁ]/u.test(word)) return false;
+  }
+  return true;
+}
+
 function validated(item, context) {
   if (!obj(item) || item.state !== 'PUBLISHED_REFERENCE' ||
       item.provenance?.status !== 'VERIFIED' ||
@@ -67,9 +86,8 @@ function validated(item, context) {
   if (Object.values(lex).some(x => !x) || !/[А-Яа-яЁё]/u.test(lex.textRu)) return null;
   if (!Array.isArray(item.sourceRefs) || !item.sourceRefs.length ||
       !unique(item.sourceRefs) || !item.sourceRefs.every(isHttps)) return null;
-  // Multisyllabic Russian must visibly carry stress for this widget.
-  const syllables = (lex.textRu.match(/[аеёиоуыэюя]/giu) ?? []).length;
-  if (syllables > 1 && !/[\u0301]/u.test(lex.stressMarked)) return null;
+  // Structure only: a qualified RU03 reviewer still decides actual Russian stress.
+  if (!validStressMarkup(lex.textRu, lex.stressMarked)) return null;
 
   const fingerprint = sha256({ ...lex, sourceRefs: item.sourceRefs });
   const release = exactlyOne(context.publications?.entries, r =>
@@ -115,9 +133,13 @@ function validated(item, context) {
  */
 export function buildRussianWidgetDeck({
   candidates = [], publications = null, reviewers = null,
-  decisions = null, rights = null, generatedAt
+  decisions = null, rights = null, generatedAt, expiresAt
 } = {}) {
-  if (!iso(generatedAt)) throw new Error('generatedAt must be explicit ISO-8601');
+  if (!iso(generatedAt) || !iso(expiresAt)) throw new Error('generatedAt and expiresAt must be explicit ISO-8601');
+  const lifetimeMs = Date.parse(expiresAt) - Date.parse(generatedAt);
+  if (lifetimeMs <= 0 || lifetimeMs > 30 * 86400000) {
+    throw new Error('widget deck expiry must be after generation and within 30 days');
+  }
   if (!Array.isArray(candidates)) throw new TypeError('candidates must be an array');
   const ids = candidates.map(x => clean(x?.contentId));
   if (!unique(ids)) throw new Error('duplicate contentId or competing revisions: fail closed');
@@ -130,6 +152,7 @@ export function buildRussianWidgetDeck({
     sourceProjectId: PROJECT,
     contentRevision,
     generatedAt,
+    expiresAt,
     status: items.length ? 'REVIEWED_CONTENT_PROJECTION' : 'NO_AUTHORIZED_CONTENT',
     items,
     diagnostics: { candidates: candidates.length, exported: items.length, withheld: candidates.length - items.length },
