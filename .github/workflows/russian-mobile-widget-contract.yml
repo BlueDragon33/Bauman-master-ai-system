@@ -5,12 +5,14 @@ on:
     paths:
       - 'subjects/russian/engine/mobile/**'
       - 'subjects/russian/engine/tests/test-re59-widget-deck.mjs'
+      - 'subjects/russian/engine/tests/test-re60-widget-export-readiness.mjs'
       - '.github/workflows/russian-mobile-widget-contract.yml'
   push:
     branches: [main]
     paths:
       - 'subjects/russian/engine/mobile/**'
       - 'subjects/russian/engine/tests/test-re59-widget-deck.mjs'
+      - 'subjects/russian/engine/tests/test-re60-widget-export-readiness.mjs'
       - '.github/workflows/russian-mobile-widget-contract.yml'
   workflow_dispatch:
 
@@ -27,4 +29,4 @@ jobs:
         with:
           node-version: '24'
       - name: Execute fail-closed widget exporter contract tests
-        run: node --test subjects/russian/engine/tests/test-re59-widget-deck.mjs
+        run: node --test subjects/russian/engine/tests/test-re59-widget-deck.mjs subjects/russian/engine/tests/test-re60-widget-export-readiness.mjs
