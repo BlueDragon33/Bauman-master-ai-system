@@ -94,3 +94,23 @@ test('deterministic revisions for identical reviewed fixtures',()=>{
   assert.equal(buildRussianWidgetDeck(syntheticCase()).contentRevision,
                buildRussianWidgetDeck(syntheticCase()).contentRevision);
 });
+
+test('conflicting release or rights history refuses stale approvals',()=>{
+  assert.equal(rejected(x=>{
+    x.publications.entries.push({...x.publications.entries[0],state:'SUPERSEDED'});
+  }).items.length,0);
+  assert.equal(rejected(x=>{
+    x.rights.entries.push({...x.rights.entries[0],revoked:true});
+  }).items.length,0);
+  assert.equal(rejected(x=>{
+    x.decisions.decisions.push({...x.decisions.decisions[0],decision:'REJECT'});
+  }).items.length,0);
+});
+test('duplicate reviewer identity and competing revisions fail closed',()=>{
+  assert.equal(rejected(x=>{
+    x.reviewers.reviewers.push({...x.reviewers.reviewers[0],status:'REVOKED'});
+  }).items.length,0);
+  const competing=syntheticCase();
+  competing.candidates.push({...competing.candidates[0],revision:'r2'});
+  assert.throws(()=>buildRussianWidgetDeck(competing),/competing revisions/);
+});
