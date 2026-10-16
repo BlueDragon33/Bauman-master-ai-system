@@ -2,7 +2,7 @@
 
 Current task: `HUB-OPERATING-RULE-ALIGNMENT`
 
-Status: IN_PROGRESS — existing prompt owners aligned to effective universal R15–R32; new governance CI required, qualified UX acceptance remains separate.
+Status: CODE_COMPLETE — existing prompt owners and dependency-governance assertions aligned to effective universal R15–R32; final-head CI receipts belong to PR #347, qualified UX acceptance remains separate.
 
 Branch: `work/hub-c2-complete-contrast-336`
 Base branch: `main`
@@ -20,6 +20,7 @@ Files changed by this scope delta:
 - prompts/PROMPT_REGISTRY.json
 - prompts/hub/HUB_SHARED_STATE.json
 - CODEX_STATE.md
+- tests/dependency-independence-policy-static.mjs
 
 What changed:
 - Replace fixed Chat/Codex percentages with capability-based R22 and B4-derived STRUCTURED execution.
@@ -28,12 +29,15 @@ What changed:
 - Record PR #347 evidence and remaining human/authority conditions without treating CI or chat as authenticated approval.
 - Keep existing legacy packet/result identity and lifecycle; no Subject integration execution implied.
 - Offline/local remains the development target; no merge, publish, ratification or service dispatch performed.
+- Existing Dependency Independence CI exposed obsolete fixed-quota assertions; align that gate with R22, pinned central law, bounded capability escalation and rejection of legacy percentages. Preserve its other dependency/provider/release checks.
 
 Verification:
 - Runtime SHA56d2f195: eight workflows PASS, Whole System run38919211515, 120 cells / 766 states / 54,318 samples / zero four-theme acceptance failures.
 - Authenticated GitHub reviews observed: zero; product/user acceptance UNVERIFIED.
-- Scope delta modifies prompts/state only; prior runtime evidence is retained, not re-created.
+- Scope delta modifies eight prompt/state owners plus their existing governance test; application runtime is unchanged and prior runtime evidence is retained.
 - Exact-head Prompt Control Center / Constitution CI: required on this governance commit; authoritative receipt in PR #347.
+- R22 sections of the actual dependency gate: local PASS with 10 negative controls rejected; syntax and whitespace checks PASS. The full Subject-dependent gate runs in CI without expanding the local checkout.
+- Prior governance head 1a6b349: Prompt Control Center and Constitution PASS; dependency gate correctly exposed stale quota expectations. Future Interface also reported dashboard visibility at its browser assertion; preserve that failure and verify the final-head run before claiming its PASS.
 
 Main sync / pull instruction:
 - PR #347 remains branch-only; main does not contain these fixes or this alignment.
