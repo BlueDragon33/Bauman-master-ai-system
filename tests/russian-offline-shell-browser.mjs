@@ -209,6 +209,15 @@ try{
   // Reapply genuine Playwright network disconnection to this newly opened tab
   // BEFORE navigation; never briefly reconnect to pass the test.
   await context.setOffline(true);
+  // This new Chromium target can retain its own online navigator state even
+  // after BrowserContext-level offline emulation. Enforce the actual network
+  // conditions on its CDP session as well; do not override navigator.onLine
+  // with a script or assume a cached page implies the network is disconnected.
+  const resumedNetwork=await context.newCDPSession(resumedPage);
+  await resumedNetwork.send('Network.enable');
+  await resumedNetwork.send('Network.emulateNetworkConditions',{
+    offline:true,latency:0,downloadThroughput:0,uploadThroughput:0
+  });
   resumedPage.on('pageerror',e=>errors.push(String(e?.stack||e)));
   resumedPage.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
   await resumedPage.goto(url,{waitUntil:'domcontentloaded',timeout:30000});
