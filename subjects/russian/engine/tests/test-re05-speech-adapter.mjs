@@ -49,6 +49,53 @@ assert.equal(provider.playStimulus({audioText:'Привет',rate:.9}).started,t
 assert.equal(spoken.at(-1).lang,'ru-RU');
 assert.equal(spoken.at(-1).rate,.9);
 
+
+let fallbackCalls=[],audioStarts=0;
+const fallbackAudio={
+  support:()=>({tts:true,htmlAudio:true}),
+  speak:(text,options)=>{fallbackCalls.push({kind:'tts',text,rate:options.rate,lang:options.lang});return {started:true,sourceType:'TTS'}},
+  playSource:(src,options)=>{audioStarts++;return {started:false,sourceType:'SOURCE_AUDIO',reason:'unsupported'};}
+};
+const fallbackProvider=createLegacySpeechProvider({audio:fallbackAudio,recognition,recording});
+const notices=[];
+const unavailableSource=fallbackProvider.playStimulus({
+  audioSource:'missing-offline.ogg',audioText:'Где метро?',rate:.75
+},{
+  onFallback:info=>notices.push(info)
+});
+assert.equal(unavailableSource.started,true,'Pre-A0 listening must try TTS when recorded audio is unavailable');
+assert.equal(unavailableSource.sourceType,'TTS','Synthetic fallback must remain explicitly labeled');
+assert.equal(audioStarts,1);
+assert.deepEqual(fallbackCalls.at(-1),{kind:'tts',text:'Где метро?',rate:.75,lang:'ru-RU'});
+assert.equal(notices.length,1);
+assert.equal(notices[0].pronunciationAuthority,false,'Fallback TTS cannot grant native phonetic authority');
+assert.equal(notices[0].stressAuthority,false);
+
+let lateAudioError=null,lateTextCount=0;
+const lateProvider=createLegacySpeechProvider({
+  audio:{
+    support:()=>({tts:true,htmlAudio:true}),
+    playSource:(src,options)=>{lateAudioError=options.onError;return {started:true,sourceType:'SOURCE_AUDIO'}},
+    speak:()=>{lateTextCount++;return {started:true,sourceType:'TTS'}}
+  },recognition,recording
+});
+assert.equal(lateProvider.playStimulus({audioSource:'broken.ogg',audioText:'Спасибо'}).started,true);
+lateAudioError(new Error('404 offline'));
+lateAudioError(new Error('duplicate rejected play'));
+assert.equal(lateTextCount,1,'Audio error and play() rejection must not queue duplicate synthetic speech');
+
+let unavailableEvents=0;
+const noFallbackProvider=createLegacySpeechProvider({
+  audio:{support:()=>({tts:false,htmlAudio:false}),playSource:()=>({started:false})},
+  recognition,recording
+});
+const neither=noFallbackProvider.playStimulus({audioSource:'unavailable.ogg',audioText:''},{
+  onUnavailable:()=>unavailableEvents++
+});
+assert.equal(neither.started,false);
+assert.equal(neither.reason,'no-audio-fallback');
+assert.equal(unavailableEvents,1,'Missing both source and TTS must report a truthful unavailable state');
+
 let signal=null;
 assert.equal(provider.recognize({onSignal:x=>signal=x}).started,true);
 lastRecognition.onResult({transcript:'Привет',rawConfidence:.73});

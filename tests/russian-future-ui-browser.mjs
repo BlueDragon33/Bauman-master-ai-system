@@ -138,12 +138,13 @@ try{
   });
   assert.equal(idleMutationCount,0,'Repeated future UI upgrade must be DOM-idempotent and must not self-trigger MutationObserver churn');
 
+  await page.waitForSelector('.ru-capability-roadmap .ru-cap-band',{timeout:20000});
   const dims=await page.evaluate(()=> {
     const box=s=>{const r=document.querySelector(s)?.getBoundingClientRect();return r?{x:r.x,y:r.y,w:r.width,h:r.height,b:r.bottom}:null};
     const modules=[...document.querySelectorAll('.rf-module-card')].map(el=>{const r=el.getBoundingClientRect();return{x:r.x,y:r.y,w:r.width,h:r.height}});
     return {
       vw:innerWidth,scroll:document.documentElement.scrollWidth,
-      sidebar:box('.ru-sidebar'),main:box('.ru-main'),view:box('.ru-view'),hero:box('.overview-top-only-hero'),
+      sidebar:box('.ru-sidebar'),main:box('.ru-main'),view:box('.ru-view'),hero:box('.overview-top-only-hero'),capHero:box('.ru-cap-hero'),capCards:[...document.querySelectorAll('.ru-cap-band')].map(el=>{const r=el.getBoundingClientRect();return{x:r.x,y:r.y,w:r.width,h:r.height}}),
       continueCard:box('.rf-continue-card'),today:box('.rf-today-plan'),review:box('.rf-review-now'),path:box('.rf-learning-path'),
       progress:box('.rf-progress-strip'),modules,
       bodyFont:parseFloat(getComputedStyle(document.querySelector('.ru-view')).fontSize),
@@ -153,15 +154,30 @@ try{
   });
   assert.ok(dims.sidebar&&dims.sidebar.w>=205&&dims.sidebar.w<=235,'Sidebar width must stay close to 220px reference');
   assert.ok(dims.main&&dims.main.w>1300,'Main shell must still use space released by the old right rail');
-  assert.ok(dims.view&&dims.view.w<=1122&&dims.view.w>=1080,'Learning content container must stay near the 1120px canonical max-width: '+JSON.stringify({view:dims.view,viewComputed:dims.viewComputed,shell:dims.shellComputed}));
+  assert.ok(dims.view&&dims.view.w<=1461&&dims.view.w>=1230,'Approved Russian Overview must use the wider reference canvas: '+JSON.stringify({view:dims.view,viewComputed:dims.viewComputed,shell:dims.shellComputed}));
   assert.ok(dims.bodyFont>=15,'Primary learning content must not fall below 15px body text');
-  assert.ok(dims.hero&&dims.hero.h>=210&&dims.hero.h<=235,'Overview hero must stay compact enough to expose learner action above the fold');
-  assert.ok(dims.modules[0]?.y>dims.hero.y&&dims.modules[0]?.y<dims.continueCard.y,'Phone-style launcher must be the first learning section after the hero');
-  assert.ok(dims.continueCard?.y>dims.modules.at(-1)?.y,'Continue Learning must follow the icon grid, not obscure the primary shortcuts');
+  assert.ok(dims.capHero&&dims.capHero.h>=215,'Approved R0–R4 hero must remain prominent');
+  assert.equal(dims.capCards.length,5,'Approved overview must show exactly five evidence-driven capability bands');
+  assert.ok(dims.capCards.every(x=>x.w>=150),'Five capability cards must remain legible on desktop');
+  assert.ok(dims.continueCard?.y>dims.capCards.at(-1)?.y,'Continue Learning must follow canonical R0–R4 capability cards');
+  assert.ok(dims.modules[0]?.y>dims.continueCard?.y,'Activity icons stay available below the primary Continue Learning decision');
+  assert.equal(dims.hero?.h||0,0,'Legacy Future UI hero must be hidden when the canonical capability hero is ready');
   assert.ok(Math.max(...dims.modules.map(x=>x.h))<=145,'Icon shortcuts must remain compact, not rebuild large dashboard cards');
   assert.ok(dims.today&&dims.review&&Math.abs(dims.today.y-dims.review.y)<3,'Today and truthful review status must share the next decision row');
   assert.ok(dims.path&&dims.path.y>dims.today.y,'Compact Learning Path must follow the primary learning actions');
   assert.ok(dims.progress&&dims.progress.y>dims.path.y,'Secondary statistics must appear after the learning path');
+  const capability=await page.evaluate(()=>({
+    bands:[...document.querySelectorAll('.ru-cap-band')].map(x=>({id:x.dataset.capBand,locked:x.classList.contains('locked'),disabled:!!x.querySelector('button:disabled')})),
+    progress:document.querySelector('.ru-cap-meter')?.getAttribute('role'),
+    result:window.RussianCapabilityProgression?.currentBand?.().lessonReady,
+    stage:window.RussianCapabilityProgression?.stageExitStatus?.('vn').lessonReady,
+    source:document.querySelector('.ru-capability-roadmap')?.dataset.approvedOverview
+  }));
+  assert.deepEqual(capability.bands.map(x=>x.id),['R0','R1','R2','R3','R4'],'Approved overview must reuse the canonical five-band source of truth');
+  assert.equal(capability.progress,'progressbar','Stage summary must expose accessible progress semantics');
+  assert.equal(capability.source,'2026-10-16','UI must identify the approved overview model');
+  assert.ok(capability.bands.slice(1).every(x=>!x.locked||x.disabled),'Future locked bands must not provide unauthorized lesson shortcuts');
+  assert.equal(typeof capability.result,'number','Capability summary must derive from the real learner state');
   assert.equal(dims.modules.length,8,'Overview must expose exactly eight phone-style app shortcuts');
   const moduleRows=[...new Set(dims.modules.map(x=>Math.round(x.y)))];
   assert.equal(moduleRows.length,2,'Eight shortcuts must use two balanced four-icon rows on desktop');

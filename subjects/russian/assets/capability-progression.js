@@ -93,14 +93,30 @@ function stageExitStatus(stageId){
 function routeAttr(id,step='theory'){return esc(JSON.stringify(routeForStep(id,step)))}
 function bandCard(x){
  const state=x.complete?'done':x.unlocked?'active':'locked';
- const writingBits=x.writingNeed?[`viết ${x.writing}/${x.writingNeed}`,x.rewriteNeed?`viết lại ${x.rewrites}/${x.rewriteNeed}`:''].filter(Boolean).join(' · '):'không bắt buộc viết';
- const action=x.complete?'Đã hoàn tất':x.unlocked?(x.missingLesson?`Mở ${x.missingLesson}`:'Tiếp tục củng cố'):'Hoàn tất cấp trước';
- const button=x.unlocked&&!x.complete&&x.missingLesson?`<button class="btn soft" data-route='${routeAttr(x.missingLesson,x.missingStep)}'>${esc(action)} · ${esc(x.missingStep||'theory')}</button>`:`<button class="btn soft" disabled>${esc(action)}</button>`;
- return `<article class="ru-cap-band ${state}"><header><span>${esc(x.id)}</span><div><b>${esc(x.title)}</b><small>${esc(x.goal)}</small></div></header><div class="ru-cap-metrics"><span><b>${x.lessonReady}/${x.lessonTotal}</b><small>bài đủ evidence</small></span><span><b>${x.dueCount}</b><small>review đến hạn</small></span><span><b>${esc(writingBits)}</b><small>bằng chứng viết</small></span></div>${button}</article>`;
+ const writingBits=x.writingNeed?[`viết ${x.writing}/${x.writingNeed}`,x.rewriteNeed?`viết lại ${x.rewrites}/${x.rewriteNeed}`:''].filter(Boolean).join(' · '):'Không bắt buộc viết';
+ const action=x.complete?'Đã hoàn tất':x.unlocked?(x.missingLesson?`Mở ${x.missingLesson} · ${x.missingStep||'theory'}`:'Tiếp tục củng cố'):'Hoàn tất cấp trước';
+ const button=x.unlocked&&!x.complete&&x.missingLesson?`<button type="button" class="btn ru-cap-action" data-route='${routeAttr(x.missingLesson,x.missingStep)}'>${esc(action)} <span aria-hidden="true">→</span></button>`:`<button type="button" class="btn ru-cap-action" disabled aria-label="${esc(x.id)}: ${esc(action)}">${state==='locked'?'🔒 ':''}${esc(action)}</button>`;
+ return `<article class="ru-cap-band ${state}" data-cap-band="${esc(x.id)}" aria-label="${esc(x.id+' · '+x.title)}"><header><span class="ru-cap-band-id">${esc(x.id)}</span><div><b>${esc(x.title)}</b><small>${esc(x.goal)}</small></div></header>
+   <div class="ru-cap-metrics" aria-label="Bằng chứng học đã ghi nhận">
+     <span><i aria-hidden="true">▤</i><b>${x.lessonReady}/${x.lessonTotal}</b><small>bài đủ evidence</small></span>
+     <span><i aria-hidden="true">↻</i><b>${x.dueCount}</b><small>review đến hạn</small></span>
+     <span><i aria-hidden="true">✎</i><b>${esc(writingBits)}</b><small>bằng chứng viết</small></span>
+   </div>${button}</article>`;
 }
 function panelHtml(){
  const bands=allBands(),cur=currentBand(),c=core(),stage=stageExitStatus(clean(c.stage)||'vn');
- return `<section class="panel ru-capability-roadmap"><header class="ru-cap-head"><div><span class="chip">R0 → R4 · NĂNG LỰC THẬT</span><h3>${esc(cur.id)} · ${esc(cur.title)}</h3><p>R0–R4 là trục năng lực xuyên suốt các học kỳ, không thay thế stage thời gian và không phải nhãn CEFR. Chỉ tiến khi có bằng chứng học thật.</p></div><aside><b>${stage.lessonReady}/${stage.lessonTotal}</b><span>bài đủ điều kiện rời stage</span><small>${stage.allowed?'Stage-exit sẵn sàng':esc(stage.blockers[0]||'Còn điều kiện chưa đạt')}</small></aside></header><div class="ru-cap-grid">${bands.map(bandCard).join('')}</div></section>`;
+ const pct=stage.lessonTotal?Math.round(stage.lessonReady/stage.lessonTotal*100):0;
+ const hero=`<div class="ru-cap-hero">
+   <div class="ru-cap-hero-art" aria-hidden="true"><span class="ru-cap-art-script">Học tiếng Nga<br>Mở rộng thế giới</span><i class="ru-cap-art-tower t1"></i><i class="ru-cap-art-tower t2"></i><i class="ru-cap-art-tower t3"></i><i class="ru-cap-art-tower t4"></i><i class="ru-cap-art-tower t5"></i></div>
+   <header class="ru-cap-head"><div class="ru-cap-intro"><span class="ru-cap-kicker">R0 → R4 · NĂNG LỰC THẬT</span><h2><em>${esc(cur.id)}</em> · ${esc(cur.title)}</h2>
+   <p>R0–R4 là trục năng lực xuyên suốt các học kỳ, không thay thế stage thời gian và không phải nhãn CEFR. Chỉ tiến khi có bằng chứng học thật.</p>
+   <div class="ru-cap-benefits" aria-label="Nguyên tắc lộ trình"><span>◎ Học thực hành</span><span>▥ Bằng chứng thật</span><span>♧ Ứng dụng thực tế</span></div></div>
+   <aside class="ru-cap-status"><span>Tiến độ giai đoạn</span><strong>${stage.lessonReady}/${stage.lessonTotal}</strong><span>bài đủ điều kiện rời stage</span><div class="ru-cap-meter" role="progressbar" aria-label="Bài đủ điều kiện rời giai đoạn" aria-valuenow="${stage.lessonReady}" aria-valuemin="0" aria-valuemax="${Math.max(stage.lessonTotal,1)}"><i style="width:${pct}%"></i></div>
+    <small>${stage.allowed?'Đã đủ điều kiện rời stage.':esc(stage.blockers[0]||'Chưa có dữ liệu để xác định điều kiện rời giai đoạn.')}</small></aside></header></div>`;
+ const guide=`<details class="ru-cap-guide"><summary>Xem hướng dẫn lộ trình <span aria-hidden="true">→</span></summary><p>R0–R4 là các nhóm năng lực, khác với các học kỳ. Bài chỉ được tính khi có bằng chứng theory, speaking và check theo dữ liệu đã lưu. Cấp tiếp theo chỉ mở khi đủ điều kiện; số liệu không phải chứng chỉ CEFR.</p></details>`;
+ return `<section class="panel ru-capability-roadmap" data-approved-overview="2026-10-16" aria-label="Lộ trình năng lực tiếng Nga">${hero}
+   <div class="ru-cap-section-head"><div><h3>Lộ trình năng lực R0 – R4</h3><p>Học theo lộ trình, xây nền tảng vững chắc từ phát âm đến tư duy ngôn ngữ.</p></div>${guide}</div>
+   <div class="ru-cap-grid">${bands.map(bandCard).join('')}</div></section>`;
 }
 function bridgePayload(){
  const c=core(),bands=allBands(),cur=currentBand(),stage=stageExitStatus(clean(c.stage)||'vn');
@@ -133,11 +149,14 @@ function render(){
  if(!ready)return;
  const view=document.getElementById('view');if(!view)return;
  const c=core();
- if((c.view||'overview')!=='overview'){document.getElementById('ruCapabilityRoadmap')?.remove();lastSig='';return;}
- const sig=signature();if(sig===lastSig)return;lastSig=sig;
+ if((c.view||'overview')!=='overview'){document.getElementById('ruCapabilityRoadmap')?.remove();document.body.classList.remove('ru-capability-ready');lastSig='';return;}
+ const sig=signature();
  let panel=document.getElementById('ruCapabilityRoadmap');
+ if(sig===lastSig&&panel)return;
+ lastSig=sig;
  if(!panel){panel=document.createElement('div');panel.id='ruCapabilityRoadmap';view.prepend(panel);}
- panel.innerHTML=panelHtml();
+ const html=panelHtml();if(panel.innerHTML!==html)panel.innerHTML=html;
+ document.body.classList.add('ru-capability-ready');
 }
 function schedule(){if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;render();publishBridge(false)})}
 document.addEventListener('DOMContentLoaded',async()=>{
@@ -149,13 +168,13 @@ document.addEventListener('DOMContentLoaded',async()=>{
   curriculum=c&&typeof c==='object'?c:{stages:[],modules:[]};writing=Array.isArray(w)?w:[];
  }catch(e){console.warn('Russian capability progression data load failed',e)}
  ready=true;schedule();
- const view=document.getElementById('view');if(view)new MutationObserver(schedule).observe(view,{childList:true,subtree:false});
+ // The core explicitly publishes renders; never observe and repaint a parent we own.
 });
 window.addEventListener('russian:learning-state',schedule);
 window.addEventListener('message',event=>{
  if(!window.BaumanSubjectHost?.trusted?.(event))return;
  if(event.data?.type==='BAUMAN_REQUEST_SUBJECT_CAPABILITY_STATE')publishBridge(true);
 });
-document.addEventListener('click',()=>setTimeout(schedule,30),true);
+window.addEventListener('russian:core-render',()=>{if(ready){render();publishBridge(false)}});
 window.RussianCapabilityProgression={bands:BANDS,stageRules:STAGE_RULES,bandStatus,allBands,currentBand,stageExitStatus,routeForStep,bridgePayload,publishBridge,schedule};
 })();

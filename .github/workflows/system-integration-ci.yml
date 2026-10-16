@@ -193,6 +193,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-p1-future-ui-source
         run: node tests/russian-future-ui-browser.mjs
+      - name: Verify Russian four-tab UX stability in Chromium
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-ui-stability-source
+        run: node tests/russian-ui-stability-browser.mjs
       - name: Run Russian Engine grounded slice acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
@@ -277,6 +282,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-p1-future-ui-package
         run: node tests/russian-future-ui-browser.mjs
+      - name: Verify packaged Russian four-tab UX stability in Chromium
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-ui-stability-package
+        run: node tests/russian-ui-stability-browser.mjs
       - name: Run packaged Russian Engine grounded slice acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
@@ -323,6 +333,7 @@ jobs:
             artifacts/russian-p1-forensic-source
             artifacts/russian-p4-assessment-source
             artifacts/russian-p1-future-ui-source
+            artifacts/russian-ui-stability-source
             artifacts/russian-engine-grounded-source
             artifacts/russian-p1-handwriting-source
             artifacts/russian-p1-capability-hub-source
@@ -336,6 +347,7 @@ jobs:
             artifacts/russian-p1-forensic-package
             artifacts/russian-p4-assessment-package
             artifacts/russian-p1-future-ui-package
+            artifacts/russian-ui-stability-package
             artifacts/russian-engine-grounded-package
             artifacts/russian-p1-handwriting-package
             artifacts/russian-p1-deeplink-package

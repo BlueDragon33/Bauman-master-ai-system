@@ -768,15 +768,60 @@ function handwritingListenWriteFor(item){
 }
 function getWriting(){return byStage(call('getWriting',[],DB))}
 function title(){const primary=PRIMARY_NAV.find(n=>n[0]===state.view&&(!n[3]||n[3]===state.learnTab)); const route=primary||NAV.find(n=>n[0]===state.view); $('#pageTitle').textContent=route?route[2]:'Tổng quan'; const ui=A.ui||{}; const subs={overview:ui.overviewSubtitle,learning:(state.learnTab==='practice'?ui.dialogueSubtitle:ui.learningSubtitle),dialogue:ui.dialogueSubtitle,writing:ui.writingSubtitle,media:ui.mediaSubtitle,vocab:ui.vocabSubtitle,grammar:ui.grammarSubtitle,mindmap:ui.mindmapSubtitle,storage:ui.storageSubtitle}; $('#pageSub').textContent=subs[state.view]||ui.subtitle||''}
-function buildShell(){ applyInterface(); $('#subjectLogo').textContent=A.ui?.logo||'Я'; $('#subjectTitle').textContent=A.ui?.title||'Tiếng Nga Bauman'; $('#subjectSubtitle').textContent=A.ui?.subtitle||''; $('#coreLabel').textContent=A.ui?.coreLabel||'V12.82 LEARNING INTEGRITY FINAL'; $('#stageLabel').textContent=A.ui?.stageLabel||'Giai đoạn'; $('#stageSelect').innerHTML=stages().map(s=>`<option value="${esc(s.id)}">${esc(s.title)}</option>`).join(''); $('#stageSelect').value=state.stage; $('#nav').innerHTML=PRIMARY_NAV.map(n=>`<button data-view="${esc(n[0])}"${n[3]?` data-learn="${esc(n[3])}"`:''} class="${state.view===n[0]&&(!n[3]||state.learnTab===n[3])?'active':''}"><b>${n[1]}</b><span>${esc(n[2])}</span></button>`).join(''); const tb=$('#themeBtn'); if(tb){tb.textContent='☀️ Giao diện';tb.classList.add('theme-light-button');} }
+function buildShell(){
+ applyInterface();
+ const setText=(id,value)=>{const el=$('#'+id);if(el&&el.textContent!==value)el.textContent=value};
+ setText('subjectLogo',A.ui?.logo||'Я');
+ // One canonical label owner prevents core and future-ui from repainting each other.
+ setText('subjectTitle','Tiếng Nga');
+ setText('subjectSubtitle','Nghe • Nói • Đọc • Viết');
+ setText('coreLabel','TIẾNG NGA · HỌC MỖI NGÀY');
+ setText('stageLabel',A.ui?.stageLabel||'Giai đoạn');
+ const stage=$('#stageSelect'),options=stages().map(s=>`<option value="${esc(s.id)}">${esc(s.title)}</option>`).join('');
+ if(stage.__ruOptionsHtml!==options){stage.innerHTML=options;stage.__ruOptionsHtml=options;}
+ if(stage.value!==state.stage)stage.value=state.stage;
+ const nav=$('#nav'),existing=[...nav.querySelectorAll(':scope > button[data-view]')];
+ const sameNav=existing.length===PRIMARY_NAV.length&&existing.every((b,i)=>b.dataset.view===PRIMARY_NAV[i][0]&&(b.dataset.learn||'')===(PRIMARY_NAV[i][3]||''));
+ if(!sameNav){
+  nav.innerHTML=PRIMARY_NAV.map(n=>`<button data-view="${esc(n[0])}"${n[3]?` data-learn="${esc(n[3])}"`:''} class="${state.view===n[0]&&(!n[3]||state.learnTab===n[3])?'active':''}"><b>${n[1]}</b><span>${esc(n[2])}</span></button>`).join('');
+ }else{
+  existing.forEach((b,i)=>{const n=PRIMARY_NAV[i],active=state.view===n[0]&&(!n[3]||state.learnTab===n[3]);if(b.classList.contains('active')!==active)b.classList.toggle('active',active);});
+ }
+ const tb=$('#themeBtn');if(tb){if(tb.textContent!=='☀️ Giao diện')tb.textContent='☀️ Giao diện';tb.classList.add('theme-light-button');}
+}
 function trackAccess(view,label){state.recentAccess=arr(state.recentAccess); const item={view:view||state.view,label:label||NAV.find(n=>n[0]===view)?.[2]||view||'Mục học',stage:state.stage,at:new Date().toLocaleString('vi-VN')}; state.recentAccess=[item,...state.recentAccess.filter(x=>x.view!==item.view||x.stage!==item.stage)].slice(0,6)}
 function setView(v,learnTab=''){trackAccess(v);state.view=v; if(v==='learning'){if(learnTab&&LEARN_TABS.map(x=>x[0]).includes(learnTab))state.learnTab=learnTab; else if(!LEARN_TABS.map(x=>x[0]).includes(state.learnTab))state.learnTab='theory';} save(); render()}
+let lastRenderedContext='';
 function render(){
  try{
+  const v=$('#view');if(!v)throw new Error('Không tìm thấy vùng #view');
+  const context=[state.view,state.learnTab].join(':');
+  const restore=context===lastRenderedContext;
+  const active=document.activeElement;
+  const focus=restore&&v.contains(active)&&/^(INPUT|TEXTAREA|SELECT)$/.test(active.tagName)
+    ?{id:active.id||'',key:active.dataset.input||'',start:active.selectionStart,end:active.selectionEnd}:null;
+  const openDetails=restore?[...v.querySelectorAll('details')].flatMap((el,i)=>el.open?[i]:[]):[];
+  const selectors=['.learn-list','.mode-specific-list','.slidebox','.media-list','.vocab-list-scroll'];
+  const positions=restore?{windowY:window.scrollY,mainY:document.querySelector('.ru-main')?.scrollTop||0,viewY:v.scrollTop,inner:selectors.map(selector=>({selector,y:v.querySelector(selector)?.scrollTop||0}))}:null;
   sanitize(); buildShell(); title();
   const fn=({overview:renderOverview,learning:renderLearning,dialogue:renderDialogue,writing:renderWriting,media:renderMedia,vocab:renderVocab,grammar:renderGrammar,mindmap:renderMindmap,storage:renderStorage}[state.view]||renderOverview);
-  const v=$('#view'); if(!v)throw new Error('Không tìm thấy vùng #view');
-  v.innerHTML=fn(); afterRender();
+  v.innerHTML=fn();
+  // Commit dependent view projections in the same rendering task, before the
+  // browser paints. This prevents a one-frame blank/progress/intro jump.
+  window.dispatchEvent(new CustomEvent('russian:core-render',{detail:{view:state.view,learnTab:state.learnTab,knowledgeIndex:DB['knowledge-index']||[]}}));
+  if(restore){const details=v.querySelectorAll('details');openDetails.forEach(i=>{if(details[i])details[i].open=true});}
+  afterRender();
+  if(positions){
+   const main=document.querySelector('.ru-main');if(main)main.scrollTop=positions.mainY;
+   v.scrollTop=positions.viewY;
+   positions.inner.forEach(({selector,y})=>{const el=v.querySelector(selector);if(el&&el.scrollTop!==y)el.scrollTop=y});
+   if(Math.abs(window.scrollY-positions.windowY)>1)window.scrollTo({top:positions.windowY,behavior:'instant'});
+  }
+  if(focus){
+   const target=[...v.querySelectorAll('input,textarea,select')].find(el=>focus.key?el.dataset.input===focus.key:(focus.id&&el.id===focus.id));
+   if(target){target.focus({preventScroll:true});if(Number.isInteger(focus.start)&&Number.isInteger(focus.end)&&typeof target.setSelectionRange==='function')try{target.setSelectionRange(focus.start,focus.end)}catch(_){}}
+  }
+  lastRenderedContext=[state.view,state.learnTab].join(':');
  }catch(e){
   console.error('FULL_RENDER_GUARD',e);
   try{
@@ -787,7 +832,7 @@ function render(){
   }catch(e2){console.error('RECOVERY_RENDER_FAILED',e2)}
  }
 }
-function afterRender(){clampVisibleState(); if(state.view==='mindmap') requestAnimationFrame(()=>updateMindMapConnectors(document.querySelector('[data-mindmap-canvas=\"1\"]'))); if(state.view==='writing') setTimeout(initCanvas,30); if(state.view==='learning') setTimeout(()=>{const sb=$('.slidebox'); if(sb) sb.focus({preventScroll:true})},30);}
+function afterRender(){clampVisibleState(); if(state.view==='mindmap') requestAnimationFrame(()=>updateMindMapConnectors(document.querySelector('[data-mindmap-canvas=\"1\"]'))); if(state.view==='writing') setTimeout(initCanvas,30); /* Preserve typing focus; learning keyboard shortcuts remain delegated on document. */}
 function toast(m){const t=$('#toast'); t.textContent=m; t.classList.add('show'); clearTimeout(toast.t); toast.t=setTimeout(()=>t.classList.remove('show'),1800)}
 function closeFloatingLearningMenus(){
  try{document.querySelectorAll('.learn-structure-menu[open], .storage-group-menu[open], details[open]').forEach(el=>{
@@ -3428,6 +3473,20 @@ function mediaForm(item={}){
  const cat=A.mediaCategory?.(item)||item.category||item.genre||'';
  return `<div class="modal-body media-form"><h3>${item.id||item.title?'Sửa nguồn Video/Audio':'Thêm Video/Audio'}</h3><datalist id="mediaGroupOptions">${groups.map(g=>`<option value="${esc(g)}"></option>`).join('')}</datalist><div class="form-row"><input class="input" id="mfTitle" placeholder="Tên nội dung" value="${esc(item.title||'')}"><input class="input" id="mfCat" list="mediaGroupOptions" placeholder="Chọn hoặc nhập nhóm học" value="${esc(cat)}"></div><textarea class="textarea" id="mfUrl" placeholder="URL gốc / link mở trực tiếp">${esc(item.url||'')}</textarea><textarea class="textarea" id="mfIframe" placeholder="Iframe embed hoặc URL embed">${esc(item.iframe||'')}</textarea><textarea class="textarea" id="mfPurpose" placeholder="Mục đích/mô tả">${esc(item.purpose||item.summary||'')}</textarea><div class="modal-actions"><button class="btn" data-act="modal-close">Hủy</button><button class="btn primary" data-act="media-save" data-id="${esc(item.id||item.title||'')}">Lưu media</button></div></div>`
 }
+function patchMediaList(){
+ // Filtering an already selected video must not recreate its iframe/player.
+ // Only patch the auxiliary list while the active media ID remains valid.
+ if(state.view!=='media')return false;
+ const current=document.querySelector('#view .media-list');
+ if(!current)return false;
+ const items=getMedia(),active=items.find(x=>String(x.id||x.title)===String(state.mediaId||''));
+ if(!active)return false;
+ const inert=document.createElement('template');inert.innerHTML=renderMedia();
+ const next=inert.content.querySelector('.media-list');if(!next)return false;
+ const y=current.scrollTop;
+ current.replaceChildren(...next.childNodes);current.scrollTop=y;
+ return true;
+}
 function applyInput(el){const k=el.dataset.input; if(!k)return; let v=el.value; if(k==='interfaceTheme'||k==='interfaceDensity'||k==='interfaceMain'){state[k]=v; applyInterface(); save(); if(state.modalType==='interface')openModal(renderInterfaceModal(),'interface'); else render(); return;} if(['dialogueGroup','dialogueDifficulty','practiceGroup','practiceDifficulty','deepSpeakingId','mediaCat','grammarLevel','grammarTrack','mindmapId','vocabTopic','vocabStatus','testLevel','reviewLevel','reviewFilter','reviewLesson','examLevel','examCycle','examPaperLevel','examPaperType','exerciseLevel','storageGroup'].includes(k)){
   if(k==='examCycle'){
    if(v!=='auto'&&!isExamCycleUnlocked(Number(v))){toast('Lượt kiểm tra này chưa mở khóa. Hãy học đủ lịch trình trước.'); v='auto';}
@@ -3446,7 +3505,7 @@ function applyInput(el){const k=el.dataset.input; if(!k)return; let v=el.value; 
    state[k]=v;
   }
   if(k==='testLevel'){state.testIndex=0;state.testAnswer=null;} if(k==='reviewLevel'){state.reviewIndex=0;state.reviewPage=0;state.reviewAnswer=null;state.reviewLesson='all';state.reviewMiniLesson=false;} if(k==='reviewFilter'||k==='reviewLesson'){state.reviewIndex=0;state.reviewPage=0;state.reviewAnswer=null;state.reviewMiniLesson=false;} if(k==='exerciseLevel')state.exerciseIndex=0; if(k==='practiceGroup'||k==='practiceDifficulty'){state.practiceDialogueId='';state.practiceLineIndex=0;} if(k==='dialogueGroup'||k==='dialogueDifficulty'){state.dialogueId='';state.dialogueLineIndex=0;} if(k==='deepSpeakingId'){state.deepSpeakingStep=0;} if(k==='grammarLevel'){state.grammarTrack='all';state.grammarIndex=0;} if(k==='grammarTrack'){state.grammarIndex=0;} if(k==='mindmapId'){state.mindmapNode='';}
- } else {state[k]=v;if(k==='vocabQuery'){state.vocabFocusKey='';state.vocabIndex=0;state.vocabPage=0;}} if(k==='vocabTopic'||k==='vocabStatus'){state.vocabFocusKey='';state.vocabIndex=0;state.vocabPage=0;} save(); render();}
+ } else {state[k]=v;if(k==='vocabQuery'){state.vocabFocusKey='';state.vocabIndex=0;state.vocabPage=0;}} if(k==='vocabTopic'||k==='vocabStatus'){state.vocabFocusKey='';state.vocabIndex=0;state.vocabPage=0;} save(); if(['mediaQuery','mediaCat'].includes(k)&&patchMediaList())return; render();}
 let activeHandwritingAudioKey='';
 function markHandwritingAudioPlaying(key,on){
  activeHandwritingAudioKey=on?key:'';
@@ -3456,11 +3515,23 @@ function speakVocabItem(v,slow=false){
  const normalized=A.normalizeVocab?.(v)||{};
  const term=A.vocabTerm?.(v)||normalized.term||v?.ru||v?.phrase_ru||'';
  const sourceAudio=str(normalized.audio||v?.audio||v?.audio_url||v?.audioUrl||'').trim();
- const fallback=()=>speak(term,slow?.62:.85);
- if(!sourceAudio)return fallback();
+ let fallbackAttempted=false,fallbackSucceeded=false;
+ const fallback=()=>{
+  if(fallbackAttempted)return fallbackSucceeded; // An audio error + rejected play promise can both fire.
+  fallbackAttempted=true;
+  const started=!!term&&speak(term,slow?.62:.85);
+  fallbackSucceeded=started;
+  toast(started?'Mẫu ghi âm không phát được; chuyển sang giọng đọc máy (TTS), chưa phải mẫu đã kiểm định.':'Không phát được âm thanh; hãy kiểm tra hỗ trợ âm thanh trên thiết bị.');
+  return started;
+ };
+ if(!sourceAudio){
+  const started=!!term&&speak(term,slow?.62:.85);
+  if(!started)toast('Không có âm thanh khả dụng cho từ này trên thiết bị.');
+  return started;
+ }
  try{
   const result=window.RussianAudioEngine?.playSource?.(sourceAudio,{rate:slow?.75:1,sourceType:'RECORDED_PEDAGOGICAL',onError:fallback});
-  return !!result?.started;
+  return result?.started===true||fallback();
  }catch(_){return fallback()}
 }
 function speak(text,rate=.85,callbacks={}){return !!window.RussianAudioEngine?.speak?.(text,{lang:A.speech?.lang||'ru-RU',rate,onStart:callbacks.onstart,onEnd:callbacks.onend,onError:callbacks.onerror})?.started}
@@ -4258,6 +4329,30 @@ function openMiniCheck(lessonId=''){
  if(!id)return;
  state.view='learning';state.learnTab='review';state.reviewLesson=id;state.reviewFilter='all';state.reviewMiniLesson=true;state.reviewIndex=0;state.reviewPage=0;state.reviewAnswer=null;save();render();
 }
+// Small, bounded navigation port for SRS actions outside the core delegated DOM.
+// No page reload, no synthetic click, and no duplicated persistence owner.
+function handleCoreNavigationRequest(event){
+ const route=event?.detail;
+ if(!route||!['vocab','learning'].includes(route.view))return;
+ if(route.view==='vocab'){
+  const nextStage=str(route.vocabStage||state.stage);
+  if(stages().some(x=>x.id===nextStage))state.stage=nextStage;
+  state.view='vocab';state.vocabQuery='';state.vocabTopic='all';state.vocabStatus='all';
+  state.vocabFocusKey=str(route.vocabKey||'').slice(0,180);
+  state.vocabIndex=state.vocabFocusKey?0:Math.max(0,Number(route.vocabIndex)||0);
+  state.vocabPage=Math.floor(state.vocabIndex/(VOCAB_PAGE_SIZE||20));
+  state.vocabFlipped=false;
+ }else{
+  if(route.learnTab!=='practice'||!route.lessonId)return;
+  state.view='learning';state.learnTab='practice';
+  state.lessonId=str(route.lessonId).slice(0,160);
+  state.practiceDialogueId=str(route.practiceDialogueId||'').slice(0,160);
+  state.practiceLineIndex=0;state.practiceGroup='all';state.practiceDifficulty='all';
+ }
+ route.accepted=save();
+ render();
+}
+window.addEventListener('russian:core-navigation-request',handleCoreNavigationRequest);
 window.addEventListener('russian:mini-check',event=>openMiniCheck(event?.detail?.lessonId||''));
 async function init(){loadState(); await loadData(); buildShell(); document.addEventListener('pointerdown',handleMindMapDrag,{passive:true}); document.addEventListener('pointerover',handleMindMapHover,{passive:true}); document.addEventListener('pointerout',handleMindMapHoverOut,{passive:true}); document.addEventListener('dblclick',handleMindMapDoubleClick); document.addEventListener('click',handleClick); document.addEventListener('change',handleChange); document.addEventListener('input',handleInput); document.addEventListener('keydown',handleKeys); window.addEventListener('resize',()=>{if(state.view==='mindmap')requestAnimationFrame(()=>updateMindMapConnectors(document.querySelector('[data-mindmap-canvas=\"1\"]')));},{passive:true}); $('#modalClose').addEventListener('click',closeModal); $('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()}); $('#themeBtn').addEventListener('click',()=>openModal(renderInterfaceModal(),'interface')); $('#aiBtn').addEventListener('click',()=>openModal(renderAiMentor(),'ai')); bridge(); render(); }
 init();

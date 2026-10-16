@@ -2,56 +2,57 @@
 
 Current task: `HUB-C2-CONTRAST-336`
 
-Status: IN_PROGRESS — source mobile Academic scope verified; full exact-head CI pending.
+Status: IN_PROGRESS — implementation and independent code review complete; current-main exact-head CI and Chat acceptance are required before merge.
 
 Branch: `work/hub-c2-complete-contrast-336`
 Base branch: `main`
 Main sync status: branch_only
-Observed main baseline: `1890e6ef9c71f9fa8c57cded3a91575fcd4072bb`
+Observed main baseline: `70df417bacb615602f76b40fea1073ad221059a6`
+Last validated implementation SHA: `45dae510455f0fd15120b7cc064bbae16c9a8f78`
 
 Files changed:
 - Hub CSS owners in assets/css/{main,hub-safe-polish,hub-safe-controls,hub-overview-search-v2,hub-reference-precision-v5,hub-roadmap-comprehensive-v2,subjects-reference-v1,schedule-reference-v1,thesis-reference-v1}.css
 - platform/ui/{tokens,foundations,components,bauman-ui}.css
 - index.html
 - tests/hub-computed-contrast-browser.mjs
-- .github/workflows/system-integration-ci.yml
+- .github/workflows/system-integration-ci.yml (appended contrast jobs only)
 - CODEX_STATE.md
 
 What changed:
-- Keep semantic foreground/background pairs with their actual light/dark surface owners; preserve merged #334/#335 fixes.
-- Verify rendered pixels and computed cascade, including opacity, inputs/icons, keyboard focus, empty/error/form states and populated LOCAL_HUB Research views.
-- Keep mobile Appearance menu within viewport; cover Research horizontal scrolling without measuring obscured checkbox edges.
-- Append source/packaged contrast jobs by viewport; original Whole System Integration steps are unchanged from the observed main.
-- Zero subjects/** or prompts/subjects/** changes; no learning/storage/auth/device/PWA/backend semantics changed.
+- Keep semantic foreground/background pairs with canonical light/dark surface owners; preserve #334/#335 fixes.
+- Audit real Chromium computed cascade and composited pixels, including opacity, icons/inputs, focus and populated LOCAL_HUB Research views, real forms, filters, empty/error states and horizontal calendar scrolling.
+- Keep mobile Appearance menu in viewport and checkboxes visible through canonical tokens.
+- Calibrate against invisible default-fill SVG strokes and translucent focus indicators; independent review confirmed both false-pass repairs.
+- No subject-private code changes relative to the observed main; no learner, storage r5, authentication, Device Gate, PWA/offline, backend or integration-contract changes.
 
 Verification:
-- Six relevant Hub static suites: PASS.
-- Source 5 routes × Academic × 390px, populated states, calibration and negative control: PASS (1,639 matrix samples; artifacts/c2-resume-mobile2).
-- Those local results are preliminary working-tree evidence, not exact clean-HEAD acceptance.
-- Independent review found two measurement false passes (opacity on focus; unpainted default SVG fill). Both were repaired and independently re-probed: faded focus 1.622:1 FAIL, invisible stroke 1:1 FAIL; permanent calibration assertions added.
-- CI Future Interface static rejected component literal colors; checkbox colors now consume canonical light-surface/accent tokens without weakening the existing check.
-- All four themes × all three viewports in source/packaged + original Whole System Integration: pending exact-head CI on PR #347.
-- Production: not deployed; not claimed fixed. Local packaged materialization remains excluded after the prior private-runtime fetch rejection; existing CI supplies package evidence.
+- Exact SHA 45dae510455f0fd15120b7cc064bbae16c9a8f78: all eight workflows PASS.
+- Whole System Integration Gate run 38888632580: original integration jobs PASS; six appended source/packaged × 1440/768/390 contrast jobs PASS (all five routes and four themes).
+- Future Interface 38888632350, Readable Typography 38888632457, Subjects 38888632646, Thesis 38888632574, Development Fast 38888632533, Russian Reference 38888632530, Constitution 38888633000: PASS.
+- Independent review: two Important measurement findings repaired and re-probed; no remaining code-review blocker identified.
+- Current-main reconciliation preserves byte-identical Hub CSS/entry/audit blobs from validated 45dae510. The main workflow's new Russian stability checks are retained.
+- New current-main candidate must obtain its own exact-head CI receipt. Final authoritative HEAD/run IDs and acceptance evidence are recorded in PR #347; do not infer them from this historical checkpoint.
+- One exploratory local run changed HEAD mid-test and was rejected by the SHA guard; it is not acceptance evidence.
+- Production: not deployed; not claimed fixed. Local private-runtime fetch/materialization remains excluded; canonical CI supplies packaged evidence.
 
 Main sync / pull instruction:
-- Work remains in PR #347 on `work/hub-c2-complete-contrast-336`; main does not contain it.
-- Do not merge or deploy until exact-head gates and independent review are accepted.
-- No additional production authorization is granted by this checkpoint.
+- Work remains in PR #347 on `work/hub-c2-complete-contrast-336`; main does not contain this change.
+- Review PR #347 exact-head CI and evidence before merge. Production requires separate authority.
 
 Next recommended task:
-- Resolve any browser/CI findings, verify the complete source/packaged matrix and record exact HEAD/run IDs in PR #347.
+- Read the final exact-head CI receipt and saved browser evidence in PR #347; perform Chat acceptance and release routing for offline use.
 
 Next actor:
-- ChatGPT / Codex
+- ChatGPT / reviewer
 
 Codex required:
-- yes, while browser measurement or integration failures remain.
+- no, unless current-main CI reveals a new browser/integration failure.
 
 ChatGPT can do:
-- inspect CI receipts, authority and PR evidence; perform scoped review and acceptance routing.
+- inspect exact-head receipts, review evidence and authority, route acceptance and offline merge without claiming production deployment.
 
 Codex prompt file:
-- none; continue the explicit Issue #336 scope and PR #347.
+- none; retain the explicit Issue #336 scope and PR #347.
 
 ---
 
