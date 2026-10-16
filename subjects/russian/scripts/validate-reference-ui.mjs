@@ -350,8 +350,8 @@ must(css.includes('.handwriting-cycle')&&css.includes('.handwriting-primary-canv
 must(core.includes('function speakVocabItem(v,slow=false)'),'Vocabulary audio must stay in the canonical core audio path');
 must(core.includes("window.RussianAudioEngine?.playSource?.(sourceAudio,{rate:slow?.75:1"),'Vocabulary source audio must delegate slower playback to canonical audio engine');
 must(core.includes("const fallback=()=>speak(term,slow?.62:.85)"),'Vocabulary TTS fallback must preserve slower playback rate');
-must(speechEngine.includes("player.playbackRate=Math.max(.5,Math.min(2,Number(options.rate)||1))"),'Canonical audio engine must honor source playback rate');
-must(speechEngine.includes("u.rate=Math.max(.5,Math.min(1.5,Number(options.rate)||.85))"),'Canonical audio engine must honor TTS playback rate');
+must(speechEngine.includes("player.playbackRate=Math.max(.5,Math.min(2,Number.isFinite(rate)&&rate>0?rate:1))"),'Canonical audio engine must honor source playback rate');
+must(speechEngine.includes("u.rate=Math.max(.5,Math.min(1.5,Number.isFinite(rate)&&rate>0?rate:.85))"),'Canonical audio engine must honor TTS playback rate');
 must(!core.includes('info.term,info.meaningRu,info.meaningVi,info.english,info.application'),'Visual inference must not depend on Vietnamese/English meaning fields');
 must(!core.includes('info.term,info.meaningRu,info.meaningVi,info.english,info.visualLabel'),'Dialogue presentation inference must not depend on translated meaning fields');
 must(!/new\s+MutationObserver\s*\(/.test(futureJs),'Canonical Russian presentation runtime must not observe DOM mutations it generates');
