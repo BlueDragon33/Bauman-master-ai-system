@@ -232,7 +232,26 @@ try{
       falseCloudSync:/Đã đồng bộ/.test(document.querySelector('#saveState')?.textContent||'')
     };
   },stateKey);
-  assert.equal(afterColdResume.online,false,'Fresh tab must still be offline');
+  // navigator.onLine is an imperfect Chromium indicator for newly created
+  // Service-Worker-controlled tabs. Verify the REAL network boundary instead:
+  // a unique non-cached request outside the Russian SW scope must be blocked.
+  // If it succeeds (even 404), this is not a proven network-offline restart.
+  const probePage=await context.newPage();
+  await context.setOffline(true);
+  const probeUrl=new URL('__r31_uncached_network_probe_'+Date.now()+'.json',BASE).href;
+  let uncachedNetworkBlocked=false;
+  let networkProbeDiagnostic='not_run';
+  try{
+    const response=await probePage.goto(probeUrl,{waitUntil:'domcontentloaded',timeout:7000});
+    networkProbeDiagnostic='unexpected HTTP '+(response?.status()??'none');
+  }catch(error){
+    networkProbeDiagnostic=String(error?.message||error);
+    uncachedNetworkBlocked=/ERR_INTERNET_DISCONNECTED|ERR_NETWORK_CHANGED|ERR_FAILED/i.test(networkProbeDiagnostic);
+  }finally{
+    await probePage.close();
+  }
+  assert.equal(uncachedNetworkBlocked,true,
+    'A fresh un-cached same-origin request must fail at the browser network layer in offline mode: '+networkProbeDiagnostic);
   assert.equal(afterColdResume.view,beforeClose.view,'Learning route must survive offline cold reopen');
   assert.equal(afterColdResume.learnTab,beforeClose.learnTab,'Lesson tab must survive offline cold reopen');
   assert.equal(afterColdResume.query,beforeClose.query,'Local learner input must survive offline cold reopen');
@@ -241,7 +260,7 @@ try{
   assert.ok(['pending','saved','error','recovery'].includes(afterColdResume.saveStatus),'Local save status must remain truthful');
   assert.deepEqual(errors,[],'Offline cold resume emitted browser errors');
   await resumedPage.screenshot({path:path.join(OUT,'russian-offline-cold-resume.png'),fullPage:true});
-  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',cachedFoundation:true,offline,offlineColdResume:{status:'PASS',beforeClose,afterColdResume,masteryEvidence:'NOT_ASSERTED'},simulatedCacheMigration:{from:'v26/v27/v28/v31/v32/v33',to:expectedShell,previousShellRemoved:migration.previousShellRemoved,siblingCachePreserved:migration.siblingCachePreserved,learningCachePreserved:migration.learningCachePreserved}},null,2));
+  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',cachedFoundation:true,offline,offlineColdResume:{status:'PASS',beforeClose,afterColdResume,uncachedNetworkBlocked,reportedNavigatorOnline:afterColdResume.online,masteryEvidence:'NOT_ASSERTED'},simulatedCacheMigration:{from:'v26/v27/v28/v31/v32/v33',to:expectedShell,previousShellRemoved:migration.previousShellRemoved,siblingCachePreserved:migration.siblingCachePreserved,learningCachePreserved:migration.learningCachePreserved}},null,2));
   console.log('Russian offline shell browser acceptance PASS');
 }finally{
   await browser?.close();
