@@ -1,5 +1,5 @@
 'use strict';
-const CACHE='russian-app-shell-v30-engine-asr-ui-stability';
+const CACHE='russian-app-shell-v31-approved-overview';
 const DATA_CACHE='russian-learning-data-v1';
 const SHELL=[
   './','./index.html','./manifest.webmanifest','../shared/host-bridge.js',
