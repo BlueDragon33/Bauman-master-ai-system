@@ -60,6 +60,9 @@ jobs:
       - name: Russian Engine isolated suite
         run: node subjects/russian/engine/tests/run-engine-suite.mjs
 
+      - name: Preview Containers deployment preflight regression
+        run: node --test tests/cloudflare-containers-preflight.test.mjs
+
       - name: Runtime device gate regression
         run: node scripts/runtime-device-gate-regression.mjs
 
