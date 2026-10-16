@@ -57,8 +57,17 @@ const optionalLoader=read('assets/russian-optional-data-loader.js');
 const contentContract=read('assets/content-contract.js');
 const contentContractCss=read('assets/content-contract.css');
 const core=read('assets/core.js');
-must(core.includes('if(final!==true)return; // interim hypotheses cannot become learner transcript evidence'),
-  'Learner core must never turn interim ASR into transcript evidence');
+must(core.includes('if(final!==true||!isCurrent())return; // No interim or stale-turn learner evidence.'),
+  'Learner core must reject interim and stale-turn ASR before storing evidence');
+for(const marker of [
+  'function speakingAttemptContext()',
+  'function retireSpeakingAttempt()',
+  'function syncSpeakingAttemptContext()',
+  'if(activeSpeakingAttempt&&activeSpeakingAttempt.context!==speakingAttemptContext())',
+  'window.RussianSpeechRecognitionAdapter?.cancel?.()',
+  'const isCurrent=()=>activeSpeakingAttempt===attempt&&attempt.context===speakingAttemptContext()',
+  'syncSpeakingAttemptContext(); // Discard ASR if learner switched lesson, line, role or tab.'
+])must(core.includes(marker),'Pre-A0 ASR dialogue context retirement missing: '+marker);
 must(core.includes('chưa kiểm tra âm và trọng âm.') && !core.includes('Rất tốt: nhịp và từ khóa'),
   'ASR transcript similarity must not claim rhythm/stress quality without acoustic evidence');
 
