@@ -74,7 +74,7 @@ assert(adapter.includes('plannedCount:33'),'Adapter planned count must be 33');
 assert(core.includes("window.RussianAudioEngine?.speak?.(text,{lang:A.speech?.lang||'ru-RU'"),'Core must pass Russian locale to canonical audio engine');
 assert(speechEngine.includes("u.lang=clean(options.lang)||'ru-RU'"),'Russian TTS locale fallback missing');
 assert(core.includes("slow?.62:.85"),'Normal/slow playback rate binding missing');
-assert(speechEngine.includes('window.speechSynthesis.cancel();window.speechSynthesis.speak(u)'),'Rapid playback must cancel prior utterance in canonical audio engine');
+assert(speechEngine.includes('cancelPlayback();')&&speechEngine.includes('if(utterance){try{window.speechSynthesis?.cancel?.()}catch(_){}')&&speechEngine.includes('window.speechSynthesis.speak(u);'),'Rapid playback must retire owned prior utterance before new Russian TTS');
 assert(core.includes("Bạn vẫn có thể tiếp tục luyện viết"),'Speech-unavailable writing fallback missing');
 assert(core.includes("data-hand-audio"),'Playing-state marker missing');
 assert(css.includes('.hand-listen-write-card'),'RHW2 audio UI styles missing');
