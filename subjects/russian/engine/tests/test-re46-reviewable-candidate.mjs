@@ -42,6 +42,10 @@ assert.deepEqual(
   {speaker:spatial('rl-01-room').utteranceSpeakerRole,recipient:spatial('rl-01-room').utteranceRecipientRole},
   {speaker:'peer',recipient:'learner'}
 );
+assert.equal(spatial('rl-05-shop').reviewVisualNodeId,'bottle-shelf','bottled-water speech needs a reviewable real-world visual anchor');
+const invalidReviewVisual=structuredClone(resolved);
+invalidReviewVisual.spatial.scenes.find(s=>s.sceneId==='rl-05-shop').reviewVisualNodeId='missing-node';
+assert.equal(validateReviewableCandidates(invalidReviewVisual).ok,false,'unmapped review visual must fail closed');
 assert.equal(spatial('rl-08-metro').vn.actionHint.includes('không nhầm với thẻ đi tàu'),true);
 assert.equal(spatial('rl-11-dorm').vn.actionHint.includes('không chọn một cánh cửa bất kỳ'),true);
 assert.equal(spatial('rl-13-university').vn.actionHint.includes('không chọn cả tòa nhà'),true);

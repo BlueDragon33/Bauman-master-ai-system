@@ -140,3 +140,14 @@ body.canva-main-v2[data-theme="paper"] .hub-safe-preset-grid button small{color:
   body.canva-main-v2 .hub-safe-preset-grid button{min-height:72px;grid-template-columns:72px minmax(0,1fr);grid-template-rows:auto auto}
   body.canva-main-v2 .hub-safe-preset-grid button i{grid-row:1/3;height:48px}
 }
+
+/* Keep the floating control surface inside the mobile viewport. */
+@media(max-width:720px){
+  body.canva-main-v2 .appearance-menu{
+    position:fixed;
+    left:12px;
+    right:12px;
+    top:112px;
+    max-height:calc(100dvh - 190px);
+  }
+}

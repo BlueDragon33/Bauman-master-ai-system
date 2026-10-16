@@ -1,5 +1,58 @@
 # CODEX_STATE
 
+Current task: `HUB-C2-CONTRAST-336`
+
+Status: IN_PROGRESS — source mobile Academic scope verified; full exact-head CI pending.
+
+Branch: `work/hub-c2-complete-contrast-336`
+Base branch: `main`
+Main sync status: branch_only
+Observed main baseline: `1890e6ef9c71f9fa8c57cded3a91575fcd4072bb`
+
+Files changed:
+- Hub CSS owners in assets/css/{main,hub-safe-polish,hub-safe-controls,hub-overview-search-v2,hub-reference-precision-v5,hub-roadmap-comprehensive-v2,subjects-reference-v1,schedule-reference-v1,thesis-reference-v1}.css
+- platform/ui/{tokens,foundations,components,bauman-ui}.css
+- index.html
+- tests/hub-computed-contrast-browser.mjs
+- .github/workflows/system-integration-ci.yml
+- CODEX_STATE.md
+
+What changed:
+- Keep semantic foreground/background pairs with their actual light/dark surface owners; preserve merged #334/#335 fixes.
+- Verify rendered pixels and computed cascade, including opacity, inputs/icons, keyboard focus, empty/error/form states and populated LOCAL_HUB Research views.
+- Keep mobile Appearance menu within viewport; cover Research horizontal scrolling without measuring obscured checkbox edges.
+- Append source/packaged contrast jobs by viewport; original Whole System Integration steps are unchanged from the observed main.
+- Zero subjects/** or prompts/subjects/** changes; no learning/storage/auth/device/PWA/backend semantics changed.
+
+Verification:
+- Six relevant Hub static suites: PASS.
+- Source 5 routes × Academic × 390px, populated states, calibration and negative control: PASS (1,639 matrix samples; artifacts/c2-resume-mobile2).
+- Those local results are preliminary working-tree evidence, not exact clean-HEAD acceptance.
+- All four themes × all three viewports in source/packaged + original Whole System Integration: pending exact-head CI on PR #347.
+- Production: not deployed; not claimed fixed. Local packaged materialization remains excluded after the prior private-runtime fetch rejection; existing CI supplies package evidence.
+
+Main sync / pull instruction:
+- Work remains in PR #347 on `work/hub-c2-complete-contrast-336`; main does not contain it.
+- Do not merge or deploy until exact-head gates and independent review are accepted.
+- No additional production authorization is granted by this checkpoint.
+
+Next recommended task:
+- Resolve any browser/CI findings, verify the complete source/packaged matrix and record exact HEAD/run IDs in PR #347.
+
+Next actor:
+- ChatGPT / Codex
+
+Codex required:
+- yes, while browser measurement or integration failures remain.
+
+ChatGPT can do:
+- inspect CI receipts, authority and PR evidence; perform scoped review and acceptance routing.
+
+Codex prompt file:
+- none; continue the explicit Issue #336 scope and PR #347.
+
+---
+
 Current task: `PROMPT_CONTROL_CENTER_V1_BOOTSTRAP`
 
 Status: IN_PROGRESS

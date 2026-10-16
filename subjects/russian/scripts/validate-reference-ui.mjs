@@ -13,15 +13,31 @@ const futureCss=css;
 const futureJs=read('assets/russian-future-ui.js');
 const sw=read('sw.js');
 const shellVersion=sw.match(/const CACHE='russian-app-shell-v([0-9]+)-/);
-must(shellVersion&&Number(shellVersion[1])>=28,'Truthful local-save UI requires Russian SW shell v28 or later');
+must(shellVersion&&Number(shellVersion[1])>=29,'Final-only Russian ASR requires a fresh offline shell v29 or later');
 must(sw.includes("keys.filter(k=>/^russian-app-shell-v[0-9]+(?:-|$)/i.test(k)&&k!==CACHE)"),'Russian SW may only purge its own obsolete shell caches');
 for(const asset of ['./assets/russian-future-ui.css','./assets/russian-future-ui.js'])must(sw.includes(asset),'Russian offline shell missing updated icon asset '+asset);
 const speechEngine=read('assets/speech-interaction-engine.js');
+for(const token of [
+  'const finals=results.filter(row=>row?.isFinal===true',
+  'if(recognition!==rec)return;',
+  'if(finalText&&finalText!==lastFinalTranscript)',
+  'final:false,support:recognitionState,rawConfidence:null',
+  'pronunciationAuthority:false,stressAuthority:false',
+  'finishRecognition(current);'
+]){
+  must(speechEngine.includes(token),'ASR must reject interim or stale events before learner feedback: '+token);
+}
+
 const js=futureJs;
 const optionalLoader=read('assets/russian-optional-data-loader.js');
 const contentContract=read('assets/content-contract.js');
 const contentContractCss=read('assets/content-contract.css');
 const core=read('assets/core.js');
+must(core.includes('if(final!==true)return; // interim hypotheses cannot become learner transcript evidence'),
+  'Learner core must never turn interim ASR into transcript evidence');
+must(core.includes('chưa kiểm tra âm và trọng âm.') && !core.includes('Rất tốt: nhịp và từ khóa'),
+  'ASR transcript similarity must not claim rhythm/stress quality without acoustic evidence');
+
 // R200 handwriting: a real stroke is required before self-confirming hear_trace.
 // Draft stays in the existing learner state and is capped (no image or secondary store).
 for(const invariant of [

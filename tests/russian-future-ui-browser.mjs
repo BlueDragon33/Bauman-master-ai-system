@@ -39,6 +39,56 @@ try{
   // Wait for the MutationObserver/RAF presentation layer to settle before asserting visible branding.
   await page.waitForFunction(()=>document.getElementById('subjectTitle')?.textContent?.trim()==='Tiếng Nga',null,{timeout:10000});
 
+  // Browser speech recognition must distinguish interim hypotheses from completed
+  // answers, ignore detached events, and preserve a real confidence value of zero.
+  const asrSessionAudit=await page.evaluate(()=>{
+    const adapter=window.RussianSpeechRecognitionAdapter;
+    const prior=window.SpeechRecognition;
+    const sessions=[];
+    const received=[];
+    class SimulatedRecognizer {
+      start(){sessions.push(this)}
+      stop(){}
+      abort(){}
+    }
+    window.SpeechRecognition=SimulatedRecognizer;
+    try{
+      adapter.start({interim:true,onResult:row=>received.push(row)});
+      const old=sessions[0],staleResult=old.onresult,staleEnd=old.onend;
+      old.onresult({results:[{0:{transcript:'где м...',confidence:.9},isFinal:false}]});
+      const interim=received.at(-1);
+      old.onresult({results:[{0:{transcript:'Где метро?',confidence:0},isFinal:true}]});
+      const final=received.at(-1);
+      old.onresult({results:[{0:{transcript:'Где метро?',confidence:0},isFinal:true}]});
+      const withoutDuplicate=received.length===2;
+      adapter.start({onResult:row=>received.push(row)});
+      staleResult({results:[{0:{transcript:'wrong previous answer'},isFinal:true}]});
+      staleEnd();
+      const oldSilenced=received.length===2&&adapter.support()==='SUPPORTED';
+      const current=sessions[1],late=current.onresult;
+      current.onresult({results:[{0:{transcript:'Как пройти?',confidence:.75},isFinal:false}]});
+      const pendingNotFinal=received.length===2;
+      current.onresult({results:[{0:{transcript:'Как пройти?',confidence:.75},isFinal:true}]});
+      const secondFinal=received.at(-1);
+      adapter.cancel();
+      late({results:[{0:{transcript:'stale after cancellation'},isFinal:true}]});
+      const cancellationSafe=received.length===3;
+      return {interim,final,secondFinal,withoutDuplicate,oldSilenced,pendingNotFinal,cancellationSafe};
+    }finally{
+      adapter.cancel();
+      if(prior===undefined)delete window.SpeechRecognition;
+      else window.SpeechRecognition=prior;
+    }
+  });
+  assert.equal(asrSessionAudit.interim?.final,false,'Interim Russian hypothesis must not be reported as final');
+  assert.equal(asrSessionAudit.interim?.pronunciationAuthority,false,'Browser interim transcript must never imply pronunciation authority');
+  assert.equal(asrSessionAudit.final?.final,true,'Final Russian transcript must retain explicit final state');
+  assert.equal(asrSessionAudit.final?.transcript,'Где метро?','Final Russian transcript must preserve text');
+  assert.equal(asrSessionAudit.final?.rawConfidence,0,'Valid zero recognition confidence must not become missing');
+  assert.equal(asrSessionAudit.secondFinal?.transcript,'Как пройти?','A new oral session must process its own final answer');
+  assert.ok(asrSessionAudit.withoutDuplicate&&asrSessionAudit.oldSilenced&&asrSessionAudit.pendingNotFinal&&asrSessionAudit.cancellationSafe,
+    'Speech recognition must reject duplicates, late/cancelled events and interim evidence');
+
   assert.equal((await page.locator('#subjectTitle').innerText()).trim(),'Tiếng Nga','Russian-only visible brand drifted');
   assert.match(await page.locator('#subjectSubtitle').innerText(),/Nghe.*Nói.*Đọc.*Viết/);
   assert.equal(await page.locator('.ru-right-rail').count(),0,'Fixed right rail must be absent from the canonical learning shell');

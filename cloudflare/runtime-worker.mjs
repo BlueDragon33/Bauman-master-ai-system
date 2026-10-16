@@ -1,3 +1,4 @@
+import { handleManagedSso, hasManagedSsoSession, managedSsoEnabled, requiresManagedBrowserSso } from "./app-manager-sso.mjs";
 export const RUNTIME_SESSION_COOKIE = '__Host-bauman_session';
 const PROTECTED_LEARNING_ROOTS = ['/subjects/', '/roadmap_v2/', '/foundation/'];
 const PROTECTED_LEARNING_EXTENSIONS = /\.(?:json|md|txt|csv|tsv)$/i;
@@ -125,6 +126,19 @@ export default {
           'content-security-policy': "default-src 'none'; frame-ancestors 'none'",
           'x-content-type-options': 'nosniff',
         },
+      });
+    }
+
+    const sso = await handleManagedSso(request,env);
+    if(sso) return sso;
+    if(managedSsoEnabled(env) && (requiresManagedBrowserSso(url.pathname) ||
+      (url.pathname === '/api/runtime/session' && request.method === 'POST')) &&
+      !await hasManagedSsoSession(request,env)) {
+      if(request.method === 'GET' && (url.pathname === '/' || url.pathname === '/index.html')) {
+        return Response.redirect(url.origin + '/__sso/start',303);
+      }
+      return Response.json({ok:false,code:'APP_MANAGER_SSO_REQUIRED'}, {
+        status:401,headers:{'cache-control':'no-store, private','x-content-type-options':'nosniff'}
       });
     }
 

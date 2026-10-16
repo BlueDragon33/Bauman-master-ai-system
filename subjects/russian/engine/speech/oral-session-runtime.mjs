@@ -1,6 +1,11 @@
 import {SCHEMAS, validateEvidence} from '../public/contracts.mjs';
 
 const clean = value => String(value ?? '').trim();
+const recognitionConfidence = value => {
+  if(value==null||value==='')return null;
+  const number=Number(value);
+  return Number.isFinite(number)&&number>=0&&number<=1?number:null;
+};
 const copy = value => {
   if (typeof structuredClone === 'function') return structuredClone(value);
   return JSON.parse(JSON.stringify(value));
@@ -180,14 +185,14 @@ export function createOralSessionRuntime({speechProvider, clock=Date.now}={}) {
       result:{
         transcript:clean(latest?.transcript),
         targetText:clean(targetText),
-        rawConfidence:Number.isFinite(Number(latest?.rawConfidence))?Number(latest.rawConfidence):null,
+        rawConfidence:recognitionConfidence(latest?.rawConfidence),
         pronunciationEvaluated:false,
         stressEvaluated:false,
         providerSignalAvailable:!!latest
       },
       provider:{
         kind:'speech-recognition-adapter',
-        confidence:Number.isFinite(Number(latest?.rawConfidence))?Number(latest.rawConfidence):null,
+        confidence:recognitionConfidence(latest?.rawConfidence),
         infrastructureFailure:!latest && session.failures.some(x=>x.kind.startsWith('ASR_PROVIDER_'))
       },
       supportLevel:session.supportLevel
