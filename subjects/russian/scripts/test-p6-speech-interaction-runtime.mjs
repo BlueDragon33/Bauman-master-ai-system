@@ -209,6 +209,54 @@ leaving.player.emit('ended');
 assert.deepEqual(ended,['new'],'Old page audio must not complete after pagehide');
 
 
+// Real vocabulary core keeps a local fallback path when recorded source audio
+// is absent from an offline installation or HTMLAudio cannot start.
+const coreSource=fs.readFileSync('subjects/russian/assets/core.js','utf8');
+const vocabStart=coreSource.indexOf('function speakVocabItem(v,slow=false){');
+const vocabEnd=coreSource.indexOf('\nfunction speak(text,rate=',vocabStart);
+assert.ok(vocabStart>=0&&vocabEnd>vocabStart,'Canonical vocabulary source/audio owner cannot be located');
+const spokenFallback=[],vocabToasts=[],vocabSource=[];
+let sourceBehavior='cannot-start',allowTts=true;
+const vocabWindow={RussianAudioEngine:{
+ playSource(src,opts){
+   vocabSource.push({src,rate:opts.rate});
+   if(sourceBehavior==='succeed')return {started:true};
+   if(sourceBehavior==='duplicate-error'){
+     opts.onError?.(new Error('source-error'));
+     opts.onError?.(new Error('promise-rejection'));
+     return {started:false};
+   }
+   return {started:false,reason:'unsupported'};
+ }
+}};
+const testVocabCtx={
+ A:{normalizeVocab:v=>v,vocabTerm:v=>v?.ru||''},
+ str:value=>String(value??''),
+ speak:(text,rate)=>{spokenFallback.push({text,rate});return allowTts},
+ toast:message=>vocabToasts.push(message),
+ window:vocabWindow
+};
+vm.createContext(testVocabCtx);
+vm.runInContext(coreSource.slice(vocabStart,vocabEnd)+'\nthis.vocabSpeak=speakVocabItem;',testVocabCtx);
+const vocabulary={ru:'Где метро?',audio:'offline-missing.ogg'};
+assert.equal(testVocabCtx.vocabSpeak(vocabulary,true),true,'Offline missing source should fall back to a spoken Russian prompt');
+assert.equal(vocabSource.at(-1).rate,.75);
+assert.equal(spokenFallback.at(-1).rate,.62);
+assert.match(vocabToasts.at(-1),/TTS/);
+assert.match(vocabToasts.at(-1),/chưa phải mẫu đã kiểm định/);
+assert.equal(spokenFallback.length,1);
+sourceBehavior='duplicate-error';
+assert.equal(testVocabCtx.vocabSpeak(vocabulary,false),true);
+assert.equal(spokenFallback.length,2,'Two browser error pathways must only trigger one TTS fallback');
+sourceBehavior='succeed';
+assert.equal(testVocabCtx.vocabSpeak(vocabulary,false),true);
+assert.equal(spokenFallback.length,2,'Available source audio must not be replaced with TTS');
+allowTts=false;sourceBehavior='cannot-start';
+assert.equal(testVocabCtx.vocabSpeak(vocabulary,false),false);
+assert.match(vocabToasts.at(-1),/Không phát được âm thanh/);
+assert.equal(testVocabCtx.vocabSpeak({ru:'Спасибо'},false),false);
+assert.match(vocabToasts.at(-1),/Không có âm thanh khả dụng/);
+
 delete window.SpeechRecognition;
 delete window.webkitSpeechRecognition;
 assert.equal(asr.support(),'UNSUPPORTED');
