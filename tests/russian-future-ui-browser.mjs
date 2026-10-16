@@ -373,6 +373,68 @@ try{
         status:typeof window.RussianRecordingEngine?.status==='function'
       }));
       assert.deepEqual(recorderCapability,{present:true,start:true,stop:true,status:true},'Canonical local recording engine must be available independently from ASR; coach visibility is validated in its speaking-specific gate');
+      // A learner can change role/turn while the old Web Speech recognizer is
+      // still pending. Neither its late final result nor its onEnd may mutate
+      // learner evidence or the state of the newly selected turn.
+      await page.evaluate(()=>{
+        const previous=window.SpeechRecognition;
+        const instances=[];
+        class MockSpeechSession{
+          start(){this.started=true;instances.push(this)}
+          abort(){this.aborted=true}
+          stop(){this.stopped=true;this.onend?.()}
+        }
+        window.__RU_TURN_ASR={previous,instances};
+        window.SpeechRecognition=MockSpeechSession;
+      });
+      const asrSignalCount=async()=>page.evaluate(()=>{
+        const stored=JSON.parse(localStorage.getItem(window.SUBJECT_ADAPTER.storageKey)||'{}');
+        return Object.values(stored.practiceSpeechResults||{}).filter(row=>row?.signalType==='asr_transcript_similarity').length;
+      });
+      const priorSignalCount=await asrSignalCount();
+      await page.locator('[data-act="record-line"]').first().click();
+      assert.equal(await page.evaluate(()=>window.__RU_TURN_ASR.instances.length),1,'First Pre-A0 recognition attempt must start');
+      await page.evaluate(()=>{window.__RU_TURN_ASR.staleResult=window.__RU_TURN_ASR.instances[0].onresult});
+      await page.locator('[data-act="role-a"]').first().click();
+      await page.evaluate(()=>{
+        window.__RU_TURN_ASR.staleResult?.({results:[{0:{transcript:'СТАРАЯ ФРАЗА',confidence:.99},isFinal:true}]});
+      });
+      const abandoned=await page.evaluate(()=>{
+        const obj=window.__RU_TURN_ASR;
+        const state=JSON.parse(localStorage.getItem(window.SUBJECT_ADAPTER.storageKey)||'{}');
+        return {aborted:obj.instances[0]?.aborted===true,
+          recording:state.speechRecording,
+          signals:Object.values(state.practiceSpeechResults||{}).filter(row=>row?.signalType==='asr_transcript_similarity').length};
+      });
+      assert.equal(abandoned.aborted,true,'Role change must abort old speech recognizer');
+      assert.equal(abandoned.recording,false,'Role change must clear offline active-mic marker');
+      assert.equal(abandoned.signals,priorSignalCount,'Late old-turn ASR must not create learner evidence');
+
+      await page.locator('[data-act="record-line"]').first().click();
+      assert.equal(await page.evaluate(()=>window.__RU_TURN_ASR.instances.length),2);
+      await page.evaluate(()=>{
+        window.__RU_TURN_ASR.instances[1].onresult?.({results:[{
+          0:{transcript:'Где метро?',confidence:.6},isFinal:true
+        }]});
+      });
+      await page.waitForFunction(previous=>{
+        const state=JSON.parse(localStorage.getItem(window.SUBJECT_ADAPTER.storageKey)||'{}');
+        return Object.values(state.practiceSpeechResults||{}).filter(r=>r?.signalType==='asr_transcript_similarity').length===previous+1
+          &&state.speechRecording===false;
+      },priorSignalCount,{timeout:10000});
+      const evidence=await page.evaluate(()=>{
+        const state=JSON.parse(localStorage.getItem(window.SUBJECT_ADAPTER.storageKey)||'{}');
+        return Object.values(state.practiceSpeechResults||{}).find(r=>r?.signalType==='asr_transcript_similarity');
+      });
+      assert.equal(evidence?.ok,false,'ASR text similarity cannot certify spoken proficiency');
+      assert.equal(evidence?.signalOnly,true,'ASR remains supporting evidence only');
+      assert.equal(evidence?.providerConfidence,.6);
+      await page.evaluate(()=>{
+        const obj=window.__RU_TURN_ASR;
+        if(obj.previous===undefined)delete window.SpeechRecognition;
+        else window.SpeechRecognition=obj.previous;
+        delete window.__RU_TURN_ASR;
+      });
       await page.locator('[data-act="toggle-transcript"]').click();
       await page.waitForSelector('.transcript-listen-first',{state:'visible',timeout:10000});
       assert.match(await page.locator('[data-act="mark-line-ok"]').first().innerText(),/tự đối chiếu/i,'Manual speaking button must not pose as graded pronunciation');
