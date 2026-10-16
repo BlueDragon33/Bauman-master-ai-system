@@ -14,9 +14,10 @@ const learningState=source('assets/learning-state.js');
 const learningFlow=source('assets/learning-flow.js');
 const academic=source('assets/academic-language.js');
 const vocab=source('assets/vocab-srs.js');
+const speech=source('assets/speech-interaction-engine.js');
 const shell=source('sw.js');
 
-for(const [name,js] of Object.entries({core,future,learningState,learningFlow,academic,vocab,shell})){
+for(const [name,js] of Object.entries({core,future,learningState,learningFlow,academic,vocab,speech,shell})){
   test(name+' parses as JavaScript',()=>{
     assert.doesNotThrow(()=>new vm.Script(js,{filename:name+'.js'}));
   });
