@@ -9,7 +9,10 @@
   const DATA_FETCH_TIMEOUT_MS=8000;
   const SW_READY_TIMEOUT_MS=20000;
   const SW_REGISTER_ATTEMPTS=3;
-  let preparing=false, prepared=Number(localStorage.getItem('ru_offline_core_count')||0), swReadyPromise=null;
+  // Persisted counters are hints only. Every page load must verify real CacheStorage
+  // and an active, correctly precached Service Worker before claiming offline-ready.
+  let preparing=false, prepared=0, cacheVerified=false, shellVerified=false, swReadyPromise=null;
+  const readyForOffline=()=>cacheVerified&&shellVerified&&prepared===CORE_DATA.length&&!!navigator.serviceWorker?.controller;
 
   function statusButton(){
     const host=document.querySelector('.ru-top-actions');if(!host)return null;
@@ -19,9 +22,9 @@
   }
   function paint(){
     const btn=statusButton();if(!btn)return;
-    const online=navigator.onLine;const ready=prepared>=CORE_DATA.length;
+    const online=navigator.onLine;const ready=readyForOffline();
     btn.dataset.online=online?'1':'0';btn.dataset.ready=ready?'1':'0';
-    const label=preparing?'Đang chuẩn bị offline…':ready?(online?'Offline sẵn sàng':'Đang dùng offline'):(online?`Online · offline ${prepared}/${CORE_DATA.length}`:'Offline · dữ liệu chưa đủ');
+    const label=preparing?'Đang chuẩn bị offline…':ready?(online?'Offline sẵn sàng':'Đang dùng offline'):!cacheVerified?'Đang kiểm tra dữ liệu offline…':!shellVerified?(online?'Offline chưa sẵn sàng · bộ khởi động chưa xác minh':'Offline · bộ khởi động chưa sẵn sàng'):(online?`Online · offline ${prepared}/${CORE_DATA.length}`:'Offline · dữ liệu chưa đủ');
     const span=btn.querySelector('span');if(span)span.textContent=label;btn.title=ready?'Bộ dữ liệu học bắt buộc đã được cache cho lần dùng offline tiếp theo.':'Bấm để chuẩn bị bộ dữ liệu học bắt buộc cho offline.';
   }
   async function fetchWithTimeout(url,options={},timeoutMs=DATA_FETCH_TIMEOUT_MS){
@@ -38,8 +41,8 @@
     return count;
   }
   async function reconcileOfflineCore(){
-    try{prepared=await countCached(CORE_DATA);localStorage.setItem('ru_offline_core_count',String(prepared));}
-    catch(_){prepared=0;}
+    try{prepared=await countCached(CORE_DATA);cacheVerified=true;localStorage.setItem('ru_offline_core_count',String(prepared));}
+    catch(_){prepared=0;cacheVerified=false;}
     paint();return prepared;
   }
   async function cacheNames(names,{refresh=false}={}){
@@ -54,7 +57,7 @@
         if(res.ok){await cache.put(url,res.clone());count++;}
         else if(existing){count++;}
       }catch(_){if(await cache.match(url))count++;}
-      if(names===CORE_DATA){prepared=count;localStorage.setItem('ru_offline_core_count',String(count));paint();}
+      if(names===CORE_DATA){prepared=count;cacheVerified=false;localStorage.setItem('ru_offline_core_count',String(count));paint();}
     }
     return count;
   }
@@ -115,9 +118,10 @@
     preparing=true;paint();
     try{
       await ensureServiceWorkerReady();
+      shellVerified=true;
       await prepareProtectedOfflineAssets();
-      prepared=await cacheNames(CORE_DATA,{refresh:true});
-      localStorage.setItem('ru_offline_core_count',String(prepared));
+      await cacheNames(CORE_DATA,{refresh:true});
+      await reconcileOfflineCore();
     }finally{preparing=false;paint();}
   }
   function idleWarm(){
@@ -164,11 +168,12 @@
   }
   async function register(){
     if(!('serviceWorker'in navigator)||location.protocol==='file:')return;
-    try{await ensureServiceWorkerReady();await reconcileOfflineCore();idleWarm();}
-    catch(e){console.warn('Russian offline shell unavailable',e);}
+    try{await ensureServiceWorkerReady();shellVerified=true;idleWarm();}
+    catch(e){shellVerified=false;console.warn('Russian offline shell unavailable',e);}
+    finally{await reconcileOfflineCore();}
   }
-  function bootOfflineRuntime(){paint();register();}
+  function bootOfflineRuntime(){paint();reconcileOfflineCore().catch(()=>{});register();}
   window.addEventListener('online',()=>{paint();reconcileOfflineCore();});window.addEventListener('offline',()=>{paint();reconcileOfflineCore();});
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bootOfflineRuntime,{once:true});else bootOfflineRuntime();
-  window.RussianRuntimeOptimizer={schema:SCHEMA,prepareOfflineCore,reconcileOfflineCore,ensureServiceWorkerReady,prepareProtectedOfflineAssets,readShellPrecacheReport,repairShellPrecache,status:()=>({online:navigator.onLine,prepared,total:CORE_DATA.length,ready:prepared>=CORE_DATA.length,serviceWorkerControlled:!!navigator.serviceWorker?.controller}),coreData:[...CORE_DATA],protectedOfflineAssets:[...PROTECTED_OFFLINE_ASSETS]};
+  window.RussianRuntimeOptimizer={schema:SCHEMA,prepareOfflineCore,reconcileOfflineCore,ensureServiceWorkerReady,prepareProtectedOfflineAssets,readShellPrecacheReport,repairShellPrecache,status:()=>({online:navigator.onLine,prepared,total:CORE_DATA.length,cacheVerified,shellVerified,ready:readyForOffline(),serviceWorkerControlled:!!navigator.serviceWorker?.controller}),coreData:[...CORE_DATA],protectedOfflineAssets:[...PROTECTED_OFFLINE_ASSETS]};
 })();
