@@ -3,6 +3,7 @@ import vm from 'node:vm';
 import assert from 'node:assert/strict';
 
 let lastSR=null,lastRecorder=null,tracksStopped=0,spoken=[];
+const audioPlayers=[];
 const domHandlers=new Map();
 class MockSR{
  constructor(){lastSR=this;this.lang='';this.interimResults=false;this.maxAlternatives=1;this.continuous=false}
@@ -16,7 +17,13 @@ class MockRecorder{
  stop(){this.state='inactive';this.ondataavailable?.({data:new Blob(['voice'])});this.onstop?.()}
 }
 class MockUtterance{constructor(text){this.text=text}}
-class MockAudio{constructor(src){this.src=src;this.playbackRate=1}addEventListener(){}play(){return Promise.resolve()}}
+class MockAudio{
+ constructor(src){this.src=src;this.playbackRate=1;this.listeners={};this.paused=false;audioPlayers.push(this)}
+ addEventListener(name,callback){this.listeners[name]=callback}
+ pause(){this.paused=true}
+ play(){const factory=MockAudio.nextPlayResult;MockAudio.nextPlayResult=null;return factory?factory():Promise.resolve()}
+ emit(name,error){this.listeners[name]?.(error)}
+}
 const window={
  SpeechRecognition:MockSR,webkitSpeechRecognition:null,MediaRecorder:MockRecorder,
  SpeechSynthesisUtterance:MockUtterance,Audio:MockAudio,
@@ -133,6 +140,74 @@ navigator.mediaDevices.getUserMedia=normalGetUserMedia;
 const audio=window.RussianAudioEngine;
 assert.equal(audio.speak('Привет',{lang:'ru-RU'}).started,true);
 assert.deepEqual(spoken,['Привет']);
+
+// Pre-A0 replay and slow-listening controls share one active audio session.
+// A late ended/error callback from an older source must not complete a new task.
+let ended=[],errors=[];
+const firstAudio=audio.playSource('/russian/slow-1.ogg',{rate:.75,sourceType:'SOURCE_AUDIO',onEnd:()=>ended.push('old'),onError:()=>errors.push('old')});
+assert.equal(firstAudio.started,true);
+assert.equal(firstAudio.player.playbackRate,.75,'Slower learner audio must retain requested rate');
+const oldPlayer=firstAudio.player;
+const nextAudio=audio.playSource('/russian/slow-2.ogg',{rate:1,onEnd:()=>ended.push('new'),onError:()=>errors.push('new')});
+assert.equal(nextAudio.started,true);
+assert.equal(oldPlayer.paused,true,'Replaying new audio must pause the old sample');
+oldPlayer.emit('ended');
+oldPlayer.emit('error',new Error('stale error'));
+assert.deepEqual(ended,[],'Superseded sample cannot complete a newer listening task');
+assert.deepEqual(errors,[],'Superseded sample error cannot trigger an obsolete fallback');
+nextAudio.player.emit('ended');
+assert.deepEqual(ended,['new'],'Current sample completion may reach the learner');
+assert.equal(audio.cancel(),false,'Completed audio no longer has an active player');
+
+// An HTMLAudio play() rejection may arrive after a newer sample has started.
+let rejectPlayback;
+MockAudio.nextPlayResult=()=>new Promise((_,reject)=>{rejectPlayback=reject});
+const pending=audio.playSource('/russian/pending-late.ogg',{onError:()=>errors.push('promise-stale')});
+audio.playSource('/russian/new.ogg',{onEnd:()=>ended.push('latest')});
+rejectPlayback(new Error('delayed autoplay rejection'));
+await Promise.resolve();await Promise.resolve();
+pending.player.emit('error',new Error('late event'));
+assert.deepEqual(errors,[],'Late autoplay rejection/error from old audio must be ignored');
+
+// The player can fail immediately (autoplay denied); the current session reports
+// the error rather than leaving a false listening-complete state.
+MockAudio.nextPlayResult=()=>Promise.reject(new Error('NotAllowedError'));
+audio.playSource('/russian/blocked.ogg',{onError:()=>errors.push('blocked')});
+await Promise.resolve();await Promise.resolve();
+assert.deepEqual(errors,['blocked'],'Current playback rejection must surface once');
+
+// Existing TTS events may fire after playback cancellation or navigation.
+const regularSpeak=window.speechSynthesis.speak;
+const regularCancel=window.speechSynthesis.cancel;
+let utterances=[],cancelCount=0;
+window.speechSynthesis.speak=u=>{utterances.push(u);u.onstart?.()};
+window.speechSynthesis.cancel=()=>{cancelCount++};
+let ttsEnd=0,ttsStart=0;
+audio.speak('Здравствуйте',{rate:.7,onStart:()=>ttsStart++,onEnd:()=>ttsEnd++});
+const previousUtterance=utterances.at(-1);
+audio.speak('Где метро?',{rate:.85,onStart:()=>ttsStart++,onEnd:()=>ttsEnd++});
+assert.equal(cancelCount>=1,true,'New TTS must cancel the previous active utterance');
+previousUtterance.onend?.();
+previousUtterance.onerror?.(new Error('stale synthesis'));
+assert.equal(ttsEnd,0,'Old synthesized utterance cannot end a new exercise');
+assert.equal(ttsStart,2);
+const currentUtterance=utterances.at(-1);
+domHandlers.get('document:click')({target:{closest:()=>({})}});
+assert.equal(cancelCount>=2,true,'Navigation must cancel active speaking');
+currentUtterance.onend?.();
+assert.equal(ttsEnd,0,'Navigation must retire old TTS callbacks');
+audio.speak('Спасибо',{onEnd:()=>ttsEnd++});
+utterances.at(-1).onend?.();
+assert.equal(ttsEnd,1,'Current TTS can notify completion');
+window.speechSynthesis.speak=regularSpeak;window.speechSynthesis.cancel=regularCancel;
+
+// Pagehide cancels actual audio and rejects stale completion callbacks.
+const leaving=audio.playSource('/russian/pagehide.ogg',{onEnd:()=>ended.push('pagehide')});
+domHandlers.get('window:pagehide')();
+assert.equal(leaving.player.paused,true);
+leaving.player.emit('ended');
+assert.deepEqual(ended,['new'],'Old page audio must not complete after pagehide');
+
 
 delete window.SpeechRecognition;
 delete window.webkitSpeechRecognition;

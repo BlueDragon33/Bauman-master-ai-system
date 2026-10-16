@@ -16,18 +16,21 @@ try{
   page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
 
   await page.addInitScript(()=>{
-    const speech={cancel:0,speak:0,last:null,history:[]};
+    const speech={cancel:0,speak:0,last:null,history:[],overlaps:0};
+    let activeUtterance=null;
     class MockUtterance{
       constructor(text){this.text=String(text);this.lang='';this.rate=1;this.onstart=null;this.onend=null;this.onerror=null;}
     }
     const synth={
-      cancel(){speech.cancel++;},
+      cancel(){speech.cancel++;activeUtterance=null;},
       speak(u){
+        if(activeUtterance)speech.overlaps++;
+        activeUtterance=u;
         speech.speak++;
         speech.last={text:u.text,lang:u.lang,rate:u.rate};
         speech.history.push(speech.last);
         u.onstart?.();
-        queueMicrotask(()=>u.onend?.());
+        queueMicrotask(()=>{if(activeUtterance===u){activeUtterance=null;u.onend?.()}});
       }
     };
     Object.defineProperty(window,'SpeechSynthesisUtterance',{configurable:true,value:MockUtterance});
@@ -63,7 +66,7 @@ try{
   await page.waitForTimeout(50);
   const speech=await page.evaluate(()=>window.__RHW_SPEECH);
   assert.ok(speech.speak>=5,'RHW5 expected handwriting speech calls');
-  assert.ok(speech.cancel>=speech.speak,'Every handwriting playback must cancel prior speech first');
+  assert.equal(speech.overlaps,0,'Rapid handwriting playback must not overlap active Russian utterances');
   assert.equal(speech.last.lang,'ru-RU');
   assert.equal(speech.last.rate,0.62);
   assert.ok(speech.history.some(x=>x.rate===0.85),'Normal handwriting playback rate missing');

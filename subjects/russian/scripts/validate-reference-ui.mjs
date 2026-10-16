@@ -13,10 +13,22 @@ const futureCss=css;
 const futureJs=read('assets/russian-future-ui.js');
 const sw=read('sw.js');
 const shellVersion=sw.match(/const CACHE='russian-app-shell-v([0-9]+)-/);
-must(shellVersion&&Number(shellVersion[1])>=32,'Late microphone permissions require a fresh Russian offline shell v32 or later');
+must(shellVersion&&Number(shellVersion[1])>=33,'Single-owner listening playback requires a fresh Russian offline shell v33 or later');
 must(sw.includes("keys.filter(k=>/^russian-app-shell-v[0-9]+(?:-|$)/i.test(k)&&k!==CACHE)"),'Russian SW may only purge its own obsolete shell caches');
 for(const asset of ['./assets/russian-future-ui.css','./assets/russian-future-ui.js'])must(sw.includes(asset),'Russian offline shell missing updated icon asset '+asset);
 const speechEngine=read('assets/speech-interaction-engine.js');
+for(const invariant of [
+  'let playbackEpoch=0, activeUtterance=null, activePlayer=null;',
+  'function cancelPlayback()',
+  'if(epoch!==playbackEpoch||activePlayer!==player)return;',
+  'if(epoch!==playbackEpoch||activeUtterance!==u)return;',
+  'if(player){try{player.pause?.()}catch(_){}',
+  'if(nav){cancelPlayback();cancelRecognition();',
+  "window.addEventListener('pagehide',()=>{cancelPlayback();",
+  'speak,playSource,cancel:cancelPlayback'
+]){
+  must(speechEngine.includes(invariant),'Russian listening audio session owner missing: '+invariant);
+}
 for(const invariant of [
   'let recordingEpoch=0, permissionPending=false;',
   'if(permissionPending||recorder)return',
@@ -24,7 +36,7 @@ for(const invariant of [
   'stopTracks(grantedStream);',
   'recordingEpoch++;permissionPending=false;',
   'if(permissionPending||recorder)cancelRecording();',
-  "window.addEventListener('pagehide',()=>{cancelRecognition();cancelRecording()})"
+  "window.addEventListener('pagehide',()=>{cancelPlayback();cancelRecognition();cancelRecording()})"
 ]){
   must(speechEngine.includes(invariant),'Russian microphone cancellation/late grant privacy guard missing: '+invariant);
 }
@@ -338,8 +350,8 @@ must(css.includes('.handwriting-cycle')&&css.includes('.handwriting-primary-canv
 must(core.includes('function speakVocabItem(v,slow=false)'),'Vocabulary audio must stay in the canonical core audio path');
 must(core.includes("window.RussianAudioEngine?.playSource?.(sourceAudio,{rate:slow?.75:1"),'Vocabulary source audio must delegate slower playback to canonical audio engine');
 must(core.includes("const fallback=()=>speak(term,slow?.62:.85)"),'Vocabulary TTS fallback must preserve slower playback rate');
-must(speechEngine.includes("player.playbackRate=Math.max(.5,Math.min(2,Number(options.rate)||1))"),'Canonical audio engine must honor source playback rate');
-must(speechEngine.includes("u.rate=Math.max(.5,Math.min(1.5,Number(options.rate)||.85))"),'Canonical audio engine must honor TTS playback rate');
+must(speechEngine.includes("player.playbackRate=Math.max(.5,Math.min(2,Number.isFinite(rate)&&rate>0?rate:1))"),'Canonical audio engine must honor source playback rate');
+must(speechEngine.includes("u.rate=Math.max(.5,Math.min(1.5,Number.isFinite(rate)&&rate>0?rate:.85))"),'Canonical audio engine must honor TTS playback rate');
 must(!core.includes('info.term,info.meaningRu,info.meaningVi,info.english,info.application'),'Visual inference must not depend on Vietnamese/English meaning fields');
 must(!core.includes('info.term,info.meaningRu,info.meaningVi,info.english,info.visualLabel'),'Dialogue presentation inference must not depend on translated meaning fields');
 must(!/new\s+MutationObserver\s*\(/.test(futureJs),'Canonical Russian presentation runtime must not observe DOM mutations it generates');

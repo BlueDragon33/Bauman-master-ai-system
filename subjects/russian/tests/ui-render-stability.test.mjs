@@ -85,7 +85,8 @@ test('vocabulary review and speaking links use bounded in-app routing',()=>{
   assert.doesNotMatch(vocab,/location\.reload\(/);
 });
 test('offline application shell version invalidates old cached scripts',()=>{
-  assert.match(shell,/const CACHE='russian-app-shell-v32-engine-mic-permission-cancel'/);
+  const shellVersion=Number(shell.match(/const CACHE='russian-app-shell-v([0-9]+)-engine-/)?.[1]||0);
+  assert.ok(shellVersion>=33,'Russian listening playback requires refreshed v33+ offline shell');
   assert.match(speech,/if\(permissionPending\|\|recorder\)cancelRecording\(\)/);
   assert.match(speech,/stopTracks\(grantedStream\)/);
 });
