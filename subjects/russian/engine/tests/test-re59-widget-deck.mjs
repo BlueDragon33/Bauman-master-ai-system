@@ -18,7 +18,7 @@ function syntheticCase() {
   const candidate = item();
   const digest = sha256({...widgetLexicalPayload(candidate), sourceRefs:candidate.sourceRefs});
   return {
-    candidates:[candidate], generatedAt:at,
+    candidates:[candidate], generatedAt:at, expiresAt:'2026-10-23T12:00:00.000Z',
     // ALL of these are synthetic in-memory fixtures, NOT actual RU03 approvals.
     publications:{schema:'RUSSIAN_WIDGET_PUBLICATION_REGISTRY_V1',entries:[
       {contentId:candidate.contentId,revision:candidate.revision,state:'PUBLISHED_REFERENCE',contentSha256:digest}
@@ -89,6 +89,9 @@ test('duplicates and malformed time fail closed',()=>{
   const x=syntheticCase();x.candidates.push(structuredClone(x.candidates[0]));
   assert.throws(()=>buildRussianWidgetDeck(x),/duplicate/);
   assert.throws(()=>buildRussianWidgetDeck({...syntheticCase(),generatedAt:'tomorrow'}),/explicit ISO/);
+  assert.throws(()=>buildRussianWidgetDeck({...syntheticCase(),expiresAt:at}),/expiry/);
+  assert.throws(()=>buildRussianWidgetDeck({...syntheticCase(),expiresAt:'2026-12-31T12:00:00.000Z'}),/expiry/);
+  assert.throws(()=>buildRussianWidgetDeck({...syntheticCase(),expiresAt:'invalid'}),/explicit ISO/);
 });
 test('deterministic revisions for identical reviewed fixtures',()=>{
   assert.equal(buildRussianWidgetDeck(syntheticCase()).contentRevision,
@@ -113,4 +116,16 @@ test('duplicate reviewer identity and competing revisions fail closed',()=>{
   const competing=syntheticCase();
   competing.candidates.push({...competing.candidates[0],revision:'r2'});
   assert.throws(()=>buildRussianWidgetDeck(competing),/competing revisions/);
+});
+
+test('Russian accent markup must match text and stress a vowel', () => {
+  assert.equal(rejected(x => {x.candidates[0].stressMarked='приве́та';}).items.length,0);
+  assert.equal(rejected(x => {x.candidates[0].stressMarked='привет́';}).items.length,0);
+  assert.equal(rejected(x => {x.candidates[0].stressMarked='при́ве́т';}).items.length,0);
+  assert.equal(rejected(x => {x.candidates[0].stressMarked='привет';}).items.length,0);
+});
+test('finite offline lifetime is explicit, not an endlessly cached review decision', () => {
+  const deck = buildRussianWidgetDeck(syntheticCase());
+  assert.equal(deck.expiresAt,'2026-10-23T12:00:00.000Z');
+  assert(Date.parse(deck.expiresAt)>Date.parse(deck.generatedAt));
 });
