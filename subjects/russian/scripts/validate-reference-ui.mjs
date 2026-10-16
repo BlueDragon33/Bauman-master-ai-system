@@ -13,10 +13,22 @@ const futureCss=css;
 const futureJs=read('assets/russian-future-ui.js');
 const sw=read('sw.js');
 const shellVersion=sw.match(/const CACHE='russian-app-shell-v([0-9]+)-/);
-must(shellVersion&&Number(shellVersion[1])>=29,'Final-only Russian ASR requires a fresh offline shell v29 or later');
+must(shellVersion&&Number(shellVersion[1])>=32,'Late microphone permissions require a fresh Russian offline shell v32 or later');
 must(sw.includes("keys.filter(k=>/^russian-app-shell-v[0-9]+(?:-|$)/i.test(k)&&k!==CACHE)"),'Russian SW may only purge its own obsolete shell caches');
 for(const asset of ['./assets/russian-future-ui.css','./assets/russian-future-ui.js'])must(sw.includes(asset),'Russian offline shell missing updated icon asset '+asset);
 const speechEngine=read('assets/speech-interaction-engine.js');
+for(const invariant of [
+  'let recordingEpoch=0, permissionPending=false;',
+  'if(permissionPending||recorder)return',
+  'if(epoch!==recordingEpoch){',
+  'stopTracks(grantedStream);',
+  'recordingEpoch++;permissionPending=false;',
+  'if(permissionPending||recorder)cancelRecording();',
+  "window.addEventListener('pagehide',()=>{cancelRecognition();cancelRecording()})"
+]){
+  must(speechEngine.includes(invariant),'Russian microphone cancellation/late grant privacy guard missing: '+invariant);
+}
+
 for(const token of [
   'const finals=results.filter(row=>row?.isFinal===true',
   'if(recognition!==rec)return;',
