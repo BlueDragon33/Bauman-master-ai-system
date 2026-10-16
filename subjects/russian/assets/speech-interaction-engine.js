@@ -6,6 +6,7 @@
   const copy=v=>{try{return JSON.parse(JSON.stringify(v));}catch(_){return null}};
   let recognition=null, recognitionTimer=0, recognitionState=SUPPORT.UNSUPPORTED;
   let mediaStream=null, recorder=null, recorderChunks=[], recorderTimer=0, recorderSession=null, lastRecording=null, micState=MIC.UNKNOWN;
+  let recordingEpoch=0, permissionPending=false;
 
   function RecognitionCtor(){return window.SpeechRecognition||window.webkitSpeechRecognition||null}
   function recognitionSupport(){
@@ -117,23 +118,37 @@
     if(!navigator?.mediaDevices?.getUserMedia||typeof window.MediaRecorder==='undefined')return SUPPORT.UNSUPPORTED;
     return SUPPORT.SUPPORTED;
   }
-  function releaseStream(){for(const t of mediaStream?.getTracks?.()||[])try{t.stop()}catch(_){};mediaStream=null}
+  function stopTracks(stream){for(const track of stream?.getTracks?.()||[])try{track.stop()}catch(_){}}
+  function releaseStream(){stopTracks(mediaStream);mediaStream=null}
   function revokeLastRecording(){if(lastRecording?.url)try{URL.revokeObjectURL(lastRecording.url)}catch(_){};lastRecording=null}
-  function recorderStatus(){return {support:recorderSupport(),micState,active:!!recorder&&recorder.state!=='inactive',session:copy(recorderSession),last:lastRecording?{...lastRecording,blob:undefined}:null}}
+  function recorderStatus(){return {support:recorderSupport(),micState,pending:permissionPending,active:!!recorder&&recorder.state!=='inactive',session:copy(recorderSession),last:lastRecording?{...lastRecording,blob:undefined}:null}}
   async function startRecording(options={}){
     if(recorderSupport()===SUPPORT.UNSUPPORTED){micState=MIC.UNAVAILABLE;options.onStatus?.(recorderStatus());return {started:false,status:recorderStatus()}}
-    if(recorder&&recorder.state!=='inactive')return {started:false,status:recorderStatus(),reason:'already-active'};
-    micState=MIC.REQUESTING;options.onStatus?.(recorderStatus());
+    if(permissionPending||recorder)return {started:false,status:recorderStatus(),reason:'already-active'};
+    // Permission prompts are asynchronous. A cancelled or superseded request
+    // must never reactivate the microphone when getUserMedia resolves later.
+    const epoch=++recordingEpoch;
+    permissionPending=true;micState=MIC.REQUESTING;options.onStatus?.(recorderStatus());
+    if(epoch!==recordingEpoch)return {started:false,reason:'cancelled',status:recorderStatus()};
     try{
-      mediaStream=await navigator.mediaDevices.getUserMedia({audio:true});
-      micState=MIC.GRANTED;recorderChunks=[];
-      recorder=new window.MediaRecorder(mediaStream);
+      const grantedStream=await navigator.mediaDevices.getUserMedia({audio:true});
+      if(epoch!==recordingEpoch){
+        stopTracks(grantedStream);
+        return {started:false,reason:'cancelled',status:recorderStatus()};
+      }
+      permissionPending=false;
+      mediaStream=grantedStream;micState=MIC.GRANTED;recorderChunks=[];
+      const current=new window.MediaRecorder(grantedStream);recorder=current;
       recorderSession={id:'REC-'+Date.now(),startedAt:new Date().toISOString(),maxDurationMs:Math.max(5000,Math.min(180000,Number(options.maxDurationMs)||90000)),retention:'TRANSIENT_LOCAL'};
-      recorder.ondataavailable=e=>{if(e.data?.size)recorderChunks.push(e.data)};
-      recorder.onerror=e=>{micState=MIC.ERROR;options.onError?.(e);options.onStatus?.(recorderStatus())};
-      recorder.onstop=()=>{
+      current.ondataavailable=event=>{if(epoch===recordingEpoch&&recorder===current&&event.data?.size)recorderChunks.push(event.data)};
+      current.onerror=event=>{
+        if(epoch!==recordingEpoch||recorder!==current)return;
+        micState=MIC.ERROR;options.onError?.(event);options.onStatus?.(recorderStatus());
+      };
+      current.onstop=()=>{
+        if(epoch!==recordingEpoch||recorder!==current)return;
         clearTimeout(recorderTimer);recorderTimer=0;
-        const mime=recorder?.mimeType||'audio/webm';
+        const mime=current.mimeType||'audio/webm';
         const blob=new Blob(recorderChunks,{type:mime});
         revokeLastRecording();
         const url=blob.size?URL.createObjectURL(blob):'';
@@ -141,11 +156,15 @@
         recorderChunks=[];releaseStream();recorder=null;
         options.onStop?.(lastRecording);options.onStatus?.(recorderStatus());
       };
-      recorder.start();
-      recorderTimer=setTimeout(()=>{try{if(recorder?.state!=='inactive')recorder.stop()}catch(_){}},recorderSession.maxDurationMs);
+      current.start();
+      recorderTimer=setTimeout(()=>{if(epoch===recordingEpoch&&recorder===current)try{if(current.state!=='inactive')current.stop()}catch(_){}},recorderSession.maxDurationMs);
       options.onStatus?.(recorderStatus());return {started:true,status:recorderStatus()};
     }catch(error){
-      releaseStream();recorder=null;
+      if(epoch!==recordingEpoch)return {started:false,reason:'cancelled',status:recorderStatus()};
+      permissionPending=false;
+      clearTimeout(recorderTimer);recorderTimer=0;
+      if(recorder){recorder.ondataavailable=null;recorder.onstop=null;recorder.onerror=null;}
+      recorder=null;recorderChunks=[];recorderSession=null;releaseStream();
       const name=clean(error?.name);
       micState=(name==='NotAllowedError'||name==='SecurityError')?MIC.DENIED:MIC.ERROR;
       options.onError?.(error);options.onStatus?.(recorderStatus());
@@ -154,16 +173,22 @@
   }
   function stopRecording(){if(!recorder||recorder.state==='inactive')return false;try{recorder.stop();return true}catch(_){return false}}
   function cancelRecording(){
+    // Invalidating the epoch covers active recorders AND pending permission UI.
+    recordingEpoch++;permissionPending=false;
     clearTimeout(recorderTimer);recorderTimer=0;
-    if(recorder&&recorder.state!=='inactive'){recorder.ondataavailable=null;recorder.onstop=null;try{recorder.stop()}catch(_){}}
-    recorder=null;recorderChunks=[];releaseStream();recorderSession=null;return true;
+    const current=recorder;recorder=null;
+    if(current){
+      current.ondataavailable=null;current.onstop=null;current.onerror=null;
+      if(current.state!=='inactive')try{current.stop()}catch(_){}
+    }
+    recorderChunks=[];releaseStream();recorderSession=null;micState=MIC.UNKNOWN;return true;
   }
   function getLastRecording(){return lastRecording}
   function clearRecording(){cancelRecording();revokeLastRecording();return true}
 
   document.addEventListener('click',event=>{
     const nav=event.target?.closest?.('[data-view],[data-route],a[href]');
-    if(nav){cancelRecognition();if(recorder&&recorder.state!=='inactive')cancelRecording();}
+    if(nav){cancelRecognition();if(permissionPending||recorder)cancelRecording();}
   },true);
   window.addEventListener('pagehide',()=>{cancelRecognition();cancelRecording()});
 
