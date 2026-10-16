@@ -43,7 +43,12 @@
     let root=$('#mathUnifiedNav',nav);
     if(!root){ root=document.createElement('div'); root.id='mathUnifiedNav'; root.className='math-unified-nav'; nav.appendChild(root); }
     $('#mathUnifiedSystem')?.remove();
-    root.innerHTML=navHtml();
+    const controls=Array.from(root.querySelectorAll(':scope > section > button[data-math-nav]'));
+    const sameControls=controls.length===PRIMARY_ITEMS.length&&controls.every((node,i)=>node.dataset.mathNav===PRIMARY_ITEMS[i].id);
+    // The runtime synchronizes repeatedly during boot and tab switches. Do
+    // not recreate focused nav buttons or reset their interaction state.
+    if(!sameControls)root.innerHTML=navHtml();
+    else setActive(active);
   }
 
   let roadmapCache=null;
@@ -276,7 +281,8 @@
     if(canonical==='overview'){
       leaveRoadmap(); setActive('overview'); setPageHeader('Tổng quan','Tiếp tục học, mục tiêu hiện tại và các điểm cần ôn.');
       const view=$('#view'); if(view) view.innerHTML='';
-      ($('#mathPremiumDashboard')||$('#mathV2Dashboard')||$('.main'))?.scrollIntoView({behavior:'smooth',block:'start'});
+      // Do not animate the page when users return to Overview. An explicit
+      // learner scroll, not a rerender, should control viewport position.
       return;
     }
     if(canonical==='roadmap'){renderRoadmap();return;}
@@ -332,7 +338,7 @@
     $$('[data-formula-index]',index).forEach(b=>b.addEventListener('click',()=>renderFormulaFocus(Number(b.dataset.formulaIndex)||0)));
   }
   function openFormulaFocus(){ formulaFocus=document.activeElement;renderFormulaFocus(0);const layer=$('#mathFormulaFocus');layer?.classList.add('open');layer?.setAttribute('aria-hidden','false');setTimeout(()=>$('.math-formula-close',layer)?.focus(),20); }
-  function closeFormulaFocus(){ const layer=$('#mathFormulaFocus');layer?.classList.remove('open');layer?.setAttribute('aria-hidden','true');if(formulaFocus&&typeof formulaFocus.focus==='function')setTimeout(()=>formulaFocus.focus(),0);formulaFocus=null; }
+  function closeFormulaFocus(){ const layer=$('#mathFormulaFocus');layer?.classList.remove('open');layer?.setAttribute('aria-hidden','true');const restoreFocus=formulaFocus;formulaFocus=null;if(restoreFocus&&typeof restoreFocus.focus==='function')setTimeout(()=>restoreFocus.focus(),0); }
 
   function ensureCommand(){
     if($('#mathCommandPalette')) return;
@@ -356,7 +362,7 @@
     $$('[data-command-route]',host).forEach(b=>b.addEventListener('click',()=>{const id=b.dataset.commandRoute;closeCommand();route(id);}));
   }
   function openCommand(){ ensureCommand();commandFocus=document.activeElement;renderCommandList();const layer=$('#mathCommandPalette');layer?.classList.add('open');layer?.setAttribute('aria-hidden','false'); const s=$('#mathCommandSearch'); if(s){s.value='';s.focus();renderCommandList();} }
-  function closeCommand(){ const layer=$('#mathCommandPalette');layer?.classList.remove('open');layer?.setAttribute('aria-hidden','true');if(commandFocus&&typeof commandFocus.focus==='function')setTimeout(()=>commandFocus.focus(),0);commandFocus=null; }
+  function closeCommand(){ const layer=$('#mathCommandPalette');layer?.classList.remove('open');layer?.setAttribute('aria-hidden','true');const restoreFocus=commandFocus;commandFocus=null;if(restoreFocus&&typeof restoreFocus.focus==='function')setTimeout(()=>restoreFocus.focus(),0); }
 
   function syncFromRuntime(){
     if(document.body.classList.contains('math-roadmap-active')){setActive('roadmap');return;}
@@ -381,7 +387,7 @@
     document.addEventListener('keydown',e=>{
       const openLayer=$('#mathCommandPalette.open')||$('#mathFormulaFocus.open');
       if(e.key==='Tab'&&openLayer){
-        const focusable=$('button:not([disabled]),input:not([disabled]),a[href],[tabindex]:not([tabindex="-1"])',openLayer).filter(x=>x.offsetParent!==null);
+        const focusable=Array.from(openLayer.querySelectorAll('button:not([disabled]),input:not([disabled]),a[href],[tabindex]:not([tabindex="-1"])')).filter(x=>x.offsetParent!==null);
         if(focusable.length){
           const first=focusable[0],last=focusable[focusable.length-1];
           if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();return;}

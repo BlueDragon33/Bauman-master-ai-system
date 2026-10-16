@@ -39,6 +39,27 @@ try{
   await page.waitForFunction(()=>window.BAUMAN_MATH_NAVIGATION&&window.BAUMAN_MATH_LEARNING_FLOW&&window.BAUMAN_MATH_DASHBOARD_V2&&window.BAUMAN_MATH_E186_LESSON_FIRST,null,{timeout:30000});
   await page.waitForFunction(()=>window.BAUMAN_MATH_E129_CONTENT_SOURCE_READY||window.BAUMAN_MATH_THEORY_E129?.sourceStatus?.().content>=3,null,{timeout:30000});
 
+  // Stability contract: repeated nav refresh must keep existing button nodes
+  // rather than dropping focus or recreating the entire learner sidebar.
+  const stableNav=await page.evaluate(()=>{
+    const before=[...document.querySelectorAll('#mathUnifiedNav button[data-math-nav]')];
+    for(let i=0;i<4;i++)window.BAUMAN_MATH_NAVIGATION.refresh();
+    const after=[...document.querySelectorAll('#mathUnifiedNav button[data-math-nav]')];
+    return {count:before.length,same:before.length===after.length&&before.every((x,i)=>x===after[i])};
+  });
+  assert.equal(stableNav.same,true,'Math primary navigation remounted on no-op refresh');
+  report.checks.stableNavNodes=true;
+
+  // Keyboard-accessible command modal is part of the shared Math control surface.
+  // Tab must cycle focusable controls without throwing TypeError from a scalar selector.
+  await page.evaluate(()=>window.BAUMAN_MATH_NAVIGATION.openCommand());
+  await page.locator('#mathCommandPalette.open').waitFor({state:'visible',timeout:10000});
+  await page.keyboard.press('Tab');
+  await page.keyboard.press('Escape');
+  await page.waitForFunction(()=>!document.querySelector('#mathCommandPalette.open'),null,{timeout:5000});
+  assert.deepEqual(report.pageErrors,[],'Math command modal keyboard traversal failed');
+  report.checks.commandFocusTrap=true;
+
   // Journey 1: a learner sees one canonical five-item navigation and can enter Roadmap.
   const nav=await page.locator('#mathUnifiedNav [data-math-nav]').evaluateAll(nodes=>nodes.map(n=>n.textContent.replace(/\s+/g,' ').trim()));
   assert.equal(nav.length,5,'Primary learner navigation must contain exactly five items');
@@ -61,8 +82,22 @@ try{
   await page.waitForFunction(id=>window.BAUMAN_MATH_LEARNING_FLOW.selfCheck().lessonId===id,LESSON,{timeout:10000});
   report.checks.lessonOpen=true;
 
+  // Load the assessment source before measuring no-op render behavior:
+  // a valid first-time lesson payload arriving later is not idle DOM churn.
   await page.evaluate(id=>window.BAUMAN_MATH_LEARNING_FLOW.ensureAssessment(id),LESSON);
   await page.waitForFunction(id=>window.BAUMAN_MATH_LEARNING_FLOW?.checkSummary?.(id)?.total>0,LESSON,{timeout:10000});
+  await page.waitForTimeout(200);
+
+  // Idle learning-flow refresh must not replace an unchanged stepper or note
+  // editor, and the content must remain the actual source-driven lesson.
+  const steadyStep=await page.evaluate(()=>{
+    const before=document.querySelector('#mathLearningFlow .math-lf-shell');
+    window.BAUMAN_MATH_LEARNING_FLOW.refresh();
+    const after=document.querySelector('#mathLearningFlow .math-lf-shell');
+    return {present:!!before,same:before===after};
+  });
+  assert.ok(steadyStep.present&&steadyStep.same,'Math Learning re-rendered unchanged progress panel');
+  report.checks.stableLearningPanel=true;
 
   // Journey 3 + 4: visit all source-backed steps, complete Lesson Check with one review item,
   // persist completion only after the gate becomes eligible.

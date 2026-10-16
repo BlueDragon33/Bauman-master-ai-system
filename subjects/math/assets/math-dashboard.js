@@ -117,11 +117,13 @@
     if($('#mathHomeGoalNote')) $('#mathHomeGoalNote').textContent=cur.id?(completed?(reviewNeeded?'Lesson Check đã lưu. Ôn các mục còn yếu rồi tiếp tục lộ trình.':'Bài đã đạt. Tiếp tục bài kế tiếp trong lộ trình.'):`Tiếp theo: ${stepLabel}. Công cụ nâng cao chỉ mở khi bước học cần đến.`):'Lộ trình sẽ dẫn tới bài phù hợp, không yêu cầu tự ghép tài nguyên.';
     const review=$('#mathHomeReviewState');
     if(review){
-      review.innerHTML=reviewNeeded?`<b>${reviewNeeded} mục cần ôn từ Lesson Check.</b><span>Đây là dữ liệu tự đánh giá đã lưu của bài hiện tại, không phải điểm số suy diễn.</span>`:'<b>Hiện chưa có nội dung cần ôn.</b><span>Chỉ các điểm yếu có bằng chứng từ Lesson Check mới xuất hiện ở đây.</span>';
+      const markup=reviewNeeded?`<b>${reviewNeeded} mục cần ôn từ Lesson Check.</b><span>Đây là dữ liệu tự đánh giá đã lưu của bài hiện tại, không phải điểm số suy diễn.</span>`:'<b>Hiện chưa có nội dung cần ôn.</b><span>Chỉ các điểm yếu có bằng chứng từ Lesson Check mới xuất hiện ở đây.</span>';
+      if(review.__mathReviewMarkup!==markup){review.innerHTML=markup;review.__mathReviewMarkup=markup;}
     }
     const cta=$('[data-math-v2-action="continue"]');
     if(cta){
-      cta.textContent=!cur.id?'Bắt đầu học →':completed?'Tiếp tục lộ trình →':'Tiếp tục học →';
+      const text=!cur.id?'Bắt đầu học →':completed?'Tiếp tục lộ trình →':'Tiếp tục học →';
+      if(cta.textContent!==text)cta.textContent=text;
       cta.setAttribute('aria-label',!cur.id?'Mở lộ trình để bắt đầu học':completed?'Mở lộ trình để chọn bài tiếp theo':'Tiếp tục bài học hiện tại');
     }
   }

@@ -430,7 +430,7 @@
     const activeIndex=Math.max(0,steps.findIndex(x=>x.id===active));
     const completion=completionState(cur.id,rec);
     const completionLabel=completion.completedAt?(completion.check.review===0?'Đã đạt':completion.check.review===1?'Cần ôn nhẹ':`Cần học lại ${completion.check.review} mục`):'';
-    host.innerHTML=`<section class="math-lf-shell">
+    const hostMarkup=`<section class="math-lf-shell">
       <header class="math-lf-head">
         <div class="math-lf-title">
           <span class="math-lf-badge">∑</span>
@@ -465,6 +465,8 @@
         <aside class="math-lf-note-side"><b>Ghi chú chỉ lưu trên thiết bị</b><p>Không chèn vào dữ liệu học thuật và không thay đổi nội dung bài.</p><p class="math-lf-note-status">Tự lưu khi nhập.</p></aside>
       </div>
     </section>`;
+    const hostChanged=host.__mathLfRendered!==hostMarkup||!host.querySelector(':scope > .math-lf-shell');
+    if(hostChanged){host.innerHTML=hostMarkup;host.__mathLfRendered=hostMarkup;}
     const prev=steps[Math.max(0,activeIndex-1)],next=steps[Math.min(steps.length-1,activeIndex+1)];
     const finalAction=completion.completedAt
       ?'<button type="button" disabled>✓ <span>Đã hoàn thành</span></button>'
@@ -473,8 +475,13 @@
         :completion.check.total&&!completion.check.complete
           ?'<button type="button" class="primary" data-lf="check"><span>Lesson Check</span> →</button>'
           :'<button type="button" disabled><span>Chưa đủ điều kiện</span></button>';
-    bar.innerHTML=`<div class="math-lf-study-buttons"><button type="button" data-lf-step="${prev.id}" ${activeIndex===0?'disabled':''}>← <span>${esc(prev.label)}</span></button></div><div class="math-lf-study-current"><small>Bước ${activeIndex+1}/${steps.length} · ${pct}% đã mở</small><b>${esc(steps[activeIndex].label)} · ${esc(cur.title)}</b></div><div class="math-lf-study-buttons">${activeIndex===steps.length-1?finalAction:`<button type="button" class="primary" data-lf-step="${next.id}"><span>${esc(next.label)}</span> →</button>`}</div>`;
-    $('#mathLfNote')?.addEventListener('input',e=>{const map=notes();map[cur.id]=e.target.value;saveNotes(map);global.BAUMAN_MATH_STUDY_LIBRARY?.refresh?.()});
+    const barMarkup=`<div class="math-lf-study-buttons"><button type="button" data-lf-step="${prev.id}" ${activeIndex===0?'disabled':''}>← <span>${esc(prev.label)}</span></button></div><div class="math-lf-study-current"><small>Bước ${activeIndex+1}/${steps.length} · ${pct}% đã mở</small><b>${esc(steps[activeIndex].label)} · ${esc(cur.title)}</b></div><div class="math-lf-study-buttons">${activeIndex===steps.length-1?finalAction:`<button type="button" class="primary" data-lf-step="${next.id}"><span>${esc(next.label)}</span> →</button>`}</div>`;
+    if(bar.__mathLfRendered!==barMarkup){bar.innerHTML=barMarkup;bar.__mathLfRendered=barMarkup;}
+    const noteInput=$('#mathLfNote');
+    if(noteInput&&!noteInput.dataset.mathLfBound){
+      noteInput.dataset.mathLfBound='1';
+      noteInput.addEventListener('input',e=>{const map=notes();map[cur.id]=e.target.value;saveNotes(map);global.BAUMAN_MATH_STUDY_LIBRARY?.refresh?.()});
+    }
   }
 
   function clearHighlights(){slides().forEach(x=>x.classList.remove('math-lf-highlight'))}
