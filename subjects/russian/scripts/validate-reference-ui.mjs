@@ -36,7 +36,7 @@ for(const invariant of [
   'stopTracks(grantedStream);',
   'recordingEpoch++;permissionPending=false;',
   'if(permissionPending||recorder)cancelRecording();',
-  "window.addEventListener('pagehide',()=>{cancelRecognition();cancelRecording()})"
+  "window.addEventListener('pagehide',()=>{cancelPlayback();cancelRecognition();cancelRecording()})"
 ]){
   must(speechEngine.includes(invariant),'Russian microphone cancellation/late grant privacy guard missing: '+invariant);
 }
