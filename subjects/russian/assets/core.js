@@ -3515,11 +3515,22 @@ function speakVocabItem(v,slow=false){
  const normalized=A.normalizeVocab?.(v)||{};
  const term=A.vocabTerm?.(v)||normalized.term||v?.ru||v?.phrase_ru||'';
  const sourceAudio=str(normalized.audio||v?.audio||v?.audio_url||v?.audioUrl||'').trim();
- const fallback=()=>speak(term,slow?.62:.85);
- if(!sourceAudio)return fallback();
+ let fallbackAttempted=false;
+ const fallback=()=>{
+  if(fallbackAttempted)return false; // An audio error + rejected play promise can both fire.
+  fallbackAttempted=true;
+  const started=!!term&&speak(term,slow?.62:.85);
+  toast(started?'Mẫu ghi âm không phát được; chuyển sang giọng đọc máy (TTS), chưa phải mẫu đã kiểm định.':'Không phát được âm thanh; hãy kiểm tra hỗ trợ âm thanh trên thiết bị.');
+  return started;
+ };
+ if(!sourceAudio){
+  const started=!!term&&speak(term,slow?.62:.85);
+  if(!started)toast('Không có âm thanh khả dụng cho từ này trên thiết bị.');
+  return started;
+ }
  try{
   const result=window.RussianAudioEngine?.playSource?.(sourceAudio,{rate:slow?.75:1,sourceType:'RECORDED_PEDAGOGICAL',onError:fallback});
-  return !!result?.started;
+  return result?.started===true||fallback();
  }catch(_){return fallback()}
 }
 function speak(text,rate=.85,callbacks={}){return !!window.RussianAudioEngine?.speak?.(text,{lang:A.speech?.lang||'ru-RU',rate,onStart:callbacks.onstart,onEnd:callbacks.onend,onError:callbacks.onerror})?.started}
