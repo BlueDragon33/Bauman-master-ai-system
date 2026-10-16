@@ -175,6 +175,6 @@ window.addEventListener('message',event=>{
  if(!window.BaumanSubjectHost?.trusted?.(event))return;
  if(event.data?.type==='BAUMAN_REQUEST_SUBJECT_CAPABILITY_STATE')publishBridge(true);
 });
-window.addEventListener('russian:core-render',schedule);
+window.addEventListener('russian:core-render',()=>{if(ready){render();publishBridge(false)}});
 window.RussianCapabilityProgression={bands:BANDS,stageRules:STAGE_RULES,bandStatus,allBands,currentBand,stageExitStatus,routeForStep,bridgePayload,publishBridge,schedule};
 })();
