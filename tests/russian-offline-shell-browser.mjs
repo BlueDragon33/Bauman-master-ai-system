@@ -32,7 +32,7 @@ try{
   page.on('pageerror',e=>errors.push(String(e?.stack||e)));
   page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
 
-  // Seed old Russian v26/v27/v28 and previous v31 shell before new v32 mic privacy fix installs.
+  // Seed obsolete Russian shell versions, including v32, before the v33 audio lifecycle upgrade.
   // This tests genuine browser CacheStorage activation and cross-subject isolation,
   // not a claim that an already-deployed Production device was upgraded.
   await page.goto(new URL('subjects/russian/assets/russian.css',BASE).href,{waitUntil:'domcontentloaded',timeout:30000});
@@ -41,6 +41,7 @@ try{
     const previous='russian-app-shell-v27-engine-mobile-navigation';
     const immediatelyPrevious='russian-app-shell-v28-engine-local-save-status';
     const latestPrevious='russian-app-shell-v31-engine-approved-overview';
+    const playbackPrevious='russian-app-shell-v32-engine-mic-permission-cancel';
     const foreign='bauman-other-subject-persist-sentinel-v1';
     const data='russian-learning-data-v1';
     const stale=await caches.open(old);
@@ -51,13 +52,15 @@ try{
     await priorAsr.put('./assets/speech-interaction-engine.js',new Response('stale-russian-v28-asr'));
     const priorMic=await caches.open(latestPrevious);
     await priorMic.put('./assets/speech-interaction-engine.js',new Response('stale-microphone-permission-v31'));
+    const priorPlayback=await caches.open(playbackPrevious);
+    await priorPlayback.put('./assets/speech-interaction-engine.js',new Response('stale-audio-playback-v32'));
     const sibling=await caches.open(foreign);
     await sibling.put('/__retain-foreign-cache',new Response('unrelated-app-retained'));
     const learning=await caches.open(data);
     await learning.put('/__retain-learning-data',new Response('user-offline-data-retained'));
-    return {old,previous,immediatelyPrevious,latestPrevious,foreign,data,keys:await caches.keys()};
+    return {old,previous,immediatelyPrevious,latestPrevious,playbackPrevious,foreign,data,keys:await caches.keys()};
   });
-  for(const name of [seeded.old,seeded.previous,seeded.immediatelyPrevious,seeded.latestPrevious,seeded.foreign,seeded.data]){
+  for(const name of [seeded.old,seeded.previous,seeded.immediatelyPrevious,seeded.latestPrevious,seeded.playbackPrevious,seeded.foreign,seeded.data]){
     assert.ok(seeded.keys.includes(name),'Pre-activation CacheStorage fixture missing: '+name);
   }
 
@@ -78,8 +81,8 @@ try{
   assert.ok(swReadiness.registrations.some(x=>x.active==='activated'),'Russian service-worker registration has no activated worker');
   assert.equal(swReadiness.precacheReport?.schema,'RUSSIAN_SW_PRECACHE_REPORT_V1','Russian service-worker precache report is unavailable');
   assert.deepEqual(swReadiness.precacheReport?.failed||[],[],'Russian service-worker precache still has failed assets after authenticated repair');
-  // The v32 activation must remove obsolete Russian shell versions and retain learner/foreign caches.
-  await page.waitForFunction(async()=>!(await caches.keys()).some(key=>['russian-app-shell-v26-engine-semantic-symbols','russian-app-shell-v27-engine-mobile-navigation','russian-app-shell-v28-engine-local-save-status','russian-app-shell-v31-engine-approved-overview'].includes(key)),null,{timeout:15000});
+  // The v33 activation must remove obsolete Russian shells and retain learner/foreign caches.
+  await page.waitForFunction(async()=>!(await caches.keys()).some(key=>['russian-app-shell-v26-engine-semantic-symbols','russian-app-shell-v27-engine-mobile-navigation','russian-app-shell-v28-engine-local-save-status','russian-app-shell-v31-engine-approved-overview','russian-app-shell-v32-engine-mic-permission-cancel'].includes(key)),null,{timeout:15000});
   const migration=await page.evaluate(async(expectedShell)=>{
     const keys=await caches.keys();
     const foreign=await caches.open('bauman-other-subject-persist-sentinel-v1');
@@ -88,13 +91,13 @@ try{
     const retained=await learning.match('/__retain-learning-data');
     return {
       keys,
-      previousShellRemoved:!keys.includes('russian-app-shell-v26-engine-semantic-symbols')&&!keys.includes('russian-app-shell-v27-engine-mobile-navigation')&&!keys.includes('russian-app-shell-v28-engine-local-save-status')&&!keys.includes('russian-app-shell-v31-engine-approved-overview'),
+      previousShellRemoved:!keys.includes('russian-app-shell-v26-engine-semantic-symbols')&&!keys.includes('russian-app-shell-v27-engine-mobile-navigation')&&!keys.includes('russian-app-shell-v28-engine-local-save-status')&&!keys.includes('russian-app-shell-v31-engine-approved-overview')&&!keys.includes('russian-app-shell-v32-engine-mic-permission-cancel'),
       newShellPresent:keys.includes(expectedShell),
       siblingCachePreserved:keys.includes('bauman-other-subject-persist-sentinel-v1')&&(await sibling?.text())==='unrelated-app-retained',
       learningCachePreserved:keys.includes('russian-learning-data-v1')&&(await retained?.text())==='user-offline-data-retained'
     };
   },expectedShell);
-  assert.equal(migration.previousShellRemoved,true,'v26/v27/v28/v31 shells must be removed after v32 activation');
+  assert.equal(migration.previousShellRemoved,true,'v26/v27/v28/v31/v32 shells must be removed after v33 activation');
   assert.equal(migration.newShellPresent,true,'Combined canonical shell must be installed');
   assert.equal(migration.siblingCachePreserved,true,'Russian SW must not remove unrelated application caches');
   assert.equal(migration.learningCachePreserved,true,'Russian SW must not remove learner offline data cache');
@@ -130,7 +133,7 @@ try{
     return {shell,shellVersion,urls:keys.map(x=>new URL(x.url).pathname),dataName,dataUrls:dataKeys.map(x=>new URL(x.url).pathname)};
   });
   assert.match(cached.shell||'',/^russian-app-shell-v[0-9]+(?:-|$)/i,'Russian offline shell cache must use a versioned namespace');
-  assert.ok(cached.shellVersion>=32,`Cancel-safe microphone requires Russian cache v32+ (got v${cached.shellVersion})`);
+  assert.ok(cached.shellVersion>=33,`Listening playback owner requires Russian cache v33+ (got v${cached.shellVersion})`);
   for(const suffix of ['/subjects/russian/assets/russian-future-ui.js','/subjects/russian/assets/russian-future-ui.css'])assert.ok(cached.urls.some(x=>x.endsWith(suffix)),`Russian mobile app asset missing from offline shell: ${suffix}`);
   assert.equal(cached.dataName,'russian-learning-data-v1');
   assert.ok(cached.dataUrls.some(x=>x.endsWith('/subjects/russian/data/handwriting-listen-write.json')),'offline data cache missing handwriting-listen-write.json');
@@ -172,7 +175,7 @@ try{
   assert.deepEqual(errors,[],'offline Russian reload emitted console/page errors');
 
   await page.screenshot({path:path.join(OUT,'russian-offline-reload.png'),fullPage:true});
-  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',cachedFoundation:true,offline,simulatedCacheMigration:{from:'v26/v27/v28/v31',to:expectedShell,previousShellRemoved:migration.previousShellRemoved,siblingCachePreserved:migration.siblingCachePreserved,learningCachePreserved:migration.learningCachePreserved}},null,2));
+  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',cachedFoundation:true,offline,simulatedCacheMigration:{from:'v26/v27/v28/v31/v32',to:expectedShell,previousShellRemoved:migration.previousShellRemoved,siblingCachePreserved:migration.siblingCachePreserved,learningCachePreserved:migration.learningCachePreserved}},null,2));
   console.log('Russian offline shell browser acceptance PASS');
 }finally{
   await browser?.close();
