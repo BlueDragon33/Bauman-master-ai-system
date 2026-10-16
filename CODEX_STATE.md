@@ -28,6 +28,8 @@ Verification:
 - Six relevant Hub static suites: PASS.
 - Source 5 routes × Academic × 390px, populated states, calibration and negative control: PASS (1,639 matrix samples; artifacts/c2-resume-mobile2).
 - Those local results are preliminary working-tree evidence, not exact clean-HEAD acceptance.
+- Independent review found two measurement false passes (opacity on focus; unpainted default SVG fill). Both were repaired and independently re-probed: faded focus 1.622:1 FAIL, invisible stroke 1:1 FAIL; permanent calibration assertions added.
+- CI Future Interface static rejected component literal colors; checkbox colors now consume canonical light-surface/accent tokens without weakening the existing check.
 - All four themes × all three viewports in source/packaged + original Whole System Integration: pending exact-head CI on PR #347.
 - Production: not deployed; not claimed fixed. Local packaged materialization remains excluded after the prior private-runtime fetch rejection; existing CI supplies package evidence.
 

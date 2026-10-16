@@ -108,15 +108,15 @@ html[data-bauman-ui="future-v1"] #appRoot :is(#page-subjects,#page-schedule,#pag
   padding:0;
   border:2px solid var(--bui-on-light-muted);
   border-radius:3px;
-  background:#fff;
+  background:var(--bui-on-light-surface);
   vertical-align:middle;
 }
 html[data-bauman-ui="future-v1"] #appRoot :is(#page-subjects,#page-schedule,#page-research) input[type="checkbox"]:checked{
-  border-color:#1557b0;
-  background:#1557b0;
+  border-color:var(--bui-on-light-accent);
+  background:var(--bui-on-light-accent);
 }
 html[data-bauman-ui="future-v1"] #appRoot :is(#page-subjects,#page-schedule,#page-research) input[type="checkbox"]:checked::after{
   content:"✓";
-  color:#fff;
+  color:var(--bui-text-on-accent);
   font:900 12px/1 Arial,sans-serif;
 }

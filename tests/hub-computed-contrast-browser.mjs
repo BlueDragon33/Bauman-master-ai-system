@@ -79,7 +79,7 @@ async function measure(page,label,scope='body'){
       const inset=stroke?parseFloat(s.strokeWidth)/2:0;
       const rects=visibleRects(shape,[{x:r.x-inset,y:r.y-inset,right:r.right+inset,bottom:r.bottom+inset}]);
       const points=rects.flatMap(r=>[.1,.3,.5,.7,.9].flatMap(fx=>[.25,.5,.75].map(fy=>({x:r.x+r.w*fx,y:r.y+r.h*fy})))).filter(point=>unobscured(shape.closest('button'),point));
-      result.push({kind:'icon',selector:selector(shape),text:'button SVG icon',foreground:fill?s.fill:s.stroke,rgba:rgba(fill?s.fill:s.stroke),opacity:opacityOf(shape)*Number(fill?s.fillOpacity:s.strokeOpacity),disabled:!!shape.closest(':disabled'),rects,points});
+      result.push({kind:'icon',pixelInk:true,selector:selector(shape),text:'button SVG icon',foreground:fill?s.fill:s.stroke,rgba:rgba(fill?s.fill:s.stroke),opacity:opacityOf(shape),disabled:!!shape.closest(':disabled'),rects,points});
     }
     for(const el of [root,...root.querySelectorAll('*')].filter(el=>el.matches('input:not([type="checkbox"]):not([type="radio"]),textarea,select'))){
       if(!el.checkVisibility({checkOpacity:true,checkVisibilityCSS:true}))continue;
@@ -120,16 +120,17 @@ async function measure(page,label,scope='body'){
     const style=await page.addStyleTag({content:outlineOnly?`:focus-visible{outline-color:${color}!important}`:`
       *,*::before,*::after{ -webkit-text-fill-color:${color}!important;text-shadow:none!important;caret-color:transparent!important }
       input::placeholder,textarea::placeholder{-webkit-text-fill-color:${color}!important}
-      [data-c2-fill]{fill:${color}!important}[data-c2-stroke]{stroke:${color}!important}
+      [data-c2-fill]{fill:${color}!important;fill-opacity:1!important}[data-c2-stroke]{stroke:${color}!important;stroke-opacity:1!important}
       input,textarea,select{border-color:${color}!important}
       :focus-visible{outline-color:${color}!important}
     `});
     try{return PNG.sync.read(await page.screenshot({...screenshotOptions,animations:'disabled'}))}finally{await style.evaluate(el=>el.remove());if(outline)await page.evaluate(previous=>{const el=document.activeElement;if(previous.value)el.style.setProperty('outline-color',previous.value,previous.priority);else el.style.removeProperty('outline-color')},outline)}
   };
   const blank=await paint('transparent');
-  const needsProbe=nodes.some(node=>node.kind!=='checkbox'&&!node.disabled&&node.opacity!==1);
+  const needsProbe=nodes.some(node=>node.kind!=='checkbox'&&!node.disabled&&(node.opacity!==1||node.pixelInk));
   const black=needsProbe?await paint('#000'):null,white=needsProbe?await paint('#fff'):null;
   const hasFocus=nodes.some(node=>node.kind==='focus');
+  const focusBlank=hasFocus?await paint('transparent',true):null;
   const focusBlack=hasFocus?await paint('#000',true):null,focusWhite=hasFocus?await paint('#fff',true):null;
   const samples=[];
   for(const node of nodes){
@@ -150,7 +151,7 @@ async function measure(page,label,scope='body'){
       continue;
     }
     let worst=Infinity,background=null,position=null,painted=0;
-    if(node.kind!=='focus'&&node.opacity===1&&node.rgba){
+    if(node.kind!=='focus'&&!node.pixelInk&&node.opacity===1&&node.rgba){
       for(const point of node.points||node.rects.flatMap(r=>[.1,.3,.5,.7,.9].flatMap(fx=>[.25,.5,.75].map(fy=>({x:r.x+r.w*fx,y:r.y+r.h*fy}))))){
         const x=Math.floor(point.x-(clip?.x||0)),y=Math.floor(point.y-(clip?.y||0));if(x<0||y<0||x>=blank.width||y>=blank.height)continue;
         const index=(y*blank.width+x)*4,bg=[...blank.data.slice(index,index+3)],alpha=node.rgba[3]/255;
@@ -158,19 +159,19 @@ async function measure(page,label,scope='body'){
         if(ratio<worst){worst=ratio;background=bg;position={x,y}}
       }
     }
-    const rects=node.kind==='focus'||node.opacity!==1?node.rects:[];
+    const rects=node.kind==='focus'||node.opacity!==1||node.pixelInk?node.rects:[];
     for(const r of rects){
       const left=Math.max(0,Math.floor(r.x-(clip?.x||0))),top=Math.max(0,Math.floor(r.y-(clip?.y||0)));
       const right=Math.min(blank.width,Math.ceil(r.x+r.w-(clip?.x||0))),bottom=Math.min(blank.height,Math.ceil(r.y+r.h-(clip?.y||0)));
       for(let y=top;y<bottom;y++)for(let x=left;x<right;x++){
         const index=(y*blank.width+x)*4;
-        const bg=[...blank.data.slice(index,index+3)];
+        const bg=[...(node.kind==='focus'?focusBlank:blank).data.slice(index,index+3)];
         let fg;
         if(node.kind==='focus'){
           const coverage=[0,1,2].reduce((n,i)=>n+focusWhite.data[index+i]-focusBlack.data[index+i],0)/(3*255*node.opacity);
           if(coverage<.5)continue;
-          const alpha=node.rgba[3]/255;fg=node.rgba.slice(0,3).map((v,i)=>v*alpha+bg[i]*(1-alpha));
-        }else if(node.opacity===1&&node.rgba){
+          fg=bg.map((v,i)=>Math.max(0,Math.min(255,v+(original.data[index+i]-v)/Math.min(1,coverage))));
+        }else if(!node.pixelInk&&node.opacity===1&&node.rgba){
           const alpha=node.rgba[3]/255;
           fg=node.rgba.slice(0,3).map((v,i)=>v*alpha+bg[i]*(1-alpha));
         }else{
@@ -248,6 +249,7 @@ try{
     const host=document.createElement('div');host.id='c2ContrastCalibration';
     host.style.cssText='position:fixed;left:50px;top:100px;width:320px;z-index:999999;background:#fff;padding:20px';
     host.innerHTML='<style>#c2ContrastCalibration input::placeholder{color:#fff!important;opacity:1!important}#c2ContrastCalibration button{background:transparent!important}</style><div style="opacity:.5;background:#000;color:#fff;font:16px Arial">C2 opacity group</div><div style="color:#fff;background:#fff;font:16px Arial">C2 invisible ink</div><div style="opacity:.2;background:#000;color:#fff;font:16px Arial"><input aria-label="probe" placeholder="C2 faded placeholder" style="background:transparent;color:#fff;border:0;font:16px Arial;opacity:1"><button style="background:transparent;color:#fff;border:0"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M3 3L21 21M3 21L21 3" fill="none" stroke="#fff" stroke-width="3"/></svg></button></div>';
+    host.insertAdjacentHTML('beforeend','<div style="opacity:.2;padding:10px"><button id="c2FadedFocus" style="outline:3px solid #000!important;outline-offset:0!important;border:0!important">C2 faded focus</button></div><button id="c2DefaultFillSvg"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M3 3L21 21M3 21L21 3" stroke="#fff" stroke-width="3"/></svg></button>');
     document.body.append(host);
   });
   try{
@@ -256,7 +258,13 @@ try{
       const sample=probe.samples.find(s=>s.text===text);
       assert.ok(sample&&!sample.pass&&Math.abs(sample.ratio-expected)<.12,'Incorrect composited-opacity measurement: '+text+' '+JSON.stringify(sample));
     }
-    fs.writeFileSync(path.join(OUT,'measurement-calibration.json'),JSON.stringify(probe,null,2));
+    const defaultFill=probe.samples.find(s=>s.selector.includes('#c2DefaultFillSvg'));
+    assert.ok(defaultFill&&!defaultFill.pass&&Math.abs(defaultFill.ratio-1)<.12,'Unpainted default SVG fill must not mask an invisible stroke: '+JSON.stringify(defaultFill));
+    await page.keyboard.press('Tab');await page.locator('#c2FadedFocus').focus();
+    const focusProbe=await measure(page,'measurement-faded-focus','#c2ContrastCalibration');
+    const fadedFocus=focusProbe.samples.find(s=>s.kind==='focus');
+    assert.ok(fadedFocus&&!fadedFocus.pass&&Math.abs(fadedFocus.ratio-contrast([204,204,204],[255,255,255]))<.12,'Incorrect composited focus measurement: '+JSON.stringify(fadedFocus));
+    fs.writeFileSync(path.join(OUT,'measurement-calibration.json'),JSON.stringify({probe,focusProbe},null,2));
   }finally{await page.locator('#c2ContrastCalibration').evaluate(el=>el.remove())}
   const waitToast=()=>page.waitForFunction(()=>![...document.querySelectorAll('.toast')].some(el=>el.checkVisibility({checkOpacity:true,checkVisibilityCSS:true})));
   if(process.env.BAUMAN_CONTRAST_STATES!=='0'){
