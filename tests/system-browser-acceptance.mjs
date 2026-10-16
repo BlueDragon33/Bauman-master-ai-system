@@ -164,6 +164,9 @@ try{
   assert.equal(managedAccess.academicWrites,false);
   await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'));
 
+  // Complete Hub initialization and its startup data requests before reload.
+  await page.waitForFunction(()=>document.documentElement.dataset.hubPersonalReady==='true'&&window.BAUMAN_HUB_SUBJECT_CONFIG?.ready===true,null,{timeout:15000});
+  await page.waitForLoadState('networkidle',{timeout:15000});
   explicitReloadInProgress=true;
   await page.reload({waitUntil:'domcontentloaded'});
   await page.waitForFunction(expected=>document.documentElement.dataset.baumanDeviceAccess===expected,expectedDeviceState,{timeout:15000});
@@ -174,10 +177,16 @@ try{
   assert.equal(managedReload.authScreenHidden,true);
   assert.equal(managedReload.currentManagedBy,EXPECT_PLATFORM_ACCESS?'app-manager':null);
   await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'));
+  await page.waitForFunction(()=>document.documentElement.dataset.hubPersonalReady==='true'&&window.BAUMAN_HUB_SUBJECT_CONFIG?.ready===true,null,{timeout:15000});
   explicitReloadInProgress=false;
 
-  const unsafeRejected=await page.evaluate(()=>{const old=window.state.subjects.ai.mainPath;window.state.subjects.ai.mainPath='javascript:alert(1)';document.getElementById('studyRoot').innerHTML='';window.app.openSubjectInPage('ai');const rejected=!document.getElementById('subjectFrame');window.state.subjects.ai.mainPath=old;return rejected});
-  assert.ok(unsafeRejected,'Unsafe subject route was accepted');
+  const unsafeRejected=await page.evaluate(()=>{window.state.subjects.ai.mainPath='javascript:alert(1)';document.getElementById('studyRoot').innerHTML='';window.app.openSubjectInPage('ai');const frame=document.getElementById('subjectFrame');const target=frame&&new URL(frame.src);delete window.state.subjects.ai.mainPath;return !!target&&['http:','https:'].includes(target.protocol)&&target.pathname==='/subjects/ai/index.html'});
+  assert.ok(unsafeRejected,'Unsafe learner input replaced the application-owned launch target');
+  // This injection now performs a valid canonical launch. Finish that
+  // navigation before the next route deliberately removes its iframe.
+  const injectionFrame=await (await page.locator('#subjectFrame').elementHandle()).contentFrame();
+  await injectionFrame.waitForURL(url=>url.pathname==='/subjects/ai/index.html',{waitUntil:'load'});
+  await page.waitForLoadState('networkidle');
   const protectedRoute=await page.evaluate(()=>{window.app.page('home',false);const previous=window.state.page;const user=window.auth.current;window.auth.current={...user,role:'user'};window.app.page('admin');const rejected=window.state.page===previous;window.auth.current=user;return rejected});
   assert.ok(protectedRoute,'Non-admin session entered the admin route');
 

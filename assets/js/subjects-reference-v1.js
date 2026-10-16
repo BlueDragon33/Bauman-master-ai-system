@@ -98,7 +98,6 @@ function openSubject(id,mode){
   var label=mode==='docs'?'Mở tài liệu':mode==='tasks'?'Làm bài tập':'Học theo kế hoạch';
   try{return a.openSubjectInPage(id,{learningItem:label})}catch(e){toastSafe('Không mở được môn học.')}
 }
-function openEditor(id){var a=appRef();try{if(a&&typeof a.openSubjectEditor==='function')return a.openSubjectEditor(id)}catch(e){}toastSafe('Khu dữ liệu môn chưa sẵn sàng.')}
 function openDeadline(i){var x=DEADLINES[i];if(x)openSubject(x.subjectId,'tasks')}
 function toggleTab(tab){ui.tab=['all','study','exam','done'].includes(tab)?tab:'all';ui.menu='';saveUI();render()}
 function toggleFilter(){ui.filterOpen=!ui.filterOpen;ui.menu='';render()}
@@ -171,7 +170,7 @@ function courseCard(c){
   var p=courseProgress(c),next=nextSessionFor(c.subjectId,c.next),menu=ui.menu===c.key;
   return '<article class="subjects-page__course-card" data-course-key="'+safe(c.key)+'">'+
     '<div class="subjects-page__course-top">'+iconMarkup(c)+'<div class="subjects-page__course-name"><b>'+safe(c.title)+'</b><small title="Tên giảng viên có thể thay đổi">'+safe(teacherFor(c))+'</small></div><span class="subjects-page__status '+statusClass(c)+'">'+safe(c.statusLabel)+'</span><button type="button" class="subjects-page__kebab" onclick="BAUMAN_SUBJECTS_REF.toggleMenu(\''+safe(c.key)+'\')">⋮</button>'+
-    '<div class="subjects-page__course-menu '+(menu?'is-open':'')+'"><button onclick="BAUMAN_SUBJECTS_REF.selectCourse(\''+safe(c.key)+'\')">Mở môn</button><button onclick="BAUMAN_SUBJECTS_REF.editTeacher(\''+safe(c.key)+'\')">✎ Sửa giảng viên</button><button onclick="BAUMAN_SUBJECTS_REF.openEditor(\''+safe(c.subjectId)+'\')">Dữ liệu môn</button>'+(c.custom?'<button class="is-danger" onclick="BAUMAN_SUBJECTS_REF.removeCustom(\''+safe(c.key)+'\')">Xóa khỏi danh sách</button>':'')+'</div></div>'+
+    '<div class="subjects-page__course-menu '+(menu?'is-open':'')+'"><button onclick="BAUMAN_SUBJECTS_REF.selectCourse(\''+safe(c.key)+'\')">Mở môn</button><button onclick="BAUMAN_SUBJECTS_REF.editTeacher(\''+safe(c.key)+'\')">✎ Sửa giảng viên</button>'+(c.custom?'<button class="is-danger" onclick="BAUMAN_SUBJECTS_REF.removeCustom(\''+safe(c.key)+'\')">Xóa khỏi danh sách</button>':'')+'</div></div>'+
     '<div class="subjects-page__course-progress"><span><i class="is-'+safe(c.progressTone)+'" style="--value:'+p+'%"></i></span><b>'+p+'%</b></div>'+
     '<div class="subjects-page__course-meta"><span><i>▤</i>'+safe(c.sessions)+'</span><span><i>▣</i><small>Buổi tiếp theo</small><b>'+safe(next)+'</b></span></div>'+
     '<div class="subjects-page__course-actions"><button class="is-primary" onclick="BAUMAN_SUBJECTS_REF.openSubject(\''+safe(c.subjectId)+'\',\'study\')">▶ Vào môn</button><button onclick="BAUMAN_SUBJECTS_REF.openSubject(\''+safe(c.subjectId)+'\',\'docs\')">▧ Tài liệu</button><button onclick="BAUMAN_SUBJECTS_REF.openSubject(\''+safe(c.subjectId)+'\',\'tasks\')">◫ Bài tập</button></div>'+
@@ -312,7 +311,7 @@ function courseCard(c){
   var f=c.custom?{status:'LOCAL_HUB',value:null}:truthProgress(c.subjectId),v=Number.isFinite(f.value)?f.value:null,next=nextSessionFor(c.subjectId),menu=ui.menu===c.key;
   return '<article class="subjects-page__course-card" data-course-key="'+safe(c.key)+'" data-truth-status="'+safe(c.truthStatus||f.status)+'">'+
     '<div class="subjects-page__course-top">'+iconMarkup(c)+'<div class="subjects-page__course-name"><b>'+safe(c.title)+'</b><small>'+safe(teacherFor(c))+'</small></div><span class="subjects-page__status '+statusClass(c)+'">'+safe(c.custom?'LOCAL_HUB':c.statusLabel)+'</span><button type="button" class="subjects-page__kebab" onclick="BAUMAN_SUBJECTS_REF.toggleMenu(\''+safe(c.key)+'\')">⋮</button>'+
-    '<div class="subjects-page__course-menu '+(menu?'is-open':'')+'"><button onclick="BAUMAN_SUBJECTS_REF.selectCourse(\''+safe(c.key)+'\')">Mở môn</button><button onclick="BAUMAN_SUBJECTS_REF.editTeacher(\''+safe(c.key)+'\')">✎ Ghi chú giảng viên LOCAL_HUB</button><button onclick="BAUMAN_SUBJECTS_REF.openEditor(\''+safe(c.subjectId)+'\')">Dữ liệu môn</button>'+(c.custom?'<button class="is-danger" onclick="BAUMAN_SUBJECTS_REF.removeCustom(\''+safe(c.key)+'\')">Xóa khỏi LOCAL_HUB</button>':'')+'</div></div>'+
+    '<div class="subjects-page__course-menu '+(menu?'is-open':'')+'"><button onclick="BAUMAN_SUBJECTS_REF.selectCourse(\''+safe(c.key)+'\')">Mở môn</button><button onclick="BAUMAN_SUBJECTS_REF.editTeacher(\''+safe(c.key)+'\')">✎ Ghi chú giảng viên LOCAL_HUB</button>'+(c.custom?'<button class="is-danger" onclick="BAUMAN_SUBJECTS_REF.removeCustom(\''+safe(c.key)+'\')">Xóa khỏi LOCAL_HUB</button>':'')+'</div></div>'+
     '<div class="subjects-page__course-progress"><span><i class="is-'+safe(c.progressTone||c.tone)+'" style="--value:'+(v===null?0:v)+'%"></i></span><b>'+(v===null?'—':v+'%')+'</b></div>'+
     '<div class="subjects-page__course-meta"><span><i>▤</i>'+safe(sessionLabel(c.subjectId))+'</span><span><i>▣</i><small>Buổi tiếp theo</small><b>'+safe(next)+'</b></span></div>'+
     '<div class="subjects-page__course-actions"><button class="is-primary" onclick="BAUMAN_SUBJECTS_REF.openSubject(\''+safe(c.subjectId)+'\',\'study\')">▶ Vào môn</button><button onclick="BAUMAN_SUBJECTS_REF.openSubject(\''+safe(c.subjectId)+'\',\'docs\')">▧ Tài liệu</button><button onclick="BAUMAN_SUBJECTS_REF.openSubject(\''+safe(c.subjectId)+'\',\'tasks\')">◫ Bài tập</button></div>'+
@@ -396,7 +395,7 @@ function selfCheck(){
 window.BAUMAN_SUBJECTS_REF={
   release:RELEASE,patch:patch,render:render,selfCheck:selfCheck,
   toggleTab:toggleTab,toggleFilter:toggleFilter,toggleMenu:toggleMenu,filterCourse:filterCourse,clearFilter:clearFilter,setSemester:setSemester,
-  openSubject:openSubject,openEditor:openEditor,selectCourse:selectCourse,openDeadline:openDeadline,toggleAI:toggleAI,shiftCalendar:shiftCalendar,
+  openSubject:openSubject,selectCourse:selectCourse,openDeadline:openDeadline,toggleAI:toggleAI,shiftCalendar:shiftCalendar,
   toggleNote:toggleNote,addNote:addNote,removeCustom:removeCustom,editTeacher:editTeacher,teacherFor:teacherFor,openAddCourse:openAddCourse,closeAddCourse:closeAddCourse,submitAddCourse:submitAddCourse,scrollCourses:scrollCourses
 };
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',patch,{once:true});else patch();

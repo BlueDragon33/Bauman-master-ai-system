@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import vm from 'node:vm';
 
 const root='subjects/ergonomics';
 for(const relative of [
@@ -68,8 +69,12 @@ assert.ok(data.includes("credits:'6'"),'Official credits missing from Bauman cou
 assert.ok(data.includes("hours:'216 giờ (68 giờ tiếp xúc)'"),'Official hours missing from Bauman course metadata');
 
 const main=fs.readFileSync('assets/js/main.js','utf8');
-assert.ok(main.includes("ergonomics:'subjects/ergonomics/index.html'"),'Ergonomics runtime path missing from main hub');
-assert.ok(main.includes("ergonomics:'subjects/ergonomics/editor.html'"),'Ergonomics editor path missing from main hub');
+const configWindow={BAUMAN_DATA:{subjects:[{id:'ergonomics',name:'Ergonomics'}]}};
+vm.runInNewContext(fs.readFileSync('assets/js/platform/hub-subject-config.js','utf8'),{window:configWindow,structuredClone});
+const configuration=configWindow.BAUMAN_HUB_SUBJECT_CONFIG.getConfiguration('ergonomics');
+assert.equal(configuration.entry,'subjects/ergonomics/index.html','Ergonomics runtime path missing from Hub application config');
+assert.equal(configuration.editor,'subjects/ergonomics/editor.html','Ergonomics admin editor path missing from Hub application config');
+assert.equal(configWindow.BAUMAN_HUB_SUBJECT_CONFIG.getDescriptor('ergonomics').authoring,null,'Admin editor path must not imply learner authoring capability');
 assert.ok(main.includes("'signal','ergonomics'"),'Ergonomics should be available in technical study slots');
 assert.ok(main.includes("official_plan:'Theo учебный план 2026'"),'Official-plan confidence label missing');
 

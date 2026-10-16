@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import vm from 'node:vm';
 
 const root='subjects/mivar';
 for(const file of ['index.html','editor.html','subject-manifest.json','subject-manifest.js','data/curriculum.json','data/lessons.json','data/formulas.json','data/exercises.json','data/tests.json','data/simulations.json','data/knowledge-index.json']){
@@ -28,8 +29,12 @@ assert.ok(data.includes("id:'c21',stage:'m4',subject:'mivar'"));
 assert.ok(data.includes("hours:'144 giờ (33 giờ tiếp xúc)'"));
 
 const main=fs.readFileSync('assets/js/main.js','utf8');
-assert.ok(main.includes("mivar:'subjects/mivar/index.html'"));
-assert.ok(main.includes("mivar:'subjects/mivar/editor.html'"));
+const configWindow={BAUMAN_DATA:{subjects:[{id:'mivar',name:'Mivar'}]}};
+vm.runInNewContext(fs.readFileSync('assets/js/platform/hub-subject-config.js','utf8'),{window:configWindow,structuredClone});
+const configuration=configWindow.BAUMAN_HUB_SUBJECT_CONFIG.getConfiguration('mivar');
+assert.equal(configuration.entry,'subjects/mivar/index.html');
+assert.equal(configuration.editor,'subjects/mivar/editor.html');
+assert.equal(configWindow.BAUMAN_HUB_SUBJECT_CONFIG.getDescriptor('mivar').authoring,null,'Admin editor path must not imply learner authoring capability');
 assert.ok(main.includes("'ergonomics','mivar'"));
 
 console.log('MIVAR_SUBJECT_STATIC_GATE=PASS');
