@@ -177,6 +177,8 @@ try{
   assert.ok(['pending','saved','error','recovery'].includes(offline.saveStatus),'Offline app must render the new truthful local-save status contract');
   assert.deepEqual(errors,[],'offline Russian reload emitted console/page errors');
 
+  await page.screenshot({path:path.join(OUT,'russian-offline-reload.png'),fullPage:true});
+
   // R31/R20: real offline user action and cold browser-tab reopen must retain
   // route and learner input. A search query is NOT pronunciation/mastery evidence.
   const offlineNav=page.locator('#nav button[data-view="learning"]').first();
@@ -221,8 +223,6 @@ try{
   assert.ok(['pending','saved','error','recovery'].includes(afterColdResume.saveStatus),'Local save status must remain truthful');
   assert.deepEqual(errors,[],'Offline cold resume emitted browser errors');
   await resumedPage.screenshot({path:path.join(OUT,'russian-offline-cold-resume.png'),fullPage:true});
-
-  await page.screenshot({path:path.join(OUT,'russian-offline-reload.png'),fullPage:true});
   fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',cachedFoundation:true,offline,offlineColdResume:{status:'PASS',beforeClose,afterColdResume,masteryEvidence:'NOT_ASSERTED'},simulatedCacheMigration:{from:'v26/v27/v28/v31/v32/v33',to:expectedShell,previousShellRemoved:migration.previousShellRemoved,siblingCachePreserved:migration.siblingCachePreserved,learningCachePreserved:migration.learningCachePreserved}},null,2));
   console.log('Russian offline shell browser acceptance PASS');
 }finally{
