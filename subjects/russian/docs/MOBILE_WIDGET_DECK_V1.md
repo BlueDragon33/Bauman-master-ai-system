@@ -14,9 +14,10 @@ reviewer, decision and rights registries, pinned to audited source revisions.
 Missing registries, mismatched fingerprints, unverifiable RU03 reviewer,
 withdrawal/supersession or missing offline/display rights withhold the item.
 
-Output schema `RUSSIAN_WIDGET_DECK_V1` contains sourceProjectId,
+Output schema `RUSSIAN_WIDGET_DECK_V1` lives in
+`engine/mobile/widget-deck.schema.json` and contains sourceProjectId,
 contentRevision (SHA-256 of selected item metadata), generatedAt,
-status, items and non-authoritative diagnostics.
+expiresAt, status, items and non-authoritative diagnostics.
 Item fields: contentId, revision, senseId, textRu, stressMarked,
 meaningVi, stage, contentSha256, sourceRefs, approvalDecisionId,
 reviewerEvidenceId, licenseUrl and optional audio.
@@ -69,3 +70,24 @@ invalidates the corresponding digest.
 
 There is no production or Quality Gate PASS granted by passing this
 contract test alone. See Blueprint OS Constitution and release policy.
+
+## Offline expiration and text consistency
+
+The deck requires explicit ISO-8601 `generatedAt` and `expiresAt` with a
+positive lifetime of at most 30 days. iOS consumers MUST refuse to display the
+deck after `expiresAt` and show a transparent expired/empty state, including
+when the device has no network. They must still verify content provenance;
+the lifetime is not an RU03 approval certificate. A previously downloaded
+deck may not learn about emergency revocation while offline; that risk needs
+a separately reviewed withdrawal/refresh threat model and release policy.
+
+Text formatting checks ensure that stripping Unicode acute marks from
+`stressMarked` equals `textRu`, accents sit on Russian vowels, and
+multisyllabic words carry visible stress or `ё`. They are structural
+consistency checks, NOT independent certification that the stressed syllable
+is linguistically correct. All such judgments remain RU03-owned.
+
+The JSON Schema constrains serialized consumer payload shape and is not an
+authorization layer. Deck `contentRevision` is a deterministic content hash
+rather than a signature; a future iOS-facing package must verify authenticity
+through a separately approved distribution/signature trust model.
