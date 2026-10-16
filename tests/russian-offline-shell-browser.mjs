@@ -205,6 +205,10 @@ try{
 
   await page.close();
   const resumedPage=await context.newPage();
+  // Chromium may create a new target with the default navigator online flag.
+  // Reapply genuine Playwright network disconnection to this newly opened tab
+  // BEFORE navigation; never briefly reconnect to pass the test.
+  await context.setOffline(true);
   resumedPage.on('pageerror',e=>errors.push(String(e?.stack||e)));
   resumedPage.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
   await resumedPage.goto(url,{waitUntil:'domcontentloaded',timeout:30000});
