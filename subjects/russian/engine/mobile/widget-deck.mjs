@@ -1,0 +1,136 @@
+import { createHash } from 'node:crypto';
+
+export const WIDGET_DECK_SCHEMA = 'RUSSIAN_WIDGET_DECK_V1';
+const PROJECT = 'project:bauman-master-ai-system';
+const REQUIRED_SCOPES = Object.freeze(['RU_TEXT','RU_STRESS','VI_MEANING','SENSE']);
+const clean = x => typeof x === 'string' ? x.trim() : '';
+const rows = x => Array.isArray(x) ? x : [];
+const obj = x => x !== null && typeof x === 'object' && !Array.isArray(x);
+const hex = x => /^[a-f0-9]{64}$/.test(clean(x));
+const iso = x => typeof x === 'string' && !Number.isNaN(Date.parse(x)) && new Date(x).toISOString() === x;
+const unique = a => new Set(a).size === a.length;
+const isHttps = x => {
+  try { const u = new URL(x); return u.protocol === 'https:' && !u.username && !u.password; }
+  catch { return false; }
+};
+
+function stable(value) {
+  if (Array.isArray(value)) return '[' + value.map(stable).join(',') + ']';
+  if (obj(value)) return '{' + Object.keys(value).sort().map(k => JSON.stringify(k) + ':' + stable(value[k])).join(',') + '}';
+  return JSON.stringify(value);
+}
+export function sha256(value) {
+  return createHash('sha256').update(stable(value), 'utf8').digest('hex');
+}
+export function widgetLexicalPayload(item) {
+  return {
+    contentId: clean(item?.contentId),
+    revision: clean(item?.revision),
+    senseId: clean(item?.senseId),
+    textRu: clean(item?.textRu),
+    stressMarked: clean(item?.stressMarked),
+    meaningVi: clean(item?.meaningVi),
+    stage: clean(item?.stage)
+  };
+}
+function reviewerAuthorized(registry, reviewerId) {
+  if (registry?.schema !== 'RUSSIAN_ENGINE_RU03_REVIEWERS_V1' ||
+      registry?.state !== 'VERIFIED_HUMAN_REVIEWERS') return false;
+  const reviewer = rows(registry.reviewers).find(r => r.id === reviewerId);
+  return reviewer?.type === 'HUMAN' &&
+    reviewer?.authority === 'RU03' &&
+    reviewer?.status === 'ACTIVE' &&
+    reviewer?.credentialsVerified === true &&
+    Boolean(clean(reviewer?.verificationEvidenceId));
+}
+function approvedAudio(item, approval, rights) {
+  const audio = item?.audio;
+  if (!obj(audio) || !isHttps(audio.url) || !hex(audio.sha256)) return null;
+  // Audio approval and offline rights are independent of textual RU03 approval.
+  if (approval?.audioSha256 !== audio.sha256 ||
+      approval?.audioDecision !== 'APPROVE' ||
+      rights?.audioSha256 !== audio.sha256 ||
+      rights?.audioOfflineAllowed !== true ||
+      !clean(rights?.audioLicenseRef)) return null;
+  return { url: audio.url, sha256: audio.sha256, licenseRef: rights.audioLicenseRef };
+}
+function validated(item, context) {
+  if (!obj(item) || item.state !== 'PUBLISHED_REFERENCE' ||
+      item.provenance?.status !== 'VERIFIED' ||
+      item.validationResult !== 'VERIFIED' ||
+      item.withdrawn === true || clean(item.supersededByRevision)) return null;
+  const lex = widgetLexicalPayload(item);
+  if (Object.values(lex).some(x => !x) || !/[А-Яа-яЁё]/u.test(lex.textRu)) return null;
+  if (!Array.isArray(item.sourceRefs) || !item.sourceRefs.length ||
+      !unique(item.sourceRefs) || !item.sourceRefs.every(isHttps)) return null;
+  // Multisyllabic Russian must visibly carry stress for this widget.
+  const syllables = (lex.textRu.match(/[аеёиоуыэюя]/giu) ?? []).length;
+  if (syllables > 1 && !/[\u0301]/u.test(lex.stressMarked)) return null;
+
+  const fingerprint = sha256({ ...lex, sourceRefs: item.sourceRefs });
+  const release = rows(context.publications?.entries).find(r =>
+    r.contentId === lex.contentId && r.revision === lex.revision);
+  if (context.publications?.schema !== 'RUSSIAN_WIDGET_PUBLICATION_REGISTRY_V1' ||
+      release?.state !== 'PUBLISHED_REFERENCE' ||
+      release?.contentSha256 !== fingerprint ||
+      release?.withdrawn === true || clean(release?.supersededByRevision)) return null;
+
+  const review = rows(context.decisions?.decisions).find(d =>
+    d.contentId === lex.contentId && d.revision === lex.revision &&
+    d.senseId === lex.senseId);
+  if (context.decisions?.schemaVersion !== 'RUSSIAN_ENGINE_HUMAN_REVIEW_DECISIONS_V1' ||
+      review?.authority !== 'RU03' || review?.reviewerType !== 'HUMAN' ||
+      review?.decision !== 'APPROVE' || !iso(review?.decidedAt) ||
+      review?.contentSha256 !== fingerprint || !clean(review?.decisionId) ||
+      !REQUIRED_SCOPES.every(s => rows(review.scopes).includes(s)) ||
+      !reviewerAuthorized(context.reviewers, review.reviewerId)) return null;
+
+  const right = rows(context.rights?.entries).find(r =>
+    r.contentId === lex.contentId && r.revision === lex.revision &&
+    r.senseId === lex.senseId);
+  if (context.rights?.schema !== 'RUSSIAN_WIDGET_RIGHTS_V1' ||
+      right?.contentSha256 !== fingerprint ||
+      right?.displayAllowed !== true || right?.offlineCacheAllowed !== true ||
+      right?.revoked === true || !isHttps(right?.licenseUrl) ||
+      !item.sourceRefs.every(s => rows(right.sourceRefs).includes(s))) return null;
+  return {
+    ...lex,
+    contentSha256: fingerprint,
+    sourceRefs: [...item.sourceRefs],
+    approvalDecisionId: review.decisionId,
+    reviewerEvidenceId: context.reviewers.reviewers.find(r => r.id === review.reviewerId).verificationEvidenceId,
+    licenseUrl: right.licenseUrl,
+    audio: approvedAudio(item, review, right)
+  };
+}
+
+/**
+ * Read-only projection of explicitly supplied Bauman-owned source registries.
+ * It neither approves content nor reads raw vocab.json. Missing/stale proof => omit.
+ * Callers must bind registries to a trusted reviewed source revision, not UI input.
+ */
+export function buildRussianWidgetDeck({
+  candidates = [], publications = null, reviewers = null,
+  decisions = null, rights = null, generatedAt
+} = {}) {
+  if (!iso(generatedAt)) throw new Error('generatedAt must be explicit ISO-8601');
+  if (!Array.isArray(candidates)) throw new TypeError('candidates must be an array');
+  const ids = candidates.map(x => clean(x?.contentId) + '@' + clean(x?.revision));
+  if (!unique(ids)) throw new Error('duplicate candidate revision: fail closed');
+  const context = {publications, reviewers, decisions, rights};
+  const items = candidates.map(x => validated(x, context)).filter(Boolean)
+    .sort((a,b) => a.contentId.localeCompare(b.contentId) || a.revision.localeCompare(b.revision));
+  const contentRevision = sha256(items.map(x => [x.contentId,x.revision,x.contentSha256,x.approvalDecisionId]));
+  return Object.freeze({
+    schemaVersion: WIDGET_DECK_SCHEMA,
+    sourceProjectId: PROJECT,
+    contentRevision,
+    generatedAt,
+    status: items.length ? 'REVIEWED_CONTENT_PROJECTION' : 'NO_AUTHORIZED_CONTENT',
+    items,
+    diagnostics: { candidates: candidates.length, exported: items.length, withheld: candidates.length - items.length },
+    // A content deck is not a license to deploy, grant mastery or certify RU03.
+    productionReleaseAuthorized: false,
+    learnerMasteryAuthority: false
+  });
+}
