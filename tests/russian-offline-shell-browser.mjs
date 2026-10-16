@@ -181,8 +181,13 @@ try{
 
   // R31/R20: real offline user action and cold browser-tab reopen must retain
   // route and learner input. A search query is NOT pronunciation/mastery evidence.
+  // The canonical sidebar "Nghe & Nói" route deliberately enters practice;
+  // switch to theory using the same visible lesson-structure menu as a learner.
   const offlineNav=page.locator('#nav button[data-view="learning"]').first();
   await offlineNav.click();
+  const structureMenu=page.locator('#view .learn-structure-menu');
+  await structureMenu.locator('summary').click();
+  await structureMenu.locator('[data-learn="theory"]').click();
   const learnerSearch=page.locator('#view [data-input="lessonQuery"]');
   await learnerSearch.waitFor({state:'visible',timeout:12000});
   await learnerSearch.fill('привет');
