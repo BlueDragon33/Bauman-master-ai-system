@@ -91,27 +91,77 @@
     }
   }
 
+  let playbackEpoch=0, activeUtterance=null, activePlayer=null;
   function audioSupport(){return {tts:'speechSynthesis' in window&&typeof window.SpeechSynthesisUtterance!=='undefined',htmlAudio:typeof window.Audio==='function'}}
+  function cancelPlayback(){
+    // Retire callbacks before stopping: cancel(), pause() and pending play()
+    // promises may all dispatch late events on older media sessions.
+    playbackEpoch++;
+    const player=activePlayer,utterance=activeUtterance;
+    activePlayer=null;activeUtterance=null;
+    if(player){try{player.pause?.()}catch(_){}}
+    if(utterance){try{window.speechSynthesis?.cancel?.()}catch(_){}}
+    return !!(player||utterance);
+  }
   function speak(text,options={}){
     const value=clean(text);if(!value)return {started:false,sourceType:'TTS',reason:'empty'};
     if(!audioSupport().tts){options.onUnavailable?.();return {started:false,sourceType:'TTS',reason:'unsupported'}}
+    cancelPlayback();
+    const epoch=playbackEpoch;
     try{
       const u=new window.SpeechSynthesisUtterance(value);
-      u.lang=clean(options.lang)||'ru-RU';u.rate=Math.max(.5,Math.min(1.5,Number(options.rate)||.85));
-      if(options.onStart)u.onstart=options.onStart;if(options.onEnd)u.onend=options.onEnd;if(options.onError)u.onerror=options.onError;
-      window.speechSynthesis.cancel();window.speechSynthesis.speak(u);
+      u.lang=clean(options.lang)||'ru-RU';
+      const rate=Number(options.rate);
+      u.rate=Math.max(.5,Math.min(1.5,Number.isFinite(rate)&&rate>0?rate:.85));
+      activeUtterance=u;
+      u.onstart=()=>{if(epoch===playbackEpoch&&activeUtterance===u)options.onStart?.()};
+      u.onend=()=>{
+        if(epoch!==playbackEpoch||activeUtterance!==u)return;
+        activeUtterance=null;options.onEnd?.();
+      };
+      u.onerror=error=>{
+        if(epoch!==playbackEpoch||activeUtterance!==u)return;
+        activeUtterance=null;options.onError?.(error);
+      };
+      window.speechSynthesis.speak(u);
       return {started:true,sourceType:'TTS'};
-    }catch(error){options.onError?.(error);return {started:false,sourceType:'TTS',reason:'runtime-error'}}
+    }catch(error){
+      if(epoch===playbackEpoch)cancelPlayback();
+      options.onError?.(error);
+      return {started:false,sourceType:'TTS',reason:'runtime-error'};
+    }
   }
   function playSource(src,options={}){
-    const source=clean(src);if(!source||!audioSupport().htmlAudio)return {started:false,sourceType:options.sourceType||'UNKNOWN'};
+    const source=clean(src);
+    if(!source)return {started:false,sourceType:options.sourceType||'UNKNOWN',reason:'empty'};
+    if(!audioSupport().htmlAudio){
+      options.onUnavailable?.();
+      return {started:false,sourceType:options.sourceType||'UNKNOWN',reason:'unsupported'};
+    }
+    cancelPlayback();
+    const epoch=playbackEpoch;
+    let player=null;
     try{
-      const player=new window.Audio(source);player.playbackRate=Math.max(.5,Math.min(2,Number(options.rate)||1));
-      player.addEventListener('error',()=>options.onError?.(),{once:true});
-      player.addEventListener('ended',()=>options.onEnd?.(),{once:true});
-      const promise=player.play();promise?.catch?.(e=>options.onError?.(e));
+      player=new window.Audio(source);activePlayer=player;
+      const rate=Number(options.rate);
+      player.playbackRate=Math.max(.5,Math.min(2,Number.isFinite(rate)&&rate>0?rate:1));
+      const onError=error=>{
+        if(epoch!==playbackEpoch||activePlayer!==player)return;
+        cancelPlayback();options.onError?.(error);
+      };
+      player.addEventListener('error',onError,{once:true});
+      player.addEventListener('ended',()=>{
+        if(epoch!==playbackEpoch||activePlayer!==player)return;
+        activePlayer=null;options.onEnd?.();
+      },{once:true});
+      const promise=player.play();
+      promise?.catch?.(onError);
       return {started:true,sourceType:options.sourceType||'UNKNOWN',player};
-    }catch(error){options.onError?.(error);return {started:false,sourceType:options.sourceType||'UNKNOWN'}}
+    }catch(error){
+      if(epoch===playbackEpoch)cancelPlayback();
+      options.onError?.(error);
+      return {started:false,sourceType:options.sourceType||'UNKNOWN',reason:'runtime-error'};
+    }
   }
 
   function recorderSupport(){
@@ -188,11 +238,11 @@
 
   document.addEventListener('click',event=>{
     const nav=event.target?.closest?.('[data-view],[data-route],a[href]');
-    if(nav){cancelRecognition();if(permissionPending||recorder)cancelRecording();}
+    if(nav){cancelPlayback();cancelRecognition();if(permissionPending||recorder)cancelRecording();}
   },true);
-  window.addEventListener('pagehide',()=>{cancelRecognition();cancelRecording()});
+  window.addEventListener('pagehide',()=>{cancelPlayback();cancelRecognition();cancelRecording()});
 
-  window.RussianAudioEngine={schema:'RUSSIAN_AUDIO_ENGINE_V1',support:audioSupport,speak,playSource};
+  window.RussianAudioEngine={schema:'RUSSIAN_AUDIO_ENGINE_V1',support:audioSupport,speak,playSource,cancel:cancelPlayback};
   window.RussianSpeechRecognitionAdapter={schema:'RUSSIAN_SPEECH_RECOGNITION_ADAPTER_V1',states:SUPPORT,support:recognitionSupport,start:startRecognition,stop:stopRecognition,cancel:cancelRecognition,status:()=>recognitionState};
   window.RussianRecordingEngine={schema:'RUSSIAN_RECORDING_ENGINE_V1',micStates:MIC,support:recorderSupport,start:startRecording,stop:stopRecording,cancel:cancelRecording,status:recorderStatus,getLastRecording,clear:clearRecording};
 })();
