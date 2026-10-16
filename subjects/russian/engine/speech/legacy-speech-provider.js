@@ -63,24 +63,48 @@ export function createLegacySpeechProvider({
       const source = clean(stimulus.audioSource);
       const text = clean(stimulus.audioText);
       const rate = Number(stimulus.rate) || 1;
-      if (source && typeof audio.playSource === 'function') {
-        return audio.playSource(source, {
-          rate,
-          sourceType: clean(stimulus.sourceType) || 'SOURCE_AUDIO',
-          onEnd: handlers.onEnd,
-          onError: handlers.onError
-        });
+      const speakText=()=>audio.speak(text,{
+        lang:'ru-RU',rate,
+        onStart:handlers.onStart,onEnd:handlers.onEnd,
+        onError:handlers.onError,onUnavailable:handlers.onUnavailable
+      });
+      if (source) {
+        // A recorded stimulus can be missing from the offline cache. A fallback
+        // is only a synthetic voice, never a phonetic or RU03 authority.
+        let fallbackTried=false, fallbackResult=null;
+        const fallback=(error)=>{
+          if(fallbackTried)return fallbackResult;
+          fallbackTried=true;
+          if(!text||typeof audio.speak!=='function'){
+            handlers.onUnavailable?.({reason:'recorded-audio-unavailable',sourceType:'SOURCE_AUDIO'});
+            fallbackResult={started:false,sourceType:'SOURCE_AUDIO',reason:'no-audio-fallback'};
+            return fallbackResult;
+          }
+          handlers.onFallback?.({sourceType:'TTS',reason:'recorded-audio-unavailable',
+            pronunciationAuthority:false,stressAuthority:false});
+          try{fallbackResult=speakText()}
+          catch(e){handlers.onError?.(e);fallbackResult={started:false,sourceType:'TTS',reason:'runtime-error'}}
+          return fallbackResult;
+        };
+        if(typeof audio.playSource==='function'){
+          try {
+            const result=audio.playSource(source,{
+              rate,sourceType:clean(stimulus.sourceType)||'SOURCE_AUDIO',
+              onEnd:handlers.onEnd,onError:error=>{
+                const switched=fallback(error);
+                if(!switched?.started)handlers.onError?.(error);
+              }
+            });
+            return result?.started===true?result:fallback();
+          }catch(error){
+            const switched=fallback(error);
+            if(!switched?.started)handlers.onError?.(error);
+            return switched;
+          }
+        }
+        return fallback();
       }
-      if (text && typeof audio.speak === 'function') {
-        return audio.speak(text, {
-          lang: 'ru-RU',
-          rate,
-          onStart: handlers.onStart,
-          onEnd: handlers.onEnd,
-          onError: handlers.onError,
-          onUnavailable: handlers.onUnavailable
-        });
-      }
+      if (text && typeof audio.speak === 'function') return speakText();
       return {started:false,sourceType:'NONE',reason:'missing-stimulus'};
     },
 
