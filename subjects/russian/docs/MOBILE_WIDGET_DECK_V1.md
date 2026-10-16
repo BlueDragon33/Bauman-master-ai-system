@@ -91,3 +91,37 @@ The JSON Schema constrains serialized consumer payload shape and is not an
 authorization layer. Deck `contentRevision` is a deterministic content hash
 rather than a signature; a future iOS-facing package must verify authenticity
 through a separately approved distribution/signature trust model.
+
+## Actual-source preflight (read-only, no content export)
+
+P1 now includes `engine/mobile/widget-export-readiness.mjs`, which **reads**
+the actual canonical Bauman provenance, human reviewer registry and scene
+review-decision record at fixed repository-owned paths. It is intentionally
+distinct from the pure `widget-deck.mjs` acceptance-mechanics projector.
+
+From the Bauman repository root:
+
+```sh
+node subjects/russian/engine/mobile/widget-export-readiness.mjs
+```
+
+The command writes **only a JSON diagnostic to stdout**: no deck, candidate,
+approved item, reviewer credential or audio file. When required proofs are
+missing it returns `state: BLOCKED`, `eligibleToExport: false`,
+`qualityGatePass: false`, `productionAuthority: false` and exits with status
+`2` (expected fail-closed outcome). Invalid canonical JSON / unavailable
+sources exit with `3`. A zero exit is deliberately not implemented: this
+preflight cannot certify release, even if some records later become verified.
+
+Currently, the actual canonical vocabulary dataset is UNVERIFIED, the
+human reviewer registry is empty and scene decisions have no approvals.
+Further, audited, revision-pinned widget publication/rights/candidate bindings
+do **not** exist yet. A nonempty deck from an arbitrary in-memory synthetic
+fixture MUST NOT be treated as a distribution candidate. Such release
+wiring requires a separate reviewed Bauman change and provenance/rights gates.
+
+Dedicated test `engine/tests/test-re60-widget-export-readiness.mjs` exercises
+the actual source probe and checks that the CLI blocks without emitting a
+false-approved deck. Both RE59 contract tests and RE60 actual-source blocker
+tests run in the scoped mobile contract workflow. This is reproducible
+evidence of **intentional blocking**, not evidence of approved RU03 content.
