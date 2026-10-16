@@ -21,7 +21,7 @@ class MockAudio{
  constructor(src){this.src=src;this.playbackRate=1;this.listeners={};this.paused=false;audioPlayers.push(this)}
  addEventListener(name,callback){this.listeners[name]=callback}
  pause(){this.paused=true}
- play(){return this.playResult?this.playResult():Promise.resolve()}
+ play(){const factory=MockAudio.nextPlayResult;MockAudio.nextPlayResult=null;return factory?factory():Promise.resolve()}
  emit(name,error){this.listeners[name]?.(error)}
 }
 const window={
@@ -160,15 +160,21 @@ assert.deepEqual(ended,['new'],'Current sample completion may reach the learner'
 assert.equal(audio.cancel(),false,'Completed audio no longer has an active player');
 
 // An HTMLAudio play() rejection may arrive after a newer sample has started.
-const deferred=audio.playSource('/russian/pending.ogg',{onError:()=>errors.push('promise-old')});
 let rejectPlayback;
-deferred.player.playResult=()=>new Promise((_,reject)=>{rejectPlayback=reject});
-// Reconfigure a fresh playback so its play() actually returns a pending promise.
+MockAudio.nextPlayResult=()=>new Promise((_,reject)=>{rejectPlayback=reject});
 const pending=audio.playSource('/russian/pending-late.ogg',{onError:()=>errors.push('promise-stale')});
-pending.player.playResult=()=>new Promise((_,reject)=>{rejectPlayback=reject});
 audio.playSource('/russian/new.ogg',{onEnd:()=>ended.push('latest')});
+rejectPlayback(new Error('delayed autoplay rejection'));
+await Promise.resolve();await Promise.resolve();
 pending.player.emit('error',new Error('late event'));
-assert.deepEqual(errors,[],'Late error events from old audio must be ignored');
+assert.deepEqual(errors,[],'Late autoplay rejection/error from old audio must be ignored');
+
+// The player can fail immediately (autoplay denied); the current session reports
+// the error rather than leaving a false listening-complete state.
+MockAudio.nextPlayResult=()=>Promise.reject(new Error('NotAllowedError'));
+audio.playSource('/russian/blocked.ogg',{onError:()=>errors.push('blocked')});
+await Promise.resolve();await Promise.resolve();
+assert.deepEqual(errors,['blocked'],'Current playback rejection must surface once');
 
 // Existing TTS events may fire after playback cancellation or navigation.
 const regularSpeak=window.speechSynthesis.speak;
