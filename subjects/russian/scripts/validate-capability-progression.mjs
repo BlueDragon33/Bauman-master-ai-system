@@ -4,6 +4,7 @@ import path from 'node:path';
 const root=path.resolve('subjects/russian');
 const cap=fs.readFileSync(path.join(root,'assets','capability-progression.js'),'utf8');
 const core=fs.readFileSync(path.join(root,'assets','core.js'),'utf8');
+const css=fs.readFileSync(path.join(root,'assets','capability-progression.css'),'utf8');
 const index=fs.readFileSync(path.join(root,'index.html'),'utf8');
 const sw=fs.readFileSync(path.join(root,'sw.js'),'utf8');
 
@@ -48,6 +49,16 @@ need(index,'assets/capability-progression.js','Capability runtime not loaded');
 need(sw,'./assets/capability-progression.css','Capability CSS missing from offline shell');
 need(sw,'./assets/capability-progression.js','Capability runtime missing from offline shell');
 
+// Approved overview is a redesign of the canonical capability owner, not a parallel progress model.
+for(const token of ['data-approved-overview="2026-10-16"','ru-cap-hero','ru-cap-section-head','ru-cap-grid','ru-cap-status','role="progressbar"','bands.map(bandCard)','stageExitStatus(clean(c.stage)','allBands()']){
+  need(cap,token,'Approved overview missing canonical model or semantic structure: '+token);
+}
+for(const token of ['.ru-cap-hero','.ru-cap-band','.ru-cap-action:focus-visible','@media(max-width:700px)']){
+  need(css,token,'Approved responsive visual system missing: '+token);
+}
+need(cap,"window.addEventListener('russian:core-render',()=>{if(ready){render();publishBridge(false)}})",'Approved overview must mount synchronously before first paint');
+forbid(cap,'new MutationObserver','Capability projection must not re-observe and repaint its own view');
+forbid(cap,"document.addEventListener('click',()=>setTimeout(schedule",'Capability projection must not repaint on unrelated clicks');
 forbid(cap,'Math.random','Capability progression must not synthesize evidence');
 forbid(cap,'mastered:true','Capability progression must not synthesize mastery');
 forbid(cap,"score>=70",'Capability progression must not infer speaking mastery from a score threshold');

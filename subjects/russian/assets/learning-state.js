@@ -288,7 +288,7 @@
     const resume=state.resume,due=dueReviews();
     const resumeRoute=resume?.route||{view:'learning',learnTab:'theory'};
     const resumeText=resume?`${resume.activity}${resume.lessonId?' · '+resume.lessonId:''}`:'Bắt đầu bài học nền tảng đầu tiên';
-    panel.innerHTML=`<div class="ru-today-head"><div><span>HÔM NAY</span><h3>${resume?'Tiếp tục đúng nơi vừa học':'Bắt đầu theo lộ trình hiện tại'}</h3><p>${esc(resumeText)}</p></div><button class="btn primary ru-resume-primary" data-route='${routeAttr(resumeRoute)}'>${resume?'Tiếp tục':'Bắt đầu học'} →</button></div>
+    const html=`<div class="ru-today-head"><div><span>HÔM NAY</span><h3>${resume?'Tiếp tục đúng nơi vừa học':'Bắt đầu theo lộ trình hiện tại'}</h3><p>${esc(resumeText)}</p></div><button class="btn primary ru-resume-primary" data-route='${routeAttr(resumeRoute)}'>${resume?'Tiếp tục':'Bắt đầu học'} →</button></div>
       <div class="ru-today-actions">
         <button class="ru-today-action" data-route='{"view":"learning","learnTab":"review"}'><b>${due.length}</b><span>Phần đến hạn ôn</span></button>
         <button class="ru-today-action" data-route='{"view":"dialogue"}'><b>Nghe · nói</b><span>Luyện phản xạ</span></button>
@@ -296,6 +296,7 @@
         ${resume?'<button class="ru-today-action" data-ru-review-mark="current"><b>Đánh dấu</b><span>Cần ôn lại phần này</span></button>':''}
       </div>
       <section class="ru-review-queue-preview"><header><div><span>REVIEW QUEUE</span><b>${due.length?`${due.length} mục đến hạn`:'Đã xử lý hết mục đến hạn'}</b></div><small>Lý do ôn được lấy từ thao tác thật; sửa đúng sẽ tự rời hàng đợi.</small></header>${reviewRows(due)}</section>${plannerRows()}`;
+    if(panel.innerHTML!==html)panel.innerHTML=html;
   }
   function scheduleRenderToday(){clearTimeout(renderTimer);renderTimer=setTimeout(renderToday,0);}
   function explicitRoute(target){
@@ -330,7 +331,9 @@
     const main=document.querySelector('.ru-main'),view=document.getElementById('view');
     main?.addEventListener('scroll',schedulePositionSave,{passive:true});
     view?.addEventListener('scroll',schedulePositionSave,{passive:true});
-    if(view)new MutationObserver(()=>renderToday()).observe(view,{childList:true});
+    // Render ownership is explicit: core signals when it has replaced #view.
+    // Watching childList here made auxiliary panels chase unrelated DOM changes.
+    window.addEventListener('russian:core-render',renderToday);
   });
   window.RussianLearningState={
     schema:SCHEMA,

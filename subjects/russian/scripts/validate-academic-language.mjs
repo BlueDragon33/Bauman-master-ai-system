@@ -23,7 +23,9 @@ need(js,'Bản viết cần có chữ Cyrillic','Cyrillic guard for writing snap
 need(js,'Không thay đổi mastery','Truthful grammar mastery wording missing');
 need(js,'không phải điểm hay xác nhận đạt chuẩn','Truthful writing evidence wording missing');
 need(js,'không phải danh sách chính thức bên ngoài repo','Reading source provenance wording missing');
-need(js,'subtree:false','Academic bridge observer must avoid subtree render loops');
+need(js,"window.addEventListener('russian:core-render',schedule)",'Academic bridge must refresh from explicit core lifecycle');
+need(js,'if(panel.innerHTML!==markup)panel.innerHTML=markup','Academic bridge must avoid repainting unchanged content');
+forbid(js,'new MutationObserver','Academic bridge must not watch the DOM it updates');
 need(css,'.ru-academic-bridge','Academic bridge CSS missing');
 need(css,'.ru-academic-rubric','Writing rubric CSS missing');
 need(css,'@media(max-width:760px)','Phone responsive breakpoint missing');

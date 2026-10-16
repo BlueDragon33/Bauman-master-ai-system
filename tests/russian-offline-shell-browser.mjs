@@ -4,6 +4,8 @@ import path from 'node:path';
 const {chromium}=await import(process.env.BAUMAN_PLAYWRIGHT_MODULE||'playwright');
 const BASE=process.env.BAUMAN_E2E_BASE_URL||'http://127.0.0.1:4173/';
 const OUT=process.env.BAUMAN_E2E_ARTIFACT_DIR||'artifacts/russian-offline-shell';
+const expectedShell=fs.readFileSync('subjects/russian/sw.js','utf8').match(/const CACHE='([^']+)'/)?.[1];
+assert.ok(/^russian-app-shell-v\d+-engine-/.test(expectedShell||''),'Canonical Russian shell must declare a versioned cache');
 fs.mkdirSync(OUT,{recursive:true});
 
 async function withTimeout(promise,timeoutMs,label){
@@ -75,7 +77,7 @@ try{
   assert.deepEqual(swReadiness.precacheReport?.failed||[],[],'Russian service-worker precache still has failed assets after authenticated repair');
   // The v29 activation must remove only obsolete Russian shell versions.
   await page.waitForFunction(async()=>!(await caches.keys()).some(key=>['russian-app-shell-v26-engine-semantic-symbols','russian-app-shell-v27-engine-mobile-navigation','russian-app-shell-v28-engine-local-save-status'].includes(key)),null,{timeout:15000});
-  const migration=await page.evaluate(async()=>{
+  const migration=await page.evaluate(async(expectedShell)=>{
     const keys=await caches.keys();
     const foreign=await caches.open('bauman-other-subject-persist-sentinel-v1');
     const sibling=await foreign.match('/__retain-foreign-cache');
@@ -84,13 +86,13 @@ try{
     return {
       keys,
       previousShellRemoved:!keys.includes('russian-app-shell-v26-engine-semantic-symbols')&&!keys.includes('russian-app-shell-v27-engine-mobile-navigation')&&!keys.includes('russian-app-shell-v28-engine-local-save-status'),
-      newShellPresent:keys.includes('russian-app-shell-v29-engine-asr-final-turn'),
+      newShellPresent:keys.includes(expectedShell),
       siblingCachePreserved:keys.includes('bauman-other-subject-persist-sentinel-v1')&&(await sibling?.text())==='unrelated-app-retained',
       learningCachePreserved:keys.includes('russian-learning-data-v1')&&(await retained?.text())==='user-offline-data-retained'
     };
-  });
+  },expectedShell);
   assert.equal(migration.previousShellRemoved,true,'v26/v27/v28 shells must be removed after v29 activation');
-  assert.equal(migration.newShellPresent,true,'v29 shell must be installed');
+  assert.equal(migration.newShellPresent,true,'Combined canonical shell must be installed');
   assert.equal(migration.siblingCachePreserved,true,'Russian SW must not remove unrelated application caches');
   assert.equal(migration.learningCachePreserved,true,'Russian SW must not remove learner offline data cache');
   await page.waitForFunction(()=>!!navigator.serviceWorker.controller,null,{timeout:15000});
@@ -167,7 +169,7 @@ try{
   assert.deepEqual(errors,[],'offline Russian reload emitted console/page errors');
 
   await page.screenshot({path:path.join(OUT,'russian-offline-reload.png'),fullPage:true});
-  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',cachedFoundation:true,offline,simulatedCacheMigration:{from:'v26/v27/v28',to:'v29',previousShellRemoved:migration.previousShellRemoved,siblingCachePreserved:migration.siblingCachePreserved,learningCachePreserved:migration.learningCachePreserved}},null,2));
+  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',cachedFoundation:true,offline,simulatedCacheMigration:{from:'v26/v27/v28',to:expectedShell,previousShellRemoved:migration.previousShellRemoved,siblingCachePreserved:migration.siblingCachePreserved,learningCachePreserved:migration.learningCachePreserved}},null,2));
   console.log('Russian offline shell browser acceptance PASS');
 }finally{
   await browser?.close();

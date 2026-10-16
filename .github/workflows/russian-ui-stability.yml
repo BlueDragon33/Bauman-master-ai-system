@@ -1,0 +1,32 @@
+name: Russian UI Stability Regression
+
+on:
+  pull_request:
+    paths:
+      - 'subjects/russian/assets/core.js'
+      - 'subjects/russian/assets/russian-future-ui.js'
+      - 'subjects/russian/assets/learning-state.js'
+      - 'subjects/russian/assets/learning-flow.js'
+      - 'subjects/russian/assets/academic-language.js'
+      - 'subjects/russian/scripts/validate-academic-language.mjs'
+      - 'tests/russian-ui-stability-browser.mjs'
+      - 'subjects/russian/assets/vocab-srs.js'
+      - 'subjects/russian/sw.js'
+      - 'subjects/russian/tests/ui-render-stability.test.mjs'
+      - '.github/workflows/russian-ui-stability.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stability-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify render and event ownership contracts
+        run: node --test subjects/russian/tests/ui-render-stability.test.mjs
