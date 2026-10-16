@@ -794,6 +794,7 @@ function setView(v,learnTab=''){trackAccess(v);state.view=v; if(v==='learning'){
 let lastRenderedContext='';
 function render(){
  try{
+  syncSpeakingAttemptContext(); // Discard ASR if learner switched lesson, line, role or tab.
   const v=$('#view');if(!v)throw new Error('Không tìm thấy vùng #view');
   const context=[state.view,state.learnTab].join(':');
   const restore=context===lastRenderedContext;
@@ -1819,27 +1820,58 @@ function speakingResultFor(d,i){return activeSpeechResults()?.[dialogueLineKey(d
 function speechSupport(){return window.RussianSpeechRecognitionAdapter?.support?.()==='SUPPORTED'}
 function speechFeedback(score){if(score>=86)return 'ASR chép lời gần với câu mẫu; chưa kiểm tra âm và trọng âm.'; if(score>=70)return 'Bản chép lời khá gần mẫu; nghe lại và tự đối chiếu từng từ.'; if(score>=45)return 'Bản chép lời khác mẫu; nghe chậm và nói lại theo từng cụm.'; return 'Bản chép lời còn khác mẫu; nghe mẫu và thử nói từng nửa câu.'}
 function lineTokenHints(text){return normalizeRuSpeech(text).split(' ').filter(Boolean).slice(0,7)}
+// ASR is ephemeral per *visible* dialogue turn. Never allow a late transcript
+// to be attributed to a different line, role, lesson or view.
+let activeSpeakingAttempt=null, speakingAttemptSequence=0;
+function speakingAttemptContext(){
+ const d=currentDialogue(),idx=activeLineIndex(),line=dialogueTurns(d)[idx]||{};
+ return [state.view,state.learnTab,activeLessonContext().id,
+   dialogueLineKey(d,idx),activeRole(),dialogueText(line)].join('\u001f');
+}
+function retireSpeakingAttempt(){
+ if(!activeSpeakingAttempt)return false;
+ activeSpeakingAttempt=null;
+ window.RussianSpeechRecognitionAdapter?.cancel?.();
+ state.speechRecording=false;
+ return true;
+}
+function syncSpeakingAttemptContext(){
+ if(activeSpeakingAttempt&&activeSpeakingAttempt.context!==speakingAttemptContext()){
+   retireSpeakingAttempt();
+   save(); // Do not leave the microphone-active marker in offline storage.
+ }
+}
 function startLineRecording(){
  const adapter=window.RussianSpeechRecognitionAdapter;
- const d=currentDialogue(), turns=dialogueTurns(d), idx=Math.min(activeLineIndex(),Math.max(0,turns.length-1));
- const target=dialogueText(turns[idx]||{}); if(!target){toast('Chưa có câu để luyện');return}
- if(!adapter||adapter.support?.()!=='SUPPORTED'){toast('Thiết bị chưa hỗ trợ nhận diện giọng nói. Bạn vẫn có thể nghe, nói, tự xác nhận hoặc dùng ghi âm cục bộ.');return}
- state.speechRecording=true; save(); render(); toast('Đang nhận dạng tiếng Nga. Transcript chỉ là tín hiệu hỗ trợ...');
+ const d=currentDialogue(),turns=dialogueTurns(d),idx=Math.min(activeLineIndex(),Math.max(0,turns.length-1));
+ const target=dialogueText(turns[idx]||{});if(!target){toast('Chưa có câu để luyện');return}
+ if(!adapter||adapter.support?.()!=='SUPPORTED'){
+  toast('Thiết bị chưa hỗ trợ nhận diện giọng nói. Bạn vẫn có thể nghe, nhại, tự đối chiếu hoặc dùng ghi âm cục bộ.');
+  return;
+ }
+ retireSpeakingAttempt(); // Consecutive Record taps replace, never overlap, an old attempt.
+ const attempt={id:++speakingAttemptSequence,context:speakingAttemptContext()};
+ activeSpeakingAttempt=attempt;
+ const isCurrent=()=>activeSpeakingAttempt===attempt&&attempt.context===speakingAttemptContext();
+ const endCurrent=()=>{if(!isCurrent())return false;retireSpeakingAttempt();return true};
+ state.speechRecording=true;save();render();
+ toast('Đang nhận dạng tiếng Nga. Transcript chỉ là tín hiệu hỗ trợ...');
  const result=adapter.start({
   lang:'ru-RU',timeoutMs:30000,
   onResult:({transcript,rawConfidence,final})=>{
-   if(final!==true)return; // interim hypotheses cannot become learner transcript evidence
-   const score=Math.round(speechSimilarity(transcript,target)*100), store=activeSpeechResults();
+   if(final!==true||!isCurrent())return; // No interim or stale-turn learner evidence.
+   endCurrent();
+   const score=Math.round(speechSimilarity(transcript,target)*100),store=activeSpeechResults();
    const key=dialogueLineKey(d,idx);
    store[key]={score,transcript,target,at:Date.now(),ok:false,signalOnly:true,signalType:'asr_transcript_similarity',confidence:'LIMITED',providerConfidence:rawConfidence??null};
    window.RussianAssessmentMastery?.recordEvidence?.({competencyId:'speaking:'+key,skill:'speaking',evidenceType:'asr_transcript_signal',result:{transcriptSimilarity:score,providerConfidence:rawConfidence??null},authoritative:false});
-   state.speechRecording=false; save(); render(); toast('Đã có transcript hỗ trợ. Hãy tự nghe lại/đối chiếu; ASR không tự xác nhận đạt.');
+   save();render();toast('Đã có transcript hỗ trợ. Hãy tự nghe lại/đối chiếu; ASR không tự xác nhận đạt.');
   },
-  onUnsupported:()=>{state.speechRecording=false;save();render();toast('Nhận diện giọng nói không khả dụng. Dùng tự đánh giá hoặc ghi âm cục bộ để tiếp tục.');},
-  onError:({support})=>{state.speechRecording=false;save();render();toast(support==='PERMISSION_BLOCKED'?'Micro/nhận dạng bị từ chối. Bạn vẫn có thể tiếp tục bằng nghe + tự đánh giá.':'Không nhận dạng được giọng nói. Hãy thử lại hoặc dùng fallback.');},
-  onEnd:()=>{if(state.speechRecording){state.speechRecording=false;save();render();}}
+  onUnsupported:()=>{if(!endCurrent())return;save();render();toast('Nhận diện giọng nói không khả dụng. Dùng tự đối chiếu hoặc ghi âm cục bộ để tiếp tục.');},
+  onError:({support})=>{if(!endCurrent())return;save();render();toast(support==='PERMISSION_BLOCKED'?'Micro/nhận dạng bị từ chối. Bạn vẫn có thể nghe và tự đối chiếu.':'Không nhận dạng được giọng nói. Hãy thử lại hoặc dùng phương án khác.');},
+  onEnd:()=>{if(!endCurrent())return;save();render();}
  });
- if(!result?.started){state.speechRecording=false;save();render();}
+ if(!result?.started&&endCurrent()){save();render();}
 }
 
 function vocabVisualCategoryRu(tags){
