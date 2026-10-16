@@ -80,10 +80,18 @@ export function createLegacySpeechProvider({
             fallbackResult={started:false,sourceType:'SOURCE_AUDIO',reason:'no-audio-fallback'};
             return fallbackResult;
           }
-          handlers.onFallback?.({sourceType:'TTS',reason:'recorded-audio-unavailable',
-            pronunciationAuthority:false,stressAuthority:false});
-          try{fallbackResult=speakText()}
-          catch(e){handlers.onError?.(e);fallbackResult={started:false,sourceType:'TTS',reason:'runtime-error'}}
+          try{
+            fallbackResult=speakText();
+            if(fallbackResult?.started){
+              handlers.onFallback?.({sourceType:'TTS',reason:'recorded-audio-unavailable',
+                pronunciationAuthority:false,stressAuthority:false});
+            }else{
+              handlers.onUnavailable?.({reason:'tts-unavailable',sourceType:'TTS'});
+            }
+          }catch(e){
+            handlers.onError?.(e);
+            fallbackResult={started:false,sourceType:'TTS',reason:'runtime-error'};
+          }
           return fallbackResult;
         };
         if(typeof audio.playSource==='function'){
