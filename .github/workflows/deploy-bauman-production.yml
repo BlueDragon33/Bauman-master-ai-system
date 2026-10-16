@@ -3,12 +3,22 @@ name: Bauman Cloudflare Production Deploy
 on:
   workflow_dispatch:
     inputs:
+      offline_mode_online_override:
+        description: "Offline-only by default; online release requires separate future owner authorization"
+        type: boolean
+        default: false
+        required: true
       confirm:
         description: "Gõ DEPLOY_PRODUCTION để publish Bauman Control + Learning Runtime lên production"
         required: true
         type: string
   workflow_call:
     inputs:
+      offline_mode_online_override:
+        description: "Offline-only by default; online release requires separate future owner authorization"
+        type: boolean
+        default: false
+        required: true
       confirm:
         description: "Explicit production release confirmation"
         required: true
@@ -23,6 +33,7 @@ concurrency:
 
 jobs:
   deploy-production:
+    if: ${{ inputs.offline_mode_online_override == true }}
     runs-on: ubuntu-24.04
     timeout-minutes: 40
     environment: bauman-production
