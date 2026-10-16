@@ -1,3 +1,4 @@
+import {readFileSync} from 'node:fs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {checkContainersAccess,diagnoseContainersAccess} from '../scripts/check-cloudflare-containers-preflight.mjs';
@@ -34,4 +35,17 @@ test('preflight checks account endpoint but never discloses account or token',as
 test('unexpected network failure is a blocker, never a pass',async()=>{
   const result=await checkContainersAccess({token:'token',accountId:'account',request:async()=>{throw Error('offline')}});
   assert.equal(result.reason,'NETWORK_OR_RESPONSE_ERROR');
+});
+
+test('Preview contract checks Containers before ANY remote D1 or Worker mutation',()=>{
+  const workflow=readFileSync('.github/workflows/deploy-bauman-preview.yml','utf8');
+  const preflight=workflow.indexOf('node scripts/check-cloudflare-containers-preflight.mjs');
+  const mutations=[
+    workflow.indexOf('npx wrangler d1 migrations apply'),
+    workflow.indexOf('npx wrangler deploy --config wrangler.preview.jsonc'),
+    workflow.indexOf('wrangler@4.147.0 deploy')
+  ];
+  assert.ok(preflight>0,'Missing Containers readiness preflight');
+  assert.ok(mutations.every(x=>x>preflight),'All remote deployments must run after Containers preflight');
+  assert.ok(workflow.includes('node --test tests/cloudflare-containers-preflight.test.mjs'));
 });
