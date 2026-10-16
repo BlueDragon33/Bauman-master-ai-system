@@ -178,7 +178,89 @@ try{
   assert.deepEqual(errors,[],'offline Russian reload emitted console/page errors');
 
   await page.screenshot({path:path.join(OUT,'russian-offline-reload.png'),fullPage:true});
-  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',cachedFoundation:true,offline,simulatedCacheMigration:{from:'v26/v27/v28/v31/v32/v33',to:expectedShell,previousShellRemoved:migration.previousShellRemoved,siblingCachePreserved:migration.siblingCachePreserved,learningCachePreserved:migration.learningCachePreserved}},null,2));
+
+  // R31/R20: real offline user action and cold browser-tab reopen must retain
+  // route and learner input. A search query is NOT pronunciation/mastery evidence.
+  // The canonical sidebar "Nghe & Nói" route deliberately enters practice;
+  // switch to theory using the same visible lesson-structure menu as a learner.
+  const offlineNav=page.locator('#nav button[data-view="learning"]').first();
+  await offlineNav.click();
+  const structureMenu=page.locator('#view .learn-structure-menu');
+  await structureMenu.locator('summary').click();
+  await structureMenu.locator('[data-learn="theory"]').click();
+  const learnerSearch=page.locator('#view [data-input="lessonQuery"]');
+  await learnerSearch.waitFor({state:'visible',timeout:12000});
+  await learnerSearch.fill('привет');
+  const stateKey='bauman_russian_survival_master_v11_clean_skeleton';
+  await page.waitForFunction(key=>{
+    try{const x=JSON.parse(localStorage.getItem(key)||'{}');return x.view==='learning'&&x.lessonQuery==='привет';}
+    catch{return false;}
+  },stateKey,{timeout:12000});
+  const beforeClose=await page.evaluate(key=>{
+    const item=JSON.parse(localStorage.getItem(key)||'{}');
+    return {view:item.view,learnTab:item.learnTab,query:item.lessonQuery,online:navigator.onLine};
+  },stateKey);
+  assert.deepEqual(beforeClose,{view:'learning',learnTab:'theory',query:'привет',online:false},
+    'Offline learning route and input must be saved locally before closing');
+
+  await page.close();
+  const resumedPage=await context.newPage();
+  // Chromium may create a new target with the default navigator online flag.
+  // Reapply genuine Playwright network disconnection to this newly opened tab
+  // BEFORE navigation; never briefly reconnect to pass the test.
+  await context.setOffline(true);
+  // This new Chromium target can retain its own online navigator state even
+  // after BrowserContext-level offline emulation. Enforce the actual network
+  // conditions on its CDP session as well; do not override navigator.onLine
+  // with a script or assume a cached page implies the network is disconnected.
+  const resumedNetwork=await context.newCDPSession(resumedPage);
+  await resumedNetwork.send('Network.enable');
+  await resumedNetwork.send('Network.emulateNetworkConditions',{
+    offline:true,latency:0,downloadThroughput:0,uploadThroughput:0
+  });
+  resumedPage.on('pageerror',e=>errors.push(String(e?.stack||e)));
+  resumedPage.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
+  await resumedPage.goto(url,{waitUntil:'domcontentloaded',timeout:30000});
+  await resumedPage.locator('#view [data-input="lessonQuery"]').waitFor({state:'visible',timeout:20000});
+  const afterColdResume=await resumedPage.evaluate(key=>{
+    const item=JSON.parse(localStorage.getItem(key)||'{}');
+    return {
+      online:navigator.onLine,
+      view:item.view,learnTab:item.learnTab,query:item.lessonQuery,
+      visibleQuery:document.querySelector('#view [data-input="lessonQuery"]')?.value,
+      saveStatus:document.querySelector('#saveState')?.dataset.localSave||'',
+      falseCloudSync:/Đã đồng bộ/.test(document.querySelector('#saveState')?.textContent||'')
+    };
+  },stateKey);
+  // navigator.onLine is an imperfect Chromium indicator for newly created
+  // Service-Worker-controlled tabs. Verify the REAL network boundary instead:
+  // a unique non-cached request outside the Russian SW scope must be blocked.
+  // If it succeeds (even 404), this is not a proven network-offline restart.
+  const probePage=await context.newPage();
+  await context.setOffline(true);
+  const probeUrl=new URL('__r31_uncached_network_probe_'+Date.now()+'.json',BASE).href;
+  let uncachedNetworkBlocked=false;
+  let networkProbeDiagnostic='not_run';
+  try{
+    const response=await probePage.goto(probeUrl,{waitUntil:'domcontentloaded',timeout:7000});
+    networkProbeDiagnostic='unexpected HTTP '+(response?.status()??'none');
+  }catch(error){
+    networkProbeDiagnostic=String(error?.message||error);
+    uncachedNetworkBlocked=/ERR_INTERNET_DISCONNECTED|ERR_NETWORK_CHANGED|ERR_FAILED/i.test(networkProbeDiagnostic);
+  }finally{
+    await probePage.close();
+  }
+  assert.equal(uncachedNetworkBlocked,true,
+    'A fresh un-cached same-origin request must fail at the browser network layer in offline mode: '+networkProbeDiagnostic);
+  assert.equal(afterColdResume.view,beforeClose.view,'Learning route must survive offline cold reopen');
+  assert.equal(afterColdResume.learnTab,beforeClose.learnTab,'Lesson tab must survive offline cold reopen');
+  assert.equal(afterColdResume.query,beforeClose.query,'Local learner input must survive offline cold reopen');
+  assert.equal(afterColdResume.visibleQuery,beforeClose.query,'Rendered field must restore actual persisted input');
+  assert.equal(afterColdResume.falseCloudSync,false,'Offline resume must not advertise cloud synchronization');
+  assert.ok(['pending','saved','error','recovery'].includes(afterColdResume.saveStatus),'Local save status must remain truthful');
+  assert.deepEqual(errors,[],'Offline cold resume emitted browser errors');
+  await resumedPage.screenshot({path:path.join(OUT,'russian-offline-cold-resume.png'),fullPage:true});
+  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',cachedFoundation:true,offline,offlineColdResume:{status:'PASS',beforeClose,afterColdResume,uncachedNetworkBlocked,reportedNavigatorOnline:afterColdResume.online,masteryEvidence:'NOT_ASSERTED'},simulatedCacheMigration:{from:'v26/v27/v28/v31/v32/v33',to:expectedShell,previousShellRemoved:migration.previousShellRemoved,siblingCachePreserved:migration.siblingCachePreserved,learningCachePreserved:migration.learningCachePreserved}},null,2));
   console.log('Russian offline shell browser acceptance PASS');
 }finally{
   await browser?.close();
