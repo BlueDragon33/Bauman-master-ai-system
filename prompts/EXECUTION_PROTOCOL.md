@@ -14,7 +14,9 @@ Use this protocol for every durable Bauman prompt in ordinary ChatGPT chat, Chat
 ## Work loop
 `inspect → edit → test → root-cause repair → retest → regression → evidence → state update → next dependency`
 
-Default allocation: Chat 90–95%; Codex 5–10% maximum. Chat must inspect, narrow scope and attempt ordinary implementation first. Codex receives only deep multi-file runtime/refactor/migration/E2E work packages.
+Apply universal R15–R22 through the existing Master Prompt and state. Preserve the approved objective; keep one active critical path, a completion predicate, exact source evidence and one primary next action. R22 replaces fixed work percentages: finish eligible analysis, edits and verification with current authorized capabilities; use a minimal handoff only for an evidenced capability gap. A handoff does not automatically switch Chat/Work/Codex mode or grant restricted rights.
+
+Separate CODE_COMPLETE, TEST_VERIFIED, MERGED, DEPLOYED and USER_ACCEPTED. CI and agent review establish only their evidenced scope; mandatory human UX/academic acceptance and authenticated authority remain separate. A new read of unchanged green CI is not the default next action when safe product work is available.
 
 For infrastructure/provider decisions use the dependency ladder from `DEPENDENCY_INDEPENDENCE_POLICY.md`; paid/vendor-specific services are optional unless a proven capability requirement says otherwise.
 
@@ -40,6 +42,8 @@ When a user action is required and GitHub CLI or another reproducible CLI can pe
 ## Merge/release
 Do not merge simply because code compiles.
 Do not publish simply because merge succeeds.
+Inherit the central [development runtime policy](https://github.com/BlueDragon33/Software-Blueprint-Hub/blob/cd01fb3c2178393628ce968af209db082227d2c4/control/development-runtime-policy.v1.json): Bauman development defaults to offline/local-only, with no remote publication from a push or CI completion. Preserve existing online URLs unless a separate removal is authorized.
+
 Follow C3 and its Release Annex. Release target must be explicit: LOCAL_STABLE, SYNC_STABLE, PUBLISHED_STABLE or MANAGED_PRODUCTION_STABLE. Do not force MANAGED_PRODUCTION_STABLE when the subject only requires a local/offline target.
 
 ## Handoff

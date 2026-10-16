@@ -1,58 +1,58 @@
 # CODEX_STATE
 
-Current task: `HUB-C2-CONTRAST-336`
+Current task: `HUB-OPERATING-RULE-ALIGNMENT`
 
-Status: IN_PROGRESS — implementation and independent code review complete; current-main exact-head CI and Chat acceptance are required before merge.
+Status: IN_PROGRESS — existing prompt owners aligned to effective universal R15–R32; new governance CI required, qualified UX acceptance remains separate.
 
 Branch: `work/hub-c2-complete-contrast-336`
 Base branch: `main`
 Main sync status: branch_only
-Observed main baseline: `70df417bacb615602f76b40fea1073ad221059a6`
-Last validated implementation SHA: `45dae510455f0fd15120b7cc064bbae16c9a8f78`
+Observed Bauman main: `70df417bacb615602f76b40fea1073ad221059a6`
+Observed Blueprint authority main: `cd01fb3c2178393628ce968af209db082227d2c4`
+Last tested Hub runtime: `56d2f195d32f8921eb2e944875cccc0610fcb465`
 
-Files changed:
-- Hub CSS owners in assets/css/{main,hub-safe-polish,hub-safe-controls,hub-overview-search-v2,hub-reference-precision-v5,hub-roadmap-comprehensive-v2,subjects-reference-v1,schedule-reference-v1,thesis-reference-v1}.css
-- platform/ui/{tokens,foundations,components,bauman-ui}.css
-- index.html
-- tests/hub-computed-contrast-browser.mjs
-- .github/workflows/system-integration-ci.yml (appended contrast jobs only)
+Files changed by this scope delta:
+- prompts/CONSTITUTION.md
+- prompts/EXECUTION_PROTOCOL.md
+- prompts/hub/HUB_MASTER_PROMPT.md
+- prompts/hub/WORK_SPLIT_CHAT_CODEX.md
+- prompts/CHAT_ENTRY.md
+- prompts/PROMPT_REGISTRY.json
+- prompts/hub/HUB_SHARED_STATE.json
 - CODEX_STATE.md
 
 What changed:
-- Keep semantic foreground/background pairs with canonical light/dark surface owners; preserve #334/#335 fixes.
-- Audit real Chromium computed cascade and composited pixels, including opacity, icons/inputs, focus and populated LOCAL_HUB Research views, real forms, filters, empty/error states and horizontal calendar scrolling.
-- Keep mobile Appearance menu in viewport and checkboxes visible through canonical tokens.
-- Calibrate against invisible default-fill SVG strokes and translucent focus indicators; independent review confirmed both false-pass repairs.
-- No subject-private code changes relative to the observed main; no learner, storage r5, authentication, Device Gate, PWA/offline, backend or integration-contract changes.
+- Replace fixed Chat/Codex percentages with capability-based R22 and B4-derived STRUCTURED execution.
+- Route universal law, runtime policy and central authority to pinned Software-Blueprint-Hub sources; no duplicate law, registry, grant or canonical Work Package.
+- Preserve one approved goal/primary next action, bounded escalation and distinct code/test/merge/deploy/user-acceptance stages.
+- Record PR #347 evidence and remaining human/authority conditions without treating CI or chat as authenticated approval.
+- Keep existing legacy packet/result identity and lifecycle; no Subject integration execution implied.
+- Offline/local remains the development target; no merge, publish, ratification or service dispatch performed.
 
 Verification:
-- Exact SHA 45dae510455f0fd15120b7cc064bbae16c9a8f78: all eight workflows PASS.
-- Whole System Integration Gate run 38888632580: original integration jobs PASS; six appended source/packaged × 1440/768/390 contrast jobs PASS (all five routes and four themes).
-- Future Interface 38888632350, Readable Typography 38888632457, Subjects 38888632646, Thesis 38888632574, Development Fast 38888632533, Russian Reference 38888632530, Constitution 38888633000: PASS.
-- Independent review: two Important measurement findings repaired and re-probed; no remaining code-review blocker identified.
-- Current-main reconciliation preserves byte-identical Hub CSS/entry/audit blobs from validated 45dae510. The main workflow's new Russian stability checks are retained.
-- New current-main candidate must obtain its own exact-head CI receipt. Final authoritative HEAD/run IDs and acceptance evidence are recorded in PR #347; do not infer them from this historical checkpoint.
-- One exploratory local run changed HEAD mid-test and was rejected by the SHA guard; it is not acceptance evidence.
-- Production: not deployed; not claimed fixed. Local private-runtime fetch/materialization remains excluded; canonical CI supplies packaged evidence.
+- Runtime SHA56d2f195: eight workflows PASS, Whole System run38919211515, 120 cells / 766 states / 54,318 samples / zero four-theme acceptance failures.
+- Authenticated GitHub reviews observed: zero; product/user acceptance UNVERIFIED.
+- Scope delta modifies prompts/state only; prior runtime evidence is retained, not re-created.
+- Exact-head Prompt Control Center / Constitution CI: required on this governance commit; authoritative receipt in PR #347.
 
 Main sync / pull instruction:
-- Work remains in PR #347 on `work/hub-c2-complete-contrast-336`; main does not contain this change.
-- Review PR #347 exact-head CI and evidence before merge. Production requires separate authority.
+- PR #347 remains branch-only; main does not contain these fixes or this alignment.
+- Do not merge/publish from this checkpoint or mark central adoption compliant.
 
 Next recommended task:
-- Read the final exact-head CI receipt and saved browser evidence in PR #347; perform Chat acceptance and release routing for offline use.
+- Complete qualified UX acceptance of PR #347's offline Hub journey, then evaluate applicable authenticated merge authority. Start further engineering only for a real new defect/dependency.
 
 Next actor:
-- ChatGPT / reviewer
+- Qualified UX reviewer / Chat
 
 Codex required:
-- no, unless current-main CI reveals a new browser/integration failure.
+- no, unless a concrete local/native capability gap is evidenced.
 
 ChatGPT can do:
-- inspect exact-head receipts, review evidence and authority, route acceptance and offline merge without claiming production deployment.
+- use current authorized connected tools for scoped edits, evidence/CI diagnosis and review preparation; maintain the same canonical state.
 
 Codex prompt file:
-- none; retain the explicit Issue #336 scope and PR #347.
+- none; do not create an escalation merely to satisfy a percentage quota.
 
 ---
 
