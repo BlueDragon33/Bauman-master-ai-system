@@ -3515,11 +3515,12 @@ function speakVocabItem(v,slow=false){
  const normalized=A.normalizeVocab?.(v)||{};
  const term=A.vocabTerm?.(v)||normalized.term||v?.ru||v?.phrase_ru||'';
  const sourceAudio=str(normalized.audio||v?.audio||v?.audio_url||v?.audioUrl||'').trim();
- let fallbackAttempted=false;
+ let fallbackAttempted=false,fallbackSucceeded=false;
  const fallback=()=>{
-  if(fallbackAttempted)return false; // An audio error + rejected play promise can both fire.
+  if(fallbackAttempted)return fallbackSucceeded; // An audio error + rejected play promise can both fire.
   fallbackAttempted=true;
   const started=!!term&&speak(term,slow?.62:.85);
+  fallbackSucceeded=started;
   toast(started?'Mẫu ghi âm không phát được; chuyển sang giọng đọc máy (TTS), chưa phải mẫu đã kiểm định.':'Không phát được âm thanh; hãy kiểm tra hỗ trợ âm thanh trên thiết bị.');
   return started;
  };
