@@ -2,7 +2,18 @@ name: Bauman Cloudflare Preview Deploy
 
 on:
   workflow_dispatch:
+    inputs:
+      offline_mode_online_override:
+        description: "Current development is offline-only; explicit future owner approval required"
+        type: boolean
+        default: false
+        required: true
   workflow_call:
+    inputs:
+      offline_mode_online_override:
+        type: boolean
+        default: false
+        required: false
 
 permissions:
   contents: read
@@ -13,6 +24,7 @@ concurrency:
 
 jobs:
   deploy-preview:
+    if: ${{ inputs.offline_mode_online_override == true }}
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     environment: bauman-preview
