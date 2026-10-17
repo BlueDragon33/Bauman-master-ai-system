@@ -66,7 +66,9 @@ for(const marker of [
   'if(activeSpeakingAttempt&&activeSpeakingAttempt.context!==speakingAttemptContext())',
   'window.RussianSpeechRecognitionAdapter?.cancel?.()',
   'const isCurrent=()=>activeSpeakingAttempt===attempt&&attempt.context===speakingAttemptContext()',
-  'syncSpeakingAttemptContext(); // Discard ASR if learner switched lesson, line, role or tab.'
+  'syncSpeakingAttemptContext(); // Discard ASR if learner switched lesson, line, role or tab.',
+  "if(act==='mark-line-ok'){retireSpeakingAttempt();",
+  "if(act==='retry-line'){retireSpeakingAttempt();"
 ])must(core.includes(marker),'Pre-A0 ASR dialogue context retirement missing: '+marker);
 must(core.includes('chưa kiểm tra âm và trọng âm.') && !core.includes('Rất tốt: nhịp và từ khóa'),
   'ASR transcript similarity must not claim rhythm/stress quality without acoustic evidence');
