@@ -366,6 +366,19 @@ try{
       assert.equal(await page.locator('.speech-content-board p').count(),0,'Vietnamese meaning must remain hidden when transcript is first revealed');
       for(const action of ['speak-line','speak-line-slow','record-line'])assert.equal(await page.locator('[data-act="'+action+'"]').count()>0,true,'Speaking primary action missing: '+action);
       assert.match(await page.locator('[data-act="record-line"]').first().innerText(),/Nhận giọng nói|Transcript|ASR/i,'Speaking ASR action must be labeled as recognition/transcript, not local recording');
+      for(const action of ['self-record-start','self-record-stop','self-record-play','self-record-clear']){
+        assert.ok(await page.locator('[data-act="'+action+'"]').first().count()>0,'Offline self-replay control missing: '+action);
+      }
+      assert.match(await page.locator('.prea0-self-replay-note').first().innerText(),/Không tự chấm phát âm/);
+      const transientChecks=await page.evaluate(()=>{
+        const engine=window.RussianRecordingEngine;
+        const html=document.querySelector('.prea0-self-replay');
+        return {status:engine?.status?.(),clear:typeof engine?.clear,owner:html?.getAttribute('aria-label'),
+          hasLocalAudio:!!document.querySelector('[data-act="self-record-play"]')};
+      });
+      assert.equal(transientChecks.clear,'function');
+      assert.match(transientChecks.owner||'',/Tự ghi âm và đối chiếu/);
+      assert.equal(transientChecks.hasLocalAudio,true);
       const recorderCapability=await page.evaluate(()=>({
         present:typeof window.RussianRecordingEngine==='object',
         start:typeof window.RussianRecordingEngine?.start==='function',

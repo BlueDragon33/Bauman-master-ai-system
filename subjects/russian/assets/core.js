@@ -794,6 +794,7 @@ function setView(v,learnTab=''){trackAccess(v);state.view=v; if(v==='learning'){
 let lastRenderedContext='';
 function render(){
  try{
+  syncLocalSpeechTakeContext();
   syncSpeakingAttemptContext(); // Discard ASR if learner switched lesson, line, role or tab.
   const v=$('#view');if(!v)throw new Error('Không tìm thấy vùng #view');
   const context=[state.view,state.learnTab].join(':');
@@ -1684,6 +1685,7 @@ function renderPractice(){
      <button class="btn green speech-ok-corner" data-act="mark-line-ok">✓ Tôi đã tự đối chiếu</button>
    </article>
    <div class="v1294-speech-actions"><button class="btn" data-act="prev-line">← Câu trước</button><button class="btn green" data-act="speak-line">🔊 Nghe mẫu</button><button class="btn" data-act="speak-line-slow">🐢 Nghe chậm</button><button class="btn primary speech-record-primary" data-act="record-line">🎙️ Nhận giọng nói</button><button class="btn primary" data-act="next-line">Câu tiếp →</button></div>
+   ${renderLocalSpeechTake()}
    <div class="v1294-feedback-line"><b>${result?(result.manual?'Tự xác nhận: đã luyện và đối chiếu mẫu · chưa chấm phát âm':`Độ khớp transcript: ${result.score}% · không phải điểm phát âm`):'Gợi ý luyện'}</b><span>${result?(result.manual?'Tự đánh giá đã được lưu; chưa có đánh giá phát âm độc lập.':esc(speechFeedback(result.score))):'Nghe mẫu 1 lượt, đọc câu thành tiếng, nhại chậm, sau đó tự nói không nhìn chữ.'}</span></div>
    <details class="v1294-speech-map"><summary>🧭 Bản đồ câu nói <span>${turns.length?idx+1:0}/${turns.length||0}</span></summary><div class="v1294-speech-map-grid">${turns.length?turns.map(roleLine).join(''):'<div class="note">Chưa có câu nói trong hội thoại đúng bài này.</div>'}</div></details>
  </section>`
@@ -1823,6 +1825,70 @@ function lineTokenHints(text){return normalizeRuSpeech(text).split(' ').filter(B
 // ASR is ephemeral per *visible* dialogue turn. Never allow a late transcript
 // to be attributed to a different line, role, lesson or view.
 let activeSpeakingAttempt=null, speakingAttemptSequence=0;
+
+let localSpeechTakeContext='',localSpeechTakeStatus='idle',localSpeechTakeError='';
+function localSpeechRecorder(){return window.RussianRecordingEngine}
+function clearLocalSpeechTake(){
+ const engine=localSpeechRecorder();
+ engine?.clear?.(); // Revoke blob URL; recording must stay ephemeral and local.
+ localSpeechTakeContext='';localSpeechTakeStatus='idle';localSpeechTakeError='';
+}
+function syncLocalSpeechTakeContext(){
+ if(localSpeechTakeContext&&localSpeechTakeContext!==speakingAttemptContext())clearLocalSpeechTake();
+}
+function renderLocalSpeechTake(){
+ const engine=localSpeechRecorder(),status=engine?.status?.()||{},same=localSpeechTakeContext===speakingAttemptContext();
+ const hasTake=same&&!!status.last?.url;
+ const live=same&&(status.active||status.pending);
+ const supported=status.support==='SUPPORTED';
+ return '<section class="prea0-self-replay" aria-label="Tự ghi âm và đối chiếu">' +
+ '<p class="prea0-self-replay-note">Nghe mẫu → nhại → ghi âm tại thiết bị → nghe lại → tự đối chiếu. Không tự chấm phát âm.</p>'+
+ '<div class="prea0-self-replay-actions">'+
+ '<button class="btn" data-act="self-record-start" '+(!supported||live?'disabled':'')+'>🎙️ Ghi giọng mình</button>'+
+ '<button class="btn" data-act="self-record-stop" '+(!live?'disabled':'')+'>■ Dừng ghi</button>'+
+ '<button class="btn" data-act="self-record-play" '+(!hasTake?'disabled':'')+'>▶ Nghe giọng mình</button>'+
+ '<button class="btn" data-act="self-record-clear" '+(!hasTake&&!live?'disabled':'')+'>Xóa bản ghi</button>'+
+ '</div><p class="prea0-self-replay-status" role="status" aria-live="polite">'+
+ esc(!supported?'Thiết bị không hỗ trợ ghi âm cục bộ; vẫn có thể nghe mẫu và tự đối chiếu.':
+ localSpeechTakeError||(live?(status.pending?'Đang xin quyền micro…':'Đang ghi trên thiết bị…'):
+ hasTake?'Bản ghi chỉ lưu tạm tại thiết bị. Nghe mẫu rồi nghe lại để tự đối chiếu.':'Chưa có bản ghi cho câu này.'))+
+ '</p></section>';
+}
+async function startLocalSpeechTake(){
+ const engine=localSpeechRecorder();
+ if(!engine||engine.support?.()!=='SUPPORTED'){toast('Trình duyệt không hỗ trợ ghi âm cục bộ.');return}
+ retireSpeakingAttempt();
+ if(localSpeechTakeContext&&localSpeechTakeContext!==speakingAttemptContext())clearLocalSpeechTake();
+ const context=speakingAttemptContext();
+ engine.clear?.();localSpeechTakeContext=context;localSpeechTakeError='';localSpeechTakeStatus='pending';
+ const same=()=>localSpeechTakeContext===context&&speakingAttemptContext()===context;
+ const outcome=await engine.start({
+  maxDurationMs:30000,
+  onStatus:()=>{if(same())render()},
+  onStop:take=>{if(!same()){engine.clear?.();return}localSpeechTakeStatus=take?.url?'ready':'idle';render();},
+  onError:()=>{if(!same())return;localSpeechTakeError='Micro hoặc ghi âm không khả dụng. Hãy kiểm tra quyền rồi thử lại.';render()}
+ });
+ if(!same())return;
+ if(!outcome?.started){localSpeechTakeStatus='idle';localSpeechTakeError='Không thể bắt đầu ghi âm. Hãy kiểm tra quyền micro.';render()}
+ else{localSpeechTakeStatus='recording';render()}
+}
+function stopLocalSpeechTake(){
+ if(localSpeechTakeContext!==speakingAttemptContext())return;
+ const engine=localSpeechRecorder(),status=engine?.status?.();
+ if(status?.pending){engine?.cancel?.();localSpeechTakeStatus='idle';render();return}
+ if(status?.active)engine?.stop?.();
+}
+function playLocalSpeechTake(){
+ if(localSpeechTakeContext!==speakingAttemptContext())return;
+ const take=localSpeechRecorder()?.getLastRecording?.();
+ if(!take?.url){toast('Chưa có bản ghi của câu hiện tại.');return}
+ const played=window.RussianAudioEngine?.playSource?.(take.url,{
+  rate:1,sourceType:'TRANSIENT_LOCAL_SELF_RECORDING',
+  onError:()=>toast('Không nghe lại được bản ghi. Hãy ghi âm lần nữa.')
+ });
+ if(!played?.started)toast('Thiết bị không phát được bản ghi cục bộ.');
+}
+
 function speakingAttemptContext(){
  const d=currentDialogue(),idx=activeLineIndex(),line=dialogueTurns(d)[idx]||{};
  return [state.view,state.learnTab,activeLessonContext().id,
@@ -2356,6 +2422,7 @@ function renderDialogue(){
        <button class="btn green speech-ok-corner" data-act="mark-line-ok">✓ Tôi đã tự đối chiếu</button>
      </article>
      <div class="v1294-speech-actions dialogue-nine-actions"><button class="btn" data-act="prev-line">← Câu trước</button><button class="btn green" data-act="speak-line">🔊 Câu mẫu</button><button class="btn" data-act="speak-line-slow">🐢 Chậm</button><button class="btn blue" data-act="speak-dialogue">Nghe cả đoạn</button><button class="btn" data-act="record-line">🎙️ Đối đáp</button><button class="btn" data-act="next-role-line">Câu của tôi →</button><button class="btn primary" data-act="next-line">Câu tiếp →</button></div>
+     ${renderLocalSpeechTake()}
      <div class="v1294-feedback-line dialogue-nine-feedback"><b>${result?(result.manual?'Tự xác nhận đã luyện · chưa chấm phát âm':`Độ khớp transcript: ${result.score}% · không phải điểm phát âm`):'Gợi ý đối đáp'}</b><span>${result?(result.manual?'Bạn tự đánh giá sau khi đối chiếu câu mẫu; chưa có đánh giá phát âm độc lập.':esc(speechFeedback(result.score))):'Nghe câu mẫu, nói lại chậm, sau đó tự đối đáp theo vai. Tab Nghe/Nói vẫn giữ bộ cơ bản; tab này dùng Bauman A-Z.'}</span></div>
      <details class="v1294-speech-map dialogue-nine-map"><summary>🧭 Bản đồ câu đối thoại <span>${turns.length?idx+1:0}/${turns.length||0}</span></summary><div class="v1294-speech-map-grid">${turns.length?turns.map(roleLine).join(''):'<div class="note">Chưa có câu hội thoại.</div>'}</div></details>
      <details class="dialogue-picker compact-picker dialogue-nine-picker"><summary>Đổi tình huống luyện nói <span>${list.length}/${all.length}</span></summary><div class="dialogue-picker-body"><div class="dialogue-picker-tools"><select class="input" data-input="dialogueGroup"><option value="all">Tất cả nhóm</option>${groups.map(g=>`<option value="${esc(g)}" ${state.dialogueGroup===g?'selected':''}>${esc(g)}</option>`).join('')}</select><select class="input" data-input="dialogueDifficulty"><option value="all">Tất cả mức</option>${diffs.map(g=>`<option value="${esc(g)}" ${state.dialogueDifficulty===g?'selected':''}>${esc(g)}</option>`).join('')}</select><input class="input" data-input="dialogueQuery" value="${esc(state.dialogueQuery)}" placeholder="Tìm tình huống..."></div><div class="dialogue-picker-list">${list.slice(0,120).map(d=>`<button class="item-card ${active===d?'active':''}" data-dialogue="${esc(d.id||d.title)}"><b>${esc(A.dialogueTitle?.(d)||d.title||'Hội thoại')}</b><small>${esc((A.dialogueGroup?.(d)||d.group||'')+' · '+(A.dialogueDifficulty?.(d)||d.difficulty||d.level||''))}</small></button>`).join('')||'<div class="note">Chưa có hội thoại.</div>'}</div></div></details>
@@ -4146,6 +4213,10 @@ function handleClick(e){
  if(act==='speak-line'){const d=currentDialogue(); const line=dialogueTurns(d)[activeLineIndex()]||{}; speak(line.ru||line.text||line.text_ru||line)}
  if(act==='speak-line-slow'){const d=currentDialogue(); const line=dialogueTurns(d)[activeLineIndex()]||{}; speak(line.ru||line.text||line.text_ru||line,.62)}
  if(act==='speak-dialogue'){speak(speakDialogue(currentDialogue()),.82)}
+ if(act==='self-record-start'){startLocalSpeechTake();return}
+ if(act==='self-record-stop'){stopLocalSpeechTake();return}
+ if(act==='self-record-play'){playLocalSpeechTake();return}
+ if(act==='self-record-clear'){clearLocalSpeechTake();render();return}
  if(act==='record-line')startLineRecording();
  if(act==='mark-line-ok'){retireSpeakingAttempt();const d=currentDialogue(), idx=activeLineIndex(), line=dialogueTurns(d)[idx]||{}; const store=activeSpeechResults(); store[dialogueLineKey(d,idx)]={score:null,transcript:'',target:dialogueText(line),at:Date.now(),ok:true,manual:true,selfConfirmed:true,signalType:'self-confirmation'}; save(); render(); if(state.speechAutoNext)setTimeout(()=>moveDialogueLine(1),420);}
  if(act==='retry-line'){retireSpeakingAttempt();const d=currentDialogue(), idx=activeLineIndex(); const store=activeSpeechResults(); if(store)delete store[dialogueLineKey(d,idx)]; save(); render();}

@@ -13,7 +13,7 @@ const futureCss=css;
 const futureJs=read('assets/russian-future-ui.js');
 const sw=read('sw.js');
 const shellVersion=sw.match(/const CACHE='russian-app-shell-v([0-9]+)-/);
-must(shellVersion&&Number(shellVersion[1])>=35,'Pre-A0 ASR turn isolation requires a fresh Russian shell v35 or later');
+must(shellVersion&&Number(shellVersion[1])>=36,'Pre-A0 offline self replay requires Russian shell v36 or later');
 must(sw.includes("keys.filter(k=>/^russian-app-shell-v[0-9]+(?:-|$)/i.test(k)&&k!==CACHE)"),'Russian SW may only purge its own obsolete shell caches');
 for(const asset of ['./assets/russian-future-ui.css','./assets/russian-future-ui.js'])must(sw.includes(asset),'Russian offline shell missing updated icon asset '+asset);
 const speechEngine=read('assets/speech-interaction-engine.js');
@@ -57,6 +57,9 @@ const optionalLoader=read('assets/russian-optional-data-loader.js');
 const contentContract=read('assets/content-contract.js');
 const contentContractCss=read('assets/content-contract.css');
 const core=read('assets/core.js');
+for(const token of ['function renderLocalSpeechTake()','function startLocalSpeechTake()','function playLocalSpeechTake()','function clearLocalSpeechTake()','localSpeechTakeContext!==speakingAttemptContext()','TRANSIENT_LOCAL_SELF_RECORDING','data-act="self-record-start"','data-act="self-record-stop"','data-act="self-record-play"','data-act="self-record-clear"']){
+  must(core.includes(token),'Offline Pre-A0 local self replay owner missing: '+token);
+}
 must(core.includes('if(final!==true||!isCurrent())return; // No interim or stale-turn learner evidence.'),
   'Learner core must reject interim and stale-turn ASR before storing evidence');
 for(const marker of [

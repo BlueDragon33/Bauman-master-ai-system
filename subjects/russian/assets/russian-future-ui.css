@@ -326,3 +326,11 @@ body.theme-dark .ru-future-ui .grammar-pattern-strip{background:#0f2441;border-c
   body.ru-future-ui .rf-dock-action:focus-visible{outline:2px solid #2e64df;outline-offset:-2px}
 }
 @media print{.ru-future-ui .rf-mobile-dock{display:none!important}}
+
+/* Pre-A0 local-only self-record / compare — canonical Future UI owner. */
+.prea0-self-replay{margin:12px 0;padding:14px;border:1px solid rgba(92,153,218,.3);border-radius:14px;background:rgba(11,41,76,.14)}
+.prea0-self-replay-note,.prea0-self-replay-status{margin:0 0 10px;font-size:13px;line-height:1.5}
+.prea0-self-replay-actions{display:flex;flex-wrap:wrap;gap:8px}
+.prea0-self-replay-actions .btn{min-height:44px;white-space:normal}
+.prea0-self-replay-status{margin:10px 0 0}
+@media(max-width:480px){.prea0-self-replay{padding:10px}.prea0-self-replay-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}}
