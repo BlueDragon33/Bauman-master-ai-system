@@ -13,7 +13,7 @@ const futureCss=css;
 const futureJs=read('assets/russian-future-ui.js');
 const sw=read('sw.js');
 const shellVersion=sw.match(/const CACHE='russian-app-shell-v([0-9]+)-/);
-must(shellVersion&&Number(shellVersion[1])>=35,'Pre-A0 ASR turn isolation requires a fresh Russian shell v35 or later');
+must(shellVersion&&Number(shellVersion[1])>=36,'Local Pre-A0 self-recording requires Russian offline shell v36 or later');
 must(sw.includes("keys.filter(k=>/^russian-app-shell-v[0-9]+(?:-|$)/i.test(k)&&k!==CACHE)"),'Russian SW may only purge its own obsolete shell caches');
 for(const asset of ['./assets/russian-future-ui.css','./assets/russian-future-ui.js'])must(sw.includes(asset),'Russian offline shell missing updated icon asset '+asset);
 const speechEngine=read('assets/speech-interaction-engine.js');
@@ -57,6 +57,26 @@ const optionalLoader=read('assets/russian-optional-data-loader.js');
 const contentContract=read('assets/content-contract.js');
 const contentContractCss=read('assets/content-contract.css');
 const core=read('assets/core.js');
+
+for(const token of [
+  'function renderLocalEcho()',
+  'async function startLocalEcho()',
+  'function playLocalEcho()',
+  'function syncLocalEchoContext()',
+  'function discardLocalEcho()',
+  'syncLocalEchoContext(); // Clear transient audio after dialogue/role/lesson/view switches.',
+  "sourceType:'TRANSIENT_LOCAL_SELF_RECORDING'",
+  'window.RussianRecordingEngine?.clear?.();',
+  'Không gửi âm thanh lên máy chủ.',
+  'Không tự công nhận RU03 hay điểm phát âm.',
+  'data-act="echo-record"',
+  'data-act="echo-stop"',
+  'data-act="echo-play"',
+  'data-act="echo-discard"'
+])must(core.includes(token),'Local Pre-A0 self-record/playback contract missing: '+token);
+must((core.match(/\$\{renderLocalEcho\(\)\}/g)||[]).length===2,
+  'Both Pre-A0 speaking and Dialogue must render canonical local audio controls');
+
 must(core.includes('if(final!==true||!isCurrent())return; // No interim or stale-turn learner evidence.'),
   'Learner core must reject interim and stale-turn ASR before storing evidence');
 for(const marker of [
