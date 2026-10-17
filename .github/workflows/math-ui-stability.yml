@@ -1,0 +1,23 @@
+name: Math UI Stability Contracts
+on:
+  pull_request:
+    paths:
+      - 'subjects/math/assets/math-navigation.js'
+      - 'subjects/math/assets/math-dashboard.js'
+      - 'subjects/math/assets/math-learning-flow.js'
+      - 'subjects/math/tests/ui-render-stability.test.mjs'
+      - '.github/workflows/math-ui-stability.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  math-ui-contracts:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Math render ownership regression
+        run: node --test subjects/math/tests/ui-render-stability.test.mjs

@@ -95,6 +95,9 @@
     main.insertBefore(wrap,view);
   }
 
+  function updateDashboardText(selector,value){
+    const el=$(selector);if(el&&el.textContent!==String(value))el.textContent=String(value);
+  }
   function update(){
     recordVisit();
     const cur=currentLesson(),snap=learningSnapshot(),list=visits();
@@ -104,25 +107,28 @@
     const reviewNeeded=Number(snap?.reviewNeeded||0);
     const pct=completed?100:Math.max(0,Math.min(100,Number(snap?.percent||0)));
 
-    if($('#mathV2LessonTitle')) $('#mathV2LessonTitle').textContent=cur.id?cur.title:'Bắt đầu từ lộ trình học';
-    if($('#mathV2LessonMeta')) $('#mathV2LessonMeta').textContent=cur.id?(completed?`${cur.id} · Đã hoàn thành Lesson Check`:`${cur.id} · Bước ${stepIndex}/${total||'—'} · ${stepLabel}`):'Chưa có tiến độ thật. Chọn lộ trình để bắt đầu đúng chương và bài.';
-    if($('#mathHomeProgressBar')) $('#mathHomeProgressBar').style.width=`${pct}%`;
-    if($('#mathHomePct')) $('#mathHomePct').textContent=`${pct}%`;
-    if($('#mathHomeStep')) $('#mathHomeStep').textContent=completed?(reviewNeeded?`Hoàn thành · ${reviewNeeded} mục cần ôn`:'Hoàn thành · Đã đạt'):`Bước ${stepIndex}/${total||'—'} · ${stepLabel}`;
-    if($('#mathV2Visited')) $('#mathV2Visited').textContent=String(list.length);
-    if($('#mathHomeStepsDone')) $('#mathHomeStepsDone').textContent=`${done}/${total}`;
-    if($('#mathHomeStage')) $('#mathHomeStage').textContent=currentStageLabel();
-    if($('#mathHomeChapter')) $('#mathHomeChapter').textContent=snap?.chapterId||'Chương theo Reader hiện tại';
-    if($('#mathHomeGoal')) $('#mathHomeGoal').textContent=cur.id?(completed?'Chọn bài tiếp theo':`Hoàn thành ${cur.title}`):'Chọn bài đầu tiên trong lộ trình';
-    if($('#mathHomeGoalNote')) $('#mathHomeGoalNote').textContent=cur.id?(completed?(reviewNeeded?'Lesson Check đã lưu. Ôn các mục còn yếu rồi tiếp tục lộ trình.':'Bài đã đạt. Tiếp tục bài kế tiếp trong lộ trình.'):`Tiếp theo: ${stepLabel}. Công cụ nâng cao chỉ mở khi bước học cần đến.`):'Lộ trình sẽ dẫn tới bài phù hợp, không yêu cầu tự ghép tài nguyên.';
+    updateDashboardText('#mathV2LessonTitle',cur.id?cur.title:'Bắt đầu từ lộ trình học');
+    updateDashboardText('#mathV2LessonMeta',cur.id?(completed?`${cur.id} · Đã hoàn thành Lesson Check`:`${cur.id} · Bước ${stepIndex}/${total||'—'} · ${stepLabel}`):'Chưa có tiến độ thật. Chọn lộ trình để bắt đầu đúng chương và bài.');
+    const progress=$('#mathHomeProgressBar');if(progress&&progress.style.width!==`${pct}%`)progress.style.width=`${pct}%`;
+    updateDashboardText('#mathHomePct',`${pct}%`);
+    updateDashboardText('#mathHomeStep',completed?(reviewNeeded?`Hoàn thành · ${reviewNeeded} mục cần ôn`:'Hoàn thành · Đã đạt'):`Bước ${stepIndex}/${total||'—'} · ${stepLabel}`);
+    updateDashboardText('#mathV2Visited',String(list.length));
+    updateDashboardText('#mathHomeStepsDone',`${done}/${total}`);
+    updateDashboardText('#mathHomeStage',currentStageLabel());
+    updateDashboardText('#mathHomeChapter',snap?.chapterId||'Chương theo Reader hiện tại');
+    updateDashboardText('#mathHomeGoal',cur.id?(completed?'Chọn bài tiếp theo':`Hoàn thành ${cur.title}`):'Chọn bài đầu tiên trong lộ trình');
+    updateDashboardText('#mathHomeGoalNote',cur.id?(completed?(reviewNeeded?'Lesson Check đã lưu. Ôn các mục còn yếu rồi tiếp tục lộ trình.':'Bài đã đạt. Tiếp tục bài kế tiếp trong lộ trình.'):`Tiếp theo: ${stepLabel}. Công cụ nâng cao chỉ mở khi bước học cần đến.`):'Lộ trình sẽ dẫn tới bài phù hợp, không yêu cầu tự ghép tài nguyên.');
     const review=$('#mathHomeReviewState');
     if(review){
-      review.innerHTML=reviewNeeded?`<b>${reviewNeeded} mục cần ôn từ Lesson Check.</b><span>Đây là dữ liệu tự đánh giá đã lưu của bài hiện tại, không phải điểm số suy diễn.</span>`:'<b>Hiện chưa có nội dung cần ôn.</b><span>Chỉ các điểm yếu có bằng chứng từ Lesson Check mới xuất hiện ở đây.</span>';
+      const html=reviewNeeded?`<b>${reviewNeeded} mục cần ôn từ Lesson Check.</b><span>Đây là dữ liệu tự đánh giá đã lưu của bài hiện tại, không phải điểm số suy diễn.</span>`:'<b>Hiện chưa có nội dung cần ôn.</b><span>Chỉ các điểm yếu có bằng chứng từ Lesson Check mới xuất hiện ở đây.</span>';
+      if(review.innerHTML!==html)review.innerHTML=html;
     }
     const cta=$('[data-math-v2-action="continue"]');
     if(cta){
-      cta.textContent=!cur.id?'Bắt đầu học →':completed?'Tiếp tục lộ trình →':'Tiếp tục học →';
-      cta.setAttribute('aria-label',!cur.id?'Mở lộ trình để bắt đầu học':completed?'Mở lộ trình để chọn bài tiếp theo':'Tiếp tục bài học hiện tại');
+      const label=!cur.id?'Bắt đầu học →':completed?'Tiếp tục lộ trình →':'Tiếp tục học →';
+      const aria=!cur.id?'Mở lộ trình để bắt đầu học':completed?'Mở lộ trình để chọn bài tiếp theo':'Tiếp tục bài học hiện tại';
+      if(cta.textContent!==label)cta.textContent=label;
+      if(cta.getAttribute('aria-label')!==aria)cta.setAttribute('aria-label',aria);
     }
   }
 
