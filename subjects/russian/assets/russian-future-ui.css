@@ -326,3 +326,13 @@ body.theme-dark .ru-future-ui .grammar-pattern-strip{background:#0f2441;border-c
   body.ru-future-ui .rf-dock-action:focus-visible{outline:2px solid #2e64df;outline-offset:-2px}
 }
 @media print{.ru-future-ui .rf-mobile-dock{display:none!important}}
+
+/* Pre-A0 self-record / compare controls; scoped to the canonical Russian Future UI. */
+.ru-future-ui .ru-local-echo{display:grid;gap:9px;margin:12px 0;padding:16px;border:1px solid #c7daed;border-radius:16px;background:linear-gradient(135deg,#f5faff,#eff8f5);color:#17324f}
+.ru-future-ui .ru-local-echo-head{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;justify-content:space-between}
+.ru-future-ui .ru-local-echo-head b{font-size:14px}.ru-future-ui .ru-local-echo-head small,.ru-future-ui .ru-local-echo-note{font-size:11px;line-height:1.55;color:#52677f}
+.ru-future-ui .ru-local-echo-status{margin:0;font-size:12px;line-height:1.55;color:#274b68}
+.ru-future-ui .ru-local-echo-actions{display:flex;flex-wrap:wrap;gap:8px}
+.ru-future-ui .ru-local-echo-actions .btn{min-height:42px;touch-action:manipulation}
+.ru-future-ui .ru-local-echo-actions .btn:disabled{opacity:.55;cursor:not-allowed}
+@media(max-width:480px){.ru-future-ui .ru-local-echo{padding:12px}.ru-future-ui .ru-local-echo-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.ru-future-ui .ru-local-echo-actions .btn{white-space:normal}}
