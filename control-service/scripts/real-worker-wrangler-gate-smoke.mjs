@@ -35,6 +35,8 @@ async function limitAccess(dir,file){
 }
 const storage=await mkdtemp(join(tmpdir(),"real-wrangler-private-gate-"));
 const secret= randomBytes(48).toString("base64url");
+const controlSecret=randomBytes(48).toString("base64url");
+const qaActor="qa-"+randomBytes(10).toString("hex")+"@example.invalid";
 const config=join(storage,"wrangler.qa.json");
 const varsFile=join(storage,".dev.vars");
 const backend=await portAvailable();
@@ -50,7 +52,7 @@ try{
   };
   await writeFile(config,JSON.stringify(runtime,null,2)+"\n",{mode:0o600});
   await writeFile(varsFile,
-    'LOCAL_OPS_GATEWAY_REQUIRED="1"\nLOCAL_OPS_INGRESS_PROOF="'+secret+'"\n',
+    'LOCAL_OPS_GATEWAY_REQUIRED="1"\nLOCAL_OPS_INGRESS_PROOF="'+secret+'"\nBAUMAN_CONTROL_SERVICE_SECRET="'+controlSecret+'"\n',
     {mode:0o600,flag:"wx"});
   await limitAccess(storage,varsFile);
   const persist=join(storage,"d1");
@@ -104,16 +106,55 @@ try{
   assert.equal((await blocked.json()).autoRestartAllowed,false);
   assert.equal((await fetch(base+"/health")).status,403);
   assert.equal(child.spawnargs.join(" ").includes(secret),false);
+  assert.equal(child.spawnargs.join(" ").includes(controlSecret),false);
+
+  // REAL source Worker D1 mutation through its normal authenticated API.
+  // Data and credentials are scoped only to this disposable QA database.
+  const authHeaders={"authorization":"Bearer "+controlSecret,
+    "x-control-role":"owner","x-control-actor":qaActor};
+  const current=await fetch(publicUrl+"/api/control/automation",{headers:authHeaders});
+  assert.equal(current.status,200,"real Worker automation D1 migrated");
+  const before=(await current.json()).automation;
+  assert.equal(typeof before.autoApproveDevices,"boolean");
+  const next=!before.autoApproveDevices;
+  const mutation=await fetch(publicUrl+"/api/control/automation",{
+    method:"POST",headers:{...authHeaders,"content-type":"application/json"},
+    body:JSON.stringify({autoApproveDevices:next})});
+  assert.equal(mutation.status,200,"real application D1 mutation");
+  const result=await mutation.json();
+  assert.equal(result.automation.autoApproveDevices,next);
+  const subsequent=await fetch(publicUrl+"/api/control/automation",{headers:authHeaders});
+  assert.equal((await subsequent.json()).automation.autoApproveDevices,next);
+
+  await new Promise(ok=>proxy.close(ok));
+  proxy=null;
+  const termination=new Promise((resolve,reject)=>{
+    const timer=setTimeout(()=>reject(Error("QA_WRANGLER_PROCESS_EXIT_TIMEOUT")),15000);
+    child.once("exit",()=>{clearTimeout(timer);resolve();});
+  });
+  child.kill("SIGTERM"); // disposable test teardown, NOT a genuine drain ACK
+  await termination;
+  const lookup=await exec(process.execPath,[WRANGLER,"d1","execute",DB,
+    "--local","--config",config,"--persist-to",persist,
+    "--command","SELECT auto_approve_devices FROM bm_automation_policy WHERE id=1","--json"],{
+    cwd:ROOT,windowsHide:true,timeout:80000,maxBuffer:2*1024*1024,
+    env:{...process.env,CI:"1",WRANGLER_SEND_METRICS:"false"}});
+  const jsonStart=lookup.stdout.indexOf("[");
+  assert.ok(jsonStart>=0,"independent real D1 subprocess must return JSON");
+  const rows=JSON.parse(lookup.stdout.slice(jsonStart));
+  assert.equal(rows.flatMap(row=>row.results??[])[0]?.auto_approve_devices,next?1:0,
+    "real Worker write must persist after its Wrangler QA child exit");
   // Logs can contain binding values from Wrangler; never surface them.
   console.log(JSON.stringify({result:"SOURCE_WORKER_PRIVATE_DOTENV_GATE_PASS",
     platform:process.platform,database:DB,realD1Health:true,realWorkerContract:true,
     directBackend403:true,proxy200:true,shutdownPreflight503:true,
     secretInArgv:false,secretInProcessEnv:false,secretFileACLProtected:true,
+    actualSourceWorkerD1Mutation:true,independentReadbackAfterWranglerExit:true,
     protectionScope:"other-user ACL; same-user process inspection not proven",
     globalD1Drain:"BLOCKED",gracefulWindowsExit:"BLOCKED",userD1Touched:false}));
 } catch(e){
-  console.error("SOURCE_WORKER_PRIVATE_GATE_ERROR",String(e).replaceAll(secret,"[REDACTED]"),
-    log.replaceAll(secret,"[REDACTED]").slice(-900));throw e;
+  console.error("SOURCE_WORKER_PRIVATE_GATE_ERROR",String(e).replaceAll(secret,"[REDACTED]").replaceAll(controlSecret,"[REDACTED]"),
+    log.replaceAll(secret,"[REDACTED]").replaceAll(controlSecret,"[REDACTED]").slice(-900));throw e;
 }finally{
   if(proxy)await new Promise(ok=>proxy.close(ok));
   if(child&&child.exitCode===null&&child.signalCode===null){
