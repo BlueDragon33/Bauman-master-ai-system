@@ -13,7 +13,7 @@ const futureCss=css;
 const futureJs=read('assets/russian-future-ui.js');
 const sw=read('sw.js');
 const shellVersion=sw.match(/const CACHE='russian-app-shell-v([0-9]+)-/);
-must(shellVersion&&Number(shellVersion[1])>=34,'Pre-A0 offline audio fallback requires a fresh Russian shell v34 or later');
+must(shellVersion&&Number(shellVersion[1])>=35,'Pre-A0 ASR turn isolation requires a fresh Russian shell v35 or later');
 must(sw.includes("keys.filter(k=>/^russian-app-shell-v[0-9]+(?:-|$)/i.test(k)&&k!==CACHE)"),'Russian SW may only purge its own obsolete shell caches');
 for(const asset of ['./assets/russian-future-ui.css','./assets/russian-future-ui.js'])must(sw.includes(asset),'Russian offline shell missing updated icon asset '+asset);
 const speechEngine=read('assets/speech-interaction-engine.js');
@@ -57,8 +57,19 @@ const optionalLoader=read('assets/russian-optional-data-loader.js');
 const contentContract=read('assets/content-contract.js');
 const contentContractCss=read('assets/content-contract.css');
 const core=read('assets/core.js');
-must(core.includes('if(final!==true)return; // interim hypotheses cannot become learner transcript evidence'),
-  'Learner core must never turn interim ASR into transcript evidence');
+must(core.includes('if(final!==true||!isCurrent())return; // No interim or stale-turn learner evidence.'),
+  'Learner core must reject interim and stale-turn ASR before storing evidence');
+for(const marker of [
+  'function speakingAttemptContext()',
+  'function retireSpeakingAttempt()',
+  'function syncSpeakingAttemptContext()',
+  'if(activeSpeakingAttempt&&activeSpeakingAttempt.context!==speakingAttemptContext())',
+  'window.RussianSpeechRecognitionAdapter?.cancel?.()',
+  'const isCurrent=()=>activeSpeakingAttempt===attempt&&attempt.context===speakingAttemptContext()',
+  'syncSpeakingAttemptContext(); // Discard ASR if learner switched lesson, line, role or tab.',
+  "if(act==='mark-line-ok'){retireSpeakingAttempt();",
+  "if(act==='retry-line'){retireSpeakingAttempt();"
+])must(core.includes(marker),'Pre-A0 ASR dialogue context retirement missing: '+marker);
 must(core.includes('chưa kiểm tra âm và trọng âm.') && !core.includes('Rất tốt: nhịp và từ khóa'),
   'ASR transcript similarity must not claim rhythm/stress quality without acoustic evidence');
 
