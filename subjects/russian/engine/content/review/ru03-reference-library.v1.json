@@ -1,0 +1,69 @@
+{
+  "schema": "RUSSIAN_ENGINE_RU03_REFERENCE_LIBRARY_V1",
+  "status": "ADVISORY_ONLY",
+  "reviewAuthority": "NONE",
+  "humanApproval": false,
+  "notes": "External discovery pointers, not ingested corpus or item-specific evidence; no model fine-tuning or RU03 approval.",
+  "sources": [
+    {
+      "sourceId": "gramota-stress",
+      "title": "Русское словесное ударение — М. В. Зарва",
+      "url": "https://gramota.ru/biblioteka/slovari/russkoe-slovesnoe-udarenie/udareniya",
+      "kind": "NORMATIVE_DICTIONARY",
+      "uses": [
+        "WORD_STRESS",
+        "ORTHOEPY_REFERENCE"
+      ],
+      "access": "LINK_ONLY",
+      "license": "ALL_RIGHTS_RESERVED_OR_UNCONFIRMED",
+      "redistribution": "PROHIBITED",
+      "reviewed": "SOURCE_METADATA_CHECKED",
+      "notes": "Verify exact lexical entries and contextual stress; this pointer is not a bulk-license."
+    },
+    {
+      "sourceId": "ruscorpora-murco",
+      "title": "Национальный корпус русского языка — мультимедийный корпус",
+      "url": "https://studiorum.ruscorpora.ru/manual/choice/",
+      "kind": "DESCRIPTIVE_MEDIA_CORPUS",
+      "uses": [
+        "NATURAL_SPEECH_CONTEXT",
+        "PROSODY_COMPARISON"
+      ],
+      "access": "LINK_ONLY",
+      "license": "MEDIA_RIGHTS_VARY",
+      "redistribution": "PROHIBITED",
+      "reviewed": "SOURCE_METADATA_CHECKED",
+      "notes": "Observe attested spoken usage; descriptive corpus is not sole arbiter of literary norms. Do not mirror media."
+    },
+    {
+      "sourceId": "pushkin-rki",
+      "title": "Институт русского языка им. А. С. Пушкина — Russian as a Foreign Language",
+      "url": "https://www.pushkin.institute/en/high-education/russian_language_courses/",
+      "kind": "TEACHING_FRAMEWORK",
+      "uses": [
+        "RKI_CURRICULUM",
+        "PHONETICS_PEDAGOGY"
+      ],
+      "access": "LINK_ONLY",
+      "license": "ALL_RIGHTS_RESERVED_OR_UNCONFIRMED",
+      "redistribution": "PROHIBITED",
+      "reviewed": "SOURCE_METADATA_CHECKED",
+      "notes": "Curriculum reference; not an RU03 course endorsement or permission to reproduce teaching material."
+    },
+    {
+      "sourceId": "commonvoice-ru27",
+      "title": "Mozilla Common Voice Scripted Speech 27.0 — Russian",
+      "url": "https://mozilladatacollective.com/datasets/cmu5x45pn00dao107j4o9w2yv",
+      "kind": "ASR_DATASET",
+      "uses": [
+        "ASR_EVALUATION",
+        "ACCENT_VARIATION"
+      ],
+      "access": "PROVIDER_DOWNLOAD_ONLY",
+      "license": "CC0-1.0_SUBJECT_TO_PROVIDER_TERMS",
+      "redistribution": "PROHIBITED",
+      "reviewed": "SOURCE_METADATA_CHECKED",
+      "notes": "Released 2026-09-17. Provider forbids rehosting or redistributing dataset and speaker re-identification. ASR benchmark data are not normative pronunciation approval."
+    }
+  ]
+}
