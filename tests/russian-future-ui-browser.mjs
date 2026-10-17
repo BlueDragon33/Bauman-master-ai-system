@@ -379,6 +379,67 @@ try{
       assert.equal(transientChecks.clear,'function');
       assert.match(transientChecks.owner||'',/Tự ghi âm và đối chiếu/);
       assert.equal(transientChecks.hasLocalAudio,true);
+
+      // Learner self-notes are persisted offline per dialogue/turn, and do NOT
+      // imply that speech passed a phonetic assessment or the RU03 review.
+      for(const flag of ['listenUnclear','stressUnsure','notFluent']){
+        assert.equal(await page.locator('[data-act="self-note-'+flag+'"]').first().count(),1,
+          'Missing Pre-A0 learner self-reflection choice: '+flag);
+      }
+      assert.match(await page.locator('.prea0-self-review-title').first().innerText(),/không phải điểm phát âm/i);
+      const beforeSelfReview=await page.evaluate(()=>{
+        const s=JSON.parse(localStorage.getItem(window.SUBJECT_ADAPTER.storageKey)||'{}');
+        return {index:s.practiceLineIndex||0,speechCount:Object.keys(s.practiceSpeechResults||{}).length};
+      });
+      await page.locator('[data-act="self-note-listenUnclear"]').first().click();
+      await page.locator('[data-act="self-note-notFluent"]').first().click();
+      assert.equal(await page.locator('[data-act="self-note-listenUnclear"]').first().getAttribute('aria-pressed'),'true');
+      assert.equal(await page.locator('[data-act="self-note-notFluent"]').first().getAttribute('aria-pressed'),'true');
+      const savedSelfReview=await page.evaluate(()=>{
+        const s=JSON.parse(localStorage.getItem(window.SUBJECT_ADAPTER.storageKey)||'{}');
+        return {notes:Object.values(s.practiceSelfNotes||{}),speechCount:Object.keys(s.practiceSpeechResults||{}).length,
+          dialogueNotes:Object.keys(s.dialogueSelfNotes||{}).length};
+      });
+      assert.equal(savedSelfReview.notes.length,1,'Self-review must attach to one active practice line');
+      assert.equal(savedSelfReview.notes[0].listenUnclear,true);
+      assert.equal(savedSelfReview.notes[0].notFluent,true);
+      assert.equal(savedSelfReview.notes[0].stressUnsure,false);
+      assert.equal(savedSelfReview.speechCount,beforeSelfReview.speechCount,
+        'Self-reflection cannot create assessed speaking evidence or an artificial pass');
+      assert.equal(savedSelfReview.dialogueNotes,0,'Practice notes must not leak to a different dialogue mode');
+      assert.match(await page.locator('.prea0-self-review-footer').first().innerText(),/1 câu cần ôn/);
+      await page.locator('[data-act="next-line"]').first().click();
+      await page.locator('[data-act="next-weak-line"]').first().click();
+      const returnedSelfReview=await page.evaluate(()=>{
+        const s=JSON.parse(localStorage.getItem(window.SUBJECT_ADAPTER.storageKey)||'{}');
+        return {idx:s.practiceLineIndex||0,notes:s.practiceSelfNotes};
+      });
+      assert.equal(returnedSelfReview.idx,beforeSelfReview.index,
+        'Weak-review action must navigate back to the flagged sentence');
+      assert.equal(await page.locator('[data-act="self-note-listenUnclear"]').first().getAttribute('aria-pressed'),'true');
+      await page.reload({waitUntil:'domcontentloaded'});
+      await page.waitForSelector('.prea0-self-review',{state:'visible',timeout:30000});
+      assert.equal(await page.locator('[data-act="self-note-notFluent"]').first().getAttribute('aria-pressed'),'true',
+        'Self-review must survive offline-state reloading without storing any audio blob');
+      await page.locator('[data-act="self-note-stressUnsure"]').first().click();
+      const selfReviewAfterReload=await page.evaluate(()=>{
+        const s=JSON.parse(localStorage.getItem(window.SUBJECT_ADAPTER.storageKey)||'{}');
+        return Object.values(s.practiceSelfNotes||{})[0]||null;
+      });
+      assert.equal(selfReviewAfterReload.stressUnsure,true);
+      // Remove flags to ensure the weak queue clears with no fabricated mastery.
+      for(const flag of ['listenUnclear','stressUnsure','notFluent']){
+        await page.locator('[data-act="self-note-'+flag+'"]').first().click();
+      }
+      assert.equal(await page.locator('[data-act="next-weak-line"]').first().isDisabled(),true);
+      const noFakeMastery=await page.evaluate(()=>{
+        const s=JSON.parse(localStorage.getItem(window.SUBJECT_ADAPTER.storageKey)||'{}');
+        return {notes:Object.keys(s.practiceSelfNotes||{}).length,
+          speechCount:Object.keys(s.practiceSpeechResults||{}).length};
+      });
+      assert.equal(noFakeMastery.notes,0,'Unchecking all concerns must clear only learner notes');
+      assert.equal(noFakeMastery.speechCount,beforeSelfReview.speechCount);
+
       const recorderCapability=await page.evaluate(()=>({
         present:typeof window.RussianRecordingEngine==='object',
         start:typeof window.RussianRecordingEngine?.start==='function',
