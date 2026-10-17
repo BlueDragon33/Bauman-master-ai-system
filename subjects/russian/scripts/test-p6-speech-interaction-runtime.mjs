@@ -33,7 +33,8 @@ const window={
 const navigator={mediaDevices:{getUserMedia:async()=>({getTracks:()=>[{stop(){tracksStopped++}}]})}};
 const document={addEventListener(name,handler){domHandlers.set('document:'+name,handler)}};
 let urlSeq=0;
-const URL={createObjectURL:()=>`blob:mock-${++urlSeq}`,revokeObjectURL(){}};
+const revokedLocalUrls=[];
+const URL={createObjectURL:()=>`blob:mock-${++urlSeq}`,revokeObjectURL(url){revokedLocalUrls.push(url)}};
 const context={window,navigator,document,URL,Blob,console,setTimeout,clearTimeout,Date,JSON,Math,String,Number,Object,Array};
 vm.createContext(context);
 vm.runInContext(fs.readFileSync('subjects/russian/assets/speech-interaction-engine.js','utf8'),context);
@@ -64,7 +65,17 @@ assert.ok(stopped?.size>0);
 assert.equal(stopped.retention,'TRANSIENT_LOCAL');
 assert.ok(stopped.url.startsWith('blob:mock-'));
 assert.ok(tracksStopped>0);
+assert.equal(recorder.getLastRecording()?.retention,'TRANSIENT_LOCAL','Self-comparison must keep a transient device-only recording');
+const echoReplay=window.RussianAudioEngine.playSource(recorder.getLastRecording().url,{
+  sourceType:'TRANSIENT_LOCAL_SELF_RECORDING',rate:1
+});
+assert.equal(echoReplay.started,true,'Personal blob URL must be playable by canonical RussianAudioEngine');
+assert.equal(echoReplay.player.src,stopped.url);
+assert.equal(echoReplay.player.playbackRate,1);
+window.RussianAudioEngine.cancel();
+assert.equal(echoReplay.player.paused,true,'Leaving echo replay must stop the device player');
 recorder.clear();
+assert.ok(revokedLocalUrls.includes(stopped.url),'Clearing the transient take must revoke its object URL');
 
 assert.equal(recorder.status().last,null,'Clearing a completed local recording must remove its reference');
 
