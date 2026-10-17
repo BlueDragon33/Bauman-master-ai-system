@@ -20,6 +20,8 @@ Current repository adoption manifest (RE58 migration, awaiting exact-head gates)
 
 If this file ever conflicts with a newer repository-enforced adoption, stop and reconcile rather than silently overriding it.
 
+The effective universal law and rule definitions are owned by [Software-Blueprint-Hub](https://github.com/BlueDragon33/Software-Blueprint-Hub/blob/cd01fb3c2178393628ce968af209db082227d2c4/docs/UNIVERSAL-CONSTITUTION.md). The [machine contract](https://github.com/BlueDragon33/Software-Blueprint-Hub/blob/cd01fb3c2178393628ce968af209db082227d2c4/control/universal-constitution.contract.json) remains version 1.3.0 and includes R15–R32. This file is an application prompt router, not a second universal law or a new ratification. Bauman declares B4 and therefore uses STRUCTURED execution under R21; authenticated canonical Profile/Work Package/grant binding must be verified separately.
+
 ---
 
 # C1 — EXTENSIBLE PLATFORM ARCHITECTURE
@@ -146,7 +148,7 @@ If it passes three and breaks one, it is not done.
 
 # COMMON EXECUTION RULES
 
-Default work allocation: Chat handles 90–95% of planning, audit, repository reasoning, small/medium edits, CI/log review and release orchestration; Codex is reserved for the deepest 5–10% runtime/refactor/migration work that Chat has already narrowed to a precise work package.
+Work allocation inherits universal R22: complete eligible work using the current authorized connected capabilities. Escalate only for a demonstrated GUI, native build, localized refactor or environment-specific test capability gap, with a bounded handoff and return condition. Fixed Chat/Codex percentages are superseded and must not force a mode switch.
 
 Infrastructure decision default: browser/local → WebAssembly/Workers → local desktop/runtime → optional user-owned sync → managed free tier → paid managed service. Skipping lower-dependency tiers requires evidence.
 

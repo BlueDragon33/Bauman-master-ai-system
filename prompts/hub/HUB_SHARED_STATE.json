@@ -211,7 +211,7 @@
   "activePacket": "prompts/hub/CURRENT_WORK_PACKET.json",
   "blockers": [],
   "externalBlockers": [],
-  "nextAction": "Codex executes HUB-SUBJECT-INTEGRATION-20261007-001 r1 from latest main. Preserve accepted storage r5. Do not touch subject-private paths or deploy production.",
+  "nextAction": "Complete and record qualified UX acceptance for the verified PR #347 offline Hub journey; then evaluate merge authority. Reopen engineering only for a new reproduced defect or changed dependency. Do not automatically execute the legacy Subject integration packet.",
   "mainSyncStatus": "merged_current_main_into_existing_pr_branch",
   "governanceMergedSha": "6ef5e8814ac841f927f079e18d5062274ee0d847",
   "lastReviewedRuntimeSha": "5e5a6eacf7b807b3ecad636a4c735899c7ec9963",
@@ -245,9 +245,9 @@
   },
   "chatStart": "prompts/hub/chat/CHAT_START.md",
   "codexStart": "prompts/hub/codex/CODEX_START.md",
-  "lastPromptReviewSha": "23973e7106b9ac511f91c523d8f8bffd07c17530",
-  "lastRuntimeReviewSha": "23973e7106b9ac511f91c523d8f8bffd07c17530",
-  "observedMainSha": "23973e7106b9ac511f91c523d8f8bffd07c17530",
+  "lastPromptReviewSha": "56d2f195d32f8921eb2e944875cccc0610fcb465",
+  "lastRuntimeReviewSha": "56d2f195d32f8921eb2e944875cccc0610fcb465",
+  "observedMainSha": "70df417bacb615602f76b40fea1073ad221059a6",
   "currentHeadSemantics": "last observed main SHA at prompt-governance review; not a self-referential state-file commit SHA",
   "activePacketId": "HUB-SUBJECT-INTEGRATION-20261007-001",
   "activePacketRevision": 1,
@@ -300,5 +300,58 @@
   "reconciledMainSha": "e87d901aebd58d834991a45c87ee1a98189f2852",
   "previousHead": "1fd7113966dea498f2887892cabda24f31e4d390",
   "finalHead": "5e5a6eacf7b807b3ecad636a4c735899c7ec9963",
-  "finalHeadSemantics": "Exact latest-main merge HEAD with all 19 scoped Hub suites and all 9 GitHub workflows PASS. The subsequent JSON-only completion commit is independently revalidated and its exact finalHead is sealed on that commit in refs/notes/hub-storage-materialization and PR #289. Committed JSON cannot contain its own commit hash."
+  "finalHeadSemantics": "Exact latest-main merge HEAD with all 19 scoped Hub suites and all 9 GitHub workflows PASS. The subsequent JSON-only completion commit is independently revalidated and its exact finalHead is sealed on that commit in refs/notes/hub-storage-materialization and PR #289. Committed JSON cannot contain its own commit hash.",
+  "operatingRules": {
+    "status": "BRANCH_ALIGNMENT_NOT_CENTRAL_ADOPTION_ATTESTATION",
+    "sourceRepository": "BlueDragon33/Software-Blueprint-Hub",
+    "sourceRevision": "cd01fb3c2178393628ce968af209db082227d2c4",
+    "policyId": "blueprint-os:universal-century-grade",
+    "policyVersion": "1.3.0",
+    "normativePath": "docs/UNIVERSAL-CONSTITUTION.md",
+    "machineContractPath": "control/universal-constitution.contract.json",
+    "machineContractBlobSha": "312ca4210dc5eb2fcdf893ccb988408cf5756ba5",
+    "executionRules": "R15–R32 referenced, not copied",
+    "recordedBlueprintLevel": "B4",
+    "derivedExecutionProfile": "STRUCTURED",
+    "allocation": "capability-based under R22; fixed percentages superseded",
+    "developmentRuntimePolicy": "control/development-runtime-policy.v1.json",
+    "releaseTarget": "LOCAL_STABLE",
+    "remotePublicationAuthorized": false,
+    "centralBindings": {
+      "projectAuthority": "UNVERIFIED",
+      "canonicalWorkPackage": "UNVERIFIED",
+      "issuerGrant": "UNVERIFIED",
+      "automatedDispatchRequested": false,
+      "coverageView": "control/governance-current-view.v1.json",
+      "coverageStatus": "sealed-baseline / B4; compliance UNVERIFIED; not a live Profile or grant receipt"
+    },
+    "candidate147": {
+      "head": "a7f9daccbbb878d3bf7b74910a8ce90266c371cf",
+      "state": "DRAFT_UNMERGED_NOT_RATIFIED",
+      "adoptedByThisChange": false
+    },
+    "legacyPacketDisposition": "Existing packet/result IDs and lifecycle are preserved; this governance alignment neither executes nor accepts the pending integration projection.",
+    "currentTechnicalEvidence": {
+      "issue": 336,
+      "pr": 347,
+      "runtimeHead": "56d2f195d32f8921eb2e944875cccc0610fcb465",
+      "wholeSystemRunId": 38919211515,
+      "workflowCount": 8,
+      "automatedEvidence": "PASS_IN_RECORDED_FOUR_THEME_SCOPE",
+      "matrixCells": 120,
+      "interactionStates": 766,
+      "renderedSamples": 54318,
+      "acceptanceFailures": 0,
+      "osForcedColorsNumericAcceptance": "UNVERIFIED",
+      "stages": {
+        "codeComplete": true,
+        "testVerified": true,
+        "merged": false,
+        "deployed": false,
+        "userAccepted": "UNVERIFIED_AUTHENTICATED_REVIEW_REQUIRED"
+      },
+      "githubReviewCountObserved": 0
+    },
+    "nextActionCompletionPredicate": "Qualified UX evidence and applicable authenticated review/merge authority are recorded for the exact revision; automated CI does not satisfy the human gate."
+  }
 }

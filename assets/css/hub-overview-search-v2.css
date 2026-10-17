@@ -8,7 +8,7 @@
 body[data-hub-reference-home="1"] .top-title{display:none!important}
 body[data-hub-reference-home="1"] .topbar{padding-left:18px;padding-right:18px}
 body[data-hub-reference-home="1"] .hub-safe-search{max-width:700px;margin-right:auto}
-#page-home .hub-safe-dashboard[data-home-reference-v4]{display:grid!important;min-height:0!important;height:auto!important;margin:0!important;padding:0!important;background:none!important;border:0!important;box-shadow:none!important}
+#page-home .hub-safe-dashboard[data-home-reference-v4]{display:grid!important;min-height:0!important;height:auto!important;margin:0!important;padding:0!important;background:var(--bui-on-dark-surface)!important;--bui-focus-ring:#f7d57a;--hs-r1-focus:var(--bui-focus-ring);--bui-text-primary:var(--bui-on-dark-title);--bui-text-secondary:var(--bui-on-dark-muted);--bui-surface-secondary:#13263a;border:0!important;box-shadow:none!important}
 #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-layout{grid-template-columns:minmax(0,1fr) clamp(330px,21vw,390px);gap:14px}
 #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-main,
 #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-rail{gap:12px}

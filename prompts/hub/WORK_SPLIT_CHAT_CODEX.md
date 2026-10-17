@@ -1,17 +1,17 @@
 # HUB WORK SPLIT — CHAT / CODEX / USER
-## Default allocation: Chat 90–95% · Codex 5–10% maximum
+## R22 capability-based allocation · B4 / STRUCTURED
 
-This split inherits `prompts/constitution/DEPENDENCY_INDEPENDENCE_POLICY.md`.
+This routing inherits effective universal R15–R22 and `prompts/constitution/DEPENDENCY_INDEPENDENCE_POLICY.md`. Fixed percentage allocation is superseded; Chat/Work/Codex names describe available capabilities, not mandatory phases.
 
 ## Class A — Chat owns
-Chat is the default executor. It handles architecture audit, ownership/source-of-truth mapping, provider selection, prompt/state, GitHub/CI/log review, test design, small/medium implementation, workflow/config, release reasoning and root-cause fixes whenever the available tools can do the work safely.
+The current connected, authorized environment handles architecture audit, ownership/source-of-truth mapping, provider selection, prompt/state, GitHub/CI/log review, test design, small/medium implementation, workflow/config, release reasoning and root-cause fixes whenever the available tools can do the work safely.
 
-Chat must try the ordinary path first. Code existing in the task is not by itself a reason to invoke Codex.
+Use the ordinary connected path first. Code existing in a task is not a reason to switch modes. A need for an authenticated cross-app GUI can justify Work/Browser; a native build, complex local refactor or environment-specific test can justify Codex. Verify the concrete capability gap first.
 
 Loop: inspect → root cause → canonical owner → smallest safe edit → targeted test → regression → evidence → continue.
 
 ## Class B — Codex deep specialist
-Codex is limited to the deepest 5–10% after Chat has narrowed the work package.
+Use Codex only for a demonstrated capability gap after narrowing the work package. No percentage quota applies.
 
 Use Codex only for work such as:
 - deep multi-file runtime refactor;
@@ -21,7 +21,9 @@ Use Codex only for work such as:
 - large browser/E2E harness;
 - repeated implement→run→debug→retest loops unavailable to normal Chat tooling.
 
-Every Codex handoff must include exact SHA, root cause/hypothesis, canonical owner, allowed files, forbidden scope, required tests, acceptance criteria, evidence and stop condition.
+Every escalation must include exact HEAD/policy, approved goal, root cause or capability gap, canonical owner, minimal allowed paths and excluded scope, file/log/tool/attempt budget, required verification, acceptance/return condition and safe independent work that can continue. A written handoff never opens Work or switches mode automatically.
+
+Central execution-service dispatch additionally requires actual Project Authority, canonical Work Package/source binding and a scoped signed issuer grant. The candidate service protocol currently permits inspect-scoped reads; it does not authorize code writes, shell access, gate PASS or release. Do not create approval records, issue grants or infer readiness from test fixtures.
 
 ## Class C — real external blocker
 Only a real external requirement may stop the flow:

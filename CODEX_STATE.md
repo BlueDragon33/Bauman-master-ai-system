@@ -1,5 +1,49 @@
 # CODEX_STATE
 
+Current task: `HUB-PR347-OFFLINE-UX-ACCEPTANCE`
+
+Status: CODE_COMPLETE — newly reproduced Hub Subjects hero counter mismatch repaired; exact new-head browser/CI verification required before TEST_VERIFIED. USER_ACCEPTED remains UNVERIFIED.
+
+Branch: `work/hub-c2-complete-contrast-336`
+Base branch: `main`
+Main sync status: branch_only
+Observed main: `70df417bacb615602f76b40fea1073ad221059a6`
+Verified beforeSha: `a1af8aa1ff047a5f64605de53b4c8634adcc5739`
+Blueprint source pin remains `cd01fb3c2178393628ce968af209db082227d2c4`, Constitution 1.3.0 R15–R32; no central rule/authority change.
+
+Approved goal:
+- Complete feasible offline Hub UX acceptance across five Hub pages, four themes and desktop/tablet/mobile. Reuse unchanged evidence, fix reproduced Hub defects, keep user acceptance separate and preserve Subject privacy.
+
+Changed owners:
+- assets/js/hub-primary-pages-v6.js
+- assets/js/subjects-reference-v1.js
+- index.html
+- tests/hub-primary-pages-v6-static.mjs
+- tests/subjects-reference-v1-browser.mjs
+- CODEX_STATE.md
+
+New evidence and repair:
+- Six SHA256-verified Hub-only artifacts from Whole System run38940704087 declare exact a1af8aa1 and clean trees: 120 cells / 766 states / 54,318 samples / zero measured acceptance failures and no document overflow.
+- Visual review exposed Subjects hero stage/visible counters of zero above a canonical six-subject summary. The V6 decorator counted obsolete `.subject-card` / `.subject-course-list .course` selectors while the canonical renderer uses `.subjects-page__course-card`.
+- V6 now reads a small summary snapshot from the existing Hub Subjects renderer; it does not calculate or inspect Subject-private data. Stage totals remain distinct from filtered visible items. Re-rendering filters preserves exactly one current hero.
+- Cache query receipts bumped for both affected scripts. No CSS, storage schema, auth, private Subject owner, launch boundary or release policy change.
+- Behavioral regression first failed on the zero-versus-six mismatch; now PASS alongside existing Subjects and Hub truth static gates, syntax and whitespace checks. Existing source/packaged browser acceptance now asserts initial and filtered/restored hero counts and uniqueness.
+
+Verification and limits:
+- BeforeSha a1af8aa1: ten workflows PASS, Whole System run38940704087. Prior evidence remains historical and applies only to unchanged owners after this repair.
+- Local restored Chromium is truncated: 124,727,296 bytes with ELF section headers referenced at byte193,616,952; launch fails SIGSEGV. The official browser download endpoint returns an HTML Site Unavailable response. This supplies no fresh browser/offline PASS.
+- Contrast audit deliberately blocks service workers and packaged access uses a declared CI receipt fixture. It is not proof of disconnected restart on the user's Windows/App-Manager, real device authority, or user acceptance.
+- New-head official CI/browser receipts must be recorded in PR #347. Do not repeat a green run without a changed owner/dependency.
+- No Subject-private storage/DOM/content was read or changed. Existing legacy work packet and execution-result lifecycle remain untouched.
+
+One primary next action:
+- Verify the repaired Subjects journey on the exact new HEAD, then complete qualified offline UX acceptance on the real user/device environment. Keep user acceptance UNVERIFIED until recorded by its actual authority.
+
+Merge / publish / service dispatch:
+- Not performed or authorized by this checkpoint.
+
+---
+
 Current task: `PROMPT_CONTROL_CENTER_V1_BOOTSTRAP`
 
 Status: IN_PROGRESS

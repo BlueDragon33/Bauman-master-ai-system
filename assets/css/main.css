@@ -993,31 +993,31 @@ body.canva-contrast-r4 .main{
     radial-gradient(circle at 92% 2%, var(--cc-page-glow-2), transparent 26%),
     var(--cc-page-bg)!important;
 }
-body.canva-contrast-r4 h1,
-body.canva-contrast-r4 h2,
-body.canva-contrast-r4 h3,
-body.canva-contrast-r4 h4,
-body.canva-contrast-r4 h5,
-body.canva-contrast-r4 h6,
-body.canva-contrast-r4 b,
-body.canva-contrast-r4 strong,
-body.canva-contrast-r4 .top-title h1,
-body.canva-contrast-r4 .section-head h2{
-  color:var(--cc-ink-strong)!important;
+:where(body.canva-contrast-r4) h1,
+:where(body.canva-contrast-r4) h2,
+:where(body.canva-contrast-r4) h3,
+:where(body.canva-contrast-r4) h4,
+:where(body.canva-contrast-r4) h5,
+:where(body.canva-contrast-r4) h6,
+:where(body.canva-contrast-r4) b,
+:where(body.canva-contrast-r4) strong,
+:where(body.canva-contrast-r4) .top-title h1,
+:where(body.canva-contrast-r4) .section-head h2{
+  color:var(--cc-ink-strong);
 }
-body.canva-contrast-r4 p,
-body.canva-contrast-r4 small,
-body.canva-contrast-r4 em,
-body.canva-contrast-r4 .top-title p,
-body.canva-contrast-r4 .section-head p,
-body.canva-contrast-r4 .muted,
-body.canva-contrast-r4 .profile-head small,
-body.canva-contrast-r4 .timeline-row p,
-body.canva-contrast-r4 .slot-card small,
-body.canva-contrast-r4 .course p,
-body.canva-contrast-r4 .subject-card p,
-body.canva-contrast-r4 .subject-detail p{
-  color:var(--cc-muted)!important;
+:where(body.canva-contrast-r4) p,
+:where(body.canva-contrast-r4) small,
+:where(body.canva-contrast-r4) em,
+:where(body.canva-contrast-r4) .top-title p,
+:where(body.canva-contrast-r4) .section-head p,
+:where(body.canva-contrast-r4) .muted,
+:where(body.canva-contrast-r4) .profile-head small,
+:where(body.canva-contrast-r4) .timeline-row p,
+:where(body.canva-contrast-r4) .slot-card small,
+:where(body.canva-contrast-r4) .course p,
+:where(body.canva-contrast-r4) .subject-card p,
+:where(body.canva-contrast-r4) .subject-detail p{
+  color:var(--cc-muted);
 }
 body.canva-contrast-r4 .auth-card,
 body.canva-contrast-r4 .topbar,
@@ -1100,19 +1100,19 @@ body.canva-contrast-r4 .topbar{
   background:color-mix(in srgb,var(--cc-surface) 88%, transparent)!important;
   backdrop-filter:blur(18px)!important;
 }
-body.canva-contrast-r4 .btn,
-body.canva-contrast-r4 button,
-body.canva-contrast-r4 .profile-action,
-body.canva-contrast-r4 .schedule-settings-menu button{
-  background:var(--cc-surface)!important;
-  color:var(--cc-ink)!important;
-  border-color:var(--cc-line)!important;
+:where(body.canva-contrast-r4) .btn,
+:where(body.canva-contrast-r4) button,
+:where(body.canva-contrast-r4) .profile-action,
+:where(body.canva-contrast-r4) .schedule-settings-menu button{
+  background:var(--cc-surface);
+  color:var(--cc-ink);
+  border-color:var(--cc-line);
 }
-body.canva-contrast-r4 .btn:hover,
-body.canva-contrast-r4 button:hover,
-body.canva-contrast-r4 .profile-action:hover{
-  background:var(--cc-surface-2)!important;
-  color:var(--cc-ink-strong)!important;
+:where(body.canva-contrast-r4) .btn:hover,
+:where(body.canva-contrast-r4) button:hover,
+:where(body.canva-contrast-r4) .profile-action:hover{
+  background:var(--cc-surface-2);
+  color:var(--cc-ink-strong);
 }
 body.canva-contrast-r4 .btn.primary,
 body.canva-contrast-r4 .btn.active,
@@ -1132,26 +1132,26 @@ body.canva-contrast-r4 .priority-card span{
   color:var(--cc-on-primary)!important;
   border-color:transparent!important;
 }
-body.canva-contrast-r4 .field,
-body.canva-contrast-r4 input,
-body.canva-contrast-r4 select,
-body.canva-contrast-r4 textarea{
-  background:var(--cc-surface)!important;
-  color:var(--cc-ink)!important;
-  border-color:var(--cc-line)!important;
+:where(body.canva-contrast-r4) .field,
+:where(body.canva-contrast-r4) input,
+:where(body.canva-contrast-r4) select,
+:where(body.canva-contrast-r4) textarea{
+  background:var(--cc-surface);
+  color:var(--cc-ink);
+  border-color:var(--cc-line);
 }
-body.canva-contrast-r4 .field::placeholder,
-body.canva-contrast-r4 input::placeholder,
-body.canva-contrast-r4 textarea::placeholder{
-  color:var(--cc-muted)!important;
-  opacity:1!important;
+:where(body.canva-contrast-r4) .field::placeholder,
+:where(body.canva-contrast-r4) input::placeholder,
+:where(body.canva-contrast-r4) textarea::placeholder{
+  color:var(--cc-muted);
+  opacity:1;
 }
-body.canva-contrast-r4 .field:focus,
-body.canva-contrast-r4 input:focus,
-body.canva-contrast-r4 select:focus,
-body.canva-contrast-r4 textarea:focus{
-  border-color:var(--cc-primary)!important;
-  box-shadow:0 0 0 4px var(--cc-focus)!important;
+:where(body.canva-contrast-r4) .field:focus,
+:where(body.canva-contrast-r4) input:focus,
+:where(body.canva-contrast-r4) select:focus,
+:where(body.canva-contrast-r4) textarea:focus{
+  border-color:var(--cc-primary);
+  box-shadow:0 0 0 4px var(--cc-focus);
 }
 body.canva-contrast-r4 .pill,
 body.canva-contrast-r4 .tag,
@@ -1239,6 +1239,15 @@ body.canva-contrast-r4 .slot-card.rest{
 body.canva-contrast-r4 .modal-backdrop,
 body.canva-contrast-r4 .canva-modal-backdrop{
   background:rgba(3,9,21,.58)!important;
+}
+/* Modal text follows the modal's own surface, not the page theme. */
+body.canva-contrast-r4 :is(.dialog,.canva-dialog){
+  --bui-text-primary:var(--cc-modal-text);
+  --bui-text-secondary:var(--cc-modal-muted);
+  --bui-text-tertiary:var(--cc-modal-muted);
+  --text:var(--cc-modal-text);
+  --muted:var(--cc-modal-muted);
+  --surface2:var(--cc-modal-head);
 }
 body.canva-contrast-r4 .dialog,
 body.canva-contrast-r4 .canva-dialog,

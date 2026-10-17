@@ -279,6 +279,9 @@ function courseRows(){
 }
 function stageSubjectCount(){return courseRows().filter(function(x){return !x.custom}).length}
 function allSubjectCount(){var s=stateRef();return Object.keys(s&&s.subjects||{}).length}
+function summarySnapshot(){
+  return {stageSubjectCount:stageSubjectCount(),visibleCourseCount:visibleCourses().length};
+}
 function semesterLabel(){
   return ({prepare:'Chuẩn bị trước dự bị',preparatory:'Dự bị tiếng Nga',m1:'Học kỳ 1',m2:'Học kỳ 2',m3:'Học kỳ 3',m4:'Học kỳ 4',bauman:'Chính khóa Bauman'})[ui.semester]||'Theo giai đoạn hiện tại';
 }
@@ -376,7 +379,9 @@ function render(){
   var host=document.getElementById('page-subjects');if(!host)return false;
   if(!ui.hidden)ui.hidden=new Set();
   host.innerHTML='<div class="subjects-page" data-subjects-reference="'+RELEASE+'">'+header()+summary()+'<section class="subjects-page__workspace"><div class="subjects-page__main-column">'+courseList()+'</div>'+rightRail()+'</section><section class="subjects-page__footer">'+progressPanel()+heatPanel()+notesPanel()+'</section>'+addModal()+'</div>';
-  host.dataset.subjectsReference='v1';document.body.dataset.hubPrimaryPage='subjects';return true;
+  host.dataset.subjectsReference='v1';document.body.dataset.hubPrimaryPage='subjects';
+  window.BAUMAN_HUB_PRIMARY_PAGES_V6?.finalize?.('subjects');
+  return true;
 }
 function rerender(){render()}
 function scrollCourses(){var h=document.getElementById('page-subjects'),x=h&&h.querySelector('.subjects-page__course-list');if(x)x.scrollIntoView({behavior:'smooth',block:'start'})}
@@ -394,7 +399,7 @@ function selfCheck(){
 }
 
 window.BAUMAN_SUBJECTS_REF={
-  release:RELEASE,patch:patch,render:render,selfCheck:selfCheck,
+  release:RELEASE,patch:patch,render:render,selfCheck:selfCheck,summarySnapshot:summarySnapshot,
   toggleTab:toggleTab,toggleFilter:toggleFilter,toggleMenu:toggleMenu,filterCourse:filterCourse,clearFilter:clearFilter,setSemester:setSemester,
   openSubject:openSubject,openEditor:openEditor,selectCourse:selectCourse,openDeadline:openDeadline,toggleAI:toggleAI,shiftCalendar:shiftCalendar,
   toggleNote:toggleNote,addNote:addNote,removeCustom:removeCustom,editTeacher:editTeacher,teacherFor:teacherFor,openAddCourse:openAddCourse,closeAddCourse:closeAddCourse,submitAddCourse:submitAddCourse,scrollCourses:scrollCourses

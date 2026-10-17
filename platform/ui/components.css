@@ -93,3 +93,30 @@ html[data-bauman-ui="future-v1"] .bui-skeleton{
   animation:bui-skeleton 1.35s linear infinite;
 }
 @keyframes bui-skeleton{to{background-position:-220% 0}}
+
+/* Hub light workspaces own a visible, theme-independent check indicator.
+   The wrapping label retains the full touch target. */
+html[data-bauman-ui="future-v1"] #appRoot :is(#page-subjects,#page-schedule,#page-research) input[type="checkbox"]{
+  appearance:none;
+  display:inline-grid;
+  place-content:center;
+  width:16px;
+  height:16px;
+  min-width:16px;
+  min-height:16px;
+  flex:0 0 16px;
+  padding:0;
+  border:2px solid var(--bui-on-light-muted);
+  border-radius:3px;
+  background:var(--bui-on-light-surface);
+  vertical-align:middle;
+}
+html[data-bauman-ui="future-v1"] #appRoot :is(#page-subjects,#page-schedule,#page-research) input[type="checkbox"]:checked{
+  border-color:var(--bui-on-light-accent);
+  background:var(--bui-on-light-accent);
+}
+html[data-bauman-ui="future-v1"] #appRoot :is(#page-subjects,#page-schedule,#page-research) input[type="checkbox"]:checked::after{
+  content:"✓";
+  color:var(--bui-text-on-accent);
+  font:900 12px/1 Arial,sans-serif;
+}
