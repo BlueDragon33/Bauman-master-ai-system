@@ -429,6 +429,25 @@ try{
       assert.equal(evidence?.ok,false,'ASR text similarity cannot certify spoken proficiency');
       assert.equal(evidence?.signalOnly,true,'ASR remains supporting evidence only');
       assert.equal(evidence?.providerConfidence,.6);
+      // Explicit learner self-check takes precedence over any ASR attempt that
+      // is still in-flight. Neither a late final nor a late error can overwrite it.
+      await page.locator('[data-act="record-line"]').first().click();
+      assert.equal(await page.evaluate(()=>window.__RU_TURN_ASR.instances.length),3);
+      await page.evaluate(()=>{window.__RU_TURN_ASR.manualLate=window.__RU_TURN_ASR.instances[2].onresult});
+      await page.locator('[data-act="mark-line-ok"]').first().click();
+      await page.evaluate(()=>{
+        window.__RU_TURN_ASR.manualLate?.({results:[{0:{transcript:'ПОЗДНИЙ ОТВЕТ',confidence:.99},isFinal:true}]});
+      });
+      const manualPriority=await page.evaluate(()=>{
+        const instance=window.__RU_TURN_ASR.instances[2];
+        const state=JSON.parse(localStorage.getItem(window.SUBJECT_ADAPTER.storageKey)||'{}');
+        return {aborted:instance.aborted===true,recording:state.speechRecording,
+          manual:Object.values(state.practiceSpeechResults||{}).find(r=>r?.signalType==='self-confirmation')||null};
+      });
+      assert.equal(manualPriority.aborted,true,'Self-confirmation must cancel pending recognition');
+      assert.equal(manualPriority.recording,false,'Self-check must clear recording status');
+      assert.equal(manualPriority.manual?.manual,true,'Late ASR cannot override explicit learner self-check');
+      assert.equal(manualPriority.manual?.score,null,'Self-check must never become a synthetic pronunciation score');
       await page.evaluate(()=>{
         const obj=window.__RU_TURN_ASR;
         if(obj.previous===undefined)delete window.SpeechRecognition;
