@@ -1,5 +1,5 @@
 'use strict';
-const CACHE='russian-app-shell-v35-engine-asr-turn-isolation';
+const CACHE='russian-app-shell-v36-engine-local-echo';
 const DATA_CACHE='russian-learning-data-v1';
 const SHELL=[
   './','./index.html','./manifest.webmanifest','../shared/host-bridge.js',
