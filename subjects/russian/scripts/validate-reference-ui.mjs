@@ -13,7 +13,7 @@ const futureCss=css;
 const futureJs=read('assets/russian-future-ui.js');
 const sw=read('sw.js');
 const shellVersion=sw.match(/const CACHE='russian-app-shell-v([0-9]+)-/);
-must(shellVersion&&Number(shellVersion[1])>=36,'Pre-A0 offline self replay requires Russian shell v36 or later');
+must(shellVersion&&Number(shellVersion[1])>=37,'Pre-A0 learner self-review requires Russian shell v37 or later');
 must(sw.includes("keys.filter(k=>/^russian-app-shell-v[0-9]+(?:-|$)/i.test(k)&&k!==CACHE)"),'Russian SW may only purge its own obsolete shell caches');
 for(const asset of ['./assets/russian-future-ui.css','./assets/russian-future-ui.js'])must(sw.includes(asset),'Russian offline shell missing updated icon asset '+asset);
 const speechEngine=read('assets/speech-interaction-engine.js');
@@ -57,6 +57,27 @@ const optionalLoader=read('assets/russian-optional-data-loader.js');
 const contentContract=read('assets/content-contract.js');
 const contentContractCss=read('assets/content-contract.css');
 const core=read('assets/core.js');
+for(const token of [
+ 'practiceSelfNotes:{},dialogueSelfNotes:{}',
+ 'function cleanSelfNoteBucket(raw)',
+ 'function activeSelfNotes()',
+ 'function renderSelfReviewPanel(d,idx)',
+ 'function nextWeakSelfReviewLine()',
+ 'function toggleSelfReviewFlag(flag)',
+ 'function weakSelfNoteCount(d,role=activeRole())',
+ 'data-act="self-note-',
+ 'data-act="next-weak-line"',
+ 'aria-pressed',
+ 'không phải điểm phát âm',
+ 'if(act===\'next-weak-line\'){nextWeakSelfReviewLine();return}',
+ "const previous=store[key]||{}"
+])must(core.includes(token),'Missing Pre-A0 local learner self-review contract: '+token);
+must(core.includes('state.practiceSelfNotes=cleanSelfNoteBucket(state.practiceSelfNotes)')&&
+ core.includes('state.dialogueSelfNotes=cleanSelfNoteBucket(state.dialogueSelfNotes)'),
+ 'Learner self-notes must be sanitized during offline state recovery');
+must(!core.includes("pronunciationAuthority:true")&&!core.includes("stressAuthority:true"),
+ 'Self-notes cannot grant acoustic or phonetic review authority');
+
 for(const token of ['function renderLocalSpeechTake()','function startLocalSpeechTake()','function playLocalSpeechTake()','function clearLocalSpeechTake()','localSpeechTakeContext!==speakingAttemptContext()','TRANSIENT_LOCAL_SELF_RECORDING','data-act="self-record-start"','data-act="self-record-stop"','data-act="self-record-play"','data-act="self-record-clear"']){
   must(core.includes(token),'Offline Pre-A0 local self replay owner missing: '+token);
 }
