@@ -4147,8 +4147,8 @@ function handleClick(e){
  if(act==='speak-line-slow'){const d=currentDialogue(); const line=dialogueTurns(d)[activeLineIndex()]||{}; speak(line.ru||line.text||line.text_ru||line,.62)}
  if(act==='speak-dialogue'){speak(speakDialogue(currentDialogue()),.82)}
  if(act==='record-line')startLineRecording();
- if(act==='mark-line-ok'){const d=currentDialogue(), idx=activeLineIndex(), line=dialogueTurns(d)[idx]||{}; const store=activeSpeechResults(); store[dialogueLineKey(d,idx)]={score:null,transcript:'',target:dialogueText(line),at:Date.now(),ok:true,manual:true,selfConfirmed:true,signalType:'self-confirmation'}; save(); render(); if(state.speechAutoNext)setTimeout(()=>moveDialogueLine(1),420);}
- if(act==='retry-line'){const d=currentDialogue(), idx=activeLineIndex(); const store=activeSpeechResults(); if(store)delete store[dialogueLineKey(d,idx)]; save(); render();}
+ if(act==='mark-line-ok'){retireSpeakingAttempt();const d=currentDialogue(), idx=activeLineIndex(), line=dialogueTurns(d)[idx]||{}; const store=activeSpeechResults(); store[dialogueLineKey(d,idx)]={score:null,transcript:'',target:dialogueText(line),at:Date.now(),ok:true,manual:true,selfConfirmed:true,signalType:'self-confirmation'}; save(); render(); if(state.speechAutoNext)setTimeout(()=>moveDialogueLine(1),420);}
+ if(act==='retry-line'){retireSpeakingAttempt();const d=currentDialogue(), idx=activeLineIndex(); const store=activeSpeechResults(); if(store)delete store[dialogueLineKey(d,idx)]; save(); render();}
  if(act==='toggle-auto-next'){state.speechAutoNext=!state.speechAutoNext;save();render();}
  if(act==='role-all'){setActiveRole('all');save();render()}
  if(act==='role-a'){setActiveRole('A');save();render()}
