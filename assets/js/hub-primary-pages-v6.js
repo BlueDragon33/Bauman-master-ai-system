@@ -30,6 +30,7 @@
     const stage=s.subjectStage||'prepare';
     const subjectCards=qa('.subject-card',host);
     const courseCards=qa('.subject-course-list .course',host);
+    const referenceSummary=window.BAUMAN_SUBJECTS_REF?.summarySnapshot?.();
     const truth=window.BAUMAN_HUB_TRUTH;
     const progress=truth?truth.progress(s.progress||{},current.id,{source:'hub.state.progress'}):{status:Object.prototype.hasOwnProperty.call(s.progress||{},current.id)?'CURRENT':'UNAVAILABLE',value:Object.prototype.hasOwnProperty.call(s.progress||{},current.id)?pct(s.progress[current.id]):null};
     prependHero(host,hero({
@@ -37,8 +38,8 @@
       title:'Môn học & năng lực',
       description:'Chọn đúng môn theo giai đoạn, nhìn nhiệm vụ gần nhất và vào thẳng không gian học tập mà không qua thêm lớp điều hướng.',
       kpis:[
-        {value:subjectCards.length,label:'môn ở giai đoạn'},
-        {value:courseCards.length,label:'khối nội dung đang thấy'},
+        {value:referenceSummary?.stageSubjectCount??subjectCards.length,label:'môn ở giai đoạn'},
+        {value:referenceSummary?.visibleCourseCount??courseCards.length,label:'khối nội dung đang thấy'},
         {value:Number.isFinite(progress.value)?`${progress.value}%`:'—',label:progress.status==='UNAVAILABLE'?'chưa có dữ liệu tiến độ':'tiến độ môn chọn'},
         {value:String(stage).toUpperCase(),label:'giai đoạn'}
       ]
