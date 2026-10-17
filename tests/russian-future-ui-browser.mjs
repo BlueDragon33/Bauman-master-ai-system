@@ -373,6 +373,54 @@ try{
         status:typeof window.RussianRecordingEngine?.status==='function'
       }));
       assert.deepEqual(recorderCapability,{present:true,start:true,stop:true,status:true},'Canonical local recording engine must be available independently from ASR; coach visibility is validated in its speaking-specific gate');
+
+      // Real learner controls must wire to the existing transient recorder,
+      // not to ASR or fabricated speaking evidence. No server upload.
+      await page.evaluate(()=>{
+        const original=window.RussianRecordingEngine,actions=[];
+        const fixture={
+          support:()=> 'SUPPORTED',
+          start({onStop}){actions.push('start');this.onStop=onStop;return Promise.resolve({started:true})},
+          stop(){actions.push('stop');this.take={url:'blob:local-echo-test',size:14,retention:'TRANSIENT_LOCAL'};this.onStop?.(this.take);return true},
+          cancel(){actions.push('cancel');return true},
+          clear(){actions.push('clear');this.take=null;return true},
+          getLastRecording(){return this.take||null}
+        };
+        window.__RF_ECHO={original,fixture,actions};
+        window.RussianRecordingEngine=fixture;
+      });
+      await page.locator('[data-act="role-all"]').first().click();
+      assert.equal(await page.locator('.ru-local-echo').count(),1,'Pre-A0 speaking must expose one integrated self-recording panel');
+      assert.match(await page.locator('.ru-local-echo').innerText(),/không chấm điểm phát âm/i);
+      const beforeLocalEvidence=await page.evaluate(()=>{
+        const state=JSON.parse(localStorage.getItem(window.SUBJECT_ADAPTER.storageKey)||'{}');
+        return JSON.stringify(state.practiceSpeechResults||{});
+      });
+      await page.locator('[data-act="echo-record"]').click();
+      await page.waitForFunction(()=>document.querySelector('.ru-local-echo')?.dataset.echoStage==='recording',null,{timeout:10000});
+      await page.locator('[data-act="echo-stop"]').click();
+      await page.waitForFunction(()=>document.querySelector('.ru-local-echo')?.dataset.echoStage==='ready',null,{timeout:10000});
+      assert.equal(await page.locator('[data-act="echo-play"]').isEnabled(),true);
+      const playsBeforeEcho=await page.evaluate(()=>window.__RF_AUDIO.count);
+      await page.locator('[data-act="echo-play"]').click();
+      const playback=await page.evaluate(()=>window.__RF_AUDIO);
+      assert.equal(playback.count,playsBeforeEcho+1,'Self-record playback must use canonical HTMLAudio player');
+      assert.equal(playback.last?.src,'blob:local-echo-test','Self-comparison must play the learner take, not the Russian example');
+      const afterLocalEvidence=await page.evaluate(()=>{
+        const state=JSON.parse(localStorage.getItem(window.SUBJECT_ADAPTER.storageKey)||'{}');
+        return JSON.stringify(state.practiceSpeechResults||{});
+      });
+      assert.equal(afterLocalEvidence,beforeLocalEvidence,'Personal recording must not invent mastery or speaking evidence');
+      await page.locator('[data-act="role-b"]').first().click();
+      assert.equal(await page.locator('[data-act="echo-play"]').isEnabled(),false,'Changing role must never replay the old turn');
+      const clearedEcho=await page.evaluate(()=>window.__RF_ECHO.actions.filter(x=>x==='clear').length);
+      assert.ok(clearedEcho>=2,'New recording and role change must clear transient take');
+      await page.evaluate(()=>{
+        window.RussianRecordingEngine=window.__RF_ECHO.original;
+        delete window.__RF_ECHO;
+      });
+      await page.locator('[data-act="role-all"]').first().click();
+
       // A learner can change role/turn while the old Web Speech recognizer is
       // still pending. Neither its late final result nor its onEnd may mutate
       // learner evidence or the state of the newly selected turn.
