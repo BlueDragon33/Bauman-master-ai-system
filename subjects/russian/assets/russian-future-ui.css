@@ -334,3 +334,14 @@ body.theme-dark .ru-future-ui .grammar-pattern-strip{background:#0f2441;border-c
 .prea0-self-replay-actions .btn{min-height:44px;white-space:normal}
 .prea0-self-replay-status{margin:10px 0 0}
 @media(max-width:480px){.prea0-self-replay{padding:10px}.prea0-self-replay-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Pre-A0 self-reflection: local learner notes, never externally graded speech. */
+.prea0-self-review{margin:12px 0;padding:14px;border:1px solid rgba(92,153,218,.26);border-radius:14px;background:rgba(12,47,88,.12)}
+.prea0-self-review-title{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 12px;margin:0 0 10px;line-height:1.5}
+.prea0-self-review-title b{font-size:14px}.prea0-self-review-title span{font-size:12px;opacity:.85}
+.prea0-self-review-flags{display:flex;flex-wrap:wrap;gap:8px}
+.prea0-self-review-flags .btn{min-height:44px;white-space:normal;flex:1 1 150px}
+.prea0-self-review-flags .btn[aria-pressed="true"]{border-color:#4dacc6;background:rgba(37,122,146,.21);font-weight:700}
+.prea0-self-review-footer{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:12px;font-size:12px;line-height:1.45}
+.prea0-self-review-footer .btn{min-height:44px}
+@media(max-width:480px){.prea0-self-review{padding:10px}.prea0-self-review-flags{display:grid;grid-template-columns:1fr}.prea0-self-review-footer .btn{width:100%}}
