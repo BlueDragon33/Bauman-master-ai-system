@@ -1,0 +1,35 @@
+name: Bauman Main Overlay Compatibility (Draft Only)
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'scripts/verify-main-control-overlay.mjs'
+      - '.github/workflows/main-overlay-compat-draft.yml'
+      - 'control-service/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  real-main-overlay:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22.13.0'
+          package-manager-cache: false
+      - name: Audit real main with Draft overlay, then validate actual Worker and D1
+        env:
+          EXPECTED_PR_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: node scripts/verify-main-control-overlay.mjs
+      - name: Read-only gate
+        run: echo "Scratch worktree only. No merge, rebase, main update, publish, source-admission review, or full-isolate D1 drain."
