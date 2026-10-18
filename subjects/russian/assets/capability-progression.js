@@ -114,9 +114,9 @@ function panelHtml(){
    <aside class="ru-cap-status"><span>Tiến độ giai đoạn</span><strong>${stage.lessonReady}/${stage.lessonTotal}</strong><span>bài đủ điều kiện rời stage</span><div class="ru-cap-meter" role="progressbar" aria-label="Bài đủ điều kiện rời giai đoạn" aria-valuenow="${stage.lessonReady}" aria-valuemin="0" aria-valuemax="${Math.max(stage.lessonTotal,1)}"><i style="width:${pct}%"></i></div>
     <small>${stage.allowed?'Đã đủ điều kiện rời stage.':esc(stage.blockers[0]||'Chưa có dữ liệu để xác định điều kiện rời giai đoạn.')}</small></aside></header></div>`;
  const guide=`<details class="ru-cap-guide"><summary>Xem hướng dẫn lộ trình <span aria-hidden="true">→</span></summary><p>R0–R4 là các nhóm năng lực, khác với các học kỳ. Bài chỉ được tính khi có bằng chứng theory, speaking và check theo dữ liệu đã lưu. Cấp tiếp theo chỉ mở khi đủ điều kiện; số liệu không phải chứng chỉ CEFR.</p></details>`;
- return `<section class="panel ru-capability-roadmap" data-approved-overview="2026-10-16" aria-label="Lộ trình năng lực tiếng Nga">${hero}
+ return `<details class="ru-cap-disclosure"><summary>Lộ trình năng lực R0–R4 <span>Mở xem thông tin &amp; bằng chứng giai đoạn</span></summary><section class="panel ru-capability-roadmap" data-approved-overview="2026-10-16" aria-label="Lộ trình năng lực tiếng Nga">${hero}
    <div class="ru-cap-section-head"><div><h3>Lộ trình năng lực R0 – R4</h3><p>Học theo lộ trình, xây nền tảng vững chắc từ phát âm đến tư duy ngôn ngữ.</p></div>${guide}</div>
-   <div class="ru-cap-grid">${bands.map(bandCard).join('')}</div></section>`;
+   <div class="ru-cap-grid">${bands.map(bandCard).join('')}</div></section></details>`;
 }
 function bridgePayload(){
  const c=core(),bands=allBands(),cur=currentBand(),stage=stageExitStatus(clean(c.stage)||'vn');
@@ -150,12 +150,22 @@ function render(){
  const view=document.getElementById('view');if(!view)return;
  const c=core();
  if((c.view||'overview')!=='overview'){document.getElementById('ruCapabilityRoadmap')?.remove();document.body.classList.remove('ru-capability-ready');lastSig='';return;}
+ const overview=view.querySelector('.overview-v128');
+ if(!overview)return;
  const sig=signature();
  let panel=document.getElementById('ruCapabilityRoadmap');
- if(sig===lastSig&&panel)return;
+ if(!panel){panel=document.createElement('div');panel.id='ruCapabilityRoadmap';}
+ // The learner's canonical eight shortcuts must precede optional R0-R4 detail.
+ // Keep one renderer and one existing panel; never observe our own mutations.
+ if(panel.previousElementSibling!==overview)overview.insertAdjacentElement('afterend',panel);
+ if(sig===lastSig&&panel.firstElementChild)return;
  lastSig=sig;
- if(!panel){panel=document.createElement('div');panel.id='ruCapabilityRoadmap';view.prepend(panel);}
- const html=panelHtml();if(panel.innerHTML!==html)panel.innerHTML=html;
+ const expanded=panel.querySelector('.ru-cap-disclosure')?.open===true;
+ const html=panelHtml();
+ if(panel.innerHTML!==html){
+  panel.innerHTML=html;
+  if(expanded)panel.querySelector('.ru-cap-disclosure').open=true;
+ }
  document.body.classList.add('ru-capability-ready');
 }
 function schedule(){if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;render();publishBridge(false)})}
