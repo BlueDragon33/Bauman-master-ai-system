@@ -94,7 +94,7 @@ body.ru-future-ui.ru-capability-ready .rf-continue-card:before{content:'РУСС
  display:grid;place-items:center;word-break:break-word;text-align:center;width:103px;height:92px;padding:9px;
  border-radius:13px;background:linear-gradient(135deg,#123c73 15%,#276cbd 60%,#e7eef8);color:#f4fbff;
  font:800 14px/1.5 Georgia,serif;letter-spacing:.045em;box-shadow:0 8px 15px rgba(26,55,106,.12)}
-body.ru-future-ui.ru-capability-ready .rf-module-section{order:3}
+body.ru-future-ui.ru-capability-ready .rf-module-section{order:-6}
 body.ru-future-ui.ru-capability-ready .rf-today-review-grid{order:1}
 body.ru-future-ui.ru-capability-ready .rf-learning-path{order:4}
 body.ru-future-ui.ru-capability-ready .rf-personal-report{order:5}
@@ -127,3 +127,15 @@ body.ru-future-ui.ru-capability-ready .rf-continue-actions button{background:#16
  body.ru-future-ui .ru-cap-benefits span{font-size:11px}
 }
 @media(prefers-reduced-motion:reduce){body.ru-future-ui .ru-cap-meter i{transition:none}}
+
+/* Issue #349: make stage evidence optional; the learner shortcuts remain first.
+   Scoped to the existing Russian capability component, no global CSS overrides. */
+body.ru-future-ui .ru-cap-disclosure{margin:2px 0 0;border:1px solid #d6e4f4;border-radius:17px;background:#fff;min-width:0}
+body.ru-future-ui .ru-cap-disclosure>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:52px;padding:12px 18px;color:#183c70;font-size:15px;font-weight:800;cursor:pointer;list-style:revert}
+body.ru-future-ui .ru-cap-disclosure>summary span{font-size:12px;color:#365f93;font-weight:650}
+body.ru-future-ui .ru-cap-disclosure>summary:focus-visible{outline:3px solid #236ad0;outline-offset:3px;border-radius:12px}
+body.ru-future-ui .ru-cap-disclosure>.ru-capability-roadmap{padding:0 16px 16px;margin:0}
+@media(max-width:700px){
+ body.ru-future-ui .ru-cap-disclosure>summary{display:grid;gap:2px;padding:11px 14px}
+ body.ru-future-ui .ru-cap-disclosure>.ru-capability-roadmap{padding:0 12px 12px}
+}
