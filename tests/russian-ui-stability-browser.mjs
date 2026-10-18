@@ -73,6 +73,58 @@ try {
     assert.equal(modules, 8);
     return { ...result, modules };
   });
+  await verify('Overview exposes real learning shortcuts before R0-R4 at 390, 768 and 1440', async () => {
+    const samples = [];
+    for (const size of [
+      { width: 390, height: 844 },
+      { width: 768, height: 1024 },
+      { width: 1440, height: 900 }
+    ]) {
+      await page.setViewportSize(size);
+      await page.waitForFunction(() => document.querySelector('#ruCapabilityRoadmap .ru-cap-disclosure'));
+      const sample = await page.evaluate(() => {
+        const host = document.querySelector('.overview-v128');
+        const panel = document.getElementById('ruCapabilityRoadmap');
+        const disclosure = panel?.querySelector('details.ru-cap-disclosure');
+        const launcher = host?.querySelector('.rf-module-section');
+        const grid = launcher?.querySelector('.rf-module-grid');
+        const keys = ['listen','speak','lesson','vocab'];
+        const cards = keys.map(key => {
+          const button = grid?.querySelector('.rf-module-' + key);
+          const rect = button?.getBoundingClientRect();
+          return { key, exists: !!button, top: rect?.top ?? -1, bottom: rect?.bottom ?? -1 };
+        });
+        const sections = [...host?.querySelectorAll('.rf-dashboard > *') || []];
+        const first = sections.sort((a,b) => Number(getComputedStyle(a).order || 0) - Number(getComputedStyle(b).order || 0))[0];
+        return {
+          width: innerWidth, height: innerHeight,
+          overviewBeforeCapability: host?.nextElementSibling === panel,
+          collapsed: !!disclosure && !disclosure.open,
+          firstDashboardItemIsLauncher: first === launcher,
+          cards,
+          scrollWidth: document.documentElement.scrollWidth
+        };
+      });
+      assert.equal(sample.overviewBeforeCapability, true, 'Stage details must follow overview, not precede learning');
+      assert.equal(sample.collapsed, true, 'R0-R4 detail must be collapsed until learner chooses to open it');
+      assert.equal(sample.firstDashboardItemIsLauncher, true, 'Learning shortcuts must precede daily summary panels');
+      for (const card of sample.cards) {
+        assert.equal(card.exists, true, card.key + ' action must exist');
+        assert.ok(card.top >= 0 && card.bottom <= sample.height - (size.width < 768 ? 58 : 0),
+          card.key + ' must fit the first unobstructed viewport: ' + JSON.stringify(sample));
+      }
+      assert.ok(sample.scrollWidth <= sample.width + 2, 'Overview must not horizontally overflow');
+      samples.push(sample);
+    }
+    await page.setViewportSize({ width: 1440, height: 900 });
+    const summary = page.locator('#ruCapabilityRoadmap details.ru-cap-disclosure > summary');
+    await summary.click();
+    assert.equal(await page.locator('#ruCapabilityRoadmap .ru-cap-grid .ru-cap-band').count(), 5,
+      'All five R0-R4 capability bands must remain accessible');
+    await summary.click();
+    assert.equal(await page.locator('#ruCapabilityRoadmap details.ru-cap-disclosure').evaluate(el => el.open), false);
+    return samples;
+  });
   await verify('Overview route button opens a functioning learning view', async () => {
     await page.locator('.rf-module-lesson').click();
     await page.locator('.learn-canva-shell').waitFor({ state: 'visible', timeout: 15000 });
