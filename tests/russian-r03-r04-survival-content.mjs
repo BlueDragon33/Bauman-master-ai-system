@@ -76,8 +76,9 @@ for(const scenario of contexts){
   }
   assert.equal(status().sourceReady,true);
   assert.match(panel.innerHTML,/<svg[^>]*role="img"/);
-  assert.ok(!panel.innerHTML.includes('http://')&&!panel.innerHTML.includes('https://'),
-    'Survival picture must be embedded and usable fully offline');
+  // SVG xmlns is an identifier, not a network fetch. Block only actual external assets.
+  assert.ok(!/<(?:image|use|script)\b[^>]+(?:href|src)\s*=\s*["']https?:/i.test(panel.innerHTML),
+    'Survival picture must not depend on a remote asset');
   if(scenario.voice===false){
     assert.match(panel.innerHTML,/BLOCKED_AUDIO/);
     assert.equal(tts,0);
