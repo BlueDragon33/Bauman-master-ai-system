@@ -86,6 +86,7 @@ try {
         const host = document.querySelector('.overview-v128');
         const panel = document.getElementById('ruCapabilityRoadmap');
         const disclosure = panel?.querySelector('details.ru-cap-disclosure');
+        const resume = document.getElementById('ruTodayResume');
         const launcher = host?.querySelector('.rf-module-section');
         const grid = launcher?.querySelector('.rf-module-grid');
         const keys = ['listen','speak','lesson','vocab'];
@@ -99,6 +100,7 @@ try {
         return {
           width: innerWidth, height: innerHeight,
           overviewBeforeCapability: host?.nextElementSibling === panel,
+          resumeAfterOverview: !!host && !!resume && Boolean(host.compareDocumentPosition(resume) & Node.DOCUMENT_POSITION_FOLLOWING),
           collapsed: !!disclosure && !disclosure.open,
           firstDashboardItemIsLauncher: first === launcher,
           cards,
@@ -106,6 +108,7 @@ try {
         };
       });
       assert.equal(sample.overviewBeforeCapability, true, 'Stage details must follow overview, not precede learning');
+      assert.equal(sample.resumeAfterOverview, true, 'Today/Review auxiliary panel must not prepend ahead of canonical Overview');
       assert.equal(sample.collapsed, true, 'R0-R4 detail must be collapsed until learner chooses to open it');
       assert.equal(sample.firstDashboardItemIsLauncher, true, 'Learning shortcuts must precede daily summary panels');
       for (const card of sample.cards) {
