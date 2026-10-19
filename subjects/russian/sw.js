@@ -1,5 +1,5 @@
 'use strict';
-const CACHE='russian-app-shell-v38-engine-offline-dependency-closure';
+const CACHE='russian-app-shell-v39-content-first-alphabet33';
 const DATA_CACHE='russian-learning-data-v1';
 const SHELL=[
   './','./index.html','./manifest.webmanifest','../../assets/media/favicon.svg','../shared/host-bridge.js',
