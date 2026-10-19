@@ -37,6 +37,7 @@ try{
     assert.equal(status.masteryWrites,false);
     const visible=await wrapper.innerText();
     assert.match(visible,/Nghe trước/);
+    assert.equal(await wrapper.locator('svg[role="img"]').count(),1,'One offline world illustration before script reveal');
     assert.ok(!visible.includes(source.items[0].printSample),'Text must stay hidden until reveal');
     receipt.scenarios.push({lesson:target.lesson,viewport:target.width+'x'+target.height,
       sceneSourceIds:source.items.map(x=>x.id),checks:[]});
@@ -54,6 +55,7 @@ try{
       checks.push({sourceId:item.id,step:'recording controls visible (capture not tested)',result:'PASS'});
       await wrapper.locator('[data-survival="next"]').click();
       const alternate=source.items.find(x=>x.id!==item.id);
+      assert.equal(await wrapper.locator('svg[role="img"]').count(),1,'Scene picture must stay visible for visual discrimination');
       await wrapper.locator('[data-survival="visual"][data-id="'+alternate.id+'"]').click();
       assert.match(await wrapper.innerText(),/Thử lại/);
       await wrapper.locator('[data-survival="visual"][data-id="'+item.id+'"]').click();
