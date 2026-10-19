@@ -129,6 +129,46 @@ export function inspectRe62Candidate({manifest=loadRe62CandidateManifest(),
     status:valid?'TECHNICAL_BYTES_VALIDATED_RU03_RIGHTS_BLOCKED':'BLOCKED_CODEC_OR_DURATION_MISMATCH'});
 }
 
+// RE62 is an *addendum* to RE61/RE45/RE50, not a second reviewer pipeline.
+// One-word reference has no ability to satisfy the whole-utterance AUDIO gate.
+export function buildRe62AudioReviewAddendum({manifest=loadRe62CandidateManifest(),
+  handoff=buildContentFirstRu03Handoff()}={}){
+  const valid=validateRe62Manifest(manifest,{handoff});
+  if(!valid.ok)throw Error('RE62 addendum manifest invalid: '+valid.errors.join('; '));
+  const entries=handoff.reviewItems.map(item=>{
+    const candidates=manifest.candidates.filter(c=>c.sourceItemId===item.sourceItemId);
+    return Object.freeze({
+      itemId:item.itemId,sourceItemId:item.sourceItemId,
+      exactTextFingerprint:item.textFingerprint,exactReviewFingerprint:item.reviewFingerprint,
+      audioFingerprint:null,wholeSentenceAsset:null,
+      partialReferences:Object.freeze(candidates.map(c=>Object.freeze({
+        candidateId:c.candidateId,sourcePage:c.sourcePage,
+        clipText:c.exactClipText,
+        sourceStatus:'DISCOVERED_ONLY',
+        immutableSha256:null,
+        licensedReuse:'REQUIRES_INDEPENDENT_RIGHTS_CHECK',
+        clipScope:'WORD_ONLY_NOT_FULL_RE61_SENTENCE',
+        eligibleAsFullSourceAudio:false,
+        approvedRu03:false
+      }))),
+      languageReview:'PENDING_EXTERNAL_RU03',audioReview:'PENDING_EXTERNAL_RU03',
+      canonicalPublicationReady:false
+    });
+  });
+  return Object.freeze({
+    schema:'RUSSIAN_CONTENT_FIRST_RE62_RU03_AUDIO_ADDENDUM_V1',
+    inherits:'RE61_RE45_RE50_AUTHORIZED_REVIEW',
+    reviewItems:entries,reviewItemCount:entries.length,
+    discoveredPartialClips:entries.reduce((sum,item)=>sum+item.partialReferences.length,0),
+    fullSentenceAudioAvailable:0,
+    audioHashedFromBytes:0,
+    approvedTextCount:0,approvedAudioCount:0,
+    authorizedReviewerCount:handoff.reviewerCount,
+    rightsClearanceReady:false,audioInspectionReady:false,
+    canonicalPublicationReady:false
+  });
+}
+
 if(process.argv[1]&&fileURLToPath(import.meta.url)===process.argv[1]){
   const fileIndex=process.argv.indexOf('--file');
   if(fileIndex>=0&&!process.argv[fileIndex+1])throw Error('--file requires a local audio path');
