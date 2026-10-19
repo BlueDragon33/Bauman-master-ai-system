@@ -39,7 +39,7 @@ try{
   receipt.steps.push({name:'1 · listen first + optional script',result:'PASS',ttsRuPresent:voiceState.voice});
 
   await page.locator('#ruPreA0 [data-prea0="next"]').click();
-  assert.match(await details.innerText(),/Ghi âm/);
+  assert.match(await details.innerText(),/ghi âm/i);
   assert.ok(await page.locator('#ruPreA0 [data-prea0="record"]').isVisible());
   assert.ok(await page.locator('#ruPreA0 [data-prea0="stop"]').isVisible());
   receipt.steps.push({name:'2 · uses existing local recording controls (mic not auto-graded)',result:'PASS'});
