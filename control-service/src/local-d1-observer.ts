@@ -1,10 +1,26 @@
 // Per-Worker-isolate accounting for real D1 operations. This is NOT a global
 // Cloudflare Worker quiescence barrier and NEVER grants shutdown authority.
-export function createLocalD1Observer(serviceId: string) {
+type BackgroundReadback = () => Promise<boolean>;
+type BackgroundOptions = { now?: () => number; timeoutMs?: number };
+
+export function createLocalD1Observer(serviceId: string, options: BackgroundOptions = {}) {
+  const now = options.now ?? Date.now;
+  const timeoutMs = options.timeoutMs ?? 15000;
+  if (!Number.isSafeInteger(timeoutMs) || timeoutMs < 1 || timeoutMs > 120000 ||
+      typeof now !== "function") throw new Error("D1_BACKGROUND_OBSERVER_CONFIG_INVALID");
   let activeRequests = 0;
   let activeD1Calls = 0;
   let completedD1Calls = 0;
   let failedD1Calls = 0;
+  let completedBackgroundTasks = 0;
+  let rejectedBackgroundTasks = 0;
+  let timedOutBackgroundTasks = 0;
+  let unverifiedBackgroundTasks = 0;
+  let readbackReported = 0;
+  let failedBackgroundReadbacks = 0;
+  let rejectedRegistrations = 0;
+  let nextTaskId = 0;
+  const background = new Map<number, { deadline: number; expired: boolean }>();
   const preparedNative = new WeakMap<object, D1PreparedStatement>();
 
   async function observed<T>(invoke: () => Promise<T>): Promise<T> {
@@ -56,21 +72,93 @@ export function createLocalD1Observer(serviceId: string) {
     });
   }
 
+  // A local per-isolate observer for tasks registered via this context only.
+  // Rejected, timed-out, and readback-unverified attempts never grant stop.
+  function observeWaitUntil(context: ExecutionContext, task: Promise<unknown>,
+    readback?: BackgroundReadback): void {
+    if (!context || typeof context.waitUntil !== "function" ||
+        !task || typeof (task as Promise<unknown>).then !== "function" ||
+        (readback !== undefined && typeof readback !== "function")) {
+      rejectedRegistrations++;
+      throw new Error("D1_BACKGROUND_REGISTRATION_INVALID");
+    }
+    const id = ++nextTaskId;
+    background.set(id, { deadline: now() + timeoutMs, expired: false });
+    const observedTask = Promise.resolve(task).then(async () => {
+      if (!readback) { unverifiedBackgroundTasks++; return; }
+      try {
+        if ((await readback()) !== true)
+          throw new Error("D1_BACKGROUND_READBACK_MISMATCH");
+        // Caller-supplied readback is advisory, never an independent D1 barrier.
+        readbackReported++;
+      } catch (error) {
+        failedBackgroundReadbacks++;
+        throw error;
+      }
+    }, (error: unknown) => {
+      rejectedBackgroundTasks++;
+      throw error;
+    }).finally(() => {
+      const pending = background.get(id);
+      // Even if no snapshot ran while pending, account for an overdue task.
+      if (pending && !pending.expired && now() >= pending.deadline) {
+        pending.expired = true;
+        timedOutBackgroundTasks++;
+      }
+      background.delete(id);
+      completedBackgroundTasks++;
+    });
+    // Retain rejection semantics for the runtime, suppress local unhandled noise.
+    void observedTask.catch(() => {});
+    try { context.waitUntil(observedTask); }
+    catch (error) {
+      rejectedRegistrations++;
+      // The underlying write might still be running: permanent failure taint.
+      throw error;
+    }
+  }
+
+  function trackContext(context: ExecutionContext): ExecutionContext {
+    return new Proxy(context, {
+      get(target, property) {
+        if (property === "waitUntil")
+          return (task: Promise<unknown>) => observeWaitUntil(target, task);
+        const value = Reflect.get(target, property);
+        return typeof value === "function" ? value.bind(target) : value;
+      },
+    });
+  }
+
   async function trackFetch<TEnv extends { DB?: D1Database }>(
-    env: TEnv, work: (wrapped: TEnv) => Promise<Response>,
+    env: TEnv, work: (wrapped: TEnv, context?: ExecutionContext) => Promise<Response>,
+    context?: ExecutionContext,
   ): Promise<Response> {
     activeRequests++;
     const wrapped = env.DB ? { ...env, DB: trackDatabase(env.DB) } as TEnv : env;
-    try { return await work(wrapped); }
+    const wrappedContext = context ? trackContext(context) : undefined;
+    try { return await work(wrapped, wrappedContext); }
     finally { activeRequests--; }
   }
 
   function snapshot() {
+    const current = now();
+    for (const value of background.values()) {
+      if (!value.expired && current >= value.deadline) {
+        value.expired = true;
+        timedOutBackgroundTasks++;
+      }
+    }
     return { serviceId, activeRequests, activeD1Calls, completedD1Calls,
-      failedD1Calls, scope: "single-worker-isolate",
-      allIsolatesObserved: false, allD1BindingsInstrumented: false,
+      failedD1Calls, activeBackgroundTasks: background.size,
+      completedBackgroundTasks, rejectedBackgroundTasks, timedOutBackgroundTasks,
+      unverifiedBackgroundTasks, readbackReported, failedBackgroundReadbacks,
+      rejectedRegistrations, backgroundScope: "observed-context-per-isolate-only",
+      backgroundDrainVerified: false, backgroundDurabilityVerified: false,
+      scope: "single-worker-isolate", allIsolatesObserved: false,
+      allWaitUntilJobsInstrumented: false, allD1BindingsInstrumented: false,
       transactionCommitBarrierVerified: false, durableReadbackVerified: false,
-      processExitVerified: false, gracefulShutdownReady: false };
+      processExitVerified: false, gracefulShutdownReady: false,
+      autoRestartAllowed: false };
   }
 
   // Constant 503 deliberately ignores any caller-supplied token/identity.
@@ -84,5 +172,5 @@ export function createLocalD1Observer(serviceId: string) {
     }, { status: 503, headers: { "cache-control": "no-store",
       "x-content-type-options": "nosniff" } });
   }
-  return { trackFetch, snapshot, blockedPreflight };
+  return { trackFetch, observeWaitUntil, snapshot, blockedPreflight };
 }
