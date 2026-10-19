@@ -84,6 +84,10 @@ try {
       await page.waitForFunction(() => document.querySelector('#ruCapabilityRoadmap .ru-cap-disclosure'));
       const sample = await page.evaluate(() => {
         const host = document.querySelector('.overview-v128');
+        const app = document.querySelector('#app.ru-app-shell');
+        const main = document.querySelector('.ru-main');
+        const appLayout = app ? getComputedStyle(app) : null;
+        const mainRect = main?.getBoundingClientRect();
         const panel = document.getElementById('ruCapabilityRoadmap');
         const disclosure = panel?.querySelector('details.ru-cap-disclosure');
         const resume = document.getElementById('ruTodayResume');
@@ -99,6 +103,10 @@ try {
         const first = sections.sort((a,b) => Number(getComputedStyle(a).order || 0) - Number(getComputedStyle(b).order || 0))[0];
         return {
           width: innerWidth, height: innerHeight,
+          shellDisplay: appLayout?.display ?? '',
+          shellColumns: appLayout?.gridTemplateColumns ?? '',
+          mainTop: mainRect?.top ?? -1,
+          mainLeft: mainRect?.left ?? -1,
           overviewBeforeCapability: host?.nextElementSibling === panel,
           resumeAfterOverview: !!host && !!resume && Boolean(host.compareDocumentPosition(resume) & Node.DOCUMENT_POSITION_FOLLOWING),
           collapsed: !!disclosure && !disclosure.open,
@@ -107,6 +115,12 @@ try {
           scrollWidth: document.documentElement.scrollWidth
         };
       });
+      assert.ok(sample.mainTop >= -2 && sample.mainTop <= 8,
+        'Main shell must not be pushed below the sticky tablet sidebar: ' + JSON.stringify(sample));
+      if (size.width >= 768) {
+        assert.equal(sample.shellDisplay, 'grid', 'Tablet/desktop Russian shell must use grid');
+        assert.ok(sample.mainLeft > 0, 'Main area must sit beside sidebar, not in a second row');
+      }
       assert.equal(sample.overviewBeforeCapability, true, 'Stage details must follow overview, not precede learning');
       assert.equal(sample.resumeAfterOverview, true, 'Today/Review auxiliary panel must not prepend ahead of canonical Overview');
       assert.equal(sample.collapsed, true, 'R0-R4 detail must be collapsed until learner chooses to open it');
