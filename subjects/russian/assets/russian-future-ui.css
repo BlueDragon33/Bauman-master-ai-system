@@ -204,6 +204,23 @@ body.ru-reference-ui.ru-future-ui .modal-close{background:#edf3fb;color:#526984}
 }
 .ru-future-ui .rf-sidebar-toggle{display:none}
 .ru-future-ui .rf-sidebar-scrim{display:none}
+/* Issue #349 · keep the tablet shell on one visual row.
+   Legacy core.css uses a one-column .app layout below 1080px while the
+   Russian drawer starts below 768px. Reassert the Russian shell columns
+   only in that intermediate band; the mobile drawer and desktop remain owned
+   by their existing responsive rules. */
+@media (min-width:768px) and (max-width:1080px){
+ body.ru-future-ui #app.ru-app-shell{
+  display:grid!important;
+  grid-template-columns:var(--rf-sidebar-compact) minmax(0,1fr)!important;
+ }
+ body.ru-future-ui #app.ru-app-shell>.ru-sidebar{
+  grid-column:1!important;grid-row:1!important;
+ }
+ body.ru-future-ui #app.ru-app-shell>.ru-main{
+  grid-column:2!important;grid-row:1!important;min-width:0;
+ }
+}
 @media(max-width:767px){
  body.ru-future-ui.rf-sidebar-open{overflow:hidden}
  .ru-future-ui .ru-app-shell{grid-template-columns:1fr!important}
