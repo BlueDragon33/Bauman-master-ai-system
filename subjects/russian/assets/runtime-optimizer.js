@@ -163,12 +163,14 @@
     catch(e){if(swReadyPromise===run)swReadyPromise=null;throw e;}
   }
   async function register(){
-    if(!('serviceWorker'in navigator)||location.protocol==='file:')return;
+    // Never trigger a network-only SW update while Chromium is genuinely offline.
+    // The already-active worker/cache serve the offline reload; repair resumes online.
+    if(!('serviceWorker'in navigator)||location.protocol==='file:'||!navigator.onLine)return;
     try{await ensureServiceWorkerReady();await reconcileOfflineCore();idleWarm();}
     catch(e){console.warn('Russian offline shell unavailable',e);}
   }
   function bootOfflineRuntime(){paint();register();}
-  window.addEventListener('online',()=>{paint();reconcileOfflineCore();});window.addEventListener('offline',()=>{paint();reconcileOfflineCore();});
+  window.addEventListener('online',()=>{paint();reconcileOfflineCore();if(!navigator.serviceWorker?.controller)register();});window.addEventListener('offline',()=>{paint();reconcileOfflineCore();});
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bootOfflineRuntime,{once:true});else bootOfflineRuntime();
   window.RussianRuntimeOptimizer={schema:SCHEMA,prepareOfflineCore,reconcileOfflineCore,ensureServiceWorkerReady,prepareProtectedOfflineAssets,readShellPrecacheReport,repairShellPrecache,status:()=>({online:navigator.onLine,prepared,total:CORE_DATA.length,ready:prepared>=CORE_DATA.length,serviceWorkerControlled:!!navigator.serviceWorker?.controller}),coreData:[...CORE_DATA],protectedOfflineAssets:[...PROTECTED_OFFLINE_ASSETS]};
 })();
