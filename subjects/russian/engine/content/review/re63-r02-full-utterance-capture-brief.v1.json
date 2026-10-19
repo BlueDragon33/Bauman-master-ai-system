@@ -1,0 +1,83 @@
+{
+  "schema": "RUSSIAN_CONTENT_FIRST_RE63_R02_FULL_UTTERANCE_CAPTURE_BRIEF_V1",
+  "status": "RECORDINGS_REQUIRED_HUMAN_VOICE_NOT_SUPPLIED",
+  "inherits": "RE61_RE45_RE50_AUTHORIZED_RU03_REVIEW",
+  "sourceOwner": "subjects/russian/data/listen-write-lessons.json",
+  "releaseAllowed": false,
+  "noTtsPromotion": true,
+  "defaultLearnerAudioAuthority": "NONE",
+  "purpose": "Acquire two complete verbatim R02 utterances from a consenting qualified speaker; no concatenation of isolated word clips; no source text mutation.",
+  "sourceItems": [
+    {
+      "sourceItemId": "LW_ITEM_R02_NAME",
+      "scope": "COMPLETE_VERBATIM_SOURCE_UTTERANCE",
+      "re61PacketId": "content-first:LW_ITEM_R02_NAME",
+      "speakerRole": "learner introducing themselves",
+      "speakerRecordingRequired": true,
+      "sourceAudioFile": null,
+      "recordedConsentProof": null,
+      "licenseApproval": null,
+      "sourceAudioSha256": null,
+      "humanRu03Decision": null,
+      "linguisticNote": "Verify natural rendering of proper name Нам. Do not change text without canonical owner decision."
+    },
+    {
+      "sourceItemId": "LW_ITEM_R02_INTRO",
+      "scope": "COMPLETE_VERBATIM_SOURCE_UTTERANCE",
+      "re61PacketId": "content-first:LW_ITEM_R02_INTRO",
+      "speakerRole": "learner greeting and introducing themselves",
+      "speakerRecordingRequired": true,
+      "sourceAudioFile": null,
+      "recordedConsentProof": null,
+      "licenseApproval": null,
+      "sourceAudioSha256": null,
+      "humanRu03Decision": null,
+      "linguisticNote": "Verify polite greeting, stress and prosody, native treatment of name Нам and nationality Вьетнам; requires the entire three-sentence recording."
+    }
+  ],
+  "targetCapture": {
+    "requestedAudioFormats": [
+      "WAV_PCM_S16LE",
+      "OGG_VORBIS",
+      "FLAC_LOSSLESS"
+    ],
+    "preferredSampleRateHz": 48000,
+    "allowedSampleRatesHz": [
+      16000,
+      22050,
+      24000,
+      32000,
+      44100,
+      48000
+    ],
+    "channelsAllowed": [
+      1,
+      2
+    ],
+    "durationMinSeconds": 0.4,
+    "durationMaxSeconds": 30,
+    "maxBytes": 15728640,
+    "prohibitBackgroundMusic": true,
+    "prohibitConcatenatedWords": true,
+    "excludeTtsAsHumanSource": true,
+    "explicitRightsFields": [
+      "speakerConsentProof",
+      "recordingProducerRights",
+      "reuseLicense",
+      "licenseEvidence",
+      "thirdPartyMediaClearance"
+    ],
+    "mandatoryHumanReview": [
+      "exactOrthographyAndMeaning",
+      "stressAndVowelReduction",
+      "consonantPalatalization",
+      "rhythmAndIntonation",
+      "audioClippingAndNoise",
+      "rightsProvenance"
+    ]
+  },
+  "technicalStagingStatus": "BLOCKED_NO_ORIGINAL_HUMAN_AUDIO_BYTES",
+  "nodePipelineVerification": "NOT_TESTED_ON_RE63",
+  "humanRu03Status": "PENDING_EXTERNAL_REVIEW",
+  "recordedAssetCount": 0
+}
