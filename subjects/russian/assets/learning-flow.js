@@ -429,4 +429,200 @@
   window.RussianPreA0Candidate={status:()=>({schema:'RUSSIAN_PREA0_FIRST_ACTION_V1',
     source:'LW_R02 / RHW_AZ_01',loaded:!!preA0.source,step:preA0.step,
     audioAuthority:'UNVERIFIED',masteryWrites:false})};
+
+  // R03–R04 CONTENT-FIRST · derived practice projection, NOT a new content/audio/mastery owner.
+  // Exact Russian stimuli and answers come only from existing ListenWrite canonical rows.
+  const survivalCues=Object.freeze({
+    R03:[
+      {id:'LW_ITEM_R03_REG',glyph:'🏠 🪪',situation:'Tại quầy ký túc xá: bạn cần đăng ký'},
+      {id:'LW_ITEM_R03_DOCS',glyph:'🏠 📄',situation:'Tại quầy ký túc xá: bạn hỏi cần giấy tờ gì'}
+    ],
+    R04:[
+      {id:'LW_ITEM_R04_METRO',glyph:'🚇 🗺️',situation:'Ở phố: bạn cần hỏi đường tới metro'},
+      {id:'LW_ITEM_R04_DOCTOR',glyph:'🏥 🩺',situation:'Khi cần hỗ trợ y tế: bạn muốn gặp bác sĩ'}
+    ]
+  });
+  const survivalSteps=['Nghe trước','Nhại và nghe lại','Nhận diện tình huống','Nhận diện chữ in','Phản xạ','Tự đối chiếu'];
+  const survival={lessonId:'',items:[],rows:null,loading:false,error:'',itemId:'',step:0,
+    open:true,revealed:false,heard:false,recorded:false,visual:false,typed:'',matched:false,
+    note:'',attemptedRecording:false,attemptedListening:false};
+  function survivalActiveLesson(){
+    const core=readCore(),lessonId=activeLessonId();
+    return core.stage==='vn'&&core.view==='learning'&&survivalCues[lessonId]?lessonId:'';
+  }
+  function survivalResetItem(itemId){
+    survival.itemId=itemId;survival.step=0;survival.revealed=false;survival.heard=false;
+    survival.recorded=false;survival.visual=false;survival.typed='';survival.matched=false;
+    survival.note='';survival.attemptedRecording=false;survival.attemptedListening=false;
+  }
+  function survivalSync(){
+    const lessonId=survivalActiveLesson();
+    if(!lessonId)return false;
+    if(survival.lessonId!==lessonId){
+      survival.lessonId=lessonId;survival.error='';survival.items=[];
+      survivalResetItem(survivalCues[lessonId][0].id);
+    }
+    if(!survival.rows)return true;
+    const row=survival.rows.find(x=>x.id==='LW_'+lessonId&&x.lessonId===lessonId);
+    const expected=survivalCues[lessonId];
+    if(!row||row.items?.length!==expected.length){
+      survival.items=[];survival.error='SOURCE_BLOCKED: thiếu cấu trúc học liệu của '+lessonId;return true;
+    }
+    const mapped=expected.map(scene=>{
+      const item=row.items.find(x=>x.id===scene.id),drill=item?.drills?.[0];
+      if(!item?.printSample||!drill?.audioText||drill.audioText!==item.printSample||
+        drill.answer!==item.printSample)return null;
+      return {...scene,text:item.printSample,source:row.id,drillKind:drill.kind};
+    });
+    if(mapped.some(x=>!x)){survival.items=[];survival.error='SOURCE_BLOCKED: câu nguồn âm/chữ không khớp';return true}
+    survival.items=mapped;survival.error='';return true;
+  }
+  async function survivalLoad(){
+    if(!survivalActiveLesson()||survival.loading||survival.rows)return;
+    survival.loading=true;
+    try{
+      const response=await fetch('data/listen-write-lessons.json');
+      if(!response.ok)throw Error('HTTP '+response.status);
+      const rows=await response.json();
+      if(!Array.isArray(rows))throw Error('Invalid ListenWrite source format');
+      survival.rows=rows;survival.error='';
+    }catch(e){survival.error='SOURCE_BLOCKED: '+String(e?.message||e)}
+    finally{survival.loading=false;survivalRender()}
+  }
+  const survivalButton=(act,label,extra='')=>'<button type="button" class="btn" data-survival="'+act+'" '+extra+'>'+label+'</button>';
+  function survivalBody(){
+    const s=survival,item=s.items.find(x=>x.id===s.itemId);
+    if(!item)return '<p role="status">'+preA0Esc(s.error||'Đang lấy các câu mẫu R03–R04 từ dữ liệu học offline…')+'</p>';
+    const phrase='<strong lang="ru">'+preA0Esc(item.text)+'</strong>';
+    if(s.step===0)return '<p>Nghe trước khi mở chữ; giọng TTS máy <b>UNVERIFIED</b>, không phải bản ghi đã duyệt RU03.</p>'+
+      (preA0Voice()?survivalButton('listen','▶ Nghe thử (ru-RU)'):
+        '<p role="status">BLOCKED_AUDIO: thiết bị không có giọng ru-RU; không dùng giọng khác thay thế.</p>')+
+      ' '+survivalButton('reveal','Mở câu gốc sau lượt nghe')+
+      (s.revealed?'<p>'+phrase+'</p>':'')+
+      '<p role="status">'+preA0Esc(s.note)+'</p>';
+    if(s.step===1)return '<p>Nhại câu mẫu, ghi âm trên thiết bị rồi tự nghe lại; không có điểm phát âm.</p>'+
+      '<p>'+phrase+'</p>'+
+      survivalButton('record','● Ghi âm')+' '+survivalButton('stop','■ Dừng ghi âm')+
+      (s.recorded?' '+survivalButton('replay','▶ Nghe lại giọng mình'):'')+
+      '<p role="status">'+preA0Esc(s.note)+'</p>';
+    if(s.step===2)return '<p>Nhìn ngữ cảnh '+preA0Esc(item.glyph)+
+      ' rồi chọn câu ứng với tình huống; biểu tượng chỉ là gợi ý, chưa phải tranh đã duyệt.</p>'+
+      '<p>'+preA0Esc(item.situation)+'</p>'+
+      s.items.map(candidate=>survivalButton('visual',preA0Esc(candidate.text),
+        'data-id="'+preA0Esc(candidate.id)+'" lang="ru"')).join(' ')+
+      '<p role="status">'+preA0Esc(s.note)+'</p>';
+    if(s.step===3)return '<p>Nhận diện cách viết Cyrillic của câu; không đánh giá nét chữ viết tay bằng font máy.</p>'+
+      '<p>'+phrase+'</p><p>'+preA0Esc(item.glyph)+'</p>'+
+      survivalButton('writing','Mở module chữ in → chữ viết tay đang có')+
+      '<p><small>Glyph viết tay chuẩn vẫn BLOCKED (thiếu nguồn/giấy phép/kiểm duyệt).</small></p>';
+    if(s.step===4)return '<p>'+preA0Esc(item.situation)+'</p>'+
+      '<p>Không nhìn đáp án: thử nói câu trả lời, sau đó tự gõ bằng Cyrillic để đối chiếu.</p>'+
+      '<label for="ruSurvivalReply">Phản xạ tiếng Nga</label>'+
+      '<input id="ruSurvivalReply" class="input" lang="ru" autocomplete="off" value="'+preA0Esc(s.typed)+'">'+
+      survivalButton('check','Đối chiếu văn bản')+
+      '<p role="status">'+preA0Esc(s.note)+'</p>';
+    return '<p>Tổng kết buổi luyện <b>chỉ trong phiên</b>, không cập nhật mastery/SRS/gate.</p>'+
+      '<p>Nghe TTS: '+(s.heard?'đã bắt đầu phát thử':s.attemptedListening?'không khả dụng':'chưa thử')+
+      ' · Tự ghi âm: '+(s.recorded?'có bản ghi tạm':'chưa có')+
+      ' · Ghép câu với tình huống: '+(s.visual?'đã khớp':'chưa')+
+      ' · Phản xạ chữ viết: '+(s.matched?'khớp nguyên văn':'chưa khớp')+'</p>'+
+      '<p>Nội dung ngôn ngữ, giọng chuẩn, trọng âm, hình ảnh và chữ viết tay: <b>UNVERIFIED · HUMAN_RU03_REQUIRED</b>.</p>'+
+      survivalButton('restart','Luyện lại tình huống này');
+  }
+  function survivalRender(){
+    const view=document.getElementById('view');
+    if(!view||!survivalSync()){document.getElementById('ruSurvivalPractice')?.remove();return}
+    let panel=document.getElementById('ruSurvivalPractice');
+    if(!panel){panel=document.createElement('section');panel.id='ruSurvivalPractice';
+      panel.className='panel';panel.setAttribute('aria-label','Luyện giao tiếp sinh tồn R03 R04');view.prepend(panel)}
+    const sourceReady=survival.items.length===2;
+    const selection=survivalCues[survival.lessonId].map(scene=>{
+      const active=scene.id===survival.itemId;
+      return survivalButton('scenario',preA0Esc(scene.glyph)+' · '+preA0Esc(scene.situation),
+        'data-id="'+preA0Esc(scene.id)+'" aria-pressed="'+active+'"');
+    }).join(' ');
+    panel.innerHTML='<details '+(survival.open?'open':'')+'><summary><strong>'+
+      (survival.lessonId==='R03'?'R03 · Ký túc xá / giấy tờ':'R04 · Metro / sức khỏe')+
+      '</strong> · '+(survival.step+1)+'/6 · <small>candidate · RU03 chưa duyệt</small></summary>'+
+      '<p>Thực hành với nguồn ListenWrite hiện có. Không phải bài kiểm tra phát âm.</p>'+
+      '<div class="lesson-tools" role="group" aria-label="Chọn tình huống">'+selection+'</div>'+
+      '<h3>'+survivalSteps[survival.step]+'</h3>'+survivalBody()+
+      '<p>'+(survival.step>0?survivalButton('prev','← Trước')+' ':'')+
+      (survival.step<5?survivalButton('next','Tiếp →',sourceReady?'':'disabled'):'')+'</p>'+
+      '</details>';
+  }
+  document.addEventListener('click',async event=>{
+    const btn=event.target?.closest?.('#ruSurvivalPractice [data-survival]');
+    if(!btn)return;
+    event.preventDefault();event.stopPropagation();
+    if(!survivalActiveLesson())return;
+    const action=btn.dataset.survival,item=survival.items.find(x=>x.id===survival.itemId);
+    if(action==='scenario'){
+      if(!survivalCues[survival.lessonId].some(x=>x.id===btn.dataset.id))return;
+      survivalResetItem(btn.dataset.id);
+    }else if(!item)return;
+    else if(action==='next')survival.step=Math.min(5,survival.step+1);
+    else if(action==='prev')survival.step=Math.max(0,survival.step-1);
+    else if(action==='restart')survivalResetItem(item.id);
+    else if(action==='reveal')survival.revealed=true;
+    else if(action==='listen'){
+      survival.attemptedListening=true;
+      if(!preA0Voice())survival.note='BLOCKED_AUDIO: thiếu giọng ru-RU';
+      else{
+        const expectedId=item.id;
+        const result=window.RussianAudioEngine?.speak?.(item.text,{
+          lang:'ru-RU',rate:.85,
+          onStart:()=>{if(survival.itemId!==expectedId)return;
+            survival.heard=true;survival.note='Đã bắt đầu TTS máy, chưa chứng thực âm chuẩn';survivalRender()},
+          onError:()=>{if(survival.itemId!==expectedId)return;
+            survival.heard=false;survival.note='TTS không phát được';survivalRender()}
+        });
+        if(!result?.started)survival.note='TTS chưa khả dụng trên thiết bị';
+      }
+    }else if(action==='record'){
+      survival.attemptedRecording=true;
+      const expectedId=item.id;
+      const result=await window.RussianRecordingEngine?.start?.({maxDurationMs:20000,
+        onStop:take=>{if(survival.itemId!==expectedId)return;
+          survival.recorded=!!take?.size;survival.note=survival.recorded?
+          'Bản ghi tạm thời đã có; không có chấm phát âm':'Không có âm thanh thu được';survivalRender()},
+        onError:()=>{if(survival.itemId!==expectedId)return;survival.note='Micro lỗi/từ chối';survivalRender()}
+      });
+      if(survival.itemId!==expectedId)return;
+      survival.note=result?.started?'Đang ghi âm cục bộ':'Micro chưa sẵn sàng; vẫn có thể nhại trực tiếp';
+    }else if(action==='stop')window.RussianRecordingEngine?.stop?.();
+    else if(action==='replay'){
+      if(!survival.recorded){survival.note='Chưa có bản ghi cho tình huống này'}
+      else{
+        const take=window.RussianRecordingEngine?.getLastRecording?.();
+        if(take?.url)window.RussianAudioEngine?.playSource?.(take.url,{sourceType:'LOCAL_RECORDING'});
+        else survival.note='Bản ghi tạm đã hết hạn';
+      }
+    }else if(action==='visual'){
+      survival.visual=btn.dataset.id===item.id;
+      survival.note=survival.visual?'Đã ghép đúng câu với ngữ cảnh (văn bản chưa kiểm định RU03)':
+        'Thử lại, xem biểu tượng và tình huống';
+    }else if(action==='writing'){
+      document.querySelector('[data-view="writing"]')?.click();return;
+    }else if(action==='check'){
+      survival.matched=survival.typed.trim()===item.text;
+      survival.note=survival.matched?'Khớp đúng văn bản nguồn, không chấm nói':
+        'Đối chiếu nguyên văn với nguồn: '+item.text;
+    }
+    survivalRender();
+  },true);
+  document.addEventListener('input',event=>{
+    if(event.target?.id==='ruSurvivalReply')survival.typed=event.target.value;
+  },true);
+  document.addEventListener('toggle',event=>{
+    if(event.target?.closest?.('#ruSurvivalPractice')&&event.target.matches?.('details'))
+      survival.open=event.target.open;
+  },true);
+  window.addEventListener('russian:core-render',()=>{survivalRender();void survivalLoad()});
+  window.RussianSurvivalPracticeCandidate={status:()=>({
+    schema:'RUSSIAN_SURVIVAL_R03_R04_PRACTICE_V1',lessonId:survival.lessonId,
+    selectedItem:survival.itemId,step:survival.step,sourceReady:survival.items.length===2,
+    audioAuthority:'UNVERIFIED',illustrationAuthority:'SYMBOL_ONLY_UNVERIFIED',
+    transcriptionScoring:'TEXT_MATCH_ONLY',masteryWrites:false
+  })};
 })();
