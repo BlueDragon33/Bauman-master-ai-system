@@ -284,7 +284,16 @@
     const core=readCore();
     if((core.view||'overview')!=='overview'){document.getElementById('ruTodayResume')?.remove();return;}
     let panel=document.getElementById('ruTodayResume');
-    if(!panel){panel=document.createElement('section');panel.id='ruTodayResume';panel.className='ru-today-resume';view.prepend(panel);}
+    if(!panel){
+      panel=document.createElement('section');panel.id='ruTodayResume';panel.className='ru-today-resume';
+      // Review queue and planner are secondary to the eight primary learning shortcuts.
+      // Keep their real content and routing, but never prepend ahead of the Overview.
+      view.appendChild(panel);
+    }else{
+      const overview=view.querySelector('.overview-v128');
+      // Repair pre-existing placement without replacing the node or losing focus/state.
+      if(overview && (panel.compareDocumentPosition(overview) & Node.DOCUMENT_POSITION_FOLLOWING))view.appendChild(panel);
+    }
     const resume=state.resume,due=dueReviews();
     const resumeRoute=resume?.route||{view:'learning',learnTab:'theory'};
     const resumeText=resume?`${resume.activity}${resume.lessonId?' · '+resume.lessonId:''}`:'Bắt đầu bài học nền tảng đầu tiên';
