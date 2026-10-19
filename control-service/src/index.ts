@@ -406,7 +406,7 @@ async function controlRoute(request: Request, env: Env, url: URL) {
 }
 
 export default {
-  async fetch(request: Request, env: Env): Promise<Response> {
+  async fetch(request: Request, env: Env, _observedContext?: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
 
     if (request.method === "OPTIONS") {
