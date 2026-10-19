@@ -15,7 +15,11 @@ try{
   const errors=[];
   page.on('pageerror',e=>errors.push(String(e.message||e)));
   await page.goto(new URL('subjects/russian/index.html',base).href,{waitUntil:'domcontentloaded',timeout:30000});
-  await page.locator('#nav [data-view="learning"]').click();
+  // On 390px the sidebar is intentionally off-canvas. Use the actual visible
+  // Overview shortcut already exercised by the stable Russian UI browser gate.
+  const lessonShortcut=page.locator('.rf-module-lesson');
+  await lessonShortcut.waitFor({state:'visible',timeout:30000});
+  await lessonShortcut.click();
   await page.waitForFunction(()=>window.RussianPreA0Candidate?.status?.().loaded===true,null,{timeout:30000});
   const details=page.locator('#ruPreA0 details');
   await details.waitFor({state:'visible'});
