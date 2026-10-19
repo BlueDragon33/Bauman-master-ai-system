@@ -397,7 +397,7 @@ export default {
     if (denied) return denied;
     if (new URL(request.url).pathname === "/_local/ops/drain-preflight")
       return localD1Observer.blockedPreflight();
-    return localD1Observer.trackFetch(incomingEnv, async env => {
+    return localD1Observer.trackFetch(incomingEnv, async (env, observedContext) => {
     const url = new URL(request.url);
     if (request.method === "GET" && url.pathname === "/api/application-management/contract") {
       return Response.json(universalContractManifest(), {
@@ -410,10 +410,11 @@ export default {
     }
     if (url.pathname === "/api/control/automation") return automationEndpoint(request, env);
 
-    const response = await controlService.fetch(request, env);
+    // All delegated waitUntil calls must receive the observer-owned context.
+    const response = await controlService.fetch(request, env, observedContext ?? _ctx);
     if (request.method === "GET" && url.pathname === "/api/control/status") return augmentStatus(response, env);
     if (request.method === "POST" && url.pathname === "/api/device/register") return augmentRegistration(response, env);
     return response;
-    });
+    }, _ctx);
   },
 } satisfies ExportedHandler<AutomationEnv>;
