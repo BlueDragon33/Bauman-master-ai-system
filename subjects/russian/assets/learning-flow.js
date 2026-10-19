@@ -519,6 +519,24 @@
       {id:'LW_ITEM_R04_DOCTOR',glyph:'🏥 🩺',situation:'Khi cần hỗ trợ y tế: bạn muốn gặp bác sĩ'}
     ]
   });
+  // Four lightweight, original, network-free world sketches for the *situation*, not
+  // canonical pictures for individual Russian vocabulary senses. No textual translation.
+  const survivalScenePaths=Object.freeze({
+    LW_ITEM_R03_REG:'<rect x="20" y="42" width="72" height="62" rx="8"/><path d="M29 55h54M29 73h54M29 91h54"/><circle cx="171" cy="45" r="15"/><path d="M144 102V80q27-32 54 0v22"/><rect x="217" y="42" width="48" height="56" rx="5"/><circle cx="233" cy="57" r="6"/><path d="M226 79h31M226 88h20"/>',
+    LW_ITEM_R03_DOCS:'<path d="M18 101h250"/><rect x="49" y="24" width="72" height="84" rx="4"/><path d="M61 44h48M61 58h48M61 72h31"/><rect x="92" y="32" width="72" height="76" rx="4"/><path d="M104 50h48M104 65h48M104 80h32"/><circle cx="220" cy="47" r="17"/><path d="M213 42q0-10 10-9t5 12l-9 8v4"/><circle cx="219" cy="63" r="2"/>',
+    LW_ITEM_R04_METRO:'<path d="M20 106h245M65 106l16-49h112l16 49M90 106l7-28h78l7 28"/><circle cx="137" cy="32" r="23"/><path d="M126 43V22l11 14 11-14v21"/><path d="M94 95h87M100 84h75M112 57v20M164 57v20"/>',
+    LW_ITEM_R04_DOCTOR:'<rect x="34" y="43" width="82" height="66" rx="7"/><path d="M64 23h22v20M60 76h30M75 61v30"/><circle cx="199" cy="39" r="14"/><path d="M173 109V86q0-28 26-28t26 28v23M191 68v18q-13 2-13 14t14 11"/><circle cx="209" cy="102" r="5"/>'
+  });
+  function survivalIllustration(item){
+    const paths=survivalScenePaths[item?.id];
+    if(!paths)return '';
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 285 128" width="285" height="128" '+
+      'style="display:block;max-width:100%;height:auto;margin:8px 0" role="img" '+
+      'aria-label="Minh họa tình huống, chưa được thẩm định RU03">'+
+      '<rect x="2" y="2" width="281" height="124" rx="12" fill="none" stroke="currentColor" opacity=".17"/>'+
+      '<g stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" fill="none">'+
+      paths+'</g></svg>';
+  }
   const survivalSteps=['Nghe trước','Nhại và nghe lại','Nhận diện tình huống','Nhận diện chữ in','Phản xạ','Tự đối chiếu'];
   const survival={lessonId:'',items:[],rows:null,loading:false,error:'',itemId:'',step:0,
     open:true,revealed:false,heard:false,recorded:false,visual:false,typed:'',matched:false,
@@ -571,7 +589,7 @@
     const s=survival,item=s.items.find(x=>x.id===s.itemId);
     if(!item)return '<p role="status">'+preA0Esc(s.error||'Đang lấy các câu mẫu R03–R04 từ dữ liệu học offline…')+'</p>';
     const phrase='<strong lang="ru">'+preA0Esc(item.text)+'</strong>';
-    if(s.step===0)return '<p>Nghe trước khi mở chữ; giọng TTS máy <b>UNVERIFIED</b>, không phải bản ghi đã duyệt RU03.</p>'+
+    if(s.step===0)return '<p>Nghe trước khi mở chữ; giọng TTS máy <b>UNVERIFIED</b>, không phải bản ghi đã duyệt RU03.</p>'+survivalIllustration(item)+
       (preA0Voice()?survivalButton('listen','▶ Nghe thử (ru-RU)'):
         '<p role="status">BLOCKED_AUDIO: thiết bị không có giọng ru-RU; không dùng giọng khác thay thế.</p>')+
       ' '+survivalButton('reveal','Mở câu gốc sau lượt nghe')+
@@ -584,7 +602,7 @@
       '<p role="status">'+preA0Esc(s.note)+'</p>';
     if(s.step===2)return '<p>Nhìn ngữ cảnh '+preA0Esc(item.glyph)+
       ' rồi chọn câu ứng với tình huống; biểu tượng chỉ là gợi ý, chưa phải tranh đã duyệt.</p>'+
-      '<p>'+preA0Esc(item.situation)+'</p>'+
+      '<p>'+preA0Esc(item.situation)+'</p>'+survivalIllustration(item)+
       s.items.map(candidate=>survivalButton('visual',preA0Esc(candidate.text),
         'data-id="'+preA0Esc(candidate.id)+'" lang="ru"')).join(' ')+
       '<p role="status">'+preA0Esc(s.note)+'</p>';
