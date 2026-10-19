@@ -42,3 +42,12 @@
 - Kiểm thử Node có sẵn `engine/tests/test-re62-audio-candidate-preflight.mjs`; Windows/local Chromium không được giả định PASS trên SHA mới. Bài kiểm thử kỹ thuật âm không đánh giá phát âm, trọng âm hay ngữ điệu.
 
 Đường găng tiếp theo là lấy được **bytes bản ghi gốc** qua một môi trường có kết nối hợp lệ, qua cổng RE62 để có báo cáo SHA-256/codec thật, rồi chuyên gia kiểm định độc lập quyền sử dụng + chất lượng âm. Người học không phải người xác thực tiếng Nga.
+
+
+## RE62 — công cụ thu nhận thử nghiệm chỉ trong QA (không phải runtime)
+
+- `engine/review/re62-stage-original-audio.mjs` có thể tải đúng **một** URL gốc đã khóa host/path từ Wikimedia vào thư mục tạm tự sinh, chỉ khi chạy trong môi trường kỹ thuật có kết nối. Không cho nhập URL tùy ý hoặc tự động ghi vào app.
+- Trước khi tạo tệp QA, bắt buộc kiểm size, SHA-1 nguồn từ metadata Commons và header `OggS`. `re62-audio-candidate-preflight.mjs` sau đó tính **SHA-256 từ bytes thật**, kiểm Ogg/Vorbis, số kênh/tần số mẫu/thời lượng qua `ffprobe`. **Hash SHA-256 chưa được tính trong phiên này vì không lấy được bytes.**
+- Bộ kiểm thử `test-re62-stage-original-audio.mjs` bao phủ fake bytes, sai HTTP, sai MIME, quá dung lượng và host giả; `test-re62-audio-candidate-preflight.mjs` kiểm quyền giả, SHA giả, dùng clip một từ thay câu, thiếu file.
+- Công cụ được giới hạn `QA_ONLY`; không dùng GitHub-hosted Actions, không tạo background job, không phát lên ứng dụng. Có tệp hợp lệ mới chỉ đạt **technical inspection**, và vẫn `rightsReview=PENDING`, `HUMAN_RU03=PENDING`, `canonicalPublicationReady=false`.
+- Bằng chứng phiên hiện tại: chỉ có **kiểm tra cú pháp V8** của các module/test, và mô phỏng V8 fail-closed của RE62. **Node suite trên repo và audio gốc ffprobe: NOT_TESTED**. Giữ nguyên các PASS Chromium trước đó; không mạo nhận PASS cho nhánh mới.
