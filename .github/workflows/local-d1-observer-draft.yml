@@ -7,6 +7,7 @@ on:
       - 'control-service/src/index.ts'
       - 'control-service/src/automation-contract.ts'
       - 'control-service/tests/local-d1-observer.test.mjs'
+      - 'control-service/tests/local-d1-waituntil-pilot.test.mjs'
       - 'control-service/scripts/local-d1-write-readback-smoke.mjs'
       - 'control-service/scripts/real-worker-wrangler-gate-smoke.mjs'
       - '.github/workflows/local-d1-observer-draft.yml'
