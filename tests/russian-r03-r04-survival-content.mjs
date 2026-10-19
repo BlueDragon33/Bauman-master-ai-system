@@ -75,6 +75,9 @@ for(const scenario of contexts){
     results.push({scenario,result:'FAIL_CLOSED_ON_SOURCE_ERROR'});continue;
   }
   assert.equal(status().sourceReady,true);
+  assert.match(panel.innerHTML,/<svg[^>]*role="img"/);
+  assert.ok(!panel.innerHTML.includes('http://')&&!panel.innerHTML.includes('https://'),
+    'Survival picture must be embedded and usable fully offline');
   if(scenario.voice===false){
     assert.match(panel.innerHTML,/BLOCKED_AUDIO/);
     assert.equal(tts,0);
@@ -82,6 +85,9 @@ for(const scenario of contexts){
   for(const id of ids[scenario.lesson]){
     await click('scenario',id);
     assert.equal(status().selectedItem,id);
+    assert.match(panel.innerHTML,/<svg[^>]*role="img"/);
+    assert.ok(!panel.innerHTML.includes(rows.find(x=>x.lessonId===scenario.lesson).items.find(x=>x.id===id).printSample),
+      'Listen-first must not expose Russian script before reveal');
     const item=rows.find(row=>row.lessonId===scenario.lesson).items.find(it=>it.id===id);
     await click('listen');await click('reveal');
     assert.ok(panel.innerHTML.includes(esc(item.printSample)),'Script should reveal only the real source sentence');
