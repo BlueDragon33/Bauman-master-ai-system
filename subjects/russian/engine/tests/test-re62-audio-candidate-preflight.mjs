@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import {mkdtempSync,writeFileSync,rmSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
-import {loadRe62CandidateManifest,validateRe62Manifest,inspectRe62Candidate}
+import {loadRe62CandidateManifest,validateRe62Manifest,inspectRe62Candidate,buildRe62AudioReviewAddendum}
   from '../review/re62-audio-candidate-preflight.mjs';
 import {buildContentFirstRu03Handoff} from '../review/re61-r02-r04-source-review-handoff.mjs';
 
@@ -18,6 +18,21 @@ assert.equal(m.candidates[0].declaredBytes,11875);
 assert.equal(m.candidates[0].declaredSha1,'6dc217b5eda1192da86824f449782a932d4e7c55');
 assert.equal(m.candidates[0].actualSha256,null);
 assert.equal(m.candidates[0].testOnly,false);
+const linked=buildRe62AudioReviewAddendum({manifest:m,handoff});
+assert.equal(linked.schema,'RUSSIAN_CONTENT_FIRST_RE62_RU03_AUDIO_ADDENDUM_V1');
+assert.equal(linked.reviewItemCount,6);
+assert.equal(linked.discoveredPartialClips,1);
+assert.equal(linked.fullSentenceAudioAvailable,0);
+assert.equal(linked.audioHashedFromBytes,0);
+assert.equal(linked.authorizedReviewerCount,0);
+assert.equal(linked.canonicalPublicationReady,false);
+const intro=linked.reviewItems.find(x=>x.sourceItemId==='LW_ITEM_R02_INTRO');
+assert.equal(intro.partialReferences.length,1);
+assert.equal(intro.partialReferences[0].clipText,'Здравствуйте');
+assert.equal(intro.partialReferences[0].eligibleAsFullSourceAudio,false);
+assert.ok(linked.reviewItems.filter(x=>x.sourceItemId!=='LW_ITEM_R02_INTRO')
+  .every(x=>x.partialReferences.length===0));
+assert.ok(linked.reviewItems.every(x=>x.audioFingerprint===null&&x.canonicalPublicationReady===false));
 const withoutBytes=inspectRe62Candidate({manifest:m,handoff});
 assert.equal(withoutBytes.status,'BLOCKED_AUDIO_BYTES_NOT_AVAILABLE');
 assert.equal(withoutBytes.actualSha256,null);
