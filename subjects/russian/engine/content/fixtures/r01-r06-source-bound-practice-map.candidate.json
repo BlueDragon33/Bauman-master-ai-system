@@ -1,0 +1,493 @@
+{
+  "schemaVersion": "RUSSIAN_R01_R06_SOURCE_BOUND_PRACTICE_MAP_V1",
+  "revision": "2026-10-19-content-first-01",
+  "status": "CANDIDATE_NONCANONICAL_UNVERIFIED",
+  "owner": "derived view of existing lesson source items, not a new linguistic owner",
+  "sourceCommit": "15dfcb352269ff4ba151e6c5015cf2624a8a85a7",
+  "canonicalPolicy": "ONE_FACT_ONE_OWNER_MANY_USES",
+  "audioPolicy": "No preapproved RU03 audio assets; local TTS may only be labelled unverified demonstration",
+  "visualPolicy": "Glyphs are simple scenario cues, not real licensed vocabulary imagery",
+  "handwritingPolicy": "Printed Cyrillic only until trustworthy cursive glyph source is reviewed",
+  "exposurePolicy": "No clicks, TTS plays, transcripts, attempts or text similarity may award mastery or official assessment",
+  "translationPolicy": {
+    "defaultVisible": false,
+    "allowed": "learner_requested_assistance_only"
+  },
+  "scope": {
+    "levels": [
+      "A0",
+      "A1"
+    ],
+    "lessons": 6,
+    "sourceItems": 12,
+    "totalDrills": 13
+  },
+  "lessonPlans": [
+    {
+      "lessonId": "R01",
+      "sourceLessonId": "LW_R01",
+      "sourceOwner": "subjects/russian/data/listen-write-lessons.json",
+      "sourceLevel": "A0",
+      "sourceBand": "A0",
+      "lessonFocus": "letter recognition and hard–soft contrast",
+      "scaffold": "phoneme and script; stress needs verified audio",
+      "scenarioCue": {
+        "glyphs": "🔤 📖",
+        "role": "script symbols only, not object image",
+        "authority": "SYMBOL_PREVIEW_ONLY",
+        "licensedIllustration": null
+      },
+      "microPractices": [
+        {
+          "practiceId": "RUSSIAN_CF_R01_01",
+          "sourceItemId": "LW_ITEM_R01_MOLOKO",
+          "sourceDrillKinds": [
+            "word_dictation",
+            "stress_mark"
+          ],
+          "stages": [
+            "listen_without_transcript",
+            "imitate_without_scoring",
+            "ground_in_scene",
+            "recognize_print",
+            "optional_trace_or_write",
+            "respond_or_dictate",
+            "self_review"
+          ],
+          "promptsFromSourceOnly": true,
+          "sourceAudioEqualsWrittenAnswer": true,
+          "textMatchEligibility": "PROVISIONAL_TEXT_ONLY",
+          "screenshotImageAuthority": "UNVERIFIED_SYMBOL_ONLY",
+          "sampleAudioAuthority": "BLOCKED_NO_RU03_AUDIO_HASH",
+          "handwritingAuthority": "BLOCKED_NO_LICENSED_CYRILLIC_GLYPH",
+          "semanticAuthority": "UNVERIFIED",
+          "reviewRequired": [
+            "RUSSIAN_NATIVE_REGISTER",
+            "PHONETICS_STRESS",
+            "ANSWER_KEY",
+            "AUDIO_SHA256",
+            "MEDIA_LICENSE"
+          ]
+        },
+        {
+          "practiceId": "RUSSIAN_CF_R01_02",
+          "sourceItemId": "LW_ITEM_R01_SOFT_PAIR",
+          "sourceDrillKinds": [
+            "sound_spelling_discrimination"
+          ],
+          "stages": [
+            "listen_without_transcript",
+            "imitate_without_scoring",
+            "ground_in_scene",
+            "recognize_print",
+            "optional_trace_or_write",
+            "respond_or_dictate",
+            "self_review"
+          ],
+          "promptsFromSourceOnly": true,
+          "sourceAudioEqualsWrittenAnswer": true,
+          "textMatchEligibility": "PROVISIONAL_TEXT_ONLY",
+          "screenshotImageAuthority": "UNVERIFIED_SYMBOL_ONLY",
+          "sampleAudioAuthority": "BLOCKED_NO_RU03_AUDIO_HASH",
+          "handwritingAuthority": "BLOCKED_NO_LICENSED_CYRILLIC_GLYPH",
+          "semanticAuthority": "UNVERIFIED",
+          "reviewRequired": [
+            "RUSSIAN_NATIVE_REGISTER",
+            "PHONETICS_STRESS",
+            "ANSWER_KEY",
+            "AUDIO_SHA256",
+            "MEDIA_LICENSE"
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "R02",
+      "sourceLessonId": "LW_R02",
+      "sourceOwner": "subjects/russian/data/listen-write-lessons.json",
+      "sourceLevel": "A0",
+      "sourceBand": "A0",
+      "lessonFocus": "greet teacher and introduce self",
+      "scaffold": "social phrase response",
+      "scenarioCue": {
+        "glyphs": "👋 🏫",
+        "role": "greeting at university",
+        "authority": "SYMBOL_PREVIEW_ONLY",
+        "licensedIllustration": null
+      },
+      "microPractices": [
+        {
+          "practiceId": "RUSSIAN_CF_R02_01",
+          "sourceItemId": "LW_ITEM_R02_NAME",
+          "sourceDrillKinds": [
+            "hear_write"
+          ],
+          "stages": [
+            "listen_without_transcript",
+            "imitate_without_scoring",
+            "ground_in_scene",
+            "recognize_print",
+            "optional_trace_or_write",
+            "respond_or_dictate",
+            "self_review"
+          ],
+          "promptsFromSourceOnly": true,
+          "sourceAudioEqualsWrittenAnswer": true,
+          "textMatchEligibility": "PROVISIONAL_TEXT_ONLY",
+          "screenshotImageAuthority": "UNVERIFIED_SYMBOL_ONLY",
+          "sampleAudioAuthority": "BLOCKED_NO_RU03_AUDIO_HASH",
+          "handwritingAuthority": "BLOCKED_NO_LICENSED_CYRILLIC_GLYPH",
+          "semanticAuthority": "UNVERIFIED",
+          "reviewRequired": [
+            "RUSSIAN_NATIVE_REGISTER",
+            "PHONETICS_STRESS",
+            "ANSWER_KEY",
+            "AUDIO_SHA256",
+            "MEDIA_LICENSE"
+          ]
+        },
+        {
+          "practiceId": "RUSSIAN_CF_R02_02",
+          "sourceItemId": "LW_ITEM_R02_INTRO",
+          "sourceDrillKinds": [
+            "word_dictation"
+          ],
+          "stages": [
+            "listen_without_transcript",
+            "imitate_without_scoring",
+            "ground_in_scene",
+            "recognize_print",
+            "optional_trace_or_write",
+            "respond_or_dictate",
+            "self_review"
+          ],
+          "promptsFromSourceOnly": true,
+          "sourceAudioEqualsWrittenAnswer": true,
+          "textMatchEligibility": "PROVISIONAL_TEXT_ONLY",
+          "screenshotImageAuthority": "UNVERIFIED_SYMBOL_ONLY",
+          "sampleAudioAuthority": "BLOCKED_NO_RU03_AUDIO_HASH",
+          "handwritingAuthority": "BLOCKED_NO_LICENSED_CYRILLIC_GLYPH",
+          "semanticAuthority": "UNVERIFIED",
+          "reviewRequired": [
+            "RUSSIAN_NATIVE_REGISTER",
+            "PHONETICS_STRESS",
+            "ANSWER_KEY",
+            "AUDIO_SHA256",
+            "MEDIA_LICENSE"
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "R03",
+      "sourceLessonId": "LW_R03",
+      "sourceOwner": "subjects/russian/data/listen-write-lessons.json",
+      "sourceLevel": "A0",
+      "sourceBand": "A0",
+      "lessonFocus": "dormitory registration and asking for documents",
+      "scaffold": "dorm and registration assistance",
+      "scenarioCue": {
+        "glyphs": "🏠 🪪",
+        "role": "dorm/documents",
+        "authority": "SYMBOL_PREVIEW_ONLY",
+        "licensedIllustration": null
+      },
+      "microPractices": [
+        {
+          "practiceId": "RUSSIAN_CF_R03_01",
+          "sourceItemId": "LW_ITEM_R03_REG",
+          "sourceDrillKinds": [
+            "hear_write"
+          ],
+          "stages": [
+            "listen_without_transcript",
+            "imitate_without_scoring",
+            "ground_in_scene",
+            "recognize_print",
+            "optional_trace_or_write",
+            "respond_or_dictate",
+            "self_review"
+          ],
+          "promptsFromSourceOnly": true,
+          "sourceAudioEqualsWrittenAnswer": true,
+          "textMatchEligibility": "PROVISIONAL_TEXT_ONLY",
+          "screenshotImageAuthority": "UNVERIFIED_SYMBOL_ONLY",
+          "sampleAudioAuthority": "BLOCKED_NO_RU03_AUDIO_HASH",
+          "handwritingAuthority": "BLOCKED_NO_LICENSED_CYRILLIC_GLYPH",
+          "semanticAuthority": "UNVERIFIED",
+          "reviewRequired": [
+            "RUSSIAN_NATIVE_REGISTER",
+            "PHONETICS_STRESS",
+            "ANSWER_KEY",
+            "AUDIO_SHA256",
+            "MEDIA_LICENSE"
+          ]
+        },
+        {
+          "practiceId": "RUSSIAN_CF_R03_02",
+          "sourceItemId": "LW_ITEM_R03_DOCS",
+          "sourceDrillKinds": [
+            "word_dictation"
+          ],
+          "stages": [
+            "listen_without_transcript",
+            "imitate_without_scoring",
+            "ground_in_scene",
+            "recognize_print",
+            "optional_trace_or_write",
+            "respond_or_dictate",
+            "self_review"
+          ],
+          "promptsFromSourceOnly": true,
+          "sourceAudioEqualsWrittenAnswer": true,
+          "textMatchEligibility": "PROVISIONAL_TEXT_ONLY",
+          "screenshotImageAuthority": "UNVERIFIED_SYMBOL_ONLY",
+          "sampleAudioAuthority": "BLOCKED_NO_RU03_AUDIO_HASH",
+          "handwritingAuthority": "BLOCKED_NO_LICENSED_CYRILLIC_GLYPH",
+          "semanticAuthority": "UNVERIFIED",
+          "reviewRequired": [
+            "RUSSIAN_NATIVE_REGISTER",
+            "PHONETICS_STRESS",
+            "ANSWER_KEY",
+            "AUDIO_SHA256",
+            "MEDIA_LICENSE"
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "R04",
+      "sourceLessonId": "LW_R04",
+      "sourceOwner": "subjects/russian/data/listen-write-lessons.json",
+      "sourceLevel": "A1",
+      "sourceBand": "A1",
+      "lessonFocus": "metro directions and obtaining medical help",
+      "scaffold": "survival transfer",
+      "scenarioCue": {
+        "glyphs": "🚇 🏥",
+        "role": "metro / doctor",
+        "authority": "SYMBOL_PREVIEW_ONLY",
+        "licensedIllustration": null
+      },
+      "microPractices": [
+        {
+          "practiceId": "RUSSIAN_CF_R04_01",
+          "sourceItemId": "LW_ITEM_R04_METRO",
+          "sourceDrillKinds": [
+            "hear_write"
+          ],
+          "stages": [
+            "listen_without_transcript",
+            "imitate_without_scoring",
+            "ground_in_scene",
+            "recognize_print",
+            "optional_trace_or_write",
+            "respond_or_dictate",
+            "self_review"
+          ],
+          "promptsFromSourceOnly": true,
+          "sourceAudioEqualsWrittenAnswer": true,
+          "textMatchEligibility": "PROVISIONAL_TEXT_ONLY",
+          "screenshotImageAuthority": "UNVERIFIED_SYMBOL_ONLY",
+          "sampleAudioAuthority": "BLOCKED_NO_RU03_AUDIO_HASH",
+          "handwritingAuthority": "BLOCKED_NO_LICENSED_CYRILLIC_GLYPH",
+          "semanticAuthority": "UNVERIFIED",
+          "reviewRequired": [
+            "RUSSIAN_NATIVE_REGISTER",
+            "PHONETICS_STRESS",
+            "ANSWER_KEY",
+            "AUDIO_SHA256",
+            "MEDIA_LICENSE"
+          ]
+        },
+        {
+          "practiceId": "RUSSIAN_CF_R04_02",
+          "sourceItemId": "LW_ITEM_R04_DOCTOR",
+          "sourceDrillKinds": [
+            "word_dictation"
+          ],
+          "stages": [
+            "listen_without_transcript",
+            "imitate_without_scoring",
+            "ground_in_scene",
+            "recognize_print",
+            "optional_trace_or_write",
+            "respond_or_dictate",
+            "self_review"
+          ],
+          "promptsFromSourceOnly": true,
+          "sourceAudioEqualsWrittenAnswer": true,
+          "textMatchEligibility": "PROVISIONAL_TEXT_ONLY",
+          "screenshotImageAuthority": "UNVERIFIED_SYMBOL_ONLY",
+          "sampleAudioAuthority": "BLOCKED_NO_RU03_AUDIO_HASH",
+          "handwritingAuthority": "BLOCKED_NO_LICENSED_CYRILLIC_GLYPH",
+          "semanticAuthority": "UNVERIFIED",
+          "reviewRequired": [
+            "RUSSIAN_NATIVE_REGISTER",
+            "PHONETICS_STRESS",
+            "ANSWER_KEY",
+            "AUDIO_SHA256",
+            "MEDIA_LICENSE"
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "R05",
+      "sourceLessonId": "LW_R05",
+      "sourceOwner": "subjects/russian/data/listen-write-lessons.json",
+      "sourceLevel": "A1",
+      "sourceBand": "A1",
+      "lessonFocus": "understand maths and algorithm instructions",
+      "scaffold": "academic prerequisites, not Pre-A0",
+      "scenarioCue": {
+        "glyphs": "🧮 💻",
+        "role": "maths / computing",
+        "authority": "SYMBOL_PREVIEW_ONLY",
+        "licensedIllustration": null
+      },
+      "microPractices": [
+        {
+          "practiceId": "RUSSIAN_CF_R05_01",
+          "sourceItemId": "LW_ITEM_R05_VECTOR",
+          "sourceDrillKinds": [
+            "word_dictation"
+          ],
+          "stages": [
+            "listen_without_transcript",
+            "imitate_without_scoring",
+            "ground_in_scene",
+            "recognize_print",
+            "optional_trace_or_write",
+            "respond_or_dictate",
+            "self_review"
+          ],
+          "promptsFromSourceOnly": true,
+          "sourceAudioEqualsWrittenAnswer": false,
+          "textMatchEligibility": "BLOCKED_AUDIO_TEXT_DIFFERS_FROM_WRITTEN_ANSWER",
+          "screenshotImageAuthority": "UNVERIFIED_SYMBOL_ONLY",
+          "sampleAudioAuthority": "BLOCKED_NO_RU03_AUDIO_HASH",
+          "handwritingAuthority": "BLOCKED_NO_LICENSED_CYRILLIC_GLYPH",
+          "semanticAuthority": "UNVERIFIED",
+          "reviewRequired": [
+            "RUSSIAN_NATIVE_REGISTER",
+            "PHONETICS_STRESS",
+            "ANSWER_KEY",
+            "AUDIO_SHA256",
+            "MEDIA_LICENSE"
+          ]
+        },
+        {
+          "practiceId": "RUSSIAN_CF_R05_02",
+          "sourceItemId": "LW_ITEM_R05_ALGO",
+          "sourceDrillKinds": [
+            "hear_write"
+          ],
+          "stages": [
+            "listen_without_transcript",
+            "imitate_without_scoring",
+            "ground_in_scene",
+            "recognize_print",
+            "optional_trace_or_write",
+            "respond_or_dictate",
+            "self_review"
+          ],
+          "promptsFromSourceOnly": true,
+          "sourceAudioEqualsWrittenAnswer": true,
+          "textMatchEligibility": "PROVISIONAL_TEXT_ONLY",
+          "screenshotImageAuthority": "UNVERIFIED_SYMBOL_ONLY",
+          "sampleAudioAuthority": "BLOCKED_NO_RU03_AUDIO_HASH",
+          "handwritingAuthority": "BLOCKED_NO_LICENSED_CYRILLIC_GLYPH",
+          "semanticAuthority": "UNVERIFIED",
+          "reviewRequired": [
+            "RUSSIAN_NATIVE_REGISTER",
+            "PHONETICS_STRESS",
+            "ANSWER_KEY",
+            "AUDIO_SHA256",
+            "MEDIA_LICENSE"
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "R06",
+      "sourceLessonId": "LW_R06",
+      "sourceOwner": "subjects/russian/data/listen-write-lessons.json",
+      "sourceLevel": "A1",
+      "sourceBand": "A1",
+      "lessonFocus": "understand lecture instructions and take notes",
+      "scaffold": "academic prerequisites, not Pre-A0",
+      "scenarioCue": {
+        "glyphs": "👩‍🏫 📝",
+        "role": "lecturer / notes",
+        "authority": "SYMBOL_PREVIEW_ONLY",
+        "licensedIllustration": null
+      },
+      "microPractices": [
+        {
+          "practiceId": "RUSSIAN_CF_R06_01",
+          "sourceItemId": "LW_ITEM_R06_DEFINITION",
+          "sourceDrillKinds": [
+            "hear_write"
+          ],
+          "stages": [
+            "listen_without_transcript",
+            "imitate_without_scoring",
+            "ground_in_scene",
+            "recognize_print",
+            "optional_trace_or_write",
+            "respond_or_dictate",
+            "self_review"
+          ],
+          "promptsFromSourceOnly": true,
+          "sourceAudioEqualsWrittenAnswer": true,
+          "textMatchEligibility": "PROVISIONAL_TEXT_ONLY",
+          "screenshotImageAuthority": "UNVERIFIED_SYMBOL_ONLY",
+          "sampleAudioAuthority": "BLOCKED_NO_RU03_AUDIO_HASH",
+          "handwritingAuthority": "BLOCKED_NO_LICENSED_CYRILLIC_GLYPH",
+          "semanticAuthority": "UNVERIFIED",
+          "reviewRequired": [
+            "RUSSIAN_NATIVE_REGISTER",
+            "PHONETICS_STRESS",
+            "ANSWER_KEY",
+            "AUDIO_SHA256",
+            "MEDIA_LICENSE"
+          ]
+        },
+        {
+          "practiceId": "RUSSIAN_CF_R06_02",
+          "sourceItemId": "LW_ITEM_R06_RESULT",
+          "sourceDrillKinds": [
+            "word_dictation"
+          ],
+          "stages": [
+            "listen_without_transcript",
+            "imitate_without_scoring",
+            "ground_in_scene",
+            "recognize_print",
+            "optional_trace_or_write",
+            "respond_or_dictate",
+            "self_review"
+          ],
+          "promptsFromSourceOnly": true,
+          "sourceAudioEqualsWrittenAnswer": true,
+          "textMatchEligibility": "PROVISIONAL_TEXT_ONLY",
+          "screenshotImageAuthority": "UNVERIFIED_SYMBOL_ONLY",
+          "sampleAudioAuthority": "BLOCKED_NO_RU03_AUDIO_HASH",
+          "handwritingAuthority": "BLOCKED_NO_LICENSED_CYRILLIC_GLYPH",
+          "semanticAuthority": "UNVERIFIED",
+          "reviewRequired": [
+            "RUSSIAN_NATIVE_REGISTER",
+            "PHONETICS_STRESS",
+            "ANSWER_KEY",
+            "AUDIO_SHA256",
+            "MEDIA_LICENSE"
+          ]
+        }
+      ]
+    }
+  ],
+  "canonicalMutation": false,
+  "published": false,
+  "ru03Reviewer": null
+}
