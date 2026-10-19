@@ -61,8 +61,25 @@ try {
   const context = await browser.newContext({ viewport: { width: 1440, height: 900 } });
   const page = await context.newPage();
   const browserErrors = [];
+  const failedHttpResponses = [];
+  evidence.failedHttpResponses = failedHttpResponses;
   page.on('pageerror', error => browserErrors.push(String(error?.stack || error)));
-  page.on('console', entry => { if (entry.type() === 'error') browserErrors.push(entry.text()); });
+  page.on('console', entry => {
+    if (entry.type() === 'error') {
+      browserErrors.push(entry.text() + ' @ ' + JSON.stringify(entry.location()));
+    }
+  });
+  page.on('response', response => {
+    if (response.status() < 400) return;
+    const request = response.request();
+    const url = new URL(response.url());
+    failedHttpResponses.push({
+      status: response.status(),
+      resourceType: request.resourceType(),
+      method: request.method(),
+      path: url.pathname
+    });
+  });
   await page.goto(new URL('subjects/russian/index.html', BASE).href, { waitUntil: 'domcontentloaded', timeout: 30000 });
   await page.locator('.rf-dashboard .rf-module-card').first().waitFor({ state: 'visible', timeout: 30000 });
 
@@ -268,7 +285,7 @@ try {
     assert.ok(value.dock <= value.viewport + 1, 'Mobile dock must fit viewport');
     return value;
   });
-  assert.deepEqual(browserErrors, [], 'No browser JavaScript/console errors permitted');
+  assert.deepEqual(browserErrors, [], 'No browser JavaScript/console errors permitted; HTTP failures=' + JSON.stringify(failedHttpResponses));
   evidence.status = 'PASS';
   evidence.viewport = { desktop: '1440×900', mobile: '390×844' };
   await page.screenshot({ path: path.join(OUT, 'russian-ux-mobile.png'), fullPage: true });
