@@ -312,7 +312,8 @@
 
   // Pre-A0 first action: reuse R02/RHW canonical source paths; no mastery or RU03 writes.
   const preA0={step:0,open:true,source:null,pending:false,error:'',heard:false,recorded:false,
-    seen:false,letter:false,typed:'',matched:false,status:''};
+    seen:false,letter:false,typed:'',matched:false,status:'',alphabet:null,alphabetOpen:false,
+    alphabetIndex:0,alphabetResponses:{},alphabetNote:'',alphabetHeard:false};
   const preA0Steps=['Nghe','Nhại','Nhận diện hình','Nhận mặt chữ','Phản xạ','Tự đối chiếu'];
   const preA0Esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const preA0Enabled=()=>{const c=readCore();return c.stage==='vn'&&c.view==='learning'&&['R01','R02'].includes(activeLessonId())};
@@ -331,6 +332,18 @@
       if(!hello||!intro.startsWith(hello+'.')||!name||!a?.drills?.some(d=>d.kind==='hear_select'))
         throw Error('Nguồn R02/RHW_AZ_01 sai hợp đồng; không được tự sinh đáp án');
       preA0.source={hello:hello+'.',name,letter:a.letter,choices:a.drills.find(d=>d.kind==='hear_select').choices};
+      // Reading the same canonical letter dataset: no new letters, answers, or audio authority.
+      // Fail closed if a letter or choice is malformed; retain the independent R02 practice.
+      const validAlphabet=Array.isArray(letters)&&letters.length===33&&
+        new Set(letters.map(row=>row.letter)).size===33&&letters.every(row=>{
+          const drill=row.drills?.find(d=>d.kind==='hear_select');
+          return /^RHW_AZ_\d{2}$/.test(row.id||'')&&
+            ['vowel','consonant','sign'].includes(row.soundKind)&&
+            !!row.letterNameText&&!!drill?.audioText&&
+            Array.isArray(drill?.choices)&&drill.choices.length>=3&&
+            drill.choices.includes(row.letter)&&drill.answer===row.letter;
+        });
+      preA0.alphabet=validAlphabet?letters:null;
       preA0.error='';
     }catch(e){preA0.error=String(e.message||e)}
     finally{preA0.pending=false;preA0Render()}
@@ -371,6 +384,30 @@
       '<p>Trọng âm, giọng mẫu, chữ viết tay chuẩn: <b>UNVERIFIED — HUMAN_RU03_REQUIRED</b>.</p>'+
       preA0Button('restart','Luyện lại');
   }
+  function preA0AlphabetBody(){
+    const a=preA0,row=a.alphabet?.[a.alphabetIndex];
+    if(!row)return '<p role="alert">BLOCKED_LETTER_DATA: bộ chữ không đủ 33 mục hợp lệ.</p>';
+    const selected=a.alphabetResponses[row.id],drill=row.drills.find(d=>d.kind==='hear_select');
+    const type=row.soundKind==='sign'?'DẤU — không có âm riêng':row.soundKind==='vowel'?'NGUYÊN ÂM':'PHỤ ÂM';
+    return '<section aria-label="Luyện 33 chữ Cyrillic" class="ru-alphabet-candidate">'+
+      '<h3>Chữ '+(a.alphabetIndex+1)+'/33 · '+type+'</h3>'+
+      '<p>Nghe tên chữ trước khi chọn mặt chữ. TTS máy <b>UNVERIFIED</b>, không phải âm chuẩn RU03.</p>'+
+      (preA0Voice()?'<button type="button" class="btn" data-alpha="hear">▶ Nghe tên chữ (TTS)</button>':
+        '<p role="status">BLOCKED_AUDIO: thiết bị chưa có giọng ru-RU. Vẫn có thể luyện nhận mặt chữ.</p>')+
+      '<p role="group" aria-label="Chọn chữ Cyrillic">'+drill.choices.map(c=>
+        '<button type="button" class="btn" lang="ru" data-alpha="choose" data-choice="'+
+        preA0Esc(c)+'">'+preA0Esc(c)+'</button>').join(' ')+'</p>'+
+      '<p role="status">'+preA0Esc(a.alphabetNote|| (selected?'Đã chọn trong phiên, chưa xác nhận phát âm.':''))+'</p>'+
+      (selected?'<p>Chữ nguồn: <strong lang="ru">'+preA0Esc(row.letter)+
+        '</strong> · Tên chữ: <span lang="ru">'+preA0Esc(row.letterNameText)+
+        '</span> · '+(selected.correct?'Nhận mặt chữ đúng':'Thử lại ở lượt sau')+'</p>':'')+
+      '<button type="button" class="btn" data-route=\'{"view":"writing","mode":"handwriting"}\'>Luyện nét chữ trong module viết hiện có →</button>'+
+      '<p>'+ (a.alphabetIndex>0?'<button type="button" class="btn" data-alpha="prev">← Chữ trước</button> ':'')+
+      (a.alphabetIndex<32?'<button type="button" class="btn" data-alpha="next">Chữ tiếp →</button>':
+        '<button type="button" class="btn" data-alpha="restart">Ôn lại từ А</button>')+'</p>'+
+      '<p><small>Đã chọn '+Object.keys(a.alphabetResponses).length+
+      '/33 chữ trong phiên; không ghi điểm, không nâng mastery. Chữ viết tay chuẩn vẫn BLOCKED.</small></p></section>';
+  }
   function preA0Render(){
     const host=document.getElementById('view');
     if(!host||!preA0Enabled()){document.getElementById('ruPreA0')?.remove();return}
@@ -379,10 +416,50 @@
       panel.setAttribute('aria-label','Bài thực hành khởi động Pre-A0');host.prepend(panel)}
     panel.innerHTML='<details '+(preA0.open?'open':'')+'><summary><strong>PRE-A0 · Nghe–nói trước</strong> · '+(preA0.step+1)+'/6 · nguồn R02 (chưa duyệt RU03)</summary>'+
       '<p>Đây là hoạt động thực hành bổ trợ, không mở khóa hay cấp điểm.</p>'+
+      (activeLessonId()==='R01'?'<p><button type="button" class="btn" data-alpha="toggle">'+
+        (preA0.alphabetOpen?'← Trở lại nghe–nói':'🔤 Luyện 33 chữ Cyrillic')+'</button></p>':'')+
+      (activeLessonId()==='R01'&&preA0.alphabetOpen?preA0AlphabetBody():
       '<h3>'+preA0Steps[preA0.step]+'</h3>'+preA0Body()+
       '<p>'+(preA0.step?preA0Button('prev','← Trước')+' ':'')+
-      (preA0.step<5?preA0Button('next','Tiếp →'):'')+'</p></details>';
+      (preA0.step<5?preA0Button('next','Tiếp →'):'')+'</p>')+'</details>';
   }
+  document.addEventListener('click',event=>{
+    const btn=event.target?.closest?.('#ruPreA0 [data-alpha]');
+    if(!btn||activeLessonId()!=='R01')return;
+    event.preventDefault();event.stopPropagation();
+    const action=btn.dataset.alpha;
+    if(action==='toggle'){
+      preA0.alphabetOpen=!preA0.alphabetOpen;
+      preA0.alphabetNote='';
+    }else if(preA0.alphabetOpen&&preA0.alphabet){
+      const row=preA0.alphabet[preA0.alphabetIndex];
+      if(action==='choose'){
+        const answer=btn.dataset.choice;
+        const allowed=row.drills.find(d=>d.kind==='hear_select').choices;
+        if(!allowed.includes(answer))return;
+        const correct=answer===row.letter;
+        preA0.alphabetResponses[row.id]={correct};
+        preA0.alphabetNote=correct?'Đã nhận đúng mặt chữ in.':'Chưa đúng — hãy nhìn lại chữ nguồn và thử lần sau.';
+      }else if(action==='hear'){
+        if(!preA0Voice())preA0.alphabetNote='BLOCKED_AUDIO: thiếu giọng ru-RU';
+        else{
+          const expectedId=row.id;
+          const result=window.RussianAudioEngine?.speak?.(row.letterNameText,{
+            lang:'ru-RU',rate:.8,
+            onStart:()=>{if(preA0.alphabet?.[preA0.alphabetIndex]?.id!==expectedId)return;
+              preA0.alphabetHeard=true;preA0.alphabetNote='Đã thử tên chữ TTS máy; không chứng thực âm vị.';preA0Render()},
+            onError:()=>{if(preA0.alphabet?.[preA0.alphabetIndex]?.id!==expectedId)return;
+              preA0.alphabetNote='TTS lỗi, không ghi nhận lượt nghe';preA0Render()}
+          });
+          if(!result?.started)preA0.alphabetNote='Không phát được tên chữ';
+        }
+      }else if(action==='next')preA0.alphabetIndex=Math.min(32,preA0.alphabetIndex+1);
+      else if(action==='prev')preA0.alphabetIndex=Math.max(0,preA0.alphabetIndex-1);
+      else if(action==='restart')preA0.alphabetIndex=0;
+      if(action==='next'||action==='prev'||action==='restart')preA0.alphabetNote='';
+    }
+    preA0Render();
+  },true);
   document.addEventListener('click',async event=>{
     const btn=event.target?.closest?.('#ruPreA0 [data-prea0]');
     if(!btn)return;
