@@ -1,6 +1,7 @@
 import { createPublicKey, verify } from 'node:crypto';
 import { sha256, widgetLexicalPayload } from './widget-deck.mjs';
 import { inspectActualWidgetExportReadiness } from './widget-export-readiness.mjs';
+import { buildCanonicalWidgetDeck } from './widget-canonical-bindings.mjs';
 
 // Crypto-only adapter for the exact iOS SignedDeckPackage wire format.
 // Public keys are CALLER-SUPPLIED for signature checking, NOT trusted release
@@ -90,5 +91,16 @@ export function assembleCanonicalWidgetReleaseEnvelope(args) {
   const readiness=inspectActualWidgetExportReadiness();
   requireValid(readiness.state==='READY' && readiness.eligibleToExport===true &&
     readiness.qualityGatePass===true && readiness.productionAuthority===true, 'SOURCE_NOT_AUTHORIZED');
+  // The signature alone is not enough: its payload must be the deck built
+  // from Bauman's independently bound canonical source registries. A caller
+  // cannot substitute a synthetic but correctly signed package.
+  const bytes=buf(args?.payloadBytes,null,'PAYLOAD');
+  let supplied;
+  try { supplied=JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(bytes)); }
+  catch { throw new Error('WIDGET_ENVELOPE_REJECTED:PAYLOAD_JSON'); }
+  const canonical=buildCanonicalWidgetDeck({
+    generatedAt:supplied?.generatedAt, expiresAt:supplied?.expiresAt
+  });
+  requireValid(sha256(supplied)===sha256(canonical),'NOT_CANONICAL_SOURCE_DECK');
   return assembleCryptographicWidgetEnvelope(args);
 }
