@@ -57,3 +57,14 @@ Không yêu cầu chạy PowerShell, không GitHub-hosted Actions, không Work/C
 Từ chính sáu item R02–R04 trong canonical `listen-write-lessons.json`, map tình huống và `RE61→RE45 stableStringify/fingerprint`, đã dựng lại trên môi trường phân tích và tính bằng SHA-256 thật. Đối chiếu **Python hashlib và Node.js crypto cho 18/18 fingerprint** (mỗi item: `sourceRevision`, `textFingerprint`, `reviewFingerprint`): khớp. RUE dùng 18 giá trị khóa này, không còn chỉ yêu cầu chuỗi hex hợp lệ. Bauman test `test-re66-rue-content-first-bridge.mjs` nay đối chiếu lại 18 fingerprint với handoff RE61 trực tiếp khi chạy ở checkout thật.
 
 **Phạm vi chứng cứ:** đã kiểm tra phép tính fingerprint trên dữ liệu tái dựng từ tệp GitHub; không tuyên bố chạy toàn bộ RE61 trong checkout, không thay chứng cứ Node cross-repo. Container chỉ có Node v22.16.0 trong khi `Blueprint-Russian-Expert-Engine/package.json` yêu cầu Node 24. Không lấy được checkout GitHub qua DNS; full Node cross-repo trên hai SHA candidate `NOT_TESTED`. Không yêu cầu người dùng PowerShell, không tự nâng gate RU03, không Actions/approve/merge/publish.
+
+
+## RE66 — canonical inbound request guard (20/10/2026)
+
+**Nguyên nhân gốc xác định bằng mã nguồn:** bộ nhận `verifyRe66RueAdvisoryBundle(request,bundle)` trước đây chỉ so sánh checksum của **request do chính người gửi cung cấp**. Người gửi có thể đổi `Меня зовут Нам.` thành `Меня зовут Сара.`, tính lại `requestSha256`, `advisorySha256` và `bundleSha256` rồi tạo một báo cáo có vẻ hợp lệ, bởi RE66 chỉ so sánh report với request đã bị sửa. Kết quả đó không chứng minh nguồn canonical RE61.
+
+**Sửa đúng owner:** tại `re66-rue-content-first-bridge.mjs`, mỗi lượt nhận xây lại `buildRe66RueRequest()` từ owner, map, RE61 Git blobs có pin và bắt buộc `request.requestSha256 === canonicalRequest.requestSha256`; chỉ kiểm checksum nội bộ là không đủ. Dữ liệu trống hoặc sai cấu trúc trả `ok=false`, không cấp quyền. `test-re66-rue-content-first-bridge.mjs` bổ sung thay R02_NAME rồi **tính lại toàn bộ hash** và các trường hợp null/malformed.
+
+**QA thực hiện trong phiên:** V8 chạy trực tiếp logic verifier với nguồn đóng băng do kiểm thử cấp: request gốc PASS, request giả thay tên & tái băm bị REJECT, null & malformed bị REJECT. Mã module/test mới V8 syntax PASS. **Không gọi đây là Node 24 cross-repo PASS**: container hiện tại có Node 22.16.0, không có hai checkout exact SHA và GitHub DNS trực tiếp bị chặn. Source phục vụ mô phỏng có hash giả lập, nên phép thử chỉ chứng minh **logic kiểm soát**.
+
+Không sửa dữ liệu lesson, audio, UI, learner mastery, không Actions/Work/Codex/merge/ratify/publish. `RU03=BLOCKED`; `CROSS_REPO_EXACT_SHA_NODE=NOT_TESTED`.
