@@ -6,6 +6,14 @@ import {buildRe66RueRequest,verifyRe66RueAdvisoryBundle}
 
 // Validates REAL RE61 fingerprints and Git blobs in Bauman checkout.
 // For cross-repo response, use the actual RUE code in separate checkout, not this fabricated fixture.
+const independentBaumanReferencePins=Object.freeze({
+ LW_ITEM_R02_NAME:{sourceRevision:'db585035814ca2a8732c1bf71c3838a44a182602b0d23d41c8e709bfb1a6971a',textFingerprint:'bbd6b0197ccbb590c80d11f3fee36abf69ef85b1f5700dfc7527291eee12c7b1',reviewFingerprint:'569c4782103b03c59d079b441bbbf1b12b0ccc1f0f56a057374dd09d14d7932e'},
+ LW_ITEM_R02_INTRO:{sourceRevision:'5216cf9d67000aafda433d09bd89438a9ba3316d141cadf576d4199c62ad310b',textFingerprint:'9f357a59324e2a8e30d26105e84910901ba1e85a5bdab3d14a7effd724f37a7c',reviewFingerprint:'b668f9d9de6c5c8a1850bf7d8cf8cb6d7c63b3a5043eadc42b4c0ff6817c3c7b'},
+ LW_ITEM_R03_REG:{sourceRevision:'76bff4af0162be6cbc67aa309e5206582131ab6f05c5878fc01bfe49e59314af',textFingerprint:'c30916b1a128decf6efae2384fe2c4c995004b4be3e6420918e07c93dd24f709',reviewFingerprint:'70120c0ea6d213656f94be4bab25d2d1a3f4405a9f74b2263c4995131e472572'},
+ LW_ITEM_R03_DOCS:{sourceRevision:'e972d95cfe7205e06d0421cbed1471be57612ce21ee915de0d7a747684e899c4',textFingerprint:'864dfe6748c5d5a51d8e22d2b54e3e496706ce713a281f3df3a5b708944d9200',reviewFingerprint:'ff74787eb67eba7b3e317af770f3144bc12699b5c5a0cac7b63ad92c57f7aaab'},
+ LW_ITEM_R04_METRO:{sourceRevision:'380013cc4fae85990eeef12cb831674479915631b094788e98591a322130744c',textFingerprint:'5cc74f995a7b15794cbd602b7b44968d52d790a240daea8aed84c6cfcd80357e',reviewFingerprint:'6d8a8f6669983378740656600c02659d35bf08f451da9fdaf05cb4f05a69b277'},
+ LW_ITEM_R04_DOCTOR:{sourceRevision:'a32b7950ae3526c9f2a0e7d62646e5cc6dd2f958e766aef90b4a672bc738da7b',textFingerprint:'7413128e9c46c6937a8105526203c67a196781d661cd38d024b462bfdc7c2700',reviewFingerprint:'53c3935cbca9e54fe553f8beea61cc744321f2f0273860c9245bc13c986f653a'}
+});
 const request=buildRe66RueRequest();
 assert.equal(request.sourceItems.length,6);
 assert.equal(request.humanApproval,false);
@@ -19,6 +27,11 @@ for(let i=0;i<6;i++){
  assert.equal(a.textFingerprint,b.textFingerprint);
  assert.equal(a.reviewFingerprint,b.reviewFingerprint);
  assert.equal(a.audioFingerprint,null);
+ // Immutable source-owner RE45 fingerprint truth; candidate sync must fail closed
+ // if RUE's baseline hashes no longer correspond to Bauman's canonical owner.
+ for(const field of ['sourceRevision','textFingerprint','reviewFingerprint'])
+   assert.equal(a[field],independentBaumanReferencePins[a.sourceItemId][field],
+     'RE61 fingerprint drift: '+a.sourceItemId+'/'+field);
 }
 const sha=s=>createHash('sha256').update(s).digest('hex');
 const {requestSha256,...payload}=request;
