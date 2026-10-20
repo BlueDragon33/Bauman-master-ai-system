@@ -86,7 +86,7 @@ test('vocabulary review and speaking links use bounded in-app routing',()=>{
 });
 test('offline application shell version invalidates old cached scripts',()=>{
   const shellVersion=Number(shell.match(/const CACHE='russian-app-shell-v([0-9]+)-engine-/)?.[1]||0);
-  assert.ok(shellVersion>=37,'Russian learner self-review requires refreshed v37+ offline shell');
+  assert.ok(shellVersion>=38,'Russian weak-review audio isolation requires refreshed v38+ offline shell');
   assert.match(speech,/if\(permissionPending\|\|recorder\)cancelRecording\(\)/);
   assert.match(speech,/stopTracks\(grantedStream\)/);
 });

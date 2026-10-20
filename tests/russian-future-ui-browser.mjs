@@ -409,7 +409,21 @@ try{
       assert.equal(savedSelfReview.dialogueNotes,0,'Practice notes must not leak to a different dialogue mode');
       assert.match(await page.locator('.prea0-self-review-footer').first().innerText(),/1 câu cần ôn/);
       await page.locator('[data-act="next-line"]').first().click();
+      await page.evaluate(()=>{
+        window.__ruOldAudioCancel=window.RussianAudioEngine.cancel;
+        window.__ruAudioCancelCount=0;
+        window.RussianAudioEngine.cancel=()=>{
+          window.__ruAudioCancelCount++;
+          return window.__ruOldAudioCancel();
+        };
+      });
       await page.locator('[data-act="next-weak-line"]').first().click();
+      assert.equal(await page.evaluate(()=>window.__ruAudioCancelCount),1,
+        'Moving to a weak sentence must cancel the previous active recorded/sample audio');
+      await page.evaluate(()=>{
+        window.RussianAudioEngine.cancel=window.__ruOldAudioCancel;
+        delete window.__ruOldAudioCancel;delete window.__ruAudioCancelCount;
+      });
       const returnedSelfReview=await page.evaluate(()=>{
         const s=JSON.parse(localStorage.getItem(window.SUBJECT_ADAPTER.storageKey)||'{}');
         return {idx:s.practiceLineIndex||0,notes:s.practiceSelfNotes};

@@ -1871,6 +1871,10 @@ function nextWeakSelfReviewLine(){
  for(let step=1;step<=turns.length;step++){
   const i=(start+step)%turns.length;
   if((role==='all'||dialogueRoleOf(turns[i],i)===role)&&isWeakSelfNote(selfNoteFor(d,i))){
+   // A weak-line jump is an in-app navigation without a [data-route] click.
+   // Retire any prior voice/audio before the next sentence becomes active.
+   retireSpeakingAttempt();
+   window.RussianAudioEngine?.cancel?.();
    setActiveLineIndex(i);save();render();return true;
   }
  }
