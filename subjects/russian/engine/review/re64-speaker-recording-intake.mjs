@@ -86,8 +86,10 @@ export function inspectRe64SpeakerPackage({
    const file=path.join(base,clip.filename);
    let st;
    try{st=lstatSync(file)}catch{throw Error('RE64 missing source audio '+clip.filename)}
-   if(!st.isFile()||st.isSymbolicLink()||realpathSync(file)!==file)
-     throw Error('RE64 symbolic/nonregular source file forbidden');
+   if(!st.isFile()||st.isSymbolicLink()||st.size>15728640)
+     throw Error('RE64 symbolic, oversize or nonregular source file forbidden');
+   // The filename is allowlisted, the parent is resolved, and the final path
+   // is an ordinary file. Avoid case-sensitive realpath equality on Windows.
    const bytes=readFileSync(file);
    const digest=hash(bytes);
    if(bytes.length!==clip.bytes||digest!==clip.sha256)
