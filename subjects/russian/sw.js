@@ -1,5 +1,5 @@
 'use strict';
-const CACHE='russian-app-shell-v37-engine-self-review-weak-lines';
+const CACHE='russian-app-shell-v38-engine-weak-review-slow-cue';
 const DATA_CACHE='russian-learning-data-v1';
 const SHELL=[
   './','./index.html','./manifest.webmanifest','../shared/host-bridge.js',
