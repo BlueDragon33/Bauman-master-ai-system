@@ -81,8 +81,12 @@ export function verifyRe66RueAdvisoryBundle(request,bundle){
    errors.push('wrong RUE advisory binding/authority');
  if(bundle?.humanApproval!==false||bundle?.textApproved!==false||
     bundle?.audioApproved!==false||bundle?.canonicalPublicationReady!==false||
-    bundle?.productionReleaseReady!==false||bundle?.reviewAuthority!=='NONE')
-   errors.push('forged approval');
+    bundle?.productionReleaseReady!==false||bundle?.reviewAuthority!=='NONE'||
+    bundle?.schemaForDownstream!=='RUE_RU03_ADVISORY_V1'||
+    bundle?.independentBenchmark!=='NO_HUMAN_LABELED_GOLD_SET'||
+    bundle?.voiceAssetCount!==0||bundle?.verifiedGrammarClaims!==0||
+    bundle?.verifiedStressClaims!==0)
+   errors.push('forged approval, audio or benchmark');
  if(!Array.isArray(bundle?.advisories)||bundle.advisories.length!==6)
    errors.push('missing six advisory rows');
  for(let i=0;i<(request?.sourceItems||[]).length;i++){
@@ -103,6 +107,16 @@ export function verifyRe66RueAdvisoryBundle(request,bundle){
       adv.productionReleaseReady!==false||adv.status!=='AI_ADVISORY_PENDING_INDEPENDENT_REVIEW')
       errors.push('RUE claim may not grant authority '+item.sourceItemId);
    if(adv){
+     if(adv.projectId!=='project:blueprint-russian-expert-engine'||
+        adv.targetProjectId!=='project:bauman-master-ai-system'||
+        !Array.isArray(adv.claims)||adv.claims.length!==1||
+        adv.claims.some(claim=>
+          claim.sourceId!=='gramota'||
+          claim.sourceUrl!=='https://gramota.ru/'||
+          claim.use!==(item.sourceItemId==='LW_ITEM_R02_INTRO'?'ORTHOEPY':'WORD_STRESS')||
+          claim.evidenceStatus!=='UNVERIFIED_SOURCE_POINTER'||
+          typeof claim.note!=='string'||!claim.note.includes('Dictionary lookup target only')))
+       errors.push('unsupported external lexical claim scope '+item.sourceItemId);
      const {advisorySha256,...body}=adv;
      if(!/^[a-f0-9]{64}$/.test(advisorySha256||'')||
        sha256(JSON.stringify(body))!==advisorySha256)
