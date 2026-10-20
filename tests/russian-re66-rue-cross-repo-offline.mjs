@@ -36,6 +36,13 @@ if(!rue||!Sha.test(expectedBauman||'')||!Sha.test(expectedRue||'')||
  const check=verifyRe66RueAdvisoryBundle(request,result);
  assert.equal(check.ok,true,'Cross-owner advisory checksum/revision contract rejected');
  assert.equal(result.advisories.length,6);
+ assert.ok(result.advisories.every(x=>
+   x.grammarEvidence?.sourceItemId===x.sourceItemId&&
+   x.grammarEvidence.exactCanonicalText===true&&
+   x.grammarEvidence.grammarScore===null&&
+   x.grammarEvidence.acceptedAsCorrect===false&&
+   x.grammarEvidence.humanRu03Approved===false),
+  'Every RE67 text-pattern report must remain advisory and source-bound');
  assert.equal(result.humanApproval,false);
  assert.equal(result.audioApproved,false);
  assert.equal(result.independentBenchmark,'NO_HUMAN_LABELED_GOLD_SET');
