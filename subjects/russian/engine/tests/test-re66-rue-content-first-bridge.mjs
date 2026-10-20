@@ -148,6 +148,15 @@ assert.equal(verifyRe66RueAdvisoryBundle(fakeRequest,forgedBundle).ok,false,
   'A forged R02 name and fully rehashed advisory cannot pass the canonical source gate');
 assert.equal(verifyRe66RueAdvisoryBundle(request,forgedBundle).ok,false,
   'An advisory for a different request cannot be replayed to current RE61');
+assert.equal(verifyRe66RueAdvisoryBundle(null,mock).ok,false,
+  'A null request must reject rather than throw');
+assert.equal(verifyRe66RueAdvisoryBundle({schema:'BAUMAN_RUE_RE66_REQUEST_V1',sourceItems:{length:6}},mock).ok,false,
+  'A malformed sourceItems collection must reject rather than throw');
+const malformedSource=structuredClone(request);
+malformedSource.sourceItems[0]=null;
+assert.equal(verifyRe66RueAdvisoryBundle(malformedSource,mock).ok,false,
+  'A null item must reject rather than throw');
+
 
 console.log('RUSSIAN_RE66_BAUMAN_RUE_BRIDGE_PASS',JSON.stringify({
  realSourceItems:6,realGitBlobPins:3,syntheticRUEOutputGuard:true,
