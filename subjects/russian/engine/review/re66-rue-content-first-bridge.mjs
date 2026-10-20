@@ -16,6 +16,23 @@ const pinned=Object.freeze({
 const sha256=s=>createHash('sha256').update(s,'utf8').digest('hex');
 const gitBlob=s=>{const bytes=Buffer.from(s,'utf8');return createHash('sha1').update(
   Buffer.concat([Buffer.from('blob '+bytes.length+'\0','utf8'),bytes])).digest('hex')};
+// RE66 candidate contract pins against accidental or forged lexical cue swaps.
+// These are dictionary pointers, NOT an independently licensed or approved lexicon.
+// A changed cue requires a coordinated reviewed RUE/Bauman revision.
+const lexicalPins=Object.freeze({
+ LW_ITEM_R02_NAME:{surface:'зовут',headwordWithStress:'зову́т',scope:'ATTESTED_INFLECTED_FORM_ONLY',
+  url:'https://gramota.ru/poisk?mode=all&query=%D0%B7%D0%BE%D0%B2%D1%83%D1%82&simple=0'},
+ LW_ITEM_R02_INTRO:{surface:'Здравствуйте',headwordWithStress:'здра́вствуйте',scope:'ATTESTED_LEXICAL_FORM_ONLY',
+  url:'https://gramota.ru/poisk?mode=all&query=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5'},
+ LW_ITEM_R03_REG:{surface:'регистрацию',headwordWithStress:'регистра́ция',scope:'LEMMA_ONLY_INFLECTED_SENTENCE_UNVERIFIED',
+  url:'https://gramota.ru/poisk?mode=slovari&query=%D1%80%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F'},
+ LW_ITEM_R03_DOCS:{surface:'пожалуйста',headwordWithStress:'пожа́луйста',scope:'ATTESTED_LEXICAL_FORM_ONLY',
+  url:'https://gramota.ru/poisk?query=%D0%9F%D0%BE%D0%B6%D0%B0%D0%BB%D1%83%D0%B9%D1%81%D1%82%D0%B0'},
+ LW_ITEM_R04_METRO:{surface:'метро',headwordWithStress:'метро́',scope:'ATTESTED_INDECLINABLE_NOUN_ONLY',
+  url:'https://gramota.ru/poisk?mode=all&query=%D0%BC%D0%B5%D1%82%D1%80%D0%BE&simple=0'},
+ LW_ITEM_R04_DOCTOR:{surface:'врач',headwordWithStress:'врач',scope:'ATTESTED_MONOSYLLABIC_NOUN_ONLY',
+  url:'https://gramota.ru/poisk?mode=slovari&query=%D0%92%D0%A0%D0%90%D0%A7'}
+});
 const refs=Object.freeze([
  ['../../data/listen-write-lessons.json','sourceOwnerBlob'],
  ['../content/fixtures/r01-r06-source-bound-practice-map.candidate.json','sourceMapBlob'],
@@ -127,8 +144,13 @@ export function verifyRe66RueAdvisoryBundle(request,bundle){
        !item.textRu.toLowerCase().includes(claim.surface.toLowerCase())))
        errors.push('unbound/unauthorized lexical source claim '+item.sourceItemId);
    }
-   const lex=entry?.lexicalEvidence;
-   if(!lex||lex.sourceId!=='gramota'||
+   const lex=entry?.lexicalEvidence, expectedLex=lexicalPins[item.sourceItemId];
+   if(!lex||!expectedLex||
+      lex.surface!==expectedLex.surface||
+      lex.headwordWithStress!==expectedLex.headwordWithStress||
+      lex.scope!==expectedLex.scope||lex.url!==expectedLex.url||
+      adv?.claims?.[0]?.surface!==expectedLex.surface||
+      lex.sourceId!=='gramota'||
       lex.status!=='PUBLIC_DICTIONARY_PAGE_OBSERVED_LEXEME_ONLY'||
       lex.rights!=='LINK_ONLY_NO_COPY'||
       lex.sentenceMeaningApproved!==false||lex.prosodyApproved!==false||
