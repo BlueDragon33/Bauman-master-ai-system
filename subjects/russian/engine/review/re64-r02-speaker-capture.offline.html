@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>R02 · Запись двух реплик · предварительный материал</title>
+<style>
+:root{color-scheme:light dark;font-family:system-ui,Arial,sans-serif}
+body{max-width:780px;margin:0 auto;padding:22px;line-height:1.55}
+h1{font-size:1.45rem}h2{font-size:1.13rem}
+article{border:1px solid #90909088;border-radius:12px;margin:16px 0;padding:16px}
+blockquote{font-size:1.4rem;margin:14px 0;border-left:3px solid #898989;padding-left:12px}
+button{min-height:42px;padding:8px 12px;margin:3px;border:1px solid #777;border-radius:8px;background:transparent;color:inherit;cursor:pointer}
+button:disabled{opacity:.45;cursor:not-allowed}
+label{display:block;margin:12px 0}input[type=text]{font-size:1rem;padding:9px;width:min(100%,380px);box-sizing:border-box}
+small{opacity:.82}audio{width:100%;max-width:440px;margin:8px 0}
+[role=status]{font-weight:600;min-height:1.4em}
+.notice{border-inline-start:4px solid #888;padding:10px;background:#8881}
+</style>
+</head>
+<body>
+<h1>R02 · Запись произношения для учебного проекта</h1>
+<p class="notice">Эта страница работает локально. Она <strong>ничего никуда не отправляет</strong>.
+Здесь нужны настоящие записи человека, а не синтез речи. Запись будет считаться
+<strong>кандидатом</strong>, не одобренным экспертом RU03.</p>
+<p>Произнесите каждую реплику целиком, своим естественным голосом в спокойной обстановке.
+Не склеивайте отдельные слова. После записи прослушайте звук; при необходимости перезапишите.</p>
+<p><small>Микрофон работает в защищённом контексте (локальный файл, localhost или HTTPS — в зависимости от браузера).
+При запрете доступа можно пользоваться другим браузером. Не присылайте записи без вашего согласия.</small></p>
+<article id="slot-name" data-source-item="LW_ITEM_R02_NAME" data-key="R02_NAME">
+  <h2>Реплика 1/2 · Имя</h2>
+  <blockquote lang="ru" class="phrase">Меня зовут Нам.</blockquote>
+  <button type="button" data-action="start">● Записать</button>
+  <button type="button" data-action="stop" disabled>■ Остановить</button>
+  <button type="button" data-action="save" disabled>↓ Сохранить аудио</button>
+  <p role="status" data-status>Нет записи</p>
+  <audio controls preload="none" hidden aria-label="Прослушать запись первого предложения"></audio>
+</article>
+<article id="slot-intro" data-source-item="LW_ITEM_R02_INTRO" data-key="R02_INTRO">
+  <h2>Реплика 2/2 · Приветствие</h2>
+  <blockquote lang="ru" class="phrase">Здравствуйте. Меня зовут Нам. Я из Вьетнама.</blockquote>
+  <button type="button" data-action="start">● Записать</button>
+  <button type="button" data-action="stop" disabled>■ Остановить</button>
+  <button type="button" data-action="save" disabled>↓ Сохранить аудио</button>
+  <p role="status" data-status>Нет записи</p>
+  <audio controls preload="none" hidden aria-label="Прослушать запись второго предложения"></audio>
+</article>
+<section aria-label="Согласие и исходные данные">
+<h2>Декларация говорящего и разрешение на использование</h2>
+<label>Имя для указания авторства (или псевдоним)
+  <input type="text" id="credit" maxlength="120" autocomplete="off" placeholder="Ваше имя / псевдоним"></label>
+<label><input id="original" type="checkbox">
+ Я лично произнёс(ла) и записал(а) эти реплики; в файлах нет TTS,
+ чужой речи, музыки или заимствованного аудио, и у меня есть право дать разрешение на запись.</label>
+<label><input id="rights" type="checkbox">
+ Я добровольно разрешаю использовать, хранить, копировать и распространять мои
+ записи в учебных материалах Bauman Russian с указанием выбранного выше авторства
+ на условиях лицензии <strong>CC BY 4.0</strong>.
+ Я понимаю, что материалы могут использоваться офлайн.</label>
+<label><input id="review" type="checkbox">
+ Я понимаю, что файлы будут отдельно проверены на права, точность текста
+ и качество произношения независимыми специалистами;
+ эта декларация сама по себе <strong>не является</strong> одобрением RU03.</label>
+<button type="button" id="evidence" disabled>↓ Сохранить декларацию и хеши SHA-256 (JSON)</button>
+<p id="globalStatus" role="status">Сначала сделайте две записи, проверьте их и отметьте согласие.</p>
+<p><small>Пакет состоит из <strong>трёх отдельных файлов</strong>: двух аудиофайлов и
+одного JSON. Передавайте его только выбранному вами доверенному координатору
+через защищённый канал. Записи не отправляются автоматически.</small></p>
+</section>
+<script>
+'use strict';
+(function(){
+ const groups=[...document.querySelectorAll('article[data-source-item]')];
+ const states=new Map(groups.map(group=>[group.dataset.sourceItem,{group,blob:null,sha256:null,recordedAt:null,duration:null,url:null,mime:null}]));
+ const status=document.getElementById('globalStatus');
+ const consent=['credit','original','rights','review'];
+ let active=null;
+ const cfg=['audio/webm;codecs=opus','audio/ogg;codecs=opus','audio/mp4;codecs=mp4a.40.2',
+    'audio/webm','audio/ogg','audio/mp4'];
+ const format=mime=>/mp4/i.test(mime)?'m4a':/ogg/i.test(mime)?'ogg':/webm/i.test(mime)?'webm':null;
+ const hex=buffer=>[...new Uint8Array(buffer)].map(x=>x.toString(16).padStart(2,'0')).join('');
+ const buttons=(group,action)=>group.querySelector('[data-action="'+action+'"]');
+ const ready=()=>states.size===2&&[...states.values()].every(s=>s.blob&&s.sha256)&&
+   !!document.getElementById('credit').value.trim()&&
+   ['original','rights','review'].every(id=>document.getElementById(id).checked)&&!active;
+ const paint=()=>{
+   for(const s of states.values()){
+     buttons(s.group,'start').disabled=!!active;
+     buttons(s.group,'stop').disabled=!active||active.item!==s;
+     buttons(s.group,'save').disabled=!s.blob||!!active;
+   }
+   document.getElementById('evidence').disabled=!ready();
+ };
+ function download(blob,name){
+   const url=URL.createObjectURL(blob),a=document.createElement('a');
+   a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();
+   setTimeout(()=>URL.revokeObjectURL(url),30000);
+ }
+ async function begin(item){
+   if(active)return;
+   const s=states.get(item);if(!s||!window.MediaRecorder||!navigator.mediaDevices?.getUserMedia)
+     throw Error('Этот браузер не поддерживает безопасную запись с микрофона.');
+   if(!crypto?.subtle)throw Error('В защищённом контексте недоступен SHA-256.');
+   const selected=cfg.find(m=>MediaRecorder.isTypeSupported(m));
+   if(!selected||!format(selected))throw Error('Нет поддерживаемого формата WebM/Opus, Ogg/Opus или MP4/AAC.');
+   const stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false},video:false});
+   let recorder;
+   try{recorder=new MediaRecorder(stream,{mimeType:selected})}
+   catch(err){stream.getTracks().forEach(t=>t.stop());throw err}
+   const chunks=[],started=performance.now(),stamp=new Date().toISOString();
+   const entry={item:s,recorder,stream,auto:null};
+   active=entry;
+   const sText=s.group.querySelector('[data-status]');
+   sText.textContent='Идёт запись… (не более 30 секунд)';
+   recorder.ondataavailable=e=>{if(e.data?.size)chunks.push(e.data)};
+   recorder.onerror=e=>{sText.textContent='Ошибка записи: '+String(e?.error?.message||'unknown')};
+   recorder.onstop=async()=>{
+     clearTimeout(entry.auto);stream.getTracks().forEach(t=>t.stop());
+     if(active===entry)active=null;
+     try{
+       const blob=new Blob(chunks,{type:recorder.mimeType||selected});
+       const duration=(performance.now()-started)/1000;
+       if(duration<.4||duration>30.5||blob.size<100||blob.size>15728640||!format(blob.type))
+         throw Error('Запись слишком короткая, длинная или неверного формата.');
+       const hash=hex(await crypto.subtle.digest('SHA-256',await blob.arrayBuffer()));
+       if(s.url)URL.revokeObjectURL(s.url);
+       s.blob=blob;s.sha256=hash;s.recordedAt=stamp;s.duration=duration;s.mime=blob.type;
+       s.url=URL.createObjectURL(blob);
+       const player=s.group.querySelector('audio');player.src=s.url;player.hidden=false;
+       sText.textContent='Сохранено локально: '+blob.size+' байт · SHA-256 вычислен. Прослушайте запись.';
+     }catch(e){s.blob=null;s.sha256=null;sText.textContent=String(e.message||e)}
+     paint();
+   };
+   recorder.start(250);
+   entry.auto=setTimeout(()=>{if(recorder.state==='recording')recorder.stop()},29500);
+   paint();
+ }
+ function stop(item){
+   if(!active||active.item!==states.get(item))return;
+   if(active.recorder.state==='recording')active.recorder.stop();
+ }
+ function save(item){
+   const s=states.get(item);if(!s?.blob)return;
+   download(s.blob,'RE64_'+s.group.dataset.key+'.'+format(s.mime));
+ }
+ async function exportEvidence(){
+   if(!ready())return;
+   const entries=[...states.values()].map(s=>({
+     sourceItemId:s.group.dataset.sourceItem,
+     sourceTextRu:s.group.querySelector('.phrase').textContent.trim(),
+     filename:'RE64_'+s.group.dataset.key+'.'+format(s.mime),
+     mimeType:s.mime,bytes:s.blob.size,sha256:s.sha256,
+     estimatedDurationSeconds:Number(s.duration.toFixed(3)),recordedAtUtc:s.recordedAt,
+     originalAudioClaim:'SELF_RECORDED_HUMAN_VOICE_NOT_INDEPENDENTLY_VERIFIED'
+   }));
+   const payload={
+     schema:'RUSSIAN_CONTENT_FIRST_RE64_SPEAKER_DECLARATION_V1',
+     status:'SUBMITTED_CANDIDATE_UNVERIFIED',generatedAtUtc:new Date().toISOString(),
+     sourceOwner:'subjects/russian/data/listen-write-lessons.json',
+     speakerCredit:document.getElementById('credit').value.trim(),
+     consent:{selfRecordedHumanVoiceDeclared:true,rightsToLicenseDeclared:true,
+       offeredLicense:'CC-BY-4.0',allowsOfflineDistribution:true,
+       understoodIndependentReview:true,independentRightsVerified:false,
+       grantedBy:'SPEAKER_SELF_DECLARATION_ONLY'},
+     clips:entries,wholeTextAcousticallyVerified:false,
+     humanRu03Approved:false,canonicalPublicationReady:false,
+     autoUploaded:false
+   };
+   download(new Blob([JSON.stringify(payload,null,2)+'\n'],{type:'application/json'}),
+     'RE64_R02_UNVERIFIED_SPEAKER_DECLARATION.json');
+   status.textContent='JSON готов. Сохраните также оба аудиофайла. Не отправляйте их без согласия.';
+ }
+ for(const s of states.values()){
+   s.group.addEventListener('click',async e=>{
+     const action=e.target.closest('button[data-action]')?.dataset.action;
+     if(!action)return;
+     try{
+       if(action==='start')await begin(s.group.dataset.sourceItem);
+       else if(action==='stop')stop(s.group.dataset.sourceItem);
+       else if(action==='save')save(s.group.dataset.sourceItem);
+     }catch(err){s.group.querySelector('[data-status]').textContent=String(err?.message||err);paint()}
+   });
+ }
+ for(const id of consent)document.getElementById(id).addEventListener('input',paint);
+ document.getElementById('evidence').addEventListener('click',()=>{try{exportEvidence()}catch(err){status.textContent=String(err?.message||err)}});
+ window.addEventListener('pagehide',()=>{
+   if(active?.recorder.state==='recording')active.recorder.stop();
+   for(const s of states.values())if(s.url)URL.revokeObjectURL(s.url);
+ });
+ paint();
+})();
+</script>
+</body></html>
