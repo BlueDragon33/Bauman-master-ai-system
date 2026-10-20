@@ -36,12 +36,22 @@ const lexicalPins=Object.freeze({
 // RE67 is a narrow text-pattern supplement only. These IDs identify recognized
 // canonical examples, not language correctness or RU03 approval.
 const re67PatternPins=Object.freeze({
- LW_ITEM_R02_NAME:{code:'NAMING_CONSTRUCTION_ATTESTED',sourceId:'GRAMOTA_NAMING_CASE_VARIANTS'},
- LW_ITEM_R02_INTRO:{code:'INTRODUCTION_FORMULA_RECOGNIZED',sourceId:'GRAMOTA_NAMING_CASE_VARIANTS'},
- LW_ITEM_R03_REG:{code:'IMPERSONAL_NEED_PLUS_INFINITIVE',sourceId:'GRAMOTA_MODAL_NUZHNO_INFINITIVE'},
- LW_ITEM_R03_DOCS:{code:'DOCUMENTS_REQUEST_FORMULA_RECOGNIZED',sourceId:'GRAMOTA_PLEASE_PUNCTUATION_CONTEXT'},
- LW_ITEM_R04_METRO:{code:'METRO_DO_ATTESTED',sourceId:'GRAMOTA_METRO_DIRECTION_COLLOCATIONS'},
- LW_ITEM_R04_DOCTOR:{code:'MEDICAL_REQUEST_FIXED_PHRASE',sourceId:null}
+ LW_ITEM_R02_NAME:{code:'NAMING_CONSTRUCTION_ATTESTED',sourceId:'GRAMOTA_NAMING_CASE_VARIANTS',
+   url:'https://gramota.ru/poisk?mode=spravka&query=%D0%BC%D0%B5%D0%BD%D1%8F%20%D0%B7%D0%BE%D0%B2%D1%83%D1%82%20%D0%90%D0%BD%D0%B4%D1%80%D0%B5%D0%B9',
+   scope:'NOMINATIVE_OR_INSTRUMENTAL_NAMING_PATTERN_ONLY'},
+ LW_ITEM_R02_INTRO:{code:'INTRODUCTION_FORMULA_RECOGNIZED',sourceId:'GRAMOTA_NAMING_CASE_VARIANTS',
+   url:'https://gramota.ru/poisk?mode=spravka&query=%D0%BC%D0%B5%D0%BD%D1%8F%20%D0%B7%D0%BE%D0%B2%D1%83%D1%82%20%D0%90%D0%BD%D0%B4%D1%80%D0%B5%D0%B9',
+   scope:'NOMINATIVE_OR_INSTRUMENTAL_NAMING_PATTERN_ONLY'},
+ LW_ITEM_R03_REG:{code:'IMPERSONAL_NEED_PLUS_INFINITIVE',sourceId:'GRAMOTA_MODAL_NUZHNO_INFINITIVE',
+   url:'https://gramota.ru/poisk?mode=spravka&query=%D0%94%D0%BE%D0%BB%D0%B6%D0%BD%D0%BE',
+   scope:'NEUTER_PREDICATIVE_PLUS_INFINITIVE_ONLY'},
+ LW_ITEM_R03_DOCS:{code:'DOCUMENTS_REQUEST_FORMULA_RECOGNIZED',sourceId:'GRAMOTA_PLEASE_PUNCTUATION_CONTEXT',
+   url:'https://gramota.ru/poisk?mode=spravka&query=%D0%BD%D0%B5%D0%B4%D0%BE%D1%83%D0%BC%D0%B5%D0%BD%D0%B8%D0%B5',
+   scope:'CONTEXT_SENSITIVE_PLEASE_COMMA_NO_GLOBAL_RULE'},
+ LW_ITEM_R04_METRO:{code:'METRO_DO_ATTESTED',sourceId:'GRAMOTA_METRO_DIRECTION_COLLOCATIONS',
+   url:'https://gramota.ru/poisk?dicts%5B0%5D=48&mode=slovari&query=%D0%BC%D0%B5%D0%BB%D0%BA%D0%BE&simple=0',
+   scope:'DIRECTION_TO_METRO_DO_OR_K_ONLY'},
+ LW_ITEM_R04_DOCTOR:{code:'MEDICAL_REQUEST_FIXED_PHRASE',sourceId:null,url:null,scope:null}
 });
 const refs=Object.freeze([
  ['../../data/listen-write-lessons.json','sourceOwnerBlob'],
@@ -198,11 +208,11 @@ export function verifyRe66RueAdvisoryBundle(request,bundle){
       grammar.exactCanonicalText!==true||
       grammar.patternId!==expectedGrammar.code||
       !['ATTESTED_PATTERN_ONLY','CANONICAL_EXAMPLE_MATCH_ONLY'].includes(grammar.patternStatus)||
-      grammar.sourceLocator?.id!==expectedGrammar.sourceId&&expectedGrammar.sourceId!==null||
-      (expectedGrammar.sourceId===null&&grammar.sourceLocator!==null)||
-      (expectedGrammar.sourceId!==null&&
-        (!grammar.sourceLocator?.url?.startsWith('https://gramota.ru/')||
-         typeof grammar.sourceLocator?.scope!=='string'))||
+      (expectedGrammar.sourceId===null
+        ? grammar.sourceLocator!==null
+        : (grammar.sourceLocator?.id!==expectedGrammar.sourceId||
+           grammar.sourceLocator?.url!==expectedGrammar.url||
+           grammar.sourceLocator?.scope!==expectedGrammar.scope))||
       grammar.detectedConcern!==false||
       grammar.acceptedAsCorrect!==false||
       grammar.errorProven!==false||
