@@ -129,6 +129,26 @@ assert.equal(tamper(x=>{x.audioApproved=true}),false);
 assert.equal(tamper(x=>{x.advisories[0].lexicalEvidence.headwordWithStress='зво́ут'},{rehash:true}),false);
 assert.equal(tamper(x=>{x.advisories[1].lexicalEvidence.url='https://gramota.ru/poisk?query=forged'},{rehash:true}),false);
 assert.equal(tamper(x=>{x.advisories[2].advisory.claims[0].surface='подмена'},{rehash:true}),false);
+// Independently recomputed hashes are NOT canonical-source authentication.
+// This used to pass if the verifier trusted caller-chosen requestSha256.
+const fakeRequest=structuredClone(request);
+fakeRequest.sourceItems[0].textRu='Меня зовут Сара.';
+const {requestSha256:discardRequestHash,...fakeReqBody}=fakeRequest;
+fakeRequest.requestSha256=sha(JSON.stringify(fakeReqBody));
+const forgedBundle=structuredClone(mock);
+forgedBundle.requestSha256=fakeRequest.requestSha256;
+forgedBundle.advisories[0].advisory.textRu=fakeRequest.sourceItems[0].textRu;
+for(const row of forgedBundle.advisories){
+ const {advisorySha256:discardAdvisoryHash,...advisoryBody}=row.advisory;
+ row.advisory.advisorySha256=sha(JSON.stringify(advisoryBody));
+}
+const {bundleSha256:discardBundleHash,...forgedBody}=forgedBundle;
+forgedBundle.bundleSha256=sha(JSON.stringify(forgedBody));
+assert.equal(verifyRe66RueAdvisoryBundle(fakeRequest,forgedBundle).ok,false,
+  'A forged R02 name and fully rehashed advisory cannot pass the canonical source gate');
+assert.equal(verifyRe66RueAdvisoryBundle(request,forgedBundle).ok,false,
+  'An advisory for a different request cannot be replayed to current RE61');
+
 console.log('RUSSIAN_RE66_BAUMAN_RUE_BRIDGE_PASS',JSON.stringify({
  realSourceItems:6,realGitBlobPins:3,syntheticRUEOutputGuard:true,
  forgedApprovalsRejected:true,realRUEExecution:'NOT_TESTED',
