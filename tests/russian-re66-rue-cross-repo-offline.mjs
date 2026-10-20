@@ -24,6 +24,11 @@ if(!rue||!Sha.test(expectedBauman||'')||!Sha.test(expectedRue||'')||
 }else{
  assert.equal(actual(bauman),expectedBauman,'Bauman actual checkout SHA mismatch');
  assert.equal(actual(rue),expectedRue,'RUE actual checkout SHA mismatch');
+ const dirty=dir=>String(execFileSync('git',
+   ['status','--porcelain=v1','--untracked-files=all'],
+   {cwd:dir,encoding:'utf8',timeout:5000,windowsHide:true})).trim();
+ assert.equal(dirty(bauman),'','Bauman checkout contains uncommitted/untracked changes');
+ assert.equal(dirty(rue),'','RUE checkout contains uncommitted/untracked changes');
  const plugin=await import(pathToFileURL(join(resolve(rue),'src/pilots/ru03-bauman-r02-r04.mjs')).href);
  const request=buildRe66RueRequest();
  assert.equal(plugin.validateRueRe66Request(request).ok,true);
