@@ -127,6 +127,17 @@ export function verifyRe66RueAdvisoryBundle(request,bundle){
        !item.textRu.toLowerCase().includes(claim.surface.toLowerCase())))
        errors.push('unbound/unauthorized lexical source claim '+item.sourceItemId);
    }
+   const lex=entry?.lexicalEvidence;
+   if(!lex||lex.sourceId!=='gramota'||
+      lex.status!=='PUBLIC_DICTIONARY_PAGE_OBSERVED_LEXEME_ONLY'||
+      lex.rights!=='LINK_ONLY_NO_COPY'||
+      lex.sentenceMeaningApproved!==false||lex.prosodyApproved!==false||
+      lex.humanRu03Approved!==false||
+      typeof lex.surface!=='string'||!item.textRu.toLowerCase().includes(lex.surface.toLowerCase())||
+      typeof lex.headwordWithStress!=='string'||!lex.headwordWithStress||
+      typeof lex.scope!=='string'||!lex.scope||
+      typeof lex.url!=='string'||!lex.url.startsWith('https://gramota.ru/poisk?'))
+     errors.push('RUE lexical note must remain source-located and non-authoritative '+item.sourceItemId);
    const x=entry?.preflight;
    if(!x||x.grammar!=='UNVERIFIED_NEEDS_SOURCE_AND_RKI_REVIEW'||
       x.stress!=='UNVERIFIED_NEEDS_LEXICAL_SOURCE_REVIEW'||
