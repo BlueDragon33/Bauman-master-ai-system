@@ -1,6 +1,6 @@
 // RE63: exact R02 full-utterance incoming media technical inspection.
 // Read-only. RE61 owns text/review fingerprints; RE45/RE50 own human authorization.
-// A valid WAV/Ogg/FLAC proves file structure, NOT that the words were spoken correctly.
+// A valid WAV/Ogg/FLAC/WebM/MP4 proves file structure, NOT that the words were spoken correctly.
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
@@ -12,7 +12,10 @@ const SOURCE_IDS=['LW_ITEM_R02_NAME','LW_ITEM_R02_INTRO'];
 const FMT=Object.freeze({
   'wav:pcm_s16le':'WAV_PCM_S16LE',
   'ogg:vorbis':'OGG_VORBIS',
-  'flac:flac':'FLAC_LOSSLESS'
+  'flac:flac':'FLAC_LOSSLESS',
+  'webm:opus':'WEBM_OPUS',
+  'ogg:opus':'OGG_OPUS',
+  'm4a:aac':'M4A_AAC'
 });
 
 export function validateRe63Brief(brief=loadRe63Brief(),{
@@ -103,11 +106,14 @@ export function inspectRe63FullUtterance({
   const codec=first?.codec_name||null, sampleRate=Number(first?.sample_rate)||null,
     channels=Number(first?.channels)||null,duration=Number(detail?.format?.duration)||null;
   const format=formats.includes('wav')?'wav':formats.includes('ogg')?'ogg':
-     formats.includes('flac')?'flac':'other';
+     formats.includes('flac')?'flac':formats.includes('webm')?'webm':
+     (formats.includes('mp4')||formats.includes('m4a'))?'m4a':'other';
   const formatKey=FMT[format+':'+codec]||null;
   const head=bytes.subarray(0,4).toString('ascii');
   const magicOk=(format==='wav'&&head==='RIFF'&&bytes.subarray(8,12).toString('ascii')==='WAVE')||
-    (format==='ogg'&&head==='OggS')||(format==='flac'&&head==='fLaC');
+    (format==='ogg'&&head==='OggS')||(format==='flac'&&head==='fLaC')||
+    (format==='webm'&&bytes.subarray(0,4).equals(Buffer.from([0x1a,0x45,0xdf,0xa3])))||
+    (format==='m4a'&&bytes.subarray(4,8).toString('ascii')==='ftyp');
   const valid=!!formatKey&&magicOk&&brief.targetCapture.requestedAudioFormats.includes(formatKey)&&
     brief.targetCapture.allowedSampleRatesHz.includes(sampleRate)&&
     brief.targetCapture.channelsAllowed.includes(channels)&&
