@@ -54,6 +54,25 @@ const lexicalFixtures={
  LW_ITEM_R04_DOCTOR:{surface:'врач',headwordWithStress:'врач',scope:'ATTESTED_MONOSYLLABIC_NOUN_ONLY',
   url:'https://gramota.ru/poisk?mode=slovari&query=%D0%92%D0%A0%D0%90%D0%A7'}
 };
+const grammarFixtures=Object.freeze({
+ LW_ITEM_R02_NAME:{code:'NAMING_CONSTRUCTION_ATTESTED',status:'ATTESTED_PATTERN_ONLY',
+   source:'GRAMOTA_NAMING_CASE_VARIANTS',
+   url:'https://gramota.ru/poisk?mode=spravka&query=%D0%BC%D0%B5%D0%BD%D1%8F%20%D0%B7%D0%BE%D0%B2%D1%83%D1%82%20%D0%90%D0%BD%D0%B4%D1%80%D0%B5%D0%B9'},
+ LW_ITEM_R02_INTRO:{code:'INTRODUCTION_FORMULA_RECOGNIZED',status:'ATTESTED_PATTERN_ONLY',
+   source:'GRAMOTA_NAMING_CASE_VARIANTS',
+   url:'https://gramota.ru/poisk?mode=spravka&query=%D0%BC%D0%B5%D0%BD%D1%8F%20%D0%B7%D0%BE%D0%B2%D1%83%D1%82%20%D0%90%D0%BD%D0%B4%D1%80%D0%B5%D0%B9'},
+ LW_ITEM_R03_REG:{code:'IMPERSONAL_NEED_PLUS_INFINITIVE',status:'ATTESTED_PATTERN_ONLY',
+   source:'GRAMOTA_MODAL_NUZHNO_INFINITIVE',
+   url:'https://gramota.ru/poisk?mode=spravka&query=%D0%94%D0%BE%D0%BB%D0%B6%D0%BD%D0%BE'},
+ LW_ITEM_R03_DOCS:{code:'DOCUMENTS_REQUEST_FORMULA_RECOGNIZED',status:'ATTESTED_PATTERN_ONLY',
+   source:'GRAMOTA_PLEASE_PUNCTUATION_CONTEXT',
+   url:'https://gramota.ru/poisk?mode=spravka&query=%D0%BD%D0%B5%D0%B4%D0%BE%D1%83%D0%BC%D0%B5%D0%BD%D0%B8%D0%B5'},
+ LW_ITEM_R04_METRO:{code:'METRO_DO_ATTESTED',status:'ATTESTED_PATTERN_ONLY',
+   source:'GRAMOTA_METRO_DIRECTION_COLLOCATIONS',
+   url:'https://gramota.ru/poisk?dicts%5B0%5D=48&mode=slovari&query=%D0%BC%D0%B5%D0%BB%D0%BA%D0%BE&simple=0'},
+ LW_ITEM_R04_DOCTOR:{code:'MEDICAL_REQUEST_FIXED_PHRASE',status:'CANONICAL_EXAMPLE_MATCH_ONLY',
+   source:null,url:null}
+});
 const ad=request.sourceItems.map(item=>{
  const advisoryData={
   schema:'RUE_RU03_ADVISORY_V1',
@@ -74,7 +93,28 @@ const ad=request.sourceItems.map(item=>{
   canonicalPublicationReady:false,productionReleaseReady:false
  };
  const advisory={...advisoryData,advisorySha256:sha(JSON.stringify(advisoryData))};
+ const grammarFixture=grammarFixtures[item.sourceItemId];
+ const gramBody={
+   schema:'RUE_RE67_SCOPED_RUSSIAN_GRAMMAR_ADVISORY_V1',
+   sourceItemId:item.sourceItemId,lessonId:item.lessonId,
+   category:'FIXTURE_CORRESPONDING_CATEGORY',
+   candidateText:item.textRu,
+   canonicalTextSha256:sha(item.textRu),
+   candidateTextSha256:sha(item.textRu),
+   exactCanonicalText:true,patternId:grammarFixture.code,
+   patternStatus:grammarFixture.status,
+   sourceLocator:grammarFixture.source?{
+     id:grammarFixture.source,url:grammarFixture.url,scope:'SCOPE_ONLY'
+   }:null,
+   note:'Developer test only, not source validated.',
+   detectedConcern:false,acceptedAsCorrect:false,errorProven:false,
+   grammarScore:null,phoneticsScore:null,stressApproved:false,
+   humanRu03Approved:false,readyForLearning:false,
+   authority:'AI_ADVISORY_PATTERN_ONLY_NO_AUTOMATIC_QUALITY_GATE',
+   noLearnerData:true
+ };
  return {sourceItemId:item.sourceItemId,itemId:item.itemId,advisory,
+  grammarEvidence:{...gramBody,advisorySha256:sha(JSON.stringify(gramBody))},
   lexicalEvidence:{
    sourceId:'gramota',...lexicalFixtures[item.sourceItemId],
    status:'PUBLIC_DICTIONARY_PAGE_OBSERVED_LEXEME_ONLY',
@@ -129,6 +169,10 @@ assert.equal(tamper(x=>{x.audioApproved=true}),false);
 assert.equal(tamper(x=>{x.advisories[0].lexicalEvidence.headwordWithStress='зво́ут'},{rehash:true}),false);
 assert.equal(tamper(x=>{x.advisories[1].lexicalEvidence.url='https://gramota.ru/poisk?query=forged'},{rehash:true}),false);
 assert.equal(tamper(x=>{x.advisories[2].advisory.claims[0].surface='подмена'},{rehash:true}),false);
+assert.equal(tamper(x=>{x.advisories[0].grammarEvidence.acceptedAsCorrect=true},{rehash:true}),false);
+assert.equal(tamper(x=>{x.advisories[2].grammarEvidence.grammarScore=100},{rehash:true}),false);
+assert.equal(tamper(x=>{x.advisories[4].grammarEvidence.patternId='AUTOMATIC_APPROVED'},{rehash:true}),false);
+assert.equal(tamper(x=>{x.advisories[1].grammarEvidence.sourceLocator.url='https://fake.example/grammar'},{rehash:true}),false);
 // Independently recomputed hashes are NOT canonical-source authentication.
 // This used to pass if the verifier trusted caller-chosen requestSha256.
 const fakeRequest=structuredClone(request);
