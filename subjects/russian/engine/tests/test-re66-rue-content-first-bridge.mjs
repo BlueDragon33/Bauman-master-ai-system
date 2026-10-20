@@ -33,7 +33,13 @@ const ad=request.sourceItems.map(item=>{
   boundItem:{itemId:item.itemId,sourceRevision:item.sourceRevision,
     reviewFingerprint:item.reviewFingerprint,textFingerprint:item.textFingerprint,
     audioFingerprint:null},
-  textRu:item.textRu,claims:[],
+  textRu:item.textRu,claims:[{
+   sourceId:'gramota',sourceUrl:'https://gramota.ru/',
+   use:item.sourceItemId==='LW_ITEM_R02_INTRO'?'ORTHOEPY':'WORD_STRESS',
+   surface:item.textRu.match(/[А-ЯЁа-яё]+/u)[0],
+   evidenceStatus:'UNVERIFIED_SOURCE_POINTER',
+   note:'Dictionary lookup target only: source locator needs actual lexical verification.'
+  }],
   status:'AI_ADVISORY_PENDING_INDEPENDENT_REVIEW',
   reviewAuthority:'NONE',humanApproval:false,textApproved:false,audioApproved:false,
   canonicalPublicationReady:false,productionReleaseReady:false
@@ -54,6 +60,9 @@ const body={
  sourceBaselineCommit:request.sourceBaselineCommit,
  rueContractBaseline:request.expectedRueContractBaseline,
  status:'AI_ADVISORY_PENDING_INDEPENDENT_REVIEW',
+ schemaForDownstream:'RUE_RU03_ADVISORY_V1',
+ independentBenchmark:'NO_HUMAN_LABELED_GOLD_SET',
+ voiceAssetCount:0,verifiedGrammarClaims:0,verifiedStressClaims:0,
  advisories:ad,reviewAuthority:'NONE',humanApproval:false,
  textApproved:false,audioApproved:false,canonicalPublicationReady:false,
  productionReleaseReady:false
