@@ -81,7 +81,7 @@ small{opacity:.82}audio{width:100%;max-width:440px;margin:8px 0}
  const buttons=(group,action)=>group.querySelector('[data-action="'+action+'"]');
  const ready=()=>states.size===2&&[...states.values()].every(s=>s.blob&&s.sha256)&&
    !!document.getElementById('credit').value.trim()&&
-   ['original','rights','review'].every(id=>document.getElementById(id).checked)&&!active;
+   ['original','rights','review'].every(id=>document.getElementById(id).checked)&&!active&&!permissionPending;
  const paint=()=>{
    for(const s of states.values()){
      buttons(s.group,'start').disabled=!!active||permissionPending;
