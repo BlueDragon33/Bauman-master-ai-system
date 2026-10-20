@@ -63,6 +63,7 @@ for(const token of [
  'function activeSelfNotes()',
  'function renderSelfReviewPanel(d,idx)',
  'function nextWeakSelfReviewLine()',
+ 'if(target)speak(target,.62); // User-triggered slow model; recording stays opt-in.',
  'function toggleSelfReviewFlag(flag)',
  'function weakSelfNoteCount(d,role=activeRole())',
  'data-act="self-note-',
