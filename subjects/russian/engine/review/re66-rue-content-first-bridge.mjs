@@ -33,6 +33,16 @@ const lexicalPins=Object.freeze({
  LW_ITEM_R04_DOCTOR:{surface:'врач',headwordWithStress:'врач',scope:'ATTESTED_MONOSYLLABIC_NOUN_ONLY',
   url:'https://gramota.ru/poisk?mode=slovari&query=%D0%92%D0%A0%D0%90%D0%A7'}
 });
+// RE67 is a narrow text-pattern supplement only. These IDs identify recognized
+// canonical examples, not language correctness or RU03 approval.
+const re67PatternPins=Object.freeze({
+ LW_ITEM_R02_NAME:{code:'NAMING_CONSTRUCTION_ATTESTED',sourceId:'GRAMOTA_NAMING_CASE_VARIANTS'},
+ LW_ITEM_R02_INTRO:{code:'INTRODUCTION_FORMULA_RECOGNIZED',sourceId:'GRAMOTA_NAMING_CASE_VARIANTS'},
+ LW_ITEM_R03_REG:{code:'IMPERSONAL_NEED_PLUS_INFINITIVE',sourceId:'GRAMOTA_MODAL_NUZHNO_INFINITIVE'},
+ LW_ITEM_R03_DOCS:{code:'DOCUMENTS_REQUEST_FORMULA_RECOGNIZED',sourceId:'GRAMOTA_PLEASE_PUNCTUATION_CONTEXT'},
+ LW_ITEM_R04_METRO:{code:'METRO_DO_ATTESTED',sourceId:'GRAMOTA_METRO_DIRECTION_COLLOCATIONS'},
+ LW_ITEM_R04_DOCTOR:{code:'MEDICAL_REQUEST_FIXED_PHRASE',sourceId:null}
+});
 const refs=Object.freeze([
  ['../../data/listen-write-lessons.json','sourceOwnerBlob'],
  ['../content/fixtures/r01-r06-source-bound-practice-map.candidate.json','sourceMapBlob'],
@@ -177,6 +187,40 @@ export function verifyRe66RueAdvisoryBundle(request,bundle){
       typeof lex.scope!=='string'||!lex.scope||
       typeof lex.url!=='string'||!lex.url.startsWith('https://gramota.ru/poisk?'))
      errors.push('RUE lexical note must remain source-located and non-authoritative '+item.sourceItemId);
+   const grammar=entry?.grammarEvidence, expectedGrammar=re67PatternPins[item.sourceItemId];
+   if(!grammar||!expectedGrammar||
+      grammar.schema!=='RUE_RE67_SCOPED_RUSSIAN_GRAMMAR_ADVISORY_V1'||
+      grammar.sourceItemId!==item.sourceItemId||
+      grammar.lessonId!==item.lessonId||
+      grammar.candidateText!==item.textRu||
+      grammar.canonicalTextSha256!==sha256(item.textRu)||
+      grammar.candidateTextSha256!==sha256(item.textRu)||
+      grammar.exactCanonicalText!==true||
+      grammar.patternId!==expectedGrammar.code||
+      !['ATTESTED_PATTERN_ONLY','CANONICAL_EXAMPLE_MATCH_ONLY'].includes(grammar.patternStatus)||
+      grammar.sourceLocator?.id!==expectedGrammar.sourceId&&expectedGrammar.sourceId!==null||
+      (expectedGrammar.sourceId===null&&grammar.sourceLocator!==null)||
+      (expectedGrammar.sourceId!==null&&
+        (!grammar.sourceLocator?.url?.startsWith('https://gramota.ru/')||
+         typeof grammar.sourceLocator?.scope!=='string'))||
+      grammar.detectedConcern!==false||
+      grammar.acceptedAsCorrect!==false||
+      grammar.errorProven!==false||
+      grammar.grammarScore!==null||
+      grammar.phoneticsScore!==null||
+      grammar.stressApproved!==false||
+      grammar.humanRu03Approved!==false||
+      grammar.readyForLearning!==false||
+      grammar.noLearnerData!==true||
+      grammar.authority!=='AI_ADVISORY_PATTERN_ONLY_NO_AUTOMATIC_QUALITY_GATE'||
+      typeof grammar.note!=='string'||grammar.note.length>800)
+      errors.push('RE67 text-pattern evidence cannot certify any sentence '+item.sourceItemId);
+   if(grammar){
+     const {advisorySha256,...body}=grammar;
+     if(!/^[a-f0-9]{64}$/.test(advisorySha256||'')||
+        advisorySha256!==sha256(JSON.stringify(body)))
+       errors.push('RE67 grammar evidence hash mismatch '+item.sourceItemId);
+   }
    const x=entry?.preflight;
    if(!x||x.grammar!=='UNVERIFIED_NEEDS_SOURCE_AND_RKI_REVIEW'||
       x.stress!=='UNVERIFIED_NEEDS_LEXICAL_SOURCE_REVIEW'||
