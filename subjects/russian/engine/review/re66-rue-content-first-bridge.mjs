@@ -87,6 +87,15 @@ export function buildRe66RueRequest({handoff=buildContentFirstRu03Handoff(),
 
 export function verifyRe66RueAdvisoryBundle(request,bundle){
  const errors=[];
+ // This public verifier must establish the authoritative RE61 request itself.
+ // A syntactically valid recomputed SHA over a caller-chosen request proves
+ // data integrity only; it never proves provenance from canonical Bauman.
+ // Rebuilding also checks source-owner, map and RE61 Git blob pins before trust.
+ const canonicalRequest=buildRe66RueRequest();
+ if(request?.requestSha256!==canonicalRequest.requestSha256)
+   errors.push('RE66 inbound request is not the canonical RE61 packet for the pinned source');
+ if(!Array.isArray(request?.sourceItems)||request.sourceItems.length!==6)
+   errors.push('RE66 inbound request must contain six canonical items');
  if(request?.schema!=='BAUMAN_RUE_RE66_REQUEST_V1'||
     request?.requestSha256!==sha256(JSON.stringify(((r)=>{const {requestSha256,...body}=r;return body})(request))))
    errors.push('request hash invalid');
