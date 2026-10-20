@@ -1,0 +1,98 @@
+{
+  "schema": "RUSSIAN_CONTENT_FIRST_RE65_VOLUNTARY_SPEAKER_DISCOVERY_V1",
+  "status": "CANDIDATES_UNCONTACTED_NO_RECORDINGS",
+  "policy": "OFFLINE_FIRST_ZERO_SPEND_NO_UNSOLICITED_OUTREACH",
+  "sourceOwner": "subjects/russian/data/listen-write-lessons.json",
+  "reviewPipeline": "RE61_RE63_RE64_TO_RE45_RE50_RU03",
+  "languageLearningAssetPublished": false,
+  "fundsCommitted": 0,
+  "outreachSent": 0,
+  "responsesReceived": 0,
+  "recordingReceived": 0,
+  "recordingPermissionsVerified": 0,
+  "ru03ReviewerRegistered": 0,
+  "roles": {
+    "speaker": "May be a fluent/native Russian volunteer, who chooses freely and records exact utterances. Does not approve text/audio RU03.",
+    "expertReviewer": "Must be a separately appointed qualified Russian-as-foreign-language (РКИ) / phonetics reviewer, with identity, competency and independence verified by human governance. No automated appointment.",
+    "rightsVerifier": "Independently validates licensing, identity/authority of recording rights grant and archive conditions; a speaker checkbox is not proof.",
+    "coordinator": "Only a trusted human sends the optional invitation, collects consent privately and handles three-file package."
+  },
+  "sources": [
+    {
+      "id": "RE65_OFFICIAL_ACADEMIC_FIRST",
+      "kind": "OFFICIAL_PREPARATORY_PROGRAM_LEAD",
+      "organization": "D. Mendeleev University of Chemical Technology (RKhTU)",
+      "url": "https://www.muctr.ru/",
+      "evidenceUrl": "https://www.muctr.ru/upload/iblock/deb/jtbdowfni7ipdwmstlgdvcc2txofre6e.pdf",
+      "publicEvidence": "Institutional research material discusses a preparatory department for foreign citizens; it does not name or promise an available volunteer.",
+      "fit": "Ask existing preparatory/RKI teacher contacts for an introduction to a willing Russian speaker and independent Russian-language reviewer.",
+      "availability": "NOT_VERIFIED",
+      "noCost": "UNKNOWN_MUST_CONFIRM",
+      "permission": "NOT_GRANTED",
+      "outreachStatus": "NOT_SENT",
+      "limitation": "Official site and research paper are institutional leads, not consent to record or redistribute."
+    },
+    {
+      "id": "RE65_AFFILIATE_BACKUP",
+      "kind": "OFFICIAL_RKI_DEPARTMENT_PUBLIC_CONTACT",
+      "organization": "NRU MPEI Preparatory Course for international students",
+      "url": "https://international.mpei.ru/en/preparatory_course",
+      "contactEmail": "mpei@interedu.ru",
+      "publicEvidence": "Official page confirms a preparatory course teaching Russian to international students and lists its public contact.",
+      "fit": "Optional institutional backup to ask if a voluntary participant or independent RKI reviewer can be introduced, at zero charge.",
+      "availability": "NOT_VERIFIED",
+      "noCost": "UNKNOWN_MUST_CONFIRM",
+      "permission": "NOT_GRANTED",
+      "outreachStatus": "NOT_SENT"
+    },
+    {
+      "id": "RE65_VOLUNTEER_LANGUAGE_EXCHANGE_1",
+      "kind": "PUBLIC_VOLUNTEER_LANGUAGE_EXCHANGE_LEAD",
+      "organization": "r/language_exchange — Russian native speaker seeking Vietnamese",
+      "url": "https://www.reddit.com/r/language_exchange/comments/1udeujt/offering_b2c1_seeking_english_vietnamese_a1/",
+      "publicEvidence": "Post dated 2026-06-23 states native Russian language exchange in a flexible format including preparing materials; not an audio-license offer.",
+      "fit": "Optional approach via normal community rules for two volunteer recordings; no RU03 reviewer authority.",
+      "availability": "NOT_VERIFIED",
+      "noCost": "LANGUAGE_EXCHANGE_NOT_PAID_A_SERVICE",
+      "permission": "NOT_GRANTED",
+      "outreachStatus": "NOT_SENT",
+      "safeguards": [
+        "No bulk unsolicited messages",
+        "Must explicitly agree to CC BY 4.0 and offline redistribution separately from exchange",
+        "No identifying personal data or voice in public issues"
+      ]
+    },
+    {
+      "id": "RE65_VOLUNTEER_LANGUAGE_EXCHANGE_2",
+      "kind": "PUBLIC_LANGUAGE_TEACHER_EXCHANGE_LEAD",
+      "organization": "r/language_exchange — Russian teacher seeking Vietnamese",
+      "url": "https://www.reddit.com/r/language_exchange/comments/1wf4cjx/offering_english_german_russian_spanish/",
+      "publicEvidence": "Post dated 2026-09-13 by a person describing themselves as a Russian language teacher looking for Vietnamese practice; qualifications independently unverified.",
+      "fit": "Optional voluntary Russian recording/speaking help; teaching self-description alone does not authorize RU03 review.",
+      "availability": "NOT_VERIFIED",
+      "noCost": "LANGUAGE_EXCHANGE_NOT_PAID_A_SERVICE",
+      "permission": "NOT_GRANTED",
+      "outreachStatus": "NOT_SENT"
+    }
+  ],
+  "rejectedShortcuts": [
+    {
+      "source": "https://mozilladatacollective.com/datasets/cmu5x45pn00dao107j4o9w2yv",
+      "reason": "Russian Common Voice 27.0 is a large existing speech corpus; exact personalized sentences are unverified and the dataset page forbids re-hosting/re-sharing; not an offline R02 sound pack."
+    },
+    {
+      "source": "https://discourse.mozilla.org/t/low-quality-russian-script-speech-dataset-synthesized-voices/149364",
+      "reason": "September 2026 community and Mozilla discussion reports some Russian dataset recordings were synthesized and not welcome; no automatic authenticity proof."
+    }
+  ],
+  "deliverablesRequired": [
+    "RE64_R02_NAME.{webm|ogg|m4a} exact human voice and no spliced speech",
+    "RE64_R02_INTRO.{webm|ogg|m4a} exact human voice and no spliced speech",
+    "RE64_R02_UNVERIFIED_SPEAKER_DECLARATION.json voluntary CC BY 4.0 self declaration",
+    "independent rights verification record separate from speaker self-declaration",
+    "RE45/RE50 independent assigned HUMAN_RU03 reviewer decisions for TEXT and AUDIO"
+  ],
+  "allowPublicPostingOfAudio": false,
+  "autoApprovals": false,
+  "nextBlocker": "Human volunteer must freely agree before any invitation is delivered or speech is collected; authorized independent RU03 reviewer also remains unassigned."
+}
