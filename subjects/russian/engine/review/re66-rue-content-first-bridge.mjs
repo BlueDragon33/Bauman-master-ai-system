@@ -87,6 +87,9 @@ export function buildRe66RueRequest({handoff=buildContentFirstRu03Handoff(),
 
 export function verifyRe66RueAdvisoryBundle(request,bundle){
  const errors=[];
+ if(!request||typeof request!=='object'||Array.isArray(request))
+   return Object.freeze({ok:false,errors:['RE66 request must be an object'],
+     itemCount:0,humanApproval:false,canonicalPublicationReady:false});
  // This public verifier must establish the authoritative RE61 request itself.
  // A syntactically valid recomputed SHA over a caller-chosen request proves
  // data integrity only; it never proves provenance from canonical Bauman.
@@ -115,8 +118,13 @@ export function verifyRe66RueAdvisoryBundle(request,bundle){
    errors.push('forged approval, audio or benchmark');
  if(!Array.isArray(bundle?.advisories)||bundle.advisories.length!==6)
    errors.push('missing six advisory rows');
- for(let i=0;i<(request?.sourceItems||[]).length;i++){
-   const item=request.sourceItems[i],entry=bundle?.advisories?.[i],adv=entry?.advisory;
+ const sourceItems=Array.isArray(request.sourceItems)?request.sourceItems:[];
+ for(let i=0;i<Math.min(sourceItems.length,6);i++){
+   const item=sourceItems[i],entry=bundle?.advisories?.[i],adv=entry?.advisory;
+   if(!item||typeof item!=='object'){
+     errors.push('invalid or missing source item at index '+i);
+     continue;
+   }
    if(entry?.sourceItemId!==item.sourceItemId||
       entry?.itemId!==item.itemId||
       adv?.textRu!==item.textRu||
