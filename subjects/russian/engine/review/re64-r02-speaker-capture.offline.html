@@ -73,7 +73,7 @@ small{opacity:.82}audio{width:100%;max-width:440px;margin:8px 0}
  const states=new Map(groups.map(group=>[group.dataset.sourceItem,{group,blob:null,sha256:null,recordedAt:null,duration:null,url:null,mime:null}]));
  const status=document.getElementById('globalStatus');
  const consent=['credit','original','rights','review'];
- let active=null;
+ let active=null,permissionPending=false;
  const cfg=['audio/webm;codecs=opus','audio/ogg;codecs=opus','audio/mp4;codecs=mp4a.40.2',
     'audio/webm','audio/ogg','audio/mp4'];
  const format=mime=>/mp4/i.test(mime)?'m4a':/ogg/i.test(mime)?'ogg':/webm/i.test(mime)?'webm':null;
@@ -84,7 +84,7 @@ small{opacity:.82}audio{width:100%;max-width:440px;margin:8px 0}
    ['original','rights','review'].every(id=>document.getElementById(id).checked)&&!active;
  const paint=()=>{
    for(const s of states.values()){
-     buttons(s.group,'start').disabled=!!active;
+     buttons(s.group,'start').disabled=!!active||permissionPending;
      buttons(s.group,'stop').disabled=!active||active.item!==s;
      buttons(s.group,'save').disabled=!s.blob||!!active;
    }
@@ -96,16 +96,22 @@ small{opacity:.82}audio{width:100%;max-width:440px;margin:8px 0}
    setTimeout(()=>URL.revokeObjectURL(url),30000);
  }
  async function begin(item){
-   if(active)return;
+   if(active||permissionPending)return;
    const s=states.get(item);if(!s||!window.MediaRecorder||!navigator.mediaDevices?.getUserMedia)
      throw Error('Этот браузер не поддерживает безопасную запись с микрофона.');
    if(!crypto?.subtle)throw Error('В защищённом контексте недоступен SHA-256.');
    const selected=cfg.find(m=>MediaRecorder.isTypeSupported(m));
    if(!selected||!format(selected))throw Error('Нет поддерживаемого формата WebM/Opus, Ogg/Opus или MP4/AAC.');
-   const stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false},video:false});
-   let recorder;
-   try{recorder=new MediaRecorder(stream,{mimeType:selected})}
-   catch(err){stream.getTracks().forEach(t=>t.stop());throw err}
+   permissionPending=true;paint();
+   let stream,recorder;
+   try{
+     stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false},video:false});
+     recorder=new MediaRecorder(stream,{mimeType:selected});
+   }catch(err){
+     stream?.getTracks().forEach(t=>t.stop());
+     permissionPending=false;paint();throw err;
+   }
+   permissionPending=false;
    const chunks=[],started=performance.now(),stamp=new Date().toISOString();
    const entry={item:s,recorder,stream,auto:null};
    active=entry;
