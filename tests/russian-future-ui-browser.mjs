@@ -409,7 +409,21 @@ try{
       assert.equal(savedSelfReview.dialogueNotes,0,'Practice notes must not leak to a different dialogue mode');
       assert.match(await page.locator('.prea0-self-review-footer').first().innerText(),/1 câu cần ôn/);
       await page.locator('[data-act="next-line"]').first().click();
+      await page.evaluate(()=>{
+        window.__RU_WEAK_SPEECH={original:window.speechSynthesis.speak,utterances:[]};
+        window.speechSynthesis.speak=u=>window.__RU_WEAK_SPEECH.utterances.push({text:u.text,rate:u.rate,lang:u.lang});
+      });
       await page.locator('[data-act="next-weak-line"]').first().click();
+      const weakAudio=await page.evaluate(()=>{
+        const x=window.__RU_WEAK_SPEECH;
+        window.speechSynthesis.speak=x.original;
+        delete window.__RU_WEAK_SPEECH;
+        return x.utterances;
+      });
+      assert.equal(weakAudio.length,1,'Explicit repeat-weak action must play the model exactly once');
+      assert.equal(weakAudio[0].lang,'ru-RU','Repeat-weak model must use Russian TTS');
+      assert.equal(weakAudio[0].rate,.62,'Repeat-weak model must play slowly at 0.62x');
+      assert.match(weakAudio[0].text,/[А-Яа-яЁё]/,'Repeat-weak model must have actual Russian text');
       const returnedSelfReview=await page.evaluate(()=>{
         const s=JSON.parse(localStorage.getItem(window.SUBJECT_ADAPTER.storageKey)||'{}');
         return {idx:s.practiceLineIndex||0,notes:s.practiceSelfNotes};

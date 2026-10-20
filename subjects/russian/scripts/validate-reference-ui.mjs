@@ -13,7 +13,7 @@ const futureCss=css;
 const futureJs=read('assets/russian-future-ui.js');
 const sw=read('sw.js');
 const shellVersion=sw.match(/const CACHE='russian-app-shell-v([0-9]+)-/);
-must(shellVersion&&Number(shellVersion[1])>=37,'Pre-A0 learner self-review requires Russian shell v37 or later');
+must(shellVersion&&Number(shellVersion[1])>=38,'Pre-A0 weak-line replay requires Russian shell v38 or later');
 must(sw.includes("keys.filter(k=>/^russian-app-shell-v[0-9]+(?:-|$)/i.test(k)&&k!==CACHE)"),'Russian SW may only purge its own obsolete shell caches');
 for(const asset of ['./assets/russian-future-ui.css','./assets/russian-future-ui.js'])must(sw.includes(asset),'Russian offline shell missing updated icon asset '+asset);
 const speechEngine=read('assets/speech-interaction-engine.js');
@@ -63,6 +63,7 @@ for(const token of [
  'function activeSelfNotes()',
  'function renderSelfReviewPanel(d,idx)',
  'function nextWeakSelfReviewLine()',
+ 'if(target)speak(target,.62); // User-triggered slow model; recording stays opt-in.',
  'function toggleSelfReviewFlag(flag)',
  'function weakSelfNoteCount(d,role=activeRole())',
  'data-act="self-note-',

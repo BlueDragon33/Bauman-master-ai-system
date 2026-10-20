@@ -1853,7 +1853,7 @@ function renderSelfReviewPanel(d,idx){
   '" data-act="self-note-'+flag+'">'+(note[flag]?'✓ ':'○ ')+esc(label)+'</button>').join('')+'</div>'+
  '<div class="prea0-self-review-footer"><span>'+count+' câu cần ôn'+(role==='all'?'':' trong vai '+esc(role))+
  ' · chỉ lưu nhận xét trên thiết bị</span>'+
- '<button type="button" class="btn" data-act="next-weak-line" '+(count?'':'disabled')+'>🔁 Luyện câu yếu tiếp →</button></div>'+
+ '<button type="button" class="btn" data-act="next-weak-line" '+(count?'':'disabled')+'>🔁 Nghe chậm & luyện câu yếu →</button></div>'+
  '</section>';
 }
 function toggleSelfReviewFlag(flag){
@@ -1871,7 +1871,10 @@ function nextWeakSelfReviewLine(){
  for(let step=1;step<=turns.length;step++){
   const i=(start+step)%turns.length;
   if((role==='all'||dialogueRoleOf(turns[i],i)===role)&&isWeakSelfNote(selfNoteFor(d,i))){
-   setActiveLineIndex(i);save();render();return true;
+   setActiveLineIndex(i);save();render();
+   const target=dialogueText(turns[i]);
+   if(target)speak(target,.62); // User-triggered slow model; recording stays opt-in.
+   return true;
   }
  }
  toast('Chưa có câu nào bạn tự đánh dấu cần luyện lại trong vai này.');
