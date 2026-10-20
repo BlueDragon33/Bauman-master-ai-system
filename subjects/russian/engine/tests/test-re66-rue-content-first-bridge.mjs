@@ -25,6 +25,22 @@ const {requestSha256,...payload}=request;
 assert.equal(requestSha256,sha(JSON.stringify(payload)));
 
 // A synthetic RUE-shaped report for the Bauman inbound guard; not a real review.
+// Contract fixtures mirror RUE lexical locator candidates for verification only.
+// These are NOT a second canonical Russian learning-content owner.
+const lexicalFixtures={
+ LW_ITEM_R02_NAME:{surface:'зовут',headwordWithStress:'зову́т',scope:'ATTESTED_INFLECTED_FORM_ONLY',
+  url:'https://gramota.ru/poisk?mode=all&query=%D0%B7%D0%BE%D0%B2%D1%83%D1%82&simple=0'},
+ LW_ITEM_R02_INTRO:{surface:'Здравствуйте',headwordWithStress:'здра́вствуйте',scope:'ATTESTED_LEXICAL_FORM_ONLY',
+  url:'https://gramota.ru/poisk?mode=all&query=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5'},
+ LW_ITEM_R03_REG:{surface:'регистрацию',headwordWithStress:'регистра́ция',scope:'LEMMA_ONLY_INFLECTED_SENTENCE_UNVERIFIED',
+  url:'https://gramota.ru/poisk?mode=slovari&query=%D1%80%D0%B5%D0%B3%D0%B8%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F'},
+ LW_ITEM_R03_DOCS:{surface:'пожалуйста',headwordWithStress:'пожа́луйста',scope:'ATTESTED_LEXICAL_FORM_ONLY',
+  url:'https://gramota.ru/poisk?query=%D0%9F%D0%BE%D0%B6%D0%B0%D0%BB%D1%83%D0%B9%D1%81%D1%82%D0%B0'},
+ LW_ITEM_R04_METRO:{surface:'метро',headwordWithStress:'метро́',scope:'ATTESTED_INDECLINABLE_NOUN_ONLY',
+  url:'https://gramota.ru/poisk?mode=all&query=%D0%BC%D0%B5%D1%82%D1%80%D0%BE&simple=0'},
+ LW_ITEM_R04_DOCTOR:{surface:'врач',headwordWithStress:'врач',scope:'ATTESTED_MONOSYLLABIC_NOUN_ONLY',
+  url:'https://gramota.ru/poisk?mode=slovari&query=%D0%92%D0%A0%D0%90%D0%A7'}
+};
 const ad=request.sourceItems.map(item=>{
  const advisoryData={
   schema:'RUE_RU03_ADVISORY_V1',
@@ -36,7 +52,7 @@ const ad=request.sourceItems.map(item=>{
   textRu:item.textRu,claims:[{
    sourceId:'gramota',sourceUrl:'https://gramota.ru/',
    use:item.sourceItemId==='LW_ITEM_R02_INTRO'?'ORTHOEPY':'WORD_STRESS',
-   surface:item.textRu.match(/[А-ЯЁа-яё]+/u)[0],
+   surface:lexicalFixtures[item.sourceItemId].surface,
    evidenceStatus:'UNVERIFIED_SOURCE_POINTER',
    note:'Dictionary lookup target only: source locator needs actual lexical verification.'
   }],
@@ -47,9 +63,7 @@ const ad=request.sourceItems.map(item=>{
  const advisory={...advisoryData,advisorySha256:sha(JSON.stringify(advisoryData))};
  return {sourceItemId:item.sourceItemId,itemId:item.itemId,advisory,
   lexicalEvidence:{
-   sourceId:'gramota',surface:item.textRu.match(/[А-ЯЁа-яё]+/u)[0],
-   headwordWithStress:'UNVERIFIED_SYNTHETIC_FIXTURE',
-   scope:'FIXTURE_ONLY',url:'https://gramota.ru/poisk?query=fixture',
+   sourceId:'gramota',...lexicalFixtures[item.sourceItemId],
    status:'PUBLIC_DICTIONARY_PAGE_OBSERVED_LEXEME_ONLY',
    rights:'LINK_ONLY_NO_COPY',
    sentenceMeaningApproved:false,prosodyApproved:false,humanRu03Approved:false
@@ -77,8 +91,16 @@ const body={
 };
 const mock={...body,bundleSha256:sha(JSON.stringify(body))};
 assert.equal(verifyRe66RueAdvisoryBundle(request,mock).ok,true);
-const tamper=(change)=>{
+const tamper=(change,{rehash=false}={})=>{
  const clone=structuredClone(mock);change(clone);
+ if(rehash){
+   for(const e of clone.advisories){
+     const {advisorySha256,...content}=e.advisory;
+     e.advisory.advisorySha256=sha(JSON.stringify(content));
+   }
+   const {bundleSha256,...body}=clone;
+   clone.bundleSha256=sha(JSON.stringify(body));
+ }
  return verifyRe66RueAdvisoryBundle(request,clone).ok;
 };
 assert.equal(tamper(x=>{x.humanApproval=true}),false);
@@ -91,6 +113,9 @@ assert.equal(tamper(x=>{x.advisories[4].advisory.claims=[{surface:'fake',evidenc
 assert.equal(tamper(x=>{x.rueContractBaseline='f'.repeat(40)}),false);
 assert.equal(tamper(x=>{x.bundleSha256='f'.repeat(64)}),false);
 assert.equal(tamper(x=>{x.audioApproved=true}),false);
+assert.equal(tamper(x=>{x.advisories[0].lexicalEvidence.headwordWithStress='зво́ут'},{rehash:true}),false);
+assert.equal(tamper(x=>{x.advisories[1].lexicalEvidence.url='https://gramota.ru/poisk?query=forged'},{rehash:true}),false);
+assert.equal(tamper(x=>{x.advisories[2].advisory.claims[0].surface='подмена'},{rehash:true}),false);
 console.log('RUSSIAN_RE66_BAUMAN_RUE_BRIDGE_PASS',JSON.stringify({
  realSourceItems:6,realGitBlobPins:3,syntheticRUEOutputGuard:true,
  forgedApprovalsRejected:true,realRUEExecution:'NOT_TESTED',
