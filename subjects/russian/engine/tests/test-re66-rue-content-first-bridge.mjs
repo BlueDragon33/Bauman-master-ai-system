@@ -56,22 +56,22 @@ const lexicalFixtures={
 };
 const grammarFixtures=Object.freeze({
  LW_ITEM_R02_NAME:{code:'NAMING_CONSTRUCTION_ATTESTED',status:'ATTESTED_PATTERN_ONLY',
-   source:'GRAMOTA_NAMING_CASE_VARIANTS',
+   source:'GRAMOTA_NAMING_CASE_VARIANTS',scope:'NOMINATIVE_OR_INSTRUMENTAL_NAMING_PATTERN_ONLY',
    url:'https://gramota.ru/poisk?mode=spravka&query=%D0%BC%D0%B5%D0%BD%D1%8F%20%D0%B7%D0%BE%D0%B2%D1%83%D1%82%20%D0%90%D0%BD%D0%B4%D1%80%D0%B5%D0%B9'},
  LW_ITEM_R02_INTRO:{code:'INTRODUCTION_FORMULA_RECOGNIZED',status:'ATTESTED_PATTERN_ONLY',
-   source:'GRAMOTA_NAMING_CASE_VARIANTS',
+   source:'GRAMOTA_NAMING_CASE_VARIANTS',scope:'NOMINATIVE_OR_INSTRUMENTAL_NAMING_PATTERN_ONLY',
    url:'https://gramota.ru/poisk?mode=spravka&query=%D0%BC%D0%B5%D0%BD%D1%8F%20%D0%B7%D0%BE%D0%B2%D1%83%D1%82%20%D0%90%D0%BD%D0%B4%D1%80%D0%B5%D0%B9'},
  LW_ITEM_R03_REG:{code:'IMPERSONAL_NEED_PLUS_INFINITIVE',status:'ATTESTED_PATTERN_ONLY',
-   source:'GRAMOTA_MODAL_NUZHNO_INFINITIVE',
+   source:'GRAMOTA_MODAL_NUZHNO_INFINITIVE',scope:'NEUTER_PREDICATIVE_PLUS_INFINITIVE_ONLY',
    url:'https://gramota.ru/poisk?mode=spravka&query=%D0%94%D0%BE%D0%BB%D0%B6%D0%BD%D0%BE'},
  LW_ITEM_R03_DOCS:{code:'DOCUMENTS_REQUEST_FORMULA_RECOGNIZED',status:'ATTESTED_PATTERN_ONLY',
-   source:'GRAMOTA_PLEASE_PUNCTUATION_CONTEXT',
+   source:'GRAMOTA_PLEASE_PUNCTUATION_CONTEXT',scope:'CONTEXT_SENSITIVE_PLEASE_COMMA_NO_GLOBAL_RULE',
    url:'https://gramota.ru/poisk?mode=spravka&query=%D0%BD%D0%B5%D0%B4%D0%BE%D1%83%D0%BC%D0%B5%D0%BD%D0%B8%D0%B5'},
  LW_ITEM_R04_METRO:{code:'METRO_DO_ATTESTED',status:'ATTESTED_PATTERN_ONLY',
-   source:'GRAMOTA_METRO_DIRECTION_COLLOCATIONS',
+   source:'GRAMOTA_METRO_DIRECTION_COLLOCATIONS',scope:'DIRECTION_TO_METRO_DO_OR_K_ONLY',
    url:'https://gramota.ru/poisk?dicts%5B0%5D=48&mode=slovari&query=%D0%BC%D0%B5%D0%BB%D0%BA%D0%BE&simple=0'},
  LW_ITEM_R04_DOCTOR:{code:'MEDICAL_REQUEST_FIXED_PHRASE',status:'CANONICAL_EXAMPLE_MATCH_ONLY',
-   source:null,url:null}
+   source:null,url:null,scope:null}
 });
 const ad=request.sourceItems.map(item=>{
  const advisoryData={
@@ -104,7 +104,7 @@ const ad=request.sourceItems.map(item=>{
    exactCanonicalText:true,patternId:grammarFixture.code,
    patternStatus:grammarFixture.status,
    sourceLocator:grammarFixture.source?{
-     id:grammarFixture.source,url:grammarFixture.url,scope:'SCOPE_ONLY'
+     id:grammarFixture.source,url:grammarFixture.url,scope:grammarFixture.scope
    }:null,
    note:'Developer test only, not source validated.',
    detectedConcern:false,acceptedAsCorrect:false,errorProven:false,
@@ -173,6 +173,8 @@ assert.equal(tamper(x=>{x.advisories[0].grammarEvidence.acceptedAsCorrect=true},
 assert.equal(tamper(x=>{x.advisories[2].grammarEvidence.grammarScore=100},{rehash:true}),false);
 assert.equal(tamper(x=>{x.advisories[4].grammarEvidence.patternId='AUTOMATIC_APPROVED'},{rehash:true}),false);
 assert.equal(tamper(x=>{x.advisories[1].grammarEvidence.sourceLocator.url='https://fake.example/grammar'},{rehash:true}),false);
+assert.equal(tamper(x=>{x.advisories[3].grammarEvidence.sourceLocator.url='https://gramota.ru/poisk?query=unrelated'},{rehash:true}),false);
+assert.equal(tamper(x=>{x.advisories[4].grammarEvidence.sourceLocator.scope='ALL_RUSSIAN_GRAMMAR_APPROVED'},{rehash:true}),false);
 // Independently recomputed hashes are NOT canonical-source authentication.
 // This used to pass if the verifier trusted caller-chosen requestSha256.
 const fakeRequest=structuredClone(request);
