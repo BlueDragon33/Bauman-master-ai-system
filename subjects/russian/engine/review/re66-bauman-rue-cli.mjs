@@ -14,6 +14,9 @@ export function runBaumanRe66Offline({
  const actual=String(git('git',['rev-parse','HEAD'],
   {cwd:here,encoding:'utf8',timeout:5000,windowsHide:true})).trim();
  if(actual!==expectedHead)throw Error('Bauman RE66 HEAD mismatch; do not export stale source');
+ const dirty=String(git('git',['status','--porcelain=v1','--untracked-files=all'],
+  {cwd:here,encoding:'utf8',timeout:5000,windowsHide:true})).trim();
+ if(dirty)throw Error('Bauman RE66 checkout contains uncommitted or untracked changes; STOP');
  const current=buildRe66RueRequest();
  if(mode==='export')return Object.freeze({baumanActualCheckoutHead:actual,
   candidateOnly:true,request:current});
