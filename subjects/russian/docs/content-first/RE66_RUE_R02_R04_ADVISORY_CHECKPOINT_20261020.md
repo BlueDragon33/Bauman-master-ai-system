@@ -50,3 +50,10 @@ Người có thẩm quyền và bằng chứng HUMAN_RU03 nằm ở Bauman RE45/
 - Bằng chứng thật có trong phiên: **Node v22 SHA-256 cho sáu câu nguyên văn 6/6 khớp**. Mô phỏng V8 đối chiếu giữa hai module và chống giả stress/URL/claim **PASS** nhưng dùng giả lập hash cho hợp đồng vận chuyển. **Full Node cross-repo exact SHA: NOT_TESTED** vì container không có hai checkout và DNS đến GitHub raw không hoạt động.
 
 Không yêu cầu chạy PowerShell, không GitHub-hosted Actions, không Work/Codex, không sửa canonical, runtime, learner mastery; không approve, merge, ratify hay publish.
+
+
+### RE66 follow-up — three-fingerprint guard (20/10/2026)
+
+Từ chính sáu item R02–R04 trong canonical `listen-write-lessons.json`, map tình huống và `RE61→RE45 stableStringify/fingerprint`, đã dựng lại trên môi trường phân tích và tính bằng SHA-256 thật. Đối chiếu **Python hashlib và Node.js crypto cho 18/18 fingerprint** (mỗi item: `sourceRevision`, `textFingerprint`, `reviewFingerprint`): khớp. RUE dùng 18 giá trị khóa này, không còn chỉ yêu cầu chuỗi hex hợp lệ. Bauman test `test-re66-rue-content-first-bridge.mjs` nay đối chiếu lại 18 fingerprint với handoff RE61 trực tiếp khi chạy ở checkout thật.
+
+**Phạm vi chứng cứ:** đã kiểm tra phép tính fingerprint trên dữ liệu tái dựng từ tệp GitHub; không tuyên bố chạy toàn bộ RE61 trong checkout, không thay chứng cứ Node cross-repo. Container chỉ có Node v22.16.0 trong khi `Blueprint-Russian-Expert-Engine/package.json` yêu cầu Node 24. Không lấy được checkout GitHub qua DNS; full Node cross-repo trên hai SHA candidate `NOT_TESTED`. Không yêu cầu người dùng PowerShell, không tự nâng gate RU03, không Actions/approve/merge/publish.
