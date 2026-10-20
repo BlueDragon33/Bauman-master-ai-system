@@ -68,3 +68,12 @@ Từ chính sáu item R02–R04 trong canonical `listen-write-lessons.json`, map
 **QA thực hiện trong phiên:** V8 chạy trực tiếp logic verifier với nguồn đóng băng do kiểm thử cấp: request gốc PASS, request giả thay tên & tái băm bị REJECT, null & malformed bị REJECT. Mã module/test mới V8 syntax PASS. **Không gọi đây là Node 24 cross-repo PASS**: container hiện tại có Node 22.16.0, không có hai checkout exact SHA và GitHub DNS trực tiếp bị chặn. Source phục vụ mô phỏng có hash giả lập, nên phép thử chỉ chứng minh **logic kiểm soát**.
 
 Không sửa dữ liệu lesson, audio, UI, learner mastery, không Actions/Work/Codex/merge/ratify/publish. `RU03=BLOCKED`; `CROSS_REPO_EXACT_SHA_NODE=NOT_TESTED`.
+
+
+## RE67 — Bổ sung kiểm tra mẫu ngữ pháp có nguồn
+
+Đã bổ sung `src/pilots/re67-r02-r04-grammar-advisory.mjs` ở **Russian Expert Engine PR #5 candidate**, dùng như phần mở rộng của RE66 hiện có; không tạo một pipeline approval mới. RUE gửi `grammarEvidence` cho đủ sáu source item R02–R04, kèm pattern ID, nguồn Gramota, `sourceItemId`, hash của câu nguồn và hash báo cáo. Bauman kiểm chính xác pattern gắn từng source ID, hash, `grammarScore=null`, `humanRu03Approved=false`, `readyForLearning=false`. Đổi score thành 100 hoặc tự gắn approval bị từ chối dù bundle checksum được tính lại.
+
+Năng lực phát hiện giới hạn: giới thiệu tên `Меня зовут…` (không đánh sai cách danh từ thay thế hợp lệ), `нужно/надо + infinitive`, mẫu hỏi giấy tờ, `до метро` / `к метро`, và nhận diện literal mẫu `Мне нужен врач`. Câu lạ hoặc cần ngữ cảnh trả `ABSTAIN_UNSUPPORTED_CONTEXT`; cách từ nghi ngờ `REVIEW_LOCAL_FORM` chứ không tự chứng nhận sai. Chỉ áp dụng **nguồn câu và ví dụ có kiểm soát**, không coi đây là LLM đã được huấn luyện hoặc thước đo năng lực tiếng Nga.
+
+Chi tiết nguồn và các hạn chế: tài liệu `docs/RUE-BAUMAN-RE67-SCOPED-GRAMMAR.md` ở RUE PR #5 candidate. Đã mô phỏng bằng V8 **14 trường hợp quy tắc/biến thể** và **6/6 packet RE66 hai chiều**; test kiểm tra điểm grammar giả bị từ chối. Tất cả kiểm tra Node24 trên cặp checkout sạch và benchmark blind có gold độc lập vẫn **NOT_TESTED/BLOCKED**. Không sửa runtime, lesson hoặc learner mastery; không kích hoạt CI, review authority, merge/publish.
