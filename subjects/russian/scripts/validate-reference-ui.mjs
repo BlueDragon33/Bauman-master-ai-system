@@ -57,6 +57,9 @@ const optionalLoader=read('assets/russian-optional-data-loader.js');
 const contentContract=read('assets/content-contract.js');
 const contentContractCss=read('assets/content-contract.css');
 const core=read('assets/core.js');
+must(core.includes('retireSpeakingAttempt();\n   window.RussianAudioEngine?.cancel?.();\n   setActiveLineIndex(i);save();render();return true;'),
+  'Weak-review turn navigation must cancel ASR and prior audio before changing the target');
+
 for(const token of [
  'practiceSelfNotes:{},dialogueSelfNotes:{}',
  'function cleanSelfNoteBucket(raw)',
