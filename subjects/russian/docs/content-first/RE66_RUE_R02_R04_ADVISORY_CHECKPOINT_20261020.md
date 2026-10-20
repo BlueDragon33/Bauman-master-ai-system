@@ -36,3 +36,17 @@ Bằng chứng này là **nguồn từ vựng có giới hạn**, không phải 
 Người có thẩm quyền và bằng chứng HUMAN_RU03 nằm ở Bauman RE45/RE50, không chuyển cho RUE. RE62–RE65 audio/người tình nguyện được **giữ BLOCKED**, không tự kích hoạt lại việc tìm người ngoài, không public giọng nói hoặc quyền cá nhân. RUE chỉ cung cấp advisory để tiết kiệm khối lượng đánh giá thường xuyên; chứng nhận chỉ sau benchmark độc lập và các gate có thẩm quyền.
 
 **Next technical gate:** kiểm thử Node offline của **hai checkout thật, đúng SHA**, giữ đầy đủ kết quả BLOCKED của ngữ âm/audio, rồi mới xét cải tiến kiểm định ngôn ngữ thực bằng nguồn tham khảo và gold-set độc lập.
+
+
+## RE66 readback root-cause repair (20/10/2026)
+
+**Phát hiện:** Cổng SHA của hai checkout trước đây chỉ dùng `git rev-parse HEAD`, nên một thư mục có file đã sửa nhưng chưa commit vẫn có thể được báo là đang chạy source đúng SHA. Bộ nhận lexical evidence cũng chưa khóa đúng dấu trọng âm/URL theo từng item — người sửa có thể tính lại checksum rồi tráo một mục từ.
+
+**Đã sửa trên hai nhánh candidate:**
+
+- Bauman `re66-bauman-rue-cli.mjs`, RUE `ru03-bauman-re66-cli.mjs` và bài QA chéo kiểm `git status --porcelain=v1 --untracked-files=all`; checkout có thay đổi hoặc file không được theo dõi đều **BLOCKED**.
+- `re66-rue-content-first-bridge.mjs` ràng buộc chính xác sáu cặp từ, dạng trọng âm, scope và URL Gramota; các test tạo lại bundle SHA sau khi tráo trọng âm/URL nhưng vẫn phải **REJECT**. Không phong chuẩn ngữ âm/audio.
+- Thêm `test-re66-exact-head-clean-checkout.mjs` và RUE `re66-exact-head-clean-checkout.test.mjs` kiểm trường hợp thiếu bất biến HEAD/dirty.
+- Bằng chứng thật có trong phiên: **Node v22 SHA-256 cho sáu câu nguyên văn 6/6 khớp**. Mô phỏng V8 đối chiếu giữa hai module và chống giả stress/URL/claim **PASS** nhưng dùng giả lập hash cho hợp đồng vận chuyển. **Full Node cross-repo exact SHA: NOT_TESTED** vì container không có hai checkout và DNS đến GitHub raw không hoạt động.
+
+Không yêu cầu chạy PowerShell, không GitHub-hosted Actions, không Work/Codex, không sửa canonical, runtime, learner mastery; không approve, merge, ratify hay publish.
