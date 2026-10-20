@@ -39,7 +39,10 @@
     "requestedAudioFormats": [
       "WAV_PCM_S16LE",
       "OGG_VORBIS",
-      "FLAC_LOSSLESS"
+      "FLAC_LOSSLESS",
+      "WEBM_OPUS",
+      "OGG_OPUS",
+      "M4A_AAC"
     ],
     "preferredSampleRateHz": 48000,
     "allowedSampleRatesHz": [
@@ -74,7 +77,9 @@
       "rhythmAndIntonation",
       "audioClippingAndNoise",
       "rightsProvenance"
-    ]
+    ],
+    "browserCapturePolicy": "Original unedited MediaRecorder blob permitted as QA intake (WebM/Opus, Ogg/Opus, MP4/AAC); never equate browser audio recording with verified Russian pronunciation.",
+    "recordingConsent": "Voluntary speaker recording and licensing declaration; self-declaration does not replace independently verified permission or HUMAN_RU03."
   },
   "technicalStagingStatus": "BLOCKED_NO_ORIGINAL_HUMAN_AUDIO_BYTES",
   "nodePipelineVerification": "NOT_TESTED_ON_RE63",
