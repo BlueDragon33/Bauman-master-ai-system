@@ -46,6 +46,14 @@ const ad=request.sourceItems.map(item=>{
  };
  const advisory={...advisoryData,advisorySha256:sha(JSON.stringify(advisoryData))};
  return {sourceItemId:item.sourceItemId,itemId:item.itemId,advisory,
+  lexicalEvidence:{
+   sourceId:'gramota',surface:item.textRu.match(/[А-ЯЁа-яё]+/u)[0],
+   headwordWithStress:'UNVERIFIED_SYNTHETIC_FIXTURE',
+   scope:'FIXTURE_ONLY',url:'https://gramota.ru/poisk?query=fixture',
+   status:'PUBLIC_DICTIONARY_PAGE_OBSERVED_LEXEME_ONLY',
+   rights:'LINK_ONLY_NO_COPY',
+   sentenceMeaningApproved:false,prosodyApproved:false,humanRu03Approved:false
+  },
   preflight:{
    grammar:'UNVERIFIED_NEEDS_SOURCE_AND_RKI_REVIEW',
    stress:'UNVERIFIED_NEEDS_LEXICAL_SOURCE_REVIEW',
