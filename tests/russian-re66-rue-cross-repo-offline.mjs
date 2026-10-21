@@ -36,6 +36,18 @@ if(!rue||!Sha.test(expectedBauman||'')||!Sha.test(expectedRue||'')||
  const check=verifyRe66RueAdvisoryBundle(request,result);
  assert.equal(check.ok,true,'Cross-owner advisory checksum/revision contract rejected');
  assert.equal(result.advisories.length,6);
+ assert.equal(result.advisories.filter(x=>x.dialogueEvidence!==null).length,4,
+   'RE68 must exist only for four R03-R04 source items');
+ assert.ok(result.advisories.slice(0,2).every(x=>x.dialogueEvidence===null),
+   'R02 must not invent an RE68 dialogue assessment');
+ assert.ok(result.advisories.slice(2).every(x=>
+   x.dialogueEvidence?.sourceItemId===x.sourceItemId&&
+   x.dialogueEvidence.variantStatus==='SAME_LOCAL_COMMUNICATIVE_INTENT'&&
+   x.dialogueEvidence.grade===null&&
+   x.dialogueEvidence.grammarCorrectness===null&&
+   x.dialogueEvidence.humanRu03Approved===false&&
+   x.dialogueEvidence.learnerMasteryWrite===false),
+   'Dialogue variants are bounded advisory evidence, not mastery/approval');
  assert.ok(result.advisories.every(x=>
    x.grammarEvidence?.sourceItemId===x.sourceItemId&&
    x.grammarEvidence.exactCanonicalText===true&&
