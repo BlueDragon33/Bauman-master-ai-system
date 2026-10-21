@@ -73,6 +73,25 @@ const grammarFixtures=Object.freeze({
  LW_ITEM_R04_DOCTOR:{code:'MEDICAL_REQUEST_FIXED_PHRASE',status:'CANONICAL_EXAMPLE_MATCH_ONLY',
    source:null,url:null,scope:null}
 });
+// RE68 fixture describes four bound canonical *intent examples*, not a judge.
+const re68Fixtures=Object.freeze({
+ LW_ITEM_R03_REG:{code:'R03_REGISTER_ACTION_NEED',context:'DORM_REGISTRATION',
+   source:'GRAMOTA_323868_NUZHNO_VS_NUZHNA',
+   url:'https://gramota.ru/poisk?mode=spravka&query=%D0%BD%D1%83%D0%B6%D0%BD%D0%BE',
+   scope:'IMPERSONAL_PREDICATIVE_NEED_VS_SHORT_ADJECTIVE_NOUN'},
+ LW_ITEM_R03_DOCS:{code:'R03_DOCUMENTS_INFORMATION_REQUEST',context:'ASK_REQUIRED_DOCUMENTS',
+   source:'GRAMOTA_319473_PLEASE_PUNCTUATION',
+   url:'https://gramota.ru/spravka/vopros/319473',
+   scope:'PLEASE_INTERJECTION_VS_POLITE_INFORMATION_REQUEST'},
+ LW_ITEM_R04_METRO:{code:'R04_WALKING_DIRECTION_METRO',context:'ASK_WALKING_ROUTE_TO_METRO',
+   source:'GRAMOTA_DIRECTION_TO_METRO',
+   url:'https://gramota.ru/poisk?mode=slovari&query=%D0%98%D1%89%D0%B8&simple=0',
+   scope:'WALKING_TOWARD_METRO_K_VS_DO_COLLOCATIONS'},
+ LW_ITEM_R04_DOCTOR:{code:'R04_DOCTOR_REQUEST',context:'REQUEST_A_DOCTOR',
+   source:'GRAMOTA_323868_NUZHNO_VS_NUZHNA',
+   url:'https://gramota.ru/poisk?mode=spravka&query=%D0%BD%D1%83%D0%B6%D0%BD%D0%BE',
+   scope:'IMPERSONAL_PREDICATIVE_NEED_VS_SHORT_ADJECTIVE_NOUN'}
+});
 const ad=request.sourceItems.map(item=>{
  const advisoryData={
   schema:'RUE_RU03_ADVISORY_V1',
@@ -113,7 +132,28 @@ const ad=request.sourceItems.map(item=>{
    authority:'AI_ADVISORY_PATTERN_ONLY_NO_AUTOMATIC_QUALITY_GATE',
    noLearnerData:true
  };
+ const fi=re68Fixtures[item.sourceItemId];
+ const dialogueBody=fi?{
+   schema:'RUE_RE68_DIALOGUE_VARIANT_ADVISORY_V1',
+   sourceItemId:item.sourceItemId,lessonId:item.lessonId,
+   communicativeContext:fi.context,
+   sourceLocator:{id:fi.source,url:fi.url,scope:fi.scope},
+   candidateTextSha256:sha(item.textRu),
+   canonicalTextSha256:sha(item.textRu),
+   exactCanonicalText:true,
+   variantStatus:'SAME_LOCAL_COMMUNICATIVE_INTENT',
+   variantId:fi.code,
+   explanation:'TEST FIXTURE: literal canonical intent only, not Russian correctness.',
+   grade:null,grammarCorrectness:null,errorProven:false,
+   pronunciationScore:null,phraseAudioVerified:false,
+   sourceAuthority:'PUBLIC_SOURCE_SUPPORTS_LIMITED_FORM_OR_FUNCTION_ONLY',
+   independentGoldAvailable:false,humanRu03Approved:false,
+   readyForLearning:false,learnerMasteryWrite:false,advisoryOnly:true
+ }:null;
  return {sourceItemId:item.sourceItemId,itemId:item.itemId,advisory,
+  dialogueEvidence:dialogueBody?{
+    ...dialogueBody,evidenceSha256:sha(JSON.stringify(dialogueBody))
+  }:null,
   grammarEvidence:{...gramBody,advisorySha256:sha(JSON.stringify(gramBody))},
   lexicalEvidence:{
    sourceId:'gramota',...lexicalFixtures[item.sourceItemId],
@@ -175,6 +215,11 @@ assert.equal(tamper(x=>{x.advisories[4].grammarEvidence.patternId='AUTOMATIC_APP
 assert.equal(tamper(x=>{x.advisories[1].grammarEvidence.sourceLocator.url='https://fake.example/grammar'},{rehash:true}),false);
 assert.equal(tamper(x=>{x.advisories[3].grammarEvidence.sourceLocator.url='https://gramota.ru/poisk?query=unrelated'},{rehash:true}),false);
 assert.equal(tamper(x=>{x.advisories[4].grammarEvidence.sourceLocator.scope='ALL_RUSSIAN_GRAMMAR_APPROVED'},{rehash:true}),false);
+assert.equal(tamper(x=>{x.advisories[2].dialogueEvidence.grade=10},{rehash:true}),false);
+assert.equal(tamper(x=>{x.advisories[3].dialogueEvidence.variantStatus='AUTOMATICALLY_CORRECT'},{rehash:true}),false);
+assert.equal(tamper(x=>{x.advisories[4].dialogueEvidence.sourceLocator.url='https://gramota.ru/fake'},{rehash:true}),false);
+assert.equal(tamper(x=>{x.advisories[5].dialogueEvidence.learnerMasteryWrite=true},{rehash:true}),false);
+assert.equal(tamper(x=>{x.advisories[0].dialogueEvidence={}}, {rehash:true}),false);
 // Independently recomputed hashes are NOT canonical-source authentication.
 // This used to pass if the verifier trusted caller-chosen requestSha256.
 const fakeRequest=structuredClone(request);
