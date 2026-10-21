@@ -38,6 +38,49 @@
       "status": "OPEN",
       "reason": "naturalness/register/technical terminology review remains item-bound",
       "disposition": "retain PARTIAL status until curated"
+    },
+    {
+      "id": "RU03-Q005",
+      "severity": "MEDIUM",
+      "owner": "subjects/russian/data/listen-write-lessons.json",
+      "status": "OPEN",
+      "reason": "Single A0 lexical stress/meaning pilot for iPhone Widget: real Bauman LW_R01 item exists, but lacks independent item-bound human RU03 decision, display/offline rights, immutable widget publication record and audio authorization.",
+      "disposition": "AI source-anchored advisory only; preserve source lesson unchanged; do not promote, sign, export or display as RU03-approved.",
+      "pilot": {
+        "sourceItemId": "LW_ITEM_R01_MOLOKO",
+        "sourceLessonId": "LW_R01",
+        "sourceLevel": "A0",
+        "sourceFile": "subjects/russian/data/listen-write-lessons.json",
+        "sourceGitBlobSha1": "f041ceebc32245438f93142014f347440ebe2599",
+        "reviewSurface": "молоко",
+        "sourceStressAnswer": "молоко́",
+        "translationViProposal": "sữa",
+        "proposedSense": "thực phẩm/chất lỏng gọi là sữa; cần xác nhận phạm vi nghĩa phù hợp với bài A0",
+        "partOfSpeechProposal": "danh từ giống trung",
+        "rueEvidenceScope": "NORMATIVE_DICTIONARY: WORD_STRESS, ORTHOEPY; LINK_ONLY_NO_COPY",
+        "sourcePointers": [
+          {
+            "id": "gramota-stress",
+            "url": "https://gramota.ru/poisk?mode=slovari&query=%D0%BC%D0%BE%D0%BB%D0%BE%D0%BA%D0%BE",
+            "supports": "written form and final-o stress; dictionary metadata only, no copied text"
+          },
+          {
+            "id": "gramota-orthoepy",
+            "url": "https://gramota.ru/poisk?mode=spravka&query=%D0%BC%D0%BE%D0%BB%D0%BE%D0%BA%D0%BE",
+            "supports": "unstressed-vowel reduction; source link only, no audio/content reuse"
+          }
+        ],
+        "aiAssessment": "SOURCE_ANCHORED_AI_CANDIDATE",
+        "humanRu03Decision": "PENDING",
+        "approvedReviewerId": null,
+        "translationAuthority": "PENDING_HUMAN_SENSE_REVIEW",
+        "sourceLicenseForReuse": "NOT_VERIFIED",
+        "displayAllowed": false,
+        "offlineCacheAllowed": false,
+        "audioApproved": false,
+        "releaseEligible": false,
+        "widgetDeckExportAllowed": false
+      }
     }
   ],
   "blockers": [],
