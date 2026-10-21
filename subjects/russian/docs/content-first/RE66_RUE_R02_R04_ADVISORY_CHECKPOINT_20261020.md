@@ -88,3 +88,14 @@ RUE Draft PR #5 đã thêm **`src/pilots/re68-r03-r04-dialogue-variants.mjs`** �
 Bằng chứng đã thực hiện: V8 chạy 4 nhóm test trực tiếp từ nguồn RE68 (26 ví dụ), PASS; mô phỏng V8 exchange giữa module RUE và bộ nhận Bauman, 6/6 packet, trong đó 4/4 RE68, PASS; các giả mạo nêu trên bị chặn. **Node24 cross-repo exact checkout = NOT_TESTED**, chưa có nhãn gold benchmark mù, **RU03 = BLOCKED**, không có điểm phát âm tự động.
 
 Nguồn và phần giải thích chuyên môn nằm ở `docs/RUE-BAUMAN-RE68-DIALOGUE-INTENT-ADVISORY.md` của RUE. Các phép thử này không phải bằng chứng model AI đã được huấn luyện hay chứng nhận RKI/RU03. Không chạy Work/Codex, Actions, approve/merge, ratify hoặc publish.
+
+
+## RE69 — Hình thái và cú pháp R03–R04, checkpoint 21/10/2026
+
+Russian Expert Engine Draft PR #5 đã bổ sung `src/pilots/re69-r03-r04-morphosyntax.mjs`. Đây là **bộ quan sát quy tắc có phạm vi**, chưa phải bộ phân tích mọi câu tiếng Nga. RE69 tách `нужно/надо + infinitive`, `нужен/нужна + noun`, hòa hợp `какие документы нужны` trong mẫu cố định và giới từ `до метро`/ `к метро`. Trường hợp `мне нужно согласие` giữ **ABSTAIN** do `нужно` có nhiều chức năng; `метро` không đổi hình thức nên `caseFromEnding=NOT_INFERABLE`.
+
+Nguồn công khai: Gramota [323868](https://gramota.ru/poisk?mode=spravka&query=%D0%BD%D0%B0%D0%B4%D0%BE), [331757](https://gramota.ru/poisk?mode=spravka&query=%D0%94%D0%BE%D0%BB%D0%B6%D0%BD%D0%BE), [metro](https://gramota.ru/poisk?dicts%5B0%5D=48&mode=slovari&query=%D0%BC%D0%B5%D0%BB%D0%BA%D0%BE&simple=0). Dữ liệu hỏi giấy tờ có con trỏ từ điển nhưng **chưa phải bằng chứng hình thái độc lập toàn câu**; các nghi ngờ vẫn `SUSPECTED_LOCAL_FORM_REVIEW`, không `errorProven`. Chi tiết: `docs/RUE-BAUMAN-RE69-MORPHOSYNTAX.md` tại RUE.
+
+Đường RUE RE66 hiện có thêm `morphosyntaxEvidence` chỉ cho 4 mục R03/R04, R02 vẫn `null`. Bauman `engine/review/re66-rue-content-first-bridge.mjs` kiểm nguồn/ID/nhãn/đặc trưng, cùng `grade=null`, `grammarCorrectness=null`, `errorProven=false`, `humanRu03Approved=false`, `learnerMasteryWrite=false`. Không thay RE45/RE50, không động vào runtime, canonical lesson, audio hay mastery.
+
+**Bằng chứng kiểm thử cấp phiên:** V8 thực thi 4/4 nhóm test từ source RE69, gồm 30 trường hợp; PASS. V8 mô phỏng trao đổi hai chiều (hash transport giả lập) có 6 packet, 4 RE69, R02 null; 5 giả mạo tái băm bị REJECT. Cú pháp tĩnh sẽ được rà lại trên SHA cuối; không gọi đây là Node24 full cross-repo PASS. Gold benchmark mù, audio, HUMAN_RU03 và Production vẫn BLOCKED. Không Work/Codex/Actions/approve/merge/ratify/publish.
