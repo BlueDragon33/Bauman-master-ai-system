@@ -79,7 +79,69 @@
         "offlineCacheAllowed": false,
         "audioApproved": false,
         "releaseEligible": false,
-        "widgetDeckExportAllowed": false
+        "widgetDeckExportAllowed": false,
+        "evidenceReview": {
+          "dictionaryFormAndStress": "SOURCE_SUPPORTED_PENDING_HUMAN_RU03",
+          "dictionarySenseAndGrammar": "SOURCE_SUPPORTED_PENDING_HUMAN_RU03",
+          "phonetics": "SOURCE_SUPPORTED_PENDING_AUDIO_REVIEW",
+          "normativeDictionaryURL": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D0%BC%D0%BE%D0%BB%D0%BE%D0%BA%D0%BE",
+          "orthoepicReferenceURL": "https://gramota.ru/spravka/vopros/332262",
+          "observation": "молоко́, noun neuter; pretonic vowels are reduced. Vietnamese 'sữa' is a Bauman-authored candidate gloss, not a reproduced dictionary entry.",
+          "notAFormalRUEEngineRun": true
+        },
+        "rightsAudit": {
+          "termsSourceURL": "https://gramota.ru/polzovatelskoe-soglashenie",
+          "termsSectionsReviewed": [
+            "5.2.3",
+            "5.3",
+            "5.4",
+            "5.5"
+          ],
+          "gramotaEvidenceUse": "LINK_ONLY_NO_COPY",
+          "quotedDictionaryEntryRehostAllowed": false,
+          "externalDictionaryAudioReuseAllowed": false,
+          "dictionaryOfflineDownloadAllowed": false,
+          "independentlyAuthoredBaumanCard": "MAY_BE_POSSIBLE_BUT_OWNER_PERMISSION_UNVERIFIED",
+          "ownerRightsEvidenceId": null,
+          "ownerLicenseURL": null,
+          "permissionToDisplayInWidget": "NOT_VERIFIED",
+          "permissionToCacheAsSignedDeck": "NOT_VERIFIED",
+          "restriction": "Linking to normative dictionary facts is not evidence of a license to redistribute its text, media, audio or bulk database. A separately authored card and explicit Bauman release/rights record must be examined independently."
+        },
+        "humanReviewRequirements": {
+          "reviewerRegistry": "subjects/russian/engine/content/review/ru03-reviewers.v1.json",
+          "reviewerRegistryStateObserved": "EXTERNAL_REVIEWER_REQUIRED",
+          "reviewerCountObserved": 0,
+          "reviewerRequired": {
+            "type": "HUMAN",
+            "authority": "RU03",
+            "status": "ACTIVE",
+            "credentialsVerified": true,
+            "verificationEvidenceId": "REQUIRED_NOT_PRESENT"
+          },
+          "lexicalDecisionRequired": {
+            "schemaVersion": "RUSSIAN_ENGINE_HUMAN_REVIEW_DECISIONS_V1",
+            "reviewerType": "HUMAN",
+            "authority": "RU03",
+            "decision": "APPROVE_ONLY_IF_INDEPENDENTLY_GRANTED",
+            "scopes": [
+              "RU_TEXT",
+              "RU_STRESS",
+              "VI_MEANING",
+              "SENSE"
+            ],
+            "contentSha256": "REQUIRED_FROM_EXACT_REVIEWED_CONTENT",
+            "decisionId": "REQUIRED_FROM_REAL_REVIEW",
+            "decidedAt": "REQUIRED_FROM_REAL_REVIEW",
+            "reviewerId": "REQUIRED_FROM_VERIFIED_REGISTRY",
+            "senseId": "REQUIRED_FROM_REVIEWED_SENSE"
+          },
+          "existingSceneDecisionRegistryNotLexicalAuthority": true,
+          "publicationRequires": "PUBLISHED_REFERENCE plus immutable matching contentSha256 and non-withdrawn exact revision",
+          "widgetRightsRequires": "RUSSIAN_WIDGET_RIGHTS_V1: matching contentSha256, displayAllowed, offlineCacheAllowed, licenseUrl, nonrevoked sourceRefs",
+          "audioDecisionIndependent": true,
+          "status": "BLOCKED_NO_HUMAN_LEXICAL_REVIEW_OR_RIGHTS"
+        }
       }
     }
   ],
