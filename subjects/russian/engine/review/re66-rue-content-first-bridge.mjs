@@ -53,6 +53,26 @@ const re67PatternPins=Object.freeze({
    scope:'DIRECTION_TO_METRO_DO_OR_K_ONLY'},
  LW_ITEM_R04_DOCTOR:{code:'MEDICAL_REQUEST_FIXED_PHRASE',sourceId:null,url:null,scope:null}
 });
+// RE68 recognizes four *canonical intent examples* only, not grammatical truth.
+// R02 has no RE68 dialogue observation, which is an explicit reviewed boundary.
+const re68IntentPins=Object.freeze({
+ LW_ITEM_R03_REG:{code:'R03_REGISTER_ACTION_NEED',context:'DORM_REGISTRATION',
+   source:'GRAMOTA_323868_NUZHNO_VS_NUZHNA',
+   url:'https://gramota.ru/poisk?mode=spravka&query=%D0%BD%D1%83%D0%B6%D0%BD%D0%BE',
+   scope:'IMPERSONAL_PREDICATIVE_NEED_VS_SHORT_ADJECTIVE_NOUN'},
+ LW_ITEM_R03_DOCS:{code:'R03_DOCUMENTS_INFORMATION_REQUEST',context:'ASK_REQUIRED_DOCUMENTS',
+   source:'GRAMOTA_319473_PLEASE_PUNCTUATION',
+   url:'https://gramota.ru/spravka/vopros/319473',
+   scope:'PLEASE_INTERJECTION_VS_POLITE_INFORMATION_REQUEST'},
+ LW_ITEM_R04_METRO:{code:'R04_WALKING_DIRECTION_METRO',context:'ASK_WALKING_ROUTE_TO_METRO',
+   source:'GRAMOTA_DIRECTION_TO_METRO',
+   url:'https://gramota.ru/poisk?mode=slovari&query=%D0%98%D1%89%D0%B8&simple=0',
+   scope:'WALKING_TOWARD_METRO_K_VS_DO_COLLOCATIONS'},
+ LW_ITEM_R04_DOCTOR:{code:'R04_DOCTOR_REQUEST',context:'REQUEST_A_DOCTOR',
+   source:'GRAMOTA_323868_NUZHNO_VS_NUZHNA',
+   url:'https://gramota.ru/poisk?mode=spravka&query=%D0%BD%D1%83%D0%B6%D0%BD%D0%BE',
+   scope:'IMPERSONAL_PREDICATIVE_NEED_VS_SHORT_ADJECTIVE_NOUN'}
+});
 const refs=Object.freeze([
  ['../../data/listen-write-lessons.json','sourceOwnerBlob'],
  ['../content/fixtures/r01-r06-source-bound-practice-map.candidate.json','sourceMapBlob'],
@@ -230,6 +250,40 @@ export function verifyRe66RueAdvisoryBundle(request,bundle){
      if(!/^[a-f0-9]{64}$/.test(advisorySha256||'')||
         advisorySha256!==sha256(JSON.stringify(body)))
        errors.push('RE67 grammar evidence hash mismatch '+item.sourceItemId);
+   }
+   const dialog=entry?.dialogueEvidence, expectedDialog=re68IntentPins[item.sourceItemId];
+   if(item.lessonId==='R02'){
+     if(dialog!==null)errors.push('RE68 R02 must not invent a dialogue review');
+   }else{
+     if(!dialog||!expectedDialog||
+        dialog.schema!=='RUE_RE68_DIALOGUE_VARIANT_ADVISORY_V1'||
+        dialog.sourceItemId!==item.sourceItemId||
+        dialog.lessonId!==item.lessonId||
+        dialog.communicativeContext!==expectedDialog.context||
+        dialog.sourceLocator?.id!==expectedDialog.source||
+        dialog.sourceLocator?.url!==expectedDialog.url||
+        dialog.sourceLocator?.scope!==expectedDialog.scope||
+        dialog.candidateTextSha256!==sha256(item.textRu)||
+        dialog.canonicalTextSha256!==sha256(item.textRu)||
+        dialog.exactCanonicalText!==true||
+        dialog.variantStatus!=='SAME_LOCAL_COMMUNICATIVE_INTENT'||
+        dialog.variantId!==expectedDialog.code||
+        typeof dialog.explanation!=='string'||dialog.explanation.length>900||
+        dialog.grade!==null||dialog.grammarCorrectness!==null||
+        dialog.errorProven!==false||
+        dialog.pronunciationScore!==null||
+        dialog.phraseAudioVerified!==false||
+        dialog.sourceAuthority!=='PUBLIC_SOURCE_SUPPORTS_LIMITED_FORM_OR_FUNCTION_ONLY'||
+        dialog.independentGoldAvailable!==false||
+        dialog.humanRu03Approved!==false||dialog.readyForLearning!==false||
+        dialog.learnerMasteryWrite!==false||dialog.advisoryOnly!==true)
+       errors.push('RE68 intent cannot confer linguistic authority '+item.sourceItemId);
+     if(dialog){
+       const {evidenceSha256,...body}=dialog;
+       if(!/^[a-f0-9]{64}$/.test(evidenceSha256||'')||
+          evidenceSha256!==sha256(JSON.stringify(body)))
+         errors.push('RE68 variant evidence SHA mismatch '+item.sourceItemId);
+     }
    }
    const x=entry?.preflight;
    if(!x||x.grammar!=='UNVERIFIED_NEEDS_SOURCE_AND_RKI_REVIEW'||
