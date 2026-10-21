@@ -70,18 +70,34 @@ for (const marker of [
 
 assert.equal(registry.dependencyPolicy,"prompts/constitution/DEPENDENCY_INDEPENDENCE_POLICY.md");
 assert.equal(registry.defaultInfrastructureProfile,"LOCAL_OFFLINE_FREE_FIRST");
-assert.equal(registry.workAllocation.chatPercent,"90-95");
-assert.equal(registry.workAllocation.codexPercent,"5-10");
+// Effective universal R22 supersedes the former fixed Chat/Codex quota.
+assert.equal(registry.workAllocation.rule,"CAPABILITY_BASED_CURRENT_ENVIRONMENT_FIRST_R22");
+assert.equal(registry.workAllocation.fixedPercentageQuota,false);
+for (const legacyQuota of ["chatPercent","codexPercent"]) {
+  assert.equal(Object.hasOwn(registry.workAllocation,legacyQuota),false,"R22 must not retain "+legacyQuota);
+}
+assert.equal(registry.workAllocation.sourceRepository,"BlueDragon33/Software-Blueprint-Hub");
+assert.match(registry.workAllocation.sourceRevision,/^[a-f0-9]{40}$/);
+assert.equal(registry.workAllocation.sourcePath,"docs/UNIVERSAL-CONSTITUTION.md#10r22");
+assert.ok(constitution.includes("/blob/"+registry.workAllocation.sourceRevision+"/docs/UNIVERSAL-CONSTITUTION.md"),"R22 allocation must bind the same pinned central law as the Constitution router");
+assert.match(registry.workAllocation.escalation,/capability gap with bounded handoff/);
+assert.match(registry.workAllocation.escalation,/no automatic mode switch/);
+assert.match(registry.workAllocation.authority,/canonical Project Profile/);
 assert.deepEqual(registry.releaseProfiles,["LOCAL_STABLE","SYNC_STABLE","PUBLISHED_STABLE","MANAGED_PRODUCTION_STABLE"]);
 
 assert.equal(subjectIndex.globalDependencyPolicy,"prompts/constitution/DEPENDENCY_INDEPENDENCE_POLICY.md");
 assert.equal(subjectIndex.infrastructureDefault,"LOCAL_FIRST_OFFLINE_FIRST_FREE_FIRST");
 
-assert.match(execution,/Chat 90–95%/);
-assert.match(execution,/Codex 5–10% maximum/);
+assert.match(execution,/R22/);
+assert.match(execution,/current authorized capabilities/);
+assert.match(execution,/evidenced capability gap/);
 assert.match(execution,/LOCAL_STABLE/);
-assert.match(workSplit,/Chat 90–95%/);
-assert.match(workSplit,/Codex 5–10% maximum/);
+assert.match(workSplit,/R22/);
+assert.match(workSplit,/current connected, authorized environment/);
+assert.match(workSplit,/demonstrated capability gap/);
+for (const activeRule of [constitution,execution,workSplit]) {
+  assert.doesNotMatch(activeRule,/(?:Chat\s*90[–-]95%|Codex\s*5[–-]10%)/i,"Effective rules must not reintroduce the superseded quota");
+}
 
 for (const profile of ["LOCAL_STABLE","SYNC_STABLE","PUBLISHED_STABLE","MANAGED_PRODUCTION_STABLE"]) {
   assert.ok(releaseAnnex.includes(profile), "release annex missing "+profile);
@@ -116,8 +132,8 @@ assert.match(algState.nextAction,/Python completes local-first/);
 console.log(JSON.stringify({
   ok:true,
   policy:"LOCAL_OFFLINE_FREE_FIRST",
-  chat:"90-95%",
-  codex:"5-10%",
+  workAllocation:registry.workAllocation.rule,
+  fixedPercentageQuota:registry.workAllocation.fixedPercentageQuota,
   releaseProfiles:registry.releaseProfiles,
   pythonRevalidation:pyState.needsRevalidation,
   algorithmsGate:algState.executionGate

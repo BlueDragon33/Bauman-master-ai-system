@@ -285,9 +285,13 @@
   "infrastructureMigrationPlan": "prompts/INFRASTRUCTURE_INDEPENDENCE_MIGRATION_PLAN.md",
   "defaultInfrastructureProfile": "LOCAL_OFFLINE_FREE_FIRST",
   "workAllocation": {
-    "chatPercent": "90-95",
-    "codexPercent": "5-10",
-    "rule": "CHAT_FIRST_CODEX_DEEP_ONLY"
+    "rule": "CAPABILITY_BASED_CURRENT_ENVIRONMENT_FIRST_R22",
+    "fixedPercentageQuota": false,
+    "sourceRepository": "BlueDragon33/Software-Blueprint-Hub",
+    "sourceRevision": "cd01fb3c2178393628ce968af209db082227d2c4",
+    "sourcePath": "docs/UNIVERSAL-CONSTITUTION.md#10r22",
+    "escalation": "evidenced GUI/native/local environment capability gap with bounded handoff; no automatic mode switch",
+    "authority": "effective universal law; canonical Project Profile determines execution depth"
   },
   "releaseProfiles": [
     "LOCAL_STABLE",

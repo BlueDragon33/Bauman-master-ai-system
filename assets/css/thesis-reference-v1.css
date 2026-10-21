@@ -2,6 +2,19 @@
    Strictly scoped to #page-research. */
 
 #page-research .thesis-page{
+  /* This component owns a light workspace in every surrounding theme. */
+  --bui-focus-ring:#1557b0;
+  --bui-text-primary:var(--bui-on-light-title);
+  --bui-text-secondary:var(--bui-on-light-body);
+  --bui-text-tertiary:var(--bui-on-light-muted);
+  --bui-text-placeholder:var(--bui-on-light-muted);
+  --cc-ink:var(--bui-on-light-body);
+  --cc-ink-strong:var(--bui-on-light-title);
+  --cc-muted:var(--bui-on-light-muted);
+  --cc-surface:#ffffff;
+  --cc-surface-2:#f1f5fa;
+  --cc-line:#718096;
+
   --tp-blue:#1769f6;
   --tp-ink:#16213d;
   --tp-muted:#64748b;
@@ -53,12 +66,12 @@
 #page-research .thesis-page__select,
 #page-research .thesis-page__button{
   height:39px;
-  border:1px solid #dce4ef;
+  border:1px solid var(--bui-border-strong);
   border-radius:8px;
   background:#fff;
   color:#364867;
   padding:0 12px;
-  outline:0;
+
   font-size:11px;
   font-weight:700;
 }
@@ -125,9 +138,9 @@
 #page-research .thesis-page__summary-card small{display:block;color:#344767;font-size:9.5px;font-weight:800}
 #page-research .thesis-page__summary-card b{display:block;margin-top:3px;color:#152242;font-size:14.5px;line-height:1.14}
 #page-research .thesis-page__summary-card strong{display:block;margin-top:2px;color:#26385a;font-size:10.7px;line-height:1.18}
-#page-research .thesis-page__summary-card p{margin:4px 0 0;color:#687a95;font-size:8.2px;line-height:1.28}
+#page-research .thesis-page__summary-card p{margin:4px 0 0;color:var(--bui-on-light-muted);font-size:8.2px;line-height:1.28}
 #page-research .thesis-page__summary-card.is-orange b,
-#page-research .thesis-page__summary-card.is-orange strong{color:#d84d2f}
+#page-research .thesis-page__summary-card.is-orange strong{color:#a43820}
 #page-research .thesis-page__donut{
   position:absolute;right:14px;top:50%;transform:translateY(-50%);
   width:47px;height:47px;border-radius:50%;
@@ -177,7 +190,7 @@
 }
 #page-research .thesis-page__tabs button:first-child{border-radius:6px 0 0 6px}
 #page-research .thesis-page__tabs button:last-child{border-radius:0 6px 6px 0}
-#page-research .thesis-page__tabs button.is-active{background:#3c7bed;border-color:#3c7bed;color:#fff}
+#page-research .thesis-page__tabs button.is-active{background:#215ebc;border-color:#3c7bed;color:#fff}
 #page-research .thesis-page__plan-nav{display:flex;gap:6px;align-items:center}
 #page-research .thesis-page__plan-nav button{
   height:28px;min-width:30px;padding:0 8px;border:1px solid #dce4ef;border-radius:6px;background:#fff;color:#405577;font-size:8px;font-weight:800;
@@ -200,7 +213,7 @@
 }
 #page-research .thesis-page__day-head.is-today{background:#eaf3ff}
 #page-research .thesis-page__day-head b{font-size:8.5px;color:#263b5d}
-#page-research .thesis-page__day-head span{margin-top:2px;font-size:7.5px;color:#71819a}
+#page-research .thesis-page__day-head span{margin-top:2px;font-size:7.5px;color:#52637c}
 #page-research .thesis-page__day-head.is-today b{color:#225fbe}
 #page-research .thesis-page__time-axis{
   position:relative;
@@ -210,7 +223,7 @@
   background:#fff;
 }
 #page-research .thesis-page__time-axis span{
-  position:absolute;left:0;width:100%;transform:translateY(-5px);padding-right:7px;text-align:right;color:#687994;font-size:7.3px;
+  position:absolute;left:0;width:100%;transform:translateY(-5px);padding-right:7px;text-align:right;color:#52637c;font-size:7.3px;
 }
 #page-research .thesis-page__time-axis span:nth-child(1){top:0}
 #page-research .thesis-page__time-axis span:nth-child(2){top:7.692%}
@@ -270,11 +283,11 @@
 #page-research .thesis-page__month-view{padding:8px}
 #page-research .thesis-page__month-weekdays,
 #page-research .thesis-page__month-grid{display:grid;grid-template-columns:repeat(7,1fr)}
-#page-research .thesis-page__month-weekdays span{text-align:center;padding:5px;color:#70819a;font-size:7px;font-weight:800}
+#page-research .thesis-page__month-weekdays span{text-align:center;padding:5px;color:var(--bui-on-light-muted);font-size:7px;font-weight:800}
 #page-research .thesis-page__month-grid button{
   position:relative;height:52px;border:1px solid #edf1f6;background:#fff;color:#445a78;font-size:8px;
 }
-#page-research .thesis-page__month-grid button.is-outside{opacity:.28}
+#page-research .thesis-page__month-grid button.is-outside{opacity:1;color:var(--bui-on-light-muted)}
 #page-research .thesis-page__month-grid button.is-active{background:#edf5ff;color:#2166ce}
 #page-research .thesis-page__month-grid button i{
   position:absolute;bottom:5px;left:50%;transform:translateX(-50%);width:5px;height:5px;border-radius:50%;
@@ -292,7 +305,7 @@
   display:grid;grid-template-columns:130px repeat(7,1fr);gap:1px;align-items:center;
 }
 #page-research .thesis-page__gantt-head span,
-#page-research .thesis-page__gantt-head b{padding:6px 4px;text-align:center;font-size:7px;color:#6f8097}
+#page-research .thesis-page__gantt-head b{padding:6px 4px;text-align:center;font-size:7px;color:var(--bui-on-light-muted)}
 #page-research .thesis-page__gantt-row{min-height:48px;border-top:1px solid #edf1f6}
 #page-research .thesis-page__gantt-row>span{font-size:8px;font-weight:800;color:#354968}
 #page-research .thesis-page__gantt-row>div{grid-column:2/9;position:relative;height:24px;background:repeating-linear-gradient(to right,#fff 0,#fff calc(14.285% - 1px),#e9eef5 calc(14.285% - 1px),#e9eef5 14.285%)}
@@ -307,7 +320,7 @@
 
 #page-research .thesis-page__task-list{padding:5px 8px}
 #page-research .thesis-page__task-list>button{
-  width:100%;min-height:34px;display:grid;grid-template-columns:8px minmax(0,1fr) 12px;gap:7px;align-items:center;
+  width:100%;min-height:34px;display:grid;grid-template-columns:8px minmax(0,1fr) auto;gap:7px;align-items:center;
   padding:5px 4px;border:0;border-bottom:1px solid #edf1f6;background:#fff;text-align:left;
 }
 #page-research .thesis-page__task-list>button>i{width:6px;height:24px;border-radius:5px}
@@ -316,9 +329,9 @@
 #page-research .thesis-page__task-list i.is-blue{background:#4b8be7}
 #page-research .thesis-page__task-list i.is-yellow{background:#e7b63c}
 #page-research .thesis-page__task-list i.is-red{background:#e06368}
-#page-research .thesis-page__task-list b{display:block;font-size:8px}
-#page-research .thesis-page__task-list span{display:block;margin-top:2px;color:#728299;font-size:6.8px}
-#page-research .thesis-page__task-list em{font-style:normal;color:#627895}
+#page-research .thesis-page__task-list b{display:block;font-size:var(--hub-readable-small,14px)}
+#page-research .thesis-page__task-list span{display:block;margin-top:2px;color:var(--bui-on-light-muted);font-size:var(--hub-readable-micro,12px)}
+#page-research .thesis-page__task-list em{font-style:normal;color:var(--bui-on-light-muted);font-size:var(--hub-readable-micro,12px);white-space:nowrap}
 
 #page-research .thesis-page__right-rail{display:grid;gap:9px;min-width:0}
 #page-research .thesis-page__right-split{display:grid;grid-template-columns:.93fr 1.07fr;gap:9px}
@@ -335,13 +348,13 @@
   width:24px;height:24px;border-radius:7px;display:grid;place-items:center;background:#eee8ff;color:#775ce0;
 }
 #page-research .thesis-page__panel-head em{
-  font-style:normal;background:#4e83ef;color:#fff;border-radius:5px;padding:2px 6px;font-size:7px;font-weight:800;
+  font-style:normal;background:#215ebc;color:#fff;border-radius:5px;padding:2px 6px;font-size:7px;font-weight:800;
 }
 #page-research .thesis-page__ai-intro{
   min-height:48px;display:grid;grid-template-columns:34px minmax(0,1fr);gap:7px;align-items:center;padding:7px 9px;background:#edf4ff;
 }
 #page-research .thesis-page__ai-intro>span{width:31px;height:31px;border-radius:8px;display:grid;place-items:center;background:#d9e8ff;font-size:15px}
-#page-research .thesis-page__ai-intro p{margin:0;color:#5b6f8d;font-size:7.8px;line-height:1.34}
+#page-research .thesis-page__ai-intro p{margin:0;color:var(--bui-on-light-muted);font-size:7.8px;line-height:1.34}
 #page-research .thesis-page__ai-list{padding:4px 6px 6px}
 #page-research .thesis-page__ai-list>button{
   width:100%;min-height:45px;display:grid;grid-template-columns:18px 21px minmax(0,1fr) 10px;gap:6px;align-items:start;
@@ -355,19 +368,19 @@
 #page-research .thesis-page__ai-list i.is-yellow{background:#fff2c9;color:#c89418}
 #page-research .thesis-page__ai-list i.is-purple{background:#eee6ff;color:#7759db}
 #page-research .thesis-page__ai-list b{display:block;font-size:8.3px;line-height:1.18;color:#182745}
-#page-research .thesis-page__ai-list small{display:block;margin-top:2px;color:#70819a;font-size:7px;line-height:1.25}
+#page-research .thesis-page__ai-list small{display:block;margin-top:2px;color:var(--bui-on-light-muted);font-size:7px;line-height:1.25}
 #page-research .thesis-page__ai-list>button>em{font-style:normal;color:#456487;font-size:14px}
 
 #page-research .thesis-page__mini-week,
 #page-research .thesis-page__mini-grid{display:grid;grid-template-columns:repeat(7,1fr)}
 #page-research .thesis-page__mini-week{padding:5px 6px 0}
-#page-research .thesis-page__mini-week span{text-align:center;font-size:6.6px;font-weight:800;color:#71819a}
+#page-research .thesis-page__mini-week span{text-align:center;font-size:6.6px;font-weight:800;color:#52637c}
 #page-research .thesis-page__mini-grid{padding:3px 6px 6px}
 #page-research .thesis-page__mini-grid button{
   height:20px;position:relative;border:0;border-radius:5px;background:transparent;color:#455a78;font-size:6.9px;padding:0;
 }
-#page-research .thesis-page__mini-grid button.is-outside{opacity:.25}
-#page-research .thesis-page__mini-grid button.is-active{background:#2d73e7;color:#fff}
+#page-research .thesis-page__mini-grid button.is-outside{opacity:1;color:var(--bui-on-light-muted)}
+#page-research .thesis-page__mini-grid button.is-active{background:#215ebc;color:#fff;--bui-text-primary:var(--bui-on-dark-title)}
 #page-research .thesis-page__mini-grid button i{position:absolute;left:50%;bottom:1px;transform:translateX(-50%);width:3px;height:3px;border-radius:50%}
 #page-research .thesis-page__mini-grid i.is-yellow{background:#e8ad22}
 #page-research .thesis-page__mini-grid i.is-blue{background:#337eea}
@@ -422,7 +435,7 @@
 #page-research .thesis-page__heat-body{display:grid;grid-template-columns:minmax(0,1fr) 74px;gap:7px;padding:7px 8px 8px}
 #page-research .thesis-page__heat-grid{display:grid;grid-template-columns:52px repeat(7,1fr);gap:3px;align-items:center}
 #page-research .thesis-page__heat-grid>b,
-#page-research .thesis-page__heat-grid>span{font-size:6.4px;text-align:center;color:#708097}
+#page-research .thesis-page__heat-grid>span{font-size:6.4px;text-align:center;color:#52637c}
 #page-research .thesis-page__heat-grid>span{text-align:left}
 #page-research .thesis-page__heat-grid>i,
 #page-research .thesis-page__heat-legend i{height:17px;border-radius:4px;background:#eaf2fc}
@@ -435,15 +448,15 @@
 #page-research .thesis-page__heat-grid i.l4,
 #page-research .thesis-page__heat-legend i.l4{background:#2d73df}
 #page-research .thesis-page__heat-legend{display:grid;gap:3px;align-content:start}
-#page-research .thesis-page__heat-legend span{display:flex;align-items:center;gap:4px;font-size:6px;color:#6e7f96;white-space:nowrap}
+#page-research .thesis-page__heat-legend span{display:flex;align-items:center;gap:4px;font-size:6px;color:#52637c;white-space:nowrap}
 #page-research .thesis-page__heat-legend i{width:10px;height:10px}
 
 #page-research .thesis-page__notes-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px 10px;padding:6px 9px 7px}
 #page-research .thesis-page__notes-grid label{display:grid;grid-template-columns:14px minmax(0,1fr);gap:6px;align-items:start;min-height:34px;font-size:7.2px}
 #page-research .thesis-page__notes-grid input{width:12px;height:12px;margin:2px 0 0;accent-color:#2773ed}
 #page-research .thesis-page__notes-grid b{display:block;font-size:7.3px;color:#34455f}
-#page-research .thesis-page__notes-grid small{display:block;margin-top:2px;color:#718198;font-size:6.6px}
-#page-research .thesis-page__notes-grid label.is-done b{text-decoration:line-through;opacity:.72}
+#page-research .thesis-page__notes-grid small{display:block;margin-top:2px;color:var(--bui-on-light-muted);font-size:6.6px}
+#page-research .thesis-page__notes-grid label.is-done b{text-decoration:line-through;color:var(--bui-on-light-muted)}
 
 #page-research .thesis-page__modal-backdrop{
   position:fixed;inset:0;z-index:130;display:grid;place-items:center;padding:20px;background:rgba(16,31,52,.28);
@@ -452,17 +465,17 @@
   width:min(430px,92vw);padding:15px;border:1px solid #dce5f0;border-radius:12px;background:#fff;color:#16213d;box-shadow:0 24px 70px rgba(31,59,94,.2);
 }
 #page-research .thesis-page__modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
-#page-research .thesis-page__modal-head small{color:#6f8097;font-size:8px;font-weight:800;text-transform:uppercase}
+#page-research .thesis-page__modal-head small{color:var(--bui-on-light-muted);font-size:8px;font-weight:800;text-transform:uppercase}
 #page-research .thesis-page__modal h3{margin:2px 0 0;font-size:15px}
 #page-research .thesis-page__modal-head>button{border:0;background:transparent;color:#63738a;font-size:20px}
-#page-research .thesis-page__modal>p{margin:10px 0;color:#64748b;font-size:9px;line-height:1.45}
+#page-research .thesis-page__modal>p{margin:10px 0;color:#52637c;font-size:9px;line-height:1.45}
 #page-research .thesis-page__detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 #page-research .thesis-page__detail-grid span{padding:8px;border-radius:8px;background:#f5f8fc}
-#page-research .thesis-page__detail-grid small{display:block;color:#718198;font-size:7px}
+#page-research .thesis-page__detail-grid small{display:block;color:var(--bui-on-light-muted);font-size:7px}
 #page-research .thesis-page__detail-grid b{display:block;margin-top:2px;font-size:9px}
 #page-research .thesis-page__modal label{display:grid;gap:4px;margin-top:9px;color:#52637e;font-size:8px;font-weight:800}
 #page-research .thesis-page__modal input,
-#page-research .thesis-page__modal select{height:34px;border:1px solid #dce4ef;border-radius:7px;padding:0 8px;background:#fff;color:#273955;font-size:9px}
+#page-research .thesis-page__modal select{height:34px;border:1px solid var(--bui-border-strong);border-radius:7px;padding:0 8px;background:#fff;color:#273955;font-size:9px}
 #page-research .thesis-page__form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 8px}
 #page-research .thesis-page__modal-actions{display:flex;justify-content:flex-end;gap:7px;margin-top:12px}
 #page-research .thesis-page__modal-actions button{height:32px;padding:0 12px;border:1px solid #dce4ef;border-radius:7px;background:#fff;color:#445570;font-size:9px;font-weight:800}

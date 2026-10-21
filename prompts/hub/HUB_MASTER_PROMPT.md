@@ -65,13 +65,21 @@ Missing capability becomes UNAVAILABLE or an explicit blocker.
 
 ## Work allocation
 
-Default: Chat 90–95%; Codex 5–10% maximum.
+Universal R22 is capability-based: perform maximum eligible work in the current authorized environment, then escalate only the demonstrated capability gap. Fixed percentage allocation is superseded. Bauman inherits STRUCTURED from its existing B4 declaration; this mapping does not authenticate a live Project Profile or promote an ecosystem E-level.
 
 - Class A: Chat owns architecture/audit/state/prompt/CI review/small-medium safe implementation.
 - Class B: Codex owns deep coupled runtime/refactor/migration/E2E work only after Chat narrows one packet.
 - Class C: real external/user authority blocker.
 
 Use `prompts/hub/WORK_SPLIT_CHAT_CODEX.md` for detailed classification.
+
+## Central rule binding and continuation
+
+Rule definitions stay in Software-Blueprint-Hub at the exact upstream source recorded in `HUB_SHARED_STATE.json.operatingRules`; do not copy R15–R32 or candidate amendment logic into this repository. The central Profile, Work Packages, gates and issuer authority remain Hub-owned. Repository packets are bounded execution/restart projections, never evidence of a signed grant. Verify central binding before automated Gateway/Worker/QA dispatch. Interactive user-authorized connector work does not prove that service integration is enrolled.
+
+Keep one approved product objective, one primary next executable action and an explicit completion predicate. Reconcile finished work before opening more scope; preserve exact-SHA evidence when owners are unchanged. Separate code/test completion, merge/deployment and user acceptance. A real mandatory human gate may block its action while independent authorized work continues.
+
+R25–R32 preserve ecosystem/satellite ownership and academic provenance; an E2 target, S100/R200 capacity map or catalog entry is not verified runtime, language or learning acceptance. Do not inspect private Subject owners for a Hub-only change.
 
 ## State discipline
 
@@ -110,7 +118,7 @@ Release target must be explicit:
 - PUBLISHED_STABLE
 - MANAGED_PRODUCTION_STABLE
 
-No production deployment unless the active packet explicitly authorizes it.
+Bauman development defaults to offline/local-only under the central development runtime policy. No merge or remote publication is authorized by a green CI result, this prompt update or an advisory next action. Follow the current authenticated gates and the existing Hub review protocol.
 
 ## Mode entry
 

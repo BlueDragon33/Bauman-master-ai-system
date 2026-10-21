@@ -53,6 +53,7 @@ try{
     pageTitle:document.querySelector('#page-subjects .subjects-page__header h2')?.textContent,
     summary:document.querySelectorAll('#page-subjects .subjects-page__summary-card').length,
     courses:document.querySelectorAll('#page-subjects .subjects-page__course-card').length,
+    heroCounts:[...document.querySelectorAll('#page-subjects .hub-v6-kpi b')].slice(0,2).map(x=>Number(x.textContent)),
     expected:window.app?.filteredSubjectsForStage?.(window.state?.subjectStage||'prepare')?.length||0,
     footer:document.querySelectorAll('#page-subjects .subjects-page__footer>.subjects-page__panel').length,
     text:document.querySelector('#page-subjects .subjects-page')?.textContent||''
@@ -66,6 +67,7 @@ try{
   assert.equal(before.summary,4,'Subjects summary must contain four cards');
   assert.equal(before.courses,before.expected,'Subjects cards must come from canonical stage subjects');
   assert.ok(before.courses>0,'Canonical stage has no visible subject cards');
+  assert.deepEqual(before.heroCounts,[before.expected,before.courses],'Subjects hero must agree with the canonical stage and rendered course counts');
   assert.equal(before.footer,3,'Subjects footer must contain progress, heatmap and notes');
   assert.ok(!before.text.includes('13/03/2025'),'Subjects still exposes March 2025 reference schedule');
   assert.ok(!before.text.includes('TS. Trần Thị Mai'),'Subjects still exposes reference lecturer data');
@@ -92,6 +94,18 @@ try{
   assert.equal(truthCases.zeroText,'0%','Stored zero must render as 0%');
   assert.equal(truthCases.missingStatus,'UNAVAILABLE','Missing progress must be UNAVAILABLE');
   assert.equal(truthCases.missingText,'—','Missing progress must not render as 0%');
+
+  const filteredCounts=await page.evaluate(()=>{
+    window.BAUMAN_SUBJECTS_REF.toggleTab('done');
+    const read=()=>({heroes:document.querySelectorAll('#page-subjects .hub-v6-hero').length,counts:[...document.querySelectorAll('#page-subjects .hub-v6-kpi b')].slice(0,2).map(x=>Number(x.textContent)),visible:document.querySelectorAll('#page-subjects .subjects-page__course-card').length});
+    const filtered=read();
+    window.BAUMAN_SUBJECTS_REF.toggleTab('all');
+    return {filtered,restored:read()};
+  });
+  assert.equal(filteredCounts.filtered.heroes,1,'Filtering must preserve one Subjects hero');
+  assert.deepEqual(filteredCounts.filtered.counts,[before.expected,filteredCounts.filtered.visible],'Filtering must update visible count without changing stage count');
+  assert.equal(filteredCounts.restored.heroes,1,'Restoring the filter must not duplicate the Subjects hero');
+  assert.deepEqual(filteredCounts.restored.counts,[before.expected,before.courses],'Restoring the filter must restore the visible count');
 
   const geometry=await page.evaluate(()=>{
     const workspace=document.querySelector('#page-subjects .subjects-page__workspace');

@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import vm from 'node:vm';
 
 const index=fs.readFileSync('index.html','utf8');
 const pages=fs.readFileSync('assets/js/hub-primary-pages-v6.js','utf8');
@@ -37,5 +38,29 @@ assert.ok(!search.includes('setTimeout(compactSubjectCapability,0)'),'Subject ca
 assert.ok(pages.includes("truth?truth.progress"),'Subjects V6 hero must preserve progress truth state');
 assert.ok(pages.includes("input[data-research-check=\"1\"]"),'Research V6 metrics must count only canonical checklist evidence');
 assert.ok(pages.includes("checklist LOCAL_HUB"),'Research checklist must be labeled LOCAL_HUB');
+
+// Reproduce the reference-renderer integration: legacy card selectors are
+// absent, while the canonical Hub owner still has six stage subjects.
+let subjectHero='';
+const subjectHost={classList:{add(){}},querySelector(){return null},querySelectorAll(){return []},insertAdjacentHTML(position,markup){subjectHero=markup}};
+const fixtureSubjects=Object.fromEntries(Array.from({length:6},(_,i)=>['fixture-'+i,{id:'fixture-'+i,name:'Fixture '+i}]));
+const sandbox={
+  window:{BAUMAN_HUB_PERSONAL_STORE:{get(key,fallback){return fallback}}},
+  document:{readyState:'loading',addEventListener(){},getElementById(){return null},body:{dataset:{}},querySelector(selector){return selector==='#page-subjects .subjects-page'?subjectHost:null},querySelectorAll(){return []}},
+  localStorage:{getItem(){return null},setItem(){}},
+  state:{subjectStage:'prepare',subject:'fixture-0',subjects:fixtureSubjects,progress:{},page:'home'},
+  app:{filteredSubjectsForStage(){return Object.values(fixtureSubjects)}}
+};
+vm.createContext(sandbox);
+vm.runInContext(pages,sandbox);
+vm.runInContext(fs.readFileSync('assets/js/subjects-reference-v1.js','utf8'),sandbox);
+sandbox.window.BAUMAN_HUB_PRIMARY_PAGES_V6.finalize('subjects');
+assert.match(subjectHero,/<b>6<\/b><small>môn ở giai đoạn<\/small>/,'Reference Subjects hero must use the canonical stage count, not obsolete DOM selectors');
+assert.match(subjectHero,/<b>6<\/b><small>khối nội dung đang thấy<\/small>/,'Reference Subjects hero must use the visible course count from its owner');
+assert.match(subjectHero,/<b>—<\/b><small>chưa có dữ liệu tiến độ<\/small>/,'Missing progress must remain unavailable');
+sandbox.window.BAUMAN_SUBJECTS_REF.toggleTab('done');
+sandbox.window.BAUMAN_HUB_PRIMARY_PAGES_V6.finalize('subjects');
+assert.match(subjectHero,/<b>6<\/b><small>môn ở giai đoạn<\/small>/,'A visibility filter must not change the canonical stage count');
+assert.match(subjectHero,/<b>0<\/b><small>khối nội dung đang thấy<\/small>/,'A genuinely empty filter must remain zero');
 
 console.log('HUB_PRIMARY_PAGES_V6_STATIC_PASS');

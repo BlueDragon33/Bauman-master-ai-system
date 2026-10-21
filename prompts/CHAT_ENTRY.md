@@ -38,7 +38,7 @@ Never load every subject and every Constitution file by default. Load the active
 
 ## Global operating defaults
 
-- Chat owns 90–95% of work; Codex is limited to the deepest 5–10% after Chat narrows the work package.
+- Apply universal R22: complete eligible work in the current authorized connected environment; escalate only an evidenced capability gap with a bounded handoff. Fixed Chat/Codex percentage quotas are superseded. Follow the active Master Prompt and shared state for one primary next action and separate code/test/merge/deploy/user acceptance.
 - Prefer local/browser/offline/free/portable providers before managed cloud.
 - Treat Google Drive/Sheets/Apps Script as optional sync/backup bridges, not mandatory canonical runtime.
 - Prefer exact CLI commands over manual GitHub UI actions when practical.

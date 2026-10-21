@@ -116,6 +116,7 @@ body.canva-main-v2 .side-note span{color:#93abc6!important}
 
 /* The premium additive dashboard always owns its own visual palette. */
 body.canva-main-v2 .hub-safe-dashboard{
+
   min-height:calc(100dvh - 86px)!important;
   margin:0 0 14px!important;
   color:#eaf2fb!important;
@@ -192,7 +193,7 @@ body.canva-main-v2 .hub-safe-preserved-label b{color:#e9f1fa!important}
 /* Paper mode intentionally stays light; only keep the full-width geometry. */
 body.canva-main-v2[data-theme="paper"] .shell,
 body.canva-main-v2[data-theme="paper"] .main{background:#eee8dc!important}
-body.canva-main-v2[data-theme="paper"] .topbar{background:rgba(255,250,240,.96)!important;border-bottom-color:#d8cbb3!important}
+body.canva-main-v2[data-theme="paper"]:not([data-hub-reference-v5="1"]) .topbar{background:rgba(255,250,240,.96)!important;border-bottom-color:#d8cbb3!important}
 body.canva-main-v2[data-theme="paper"] .top-title h1{color:#211b14!important}
 body.canva-main-v2[data-theme="paper"] .top-title p{color:#766a5b!important}
 

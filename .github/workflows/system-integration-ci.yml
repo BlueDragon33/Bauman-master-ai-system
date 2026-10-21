@@ -697,3 +697,66 @@ jobs:
             artifacts/chatgpt-site-deep-study-journal
           if-no-files-found: warn
           retention-days: 7
+
+  hub-computed-contrast-acceptance:
+    needs: validate-system-integration
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        runtime: [source, packaged]
+        width: [1440, 768, 390]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - name: Install rendered contrast dependencies
+        run: |
+          printf '{"private":true,"type":"module"}\n' > package.json
+          npm install --no-save --no-audit --no-fund playwright@1.55.0 pngjs@7.0.0
+          npx playwright install --with-deps chromium
+      - name: Materialize canonical packaged runtime
+        if: matrix.runtime == 'packaged'
+        env:
+          BAUMAN_CONTROL_PREVIEW_D1_DATABASE_ID: 11111111-1111-4111-8111-111111111111
+          BAUMAN_CONTROL_PRODUCTION_D1_DATABASE_ID: 22222222-2222-4222-8222-222222222222
+          APPLICATION_MANAGEMENT_PREVIEW_ORIGIN: https://application-management-preview.example.com
+          BAUMAN_CONTROL_PREVIEW_ORIGIN: https://bauman-control-preview.example.com
+          BAUMAN_RUNTIME_PREVIEW_ORIGIN: https://bauman-runtime-preview.example.com
+        run: |
+          node scripts/prepare-cloudflare-preview.mjs
+          node scripts/prepare-chatgpt-site.mjs
+      - name: Start audited runtime
+        env:
+          AUDIT_RUNTIME: ${{ matrix.runtime }}
+        run: |
+          if [ "$AUDIT_RUNTIME" = packaged ]; then
+            node scripts/serve-local-runtime.mjs --root dist --port 4173 > /tmp/hub-contrast-http.log 2>&1 &
+          else
+            python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/hub-contrast-http.log 2>&1 &
+          fi
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/hub-contrast-http.log
+          exit 1
+      - name: Audit five Hub routes, four themes, three viewports and real UI states
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_CONTRAST_WIDTHS: ${{ matrix.width }}
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/hub-computed-contrast-${{ matrix.runtime }}-${{ matrix.width }}
+          BAUMAN_E2E_EXPECT_PLATFORM_ACCESS: ${{ matrix.runtime == 'packaged' && '1' || '0' }}
+        run: node tests/hub-computed-contrast-browser.mjs
+      - name: Upload rendered contrast evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hub-computed-contrast-${{ matrix.runtime }}-${{ matrix.width }}-${{ github.run_id }}
+          path: artifacts/hub-computed-contrast-${{ matrix.runtime }}-${{ matrix.width }}
+          if-no-files-found: error
+          retention-days: 7
