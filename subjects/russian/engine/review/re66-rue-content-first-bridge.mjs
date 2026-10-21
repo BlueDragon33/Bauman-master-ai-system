@@ -73,6 +73,38 @@ const re68IntentPins=Object.freeze({
    url:'https://gramota.ru/poisk?mode=spravka&query=%D0%BD%D1%83%D0%B6%D0%BD%D0%BE',
    scope:'IMPERSONAL_PREDICATIVE_NEED_VS_SHORT_ADJECTIVE_NOUN'}
 });
+// RE69: four exact canonical *observation* pins. These are linguistic hypotheses
+// bound to restricted forms, never grammar grades or universal Russian case labels.
+const re69Pins=Object.freeze({
+ LW_ITEM_R03_REG:{
+  domain:'REGISTRATION_MORPHOSYNTAX',rule:'IMPERS_PREDICATIVE_INFINITIVE',
+  ref:'GRAMOTA_323868_PREDICATIVE_ADJECTIVE',
+  url:'https://gramota.ru/poisk?mode=spravka&query=%D0%BD%D0%B0%D0%B4%D0%BE',
+  scope:'PREDICATIVE_NUZHNO_NADO_VS_SHORT_ADJECTIVE_NUZHEN_NUZHNA',
+  features:{predicative:'нужно',verbForm:'INFINITIVE_ОФОРМИТЬ',caseNote:'РЕГИСТРАЦИЮ_ACCUSATIVE_FORM_LOCAL_ONLY'}
+ },
+ LW_ITEM_R03_DOCS:{
+  domain:'DOCUMENTS_QUESTION_LOCAL_CASE',rule:'QUESTION_PLURAL_AGREEMENT',
+  ref:'GRAMOTA_DOCUMENTS_LOCAL_FORM_POINTER',
+  url:'https://gramota.ru/poisk?mode=slovari&query=%D0%B4%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D1%8B',
+  scope:'LOCAL_QUESTION_FORM_ONLY_NOT_FULL_CASE_PARSER',
+  features:{interrogative:'КАКИЕ',noun:'ДОКУМЕНТЫ_PLURAL_NOMINATIVE',predicative:'НУЖНЫ_PLURAL_SHORT_ADJECTIVE'}
+ },
+ LW_ITEM_R04_METRO:{
+  domain:'METRO_DIRECTION_PREPOSITIONS',rule:'METRO_WALKING_PREPOSITION',
+  ref:'GRAMOTA_METRO_PREPOSITION_GOVERNMENT',
+  url:'https://gramota.ru/poisk?dicts%5B0%5D=48&mode=slovari&query=%D0%BC%D0%B5%D0%BB%D0%BA%D0%BE&simple=0',
+  scope:'DO_WITH_GENITIVE_K_WITH_DATIVE_METRO_INDECLINABLE_FORM',
+  features:{preposition:'до',governedCase:'GENITIVE',nounForm:'МЕТРО_INDECLINABLE',caseFromEnding:'NOT_INFERABLE'}
+ },
+ LW_ITEM_R04_DOCTOR:{
+  domain:'DOCTOR_OR_HELP_ADJECTIVE_AGREEMENT',rule:'MASCULINE_SHORT_ADJECTIVE_DOCTOR',
+  ref:'GRAMOTA_323868_PREDICATIVE_ADJECTIVE',
+  url:'https://gramota.ru/poisk?mode=spravka&query=%D0%BD%D0%B0%D0%B4%D0%BE',
+  scope:'PREDICATIVE_NUZHNO_NADO_VS_SHORT_ADJECTIVE_NUZHEN_NUZHNA',
+  features:{adjective:'НУЖЕН_MASCULINE',noun:'ВРАЧ_MASCULINE_NOMINATIVE'}
+ }
+});
 const refs=Object.freeze([
  ['../../data/listen-write-lessons.json','sourceOwnerBlob'],
  ['../content/fixtures/r01-r06-source-bound-practice-map.candidate.json','sourceMapBlob'],
@@ -283,6 +315,38 @@ export function verifyRe66RueAdvisoryBundle(request,bundle){
        if(!/^[a-f0-9]{64}$/.test(evidenceSha256||'')||
           evidenceSha256!==sha256(JSON.stringify(body)))
          errors.push('RE68 variant evidence SHA mismatch '+item.sourceItemId);
+     }
+   }
+   const morph=entry?.morphosyntaxEvidence, morphPin=re69Pins[item.sourceItemId];
+   if(item.lessonId==='R02'){
+     if(morph!==null)errors.push('RE69 must not add R02 morphology evaluation');
+   }else{
+     if(!morph||!morphPin||
+        morph.schema!=='RUE_RE69_MORPHOSYNTAX_ADVISORY_V1'||
+        morph.sourceItemId!==item.sourceItemId||
+        morph.lessonId!==item.lessonId||
+        morph.domain!==morphPin.domain||
+        morph.ruleId!==morphPin.rule||
+        morph.observationStatus!=='OBSERVED_LOCAL_CONSTRUCTION'||
+        morph.reference?.id!==morphPin.ref||
+        morph.reference?.url!==morphPin.url||
+        morph.reference?.scope!==morphPin.scope||
+        JSON.stringify(morph.features)!==JSON.stringify(morphPin.features)||
+        morph.candidateTextSha256!==sha256(item.textRu)||
+        morph.canonicalTextSha256!==sha256(item.textRu)||
+        morph.exactCanonicalText!==true||
+        typeof morph.explanation!=='string'||morph.explanation.length>900||
+        morph.grade!==null||morph.grammarCorrectness!==null||
+        morph.errorProven!==false||morph.anySpeechReviewed!==false||
+        morph.independentGoldAvailable!==false||
+        morph.humanRu03Approved!==false||morph.readyForLearning!==false||
+        morph.learnerMasteryWrite!==false||morph.advisoryOnly!==true)
+       errors.push('RE69 invalid or unauthorized morphology claim '+item.sourceItemId);
+     if(morph){
+       const {evidenceSha256,...body}=morph;
+       if(!/^[a-f0-9]{64}$/.test(evidenceSha256||'')||
+          evidenceSha256!==sha256(JSON.stringify(body)))
+         errors.push('RE69 morphology receipt hash mismatch '+item.sourceItemId);
      }
    }
    const x=entry?.preflight;
