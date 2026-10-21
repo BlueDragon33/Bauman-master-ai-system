@@ -77,3 +77,14 @@ Không sửa dữ liệu lesson, audio, UI, learner mastery, không Actions/Work
 Năng lực phát hiện giới hạn: giới thiệu tên `Меня зовут…` (không đánh sai cách danh từ thay thế hợp lệ), `нужно/надо + infinitive`, mẫu hỏi giấy tờ, `до метро` / `к метро`, và nhận diện literal mẫu `Мне нужен врач`. Câu lạ hoặc cần ngữ cảnh trả `ABSTAIN_UNSUPPORTED_CONTEXT`; cách từ nghi ngờ `REVIEW_LOCAL_FORM` chứ không tự chứng nhận sai. Chỉ áp dụng **nguồn câu và ví dụ có kiểm soát**, không coi đây là LLM đã được huấn luyện hoặc thước đo năng lực tiếng Nga.
 
 Chi tiết nguồn và các hạn chế: tài liệu `docs/RUE-BAUMAN-RE67-SCOPED-GRAMMAR.md` ở RUE PR #5 candidate. Đã mô phỏng bằng V8 **14 trường hợp quy tắc/biến thể** và **6/6 packet RE66 hai chiều**; test kiểm tra điểm grammar giả bị từ chối. Tất cả kiểm tra Node24 trên cặp checkout sạch và benchmark blind có gold độc lập vẫn **NOT_TESTED/BLOCKED**. Không sửa runtime, lesson hoặc learner mastery; không kích hoạt CI, review authority, merge/publish.
+
+
+## RE68 — Nhận diện mục đích hội thoại R03–R04 (21/10/2026)
+
+RUE Draft PR #5 đã thêm **`src/pilots/re68-r03-r04-dialogue-variants.mjs`** để phân loại *cùng mục đích giao tiếp*, *có liên quan nhưng không tương đương*, *khác chức năng* hoặc **`ABSTAIN`** khi ngữ cảnh mơ hồ. Cụ thể: `нужно/надо оформить регистрацию`, yêu cầu thông tin giấy tờ và thán từ `скажите пожалуйста!`, đi bộ `до/к метро` so với di chuyển bằng phương tiện, xin bác sĩ so với xin trợ giúp chung. Chỉ 4 mục R03/R04 có `dialogueEvidence`; 2 mục R02 là `null`.
+
+Ở Bauman, `engine/review/re66-rue-content-first-bridge.mjs` đã thêm cổng kiểm tra SHA-256, source ID, canonical fingerprint, exact URL/scope từ Gramota, pattern ID và tất cả bất biến **`grade=null`**, `grammarCorrectness=null`, `humanRu03Approved=false`, `learnerMasteryWrite=false`. Dữ liệu nội dung gốc, routing, audio, UI và các công cụ RE45/RE50 không thay đổi. Bài kiểm thử synthetic của Bauman chặn **điểm giả, nguồn giả, quyền ghi mastery giả và đánh giá R02 ngoài phạm vi**, kể cả khi tái băm.
+
+Bằng chứng đã thực hiện: V8 chạy 4 nhóm test trực tiếp từ nguồn RE68 (26 ví dụ), PASS; mô phỏng V8 exchange giữa module RUE và bộ nhận Bauman, 6/6 packet, trong đó 4/4 RE68, PASS; các giả mạo nêu trên bị chặn. **Node24 cross-repo exact checkout = NOT_TESTED**, chưa có nhãn gold benchmark mù, **RU03 = BLOCKED**, không có điểm phát âm tự động.
+
+Nguồn và phần giải thích chuyên môn nằm ở `docs/RUE-BAUMAN-RE68-DIALOGUE-INTENT-ADVISORY.md` của RUE. Các phép thử này không phải bằng chứng model AI đã được huấn luyện hay chứng nhận RKI/RU03. Không chạy Work/Codex, Actions, approve/merge, ratify hoặc publish.
