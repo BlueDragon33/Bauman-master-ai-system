@@ -36,6 +36,18 @@ if(!rue||!Sha.test(expectedBauman||'')||!Sha.test(expectedRue||'')||
  const check=verifyRe66RueAdvisoryBundle(request,result);
  assert.equal(check.ok,true,'Cross-owner advisory checksum/revision contract rejected');
  assert.equal(result.advisories.length,6);
+ assert.equal(result.advisories.filter(x=>x.morphosyntaxEvidence!==null).length,4,
+   'RE69 must cover four canonical R03/R04 items only');
+ assert.ok(result.advisories.slice(0,2).every(x=>x.morphosyntaxEvidence===null),
+   'RE69 must not evaluate R02');
+ assert.ok(result.advisories.slice(2).every(x=>
+   x.morphosyntaxEvidence?.sourceItemId===x.sourceItemId&&
+   x.morphosyntaxEvidence.observationStatus==='OBSERVED_LOCAL_CONSTRUCTION'&&
+   x.morphosyntaxEvidence.grade===null&&
+   x.morphosyntaxEvidence.grammarCorrectness===null&&
+   x.morphosyntaxEvidence.learnerMasteryWrite===false&&
+   x.morphosyntaxEvidence.humanRu03Approved===false),
+   'RE69 may never score, publish, or approve grammar');
  assert.equal(result.advisories.filter(x=>x.dialogueEvidence!==null).length,4,
    'RE68 must exist only for four R03-R04 source items');
  assert.ok(result.advisories.slice(0,2).every(x=>x.dialogueEvidence===null),
