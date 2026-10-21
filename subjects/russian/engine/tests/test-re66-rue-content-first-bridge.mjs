@@ -92,6 +92,37 @@ const re68Fixtures=Object.freeze({
    url:'https://gramota.ru/poisk?mode=spravka&query=%D0%BD%D1%83%D0%B6%D0%BD%D0%BE',
    scope:'IMPERSONAL_PREDICATIVE_NEED_VS_SHORT_ADJECTIVE_NOUN'}
 });
+// Synthetic contract fixture, not a second curriculum or expert approval.
+const re69Fixtures={
+ LW_ITEM_R03_REG:{
+  domain:'REGISTRATION_MORPHOSYNTAX',rule:'IMPERS_PREDICATIVE_INFINITIVE',
+  ref:'GRAMOTA_323868_PREDICATIVE_ADJECTIVE',
+  url:'https://gramota.ru/poisk?mode=spravka&query=%D0%BD%D0%B0%D0%B4%D0%BE',
+  scope:'PREDICATIVE_NUZHNO_NADO_VS_SHORT_ADJECTIVE_NUZHEN_NUZHNA',
+  features:{predicative:'нужно',verbForm:'INFINITIVE_ОФОРМИТЬ',caseNote:'РЕГИСТРАЦИЮ_ACCUSATIVE_FORM_LOCAL_ONLY'}
+ },
+ LW_ITEM_R03_DOCS:{
+  domain:'DOCUMENTS_QUESTION_LOCAL_CASE',rule:'QUESTION_PLURAL_AGREEMENT',
+  ref:'GRAMOTA_DOCUMENTS_LOCAL_FORM_POINTER',
+  url:'https://gramota.ru/poisk?mode=slovari&query=%D0%B4%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D1%8B',
+  scope:'LOCAL_QUESTION_FORM_ONLY_NOT_FULL_CASE_PARSER',
+  features:{interrogative:'КАКИЕ',noun:'ДОКУМЕНТЫ_PLURAL_NOMINATIVE',predicative:'НУЖНЫ_PLURAL_SHORT_ADJECTIVE'}
+ },
+ LW_ITEM_R04_METRO:{
+  domain:'METRO_DIRECTION_PREPOSITIONS',rule:'METRO_WALKING_PREPOSITION',
+  ref:'GRAMOTA_METRO_PREPOSITION_GOVERNMENT',
+  url:'https://gramota.ru/poisk?dicts%5B0%5D=48&mode=slovari&query=%D0%BC%D0%B5%D0%BB%D0%BA%D0%BE&simple=0',
+  scope:'DO_WITH_GENITIVE_K_WITH_DATIVE_METRO_INDECLINABLE_FORM',
+  features:{preposition:'до',governedCase:'GENITIVE',nounForm:'МЕТРО_INDECLINABLE',caseFromEnding:'NOT_INFERABLE'}
+ },
+ LW_ITEM_R04_DOCTOR:{
+  domain:'DOCTOR_OR_HELP_ADJECTIVE_AGREEMENT',rule:'MASCULINE_SHORT_ADJECTIVE_DOCTOR',
+  ref:'GRAMOTA_323868_PREDICATIVE_ADJECTIVE',
+  url:'https://gramota.ru/poisk?mode=spravka&query=%D0%BD%D0%B0%D0%B4%D0%BE',
+  scope:'PREDICATIVE_NUZHNO_NADO_VS_SHORT_ADJECTIVE_NUZHEN_NUZHNA',
+  features:{adjective:'НУЖЕН_MASCULINE',noun:'ВРАЧ_MASCULINE_NOMINATIVE'}
+ }
+};
 const ad=request.sourceItems.map(item=>{
  const advisoryData={
   schema:'RUE_RU03_ADVISORY_V1',
@@ -132,7 +163,23 @@ const ad=request.sourceItems.map(item=>{
    authority:'AI_ADVISORY_PATTERN_ONLY_NO_AUTOMATIC_QUALITY_GATE',
    noLearnerData:true
  };
- const fi=re68Fixtures[item.sourceItemId];
+ const mf=re69Fixtures[item.sourceItemId];
+ const morphologyBody=mf?{
+   schema:'RUE_RE69_MORPHOSYNTAX_ADVISORY_V1',
+   sourceItemId:item.sourceItemId,lessonId:item.lessonId,
+   domain:mf.domain,
+   candidateTextSha256:sha(item.textRu),
+   canonicalTextSha256:sha(item.textRu),
+   exactCanonicalText:true,
+   reference:{id:mf.ref,url:mf.url,scope:mf.scope},
+   ruleId:mf.rule,observationStatus:'OBSERVED_LOCAL_CONSTRUCTION',
+   features:mf.features,
+   explanation:'QA fixture only: not a linguistic correctness verdict.',
+   grade:null,grammarCorrectness:null,errorProven:false,anySpeechReviewed:false,
+   independentGoldAvailable:false,humanRu03Approved:false,
+   readyForLearning:false,learnerMasteryWrite:false,advisoryOnly:true
+ }:null;
+  const fi=re68Fixtures[item.sourceItemId];
  const dialogueBody=fi?{
    schema:'RUE_RE68_DIALOGUE_VARIANT_ADVISORY_V1',
    sourceItemId:item.sourceItemId,lessonId:item.lessonId,
@@ -151,6 +198,9 @@ const ad=request.sourceItems.map(item=>{
    readyForLearning:false,learnerMasteryWrite:false,advisoryOnly:true
  }:null;
  return {sourceItemId:item.sourceItemId,itemId:item.itemId,advisory,
+  morphosyntaxEvidence:morphologyBody?{
+    ...morphologyBody,evidenceSha256:sha(JSON.stringify(morphologyBody))
+  }:null,
   dialogueEvidence:dialogueBody?{
     ...dialogueBody,evidenceSha256:sha(JSON.stringify(dialogueBody))
   }:null,
@@ -220,6 +270,11 @@ assert.equal(tamper(x=>{x.advisories[3].dialogueEvidence.variantStatus='AUTOMATI
 assert.equal(tamper(x=>{x.advisories[4].dialogueEvidence.sourceLocator.url='https://gramota.ru/fake'},{rehash:true}),false);
 assert.equal(tamper(x=>{x.advisories[5].dialogueEvidence.learnerMasteryWrite=true},{rehash:true}),false);
 assert.equal(tamper(x=>{x.advisories[0].dialogueEvidence={}}, {rehash:true}),false);
+assert.equal(tamper(x=>{x.advisories[2].morphosyntaxEvidence.grade=100},{rehash:true}),false);
+assert.equal(tamper(x=>{x.advisories[3].morphosyntaxEvidence.reference.url='https://gramota.ru/poisk?query=fake'},{rehash:true}),false);
+assert.equal(tamper(x=>{x.advisories[4].morphosyntaxEvidence.features.governedCase='DATIVE'},{rehash:true}),false);
+assert.equal(tamper(x=>{x.advisories[5].morphosyntaxEvidence.learnerMasteryWrite=true},{rehash:true}),false);
+assert.equal(tamper(x=>{x.advisories[0].morphosyntaxEvidence={}}, {rehash:true}),false);
 // Independently recomputed hashes are NOT canonical-source authentication.
 // This used to pass if the verifier trusted caller-chosen requestSha256.
 const fakeRequest=structuredClone(request);
