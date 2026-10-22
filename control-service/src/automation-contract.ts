@@ -1,4 +1,6 @@
 import controlService from "./index";
+import { createLocalD1Observer } from "./local-d1-observer";
+import { verifyManagedIngress } from "./local-ingress-guard";
 
 interface AutomationEnv {
   BAUMAN_CONTROL_SERVICE_SECRET?: string;
@@ -387,8 +389,15 @@ function universalContractManifest() {
   };
 }
 
+const localD1Observer = createLocalD1Observer("BAUMAN-CONTROL");
+
 export default {
-  async fetch(request: Request, env: AutomationEnv, _ctx: ExecutionContext): Promise<Response> {
+  async fetch(request: Request, incomingEnv: AutomationEnv, _ctx: ExecutionContext): Promise<Response> {
+    const denied = await verifyManagedIngress(request, incomingEnv as typeof incomingEnv & Parameters<typeof verifyManagedIngress>[1]);
+    if (denied) return denied;
+    if (new URL(request.url).pathname === "/_local/ops/drain-preflight")
+      return localD1Observer.blockedPreflight();
+    return localD1Observer.trackFetch(incomingEnv, async env => {
     const url = new URL(request.url);
     if (request.method === "GET" && url.pathname === "/api/application-management/contract") {
       return Response.json(universalContractManifest(), {
@@ -405,5 +414,6 @@ export default {
     if (request.method === "GET" && url.pathname === "/api/control/status") return augmentStatus(response, env);
     if (request.method === "POST" && url.pathname === "/api/device/register") return augmentRegistration(response, env);
     return response;
+    });
   },
 } satisfies ExportedHandler<AutomationEnv>;
