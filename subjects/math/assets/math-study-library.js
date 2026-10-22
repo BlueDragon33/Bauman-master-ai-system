@@ -156,13 +156,13 @@
   }
   function close(){
     const layer=$('#mathStudyLibrary');layer?.classList.remove('open');layer?.setAttribute('aria-hidden','true');
-    if(lastFocus&&typeof lastFocus.focus==='function')setTimeout(()=>lastFocus.focus(),0);
-    lastFocus=null;
+    const restoreFocus=lastFocus;lastFocus=null;
+    if(restoreFocus&&typeof restoreFocus.focus==='function')setTimeout(()=>restoreFocus.focus(),0);
   }
   function trapFocus(e){
     const layer=$('#mathStudyLibrary');
     if(e.key!=='Tab'||!layer?.classList.contains('open'))return false;
-    const focusable=$('button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),a[href],[tabindex]:not([tabindex="-1"])',layer).filter(x=>x.offsetParent!==null);
+    const focusable=Array.from(layer.querySelectorAll('button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),a[href],[tabindex]:not([tabindex="-1"])')).filter(x=>x.offsetParent!==null);
     if(!focusable.length)return false;
     const first=focusable[0],last=focusable[focusable.length-1];
     if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();return true}
