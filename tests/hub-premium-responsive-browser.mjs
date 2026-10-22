@@ -221,6 +221,12 @@ try{
     window.state.subject='russian';
   });
   await page.locator('#hubSafeSearch').fill('toan');
+  await page.waitForSelector('.hub-v2-live-search [data-hub-search-kind="subject"][data-hub-search-subject="math"]',{timeout:10000});
+  assert.equal(await page.locator('#hubSafeSearch').getAttribute('aria-expanded'),'true','Instant Hub search did not expand suggestions');
+  await page.locator('#hubSafeSearch').press('ArrowDown');
+  assert.equal(await page.locator('.hub-v2-live-search [role="option"][aria-selected="true"]').count(),1,'Keyboard search did not select exactly one suggestion');
+  await page.locator('#hubSafeSearch').press('Escape');
+  assert.equal(await page.locator('#hubSafeSearch').getAttribute('aria-expanded'),'false','Escape did not close instant Hub search');
   await page.locator('#hubSafeSearch').press('Enter');
   await page.waitForSelector('#modalRoot [data-hub-search-kind="subject"][data-hub-search-subject="math"]',{timeout:10000});
   await page.locator('#modalRoot [data-hub-search-kind="subject"][data-hub-search-subject="math"]').first().click();
@@ -250,6 +256,13 @@ try{
   for(const id of ['roadmap','subjects','schedule','research','home']){
     await page.evaluate(id=>window.app?.page?.(id,false),id);
     await page.waitForFunction(id=>document.getElementById(`page-${id}`)?.classList.contains('active'),id,{timeout:10000});
+    await page.waitForFunction(id=>{
+      const current=[...document.querySelectorAll('#nav > button[aria-current="page"]')];
+      return current.length===1&&current[0]?.dataset?.page===id&&window.BAUMAN_HUB_LEARNING_CLUSTER?.selfCheck?.().activePage===id;
+    },id,{timeout:10000});
+    const navA11y=await page.evaluate(()=>window.BAUMAN_HUB_LEARNING_CLUSTER.selfCheck());
+    assert.equal(navA11y.ariaCurrentCount,1,`${id}: navigation must expose exactly one aria-current page`);
+    assert.equal(navA11y.ariaCurrentPage,id,`${id}: aria-current navigation drift`);
     if(id==='home')await page.evaluate(()=>{window.BAUMAN_HUB_SAFE?.refresh?.();window.BAUMAN_HUB_OVERVIEW_SEARCH_V2?.compactHome?.()});
   }
 

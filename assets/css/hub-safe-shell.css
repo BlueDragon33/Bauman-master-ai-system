@@ -93,3 +93,20 @@ body[data-hub-density="fit1080"]{--hs-gap:8px}body[data-hub-density="fit1080"] .
 #appRoot #page-home .hub-safe-card.hub-safe-motivation blockquote small{
   color:#f4d77b!important;
 }
+
+
+/* Hub search/navigation polish · additive, canonical routes unchanged */
+.hub-safe-search{position:relative;overflow:visible}
+.hub-v2-live-search{position:absolute;top:calc(100% + 8px);left:0;right:0;z-index:120;display:grid;gap:4px;max-height:min(420px,55vh);overflow:auto;padding:7px;border:1px solid #2b4667;border-radius:14px;background:rgba(5,14,27,.98);box-shadow:0 22px 60px rgba(0,0,0,.42);backdrop-filter:blur(18px)}
+.hub-v2-live-search[hidden]{display:none}
+.hub-v2-live-result{width:100%;display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-areas:"kind title" "kind meta";column-gap:10px;align-items:center;text-align:left;padding:9px 10px;border:1px solid transparent;border-radius:10px;background:transparent;color:#eaf2fb}
+.hub-v2-live-result:hover,.hub-v2-live-result[aria-selected="true"]{background:linear-gradient(90deg,rgba(62,118,196,.28),rgba(22,61,105,.20));border-color:#416891;outline:none}
+.hub-v2-live-result .hub-v2-search-kind{grid-area:kind;align-self:start;margin-top:2px;font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:#f0c76b}
+.hub-v2-live-result b{grid-area:title;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:12px}
+.hub-v2-live-result small{grid-area:meta;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#8fa8c5;font-size:10px}
+.hub-v2-live-empty{padding:12px;color:#8fa8c5;font-size:11px;text-align:center}
+body[data-hub-screen="wide"] .topbar{padding-inline:20px;gap:16px}
+body[data-hub-screen="wide"] .top-title{max-width:300px}
+body[data-hub-screen="wide"] .hub-safe-search{max-width:760px}
+.nav button[aria-current="page"]{background:linear-gradient(90deg,rgba(54,105,180,.36),rgba(27,67,119,.20));border-color:#4c739f;color:#fff;box-shadow:inset 3px 0 0 var(--hs-gold)}
+@media(max-width:720px){.hub-v2-live-search{position:fixed;left:10px;right:10px;top:64px;max-height:50vh}}

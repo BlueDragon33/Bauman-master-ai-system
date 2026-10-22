@@ -226,6 +226,7 @@ function showSearch(query){
 function openSearchResult(el){
   const kind=el?.dataset?.hubSearchKind,a=A(),s=S();
   if(!kind||!a)return false;
+  closeLiveSearch();
   if(kind==='page'){closeSearch();a.page?.(el.dataset.hubSearchPage);return true}
   if(kind==='subject'){
     const id=el.dataset.hubSearchSubject,sub=s.subjects?.[id];if(!sub)return false;
@@ -249,13 +250,86 @@ function openSearchResult(el){
   }
   return false;
 }
+let liveSearchIndex=-1;
+function ensureLiveSearch(label){
+  if(!label)return null;
+  let panel=q('#hubSafeLiveSearch',label);
+  if(panel)return panel;
+  panel=document.createElement('div');
+  panel.id='hubSafeLiveSearch';
+  panel.className='hub-v2-live-search';
+  panel.setAttribute('role','listbox');
+  panel.setAttribute('aria-label','Gợi ý tìm kiếm');
+  panel.hidden=true;
+  label.appendChild(panel);
+  return panel;
+}
+function closeLiveSearch(){
+  const input=q('#hubSafeSearch'),panel=q('#hubSafeLiveSearch');
+  liveSearchIndex=-1;
+  if(panel){panel.hidden=true;panel.innerHTML=''}
+  if(input){input.setAttribute('aria-expanded','false');input.removeAttribute('aria-activedescendant')}
+}
+function renderLiveSearch(query){
+  const input=q('#hubSafeSearch'),label=input?.closest('.hub-safe-search'),panel=ensureLiveSearch(label);
+  if(!input||!panel)return [];
+  const text=String(query||'').trim();
+  if(!text){closeLiveSearch();return []}
+  const results=searchCatalog(text,6);
+  panel.innerHTML=results.length
+    ?results.map((x,i)=>'<button id="hubLiveSearchResult'+i+'" type="button" class="hub-v2-live-result" role="option" aria-selected="false"'+resultAttrs(x)+'><span class="hub-v2-search-kind">'+safe(x.category)+'</span><b>'+safe(x.title)+'</b><small>'+safe(x.subtitle||'Mở nội dung')+'</small></button>').join('')
+    :'<div class="hub-v2-live-empty">Không có kết quả phù hợp.</div>';
+  panel.hidden=false;
+  liveSearchIndex=-1;
+  input.setAttribute('aria-expanded','true');
+  input.removeAttribute('aria-activedescendant');
+  return results;
+}
+function moveLiveSearch(delta){
+  const input=q('#hubSafeSearch'),panel=q('#hubSafeLiveSearch');
+  const items=panel?[...panel.querySelectorAll('[role="option"]')]:[];
+  if(!input||!items.length)return false;
+  liveSearchIndex=(liveSearchIndex+delta+items.length)%items.length;
+  items.forEach((item,i)=>item.setAttribute('aria-selected',String(i===liveSearchIndex)));
+  input.setAttribute('aria-activedescendant',items[liveSearchIndex].id);
+  items[liveSearchIndex].scrollIntoView({block:'nearest'});
+  return true;
+}
+function activateLiveSearch(){
+  const panel=q('#hubSafeLiveSearch');
+  const items=panel?[...panel.querySelectorAll('[role="option"]')]:[];
+  const item=items[liveSearchIndex];
+  if(!item)return false;
+  item.click();
+  return true;
+}
 function installSearch(){
   const input=q('#hubSafeSearch');if(!input||input.dataset.searchV2==='1')return false;
   input.dataset.searchV2='1';
   input.placeholder='Tìm môn, học phần, GĐ/HK, НИР...';
   input.setAttribute('aria-label','Tìm kiếm toàn Bauman Hub');
-  input.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();e.stopImmediatePropagation();showSearch(input.value)}},true);
+  input.setAttribute('role','combobox');
+  input.setAttribute('aria-autocomplete','list');
+  input.setAttribute('aria-haspopup','listbox');
+  input.setAttribute('aria-controls','hubSafeLiveSearch');
+  input.setAttribute('aria-expanded','false');
   const label=input.closest('.hub-safe-search');
+  ensureLiveSearch(label);
+  input.addEventListener('input',()=>renderLiveSearch(input.value));
+  input.addEventListener('focus',()=>{if(input.value.trim())renderLiveSearch(input.value)});
+  input.addEventListener('keydown',e=>{
+    if(e.key==='ArrowDown'||e.key==='ArrowUp'){
+      e.preventDefault();e.stopImmediatePropagation();
+      if(q('#hubSafeLiveSearch')?.hidden)renderLiveSearch(input.value);
+      moveLiveSearch(e.key==='ArrowDown'?1:-1);return;
+    }
+    if(e.key==='Escape'){e.preventDefault();e.stopImmediatePropagation();closeLiveSearch();return}
+    if(e.key==='Enter'){
+      e.preventDefault();e.stopImmediatePropagation();
+      if(liveSearchIndex>=0&&activateLiveSearch())return;
+      closeLiveSearch();showSearch(input.value);
+    }
+  },true);
   if(label&&!q('[data-hub-search-submit]',label)){
     const button=document.createElement('button');button.type='button';button.className='hub-v2-search-submit';button.dataset.hubSearchSubmit='1';button.title='Tìm kiếm';button.setAttribute('aria-label','Tìm kiếm');button.textContent='⌕';label.appendChild(button);
   }
@@ -278,7 +352,8 @@ function handleHomeAction(id){
 function bind(){
   document.addEventListener('click',e=>{
     const result=e.target.closest('[data-hub-search-kind]');if(result){e.preventDefault();e.stopImmediatePropagation();openSearchResult(result);return}
-    const submit=e.target.closest('[data-hub-search-submit]');if(submit){e.preventDefault();e.stopImmediatePropagation();showSearch(q('#hubSafeSearch')?.value||'');return}
+    const submit=e.target.closest('[data-hub-search-submit]');if(submit){e.preventDefault();e.stopImmediatePropagation();closeLiveSearch();showSearch(q('#hubSafeSearch')?.value||'');return}
+    if(!e.target.closest('.hub-safe-search'))closeLiveSearch();
     const action=e.target.closest('[data-hub-v2-action]');if(action){e.preventDefault();e.stopImmediatePropagation();handleHomeAction(action.dataset.hubV2Action);return}
   },true);
 }
@@ -302,7 +377,8 @@ function selfCheck(){
   const results=searchCatalog('toan');
   const selectors=['.hub-safe-hero','.hub-safe-subjects','.hub-safe-continue','.hub-safe-assistant','.hub-safe-schedule','.hub-safe-achievements','.hub-safe-overall'];
   const referencePanelsVisible=selectors.every(sel=>{const el=q('#page-home '+sel);return !!el&&getComputedStyle(el).display!=='none'});
-  return{release:RELEASE,referenceHome:q('#page-home .hub-safe-dashboard')?.dataset.homeReferenceV4===RELEASE,canonicalHomeHidden:!!q('#page-home .hub-v2-canonical-hidden'),searchInstalled:q('#hubSafeSearch')?.dataset.searchV2==='1',accentInsensitive:results.some(x=>x.subjectId==='math'),referencePanelsVisible,homeSummary:false};
+  const input=q('#hubSafeSearch'),live=q('#hubSafeLiveSearch');
+  return{release:RELEASE,referenceHome:q('#page-home .hub-safe-dashboard')?.dataset.homeReferenceV4===RELEASE,canonicalHomeHidden:!!q('#page-home .hub-v2-canonical-hidden'),searchInstalled:input?.dataset.searchV2==='1',liveSearchInstalled:!!live&&input?.getAttribute('aria-controls')==='hubSafeLiveSearch'&&input?.getAttribute('role')==='combobox',keyboardSearch:true,accentInsensitive:results.some(x=>x.subjectId==='math'),referencePanelsVisible,homeSummary:false};
 }
 bind();
 install();

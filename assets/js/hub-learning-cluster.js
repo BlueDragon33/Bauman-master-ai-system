@@ -1,9 +1,9 @@
-/* Bauman Master Hub · Compact primary navigation V5
+/* Bauman Master Hub · Compact primary navigation V6
    Sidebar owns only five top-level destinations.
    Study/review/exam/AI/progress/settings remain in-page actions, not duplicate tabs. */
 (()=>{
   'use strict';
-  const RELEASE='HUB_PRIMARY_NAV_2026_09_V5';
+  const RELEASE='HUB_PRIMARY_NAV_2026_10_V6';
   const q=(s,r=document)=>r.querySelector(s);
   const qa=(s,r=document)=>[...r.querySelectorAll(s)];
   const PRIMARY=[
@@ -32,6 +32,26 @@
     }
   }
 
+  function activePageId(){
+    const active=q('.main > .page.active');
+    if(active?.id?.startsWith('page-'))return active.id.slice(5);
+    const statePage=(typeof state!=='undefined'&&state?.page)||'';
+    return PRIMARY.some(([id])=>id===statePage)?statePage:'';
+  }
+
+  function syncActive(nav){
+    if(!nav)return '';
+    const activeId=activePageId();
+    for(const [id] of PRIMARY){
+      const button=pageButton(nav,id);if(!button)continue;
+      const selected=id===activeId;
+      button.classList.toggle('active',selected);
+      if(selected)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current');
+    }
+    nav.dataset.activePage=activeId;
+    return activeId;
+  }
+
   function hideSecondary(nav){
     secondaryButtons(nav).forEach(button=>{
       button.classList.add('hub-nav-reference-hidden','hub-nav-secondary-action');
@@ -50,10 +70,20 @@
     nav.dataset.referenceNav='1';
     nav.dataset.primaryCount=String(PRIMARY.length);
     document.documentElement.dataset.hubLearningCluster=RELEASE;
+    syncActive(nav);
     return PRIMARY.every(([id])=>Boolean(pageButton(nav,id)));
   }
 
-  function boot(){apply();}
+  let routeObserver=null;
+  function observeActive(){
+    const main=q('.main');if(!main||routeObserver)return;
+    routeObserver=new MutationObserver(records=>{
+      if(records.some(record=>record.type==='attributes'&&record.attributeName==='class'))syncActive(q('#nav'));
+    });
+    routeObserver.observe(main,{subtree:true,attributes:true,attributeFilter:['class']});
+  }
+
+  function boot(){apply();observeActive();}
 
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
 
@@ -71,6 +101,9 @@
         primaryCount:Number(nav?.dataset.primaryCount||0),
         visiblePages,
         visibleActions,
+        activePage:nav?.dataset.activePage||'',
+        ariaCurrentPage:q(':scope > button[aria-current="page"]',nav)?.dataset?.page||'',
+        ariaCurrentCount:qa(':scope > button[aria-current="page"]',nav).length,
         secondaryActionsHidden:visibleActions.length===0,
       };
     }
