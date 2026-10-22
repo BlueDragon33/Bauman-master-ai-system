@@ -1,0 +1,202 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "bauman:russian:widget-deck:v1",
+  "title": "Russian Widget Deck V1 — read-only projection",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "sourceProjectId",
+    "contentRevision",
+    "generatedAt",
+    "expiresAt",
+    "status",
+    "items",
+    "diagnostics",
+    "productionReleaseAuthorized",
+    "learnerMasteryAuthority"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "RUSSIAN_WIDGET_DECK_V1"
+    },
+    "sourceProjectId": {
+      "const": "project:bauman-master-ai-system"
+    },
+    "contentRevision": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expiresAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "enum": [
+        "REVIEWED_CONTENT_PROJECTION",
+        "NO_AUTHORIZED_CONTENT"
+      ]
+    },
+    "items": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "contentId",
+          "revision",
+          "senseId",
+          "textRu",
+          "stressMarked",
+          "meaningVi",
+          "stage",
+          "contentSha256",
+          "sourceRefs",
+          "approvalDecisionId",
+          "reviewerEvidenceId",
+          "licenseUrl",
+          "audio"
+        ],
+        "properties": {
+          "contentId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "revision": {
+            "type": "string",
+            "minLength": 1
+          },
+          "senseId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "textRu": {
+            "type": "string",
+            "minLength": 1
+          },
+          "stressMarked": {
+            "type": "string",
+            "minLength": 1
+          },
+          "meaningVi": {
+            "type": "string",
+            "minLength": 1
+          },
+          "stage": {
+            "type": "string",
+            "minLength": 1
+          },
+          "contentSha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "sourceRefs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "approvalDecisionId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "reviewerEvidenceId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "licenseUrl": {
+            "type": "string",
+            "format": "uri"
+          },
+          "audio": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "url",
+                  "sha256",
+                  "licenseRef"
+                ],
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[a-f0-9]{64}$"
+                  },
+                  "licenseRef": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "diagnostics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidates",
+        "exported",
+        "withheld"
+      ],
+      "properties": {
+        "candidates": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "exported": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "withheld": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "productionReleaseAuthorized": {
+      "const": false
+    },
+    "learnerMasteryAuthority": {
+      "const": false
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "NO_AUTHORIZED_CONTENT"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "items": {
+            "maxItems": 0
+          }
+        }
+      }
+    }
+  ]
+}
