@@ -63,6 +63,16 @@ Forbidden Hub shortcuts:
 
 Missing capability becomes UNAVAILABLE or an explicit blocker.
 
+## Maintainability and premium UX recovery guardrail
+
+The target is **100-level modular capability**, never 100 always-loaded UI layers.
+Keep the learner's primary action obvious; progressively disclose secondary dashboards, data, AI, calendar and diagnostics.
+Do not create a new Vn/overlay/decorator to fix an older Vn. Consolidate the canonical owner and retire superseded code with regression evidence.
+Treat duplicate render implementations, embedded fake learner data, coupled route wrappers, CSS specificity escalation, and increasing critical-path resources as architectural debt.
+Every UI change must name its screen owner, report net complexity added/removed, preserve learning/data state, and pass real browser UX acceptance in addition to static CI.
+Performance claims require a measured before/after baseline at an exact commit. A merge is not performance acceptance.
+Follow `prompts/hub/plans/HUB-UX-RECOVERY-20261008.md` for the phased cleanup; it does not replace the active packet, Constitution, or release authority.
+
 ## Work allocation
 
 Default: Chat 90–95%; Codex 5–10% maximum.
