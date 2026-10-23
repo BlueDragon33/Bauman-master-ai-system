@@ -1,0 +1,54 @@
+{
+  "schema": "RUSSIAN_ENGINE_RU03_SOURCE_ANCHORED_PILOT_V1",
+  "itemId": "spatial:rl-05-shop:instruction",
+  "sourceRevision": "real-life-r4-ai-candidate-1",
+  "textRu": "Можно бутылку воды, пожалуйста?",
+  "status": "AI_EVIDENCE_CANDIDATE",
+  "humanApproval": false,
+  "textAuthority": "NONE",
+  "audioAuthority": "NONE",
+  "claims": [
+    {
+      "surface": "Можно",
+      "stressMarked": "Мо́жно",
+      "sourceId": "gramota-stress",
+      "sourceUrl": "https://gramota.ru/poisk?mode=slovari&query=%D0%BC%D0%BE%D0%B6%D0%BD%D0%BE",
+      "method": "DICTIONARY_ATTESTED",
+      "noteVi": "Trọng âm ở âm tiết thứ nhất."
+    },
+    {
+      "surface": "бутылку",
+      "stressMarked": "буты́лку",
+      "sourceId": "gramota-stress",
+      "sourceUrl": "https://gramota.ru/poisk?mode=slovari&query=%D0%B1%D1%83%D1%82%D1%8B%D0%BB%D0%BA%D0%B0",
+      "method": "LEMMA_STRESS_WITH_MORPHOLOGICAL_INFERENCE",
+      "noteVi": "Dạng đối cách số ít của бутылка; trọng âm giữ trên ы; kiểm định viên xác nhận biến cách."
+    },
+    {
+      "surface": "воды",
+      "stressMarked": "воды́",
+      "sourceId": "gramota-stress",
+      "sourceUrl": "https://gramota.ru/poisk?mode=slovari&query=%D0%B2%D0%BE%D0%B4%D0%B0",
+      "method": "DICTIONARY_ATTESTED",
+      "noteVi": "Trong 'бутылку воды' là sở hữu cách số ít воды́; không nhầm với số nhiều во́ды."
+    },
+    {
+      "surface": "пожалуйста",
+      "stressMarked": "пожа́луйста",
+      "sourceId": "gramota-stress",
+      "sourceUrl": "https://gramota.ru/meta/pozhaluysta",
+      "method": "DICTIONARY_ATTESTED",
+      "noteVi": "Trọng âm a thứ hai trong từ."
+    }
+  ],
+  "unknowns": [
+    "Prosody and sentence intonation not validated against an immutable human audio",
+    "Acoustic signal quality not measured",
+    "Scene pragmatics still need HUMAN_RU03 reviewer"
+  ],
+  "audio": {
+    "status": "NOT_AUDITED",
+    "immutableSha256": null
+  },
+  "canonicalPublicationReady": false
+}
