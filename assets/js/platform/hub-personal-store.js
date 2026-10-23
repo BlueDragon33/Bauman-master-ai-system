@@ -87,11 +87,17 @@ function sanitize(key,value,scope){
 }
 function canonicalValue(key,value,scope){
   value=sanitize(key,value,scope);
+  value=withoutLaunchConfiguration(value);
   if(key===MAIN)for(const files of Object.values(value.researchFiles||{})){
     if(!Array.isArray(files))throw new Error('Invalid research attachment list');
     for(const file of files)if(!object(file)||typeof file.attachmentId!=='string'||file.content!==undefined)throw new Error('Binary payloads require the dedicated attachment store');
   }
   return value;
+}
+function withoutLaunchConfiguration(value,parent=''){
+  if(Array.isArray(value))return value.map(item=>withoutLaunchConfiguration(item));
+  if(!object(value))return value;
+  return Object.fromEntries(Object.entries(value).filter(([key])=>!['mainPath','editorPath'].includes(key)&&!(parent==='lastStudy'&&key==='path')).map(([key,item])=>[key,withoutLaunchConfiguration(item,key)]));
 }
 function fromDataURL(url){
   const match=/^data:([^,]*),(.*)$/s.exec(url);
@@ -277,7 +283,7 @@ function redact(value){
 }
 async function exportBundle(){
   if(!ready&&!readOnly)requireReady();await flush();
-  const records=redact(clone(cache)),attachments=[];
+  const records=withoutLaunchConfiguration(redact(clone(cache))),attachments=[];
   const recoveryBlobs=readOnly&&records[MAIN]?await extractAttachments(records[MAIN],scopeId):[];
   for(const files of Object.values(records[MAIN]?.researchFiles||{}))for(const file of files){
     const blob=recoveryBlobs.find(x=>x.attachmentId===file.attachmentId)?.blob||await getAttachment(file.attachmentId),bytes=new Uint8Array(await blob.arrayBuffer());
