@@ -36,6 +36,8 @@ jobs:
         run: node tests/math-p5-product-contract.mjs
       - name: Validate MATH06 RC contract
         run: node tests/math-p6-rc-contract.mjs
+      - name: Validate E170 hierarchy activity router contract
+        run: node tests/math-e170-activity-router-contract.mjs
       - name: Syntax check Math runtime
         shell: bash
         run: |
@@ -70,6 +72,11 @@ jobs:
           done
           cat /tmp/math-e2e-server.log
           exit 1
+      - name: Run E170 hierarchy activity router acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/math-e170-activity-router
+        run: node tests/math-e170-activity-router-browser.mjs
       - name: Run learner journey acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
@@ -106,6 +113,7 @@ jobs:
         with:
           name: math-browser-evidence
           path: |
+            artifacts/math-e170-activity-router
             artifacts/math-learning-journey
             artifacts/math-p1-forensic
             artifacts/math-p3-reasoning
