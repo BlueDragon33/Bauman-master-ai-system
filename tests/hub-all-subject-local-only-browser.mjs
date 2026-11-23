@@ -57,6 +57,12 @@ try{
       status=response?.status()??null;
       assert.equal(status,200,"Local route must be real HTTP 200");
       title=await page.title();
+      // A client-rendered Hub may have an empty body at DOMContentLoaded.
+      // Wait for a real, observable task-facing shell, not an arbitrary timer.
+      await page.waitForFunction(
+        ()=>((document.body?.innerText||"").trim().length>=30),
+        null,{timeout:12000}
+      );
       bodyLength=(await page.locator("body").innerText({timeout:12000})).trim().length;
       assert.ok(bodyLength>=30,"Core subject must render meaningful visible text");
       // Browser session must continue to navigate with all remote endpoints blocked.
