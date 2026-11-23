@@ -17,10 +17,14 @@ permissions:
 
 jobs:
   future-interface:
-    runs-on: ubuntu-latest
+    # Playwright 1.55.0 Chromium bootstrap is supported here; ubuntu-latest now resolves to unsupported 26.04.
+    runs-on: ubuntu-24.04
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: "22.13.0"

@@ -16,6 +16,7 @@ on:
       - "control/application-management.contract.json"
       - "tests/math-*.mjs"
       - "tests/russian-*.mjs"
+      - "tests/hub-all-subject-local-only-browser.mjs"
       - "scripts/prepare-chatgpt-site.mjs"
       - "scripts/prepare-cloudflare-preview.mjs"
       - ".github/workflows/deploy-bauman-preview.yml"
@@ -35,6 +36,7 @@ on:
       - "control/application-management.contract.json"
       - "tests/math-*.mjs"
       - "tests/russian-*.mjs"
+      - "tests/hub-all-subject-local-only-browser.mjs"
       - "scripts/prepare-chatgpt-site.mjs"
       - "scripts/prepare-cloudflare-preview.mjs"
       - ".github/workflows/deploy-bauman-preview.yml"
@@ -50,6 +52,11 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          # GitHub pull_request defaults to an ephemeral merge SHA; pin the
+          # candidate source revision so all three gates test the exact HEAD.
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: "22.13.0"
@@ -100,6 +107,7 @@ jobs:
           node --check tests/hub-primary-pages-v6-static.mjs
           node --check tests/hub-data-truth-static.mjs
           node --check tests/hub-data-truth-browser.mjs
+          node --check tests/hub-all-subject-local-only-browser.mjs
           node --check tests/schedule-reference-v1-static.mjs
           node --check tests/schedule-reference-v1-browser.mjs
           node --check tests/subjects-reference-v1-static.mjs
@@ -157,6 +165,11 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+        with:
+          # GitHub pull_request defaults to an ephemeral merge SHA; pin the
+          # candidate source revision so all three gates test the exact HEAD.
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: "22.13.0"
@@ -367,6 +380,11 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+        with:
+          # GitHub pull_request defaults to an ephemeral merge SHA; pin the
+          # candidate source revision so all three gates test the exact HEAD.
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: "22.13.0"
@@ -642,6 +660,12 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-russian-future-ui
         run: node tests/russian-future-ui-browser.mjs
+      - name: Verify every shipped subject shell without external browser requests
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/hub-all-subject-local-only
+          BAUMAN_EXPECT_SOURCE_REVISION: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: node tests/hub-all-subject-local-only-browser.mjs
       - name: Show server log on failure
         if: failure()
         run: |
@@ -654,6 +678,7 @@ jobs:
           name: whole-system-browser-${{ github.run_id }}
           path: |
             artifacts/system-browser
+            artifacts/hub-all-subject-local-only
             artifacts/hub-personal-storage
             artifacts/hub-public-boundary
             artifacts/chatgpt-site-hub-personal-storage
