@@ -23,6 +23,10 @@ const routes=["/",...subjects.map(name=>"/subjects/"+name+"/index.html")];
 const out=process.env.BAUMAN_E2E_ARTIFACT_DIR||"artifacts/hub-all-subject-local-only";
 fs.mkdirSync(out,{recursive:true});
 const sourceRevision=execFileSync("git",["rev-parse","HEAD"],{encoding:"utf8"}).trim();
+const expectedRevision=String(process.env.BAUMAN_EXPECT_SOURCE_REVISION||"").trim();
+if(!/^[0-9a-f]{40}$/.test(expectedRevision)||sourceRevision!==expectedRevision)
+  throw new Error("FAIL-CLOSED: Chromium checkout SHA "+sourceRevision+
+    " differs from exact approved candidate "+(expectedRevision||"(missing)"));
 const evidence={
   kind:"bauman-whole-hub-loopback-only-browser-v1",
   sourceRevision,
