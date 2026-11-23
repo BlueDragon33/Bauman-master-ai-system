@@ -69,8 +69,15 @@ try{
       );
       bodyLength=(await page.locator("body").innerText({timeout:12000})).trim().length;
       assert.ok(bodyLength>=30,"Core subject must render meaningful visible text");
+      if(routePath==="/subjects/security-elective/index.html"){
+        await page.locator("#pageTitle").waitFor({state:"visible",timeout:12000});
+        await page.locator("#pageSub").waitFor({state:"visible",timeout:12000});
+        await page.locator("#sec-dashboard .hero").waitFor({state:"visible",timeout:12000});
+      }
+      // Do not accept a rendered HTML skeleton when the actual app runtime
+      // has thrown an uncaught exception (the previous test missed this).
+      assert.deepEqual(pageErrors,[],"Uncaught subject runtime errors: "+pageErrors.join("; "));
       // Browser session must continue to navigate with all remote endpoints blocked.
-      // Page exceptions are recorded for follow-up but are not a false server result.
       result="LOCAL_CORE_ROUTE_PASS";
     }catch(error){
       reason=String(error instanceof Error?error.message:error).slice(0,380);
